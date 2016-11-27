@@ -1,0 +1,20 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "node_modules": true,
+        "dist": true,
+        "e2e": true,
+        "tests": true,
+        ".editorconfig": true,
+        ".npmignore": true,
+        "tslint.json": true,
+        ".travis.yml": true,
+        "config": true,
+        "config.json": true,
+        "_README.md": true,
+        "**/.DS_Store": true
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
+}
