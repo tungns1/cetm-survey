@@ -55,7 +55,7 @@ export function prerender(url: string): Observable<any> {
       requestUrl: url,
       document: fs.readFileSync(path.resolve(__dirname, '../../src/index.html')).toString(),
       preboot: false,
-      compilerOptions: require('../../tsconfig.json').compilerOptions
+      compilerOptions: require('../../src/tsconfig.json').compilerOptions
     };
 
     const platformRef: any = platformNodeDynamic();

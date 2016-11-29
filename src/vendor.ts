@@ -9,6 +9,7 @@ import * as _angular_common from '@angular/common';
 import * as _angular_http from '@angular/http';
 import * as _angular_router from '@angular/router';
 import * as _angular_forms from '@angular/forms';
+import * as _angular_material from '@angular/material';
 
 import * as rxjs from 'rxjs/Rx';
 
@@ -20,5 +21,6 @@ export default {
   _angular_http,
   _angular_router,
   _angular_forms,
+  _angular_material,
   rxjs
 };

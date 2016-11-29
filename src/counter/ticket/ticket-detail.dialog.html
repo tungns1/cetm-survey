@@ -1,0 +1,43 @@
+<div style="padding: 25px 25px 0px 25px;width: 300px;">
+    <div class="tl">TICKET DETAIL</div>
+    <div style="margin-top: 80px;">
+        <div class="info">ID: {{ticket.id}}</div>
+        <div class="info"> Number: {{ticket.cnum}}</div>
+        <div class="info"> Priority:{{ticket.priority}}</div>
+        <div class="info"> Vcode:{{ticket.vcode}}</div>
+        <div class="info"> Created at: {{ticket.ctime | hour}}</div>
+        <hr>
+
+        <div *ngIf="isServing" style="margin-bottom:10px;">
+            <div>Serving from: {{ticket.mtime | hour}}</div>
+            <br> Move Service:
+
+            <select-check (ngModel)="checkedServices" [data]="services | async" textField="name">
+            </select-check>
+        </div>
+
+        <div *ngIf="isMissed" style="margin-bottom:10px;">
+            Last call at: {{ticket.mtime | hour}}
+        </div>
+
+        <div *ngIf="isWaiting" style="margin-bottom:10px;">
+            Waiting from: {{ticket.mtime | hour}}
+        </div>
+
+        Move Counter:
+        <select-check (ngModel)="checkedCounters" [data]="counters | async" textField="name">
+        </select-check>
+
+        <div style="margin-top: 30px;">
+            <button class="close" (click)="Close()" md-button>Close</button>
+
+            <button class="move" *ngIf="isServing" (click)="Move()" md-button>Move</button>
+
+            <button class="recall" *ngIf="isMissed" (click)="Recall(ticket)" md-button>Recall</button>
+
+            <button class="move" *ngIf="isWaiting" (click)="Move()" md-button>Move</button>
+
+            <button class="delete" (click)="Delete(ticket)" md-button>Delete</button>
+        </div>
+    </div>
+</div>

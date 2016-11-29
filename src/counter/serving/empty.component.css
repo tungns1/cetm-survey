@@ -1,0 +1,58 @@
+.sp {
+    width: 100%;
+}
+
+.so {
+    width: 50%;
+    text-align: center;
+    border-right: 0.5px solid #afb1b4;
+}
+
+.tg {
+    width: 50%;
+    text-align: center;
+}
+
+.padding {
+    height: 15px;
+    background-color: #fff;
+    border-left: 0.5px solid #afb1b4;
+    border-right: 0.5px solid #afb1b4;
+}
+
+.service {
+    border: 0.5px solid #afb1b4;
+    text-align: center;
+    background-color: #dee0e0;
+    height: 40px;
+    line-height: 40px;
+}
+
+.more {
+    border: 0.5px solid #afb1b4;
+    border-top: 0px solid;
+    background-color: #fff;
+    height: 150px;
+    display: flex;
+}
+
+.more>span {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.more:nth-child(2) {
+    border-left: 0.5px solid #afb1b4;
+}
+
+:host {
+    padding: 10px;
+    border-top: 1px solid #afb1b4;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #cccccc;
+    align-content: center;
+    justify-content: center;
+}

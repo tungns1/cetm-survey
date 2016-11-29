@@ -1,0 +1,56 @@
+.title {
+    border-bottom: 0.5px solid #cccccc;
+    text-align: center;
+    background-color: #dee0e0;
+    height: 40px;
+    line-height: 40px;
+}
+
+:host {
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #cccccc;
+}
+
+.count {
+    color: #0b8fdb;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tabs>* {
+    flex: 1 1 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.tabs>.active {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    color: #0b8fdb;
+    font-weight: bold;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.detail {
+    height: 300px;
+    background-color: #fff;
+}
+
+.content {
+    margin: 10px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #cccccc;
+}
+.search {
+    margin: 10px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #cccccc;
+    background-color: #fff
+}

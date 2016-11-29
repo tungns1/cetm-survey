@@ -44,7 +44,7 @@ export class Build {
         Observable.fromPromise(bundle.write({
           format: 'iife',
           dest: path.resolve(__dirname, '../../dist/main.js'),
-          sourceMap: false,
+          sourceMap: true,
           globals: Object.assign({
             '@angular/core': 'vendor._angular_core',
             '@angular/common': 'vendor._angular_common',
@@ -52,7 +52,8 @@ export class Build {
             '@angular/platform-browser-dynamic': 'vendor._angular_platformBrowserDynamic',
             '@angular/router': 'vendor._angular_router',
             '@angular/http': 'vendor._angular_http',
-            '@angular/forms': 'vendor._angular_forms'
+            '@angular/forms': 'vendor._angular_forms',
+            "@angular/material": 'vendor._angular_material'
           }, this.config.externalPackages)
         })).subscribe(resp => {
           let time: number = new Date().getTime() - start.getTime();
@@ -78,7 +79,7 @@ export class Build {
         angular({
           preprocessors: {
             style: src => {
-              return sass.renderSync({ data: src, indentedSyntax: true, outputStyle: 'compressed' }).css;
+              return sass.renderSync({ data: src, outputStyle: 'compressed' }).css;
             }
           }
         }),
@@ -96,7 +97,8 @@ export class Build {
         '@angular/platform-browser',
         '@angular/forms',
         '@angular/http',
-        '@angular/router'
+        '@angular/router',
+        '@angular/material'
       ].concat(Object.keys(this.config.externalPackages))
     }));
   };

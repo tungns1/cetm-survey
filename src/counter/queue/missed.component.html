@@ -1,0 +1,38 @@
+<style>
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .title>div {
+        flex: 4 1 40px;
+    }
+    
+    input {
+        flex: 1 1 10px;
+        max-width: 80px;
+    }
+</style>
+<div class="content">
+    <div class="title">
+        <div> DANH SÁCH HÀNG SỐ NHỠ&nbsp;(<span class="total">{{count | async}}</span>) </div>
+        <input #search type="text" style="display:none" (blur)="search.value='';search.style.display='none'" placeholder="số vé">
+        <img src="assets/img/counter/search.png" alt="Search" width="20" height="20" style="cursor: pointer" (click)="search.style.display='block'; search.focus();">
+    </div>
+
+    <div class="table">
+        <div class="table-row header">
+            <div>Số</div>
+            <div>Dịch vụ</div>
+            <div>Đặt nhỡ lúc</div>
+        </div>
+        <div class="table-row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ngClass]="{'hidden': t.cnum.indexOf(search.value)===-1}">
+            <div><img src="assets/img/counter/number.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
+            <div>{{t.services | ticketServiceName}}</div>
+            <div>
+                {{t.mtime | ticketHour}}
+            </div>
+        </div>
+    </div>
+</div>

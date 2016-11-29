@@ -1,0 +1,29 @@
+<style>
+    input[type=text] {
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        margin: 10px 15px;
+        width: 90%;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('assets/img/counter/search.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        transition: width 0.4s ease-in-out;
+    }
+</style>
+
+<input type="text" #tm placeholder="Tìm kiếm số vé" (keyup.enter)="searchTicket(tm.value)">
+
+<div>
+    <ul *ngIf="ticket">
+        <li>Thời điểm lấy vé:</li>
+        <li>Thời điểm gọi vào:<span style="text-align: right;">{{ticket.ctime | date:"hh:mm:ss"}}</span></li>
+        <li>Gọi vào lần</li>
+        <li>Đặt nhỡ:</li>
+        <li>Gọi số nhỡ:</li>
+        <li>Kết thúc: {{ticket.mtime | date:"hh:mm:ss"}}</li>
+    </ul>
+</div>

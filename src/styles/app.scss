@@ -1,0 +1,18 @@
+.ico:after {
+    content: '';
+    display: block;
+    height: 40px;
+    /*height of icon */
+    width: 40px;
+    /*width of icon */
+    position: absolute;
+    /*where to replace the icon */
+    top: 0px;
+    left: -40px;
+    /*background */
+    background: #F8E6AE url(ico.gif) no-repeat 0px 0px;
+}
+
+.ico.search {
+    background: url(asset/img/icon/search.png);
+}

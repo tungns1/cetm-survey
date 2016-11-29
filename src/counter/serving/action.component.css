@@ -1,0 +1,34 @@
+button {
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    margin: 5px 10px;
+    height: 40px;
+    opacity: 0.9;
+    background-color: #0b8fdb;
+    border: 0px solid;
+    flex: 1 1 120px;
+    align-content: space-around;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+button.warn {
+    background-color: #f39207;
+}
+
+button.danger {
+    background-color: #f63e30;
+}
+
+:host {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-between;
+}
+
+button.hidden {
+    display: none;
+}

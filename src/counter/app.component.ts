@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ApplicationRef, HostBinding, Input } from '@angular/core';
+import { RxCurrentCounter } from './backend/index';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html'
+
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  title = 'app works!';
-}
+    counter = RxCurrentCounter;
+} 

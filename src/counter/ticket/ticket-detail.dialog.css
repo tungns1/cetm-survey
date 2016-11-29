@@ -1,0 +1,49 @@
+.tl {
+    text-align: center;
+    background-color: #dee0df;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    margin: -49px;
+}
+
+.close {
+    background-color: #fff;
+    color: #0d8fdd;
+    height: 30px;
+    line-height: 30px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.move {
+    background-color: #0b8fda;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 13px;
+}
+
+.recall {
+    background-color: #0b8fda;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 13px;
+}
+
+.delete {
+    background-color: #dee0df;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 14px;
+}
+
+.info {
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 0px 10px;
+}
