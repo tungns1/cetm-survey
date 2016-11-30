@@ -4,7 +4,7 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../shared/auth/';
 import * as Platform from '../../x/platform/index';
 
 interface ILoginModel {

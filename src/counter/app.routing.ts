@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { loginRoutes, authProviders, AuthGuard } from '../shared/auth/';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AuthService, AuthGuard } from '../shared/auth/';
 
 import { CounterComponent } from './counter.component';
 
@@ -8,7 +7,6 @@ const branch = 'pgd-vinh-phuc';
 const counter = 'quay_1';
 
 const routes: Routes = [
-  ...loginRoutes,
   {
     path: '',
     pathMatch: 'full',
@@ -23,13 +21,6 @@ const routes: Routes = [
       auto: true
     }
   }  
-  // { path: '**', component: "PageNotFoundComponent" }
-];
-
-
-export const appRoutingProviders: any[] = [
-  authProviders,
-  { provide: LocationStrategy, useClass: HashLocationStrategy }
 ];
 
 export const routing = RouterModule.forRoot(routes);

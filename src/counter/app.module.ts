@@ -11,16 +11,16 @@ import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 
-import { appRoutingProviders, routing } from './app.routing';
-import { LoginComponent } from '../shared/auth/login.component';
+import { routing } from './app.routing';
+import { PageModule } from '../pages/pages.module';
 
 @NgModule({
     imports: [
         BrowserModule, CommonModule, FormsModule, ReactiveFormsModule,
+        PageModule,
         routing, HeaderModule, QueueModule, StatModule, ServingModule
     ],
-    providers: [appRoutingProviders],
-    declarations: [AppComponent, CounterComponent, LoginComponent],
+    declarations: [AppComponent, CounterComponent],
     bootstrap: [AppComponent]
 })
 export default class CounterModule {
