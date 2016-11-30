@@ -19,6 +19,7 @@ export function Activate(session: ISession) {
 
 export function Destroy() {
   sessionSetting.save({});
+  RxCurrentSession.next({});
 }
 
 export function GetToken() {

@@ -147,7 +147,7 @@ export class Build {
         buble(),
         serve({
           contentBase: 'dist/',
-          historyApiFallback: true,
+          historyApiFallback: false,
           port: 4200
         }),
         livereload({

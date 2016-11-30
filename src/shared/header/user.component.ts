@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RxMySetting } from '../session/';
-import { Logout } from '../auth/';
+import { AuthService } from '../auth/';
 
 @Component({
 
@@ -11,8 +11,8 @@ import { Logout } from '../auth/';
     styleUrls: ['user.component.scss']
 })
 export class UserComponent {
-    // constructor(private router: Router) {
-    // }
+    constructor(private router: Router, private authService: AuthService) {
+    }
 
     get Fullname() {
         const v = RxMySetting.value;
@@ -23,7 +23,7 @@ export class UserComponent {
     }
 
     Logout() {
-        Logout();
-        // this.router.navigate(['']);
+        this.authService.Logout();
+        this.router.navigate(['']);
     }
 }

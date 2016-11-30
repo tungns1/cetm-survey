@@ -2,28 +2,32 @@ import { Injectable, Injector } from '@angular/core';
 import { CanActivate, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import * as Auth from './auth.service';
+import { AuthService } from './auth.service';
+
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (Auth.IsLoggedIn()) {
-      return true;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
+    if (!this.authService.IsLoggedIn()) {
+      return this.loginPage(route);
     }
 
-    return Auth.Refresh().map(ok => {
+    return this.authService.Refresh().map(ok => {
       if (!ok) {
-        let navigationExtras: NavigationExtras = {
-          queryParams: {
-            redirect: route.url,
-            auto: route.data['auto']
-          }
-        };
-        this.router.navigate(['/login'], navigationExtras);
+        this.loginPage(route);
       }
       return ok;
-    });
+    }).toPromise();;
+  }
+
+  loginPage(route: ActivatedRouteSnapshot) {
+    this.authService.Redirect = route.url;
+    this.authService.Scope = route.data['scope'];
+    this.authService.Auto = route.data['auto'];
+    this.router.navigate(['/login']);
+    return false
   }
 }

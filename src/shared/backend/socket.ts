@@ -6,6 +6,8 @@ import { WsHost } from '../../config/setting';
 
 export const RxError = new BehaviorSubject<{ type?: string, message?: string }>({});
 
+RxError.subscribe(e => console.info(e));
+
 export class AppSocket<T> extends Socket {
     constructor(private uri: string, private fields: string[]) {
         super();

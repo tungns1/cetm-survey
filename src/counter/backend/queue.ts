@@ -65,6 +65,11 @@ export const Waiting = new Queue(TicketStateWaiting)
 export const Serving = new Queue(TicketStateServing);
 export const Missed = new Queue(TicketStateMissed);
 
+export function Init(tickets: {[index: string]: Model.ITicket}) {
+    let v = Object.keys(tickets).map(id => tickets[id]);
+    Queues.forEach(q => q.init(v));
+}
+
 export const Queues = [Waiting, Serving, Missed];
 
 export const RxBusy = Serving.RxData.map(v => v.length > 0);

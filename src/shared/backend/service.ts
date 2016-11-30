@@ -28,7 +28,7 @@ export class HttpApi<T> {
         return GetJSON<T>(this.getUrl(`get`), this.wrapToken({ id: id }));
     }
 
-    Get<T2>(sub: string, o: any) {
+    Get<T2>(sub: string, o?: any) {
         return GetJSON<T2>(this.getUrl(sub), this.wrapToken(o));
     }
 

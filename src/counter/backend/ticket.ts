@@ -17,6 +17,7 @@ interface ITicketAction {
     counters?: string[];
 }
 
+import 'rxjs/add/operator/share';
 
 function sendAction(body: ITicketAction) {
     return socket.Send('/ticket', body).share();

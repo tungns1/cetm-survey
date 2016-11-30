@@ -4,7 +4,7 @@ import { RxServices } from '../backend/index';
 var serviceNameMap = {};
 RxServices.subscribe(services => {
     services.forEach(s => serviceNameMap[s.id] = s.name);
-})
+});
 
 @Pipe({
     name: 'ticketServiceName'

@@ -8,4 +8,7 @@ export interface IMySettings {
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export const RxMySetting = new BehaviorSubject<IMySettings>(null);
+
+import 'rxjs/add/operator/filter';
+
 RxMySetting.filter(v => !!v).subscribe(v => RxBranches.next(v.branches));

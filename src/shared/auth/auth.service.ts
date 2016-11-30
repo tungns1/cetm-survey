@@ -4,32 +4,44 @@ import { HttpApi } from '../backend/service';
 import { IsErrUnauthorized } from '../../x/backend/';
 
 const authBackend = new HttpApi<any>("/api/auth");
+
+import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-export function Refresh() {
-    return authBackend.Get<IMySettings>("my_settings", { token: GetToken() }).map(v => {
-        RxMySetting.next(v);
-        return true;
-    }).catch(e => {
-        if (IsErrUnauthorized(e)) {
-            this.Logout();
-        }
-        return Observable.of(false);
-    });
-}
+import { Injectable } from '@angular/core';
 
-export function Logout() {
-    Destroy();
-}
+@Injectable()
+export class AuthService {
+    Login(form) {
+        const values = Object.assign({ auto: this.Auto, scope: this.Scope }, form);
+        return authBackend.Post("login", values).map(v => {
+            Activate(v.session);
+            return v.session;
+        })
+    }
 
-export function Login(form) {
-    return authBackend.Post("login", form).map(v => {
-        Activate(v.session);
-        return v.session;
-    })
-}
+    Logout() {
+        Destroy();
+    }
 
-export function IsLoggedIn() {
-    return GetToken();
+    Refresh() {
+        return authBackend.Get<IMySettings>("my_settings").map(v => {
+            RxMySetting.next(v);
+            return true;
+        }).catch(e => {
+            if (IsErrUnauthorized(e)) {
+                Destroy();
+            }
+            return of(false);
+        });
+    }
+
+    IsLoggedIn() {
+        return GetToken();
+    }
+
+    Redirect = [];
+    Scope = '';
+    Auto = false;
 }

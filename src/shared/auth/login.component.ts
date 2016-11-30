@@ -4,7 +4,7 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router';
-import * as Auth from './auth.service';
+import { AuthService } from './auth.service';
 import * as Platform from '../../x/platform/index';
 
 interface ILoginModel {
@@ -26,17 +26,17 @@ export class LoginComponent {
   })
   message = '';
 
-  constructor(public router: Router, private route: ActivatedRoute) {
+  constructor(public router: Router, private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    if (Auth.IsLoggedIn()) {
-      this.router.navigate(['']);
+    if (this.IsLogin()) {
+      console.log('navigate');
+      this.router.navigate(['/']);
       return;
     }
-    const auto = this.param('auto');
-    if (auto) {
+    if (this.authService.Auto) {
       let user = Platform.CurrentUser();
       if (user) {
         this.loginForm.controls['username'].setValue(user);
@@ -46,10 +46,11 @@ export class LoginComponent {
   }
 
   login(auto?: boolean) {
-    let form = this.loginForm.value;
-    form['auto'] = auto;
-    Auth.Login(form).subscribe((v) => {
-      let redirect = this.route.snapshot.queryParams['redirect'];
+    this.authService.Login(this.loginForm.value).subscribe((v) => {
+      let redirect = this.authService.Redirect;
+      if (!redirect || redirect.length < 1) {
+        redirect = ["/"];
+      }
       this.router.navigate(redirect);
     }, e => {
       this.message = e.error;
@@ -57,11 +58,11 @@ export class LoginComponent {
   }
 
   logout() {
-    Auth.Logout();
+    this.authService.Logout();
   }
 
-  private param(key: string) {
-    return this.route.snapshot.queryParams[key];
+  private IsLogin() {
+    return this.authService.IsLoggedIn();
   }
 }
 

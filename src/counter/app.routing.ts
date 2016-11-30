@@ -2,18 +2,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { loginRoutes, authProviders, AuthGuard } from '../shared/auth/';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-import { AppComponent } from './app.component';
+import { CounterComponent } from './counter.component';
 
 const routes: Routes = [
   ...loginRoutes,
   {
-    path: '',
-    component: AppComponent,
+    path: ':branch_code/:counter_code',
+    component: CounterComponent,
     canActivate: [AuthGuard],
     data: {
+      scope: 'staff',
       auto: true
     }
-  }
+  }  
+  // { path: '**', component: "PageNotFoundComponent" }
 ];
 
 

@@ -20,7 +20,7 @@ export class Server {
 
   get watch(): Observable<any> {
     return new Observable(observer => {
-      const sassSrc = path.resolve(__dirname, '../../src/styles/app.sass');
+      const sassSrc = path.resolve(__dirname, '../../src/styles/app.scss');
       const cssDest = path.resolve(__dirname, '../../dist/css/app.css');
 
       const watcher = chokidar.watch(path.resolve(__dirname, '../../src'), {
@@ -61,7 +61,7 @@ export class Server {
               case '.ts':
                 this.builder.buildDevMain.subscribe(data => { observer.next(data); });
                 break;
-              case '.sass':
+              case '.scss':
                 if (sassSrc === path.resolve(file)) {
                   compileSass(sassSrc, cssDest).subscribe(data => { observer.next(data); });
                 } else {

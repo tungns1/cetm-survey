@@ -123,3 +123,5 @@ export function ListenToRouter(router: Router) {
     })
     Start();
 }
+
+Start();
