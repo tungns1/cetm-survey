@@ -21,44 +21,59 @@ const uglify = require('rollup-plugin-uglify');
 const serve = require('rollup-plugin-serve');
 const livereload = require('../plugins/rollup-plugin-livereload');
 
+const externals = {
+  '@angular/core': 'vendor._angular_core',
+  '@angular/common': 'vendor._angular_common',
+  '@angular/platform-browser': 'vendor._angular_platformBrowser',
+  '@angular/platform-browser-dynamic': 'vendor._angular_platformBrowserDynamic',
+  '@angular/router': 'vendor._angular_router',
+  '@angular/http': 'vendor._angular_http',
+  '@angular/forms': 'vendor._angular_forms',
+  "@angular/material": 'vendor._angular_material'
+}
+
+let debug = true;
+
 export class Build {
   public cache: any;
   public building: boolean;
   public config: any;
 
-  constructor() {
+  constructor(private appName: string) {
     this.building = false;
     this.config = getConfig();
   }
 
-  get buildDev(): Observable<any> {
-    return this.buildDevMain.concat(this.buildDevVendor);
+  get SrcMain() {
+    return path.resolve(__dirname, `../../src/${this.appName}/main.ts`)
   }
 
-  get buildDevMain(): Observable<any> {
+  get DistMain() {
+    return path.resolve(__dirname, `../../dist/${this.appName}/main.js`)
+  }
+
+  buildDev(): Observable<any> {
+    if (debug) {
+      return this.buildDevMain();
+    }
+    return this.buildDevMain().concat(this.buildDevVendor());
+  }
+
+  buildDevMain(): Observable<any> {
     return Observable.create(observer => {
       let start: Date = new Date();
-      spinner.start('Building...');
-      this.devMainBuilder.subscribe(bundle => {
+      spinner.start('Building [' + this.appName + "]...");
+      this.devMainBuilder().subscribe(bundle => {
         this.cache = bundle;
         Observable.fromPromise(bundle.write({
           format: 'iife',
-          dest: path.resolve(__dirname, '../../dist/counter/main.js'),
+          dest: this.DistMain,
           sourceMap: true,
-          globals: Object.assign({
-            '@angular/core': 'vendor._angular_core',
-            '@angular/common': 'vendor._angular_common',
-            '@angular/platform-browser': 'vendor._angular_platformBrowser',
-            '@angular/platform-browser-dynamic': 'vendor._angular_platformBrowserDynamic',
-            '@angular/router': 'vendor._angular_router',
-            '@angular/http': 'vendor._angular_http',
-            '@angular/forms': 'vendor._angular_forms',
-            "@angular/material": 'vendor._angular_material'
-          }, this.config.externalPackages)
+          globals: Object.assign(externals, this.config.externalPackages)
         })).subscribe(resp => {
           let time: number = new Date().getTime() - start.getTime();
           spinner.stop();
-          observer.next(`${chalk.green('✔')} ${chalk.yellow(`Build Time (main): ${timeHuman(time)}`)}`);
+          observer.next(`${chalk.green('✔')} ${chalk.yellow(`Build Time [${this.appName}] (main): ${timeHuman(time)}`)}`);
           observer.complete();
         });
       }, err => {
@@ -70,9 +85,9 @@ export class Build {
     });
   }
 
-  get devMainBuilder(): Observable<any> {
+  devMainBuilder(): Observable<any> {
     return Observable.fromPromise(rollup.rollup({
-      entry: path.resolve(__dirname, '../../src/counter/index.ts'),
+      entry: this.SrcMain,
       cache: this.cache,
       context: 'this',
       plugins: [
@@ -90,24 +105,15 @@ export class Build {
         nodeResolve({ jsnext: true, main: true, browser: true }),
         buble()
       ],
-      external: [
-        '@angular/core',
-        '@angular/common',
-        '@angular/platform-browser-dynamic',
-        '@angular/platform-browser',
-        '@angular/forms',
-        '@angular/http',
-        '@angular/router',
-        '@angular/material'
-      ].concat(Object.keys(this.config.externalPackages))
+      external: Object.keys(externals).concat(Object.keys(this.config.externalPackages))
     }));
   };
 
-  get buildDevVendor(): Observable<any> {
+  buildDevVendor(): Observable<any> {
     return Observable.create(observer => {
       let start: Date = new Date();
       spinner.start('Building...');
-      this.devVendorBuilder.subscribe(bundle => {
+      this.devVendorBuilder().subscribe(bundle => {
         this.cache = bundle;
         Observable.fromPromise(bundle.write({
           format: 'iife',
@@ -127,7 +133,7 @@ export class Build {
     });
   }
 
-  get devVendorBuilder(): Observable<any> {
+  devVendorBuilder(): Observable<any> {
     return Observable.fromPromise(rollup.rollup({
       entry: path.resolve(__dirname, '../../src/vendor.ts'),
       context: 'this',
@@ -221,12 +227,12 @@ export class Build {
       const cliOptions = new tsc.NgcCliOptions({});
       spinner.start('Building...');
       tsc.main(path.resolve(__dirname, `../../${config}`), cliOptions, this.codegen)
-      .then(() => {
-        let time: number = new Date().getTime() - start.getTime();
-        spinner.stop();
-        observer.next(`${chalk.green('✔')} ${chalk.yellow(`AoT Build Time: ${timeHuman(time)}`)}`);
-        observer.complete();
-      });
+        .then(() => {
+          let time: number = new Date().getTime() - start.getTime();
+          spinner.stop();
+          observer.next(`${chalk.green('✔')} ${chalk.yellow(`AoT Build Time: ${timeHuman(time)}`)}`);
+          observer.complete();
+        });
     });
   }
 }
