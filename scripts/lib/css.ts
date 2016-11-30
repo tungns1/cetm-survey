@@ -14,6 +14,7 @@ export function compileSass(srcPath: string, destPath: string): Observable<any> 
     let start: Date = new Date();
     sass.render({ file: srcPath, outputStyle: 'compressed' }, (err, result) => {
       if (err) {
+        console.log(srcPath);
         observer.next(err);
         observer.complete();
         return;

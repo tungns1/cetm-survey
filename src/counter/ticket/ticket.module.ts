@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
 import { SelectCheckModule } from '../../x/ui/select/';
 import { TicketDetailDialog } from './ticket-detail.dialog';
 import { TicketDetailDirective } from './ticket-detail.directive';
@@ -10,7 +9,7 @@ import { TicketServiceNamePipe, TicketHourPipe, TicketDurationPipe } from './tic
 import { TicketTimerComopnent } from './timer.component';
 
 @NgModule({
-    imports: [CommonModule, MaterialModule, FormsModule, SelectCheckModule],
+    imports: [CommonModule, FormsModule, SelectCheckModule],
     declarations: [
         TicketDetailDialog, TicketDetailDirective, TicketServiceNamePipe,
         TicketHourPipe, HourPipe, TicketDurationPipe,

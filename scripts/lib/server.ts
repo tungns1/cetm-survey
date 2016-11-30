@@ -35,49 +35,51 @@ export class Server {
         observer.next(chalk.green('-------------------------------------------------------'));
 
         clean('dist')
-        .concat(removeModuleIdFromComponents())
-        .concat(copyPublic())
-        .concat(generateDev())
-        .concat(compileSass(sassSrc, cssDest))
-        .concat(this.builder.buildDev).subscribe(data => {
-          observer.next(data);
-        }, err => {
-          console.log(chalk.red(err));
-        }, () => {
-          open('http://localhost:4200/counter/');
-          watcher.on('change', (file, stats) => {
-            let ext: string = path.extname(file);
-            let basename: string = path.basename(file);
-            observer.next(chalk.blue(`${basename} changed...`));
-            switch (ext) {
-              case '.html':
-                if (basename === 'index.html') {
-                  generateDev().subscribe(data => console.log(data));
-                } else {
-                  this.builder.cache = null;
+          .concat(removeModuleIdFromComponents())
+          .concat(copyPublic())
+          .concat(generateDev())
+          .concat(compileSass(sassSrc, cssDest))
+          .concat(this.builder.buildDev).subscribe(data => {
+            observer.next(data);
+          }, err => {
+            console.log(chalk.red(err));
+          }, () => {
+            open('http://localhost:4200/counter/');
+            watcher.on('change', (file, stats) => {
+              let ext: string = path.extname(file);
+              let basename: string = path.basename(file);
+              observer.next(chalk.blue(`${basename} changed...`));
+              switch (ext) {
+                case '.html':
+                  if (basename === 'index.html') {
+                    generateDev().subscribe(data => console.log(data));
+                  } else {
+                    this.builder.cache = null;
+                    this.builder.buildDevMain.subscribe(data => { observer.next(data); });
+                  }
+                  break;
+                case '.ts':
                   this.builder.buildDevMain.subscribe(data => { observer.next(data); });
-                }
-                break;
-              case '.ts':
-                this.builder.buildDevMain.subscribe(data => { observer.next(data); });
-                break;
-              case '.scss':
-                if (sassSrc === path.resolve(file)) {
-                  compileSass(sassSrc, cssDest).subscribe(data => { observer.next(data); });
-                } else {
-                  this.builder.cache = null;
-                  this.builder.buildDevMain.subscribe(data => { observer.next(data); });
-                }
-                break;
-              default:
-                break;
-            }
-          });
+                  break;
+                case '.scss':
+                  if (sassSrc === path.resolve(file)) {
+                    setTimeout(_ => {
+                      compileSass(sassSrc, cssDest).subscribe(data => { observer.next(data); });
+                    }, 1000);
+                  } else {
+                    this.builder.cache = null;
+                    this.builder.buildDevMain.subscribe(data => { observer.next(data); });
+                  }
+                  break;
+                default:
+                  break;
+              }
+            });
 
-          publicWatcher.on('add', () => copyPublic().subscribe(data => console.log(data)));
-          publicWatcher.on('change', () => copyPublic().subscribe(data => console.log(data)));
-          publicWatcher.on('remove', () => copyPublic().subscribe(data => console.log(data)));
-        });
+            publicWatcher.on('add', () => copyPublic().subscribe(data => console.log(data)));
+            publicWatcher.on('change', () => copyPublic().subscribe(data => console.log(data)));
+            publicWatcher.on('remove', () => copyPublic().subscribe(data => console.log(data)));
+          });
       });
     });
   }
