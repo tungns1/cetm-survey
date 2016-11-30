@@ -12,9 +12,9 @@ export class TicketDetailDirective {
   @Input('ticket-detail') ticket: any;
   private dialogRef: ComponentRef<TicketDetailDialog>;
 
-  // constructor(
-  //   private viewContainer: ViewContainerRef,
-  //   private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(
+    private viewContainer: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver) { }
 
   open() {
 
@@ -23,16 +23,17 @@ export class TicketDetailDirective {
       return;
     }
 
-    // this.createDialog();
+    this.createDialog();
     this.dialogRef.instance.ticket = this.ticket;
   }
 
-  // createDialog() {
-  //   this.viewContainer.clear();
-  //   let dialogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(TicketDetailDialog);
-  //   this.dialogRef = this.viewContainer.createComponent(dialogComponentFactory);
-  //   this.dialogRef.instance.close.subscribe(() => {
-  //     this.dialogRef.destroy();
-  //   });
-  // }
+  createDialog() {
+    this.viewContainer.clear();
+    let dialogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(TicketDetailDialog);
+    this.dialogRef = this.viewContainer.createComponent(dialogComponentFactory);
+    this.dialogRef.instance.close.subscribe(() => {
+      this.dialogRef.destroy();
+    });
+    return this.dialogRef;
+  }
 }

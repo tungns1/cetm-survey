@@ -1,7 +1,7 @@
 import { Setting } from '../x/platform/index';
 import { Query } from '../x/fmt/qs';
 
-const qs = Query(window.location.search.substring(1));
+const qs = Query(window.location.hash.split('?')[1]);
 
 interface IAppSetting {
     locale: string;
