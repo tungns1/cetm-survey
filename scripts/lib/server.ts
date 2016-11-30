@@ -44,7 +44,7 @@ export class Server {
         }, err => {
           console.log(chalk.red(err));
         }, () => {
-          open('http://localhost:4200');
+          open('http://localhost:4200/counter/');
           watcher.on('change', (file, stats) => {
             let ext: string = path.extname(file);
             let basename: string = path.basename(file);

@@ -43,7 +43,7 @@ export class Build {
         this.cache = bundle;
         Observable.fromPromise(bundle.write({
           format: 'iife',
-          dest: path.resolve(__dirname, '../../dist/main.js'),
+          dest: path.resolve(__dirname, '../../dist/counter/main.js'),
           sourceMap: true,
           globals: Object.assign({
             '@angular/core': 'vendor._angular_core',
@@ -72,7 +72,7 @@ export class Build {
 
   get devMainBuilder(): Observable<any> {
     return Observable.fromPromise(rollup.rollup({
-      entry: path.resolve(__dirname, '../../src/main.ts'),
+      entry: path.resolve(__dirname, '../../src/counter/index.ts'),
       cache: this.cache,
       context: 'this',
       plugins: [

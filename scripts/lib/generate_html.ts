@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
 import { getConfig } from './config';
 
 const config = getConfig();
-const index = path.resolve(__dirname, '../../src/index.html');
-const dest = path.resolve(__dirname, '../../dist/index.html');
+const index = path.resolve(__dirname, '../../src/counter/index.html');
+const dest = path.resolve(__dirname, '../../dist/counter/index.html');
 const content = _.template(fs.readFileSync(index).toString());
 
 export function generateDev(): Observable<any> {
   return new Observable(observer => {
     const styles = config.styles;
-    const scripts = ['vendor.js', 'main.js'];
+    const scripts = ['../vendor.js', './main.js'];
     fs.outputFile(dest, content({ styles: styles, scripts: scripts }), err => {
       if (err) {
         observer.error(err);
