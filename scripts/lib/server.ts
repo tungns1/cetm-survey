@@ -76,7 +76,7 @@ export class Server {
                                     if (sassSrc === path.resolve(file)) {
                                         setTimeout(_ => {
                                             compileSass(sassSrc, cssDest).subscribe(data => { observer.next(data); });
-                                        }, 1000);
+                                        }, 250);
                                     } else {
                                         this.buildDevMain().subscribe(data => { observer.next(data); });
                                     }
