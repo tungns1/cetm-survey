@@ -1,0 +1,18 @@
+<editor #edit name="người dùng" [fields]="fields" [data]="users | async" [service]="service" (refresh)="Refresh()">
+    <editor-title> Danh sách người dùng</editor-title>
+    <form *ngIf="edit.form" [formGroup]="edit.form">
+        <input type="text" formControlName="username" id="username" placeholder="Tên" style="width: 100%;">
+        <input type="text" formControlName="fullname" id="fullname" placeholder="Tên đầy đủ" style="width: 100%;">
+        <input type="password" formControlName="password" id="password" placeholder="Mật khẩu" style="width: 100%;">
+        <br> Role:
+        <select formControlName="role">
+            <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
+        </select>
+        <div style="margin-top: 20px;">
+            Chi nhánh:
+            <select formControlName="branch_id">
+                <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
+            </select>
+        </div>
+    </form>
+</editor>

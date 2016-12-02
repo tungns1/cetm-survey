@@ -11,6 +11,12 @@ import { compileSass } from './css';
 import { removeModuleIdFromComponents } from './helpers';
 import { Apps } from '../app';
 
+const srcFolder = path.join(__dirname, "../../src");
+
+function srcSubFolder(file: string) {
+    return path.relative(srcFolder, path.resolve(file)).split(path.sep)[0];
+}
+
 export class Server {
     private options: any;
     private builders: Build[];
@@ -28,6 +34,11 @@ export class Server {
 
     buildDevMain() {
         return Observable.forkJoin(this.builders.map(b => b.buildDevMain())).map(data => data.join('\n'));
+    }
+
+    generateDev() {
+        let v = this.apps.map(a => generateDev(a));
+        return Observable.forkJoin(v).map(data => data.join('\n'));
     }
 
     get watch(): Observable<any> {
@@ -49,22 +60,23 @@ export class Server {
                 clean('dist')
                     .concat(removeModuleIdFromComponents())
                     .concat(copyPublic())
-                    .concat(generateDev())
+                    .concat(this.generateDev())
                     .concat(compileSass(sassSrc, cssDest))
                     .concat(this.buildDev()).subscribe(data => {
                         observer.next(data);
                     }, err => {
                         console.log(chalk.red(err));
                     }, () => {
-                        open('http://localhost:4200/counter/');
+                        // open('http://localhost:4200/admin/');
                         watcher.on('change', (file, stats) => {
+                            console.log("changes in", srcSubFolder(file), "\n");
                             let ext: string = path.extname(file);
                             let basename: string = path.basename(file);
                             observer.next(chalk.blue(`${basename} changed...`));
                             switch (ext) {
                                 case '.html':
                                     if (basename === 'index.html') {
-                                        generateDev().subscribe(data => console.log(data));
+                                        this.generateDev().subscribe(data => console.log(data));
                                     } else {
                                         this.buildDevMain().subscribe(data => { observer.next(data); });
                                     }
@@ -73,7 +85,7 @@ export class Server {
                                     this.buildDevMain().subscribe(data => { observer.next(data); });
                                     break;
                                 case '.scss':
-                                    if (sassSrc === path.resolve(file)) {
+                                    if (srcSubFolder(file) === "styles") {
                                         setTimeout(_ => {
                                             compileSass(sassSrc, cssDest).subscribe(data => { observer.next(data); });
                                         }, 250);

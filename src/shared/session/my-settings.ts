@@ -8,6 +8,7 @@ export interface IMySettings {
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export const RxMySetting = new BehaviorSubject<IMySettings>(null);
+export const RxUser = RxMySetting.filter(v => !!v).map(v => v.me);
 
 import 'rxjs/add/operator/filter';
 

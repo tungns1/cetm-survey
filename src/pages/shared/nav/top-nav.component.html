@@ -1,0 +1,17 @@
+<nav>
+    <ul>
+        <li *ngFor="let item of menu">
+            <a [routerLink]="item.href" routerLinkActive="current-menu-item">
+                <i class="fa fa-lg" [addClass]="item.icon"> </i>
+                <span> {{item.name}} </span>
+            </a>
+            <ul>
+                <li *ngFor="let child of item.children">
+                    <a [routerLink]="child.href">
+                        {{child.name}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

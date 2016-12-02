@@ -17,7 +17,7 @@ const noop = function () {
 
 
 @Component({
-    moduleId: module.id,
+    
     selector: 'select2',
     templateUrl: 'select2.component.html',
     providers: [SELECT2_CONTROL_VALUE_ACCESSOR],

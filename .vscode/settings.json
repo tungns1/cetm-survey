@@ -12,7 +12,6 @@
         "tslint.json": true,
         ".travis.yml": true,
         "config": true,
-        "config.json": true,
         "_README.md": true,
         "**/.DS_Store": true
     },

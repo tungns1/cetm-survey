@@ -6,76 +6,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AllLevels } from './branch';
 
 @Component({
-
-    selector: 'branch-selector',
-    template: `
-    <span>{{level | levelName}}</span>
-    <div>
-    <select [ngModel]="selected" (ngModelChange)="updateChildren($event)"> // value is a string or number
-        <option [style.display]="(count | async)<2? 'none':'block'" value="all">--Tất cả --</option>
-        <option [style.display]="(count | async)>0? 'none':'block'" value="none">-- Không có dữ liệu --</option>
-        <option *ngFor="let b of o?.shown | async" [value]="b.id">{{b.name}}</option>
-    </select>
-    </div>
-    `,
-    styles: [`
-     select { width:100%;  height: 30px;border-radius:3px;}
-     span{ margin-bottom: 5px;}
-     `],
-    changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class BranchSelectorComponent {
-    @Input() set level(v: number) {
-        if (this._level > -1) {
-            throw Error("branch level was already set");
-        }
-        this._level = v;
-        this.o = AllLevels[this._level];
-        this.o.shown.subscribe(branches => {
-            if (branches.length === 1) {
-                this.selected = branches[0].id;
-            } else if (branches.length > 1) {
-                this.selected = 'all';
-            } else {
-                this.selected = 'none';
-            }
-            this.count.next(branches.length);
-        })
-        this.o.SelectAll();
-        // this.selected = 'all';
-    }
-
-    get level() {
-        return this._level;
-    }
-
-    o: BranchInLevel;
-    count = new BehaviorSubject<number>(0);
-    selected: string;
-
-    updateChildren(id: string) {
-        switch (id) {
-            case 'all':
-                this.o.SelectAll();
-                return;
-            case 'none':
-                return;
-            default:
-                this.o.SelectOnlyID(id);
-                return
-        }
-    }
-
-    private _level = -1;
-}
-
-
-@Component({
-
     selector: 'multi-branch-selector',
     template: `
      <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
-    <div *ngFor="let b of o?.branches | async">
+    <div *ngFor="let b of o?.shown | async">
         <input type="checkbox" [ngModel]="b._checked" (ngModelChange)="change($event, b.id)" />&nbsp;{{b.name}}
     </div>
     `,
@@ -87,12 +21,14 @@ export class BranchSelectorComponent {
 })
 export class MultiBranchSelectorComponent {
     @Input() set level(v: number) {
-        if (this._level > -1) {
+        if (this.inited) {
             throw Error("branch level was already set");
         }
-        this._level = v;
+        this.inited = true;
+        this._level = v || 0;
         this.o = AllLevels[this._level];
     }
+
     checkAll(event) {
         let selects: IBranch[] = [];
         this.o.shown.value.forEach(u => {
@@ -106,11 +42,34 @@ export class MultiBranchSelectorComponent {
         this.o.ChangeByID(id, checked);
     }
 
-    o: BranchInLevel;
+    o: BranchInLevel = AllLevels[0];
 
     get level() {
         return this._level;
     }
 
-    private _level = -2;
+    private _level = 0;
+    private inited = false;
+}
+
+@Component({
+    selector: 'branch-selector',
+    template: `
+        <div>
+            Chọn Tỉnh/Thành <br>
+            <multi-branch-selector level="2"></multi-branch-selector>
+        </div>
+        <div>
+            Chọn chi nhánh <br>
+            <multi-branch-selector level="1"></multi-branch-selector>
+        </div>
+        <div>
+            Chọn phòng giao dịch <br>
+            <multi-branch-selector level="0"></multi-branch-selector>
+        </div>
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class BranchSelectorComponent {
+
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuxState } from '../../config/app';
+import { AuxState } from '../../../config/';
 
 @Component({
 

@@ -12,6 +12,7 @@ export interface IUser {
     settings?: Object;
 
     _checked?: boolean;
+    branch?: string;
 }
 
 

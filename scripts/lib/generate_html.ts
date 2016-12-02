@@ -6,14 +6,18 @@ import { Observable } from 'rxjs';
 import { getConfig } from './config';
 
 const config = getConfig();
-const index = path.resolve(__dirname, '../../src/counter/index.html');
-const dest = path.resolve(__dirname, '../../dist/counter/index.html');
-const content = _.template(fs.readFileSync(index).toString());
 
-export function generateDev(): Observable<any> {
+
+function DestIndex(app: string) {
+  return path.resolve(__dirname, `../../dist/${app}/index.html`);
+}
+
+function Generate(app: string, styles: string[], scripts: string[]) {
+  const index = path.resolve(__dirname, `../../src/${app}/index.html`);
+  const dest = path.resolve(__dirname, `../../dist/${app}/index.html`);
+  const content = _.template(fs.readFileSync(index).toString());
   return new Observable(observer => {
-    const styles = config.styles;
-    const scripts = ['../vendor.js', './main.js'];
+
     fs.outputFile(dest, content({ styles: styles, scripts: scripts }), err => {
       if (err) {
         observer.error(err);
@@ -21,19 +25,18 @@ export function generateDev(): Observable<any> {
       observer.complete();
     });
   });
+}
+
+export function generateDev(app: string): Observable<any> {
+  const styles = config.styles;
+  const scripts = ['../vendor.js', './main.js'];
+  return Generate(app, styles, scripts);
 };
 
 export function generateProd(): Observable<any> {
-  return new Observable(observer => {
-    const styles = config.styles;
-    const scripts = ['app.js'];
-    fs.outputFile(dest, content({ styles: styles, scripts: scripts }), err => {
-      if (err) {
-        observer.error(err);
-      }
-      observer.complete();
-    });
-  });
+  const styles = config.styles;
+  const scripts = ['app.js'];
+  return Generate("admin", styles, scripts);
 };
 
 export function generateFromString(html: string, url: string): void {

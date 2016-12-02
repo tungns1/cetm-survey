@@ -1,23 +1,35 @@
-import {IBranch} from '../../model/branch';
+import { IBranch } from '../../model/branch';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combinelatest';
+import 'rxjs/add/operator/map';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export const RxBranches = new BehaviorSubject<IBranch[]>([]);
 export const Branches = new Map<string, IBranch>();
 export * from '../../model/branch';
 
+
+const LevelRoot = new BehaviorSubject<IBranch[]>([]);
+const LEVEL_MAX = 3;
+
 RxBranches.subscribe(branches => {
+    const v = branches.filter(b => b.level === LEVEL_MAX);
+    LevelRoot.next(v);
     branches.forEach(b => Branches.set(b.id, b));
+    branches.forEach(b => {
+        let p = Branches.get(b.id);
+        b.parent_name = (p && p.name) ? p.name : 'n/a';
+    });
 })
 
 export class BranchInLevel {
     constructor(private level: number, private parents: BehaviorSubject<IBranch[]>) {
         const rxLevel = RxBranches.map(branches => branches.filter(b => b.level === level));
         Observable.combineLatest<IBranch[], IBranch[]>(rxLevel, parents).subscribe(v => {
-            const branches = v[0].filter(b => !b.parent || v[1].some(p => b.parent === p.id));      
-            branches.filter(b => !b.parent).forEach(b => b._checked = true);
+            const branches = v[0].filter(b => v[1].some(p => b.parent === p.id));
+            // branches.forEach(b => b._checked = true);
             this.shown.next(branches);
         });
         this.shown.subscribe(branches => {
@@ -70,12 +82,9 @@ export class BranchInLevel {
 
 }
 
-
-const Level3 = new BranchInLevel(3, new BehaviorSubject([]));
-Level3.SelectAll();
-const Level2 = new BranchInLevel(2, Level3.selected);
+const Level2 = new BranchInLevel(2, LevelRoot);
 const Level1 = new BranchInLevel(1, Level2.selected);
 const Level0 = new BranchInLevel(0, Level1.selected);
 export const SelectedBranchIDLevel0 = Level0.selectedID;
 export const OnlyOneSelectedBranchLevel0 = Level0.onlyOne;
-export const AllLevels = [Level0, Level1, Level2, Level3];
+export const AllLevels = [Level0, Level1, Level2];
