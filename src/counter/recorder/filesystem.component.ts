@@ -9,7 +9,7 @@ export class CacheFileSystem {
         console.log('...Init cache')
         var that = this;
         this.fileName = filename || '';
-        this.type = type || window.TEMPORARY;
+        this.type = type || window.PERSISTENT;
         this.requestedBytes = requestedBytes || 100 * 1024 * 1024;
         if (this.type == window.PERSISTENT) {
             console.log('Type: ' + this.type)
