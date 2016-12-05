@@ -11,6 +11,13 @@ import 'rxjs/add/operator/catch';
 
 import { Injectable } from '@angular/core';
 
+export function RefreshMySettings() {
+    return authBackend.Get<IMySettings>("my_settings").map(v => {
+        RxMySetting.next(v);
+        return true;
+    })
+}
+
 @Injectable()
 export class AuthService {
     Login(form) {
@@ -26,10 +33,7 @@ export class AuthService {
     }
 
     Refresh() {
-        return authBackend.Get<IMySettings>("my_settings").map(v => {
-            RxMySetting.next(v);
-            return true;
-        }).catch(e => {
+        return RefreshMySettings().catch(e => {
             if (IsErrUnauthorized(e)) {
                 Destroy();
             }

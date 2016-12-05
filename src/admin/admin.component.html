@@ -1,0 +1,14 @@
+<app-header>
+    <div class="module-name"> Admin </div>
+</app-header>
+
+<top-nav [menu]="menu"></top-nav>
+<br>
+<br>
+
+<div class="container">
+    <branch-selector class="aside"></branch-selector>
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
+</div>

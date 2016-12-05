@@ -1,0 +1,10 @@
+<nav class="main-menu">
+    <div class="scrollbar" id="style-1">
+        <ul *ngFor="let item of menu">
+            <a [routerLink]="item.href" routerLinkActive='active-link'>
+                <i class="fa fa-lg" [addClass]="item.icon"></i>
+                <span class="nav-text">{{item.name}}</span>
+            </a>
+        </ul>
+    </div>
+</nav>

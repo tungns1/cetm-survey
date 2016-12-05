@@ -1,0 +1,42 @@
+<div class="title">
+    <ng-content select="editor-title"></ng-content>
+    <button class="them uppercase" (click)="onAdd()"> THÊM {{name}} </button>
+</div>
+
+<table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
+    <thead>
+        <td> STT </td>
+        <td *ngFor="let fi of fields">{{fi.title}} </td>
+        <td></td>
+    </thead>
+    <tr *ngFor="let da of data; let i = index">
+        <td>{{i+1}}</td>
+        <td *ngFor="let fi of fields">{{da[fi.name]}}</td>
+        <td>
+            <img src="../asset/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onEdit(da)">
+            <img src="../asset/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" (click)="onRemove(da)">
+        </td>
+    </tr>
+</table>
+
+<modal #edit>
+    <div *ngIf="form">
+        <modal-header>
+            <div class="uppercase" *ngIf="current"> SỬA {{name}} </div>
+            <div class="uppercase" *ngIf="!current"> THÊM {{name}} </div>
+        </modal-header>
+
+        <ng-content></ng-content>
+        <modal-footer>
+            <button class="huy" (click)="CloseEditor()" style="width: 45%">HỦY </button>
+            <button *ngIf="!current" class="them" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;">THÊM </button>
+            <button *ngIf="current" class="them" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;">LƯU </button>
+        </modal-footer>
+    </div>
+</modal>
+
+<modal #remove>
+    Bạn có muốn xóa không?
+    <button (click)="Delete()"> Có</button>
+    <button (click)="CloseRemove()"> Không</button>
+</modal>

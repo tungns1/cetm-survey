@@ -16,11 +16,18 @@ const routes: Routes = [
     // { path: '**', component: PageNotFoundComponent }
 ]
 
+import { HeaderModule } from './shared/header/header.module';
+import { NavModule } from './shared/nav/nav.module';
+
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, CommonModule, RouterModule.forChild(routes)],
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     providers: [AuthService, AuthGuard],
-    exports: [RouterModule]
+    exports: [
+        RouterModule, CommonModule, BrowserModule,
+        FormsModule, ReactiveFormsModule,
+        HeaderModule, NavModule
+    ]
 })
 export class PageModule {
 

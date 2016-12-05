@@ -64,7 +64,7 @@ export class Build {
       let start: Date = new Date();
       spinner.start('Building [' + this.appName + "]...");
       this.devMainBuilder().subscribe(bundle => {
-        this.cache = bundle;
+        // this.cache = bundle;
         Observable.fromPromise(bundle.write({
           format: 'iife',
           dest: this.DistMain,
@@ -88,7 +88,7 @@ export class Build {
   devMainBuilder(): Observable<any> {
     return Observable.fromPromise(rollup.rollup({
       entry: this.SrcMain,
-      cache: this.cache,
+      // cache: this.cache,
       context: 'this',
       plugins: [
         angular({
@@ -114,7 +114,7 @@ export class Build {
       let start: Date = new Date();
       spinner.start('Building...');
       this.devVendorBuilder().subscribe(bundle => {
-        this.cache = bundle;
+        // this.cache = bundle;
         Observable.fromPromise(bundle.write({
           format: 'iife',
           moduleName: 'vendor',

@@ -10,7 +10,7 @@ import { BranchNamePipe, LevelNamePipe } from './branch.pipe';
     exports: [BranchSelectorComponent, BranchPickerComponent, MultiBranchSelectorComponent, BranchNamePipe, LevelNamePipe],
     declarations: [BranchSelectorComponent, BranchPickerComponent, MultiBranchSelectorComponent, BranchNamePipe, LevelNamePipe],
 })
-export class BranchSharedModule {
+export class BranchModule {
 
 }
 
