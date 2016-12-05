@@ -38,7 +38,6 @@ export class Recorder {
     cache: CacheFileSystem;
     whenStop?: Function;
     outputData?: Uint8Array;
-    workerBlob: any;
 
     constructor(config: Config) {
         this.audioContext = new AudioContext();
@@ -77,16 +76,8 @@ export class Recorder {
         this.cache = new CacheFileSystem();
 
         // "Server response", used in all examples
-        
 
-        var blob;
-        try {
-            this.workerBlob = new Blob([encoderworker], { type: 'application/javascript' });
-        } catch (e) { // Backwards-compatibility
-            this.workerBlob = new BlobBuilder();
-            this.workerBlob.append(encoderworker);
-            this.workerBlob = blob.getBlob();
-        }
+        this.initStream()
     }
 
     static isRecordingSupported() {
@@ -176,8 +167,8 @@ export class Recorder {
         this.whenStop = whenStop;
         if (this.state === "inactive" && this.stream) {
             var that = this;
-
-            this.encoder = new Worker(URL.createObjectURL(this.workerBlob));
+            console.log(sessionID)
+            this.encoder = new Worker(this.config.encoderPath);
             this.outputData = new Uint8Array(0);
             this.encoder.addEventListener("message", function (e) {
                 that.storePage(e.data);

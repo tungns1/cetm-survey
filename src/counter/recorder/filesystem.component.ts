@@ -6,14 +6,16 @@ export class CacheFileSystem {
     fileSystem: FileSystem;
 
     constructor(filename?: string, type?: number, requestedBytes?: number) {
+        console.log('...Init cache')
         var that = this;
         this.fileName = filename || '';
         this.type = type || window.PERSISTENT;
         this.requestedBytes = requestedBytes || 100 * 1024 * 1024;
-
-        if (this.type === window.PERSISTENT) {
+        if (this.type == window.PERSISTENT) {
+            console.log('Type: ' + this.type)
             this._requestPersistentStorage();
-        } else if(this.type === window.TEMPORARY) {
+        } else if(this.type == window.TEMPORARY) {
+            console.log('Type: ' + this.type)
             this._requestTemporaryStorage();
         }
     }

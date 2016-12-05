@@ -18,7 +18,7 @@ import { Config, Recorder } from '../recorder/recorder.component';
 // let recorder: Recorder = new Recorder(config);
 
 export class ActionComponent {
-    config: Config = {};
+    config: Config = {encoderPath: '../asset/js/encoderWorker.min.js'};
     recorder: Recorder = new Recorder(this.config);
     getTicket() {
         return Serving.first();
@@ -36,6 +36,7 @@ export class ActionComponent {
         let ticket = this.getTicket();
         if (ticket) {
             // finish
+            console.log("Finish session!")
             this.recorder.stop()
             Finish(ticket).subscribe(v => console.log(v));
         }
@@ -43,6 +44,7 @@ export class ActionComponent {
         if (firstTicket) {
             CallFromWaiting(firstTicket).subscribe(v => {
                 // start 
+                console.log("Start session!")
                 this.recorder.start(firstTicket.id)
                 this.autoNext.next(false);
             });
@@ -62,6 +64,7 @@ export class ActionComponent {
 
     Finish() {
         // finish
+        console.log("Finish session!")
         this.recorder.stop()
         Finish(this.getTicket()).subscribe(v => console.log(v));
 
