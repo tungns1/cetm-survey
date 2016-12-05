@@ -1,0 +1,25 @@
+<editor #edit name="kiosk" [fields]="fields" [data]="data | async" [service]="service">
+    <editor-title> Danh sách Kiosk</editor-title>
+    <form *ngIf="edit.form" [formGroup]="edit.form">
+        <input type="text" formControlName="code" placeholder="Mã" style="width: 100%;">
+        <input type="text" formControlName="name" placeholder="Tên kiosk" style="width: 100%;">
+        <input type="text" formControlName="vcodes" placeholder="Vip code" style="width: 100%;">
+        <input type="checkbox" formControlName="inheritable"> Có thể kế thừa
+
+        <br> Kiosk cha:
+        <select formControlName="parent_id">
+            <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
+        </select>
+
+        <br> Giao diện:
+        <select formControlName="layout_id">
+            <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
+        </select>
+        <hr> Dịch vụ:
+        <select-check formControlName="services" [data]="services | async" textField="name">
+        </select-check>
+
+        <hr> Chi nhánh:
+        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+    </form>
+</editor>

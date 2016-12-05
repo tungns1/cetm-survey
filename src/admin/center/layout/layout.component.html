@@ -1,0 +1,11 @@
+<editor #edit name="giao diện" [fields]="fields" [data]="data | async" [service]="service">
+    <editor-title> Danh sách giao diện</editor-title>
+    <form *ngIf="edit.form" [formGroup]="edit.form">
+        <input formControlName="name" placeholder="Tên">
+        <select formControlName="type">
+            <option value="kiosk"> Kiosk </option>
+            <option value="screen"> Screen </option>
+        </select>
+        <ui-form formControlName="ui"></ui-form>
+    </form>
+</editor>

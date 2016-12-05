@@ -25,11 +25,11 @@ const settingMenu = [
 })
 export class AdminComponent {
   menu = [
-    { href: "branch/0", name: "Cài đặt", icon: "fa-home", children: settingMenu },
-    { href: "report/tonghop", name: "Báo cáo", icon: "fa-chart" },
-    { href: "monitor/giaodich", name: "Giám sát", icon: "fa-connect" },
-    { href: "house/kiosk", name: "Kiosk", icon: "fa-chart" },
-    { href: "house/screen", name: "Màn hình trung tâm", icon: "fa-chart" },
-    { href: "center/layout", name: "Giao diện" },
+    { href: "/branch/0", name: "Cài đặt", icon: "fa-home", children: settingMenu },
+    { href: "/report/tonghop", name: "Báo cáo", icon: "fa-chart" },
+    { href: "/monitor/giaodich", name: "Giám sát", icon: "fa-connect" },
+    { href: "/house/kiosk", name: "Kiosk", icon: "fa-chart" },
+    { href: "/house/screen", name: "Màn hình trung tâm", icon: "fa-chart" },
+    { href: "/center/layout", name: "Giao diện" },
   ]
 }

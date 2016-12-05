@@ -8,11 +8,9 @@
         <select formControlName="role">
             <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
         </select>
-        <div style="margin-top: 20px;">
-            Chi nhánh:
-            <select formControlName="branch_id">
-                <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
-            </select>
-        </div>
+        <hr> Chi nhánh:
+        <select formControlName="branch_id">
+            <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
+        </select>
     </form>
 </editor>
