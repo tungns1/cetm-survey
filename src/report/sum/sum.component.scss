@@ -1,0 +1,67 @@
+.column {
+    width: 33%;
+    float: left;
+}
+
+.gd {
+    height: 10px;
+    text-align: right;
+    float: left;
+    border-radius: 15px;
+    background: -webkit-linear-gradient(left, #03c2df, #008eef);
+    -webkit-background-clip: box;
+}
+
+.max {
+    width: 100%;
+    height: 10px;
+    background-color: #dee0e0;
+    border-radius: 15px;
+}
+
+.tg {
+    height: 10px;
+    text-align: right;
+    float: left;
+    border-radius: 15px;
+    background: -webkit-linear-gradient(left, #2cc3ba, #139289);
+    -webkit-background-clip: box;
+}
+
+.ph {
+    height: 10px;
+    text-align: right;
+    border-radius: 15px;
+    background: -webkit-linear-gradient(left, #f69d41, #f05e11);
+    -webkit-background-clip: box;
+}
+
+.tl {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ct {
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.ctt {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.giaodich {
+    color: #008eef;
+    float: right;
+}
+
+.thoigian {
+    color: #139289;
+    float: right;
+}
+
+.phanhoi {
+    color: #f05e11;
+    float: right;
+}

@@ -1,0 +1,24 @@
+report-filter {
+    flex: 1 1 100px;
+}
+
+.main-view {
+    flex: 1 1 800px;
+}
+
+:host {
+    display: flex;
+    height: 80vh;
+}
+
+report-sum {
+    height: 30%;
+}
+
+report-overview {
+    height: 40%;
+}
+
+report-chart {
+    height: 30%;
+}

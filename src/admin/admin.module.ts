@@ -4,12 +4,10 @@ import { PageModule } from '../pages/';
 
 import { Branch, Editor } from './shared/';
 import { AppComponent } from './app.component';
-import { CenterModule } from './center/';
 
 @NgModule({
     imports: [
-        PageModule, Branch.BranchModule, Editor.EditorModule, routing,
-        CenterModule
+        PageModule, Branch.BranchModule, Editor.EditorModule, routing
     ],
     declarations: [AppComponent, ...components],
     bootstrap: [AppComponent]

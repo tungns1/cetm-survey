@@ -1,0 +1,52 @@
+<div class="search-table-outter">
+    <div>
+        <table class="search-table">
+            <thead>
+                <th class="stt"> STT </th>
+                <th> Ngày </th>
+                <th> Khu vực </th>
+                <th> Chi nhánh </th>
+                <th> PGD </th>
+                <th> Dịch vụ </th>
+                <th> Quầy </th>
+                <th> Giao dịch viên </th>
+                <th> Số vé </th>
+                <th> Thời điểm lấy vé </th>
+                <th> Thời gian đợi </th>
+                <th> Thời điểm phục vụ </th>
+                <th> Thời gian phục vụ </th>
+                <th> Thời điểm kết thúc </th>
+                <th> Kết quả phản hồi </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let d of data | async; let i = index">
+                    <td class="stt">{{(i+1)+(skip | async)}}</td>
+                    <td> {{d.v_cdate}} </td>
+                    <td> {{d.v_branch_2}} </td>
+                    <td> {{d.v_branch_1}} </td>
+                    <td> {{d.v_branch_0}} </td>
+                    <td> {{d.service}} </td>
+                    <td> {{d.counter}} </td>
+                    <td> {{d.user}} </td>
+                    <td> {{d.cnum}} </td>
+                    <td> {{d.v_ctime}} </td>
+                    <td> {{d.v_wtime}} </td>
+                    <td> {{d.v_fc_at}} </td>
+                    <td> {{d.v_stime}} </td>
+                    <td> {{d.v_fi_at}} </td>
+                    <td>{{d.rating}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="info">
+        {{info | async}}
+    </div>
+    <div class="pagination">
+        <button md-button *ngFor="let p of pages  | async" [ngClass]="{'active':(current | async)==p.page,'first':(current | async)==1 && p.page==1 && (p.title=='Previous' || p.title=='First'),'last':(current | async)==total && p.page==total && (p.title=='Next' || p.title=='Last')}"
+            (click)="chuyenTrang(p.page)">{{p.title}}</button>
+    </div>
+</div>

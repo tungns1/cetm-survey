@@ -1,0 +1,92 @@
+thead {
+    background-color: #f4f4f4;
+    height: 300px;
+    font-size: 12px;
+    border-bottom: 1px solid #a8a8aa;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f1f9fc;
+}
+
+table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+td {
+    height: 30px;
+    text-align: center;
+}
+
+table {
+    border-bottom: 1px solid #a8a8aa;
+    width: 100%;
+}
+
+.search-table {
+    table-layout: fixed;
+    margin: 0px auto 0px auto;
+}
+
+.search-table-outter {
+    overflow-x: scroll;
+    border: 1px solid gray;
+}
+
+th,
+td {
+    min-width: 100px;
+}
+
+.stt {
+    width: 30px;
+}
+
+button {
+    margin-right: 2px;
+    border: 1px solid #3db1f5;
+    background-color: #fff;
+    color: #3db1f5;
+    border-radius: 2px;
+    height: 25px;
+}
+
+button.active {
+    background-color: #3db1f5;
+    border: 1px solid #a8a8aa;
+    color: white;
+}
+
+button.first {
+    background-color: #fff;
+    border: 1px solid #a8a8aa;
+    color: #a8a8aa;
+    cursor: not-allowed;
+}
+
+button.last {
+    background-color: #fff;
+    border: 1px solid #a8a8aa;
+    color: #a8a8aa;
+    cursor: not-allowed;
+}
+
+.footer {
+    display: flex;
+    margin-top: 15px;
+}
+
+.info {
+    flex: 1 1 60px;
+    text-align: left;
+}
+
+.pagination {
+    display: flex;
+    flex: 1 1 200px;
+    text-align: right;
+}
+
+.pagination>button {
+    flex: 0 1 20px;
+}

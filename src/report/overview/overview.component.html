@@ -1,0 +1,30 @@
+<div>
+    <table>
+        <thead>
+            <th> STT </th>
+            <th> {{groupTitle | async}} </th>
+            <th> Tổng số GD </th>
+            <th> GD Thành công </th>
+            <th> GD Hủy </th>
+            <th> Thời gian giao dịch (giờ) </th>
+            <th> Thời gian PV (giờ) </th>
+            <th> Thời gian đợi (giờ) </th>
+            <th> Tổng số Phản hồi </th>
+            <th> Tổng số Không Phản hồi </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data | async; let i = index">
+                <td> {{i + 1}} </td>
+                <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
+                <td> {{d.c_t}} </td>
+                <td> {{d.c_ft}} </td>
+                <td> {{d.c_ct}} </td>
+                <td> {{d.s_tt_h}} </td>
+                <td> {{d.s_st_h}} </td>
+                <td> {{d.s_wt_h}} </td>
+                <td> {{d.c_r}} </td>
+                <td> {{d.c_nr || 0}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

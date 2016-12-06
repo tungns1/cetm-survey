@@ -1,0 +1,83 @@
+<form [formGroup]="form" (submit)="refresh()">
+    <div>
+        <div>
+            <div class="tl" (click)="active='thoigian'">Chọn thời gian<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="selects" [ngClass]="{'hidden': active!='thoigian'}">
+                <div>
+                    <div>
+                        <div class="rd">
+                            <input type="radio" formControlName="period" value="day"> Ngày
+                        </div>
+                        <div class="rd">
+                            <input type="radio" formControlName="period" value="week" checked> Tuần
+                        </div>
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <div class="rd">
+                            <input type="radio" formControlName="period" value="month"> Tháng
+                        </div>
+                        <div class="rd">
+                            <input type="radio" formControlName="period" value="year"> Năm
+                        </div>
+                    </div>
+                </div><br>
+                <hr>
+                <div>
+                    <div style="padding-bottom:20px;">
+                        <div style="width:45%;float:left;">
+                            <label>Từ ngày</label>
+                        </div>
+                        <div style="width:45%;float:left; padding-left:5px;">
+                            <label>Đến ngày</label>
+                        </div>
+                    </div>
+                    <div>
+                        <date-picker formControlName="start" timestamp="true"></date-picker>
+                        <date-picker formControlName="end" timestamp="true"></date-picker>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="tl" (click)="active='tinhthanh'">Chọn Tỉnh/Thành<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='tinhthanh'}">
+                <multi-branch-selector level="2"></multi-branch-selector>
+            </div>
+        </div>
+        <div>
+            <div class="tl" (click)="active='chinhanh'">Chọn chi nhánh<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='chinhanh'}">
+                <multi-branch-selector level="1"></multi-branch-selector>
+            </div>
+        </div>
+        <div>
+            <div class="tl" (click)="active='giaodich'">Chọn phòng giao dịch<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='giaodich'}">
+                <multi-branch-selector level="0"></multi-branch-selector>
+            </div>
+        </div>
+
+        <div>
+            <div class="tl" (click)="active='dichvu'">Chọn dịch vụ<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='dichvu'}">
+                <service-selector></service-selector>
+            </div>
+        </div>
+        <div>
+            <div class="tl" (click)="active='quay';">Chọn quầy<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='quay'}">
+                <counter-selector></counter-selector>
+            </div>
+        </div>
+        <div>
+            <div class="tl" (click)="active='nhanvien'">Chọn nhân viên<i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='nhanvien'}">
+                <user-selector></user-selector>
+            </div>
+        </div>
+        <div style=" padding: 20px 20px;">
+            <button class="filter" type="submit">XEM BÁO CÁO</button>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,26 @@
+<div class="chart" bar-chart *ngIf="type==='bar'" [data]="data | async" [items]="items | async"></div>
+<div class="chart" stack-chart *ngIf="type==='stack'" [data]="data | async" [items]="items | async"></div>
+<div class="chart" line-chart *ngIf="type==='line'" [data]="data | async" [items]="items | async"></div>
+<div class="chart" *ngIf="type==='pie'">
+    <div pie-chart [data]="pieData | async" [items]="items | async"></div>
+    <div pie-chart [data]="pieData | async" [items]="items | async"></div>
+</div>
+
+<div>
+    <select [(ngModel)]="type">
+            <option disabled selected value> -- Chọn biểu đồ -- </option>
+            <option value="line">Biểu đồ đường</option>
+            <option value="bar">Biểu đồ cột</option>
+            <option value="stack">Biểu đồ cột xếp</option>
+            <option value="pie">Biểu đồ tròn</option>
+        </select>
+</div>
+
+<div class="legend" style="margin:10px 20px;">
+    <div *ngFor="let item of items | async" style="float:left; margin-right:5px;">
+        <div style="float:left">
+            <input type="checkbox" [ngModel]="!item._hidden" (ngModelChange)="Toggle(item)"> {{item.title}}
+        </div>
+        <div style="width:30;height:15px; float:left; margin-left:3px;" [style.background-color]="item._hidden? '':item.color"></div><br>
+    </div>
+</div>

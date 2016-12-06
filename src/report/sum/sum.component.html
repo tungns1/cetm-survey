@@ -1,0 +1,210 @@
+<div style="border: 1px solid #b0b1b5; padding: 10px 0px; background-color: #fff; height: 250px">
+    <div class="column">
+        <div style="padding: 0px 10px;">
+            <div class="tl">
+                Tổng số giao dịch: {{data.c_t}}
+            </div>
+            <div class="ct">
+                <div>
+                    Giao dịch thành công
+                    <span *ngIf="data.c_t>0" class="giaodich">{{data.c_ft}}&nbsp; ({{data.c_ft/data.c_t*100 | number : '1.2-2'}}%)</span>
+                </div>
+                <div class="max">
+                    <div *ngIf="data.c_t>0">
+                        <div class="gd" [style.width]="''+data.c_ft/data.c_t*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch bị hủy
+                <span *ngIf="data.c_t>0" class="giaodich">{{data.c_t-data.c_ft}}&nbsp; ({{(data.c_t-data.c_ft)/data.c_t*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_t>0">
+                        <div class="gd" [style.width]="''+(data.c_t-data.c_ft)/data.c_t*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có thời gian đợi chuẩn
+                <span *ngIf="data.c_t>0" class="giaodich">{{data.c_bwt}}&nbsp; ({{data.c_bwt/data.c_t*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_t>0">
+                        <div class="gd" [style.width]="''+data.c_bwt/data.c_t*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có thời gian đợi vượt chuẩn
+                <span *ngIf="data.c_t>0" class="giaodich">{{data.c_t-data.c_bwt}}&nbsp; ({{(data.c_t-data.c_bwt)/data.c_t*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_t>0">
+                        <div class="gd" [style.width]="''+(data.c_t-data.c_bwt)/data.c_t*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có thời gian phục vụ chuẩn
+                <span *ngIf="data.c_t>0" class="giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_t>0">
+                        <div class="gd" [style.width]="''+data.c_bst/data.c_t*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có thời gian phục vụ vượt chuẩn
+                <span *ngIf="data.c_t>0" class="giaodich">{{data.c_t-data.c_bst}}&nbsp; ({{(data.c_t-data.c_bst)/data.c_t*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_t>0">
+                        <div class="gd" [style.width]="''+(data.c_t-data.c_bst)/data.c_t*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div style="padding: 0px 10px;">
+            <div class="tl">
+                Tổng thời gian giao dịch: {{data.s_tt | hour}}
+            </div>
+            <div class="ct">
+                Tổng thời gian phục vụ
+                <span *ngIf="data.s_tt>0" class="thoigian">{{data.s_st | hour}}&nbsp; ({{data.s_st/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.s_tt>0">
+                        <div class="tg" [style.width]="''+data.s_st/data.s_tt*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Tổng thời gian chờ
+                <span *ngIf="data.s_tt>0" class="thoigian">{{data.s_tt-data.s_st | hour}}&nbsp; ({{(data.s_tt-data.s_st)/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.s_tt>0">
+                        <div class="tg" [style.width]="''+(data.s_tt-data.s_st)/data.s_tt*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tl" style="margin-top:10px;">
+                Thời gian phục vụ trung bình: {{data.a_st | hour}}
+            </div>
+
+            <div class="ctt">
+                Thời gian phục vụ ngắn nhất
+                <span *ngIf="data.a_st>0" class="thoigian">{{data.min_st | hour}}</span>
+                <div class="max">
+                    <div *ngIf="data.a_st>0">
+                        <div class="tg" [style.width]="''+30+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ctt">
+                Thời gian phục vụ dài nhất
+                <span *ngIf="data.a_st>0" class="thoigian">{{data.max_st | hour}}</span>
+                <div class="max">
+                    <div *ngIf="data.a_st>0">
+                        <div class="tg" [style.width]="''+100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl" style="margin-top:10px;">
+                Thời gian chờ trung bình: {{data.a_wt | hour}}
+            </div>
+            <div class="ctt">
+                Thời gian chờ ngắn nhất
+                <span *ngIf="data.a_wt>0" class="thoigian">{{data.min_wt | hour}}</span>
+                <div class="max">
+                    <div *ngIf="data.a_wt>0">
+                        <div class="tg" [style.width]="''+30+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ctt">
+                Thời gian chờ dài nhất
+                <span *ngIf="data.a_wt>0" class="thoigian">{{data.max_wt | hour}}</span>
+                <div class="max">
+                    <div *ngIf="data.a_wt>0">
+                        <div class="tg" [style.width]="''+100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div style="padding: 0px 10px;">
+            <div class="tl">
+                Giao dịch có phản hồi: {{data.c_r}}
+            </div>
+            <div class="tl">
+                Giao dịch không có phản hồi: {{data.c_ft-data.c_r}}
+            </div>
+            <div class="ct">
+                Giao dịch có phản hồi tốt
+                <span *ngIf="data.c_r>0" class="phanhoi">{{data.c_r_a}}&nbsp; ({{data.c_r_a/data.c_r*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_r>0">
+                        <div class="ph" [style.width]="''+data.c_r_a/data.c_r*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có phản hồi khá
+                <span *ngIf="data.c_r>0" class="phanhoi">{{data.c_r_b}}&nbsp; ({{data.c_r_b/data.c_r*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_r>0">
+                        <div class="ph" [style.width]="''+data.c_r_b/data.c_r*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có phản hồi trung bình
+                <span *ngIf="data.c_r>0" class="phanhoi">{{data.c_r_c}}&nbsp; ({{data.c_r_c/data.c_r*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_r>0">
+                        <div class="ph" [style.width]="''+data.c_r_c/data.c_r*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ct">
+                Giao dịch có phản hồi kém
+                <span *ngIf="data.c_r>0" class="phanhoi">{{data.c_r_d}}&nbsp; ({{data.c_r_d/data.c_r*100 | number : '1.2-2'}}%)</span>
+                <div class="max">
+                    <div *ngIf="data.c_r>0">
+                        <div class="ph" [style.width]="''+data.c_r_d/data.c_r*100+'%'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

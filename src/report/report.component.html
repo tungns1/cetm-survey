@@ -1,0 +1,32 @@
+<!--<md-icon style="cursor:pointer;position:absolute;" (click)="show=!show" title="Hiển thị bộ lọc"> menu</md-icon>-->
+
+<app-header>
+    <div class="module-name"> Report </div>
+</app-header>
+
+<top-nav [menu]="menu"></top-nav>
+<br>
+<br>
+
+<div class="container">
+    <report-filter class="aside"></report-filter>
+    <div class="main">
+        <div style="height: 50px;">
+            <span style="font-size: 26px; line-height: 55px;">Report</span>
+            <div style="float: right; margin-top: 5px;">
+                <button type="submit" routerLink="tonghop" routerLinkActive="active">TỔNG HỢP</button>
+                <button type="submit" routerLink="lichsu" routerLinkActive="active">LỊCH SỬ GIAO DỊCH</button>
+                <button type="submit" routerLink="sosanh" routerLinkActive="active">SO SÁNH CHỈ SỐ</button>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+        <div style="float: right;margin-top: 20px;">
+            <button (click)="excel()"> XUẤT RA FILE EXCEL </button>
+            <button (click)="pdf()"> XUẤT RA FILE PDF </button>
+        </div>
+        <div class="ft">
+            <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+        </div>
+    </div>
+</div>

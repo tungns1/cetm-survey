@@ -1,0 +1,21 @@
+.ft {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    float: left;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    line-height: 30px;
+    background-color: #fff;
+    color: #0b8fdb;
+    border: 1px solid #0b8fdb;
+}
+
+.active {
+    background-color: #0b8fda;
+    color: white;
+}
