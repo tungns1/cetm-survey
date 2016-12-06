@@ -1,6 +1,6 @@
 <div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px;">
     <div class="tl">TICKET DETAIL</div>
-    <div style="margin-top: 80px;">
+    <div style="margin-top: 50px;">
         <div class="info">ID: {{ticket.id}}</div>
         <div class="info"> Number: {{ticket.cnum}}</div>
         <div class="info"> Priority:{{ticket.priority}}</div>
@@ -28,7 +28,7 @@
         <select-check (ngModel)="checkedCounters" [data]="counters | async" textField="name">
         </select-check>
 
-        <div style="margin-top: 30px;">
+        <div style="margin: 30px 0px 20px 0px;">
             <button class="close" (click)="Close()" md-button>Close</button>
 
             <button class="move" *ngIf="isServing" (click)="Move()" md-button>Move</button>
