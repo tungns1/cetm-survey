@@ -13,7 +13,8 @@
             <span class="count">{{cc | async}}</span>) &nbsp;
         </div>
     </div>
-
+    <div class="padding">
+    </div>
     <div class="detail">
         <div *ngIf="tab == 'finished'">
             <bar [data]="finished | async"></bar>

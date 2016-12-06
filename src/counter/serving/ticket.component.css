@@ -47,12 +47,27 @@
     border-left: 0.5px solid #afb1b4;
 }
 
+.number {
+    font-size: 80px;
+    margin-left: 10px;
+    background: -webkit-linear-gradient(left, #008eef, #03c2df);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+ticket-timer {
+    font-size: 80px;
+    margin-left: 10px;
+    background: -webkit-linear-gradient(left, #008eef, #03c2df);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title {
+    font-size: 24px;
+}
+
 :host {
-    padding: 10px;
-    border-top: 1px solid #afb1b4;
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: #cccccc;
     align-content: center;
     justify-content: center;
 }

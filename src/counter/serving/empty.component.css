@@ -48,11 +48,6 @@
 }
 
 :host {
-    padding: 10px;
-    border-top: 1px solid #afb1b4;
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: #cccccc;
     align-content: center;
     justify-content: center;
 }
