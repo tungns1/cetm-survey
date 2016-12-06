@@ -32,7 +32,11 @@ export class Server {
         return Observable.forkJoin(v).map(data => data.join('\n'));
     }
 
-    buildDevMain() {
+    buildDevMain(app?: string) {
+        const builder = this.builders.find(b => b.appName == app);
+        if (builder) {
+            return builder.buildDevMain();
+        }
         return Observable.forkJoin(this.builders.map(b => b.buildDevMain())).map(data => data.join('\n'));
     }
 
@@ -73,16 +77,17 @@ export class Server {
                             let ext: string = path.extname(file);
                             let basename: string = path.basename(file);
                             observer.next(chalk.blue(`${basename} changed...`));
+                            const folder = srcSubFolder(file);
                             switch (ext) {
                                 case '.html':
                                     if (basename === 'index.html') {
                                         this.generateDev().subscribe(data => console.log(data));
                                     } else {
-                                        this.buildDevMain().subscribe(data => { observer.next(data); });
+                                        this.buildDevMain(folder).subscribe(data => { observer.next(data); });
                                     }
                                     break;
                                 case '.ts':
-                                    this.buildDevMain().subscribe(data => { observer.next(data); });
+                                    this.buildDevMain(folder).subscribe(data => { observer.next(data); });
                                     break;
                                 case '.scss':
                                     if (srcSubFolder(file) === "styles") {
@@ -90,7 +95,7 @@ export class Server {
                                             compileSass(sassSrc, cssDest).subscribe(data => { observer.next(data); });
                                         }, 250);
                                     } else {
-                                        this.buildDevMain().subscribe(data => { observer.next(data); });
+                                        this.buildDevMain(folder).subscribe(data => { observer.next(data); });
                                     }
                                     break;
                                 default:

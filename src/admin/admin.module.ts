@@ -15,3 +15,6 @@ import { AppComponent } from './app.component';
 export default class AdminModule {
 
 }
+
+import {SetAppName} from '../config/';
+SetAppName('admin');

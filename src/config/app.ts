@@ -20,3 +20,13 @@ export function AuxState(name: string, data?: any) {
     }
     return s
 }
+
+var AppName = '';
+
+export function SetAppName(name: string) {
+    AppName = name;
+}
+
+export function GetAppName() {
+    return AppName;
+}

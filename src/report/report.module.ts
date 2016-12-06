@@ -16,3 +16,5 @@ export default class ReportModule {
 
 }
 
+import {SetAppName} from '../config/';
+SetAppName('report');

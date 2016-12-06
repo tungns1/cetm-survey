@@ -39,7 +39,7 @@ export class Build {
   public building: boolean;
   public config: any;
 
-  constructor(private appName: string) {
+  constructor(public appName: string) {
     this.building = false;
     this.config = getConfig();
   }

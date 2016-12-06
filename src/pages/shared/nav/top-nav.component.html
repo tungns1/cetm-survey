@@ -1,13 +1,13 @@
 <nav>
     <ul>
         <li *ngFor="let item of menu">
-            <a [routerLink]="item.href" routerLinkActive="current-menu-item">
+            <a (click)="onClick(item)" routerLinkActive="current-menu-item">
                 <i class="fa fa-lg" [addClass]="item.icon"> </i>
                 <span> {{item.name}} </span>
             </a>
             <ul>
                 <li *ngFor="let child of item.children">
-                    <a [routerLink]="child.href">
+                    <a (click)="onClick(child)">
                         {{child.name}}
                     </a>
                 </li>

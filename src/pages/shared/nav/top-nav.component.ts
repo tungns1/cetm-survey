@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Item } from './declare';
+import { Router } from '@angular/router';
+import { AdminMenu, Item, GetAppName } from './model';
 
 @Component({
     selector: 'top-nav',
@@ -7,5 +8,15 @@ import { Item } from './declare';
     styleUrls: ['top-nav.component.scss']
 })
 export class TopNavComponent {
-    @Input() menu: Item[] = [];
+    menu = AdminMenu;
+
+    constructor(private router: Router) { }
+
+    onClick(item: Item) {
+        if (item.app === GetAppName()) {
+            this.router.navigateByUrl(item.href);
+        } else {
+            window.location.assign(`../${item.app}/#${item.href}`);
+        }
+    }
 }
