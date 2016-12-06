@@ -35,20 +35,10 @@ export class BranchInLevel {
         this.shown.subscribe(branches => {
             this.selected.next(branches.filter(b => b._checked));
         });
-        this.selected.subscribe(branches => {
-            if (branches.length === 1) {
-                this.onlyOne.next(branches[0]);
-            } else {
-                this.onlyOne.next(null);
-            }
-            this.selectedID.next(branches.map(b => b.id).join(','));
-        })
     }
 
     shown = new BehaviorSubject<IBranch[]>([]);
-    onlyOne = new BehaviorSubject<IBranch>(null);
     selected = new BehaviorSubject<IBranch[]>([]);
-    selectedID = new BehaviorSubject<string>('');
 
     SelectOnlyID(id: string) {
         this.shown.value.forEach(b => {
@@ -85,6 +75,19 @@ export class BranchInLevel {
 const Level2 = new BranchInLevel(2, LevelRoot);
 const Level1 = new BranchInLevel(1, Level2.selected);
 const Level0 = new BranchInLevel(0, Level1.selected);
-export const SelectedBranchIDLevel0 = Level0.selectedID;
-export const OnlyOneSelectedBranchLevel0 = Level0.onlyOne;
+
+
+export const SelectedBranchIDLevel0 = new BehaviorSubject<string>('');
+export const ShownBranchLevel0 = Level0.shown;
+export const OnlyOneSelectedBranchLevel0 = new BehaviorSubject<IBranch>(null);
+
+Level0.selected.subscribe(branches => {
+    SelectedBranchIDLevel0.next(branches.map(b => b.id).join(','));
+    if (branches.length !== -1 ) {
+        OnlyOneSelectedBranchLevel0.next(null);
+    } else {
+        OnlyOneSelectedBranchLevel0.next(branches[0]);
+    }
+});
+
 export const AllLevels = [Level0, Level1, Level2];

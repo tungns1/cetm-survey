@@ -32,8 +32,7 @@ export class EditorComponent<T> {
     private form: FormGroup;
     private current: T;
 
-    @Output() edit = new EventEmitter<T>();
-    @Output() create = new EventEmitter();
+    @Output() edit = new EventEmitter<FormGroup>();
 
     private Refresh() {
         this.service.refresh();
@@ -46,12 +45,14 @@ export class EditorComponent<T> {
         this.current = null;
         this.form = this.service.form();
         this.editorRef.Open();
+        this.edit.next(this.form);
     }
 
     onEdit(u: T) {
         this.current = u;
         this.form = this.service.form(u);
         this.editorRef.Open();
+        this.edit.next(this.form);
     }
 
     onRemove(id: string) {

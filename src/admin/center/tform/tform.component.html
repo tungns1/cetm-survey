@@ -1,0 +1,12 @@
+<editor #edit name="số vé" [fields]="fields" [data]="data | async" [service]="service">
+    <editor-title> Danh sách số vé</editor-title>
+    <form *ngIf="edit.form" [formGroup]="edit.form">
+        <input formControlName="code" placeholder="Mã">
+        <br>
+        <input formControlName="format" placeholder="Định dạng">
+        <br>
+        <input formControlName="minnum" type="number" placeholder="Giá trị Nhỏ nhất">
+        <br>
+        <input formControlName="maxnum" type="number" placeholder="Giá trị Lớn nhất">
+    </form>
+</editor>

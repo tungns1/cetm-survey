@@ -33,7 +33,7 @@ const noop = function () {
 })
 export class BranchPickerComponent implements ControlValueAccessor {
 
-    @Input() set level(v: any) {
+    @Input() set level(v: number) {
         const o = AllLevels[v];
         if (o) {
             this.branches = o.shown;

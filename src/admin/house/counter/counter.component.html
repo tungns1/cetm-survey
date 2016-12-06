@@ -1,0 +1,17 @@
+<editor #edit name="quầy" [fields]="fields" [data]="data | async" [service]="service">
+    <editor-title> Danh sách Quầy</editor-title>
+    <form *ngIf="edit.form" [formGroup]="edit.form">
+        <input type="text" formControlName="code" placeholder="Mã">
+        <input type="text" formControlName="cnum" placeholder="Số quầy">
+        <input type="text" formControlName="name" placeholder="Tên">
+        <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led">
+        <hr> Dịch vụ thường
+        <select-check formControlName="services" [data]="services | async" textField="name">
+        </select-check>
+        <!--<hr> Dịch vụ VIP
+        <select-check formControlName="vservices" [data]="services | async" textField="name">
+        </select-check>-->
+        <hr> Chi nhánh:
+        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+    </form>
+</editor>

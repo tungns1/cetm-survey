@@ -29,13 +29,13 @@ const HTTP_METHOD_GET = "get";
 const HTTP_METHOD_POST = "post";
 
 function http(method: string, url: string, body?: any) {
-  Loading.Show();
-  const xhr = new XMLHttpRequest();
-  xhr.open(method, url);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(body);
 
   return new Observable<string>((observer: Observer<string>) => {
+    Loading.Show();
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(body);
     xhr.onload = e => {
       Loading.Hide();
       if (xhr.status === HTTP_STATUS_OK) {
