@@ -5,7 +5,7 @@
         <input formControlName="code" placeholder="Mã">
         <input type="number" formControlName="priority" placeholder="Ưu tiên">
         <l10n-form formControlName="l10n"></l10n-form>
-        <br> Số vé:
+        Số vé:
         <select formControlName="tform_normal">
             <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
         </select>

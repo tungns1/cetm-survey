@@ -21,6 +21,16 @@ import { FormArray, FormControl } from '@angular/forms';
             <input [formControl]="c" (change)="OnChange()" /> <span (click)="remove(i)"> X </span>
         </div>
     `,
+     styles: [`
+        input {
+        margin-bottom: 15px;
+        border-radius: 3px;
+        height: 30px;
+        border-style: solid;
+        border: 1px solid #aeb0af;
+        width: 100%;
+    }
+ `],
     providers: [ARRAY_FORM_CONTROL_VALUE_ACCESSOR]
 })
 class ArrayFormComponent implements ControlValueAccessor {

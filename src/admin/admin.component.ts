@@ -24,6 +24,7 @@ const settingMenu = [
   encapsulation: ViewEncapsulation.None
 })
 export class AdminComponent {
+  show=true; 
   menu = [
     { href: "/branch/0", name: "Cài đặt", icon: "fa-home", children: settingMenu },
     { href: "/report/tonghop", name: "Báo cáo", icon: "fa-chart" },

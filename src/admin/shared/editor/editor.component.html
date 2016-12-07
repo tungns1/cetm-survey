@@ -1,6 +1,6 @@
 <div class="title">
     <ng-content select="editor-title"></ng-content>
-    <button class="them uppercase" (click)="onAdd()"> THÊM {{name}} </button>
+    <button class="add uppercase" (click)="onAdd()"> THÊM {{name}} </button>
 </div>
 
 <table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
@@ -21,10 +21,10 @@
 
 <modal #edit>
     <div *ngIf="form">
-        <modal-header>
+        <div class="header">
             <div class="uppercase" *ngIf="current"> SỬA {{name}} </div>
             <div class="uppercase" *ngIf="!current"> THÊM {{name}} </div>
-        </modal-header>
+        </div>
 
         <ng-content></ng-content>
         <modal-footer>

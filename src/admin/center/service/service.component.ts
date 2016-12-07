@@ -19,7 +19,8 @@ export function NewServiceForm(b?: Model.Center.IService) {
 
 @Component({
     selector: 'admin-service',
-    templateUrl: 'service.component.html'
+    templateUrl: 'service.component.html',
+ styleUrls: ['service.component.css']
 })
 export class ServiceComponent {
 

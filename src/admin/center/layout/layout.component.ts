@@ -17,7 +17,8 @@ function NewForm(b?: Model.Center.ILayout) {
 
 @Component({
     selector: 'center-layout',
-    templateUrl: 'layout.component.html'
+    templateUrl: 'layout.component.html',
+    styleUrls: ['layout.component.css']
 })
 export class LayoutComponent {
 

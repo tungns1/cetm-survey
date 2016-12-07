@@ -21,7 +21,8 @@ function NewForm(b?: Model.House.IKiosk) {
 
 @Component({
     selector: 'house-kiosk',
-    templateUrl: 'kiosk.component.html'
+    templateUrl: 'kiosk.component.html',
+     styleUrls: ['kiosk.component.css']
 })
 export class KioskComponent {
 

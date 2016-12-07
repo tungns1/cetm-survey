@@ -20,7 +20,8 @@ function NewForm(b?: Model.ICounter) {
 
 @Component({
     selector: 'house-counter',
-    templateUrl: 'counter.component.html'
+    templateUrl: 'counter.component.html',
+      styleUrls: ['counter.component.css']
 })
 export class CounterComponent {
 
