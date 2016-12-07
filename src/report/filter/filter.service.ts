@@ -26,7 +26,7 @@ RxDetails.subscribe(v => {
     const users: Model.IUser[] = v['users'];
     users.sort((a, b) => a.fullname > b.fullname ? 1 : 0);
     RxUsers.next(users);
-    services.forEach(s => NameMap[s.code] = s.name);
+    services.forEach(s => NameMap[s.id] = s.name);
     users.forEach(u => NameMap[u.id] = u.fullname);
     counters.forEach(c => NameMap[c.id] = c.name);
 })
@@ -38,7 +38,7 @@ function GetSelected(value: { id?: string, _checked?: boolean }[]) {
 }
 
 export function GetServices() {
-    return RxServices.value.filter(v => v._checked).map(v => v.code);
+    return RxServices.value.filter(v => v._checked).map(v => v.id);
 }
 
 export function GetCounters() {
@@ -53,7 +53,7 @@ export const RxGroupBy = new BehaviorSubject<string>('branch_id');
 
 const Titles = {
     branch_id: "PGD",
-    scode: 'Dịch vụ',
+    service_id: 'Dịch vụ',
     counter_id: 'Quầy GD',
     user_id: 'Nhân viên'
 }

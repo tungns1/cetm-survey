@@ -13,7 +13,7 @@ export interface IFilter {
     branch_id?: string;
     user_id?: string;
     counter_id?: string;
-    scode?: string;
+    service_id?: string;
     skip?: number;
     limit?: number;
 
@@ -101,10 +101,10 @@ function GetFilter() {
 
     let group_by = 'branch_id';
 
-    const scodes = GetServices();
-    if (scodes.length > 0) {
-        filter.scode = scodes.join(',');
-        group_by = 'scode';
+    const services = GetServices();
+    if (services.length > 0) {
+        filter.service_id = services.join(',');
+        group_by = 'service_id';
     }
 
     const counters = GetCounters();
