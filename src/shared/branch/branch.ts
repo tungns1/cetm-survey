@@ -83,7 +83,7 @@ export const OnlyOneSelectedBranchLevel0 = new BehaviorSubject<IBranch>(null);
 
 Level0.selected.subscribe(branches => {
     SelectedBranchIDLevel0.next(branches.map(b => b.id).join(','));
-    if (branches.length !== -1 ) {
+    if (branches.length !== -1) {
         OnlyOneSelectedBranchLevel0.next(null);
     } else {
         OnlyOneSelectedBranchLevel0.next(branches[0]);
@@ -91,3 +91,14 @@ Level0.selected.subscribe(branches => {
 });
 
 export const AllLevels = [Level0, Level1, Level2];
+
+export function GetTreeNames(branch_id: string, level?: number) {
+    let names = [];
+    const branch_0 = Branches.get(branch_id) || { name: "n/a" };
+    names.push(branch_0.name || "n/a");
+    const branch_1 = Branches.get(branch_0.parent) || { name: 'n/a' };
+    names.push(branch_1.name || "n/a");
+    const branch_2 = Branches.get(branch_1.parent) || { name: "n/a" };
+    names.push(branch_2.name || "n/a");
+    return names;
+}

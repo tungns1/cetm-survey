@@ -1,1 +1,1 @@
-export const Apps = ['admin', 'counter', 'report'];
+export const Apps = ['admin', 'counter', 'report', 'monitor'];

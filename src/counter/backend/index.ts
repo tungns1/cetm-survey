@@ -22,8 +22,8 @@ socket.Subscribe<Model.ITicket>('/ticket', (ticket) => {
     Queues.forEach(q => q.update(ticket));
 });
 
-socket.Subscribe<Model.IService[]>("/services", s => {
-    s.forEach(Model.AddServiceName);
+socket.Subscribe<Model.Center.IService[]>("/services", s => {
+    s.forEach(Model.Center.AddServiceName);
     RxServices.next(s);
 });
 

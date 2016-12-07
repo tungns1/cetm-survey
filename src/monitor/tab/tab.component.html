@@ -1,0 +1,3 @@
+<div class="tab">
+    <label *ngFor="let d of tabs" [ngClass]="{'active': active == d}" (click)="setActive(d)">{{d.title}} </label>
+</div>
