@@ -5,7 +5,7 @@ import { MonitorDeviceModule } from './device/';
 import { MonitorTicketModule } from './ticket/';
 
 const children: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'device' },
+    { path: '', pathMatch: 'full', redirectTo: 'ticket' },
     { path: 'device', loadChildren: () => MonitorDeviceModule },
     { path: 'ticket', loadChildren: () => MonitorTicketModule }
 ];
@@ -13,6 +13,7 @@ const children: Routes = [
 export const routing = RouterModule.forRoot([
     {
         path: '',
+        canActivate: [Auth.AuthGuard],
         children: children
     }
 ], { useHash: true });
