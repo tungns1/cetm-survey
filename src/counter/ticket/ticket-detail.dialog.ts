@@ -17,8 +17,8 @@ export class TicketDetailDialog {
 
   SetTicket(t: Model.ITicket) {
     this.ticket = t;
-    this.checkedCounters = Array.from(t.counters);
-    this.checkedServices = Array.from(t.services);
+    // this.checkedCounters = Array.from(t.counters || []);
+    // this.checkedServices = Array.from(t.services || []);
     this.isServing = t.state === TicketStateServing;
     this.isWaiting = t.state === TicketStateWaiting;
     this.isMissed = t.state === TicketStateMissed;
