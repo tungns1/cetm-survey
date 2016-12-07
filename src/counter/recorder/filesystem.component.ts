@@ -6,7 +6,6 @@ export class CacheFileSystem {
     fileSystem: FileSystem;
 
     constructor(filename?: string, type?: number, requestedBytes?: number) {
-        console.log('...Init cache')
         var that = this;
         this.fileName = filename || '';
         this.type = type || window.PERSISTENT;

@@ -46,7 +46,6 @@ class Queue {
             arr.push(d);
         })
         arr.sort(Queue.sort);
-        console.log(arr);
         this.RxData.next(arr);
     }
 

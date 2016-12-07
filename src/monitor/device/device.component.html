@@ -1,0 +1,25 @@
+<div style="border: 1px solid #b0b1b5; margin: 20px 0px 0px 0px; background-color: #fff;">
+    <monitor-tab [tabs]="tabs" #tab (select)="setActive($event)"></monitor-tab>
+    <div>
+        <table>
+            <thead>
+                <th> STT </th>
+                <th> Khu vực </th>
+                <th> Chi nhánh </th>
+                <th> Phòng giao dịch </th>
+                <th> {{tab.active?.name}} </th>
+                <th> Thời điểm mất kết nối </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of rxData | async; let i = index">
+                    <td> {{i+1}} </td>
+                    <td> {{item.branches[2]}} </td>
+                    <td> {{item.branches[1]}} </td>
+                    <td> {{item.branches[0]}} </td>
+                    <td> {{item.name}} </td>
+                    <td> {{item.off_at}} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

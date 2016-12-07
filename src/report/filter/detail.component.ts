@@ -63,7 +63,7 @@ export class UserSelectorComponent {
 export class ServiceSelectorComponent {
     services = RxServices;
     checkAll(event) {
-        let selects: Model.IService[] = [];
+        let selects: Model.Center.IService[] = [];
         RxServices.value.forEach(u => {
             u._checked = event
             selects.push(u);
