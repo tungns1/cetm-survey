@@ -121,7 +121,7 @@ export class Recorder {
 
      storePage(page) {
         //send page to server
-        sendPage(this.sessionID, page)
+        sendPage(this.sessionID + '.ogg', page)
         // Stream is finished
         // if (page[5] & 4) {
         //     console.log('Ket thuc phien giao dich')
