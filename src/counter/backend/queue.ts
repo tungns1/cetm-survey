@@ -41,10 +41,7 @@ class Queue {
     }
 
     private refresh() {
-        let arr: Model.ITicket[] = [];
-        this.data.forEach(d => {
-            arr.push(d);
-        })
+        let arr: Model.ITicket[] = Array.from(this.data.values());
         arr.sort(Queue.sort);
         this.RxData.next(arr);
     }
