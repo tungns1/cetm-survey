@@ -5,7 +5,7 @@ import { Model } from '../shared';
 import {
   Move, TicketStateServing, TicketStateWaiting, TicketStateMissed, CallFromMissed, Cancel
 } from '../backend/ticket';
-import { RxCounters, RxServices } from '../backend/index';
+import { RxCounters } from '../backend/index';
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -17,8 +17,8 @@ export class TicketDetailDialog {
 
   SetTicket(t: Model.ITicket) {
     this.ticket = t;
-    this.checkedCounters = Array.from(t.counters);
-    this.checkedServices = Array.from(t.services);
+    // this.checkedCounters = Array.from(t.counters || []);
+    // this.checkedServices = Array.from(t.services || []);
     this.isServing = t.state === TicketStateServing;
     this.isWaiting = t.state === TicketStateWaiting;
     this.isMissed = t.state === TicketStateMissed;
@@ -35,8 +35,8 @@ export class TicketDetailDialog {
   private checkedCounters = [];
   private checkedServices = [];
   private counters = RxCounters;
-  private services = RxServices;
-  
+  private services = Model.Center.RxServices;
+
   Close() {
     this.close.emit(true);
   }

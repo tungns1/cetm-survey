@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 const TicketStateWaiting = "waiting";
 const TicketStateServing = "serving";
 const TicketStateMissed = "missed";
+import { CurrentCounterID } from './model';
 
 class Queue {
     constructor(private state: string) {
@@ -35,16 +36,21 @@ class Queue {
         if (t.state !== this.state) {
             this.data.delete(t.id);
         } else {
-            this.data.set(t.id, t);
+            if (t.counters && t.counters.length) {
+                let id = CurrentCounterID();
+                if (t.counters.indexOf(id) === -1) {
+                    this.data.delete(t.id);
+                }
+            }
+            else {
+                this.data.set(t.id, t);
+            }
         }
         this.refresh();
     }
 
     private refresh() {
-        let arr: Model.ITicket[] = [];
-        this.data.forEach(d => {
-            arr.push(d);
-        })
+        let arr: Model.ITicket[] = Array.from(this.data.values());
         arr.sort(Queue.sort);
         this.RxData.next(arr);
     }
@@ -64,7 +70,7 @@ export const Waiting = new Queue(TicketStateWaiting)
 export const Serving = new Queue(TicketStateServing);
 export const Missed = new Queue(TicketStateMissed);
 
-export function Init(tickets: {[index: string]: Model.ITicket}) {
+export function Init(tickets: { [index: string]: Model.ITicket }) {
     let v = Object.keys(tickets).map(id => tickets[id]);
     Queues.forEach(q => q.init(v));
 }
