@@ -1,8 +1,8 @@
 <editor #edit name="màn hình" (edit)="onEdit($event)" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> Danh sách Màn hình</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <input formControlName="code" placeholder="Mã màn hình" style="width: 100%;">
-        <input formControlName="name" placeholder="Tên màn hình" style="width: 100%;">
+        <input class="inputs" formControlName="code" placeholder="Mã màn hình" style="width: 100%;">
+        <input class="inputs" formControlName="name" placeholder="Tên màn hình" style="width: 100%;">
         <input type="checkbox" formControlName="inheritable"> Có thể kế thừa
 
         <br> Videos:
@@ -20,11 +20,12 @@
         <select formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
         </select>
-        <hr> Chi nhánh:
+        <br> Chi nhánh:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
-
-        <hr> Quầy giao dịch:
-        <select-check formControlName="counters" [data]="counters" textField="name">
-        </select-check>
+        <br> Quầy giao dịch:
+        <div class="dichvu" *ngIf="counters">
+            <select-check formControlName="counters" [data]="counters" textField="name">
+            </select-check>
+        </div>
     </form>
 </editor>

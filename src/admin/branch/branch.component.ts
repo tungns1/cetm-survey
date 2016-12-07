@@ -22,7 +22,8 @@ export const Api = new Backend.HttpApi<Model.IUser>("/api/admin/user");
 
 @Component({
   selector: 'admin-branch',
-  templateUrl: 'branch.component.html'
+  templateUrl: 'branch.component.html',
+ styleUrls: ['branch.component.css']
 })
 export class BranchComponent {
   constructor(route: ActivatedRoute) {

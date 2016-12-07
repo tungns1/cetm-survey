@@ -56,20 +56,52 @@ export class MultiBranchSelectorComponent {
     selector: 'branch-selector',
     template: `
         <div>
-            Chọn Tỉnh/Thành <br>
-            <multi-branch-selector level="2"></multi-branch-selector>
+            <div class="tl" (click)="active='tinhthanh'">Chọn Tỉnh/Thành<i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='tinhthanh'}">
+                <multi-branch-selector level="2"></multi-branch-selector>
+            </div>
         </div>
         <div>
-            Chọn chi nhánh <br>
-            <multi-branch-selector level="1"></multi-branch-selector>
+            <div class="tl" (click)="active='chinhanh'">Chọn chi nhánh<i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='chinhanh'}">
+                <multi-branch-selector level="1"></multi-branch-selector>
+            </div>
         </div>
         <div>
-            Chọn phòng giao dịch <br>
-            <multi-branch-selector level="0"></multi-branch-selector>
+            <div class="tl" (click)="active='giaodich'">Chọn phòng giao dịch<i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="select" [ngClass]="{'hidden': active!='giaodich'}">
+                <multi-branch-selector level="0"></multi-branch-selector>
+            </div>
         </div>
     `,
+     styles: [`
+     
+            .hidden {
+                display: none;
+            }
+            i{
+                float: right;
+                cursor: pointer;
+
+            }
+            .tl {
+                height: 40px;
+                line-height: 40px;
+                padding: 0px 20px;
+                cursor: pointer;
+                border-top: 1px solid #b0b1b5;
+                border-bottom: 1px solid #b0b1b5;
+            }
+            .select {
+                background-color: #fff;
+                padding: 5px 20px 5px 20px;
+                overflow: auto;
+                height: 150px;
+            }
+
+    `],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BranchSelectorComponent {
-
+     active='';
 }

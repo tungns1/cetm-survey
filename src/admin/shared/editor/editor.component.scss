@@ -2,7 +2,7 @@
     text-transform: uppercase;
 }
 
-.them {
+.add {
     float: right;
     height: 40px;
     color: #fff;
@@ -14,15 +14,25 @@
     text-transform: uppercase;
 }
 
-.huy {
-    float: right;
-    height: 40px;
+.them {
+    background-color: #0b8fda;
     color: #fff;
-    background-color: #01947a;
-    line-height: 40px;
-    padding: 0px 30px;
-    border-radius: 3px;
-    border: 0px solid #01947a;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 25px;
+    border-width: 0px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.huy {
+    background-color: #fff;
+    color: #0d8fdd;
+    height: 30px;
+    line-height: 30px;
+    border-width: 1px;
+    border-style: solid;
+    text-transform: uppercase;
 }
 
 thead {
@@ -49,4 +59,16 @@ select {
 .title {
     height: 56px;
     font-size: 26px;
+}
+
+.header {
+    text-align: center;
+    background-color: #dee0df;
+    height: 40px;
+    line-height: 40px;
+    margin: -20px -20px 20px;
+}
+
+modal-footer {
+    margin-bottom: 20px;
 }

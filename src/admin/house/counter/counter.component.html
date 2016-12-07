@@ -4,10 +4,11 @@
         <input type="text" formControlName="code" placeholder="Mã">
         <input type="text" formControlName="cnum" placeholder="Số quầy">
         <input type="text" formControlName="name" placeholder="Tên">
-        <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led">
-        <hr> Dịch vụ thường
-        <select-check formControlName="services" [data]="services | async" textField="name">
-        </select-check>
+        <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led"> Dịch vụ thường:
+        <div class="dichvu">
+            <select-check formControlName="services" [data]="services | async" textField="name">
+            </select-check>
+        </div>
         <!--<hr> Dịch vụ VIP
         <select-check formControlName="vservices" [data]="services | async" textField="name">
         </select-check>-->
