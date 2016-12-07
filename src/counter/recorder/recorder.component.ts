@@ -72,20 +72,6 @@ export class Recorder {
         return navigator.getUserMedia;
     }
 
-    clearStream() {
-        if (this.stream) {
-            if (this.stream.getTracks) {
-                this.stream.getTracks().forEach(function (track) {
-                    track.stop();
-                });
-            }
-            else {
-                this.stream.stop();
-            }
-            delete this.stream;
-        }
-    }
-
     initStream() {
         if (this.stream) {
             return;
@@ -104,6 +90,20 @@ export class Recorder {
                 console.log("streamError")
             }
         );
+    }
+
+    clearStream() {
+        if (this.stream) {
+            if (this.stream.getTracks) {
+                this.stream.getTracks().forEach(function (track) {
+                    track.stop();
+                });
+            }
+            else {
+                this.stream.stop();
+            }
+            delete this.stream;
+        }
     }
 
     encodeBuffers(inputBuffer) {
