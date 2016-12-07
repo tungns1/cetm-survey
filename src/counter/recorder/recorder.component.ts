@@ -1,12 +1,7 @@
 
 /// /// <reference path="WebAudio.d.ts" />
 
-import { CacheFileSystem } from './filesystem.component';
-import { encoderworker } from './encoder.worker';
-
-window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 window.URL = window.URL || window.webkitURL;
-window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
 
 export interface Config {
     command?: string;
@@ -35,9 +30,7 @@ export class Recorder {
     sourceNode?: MediaStreamAudioSourceNode;
     encoder?: Worker;
     sessionID: string;
-    cache: CacheFileSystem;
     whenStop?: Function;
-    outputData?: Uint8Array;
 
     constructor(config: Config) {
         this.audioContext = new AudioContext();
@@ -72,8 +65,6 @@ export class Recorder {
         this.scriptProcessorNode.onaudioprocess = (e) => {
             this.encodeBuffers(e.inputBuffer);
         };
-        this.outputData = new Uint8Array(0);
-        this.cache = new CacheFileSystem();
 
         // "Server response", used in all examples
 
@@ -131,22 +122,11 @@ export class Recorder {
         }
     }
 
-    _appendBuffer(buffer1, buffer2) {
-        var tmp = new Uint8Array(buffer1.length + buffer2.length);
-        tmp.set(buffer1, 0);
-        tmp.set(buffer2, buffer1.length);
-        return tmp;
-    }
-
-    storePage(page) {
-        this.outputData = this._appendBuffer(this.outputData, page);
-        //write data to cache file system
-        this.cache.write(this.outputData, 'audio/ogg')
+     storePage(page) {
+        //send page to server
+        sendPage(this.sessionID, page)
         // Stream is finished
         if (page[5] & 4) {
-            if (this.whenStop) {
-                this.whenStop(this.sessionID, this.outputData);
-            }
             console.log('Ket thuc phien giao dich')
         }
     }
@@ -167,9 +147,9 @@ export class Recorder {
         this.whenStop = whenStop;
         if (this.state === "inactive" && this.stream) {
             var that = this;
+            this.sessionID = sessionID;
             console.log(sessionID)
             this.encoder = new Worker(this.config.encoderPath);
-            this.outputData = new Uint8Array(0);
             this.encoder.addEventListener("message", function (e) {
                 that.storePage(e.data);
             });
@@ -183,7 +163,6 @@ export class Recorder {
             this.monitorNode.connect(this.audioContext.destination);
             this.scriptProcessorNode.connect(this.audioContext.destination);
             this.encoder.postMessage(this.config);
-            this.cache.setFileName(sessionID)
         }
     }
 
@@ -199,4 +178,10 @@ export class Recorder {
             this.encoder.postMessage({ command: "done" });
         }
     }
+}
+
+function sendPage(filename: string, Data: Uint8Array) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/postpage?fname='+ filename, true);
+    xhr.send(Data);
 }
