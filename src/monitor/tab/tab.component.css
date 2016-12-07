@@ -1,0 +1,18 @@
+label {
+    margin: 0px 25px;
+    cursor: pointer;
+    padding: 5px 0px;
+    font-size: 15px;
+}
+
+.active {
+    color: #0b8fdb;
+    border-bottom: 3px solid #0b8fdb;
+}
+
+.tab {
+    border-bottom: 1px solid #b0b1b5;
+    background-color: #dee0e0;
+    height: 50px;
+    line-height: 50px;
+}

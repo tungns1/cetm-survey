@@ -4,7 +4,7 @@ import { Branch, Editor, Model } from '../../shared/';
 
 import { FormBuilder, Validators } from '@angular/forms';
 
-export function NewServiceForm(b?: Model.IService) {
+export function NewServiceForm(b?: Model.Center.IService) {
     b = b || <any>{};
     return (new FormBuilder).group({
         id: [b.id],
@@ -23,7 +23,7 @@ export function NewServiceForm(b?: Model.IService) {
 })
 export class ServiceComponent {
 
-    service: Editor.IEditService<Model.IService> = {
+    service: Editor.IEditService<Model.Center.IService> = {
         api: Service.Api,
         form: NewServiceForm,
         refresh: () => this.data.refresh()

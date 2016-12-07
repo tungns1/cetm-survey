@@ -1,11 +1,11 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Model, Branch, Backend } from '../shared/';
 
-export const Api = new Backend.HttpApi<Model.IService>("/api/admin/center/service");
+export const Api = new Backend.HttpApi<Model.Center.IService>("/api/admin/center/service");
 
 export function GetAll() {
     return Api.Search({})
-        .do(services => services.forEach(Model.AddServiceName));
+        .do(services => services.forEach(Model.Center.AddServiceName));
 }
 
 
