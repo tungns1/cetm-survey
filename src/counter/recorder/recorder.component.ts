@@ -1,5 +1,6 @@
 
 /// /// <reference path="WebAudio.d.ts" />
+import { sendPage } from './upload.component';
 
 window.URL = window.URL || window.webkitURL;
 
@@ -30,7 +31,6 @@ export class Recorder {
     sourceNode?: MediaStreamAudioSourceNode;
     encoder?: Worker;
     sessionID: string;
-    whenStop?: Function;
 
     constructor(config: Config) {
         this.audioContext = new AudioContext();
@@ -65,28 +65,11 @@ export class Recorder {
         this.scriptProcessorNode.onaudioprocess = (e) => {
             this.encodeBuffers(e.inputBuffer);
         };
-
-        // "Server response", used in all examples
-
         this.initStream()
     }
 
     static isRecordingSupported() {
         return navigator.getUserMedia;
-    }
-
-    clearStream() {
-        if (this.stream) {
-            if (this.stream.getTracks) {
-                this.stream.getTracks().forEach(function (track) {
-                    track.stop();
-                });
-            }
-            else {
-                this.stream.stop();
-            }
-            delete this.stream;
-        }
     }
 
     initStream() {
@@ -109,6 +92,20 @@ export class Recorder {
         );
     }
 
+    clearStream() {
+        if (this.stream) {
+            if (this.stream.getTracks) {
+                this.stream.getTracks().forEach(function (track) {
+                    track.stop();
+                });
+            }
+            else {
+                this.stream.stop();
+            }
+            delete this.stream;
+        }
+    }
+
     encodeBuffers(inputBuffer) {
         if (this.state === "recording") {
             var buffers = [];
@@ -124,11 +121,11 @@ export class Recorder {
 
      storePage(page) {
         //send page to server
-        sendPage(this.sessionID, page)
+        sendPage(this.sessionID + '.ogg', page)
         // Stream is finished
-        if (page[5] & 4) {
-            console.log('Ket thuc phien giao dich')
-        }
+        // if (page[5] & 4) {
+        //     console.log('Ket thuc phien giao dich')
+        // }
     }
 
     pause() {
@@ -143,8 +140,7 @@ export class Recorder {
         }
     }
 
-    start(sessionID: any, whenStop?: (filename: string, data: any) => void) {
-        this.whenStop = whenStop;
+    start(sessionID: any) {
         if (this.state === "inactive" && this.stream) {
             var that = this;
             this.sessionID = sessionID;
@@ -180,8 +176,3 @@ export class Recorder {
     }
 }
 
-function sendPage(filename: string, Data: Uint8Array) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/postpage?fname='+ filename, true);
-    xhr.send(Data);
-}
