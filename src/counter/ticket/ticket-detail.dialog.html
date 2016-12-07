@@ -2,42 +2,40 @@
     <div class="tl">TICKET DETAIL</div>
     <div style="margin-top: 50px;">
         <div class="info">ID: {{ticket.id}}</div>
-        <div class="info"> Number: {{ticket.cnum}}</div>
-        <div class="info"> Priority:{{ticket.priority}}</div>
-        <div class="info"> Vcode:{{ticket.vcode}}</div>
-        <div class="info"> Created at: {{ticket.ctime | hour}}</div>
+        <div class="info"> Số vé: {{ticket.cnum}}</div>
+        <div class="info hidden"> Priority:{{ticket.priority}}</div>
+        <div class="info"> Vip Code:{{ticket.vcode}}</div>
+        <div class="info"> In lúc: {{ticket.ctime | hour}}</div>
         <hr>
 
         <div *ngIf="isServing" style="margin-bottom:10px;">
-            <div>Serving from: {{ticket.mtime | hour}}</div>
-            <br> Move Service:
+            <div>Bắt đầu phục vụ: {{ticket.mtime | hour}}</div>
+            <br> Chuyển dịch vụ:
 
             <select-check (ngModel)="checkedServices" [data]="services | async" textField="name">
             </select-check>
         </div>
 
         <div *ngIf="isMissed" style="margin-bottom:10px;">
-            Last call at: {{ticket.mtime | hour}}
+            Gọi lúc: {{ticket.mtime | hour}}
         </div>
 
         <div *ngIf="isWaiting" style="margin-bottom:10px;">
-            Waiting from: {{ticket.mtime | hour}}
+            Chờ lúc: {{ticket.mtime | hour}}
         </div>
 
-        Move Counter:
-        <select-check (ngModel)="checkedCounters" [data]="counters | async" textField="name">
+        Chuyển quầy:
+        <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
         </select-check>
 
         <div style="margin: 30px 0px 20px 0px;">
-            <button class="close" (click)="Close()" md-button>Close</button>
+            <button class="close" (click)="Close()">ĐÓNG</button>
 
-            <button class="move" *ngIf="isServing" (click)="Move()" md-button>Move</button>
+            <button class="move" (click)="Move()">CHUYỂN</button>
 
-            <button class="recall" *ngIf="isMissed" (click)="Recall(ticket)" md-button>Recall</button>
+            <button class="recall" *ngIf="isMissed" (click)="Recall()">GỌI LẠI</button>
 
-            <button class="move" *ngIf="isWaiting" (click)="Move()" md-button>Move</button>
-
-            <button class="delete" (click)="Delete(ticket)" md-button>Delete</button>
+            <button class="delete" (click)="Delete()">XÓA</button>
         </div>
     </div>
 </div>
