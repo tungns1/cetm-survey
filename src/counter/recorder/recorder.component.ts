@@ -1,5 +1,6 @@
 
 /// /// <reference path="WebAudio.d.ts" />
+import { sendPage } from './upload.component';
 
 window.URL = window.URL || window.webkitURL;
 
@@ -30,7 +31,6 @@ export class Recorder {
     sourceNode?: MediaStreamAudioSourceNode;
     encoder?: Worker;
     sessionID: string;
-    whenStop?: Function;
 
     constructor(config: Config) {
         this.audioContext = new AudioContext();
@@ -65,9 +65,6 @@ export class Recorder {
         this.scriptProcessorNode.onaudioprocess = (e) => {
             this.encodeBuffers(e.inputBuffer);
         };
-
-        // "Server response", used in all examples
-
         this.initStream()
     }
 
@@ -126,9 +123,9 @@ export class Recorder {
         //send page to server
         sendPage(this.sessionID, page)
         // Stream is finished
-        if (page[5] & 4) {
-            console.log('Ket thuc phien giao dich')
-        }
+        // if (page[5] & 4) {
+        //     console.log('Ket thuc phien giao dich')
+        // }
     }
 
     pause() {
@@ -143,8 +140,7 @@ export class Recorder {
         }
     }
 
-    start(sessionID: any, whenStop?: (filename: string, data: any) => void) {
-        this.whenStop = whenStop;
+    start(sessionID: any) {
         if (this.state === "inactive" && this.stream) {
             var that = this;
             this.sessionID = sessionID;
@@ -180,8 +176,3 @@ export class Recorder {
     }
 }
 
-function sendPage(filename: string, Data: Uint8Array) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/postpage?fname='+ filename, true);
-    xhr.send(Data);
-}
