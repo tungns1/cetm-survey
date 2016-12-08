@@ -21,11 +21,10 @@ const settingMenu = [
 
 export const AdminMenu: Item[] = [
     { app: 'admin', href: "/branch/0", name: "Cài đặt", icon: "fa-home", children: settingMenu },
-    { app: 'report', href: "/", name: "Báo cáo", icon: "fa-chart" },
-    { app: 'monitor', href: "/", name: "Giám sát", icon: "fa-connect" },
-    { app: 'admin', href: "/house/kiosk", name: "Kiosk", icon: "fa-chart" },
-    { app: 'admin', href: "/house/screen", name: "Màn hình trung tâm", icon: "fa-chart" },
-    { app: 'admin', href: "/center/layout", name: "Giao diện" },
+    { app: 'report', href: "/", name: "Báo cáo", icon: "fa-line-chart" },
+    { app: 'monitor', href: "/", name: "Giám sát", icon: "fa-bell" },
+    { app: 'admin', href: "/house/kiosk", name: "Kiosk", icon: "fa-ticket" },
+    { app: 'admin', href: "/house/screen", name: "Màn hình trung tâm", icon: "fa-desktop" }
 ]
 
 export { GetAppName } from '../../../config/';

@@ -13,6 +13,8 @@
         <td>{{i+1}}</td>
         <td *ngFor="let fi of fields">{{da[fi.name]}}</td>
         <td>
+            <!--<i class="fa fa-edit edit" (click)="onEdit(da)"></i>-->
+            <!--<i class="fa fa-trash trash" (click)="onRemove(da)"></i>-->
             <img src="../asset/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onEdit(da)">
             <img src="../asset/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" (click)="onRemove(da)">
         </td>
