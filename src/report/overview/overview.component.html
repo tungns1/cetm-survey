@@ -1,16 +1,15 @@
 <div>
-    <table>
+    <table *ngIf="tag==='general'">
         <thead>
             <th> STT </th>
             <th> {{groupTitle | async}} </th>
             <th> Tổng số GD </th>
             <th> GD Thành công </th>
             <th> GD Hủy </th>
-            <th> Thời gian giao dịch (giờ) </th>
-            <th> Thời gian PV (giờ) </th>
-            <th> Thời gian đợi (giờ) </th>
-            <th> Tổng số Phản hồi </th>
-            <th> Tổng số Không Phản hồi </th>
+            <th> GD Thời gian đợi chuẩn </th>
+            <th> GD Thời gian đợi vượt chuẩn </th>
+            <th> GD Thời gian PV chuẩn </th>
+            <th> GD Thời gian PV vượt chuẩn </th>
         </thead>
         <tbody>
             <tr *ngFor="let d of data | async; let i = index">
@@ -19,11 +18,65 @@
                 <td> {{d.c_t}} </td>
                 <td> {{d.c_ft}} </td>
                 <td> {{d.c_ct}} </td>
-                <td> {{d.s_tt_h}} </td>
-                <td> {{d.s_st_h}} </td>
-                <td> {{d.s_wt_h}} </td>
-                <td> {{d.c_r}} </td>
+                <td> {{d.c_bwt}} </td>
+                <td> {{d.c_ft-d.c_bwt}} </td>
+                <td> {{d.c_bst}} </td>
+                <td> {{d.c_ft-d.c_bst}} </td>
                 <td> {{d.c_nr || 0}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="tag==='time'">
+        <thead>
+            <th> STT </th>
+            <th> {{groupTitle | async}} </th>
+            <th> Tổng thời gian GD </th>
+            <th> Tổng TG phục vụ</th>
+            <th> Tổng TG chờ </th>
+            <th> Thời gian PV trung bình </th>
+            <th> Thời gian PV ngắn nhất </th>
+            <th> Thời gian PV dài nhất </th>
+            <th> Thời gian chờ trung bình </th>
+            <th> Thời gian chờ ngắn nhất </th>
+            <th> Thời gian chờ dài nhất </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data | async; let i = index">
+                <td> {{i + 1}} </td>
+                <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
+                <td> {{d.s_tt}} </td>
+                <td> {{d.s_st}} </td>
+                <td> {{d.s_wt}} </td>
+                <td> {{d.a_st}} </td>
+                <td> {{d.min_st}} </td>
+                <td> {{d.max_st}} </td>
+                <td> {{d.a_wt}} </td>
+                <td> {{d.min_wt}} </td>
+                <td> {{d.max_wt}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="tag==='customer'">
+        <thead>
+            <th> STT </th>
+            <th> {{groupTitle | async}} </th>
+            <th> GD có phản hồi </th>
+            <th> GD không có phản hồi </th>
+            <th> GD phản hồi tốt </th>
+            <th> GD phản hồi khá</th>
+            <th> GD phản hồi trung bình </th>
+            <th> GD phản hồi kém</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data | async; let i = index">
+                <td> {{i + 1}} </td>
+                <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
+                <td> {{d.c_r}} </td>
+                <td> {{d.c_ft-d.c_r}} </td>
+                <td> {{d.c_r_a}} </td>
+                <td> {{d.c_r_b}} </td>
+                <td> {{d.c_r_c}} </td>
+                <td> {{d.c_r_d}} </td>
             </tr>
         </tbody>
     </table>

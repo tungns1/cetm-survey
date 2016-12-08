@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
     GeneralComponent
 } from './general.component';
@@ -19,7 +20,7 @@ import { ReportChartModule } from '../chart/chart.module';
 import { ReportTabModule } from '../tab/tab.module';
 
 @NgModule({
-    imports: [routing, ReportSumModule, ReportOverviewModule, ReportChartModule, ReportTabModule],
+    imports: [routing, ReportSumModule, ReportOverviewModule, ReportChartModule, ReportTabModule,CommonModule],
     declarations: [
         GeneralComponent
     ]

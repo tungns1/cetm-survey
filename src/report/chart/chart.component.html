@@ -15,12 +15,11 @@
             <option value="pie">Biểu đồ tròn</option>
         </select>
 </div>
-
 <div class="legend" style="margin:10px 20px;">
     <div *ngFor="let item of items | async" style="float:left; margin-right:5px;">
         <div style="float:left">
             <input type="checkbox" [ngModel]="!item._hidden" (ngModelChange)="Toggle(item)"> {{item.title}}
         </div>
-        <div style="width:30;height:15px; float:left; margin-left:3px;" [style.background-color]="item._hidden? '':item.color"></div><br>
+        <div style="width:30px;height:15px; float:left; margin-left:3px;" [style.background-color]="item._hidden? '':item.color"></div><br>
     </div>
 </div>

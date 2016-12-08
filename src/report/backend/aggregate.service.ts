@@ -44,6 +44,7 @@ export const RxActiveAggregate = Observable.combineLatest(RxAggregate, RxGroupBy
     const views = MakeIndexBy(view[0], view[1]);
     views.forEach(v => {
         v.name = NameMap.get(v[group_by]) || 'n/a';
+        v.Finalize();
     })
     return views;
 });

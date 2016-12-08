@@ -116,9 +116,9 @@ export class AggregateView {
             this.count = this.data.length;
         }
 
-        if (this.c_t > 0) {
+        if (this.c_ft > 0) {
             this.a_wt = Round2Decimal(this.s_wt / this.c_t);
-            this.a_st = Round2Decimal(this.s_st / this.c_t);
+            this.a_st = Round2Decimal(this.s_st / this.c_ft);
         }
 
         if (this.c_r_o > 0) {
