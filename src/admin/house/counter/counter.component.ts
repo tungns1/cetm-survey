@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { House, Service, User } from '../../backend/';
+import { House, Center, User } from '../../backend/';
 import { Branch, Editor, Model } from '../../shared/';
 
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -21,7 +21,7 @@ function NewForm(b?: Model.House.ICounter) {
 @Component({
     selector: 'house-counter',
     templateUrl: 'counter.component.html',
-      styleUrls: ['counter.component.css']
+    styleUrls: ['counter.component.css']
 })
 export class CounterComponent {
 
@@ -32,7 +32,7 @@ export class CounterComponent {
     };
 
     data = House.Counter.AutoRefresh();
-    services = Service.GetAll();
+    services = Center.Service.GetAll();
 
     fields = [
         { title: 'Phòng giao dịch', name: 'branch' },

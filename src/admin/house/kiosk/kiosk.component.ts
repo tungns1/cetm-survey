@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Center, House, Service, User } from '../../backend/';
+import { Center, House, User } from '../../backend/';
 import { Branch, Editor, Model } from '../../shared/';
 
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -22,7 +22,7 @@ function NewForm(b?: Model.House.IKiosk) {
 @Component({
     selector: 'house-kiosk',
     templateUrl: 'kiosk.component.html',
-     styleUrls: ['kiosk.component.css']
+    styleUrls: ['kiosk.component.css']
 })
 export class KioskComponent {
 
@@ -34,7 +34,7 @@ export class KioskComponent {
 
     data = House.Kiosk.AutoRefresh();
     kiosks = this.data.map(values => values.filter(v => v.inheritable));
-    services = Service.GetAll();
+    services = Center.Service.GetAll();
     layouts = Center.Layout.GetByType('kiosk');
 
     fields = [
