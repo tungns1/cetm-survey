@@ -10,3 +10,7 @@ let components = [ModalComponent, ModalFooterComponent, ModalHeaderComponent]
     exports: [...components]
 })
 export class ModalModule { }
+
+export {
+    ModalComponent
+}

@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewChild, ComponentRef } from 
 import { FormGroup } from '@angular/forms';
 
 import { Backend } from '../../../shared/';
-import { ModalComponent } from './modal.component';
+import { ModalComponent } from '../../../x/ui/modal/';
 
 interface IEditService<T> {
     api: Backend.HttpApi<T>;
