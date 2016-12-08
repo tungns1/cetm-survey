@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminMenu, Item, GetAppName } from './model';
+import { AdminMenu, Item, GetAppName, GetActiveItemIndex } from './model';
 
 
 @Component({
@@ -13,11 +13,11 @@ export class TopNavComponent {
     constructor(private router: Router) { }
 
     ngOnInit() {
-        this.active = this.menu.find(v => v.href === this.router.url);
+        this.active = GetActiveItemIndex(this.router.url);
     }
 
-    onClick(item: Item) {
-        this.active = item;
+    onClick(item: Item, index: number) {
+        this.active = index;
         if (item.app === GetAppName()) {
             this.router.navigateByUrl(item.href);
         } else {
@@ -26,5 +26,5 @@ export class TopNavComponent {
     }
 
     menu = AdminMenu;
-    active: Item;
+    active = -1;
 }

@@ -27,4 +27,27 @@ export const AdminMenu: Item[] = [
     { app: 'admin', href: "/house/screen", name: "Màn hình trung tâm", icon: "fa-desktop" }
 ]
 
+import { GetAppName } from '../../../config/';
 export { GetAppName } from '../../../config/';
+
+export function GetActiveItemIndex(url: string) {
+    let app = GetAppName();
+    for (let i = AdminMenu.length - 1; i >= 0; i--) {
+        let v = AdminMenu[i];
+        if (v.app !== app) {
+            continue;
+        }
+        if (v.href === url) {
+            return i;
+        }
+        if (v.children) {
+            for (let j = v.children.length - 1; j >= 0; j--) {
+                let t = v.children[j];
+                if (t.href === url) {
+                    return j;
+                }
+            }
+        }
+    }
+    return -1;
+}
