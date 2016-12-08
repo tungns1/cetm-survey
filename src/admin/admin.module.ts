@@ -16,5 +16,5 @@ export default class AdminModule {
 
 }
 
-import {SetAppName} from '../config/';
+import { SetAppName } from '../config/';
 SetAppName('admin');
