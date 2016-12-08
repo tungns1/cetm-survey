@@ -31,7 +31,6 @@ export class TFormComponent {
     data = Center.TForm.AutoRefresh();
     
     fields = [
-        { title: 'Tên', name: 'name' },
         { title: 'Code', name: 'code' }
     ]
 }

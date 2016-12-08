@@ -9,11 +9,15 @@ import { AdminMenu, Item, GetAppName } from './model';
     styleUrls: ['top-nav.component.scss']
 })
 export class TopNavComponent {
-    
 
     constructor(private router: Router) { }
 
+    ngOnInit() {
+        this.active = this.menu.find(v => v.href === this.router.url);
+    }
+
     onClick(item: Item) {
+        this.active = item;
         if (item.app === GetAppName()) {
             this.router.navigateByUrl(item.href);
         } else {
@@ -22,4 +26,5 @@ export class TopNavComponent {
     }
 
     menu = AdminMenu;
+    active: Item;
 }

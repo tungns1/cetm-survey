@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li *ngFor="let item of menu">
-            <a (click)="onClick(item)" routerLinkActive="current-menu-item">
+            <a (click)="onClick(item)" [class.current-menu-item]="item == active">
                 <i class="fa" [addClass]="item.icon"> </i>
                 <span> {{item.name}} </span>
             </a>

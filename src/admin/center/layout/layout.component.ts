@@ -42,7 +42,6 @@ export class LayoutComponent {
 
     fields = [
         { title: 'Tên', name: 'name' },
-        { title: 'Code', name: 'code' },
         { title: 'Loại', name: 'type' }
     ]
 }
