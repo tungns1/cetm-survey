@@ -1,10 +1,6 @@
 import { Model } from '../shared';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-const TicketStateWaiting = "waiting";
-const TicketStateServing = "serving";
-const TicketStateMissed = "missed";
 import { CurrentCounterID } from './model';
 
 class Queue {
@@ -12,17 +8,17 @@ class Queue {
 
     }
 
-    RxData = new BehaviorSubject<Model.ITicket[]>([]);
-    private data = new Map<string, Model.ITicket>();
+    RxData = new BehaviorSubject<Model.House.ITicket[]>([]);
+    private data = new Map<string, Model.House.ITicket>();
 
-    static sort(a: Model.ITicket, b: Model.ITicket) {
+    static sort(a: Model.House.ITicket, b: Model.House.ITicket) {
         if (a.priority === b.priority) {
             return a.mtime < b.mtime ? 0 : 1;
         }
         return a.priority > b.priority ? 0 : 1;
     }
 
-    init(data: Model.ITicket[]) {
+    init(data: Model.House.ITicket[]) {
         this.data.clear();
         data.forEach(d => {
             if (d.state === this.state) {
@@ -32,7 +28,7 @@ class Queue {
         this.refresh();
     }
 
-    update(t: Model.ITicket) {
+    update(t: Model.House.ITicket) {
         if (t.state !== this.state) {
             this.data.delete(t.id);
         } else {
@@ -50,7 +46,7 @@ class Queue {
     }
 
     private refresh() {
-        let arr: Model.ITicket[] = Array.from(this.data.values());
+        let arr: Model.House.ITicket[] = Array.from(this.data.values());
         arr.sort(Queue.sort);
         this.RxData.next(arr);
     }
@@ -66,11 +62,11 @@ class Queue {
 }
 
 
-export const Waiting = new Queue(TicketStateWaiting)
-export const Serving = new Queue(TicketStateServing);
-export const Missed = new Queue(TicketStateMissed);
+export const Waiting = new Queue(Model.House.TicketStateWaiting)
+export const Serving = new Queue(Model.House.TicketStateServing);
+export const Missed = new Queue(Model.House.TicketStateMissed);
 
-export function Init(tickets: { [index: string]: Model.ITicket }) {
+export function Init(tickets: { [index: string]: Model.House.ITicket }) {
     let v = Object.keys(tickets).map(id => tickets[id]);
     Queues.forEach(q => q.init(v));
 }

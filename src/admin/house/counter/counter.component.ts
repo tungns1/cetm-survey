@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { House, Service, User } from '../../backend/';
+import { House, Center, User } from '../../backend/';
 import { Branch, Editor, Model } from '../../shared/';
 
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-function NewForm(b?: Model.ICounter) {
+function NewForm(b?: Model.House.ICounter) {
     b = b || <any>{};
     return (new FormBuilder).group({
         id: [b.id],
@@ -21,18 +21,18 @@ function NewForm(b?: Model.ICounter) {
 @Component({
     selector: 'house-counter',
     templateUrl: 'counter.component.html',
-      styleUrls: ['counter.component.css']
+    styleUrls: ['counter.component.css']
 })
 export class CounterComponent {
 
-    service: Editor.IEditService<Model.ICounter> = {
+    service: Editor.IEditService<Model.House.ICounter> = {
         api: House.Counter.Api,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
     data = House.Counter.AutoRefresh();
-    services = Service.GetAll();
+    services = Center.Service.GetAll();
 
     fields = [
         { title: 'Phòng giao dịch', name: 'branch' },

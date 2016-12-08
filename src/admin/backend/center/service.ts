@@ -1,5 +1,5 @@
 import { FormBuilder, Validators } from '@angular/forms';
-import { Model, Branch, Backend } from '../shared/';
+import { Model, Branch, Backend } from '../../shared/';
 
 export const Api = new Backend.HttpApi<Model.Center.IService>("/api/admin/center/service");
 
@@ -9,7 +9,7 @@ export function GetAll() {
 }
 
 
-import { RefreshObservable } from './rx';
+import { RefreshObservable } from '../rx';
 import { Observable } from 'rxjs/Observable';
 
 export function AutoRefresh() {

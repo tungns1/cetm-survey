@@ -2,7 +2,7 @@
     <ul>
         <li *ngFor="let item of menu">
             <a (click)="onClick(item)" routerLinkActive="current-menu-item">
-                <i class="fa fa-lg" [addClass]="item.icon"> </i>
+                <i class="fa" [addClass]="item.icon"> </i>
                 <span> {{item.name}} </span>
             </a>
             <ul>

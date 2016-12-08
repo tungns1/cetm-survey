@@ -36,7 +36,7 @@ export class ScreenComponent {
     data = House.Screen.AutoRefresh();
     screens = this.data.map(values => values.filter(v => v.inheritable));
     layouts = Center.Layout.GetByType('screen');
-    counters: Model.ICounter[] = [];
+    counters: Model.House.ICounter[] = [];
 
     onEdit(form: FormGroup) {
         this.onBranchChange(form.value.branch_id);

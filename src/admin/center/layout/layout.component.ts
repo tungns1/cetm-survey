@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Center } from '../../backend/';
 import { Branch, Editor, Model } from '../../shared/';
 
-import { FormBuilder, Validators } from '@angular/forms';
 
 function NewForm(b?: Model.Center.ILayout) {
     b = b || <any>{};
@@ -22,18 +23,27 @@ function NewForm(b?: Model.Center.ILayout) {
 })
 export class LayoutComponent {
 
+    constructor(private route: ActivatedRoute) {
+        route.queryParams.forEach(v => {
+            this.tag = v['tag'] || 'kiosk,screen';
+            this.data = Center.Layout.AutoRefresh(this.tag);
+        })
+    }
+
+    tag: string;
+
     service: Editor.IEditService<Model.Center.ILayout> = {
         api: Center.Layout.Api,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
-    data = Center.Layout.AutoRefresh();
-    
+    data = Center.Layout.AutoRefresh('kiosk,screen');
+
     fields = [
         { title: 'Tên', name: 'name' },
         { title: 'Code', name: 'code' },
-        {title: 'Loại', name: 'type'}
+        { title: 'Loại', name: 'type' }
     ]
 }
 

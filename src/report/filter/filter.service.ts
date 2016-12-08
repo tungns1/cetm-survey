@@ -13,14 +13,14 @@ const RxDetails = Branch.SelectedBranchIDLevel0.filter(id => !!id).switchMap(id 
 
 export const RxServices = new BehaviorSubject<Model.Center.IService[]>([]);
 export const RxUsers = new BehaviorSubject<Model.IUser[]>([]);
-export const RxCounters = new BehaviorSubject<Model.ICounter[]>([]);
+export const RxCounters = new BehaviorSubject<Model.House.ICounter[]>([]);
 export const NameMap = new Map<string, string>();
 RxDetails.subscribe(v => {
     const services: Model.Center.IService[] = v['services'];
     services.forEach(r => Model.Center.AddServiceName(r));
     services.sort((a, b) => a.name > b.name ? 1 : 0);
     RxServices.next(services);
-    const counters: Model.ICounter[] = v['counters'];
+    const counters: Model.House.ICounter[] = v['counters'];
     counters.sort((a, b) => a.name > b.name ? 1 : 0);
     RxCounters.next(counters);
     const users: Model.IUser[] = v['users'];

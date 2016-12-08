@@ -1,5 +1,5 @@
 <editor #edit name="giao diện" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách giao diện</editor-title>
+    <editor-title> Danh sách giao diện <b> {{tag}} </b> </editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <input formControlName="name" placeholder="Tên">
         <select formControlName="type">
