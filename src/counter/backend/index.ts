@@ -12,11 +12,11 @@ import { Model } from '../shared';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/delay';
 
-socket.Subscribe<Model.ICounter>("/counter", c => RxCurrentCounter.next(c));
-socket.Subscribe<Model.ICounter[]>("/counters", c => RxCounters.next(c));
-socket.Subscribe<{ [index: string]: Model.ITicket }>("/tickets", Init);
+socket.Subscribe<Model.House.ICounter>("/counter", c => RxCurrentCounter.next(c));
+socket.Subscribe<Model.House.ICounter[]>("/counters", c => RxCounters.next(c));
+socket.Subscribe<{ [index: string]: Model.House.ITicket }>("/tickets", Init);
 
-socket.Subscribe<Model.ITicket>('/ticket', (ticket) => {
+socket.Subscribe<Model.House.ITicket>('/ticket', (ticket) => {
     Queues.forEach(q => q.update(ticket));
 });
 

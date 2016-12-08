@@ -2,9 +2,7 @@ import { Component, ViewContainerRef, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Model } from '../shared';
 
-import {
-  Move, TicketStateServing, TicketStateWaiting, TicketStateMissed, CallFromMissed, Cancel
-} from '../backend/ticket';
+import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { RxCounters } from '../backend/index';
 
 @Component({
@@ -15,16 +13,16 @@ import { RxCounters } from '../backend/index';
 export class TicketDetailDialog {
   constructor() { }
 
-  SetTicket(t: Model.ITicket) {
+  SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
     // this.checkedCounters = Array.from(t.counters || []);
     // this.checkedServices = Array.from(t.services || []);
-    this.isServing = t.state === TicketStateServing;
-    this.isWaiting = t.state === TicketStateWaiting;
-    this.isMissed = t.state === TicketStateMissed;
+    this.isServing = t.state === Model.House.TicketStateServing;
+    this.isWaiting = t.state === Model.House.TicketStateWaiting;
+    this.isMissed = t.state === Model.House.TicketStateMissed;
   }
 
-  private ticket: Model.ITicket = <any>{};
+  private ticket: Model.House.ITicket = <any>{};
   close = new EventEmitter();
 
 

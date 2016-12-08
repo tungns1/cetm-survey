@@ -4,7 +4,7 @@ import { Branch, Editor, Model } from '../../shared/';
 
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
-function NewForm(b?: Model.ICounter) {
+function NewForm(b?: Model.House.ICounter) {
     b = b || <any>{};
     return (new FormBuilder).group({
         id: [b.id],
@@ -25,7 +25,7 @@ function NewForm(b?: Model.ICounter) {
 })
 export class CounterComponent {
 
-    service: Editor.IEditService<Model.ICounter> = {
+    service: Editor.IEditService<Model.House.ICounter> = {
         api: House.Counter.Api,
         form: NewForm,
         refresh: () => this.data.refresh()

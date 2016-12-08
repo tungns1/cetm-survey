@@ -17,7 +17,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 })
 export class MissedComponent {
     count = Missed.count();
-    tickets = combineLatest<Model.ITicket[], string>(Missed.RxData, search).map(([tickets, text]) => {
+    tickets = combineLatest<Model.House.ITicket[], string>(Missed.RxData, search).map(([tickets, text]) => {
         return tickets.filter(v => v.cnum.indexOf(text) !== -1);
     })
 
