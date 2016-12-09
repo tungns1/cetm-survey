@@ -17,3 +17,5 @@ RxMySetting.filter(v => !!v).subscribe(v => {
   RxBranches.next(v.branches);
   Center.RxServices.next(v.services || []);
 });
+export const RxSessionReady = RxMySetting.filter(s => !!s);
+

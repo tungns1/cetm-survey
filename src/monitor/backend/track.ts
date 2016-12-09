@@ -43,7 +43,7 @@ export class TrackGroup<T extends Track> {
     }
 
     public ByTag(tag: string) {
-        return this.RxData;
+        return this.RxData.map(data => data.filter(d => d.tag === tag));
     }
 
     protected beforeAdd(v: T) {
