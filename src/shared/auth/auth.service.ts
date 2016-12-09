@@ -25,7 +25,7 @@ export function Logout() {
 export const AuthOptions = {
     Auto: false,
     Scope: '',
-    Redirect: null
+    Redirect: '/'
 }
 
 export function Login(form) {

@@ -12,19 +12,19 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
     if (!IsAuth()) {
-      return this.loginPage(route);
+      return this.loginPage();
     }
 
     return Refresh().map(ok => {
       if (!ok) {
-        this.loginPage(route);
+        this.loginPage();
       }
       return ok;
     }).toPromise();;
   }
 
-  loginPage(route: ActivatedRouteSnapshot) {
-    AuthOptions.Redirect = route.url;
+  loginPage() {
+    AuthOptions.Redirect = this.router.url;
     this.router.navigate(['/login']);
     return false
   }

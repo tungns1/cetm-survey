@@ -49,9 +49,9 @@ export class LoginComponent {
     Login(this.loginForm.value).subscribe((v) => {
       let redirect = AuthOptions.Redirect;
       if (!redirect || redirect.length < 1) {
-        redirect = ["/"];
+        redirect = '/';
       }
-      this.router.navigate(redirect);
+      this.router.navigateByUrl(redirect);
     }, e => {
       this.message = e.error;
     });
