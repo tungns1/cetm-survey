@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RxUser } from '../../../shared/session/';
+import { RxLoginedUser } from '../../../shared/session/';
 import { AuthService } from '../../../shared/auth/';
 
 @Component({
@@ -13,7 +13,7 @@ export class UserComponent {
     constructor(private router: Router, private authService: AuthService) {
     }
 
-    rxName = RxUser.map(u => u.fullname);
+    rxName = RxLoginedUser.map(u => u.fullname);
 
     Logout() {
         this.authService.Logout();
