@@ -16,9 +16,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class TrackGroup<T extends Track> {
     constructor() {
-
+        
     }
-
     public Init(values: T[]) {
         values.forEach(t => {
             t.branches = Branch.GetTreeNames(t.branch_id);
@@ -46,8 +45,7 @@ export class TrackGroup<T extends Track> {
         return this.RxData.map(data => data.filter(d => d.tag === tag));
     }
 
-    protected beforeAdd(v: T) {
-
+    beforeAdd = (v: T) => {
     }
 
     private refresh() {

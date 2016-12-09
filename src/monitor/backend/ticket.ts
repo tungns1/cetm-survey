@@ -14,7 +14,7 @@ export class TicketTrack extends Track {
 }
 
 class TicketTrackGroup extends TrackGroup<TicketTrack> {
-	beforeAdd(v: TicketTrack) {
+	beforeAdd = (v: TicketTrack) => {
 		v.service = Model.Center.ServiceName(v.service_id);
 		var timeStamp = Math.floor(Date.now() / 1000);
 		// name
@@ -27,4 +27,4 @@ class TicketTrackGroup extends TrackGroup<TicketTrack> {
 	}
 }
 
-export const TicketTracks = new TrackGroup<TicketTrack>();
+export const TicketTracks = new TicketTrackGroup();
