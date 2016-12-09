@@ -17,7 +17,7 @@ import { FormArray, FormControl } from '@angular/forms';
     selector: 'select-check',
     template: `
         <span *ngFor="let d of data" >
-            <input type="checkbox" [ngModel]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}
+            <input type="checkbox" [ngModel]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
         </span>
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
