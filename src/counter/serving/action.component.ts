@@ -3,23 +3,14 @@ import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket
 import { RxCanNext, Serving, Waiting } from '../backend/queue';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Config, Recorder } from '../recorder/recorder.component';
 
 @Component({
-
     selector: 'action',
     templateUrl: 'action.component.html',
     styleUrls: ['action.component.css'],
 })
 
-// let config: Config = {
-//     encoderPath: "encoderWorker.min.js"
-// }
-// let recorder: Recorder = new Recorder(config);
-
 export class ActionComponent {
-    config: Config = {encoderPath: '../asset/js/encoderWorker.min.js'};
-    recorder: Recorder = new Recorder(this.config);
     getTicket() {
         return Serving.first();
     }
@@ -35,17 +26,11 @@ export class ActionComponent {
     Next() {
         let ticket = this.getTicket();
         if (ticket) {
-            // finish
-            console.log("Finish session!")
-            this.recorder.stop()
             Finish(ticket).subscribe(v => console.log(v));
         }
         let firstTicket = Waiting.first();
         if (firstTicket) {
             CallFromWaiting(firstTicket).subscribe(v => {
-                // start 
-                console.log("Start session!")
-                this.recorder.start(firstTicket.id)
                 this.autoNext.next(false);
             });
         } else {
@@ -63,9 +48,6 @@ export class ActionComponent {
     }
 
     Finish() {
-        // finish
-        console.log("Finish session!")
-        this.recorder.stop()
         Finish(this.getTicket()).subscribe(v => console.log(v));
 
     }
