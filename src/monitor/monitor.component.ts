@@ -7,5 +7,5 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['monitor.component.css']
 })
 export class MonitorComponent {
-    
+    show = true;
 }
