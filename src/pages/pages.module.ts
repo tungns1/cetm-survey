@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 /////////////////////////////
 import { AppSettingComponent } from './setting/setting.component';
-import { AuthGuard, AuthService, LoginComponent } from './login/index';
+import { AuthGuard, LoginComponent } from './login/index';
 import { PageNotFoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ import { NavModule } from './shared/nav/nav.module';
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, CommonModule, RouterModule.forChild(routes)],
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
-    providers: [AuthService, AuthGuard],
+    providers: [AuthGuard],
     exports: [
         RouterModule, CommonModule, BrowserModule,
         FormsModule, ReactiveFormsModule,

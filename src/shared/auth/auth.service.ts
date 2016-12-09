@@ -18,34 +18,33 @@ export function RefreshMySettings() {
     })
 }
 
-@Injectable()
-export class AuthService {
-    Login(form) {
-        const values = Object.assign({ auto: this.Auto, scope: this.Scope }, form);
-        return authBackend.Post("login", values).map(v => {
-            Activate(v.session);
-            return v.session;
-        })
-    }
+export function Logout() {
+    Destroy();
+}
 
-    Logout() {
-        Destroy();
-    }
+export const AuthOptions = {
+    Auto: false,
+    Scope: '',
+    Redirect: null
+}
 
-    Refresh() {
-        return RefreshMySettings().catch(e => {
-            if (IsErrUnauthorized(e)) {
-                Destroy();
-            }
-            return of(false);
-        });
-    }
+export function Login(form) {
+    const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope }, form);
+    return authBackend.Post("login", values).map(v => {
+        Activate(v.session);
+        return v.session;
+    })
+}
 
-    IsLoggedIn() {
-        return GetToken();
-    }
+export function Refresh() {
+    return RefreshMySettings().catch(e => {
+        if (IsErrUnauthorized(e)) {
+            Destroy();
+        }
+        return of(false);
+    });
+}
 
-    Redirect = [];
-    Scope = '';
-    Auto = false;
+export function IsAuth() {
+    return GetToken();
 }

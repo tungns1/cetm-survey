@@ -14,3 +14,8 @@ export default class MonitorModule {
 
 }
 
+
+import {SetAppName} from '../config/';
+SetAppName('monitor');
+import {Auth} from './shared/';
+Auth.AuthOptions.Scope = "monitor";

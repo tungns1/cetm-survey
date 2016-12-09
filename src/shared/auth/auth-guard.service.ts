@@ -2,20 +2,20 @@ import { Injectable, Injector } from '@angular/core';
 import { CanActivate, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from './auth.service';
+import { AuthOptions, Refresh, IsAuth } from './auth.service';
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
-    if (!this.authService.IsLoggedIn()) {
+    if (!IsAuth()) {
       return this.loginPage(route);
     }
 
-    return this.authService.Refresh().map(ok => {
+    return Refresh().map(ok => {
       if (!ok) {
         this.loginPage(route);
       }
@@ -24,9 +24,7 @@ export class AuthGuard implements CanActivate {
   }
 
   loginPage(route: ActivatedRouteSnapshot) {
-    this.authService.Redirect = route.url;
-    this.authService.Scope = route.data['scope'];
-    this.authService.Auto = route.data['auto'];
+    AuthOptions.Redirect = route.url;
     this.router.navigate(['/login']);
     return false
   }
