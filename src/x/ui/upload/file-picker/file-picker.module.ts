@@ -17,7 +17,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'file-picker',
     template: `
-        <input class="inputs" [(ngModel)]="value" (ngModelChange)="setValue($event)" /> 
+        <input class="inputs" [ngModel]="value" (ngModelChange)="setValue($event)" /> 
         <button (click)="modal.Open()">Chọn</button>
         <modal #modal>
             <div class="file-browser">
@@ -51,7 +51,6 @@ class FilePickerComponent implements ControlValueAccessor {
     }
 
     OnChange() {
-        console.log(this.value);
         setTimeout(_ => this.onChangeCallback(this.value));
     }
 
