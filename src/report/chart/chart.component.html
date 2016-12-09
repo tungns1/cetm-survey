@@ -3,7 +3,6 @@
 <div class="chart" line-chart *ngIf="type==='line'" [data]="data | async" [items]="items | async"></div>
 <div class="chart" *ngIf="type==='pie'">
     <div pie-chart [data]="pieData | async" [items]="items | async"></div>
-    <div pie-chart [data]="pieData | async" [items]="items | async"></div>
 </div>
 
 <div>

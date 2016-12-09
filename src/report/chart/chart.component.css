@@ -24,6 +24,6 @@ select {
 
 .chart>[pie-chart] {
     display: inline-block;
-    width: 40%;
+    width: 100%;
     height: 100%;
 }
