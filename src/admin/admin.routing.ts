@@ -35,9 +35,6 @@ export const routing = RouterModule.forRoot([
     path: '',
     canActivate: [Auth.AuthGuard],
     component: AdminComponent,
-    data: {
-      scope: "admin"
-    },
     children: children
   }
 ], { useHash: true });

@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router'
-import { ReportFilterModule } from './filter/filter.module';
 import { ReportComponent } from './report.component';
 import { routing } from './report.routing';
 import { PageModule } from '../pages/';
+import { ReportFilterModule } from './filter/filter.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  imports: [PageModule, routing, ReportFilterModule, CommonModule, MaterialModule],
-  declarations: [ReportComponent],
-  bootstrap: [ReportComponent]
+  imports: [PageModule, routing, ReportFilterModule, CommonModule],
+  declarations: [AppComponent, ReportComponent],
+  bootstrap: [AppComponent]
 })
 export default class ReportModule {
 
 }
 
-import {SetAppName} from '../config/';
+import { SetAppName } from '../config/';
 SetAppName('report');
-import {Auth} from './shared/';
+import { Auth } from './shared/';
 Auth.AuthOptions.Scope = "report";
