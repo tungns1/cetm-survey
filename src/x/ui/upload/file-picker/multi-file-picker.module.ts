@@ -16,9 +16,9 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'multi-file-picker',
     template: `
-        <span (click)="add()">Thêm</span>        
+        <span (click)="add()"><i class="fa fa-plus"></i></span>        
         <div *ngFor="let c of form.controls; let i = index;" >
-            <file-picker [formControl]="c"></file-picker>
+            <file-picker [formControl]="c" (change)="OnChange()"></file-picker>
             <span (click)="remove(i)"> X </span>
         </div>
     `,
