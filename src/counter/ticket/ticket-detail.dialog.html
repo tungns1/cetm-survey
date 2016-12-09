@@ -11,9 +11,10 @@
         <div *ngIf="isServing" style="margin-bottom:10px;">
             <div>Bắt đầu phục vụ: {{ticket.mtime | hour}}</div>
             <br> Chuyển dịch vụ:
-
-            <select-check (ngModel)="checkedServices" [data]="services | async" textField="name">
-            </select-check>
+            <div class="dichvu" *ngIf="services">
+                <select-check (ngModel)="checkedServices" [data]="services | async" textField="name">
+                </select-check>
+            </div>
         </div>
 
         <div *ngIf="isMissed" style="margin-bottom:10px;">
@@ -25,8 +26,10 @@
         </div>
 
         Chuyển quầy:
-        <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
-        </select-check>
+        <div class="dichvu" *ngIf="counters">
+            <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
+            </select-check>
+        </div>
 
         <div style="margin: 30px 0px 20px 0px;">
             <button class="close" (click)="Close()">ĐÓNG</button>
