@@ -43,7 +43,7 @@
       remaining -= maxSamples;
     }
     count++;
-    if (fname != null && count > 2) {
+    if (fname != null && count > 3) {
       var blob = new Blob(tmpDataBuffer, {type: 'audio/mp3'});
       sendRecordPage(fname, blob)
       count = 0;

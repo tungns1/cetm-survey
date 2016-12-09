@@ -21,12 +21,14 @@ const ticketTabs = [{
 export class MonitorTicketComponent {
     thoigian = 'Thời gian đợi';
     thoidiem = 'Thời điểm lấy vé';
+    tag='wait';
     tabs = ticketTabs;
 
     rxData: Observable<TicketTrack[]>;
 
     setActive(tab: Tab) {
         this.rxData = TicketTracks.ByTag(tab.tag).map(tracks => {
+            console.log(tracks);
             if (tab.tag === 'wait') {
                 tracks.sort((a, b) => a.c_at > b.c_at ? 1 : 0);
             } else {
@@ -34,7 +36,9 @@ export class MonitorTicketComponent {
             }
             return tracks;
         });
+        this.rxData.subscribe(data => console.log(data));
         this.thoidiem = tab.name[0];
         this.thoigian = tab.name[1];
+        this.tag=tab.tag;
     }
 }
