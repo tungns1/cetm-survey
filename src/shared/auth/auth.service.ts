@@ -31,8 +31,9 @@ export const AuthOptions = {
 export function Login(form) {
     const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope }, form);
     return authBackend.Post("login", values).map(v => {
-        Activate(v.session);
-        return v.session;
+        let session: ISession = v.session;
+        Activate(session);
+        return session;
     })
 }
 
