@@ -17,7 +17,8 @@ function NewForm(b?: Model.Center.ITForm) {
 
 @Component({
     selector: 'center-tform',
-    templateUrl: 'tform.component.html'
+    templateUrl: 'tform.component.html',
+     styleUrls: ['tform.component.css']
 })
 export class TFormComponent {
 
@@ -30,7 +31,6 @@ export class TFormComponent {
     data = Center.TForm.AutoRefresh();
     
     fields = [
-        { title: 'Tên', name: 'name' },
         { title: 'Code', name: 'code' }
     ]
 }

@@ -1,0 +1,14 @@
+<div *ngIf="node && node.is_dir">
+    <span [class.hidden]="!node.is_dir">
+        <i class="fa fa-plus" (click)="node.Expand()" [class.hidden]="node.expanded"></i>
+        <i class="fa fa-minus" (click)="node.Close()" [class.hidden]="!node.expanded"></i>
+    </span>
+    <div class="node-name" (click)="choose()">
+        {{ node.name }}
+    </div>
+    <ul class="tree-view">
+        <li *ngFor="let d of node.rxChildren | async">
+            <file-tree [node]="d" (select)="choose($event)"></file-tree>
+        </li>
+    </ul>
+</div>

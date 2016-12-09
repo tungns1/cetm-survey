@@ -6,9 +6,10 @@
 <br>
 <br>
 
-<div class="container">
-    <branch-selector class="aside"></branch-selector>
-    <div class="main">
+<div class="container" style="height:100vh;">
+    <i class="fa fa-bars" aria-hidden="true" style="cursor:pointer;position:absolute; margin:5px 0px 0px 5px;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
+    <branch-selector *ngIf="!hidden" class="aside" style="padding-top: 50px;"></branch-selector>
+    <div class="main" style="padding: 20px;">
         <router-outlet></router-outlet>
     </div>
 </div>

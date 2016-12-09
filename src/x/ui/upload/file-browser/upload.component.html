@@ -1,0 +1,20 @@
+<!--<div #fileUpload class="file-upload" (drop)="onFileDropped($event)" [ngClass]="fileUploadClass">
+    <label class="file-upload__label" (click)="openFileSelectView()">
+        Choose file
+    </label>
+</div>-->
+
+<div class="info">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Progress</th>
+        </tr>
+
+        <tr *ngFor="let file of files" [upload-item]="file">
+        </tr>
+
+    </table>
+</div>
+<input type="file" multiple (change)="onFileSelected($event)" #fileInput style="display:none">

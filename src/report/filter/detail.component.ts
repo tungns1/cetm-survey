@@ -16,7 +16,7 @@ import { Model } from '../shared/';
 export class CounterSelectorComponent {
     counters = RxCounters;
     checkAll(event) {
-        let selects: Model.ICounter[] = [];
+        let selects: Model.House.ICounter[] = [];
         RxCounters.value.forEach(u => {
             u._checked = event
             selects.push(u);

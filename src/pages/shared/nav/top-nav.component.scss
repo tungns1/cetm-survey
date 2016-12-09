@@ -52,6 +52,9 @@ nav {
     border-bottom: 2px solid #0a8fda;
 }
 
-.current-menu-item span {
-    color: #0a8fda;
+.current-menu-item {
+    i,
+    span {
+        color: #0a8fda;
+    }
 }

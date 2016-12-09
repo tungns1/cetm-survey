@@ -24,7 +24,7 @@ export class TicketDetailDirective {
     }
 
     this.createDialog();
-    this.dialogRef.instance.ticket = this.ticket;
+    this.dialogRef.instance.SetTicket(this.ticket);
   }
 
   createDialog() {

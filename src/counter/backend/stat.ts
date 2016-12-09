@@ -35,4 +35,8 @@ export const RxCancelled = RxStat.map(stat => {
     })
 })
 
-
+export function SumStat(stats: IStat[]) {
+    let s = 0;
+    stats.forEach(a => s += a.count);
+    return s;
+}

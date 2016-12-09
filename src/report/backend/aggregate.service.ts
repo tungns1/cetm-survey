@@ -39,11 +39,12 @@ export const RxAggregateByTime = RxAggregate.map(records => {
     return views;
 });
 
-export const RxActiveAggregate = Observable.combineLatest(RxAggregate, RxGroupBy).map(v => {
-    const group_by = v[1];
-    const views = MakeIndexBy(v[0], v[1]);
+export const RxActiveAggregate = Observable.combineLatest(RxAggregate, RxGroupBy).map(view => {
+    const group_by = view[1];
+    const views = MakeIndexBy(view[0], view[1]);
     views.forEach(v => {
-        v.name = NameMap[v[group_by]] || 'n/a';
+        v.name = NameMap.get(v[group_by]) || 'n/a';
+        v.Finalize();
     })
     return views;
 });

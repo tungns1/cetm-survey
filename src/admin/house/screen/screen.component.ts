@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Center, House, Service, User } from '../../backend/';
+import { Center, House, User } from '../../backend/';
 import { Branch, Editor, Model } from '../../shared/';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,7 +22,8 @@ function NewForm(b?: Model.House.IScreen) {
 
 @Component({
     selector: 'house-screen',
-    templateUrl: 'screen.component.html'
+    templateUrl: 'screen.component.html',
+     styleUrls: ['screen.component.css']
 })
 export class ScreenComponent {
 
@@ -35,7 +36,7 @@ export class ScreenComponent {
     data = House.Screen.AutoRefresh();
     screens = this.data.map(values => values.filter(v => v.inheritable));
     layouts = Center.Layout.GetByType('screen');
-    counters: Model.ICounter[] = [];
+    counters: Model.House.ICounter[] = [];
 
     onEdit(form: FormGroup) {
         this.onBranchChange(form.value.branch_id);

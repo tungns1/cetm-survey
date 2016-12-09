@@ -1,7 +1,8 @@
 import * as TForm from './tform';
 import * as Layout from './layout';
+import * as Service from './service';
 
 export {
-    TForm, Layout
+    TForm, Layout, Service,
 }
 

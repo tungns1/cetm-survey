@@ -6,25 +6,18 @@ export { RxStat } from './stat';
 import { Queues, Init } from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
-import { RxCounters, RxServices, RxCurrentCounter } from './model';
+import { RxCounters, RxCurrentCounter } from './model';
 import { Model } from '../shared';
 
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/delay';
 
-socket.Subscribe<Model.ICounter>("/counter", c => RxCurrentCounter.next(c));
-socket.Subscribe<Model.ICounter[]>("/counters", c => RxCounters.next(c));
-socket.Subscribe<{ [index: string]: Model.ITicket }>("/tickets", v => {
-    RxServices.first().delay(250).subscribe(_ => Init(v));
-});
+socket.Subscribe<Model.House.ICounter>("/counter", c => RxCurrentCounter.next(c));
+socket.Subscribe<Model.House.ICounter[]>("/counters", c => RxCounters.next(c));
+socket.Subscribe<{ [index: string]: Model.House.ITicket }>("/tickets", Init);
 
-socket.Subscribe<Model.ITicket>('/ticket', (ticket) => {
+socket.Subscribe<Model.House.ITicket>('/ticket', (ticket) => {
     Queues.forEach(q => q.update(ticket));
-});
-
-socket.Subscribe<Model.Center.IService[]>("/services", s => {
-    s.forEach(Model.Center.AddServiceName);
-    RxServices.next(s);
 });
 
 socket.Subscribe<IStatMap>("/stat", stat => {

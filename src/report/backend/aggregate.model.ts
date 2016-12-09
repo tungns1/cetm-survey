@@ -2,7 +2,7 @@ export interface IAggregate {
     branch_id?: string;
     user_id?: string;
     counter_id?: string;
-    scode?: string;
+    service_id?: string;
 
     time?: string;
 
@@ -42,7 +42,7 @@ export class AggregateView {
     branch_id: string;
     user_id: string;
     counter_id: string;
-    scode: string;
+    service_id: string;
     time: string;
 
     s_r = 0; // sum rating
@@ -80,7 +80,7 @@ export class AggregateView {
             this.branch_id = s.branch_id;
             this.user_id = s.user_id;
             this.counter_id = s.counter_id;
-            this.scode = s.scode;
+            this.service_id = s.service_id;
             this.time = s.time;
         }
         this.data.push(s);
@@ -116,9 +116,9 @@ export class AggregateView {
             this.count = this.data.length;
         }
 
-        if (this.c_t > 0) {
+        if (this.c_ft > 0) {
             this.a_wt = Round2Decimal(this.s_wt / this.c_t);
-            this.a_st = Round2Decimal(this.s_st / this.c_t);
+            this.a_st = Round2Decimal(this.s_st / this.c_ft);
         }
 
         if (this.c_r_o > 0) {

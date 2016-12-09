@@ -23,41 +23,41 @@ function sendAction(body: ITicketAction) {
     return socket.Send('/ticket', body).share();
 }
 
-export function Remind(t: Model.ITicket) {
+export function Remind(t: Model.House.ITicket) {
     return socket.Send('/reminder', {
         ticket_id: t.id
     }).share();
 }
 
-export function Recall(t: Model.ITicket) {
+export function Recall(t: Model.House.ITicket) {
     return sendAction({
         action: ActionRecall,
         ticket_id: t.id,
     });
 }
 
-export function Finish(t: Model.ITicket) {
+export function Finish(t: Model.House.ITicket) {
     return sendAction({
         action: ActionFinish,
         ticket_id: t.id,
     });
 }
 
-export function Miss(t: Model.ITicket) {
+export function Miss(t: Model.House.ITicket) {
     return sendAction({
         action: ActionMiss,
         ticket_id: t.id
     });
 }
 
-export function CallFromMissed(t: Model.ITicket) {
+export function CallFromMissed(t: Model.House.ITicket) {
     return sendAction({
         action: ActionCallMissed,
         ticket_id: t.id
     });
 }
 
-export function Cancel(t: Model.ITicket) {
+export function Cancel(t: Model.House.ITicket) {
     return sendAction({
         action: ActionCancel,
         ticket_id: t.id
@@ -65,14 +65,14 @@ export function Cancel(t: Model.ITicket) {
 }
 
 
-export function CallFromWaiting(t: Model.ITicket) {
+export function CallFromWaiting(t: Model.House.ITicket) {
     return sendAction({
         action: ActionCallWaiting,
         ticket_id: t.id
     });
 }
 
-export function Move(t: Model.ITicket, services: string[], counters: string[]) {
+export function Move(t: Model.House.ITicket, services: string[], counters: string[]) {
     return sendAction({
         action: ActionMove,
         ticket_id: t.id,
@@ -81,12 +81,10 @@ export function Move(t: Model.ITicket, services: string[], counters: string[]) {
     });
 }
 
-export const TicketStateWaiting = "waiting";
-export const TicketStateServing = "serving";
-export const TicketStateMissed = "missed";
-
 export function Search(cnum: string) {
-    return socket.Send<Model.ITicket>('/search', {
+    return socket.Send<Model.House.ITicket>('/search', {
         cnum: cnum
     });
 }
+
+export type ITicket = Model.House.ITicket;

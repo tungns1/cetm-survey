@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { Auth } from './shared/';
-import { AdminComponent, AdminHome } from './admin.component';
+import { AdminComponent } from './admin.component';
 import { UserComponent } from './user/';
 import { BranchComponent } from './branch/';
 import { CenterModule } from './center/';
