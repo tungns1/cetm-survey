@@ -15,12 +15,8 @@ const routes: Routes = [
   {
     path: ':branch_code/:counter_code',
     component: CounterComponent,
-    canActivate: [AuthGuard],
-    data: {
-      scope: 'staff',
-      auto: true
-    }
-  }  
+    canActivate: [AuthGuard]
+  }
 ];
 
-export const routing = RouterModule.forRoot(routes, {useHash: true});
+export const routing = RouterModule.forRoot(routes, { useHash: true });

@@ -54,3 +54,8 @@ input {
     border-color: #e9edeb;
     background-color: #fff;
 }
+
+.message {
+    font: 18px;
+    color: brown;
+}

@@ -16,8 +16,6 @@ export const routing = RouterModule.forRoot([
     path: '',
     canActivate: [Auth.AuthGuard],
     children: children,
-    data: {
-      scope: 'report'
-    }
+    component: ReportComponent
   }
 ], { useHash: true });

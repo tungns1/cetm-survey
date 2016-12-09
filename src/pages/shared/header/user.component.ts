@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RxLoginedUser } from '../../../shared/session/';
-import { AuthService } from '../../../shared/auth/';
+import { Logout } from '../../../shared/auth/';
 
 @Component({
     selector: 'user',
@@ -10,13 +10,13 @@ import { AuthService } from '../../../shared/auth/';
     styleUrls: ['user.component.scss']
 })
 export class UserComponent {
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(private router: Router) {
     }
 
     rxName = RxLoginedUser.map(u => u.fullname);
 
     Logout() {
-        this.authService.Logout();
-        this.router.navigate(['/']);
+        Logout();
+        this.router.navigate(['/login']);
     }
 }

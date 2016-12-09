@@ -40,10 +40,10 @@ function http(method: string, url: string, body?: any) {
       Loading.Hide();
       if (xhr.status === HTTP_STATUS_OK) {
         observer.next(xhr.response);
-        observer.complete();
       } else {
-        observer.error(xhr.response);
+        observer.next(xhr.response);
       }
+      observer.complete();
     }
 
     xhr.onerror = e => {
@@ -63,15 +63,17 @@ export function IsErrUnauthorized(err: Error) {
 }
 
 function convertJSON<T>(text: string) {
+  let o: IResponse<T>;
   try {
-    let o: IResponse<T> = JSON.parse(text);
-    if (o.status === JSON_STATUS_SUCCESS) {
-      return o.data;
-    } else {
-      throw o.data;
-    }
+    o = JSON.parse(text);
   } catch (e) {
     throw errResponseFormat;
+  }
+
+  if (o.status === JSON_STATUS_SUCCESS) {
+    return o.data;
+  } else {
+    throw o.error;
   }
 }
 
