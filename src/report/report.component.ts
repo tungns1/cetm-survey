@@ -7,5 +7,13 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 })
 export class ReportComponent {
     show = true;
+
+    excel() {
+
+    }
+
+    pdf() {
+        
+    }
     
 }

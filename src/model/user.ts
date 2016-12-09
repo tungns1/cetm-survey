@@ -27,3 +27,7 @@ export const AllRoles: IRole[] = [
     { code: 'manager', name: 'Manager' },
     { code: 'media', name: 'Media' }
 ]
+
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+export const RxUsers = new BehaviorSubject<IUser[]>([]);

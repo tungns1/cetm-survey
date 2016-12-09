@@ -1,6 +1,6 @@
 <editor #edit name="kiosk" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> Danh sách Kiosk</editor-title>
-    <form *ngIf="edit.form" [formGroup]="edit.form">
+    <form *ngIf="edit.form" class="form" [formGroup]="edit.form">
         <input class="inputs" type="text" formControlName="code" placeholder="Mã" style="width: 100%;">
         <input class="inputs" type="text" formControlName="name" placeholder="Tên kiosk" style="width: 100%;">
         <input class="inputs" type="text" formControlName="vcodes" placeholder="Vip code" style="width: 100%;">

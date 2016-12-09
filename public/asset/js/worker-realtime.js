@@ -31,18 +31,23 @@
     return out;
   };
 
+  var tmpDataBuffer = [];
+  var count = 0;
   var encode = (fname, arrayBuffer) => {
     samplesMono = convertBuffer(arrayBuffer);
     var remaining = samplesMono.length;
-    var tmpDataBuffer = [];
     for (var i = 0; remaining >= 0; i += maxSamples) {
       var left = samplesMono.subarray(i, i + maxSamples);
       var mp3buf = mp3Encoder.encodeBuffer(left);
       tmpDataBuffer.push(new Int8Array(mp3buf));
       remaining -= maxSamples;
     }
-    if (fname != null) {
-      sendRecordPage(fname, tmpDataBuffer)
+    count++;
+    if (fname != null && count > 2) {
+      var blob = new Blob(tmpDataBuffer, {type: 'audio/mp3'});
+      sendRecordPage(fname, blob)
+      count = 0;
+      tmpDataBuffer = [];
     }
   };
 
@@ -57,7 +62,6 @@
       case 'init':
         init(e.data.config);
         break;
-
       case 'encode':
         encode(e.data.fname, e.data.buf);
         break;

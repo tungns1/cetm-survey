@@ -78,33 +78,15 @@ export interface Config {
       sessionID = sessionName;
     }
 
-    var mp3ReceiveSuccess, currentErrorCallback;
+    var currentErrorCallback;
     this.getMp3Blob = function (onSuccess, onError) {
       currentErrorCallback = onError;
-      mp3ReceiveSuccess = onSuccess;
       realTimeWorker.postMessage({cmd: 'finish'});
     };
 
     realTimeWorker.onmessage = function (e) {
       switch (e.data.cmd) {
         case 'end':
-          if (mp3ReceiveSuccess) {
-            var blob = new Blob(e.data.buf, {type: 'audio/mp3'})
-            var url = window.URL.createObjectURL(blob);
-            console.log('MP3 URl: ', url);
-            var a = document.createElement("a")
-            a.href = url;
-            a.download = 'mp3File';
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(function() {
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);  
-            }, 0); 
-
-            //mp3ReceiveSuccess(new Blob(e.data.buf, {type: 'audio/mp3'}));
-          }
-          console.log('MP3 data size', e.data.buf.length);
           break;
         case 'error':
           if (currentErrorCallback) {
