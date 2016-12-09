@@ -30,18 +30,38 @@ class Queue {
 
     update(t: Model.House.ITicket) {
         if (t.state !== this.state) {
-            this.data.delete(t.id);
-        } else {
-            if (t.counters && t.counters.length) {
-                let id = CurrentCounterID();
-                if (t.counters.indexOf(id) === -1) {
-                    this.data.delete(t.id);
-                }
+            if (this.data.delete(t.id)) {
+                this.refresh();
             }
-            else {
-                this.data.set(t.id, t);
-            }
+            return;
         }
+
+        if (t.counter_id) {
+            if (t.counter_id === CurrentCounterID()) {
+                this.data.set(t.id, t);
+                this.refresh();
+                return;
+            }
+            if (this.data.delete(t.id)) {
+                this.refresh();
+            }
+            return;
+        }
+
+        if (t.counters && t.counters.length) {
+            let id = CurrentCounterID();
+            if (t.counters.indexOf(id) !== -1) {
+                this.data.set(t.id, t);
+                this.refresh();
+                return;
+            }
+            if (this.data.delete(t.id)) {
+                this.refresh();
+            }
+            return;
+        }
+
+        this.data.set(t.id, t);
         this.refresh();
     }
 

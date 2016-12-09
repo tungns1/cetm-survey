@@ -32,6 +32,9 @@ export class ActionComponent {
         if (firstTicket) {
             CallFromWaiting(firstTicket).subscribe(v => {
                 this.autoNext.next(false);
+            }, e => {
+                console.log(e);
+                this.sub();
             });
         } else {
             this.autoNext.next(true);
