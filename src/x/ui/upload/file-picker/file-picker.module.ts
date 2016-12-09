@@ -17,13 +17,20 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'file-picker',
     template: `
-        <input [ngModel]="value" (ngModelChange)="setValue($event)" /> 
+        <input class="inputs" [(ngModel)]="value" (ngModelChange)="setValue($event)" /> 
         <button (click)="modal.Open()">Chọn</button>
         <modal #modal>
+            <div class="file-browser">
             <button (click)="modal.Close()">Close</button>
             <file-browser (select)="choose($event)"></file-browser>
+            </div>
         </modal>
     `,
+    styles: [`
+    .file-browser {
+        width: 80vw;
+    }
+    `],
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 class FilePickerComponent implements ControlValueAccessor {
@@ -44,6 +51,7 @@ class FilePickerComponent implements ControlValueAccessor {
     }
 
     OnChange() {
+        console.log(this.value);
         setTimeout(_ => this.onChangeCallback(this.value));
     }
 

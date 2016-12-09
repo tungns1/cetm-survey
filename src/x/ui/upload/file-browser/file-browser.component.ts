@@ -11,7 +11,11 @@ import { FileUploadComponent } from './upload.component';
         <folder-view #view (select)="choose($event)"></folder-view>
     </div>
     <file-upload #upload style="position:fixed;bottom:0;right:0;"></file-upload>
-    `
+    `,
+    styles: [`
+    folder-view {
+        width: 80vw
+    }`]
 })
 export class FileBrowserComponent {
     node = new FileNode("/", "Upload");
