@@ -20,7 +20,7 @@ recorder.start(function () {
 
 const RxRecordFile = Serving.RxData.map(tickets => {
     if (tickets[0]) {
-        return tickets[0].id + '.ogg'
+        return tickets[0].id + '.mp3'
     } else {
         return null
     }
