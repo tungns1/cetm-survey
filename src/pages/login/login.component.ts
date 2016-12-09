@@ -13,6 +13,22 @@ interface ILoginModel {
   auto: boolean;
 }
 
+const ViErrors = {
+  
+}
+
+ViErrors['record not found'] = 'Sai thêm đăng nhập hoặc mật khẩu';
+ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
+
+function Format(e: string) {
+  if (ViErrors[e]) {
+    return ViErrors[e];
+  }
+  if (e.toLowerCase().startsWith("unauthorized")) {
+    return ViErrors["unauthorize"]
+  }
+}
+
 @Component({
   selector: 'login',
   templateUrl: 'login.component.html',
@@ -53,7 +69,8 @@ export class LoginComponent {
       }
       this.router.navigateByUrl(redirect);
     }, e => {
-      this.message = e.error;
+      console.log(e);
+      this.message = `Đã có lỗi: ${Format(e)}`;
     });
   }
 
