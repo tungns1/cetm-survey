@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket';
-import { RxCanNext, Serving, Waiting } from '../backend/queue';
-import { Observable } from 'rxjs/Observable';
+import { Serving, Waiting, ITicket } from '../backend/queue';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import 'rxjs/add/operator/first';
+
+export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
+.filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
 
 @Component({
     selector: 'action',
