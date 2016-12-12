@@ -21,6 +21,9 @@ ViErrors['record not found'] = 'Sai thêm đăng nhập hoặc mật khẩu';
 ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
 
 function Format(e: string) {
+  if (typeof e !== 'string') {
+    return;
+  }
   if (ViErrors[e]) {
     return ViErrors[e];
   }
