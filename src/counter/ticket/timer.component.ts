@@ -1,7 +1,7 @@
 import { Component, Input, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { interval } from 'rxjs/observable/interval';
-import 'rxjs/add/opreator/share';
+import 'rxjs/add/operator/share';
 
 function TwoDigit(n: number): string {
     let v = Math.round(n);
