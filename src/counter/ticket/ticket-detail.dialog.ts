@@ -1,7 +1,6 @@
 import { Component, ViewContainerRef, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Model } from '../shared';
-import { Toast } from '../../x/ui/noti';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { RxCounters } from '../backend/index';
@@ -16,14 +15,13 @@ export class TicketDetailDialog {
 
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
-    this.check=true;
     // this.checkedCounters = Array.from(t.counters || []);
     // this.checkedServices = Array.from(t.services || []);
     this.isServing = t.state === Model.House.TicketStateServing;
     this.isWaiting = t.state === Model.House.TicketStateWaiting;
     this.isMissed = t.state === Model.House.TicketStateMissed;
   }
-  check=false;
+
   private ticket: Model.House.ITicket = <any>{};
   close = new EventEmitter();
 
@@ -42,23 +40,9 @@ export class TicketDetailDialog {
   }
 
   Move() {
-    if (this.isServing) {
-      if (this.checkedCounters.length>0 && this.checkedServices.length>0) {
-        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-          this.Close();
-        });
-      }else{
-        alert("Bạn chưa chọn quầy và dịch vụ")
-      }
-    } else {
-      if (this.checkedCounters.length>0) {
-        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-          this.Close();
-        });
-      }else{
-        alert("Bạn chưa chọn quầy")
-      }
-    }
+    Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+      this.Close();
+    });
   }
 
   Recall() {
