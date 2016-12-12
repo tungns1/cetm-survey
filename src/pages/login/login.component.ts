@@ -17,7 +17,8 @@ const ViErrors = {
   
 }
 
-ViErrors['record not found'] = 'Sai thêm đăng nhập hoặc mật khẩu';
+ViErrors['record not found'] = 'Sai tên đăng nhập';
+ViErrors['wrong password'] = 'Sai mật khẩu';
 ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
 
 function Format(e: string) {
