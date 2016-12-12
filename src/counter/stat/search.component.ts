@@ -2,15 +2,6 @@ import { Component } from '@angular/core';
 import { Search, ITicket } from '../backend/ticket';
 import { Model } from '../shared/';
 
-interface ITicketTrack {
-    state: Model.House.TicketState;
-    mtime: number;
-    services: string[];
-    user_id: string;
-    counter_id: string;
-    service_id: string;
-}
-
 @Component({
     selector: 'search',
     templateUrl: 'search.component.html'

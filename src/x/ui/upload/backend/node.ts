@@ -63,6 +63,7 @@ export class FileNode {
       xhr.upload.addEventListener("load", (e: any) => {
         observer.next(1);
         observer.complete();
+        setTimeout(() => this.Refresh(), 1000);
       });
       xhr.upload.onload = e => observer.error(e);
       xhr.open("POST", GetUploadURL(this.path));

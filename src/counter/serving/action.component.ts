@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket';
-import { RxCanNext, Serving, Waiting } from '../backend/queue';
+import {Serving, Waiting, RxBusy,ITicket } from '../backend/queue';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import 'rxjs/add/operator/first';
+
+export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
+.filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
 
 @Component({
     selector: 'action',
@@ -32,6 +37,9 @@ export class ActionComponent {
         if (firstTicket) {
             CallFromWaiting(firstTicket).subscribe(v => {
                 this.autoNext.next(false);
+            }, e => {
+                console.log(e);
+                this.sub();
             });
         } else {
             this.autoNext.next(true);
@@ -44,20 +52,29 @@ export class ActionComponent {
     }
 
     Recall() {
-        Recall(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Recall(this.getTicket()).subscribe(v => console.log(v));
+        }
+
     }
 
     Finish() {
-        Finish(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Finish(this.getTicket()).subscribe(v => console.log(v));
+        }
 
     }
 
     Miss() {
-        Miss(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Miss(this.getTicket()).subscribe(v => console.log(v));
+        }
     }
 
     Reminder() {
-        Remind(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Remind(this.getTicket()).subscribe(v => console.log(v));
+        }
     }
 
     autoNext = new BehaviorSubject<boolean>(false);

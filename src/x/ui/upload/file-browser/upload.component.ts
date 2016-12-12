@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild, EventEmitter, Output, ElementRef } from '@angular/core';
+import { FileNode } from '../backend/';
 
 @Component({
   selector: 'file-upload',
@@ -8,46 +9,20 @@ import { Component, Input, ViewChild, EventEmitter, Output, ElementRef } from '@
 export class FileUploadComponent {
 
   @ViewChild("fileInput") fileInputElement: ElementRef;
-  @ViewChild("fileUpload") fileUploadElement: ElementRef;
 
   files: File[] = [];
-  fileUploadClass: { dragover: boolean } = <any>{};
 
-  // ngOnInit() {
-  //   var el = <HTMLElement>this.fileUploadElement.nativeElement;
-  //   el.addEventListener("dragover", e => {
-  //     this.preventDefault(e);
-  //     this.fileUploadClass.dragover = true;
-  //   }, false);
-  //   el.addEventListener("dragleave", e => {
-  //     this.preventDefault(e);
-  //     this.fileUploadClass.dragover = false;
-  //   }, false);
-  // }
-
-  open() {
-    this.openFileSelectView();
-  }
-
-  openFileSelectView() {
+  open(node: FileNode) {
+    this.node = node;
     this.fileInputElement.nativeElement.click();
   }
 
+
   onFileSelected(event: Event) {
-    this.preventDefault(event);
-    var fileInputElement = <HTMLInputElement>event.srcElement;
-    this.addFileList(fileInputElement.files);
-  }
-
-  onFileDropped(event: DragEvent) {
-    this.preventDefault(event);
-    this.addFileList(event.dataTransfer.files);
-    this.fileUploadClass.dragover = false;
-  }
-
-  private preventDefault(event: Event) {
     event.preventDefault();
     event.stopPropagation();
+    var fileInputElement = <HTMLInputElement>event.srcElement;
+    this.addFileList(fileInputElement.files);
   }
 
   private addFileList(files: FileList) {
@@ -55,5 +30,7 @@ export class FileUploadComponent {
       this.files.push(files[i]);
     }
   }
+
+  private node: FileNode;
 
 }

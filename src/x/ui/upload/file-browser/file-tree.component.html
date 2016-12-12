@@ -3,12 +3,12 @@
         <i class="fa fa-plus" (click)="node.Expand()" [class.hidden]="node.expanded"></i>
         <i class="fa fa-minus" (click)="node.Close()" [class.hidden]="!node.expanded"></i>
     </span>
-    <div class="node-name" (click)="choose()">
+    <div class="node-name" (click)="choose($event)">
         {{ node.name }}
     </div>
     <ul class="tree-view">
         <li *ngFor="let d of node.rxChildren | async">
-            <file-tree [node]="d" (select)="choose($event)"></file-tree>
+            <file-tree [node]="d" (select)="select.next($event)"></file-tree>
         </li>
     </ul>
 </div>

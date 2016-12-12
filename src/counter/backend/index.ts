@@ -1,9 +1,8 @@
 export * from './socket';
 export * from './model';
-export { Queues } from './queue';
 export { RxStat } from './stat';
 
-import { Queues, Init } from './queue';
+import { Init, ITicket, AddTicket, RemoveTicket} from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
 import { RxCounters, RxCurrentCounter } from './model';
@@ -14,11 +13,10 @@ import 'rxjs/add/operator/delay';
 
 socket.Subscribe<Model.House.ICounter>("/counter", c => RxCurrentCounter.next(c));
 socket.Subscribe<Model.House.ICounter[]>("/counters", c => RxCounters.next(c));
-socket.Subscribe<{ [index: string]: Model.House.ITicket }>("/tickets", Init);
 
-socket.Subscribe<Model.House.ITicket>('/ticket', (ticket) => {
-    Queues.forEach(q => q.update(ticket));
-});
+socket.Subscribe<any>("/tickets", Init);
+socket.Subscribe<Model.House.ITicket>('/add_ticket', AddTicket);
+socket.Subscribe<[Model.House.TicketState, string]>("/remove_ticket", ([prev, id]) => RemoveTicket(prev, id));
 
 socket.Subscribe<IStatMap>("/stat", stat => {
     RxStat.next(stat);

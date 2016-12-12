@@ -1,6 +1,6 @@
 import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
 
-import { ReactiveFormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AbstractControl } from '@angular/forms';
 
@@ -17,8 +17,8 @@ import { FormArray, FormControl } from '@angular/forms';
     selector: 'multi-file-picker',
     template: `
         <span (click)="add()"><i class="fa fa-plus"></i></span>        
-        <div *ngFor="let c of form.controls; let i = index;" >
-            <file-picker [formControl]="c" (change)="OnChange()"></file-picker>
+        <div *ngFor="let src of srcs; let i = index;" >
+            <file-picker [(ngModel)]="srcs[i]" (ngModelChange)="OnChange()"></file-picker>
             <span (click)="remove(i)"> X </span>
         </div>
     `,
@@ -35,14 +35,14 @@ import { FormArray, FormControl } from '@angular/forms';
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 class MultiFilePickerComponent implements ControlValueAccessor {
-    protected form = new FormArray([]);
+    protected srcs = [];
     protected onChangeCallback = (v) => { };
 
     writeValue(data: any[]) {
         if (!Array.isArray(data)) {
             data = [];
         }
-        this.form = new FormArray(data.map(d => new FormControl(d)));
+        this.srcs = data;
     }
 
     registerOnChange(fn: any) {
@@ -54,15 +54,15 @@ class MultiFilePickerComponent implements ControlValueAccessor {
     }
 
     OnChange() {
-        setTimeout(_ => this.onChangeCallback(this.form.value));
+        setTimeout(_ => this.onChangeCallback(this.srcs));
     }
 
     add() {
-        this.form.push(new FormControl(''));
+        this.srcs.push('');
     }
 
     remove(i) {
-        this.form.removeAt(i);
+        this.srcs.splice(i, 1);
         this.OnChange();
     }
 }
@@ -72,7 +72,7 @@ import { CommonModule } from '@angular/common';
 import { FilePickerModule } from './file-picker.module';
 
 @NgModule({
-    imports: [ReactiveFormsModule, CommonModule, FilePickerModule],
+    imports: [FormsModule, CommonModule, FilePickerModule],
     declarations: [MultiFilePickerComponent],
     exports: [MultiFilePickerComponent]
 })
