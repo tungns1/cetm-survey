@@ -30,10 +30,7 @@ export function Remind(t: Model.House.ITicket) {
 }
 
 export function Recall(t: Model.House.ITicket) {
-    return sendAction({
-        action: ActionRecall,
-        ticket_id: t.id,
-    });
+    return socket.Send('/recall', t.id).share();
 }
 
 export function Finish(t: Model.House.ITicket) {
