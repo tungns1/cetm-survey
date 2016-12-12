@@ -17,13 +17,16 @@ export class FolderViewComponent {
 
     open(node: FileNode) {
         this.node = node;
+        console.log(this.node);
         this.selected = null;
         node.Refresh().subscribe(_ => {
 
         })
     }
 
-    focus(node: FileNode) {
+    focus(event: Event, node: FileNode) {
+        event.preventDefault();
+        event.stopPropagation();
         if (node.is_dir) {
             this.open(node);
             return;

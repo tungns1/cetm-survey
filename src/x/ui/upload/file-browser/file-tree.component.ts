@@ -20,9 +20,12 @@ export class FileTreeComponent {
   @Output() select = new EventEmitter<FileNode>();
   @Input() node: FileNode;
 
-  choose() {
+  choose(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
     this.select.next(this.node);
   }
+  
 
 }
 

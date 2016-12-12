@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { FileNode, FileItem } from '../backend/';
 
 @Component({
-  selector: 'tr[upload-item]',
+  selector: 'upload-item',
   template: `
       <td>{{item.Name}} </td> 
       <td> {{item.Size}} </td>
@@ -27,8 +27,9 @@ import { FileNode, FileItem } from '../backend/';
 export class ItemComponent {
   private item: FileItem;
 
-  @Input("upload-item") set file(value: File) {
-    this.item = new FileItem(value);
+  @Input() set data(value: {node: FileNode, file: File}) {
+    this.item = new FileItem(value.file);
+    this.upload(value.node);
     // this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(this.item.MakeObjectUrl());
   };
 
@@ -37,6 +38,10 @@ export class ItemComponent {
 
   constructor(private sanitizer: DomSanitizer) {
 
+  }
+
+  ngOnInit() {
+    
   }
 
   public upload(node: FileNode) {

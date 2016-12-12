@@ -71,6 +71,7 @@ export class EditorComponent<T> {
         this.service.api.Create(this.form.value).subscribe(_ => {
             Success("Lưu thành công");
             this.Refresh();
+            this.editorRef.Close();
         }, err => Error(err.error));
     }
 
