@@ -1,7 +1,9 @@
 import { Model } from '../shared';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { CurrentCounterID } from './model';
+import { RxCurrentCounter } from './model';
+
+export type ITicket = Model.House.ITicket;
 
 class Queue {
     constructor(private state: string) {
@@ -9,46 +11,53 @@ class Queue {
     }
 
     RxData = new BehaviorSubject<Model.House.ITicket[]>([]);
-    private data = new Map<string, Model.House.ITicket>();
 
-    static sort(a: Model.House.ITicket, b: Model.House.ITicket) {
+    static sort(a: ITicket, b: ITicket) {
         if (a.priority === b.priority) {
             return a.mtime < b.mtime ? 0 : 1;
         }
         return a.priority > b.priority ? 0 : 1;
     }
 
-    init(data: Model.House.ITicket[]) {
-        this.data.clear();
-        data.forEach(d => {
-            if (d.state === this.state) {
-                this.data.set(d.id, d);
-            }
-        })
-        this.refresh();
+    Init(tickets: ITicketMap) {
+        if (!tickets) {
+            return;
+        }
+
+        const queue = Object.keys(tickets).map(id => tickets[id]);
+        queue.sort(Queue.sort);
+        this.RxData.next(queue);
     }
 
-    update(t: Model.House.ITicket) {
-        if (t.state !== this.state) {
-            this.data.delete(t.id);
-        } else {
-            if (t.counters && t.counters.length) {
-                let id = CurrentCounterID();
-                if (t.counters.indexOf(id) === -1) {
-                    this.data.delete(t.id);
-                }
-            }
-            else {
-                this.data.set(t.id, t);
+    Remove(id: string) {
+        const queue = this.RxData.value;
+        for (let i = 0; i < queue.length; i--) {
+            if (id === queue[i].id) {
+                queue.splice(i, 1);
+                this.RxData.next(queue);
+                break;
             }
         }
-        this.refresh();
     }
 
-    private refresh() {
-        let arr: Model.House.ITicket[] = Array.from(this.data.values());
-        arr.sort(Queue.sort);
-        this.RxData.next(arr);
+    Add(t: ITicket) {
+        const queue = this.RxData.value;
+        const pos = queue.length - 1;
+        while (pos >= 0) {
+            const v = queue[pos];
+            // priority first
+            if (v.priority === t.priority) {
+                // mtime
+                if (v.mtime < t.mtime) {
+                    break;
+                }
+            }
+            if (v.priority > t.priority) {
+                break;
+            }
+        }
+        queue.splice(pos + 1, 0, t);
+        this.RxData.next(queue);
     }
 
     first() {
@@ -66,20 +75,39 @@ export const Waiting = new Queue(Model.House.TicketStateWaiting)
 export const Serving = new Queue(Model.House.TicketStateServing);
 export const Missed = new Queue(Model.House.TicketStateMissed);
 
-export function Init(tickets: { [index: string]: Model.House.ITicket }) {
-    let v = Object.keys(tickets).map(id => tickets[id]);
-    Queues.forEach(q => q.init(v));
+interface ITicketMap { [index: string]: Model.House.ITicket }
+
+export function Init(queues: { waiting: ITicketMap, serving: ITicketMap, missed: ITicketMap }) {
+    Waiting.Init(queues.waiting);
+    Serving.Init(queues.serving);
+    Missed.Init(queues.missed);
 }
 
-export const Queues = [Waiting, Serving, Missed];
+export function AddTicket(t: ITicket) {
+    var currentQueue = GetQueue(t.state);
+    if (currentQueue) {
+        currentQueue.Add(t)
+    }
+}
+
+export function RemoveTicket(prev: Model.House.TicketState, id: string) {
+    var prevQueue = GetQueue(prev);
+    if (prevQueue) {
+        prevQueue.Remove(id);
+    }
+}
+
+function GetQueue(state: Model.House.TicketState) {
+    switch (state) {
+        case Model.House.TicketStateWaiting:
+            return Waiting;
+        case Model.House.TicketStateServing:
+            return Serving;
+        case Model.House.TicketStateMissed:
+            return Missed;
+        default:
+            return null;
+    }
+}
 
 export const RxBusy = Serving.RxData.map(v => v.length > 0);
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/Observable/combineLatest';
-import 'rxjs/add/operator/first';
-
-export const RxCanNext = Observable.combineLatest(
-    Waiting.RxData.map(v => v.length > 0),
-    Serving.RxData.map(v => v.length < 1),
-    (emptyServing, hasWaiting) => emptyServing && hasWaiting
-).filter(v => v);
