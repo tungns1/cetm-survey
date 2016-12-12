@@ -3,17 +3,19 @@
         DANH SÁCH HÀNG ĐỢI&nbsp;(<span class="total">{{count | async}}</span>)
     </div>
 
-    <div class="table">
+    <div>
         <div class="table-row header">
             <div class="text">Số</div>
             <div class="text">Dịch vụ</div>
             <div class="text">Thời gian đợi</div>
         </div>
-        <div class="table-row" *ngFor="let t of tickets | async" [ticket-detail]="t">
-            <div class="text"><img src="../asset/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
-            <div class="text">{{t.services | ticketServiceName}}</div>
-            <div class="text">
-                <ticket-timer [start]="t.mtime"></ticket-timer>
+        <div class="table">
+            <div class="table-row" *ngFor="let t of tickets | async" [ticket-detail]="t">
+                <div class="text"><img src="../asset/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
+                <div class="text">{{t.services | ticketServiceName}}</div>
+                <div class="text">
+                    <ticket-timer [start]="t.mtime"></ticket-timer>
+                </div>
             </div>
         </div>
     </div>

@@ -17,6 +17,17 @@
     width: 28%;
 }
 
+.delete {
+    background-color: #fff;
+    color: #0d8fdd;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 13px;
+    border-width: 1px;
+    border-style: solid;
+    width: 28%;
+}
+
 .move {
     background-color: #0b8fda;
     color: #fff;
@@ -28,26 +39,36 @@
     width: 32%;
 }
 
-.recall {
+.recalls {
     background-color: #0b8fda;
     color: #fff;
     height: 30px;
     line-height: 30px;
-    margin-left: 13px;
+    margin-left: 10px;
     border-width: 1px;
     border-style: solid;
-    width: 32%;
+    width: 22%;
 }
 
-.delete {
+.closes {
     background-color: #dee0df;
     color: #fff;
     height: 30px;
     line-height: 30px;
-    margin-left: 14px;
     border-width: 1px;
     border-style: solid;
-    width: 28%;
+    width: 20%;
+}
+
+.deletes {
+    background-color: #dee0df;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    border-width: 1px;
+    border-style: solid;
+    width: 20%;
 }
 
 .info {

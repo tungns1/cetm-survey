@@ -1,4 +1,4 @@
-<div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px;">
+<div class="dialog" style="padding: 25px 25px 0px 25px;width: 330px;">
     <div class="tl">CHI TIẾT VÉ</div>
     <div style="margin-top: 50px;">
         <div class="info">ID: {{ticket.id}}</div>
@@ -31,12 +31,19 @@
             </select-check>
         </div>
 
-        <div style="margin: 30px 0px 20px 0px;">
+        <div style="margin: 30px 0px 20px 0px;" *ngIf="isMissed">
+            <button class="closes" (click)="Close()">ĐÓNG</button>
+
+            <button class="recalls" (click)="Move()">CHUYỂN</button>
+
+            <button class="recalls" (click)="Recall()">GỌI LẠI</button>
+
+            <button class="deletes" (click)="Delete()">XÓA</button>
+        </div>
+        <div style="margin: 30px 0px 20px 0px;" *ngIf="!isMissed">
             <button class="close" (click)="Close()">ĐÓNG</button>
 
             <button class="move" (click)="Move()">CHUYỂN</button>
-
-            <button class="recall" *ngIf="isMissed" (click)="Recall()">GỌI LẠI</button>
 
             <button class="delete" (click)="Delete()">XÓA</button>
         </div>
