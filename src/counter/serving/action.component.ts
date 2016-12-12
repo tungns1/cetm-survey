@@ -53,7 +53,7 @@ export class ActionComponent {
 
     Recall() {
         if (this.getTicket() != null) {
-            Recall(this.getTicket()).subscribe(v => console.log("ok"));
+            Recall(this.getTicket()).subscribe(v => console.log(v));
         }
 
     }
