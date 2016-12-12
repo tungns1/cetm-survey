@@ -1,10 +1,14 @@
 import { Component, Input, ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { interval } from 'rxjs/observable/interval';
-
+import 'rxjs/add/opreator/share';
 
 function TwoDigit(n: number): string {
-    return (n > 9 ? '' : '0') + Math.round(n);
+    let v = Math.round(n);
+    return (v > 9 ? '' : '0') + v;
 }
+
+const oneSecond = interval(1000).share();
 
 @Component({
     selector: 'ticket-timer',
@@ -15,11 +19,12 @@ export class TicketTimerComopnent {
 
     }
 
-    timer: NodeJS.Timer;
+    private subscription: Subscription;
 
     private clear() {
-        if (this.timer) {
-            clearInterval(this.timer);
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+            this.subscription = null;
         }
     }
 
@@ -32,7 +37,7 @@ export class TicketTimerComopnent {
     @Input() set start(s: number) {
         this.clear();
         this.view(s);
-        this.timer = setInterval(_ => this.view(s), 1000);
+        this.subscription = oneSecond.subscribe(_ => this.view(s));
     };
 
     ngOnDestroy() {

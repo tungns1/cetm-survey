@@ -13,10 +13,12 @@ class Queue {
     RxData = new BehaviorSubject<Model.House.ITicket[]>([]);
 
     static sort(a: ITicket, b: ITicket) {
-        if (a.priority === b.priority) {
-            return a.mtime < b.mtime ? 0 : 1;
+        if (a.priority > b.priority) {
+            return 0;
+        } else if (a.priority < b.priority) { 
+            return 1;
         }
-        return a.priority > b.priority ? 0 : 1;
+        return a.mtime < b.mtime ? 0 : 1;
     }
 
     Init(tickets: ITicketMap) {
