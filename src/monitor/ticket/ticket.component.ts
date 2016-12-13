@@ -28,6 +28,7 @@ export class MonitorTicketComponent {
 
     setActive(tab: Tab) {
         this.rxData = TicketTracks.ByTag(tab.tag).map(tracks => {
+            console.log(tracks);
             if (tab.tag === 'wait') {
                 tracks.sort((a, b) => a.c_at > b.c_at ? 1 : 0);
             } else {
