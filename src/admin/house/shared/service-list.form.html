@@ -10,14 +10,14 @@
 <modal #m>
     <div *ngIf="active">
         <h2> Sửa dịch vụ trên kiosk </h2>
-        <select [(ngModel)]="active.id" (ngModelChange)="setActive()">
+        <select class="select" [(ngModel)]="active.id" (ngModelChange)="setActive()">
             <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
         </select>
-        <input [(ngModel)]="active.image" placeholder="Hình ảnh">
+        <input class="inputs" [(ngModel)]="active.image" placeholder="Hình ảnh">
         <l10n-form [(ngModel)]="active.l10n"></l10n-form>
         <hr>
-        <button (click)="Close()"> Đóng </button>
-        <button (click)="Save()"> Tạm lưu </button>
-        <button (click)="Remove()"> Xóa </button>
+        <button (click)="Close()"> <i class="fa fa-close"></i> Hủy </button>
+        <button (click)="Save()"> <i class="fa fa-save"></i>Lưu </button>
+        <button (click)="Remove()"> <i class="fa fa-trash"></i>Xóa </button>
     </div>
 </modal>
