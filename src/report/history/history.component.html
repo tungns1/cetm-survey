@@ -22,9 +22,9 @@
                 <tr *ngFor="let d of data | async; let i = index">
                     <td class="stt">{{(i+1)+(skip | async)}}</td>
                     <td> {{d.v_cdate}} </td>
-                    <td> {{d.v_branch_2}} </td>
-                    <td> {{d.v_branch_1}} </td>
-                    <td> {{d.v_branch_0}} </td>
+                    <td> {{d.branches[2]}} </td>
+                    <td> {{d.branches[1]}} </td>
+                    <td> {{d.branches[0]}} </td>
                     <td> {{d.service}} </td>
                     <td> {{d.counter}} </td>
                     <td> {{d.user}} </td>

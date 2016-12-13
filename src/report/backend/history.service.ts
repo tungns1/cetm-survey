@@ -4,9 +4,7 @@ const backendReport = new Backend.HttpApi<any>("/api/report/transaction");
 import { IFilter } from '../filter/filter.module';
 
 interface ITransactionView extends ITransaction {
-    v_branch_0: string;
-    v_branch_1: string;
-    v_branch_2: string;
+    branches: string[];
 
     v_cdate: string;
     v_ctime: string;
@@ -51,12 +49,7 @@ function formatTransaction(t: ITransaction) {
 
 
     // name
-    const branch_0 = Branches.get(t.branch_id) || { name: "n/a" };
-    res.v_branch_0 = branch_0.name || "n/a";
-    const branch_1 = Branches.get(branch_0.parent) || { name: 'n/a' };
-    res.v_branch_1 = branch_1.name || "n/a";
-    const branch_2 = Branches.get(branch_1.parent) || { name: "n/a" };
-    res.v_branch_2 = branch_2.name || "n/a";
+    res.branches = Branch.GetTreeNames(res.branch_id);
     return res;
 }
 
