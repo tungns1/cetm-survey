@@ -1,8 +1,11 @@
 <i class="fa fa-plus pointer" (click)="Add()">Thêm</i>
 <div *ngFor="let v of value; let i = index">
-    <div class="pointer" (click)="Edit(v)"> <i class="fa fa-edit"></i> {{getName(v.id)}} </div>
-    <i class="fa fa-up pointer" (click)="Swap(i-1, i)">Up</i>
-    <i class="fa fa-down pointer" (click)="Swap(i, i+1)">Down</i>
+    <div>
+        {{getName(v.id)}}
+        <i class="fa fa-edit pointer" title="Sửa" (click)="Edit(v)"></i>
+        <i class="fa fa-up pointer" title="Chuyển lên" (click)="Swap(i-1, i)">Up</i>
+        <i class="fa fa-down pointer" title="Chuyển xuống" (click)="Swap(i, i+1)">Down</i>
+    </div>
 </div>
 <modal #m>
     <div *ngIf="active">

@@ -26,6 +26,9 @@ type IServiceList = Model.Center.IService[];
     .pointer {
         cursor: pointer;
     }
+    .pointer:hover {
+        color: green;
+    }
     `],
     providers: [SERVICE_LIST_CONTROL_VALUE_ACCESSOR]
 })
