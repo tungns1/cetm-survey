@@ -43,6 +43,9 @@ function GetSelected(value: { id?: string, _checked?: boolean }[]) {
 export function GetServices() {
     return RxServices.value.filter(v => v._checked).map(v => v.id);
 }
+export function GetBranch() {
+    return Branch.RxBranches.value.filter(v => v._checked && v.level===0).map(v => v.id);
+}
 
 export function GetCounters() {
     return GetSelected(RxCounters.value);
