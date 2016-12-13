@@ -1,0 +1,20 @@
+<i class="fa fa-plus pointer" (click)="Add()">Thêm</i>
+<div *ngFor="let v of value; let i = index">
+    <div class="pointer" (click)="Edit(v)"> <i class="fa fa-edit"></i> {{getName(v.id)}} </div>
+    <i class="fa fa-up pointer" (click)="Swap(i-1, i)">Up</i>
+    <i class="fa fa-down pointer" (click)="Swap(i, i+1)">Down</i>
+</div>
+<modal #m>
+    <div *ngIf="active">
+        <h2> Sửa dịch vụ trên kiosk </h2>
+        <select [(ngModel)]="active.id" (ngModelChange)="setActive()">
+            <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
+        </select>
+        <input [(ngModel)]="active.image" placeholder="Hình ảnh">
+        <l10n-form [(ngModel)]="active.l10n"></l10n-form>
+        <hr>
+        <button (click)="Close()"> Đóng </button>
+        <button (click)="Save()"> Tạm lưu </button>
+        <button (click)="Remove()"> Xóa </button>
+    </div>
+</modal>
