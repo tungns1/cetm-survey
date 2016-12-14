@@ -4,6 +4,7 @@ import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { RxCounters } from '../backend/index';
+import { Serving } from '../backend/queue';
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -46,10 +47,10 @@ export class TicketDetailDialog {
   }
 
   Recall() {
-    // if (servingTickets.value.length > 0) {
-    //   alert("Bạn phải kết thúc vé đang thực hiện");
-    //   return;
-    // }
+    if (Serving.RxData.value.length > 0) {
+      alert("Bạn phải kết thúc vé đang thực hiện");
+      return;
+    }
     CallFromMissed(this.ticket).subscribe(v => {
       this.Close();
     });
