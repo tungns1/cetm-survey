@@ -19,14 +19,14 @@ class TicketTrackGroup extends TrackGroup<TicketTrack> {
 		v.service = Model.Center.ServiceName(v.service_id);
 		var timeStamp = Math.floor(Date.now() / 1000);
 		// name
-		if (v.wait === 15) {
+		if (v.wait !=0) {
 			v.t_wait = timeStamp - v.c_at;
-		} else if (v.wait === 15 && v.serve === 15) {
+		} else if (v.wait !=0 && v.serve !=0) {
 			v.t_wait = v.s_at - v.c_at;
 		}
-		if (v.serve === 15) {
+		if (v.serve !=0) {
 			v.t_serve = timeStamp - v.s_at;
-		}else if (v.finish_at != 0 && v.serve === 15) {
+		}else if (v.finish_at != 0 && v.serve !=0) {
 			v.t_serve = v.finish_at - v.s_at;
 		}
 	}

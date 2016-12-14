@@ -47,10 +47,10 @@ export class TrackGroup<T extends Track> {
         return this.RxData.map(data => data.filter(d => d.tag === tag));
     }
     public TicketWait() {      
-         return this.RxData.map(data => data.filter(d => d.wait ===15)); 
+         return this.RxData.map(data => data.filter(d => d.wait !=0)); 
     }
      public TicketServe() {      
-         return this.RxData.map(data => data.filter(d => d.serve ===15)); 
+         return this.RxData.map(data => data.filter(d => d.serve !=0)); 
     }
 
     beforeAdd = (v: T) => {
