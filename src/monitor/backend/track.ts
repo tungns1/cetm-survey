@@ -3,6 +3,8 @@ export class Track {
     id: string;
     name: string;
     tag: string;
+    wait:boolean;
+    serve:boolean;
     branches: string[];
 }
 
@@ -43,6 +45,12 @@ export class TrackGroup<T extends Track> {
 
     public ByTag(tag: string) {
         return this.RxData.map(data => data.filter(d => d.tag === tag));
+    }
+    public TicketWait() {      
+         return this.RxData.map(data => data.filter(d => d.wait === true)); 
+    }
+     public TicketServe() {      
+         return this.RxData.map(data => data.filter(d => d.serve === true)); 
     }
 
     beforeAdd = (v: T) => {
