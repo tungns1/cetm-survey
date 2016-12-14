@@ -17,8 +17,8 @@ export class CounterComponent {
         const params = this.route.snapshot.params;
         const branch_code = params['branch_code'];
         const counter_code = params['counter_code'];
-        socket.Connect({branch_code, counter_code});
+        socket.Connect({ branch_code, counter_code });
     }
 
-    counter = RxCurrentCounter;
+    counterName = RxCurrentCounter.map(c => c.name);
 } 

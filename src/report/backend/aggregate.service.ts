@@ -42,20 +42,16 @@ export const RxAggregateByTime = RxAggregate.map(records => {
 export const RxActiveAggregate = Observable.combineLatest(RxAggregate, RxGroupBy).map(view => {
     const group_by = view[1];
     const views = MakeIndexBy(view[0], view[1]);
-    console.log(group_by);
-    const services = GetServices();
-    const counters = GetCounters();
-    const users = GetUsers();
-    const branchs = GetBranch();
+    
     let ids: string[] = [];
     if (group_by === 'branch_id') {
-        ids = branchs;
+        ids = GetBranch();
     } else if (group_by === 'service_id') {
-        ids = services;
+        ids = GetServices();
     } else if (group_by === 'counter_id') {
-        ids = counters;
+        ids = GetCounters();
     } else if (group_by === 'user_id') {
-        ids = users;
+        ids = GetUsers();
     }
 
     views.forEach(v => {
