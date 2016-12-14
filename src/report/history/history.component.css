@@ -24,22 +24,25 @@ table {
 }
 
 .search-table {
-    table-layout: fixed;
+    /*table-layout: fixed;*/
     margin: 0px auto 0px auto;
 }
 
 .search-table-outter {
-    overflow-x: scroll;
+    /*overflow-x: scroll;*/
     border: 1px solid gray;
+    width: 100%;
+    max-width: 100%;
 }
 
 th,
 td {
-    min-width: 100px;
+    /*min-width: 100px;*/
 }
 
 .stt {
-    width: 30px;
+    /*width: 30px;*/
+    min-width: 50px;
 }
 
 button {
@@ -89,4 +92,26 @@ button.last {
 
 .pagination>button {
     flex: 0 1 20px;
+}
+
+.report-scrollbar {
+    overflow: scroll;
+    width: 100%;
+    max-width: 100%;
+}
+
+.td-date-rp {
+    min-width: 105px;
+}
+
+.td-string-rp {
+    min-width: 200px;
+}
+
+.td-counter-rp {
+    min-width: 80px;
+}
+
+.td-number-rp {
+    min-width: 80px;
 }
