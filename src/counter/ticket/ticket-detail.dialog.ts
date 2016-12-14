@@ -47,7 +47,7 @@ export class TicketDetailDialog {
           this.Close();
         });
       }else{
-        alert("Bạn phải chọn quầy");
+        alert("Bạn phải chọn quầy và dịch vụ");
       }
 
     } else {
@@ -56,7 +56,7 @@ export class TicketDetailDialog {
           this.Close();
         });
       }else{
-         alert("Bạn phải chọn quầy và dịch vụ");
+         alert("Bạn phải chọn quầy");
       }
     }
 
