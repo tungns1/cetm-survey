@@ -1,28 +1,28 @@
 <div>
+    <div *ngIf="tag==='time'" style="text-align:right; margin-top:50px;opacity:0.7;">Định dạng thời gian:( giờ: phút: giây)</div>
     <table *ngIf="tag==='general'">
         <thead>
             <th> STT </th>
             <th> {{groupTitle | async}} </th>
-            <th> Tổng số GD </th>
-            <th> GD Thành công </th>
-            <th> GD Hủy </th>
-            <th> GD Thời gian đợi chuẩn </th>
-            <th> GD Thời gian đợi vượt chuẩn </th>
-            <th> GD Thời gian PV chuẩn </th>
-            <th> GD Thời gian PV vượt chuẩn </th>
+            <th> Tổng số giao dịch </th>
+            <th> Giao dịch thành công </th>
+            <th> Giao dịch hủy </th>
+            <th> Giao dịch thời gian đợi chuẩn </th>
+            <th> Giao dịch thời gian đợi vượt chuẩn </th>
+            <th> Giao dịch thời gian phục vụ chuẩn </th>
+            <th> Giao dịch thời gian phục vụ vượt chuẩn </th>
         </thead>
         <tbody>
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
                 <td> {{d.c_t}} </td>
-                <td> {{d.c_ft}} </td>
-                <td> {{d.c_ct}} </td>
-                <td> {{d.c_bwt}} </td>
-                <td> {{d.c_ft-d.c_bwt}} </td>
-                <td> {{d.c_bst}} </td>
-                <td> {{d.c_ft-d.c_bst}} </td>
-                <td> {{d.c_nr || 0}} </td>
+                <td> {{d.c_ft}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ft/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span> </td>
+                <td> {{d.c_ct}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ct/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span> </td>
+                <td> {{d.c_bwt}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0">0.00%</span></td>
+                <td> {{d.c_t-d.c_bwt}}&nbsp; <span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bwt)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></td>
+                <td> {{d.c_bst}}&nbsp; <span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></td>
+                <td> {{d.c_t-d.c_bst}}&nbsp; <span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bst)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span> </td>
             </tr>
         </tbody>
     </table>
@@ -30,12 +30,12 @@
         <thead>
             <th> STT </th>
             <th> {{groupTitle | async}} </th>
-            <th> Tổng thời gian GD </th>
-            <th> Tổng TG phục vụ</th>
-            <th> Tổng TG chờ </th>
-            <th> Thời gian PV trung bình </th>
-            <th> Thời gian PV ngắn nhất </th>
-            <th> Thời gian PV dài nhất </th>
+            <th> Tổng thời gian giao dịch </th>
+            <th> Tổng thời gian phục vụ</th>
+            <th> Tổng thời gian chờ </th>
+            <th> Thời gian phục vụ trung bình </th>
+            <th> Thời gian phục vụ ngắn nhất </th>
+            <th> Thời gian phục vụ dài nhất </th>
             <th> Thời gian chờ trung bình </th>
             <th> Thời gian chờ ngắn nhất </th>
             <th> Thời gian chờ dài nhất </th>
@@ -44,15 +44,15 @@
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
-                <td> {{d.s_tt}} </td>
-                <td> {{d.s_st}} </td>
-                <td> {{d.s_wt}} </td>
-                <td> {{d.a_st}} </td>
-                <td> {{d.min_st}} </td>
-                <td> {{d.max_st}} </td>
-                <td> {{d.a_wt}} </td>
-                <td> {{d.min_wt}} </td>
-                <td> {{d.max_wt}} </td>
+                <td> {{d.s_tt | hour}} </td>
+                <td> {{d.s_st | hour}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_st/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span></td>
+                <td> {{d.s_wt | hour}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_wt/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span> </td>
+                <td> {{d.a_st | hour}} </td>
+                <td> {{d.min_st | hour}} </td>
+                <td> {{d.max_st | hour}} </td>
+                <td> {{d.a_wt | hour}} </td>
+                <td> {{d.min_wt | hour}} </td>
+                <td> {{d.max_wt | hour}} </td>
             </tr>
         </tbody>
     </table>
@@ -60,23 +60,23 @@
         <thead>
             <th> STT </th>
             <th> {{groupTitle | async}} </th>
-            <th> GD có phản hồi </th>
-            <th> GD không có phản hồi </th>
-            <th> GD phản hồi tốt </th>
-            <th> GD phản hồi khá</th>
-            <th> GD phản hồi trung bình </th>
-            <th> GD phản hồi kém</th>
+            <th> Giao dịch có phản hồi </th>
+            <th> Giao dịch không có phản hồi </th>
+            <th> Giao dịch phản hồi tốt </th>
+            <th> Giao dịch phản hồi khá</th>
+            <th> Giao dịch phản hồi trung bình </th>
+            <th> Giao dịch phản hồi kém</th>
         </thead>
         <tbody>
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
-                <td> {{d.c_r}} </td>
-                <td> {{d.c_ft-d.c_r}} </td>
-                <td> {{d.c_r_a}} </td>
-                <td> {{d.c_r_b}} </td>
-                <td> {{d.c_r_c}} </td>
-                <td> {{d.c_r_d}} </td>
+                <td> {{d.c_r}}&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
+                <td> {{d.c_ft-d.c_r}}&nbsp;<span *ngIf="d.c_ft>0"> ({{(d.c_ft-d.c_r)/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
+                <td> {{d.c_r_a}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_a/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span></td>
+                <td> {{d.c_r_b}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_b/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
+                <td> {{d.c_r_c}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_c/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
+                <td> {{d.c_r_d}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_d/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
             </tr>
         </tbody>
     </table>

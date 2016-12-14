@@ -16,11 +16,15 @@ const Fields: MyItem[] = [{
     tab: 'general',
     title: 'Tổng số giao dịch'
 }, {
-    field: 'c_r_gt0',
+    field: 'c_ft',
+    color: '#009900',
     tab: 'general',
-    color: 'green',
-    title: 'Tổng số phản hồi',
-    axis: 'left'
+    title: 'Giao dịch thành công'
+},{
+    field: 'c_ct',
+    color: '#969c9c',
+    tab: 'general',
+    title: 'Giao dịch bị hủy'
 }, {
     field: 's_wt_h',
     tab: 'time',

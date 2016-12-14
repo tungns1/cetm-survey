@@ -6,7 +6,7 @@ import { IAggregate, RxAggregate, AggregateView } from './aggregate.model';
 import { Backend } from '../shared/';
 
 const backendReport = new Backend.HttpApi<any>("/api/report/transaction");
-import { RxGroupBy, RxFilter, IFilter, NameMap } from '../filter/filter.module';
+import { RxGroupBy, RxFilter, IFilter, NameMap, GetUsers, GetCounters, GetServices, GetBranch } from '../filter/filter.module';
 
 export function RefreshAggregate(filter: IFilter) {
     let res = backendReport.Get<IAggregate[]>("aggregate", filter).do(v => RxAggregate.next(v));
@@ -42,10 +42,37 @@ export const RxAggregateByTime = RxAggregate.map(records => {
 export const RxActiveAggregate = Observable.combineLatest(RxAggregate, RxGroupBy).map(view => {
     const group_by = view[1];
     const views = MakeIndexBy(view[0], view[1]);
+    console.log(group_by);
+    const services = GetServices();
+    const counters = GetCounters();
+    const users = GetUsers();
+    const branchs = GetBranch();
+    let ids: string[] = [];
+    if (group_by === 'branch_id') {
+        ids = branchs;
+    } else if (group_by === 'service_id') {
+        ids = services;
+    } else if (group_by === 'counter_id') {
+        ids = counters;
+    } else if (group_by === 'user_id') {
+        ids = users;
+    }
+
     views.forEach(v => {
         v.name = NameMap.get(v[group_by]) || 'n/a';
         v.Finalize();
+
+        if (ids.indexOf(v[group_by]) != -1) {
+            ids.splice(ids.indexOf(v[group_by]), 1)
+        }
     })
+
+    ids.forEach(id => {
+        let v = new AggregateView();
+        v.name = NameMap.get(id) || 'n/a';
+        views.push(v);
+    });
+
     return views;
 });
 
