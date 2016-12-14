@@ -40,9 +40,25 @@ export class TicketDetailDialog {
   }
 
   Move() {
-    Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-      this.Close();
-    });
+    if (this.isMissed) {
+      if (this.checkedCounters.length>0 && this.checkedServices.length>0) {
+        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+          this.Close();
+        });
+      }else{
+        alert("Bạn phải chọn quầy");
+      }
+
+    } else {
+      if (this.checkedCounters.length>0) {
+        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+          this.Close();
+        });
+      }else{
+         alert("Bạn phải chọn quầy và dịch vụ");
+      }
+    }
+
   }
 
   Recall() {
