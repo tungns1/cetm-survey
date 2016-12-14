@@ -14,7 +14,7 @@
                 <th> {{thoigian}} </th>
             </thead>
             <tbody *ngIf="tag==='wait'">
-                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.state==='done'">
+                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.s_at!=0">
                     <td> {{i+1}} </td>
                     <td> {{item.branches[2]}} </td>
                     <td> {{item.branches[1]}} </td>
@@ -27,7 +27,7 @@
                 </tr>
             </tbody>
             <tbody *ngIf="tag==='serve'">
-                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.state==='done'">
+                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.finish_at!=0">
                     <td> {{i+1}} </td>
                     <td> {{item.branches[2]}} </td>
                     <td> {{item.branches[1]}} </td>
