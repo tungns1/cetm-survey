@@ -35,11 +35,6 @@ table {
     max-width: 100%;
 }
 
-th,
-td {
-    /*min-width: 100px;*/
-}
-
 .stt {
     /*width: 30px;*/
     min-width: 50px;
