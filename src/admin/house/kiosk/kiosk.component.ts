@@ -19,6 +19,8 @@ function NewForm(b?: Model.House.IKiosk) {
     });
 }
 
+type ServiceList = Model.Center.IService[];
+
 @Component({
     selector: 'house-kiosk',
     templateUrl: 'kiosk.component.html',

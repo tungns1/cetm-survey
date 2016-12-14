@@ -16,10 +16,10 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'multi-file-picker',
     template: `
-        <span (click)="add()"><i class="fa fa-plus"></i></span>        
+        <span (click)="add()"><i class="fa fa-plus"></i></span>
         <div *ngFor="let src of srcs; let i = index;" >
             <file-picker [(ngModel)]="srcs[i]" (ngModelChange)="OnChange()"></file-picker>
-            <span (click)="remove(i)"> X </span>
+            <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,
     styles: [`
@@ -31,6 +31,7 @@ import { FormArray, FormControl } from '@angular/forms';
         border: 1px solid #aeb0af;
         width: 100%;
     }
+    
  `],
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })

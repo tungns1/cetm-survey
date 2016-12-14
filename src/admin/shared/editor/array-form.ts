@@ -1,6 +1,6 @@
 import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
 
-import { ReactiveFormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AbstractControl } from '@angular/forms';
 
@@ -16,32 +16,34 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'arr-form',
     template: `
-        <span (click)="add()">Thêm</span>        
-        <div *ngFor="let c of form.controls; let i = index;" >
-            <input [formControl]="c" (change)="OnChange()" /> <span (click)="remove(i)"> X </span>
+        <i class="fa fa-plus" (click)="add()"> Thêm </i>        
+        <div *ngFor="let c of values; let i = index;" >
+            <input [ngModel]="values[i]" (change)="onChange($event, i)" /> 
+            <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,
-     styles: [`
-        input {
+    styles: [`
+    input {
         margin-bottom: 15px;
         border-radius: 3px;
         height: 30px;
         border-style: solid;
         border: 1px solid #aeb0af;
         width: 100%;
+        display: inline;
     }
  `],
     providers: [ARRAY_FORM_CONTROL_VALUE_ACCESSOR]
 })
 class ArrayFormComponent implements ControlValueAccessor {
-    protected form = new FormArray([]);
+    protected values = [];
     protected onChangeCallback = (v) => { };
 
     writeValue(data: any[]) {
         if (!Array.isArray(data)) {
             data = [];
         }
-        this.form = new FormArray(data.map(d => new FormControl(d)));
+        this.values = data;
     }
 
     registerOnChange(fn: any) {
@@ -52,17 +54,25 @@ class ArrayFormComponent implements ControlValueAccessor {
 
     }
 
-    OnChange() {
-        setTimeout(_ => this.onChangeCallback(this.form.value));
+    refresh() {
+        setTimeout(_ => this.onChangeCallback(this.values));
+    }
+
+    onChange(event: Event, i: number) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.values[i] = event.target['value'];
+        this.refresh();
     }
 
     add() {
-        this.form.push(new FormControl(''));
+        this.values.push('');
+        this.refresh();
     }
-    
+
     remove(i) {
-        this.form.removeAt(i);
-        this.OnChange();
+        this.values.splice(i, 1);
+        this.refresh();
     }
 }
 
@@ -70,7 +80,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [FormsModule, CommonModule],
     declarations: [ArrayFormComponent],
     exports: [ArrayFormComponent]
 })

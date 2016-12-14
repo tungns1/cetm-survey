@@ -17,8 +17,8 @@
         </select>
         <br> Dịch vụ:
         <div class="dichvu">
-            <select-check formControlName="services" [data]="services | async" textField="name">
-            </select-check>
+            <service-list formControlName="services" [services]="services | async">
+            </service-list>
         </div>
 
         <hr> Chi nhánh:
