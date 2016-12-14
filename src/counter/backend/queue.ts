@@ -14,11 +14,11 @@ class Queue {
 
     static sort(a: ITicket, b: ITicket) {
         if (a.priority > b.priority) {
-            return 0;
+            return -1;
         } else if (a.priority < b.priority) { 
             return 1;
         }
-        return a.mtime < b.mtime ? 0 : 1;
+        return a.mtime < b.mtime ? -1 : 1;
     }
 
     Init(tickets: ITicketMap) {
