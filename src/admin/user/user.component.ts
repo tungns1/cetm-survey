@@ -32,7 +32,7 @@ export class UserComponent {
 
   users = User.AutoRefresh();
   private roles = Model.AllRoles;
-  private branches = Branch.RxBranches;
+  private branches = Branch.LowestLayerBranch;
 
   fields = [
     { title: 'Phòng giao dịch', name: 'branch' },

@@ -12,16 +12,22 @@ export * from '../../model/branch';
 
 
 const LevelRoot = new BehaviorSubject<IBranch[]>([]);
-const LEVEL_MAX = 3;
 
 RxBranches.subscribe(branches => {
-    const v = branches.filter(b => b.level === LEVEL_MAX);
-    LevelRoot.next(v);
+    if (branches.length < 1) {
+        return;
+    }
+
+    let branchMax = branches[0];
     branches.forEach(b => Branches.set(b.id, b));
     branches.forEach(b => {
+        if (branchMax.level < b.level) {
+            branchMax = b;
+        }
         let p = Branches.get(b.id);
         b.parent_name = (p && p.name) ? p.name : 'n/a';
     });
+    LevelRoot.next([branchMax]);
 })
 
 export class BranchInLevel {
@@ -39,17 +45,6 @@ export class BranchInLevel {
 
     shown = new BehaviorSubject<IBranch[]>([]);
     selected = new BehaviorSubject<IBranch[]>([]);
-
-    SelectOnlyID(id: string) {
-        this.shown.value.forEach(b => {
-            if (b.id === id) {
-                b._checked = true;
-            } else {
-                b._checked = false;
-            }
-        });
-        this.shown.next(this.shown.value);
-    }
 
     ChangeByID(id: string, value: boolean) {
         this.shown.value.forEach(b => {
@@ -70,6 +65,10 @@ export class BranchInLevel {
         this.shown.value.forEach(b => b._checked = false);
     }
 
+    None() {
+        return this.selected.value.length === 0;
+    }
+
 }
 
 const Level2 = new BranchInLevel(2, LevelRoot);
@@ -78,19 +77,37 @@ const Level0 = new BranchInLevel(0, Level1.selected);
 
 
 export const SelectedBranchIDLevel0 = new BehaviorSubject<string>('');
-export const ShownBranchLevel0 = Level0.shown;
-export const OnlyOneSelectedBranchLevel0 = new BehaviorSubject<IBranch>(null);
+export const LowestLayerBranch = new BehaviorSubject<IBranch[]>([]);
 
 Level0.selected.subscribe(branches => {
     SelectedBranchIDLevel0.next(branches.map(b => b.id).join(','));
-    if (branches.length !== -1) {
-        OnlyOneSelectedBranchLevel0.next(null);
-    } else {
-        OnlyOneSelectedBranchLevel0.next(branches[0]);
-    }
 });
 
 export const AllLevels = [Level0, Level1, Level2];
+import {combineLatest} from 'rxjs/observable/combineLatest';
+
+function FindLowest() {
+    let layer = LevelRoot;
+    if (Level2.None()) {
+        return layer;
+    }
+    layer = Level2.selected;
+    if (Level1.None()) {
+        return layer;
+    }
+    layer = Level1.selected;
+    if (Level0.None()) {
+        return layer;
+    }
+    
+    layer = Level0.selected;
+    return layer;
+}
+
+Level0.selected.subscribe(_ => {
+    let layer = FindLowest();
+    LowestLayerBranch.next(layer.value);
+})
 
 export function GetTreeNames(branch_id: string, level?: number) {
     let names = [];

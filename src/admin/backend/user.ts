@@ -10,6 +10,10 @@ export function GetByBranch(branch_id: string) {
 import { RepeatedObservable } from './rx';
 import { Observable } from 'rxjs/Observable';
 
-export function AutoRefresh(trigger?: Observable<any>) {
-    return new RepeatedObservable(trigger || Branch.SelectedBranchIDLevel0, GetByBranch);
+const LowestBranchID = Branch.LowestLayerBranch.map(branches => {
+    return branches.map(v => v.id).join(',');
+})
+
+export function AutoRefresh() {
+    return new RepeatedObservable(LowestBranchID, GetByBranch);
 }
