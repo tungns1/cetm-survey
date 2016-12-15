@@ -18,7 +18,7 @@ export function NewForm(b?: Model.IBranch) {
 }
 
 
-export const Api = new Backend.HttpApi<Model.IUser>("/api/admin/user");
+export const Api = new Backend.HttpApi<Model.IBranch>("/api/admin/branch");
 
 @Component({
   selector: 'admin-branch',
