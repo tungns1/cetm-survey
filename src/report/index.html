@@ -17,6 +17,10 @@
 <body>
     <app-root></app-root>
     <script src="../asset/vendor/flatpickr/flatpickr.min.js"></script>
+    <link href="../asset/vendor/nvd3/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="../asset/vendor/d3/d3.min.js" charset="utf-8"></script>
+    <script src="../asset/vendor/nvd3/nv.d3.js"></script>
+
     <% _.forEach(scripts, function(s) { %>
         <script src="<%- s %>"></script>
         <% }); %>
