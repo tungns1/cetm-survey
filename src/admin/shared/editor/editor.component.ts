@@ -23,6 +23,7 @@ export class EditorTitleComponent {}
 })
 export class EditorComponent<T> {
     @Input() name = "";
+    err='';
 
     @Input() data: any[] = [];
     @Input() fields: { title: string, name: string }[] = [];
@@ -73,7 +74,10 @@ export class EditorComponent<T> {
             Success("Lưu thành công");
             this.Refresh();
             this.editorRef.Close();
-        }, err => Error(err.error));
+        }, err => {
+            this.err=err;
+            Error(err);
+        });
     }
 
     Delete() {
@@ -82,7 +86,8 @@ export class EditorComponent<T> {
             this.removeRef.Close();
             this.Refresh();
         }, err => {
-            Error(err.error);
+            this.err=err;
+            Error(err);
         });
     }
 
@@ -91,8 +96,9 @@ export class EditorComponent<T> {
             Success("Sửa thành công");
             this.Refresh();
             this.editorRef.Close();
-        }, err => {
-            Error(err.error);
+        },  err => {
+            this.err=err;
+            Error(err);
         });
     }
 }

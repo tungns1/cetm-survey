@@ -2,6 +2,11 @@
     text-transform: uppercase;
 }
 
+.err {
+    color: #ff0000;
+    margin-bottom: 2px;
+}
+
 .add {
     float: right;
     height: 40px;
@@ -30,6 +35,29 @@
     color: #0d8fdd;
     height: 30px;
     line-height: 30px;
+    border-width: 1px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.no {
+    background-color: #0b8fda;
+    color: #fff;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 10px;
+    border-width: 0px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.yes {
+    background-color: #fff;
+    color: #0d8fdd;
+    height: 25px;
+    width: 70px;
+    line-height: 25px;
     border-width: 1px;
     border-style: solid;
     text-transform: uppercase;

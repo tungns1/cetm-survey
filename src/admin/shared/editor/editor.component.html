@@ -28,6 +28,8 @@
             <div class="uppercase" *ngIf="!current"> THÊM {{name}} </div>
         </div>
 
+        <span class="err">{{err}}</span>
+
         <ng-content></ng-content>
         <modal-footer>
             <button class="huy" (click)="CloseEditor()" style="width: 45%">HỦY </button>
@@ -39,6 +41,6 @@
 
 <modal #remove>
     Bạn có muốn xóa không?
-    <button (click)="Delete()"> Có</button>
-    <button (click)="CloseRemove()"> Không</button>
+    <button class="yes" (click)="Delete()"> Có</button>
+    <button class="no" (click)="CloseRemove()"> Không</button>
 </modal>

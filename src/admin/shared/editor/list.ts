@@ -21,6 +21,7 @@ export class BaseEditorComponent<T> {
         protected updateComponent: typeof BaseUpdateComponent) { }
 
     dialog: ComponentRef<BaseUpdateComponent<T>>;
+    err:string;
 
     editor(previous?: T) {
         
@@ -61,6 +62,7 @@ export class BaseEditorComponent<T> {
             Success("Xóa thành công");
             this.Refresh();
         }, err => {
+            this.err=err.error;
             Error(err.error);
         });
     }
@@ -70,7 +72,10 @@ export class BaseEditorComponent<T> {
             Success("Lưu thành công");
             this.Refresh();
             this.closeDialog();
-        }, err => Error(err.error));
+        }, err => {
+            this.err=err.error;
+            Error(err.error);
+        });
     }
 
     Update(u: T) {
@@ -79,6 +84,7 @@ export class BaseEditorComponent<T> {
             this.Refresh();
             this.closeDialog();
         }, err => {
+            this.err=err.error;
             Error(err.error);
         });
     }
