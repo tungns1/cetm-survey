@@ -4,7 +4,7 @@ import { interval } from 'rxjs/observable/interval';
 import 'rxjs/add/operator/share';
 
 function TwoDigit(n: number): string {
-    let v = Math.round(n);
+    let v = Math.floor(n);
     return (v > 9 ? '' : '0') + v;
 }
 

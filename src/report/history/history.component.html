@@ -1,5 +1,5 @@
 <div class="search-table-outter">
-    <div>
+    <div class="report-scrollbar">
         <table class="search-table">
             <thead>
                 <th class="stt"> STT </th>
@@ -16,25 +16,25 @@
                 <th> Thời điểm phục vụ </th>
                 <th> Thời gian phục vụ </th>
                 <th> Thời điểm kết thúc </th>
-                <th> Kết quả phản hồi </th>
+                <th class="number"> Kết quả phản hồi </th>
             </thead>
             <tbody>
                 <tr *ngFor="let d of data | async; let i = index">
                     <td class="stt">{{(i+1)+(skip | async)}}</td>
-                    <td> {{d.v_cdate}} </td>
-                    <td> {{d.branches[2]}} </td>
-                    <td> {{d.branches[1]}} </td>
-                    <td> {{d.branches[0]}} </td>
-                    <td> {{d.service}} </td>
-                    <td> {{d.counter}} </td>
-                    <td> {{d.user}} </td>
-                    <td> {{d.cnum}} </td>
-                    <td> {{d.v_ctime}} </td>
-                    <td> {{d.v_wtime}} </td>
-                    <td> {{d.v_fc_at}} </td>
-                    <td> {{d.v_stime}} </td>
-                    <td> {{d.v_fi_at}} </td>
-                    <td>{{d.rating}}</td>
+                    <td class="td-date-rp"> {{d.v_cdate}} </td>
+                    <td class="td-string-rp"> {{d.branches[2]}} </td>
+                    <td class="td-string-rp"> {{d.branches[1]}} </td>
+                    <td class="td-string-rp"> {{d.branches[0]}} </td>
+                    <td class="td-string-rp"> {{d.service}} </td>
+                    <td class="td-counter-rp"> {{d.counter}} </td>
+                    <td class="td-string-rp"> {{d.user}} </td>
+                    <td class="td-number-rp"> {{d.cnum}} </td>
+                    <td class="td-date-rp"> {{d.v_ctime}} </td>
+                    <td class="td-date-rp"> {{d.v_wtime}} </td>
+                    <td class="td-date-rp"> {{d.v_fc_at}} </td>
+                    <td class="td-date-rp"> {{d.v_stime}} </td>
+                    <td class="td-date-rp"> {{d.v_fi_at}} </td>
+                    <td class="td-number-rp">{{d.rating}}</td>
                 </tr>
             </tbody>
         </table>

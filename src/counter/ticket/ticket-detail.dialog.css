@@ -14,7 +14,6 @@
     line-height: 30px;
     border-width: 1px;
     border-style: solid;
-    width: 28%;
 }
 
 .move {
@@ -22,10 +21,8 @@
     color: #fff;
     height: 30px;
     line-height: 30px;
-    margin-left: 13px;
     border-width: 1px;
     border-style: solid;
-    width: 32%;
 }
 
 .recall {
@@ -33,10 +30,23 @@
     color: #fff;
     height: 30px;
     line-height: 30px;
-    margin-left: 13px;
     border-width: 1px;
     border-style: solid;
-    width: 32%;
+}
+
+.nomiss {
+    width: 29%;
+    margin-left: 10px;
+}
+
+.miss {
+    width: 20%;
+    margin-left: 4px;
+}
+
+.big {
+    width: 25%;
+    margin-left: 4px;
 }
 
 .delete {
@@ -44,10 +54,8 @@
     color: #fff;
     height: 30px;
     line-height: 30px;
-    margin-left: 14px;
     border-width: 1px;
     border-style: solid;
-    width: 28%;
 }
 
 .info {

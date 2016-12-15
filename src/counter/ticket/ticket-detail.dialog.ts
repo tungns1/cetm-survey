@@ -4,6 +4,7 @@ import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { RxCounters } from '../backend/index';
+import { Serving } from '../backend/queue';
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -40,16 +41,32 @@ export class TicketDetailDialog {
   }
 
   Move() {
-    Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-      this.Close();
-    });
+    if (this.isMissed) {
+      if (this.checkedCounters.length>0 && this.checkedServices.length>0) {
+        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+          this.Close();
+        });
+      }else{
+        alert("Bạn phải chọn quầy và dịch vụ");
+      }
+
+    } else {
+      if (this.checkedCounters.length>0) {
+        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+          this.Close();
+        });
+      }else{
+         alert("Bạn phải chọn quầy");
+      }
+    }
+
   }
 
   Recall() {
-    // if (servingTickets.value.length > 0) {
-    //   alert("Bạn phải kết thúc vé đang thực hiện");
-    //   return;
-    // }
+    if (Serving.RxData.value.length > 0) {
+      alert("Bạn phải kết thúc vé đang thực hiện");
+      return;
+    }
     CallFromMissed(this.ticket).subscribe(v => {
       this.Close();
     });
