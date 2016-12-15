@@ -75,8 +75,8 @@ export class EditorComponent<T> {
         }, err => Error(err.error));
     }
 
-    Delete(id: string) {
-        this.service.api.MarkDelete(id).subscribe(_ => {
+    Delete() {
+        this.service.api.MarkDelete(this.form.value.id).subscribe(_ => {
             Success("Xóa thành công");
             this.removeRef.Close();
             this.Refresh();
