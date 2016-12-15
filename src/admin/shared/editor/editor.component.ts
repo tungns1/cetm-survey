@@ -55,8 +55,9 @@ export class EditorComponent<T> {
         this.edit.next(this.form);
     }
 
-    onRemove(id: string) {
+    onRemove(u: T) {
         this.removeRef.Open();
+        this.form = this.service.form(u);
     }
 
     CloseEditor() {
