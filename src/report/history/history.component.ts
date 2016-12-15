@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { RxCount, RxHistory, RefreshHistory } from '../backend/history.service';
+import { RxCount, RxHistory, RefreshHistory, ExportHistory } from '../backend/history.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { RxFilter, IFilter } from '../filter/filter.module';
 import 'rxjs/add/Observable/combineLatest';
@@ -104,5 +104,8 @@ export class HistoryComponent {
         return pages;
     })
 
+    excel() {
+        ExportHistory({});
+    }
 
 }

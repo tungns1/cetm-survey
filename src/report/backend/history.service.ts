@@ -1,7 +1,7 @@
 import { ITransaction, IHistory } from './transaction.model';
 import { Backend, Branch } from '../shared/';
 const backendReport = new Backend.HttpApi<any>("/api/report/transaction");
-import { IFilter } from '../filter/filter.module';
+import { IFilter, GetFilter } from '../filter/filter.module';
 
 interface ITransactionView extends ITransaction {
     branches: string[];
@@ -65,5 +65,10 @@ export function RefreshHistory(filter: IFilter) {
         RxCount.next(v.total);
     });
     res.subscribe();
+}
+
+export function ExportHistory() {
+    const url = backendReport.MakeURL("export", GetFilter());
+    window.location.assign(url);
 }
 

@@ -93,7 +93,7 @@ function week(year, month, day) {
     return year + "-" + ((week < 10 ? '0' : '') + week);
 }
 
-function GetFilter() {
+export function GetFilter() {
     const filter: IFilter = getFormValue();
     filter.branch_id = Branch.SelectedBranchIDLevel0.value;
     filter.lang = Locale();

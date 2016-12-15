@@ -78,15 +78,18 @@ function convertJSON<T>(text: string) {
 }
 
 import 'rxjs/add/operator/map';
+
+export function MakeURL(url: string, query?: Object) {
+  return `${url}?${serialize(query)}`;
+}
+
 export function GetJSON<T>(url: string, query?: Object) {
-  url += "?" + serialize(query);
-  return http(HTTP_METHOD_GET, url).map(text => convertJSON<T>(text));
+  return http(HTTP_METHOD_GET, MakeURL(url, query)).map(text => convertJSON<T>(text));
 }
 
 export function PostJSON<T>(url: string, query?: Object, data?: Object) {
-  url += "?" + serialize(query);
   var body = JSON.stringify(data);
-  return http(HTTP_METHOD_POST, url, body).map(text => convertJSON<T>(text));
+  return http(HTTP_METHOD_POST, MakeURL(url, query), body).map(text => convertJSON<T>(text));
 }
 
 

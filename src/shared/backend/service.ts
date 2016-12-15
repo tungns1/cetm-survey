@@ -1,4 +1,4 @@
-import { GetJSON, PostJSON } from '../../x/backend/http';
+import { GetJSON, PostJSON, MakeURL } from '../../x/backend/http';
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { HttpHost } from '../../config/';
@@ -18,6 +18,10 @@ export class HttpApi<T> {
 
     protected wrapToken(o?) {
         return Object.assign({}, o, { token: RxCurrentSession.value.id });
+    }
+
+    MakeURL(sub: string, o?: any) {
+        return MakeURL(this.getUrl(sub), this.wrapToken(o));
     }
 
     Search(o) {
