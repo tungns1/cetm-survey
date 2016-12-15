@@ -9,6 +9,8 @@ socket.Subscribe<DeviceTrack[]>("/devices", data => DeviceTracks.Init(data));
 
 socket.Subscribe<IUpdate<TicketTrack>>("/ticket", v => TicketTracks.Update(v));
 socket.Subscribe<TicketTrack[]>("/tickets", data => TicketTracks.Init(data));
-socket.Connect({});
 export { DeviceTracks, DeviceTrack } from './device';
 export { TicketTracks, TicketTrack } from './ticket';
+
+import {Session} from '../shared/';
+Session.RxSessionReady.subscribe(_ => socket.Connect({}));

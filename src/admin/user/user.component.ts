@@ -19,7 +19,8 @@ function NewForm(u?: Model.IUser) {
 
 @Component({
   selector: 'admin-user',
-  templateUrl: 'user.component.html'
+  templateUrl: 'user.component.html',
+   styleUrls: ['user.component.css']
 })
 export class UserComponent {
 

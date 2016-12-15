@@ -13,17 +13,39 @@
         padding: 12px 20px 12px 40px;
         transition: width 0.4s ease-in-out;
     }
+    
+    .message {
+        color: brown;
+    }
+    
+    .search-result {
+        height: 200px;
+    }
 </style>
 
 <input type="text" #tm placeholder="Tìm kiếm số vé" (keyup.enter)="searchTicket(tm.value)">
+<div class="message"> {{message}} </div>
 
-<div>
-    <ul *ngIf="ticket">
-        <li>Thời điểm lấy vé:</li>
-        <li>Thời điểm gọi vào:<span style="text-align: right;">{{ticket.ctime | date:"hh:mm:ss"}}</span></li>
-        <li>Gọi vào lần</li>
-        <li>Đặt nhỡ:</li>
-        <li>Gọi số nhỡ:</li>
-        <li>Kết thúc: {{ticket.mtime | date:"hh:mm:ss"}}</li>
+<div class="search-result" *ngIf="ticket">
+    <ul>
+        <li>Thời điểm lấy vé: {{ticket.ctime | date:"hh:mm:ss"}}</li>
+        <li>Thời điểm gọi vào:<span style="text-align: right;"></span></li>
+        <li>Trạng thái hiện tại: {{ticket.state}} </li>
     </ul>
+
+    <div>
+        Lịch sử:
+        <div class="table">
+            <div class="table-row header">
+                <div>Thời điểm</div>
+                <div>Trạng thái</div>
+                <div>Thông tin</div>
+            </div>
+            <div class="table-row" *ngFor="let t of ticket.tracks">
+                <div> {{t.mtime | date:"hh:mm:ss"}} </div>
+                <div> {{t.state}} </div>
+                <div> {{t.services | ticketServiceName}} </div>
+            </div>
+        </div>
+    </div>
 </div>

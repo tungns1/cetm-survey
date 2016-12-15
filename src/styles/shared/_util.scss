@@ -1,3 +1,10 @@
-.hide {
+.hidden {
     display: none;
+}
+
+.pointer {
+    cursor: pointer;
+    &:hover {
+        color: green;
+    }
 }

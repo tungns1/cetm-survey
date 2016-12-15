@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
@@ -11,19 +11,25 @@ export const RxTab = new BehaviorSubject<string>('general');
 })
 export class ReportTabComponent {
   active: string = 'general';
+  @Output() select = new EventEmitter();
   tabs = [{
     name: 'general',
-    title: 'TỔNG QUAN'
+    title: 'TỔNG QUAN',
+    tag: 'general'
   }, {
     name: 'time',
     title: 'THỜI GIAN GIAO DỊCH',
+    tag: 'time'
   }, {
     name: 'customer',
-    title: 'KHÁCH HÀNG ĐÁNH GIÁ'
+    title: 'KHÁCH HÀNG ĐÁNH GIÁ',
+    tag: 'customer'
   }]
 
-  SetActive(t: { name: string }) {
+
+  setActive(t: { name: string }) {
     this.active = t.name;
     RxTab.next(t.name);
+    this.select.emit(t);
   }
 }

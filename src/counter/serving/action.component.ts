@@ -1,25 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket';
-import { RxCanNext, Serving, Waiting } from '../backend/queue';
+import {Serving, Waiting, RxBusy,ITicket } from '../backend/queue';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Config, Recorder } from '../recorder/recorder.component';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import 'rxjs/add/operator/first';
+
+export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
+.filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
 
 @Component({
-
     selector: 'action',
     templateUrl: 'action.component.html',
     styleUrls: ['action.component.css'],
 })
 
-// let config: Config = {
-//     encoderPath: "encoderWorker.min.js"
-// }
-// let recorder: Recorder = new Recorder(config);
-
 export class ActionComponent {
-    config: Config = {encoderPath: '../asset/js/encoderWorker.min.js'};
-    recorder: Recorder = new Recorder(this.config);
     getTicket() {
         return Serving.first();
     }
@@ -35,18 +31,15 @@ export class ActionComponent {
     Next() {
         let ticket = this.getTicket();
         if (ticket) {
-            // finish
-            console.log("Finish session!")
-            this.recorder.stop()
             Finish(ticket).subscribe(v => console.log(v));
         }
         let firstTicket = Waiting.first();
         if (firstTicket) {
             CallFromWaiting(firstTicket).subscribe(v => {
-                // start 
-                console.log("Start session!")
-                this.recorder.start(firstTicket.id)
                 this.autoNext.next(false);
+            }, e => {
+                console.log(e);
+                this.sub();
             });
         } else {
             this.autoNext.next(true);
@@ -59,23 +52,29 @@ export class ActionComponent {
     }
 
     Recall() {
-        Recall(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Recall(this.getTicket()).subscribe(v => console.log(v));
+        }
+
     }
 
     Finish() {
-        // finish
-        console.log("Finish session!")
-        this.recorder.stop()
-        Finish(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Finish(this.getTicket()).subscribe(v => console.log(v));
+        }
 
     }
 
     Miss() {
-        Miss(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Miss(this.getTicket()).subscribe(v => console.log(v));
+        }
     }
 
     Reminder() {
-        Remind(this.getTicket()).subscribe(v => console.log(v));
+        if (this.getTicket() != null) {
+            Remind(this.getTicket()).subscribe(v => console.log(v));
+        }
     }
 
     autoNext = new BehaviorSubject<boolean>(false);

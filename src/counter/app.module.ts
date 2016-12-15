@@ -21,4 +21,6 @@ import { PageModule } from '../pages/pages.module';
 export default class CounterModule {
 }
 
-
+import {Auth} from './shared/';
+Auth.AuthOptions.Scope = "staff";
+Auth.AuthOptions.Auto = true;

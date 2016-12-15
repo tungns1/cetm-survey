@@ -9,6 +9,6 @@ export function GetByType(type: string) {
     return Api.Search({ type: type });
 }
 
-export function AutoRefresh() {
-    return new RefreshObservable(() => GetByType('kiosk,screen'));
+export function AutoRefresh(type: string) {
+    return new RefreshObservable(() => GetByType(type));
 }

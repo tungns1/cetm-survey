@@ -1,0 +1,17 @@
+<div *ngIf="node">
+    <h1> View for: {{node.name}} </h1>
+    <ul>
+        <li *ngFor="let d of node.rxChildren | async">
+            <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
+            {{ d.name }}
+        </a>
+            <button (click)="view(d)">
+            <i class="fa fa-data"></i>
+            Xem          
+        </button>
+        </li>
+    </ul>
+
+    <button (click)="upload.open(node)">Tải lên</button>
+    <file-upload #upload style="position:fixed;bottom:0;right:0;"></file-upload>
+</div>

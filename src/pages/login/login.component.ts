@@ -4,13 +4,33 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router';
-import { AuthService } from '../../shared/auth/';
+import { Login, Logout, IsAuth, AuthOptions } from '../../shared/auth/';
 import * as Platform from '../../x/platform/index';
 
 interface ILoginModel {
   username: string;
   password: string;
   auto: boolean;
+}
+
+const ViErrors = {
+  
+}
+
+ViErrors['record not found'] = 'Sai tên đăng nhập';
+ViErrors['wrong password'] = 'Sai mật khẩu';
+ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
+
+function Format(e: string) {
+  if (typeof e !== 'string') {
+    return;
+  }
+  if (ViErrors[e]) {
+    return ViErrors[e];
+  }
+  if (e.toLowerCase().startsWith("unauthorized")) {
+    return ViErrors["unauthorize"]
+  }
 }
 
 @Component({
@@ -26,7 +46,7 @@ export class LoginComponent {
   })
   message = '';
 
-  constructor(public router: Router, private authService: AuthService) {
+  constructor(public router: Router) {
 
   }
 
@@ -36,7 +56,7 @@ export class LoginComponent {
       this.router.navigate(['/']);
       return;
     }
-    if (this.authService.Auto) {
+    if (AuthOptions.Auto) {
       let user = Platform.CurrentUser();
       if (user) {
         this.loginForm.controls['username'].setValue(user);
@@ -46,23 +66,24 @@ export class LoginComponent {
   }
 
   login(auto?: boolean) {
-    this.authService.Login(this.loginForm.value).subscribe((v) => {
-      let redirect = this.authService.Redirect;
+    Login(this.loginForm.value).subscribe((v) => {
+      let redirect = AuthOptions.Redirect;
       if (!redirect || redirect.length < 1) {
-        redirect = ["/"];
+        redirect = '/';
       }
-      this.router.navigate(redirect);
+      this.router.navigateByUrl(redirect);
     }, e => {
-      this.message = e.error;
+      console.log(e);
+      this.message = `Đã có lỗi: ${Format(e)}`;
     });
   }
 
   logout() {
-    this.authService.Logout();
+    Logout();
   }
 
   private IsLogin() {
-    return this.authService.IsLoggedIn();
+    return IsAuth();
   }
 }
 

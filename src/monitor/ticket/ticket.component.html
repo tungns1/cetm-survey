@@ -1,4 +1,4 @@
-<div style="border: 1px solid #b0b1b5; margin: 20px 0px 0px 0px; background-color: #fff;">
+<div style="border: 1px solid #b0b1b5; background-color: #fff;">
     <monitor-tab [tabs]="tabs" #tab (select)="setActive($event)"></monitor-tab>
     <div>
         <table>
@@ -10,29 +10,32 @@
                 <th> Dịch vụ </th>
                 <th> Số vé </th>
                 <th> {{thoidiem}} </th>
+                <th> {{done}} </th>
                 <th> {{thoigian}} </th>
             </thead>
             <tbody *ngIf="tag==='wait'">
-                <tr *ngFor="let item of rxData | async; let i = index">
+                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.s_at!=0">
                     <td> {{i+1}} </td>
-                    <td> {{item.v_branch_2}} </td>
-                    <td> {{item.v_branch_1}} </td>
-                    <td> {{item.v_branch_0}} </td>
+                    <td> {{item.branches[2]}} </td>
+                    <td> {{item.branches[1]}} </td>
+                    <td> {{item.branches[0]}} </td>
                     <td> {{item.service}} </td>
                     <td> {{item.cnum}} </td>
                     <td> {{item.c_at | ctimeDate}} </td>
+                    <td><span *ngIf="item.s_at!=0"> {{item.s_at | ctimeDate}} </span></td>
                     <td> {{item.t_wait | hour}} </td>
                 </tr>
             </tbody>
             <tbody *ngIf="tag==='serve'">
-                <tr *ngFor="let item of rxData | async; let i = index">
+                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.finish_at!=0">
                     <td> {{i+1}} </td>
-                    <td> {{item.v_branch_2}} </td>
-                    <td> {{item.v_branch_1}} </td>
-                    <td> {{item.v_branch_0}} </td>
+                    <td> {{item.branches[2]}} </td>
+                    <td> {{item.branches[1]}} </td>
+                    <td> {{item.branches[0]}} </td>
                     <td> {{item.service}} </td>
                     <td> {{item.cnum}} </td>
                     <td> {{item.s_at | ctimeDate}} </td>
+                    <td><span *ngIf="item.finish_at!=0"> {{item.finish_at | ctimeDate}}</span> </td>
                     <td> {{item.t_serve | hour}} </td>
                 </tr>
             </tbody>

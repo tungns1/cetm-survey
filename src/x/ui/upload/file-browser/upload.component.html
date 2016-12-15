@@ -1,0 +1,15 @@
+<div class="info">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Progress</th>
+        </tr>
+
+        <tr *ngFor="let file of files">
+            <upload-item [data]="{file: file, node: node}"></upload-item>
+        </tr>
+
+    </table>
+</div>
+<input type="file" multiple (change)="onFileSelected($event)" #fileInput style="display:none">

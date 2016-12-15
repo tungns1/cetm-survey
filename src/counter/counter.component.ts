@@ -1,10 +1,12 @@
-import { Component, OnInit, ApplicationRef, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RxCurrentCounter, socket } from './backend/index';
 
 @Component({
     selector: 'app-counter',
     templateUrl: 'counter.component.html',
+    styleUrls: ['counter.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CounterComponent {
     constructor(private route: ActivatedRoute) {

@@ -1,10 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RxServices } from '../backend/index';
+import { Model } from '../shared/';
 
-var serviceNameMap = {};
-RxServices.subscribe(services => {
-    services.forEach(s => serviceNameMap[s.id] = s.name);
-});
 
 @Pipe({
     name: 'ticketServiceName'
@@ -12,11 +8,11 @@ RxServices.subscribe(services => {
 export class TicketServiceNamePipe implements PipeTransform {
     static map = {};
 
-    transform(id: string | string[]) {
-        if (!Array.isArray(id)) {
-            id = [id];
+    transform(ids: string | string[]) {
+        if (!Array.isArray(ids)) {
+            ids = [ids];
         }
-        return id.map(i => serviceNameMap[i]);
+        return ids.map(id => Model.Center.ServiceName(id));
     }
 }
 

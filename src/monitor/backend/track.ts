@@ -3,6 +3,8 @@ export class Track {
     id: string;
     name: string;
     tag: string;
+    wait:number;
+    serve:number;
     branches: string[];
 }
 
@@ -16,9 +18,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class TrackGroup<T extends Track> {
     constructor() {
-
+        
     }
-
     public Init(values: T[]) {
         values.forEach(t => {
             t.branches = Branch.GetTreeNames(t.branch_id);
@@ -43,11 +44,16 @@ export class TrackGroup<T extends Track> {
     }
 
     public ByTag(tag: string) {
-        return this.RxData;
+        return this.RxData.map(data => data.filter(d => d.tag === tag));
+    }
+    public TicketWait() {      
+         return this.RxData.map(data => data.filter(d => d.wait !=0)); 
+    }
+     public TicketServe() {      
+         return this.RxData.map(data => data.filter(d => d.serve !=0)); 
     }
 
-    protected beforeAdd(v: T) {
-
+    beforeAdd = (v: T) => {
     }
 
     private refresh() {

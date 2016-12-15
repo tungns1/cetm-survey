@@ -17,18 +17,21 @@ import { FormArray, FormControl } from '@angular/forms';
     selector: 'select-check',
     template: `
         <span *ngFor="let d of data" >
-            <input type="checkbox" (ngModelChange)="check(d[idField], $event)">{{d[textField]}}
+            <input type="checkbox" [ngModel]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
         </span>
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
 class SelectCheckComponent implements ControlValueAccessor {
     constructor(
-        @Attribute('idField') private idField = 'id',
-        @Attribute('textField') private textField = 'text') {
+        @Attribute('idField') private idField,
+        @Attribute('textField') private textField) {
+           this.idField = this.idField || 'id';
+           this.textField = this.textField || 'text';
     }
     
     @Input() data = [];
+    private values = {};
     protected value = [];
     protected onChangeCallback = (v) => { };
 
@@ -37,6 +40,7 @@ class SelectCheckComponent implements ControlValueAccessor {
             data = [];
         }
         this.value = data;
+        this.value.forEach(id => this.values[id] = true);
     }
 
     registerOnChange(fn: any) {
@@ -51,7 +55,12 @@ class SelectCheckComponent implements ControlValueAccessor {
         setTimeout(_ => this.onChangeCallback(this.value));
     }
 
-    check(id: string, b: boolean) {
+    check(d: any, e: Event) {
+        let id = d[this.idField];
+        e.preventDefault();
+        e.stopPropagation();
+        let b = e.target['checked'];
+
         if (b) {
             this.value.push(id);
         } else {
