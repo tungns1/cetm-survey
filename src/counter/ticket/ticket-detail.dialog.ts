@@ -4,7 +4,7 @@ import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { RxCounters } from '../backend/index';
-import { Serving } from '../backend/queue';
+import { Serving ,autoNext} from '../backend/queue';
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -68,6 +68,7 @@ export class TicketDetailDialog {
       return;
     }
     CallFromMissed(this.ticket).subscribe(v => {
+      autoNext.next(false);
       this.Close();
     });
   }

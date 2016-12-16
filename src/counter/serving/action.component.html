@@ -1,7 +1,7 @@
-<button (click)="Next()" [ngClass]="{'hidden': autoNext | async}">
+<button (click)="Next()" [ngClass]="{'hidden': auto | async}">
     KẾ TIẾP
 </button>
-<button (click)="NoNext()" class="danger" [ngClass]="{'hidden': !(autoNext | async)}">
+<button (click)="NoNext()" class="danger" [ngClass]="{'hidden': !(auto | async)}">
     TỰ  ĐỘNG GỌI
 </button>
 <button (click)="Recall()"> 

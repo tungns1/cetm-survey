@@ -113,3 +113,4 @@ function GetQueue(state: Model.House.TicketState) {
 }
 
 export const RxBusy = Serving.RxData.map(v => v.length > 0);
+export const autoNext = new BehaviorSubject<boolean>(false);
