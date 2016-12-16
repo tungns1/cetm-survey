@@ -6,7 +6,9 @@
 
         <div>
             <label style="margin-right: 14px;">{{level + 1 | levelName}}</label>
-            <branch-picker formControlName="parent" [level]="level + 1"> </branch-picker>
+            <select formControlName="parent">
+                <option *ngFor="let br of upperLayers | async" [value]="br.id">{{br.name}}</option>
+            </select>
         </div>
     </form>
 </editor>
