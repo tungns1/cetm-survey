@@ -29,24 +29,21 @@ export class ActionComponent {
     }
 
     Next() {
-        let ticket = this.getTicket();
+       let ticket = this.getTicket();
         if (ticket) {
-            Finish(ticket).subscribe(v => {
-                let firstTicket = Waiting.first();
-                if (firstTicket) {
-                    CallFromWaiting(firstTicket).subscribe(v => {
-                        this.autoNext.next(false);
-                    }, e => {
-                        console.log(e);
-                        this.sub();
-                    });
-                } else {
-                    this.autoNext.next(true);
-                    this.sub();
-                }
+            Finish(ticket).subscribe(v => console.log(v));
+        }
+        let firstTicket = Waiting.first();
+        if (firstTicket) {
+            CallFromWaiting(firstTicket).subscribe(v => {
+                this.autoNext.next(false);
             }, e => {
                 console.log(e);
+                this.sub();
             });
+        } else {
+            this.autoNext.next(true);
+            this.sub();
         }
     }
 
