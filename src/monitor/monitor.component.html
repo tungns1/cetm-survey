@@ -12,15 +12,15 @@
     <div class="main" style="padding: 20px;">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">
-                <button class="gd" type="submit" routerLink="/ticket" routerLinkActive="active">GIAO DỊCH VƯỢT CHUẨN</button>
+                <button class="gd btpointer" type="submit" routerLink="/ticket" routerLinkActive="active">GIAO DỊCH VƯỢT CHUẨN</button>
                 <button type="submit" routerLink="/device" routerLinkActive="active">THIẾT BỊ MẤT KẾT NỐI</button>
             </div>
         </div>
 
         <router-outlet></router-outlet>
         <div style="float: right;margin-top: 20px;">
-            <button (click)="excel()"> XUẤT RA FILE EXCEL </button>
-            <button (click)="pdf()"> XUẤT RA FILE PDF </button>
+            <button (click)="excel()" class="btpointer"> XUẤT RA FILE EXCEL </button>
+            <button (click)="pdf()" class="btpointer"> XUẤT RA FILE PDF </button>
         </div>
         <div class="ft">
             <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>

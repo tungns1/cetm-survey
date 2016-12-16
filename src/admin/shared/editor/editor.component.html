@@ -1,6 +1,6 @@
 <div class="title">
     <ng-content select="editor-title"></ng-content>
-    <button class="add uppercase" (click)="onAdd()"> THÊM {{name}} </button>
+    <button class="add uppercase btpointer" (click)="onAdd()"> THÊM {{name}} </button>
 </div>
 
 <table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
@@ -24,23 +24,23 @@
 <modal #edit>
     <div *ngIf="form">
         <div class="header">
-            <div class="uppercase" *ngIf="current"> SỬA {{name}} </div>
-            <div class="uppercase" *ngIf="!current"> THÊM {{name}} </div>
+            <div class="uppercase btpointer" *ngIf="current"> SỬA {{name}} </div>
+            <div class="uppercase btpointer" *ngIf="!current"> THÊM {{name}} </div>
         </div>
 
         <span class="err">{{err}}</span>
 
         <ng-content></ng-content>
         <modal-footer>
-            <button class="huy" (click)="CloseEditor()" style="width: 45%">HỦY </button>
-            <button *ngIf="!current" class="them" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;">THÊM </button>
-            <button *ngIf="current" class="them" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;">LƯU </button>
+            <button class="huy btpointer" (click)="CloseEditor()" style="width: 45%">HỦY </button>
+            <button *ngIf="!current" class="them btpointer" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;">THÊM </button>
+            <button *ngIf="current" class="them btpointer" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;">LƯU </button>
         </modal-footer>
     </div>
 </modal>
 
 <modal #remove>
     Bạn có muốn xóa không?
-    <button class="yes" (click)="Delete()"> Có</button>
-    <button class="no" (click)="CloseRemove()"> Không</button>
+    <button class="yes btpointer" (click)="Delete()"> Có</button>
+    <button class="no btpointer" (click)="CloseRemove()"> Không</button>
 </modal>
