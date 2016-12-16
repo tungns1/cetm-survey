@@ -40,6 +40,7 @@ class SelectCheckComponent implements ControlValueAccessor {
             data = [];
         }
         this.value = data;
+        this.values = {};
         this.value.forEach(id => this.values[id] = true);
     }
 

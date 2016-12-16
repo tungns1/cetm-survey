@@ -6,11 +6,17 @@ import { AuthOptions, Refresh, IsAuth } from './auth.service';
 
 import 'rxjs/add/operator/toPromise';
 
+const loginUrl = "/login";
+
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
+    if (this.router.url === loginUrl) {
+      return true;
+    }
+    
     if (!IsAuth()) {
       return this.loginPage();
     }

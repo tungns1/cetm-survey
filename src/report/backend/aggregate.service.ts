@@ -35,7 +35,7 @@ function MakeIndexBy(records: IAggregate[], field: string) {
 
 export const RxAggregateByTime = RxAggregate.map(records => {
     const views = MakeIndexBy(records, 'time');
-    views.sort((a, b) => a.time > b.time ? 1 : 0);
+    views.sort((a, b) => a.time > b.time ? 1 : -1);
     return views;
 });
 

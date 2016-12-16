@@ -3,7 +3,7 @@ import { AbstractChart } from './chart';
 
 
 import { timeParse, timeFormat } from 'd3-time-format';
-import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
+import { scalePoint, scaleLinear, scaleOrdinal, schemeCategory10 } from 'd3-scale';
 import { line } from 'd3-shape';
 
 import { select, event, Selection } from 'd3-selection';
@@ -41,14 +41,17 @@ export class LineChart extends AbstractChart {
             .transition().duration(500)
             .attr('stroke-dashoffset', 0)
             .attr('fill', 'none')
-            .attr('stroke', i => i.color).attr('stroke-width', '2');
+            .attr('stroke', (i, j) => i.color || schemeCategory10[j]).attr('stroke-width', '2');
         lines.exit().remove();
     }
 
     getXAxis() {
-        const x = scaleBand().range([0, this.mainWidth()]);
+        const x = scalePoint().range([0, this.mainWidth()]);
         x.domain(this._data.map(d => d.time));
-        this.svg().select('g.x.axis').attr('transform', `translate(0, ${this.mainHeight()})`).call(axisBottom(x))
+        const axis = axisBottom(x);
+        axis.ticks(10);
+
+        this.svg().select('g.x.axis').attr('transform', `translate(0, ${this.mainHeight()})`).call(axis)
             .selectAll('text').style('text-anchor', 'end')
             .attr('dx', '-.8em').attr('dy', '.15em').attr('transform', 'rotate(-65)');
         return x;

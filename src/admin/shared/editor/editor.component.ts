@@ -45,6 +45,7 @@ export class EditorComponent<T> {
     onAdd() {
         this.current = null;
         this.form = this.service.form();
+        this.form.updateValueAndValidity({onlySelf: false, emitEvent: true});
         this.editorRef.Open();
         this.edit.next(this.form);
     }
@@ -52,6 +53,7 @@ export class EditorComponent<T> {
     onEdit(u: T) {
         this.current = u;
         this.form = this.service.form(u);
+        this.form.updateValueAndValidity({onlySelf: false, emitEvent: true});
         this.editorRef.Open();
         this.edit.next(this.form);
     }
