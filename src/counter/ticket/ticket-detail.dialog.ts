@@ -41,7 +41,7 @@ export class TicketDetailDialog {
   }
 
   Move() {
-    if (this.isMissed) {
+    if (this.isServing) {
       if (this.checkedCounters.length>0 && this.checkedServices.length>0) {
         Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
           this.Close();
