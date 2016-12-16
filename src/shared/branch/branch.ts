@@ -1,8 +1,9 @@
 import { IBranch } from '../../model/branch';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combinelatest';
 import 'rxjs/add/operator/map';
+
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -10,34 +11,25 @@ export const RxBranches = new BehaviorSubject<IBranch[]>([]);
 export const Branches = new Map<string, IBranch>();
 export * from '../../model/branch';
 
+let maxLevel = 0;
 
-const LevelRoot = new BehaviorSubject<IBranch[]>([]);
-
-RxBranches.subscribe(branches => {
-    if (branches.length < 1) {
-        return;
-    }
-
-    let branchMax = branches[0];
-    branches.forEach(b => Branches.set(b.id, b));
-    branches.forEach(b => {
-        if (branchMax.level < b.level) {
-            branchMax = b;
-        }
-        let p = Branches.get(b.id);
-        b.parent_name = (p && p.name) ? p.name : 'n/a';
-    });
-    LevelRoot.next([branchMax]);
-})
-
-export class BranchInLevel {
-    constructor(private level: number, private parents: BehaviorSubject<IBranch[]>) {
-        const rxLevel = RxBranches.map(branches => branches.filter(b => b.level === level));
-        Observable.combineLatest<IBranch[], IBranch[]>(rxLevel, parents).subscribe(v => {
-            const branches = v[0].filter(b => v[1].some(p => b.parent === p.id));
-            // branches.forEach(b => b._checked = true);
-            this.shown.next(branches);
-        });
+export class BranchLayer {
+    constructor(private level: number, private rxParents: BehaviorSubject<IBranch[]>) {
+        combineLatest<IBranch[], IBranch[]>(RxBranches, rxParents).subscribe(
+            ([branches, parents]) => {
+                const layer = branches.filter(b => {
+                    if (b.level === level) {
+                        if (maxLevel <= level) {
+                            b._checked = true;
+                            return true;
+                        }
+                        b._checked = false;
+                        return parents.some(p => b.parent === p.id);
+                    }
+                    return false;
+                });
+                this.shown.next(layer);
+            });
         this.shown.subscribe(branches => {
             this.selected.next(branches.filter(b => b._checked));
         });
@@ -65,57 +57,76 @@ export class BranchInLevel {
         this.shown.value.forEach(b => b._checked = false);
     }
 
-    None() {
-        return this.selected.value.length === 0;
+    Active() {
+        return this.selected.value.length > 0;
     }
 
 }
-
-const Level2 = new BranchInLevel(2, LevelRoot);
-const Level1 = new BranchInLevel(1, Level2.selected);
-const Level0 = new BranchInLevel(0, Level1.selected);
 
 
 export const SelectedBranchIDLevel0 = new BehaviorSubject<string>('');
 export const LowestLayerBranch = new BehaviorSubject<IBranch[]>([]);
 
+const Level3 = new BranchLayer(3, new BehaviorSubject<IBranch[]>([]));
+const Level2 = new BranchLayer(2, Level3.selected);
+const Level1 = new BranchLayer(1, Level2.selected);
+const Level0 = new BranchLayer(0, Level1.selected);
+export const AllLayers: BranchLayer[] = [Level0, Level1, Level2, Level3];
+
 Level0.selected.subscribe(branches => {
     SelectedBranchIDLevel0.next(branches.map(b => b.id).join(','));
+    let layer = FindLowest();
+    LowestLayerBranch.next(layer.selected.value);
 });
 
-export const AllLevels = [Level0, Level1, Level2];
-import {combineLatest} from 'rxjs/observable/combineLatest';
+RxBranches.subscribe(branches => {
+    if (branches.length < 1) {
+        return;
+    }
 
-function FindLowest() {
-    let layer = LevelRoot;
-    if (Level2.None()) {
-        return layer;
-    }
-    layer = Level2.selected;
-    if (Level1.None()) {
-        return layer;
-    }
-    layer = Level1.selected;
-    if (Level0.None()) {
-        return layer;
-    }
-    
-    layer = Level0.selected;
-    return layer;
+    branches.forEach(b => Branches.set(b.id, b));
+    branches.forEach(b => {
+        let p = Branches.get(b.id);
+        b.parent_name = (p && p.name) ? p.name : 'n/a';
+    });
+})
+
+export const RxMax = new BehaviorSubject<IBranch>(null);
+
+export function SetBranches(branches: IBranch[], maxBranchID: string) {
+    let branch = branches.find(b => b.id === maxBranchID);
+    maxLevel = branch? branch.level : 0;
+    branches= branches.filter(b => b.level < maxLevel);
+    branches.push(branch);
+    RxBranches.next(branches);
+    RxMax.next(branch);
 }
 
-Level0.selected.subscribe(_ => {
-    let layer = FindLowest();
-    LowestLayerBranch.next(layer.value);
-})
+function FindLowest() {
+    let i = 0;
+    for (i = 0; i <= maxLevel; i++) {
+        let layer = AllLayers[i];
+        if (layer.Active()) {
+            return layer;
+        }
+    }
+    return Level3;
+}
 
 export function GetTreeNames(branch_id: string, level?: number) {
     let names = [];
-    const branch_0 = Branches.get(branch_id) || { name: "n/a" };
-    names.push(branch_0.name || "n/a");
-    const branch_1 = Branches.get(branch_0.parent) || { name: 'n/a' };
-    names.push(branch_1.name || "n/a");
-    const branch_2 = Branches.get(branch_1.parent) || { name: "n/a" };
-    names.push(branch_2.name || "n/a");
+    let branch = Branches.get(branch_id) || { name: "n/a" };
+    for (let i = 0; i < AllLayers.length; i++) {
+        names.push(branch.name || "n/a");
+        branch = Branches.get(branch.parent) || { name: 'n/a' };
+    }
     return names;
+}
+
+export function GetLayer(level: number) {
+    return AllLayers[level];
+}
+
+export function GetMax() {
+    return maxLevel;
 }

@@ -1,9 +1,8 @@
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { IBranch, BranchInLevel } from './branch';
+import { IBranch, GetLayer, BranchLayer } from './branch';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { AllLevels } from './branch';
 
 @Component({
     selector: 'multi-branch-selector',
@@ -26,7 +25,7 @@ export class MultiBranchSelectorComponent {
         }
         this.inited = true;
         this._level = v || 0;
-        this.o = AllLevels[this._level];
+        this.o = GetLayer(this._level);
     }
 
     checkAll(event) {
@@ -43,7 +42,7 @@ export class MultiBranchSelectorComponent {
         this.o.ChangeByID(id, checked);
     }
 
-    o: BranchInLevel = AllLevels[0];
+    o: BranchLayer = GetLayer(0) ;
 
     get level() {
         return this._level;

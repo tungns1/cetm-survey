@@ -6,16 +6,6 @@ import { Auth, Backend, Branch, Editor, Model } from '../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 
-export function NewForm(b?: Model.IBranch) {
-    b = b || <any>{};
-    return (new FormBuilder).group({
-        id: [b.id],
-        name: [b.name, Validators.required],
-        code: [b.code, Validators.required],
-        parent: [b.parent],
-        level: [b.level || 0, Validators.required],
-    });
-}
 
 
 export const Api = new Backend.HttpApi<Model.IBranch>("/api/admin/branch");
@@ -23,7 +13,7 @@ export const Api = new Backend.HttpApi<Model.IBranch>("/api/admin/branch");
 @Component({
   selector: 'admin-branch',
   templateUrl: 'branch.component.html',
- styleUrls: ['branch.component.css']
+  styleUrls: ['branch.component.css']
 })
 export class BranchComponent {
   constructor(route: ActivatedRoute) {
@@ -32,29 +22,51 @@ export class BranchComponent {
       if (isNaN(this.level)) {
         this.level = 2;
       }
-      this.branches = Branch.AllLevels[this.level].shown;
+      this.branches = Branch.GetLayer(this.level).shown;
       let level = Branch.BranchLevels.filter(v => v.value === this.level)[0];
       this.fields[0].title = level.name;
+      let up = Branch.GetLayer(this.level + 1);
+      if (up) {
+        this.upperLayers = up.shown;
+      } else {
+        this.upperLayers = null;
+      }
     });
   }
-  
+
   branches: Observable<Model.IBranch[]>;
+  upperLayers: Observable<Model.IBranch[]>;
   private level: number;
 
   Refresh() {
     Auth.RefreshMySettings().subscribe(console.log);
   }
 
-  service: Editor.IEditService<Model.IUser> = {
+
+  NewForm(b?: Model.IBranch) {
+    b = b || <any>{};
+    if (this.level === Branch.RxMax.value.level - 1) {
+      b.parent = b.parent || Branch.RxMax.value.id;
+    } 
+    return (new FormBuilder).group({
+      id: [b.id],
+      name: [b.name, Validators.required],
+      code: [b.code, Validators.required],
+      parent: [b.parent],
+      level: [this.level || 0, Validators.required],
+    });
+  }
+
+  service: Editor.IEditService<Model.IBranch> = {
     api: Api,
-    form: NewForm,
+    form: u => this.NewForm(u),
     refresh: () => this.Refresh()
   };
 
   fields: Editor.IField[] = [
-    {title: "Chi nhánh cha", name: "parent_name"},
-    {title: "Tên chi nhánh", name: "name"},
-    {title: "Mã", name: "code"}
+    { title: "Địa điểm cha", name: "parent_name" },
+    { title: "Tên địa điểm", name: "name" },
+    { title: "Mã", name: "code" }
   ]
 
 }

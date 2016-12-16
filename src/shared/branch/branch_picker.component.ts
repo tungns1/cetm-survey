@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@an
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { IBranch } from './branch';
-import { RxBranches, AllLevels } from './branch';
+import { RxBranches, GetLayer } from './branch';
 
 export const BRANCH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -34,7 +34,7 @@ const noop = function () {
 export class BranchPickerComponent implements ControlValueAccessor {
 
     @Input() set level(v: number) {
-        const o = AllLevels[v];
+        const o = GetLayer(v);
         if (o) {
             this.branches = o.shown;
         } else {
