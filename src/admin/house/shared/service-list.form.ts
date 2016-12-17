@@ -96,6 +96,7 @@ class ServiceListComponent implements ControlValueAccessor {
         let service = this.services.find(s => s.id === this.active.id);
         if (service) {
             this.active.l10n = service.l10n;
+            this.active.code = service.code;
         }
     }
 

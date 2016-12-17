@@ -13,7 +13,7 @@
         <select class="select" [(ngModel)]="active.id" (ngModelChange)="setActive()">
             <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
         </select>
-        <input class="inputs" [(ngModel)]="active.image" placeholder="Hình ảnh">
+        <input class="inputs" [(ngModel)]="active.code" placeholder="Mã hiển thị">
         <l10n-form [(ngModel)]="active.l10n"></l10n-form>
         <hr>
         <button (click)="Close()"> <i class="fa fa-close"></i> Hủy </button>
