@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { RxActiveAggregate } from '../backend/aggregate.service';
 import { Observable } from 'rxjs/Observable';
-import { RxGroupTitle } from '../filter/filter.module';
+import { RxGroupTitle } from '../filter/';
 
 @Component({
     selector: 'report-overview',

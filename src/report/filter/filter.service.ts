@@ -56,6 +56,7 @@ export function GetUsers() {
 }
 
 export const RxGroupBy = new BehaviorSubject<string>('branch_id');
+export const RxPeriod = new BehaviorSubject<string>('day');
 
 const Titles = {
     branch_id: "PGD",

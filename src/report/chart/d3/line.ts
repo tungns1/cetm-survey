@@ -1,35 +1,34 @@
 
 import { AbstractChart } from './chart';
 
+import { scaleTime, scalePoint, scaleLinear, scaleOrdinal, schemeCategory10 } from 'd3-scale';
+import { line, curveLinear } from 'd3-shape';
 
-import { timeParse, timeFormat } from 'd3-time-format';
-import { scalePoint, scaleLinear, scaleOrdinal, schemeCategory10 } from 'd3-scale';
-import { line } from 'd3-shape';
-
-import { select, event, Selection } from 'd3-selection';
-import 'd3-transition';
 import { max, extent } from 'd3-array';
 import { axisBottom, axisLeft, axisRight } from 'd3-axis';
 
-const div = select('body').append('div').attr('class', 'tooltip').style('opacity', 0);
 import { Item } from './chart';
+
+const lineCurve = curveLinear;
 
 export class LineChart extends AbstractChart {
     render() {
         const data = this._data;
+        if (data.length < 1) {
+            return;
+        }
 
         const x = this.getXAxis();
         const yLeft = this.getYLeftAxis();
         const yRight = this.getYRightAxis();
 
         const lines = this.svg().selectAll('.item').data(this.getItems());
-        
-        let t0 = (x.bandwidth() / 2) || 0;
+
         lines.enter().append('path').attr('class', 'item').merge(lines)
-            .attr("transform", `translate(${t0}, 0)`).attr('d', i => {
+            .attr('d', i => {
                 const y = i.axis === 'right' ? yRight : yLeft;
                 const field = i.field;
-                return line().x(v => x(v['time'])).y(v => {
+                return line().curve(lineCurve).x(v => x(v['date'])).y(v => {
                     return y(v[field]);
                 })(data);
             }).attr('stroke-dasharray', function () {
@@ -46,14 +45,9 @@ export class LineChart extends AbstractChart {
     }
 
     getXAxis() {
-        const x = scalePoint().range([0, this.mainWidth()]);
-        x.domain(this._data.map(d => d.time));
-        const axis = axisBottom(x);
-        axis.ticks(10);
-
-        this.svg().select('g.x.axis').attr('transform', `translate(0, ${this.mainHeight()})`).call(axis)
-            .selectAll('text').style('text-anchor', 'end')
-            .attr('dx', '-.8em').attr('dy', '.15em').attr('transform', 'rotate(-65)');
+        const {x, axis} = this.makeX();
+        this.svg().select('g.x.axis')
+            .attr('transform', `translate(0, ${this.mainHeight()})`).call(axis);
         return x;
     }
 

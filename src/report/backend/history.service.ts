@@ -1,7 +1,7 @@
 import { ITransaction, IHistory } from './transaction.model';
 import { Backend, Branch } from '../shared/';
 const backendReport = new Backend.HttpApi<any>("/api/report/transaction");
-import { IFilter, GetFilter } from '../filter/filter.module';
+import { IFilter, GetFilter } from '../filter/';
 
 interface ITransactionView extends ITransaction {
     branches: string[];

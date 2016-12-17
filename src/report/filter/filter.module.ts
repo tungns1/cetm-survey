@@ -20,7 +20,3 @@ import {
     exports: [ReportNamePipe, ReportFilterComponent],
 })
 export class ReportFilterModule { }
-
-export * from './filter.component';
-
-export { RxGroupBy, RxGroupTitle, NameMap,GetServices, GetCounters, GetUsers,GetBranch } from './filter.service';

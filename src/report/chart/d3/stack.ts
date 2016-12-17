@@ -1,28 +1,28 @@
 
 import { AbstractChart, Item } from './chart';
 
-import { timeDays } from 'd3-time';
-import { timeParse, timeFormat } from 'd3-time-format';
-import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
+import { scaleTime, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { line, stack } from 'd3-shape';
 
-import { select, event, Selection } from 'd3-selection';
-import 'd3-transition';
 import { max, extent, sum } from 'd3-array';
 import { axisBottom, axisLeft, axisRight } from 'd3-axis';
 
-const div = select('body').append('div').attr('class', 'tooltip').style('opacity', 0);
-const formatDate = timeFormat("%e %B");
-
 export class StackChart extends AbstractChart {
+    private barWidth = 1;
+
     render() {
         const data = this._data;
+        if (data.length < 1) {
+            return;
+        }
         const items = this.getItems();
         const svg = this.svg();
         const x = this.getXAxis();
         const y = this.getYAxis();
         const height = this.mainHeight();
         const fields = items.map(i => i.field);
+        const barWidth = this.barWidth;
+        const padding = barWidth * 0.05;
 
         const colors = scaleOrdinal().range(items.map(i => i.color));
         colors.domain(fields);
@@ -34,8 +34,8 @@ export class StackChart extends AbstractChart {
             .attr('fill', (d, i) => <any>colors(d['key']))
             .selectAll('rect').data(d => <any>d);
         bars.enter().append('rect').merge(bars)
-            .attr('x', d => x(d['data']['time']))
-            .attr('width', x.bandwidth())
+            .attr('x', d => x(d['data']['date']) + padding)
+            .attr('width', barWidth - padding * 2)
             .attr('y', d => y(d[1]))
             .attr('height', 0)
             .transition().duration(500)
@@ -45,12 +45,10 @@ export class StackChart extends AbstractChart {
     }
 
     getXAxis() {
-        const x = scaleBand().range([0, this.mainWidth()]);
-        x.domain(this._data.map(d => d.time));
-        x.padding(0.2);
-        this.svg().select('g.x.axis').attr('transform', `translate(0, ${this.mainHeight()})`).call(axisBottom(x))
-            .selectAll('text').style('text-anchor', 'end')
-            .attr('dx', '-.8em').attr('dy', '.15em').attr('transform', 'rotate(-65)');
+        const {x, axis, count} = this.makeX();
+        this.barWidth = this.mainWidth() / count;
+        this.svg().select('g.x.axis')
+            .attr('transform', `translate(${this.barWidth / 2}, ${this.mainHeight()})`).call(axis);
         return x;
     }
 

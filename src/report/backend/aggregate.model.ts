@@ -44,6 +44,7 @@ export class AggregateView {
     counter_id: string;
     service_id: string;
     time: string;
+    date: Date;
 
     s_r = 0; // sum rating
     c_t = 0; // count transaction

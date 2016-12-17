@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { RxFilter } from '../filter/filter.module';
+import { RxFilter } from '../filter/';
 import { RefreshAggregate } from '../backend/aggregate.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 

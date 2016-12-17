@@ -1,6 +1,6 @@
-<div class="chart" bar-chart *ngIf="type==='bar'" [data]="data | async" [items]="items | async"></div>
-<div class="chart" stack-chart *ngIf="type==='stack'" [data]="data | async" [items]="items | async"></div>
-<div class="chart" line-chart *ngIf="type==='line'" [data]="data | async" [items]="items | async"></div>
+<div class="chart" bar-chart *ngIf="type==='bar'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
+<div class="chart" stack-chart *ngIf="type==='stack'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
+<div class="chart" line-chart *ngIf="type==='line'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
 <div class="chart" *ngIf="type==='pie'">
     <div pie-chart [data]="pieData | async" [items]="items | async"></div>
 </div>

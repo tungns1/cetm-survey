@@ -20,6 +20,9 @@
         "rootDir": "./src",
         "typeRoots": [
             "../node_modules/@types"
+        ],
+        "types": [
+            "d3"
         ]
     }
 }

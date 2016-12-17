@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
-import { GetServices, GetCounters, GetUsers, RxGroupBy } from './filter.service';
+import { GetServices, GetCounters, GetUsers, RxGroupBy, RxPeriod } from './filter.service';
 import { Branch } from '../shared/';
 import { Locale } from '../../config/';
 
@@ -144,6 +144,7 @@ export class ReportFilterComponent {
     refresh() {
         const filter = GetFilter();
         RxGroupBy.next(filter.group_by);
+        RxPeriod.next(filter.period);
         RxFilter.next(filter);
     }
 }

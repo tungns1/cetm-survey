@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { RxCount, RxHistory, RefreshHistory, ExportHistory } from '../backend/history.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RxFilter, IFilter } from '../filter/filter.module';
+import { RxFilter, IFilter } from '../filter/';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

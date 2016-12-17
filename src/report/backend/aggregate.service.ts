@@ -6,7 +6,7 @@ import { IAggregate, RxAggregate, AggregateView } from './aggregate.model';
 import { Backend } from '../shared/';
 
 const backendReport = new Backend.HttpApi<any>("/api/report/transaction");
-import { RxGroupBy, RxFilter, IFilter, NameMap, GetUsers, GetCounters, GetServices, GetBranch } from '../filter/filter.module';
+import { RxGroupBy, RxPeriod, RxFilter, IFilter, NameMap, GetUsers, GetCounters, GetServices, GetBranch } from '../filter/';
 
 export function RefreshAggregate(filter: IFilter) {
     let res = backendReport.Get<IAggregate[]>("aggregate", filter).do(v => RxAggregate.next(v));
@@ -15,12 +15,11 @@ export function RefreshAggregate(filter: IFilter) {
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
 export * from './aggregate.model';
 
 export const RxSummaryView = RxAggregate.map(AggregateView.Make);
 
-function MakeIndexBy(records: IAggregate[], field: string) {
+export function MakeIndexBy(records: IAggregate[], field: string) {
     let res: { [index: string]: AggregateView } = {};
     records.forEach(v => {
         let fieldValue = v[field];
@@ -33,16 +32,10 @@ function MakeIndexBy(records: IAggregate[], field: string) {
     return values;
 }
 
-export const RxAggregateByTime = RxAggregate.map(records => {
-    const views = MakeIndexBy(records, 'time');
-    views.sort((a, b) => a.time > b.time ? 1 : -1);
-    return views;
-});
+export const RxActiveAggregate = RxAggregate.map(v => {
+    const group_by = RxGroupBy.value;
+    const views = MakeIndexBy(v, group_by);
 
-export const RxActiveAggregate = Observable.combineLatest(RxAggregate, RxGroupBy).map(view => {
-    const group_by = view[1];
-    const views = MakeIndexBy(view[0], view[1]);
-    
     let ids: string[] = [];
     if (group_by === 'branch_id') {
         ids = GetBranch();

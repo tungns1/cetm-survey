@@ -7,6 +7,18 @@ export interface Item {
 }
 
 import { select, Selection, BaseType } from 'd3-selection';
+import { autoFormatDate, Format } from './locale';
+import { extent } from 'd3-array';
+import { timeDay, timeWeek, timeMonth, timeYear } from 'd3-time';
+import { scaleTime } from 'd3-scale';
+import { axisBottom } from 'd3-axis';
+
+const intervals = {
+    day: timeDay,
+    week: timeWeek,
+    month: timeMonth,
+    year: timeYear
+}
 
 export class AbstractChart {
     constructor(protected el: HTMLElement) {
@@ -23,7 +35,7 @@ export class AbstractChart {
         return this;
     }
 
-    margin(left: number, top: number, right: number, bottom: number) {
+    margin(top: number, right: number, bottom: number, left: number) {
         this._margin = {
             left: left,
             top: top,
@@ -35,6 +47,7 @@ export class AbstractChart {
 
     data(d: any) {
         this._data = d;
+        this._extents = extent(this._data, d => d.date);
         return this;
     }
 
@@ -57,6 +70,31 @@ export class AbstractChart {
         return this._svg;
     }
 
+    protected dateFormat = Format.day;
+    protected interval = intervals.day;
+
+    SetPeriod(p: string) {
+        this.dateFormat = Format[p] || Format.day;
+        this.interval = intervals[p] || intervals.day;
+        return this;
+    }
+
+    protected makeX() {
+        const min = this._extents[0];
+        const max = this._extents[1];
+        max.setTime(max.getTime() + 1000);
+        const x = scaleTime().range([0, this.mainWidth()]);
+        x.domain([min, max]);
+        const count = this.interval.count(min, max);
+        const step = Math.ceil(count / 8) || 1;
+        const values = this.interval.range(min, max, step);
+        const axis = axisBottom(x).tickFormat(this.dateFormat).tickValues(values);
+        return {
+            x: x,
+            axis: axis,
+            count: count
+        }
+    }
 
     public render() {
 
@@ -88,6 +126,7 @@ export class AbstractChart {
         bottom?: number;
     } = {};
     protected _data: any[] = [];
+    protected _extents: [Date, Date] = [new Date, new Date];
     protected _items: Item[] = [];
     protected _svg: Selection<any, any, any, any>;
 }
@@ -113,14 +152,19 @@ export class ChartComponent<T extends AbstractChart> {
         this.getChart().items(d).render();
     }
 
+    set period(p: string) {
+        this.getChart().SetPeriod(p).render();
+    }
+
     getChart() {
         if (!this.chart) {
             const el: HTMLElement = this.el.nativeElement;
             this.chart = this.make(el);
-            this.chart.width(el.offsetWidth).height(el.offsetHeight).margin(50, 20, 20, 60);
+            this.chart.width(el.offsetWidth).height(el.offsetHeight).margin(20, 50, 20, 60);
         }
         return this.chart;
     }
 
-    static inputs = ['data', 'items'];
+
+    static inputs = ['data', 'items', 'period'];
 }
