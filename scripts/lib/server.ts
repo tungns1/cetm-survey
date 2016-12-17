@@ -20,9 +20,16 @@ function srcSubFolder(file: string) {
 export class Server {
     private options: any;
     private builders: Build[];
-    private apps = Apps;
+    private apps = [];
 
-    constructor() {
+    constructor(app: string) {
+        if (app) {
+            this.apps = Apps.filter(a => a == app);
+        }
+        if (this.apps.length === 0) {
+            this.apps = Apps;
+        }
+        console.log("selected app: ", this.apps);
         this.builders = this.apps.map(a => new Build(a));
     }
 

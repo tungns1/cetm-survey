@@ -79,7 +79,7 @@ if (args[0] === 'gzip') {
 }
 
 if (args[0] === 'serve' || args[0] === 'server' || args[0] === 's') {
-    const cmd = new server.Server();
+    const cmd = new server.Server(args[1]);
     cmd.watch.subscribe(data => {
         console.log(data);
     }, err => {
