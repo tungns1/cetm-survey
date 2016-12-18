@@ -3,6 +3,7 @@ export interface Item {
     field: string;
     axis?: 'left' | 'right';
     color?: string;
+    title?: string;
     _hidden?: boolean;
 }
 
@@ -10,7 +11,7 @@ import { select, Selection, BaseType } from 'd3-selection';
 import { autoFormatDate, Format } from './locale';
 import { extent } from 'd3-array';
 import { timeDay, timeWeek, timeMonth, timeYear } from 'd3-time';
-import { scaleTime, scaleLinear, ScaleBand } from 'd3-scale';
+import { scaleTime, scaleLinear } from 'd3-scale';
 import { AxisScale, axisBottom, axisLeft } from 'd3-axis';
 
 const intervals = {
@@ -130,12 +131,12 @@ export class AbstractChart {
         const x = scaleLinear().range([0, w]);
         const xA = this._svg.append('g').attr('class', 'grid')
             .attr('transform', `translate(0, ${h})`)
-            .call(axisBottom(x).ticks(10).tickSize(-h).tickFormat(() => ""));
+            .call(axisBottom(x).ticks(24).tickSize(-h).tickFormat(() => ""));
         xA.selectAll('line').attr("stroke", "lightgrey").attr("stroke-opacity", 0.7).attr("shape-rendering", "crispEdges");
         xA.selectAll('path').attr("stroke-width", 0);
         var y = scaleLinear().range([h, 0]);
         const yA = this._svg.append('g').attr('class', 'grid')
-            .call(axisLeft(x).ticks(10).tickSize(-w).tickFormat(() => ""));
+            .call(axisLeft(x).ticks(24).tickSize(-w).tickFormat(() => ""));
         yA.selectAll('line').attr("stroke", "lightgrey").attr("stroke-opacity", 0.7).attr("shape-rendering", "crispEdges");
         yA.selectAll("path").attr("stroke-width", 0);
     }
