@@ -1,7 +1,7 @@
 
 import { AbstractChart, Item } from './chart';
 
-import { scaleTime, scaleLinear, scaleOrdinal } from 'd3-scale';
+import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { line, stack } from 'd3-shape';
 
 import { max, extent, sum } from 'd3-array';
@@ -21,8 +21,6 @@ export class StackChart extends AbstractChart {
         const y = this.getYAxis();
         const height = this.mainHeight();
         const fields = items.map(i => i.field);
-        const barWidth = this.barWidth;
-        const padding = barWidth * 0.05;
 
         const colors = scaleOrdinal().range(items.map(i => i.color));
         colors.domain(fields);
@@ -34,8 +32,8 @@ export class StackChart extends AbstractChart {
             .attr('fill', (d, i) => <any>colors(d['key']))
             .selectAll('rect').data(d => <any>d);
         bars.enter().append('rect').merge(bars)
-            .attr('x', d => x(d['data']['date']) + padding)
-            .attr('width', barWidth - padding * 2)
+            .attr('x', d => x(this.dateFormat(d['data']['date'])))
+            .attr('width', x.bandwidth())
             .attr('y', d => y(d[1]))
             .attr('height', 0)
             .transition().duration(500)
@@ -45,10 +43,17 @@ export class StackChart extends AbstractChart {
     }
 
     getXAxis() {
-        const {x, axis, count} = this.makeX();
-        this.barWidth = this.mainWidth() / count;
-        this.svg().select('g.x.axis')
-            .attr('transform', `translate(${this.barWidth / 2}, ${this.mainHeight()})`).call(axis);
+        const min = this._extents[0];
+        const max = this._extents[1];
+        const x = scaleBand().range([0, this.mainWidth()]);
+        const range = this.interval.range(min, max, 1);
+        // inclusive
+        range.push(max);
+        x.domain(range.map(this.dateFormat));
+        x.padding(0.2);
+        const values = this.tickValues().map(this.dateFormat);
+        const axis = this.selectXAxis().call(axisBottom(x).tickValues(values));
+        const barWidth = x.bandwidth();
         return x;
     }
 

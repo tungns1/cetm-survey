@@ -45,9 +45,11 @@ export class LineChart extends AbstractChart {
     }
 
     getXAxis() {
-        const {x, axis} = this.makeX();
-        this.svg().select('g.x.axis')
-            .attr('transform', `translate(0, ${this.mainHeight()})`).call(axis);
+        const x = scaleTime().range([0, this.mainWidth()]);
+        x.domain(this._extents);
+        const tickValues = this.tickValues();
+        const axis = axisBottom(x).tickFormat(this.dateFormat).tickValues(tickValues);
+        this.selectXAxis().call(axis);
         return x;
     }
 

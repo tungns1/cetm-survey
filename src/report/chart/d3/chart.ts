@@ -10,8 +10,8 @@ import { select, Selection, BaseType } from 'd3-selection';
 import { autoFormatDate, Format } from './locale';
 import { extent } from 'd3-array';
 import { timeDay, timeWeek, timeMonth, timeYear } from 'd3-time';
-import { scaleTime } from 'd3-scale';
-import { axisBottom } from 'd3-axis';
+import { scaleTime, scaleLinear, ScaleBand } from 'd3-scale';
+import { AxisScale, axisBottom, axisLeft } from 'd3-axis';
 
 const intervals = {
     day: timeDay,
@@ -65,9 +65,14 @@ export class AbstractChart {
             this._svg.append('g').attr('class', 'y1 axis');
             this._svg.append('g').attr('class', 'y2 axis');
             this._svg.append('g').attr('class', 'x axis');
+            this.drawGrid();
             // this._svg.attr('shape-rendering', 'crispEdges');
         }
         return this._svg;
+    }
+
+    protected selectXAxis() {
+        return this.svg().select('g.x.axis').attr('transform', `translate(0, ${this.mainHeight()})`);
     }
 
     protected dateFormat = Format.day;
@@ -79,21 +84,22 @@ export class AbstractChart {
         return this;
     }
 
-    protected makeX() {
+    private max_ticks = 8;
+
+    protected tickValues<Domain>() {
         const min = this._extents[0];
         const max = this._extents[1];
-        max.setTime(max.getTime() + 1000);
-        const x = scaleTime().range([0, this.mainWidth()]);
-        x.domain([min, max]);
         const count = this.interval.count(min, max);
-        const step = Math.ceil(count / 8) || 1;
+
+        const step = Math.ceil(count / this.max_ticks) || 1;
         const values = this.interval.range(min, max, step);
-        const axis = axisBottom(x).tickFormat(this.dateFormat).tickValues(values);
-        return {
-            x: x,
-            axis: axis,
-            count: count
+        const includeMax = values.length < this.max_ticks || this.interval.offset(values[values.length - 1], step) < max;
+        if (includeMax) {
+            values.push(max);
+        } else {
+            values[values.length - 1] = max;
         }
+        return values;
     }
 
     public render() {
@@ -115,6 +121,23 @@ export class AbstractChart {
 
     protected getItems() {
         return this._items.filter(i => !i._hidden);
+    }
+
+    protected drawGrid() {
+        // set the ranges
+        const w = this.mainWidth();
+        const h = this.mainHeight();
+        const x = scaleLinear().range([0, w]);
+        const xA = this._svg.append('g').attr('class', 'grid')
+            .attr('transform', `translate(0, ${h})`)
+            .call(axisBottom(x).ticks(10).tickSize(-h).tickFormat(() => ""));
+        xA.selectAll('line').attr("stroke", "lightgrey").attr("stroke-opacity", 0.7).attr("shape-rendering", "crispEdges");
+        xA.selectAll('path').attr("stroke-width", 0);
+        var y = scaleLinear().range([h, 0]);
+        const yA = this._svg.append('g').attr('class', 'grid')
+            .call(axisLeft(x).ticks(10).tickSize(-w).tickFormat(() => ""));
+        yA.selectAll('line').attr("stroke", "lightgrey").attr("stroke-opacity", 0.7).attr("shape-rendering", "crispEdges");
+        yA.selectAll("path").attr("stroke-width", 0);
     }
 
     protected _width: number;
