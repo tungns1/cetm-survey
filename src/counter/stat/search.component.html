@@ -21,30 +21,35 @@
     .search-result {
         height: 200px;
     }
+    
+    p {
+        padding: 2px 10px;
+        margin: 0px;
+    }
 </style>
 
 <input type="text" #tm placeholder="Tìm kiếm số vé" (keyup.enter)="searchTicket(tm.value)">
 <div class="message"> {{message}} </div>
 
 <div class="search-result" *ngIf="ticket">
-    <ul>
-        <li>Thời điểm lấy vé: {{ticket.ctime | date:"hh:mm:ss"}}</li>
-        <li>Thời điểm gọi vào:<span style="text-align: right;" *ngIf="ticket.mtime!=0">{{ticket.mtime | date:"hh:mm:ss"}}</span></li>
-        <li>Trạng thái hiện tại: {{ticket.state}} </li>
-    </ul>
 
+    <p>Thời điểm lấy vé: {{ticket.ctime | date:"hh:mm:ss"}}</p>
+    <p>Thời điểm gọi vào:<span style="text-align: right;" *ngIf="ticket.mtime!=0">{{ticket.mtime | date:"hh:mm:ss"}}</span></p>
+    <p>Trạng thái hiện tại: {{ticket.state}} </p>
     <div>
-        Lịch sử:
+        <p>Lịch sử:</p>
         <div class="table">
             <div class="table-row header">
                 <div>Thời điểm</div>
                 <div>Trạng thái</div>
                 <div>Thông tin</div>
             </div>
-            <div class="table-row" *ngFor="let t of ticket.tracks">
-                <div> {{t.mtime | date:"hh:mm:ss"}} </div>
-                <div> {{t.state}} </div>
-                <div> {{t.services | ticketServiceName}} </div>
+            <div style="height:100px;overflow: auto;">
+                <div class="table-row" *ngFor="let t of ticket.tracks">
+                    <div> {{t.mtime | date:"hh:mm:ss"}} </div>
+                    <div> {{t.state}} </div>
+                    <div> {{t.services | ticketServiceName}} </div>
+                </div>
             </div>
         </div>
     </div>
