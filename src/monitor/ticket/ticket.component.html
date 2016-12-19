@@ -27,7 +27,7 @@
                 </tr>
             </tbody>
             <tbody *ngIf="tag==='serve'" class="table-row">
-                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.finish_at!=0">
+                <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.f_at!=0">
                     <td> {{i+1}} </td>
                     <td> {{item.branches[2]}} </td>
                     <td> {{item.branches[1]}} </td>
