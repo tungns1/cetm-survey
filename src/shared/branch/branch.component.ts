@@ -29,7 +29,6 @@ export class MultiBranchSelectorComponent {
     }
 
     checkAll(event) {
-        console.log(this.o.shown.value);
         let selects: IBranch[] = [];
         this.o.shown.value.forEach(u => {
             u._checked = event
