@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef,ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: 'report.component.html',
-    styleUrls: ['report.component.css']
+    styleUrls: ['report.component.css'],
+    encapsulation: ViewEncapsulation.None
+
 })
 export class ReportComponent {
     show = true;

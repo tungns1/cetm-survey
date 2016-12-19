@@ -18,7 +18,7 @@
                 <th> Thời điểm kết thúc </th>
                 <th class="number"> Kết quả phản hồi </th>
             </thead>
-            <tbody>
+            <tbody class="table-row">
                 <tr *ngFor="let d of data | async; let i = index">
                     <td class="stt">{{(i+1)+(skip | async)}}</td>
                     <td class="td-date-rp"> {{d.v_cdate}} </td>
@@ -53,5 +53,5 @@
 
 
 <div style="float: right;margin-top: 20px;">
-    <button class="btpointer" (click)="excel()"> XUẤT RA FILE EXCEL </button>
+    <button class="bt btpointer" (click)="excel()"> XUẤT RA FILE EXCEL </button>
 </div>

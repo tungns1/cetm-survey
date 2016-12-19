@@ -29,7 +29,7 @@
 <div class="search-result" *ngIf="ticket">
     <ul>
         <li>Thời điểm lấy vé: {{ticket.ctime | date:"hh:mm:ss"}}</li>
-        <li>Thời điểm gọi vào:<span style="text-align: right;"></span></li>
+        <li>Thời điểm gọi vào:<span style="text-align: right;" *ngIf="ticket.mtime!=0">{{ticket.mtime | date:"hh:mm:ss"}}</span></li>
         <li>Trạng thái hiện tại: {{ticket.state}} </li>
     </ul>
 

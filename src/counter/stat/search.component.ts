@@ -11,6 +11,7 @@ export class SearchComponent {
     ticket: Model.House.ITicket;
 
     searchTicket(cnum: string) {
+        console.log(cnum);
         this.ticket = void 0;
         this.message = 'lookup ' + cnum + ' ...';
         Search(cnum).subscribe(t => {

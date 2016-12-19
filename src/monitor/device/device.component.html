@@ -10,7 +10,7 @@
                 <th> {{tab.active?.name}} </th>
                 <th> Thời điểm mất kết nối </th>
             </thead>
-            <tbody>
+            <tbody class="table-row">
                 <tr *ngFor="let item of rxData | async; let i = index">
                     <td> {{i+1}} </td>
                     <td> {{item.branches[2]}} </td>

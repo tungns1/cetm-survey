@@ -54,3 +54,7 @@ button {
     background-color: #0b8fda;
     color: white;
 }
+
+.table-row {
+    font-size: 14px;
+}

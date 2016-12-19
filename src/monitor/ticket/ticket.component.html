@@ -13,7 +13,7 @@
                 <th> {{done}} </th>
                 <th> {{thoigian}} </th>
             </thead>
-            <tbody *ngIf="tag==='wait'">
+            <tbody *ngIf="tag==='wait'" class="table-row">
                 <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.s_at!=0">
                     <td> {{i+1}} </td>
                     <td> {{item.branches[2]}} </td>
@@ -26,7 +26,7 @@
                     <td> {{item.t_wait | hour}} </td>
                 </tr>
             </tbody>
-            <tbody *ngIf="tag==='serve'">
+            <tbody *ngIf="tag==='serve'" class="table-row">
                 <tr *ngFor="let item of rxData | async; let i = index" [class.done]="item.finish_at!=0">
                     <td> {{i+1}} </td>
                     <td> {{item.branches[2]}} </td>

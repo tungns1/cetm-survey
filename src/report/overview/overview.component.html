@@ -12,7 +12,7 @@
             <th> Giao dịch thời gian phục vụ chuẩn </th>
             <th> Giao dịch thời gian phục vụ vượt chuẩn </th>
         </thead>
-        <tbody>
+        <tbody class="table-row">
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
@@ -40,7 +40,7 @@
             <th> Thời gian chờ ngắn nhất </th>
             <th> Thời gian chờ dài nhất </th>
         </thead>
-        <tbody>
+        <tbody class="table-row">
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
@@ -67,7 +67,7 @@
             <th> Giao dịch phản hồi trung bình </th>
             <th> Giao dịch phản hồi kém</th>
         </thead>
-        <tbody>
+        <tbody class="table-row">
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
