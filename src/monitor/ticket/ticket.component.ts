@@ -29,18 +29,10 @@ export class MonitorTicketComponent {
 
     setActive(tab: Tab) {
         if (tab.tag === 'wait') {
-            this.rxData = TicketTracks.TicketWait().map(tracks => {
-                    tracks.sort((a, b) => a.c_at > b.c_at ? 1 : 0);
-                    
-                return tracks;
-            });
+            this.rxData = TicketTracks.WaitLong();
         }else {
-            this.rxData = TicketTracks.TicketServe().map(tracks => {
-                    tracks.sort((a, b) => a.s_at > b.s_at ? 1 : 0);
-                return tracks;
-            });
+            this.rxData = TicketTracks.ServeLong();
         }
-        this.rxData.subscribe(data => console.log(data));
         this.thoidiem = tab.name[0];
         this.done = tab.name[1];
         this.thoigian = tab.name[2];

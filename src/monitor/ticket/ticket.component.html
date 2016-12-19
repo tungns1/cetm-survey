@@ -23,7 +23,7 @@
                     <td> {{item.cnum}} </td>
                     <td> {{item.c_at | ctimeDate}} </td>
                     <td><span *ngIf="item.s_at!=0"> {{item.s_at | ctimeDate}} </span></td>
-                    <td> {{item.t_wait | hour}} </td>
+                    <td> {{item.swtime | hour}} </td>
                 </tr>
             </tbody>
             <tbody *ngIf="tag==='serve'" class="table-row">
@@ -35,8 +35,8 @@
                     <td> {{item.service}} </td>
                     <td> {{item.cnum}} </td>
                     <td> {{item.s_at | ctimeDate}} </td>
-                    <td><span *ngIf="item.finish_at!=0"> {{item.finish_at | ctimeDate}}</span> </td>
-                    <td> {{item.t_serve | hour}} </td>
+                    <td><span *ngIf="item.f_at!=0"> {{item.f_at | ctimeDate}}</span> </td>
+                    <td> {{item.sstime | hour}} </td>
                 </tr>
             </tbody>
         </table>

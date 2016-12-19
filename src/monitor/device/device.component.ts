@@ -5,7 +5,7 @@ import { Tab } from '../tab/';
 
 const tabDevice: Tab[] = [{
     name: 'Server',
-    tag: 'server',
+    tag: 'branch',
     title: 'SERVER'
 }, {
     name: 'Màn hình kiosk',
