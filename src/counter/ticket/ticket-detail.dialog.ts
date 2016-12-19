@@ -42,12 +42,12 @@ export class TicketDetailDialog {
 
   Move() {
     if (this.isServing) {
-      if (this.checkedCounters.length>0 && this.checkedServices.length>0) {
+      if (this.checkedCounters.length>0 || this.checkedServices.length>0) {
         Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
           this.Close();
         });
       }else{
-        alert("Bạn phải chọn quầy và dịch vụ");
+        alert("Bạn phải chọn quầy hoặc dịch vụ");
       }
 
     } else {
