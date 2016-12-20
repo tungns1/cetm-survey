@@ -43,7 +43,7 @@ export function Login(form) {
 export function Refresh() {
     return RefreshMySettings().catch(e => {
         if (IsErrUnauthorized(e)) {
-            Destroy();
+            Logout();
         }
         return of(false);
     });

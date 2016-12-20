@@ -14,7 +14,7 @@ interface ILoginModel {
 }
 
 const ViErrors = {
-  
+
 }
 
 ViErrors['record not found'] = 'Sai tên đăng nhập';
@@ -23,7 +23,7 @@ ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
 
 function Format(e: string) {
   if (typeof e !== 'string') {
-    return;
+    return '';
   }
   if (ViErrors[e]) {
     return ViErrors[e];
