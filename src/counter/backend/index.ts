@@ -12,7 +12,10 @@ import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/delay';
 
 socket.Subscribe<Model.House.ICounter>("/counter", c => RxCurrentCounter.next(c));
-socket.Subscribe<Model.House.ICounter[]>("/counters", c => RxCounters.next(c));
+socket.Subscribe<Model.House.ICounter[]>("/counters", c => {
+    c.sort((a, b) => a.name > b.name ? 1 : 0);
+    RxCounters.next(c)
+});
 
 socket.Subscribe<any>("/tickets", Init);
 socket.Subscribe<Model.House.ITicket>('/add_ticket', AddTicket);
