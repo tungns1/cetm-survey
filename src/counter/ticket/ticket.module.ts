@@ -7,9 +7,10 @@ import { TicketDetailDirective } from './ticket-detail.directive';
 import { HourPipe } from './dialog.pipe';
 import { TicketServiceNamePipe, TicketHourPipe, TicketDurationPipe } from './ticket.pipe';
 import { TicketTimerComopnent } from './timer.component';
+import { ModalModule } from '../../x/ui/modal/';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, SelectCheckModule],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, SelectCheckModule,ModalModule],
     declarations: [
         TicketDetailDialog, TicketDetailDirective, TicketServiceNamePipe,
         TicketHourPipe, HourPipe, TicketDurationPipe,
