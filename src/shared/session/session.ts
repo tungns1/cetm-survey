@@ -4,6 +4,7 @@ import { Setting } from '../../x/platform/setting';
 export interface ISession {
   user_id?: string;
   username?: string;
+  scope?: string;
   role?: string;
   branch_id?: string;
   id?: string;
@@ -20,10 +21,6 @@ export function Activate(session: ISession) {
 export function Destroy() {
   sessionSetting.save({});
   RxCurrentSession.next({});
-}
-
-export function GetToken() {
-  return RxCurrentSession.value.id;
 }
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

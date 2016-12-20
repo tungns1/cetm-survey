@@ -1,4 +1,4 @@
-import { ISession, Activate, Destroy, GetToken, IMySettings, RxMySetting } from '../session';
+import { ISession, Activate, Destroy, RxCurrentSession, IMySettings, RxMySetting } from '../session';
 import { Observable } from 'rxjs/Observable';
 import { HttpApi } from '../backend/service';
 import { IsErrUnauthorized } from '../../x/backend/';
@@ -50,5 +50,5 @@ export function Refresh() {
 }
 
 export function IsAuth() {
-    return GetToken();
+    return RxCurrentSession.value.id;
 }
