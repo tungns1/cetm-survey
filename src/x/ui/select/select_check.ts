@@ -16,8 +16,8 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'select-check',
     template: `
-        <span *ngFor="let d of data" >
-            <input type="checkbox" [ngModel]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
+        <span *ngFor="let d of data" class="pointer" (click)="toggle($event, d)">
+            <input type="checkbox" [ngModel]="values[d[idField]]">{{d[textField]}}<br>
         </span>
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
@@ -56,12 +56,12 @@ class SelectCheckComponent implements ControlValueAccessor {
         setTimeout(_ => this.onChangeCallback(this.value));
     }
 
-    check(d: any, e: Event) {
+    toggle(e: Event, d: any) {
         let id = d[this.idField];
         e.preventDefault();
         e.stopPropagation();
-        let b = e.target['checked'];
-
+        this.values[id] = !this.values[id];
+        const b = this.values[id];
         if (b) {
             this.value.push(id);
         } else {

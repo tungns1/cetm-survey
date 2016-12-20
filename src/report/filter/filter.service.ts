@@ -18,17 +18,17 @@ export const NameMap = new Map<string, string>();
 
 Model.Center.RxServices.subscribe(services => {
     services.forEach(r => Model.Center.AddServiceName(r));
-    services.sort((a, b) => a.name > b.name ? 1 : 0);
+    services.sort((a, b) => a.name > b.name ? 1 : -1);
     RxServices.next(services);
     services.forEach(s => NameMap.set(s.id, s.name));
 })
 
 RxDetails.subscribe(v => {
     const counters: Model.House.ICounter[] = v['counters'];
-    counters.sort((a, b) => a.name > b.name ? 1 : 0);
+    counters.sort((a, b) => a.name > b.name ? 1 : -1);
     RxCounters.next(counters);
     const users: Model.IUser[] = v['users'];
-    users.sort((a, b) => a.fullname > b.fullname ? 1 : 0);
+    users.sort((a, b) => a.fullname > b.fullname ? 1 : -1);
     RxUsers.next(users);
     users.forEach(u => NameMap.set(u.id, u.fullname));
     counters.forEach(c => NameMap.set(c.id, c.name));

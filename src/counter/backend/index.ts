@@ -13,7 +13,7 @@ import 'rxjs/add/operator/delay';
 
 socket.Subscribe<Model.House.ICounter>("/counter", c => RxCurrentCounter.next(c));
 socket.Subscribe<Model.House.ICounter[]>("/counters", c => {
-    c.sort((a, b) => a.name > b.name ? 1 : 0);
+    c.sort((a, b) => a.name > b.name ? 1 : -1);
     RxCounters.next(c)
 });
 
@@ -45,7 +45,7 @@ combineLatest<Model.House.ICounter[], IMySettings>(RxCounters, RxMySetting)
                 c.vservices.forEach(id => servicable[id] = true)
             })
             const services = my.services.filter(s => servicable[s.id])
-            services.sort((a, b) => a.name > b.name ? 1 : 0);
-            RxServices.next(services)
+            services.sort((a, b) => a.name > b.name ? 1 : -1);
+            RxServices.next(services);
         }
     })
