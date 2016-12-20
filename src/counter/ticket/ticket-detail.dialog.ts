@@ -9,7 +9,7 @@ import { Serving ,autoNext} from '../backend/queue';
 @Component({
   selector: 'ticket-detail-dialog',
   templateUrl: 'ticket-detail.dialog.html',
-  styleUrls: ['ticket-detail.dialog.css']
+  styleUrls: ['ticket-detail.dialog.scss']
 })
 export class TicketDetailDialog {
   constructor() { }
