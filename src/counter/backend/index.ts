@@ -45,6 +45,7 @@ combineLatest<Model.House.ICounter[], IMySettings>(RxCounters, RxMySetting)
                 c.vservices.forEach(id => servicable[id] = true)
             })
             const services = my.services.filter(s => servicable[s.id])
+            services.sort((a, b) => a.name > b.name ? 1 : 0);
             RxServices.next(services)
         }
     })
