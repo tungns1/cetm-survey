@@ -20,6 +20,9 @@ export function RefreshMySettings() {
 
 export function Logout() {
     Destroy();
+    setTimeout(_ => {
+        window.location.reload();
+    }, 250);
 }
 
 export const AuthOptions = {
