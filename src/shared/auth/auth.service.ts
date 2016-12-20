@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
 
 export function RefreshMySettings() {
-    return authBackend.Get<IMySettings>("my_settings").map(v => {
+    return authBackend.Get<IMySettings>("my_settings", {scope: AuthOptions.Scope}).map(v => {
         RxMySetting.next(v);
         return true;
     })
