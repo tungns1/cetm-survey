@@ -1,10 +1,11 @@
-import { Component, ViewContainerRef, EventEmitter } from '@angular/core';
+import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
-import { RxCounters } from '../backend/index';
-import { Serving ,autoNext} from '../backend/queue';
+import { RxCounters, RxServices } from '../backend/index';
+import { Serving, autoNext } from '../backend/queue';
+import {ModalComponent} from '../../x/ui/modal';
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -34,7 +35,7 @@ export class TicketDetailDialog {
   private checkedCounters = [];
   private checkedServices = [];
   private counters = RxCounters;
-  private services = Model.Center.RxServices;
+  private services = RxServices;
 
   Close() {
     this.close.emit(true);
@@ -42,21 +43,21 @@ export class TicketDetailDialog {
 
   Move() {
     if (this.isServing) {
-      if (this.checkedCounters.length>0 || this.checkedServices.length>0) {
+      if (this.checkedCounters.length > 0 || this.checkedServices.length > 0) {
         Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
           this.Close();
         });
-      }else{
-        alert("Bạn phải chọn quầy hoặc dịch vụ");
+      } else {
+        this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
       }
 
     } else {
-      if (this.checkedCounters.length>0) {
+      if (this.checkedCounters.length > 0) {
         Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
           this.Close();
         });
-      }else{
-         alert("Bạn phải chọn quầy");
+      } else {
+        this.ShowMessage("Bạn phải chọn quầy");
       }
     }
 
@@ -64,7 +65,7 @@ export class TicketDetailDialog {
 
   Recall() {
     if (Serving.RxData.value.length > 0) {
-      alert("Bạn phải kết thúc vé đang thực hiện");
+      this.ShowMessage("Bạn phải kết thúc vé đang thực hiện");
       return;
     }
     CallFromMissed(this.ticket).subscribe(v => {
@@ -81,5 +82,13 @@ export class TicketDetailDialog {
       // toastr.error(err.error);
     });;
   }
+
+  protected ShowMessage(message: string) {
+    this.message = message;
+    this.alert.Open();
+  }
+
+  @ViewChild(ModalComponent) protected alert: ModalComponent;
+  protected message = "";
 
 }
