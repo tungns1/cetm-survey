@@ -44,7 +44,7 @@ class Queue {
 
     Add(t: ITicket) {
         const queue = this.RxData.value;
-        const pos = queue.length - 1;
+        let pos = queue.length - 1;
         while (pos >= 0) {
             const v = queue[pos];
             // priority first
@@ -57,6 +57,7 @@ class Queue {
             if (v.priority > t.priority) {
                 break;
             }
+            pos--;
         }
         queue.splice(pos + 1, 0, t);
         this.RxData.next(queue);
