@@ -33,7 +33,7 @@ class Queue {
 
     Remove(id: string) {
         const queue = this.RxData.value;
-        for (let i = 0; i < queue.length; i--) {
+        for (let i = 0; i < queue.length; i++) {
             if (id === queue[i].id) {
                 queue.splice(i, 1);
                 this.RxData.next(queue);
