@@ -4,7 +4,7 @@
         <div style="margin-top: 50px;">
             <div class="info"> Số vé: <span style="font-size:18px;">{{ticket.cnum}}</span></div>
             <div class="info hidden"> Priority:{{ticket.priority}}</div>
-            <div class="info"> Thời điểm: {{ticket.ctime | hour}}</div>
+            <div class="info"> Thời điểm lấy vé: {{ticket.ctime | hour}}</div>
             <hr>
 
             <div *ngIf="isServing" style="margin-bottom:10px;">
@@ -17,12 +17,9 @@
             </div>
 
             <div *ngIf="isMissed" style="margin-bottom:10px;">
-                Gọi lúc: {{ticket.mtime | hour}}
+                Thời điểm đặt nhỡ: {{ticket.mtime | hour}}
             </div>
 
-            <div *ngIf="isWaiting" style="margin-bottom:10px;">
-                Chờ lúc: {{ticket.mtime | hour}}
-            </div>
 
             Chuyển quầy:
             <div class="dichvu" *ngIf="counters">
