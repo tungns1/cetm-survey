@@ -15,8 +15,5 @@ export class UserComponent {
 
     rxName = RxLoginedUser.map(u => u.fullname);
 
-    Logout() {
-        Logout();
-        this.router.navigate(['/login']);
-    }
+    Logout = Logout;
 }
