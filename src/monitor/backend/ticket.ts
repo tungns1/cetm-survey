@@ -26,7 +26,7 @@ class TicketTrackGroup extends TrackGroup<TicketTrack> {
 	}
 
 	static sort(a: TicketTrack, b: TicketTrack) {
-		return a.c_at < b.c_at ? -1 : 1;
+		return a.c_at > b.c_at ? -1 : 1;
 	}
 
 

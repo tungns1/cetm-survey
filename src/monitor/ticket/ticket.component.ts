@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Tab } from '../tab/';
 import { TicketTrack, TicketTracks } from '../backend/';
+import { Branch } from '../shared/';
 
 const ticketTabs = [{
     name: ['Thời điểm lấy vé', 'Thời điểm gọi vào', 'Thời gian đợi'],
@@ -19,6 +20,7 @@ const ticketTabs = [{
     styleUrls: ['ticket.component.css']
 })
 export class MonitorTicketComponent {
+    level0 = Branch.SelectedBranchIDLevel0;
     thoigian = 'Thời gian đợi';
     thoidiem = 'Thời điểm lấy vé';
     done = 'Thời điểm gọi vào'
@@ -30,7 +32,8 @@ export class MonitorTicketComponent {
     setActive(tab: Tab) {
         if (tab.tag === 'wait') {
             this.rxData = TicketTracks.WaitLong();
-        }else {
+            
+        } else {
             this.rxData = TicketTracks.ServeLong();
         }
         this.thoidiem = tab.name[0];

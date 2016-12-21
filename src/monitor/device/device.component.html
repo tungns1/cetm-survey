@@ -7,7 +7,7 @@
                 <th> Khu vực </th>
                 <th> Chi nhánh </th>
                 <th> Phòng giao dịch </th>
-                <th> {{tab.active?.name}} </th>
+                <th *ngIf="tag!='branch'"> {{tab.active?.name}} </th>
                 <th> Thời điểm mất kết nối </th>
             </thead>
             <tbody class="table-row">
@@ -16,7 +16,7 @@
                     <td> {{item.branches[2]}} </td>
                     <td> {{item.branches[1]}} </td>
                     <td> {{item.branches[0]}} </td>
-                    <td> {{item.name}} </td>
+                    <td *ngIf="tag!='branch'"> {{item.name}} </td>
                     <td> {{item.off_at | ctimeDate}} </td>
                 </tr>
             </tbody>

@@ -5,9 +5,10 @@ import { PageModule } from '../pages/';
 import { MonitorComponent } from './monitor.component';
 import { routing } from './monitor.routing';
 import { AppComponent } from './app.component';
+import { ReportFilterModule } from './filter/filter.module';
 
 @NgModule({
-  imports: [PageModule, Branch.BranchModule, CommonModule, routing,],
+  imports: [PageModule, Branch.BranchModule, CommonModule, routing,ReportFilterModule],
   declarations: [AppComponent, MonitorComponent],
   bootstrap: [AppComponent]
 })

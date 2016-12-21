@@ -8,7 +8,7 @@
 
 <div class="container" style="height:100vh;">
     <i class="fa fa-bars" aria-hidden="true" style="cursor:pointer;position:absolute; margin:5px 0px 0px 5px;" (click)="show=!show" title="Hiển thị bộ lọc"></i>
-    <branch-selector *ngIf="show" class="aside" style="padding-top: 50px;"></branch-selector>
+    <report-filter *ngIf="show" class="aside" style="padding-top: 50px;"></report-filter>
     <div class="main" style="padding: 20px;">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">

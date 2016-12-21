@@ -8,13 +8,13 @@ const tabDevice: Tab[] = [{
     tag: 'branch',
     title: 'SERVER'
 }, {
-    name: 'Màn hình kiosk',
+    name: 'Kiosk',
     tag: 'kiosk',
-    title: 'MÀN HÌNH KIOSK',
+    title: 'KIOSK',
 }, {
     name: 'Quầy',
     tag: 'counter',
-    title: 'COUNTER'
+    title: 'QUẦY'
 }, {
     name: 'Màn hình trung tâm',
     tag: 'screen',
@@ -26,7 +26,7 @@ const tabDevice: Tab[] = [{
 }, {
     name: 'Phản hồi',
     tag: 'feedback',
-    title: 'FEEDBACK'
+    title: 'PHẢN HỒI'
 }]
 
 @Component({
@@ -37,8 +37,9 @@ const tabDevice: Tab[] = [{
 export class MonitorDeviceComponent {
     rxData: Observable<DeviceTrack[]>;
     tabs = tabDevice;
-
+    tag='branch';
     setActive(tab: Tab) {
+        this.tag=tab.tag;
         this.rxData = DeviceTracks.ByTag(tab.tag);
         this.rxData.subscribe(data => console.log(data));
     }

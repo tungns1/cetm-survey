@@ -12,11 +12,11 @@ interface IPage {
     title: string;
 }
 
-const pageSize = 10;
+const pageSize = 15;
 
 const RxCurrentPage = new BehaviorSubject(1);
 const RxPagedFilter = Observable.combineLatest(RxFilter, RxCurrentPage, (filter, current) => {
-    filter.limit = 10;
+    filter.limit = 15;
     filter.skip = (current - 1) * pageSize;
     return filter;
 })
@@ -51,7 +51,7 @@ export class HistoryComponent {
 
     pages = Observable.combineLatest(RxCount, RxCurrentPage, (count, current) => {
 
-        const totalPage: number = Math.ceil(count / 10);
+        const totalPage: number = Math.ceil(count / 15);
 
         const pages: IPage[] = [];
         if (totalPage > 0) {
