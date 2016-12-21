@@ -70,12 +70,11 @@ export function CallFromWaiting(t: Model.House.ITicket) {
 }
 
 export function Move(t: Model.House.ITicket, services: string[], counters: string[]) {
-    return sendAction({
-        action: ActionMove,
+    return socket.Send('/move_ticket', {
         ticket_id: t.id,
-        services: services,
         counters: counters,
-    });
+        services: services
+    }).share();
 }
 
 export function Search(cnum: string) {

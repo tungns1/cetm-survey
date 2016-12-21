@@ -5,16 +5,21 @@ export { RxStat } from './stat';
 import { Init, ITicket, AddTicket, RemoveTicket } from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
-import { RxCounters, RxCurrentCounter, RxServices } from './model';
+import { RxCounters, RxCurrentCounter, RxServices, RxOtherCounters, ICounter } from './model';
 import { Model } from '../shared';
 
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/delay';
 
-socket.Subscribe<Model.House.ICounter>("/counter", c => RxCurrentCounter.next(c));
-socket.Subscribe<Model.House.ICounter[]>("/counters", c => {
-    c.sort((a, b) => a.name > b.name ? 1 : -1);
-    RxCounters.next(c)
+socket.Subscribe<ICounter>("/counter", c => RxCurrentCounter.next(c));
+socket.Subscribe<ICounter[]>("/counters", c => {
+    c.sort((a, b) => {
+        if (a.name.length === b.name.length) {
+            return a.name < b.name ? -1 : 1;
+        }
+        return a.name.length < b.name.length ? -1 : 1;
+    });
+    RxCounters.next(c);
 });
 
 socket.Subscribe<any>("/tickets", Init);
@@ -35,7 +40,7 @@ combineLatest<boolean, IMySettings>(socket.rxConnected, RxMySetting).subscribe((
     }
 })
 
-combineLatest<Model.House.ICounter[], IMySettings>(RxCounters, RxMySetting)
+combineLatest<ICounter[], IMySettings>(RxCounters, RxMySetting)
     .subscribe(([counters, my]) => {
         if (my && my.services && counters) {
             const servicable = {}
@@ -49,3 +54,8 @@ combineLatest<Model.House.ICounter[], IMySettings>(RxCounters, RxMySetting)
             RxServices.next(services);
         }
     })
+
+
+combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
+    RxOtherCounters.next(counters.filter(c => c.id != current.id));
+})

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
-import { RxCounters, RxServices } from '../backend/index';
+import { RxOtherCounters, RxServices } from '../backend/index';
 import { Serving, autoNext } from '../backend/queue';
 import {ModalComponent} from '../../x/ui/modal';
 
@@ -34,7 +34,7 @@ export class TicketDetailDialog {
 
   private checkedCounters = [];
   private checkedServices = [];
-  private counters = RxCounters;
+  private counters = RxOtherCounters;
   private services = RxServices;
 
   Close() {
