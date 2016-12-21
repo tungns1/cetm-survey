@@ -44,6 +44,12 @@ class Queue {
 
     Add(t: ITicket) {
         const queue = this.RxData.value;
+        for (let i = 0; i < queue.length; i++) {
+            if (queue[i].id === t.id) {
+                queue.splice(i, 1);
+                break;
+            }
+        } 
         let pos = queue.length - 1;
         while (pos >= 0) {
             const v = queue[pos];
