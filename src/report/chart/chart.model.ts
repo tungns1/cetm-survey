@@ -99,5 +99,6 @@ export const RxAggregateByTime = RxAggregate.map(records => {
     views.forEach(v => {
         v.date = parseTime(v.time);
     })
+    views.sort((a, b) => a.date < b.date? -1 : 1);
     return views;
 });
