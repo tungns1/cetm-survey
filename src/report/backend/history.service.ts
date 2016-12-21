@@ -69,6 +69,6 @@ export function RefreshHistory(filter: IFilter) {
 
 export function ExportHistory() {
     const url = backendReport.MakeURL("export", GetFilter());
-    window.location.assign(url);
+    window.open(url, "_blank");
 }
 
