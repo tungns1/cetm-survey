@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Tab } from './declare';
+import { ITab } from './declare';
 
 @Component({
   selector: 'monitor-tab',
@@ -8,8 +8,8 @@ import { Tab } from './declare';
   styleUrls: ['tab.component.css']
 })
 export class MonitorTabComponent {
-  @Output() select = new EventEmitter<Tab>();
-  @Input() set tabs(v: Tab[]) {
+  @Output() select = new EventEmitter<ITab>();
+  @Input() set tabs(v: ITab[]) {
     this._tabs = v;
     this.setActive(v[0]);
   }
@@ -18,11 +18,11 @@ export class MonitorTabComponent {
     return this._tabs;
   }
 
-  setActive(t: Tab) {
+  setActive(t: ITab) {
     this.active = t;
     this.select.emit(t);
   }
 
-  private active: Tab;
-  private _tabs: Tab[];
+  private active: ITab;
+  private _tabs: ITab[];
 }

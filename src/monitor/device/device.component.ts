@@ -1,30 +1,23 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { DeviceTracks, DeviceTrack } from '../backend/';
-import { Tab } from '../tab/';
+import { Component } from '@angular/core';
+import { TrackDevice, RxDeviceData, SetTabAndRefresh } from '../backend/';
+import { ITab } from '../shared/';
 
-const tabDevice: Tab[] = [{
-    name: 'Server',
+const tabDevice: ITab[] = [{
     tag: 'branch',
     title: 'SERVER'
 }, {
-    name: 'Kiosk',
     tag: 'kiosk',
     title: 'KIOSK',
 }, {
-    name: 'Quầy',
     tag: 'counter',
     title: 'QUẦY'
 }, {
-    name: 'Màn hình trung tâm',
     tag: 'screen',
     title: 'MÀN HÌNH TRUNG TÂM'
 }, {
-    name: 'Led',
     tag: 'led',
     title: 'LED'
 }, {
-    name: 'Phản hồi',
     tag: 'feedback',
     title: 'PHẢN HỒI'
 }]
@@ -35,12 +28,14 @@ const tabDevice: Tab[] = [{
     styleUrls: ['device.component.css']
 })
 export class MonitorDeviceComponent {
-    rxData: Observable<DeviceTrack[]>;
+    ngOnInit() {
+        TrackDevice();
+    }
+    rxData = RxDeviceData;
     tabs = tabDevice;
-    tag='branch';
-    setActive(tab: Tab) {
-        this.tag=tab.tag;
-        this.rxData = DeviceTracks.ByTag(tab.tag);
-        this.rxData.subscribe(data => console.log(data));
+    tag = 'branch';
+    setActive(tab: ITab) {
+        this.tag = tab.tag;
+        SetTabAndRefresh(tab);
     }
 }

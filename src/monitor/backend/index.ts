@@ -1,16 +1,32 @@
-import { DeviceTrack, DeviceTracks } from './device';
-import { TicketTrack, TicketTracks } from './ticket';
-import { socket } from './socket';
+import { RefreshDeviceTrack } from './device';
+import { RefreshTicketTrack } from './ticket';
+export * from './device';
+export * from './ticket';
 
-import { IUpdate } from './track';
+import {TrackGroup} from './track';
+let activeRefresh = RefreshDeviceTrack;
 
-socket.Subscribe<IUpdate<DeviceTrack>>("/device", v => DeviceTracks.Update(v));
-socket.Subscribe<DeviceTrack[]>("/devices", data => DeviceTracks.Init(data));
+export function TrackDevice() {
+    activeRefresh = RefreshDeviceTrack ;
+}
 
-socket.Subscribe<IUpdate<TicketTrack>>("/ticket", v => TicketTracks.Update(v));
-socket.Subscribe<TicketTrack[]>("/tickets", data => TicketTracks.Init(data));
-export { DeviceTracks, DeviceTrack } from './device';
-export { TicketTracks, TicketTrack } from './ticket';
+export function TrackTicket() {
+    activeRefresh = RefreshTicketTrack;
+}
 
-import {Session} from '../shared/';
-Session.RxSessionReady.subscribe(_ => socket.Connect({}));
+export function Refresh() {
+    activeRefresh();
+}
+
+import {ITab, IAsideFilter} from '../shared';
+import {SetTab, SetAsideFilter} from './filter';
+
+export function SetTabAndRefresh(tab: ITab) {
+    SetTab(tab);
+    Refresh();
+}
+
+export function SetAsideFilterAndRefresh(filter: IAsideFilter) {
+    SetAsideFilter(filter);
+    Refresh();
+}

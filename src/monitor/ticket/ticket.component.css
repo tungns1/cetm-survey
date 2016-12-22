@@ -28,3 +28,9 @@ table {
 .done {
     background-color: #a8a8aa !important;
 }
+
+:host {
+    display: block;
+    border: 1px solid #b0b1b5;
+    background-color: #fff;
+}

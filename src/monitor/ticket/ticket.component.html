@@ -1,44 +1,54 @@
-<div style="border: 1px solid #b0b1b5; background-color: #fff;">
-    <monitor-tab [tabs]="tabs" #tab (select)="setActive($event)"></monitor-tab>
-    <div>
-        <table>
-            <thead>
-                <th> STT </th>
-                <th> Khu vực </th>
-                <th> Chi nhánh </th>
-                <th> Phòng giao dịch </th>
-                <th> Dịch vụ </th>
-                <th> Số vé </th>
-                <th> {{thoidiem}} </th>
-                <th> {{done}} </th>
-                <th> {{thoigian}} </th>
-            </thead>
-            <tbody *ngIf="tag==='wait'" class="table-row">
-                <tr *ngFor="let item of rxData | async; let i = index">
-                    <td> {{i+1}} </td>
-                    <td> {{item.branches[2]}} </td>
-                    <td> {{item.branches[1]}} </td>
-                    <td> {{item.branches[0]}} </td>
-                    <td> {{item.service}} </td>
-                    <td> {{item.cnum}} </td>
-                    <td> {{item.c_at | ctimeDate}} </td>
-                    <td><span *ngIf="item.s_at!=0"> {{item.s_at | ctimeDate}} </span></td>
-                    <td> {{item.swtime | hour}} </td>
-                </tr>
-            </tbody>
-            <tbody *ngIf="tag==='serve'" class="table-row">
-                <tr *ngFor="let item of rxData | async; let i = index">
-                    <td> {{i+1}} </td>
-                    <td> {{item.branches[2]}} </td>
-                    <td> {{item.branches[1]}} </td>
-                    <td> {{item.branches[0]}} </td>
-                    <td> {{item.service}} </td>
-                    <td> {{item.cnum}} </td>
-                    <td> {{item.s_at | ctimeDate}} </td>
-                    <td><span *ngIf="item.f_at!=0"> {{item.f_at | ctimeDate}}</span> </td>
-                    <td> {{item.sstime | hour}} </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<monitor-tab [tabs]="tabs" #tab (select)="setActive($event)"></monitor-tab>
+<table *ngIf="waitLong">
+    <thead>
+        <th> STT </th>
+        <th> Khu vực </th>
+        <th> Chi nhánh </th>
+        <th> Phòng giao dịch </th>
+        <th> Dịch vụ </th>
+        <th> Số vé </th>
+        <th> Thời điểm lấy vé </th>
+        <th> Thời điểm gọi vào </th>
+        <th> Thời gian đợi chuẩn </th>
+    </thead>
+    <tbody class="table-row">
+        <tr *ngFor="let item of rxData | async; let i = index">
+            <td> {{i+1}} </td>
+            <td> {{item.branches[2]}} </td>
+            <td> {{item.branches[1]}} </td>
+            <td> {{item.branches[0]}} </td>
+            <td> {{item.service}} </td>
+            <td> {{item.cnum}} </td>
+            <td> {{item.c_at | ctimeDate}} </td>
+            <td><span *ngIf="item.s_at!=0"> {{item.s_at | ctimeDate}} </span></td>
+            <td> {{item.swtime | hour}} </td>
+        </tr>
+    </tbody>
+</table>
+
+<table *ngIf="!waitLong">
+    <thead>
+        <th> STT </th>
+        <th> Khu vực </th>
+        <th> Chi nhánh </th>
+        <th> Phòng giao dịch </th>
+        <th> Dịch vụ </th>
+        <th> Số vé </th>
+        <th> Thời điểm phục vụ</th>
+        <th> Thời điểm kết thúc </th>
+        <th> Thời gian phục vụ chuẩn </th>
+    </thead>
+    <tbody class="table-row">
+        <tr *ngFor="let item of rxData | async; let i = index">
+            <td> {{i+1}} </td>
+            <td> {{item.branches[2]}} </td>
+            <td> {{item.branches[1]}} </td>
+            <td> {{item.branches[0]}} </td>
+            <td> {{item.service}} </td>
+            <td> {{item.cnum}} </td>
+            <td> {{item.s_at | ctimeDate}} </td>
+            <td><span *ngIf="item.f_at!=0"> {{item.f_at | ctimeDate}}</span> </td>
+            <td> {{item.sstime | hour}} </td>
+        </tr>
+    </tbody>
+</table>

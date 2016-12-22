@@ -8,7 +8,7 @@
 
 <div class="container" style="height:100vh;">
     <i class="fa fa-bars" aria-hidden="true" style="cursor:pointer;position:absolute; margin:5px 0px 0px 5px;" (click)="show=!show" title="Hiển thị bộ lọc"></i>
-    <report-filter *ngIf="show" class="aside" style="padding-top: 50px;"></report-filter>
+    <monitor-filter *ngIf="show" class="aside" style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
     <div class="main" style="padding: 20px;">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">
@@ -18,10 +18,7 @@
         </div>
 
         <router-outlet></router-outlet>
-        <div style="float: right;margin-top: 20px;">
-            <button (click)="excel()" class="btpointer"> XUẤT RA FILE EXCEL </button>
-            <button (click)="pdf()" class="btpointer"> XUẤT RA FILE PDF </button>
-        </div>
+
         <div class="ft">
             <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
         </div>

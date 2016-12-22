@@ -15,8 +15,12 @@ export class SearchComponent {
         this.ticket = void 0;
         this.message = 'lookup ' + cnum + ' ...';
         Search(cnum).subscribe(t => {
-            this.ticket = t;
-            this.message = '';
+            if (!t) {
+                this.message = `Không tìm thấy vé ${cnum}`;
+            } else {
+                this.ticket = t[0];
+                this.message = '';
+            }
         }, e => {
             this.message = `Không tìm thấy vé ${cnum}`;
         })

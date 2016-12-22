@@ -2,20 +2,19 @@
 import { Branch, Model } from '../shared/';
 import { Track, TrackGroup } from './track';
 
-export class TicketTrack extends Track {
+export interface TicketTrack extends Track {
 	cnum: string;
 	f_at: number;
 	c_at: number;
 	s_at: number;
 	swtime: number;
 	sstime: number;
-	object: any;
 	service: string;
 	service_id: string;
 	services: string[];
 }
 
-class TicketTrackGroup extends TrackGroup<TicketTrack> {
+class ticketTrackGroup extends TrackGroup<TicketTrack> {
 	beforeAdd = (v: TicketTrack) => {
 		var timeStamp = Math.floor(Date.now() / 1000);
 
@@ -39,4 +38,10 @@ class TicketTrackGroup extends TrackGroup<TicketTrack> {
 	}
 }
 
-export const TicketTracks = new TicketTrackGroup();
+const TicketTrackGroup = new ticketTrackGroup("ticket");
+
+
+export const RxTicketData = TicketTrackGroup.RxData;
+export function RefreshTicketTrack() {
+	TicketTrackGroup.Refresh();
+}

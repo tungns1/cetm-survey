@@ -1,5 +1,5 @@
-export class Tab {
-    name: string;
+export class ITab {
     tag: string;
     title: string;
+    subtitles?: string[];
 }

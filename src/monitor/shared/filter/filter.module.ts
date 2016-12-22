@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Branch } from '../shared/';
-import { ReportFilterComponent } from './filter.component';
+import { Branch } from '../../shared/';
+import { MonitorFilterComponent } from './filter.component';
 
 @NgModule({
     imports: [Branch.BranchModule, CommonModule, FormsModule, ReactiveFormsModule],
     declarations: [
-        ReportFilterComponent
+        MonitorFilterComponent
     ],
-    exports: [ReportFilterComponent],
+    exports: [MonitorFilterComponent],
 })
-export class ReportFilterModule { }
+export class MonitorFilterModule { }

@@ -78,7 +78,7 @@ export function Move(t: Model.House.ITicket, services: string[], counters: strin
 }
 
 export function Search(cnum: string) {
-    return socket.Send<Model.House.ITicket>('/search', {
+    return socket.Send<Model.House.ITicket[]>('/search', {
         cnum: cnum
     });
 }
