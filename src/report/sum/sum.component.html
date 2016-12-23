@@ -85,12 +85,12 @@
     <div class="column">
         <div style="padding: 0px 10px;">
             <div class="tl">
-                Tổng thời gian giao dịch: {{data.s_tt/3600 | number : '1.2-2'}}(giờ)
+                Tổng thời gian giao dịch: {{data.s_tt/3600 | hour}}
             </div>
             <div>
                 <div class="ct">
                     Tổng thời gian phục vụ
-                    <span *ngIf="data.s_tt>0" class="thoigian">{{data.s_st/3600 | number : '1.2-2'}}(giờ)&nbsp; ({{data.s_st/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.s_tt>0" class="thoigian">{{data.s_st/3600 | hour}}&nbsp; ({{data.s_st/data.s_tt*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.s_tt>0">
@@ -103,7 +103,7 @@
             <div>
                 <div class="ct">
                     Tổng thời gian chờ
-                    <span *ngIf="data.s_tt>0" class="thoigian">{{(data.s_tt-data.s_st)/3600 | number : '1.2-2'}}(giờ)&nbsp; ({{(data.s_tt-data.s_st)/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.s_tt>0" class="thoigian">{{(data.s_tt-data.s_st)/3600 | hour}}&nbsp; ({{(data.s_tt-data.s_st)/data.s_tt*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.s_tt>0">

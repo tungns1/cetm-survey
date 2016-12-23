@@ -2,7 +2,9 @@
 <div class="chart" stack-chart *ngIf="type==='stack'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
 <div class="chart" line-chart *ngIf="type==='line'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
 <div class="chart" *ngIf="type==='pie'">
-    <div pie-chart [data]="pieData | async" [items]="items | async"></div>
+    <div style="width:33%;height:300px;float:left;" *ngFor="let item of itemPie | async">
+        <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
+    </div>
 </div>
 
 <div>
@@ -14,11 +16,21 @@
             <option value="pie">Biểu đồ tròn</option>
         </select>
 </div>
-<div class="legend" style="margin:10px 20px;">
-    <div *ngFor="let item of items | async" style="float:left; margin-right:5px;">
-        <div style="float:left">
-            <input type="checkbox" [ngModel]="!item._hidden" (ngModelChange)="Toggle(item)"> {{item.title}}
+<div class="legend" style="margin:10px 20px;" *ngIf="type!='pie'">
+    <div *ngFor=" let item of items | async " style="float:left; margin-right:5px; ">
+        <div style="float:left ">
+            <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) "><span style="font-size: 13px; "> {{item.title}}</span>
         </div>
-        <div style="width:30px;height:15px; float:left; margin-left:3px;" [style.background-color]="item._hidden? '':item.color"></div><br>
+        <div style="width:30px;height:15px; float:left; margin-left:3px; " [style.background-color]="item._hidden? '':item.color "></div><br>
+    </div>
+</div>
+<div class="legend " style="margin:10px 20px; " *ngIf="type==='pie' ">
+    <div *ngFor="let item of itemPie | async">
+        <div *ngFor="let t of item" style="float:left; margin-right:10px; ">
+            <div style="float:left ">
+                <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t) "><span style="font-size: 13px; "> {{t.title}}</span>
+            </div>
+            <div style="width:30px;height:15px; float:left; margin-left:3px; " [style.background-color]="t._hidden? '':t.color "></div><br>
+        </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 <div class="login">
+    <img src="../asset/img/login/miraway-logo.png" alt="Miraway" style="width:200px;height:80px;margin-left:10px;">
     <div class="bodys">
+
         <div *ngIf="!IsLogin()">
             <div class="title">ĐĂNG NHẬP HỆ THỐNG</div>
             <form [formGroup]="loginForm">
@@ -24,5 +26,8 @@
             <h2 style="text-align: center;">Xin chào</h2>
             <button (click)="logout()" style="margin-left:15px; background-color: #f2f2f2;border-radius: 0px;font-size: 18px;">Logout</button>
         </div>
+    </div>
+    <div class="ft">
+        <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
     </div>
 </div>

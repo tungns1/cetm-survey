@@ -54,14 +54,101 @@ const Fields: MyItem[] = [{
     title: 'Phản hồi kém'
 }];
 
+const FieldPie: MyItem[][] = [[{
+    field: 'c_ft',
+    color: '#009900',
+    tab: 'general',
+    title: 'Giao dịch thành công'
+}, {
+    field: 'c_ct',
+    color: '#969c9c',
+    tab: 'general',
+    title: 'Giao dịch bị hủy'
+}], [{
+    field: 'c_bwt',
+    color: '#E8AA0C',
+    tab: 'general',
+    title: 'Giao dịch đợi chuẩn'
+}, {
+    field: 'c_awt',
+    color: '#ff0000',
+    tab: 'general',
+    title: 'Giao dịch đợi vượt chuẩn'
+}], [{
+    field: 'c_bst',
+    color: '#15FFAC',
+    tab: 'general',
+    title: 'Giao dịch phục vụ chuẩn'
+}, {
+    field: 'c_ast',
+    color: '#19FF01',
+    tab: 'general',
+    title: 'Giao dịch phục vụ vượt chuẩn'
+}], [{
+    field: 's_wt_h',
+    tab: 'time',
+    color: 'steelblue',
+    title: 'Thời gian đợi (giờ)',
+    axis: 'left'
+}, {
+    field: 's_st_h',
+    tab: 'time',
+    color: 'green',
+    title: 'Thời gian phục vụ (giờ)'
+}], [{
+    field: 'c_r',
+    color: '#009900',
+    tab: 'customer',
+    title: 'Giao dịch có phản hồi'
+}, {
+    field: 'c_r_o',
+    color: '#969c9c',
+    tab: 'customer',
+    title: 'Giao dịch không có phản hồi'
+}], [{
+    field: 'c_r_a',
+    tab: 'customer',
+    color: 'steelblue',
+    title: 'Phản hồi tốt'
+}, {
+    field: 'c_r_b',
+    tab: 'customer',
+    color: 'green',
+    title: 'Phản hồi khá'
+}, {
+    field: 'c_r_c',
+    tab: 'customer',
+    color: 'brown',
+    title: 'Phản hồi trung bình'
+}, {
+    field: 'c_r_d',
+    tab: 'customer',
+    color: 'orange',
+    title: 'Phản hồi kém'
+}]];
+
+
 import { RxTab } from '../tab/tab.module';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export const RxItems = new BehaviorSubject<MyItem[]>([]);
+export const RxItemPie = new BehaviorSubject<MyItem[][]>([]);
+export const RxW = new BehaviorSubject<number>(0);
 
 RxTab.subscribe(t => {
     const fields = Fields.filter(v => v.tab === t);
     RxItems.next(fields);
+    let data: MyItem[][] = [];
+    FieldPie.forEach(v => {
+        let field = v.filter(s => s.tab === t);
+        if (field.length>0) {
+            data.push(field);
+        }
+
+    });
+    RxW.next(data.length);
+    RxItemPie.next(data);
+
 });
 
 export function Toggle(item: MyItem) {
@@ -74,7 +161,20 @@ export function Toggle(item: MyItem) {
     });
     RxItems.next(items);
 }
-
+export function TogglePie(item: MyItem) {
+    const items: MyItem[][] = [];
+    RxItemPie.value.forEach(i => {
+        let data:MyItem[]=[];
+        i.forEach(v => {
+            if (v.field === item.field) {
+                v._hidden = !v._hidden;
+            }
+            data.push(v);
+        })
+        items.push(data);
+    });
+    RxItemPie.next(items);
+}
 import { timeParse } from 'd3-time-format';
 
 import { IAggregate, AggregateView, RxSummaryView, RxAggregate, MakeIndexBy } from '../backend/aggregate.service';
@@ -99,6 +199,6 @@ export const RxAggregateByTime = RxAggregate.map(records => {
     views.forEach(v => {
         v.date = parseTime(v.time);
     })
-    views.sort((a, b) => a.date < b.date? -1 : 1);
+    views.sort((a, b) => a.date < b.date ? -1 : 1);
     return views;
 });

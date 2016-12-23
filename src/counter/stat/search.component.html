@@ -33,16 +33,16 @@
 
 <div class="search-result" *ngIf="ticket">
 
-    <p>Thời điểm lấy vé: {{ticket.ctime*1000 | date:"h:mm:ss"}}</p>
+    <p>Thời điểm lấy vé:&nbsp; {{ticket.ctime*1000 | date:"h:mm:ss"}}</p>
     <p>Thời điểm gọi vào:<span style="text-align: right;" *ngIf="ticket.mtime!=0">{{ticket.mtime *1000 | date:"h:mm:ss"}}</span></p>
-    <p>Trạng thái hiện tại: {{ticket.state}} </p>
+    <p>Trạng thái hiện tại:&nbsp; {{ticket.state}} </p>
     <div>
         <p>Lịch sử:</p>
         <div class="table">
             <div class="table-row header">
                 <div>Thời điểm</div>
                 <div>Trạng thái</div>
-                <div>Thông tin</div>
+                <div>Dịch vụ</div>
             </div>
             <div style="height:100px;overflow: auto;">
                 <div class="table-row" *ngFor="let t of ticket.tracks">
