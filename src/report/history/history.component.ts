@@ -32,13 +32,18 @@ export class HistoryComponent {
     private subscription: Subscription;
 
     ngOnInit() {
-        this.subscription = RxPagedFilter.subscribe(ft => {
-            RefreshHistory(ft);
-        })
+        if (!this.subscription) {
+            this.subscription = RxPagedFilter.subscribe(ft => {
+                RefreshHistory(ft);
+            })
+        }
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        if (this.subscription) {
+            // this.subscription.unsubscribe();
+            // this.subscription = null;
+        }
     }
 
     chuyenTrang(value) {
@@ -105,7 +110,7 @@ export class HistoryComponent {
     })
 
     excel() {
-        ExportHistory({});
+        ExportHistory();
     }
 
 }

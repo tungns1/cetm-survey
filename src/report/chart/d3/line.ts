@@ -37,8 +37,11 @@ export class LineChart extends AbstractChart {
             var x0 = x.invert(mouse(e)[0]),
                 i = bisectDate(data, x0, 1),
                 d0 = data[i - 1],
-                d1 = data[i],
-                d = (x0.getTime() - d0.date.getTime()) > (d1.date.getTime() - x0.getTime()) ? d1 : d0;
+                d1 = data[i];
+            if (!d1) {
+                d1 = d0
+            }
+            var d = (x0.getTime() - d0.date.getTime()) > (d1.date.getTime() - x0.getTime()) ? d1 : d0;
             const y = yLeft;
             const items = this.getItems();
             let yMax = yLeft(max(items.map(i => d[i.field])));
