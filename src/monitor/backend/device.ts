@@ -8,7 +8,11 @@ export interface DeviceTrack extends Track {
     object: any;
 }
 
-const DeviceTracks = new TrackGroup<DeviceTrack>("device");
+class deviceTrackGroup extends TrackGroup<DeviceTrack> {
+   
+}
+
+const DeviceTracks = new deviceTrackGroup("device");
 export const RxDeviceData = DeviceTracks.RxData;
 export function RefreshDeviceTrack() {
     DeviceTracks.Refresh();

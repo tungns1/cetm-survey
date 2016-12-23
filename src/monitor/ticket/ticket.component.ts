@@ -22,14 +22,30 @@ export class MonitorTicketComponent {
         TrackTicket();
         RxTicketData.subscribe(data => console.log(data));
     }
-    
+
     tabs = ticketTabs;
     waitLong = true;
-    rxData = RxTicketData;
+    rxData = RxTicketData.map(data => {
+        if (this.waitLong) {
+            data.sort((a, b) => {
+                if (a.s_at == b.s_at) {
+                    return a.c_at < b.c_at ? -1 : 1;
+                }
+                return a.s_at < b.s_at ? -1 : 1;
+            });
+        } else {
+            data.sort((a, b) => {
+                if (a.f_at == b.f_at) {
+                    return a.s_at < b.s_at ? -1 : 1;
+                }
+                return a.f_at < b.f_at ? -1 : 1;
+            })
+        }
+        return data;
+    });
 
     setActive(tab: ITab) {
-        SetTabAndRefresh(tab);
         this.waitLong = tab.tag === 'wait';
-        this.headers = tab.subtitles;
+        SetTabAndRefresh(tab);
     }
 }

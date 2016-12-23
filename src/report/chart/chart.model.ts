@@ -181,7 +181,7 @@ import { IAggregate, AggregateView, RxSummaryView, RxAggregate, MakeIndexBy } fr
 import { RxPeriod } from '../filter/';
 
 const timeDay = timeParse("%Y-%m-%d");
-const timeWeek = timeParse("%Y-%W");
+const timeWeek = timeParse("W%Y-%W");
 const timeMonth = timeParse("%Y-%m");
 const timeYear = timeParse("%Y");
 

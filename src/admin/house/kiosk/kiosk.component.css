@@ -26,3 +26,15 @@ select {
     height: 30px;
     margin-bottom: 10px;
 }
+.add {
+    float: right;
+    height: 40px;
+    color: #01947a;
+    margin-left: 10px;
+    background-color: #fff;
+    line-height: 40px;
+    padding: 0px 30px;
+    border-radius: 3px;
+    border: 1px solid #01947a;
+    text-transform: uppercase;
+}

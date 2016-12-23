@@ -21,7 +21,17 @@ export interface IFilter {
 
 import { Subject } from 'rxjs/Subject';
 export const RxFilter = new Subject<IFilter>();
+import { timeFormat } from 'd3-time-format';
+import { timeDay, timeWeek, timeMonth, timeYear, CountableTimeInterval } from 'd3-time';
 
+const GetStartOf: { [index: string]: CountableTimeInterval } = {
+    day: timeDay,
+    week: timeWeek,
+    month: timeMonth,
+    year: timeYear
+}
+
+const dayFormat = timeFormat("%Y-%m-%d");
 
 function getFormValue(): IFilter {
     const value: {
@@ -29,68 +39,14 @@ function getFormValue(): IFilter {
         start: Date;
         end: Date;
     } = Form.value;
-    const start = new Date(value.start);
-    const end = new Date(value.end);
-
-    var res: IFilter;
-    var days = start.getDate();
-    var months = start.getMonth() + 1;
-    var years = start.getFullYear();
-    var daye = end.getDate();
-    var monthe = end.getMonth() + 1;
-    var yeare = end.getFullYear();
-
-    switch (value.period) {
-        case "year":
-            res = {
-                period: value.period,
-                start: years + "-01",
-                end: yeare + "-12",
-            };
-            break;
-        case "month":
-            res = {
-                period: value.period,
-                start: [years, ((months < 10 ? '0' : '') + months)].join('-'),
-                end: [yeare, ((monthe < 10 ? '0' : '') + monthe)].join('-'),
-            };
-            break;
-        case "week":
-            res = {
-                period: value.period,
-                start: week(years, months, days).toString(),
-                end: week(yeare, monthe, daye).toString(),
-            };
-            break;
-        case "day":
-            res = {
-                period: value.period,
-                start: [years, ((months < 10 ? '0' : '') + months), (days < 10 ? '0' : '') + days].join('-'),
-                end: [yeare, ((monthe < 10 ? '0' : '') + monthe), (daye < 10 ? '0' : '') + daye].join('-'),
-            };
-            break;
-    }
-
-    // const res: IFilter = {
-    //     period: value.period,
-    //     start: [start.getFullYear(), start.getMonth() +1, start.getDate()].join('-'),
-    //     end: [end.getFullYear(), end.getMonth()+1, end.getDate()].join('-'),
-    // };
+    var startOf = GetStartOf[value.period];
+    const start = startOf.floor(value.start);
+    const end = startOf.ceil(value.end);
+    const res: IFilter = {};
+    res.period = value.period;
+    res.start = dayFormat(start);
+    res.end = dayFormat(end);
     return res;
-}
-
-function week(year, month, day) {
-    function serial(days) { return 86400000 * days; }
-    function dateserial(year, month, day) { return (new Date(year, month - 1, day).valueOf()); }
-    function weekday(date) { return (new Date(date)).getDay() + 1; }
-    function yearserial(date) { return (new Date(date)).getFullYear(); }
-    var date = year instanceof Date ? year.valueOf() : typeof year === "string" ? new Date(year).valueOf() : dateserial(year, month, day),
-        date2 = dateserial(yearserial(date - serial(weekday(date - serial(1))) + serial(4)), 1, 3);
-    var week = ~~((date - date2 + serial(weekday(date2) + 5)) / serial(7));
-    if (week == 53) {
-        year = year - 1;
-    }
-    return year + "-" + ((week < 10 ? '0' : '') + week);
 }
 
 export function GetFilter() {

@@ -65,7 +65,7 @@ export class PieChart extends AbstractChart {
             .attr("text-anchor", "middle")
             .attr("transform", d => `translate(${labelArc.centroid(<any>d)})`)
             .attr("dy", ".35em")
-            .text((d) => { return d.data['title'] || d.data['field']; });
+            .text((d) => { return d.value; });
         texts.exit().remove();
     }
 }

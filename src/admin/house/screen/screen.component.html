@@ -1,12 +1,13 @@
 <editor #edit name="màn hình" (edit)="onEdit($event)" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách Màn hình</editor-title>
+    <editor-title> Danh sách Màn hình <button class="add uppercase btpointer"  routerLink="/center/layout" [queryParams]="{tag: 'screen'}"> sửa giao diện </button></editor-title>
+    
     <form *ngIf="edit.form" class="form" [formGroup]="edit.form">
-        <input class="inputs" formControlName="code" placeholder="Mã màn hình" style="width: 100%;">
+        <input class="inputs" formControlName="code" placeholder="Mã màn hình" style="width: 100%;">  
         <input class="inputs" formControlName="name" placeholder="Tên màn hình" style="width: 100%;">
         <input type="checkbox" formControlName="inheritable"> Có thể kế thừa
 
         <br> Videos:
-        <multi-file-picker formControlName="videos"></multi-file-picker>
+        <multi-file-picker formControlName="videos"></multi-file-picker>      
 
         <br> Tin tức:
         <arr-form formControlName="news"></arr-form>
@@ -29,5 +30,3 @@
         </div>
     </form>
 </editor>
-
-<a routerLink="/center/layout" [queryParams]="{tag: 'screen'}"> Sửa giao diện </a>
