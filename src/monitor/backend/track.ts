@@ -18,6 +18,10 @@ const trackApi = new Backend.HttpApi("/api/monitor");
 export class TrackGroup<T extends Track> {
     constructor(private uri: string) {}
 
+    private sort = (a: T, b: T) => {
+        return a.mtime < b.mtime? -1 : 1;
+    }
+
     public Refresh() {
         trackApi.Get<T[]>(this.uri, GetFilter()).subscribe(values => {
             values.forEach(t => {

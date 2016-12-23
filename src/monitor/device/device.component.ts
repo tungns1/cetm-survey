@@ -31,7 +31,9 @@ export class MonitorDeviceComponent {
     ngOnInit() {
         TrackDevice();
     }
-    rxData = RxDeviceData;
+    rxData = RxDeviceData.map(data => {
+        return data.sort((a, b) => a.off_at < b.off_at? -1 : 1);
+    });
     tabs = tabDevice;
     tag = 'branch';
     setActive(tab: ITab) {
