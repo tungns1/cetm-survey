@@ -72,7 +72,7 @@
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;"><input type="checkbox"> {{d.name}} </td>
                 <td> {{d.c_r}}&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
-                <td> {{d.c_ft-d.c_r}}&nbsp;<span *ngIf="d.c_ft>0"> ({{(d.c_ft-d.c_r)/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
+                <td> {{d.c_r_o}}&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r_o/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
                 <td> {{d.c_r_a}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_a/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span></td>
                 <td> {{d.c_r_b}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_b/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
                 <td> {{d.c_r_c}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_c/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
