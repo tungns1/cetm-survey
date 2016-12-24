@@ -10,8 +10,9 @@ export class SearchComponent {
     message: string;
     ticket: Model.House.ITicket;
 
+    serving: boolean;
+
     searchTicket(cnum: string) {
-        console.log(cnum);
         this.ticket = void 0;
         this.message = 'lookup ' + cnum + ' ...';
         Search(cnum).subscribe(t => {
@@ -19,6 +20,7 @@ export class SearchComponent {
                 this.message = `Không tìm thấy vé ${cnum}`;
             } else {
                 this.ticket = t[0];
+                this.serving = this.ticket.state == Model.House.TicketStateServing;
                 this.message = '';
             }
         }, e => {
