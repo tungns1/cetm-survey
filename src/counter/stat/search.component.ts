@@ -14,7 +14,7 @@ export class SearchComponent {
 
     searchTicket(cnum: string) {
         this.ticket = void 0;
-        this.message = 'lookup ' + cnum + ' ...';
+        this.message = 'Đang tìm vé ' + cnum + ' ...';
         Search(cnum).subscribe(t => {
             if (!t || t.length < 1) {
                 this.message = `Không tìm thấy vé ${cnum}`;
