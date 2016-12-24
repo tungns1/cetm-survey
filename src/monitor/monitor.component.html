@@ -7,7 +7,7 @@
 <br>
 
 <div class="container" style="height:100vh;">
-    <monitor-filter *ngIf="show" class="aside" style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
+    <monitor-filter *ngIf="hidden" class="aside" style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
     <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 0px 0px 5px;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
     <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 0px 0px 5px;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
     <div class="main" style="padding: 20px;">
