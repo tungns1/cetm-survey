@@ -48,6 +48,11 @@ export class AbstractChart {
 
     data(d: any) {
         this._data = d;
+        if (this._data.length < 1) {
+            this.svg().attr("display", "none");
+        } else {
+            this.svg().attr("display", "block");
+        }
         this._extents = extent(this._data, d => d.date);
         return this;
     }
