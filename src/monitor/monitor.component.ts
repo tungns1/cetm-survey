@@ -9,6 +9,6 @@ import { SetAsideFilterAndRefresh } from './backend/';
     encapsulation: ViewEncapsulation.None
 })
 export class MonitorComponent {
-    show = true;
+    hidden = true;
     setAsideFilter = SetAsideFilterAndRefresh;
 }

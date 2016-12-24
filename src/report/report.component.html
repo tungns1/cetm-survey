@@ -8,8 +8,9 @@
 <br>
 <br>
 <div class="container" style="height:100vh;">
-    <i class="fa fa-bars" aria-hidden="true" style="cursor:pointer;position:absolute; margin:5px 0px 0px 5px;" (click)="show=!show" title="Hiển thị bộ lọc"></i>
-    <report-filter *ngIf="show" class="aside" style="padding-top: 50px;"></report-filter>
+    <report-filter *ngIf="hidden" class="aside" style="padding-top: 50px;"></report-filter>
+    <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 0px 0px 5px;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
+    <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 0px 0px 5px;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
     <div class="main" style="padding: 20px; width:1000px;">
         <div style="height: 50px;">
             <span style="font-size: 26px; line-height: 55px;">Report</span>

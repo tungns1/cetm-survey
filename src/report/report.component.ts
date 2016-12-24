@@ -8,7 +8,7 @@ import { Component, OnInit, ViewContainerRef,ViewEncapsulation } from '@angular/
 
 })
 export class ReportComponent {
-    show = true;
+    hidden = true;
 
     excel() {
 
