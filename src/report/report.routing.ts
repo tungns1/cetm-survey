@@ -5,7 +5,7 @@ import { ReportHistoryModule } from './history/';
 import { ReportGeneralModule } from './general/'
 
 const children: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'lichsu' },
+  { path: '', pathMatch: 'full', redirectTo: 'tonghop' },
   { path: 'lichsu', loadChildren: () => ReportHistoryModule },
   { path: 'tonghop', loadChildren: () => ReportGeneralModule },
   { path: 'sosanh', loadChildren: 'admin/report/compare/compare.module' },
