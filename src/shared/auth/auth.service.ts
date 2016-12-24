@@ -1,7 +1,7 @@
 import { ISession, Activate, Destroy, RxCurrentSession, IMySettings, RxMySetting } from '../session';
 import { Observable } from 'rxjs/Observable';
 import { HttpApi } from '../backend/service';
-import { IsErrUnauthorized } from '../../x/backend/';
+import { HttpError } from '../../x/backend/';
 
 const authBackend = new HttpApi<any>("/api/auth");
 
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
 
 export function RefreshMySettings() {
-    return authBackend.Get<IMySettings>("my_settings", {scope: AuthOptions.Scope}).map(v => {
+    return authBackend.Get<IMySettings>("my_settings", { scope: AuthOptions.Scope }).map(v => {
         RxMySetting.next(v);
         return true;
     })
@@ -42,9 +42,15 @@ export function Login(form) {
 
 export function Refresh() {
     return RefreshMySettings().catch(e => {
-        if (IsErrUnauthorized(e)) {
+        console.log(e);
+        try {
+            if ((<HttpError>e).IsUnAuthorized()) {
+                Logout();
+            }
+        } catch (v) {
             Logout();
         }
+
         return of(false);
     });
 }

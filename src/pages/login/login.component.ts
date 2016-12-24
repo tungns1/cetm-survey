@@ -4,6 +4,7 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router';
+import { HttpError } from '../../x/backend/';
 import { Login, Logout, IsAuth, AuthOptions } from '../../shared/auth/';
 import * as Platform from '../../x/platform/index';
 
@@ -72,9 +73,9 @@ export class LoginComponent {
         redirect = '/';
       }
       this.router.navigateByUrl(redirect);
-    }, e => {
+    }, (e: HttpError) => {
       console.log(e);
-      this.message = `Đã có lỗi: ${Format(e)}`;
+      this.message = `Đã có lỗi: ${Format(e.Message())}`;
     });
   }
 

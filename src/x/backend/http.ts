@@ -3,10 +3,20 @@ import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/observable/fromPromise';
 import * as Loading from './loading';
 
+export class HttpError {
+  constructor(private status, private message: string) { }
+  Message() {
+    return this.message;
+  }
+  IsUnAuthorized() {
+    return this.status === HTTP_STATUS_UNAUTHORIZED
+  }
+}
+
 interface IResponse<T> {
   status: string;
   data: T;
-  error: any;
+  error: string;
 }
 
 interface HttpResponse {
@@ -56,18 +66,11 @@ function http(method: string, url: string, body?: any) {
   });
 }
 
-const errResponseFormat = new Error("invalid response format");
-const errConnectionError = new Error("connection error");
-const errUnauthorized = new Error("unauthorized");
-
-export function IsErrUnauthorized(err: Error) {
-  return err === errUnauthorized;
-}
+const errResponseFormat = new HttpError(0, "invalid response format");
+const errConnectionError = new HttpError(0, "connection error");
 
 function convertJSON<T>(data: HttpResponse) {
-  if (data.status === HTTP_STATUS_UNAUTHORIZED) {
-    throw errUnauthorized;
-  }
+
   let o: IResponse<T>;
   try {
     o = JSON.parse(data.body);
@@ -77,7 +80,8 @@ function convertJSON<T>(data: HttpResponse) {
   if (o.status === JSON_STATUS_SUCCESS) {
     return o.data;
   } else {
-    throw o.error;
+    const err = new HttpError(data.status, o.error);
+    throw err;
   }
 }
 

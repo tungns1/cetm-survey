@@ -17,7 +17,9 @@ import 'rxjs/add/operator/filter';
 RxMySetting.filter(v => !!v).subscribe(v => {
   Center.RxServices.next(v.services || []);
   RxUsers.next(v.users);
-  SetBranches(v.branches, v.me.branch_id);
+  if (v.me.branch_id) {
+    SetBranches(v.branches, v.me.branch_id);
+  }
 });
 
 export const RxSessionReady = RxMySetting.filter(s => !!s);
