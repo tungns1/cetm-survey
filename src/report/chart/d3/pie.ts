@@ -61,6 +61,7 @@ export class PieChart extends AbstractChart {
         paths.exit().remove();
 
         var texts = this.svg().selectAll("text").data(pies)
+        console.log(texts)
         texts.enter().append("text").merge(texts)
             .attr("text-anchor", "middle")
             .attr("transform", d => `translate(${labelArc.centroid(<any>d)})`)
