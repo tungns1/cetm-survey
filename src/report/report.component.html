@@ -8,15 +8,15 @@
 <br>
 <br>
 <div class="container" style="height:100vh;">
-    <report-filter *ngIf="hidden" class="aside" style="padding-top: 50px;"></report-filter>
+    <report-filter *ngIf="hidden" class="aside" style="padding-top: 50px;" (filter)="setFilter($event)"></report-filter>
     <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 0px 0px 5px;color: gray;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
     <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 0px 0px 5px;color:gray;" (click)="hidden=!hidden" title="Đóng bộ lọc"></i>
     <div class="main" style="padding: 20px 20px 0px 0px; width:1000px;">
         <div style="height: 50px;">
             <span style="font-size: 26px; line-height: 55px;">Report</span>
             <div style="float: right; margin-top: 5px;">
-                <button class="bt btpointer" type="submit" routerLink="/tonghop" routerLinkActive="active" (click)="tonghop()">TỔNG HỢP</button>
-                <button class="bt btpointer" type="submit" routerLink="/lichsu" routerLinkActive="active" (click)="lichsu()">LỊCH SỬ GIAO DỊCH</button>
+                <button class="bt btpointer" type="submit" routerLink="/tonghop" routerLinkActive="active">TỔNG HỢP</button>
+                <button class="bt btpointer" type="submit" routerLink="/lichsu" routerLinkActive="active">LỊCH SỬ GIAO DỊCH</button>
             </div>
         </div>
 

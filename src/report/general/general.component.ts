@@ -1,27 +1,21 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { RxFilter } from '../filter/';
-import { RefreshAggregate } from '../backend/aggregate.service';
+import { SetRefresh, RefreshAggregate } from '../backend/';
+import { IFilter } from '../filter/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 @Component({
     selector: 'general',
     templateUrl: 'general.component.html'
 })
 export class GeneralComponent {
-    tag ='general';
+    tag = 'general';
     ngOnInit() {
-        this.subscription = RxFilter.subscribe(RefreshAggregate);
+        SetRefresh(RefreshAggregate);
     }
-
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
-
-    private subscription: Subscription;
 
     setActive(tab) {
-        this.tag=tab.tag;
+        this.tag = tab.tag;
     }
 
 }

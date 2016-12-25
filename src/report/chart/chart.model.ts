@@ -193,11 +193,11 @@ const TimeParse = {
 }
 
 export const RxAggregateByTime = RxAggregate.map(records => {
-    const views = MakeIndexBy(records, 'time');
+    const views = MakeIndexBy(records, 'ctime');
     const parseTime = TimeParse[RxPeriod.value];
     // views.sort((a, b) => a.time > b.time ? 1 : -1);
     views.forEach(v => {
-        v.date = parseTime(v.time);
+        v.date = parseTime(v.ctime);
     })
     views.sort((a, b) => a.date < b.date ? -1 : 1);
     return views;

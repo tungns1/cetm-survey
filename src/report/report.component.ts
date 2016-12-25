@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { RefreshHistory } from './backend/history.service';
-import { RefreshAggregate } from './backend/aggregate.service';
+import { Refresh } from './backend/';
 import { RxFilter, IFilter } from './filter/';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-root',
@@ -13,18 +11,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ReportComponent {
     hidden = true;
-    private subscription: Subscription;
-    tonghop() {
-        this.subscription = RxFilter.subscribe(RefreshAggregate);
-
-    }
-    lichsu() {
-        if (!this.subscription) {
-            this.subscription = RxFilter.subscribe(ft => {
-                RefreshHistory(ft);
-            })
-        }
-
+    setFilter(filter: IFilter) {
+        Refresh(filter);
     }
 
     excel() {
