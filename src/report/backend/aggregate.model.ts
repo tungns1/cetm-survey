@@ -132,7 +132,7 @@ export class AggregateView {
         return this.c_t - this.c_ft;
     }
       get c_awt() {
-        return this.c_ft - this.c_bwt;
+        return this.c_t - this.c_bwt;
     }
        get c_ast() {
         return this.c_ft - this.c_bst;

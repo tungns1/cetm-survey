@@ -56,11 +56,11 @@
             <div>
                 <div class="ct">
                     Giao dịch có thời gian phục vụ chuẩn
-                    <span *ngIf="data.c_t>0" class="giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.c_t>0" class="giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_ft*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.c_t>0">
-                        <div class="gd" [style.width]="''+data.c_bst/data.c_t*100+'%'">
+                        <div class="gd" [style.width]="''+data.c_bst/data.c_ft*100+'%'">
 
                         </div>
                     </div>
@@ -69,11 +69,11 @@
             <div>
                 <div class="ct">
                     Giao dịch có thời gian phục vụ vượt chuẩn
-                    <span *ngIf="data.c_t>0" class="giaodich">{{data.c_t-data.c_bst}}&nbsp; ({{(data.c_t-data.c_bst)/data.c_t*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.c_t>0" class="giaodich">{{data.c_ft-data.c_bst}}&nbsp; ({{(data.c_ft-data.c_bst)/data.c_ft*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.c_t>0">
-                        <div class="gd" [style.width]="''+(data.c_t-data.c_bst)/data.c_t*100+'%'">
+                        <div class="gd" [style.width]="''+(data.c_t-data.c_bst)/data.c_ft*100+'%'">
 
                         </div>
                     </div>
