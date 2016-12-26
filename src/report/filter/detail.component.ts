@@ -6,7 +6,7 @@ import { Model } from '../shared/';
 @Component({
     selector: 'counter-selector',
     template: `
-     <input type="checkbox" (change)="checkAll(changes=!changes)" > &nbsp;Chọn tất cả<br>
+     <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
         <span *ngFor="let v of (counters | async)">
             <input type="checkbox" [(ngModel)]="v._checked">&nbsp;{{v.name}}
             <br>
@@ -29,7 +29,7 @@ export class CounterSelectorComponent {
     selector: 'user-selector',
     template: `
         
-        <input type="checkbox" (change)="checkAll(changes=!changes)" > &nbsp;Chọn tất cả<br>
+        <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
         <span *ngFor="let v of (users | async)">
             <input type="checkbox" [(ngModel)]="v._checked">&nbsp;{{v.fullname}}
             <br>
