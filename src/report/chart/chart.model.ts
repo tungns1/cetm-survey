@@ -35,22 +35,22 @@ const Fields: MyItem[] = [{
 }, {
     field: 'c_r_a',
     tab: 'customer',
-    color: 'steelblue',
+    color: '#0088cc',
     title: 'Phản hồi tốt'
 }, {
     field: 'c_r_b',
     tab: 'customer',
-    color: 'green',
+    color: '#73e600',
     title: 'Phản hồi khá'
 }, {
     field: 'c_r_c',
     tab: 'customer',
-    color: 'brown',
+    color: '#ffcc00',
     title: 'Phản hồi trung bình'
 }, {
     field: 'c_r_d',
     tab: 'customer',
-    color: 'orange',
+    color: '#ff3333',
     title: 'Phản hồi kém'
 }];
 
