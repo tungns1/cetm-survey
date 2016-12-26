@@ -11,7 +11,7 @@ function TwoDigit(n: number): string {
     name: "hour"
 })
 export class HourPipe implements PipeTransform {
-    transform(v: number) {
-        return [v / 3600, (v % 3600) / 60, v % 60].map(TwoDigit).join(":");
+    transform(v: string) {
+        return [+v / 3600, (+v % 3600) / 60, +v % 60].map(TwoDigit).join(":");
     }
 }
