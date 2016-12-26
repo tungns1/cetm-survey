@@ -52,7 +52,7 @@ export function GetCounters() {
 }
 
 export function GetUsers() {
-    return GetSelected(RxUsers.value);
+    return GetSelected(RxUsers.value.map(v=>v.role==='staff'));
 }
 
 export const RxGroupBy = new BehaviorSubject<string>('branch_id');
