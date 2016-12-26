@@ -33,8 +33,8 @@
         <ng-content></ng-content>
         <modal-footer>
             <button class="huy btpointer" (click)="CloseEditor()" style="width: 45%">HỦY </button>
-            <button *ngIf="!current" class="them btpointer" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;">THÊM </button>
-            <button *ngIf="current" class="them btpointer" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;">LƯU </button>
+            <button *ngIf="!current" class="them" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;">THÊM </button>
+            <button *ngIf="current" class="them" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;">LƯU </button>
         </modal-footer>
     </div>
 </modal>

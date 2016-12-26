@@ -17,8 +17,8 @@ import { FormArray, FormControl } from '@angular/forms';
     selector: 'select-check',
     template: `
         <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
-        <span *ngFor="let d of data" class="pointer" (click)="toggle($event, d)">
-            <input type="checkbox" [ngModel]="values[d[idField]];d._checked">{{d[textField]}}<br>
+        <span *ngFor="let d of data" class="pointer">
+            <input type="checkbox" [ngModel]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
         </span>
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
@@ -38,12 +38,18 @@ class SelectCheckComponent implements ControlValueAccessor {
 
     checkAll(event) {
         let selects: any[] = [];
-        this.data.forEach(u => {
-            u._checked = event
-            selects.push(u);
-        });
-        this.writeValue(selects);
-        this.OnChange();
+        if (event) {
+            this.data.forEach(u => {
+                let id = u[this.idField];
+                selects.push(id);
+            });
+            this.value = [];
+            this.writeValue(selects);
+        } else {
+            this.value = [];
+            this.writeValue(selects);
+        }
+          this.OnChange();
     }
 
     writeValue(data: any[]) {
@@ -67,12 +73,12 @@ class SelectCheckComponent implements ControlValueAccessor {
         setTimeout(_ => this.onChangeCallback(this.value));
     }
 
-    toggle(e: Event, d: any) {
+    check(d: any, e: Event) {
         let id = d[this.idField];
         e.preventDefault();
         e.stopPropagation();
-        this.values[id] = !this.values[id];
-        const b = this.values[id];
+        let b = e.target['checked'];
+
         if (b) {
             this.value.push(id);
         } else {
