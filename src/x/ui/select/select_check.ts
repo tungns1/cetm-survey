@@ -42,7 +42,7 @@ class SelectCheckComponent implements ControlValueAccessor {
             u._checked = event
             selects.push(u);
         });
-        this.value = selects;
+        this.writeValue(selects);
         this.OnChange();
     }
 
