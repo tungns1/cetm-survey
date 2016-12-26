@@ -25,13 +25,13 @@ const Fields: MyItem[] = [{
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    title: 'Thời gian đợi (giờ)',
+    title: 'Thời gian đợi',
     axis: 'left'
 }, {
     field: 's_st_h',
     tab: 'time',
     color: 'green',
-    title: 'Thời gian phục vụ (giờ)'
+    title: 'Thời gian phục vụ'
 }, {
     field: 'c_r_a',
     tab: 'customer',
@@ -88,13 +88,13 @@ const FieldPie: MyItem[][] = [[{
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    title: 'Thời gian đợi (giờ)',
+    title: 'Thời gian đợi',
     axis: 'left'
 }, {
     field: 's_st_h',
     tab: 'time',
     color: 'green',
-    title: 'Thời gian phục vụ (giờ)'
+    title: 'Thời gian phục vụ'
 }], [{
     field: 'c_r',
     color: '#99b3ff',
