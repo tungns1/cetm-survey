@@ -8,12 +8,12 @@ interface MyItem extends Item {
 
 const Fields: MyItem[] = [{
     field: 'c_t',
-    color: 'steelblue',
+    color: '#9933ff',
     tab: 'general',
     title: 'Tổng số giao dịch'
 }, {
     field: 'c_ft',
-    color: '#009900',
+    color: '#99b3ff',
     tab: 'general',
     title: 'Giao dịch thành công'
 }, {
@@ -56,7 +56,7 @@ const Fields: MyItem[] = [{
 
 const FieldPie: MyItem[][] = [[{
     field: 'c_ft',
-    color: '#009900',
+    color: '#99b3ff',
     tab: 'general',
     title: 'Giao dịch thành công'
 }, {
@@ -66,22 +66,22 @@ const FieldPie: MyItem[][] = [[{
     title: 'Giao dịch bị hủy'
 }], [{
     field: 'c_bwt',
-    color: '#E8AA0C',
+    color: '#339933',
     tab: 'general',
     title: 'Giao dịch đợi chuẩn'
 }, {
     field: 'c_awt',
-    color: '#ff0000',
+    color: '#b4e4b4',
     tab: 'general',
     title: 'Giao dịch đợi vượt chuẩn'
 }], [{
     field: 'c_bst',
-    color: '#15FFAC',
+    color: '#339966',
     tab: 'general',
     title: 'Giao dịch phục vụ chuẩn'
 }, {
     field: 'c_ast',
-    color: '#19FF01',
+    color: '#9fdfbf',
     tab: 'general',
     title: 'Giao dịch phục vụ vượt chuẩn'
 }], [{
@@ -97,7 +97,7 @@ const FieldPie: MyItem[][] = [[{
     title: 'Thời gian phục vụ (giờ)'
 }], [{
     field: 'c_r',
-    color: '#009900',
+    color: '#99b3ff',
     tab: 'customer',
     title: 'Giao dịch có phản hồi'
 }, {
@@ -108,22 +108,22 @@ const FieldPie: MyItem[][] = [[{
 }], [{
     field: 'c_r_a',
     tab: 'customer',
-    color: 'steelblue',
+    color: '#0088cc',
     title: 'Phản hồi tốt'
 }, {
     field: 'c_r_b',
     tab: 'customer',
-    color: 'green',
+    color: '#73e600',
     title: 'Phản hồi khá'
 }, {
     field: 'c_r_c',
     tab: 'customer',
-    color: 'brown',
+    color: '#ffcc00',
     title: 'Phản hồi trung bình'
 }, {
     field: 'c_r_d',
     tab: 'customer',
-    color: 'orange',
+    color: '#ff3333',
     title: 'Phản hồi kém'
 }]];
 
