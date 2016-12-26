@@ -43,6 +43,7 @@ class SelectCheckComponent implements ControlValueAccessor {
             selects.push(u);
         });
         this.value = selects;
+        this.OnChange();
     }
 
     writeValue(data: any[]) {
