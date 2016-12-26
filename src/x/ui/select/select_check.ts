@@ -18,7 +18,7 @@ import { FormArray, FormControl } from '@angular/forms';
     template: `
         <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
         <span *ngFor="let d of data" class="pointer" (click)="toggle($event, d)">
-            <input type="checkbox" [ngModel]="values[d[idField]]">{{d[textField]}}<br>
+            <input type="checkbox" [ngModel]="values[d[idField]];d._checked">{{d[textField]}}<br>
         </span>
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
