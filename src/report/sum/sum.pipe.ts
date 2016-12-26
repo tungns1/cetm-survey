@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 
 function TwoDigit(n: number): string {
-    n = Math.round(n);
+    n = Math.floor(n);
     return (n > 9 ? '' : '0') + n;
 }
 
@@ -12,9 +12,6 @@ function TwoDigit(n: number): string {
 })
 export class HourPipe implements PipeTransform {
     transform(v: number) {
-        var hours =(v/3600).toFixed(2);
-        var minutes = ((v%3600)/60).toFixed(2);
-        var seconds = v%60;
-        return hours + ':' + minutes + ':' + seconds;
+     return [v / 3600, (v % 3600) / 60, v % 60].map(TwoDigit).join(":");
     }
 }
