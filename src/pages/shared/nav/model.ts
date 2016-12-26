@@ -21,8 +21,8 @@ const settingMenu = [
 
 export const AdminMenu: Item[] = [
     { app: 'admin', href: "/branch/0", name: "Quản lý Trung Tâm", icon: "fa-home", children: settingMenu },
-    { app: 'report', href: "/", name: "Báo cáo", icon: "fa-line-chart" },
-    { app: 'monitor', href: "/", name: "Giám sát", icon: "fa-bell" },
+    { app: 'report', href: "/tonghop", name: "Báo cáo", icon: "fa-line-chart" },
+    { app: 'monitor', href: "/ticket", name: "Giám sát", icon: "fa-bell" },
     { app: 'admin', href: "/house/kiosk", name: "Quản lý Kiosk", icon: "fa-ticket" },
     { app: 'admin', href: "/house/screen", name: "Quản lý Màn hình", icon: "fa-desktop" }
 ]
