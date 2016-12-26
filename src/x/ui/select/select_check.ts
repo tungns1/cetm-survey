@@ -16,6 +16,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'select-check',
     template: `
+        <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
         <span *ngFor="let d of data" class="pointer" (click)="toggle($event, d)">
             <input type="checkbox" [ngModel]="values[d[idField]]">{{d[textField]}}<br>
         </span>
@@ -26,14 +27,23 @@ class SelectCheckComponent implements ControlValueAccessor {
     constructor(
         @Attribute('idField') private idField,
         @Attribute('textField') private textField) {
-           this.idField = this.idField || 'id';
-           this.textField = this.textField || 'text';
+        this.idField = this.idField || 'id';
+        this.textField = this.textField || 'text';
     }
-    
+
     @Input() data = [];
     private values = {};
     protected value = [];
     protected onChangeCallback = (v) => { };
+
+    checkAll(event) {
+        let selects: any[] = [];
+        this.value.forEach(u => {
+            u._checked = event
+            selects.push(u);
+        });
+        this.value = selects;
+    }
 
     writeValue(data: any[]) {
         if (!Array.isArray(data)) {
