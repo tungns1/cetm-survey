@@ -21,12 +21,7 @@ export class MissedComponent {
         return tickets.filter(v => v.cnum.indexOf(text) !== -1);
     })
 
-    onSearch(e: Event) {
-        if (!e) {
-            return;
-        }
-        e.preventDefault();
-        e.stopPropagation();
-        search.next(e.target['value']);
+    onSearch(ticket:string) {
+        search.next(ticket);
     }
 }
