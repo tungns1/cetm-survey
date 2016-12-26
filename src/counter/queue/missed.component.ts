@@ -16,6 +16,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
     styleUrls: ['waiting.component.css']
 })
 export class MissedComponent {
+    private tk: string;
     show=true;
     count = Missed.count();
     tickets = combineLatest<Model.House.ITicket[], string>(Missed.RxData, search).map(([tickets, text]) => {
@@ -32,6 +33,6 @@ export class MissedComponent {
     }
     showInput(ticket:string){
         this.show=!this.show;
-        ticket='';
+        this.tk='';
     }
 }
