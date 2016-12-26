@@ -4,7 +4,7 @@ export interface IAggregate {
     counter_id?: string;
     service_id?: string;
 
-    time?: string;
+    ctime?: string;
 
     s_r?: number; // sum rating
     c_t?: number; // count transaction
@@ -43,7 +43,7 @@ export class AggregateView {
     user_id: string;
     counter_id: string;
     service_id: string;
-    time: string;
+    ctime: string;
     date: Date;
 
     s_r = 0; // sum rating
@@ -82,7 +82,7 @@ export class AggregateView {
             this.user_id = s.user_id;
             this.counter_id = s.counter_id;
             this.service_id = s.service_id;
-            this.time = s.time;
+            this.ctime = s.ctime;
         }
         this.data.push(s);
         this.s_r += s.s_r;

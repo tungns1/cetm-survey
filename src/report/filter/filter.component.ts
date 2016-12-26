@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
 import { GetServices, GetCounters, GetUsers, RxGroupBy, RxPeriod } from './filter.service';
 import { Branch } from '../shared/';
@@ -95,12 +95,13 @@ const Form = (new FormBuilder).group({
     styleUrls: ['filter.component.css']
 })
 export class ReportFilterComponent {
+    @Output() filter = new EventEmitter();
     form = Form;
     active = '';
     refresh() {
         const filter = GetFilter();
         RxGroupBy.next(filter.group_by);
         RxPeriod.next(filter.period);
-        RxFilter.next(filter);
+        this.filter.next(filter);
     }
 }

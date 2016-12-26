@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { RxCount, RxHistory, RefreshHistory, ExportHistory } from '../backend/history.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RxFilter, IFilter } from '../filter/';
+import { IFilter, GetFilter } from '../filter/';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-
+import { SetRefresh } from '../backend/';
 
 interface IPage {
     page: number;
@@ -15,12 +15,6 @@ interface IPage {
 const pageSize = 15;
 
 const RxCurrentPage = new BehaviorSubject(1);
-const RxPagedFilter = Observable.combineLatest(RxFilter, RxCurrentPage, (filter, current) => {
-    filter.limit = 15;
-    filter.skip = (current - 1) * pageSize;
-    return filter;
-})
-
 
 @Component({
     selector: 'history',
@@ -29,25 +23,22 @@ const RxPagedFilter = Observable.combineLatest(RxFilter, RxCurrentPage, (filter,
 })
 export class HistoryComponent {
     data = RxHistory;
-    private subscription: Subscription;
+    active: IFilter = null;
 
     ngOnInit() {
-        if (!this.subscription) {
-            this.subscription = RxPagedFilter.subscribe(ft => {
-                RefreshHistory(ft);
-            })
-        }
+        SetRefresh(this.refresh.bind(this));
     }
 
-    ngOnDestroy() {
-        if (this.subscription) {
-            // this.subscription.unsubscribe();
-            // this.subscription = null;
-        }
+    refresh() {
+        this.active = GetFilter();
+        this.active.limit = pageSize;
+        this.active.skip = pageSize * (RxCurrentPage.value - 1);
+        RefreshHistory(this.active);
     }
 
     chuyenTrang(value) {
         RxCurrentPage.next(value);
+        this.refresh();
     }
 
     skip = RxCurrentPage.map(v => (v - 1) * pageSize);
