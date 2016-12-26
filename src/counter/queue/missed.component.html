@@ -17,8 +17,8 @@
 <div class="content">
     <div class="title">
         <div> DANH SÁCH HÀNG SỐ NHỠ&nbsp;(<span class="total">{{count | async}}</span>) </div>
-        <input #ticket [class.hidden]="show" [(ngModel)]="tk" (keyup)="onSearch($event)" type="text" placeholder="số vé">
-        <img src="../asset/img/icon/search.png" (click)="showInput(ticket.value)" alt="Search" width="20" height="20" style="cursor: pointer">
+        <input #ticket [class.hidden]="!show" (keyup)="onSearch($event)" type="text" placeholder="số vé">
+        <img src="../asset/img/icon/search.png" (click)="show = !show; ticket.value=''" alt="Search" width="20" height="20" style="cursor: pointer">
     </div>
 
     <div class="table">
