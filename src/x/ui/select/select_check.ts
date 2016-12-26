@@ -38,7 +38,7 @@ class SelectCheckComponent implements ControlValueAccessor {
 
     checkAll(event) {
         let selects: any[] = [];
-        this.value.forEach(u => {
+        this.data.forEach(u => {
             u._checked = event
             selects.push(u);
         });
