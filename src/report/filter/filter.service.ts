@@ -28,7 +28,7 @@ RxDetails.subscribe(v => {
     counters.sort((a, b) => a.name > b.name ? 1 : -1);
     RxCounters.next(counters);
     const users: Model.IUser[] = v['users'];
-    users.sort((a, b) => a.fullname > b.fullname ? 1 : -1);
+    users.filter(v=>v.role==='staff').sort((a, b) => a.fullname > b.fullname ? 1 : -1);
     RxUsers.next(users);
     users.forEach(u => NameMap.set(u.id, u.fullname));
     counters.forEach(c => NameMap.set(c.id, c.name));
@@ -52,7 +52,7 @@ export function GetCounters() {
 }
 
 export function GetUsers() {
-    return GetSelected(RxUsers.value.map(v=>v.role==='staff'));
+    return GetSelected(RxUsers.value);
 }
 
 export const RxGroupBy = new BehaviorSubject<string>('branch_id');
