@@ -28,16 +28,18 @@ export class TicketTimerComopnent {
         }
     }
 
-    private view(from: number) {
-        const duration = Date.now() / 1000 - from;
+    private view() {
+        let duration = 0;
+        duration++;
         let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
         (this.ref.nativeElement).innerHTML = view;
     }
 
     @Input() set start(s: number) {
+        console.log(s);
         this.clear();
-        this.view(s);
-        this.subscription = oneSecond.subscribe(_ => this.view(s));
+        this.view();
+        this.subscription = oneSecond.subscribe(_ => this.view());
     };
 
     ngOnDestroy() {
