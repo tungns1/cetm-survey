@@ -39,11 +39,11 @@ export class TicketTimerComopnent {
         let duration = Date.now() / 1000 - s;
         let ctime = 0;
         if (duration > 0) {
-            ctime = s + duration;
-            this.view(s + duration);
-        } else if (duration < 0) {
             ctime = s - duration;
             this.view(s - duration);
+        } else if (duration < 0) {
+            ctime = s + duration;
+            this.view(s + duration);
         } else {
             ctime = s;
             this.view(s);
