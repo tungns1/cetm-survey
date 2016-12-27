@@ -3,18 +3,19 @@ import { FormGroup } from '@angular/forms';
 
 import { Backend } from '../../../shared/';
 import { ModalComponent } from '../../../x/ui/modal/';
+import { Toast } from '../../../x/ui/noti/';
 
 interface IEditService<T> {
     api: Backend.HttpApi<T>;
     refresh: () => void;
-    form: (u?: T) => FormGroup; 
+    form: (u?: T) => FormGroup;
 }
 
 @Component({
     selector: "editor-title",
     template: `<ng-content></ng-content>`
 })
-export class EditorTitleComponent {}
+export class EditorTitleComponent { }
 
 @Component({
     selector: 'editor',
@@ -23,7 +24,7 @@ export class EditorTitleComponent {}
 })
 export class EditorComponent<T> {
     @Input() name = "";
-    err='';
+    err = '';
 
     @Input() data: any[] = [];
     @Input() fields: { title: string, name: string }[] = [];
@@ -45,7 +46,7 @@ export class EditorComponent<T> {
     onAdd() {
         this.current = null;
         this.form = this.service.form();
-        this.form.updateValueAndValidity({onlySelf: false, emitEvent: true});
+        this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
         this.edit.next(this.form);
     }
@@ -53,7 +54,7 @@ export class EditorComponent<T> {
     onEdit(u: T) {
         this.current = u;
         this.form = this.service.form(u);
-        this.form.updateValueAndValidity({onlySelf: false, emitEvent: true});
+        this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
         this.edit.next(this.form);
     }
@@ -77,7 +78,7 @@ export class EditorComponent<T> {
             this.Refresh();
             this.editorRef.Close();
         }, err => {
-            this.err=err;
+            this.err = err;
             Error(err);
         });
     }
@@ -88,7 +89,7 @@ export class EditorComponent<T> {
             this.removeRef.Close();
             this.Refresh();
         }, err => {
-            this.err=err;
+            this.err = err;
             Error(err);
         });
     }
@@ -98,18 +99,23 @@ export class EditorComponent<T> {
             Success("Sửa thành công");
             this.Refresh();
             this.editorRef.Close();
-        },  err => {
-            this.err=err;
+        }, err => {
+            this.err = err;
             Error(err);
         });
     }
 }
+const toast = new Toast;
 
 
 function Error(message: string) {
-    console.log(message);
+    toast.SetTitle('Lỗi');
+    toast.SetMessage(message);
+    toast.Show();
 }
 
 function Success(message: string) {
-    console.log(message);
+    toast.SetTitle('Thành công');
+    toast.SetMessage(message);
+    toast.Show();
 }
