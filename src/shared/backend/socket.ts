@@ -9,6 +9,7 @@ import { Toast } from '../../x/ui/noti/toastr';
 export const RxError = new BehaviorSubject<{ type?: string, message?: string }>({});
 
 RxError.subscribe(e => console.info(e));
+import 'rxjs/add/operator/skip';
 
 export class AppSocket<T> extends Socket {
     constructor(private uri: string, private fields: string[]) {
@@ -17,7 +18,7 @@ export class AppSocket<T> extends Socket {
     }
 
     private init() {
-        this.rxConnected.subscribe(c => {
+        this.rxConnected.skip(1).subscribe(c => {
             if (c) {
                 RxError.next({ type: "connect" });
             } else {
