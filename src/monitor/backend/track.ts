@@ -16,19 +16,22 @@ const trackApi = new Backend.HttpApi("/api/monitor");
 
 
 export class TrackGroup<T extends Track> {
-    constructor(private uri: string) {}
+    constructor(private uri: string) { }
 
     private sort = (a: T, b: T) => {
-        return a.mtime < b.mtime? -1 : 1;
+        return a.mtime < b.mtime ? -1 : 1;
     }
 
     public Refresh() {
         trackApi.Get<T[]>(this.uri, GetFilter()).subscribe(values => {
+            var res: T[] = [];
             values.forEach(t => {
-                t.branches = Branch.GetTreeNames(t.branch_id);
-                this.beforeAdd(t);
+                if (this.canAdd(t)) {
+                    t.branches = Branch.GetTreeNames(t.branch_id);
+                    res.push(t);
+                }
             });
-            this.RxData.next(values);
+            this.RxData.next(res);
         });
     }
 
@@ -46,8 +49,8 @@ export class TrackGroup<T extends Track> {
         // this.refresh();
     }
 
-    beforeAdd = (v: T) => {
-
+    protected canAdd(v: T) {
+        return true;
     }
 
     RxData = new BehaviorSubject<T[]>([]);

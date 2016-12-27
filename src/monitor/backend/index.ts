@@ -1,31 +1,30 @@
-import { RefreshDeviceTrack } from './device';
-import { RefreshTicketTrack } from './ticket';
+import { DeviceTracks } from './device';
+import { TicketTrackGroup } from './ticket';
 export * from './device';
 export * from './ticket';
 
-import {TrackGroup} from './track';
-let activeRefresh = RefreshDeviceTrack;
-let activeInterval: NodeJS.Timer = null;
-const auto = 5000;
+import { RefreshWorker } from './worker';
+import { TrackGroup } from './track';
+
+var worker = new RefreshWorker({
+    device: DeviceTracks,
+    ticket: TicketTrackGroup
+});
 
 export function TrackDevice() {
-    activeRefresh = RefreshDeviceTrack ;
+    worker.Activate("device");
 }
 
 export function TrackTicket() {
-    activeRefresh = RefreshTicketTrack;
+    worker.Activate("ticket");
 }
 
 export function Refresh() {
-    activeRefresh();
-    if (activeRefresh) {
-        clearInterval(activeInterval);
-    }
-    activeInterval = setInterval(Refresh, auto);
+    worker.Refresh();
 }
 
-import {ITab, IAsideFilter} from '../shared';
-import {SetTab, SetAsideFilter} from './filter';
+import { ITab, IAsideFilter } from '../shared';
+import { SetTab, SetAsideFilter } from './filter';
 
 export function SetTabAndRefresh(tab: ITab) {
     SetTab(tab);
@@ -35,4 +34,8 @@ export function SetTabAndRefresh(tab: ITab) {
 export function SetAsideFilterAndRefresh(filter: IAsideFilter) {
     SetAsideFilter(filter);
     Refresh();
+}
+
+export function SetRefreshInterval(interval: number) {
+    worker.Interval(interval);
 }

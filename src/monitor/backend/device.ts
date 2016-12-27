@@ -9,11 +9,11 @@ export interface DeviceTrack extends Track {
 }
 
 class deviceTrackGroup extends TrackGroup<DeviceTrack> {
-   
+   canAdd(d: DeviceTrack) {
+       return d.off_at > 0;
+   }
 }
 
-const DeviceTracks = new deviceTrackGroup("device");
+export const DeviceTracks = new deviceTrackGroup("device");
 export const RxDeviceData = DeviceTracks.RxData;
-export function RefreshDeviceTrack() {
-    DeviceTracks.Refresh();
-}
+

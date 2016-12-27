@@ -13,6 +13,10 @@
     <div class="main" style="padding: 20px 20px 0px 0px;">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">
+                Tự cập nhật:
+                <select (ngModelChange)="setRefreshInterval($event)">
+                    <option *ngFor="let a of intervals" [value]="a.interval">{{a.name}}</option>
+                </select>
                 <button class="gd btpointer" type="submit" routerLink="/ticket" routerLinkActive="active">GIAO DỊCH VƯỢT CHUẨN</button>
                 <button type="submit" routerLink="/device" routerLinkActive="active">THIẾT BỊ MẤT KẾT NỐI</button>
             </div>

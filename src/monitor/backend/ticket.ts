@@ -15,20 +15,18 @@ export interface TicketTrack extends Track {
 }
 
 class ticketTrackGroup extends TrackGroup<TicketTrack> {
-	beforeAdd = (v: TicketTrack) => {
+	protected canAdd(v: TicketTrack) {
 		var timeStamp = Math.floor(Date.now() / 1000);
 
 		if (!v.service_id) {
 			v.service_id = v.services[0];
 		}
 		v.service = Model.Center.ServiceName(v.service_id);
+		return true;
 	}
 }
 
-const TicketTrackGroup = new ticketTrackGroup("ticket");
-
+export const TicketTrackGroup = new ticketTrackGroup("ticket");
 
 export const RxTicketData = TicketTrackGroup.RxData;
-export function RefreshTicketTrack() {
-	TicketTrackGroup.Refresh();
-}
+
