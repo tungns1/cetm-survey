@@ -29,16 +29,15 @@ export class TicketTimerComopnent {
     }
 
     private view(from: number) {
-        let view = [from / 3600, (from % 3600) / 60, (from % 60)].map(TwoDigit).join(":");
+        const duration = Date.now() / 1000 - from;
+        let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
         (this.ref.nativeElement).innerHTML = view;
     }
 
     @Input() set start(s: number) {
         this.clear();
-        // let duration = Date.now() / 1000 - s;
-        // const ctime = s + duration;
-        this.view(0);
-        this.subscription = oneSecond.subscribe(_ => this.view(Date.now() / 1000 - s));
+        this.view(s);
+        this.subscription = oneSecond.subscribe(_ => this.view(s));
     };
 
     ngOnDestroy() {
