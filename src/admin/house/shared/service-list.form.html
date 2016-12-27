@@ -1,6 +1,6 @@
 <i class="fa fa-plus pointer" (click)="Add()">Thêm</i>
-<div *ngFor="let v of value; let i = index">
-    <div class="row">
+<div *ngFor="let v of value; let i = index" class="row">
+    <div>
         {{getName(v.id)}}
         <i class="fa fa-edit pointer" title="Sửa" (click)="Edit(v)"></i>
         <i class="fa fa-chevron-up pointer" title="Chuyển lên" (click)="Swap(i-1, i)" style="color: #a6a6a6;"></i>
