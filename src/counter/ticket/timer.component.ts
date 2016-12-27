@@ -37,7 +37,7 @@ export class TicketTimerComopnent {
         this.clear();
         let duration = Date.now() / 1000 - s;
         let ctime = s + duration;
-        this.view(Date.now() / 1000);
+        this.view(0);
         this.subscription = oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime));
     };
 
