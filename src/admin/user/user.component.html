@@ -1,8 +1,9 @@
 <editor #edit name="người dùng" [fields]="fields" [data]="users | async" [service]="service" (refresh)="Refresh()">
     <editor-title> Danh sách người dùng</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <input type="text" formControlName="username" placeholder="Username" style="width: 100%;">
-        <input type="text" formControlName="fullname" placeholder="Họ và tên" style="width: 100%;">
+        Tên đăng nhập:
+        <input type="text" formControlName="username" placeholder="Username" style="width: 100%;"><br>Họ và tên:
+        <input type="text" formControlName="fullname" placeholder="Họ và tên" style="width: 100%;"><br>Mật khẩu:
         <input type="password" formControlName="password" id="password" placeholder="Mật khẩu" style="width: 100%;">
         <br> Role:
         <select formControlName="role">

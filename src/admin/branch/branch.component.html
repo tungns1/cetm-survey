@@ -1,7 +1,8 @@
 <editor #edit [name]="level | levelName" [fields]="fields" [data]="branches | async" [service]="service">
     <editor-title> Danh sách {{level | levelName}}</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <input type="text" formControlName="name" placeholder="Tên">
+        Tên:
+        <input type="text" formControlName="name" placeholder="Tên"><br> Mã:
         <input type="text" formControlName="code" placeholder="Mã">
 
         <div>

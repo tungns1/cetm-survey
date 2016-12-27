@@ -1,8 +1,9 @@
 <editor #edit name="dịch vụ" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> Danh sách dịch vụ</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <input formControlName="image" placeholder="Hình ảnh">
-        <input formControlName="code" placeholder="Mã">
+        Hình ảnh:
+        <input formControlName="image" placeholder="Hình ảnh"><br> Mã:
+        <input formControlName="code" placeholder="Mã"><br> Ưu tiên:
         <input type="number" formControlName="priority" placeholder="Ưu tiên">
         <l10n-form formControlName="l10n"></l10n-form>
         Số vé:

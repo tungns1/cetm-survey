@@ -1,9 +1,10 @@
 <editor #edit name="quầy" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> Danh sách Quầy</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <input type="text" formControlName="code" placeholder="Mã">
-        <input type="text" formControlName="cnum" placeholder="Số quầy">
-        <input type="text" formControlName="name" placeholder="Tên">
+        Mã:
+        <input type="text" formControlName="code" placeholder="Mã"><br>Số quầy:
+        <input type="text" formControlName="cnum" placeholder="Số quầy"><br>Tên:
+        <input type="text" formControlName="name" placeholder="Tên"><br>Địa chỉ thiết bị led:
         <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led"> Dịch vụ thường:
         <div class="dichvu">
             <select-check formControlName="services" [data]="services | async" textField="name">

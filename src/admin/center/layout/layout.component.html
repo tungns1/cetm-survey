@@ -1,7 +1,8 @@
 <editor #edit name="giao diện" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> Danh sách giao diện <b> {{tag}} </b> </editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <input formControlName="name" placeholder="Tên">
+        Tên:
+        <input formControlName="name" placeholder="Tên"><br> Kiểu giao diện:
         <select formControlName="type">
             <option value="kiosk"> Kiosk </option>
             <option value="screen"> Screen </option>

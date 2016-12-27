@@ -1,10 +1,11 @@
 <editor #edit name="kiosk" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách Kiosk<button class="add uppercase btpointer"  routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> sửa giao diện </button></editor-title>
+    <editor-title> Danh sách Kiosk<button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> sửa giao diện </button></editor-title>
     <form *ngIf="edit.form" class="form" [formGroup]="edit.form">
-        <input class="inputs" type="text" formControlName="code" placeholder="Mã">
-        <input class="inputs" type="text" formControlName="name" placeholder="Tên kiosk">
+        Mã:
+        <input class="inputs" type="text" formControlName="code" placeholder="Mã"><br>Tên kiosk:
+        <input class="inputs" type="text" formControlName="name" placeholder="Tên kiosk"><br>Vip code:
         <input class="inputs" type="text" formControlName="vcodes" placeholder="Vip code">
-        <input class="check" type="checkbox" formControlName="inheritable"> Có thể kế thừa     
+        <input class="check" type="checkbox" formControlName="inheritable"> Có thể kế thừa
 
         <br> Kiosk cha:
         <select formControlName="parent_id">           
@@ -23,5 +24,5 @@
 
         <hr> Chi nhánh:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
-    </form>    
+    </form>
 </editor>
