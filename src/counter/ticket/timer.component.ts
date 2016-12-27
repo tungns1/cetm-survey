@@ -29,8 +29,7 @@ export class TicketTimerComopnent {
     }
 
     private view(from: number) {
-        const duration = Date.now() / 1000 - from;
-        let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
+        let view = [from / 3600, (from % 3600) / 60, (from % 60)].map(TwoDigit).join(":");
         (this.ref.nativeElement).innerHTML = view;
     }
 
@@ -39,7 +38,7 @@ export class TicketTimerComopnent {
         let duration = Date.now() / 1000 - s;
         let ctime = s + duration;
         this.view(ctime);
-        this.subscription = oneSecond.subscribe(_ => this.view(ctime));
+        this.subscription = oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime));
     };
 
     ngOnDestroy() {
