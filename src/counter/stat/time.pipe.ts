@@ -44,6 +44,7 @@ export class StateTicketPipe implements PipeTransform {
             default:
                ticketState = 'không biết';
         }
+        return ticketState;
     }
 }
 

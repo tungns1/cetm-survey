@@ -108,7 +108,7 @@ export class Toast {
 
     SetTitle(title:string) {
         this.title.innerHTML = title;
-        this.title.classList.add(DEFAULT.titleClass);
+        this.el.appendChild(this.title);
     }
 
     SetMessage(mesage:string) {
