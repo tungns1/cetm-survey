@@ -22,14 +22,7 @@ type IServiceList = Model.Center.IService[];
 @Component({
     selector: 'service-list',
     templateUrl: 'service-list.form.html',
-    styles: [`
-    .pointer {
-        cursor: pointer;
-    }
-    .pointer:hover {
-        color: green;
-    }
-    `],
+    styleUrls:['service-list.form.css'],
     providers: [SERVICE_LIST_CONTROL_VALUE_ACCESSOR]
 })
 class ServiceListComponent implements ControlValueAccessor {

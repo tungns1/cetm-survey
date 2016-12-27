@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Socket } from '../../x/backend/socket';
 import { WsHost } from '../../config/setting';
+import * as Loading from '../../x/backend/loading';
+import { Toast } from '../../x/ui/noti/toastr';
 
 export const RxError = new BehaviorSubject<{ type?: string, message?: string }>({});
 
@@ -19,6 +21,11 @@ export class AppSocket<T> extends Socket {
             if (c) {
                 RxError.next({ type: "connect" });
             } else {
+                var toast=new Toast();
+                toast.SetTitle('Lỗi');
+                toast.SetMessage('Lỗi kết nối máy chủ');
+                toast.Show();
+                Loading.Hide();
                 RxError.next({ type: "connect", message: "Cannot connect to the server" });
             }
         })

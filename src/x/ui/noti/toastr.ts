@@ -43,7 +43,7 @@ const DEFAULT = {
     },
     iconClass: 'toast-info',
     positionClass: 'toast-top-right',
-    timeOut: 5000, // Set timeOut and extendedTimeOut to 0 to make it sticky
+    timeOut: 3000, // Set timeOut and extendedTimeOut to 0 to make it sticky
     titleClass: 'toast-title',
     messageClass: 'toast-message',
     escapeHtml: false,
@@ -84,8 +84,6 @@ function escapeHtml(source) {
 export class Toast {
     constructor() {
         this.SetIcon();
-        this.SetTitle();
-        this.SetMessage();
         this.SetCloseButton();
         this.el.classList.add(DEFAULT.toastClass);
         setTimeout(this.Hide.bind(this), DEFAULT.timeOut);
@@ -108,20 +106,18 @@ export class Toast {
         this.el.classList.add(DEFAULT.toastClass, DEFAULT.iconClass);
     }
 
-    SetTitle() {
+    SetTitle(title:string) {
+        this.title.innerHTML = title;
         this.el.appendChild(this.title);
-        this.title.innerHTML = "TITLE";
-        this.title.classList.add(DEFAULT.titleClass);
     }
 
-    SetMessage() {
-        this.mesage.innerHTML = "THANKS";
-        this.mesage.classList.add(DEFAULT.messageClass);
+    SetMessage(mesage:string) {
+        this.mesage.innerHTML = mesage;
         this.el.appendChild(this.mesage);
     }
 
     SetCloseButton() {
-        this.close.innerHTML = "CLOSE";
+        this.close.innerHTML = "x";
         this.close.classList.add(DEFAULT.closeClass);
         this.el.appendChild(this.close);
     }

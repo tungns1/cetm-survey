@@ -142,7 +142,7 @@ export class Socket {
       let payload = request.data;
       if (Array.isArray(payload) || typeof payload === 'object') {
         payload = JSON.stringify(payload);
-      } 
+      }
       this.socket.send(`${request.uri} ${payload}`);
       if (item.observer) {
         this.responseObservers[request.uri] = item.observer;

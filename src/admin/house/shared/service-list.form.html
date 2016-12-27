@@ -1,10 +1,10 @@
 <i class="fa fa-plus pointer" (click)="Add()">Thêm</i>
 <div *ngFor="let v of value; let i = index">
-    <div>
+    <div class="row">
         {{getName(v.id)}}
         <i class="fa fa-edit pointer" title="Sửa" (click)="Edit(v)"></i>
-        <i class="fa fa-chevron-up pointer" title="Chuyển lên" (click)="Swap(i-1, i)"></i>
-        <i class="fa fa-chevron-down pointer" title="Chuyển xuống" (click)="Swap(i, i+1)"></i>
+        <i class="fa fa-chevron-up pointer" title="Chuyển lên" (click)="Swap(i-1, i)" style="color: #a6a6a6;"></i>
+        <i class="fa fa-chevron-down pointer" title="Chuyển xuống" (click)="Swap(i, i+1)" style="color: #a6a6a6;"></i>
     </div>
 </div>
 <modal #m>
