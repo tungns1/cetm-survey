@@ -10,5 +10,10 @@
         <select formControlName="tform_normal">
             <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
         </select>
+
+        <br> Số vé vip:
+        <select formControlName="tform_vip">
+            <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
+        </select>
     </form>
 </editor>
