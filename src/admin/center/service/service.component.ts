@@ -32,6 +32,7 @@ export class ServiceComponent {
 
     data = Center.Service.AutoRefresh();
     tforms = Center.TForm.AutoRefresh();
+    tformVips = Center.TForm.AutoRefresh();
 
     fields = [
         { title: 'Tên dịch vụ', name: 'name' },
