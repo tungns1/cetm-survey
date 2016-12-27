@@ -31,6 +31,7 @@ export class AppSocket<T> extends Socket {
         })
 
         this.Subscribe("/error", e => RxError.next({ type: "system", message: e['err'] }));
+        this.Subscribe("/reload", () => window.location.reload());
     }
 
     private build(link: string) {
