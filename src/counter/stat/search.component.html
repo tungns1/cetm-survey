@@ -38,7 +38,7 @@
         Thời điểm gọi vào:
         <span style="text-align: right;">{{ticket.mtime *1000 | date:"h:mm:ss"}}</span>
     </p>
-    <p>Trạng thái hiện tại:&nbsp; {{ticket.state}} </p>
+    <p>Trạng thái hiện tại:&nbsp; {{ticket.state | state}} </p>
     <div>
         <p>Lịch sử:</p>
         <div class="table">
