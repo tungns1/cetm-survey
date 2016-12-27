@@ -27,22 +27,22 @@ export class StateTicketPipe implements PipeTransform {
         let ticketState = '';
         switch (state) {
             case 'waiting':
-                ticketState = 'chờ';
+                ticketState = 'Chờ';
                 break;
             case 'serving':
-                ticketState = 'phục vụ';
+                ticketState = 'Phục vụ';
                 break;
             case 'missed':
-                ticketState = 'đặt nhỡ';
+                ticketState = 'Đặt nhỡ';
                 break;
             case 'cancelled':
-                ticketState = 'bị xóa';
+                ticketState = 'Bị xóa';
                 break;
             case 'finished':
-                ticketState = 'kết thúc';
+                ticketState = 'Kết thúc';
                 break;
             default:
-               ticketState = 'không biết';
+               ticketState = 'Không biết';
         }
         return ticketState;
     }
