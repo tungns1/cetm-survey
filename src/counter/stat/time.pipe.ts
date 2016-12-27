@@ -16,3 +16,36 @@ export class HourPipe implements PipeTransform {
     }
 }
 
+
+@Pipe({
+    name: "state"
+})
+
+export class StateTicketPipe implements PipeTransform {
+
+    transform(state: string) {
+        let ticketState = '';
+        switch (state) {
+            case 'waiting':
+                ticketState = 'chờ';
+                break;
+            case 'serving':
+                ticketState = 'phục vụ';
+                break;
+            case 'missed':
+                ticketState = 'đặt nhỡ';
+                break;
+            case 'cancelled':
+                ticketState = 'bị xóa';
+                break;
+            case 'finished':
+                ticketState = 'kết thúc';
+                break;
+            default:
+               ticketState = 'không biết';
+        }
+    }
+}
+
+
+
