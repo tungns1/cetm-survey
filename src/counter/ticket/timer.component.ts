@@ -36,8 +36,15 @@ export class TicketTimerComopnent {
 
     @Input() set start(s: number) {
         this.clear();
-        this.view(s);
-        this.subscription = oneSecond.subscribe(_ => this.view(s));
+        let ctime=0;
+        if((Date.now() / 1000-s)<0){
+            this.view(Date.now() / 1000);
+            ctime=Date.now() / 1000;
+        }else{
+            this.view(s);
+            ctime=s;
+        }
+        this.subscription = oneSecond.subscribe(_ => this.view(ctime));
     };
 
     ngOnDestroy() {
