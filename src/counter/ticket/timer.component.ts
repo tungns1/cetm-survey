@@ -28,8 +28,7 @@ export class TicketTimerComopnent {
         }
     }
 
-    private view(from: number) {
-        const duration = Date.now() / 1000 - from;
+    private view(duration: number) {
         let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
         (this.ref.nativeElement).innerHTML = view;
     }
@@ -38,13 +37,13 @@ export class TicketTimerComopnent {
         this.clear();
         let ctime=0;
         if((Date.now() / 1000-s)<0){
-            this.view(Date.now() / 1000);
+            this.view(0);
             ctime=Date.now() / 1000;
         }else{
-            this.view(s);
+            this.view(0);
             ctime=s;
         }
-        this.subscription = oneSecond.subscribe(_ => this.view(ctime));
+        this.subscription = oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime));
     };
 
     ngOnDestroy() {
