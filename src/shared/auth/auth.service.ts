@@ -26,13 +26,14 @@ export function Logout() {
 }
 
 export const AuthOptions = {
+    Branch_code:'',
     Auto: false,
     Scope: '',
     Redirect: '/'
 }
 
 export function Login(form) {
-    const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope }, form);
+    const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope,branch:AuthOptions.Branch_code}, form);
     return authBackend.Post("login", values).map(v => {
         let session: ISession = v.session;
         Activate(session);
