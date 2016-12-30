@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
     let branch_code = route.params['branch_code'];
+    console.log(route.params);
     RxBranchCode.next(branch_code);
 
     if (state.url === loginUrl) {
