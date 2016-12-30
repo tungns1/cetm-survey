@@ -4,7 +4,7 @@ import { Serving, Waiting, RxBusy, ITicket, autoNext } from '../backend/queue';
 
 import { ModalComponent } from '../../x/ui/modal/';
 import { combineLatest } from 'rxjs/observable/combineLatest';
-import { Config } from '../backend/';
+import { PassFeedbackRequirement } from '../backend/';
 
 export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
     .filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
@@ -24,19 +24,9 @@ export class ActionComponent {
     }
 
     checkFinish() {
-        if (!Config.Feedback.required) {
+        if (PassFeedbackRequirement(this.getTicket())) {
             return true;
-        }
-        const ticket = this.getTicket();
-        if (!ticket) {
-            return true;
-        }
-        const tracks = ticket.tracks;
-        const t = tracks[tracks.length - 1];
-        const f = t.feedback;
-        if (f && f.rating) {
-            return true;
-        }
+        }       
         this.needFeedback.Open();
         return false;
     }

@@ -5,7 +5,7 @@ export { RxStat } from './stat';
 import { Init, ITicket, AddTicket, RemoveTicket } from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
-import { RxCounters, RxCurrentCounter, RxServices, RxOtherCounters, ICounter } from './model';
+import { RxCounters, RxCurrentCounter, RxServices, ICounter } from './model';
 import { Model } from '../shared';
 
 import 'rxjs/add/operator/first';
@@ -56,11 +56,4 @@ combineLatest<ICounter[], IMySettings>(RxCounters, RxMySetting)
     })
 
 
-combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
-    RxOtherCounters.next(counters.filter(c => c.id != current.id));
-})
-
-import * as Config from './config';
-export {
-    Config
-}
+export * from './feedback';
