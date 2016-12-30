@@ -105,17 +105,14 @@ export class EditorComponent<T> {
         });
     }
 }
-const toast = new Toast;
 
 
 function Error(message: string) {
-    toast.SetTitle('Lỗi');
-    toast.SetMessage(message);
-    toast.Show();
+    const toast = new Toast;
+    toast.Title('Lỗi').Error(message).Show();
 }
 
 function Success(message: string) {
-    toast.SetTitle('Thành công');
-    toast.SetMessage(message);
-    toast.Show();
+    const toast = new Toast;
+    toast.Title('Thành công').Info(message).Show();
 }

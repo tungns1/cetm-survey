@@ -25,7 +25,7 @@ socket.Subscribe<ICounter[]>("/counters", c => {
 socket.Subscribe<any>("/tickets", Init);
 socket.Subscribe<Model.House.ITicket>('/add_ticket', AddTicket);
 socket.Subscribe<[Model.House.TicketState, string]>("/remove_ticket", ([prev, id]) => RemoveTicket(prev, id));
-
+socket.Subscribe<Model.House.ITicket>("/feedback_done", AddTicket);
 socket.Subscribe<IStatMap>("/stat", stat => {
     RxStat.next(stat);
 });
@@ -59,3 +59,8 @@ combineLatest<ICounter[], IMySettings>(RxCounters, RxMySetting)
 combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
     RxOtherCounters.next(counters.filter(c => c.id != current.id));
 })
+
+import * as Config from './config';
+export {
+    Config
+}

@@ -10,6 +10,9 @@ const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     multi: true
 }
 
+
+import { Toast } from '../../../x/ui/noti/';
+
 @Component({
     selector: 'json-form',
     template: `
@@ -44,7 +47,13 @@ class JSONFormComponent implements ControlValueAccessor {
     }
 
     OnChange() {
-        this.onChangeCallback(JSON.parse(this.text));
+        try {
+            let val = JSON.parse(this.text);
+            this.onChangeCallback(val);
+        } catch (e) {
+            const toast = new Toast();
+            toast.Error("Dữ liệu không đúng dạng JSON").Show();
+        }
     }
 
 }

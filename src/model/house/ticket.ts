@@ -30,6 +30,10 @@ export const TicketStateUnknown: TicketState = "unknown";
 
 import { Locale } from '../../config/';
 
+export interface IFeedback {
+    rating: number;
+}
+
 export interface ITicketTrack {
     state: TicketState;
     mtime: number;
@@ -37,6 +41,7 @@ export interface ITicketTrack {
     user_id?: string;
     counter_id?: string;
     service_id?: string;
+    feedback: IFeedback;
 }
 
 export function TicketPrevState(t: ITicket) {

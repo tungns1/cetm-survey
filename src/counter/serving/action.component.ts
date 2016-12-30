@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket';
-import { Serving, Waiting, RxBusy, ITicket,autoNext } from '../backend/queue';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Serving, Waiting, RxBusy, ITicket, autoNext } from '../backend/queue';
+
+import { ModalComponent } from '../../x/ui/modal/';
 import { combineLatest } from 'rxjs/observable/combineLatest';
-import 'rxjs/add/operator/first';
+import { Config } from '../backend/';
 
 export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
     .filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
@@ -14,11 +14,31 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
     templateUrl: 'action.component.html',
     styleUrls: ['action.component.css'],
 })
-
 export class ActionComponent {
-    auto=autoNext;
+    auto = autoNext;
+
+    @ViewChild(ModalComponent) needFeedback: ModalComponent;
+
     getTicket() {
         return Serving.first();
+    }
+
+    checkFinish() {
+        if (!Config.Feedback.required) {
+            return true;
+        }
+        const ticket = this.getTicket();
+        if (!ticket) {
+            return true;
+        }
+        const tracks = ticket.tracks;
+        const t = tracks[tracks.length - 1];
+        const f = t.feedback;
+        if (f && f.rating) {
+            return true;
+        }
+        this.needFeedback.Open();
+        return false;
     }
 
     sub() {
@@ -30,7 +50,10 @@ export class ActionComponent {
     }
 
     Next() {
-       let ticket = this.getTicket();
+        if (!this.checkFinish()) {
+            return;
+        }
+        let ticket = this.getTicket();
         if (ticket) {
             Finish(ticket).subscribe(v => console.log(v));
         }
@@ -60,10 +83,14 @@ export class ActionComponent {
     }
 
     Finish() {
-        if (this.getTicket() != null) {
-            Finish(this.getTicket()).subscribe(v => console.log(v));
+        if (!this.checkFinish()) {
+            return;
         }
 
+        if (this.getTicket() != null) {
+            // can finish
+            Finish(this.getTicket()).subscribe(v => console.log(v));
+        }
     }
 
     Miss() {
@@ -72,9 +99,4 @@ export class ActionComponent {
         }
     }
 
-    Reminder() {
-        if (this.getTicket() != null) {
-            Remind(this.getTicket()).subscribe(v => console.log(v));
-        }
-    }
 }

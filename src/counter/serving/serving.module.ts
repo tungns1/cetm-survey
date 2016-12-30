@@ -7,10 +7,10 @@ import { ServingComponent } from './serving.component';
 import { EmptyComponent } from './empty.component';
 import { ActionComponent } from './action.component';
 import { TicketComponent } from './ticket.component';
-
+import { ModalModule } from '../../x/ui/modal/';
 
 @NgModule({
-    imports: [BrowserModule, TicketModule,CommonModule],
+    imports: [BrowserModule, TicketModule, CommonModule, ModalModule],
     declarations: [ServingComponent, EmptyComponent, ActionComponent, TicketComponent],
     exports: [ServingComponent]
 })

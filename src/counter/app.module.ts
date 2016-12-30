@@ -22,5 +22,5 @@ export default class CounterModule {
 }
 
 import {Auth} from './shared/';
-Auth.AuthOptions.Scope = "staff";
-Auth.AuthOptions.Auto = true;
+Auth.AuthOptions.scope = "staff";
+Auth.AuthOptions.auto = true;

@@ -4,7 +4,8 @@ import { AdminComponent } from './admin.component';
 import { UserComponent } from './user/';
 import { BranchComponent } from './branch/';
 import { CenterModule } from './center/';
-import {HouseModule} from './house/';
+import { HouseModule } from './house/';
+import { ConfigComponent } from './config/';
 
 const children: Routes = [
   {
@@ -19,6 +20,10 @@ const children: Routes = [
   {
     path: 'branch/:level',
     component: BranchComponent
+  },
+  {
+    path: 'config',
+    component: ConfigComponent
   },
   {
     path: 'house',

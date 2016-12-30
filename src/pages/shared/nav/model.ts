@@ -13,6 +13,7 @@ const settingMenu = [
     { app: 'admin', href: "/branch/1", name: "Chi nhánh" },
     { app: 'admin', href: "/branch/0", name: "Phòng giao dịch" },
     { app: 'admin', href: "/center/tform", name: "Số vé" },
+    { app: 'admin', href: '/config', name: 'Cài đặt' },
     { app: 'admin', href: "/center/service", name: "Dịch vụ" },
     { app: 'admin', href: "/house/counter", name: "Quầy giao dịch" },
     { app: 'admin', href: "/user", name: "Người dùng", icon: "fa-user" },

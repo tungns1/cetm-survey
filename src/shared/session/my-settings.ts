@@ -1,11 +1,11 @@
-import { IUser, IBranch, Center, RxUsers } from '../../model/';
+import { IUser, IBranch, Center, IConfig } from '../../model/';
 import { SetBranches } from '../branch/';
 
 export interface IMySettings {
   me: IUser;
   branches: IBranch[];
   services: Center.IService[];
-  users: IUser[];
+  config: IConfig;
 }
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -16,7 +16,6 @@ import 'rxjs/add/operator/filter';
 
 RxMySetting.filter(v => !!v).subscribe(v => {
   Center.RxServices.next(v.services || []);
-  RxUsers.next(v.users);
   if (v.me.branch_id) {
     SetBranches(v.branches, v.me.branch_id);
   }

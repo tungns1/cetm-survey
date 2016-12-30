@@ -30,4 +30,3 @@ export const AllRoles: IRole[] = [
 
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-export const RxUsers = new BehaviorSubject<IUser[]>([]);

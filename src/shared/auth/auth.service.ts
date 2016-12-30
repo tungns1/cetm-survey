@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 import { Injectable } from '@angular/core';
 
 export function RefreshMySettings() {
-    return authBackend.Get<IMySettings>("my_settings", { scope: AuthOptions.Scope }).map(v => {
+    return authBackend.Get<IMySettings>("my_settings", { scope: AuthOptions.scope }).map(v => {
         RxMySetting.next(v);
         return true;
     })
@@ -26,14 +26,14 @@ export function Logout() {
 }
 
 export const AuthOptions = {
-    Branch_code: '',
-    Auto: false,
-    Scope: '',
-    Redirect: '/'
+    branch_code: '',
+    auto: false,
+    scope: '',
+    redirect: '/'
 }
 
 export function Login(form) {
-    const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope, branch_code: AuthOptions.Branch_code }, form);
+    const values = Object.assign({}, AuthOptions, form);
     return authBackend.Post("login", values).map(v => {
         let session: ISession = v.session;
         Activate(session);
