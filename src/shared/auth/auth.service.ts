@@ -27,7 +27,7 @@ export function Logout() {
 }
 
 export const AuthOptions = {
-    Branch_code: RxBranchCode.value,
+    Branch_code: '',
     Auto: false,
     Scope: '',
     Redirect: '/'
