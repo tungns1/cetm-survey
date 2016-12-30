@@ -2,7 +2,6 @@ import { ISession, Activate, Destroy, RxCurrentSession, IMySettings, RxMySetting
 import { Observable } from 'rxjs/Observable';
 import { HttpApi } from '../backend/service';
 import { HttpError } from '../../x/backend/';
-import { RxBranchCode } from './auth-guard.service';
 
 const authBackend = new HttpApi<any>("/api/auth");
 

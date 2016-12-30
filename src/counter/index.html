@@ -21,14 +21,14 @@
                     width: 370px;
                 }
                 
-                span {
+                .spans {
                     display: block;
                     margin: 0 auto;
                 }
                 
                 span[class*="l-"] {
-                    height: 10px;
-                    width: 10px;
+                    height: 15px;
+                    width: 15px;
                     background: #000;
                     display: inline-block;
                     margin: 12px 2px;
@@ -148,13 +148,13 @@
 <body>
     <app-root>
         <div class="loading">
-            <span>Kết nối hệ thống</span>
-            <span class="l-1"></span>
-            <span class="l-2"></span>
-            <span class="l-3"></span>
-            <span class="l-4"></span>
-            <span class="l-5"></span>
-            <span class="l-6"></span>
+            <span style="font-size:24px;">Kết nối hệ thống</span>
+            <span class="l-1 spans"></span>
+            <span class="l-2 spans"></span>
+            <span class="l-3 spans"></span>
+            <span class="l-4 spans"></span>
+            <span class="l-5 spans"></span>
+            <span class="l-6 spans"></span>
         </div>
     </app-root>
     <% _.forEach(scripts, function(s) { %>
