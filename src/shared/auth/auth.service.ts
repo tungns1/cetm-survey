@@ -2,6 +2,7 @@ import { ISession, Activate, Destroy, RxCurrentSession, IMySettings, RxMySetting
 import { Observable } from 'rxjs/Observable';
 import { HttpApi } from '../backend/service';
 import { HttpError } from '../../x/backend/';
+import { RxBranchCode } from './auth-guard.service';
 
 const authBackend = new HttpApi<any>("/api/auth");
 
@@ -26,14 +27,14 @@ export function Logout() {
 }
 
 export const AuthOptions = {
-    Branch_code:'',
+    Branch_code: RxBranchCode.value,
     Auto: false,
     Scope: '',
     Redirect: '/'
 }
 
 export function Login(form) {
-    const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope,branch:AuthOptions.Branch_code}, form);
+    const values = Object.assign({ auto: AuthOptions.Auto, scope: AuthOptions.Scope, branch_code: AuthOptions.Branch_code }, form);
     return authBackend.Post("login", values).map(v => {
         let session: ISession = v.session;
         Activate(session);
