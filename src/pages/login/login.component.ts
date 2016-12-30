@@ -32,6 +32,7 @@ function Format(e: string) {
   if (e.toLowerCase().startsWith("unauthorized")) {
     return ViErrors["unauthorize"]
   }
+  return e;
 }
 
 @Component({
