@@ -55,7 +55,7 @@ export class TicketDetailDialog {
         this.ShowMessage("Bản phải nhắc khách háng phản hồi");
         return;
       }
-      if (this.checkedCounters.length < 1 || this.checkedServices.length < 1) {
+      if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
         this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
         return;
       }
