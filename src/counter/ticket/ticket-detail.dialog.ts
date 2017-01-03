@@ -53,16 +53,16 @@ export class TicketDetailDialog {
     if (this.isServing) {
       this.ticket=Serving.first();
       if (!PassFeedbackRequirement(this.ticket)) {
-        this.ShowMessage("Khách hàng chưa phản hồi, vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch");
+        this.ShowMessage("Khách hàng chưa phản hồi","Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch");
         return;
       }
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
-        this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
+        this.ShowMessage("","Bạn phải chọn quầy hoặc dịch vụ");
         return;
       }
     } else {
       if (this.checkedCounters.length < 1) {
-        this.ShowMessage("Bạn phải chọn quầy");
+        this.ShowMessage("","Bạn phải chọn quầy");
         return;
       }
     }
@@ -74,7 +74,7 @@ export class TicketDetailDialog {
 
   Recall() {
     if (Serving.RxData.value.length > 0) {
-      this.ShowMessage("Bạn phải kết thúc vé đang thực hiện");
+      this.ShowMessage("","Bạn phải kết thúc vé đang thực hiện");
       return;
     }
     CallFromMissed(this.ticket).subscribe(v => {
@@ -92,12 +92,16 @@ export class TicketDetailDialog {
     });;
   }
 
-  protected ShowMessage(message: string) {
+  protected ShowMessage(title:string,message: string) {
+
     this.message = message;
+    this.title=title;
     this.alert.Open();
   }
 
   @ViewChild(ModalComponent) protected alert: ModalComponent;
   protected message = "";
+   protected title = "";
+
 
 }

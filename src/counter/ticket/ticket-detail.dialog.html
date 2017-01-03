@@ -46,6 +46,7 @@
 </div>
 
 <modal #alert>
-    {{message}}
-    <button class="close" (click)="alert.Close()"> Đồng ý </button>
+    <div style="text-align: center;color: red;font-size:18px;font-weight:700;">{{title}}</div>
+    <p style="text-align: center;font-size:13px;">{{message}}</p>
+    <button class="close" (click)="alert.Close()" style="float:right; height:25px;"> Đồng ý </button>
 </modal>
