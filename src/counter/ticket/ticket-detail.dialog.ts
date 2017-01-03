@@ -51,6 +51,7 @@ export class TicketDetailDialog {
 
   Move() {
     if (this.isServing) {
+      this.ticket=Serving.first();
       if (!PassFeedbackRequirement(this.ticket)) {
         this.ShowMessage("Bản phải nhắc khách háng phản hồi");
         return;
