@@ -53,7 +53,7 @@ export class TicketDetailDialog {
     if (this.isServing) {
       this.ticket=Serving.first();
       if (!PassFeedbackRequirement(this.ticket)) {
-        this.ShowMessage("Bản phải nhắc khách háng phản hồi");
+        this.ShowMessage("Khách hàng chưa phản hồi, vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch");
         return;
       }
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {

@@ -18,6 +18,7 @@
 </button>
 
 <modal #fb>
-    <i class="fa fa-warn"></i> Khách hàng chưa phản hồi. Vui lòng nhắc khách hàng.
-    <button class="button" (click)="fb.Close()"> Đóng </button>
+    <div style="text-align: center;color: red;"> Khách hàng chưa phản hồi</div>
+    <p>Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch.</p>
+    <button class="button" (click)="fb.Close()" style="float:right; height:25px;"> Đóng </button>
 </modal>
