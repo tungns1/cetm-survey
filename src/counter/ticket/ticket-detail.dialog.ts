@@ -12,7 +12,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 export const RxOtherCounters = new ReplaySubject<ICounter[]>(1);
 
 combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
-    RxOtherCounters.next(counters.filter(c => c.id != current.id));
+  RxOtherCounters.next(counters.filter(c => c.id != current.id));
 })
 
 @Component({
@@ -54,6 +54,8 @@ export class TicketDetailDialog {
       if (!PassFeedbackRequirement(this.ticket)) {
         this.ShowMessage("Bản phải nhắc khách háng phản hồi");
         return;
+      }else{
+        this.Close();
       }
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
         this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
