@@ -54,8 +54,6 @@ export class TicketDetailDialog {
       if (!PassFeedbackRequirement(this.ticket)) {
         this.ShowMessage("Bản phải nhắc khách háng phản hồi");
         return;
-      }else{
-        this.Close();
       }
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
         this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
