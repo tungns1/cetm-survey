@@ -19,4 +19,4 @@ export default class ReportModule {
 import { SetAppName } from '../config/';
 SetAppName('report');
 import { Auth } from './shared/';
-Auth.AuthOptions.Scope = "report";
+Auth.AuthOptions.scope = "report";

@@ -3,9 +3,17 @@ import { FormControl } from '@angular/forms';
 import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
-import { RxOtherCounters, RxServices } from '../backend/index';
+import { PassFeedbackRequirement, ICounter, RxCounters, RxCurrentCounter, RxServices } from '../backend/';
 import { Serving, autoNext } from '../backend/queue';
-import {ModalComponent} from '../../x/ui/modal';
+import { ModalComponent } from '../../x/ui/modal';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+
+export const RxOtherCounters = new ReplaySubject<ICounter[]>(1);
+
+combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
+    RxOtherCounters.next(counters.filter(c => c.id != current.id));
+})
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -43,24 +51,24 @@ export class TicketDetailDialog {
 
   Move() {
     if (this.isServing) {
-      if (this.checkedCounters.length > 0 || this.checkedServices.length > 0) {
-        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-          this.Close();
-        });
-      } else {
-        this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
+      if (!PassFeedbackRequirement(this.ticket)) {
+        this.ShowMessage("Bản phải nhắc khách háng phản hồi");
+        return;
       }
-
+      if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
+        this.ShowMessage("Bạn phải chọn quầy hoặc dịch vụ");
+        return;
+      }
     } else {
-      if (this.checkedCounters.length > 0) {
-        Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-          this.Close();
-        });
-      } else {
+      if (this.checkedCounters.length < 1) {
         this.ShowMessage("Bạn phải chọn quầy");
+        return;
       }
     }
 
+    Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+      this.Close();
+    });
   }
 
   Recall() {

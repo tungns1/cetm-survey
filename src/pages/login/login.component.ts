@@ -32,6 +32,7 @@ function Format(e: string) {
   if (e.toLowerCase().startsWith("unauthorized")) {
     return ViErrors["unauthorize"]
   }
+  return e;
 }
 
 @Component({
@@ -57,7 +58,7 @@ export class LoginComponent {
       this.router.navigate(['/']);
       return;
     }
-    if (AuthOptions.Auto) {
+    if (AuthOptions.auto) {
       let user = Platform.CurrentUser();
       if (user) {
         this.loginForm.controls['username'].setValue(user);
@@ -68,7 +69,7 @@ export class LoginComponent {
 
   login(auto?: boolean) {
     Login(this.loginForm.value).subscribe((v) => {
-      let redirect = AuthOptions.Redirect;
+      let redirect = AuthOptions.redirect;
       if (!redirect || redirect.length < 1) {
         redirect = '/';
       }

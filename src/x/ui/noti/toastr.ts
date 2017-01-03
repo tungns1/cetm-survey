@@ -4,7 +4,8 @@ const POSITION = {
 }
 
 const ICON_CLASS = {
-    ERROR: 'toast-error'
+    ERROR: 'toast-error',
+    INFO: 'toast-info'
 }
 
 const STATUS = {
@@ -83,10 +84,8 @@ function escapeHtml(source) {
 
 export class Toast {
     constructor() {
-        this.SetIcon();
         this.SetCloseButton();
         this.el.classList.add(DEFAULT.toastClass);
-        setTimeout(this.Hide.bind(this), DEFAULT.timeOut);
     }
 
     private el = document.createElement('div');
@@ -94,31 +93,43 @@ export class Toast {
     private mesage = document.createElement('div');
     private close = document.createElement('div');
 
-    Show() {
+    Show(time?: number) {
         containerEl.appendChild(this.el);
+        setTimeout(this.Hide.bind(this), time || DEFAULT.timeOut);
     }
 
     Hide() {
         containerEl.removeChild(this.el);
     }
 
-    SetIcon() {
-        this.el.classList.add(DEFAULT.toastClass, DEFAULT.iconClass);
-    }
-
-    SetTitle(title:string) {
+    Title(title: string) {
         this.title.innerHTML = title;
         this.el.appendChild(this.title);
+        return this;
     }
 
-    SetMessage(mesage:string) {
+    private Message(mesage: string) {
         this.mesage.innerHTML = mesage;
         this.el.appendChild(this.mesage);
+        return this;
     }
 
-    SetCloseButton() {
+    private SetCloseButton() {
         this.close.innerHTML = "x";
         this.close.classList.add(DEFAULT.closeClass);
+        this.close.onclick = () => this.Hide();
         this.el.appendChild(this.close);
+    }
+
+    Error(message: string) {
+        this.el.classList.add(ICON_CLASS.ERROR);
+        this.Message(message);
+        return this;
+    }
+
+    Info(message: string) {
+        this.el.classList.add(ICON_CLASS.INFO);
+        this.Message(message);
+        return this;
     }
 }

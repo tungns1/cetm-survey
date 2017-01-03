@@ -10,12 +10,14 @@
 <button [ticket-detail]="getTicket()"> 
     CHUYỂN
 </button>
-<!--<button (click)="Reminder()" class="warn">
-    NHẮC PHẢN HỒI 
-</button>-->
 <button (click)="Miss()">
     ĐẶT NHỠ
 </button>
 <button (click)="Finish()" class="danger">
     KẾT THÚC
 </button>
+
+<modal #fb>
+    <i class="fa fa-warn"></i> Khách hàng chưa phản hồi. Vui lòng nhắc khách hàng.
+    <button class="button" (click)="fb.Close()"> Đóng </button>
+</modal>

@@ -22,7 +22,7 @@ type IServiceList = Model.Center.IService[];
 @Component({
     selector: 'service-list',
     templateUrl: 'service-list.form.html',
-    styleUrls:['service-list.form.css'],
+    styleUrls: ['service-list.form.css'],
     providers: [SERVICE_LIST_CONTROL_VALUE_ACCESSOR]
 })
 class ServiceListComponent implements ControlValueAccessor {
@@ -113,11 +113,10 @@ class ServiceListComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { L10n } from '../../shared';
-import { JSONFormModule } from './json-form';
+import { L10n, Form } from '../../shared';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, L10n.L10nModule, JSONFormModule, ModalModule],
+    imports: [FormsModule, CommonModule, L10n.L10nModule, Form.JSONFormModule, ModalModule],
     declarations: [ServiceListComponent],
     exports: [ServiceListComponent]
 })

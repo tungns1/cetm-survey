@@ -22,10 +22,8 @@ export class AppSocket<T> extends Socket {
             if (c) {
                 RxError.next({ type: "connect" });
             } else {
-                var toast=new Toast();
-                toast.SetTitle('Lỗi');
-                toast.SetMessage('Lỗi kết nối máy chủ');
-                toast.Show();
+                var toast = new Toast();
+                toast.Title('Lỗi').Error('Lỗi kết nối máy chủ').Show();
                 Loading.Hide();
                 RxError.next({ type: "connect", message: "Cannot connect to the server" });
             }

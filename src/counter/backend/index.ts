@@ -5,7 +5,7 @@ export { RxStat } from './stat';
 import { Init, ITicket, AddTicket, RemoveTicket } from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
-import { RxCounters, RxCurrentCounter, RxServices, RxOtherCounters, ICounter } from './model';
+import { RxCounters, RxCurrentCounter, RxServices, ICounter } from './model';
 import { Model } from '../shared';
 
 import 'rxjs/add/operator/first';
@@ -25,7 +25,7 @@ socket.Subscribe<ICounter[]>("/counters", c => {
 socket.Subscribe<any>("/tickets", Init);
 socket.Subscribe<Model.House.ITicket>('/add_ticket', AddTicket);
 socket.Subscribe<[Model.House.TicketState, string]>("/remove_ticket", ([prev, id]) => RemoveTicket(prev, id));
-
+socket.Subscribe<Model.House.ITicket>("/feedback_done", AddTicket);
 socket.Subscribe<IStatMap>("/stat", stat => {
     RxStat.next(stat);
 });
@@ -56,6 +56,4 @@ combineLatest<ICounter[], IMySettings>(RxCounters, RxMySetting)
     })
 
 
-combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
-    RxOtherCounters.next(counters.filter(c => c.id != current.id));
-})
+export * from './feedback';
