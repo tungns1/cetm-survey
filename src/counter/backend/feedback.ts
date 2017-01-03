@@ -1,6 +1,7 @@
 import { Session, Model } from '../shared';
 import 'rxjs/add/operator/skip';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { IsFeedbackAvailable } from './device/feedback';
 
 const Feedback = {
     required: false
@@ -11,6 +12,9 @@ Session.RxMySetting.skip(1).subscribe(s => {
 })
 
 export function PassFeedbackRequirement(t: Model.House.ITicket) {
+    if (!IsFeedbackAvailable()) {
+        return true;
+    }
     if (!Feedback.required) {
         return true;
     }
