@@ -2,7 +2,7 @@ export * from './socket';
 export * from './model';
 export { RxStat } from './stat';
 
-import { Init, ITicket, AddTicket, RemoveTicket } from './queue';
+import { Init, ITicket, AddTicket, RemoveTicket ,feedbackDone} from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
 import { RxCounters, RxCurrentCounter, RxServices, ICounter } from './model';
@@ -25,7 +25,7 @@ socket.Subscribe<ICounter[]>("/counters", c => {
 socket.Subscribe<any>("/tickets", Init);
 socket.Subscribe<Model.House.ITicket>('/add_ticket', AddTicket);
 socket.Subscribe<[Model.House.TicketState, string]>("/remove_ticket", ([prev, id]) => RemoveTicket(prev, id));
-socket.Subscribe<Model.House.ITicket>("/feedback_done", AddTicket);
+socket.Subscribe<Model.House.ITicket>("/feedback_done", t=>{ AddTicket(t),feedbackDone.next(true)});
 socket.Subscribe<IStatMap>("/stat", stat => {
     RxStat.next(stat);
 });

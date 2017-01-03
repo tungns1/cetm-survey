@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket';
-import { Serving, Waiting, RxBusy, ITicket, autoNext } from '../backend/queue';
+import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone } from '../backend/queue';
 
 import { ModalComponent } from '../../x/ui/modal/';
 import { combineLatest } from 'rxjs/observable/combineLatest';
@@ -16,17 +16,20 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
 })
 export class ActionComponent {
     auto = autoNext;
+    fbs=feedbackDone;
 
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
 
     getTicket() {
         return Serving.first();
     }
+    
 
     checkFinish() {
         if (PassFeedbackRequirement(this.getTicket())) {
             return true;
-        }       
+        }
+        feedbackDone.next(false);
         this.needFeedback.Open();
         return false;
     }
