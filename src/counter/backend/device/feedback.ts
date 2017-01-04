@@ -1,24 +1,15 @@
-var FeedbackWindow;
+let feedbackAvailable = false;
 
 try {
     var myRequire = window['myRequire'];
-    FeedbackWindow = myRequire('app/feedback/main');
-    if (FeedbackWindow) {
-        console.log("Feedback is supported");
-        FeedbackWindow.on('show', () => {
-
-        })
-
-        FeedbackWindow.on('hide', () => {
-
-        })
-    } else {
-        console.log("Feedback is not supported");
-    }
+    var feedback = myRequire('app/counter/feedback');
+    console.log("Feedback is supported");
+    feedback.OnShow(() => feedbackAvailable = true);
+    feedback.OnHide(() => feedbackAvailable = false);
 } catch (e) {
     console.log("Fail to determine feedback supportability", e);
 }
 
 export function IsFeedbackAvailable() {
-    return FeedbackWindow && FeedbackWindow.isVisible();
+    return feedbackAvailable;
 }
