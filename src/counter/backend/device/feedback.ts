@@ -1,4 +1,6 @@
+import { feedbackDone } from '../queue';
 let feedbackAvailable = false;
+
 
 try {
     var myRequire = window['myRequire'];
@@ -9,6 +11,7 @@ try {
         console.log("Feedback shown");
     });
     feedback.OnHide(() => {
+        feedbackDone.next(true);
         feedbackAvailable = false;
         console.log("Feedback hide");
     });
