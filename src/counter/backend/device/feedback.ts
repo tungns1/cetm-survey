@@ -2,7 +2,7 @@ var FeedbackWindow;
 
 try {
     var myRequire = window['myRequire'];
-    FeedbackWindow = myRequire('app/feedback');
+    FeedbackWindow = myRequire('app/feedback/main');
     if (FeedbackWindow) {
         console.log("Feedback is supported");
         FeedbackWindow.on('show', () => {
