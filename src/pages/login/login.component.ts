@@ -68,7 +68,6 @@ export class LoginComponent {
   }
 
   login(auto?: boolean) {
-    this.loginForm.value.username.toLowerCase();
     Login(this.loginForm.value).subscribe((v) => {
       let redirect = AuthOptions.redirect;
       if (!redirect || redirect.length < 1) {
