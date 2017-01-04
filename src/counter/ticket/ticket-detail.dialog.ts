@@ -57,12 +57,12 @@ export class TicketDetailDialog {
         return;
       }
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
-        this.ShowMessage("","Bạn phải chọn quầy hoặc dịch vụ");
+        this.ShowMessage("Không thành công","Bạn phải chọn quầy hoặc dịch vụ");
         return;
       }
     } else {
       if (this.checkedCounters.length < 1) {
-        this.ShowMessage("","Bạn phải chọn quầy");
+        this.ShowMessage("Không thành công","Bạn phải chọn quầy");
         return;
       }
     }
@@ -74,7 +74,7 @@ export class TicketDetailDialog {
 
   Recall() {
     if (Serving.RxData.value.length > 0) {
-      this.ShowMessage("","Bạn phải kết thúc vé đang thực hiện");
+      this.ShowMessage("Không thành công","Bạn phải kết thúc vé đang thực hiện");
       return;
     }
     CallFromMissed(this.ticket).subscribe(v => {
