@@ -17,8 +17,8 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'file-picker',
     template: `
-        <input class="inputs" [(ngModel)]="value" (change)="setValue($event)" /> 
-        <button (click)="modal.Open()">Chọn</button>
+        <input class="hlm-input inputs" [(ngModel)]="value" (change)="setValue($event)" /> 
+        <button class="hlm-button" (click)="modal.Open()">Chọn</button>
         <modal #modal>
             <div class="file-browser">
             <button (click)="modal.Close()">Close</button>
@@ -29,6 +29,13 @@ import { FormArray, FormControl } from '@angular/forms';
     styles: [`
     .file-browser {
         width: 80vw;
+    }
+    .hlm-button{
+        opacity:0.7;
+    }
+    .hlm-input{
+       
+        width:78%;
     }
     `],
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
