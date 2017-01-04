@@ -29,7 +29,7 @@ import { FormArray, FormControl } from '@angular/forms';
         height: 30px;
         border-style: solid;
         border: 1px solid #aeb0af;
-        width: 100%;
+        width: 78%;
     }
     
  `],
