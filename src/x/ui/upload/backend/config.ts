@@ -1,6 +1,6 @@
 
 
-let uploadURL = "http://localhost:3000/upload";
+let uploadURL = "http://localhost:3000";
 
 export function SetUploadURL(url: string) {
   uploadURL = url;

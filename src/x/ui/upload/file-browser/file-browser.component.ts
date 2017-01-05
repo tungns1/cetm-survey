@@ -16,7 +16,7 @@ import { FileUploadComponent } from './upload.component';
     }`]
 })
 export class FileBrowserComponent {
-    node = new FileNode("/", "Upload");
+    node = new FileNode("/upload/", "Upload");
     @Output() select = new EventEmitter<FileNode>();
     
     choose(node: FileNode) {
