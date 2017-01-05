@@ -42,7 +42,7 @@ const datePickerOptions: FlatPickrOptions = {
 
 @Component({
     selector: 'date-picker',
-    template: `<input style="width:45%;" #input [disabled]="disabled" [required]="required" (change)="_handleChange($event)">`,
+    template: `<input style="width:45%;" #input [disabled]="disabled" [required]="required" (change)="_handleChange($event)" (blur)="_handleChange($event)" >`,
     providers: [DATE_PICKER_CONTROL_VALUE_ACCESSOR],
     styleUrls: ['flatpickr.material_green.min.css'],
     encapsulation: ViewEncapsulation.None
