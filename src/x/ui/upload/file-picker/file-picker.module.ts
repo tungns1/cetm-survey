@@ -28,7 +28,7 @@ import { FormArray, FormControl } from '@angular/forms';
     `,
     styles: [`
     .file-browser {
-        width: 80vw;
+        width: 100%;
     }
     .hlm-button{
         opacity:0.7;

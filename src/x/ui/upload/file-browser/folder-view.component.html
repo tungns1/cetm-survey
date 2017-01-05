@@ -1,17 +1,35 @@
 <div *ngIf="node">
-    <h1> View for: {{node.name}} </h1>
-    <ul>
+    <h1> Danh sách file {{node.name}} </h1>
+    <div class="div-scroll">
+        <table>
+            <tr>
+                <th>Tên file</th>
+                <th></th>
+            </tr>
+
+            <tr *ngFor="let d of node.rxChildren | async">
+                <td> <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
+            {{ d.name }}</a></td>
+                <td> <button class="btn-hlm btn-view" (click)="view(d)">
+            <i class="fa fa-data"></i>
+            Xem          
+        </button></td>
+            </tr>
+
+        </table>
+    </div>
+    <!--<ul>
         <li *ngFor="let d of node.rxChildren | async">
             <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
             {{ d.name }}
         </a>
-            <button (click)="view(d)">
+                <button class="btn-hlm btn-view" (click)="view(d)">
             <i class="fa fa-data"></i>
             Xem          
         </button>
-        </li>
-    </ul>
+                </li>
+                </ul>-->
 
-    <button (click)="upload.open(node)">Tải lên</button>
+    <button class="btn-hlm btn-upload" (click)="upload.open(node)">Tải lên</button>
     <file-upload #upload style="position:fixed;bottom:0;right:0;"></file-upload>
 </div>
