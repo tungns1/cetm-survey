@@ -5,6 +5,7 @@ import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone } from '../ba
 import { ModalComponent } from '../../x/ui/modal/';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { PassFeedbackRequirement } from '../backend/';
+import * as Status from '../backend/status';
 
 export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
     .filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
@@ -16,14 +17,14 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
 })
 export class ActionComponent {
     auto = autoNext;
-    fbs=feedbackDone;
+    fbs = feedbackDone;
 
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
 
     getTicket() {
         return Serving.first();
     }
-    
+
 
     checkFinish() {
         if (PassFeedbackRequirement(this.getTicket())) {
@@ -56,16 +57,22 @@ export class ActionComponent {
                 this.auto.next(false);
             }, e => {
                 console.log(e);
+                // welcome
+                Status.Welcome();
                 this.sub();
             });
         } else {
             this.auto.next(true);
+            // welcome
+            Status.Welcome();
             this.sub();
         }
     }
 
     NoNext() {
         this.auto.next(false);
+        // stop
+        Status.Stop();
     }
 
     Recall() {
