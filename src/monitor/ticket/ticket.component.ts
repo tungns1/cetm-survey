@@ -26,23 +26,23 @@ export class MonitorTicketComponent {
     tabs = ticketTabs;
     waitLong = true;
     rxData = RxTicketData.map(data => {
-        data.filter(v=>v.state!='cancelled');
+       let v= data.filter(v=>v.state!='cancelled');
         if (this.waitLong) {
-            data.sort((a, b) => {
+            v.sort((a, b) => {
                 if (a.s_at == b.s_at) {
                     return a.c_at < b.c_at ? -1 : 1;
                 }
                 return a.s_at < b.s_at ? -1 : 1;
             });
         } else {
-            data.sort((a, b) => {
+            v.sort((a, b) => {
                 if (a.f_at == b.f_at) {
                     return a.s_at < b.s_at ? -1 : 1;
                 }
                 return a.f_at < b.f_at ? -1 : 1;
             })
         }
-        return data;
+        return v;
     });
 
     setActive(tab: ITab) {
