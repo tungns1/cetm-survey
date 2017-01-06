@@ -18,9 +18,16 @@ export class StackChart extends AbstractChart {
         const items = this.getItems();
         const svg = this.svg();
         const x = this.getXAxis();
+        if (data.length < 2) {
+            x.padding(0.5);
+        } else {
+            x.padding(0.2);
+        }
+
         const y = this.getYAxis();
         const height = this.mainHeight();
         const fields = items.map(i => i.field);
+        
 
         const colors = scaleOrdinal().range(items.map(i => i.color));
         colors.domain(fields);
