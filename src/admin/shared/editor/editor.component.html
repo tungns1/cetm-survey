@@ -40,7 +40,11 @@
 </modal>
 
 <modal #remove>
-    Bạn có muốn xóa không?
-    <button class="yes btpointer" (click)="Delete()"> Có</button>
-    <button class="no btpointer" (click)="CloseRemove()"> Không</button>
+    <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
+        Bạn có muốn xóa không?
+    </div>
+    <div style="float: right;margin-right: 40px">
+        <button class="yes btpointer" (click)="Delete()"> Có</button>
+        <button class="no btpointer" (click)="CloseRemove()"> Không</button>
+    </div>
 </modal>
