@@ -5,7 +5,7 @@ import { UserComponent } from './user/';
 import { BranchComponent } from './branch/';
 import { CenterModule } from './center/';
 import { HouseModule } from './house/';
-import { ConfigComponent } from './config/';
+import { ConfigModule } from './config/';
 
 const children: Routes = [
   {
@@ -23,7 +23,7 @@ const children: Routes = [
   },
   {
     path: 'config',
-    component: ConfigComponent
+    loadChildren: () => ConfigModule
   },
   {
     path: 'house',

@@ -1,11 +1,11 @@
 <editor #edit name="cấu hình" [fields]="fields" [data]="data | async" [service]="service" (refresh)="Refresh()">
     <editor-title> Danh sách cấu hình</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <br>Địa điểm:
+        <hr>Địa điểm:
         <select formControlName="branch_id">
             <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
         </select>
-        <br>Thiết bị phản hồi:
-        <json-form formControlName="feedback"></json-form>
+        <hr> Thiết bị phản hồi:
+        <feedback-config formControlName="feedback"></feedback-config>
     </form>
 </editor>

@@ -7,7 +7,7 @@ import { axisBottom, axisLeft, axisRight } from 'd3-axis';
 const colors = scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 export class BarChart extends AbstractChart {
-    private barWidth = 1;
+
     render() {
         const data = this._data;
         if (data.length < 1) {
@@ -17,6 +17,13 @@ export class BarChart extends AbstractChart {
         const svg = this.svg();
         const x = this.getXAxis();
         const y = this.getYAxis();
+
+        if (data.length < 2) {
+            x.padding(0.5);
+        } else {
+            x.padding(0.2);
+        }
+
         const group = scaleBand().rangeRound([0, x.bandwidth()]).padding(0.06);
         group.domain(items.map((i, index) => i.field));
         const height = this.mainHeight();
@@ -44,10 +51,8 @@ export class BarChart extends AbstractChart {
         // inclusive
         range.push(max);
         x.domain(range.map(this.dateFormat));
-        x.padding(0.2);
-        const values = this.tickValues().map(this.dateFormat) ;
+        const values = this.tickValues().map(this.dateFormat);
         const axis = this.selectXAxis().call(axisBottom(x).tickValues(values));
-        const barWidth = x.bandwidth();
         return x;
     }
 
