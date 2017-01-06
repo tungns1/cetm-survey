@@ -26,6 +26,7 @@ export class MonitorTicketComponent {
     tabs = ticketTabs;
     waitLong = true;
     rxData = RxTicketData.map(data => {
+        data.filter(v=>v.state!='cancelled');
         if (this.waitLong) {
             data.sort((a, b) => {
                 if (a.s_at == b.s_at) {

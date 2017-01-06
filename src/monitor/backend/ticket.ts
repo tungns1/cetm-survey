@@ -8,6 +8,7 @@ export interface TicketTrack extends Track {
 	c_at: number;
 	s_at: number;
 	swtime: number;
+	state:string;
 	sstime: number;
 	service: string;
 	service_id: string;
