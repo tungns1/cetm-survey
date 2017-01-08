@@ -8,7 +8,9 @@ const Feedback = {
 }
 
 Session.RxMySetting.skip(1).subscribe(s => {
-    Object.assign(Feedback, s.config.feedback);
+    if (s.config) {
+        Object.assign(Feedback, s.config.feedback);
+    }
 })
 
 export function PassFeedbackRequirement(t: Model.House.ITicket) {
