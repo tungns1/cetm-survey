@@ -16,4 +16,10 @@ export class UserComponent {
     rxName = RxLoginedUser.map(u => u.fullname);
 
     Logout = Logout;
+
+    Reload() {
+        setTimeout(() => {
+            window.location.reload();
+        }, 200);
+    }
 }

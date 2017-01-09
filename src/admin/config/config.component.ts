@@ -8,7 +8,7 @@ function NewForm(u?: Model.IConfig) {
   return (new FormBuilder).group({
     id: [u.id],
     branch_id: [u.branch_id, Validators.required],
-    feedback: [u.feedback]
+    feedback: [u.feedback || {}]
   });
 }
 
