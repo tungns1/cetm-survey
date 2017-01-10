@@ -86,14 +86,11 @@ export class ActionComponent {
                 this.auto.next(false);
             }, e => {
                 console.log(e);
-                // welcome
-                Status.Welcome();
                 this.sub();
             });
         } else {
             this.auto.next(true);
-            // welcome
-            Status.Welcome();
+            setTimeout(_ => Status.Welcome(), 100);
             this.sub();
         }
     }

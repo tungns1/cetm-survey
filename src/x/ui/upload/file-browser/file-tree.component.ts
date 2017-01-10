@@ -19,6 +19,7 @@ import { FileNode } from '../backend/';
     border-radius:5px; 
     margin: 5px;
     }
+    
      .remove-hlm{
       padding: 5px;
       background: -webkit-gradient(linear, left top, left bottom, from(#d1d1d1), to(#afafaf));
@@ -39,10 +40,9 @@ import { FileNode } from '../backend/';
 	-webkit-border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.3);
 	border-bottom-width: 3px;
+     }
     .btn-upload {
-    
     margin-top:"15px";
-	
 	border-color: rgba(0,0,0,0.3);
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
 	color: #FFF;

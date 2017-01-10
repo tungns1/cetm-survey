@@ -29,7 +29,7 @@ class FeedbackConfigComponent implements ControlValueAccessor {
     private onChangeCallback = (v) => { };
 
     writeValue(v: any) {
-        this.value = v;
+        this.value = v || {};
     }
 
     registerOnChange(fn: any) {
