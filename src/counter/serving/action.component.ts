@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Recall, Miss, CallFromWaiting, Finish, Remind } from '../backend/ticket';
-import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone } from '../backend/queue';
-
+import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../backend/ticket';
+import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone,ticketDialog } from '../backend/queue';
+import { FormGroup, FormControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ModalComponent } from '../../x/ui/modal/';
+import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { PassFeedbackRequirement } from '../backend/';
 import * as Status from '../backend/status';
@@ -18,7 +20,15 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
 export class ActionComponent {
     auto = autoNext;
     fbs = feedbackDone;
+    td=ticketDialog;
+ 
 
+    form = new FormGroup({
+        username: new FormControl(),
+        pass: new FormControl(),
+    });
+
+    @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
 
     getTicket() {
@@ -41,6 +51,25 @@ export class ActionComponent {
                 this.Next();
             }
         })
+    }
+    Move() {
+        if (!this.checkFinish()) {
+            return;
+        } else {
+            this.dialog.OpenMoveServing(this.getTicket());
+            this.td.next(false);
+        }
+    }
+    onSubmit() {
+        Skip(this.form.value.username, this.form.value.pass, this.getTicket().id).subscribe(v => {
+            console.log(v);
+            if (v) {
+                this.dialog.OpenMoveServing(this.getTicket());
+                this.td.next(false);
+                this.needFeedback.Close();
+            }
+
+        });
     }
 
     Next() {

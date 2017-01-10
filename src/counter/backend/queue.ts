@@ -15,7 +15,7 @@ class Queue {
     static sort(a: ITicket, b: ITicket) {
         if (a.priority > b.priority) {
             return -1;
-        } else if (a.priority < b.priority) { 
+        } else if (a.priority < b.priority) {
             return 1;
         }
         return a.mtime < b.mtime ? -1 : 1;
@@ -49,7 +49,7 @@ class Queue {
                 queue.splice(i, 1);
                 break;
             }
-        } 
+        }
         let pos = queue.length - 1;
         while (pos >= 0) {
             const v = queue[pos];
@@ -122,3 +122,4 @@ function GetQueue(state: Model.House.TicketState) {
 export const RxBusy = Serving.RxData.map(v => v.length > 0);
 export const autoNext = new BehaviorSubject<boolean>(false);
 export const feedbackDone = new BehaviorSubject<boolean>(true);
+export const ticketDialog = new BehaviorSubject<boolean>(true);

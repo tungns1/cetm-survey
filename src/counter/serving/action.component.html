@@ -7,7 +7,7 @@
 <button (click)="Recall()"> 
     GỌI LẠI
 </button>
-<button [ticket-detail]="getTicket()"> 
+<button (click)="Move()"> 
     CHUYỂN
 </button>
 <button (click)="Miss()">
@@ -16,9 +16,18 @@
 <button (click)="Finish()" class="danger">
     KẾT THÚC
 </button>
+<ticket-detail-dialog #dialog [ngClass]="{'hidden': td | async}"></ticket-detail-dialog>
 
 <modal #fb [ngClass]="{'hidden': fbs | async}">
     <div style="text-align: center;color: red;font-size:18px;font-weight:700;"> Khách hàng chưa phản hồi</div>
-    <p style="text-align: center;font-size:13px;">Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch.</p>
-    <button class="button" (click)="fb.Close()" style="float:right; height:25px;"> Đóng </button>
+    <p style="text-align: center;font-size:13px;">Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch hoặc nhờ quản lý kết thúc giao dịch.</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        Tên quản lý:
+        <input type="text" formControlName="username" placeholder="Tên quản lý"><br> Mật khẩu:
+        <input type="password" formControlName="pass" placeholder="Mật khẩu"><br>
+        <div style="float:right;">
+            <button class="button" type="submit" style="width:50px;height:25px;margin-right: 15px;" [disabled]="!form.valid"> Gửi </button>
+            <button class="button" (click)="fb.Close()" style="height:25px;"> Đóng </button>
+        </div>
+    </form>
 </modal>
