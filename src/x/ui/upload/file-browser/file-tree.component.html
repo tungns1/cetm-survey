@@ -2,10 +2,11 @@
     <span [class.hidden]="!node.is_dir">
         <i class="fa fa-plus add-hlm" (click)="node.Expand()" [class.hidden]="node.expanded"></i>
         <i class="fa fa-minus remove-hlm" (click)="node.Close()" [class.hidden]="!node.expanded"></i>
+        <button (click)="choose($event)" class="btn-hlm btn-upload-list"> {{ node.name }}</button>
     </span>
-    <div class="node-name" (click)="choose($event)">
-        <button class="btn-hlm btn-upload"> {{ node.name }}</button>
-    </div>
+    <!--<div class="node-name" (click)="choose($event)">
+        <button class="btn-hlm btn-upload-list"> {{ node.name }}</button>
+    </div>-->
     <ul class="tree-view">
         <li *ngFor="let d of node.rxChildren | async">
             <file-tree [node]="d" (select)="select.next($event)"></file-tree>
