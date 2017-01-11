@@ -13,6 +13,7 @@ import { extent } from 'd3-array';
 import { timeDay, timeWeek, timeMonth, timeYear } from 'd3-time';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { AxisScale, axisBottom, axisLeft } from 'd3-axis';
+import { Tooltip } from './tooltip';
 
 const intervals = {
     day: timeDay,
@@ -23,7 +24,7 @@ const intervals = {
 
 export class AbstractChart {
     constructor(protected el: HTMLElement) {
-
+        this.tooltip = new Tooltip(el);
     }
 
     width(w: number) {
@@ -71,6 +72,7 @@ export class AbstractChart {
             this._svg.append('g').attr('class', 'y1 axis');
             this._svg.append('g').attr('class', 'y2 axis');
             this._svg.append('g').attr('class', 'x axis');
+            this._svg.on('mouseout', () => this.tooltip.Hide());
             this.drawGrid();
             // this._svg.attr('shape-rendering', 'crispEdges');
         }
@@ -158,6 +160,7 @@ export class AbstractChart {
     protected _extents: [Date, Date] = [new Date, new Date];
     protected _items: Item[] = [];
     protected _svg: Selection<any, any, any, any>;
+    protected tooltip: Tooltip;
 }
 
 

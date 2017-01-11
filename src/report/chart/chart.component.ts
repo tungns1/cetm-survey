@@ -10,7 +10,7 @@ import { RxAggregateByTime, Toggle, RxItems,RxItemPie,TogglePie,RxW } from './ch
     styleUrls: ['chart.component.css']
 })
 export class ReportChartComponent {
-    type: string = 'line';
+    type: string = 'pie';
     data = RxAggregateByTime;
     period = RxPeriod;
     items = RxItems;
