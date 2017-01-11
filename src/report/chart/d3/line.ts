@@ -102,7 +102,7 @@ export class LineChart extends AbstractChart {
             .transition().duration(500)
             .attr('stroke-dashoffset', 0)
             .attr('fill', 'none')
-            .attr('stroke', (i, j) => i.color || schemeCategory10[j]).attr('stroke-width', '2');
+            .attr('stroke', (i, j) => i.color || schemeCategory10[j]).attr('stroke-width', '4');
         lines.exit().remove();
     }
 
@@ -144,11 +144,9 @@ export class LineChart extends AbstractChart {
     }
 
     onMouseOver() {
-        this.focus = this._svg.append("g").style("display", "none");
-
+        this.focus = this.svg().append("g").style("display", "none");
         let that = this;
-
-        this._svg.on("mouseover", () => this.focus.style("display", null))
+        this.svg().on("mouseover", () => this.focus.style("display", null))
             .on("mouseout", () => this.focus.style("display", "none"))
             .on("mousemove", function () { that.mouseMove(this) });
 

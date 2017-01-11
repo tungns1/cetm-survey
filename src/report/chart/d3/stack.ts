@@ -18,8 +18,8 @@ export class StackChart extends AbstractChart {
         const items = this.getItems();
         const svg = this.svg();
         const x = this.getXAxis();
-        if (data.length < 2) {
-            x.padding(0.5);
+        if (data.length < 3) {
+            x.padding(0.7);
         } else {
             x.padding(0.2);
         }
@@ -27,7 +27,7 @@ export class StackChart extends AbstractChart {
         const y = this.getYAxis();
         const height = this.mainHeight();
         const fields = items.map(i => i.field);
-        
+
 
         const colors = scaleOrdinal().range(items.map(i => i.color));
         colors.domain(fields);
@@ -43,6 +43,13 @@ export class StackChart extends AbstractChart {
             .attr('width', x.bandwidth())
             .attr('y', d => y(d[1]))
             .attr('height', 0)
+            .on("mouseover", (d) => {
+                const date = this.dateFormat(d['data']['date']);
+                const offsetX = x(date);
+                const offsetY = y(d[1]);
+                const html = items.map(i => `<li>  ${i.title}: ${d['data'][i.field]} </li>`).join("");
+                this.tooltip.Html(`${date} <br> ${html}`).Offset(offsetX, offsetY).Show();
+            })
             .transition().duration(500)
             .attr('height', d => y(d[0]) - y(d[1]));
         bars.exit().remove();

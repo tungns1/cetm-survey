@@ -18,7 +18,7 @@ export class BarChart extends AbstractChart {
         const x = this.getXAxis();
         const y = this.getYAxis();
 
-        if (data.length < 2) {
+        if (data.length < 3) {
             x.padding(0.5);
         } else {
             x.padding(0.2);
@@ -28,17 +28,40 @@ export class BarChart extends AbstractChart {
         group.domain(items.map((i, index) => i.field));
         const height = this.mainHeight();
         const groups = svg.selectAll('.bar').data(items);
+        const me = this;
+        // x(this.dateFormat(d.date)) + group(i.field), y(d[i.field]), i.color, i.title, d.date, d[i.field]
         const bars = groups.enter().append('g').attr('class', 'bar')
             .merge(groups)
-            .selectAll('rect').data(i => data.map(d => [x(this.dateFormat(d.date)) + group(i.field), y(d[i.field]), i.color]))
+            .selectAll('rect').data(i => data.map(d => {
+                return {
+                    date: this.dateFormat(d.date),
+                    data: d,
+                    color: i.color,
+                    x: x(this.dateFormat(d.date)) + group(i.field),
+                    y: y(d[i.field])
+                };
+            }))
+        const that = this;
         bars.enter().append('rect')
-            .merge(bars).attr('x', d => d[0])
+            .merge(bars).attr('x', d => d.x)
+            .on("mouseover", function (d) {
+                const date = d.date;
+                const x = d.x;
+                const y = d.y;
+                const html = items.map(i => `<li>  ${i.title}: ${d.data[i.field]} </li>`).join("");
+                this['style'].opacity = 1;
+                that.tooltip.Html(`${date} <br> ${html}`).Offset(x, y).Show();
+            })
+            .on('mouseout', function () {
+                this['style'].opacity = 0.8;
+            })
+            .style('opacity', 0.8)
             .attr('width', group.bandwidth())
-            .attr('y', d => d[1])
+            .attr('y', d => d.y)
             .attr('height', 0)
             .transition().duration(500)
-            .attr('height', d => height - <number>d[1])
-            .attr('fill', d => d[2]);
+            .attr('height', d => height - d.y)
+            .attr('fill', d => d.color);
         bars.exit().remove();
         groups.exit().transition().duration(300).attr('height', 0).remove();
     }

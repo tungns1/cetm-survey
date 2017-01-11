@@ -21,6 +21,9 @@ export class PieChart extends AbstractChart {
                 .attr('width', this._width)
                 .attr('height', this._height)
                 .append('g').attr('transform', `translate(${this._width / 2},${this._height / 2})`);
+            this._svg.on('mouseout', () => {
+                this.tooltip.Hide();
+            })
             // this._svg.attr('shape-rendering', 'crispEdges');
         }
         return this._svg;
@@ -33,12 +36,12 @@ export class PieChart extends AbstractChart {
     render() {
         const radius = this.getRadius();
         var arcs = arc()
-            .outerRadius(radius - 10)
-            .innerRadius(0);
+            .outerRadius(radius - 30)
+            .innerRadius(radius / 3);
 
         var labelArc = arc()
-            .outerRadius(radius - 40)
-            .innerRadius(radius - 40);
+            .outerRadius(radius - 60)
+            .innerRadius(radius - 60);
 
         const data = this._data;
         const items = this.getItems();
@@ -46,22 +49,34 @@ export class PieChart extends AbstractChart {
         function tweenPie(b) {
             b.innerRadius = 0;
             var i = interpolate({ startAngle: 0, endAngle: 0 }, b);
-            return function(t) { return arcs(i(t)); };
+            return function (t) { return arcs(i(t)); };
         }
 
         this.svg().datum(items);
 
         var pies = pie().sort(null).value(i => data[i['field']]);
         var paths = this.svg().selectAll("path").data(pies);
+        const that = this;
 
         paths.enter().append("path").merge(paths).attr("d", <any>arcs)
             .style("fill", d => d.data['color'])
             .attr("stroke", "#fff")
+            .style('opacity', 0.8)
+            .on('mouseover', function (d) {
+                const title = d.data['title'];
+                const value = d.value;
+                const percent = (d.endAngle - d.startAngle) * 100 / (Math.PI * 2);
+                const html = `${title}: ${value} (${Math.round(percent * 100) / 100}%)`;
+                this['style'].opacity = 1;
+                that.tooltip.Html(html).Offset(0, 0).Show();
+            })
+            .on('mouseout', function () {
+                this['style'].opacity = 0.8;
+            })
             .transition().ease(easeBounce).duration(2000).attrTween("d", tweenPie)
         paths.exit().remove();
 
-        var texts = this.svg().selectAll("text").data(pies)
-        console.log(texts)
+        var texts = this.svg().selectAll("text").data(pies);
         texts.enter().append("text").merge(texts)
             .attr("text-anchor", "middle")
             .attr("transform", d => `translate(${labelArc.centroid(<any>d)})`)
