@@ -79,23 +79,16 @@ Level0.selected.subscribe(branches => {
     LowestLayerBranch.next(layer.selected.value);
 });
 
-RxBranches.subscribe(branches => {
-    if (branches.length < 1) {
-        return;
-    }
-
-    branches.forEach(b => Branches.set(b.id, b));
-    branches.forEach(b => {
-        let p = Branches.get(b.id);
-        b.parent_name = (p && p.name) ? p.name : 'n/a';
-    });
-})
-
 export const RxMax = new BehaviorSubject<IBranch>(null);
 
 export function SetBranches(branches: IBranch[], maxBranchID: string) {
     let branch = branches.find(b => b.id === maxBranchID);
     maxLevel = branch? branch.level : 0;
+    branches.forEach(b => Branches.set(b.id, b));
+    branches.forEach(b => {
+        let p = Branches.get(b.id);
+        b.parent_name = (p && p.name) ? p.name : 'n/a';
+    });
     branches= branches.filter(b => b.level < maxLevel);
     branches.push(branch);
     RxBranches.next(branches);

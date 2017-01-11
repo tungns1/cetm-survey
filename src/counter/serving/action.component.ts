@@ -79,6 +79,7 @@ export class ActionComponent {
                         this.finish();
                         break
                 }
+                this.form.reset();
 
             } else {
                 var toast = new Toast();
