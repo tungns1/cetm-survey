@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../backend/ticket';
 import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone, ticketDialog } from '../backend/queue';
-import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ModalComponent } from '../../x/ui/modal/';
 import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
@@ -23,12 +22,8 @@ export class ActionComponent {
     fbs = feedbackDone;
     td = ticketDialog;
     action = '';
-
-
-    form = new FormGroup({
-        username: new FormControl('',Validators.required),
-        pass: new FormControl('',Validators.required),
-    });
+    username='';
+    pass='';
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
@@ -64,7 +59,7 @@ export class ActionComponent {
         }
     }
     onSubmit() {
-        Skip(this.form.value.username, this.form.value.pass, this.getTicket().id).subscribe(v => {
+        Skip(this.username, this.pass, this.getTicket().id).subscribe(v => {
             if (v) {
                 this.needFeedback.Close();
                 switch (this.action) {
@@ -79,7 +74,6 @@ export class ActionComponent {
                         this.finish();
                         break
                 }
-                this.form.reset();
 
             } else {
                 var toast = new Toast();
@@ -87,6 +81,7 @@ export class ActionComponent {
             }
 
         });
+        this.pass='';
     }
 
     Next() {
