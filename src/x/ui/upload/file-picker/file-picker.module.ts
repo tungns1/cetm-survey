@@ -21,7 +21,7 @@ import { FormArray, FormControl } from '@angular/forms';
         <button class="hlm-button" (click)="modal.Open()">Chọn</button>
         <modal #modal>
             <div class="file-browser">
-            <button (click)="modal.Close()">Close</button>
+            <button class="btn-hlm btn-close" (click)="modal.Close()">Close</button>
             <file-browser (select)="choose($event)"></file-browser>
             </div>
         </modal>
@@ -36,6 +36,22 @@ import { FormArray, FormControl } from '@angular/forms';
     .hlm-input{
         width:78%;
     }
+    .btn-close{
+    background-color: #AA0000;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+    padding: 2px 15px 2px 15px;
+    }
+    	.btn-close:hover {
+		background-color: #AA0000;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	.btn-close:active {
+		background-color: #AA0000;
+		border-color: rgba(0,0,0,0.9);
+	}
     `],
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
