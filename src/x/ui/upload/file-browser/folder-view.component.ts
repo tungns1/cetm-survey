@@ -25,6 +25,7 @@ import { FileNode } from '../backend/';
 	border: 1px solid rgba(0,0,0,0.3);
 	border-bottom-width: 3px;
 }
+
 .btn-view{
     font-size: 10px;
 	padding: 2px 5px;
@@ -45,19 +46,20 @@ import { FileNode } from '../backend/';
 .btn-upload {
 
     margin-top:15px;
-	background-color: #699DB6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#cae285), to(#a3cd5a));
+/*	background-color: #699DB6;*/
 	border-color: rgba(0,0,0,0.3);
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
-	color: #FFF;
+	color: #5d7731;
 }
 
 	.btn-upload:hover {
-		background-color: #4F87A2;
+		background-color: #a3cd5a;
 		border-color: rgba(0,0,0,0.5);
 	}
 	
 	.btn-upload:active {
-		background-color: #3C677B;
+		background-color: #a3cd5a;
 		border-color: rgba(0,0,0,0.9);
 	}
 

@@ -83,4 +83,11 @@ export function Search(cnum: string) {
     });
 }
 
+export function Skip(username: string,password:string,ticket_id:string) {
+    return socket.Send<boolean>('/skip', {
+        username: username,
+        password:password,
+        ticket_id:ticket_id
+    });
+}
 export type ITicket = Model.House.ITicket;

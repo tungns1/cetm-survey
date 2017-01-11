@@ -4,7 +4,7 @@ import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { PassFeedbackRequirement, ICounter, RxCounters, RxCurrentCounter, RxServices } from '../backend/';
-import { Serving, autoNext } from '../backend/queue';
+import { Serving, autoNext,ticketDialog } from '../backend/queue';
 import { ModalComponent } from '../../x/ui/modal';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -22,9 +22,17 @@ combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([co
 })
 export class TicketDetailDialog {
   constructor() { }
-
+  td=ticketDialog;
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
+    // this.checkedCounters = Array.from(t.counters || []);
+    // this.checkedServices = Array.from(t.services || []);
+    this.isServing = t.state === Model.House.TicketStateServing;
+    this.isWaiting = t.state === Model.House.TicketStateWaiting;
+    this.isMissed = t.state === Model.House.TicketStateMissed;
+  }
+  OpenMoveServing(t: Model.House.ITicket){
+       this.ticket = t;
     // this.checkedCounters = Array.from(t.counters || []);
     // this.checkedServices = Array.from(t.services || []);
     this.isServing = t.state === Model.House.TicketStateServing;
@@ -47,15 +55,11 @@ export class TicketDetailDialog {
 
   Close() {
     this.close.emit(true);
+    this.td.next(true);
   }
 
   Move() {
     if (this.isServing) {
-      this.ticket=Serving.first();
-      if (!PassFeedbackRequirement(this.ticket)) {
-        this.ShowMessage("Khách hàng chưa phản hồi","Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch");
-        return;
-      }
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
         this.ShowMessage("Không thành công","Bạn phải chọn quầy hoặc dịch vụ");
         return;

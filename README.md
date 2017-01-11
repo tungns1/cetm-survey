@@ -2,6 +2,7 @@
 
 # QAPP
 'http://localhost:4200/admin/#/house/screen'
+
 ## Installation
 Windows:
 

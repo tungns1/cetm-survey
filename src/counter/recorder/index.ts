@@ -8,7 +8,7 @@ const config: Config = {
     host: 'http://localhost:3000/room/counter/record?fname=',
 };
 
-var isEnable = false;
+var isEnable = true;
 if (isEnable) {
     var recorder = new MP3Recorder(config);
     recorder.start(function () {
