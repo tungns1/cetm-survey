@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../backend/ticket';
 import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone, ticketDialog } from '../backend/queue';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ModalComponent } from '../../x/ui/modal/';
 import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
@@ -26,8 +26,8 @@ export class ActionComponent {
 
 
     form = new FormGroup({
-        username: new FormControl(),
-        pass: new FormControl(),
+        username: new FormControl('',Validators.required),
+        pass: new FormControl('',Validators.required),
     });
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
