@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../backend/ticket';
-import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone,ticketDialog } from '../backend/queue';
+import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone, ticketDialog } from '../backend/queue';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ModalComponent } from '../../x/ui/modal/';
@@ -21,8 +21,9 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
 export class ActionComponent {
     auto = autoNext;
     fbs = feedbackDone;
-    td=ticketDialog;
- 
+    td = ticketDialog;
+    action = '';
+
 
     form = new FormGroup({
         username: new FormControl(),
@@ -54,6 +55,7 @@ export class ActionComponent {
         })
     }
     Move() {
+        this.action = 'move';
         if (!this.checkFinish()) {
             return;
         } else {
@@ -63,12 +65,22 @@ export class ActionComponent {
     }
     onSubmit() {
         Skip(this.form.value.username, this.form.value.pass, this.getTicket().id).subscribe(v => {
-            console.log(v);
             if (v) {
-                this.dialog.OpenMoveServing(this.getTicket());
-                this.td.next(false);
                 this.needFeedback.Close();
-            }else{
+                switch (this.action) {
+                    case 'move':
+                        this.dialog.OpenMoveServing(this.getTicket());
+                        this.td.next(false);
+                        break;
+                    case 'next':
+                        this.next();
+                        break;
+                    case 'finish':
+                        this.finish();
+                        break
+                }
+
+            } else {
                 var toast = new Toast();
                 toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
             }
@@ -77,9 +89,14 @@ export class ActionComponent {
     }
 
     Next() {
+        this.action = 'next';
         if (!this.checkFinish()) {
             return;
         }
+        this.next();
+
+    }
+    next() {
         let ticket = this.getTicket();
         if (ticket) {
             Finish(ticket).subscribe(v => console.log(v));
@@ -113,9 +130,13 @@ export class ActionComponent {
     }
 
     Finish() {
+        this.action = 'finish';
         if (!this.checkFinish()) {
             return;
         }
+        this.finish();
+    }
+    finish() {
 
         if (this.getTicket() != null) {
             // can finish
