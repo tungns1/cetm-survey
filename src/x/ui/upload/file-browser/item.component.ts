@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { FileNode, FileItem } from '../backend/';
 
 @Component({
-  selector: 'upload-item',
+  selector: 'tr[upload-item]',
   template: `
       <td>{{item.Name}} </td> 
       <td> {{item.Size}} </td>

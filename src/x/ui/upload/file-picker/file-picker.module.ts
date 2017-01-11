@@ -42,12 +42,14 @@ import { FormArray, FormControl } from '@angular/forms';
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
 	color: #FFF;
     padding: 2px 15px 2px 15px;
+    position: fixed;
+    right: 20px;
+    top: 5px;
     }
     	.btn-close:hover {
 		background-color: #AA0000;
 		border-color: rgba(0,0,0,0.5);
 	}
-	
 	.btn-close:active {
 		background-color: #AA0000;
 		border-color: rgba(0,0,0,0.9);
