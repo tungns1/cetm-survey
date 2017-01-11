@@ -14,9 +14,9 @@ Session.RxMySetting.skip(1).subscribe(s => {
 })
 
 export function PassFeedbackRequirement(t: Model.House.ITicket) {
-    // if (!IsFeedbackAvailable()) {
-    //     return true;
-    // }
+    if (!IsFeedbackAvailable()) {
+        return true;
+    }
     if (!Feedback.required) {
         return true;
     }
