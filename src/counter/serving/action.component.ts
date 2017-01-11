@@ -8,6 +8,7 @@ import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { PassFeedbackRequirement } from '../backend/';
 import * as Status from '../backend/status';
+import { Toast } from '../../x/ui/noti/toastr';
 
 export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
     .filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
@@ -67,6 +68,9 @@ export class ActionComponent {
                 this.dialog.OpenMoveServing(this.getTicket());
                 this.td.next(false);
                 this.needFeedback.Close();
+            }else{
+                var toast = new Toast();
+                toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
             }
 
         });
