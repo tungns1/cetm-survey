@@ -1,10 +1,10 @@
 import { Serving } from '../backend/queue';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 declare var nodeRequire: any;
-var electron: any;
 var ipcRenderer: any;
+
 try {
-    electron = nodeRequire('electron');
+    const electron = nodeRequire('electron');
     ipcRenderer = electron.ipcRenderer;
 } catch (e) {
 
@@ -26,7 +26,7 @@ if (isEnable) {
                 ipcRenderer.send('ticket-serving', x)
             } catch (e) {
 
-            }            
+            }
         },
         function (err) {
             console.log('Error: %s', err);
