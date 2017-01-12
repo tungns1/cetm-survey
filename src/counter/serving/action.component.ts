@@ -22,8 +22,8 @@ export class ActionComponent {
     fbs = feedbackDone;
     td = ticketDialog;
     action = '';
-    username='';
-    pass='';
+    username = '';
+    pass = '';
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
@@ -51,12 +51,15 @@ export class ActionComponent {
     }
     Move() {
         this.action = 'move';
-        if (!this.checkFinish()) {
-            return;
-        } else {
-            this.dialog.OpenMoveServing(this.getTicket());
-            this.td.next(false);
+        if (this.getTicket() != null) {
+            if (!this.checkFinish()) {
+                return;
+            } else {
+                this.dialog.OpenMoveServing(this.getTicket());
+                this.td.next(false);
+            }
         }
+
     }
     onSubmit() {
         Skip(this.username, this.pass, this.getTicket().id).subscribe(v => {
@@ -81,7 +84,7 @@ export class ActionComponent {
             }
 
         });
-        this.pass='';
+        this.pass = '';
     }
 
     Next() {
