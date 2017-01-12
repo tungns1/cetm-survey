@@ -1,6 +1,7 @@
 export interface ITicket {
     id: string;
     cnum: string;
+    branch_id:string;
     service_id: string;
     counter_id: string;
     services: string[];
