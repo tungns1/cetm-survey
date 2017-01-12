@@ -4,7 +4,7 @@ import { Model } from '../shared';
 
 import { Move, CallFromMissed, Cancel } from '../backend/ticket';
 import { PassFeedbackRequirement, ICounter, RxCounters, RxCurrentCounter, RxServices } from '../backend/';
-import { Serving, autoNext,ticketDialog } from '../backend/queue';
+import { Serving, autoNext, ticketDialog } from '../backend/queue';
 import { ModalComponent } from '../../x/ui/modal';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -22,24 +22,15 @@ combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([co
 })
 export class TicketDetailDialog {
   constructor() { }
-  td=ticketDialog;
+  td = ticketDialog;
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
-    // this.checkedCounters = Array.from(t.counters || []);
-    // this.checkedServices = Array.from(t.services || []);
+    this.checkedCounters = Array.from(t.counters || []);
+    this.checkedServices = Array.from(t.services || []);
     this.isServing = t.state === Model.House.TicketStateServing;
     this.isWaiting = t.state === Model.House.TicketStateWaiting;
     this.isMissed = t.state === Model.House.TicketStateMissed;
   }
-  OpenMoveServing(t: Model.House.ITicket){
-       this.ticket = t;
-    // this.checkedCounters = Array.from(t.counters || []);
-    // this.checkedServices = Array.from(t.services || []);
-    this.isServing = t.state === Model.House.TicketStateServing;
-    this.isWaiting = t.state === Model.House.TicketStateWaiting;
-    this.isMissed = t.state === Model.House.TicketStateMissed;
-  }
-
   private ticket: Model.House.ITicket = <any>{};
   close = new EventEmitter();
 
@@ -61,12 +52,12 @@ export class TicketDetailDialog {
   Move() {
     if (this.isServing) {
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
-        this.ShowMessage("Không thành công","Bạn phải chọn quầy hoặc dịch vụ");
+        this.ShowMessage("Không thành công", "Bạn phải chọn quầy hoặc dịch vụ");
         return;
       }
     } else {
       if (this.checkedCounters.length < 1) {
-        this.ShowMessage("Không thành công","Bạn phải chọn quầy");
+        this.ShowMessage("Không thành công", "Bạn phải chọn quầy");
         return;
       }
     }
@@ -78,7 +69,7 @@ export class TicketDetailDialog {
 
   Recall() {
     if (Serving.RxData.value.length > 0) {
-      this.ShowMessage("Không thành công","Bạn phải kết thúc vé đang thực hiện");
+      this.ShowMessage("Không thành công", "Bạn phải kết thúc vé đang thực hiện");
       return;
     }
     CallFromMissed(this.ticket).subscribe(v => {
@@ -96,16 +87,16 @@ export class TicketDetailDialog {
     });;
   }
 
-  protected ShowMessage(title:string,message: string) {
+  protected ShowMessage(title: string, message: string) {
 
     this.message = message;
-    this.title=title;
+    this.title = title;
     this.alert.Open();
   }
 
   @ViewChild(ModalComponent) protected alert: ModalComponent;
   protected message = "";
-   protected title = "";
+  protected title = "";
 
 
 }
