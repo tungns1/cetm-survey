@@ -1,5 +1,4 @@
 import { Serving } from '../backend/queue';
-import { Config, MP3Recorder } from './recorder.component';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 declare var nodeRequire: any;
 const electron =  nodeRequire('electron');
@@ -9,7 +8,7 @@ var isEnable = true;
 if (isEnable) {
     const RxRecordFile = Serving.RxData.map(tickets => {
         if (tickets[0]) {
-            return tickets[0].id + '.mp3'
+            return tickets[0].id + '_'+ tickets[0].cnum +'.mp3'
         } else {
             return null
         }
