@@ -25,21 +25,12 @@ export class TicketDetailDialog {
   td = ticketDialog;
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
-    // this.checkedCounters = Array.from(t.counters || []);
-    // this.checkedServices = Array.from(t.services || []);
+    this.checkedCounters = Array.from(t.counters || []);
+    this.checkedServices = Array.from(t.services || []);
     this.isServing = t.state === Model.House.TicketStateServing;
     this.isWaiting = t.state === Model.House.TicketStateWaiting;
     this.isMissed = t.state === Model.House.TicketStateMissed;
   }
-  OpenMoveServing(t: Model.House.ITicket) {
-    this.ticket = t;
-    // this.checkedCounters = Array.from(t.counters || []);
-    // this.checkedServices = Array.from(t.services || []);
-    this.isServing = t.state === Model.House.TicketStateServing;
-    this.isWaiting = t.state === Model.House.TicketStateWaiting;
-    this.isMissed = t.state === Model.House.TicketStateMissed;
-  }
-
   private ticket: Model.House.ITicket = <any>{};
   close = new EventEmitter();
 

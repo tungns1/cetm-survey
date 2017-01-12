@@ -50,12 +50,13 @@ export class ActionComponent {
         })
     }
     Move() {
+
         this.action = 'move';
         if (this.getTicket() != null) {
             if (!this.checkFinish()) {
                 return;
             } else {
-                this.dialog.OpenMoveServing(this.getTicket());
+                this.dialog.SetTicket(this.getTicket());
                 this.td.next(false);
             }
         }
@@ -67,7 +68,7 @@ export class ActionComponent {
                 this.needFeedback.Close();
                 switch (this.action) {
                     case 'move':
-                        this.dialog.OpenMoveServing(this.getTicket());
+                        this.dialog.SetTicket(this.getTicket());
                         this.td.next(false);
                         break;
                     case 'next':
