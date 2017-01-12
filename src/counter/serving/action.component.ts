@@ -49,14 +49,16 @@ export class ActionComponent {
             }
         })
     }
-    Move() {
-
+    Move() {   
         this.action = 'move';
         if (this.getTicket() != null) {
             if (!this.checkFinish()) {
                 return;
             } else {
-                this.dialog.SetTicket(this.getTicket());
+                var t=this.getTicket();
+                t.counters=[];
+                t.services=[];
+                this.dialog.SetTicket(t);
                 this.td.next(false);
             }
         }

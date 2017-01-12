@@ -34,7 +34,7 @@ import { FormArray, FormControl } from '@angular/forms';
         opacity:0.7;
     }
     .hlm-input{
-        width:78%;
+        width:85%;
     }
     .btn-close{
     background-color: #AA0000;

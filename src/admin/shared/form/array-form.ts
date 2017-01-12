@@ -18,7 +18,7 @@ import { FormArray, FormControl } from '@angular/forms';
     template: `
         <i class="fa fa-plus" (click)="add()"> Thêm </i>        
         <div *ngFor="let c of values; let i = index;" >
-            <input [ngModel]="values[i]" (change)="onChange($event, i)" /> 
+            <input class="iput-fnews-hlm" [ngModel]="values[i]" (change)="onChange($event, i)" /> 
             <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,
@@ -31,6 +31,9 @@ import { FormArray, FormControl } from '@angular/forms';
         border: 1px solid #aeb0af;
         width: 100%;
         display: inline;
+    }
+    .iput-fnews-hlm{
+        width:95%;
     }
  `],
     providers: [ARRAY_FORM_CONTROL_VALUE_ACCESSOR]
