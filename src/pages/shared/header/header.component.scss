@@ -1,31 +1,26 @@
 .banner {
     height: 5vh;
-    padding-bottom: 1px;
+    display: block;
     width: 100%;
     border-bottom: 1px solid #b0b1b5;
 }
 
-* {
-    display: flex;
-    align-items: center;
-}
-
-logo {
+.logo {
     height: 100%;
-    flex: 1 1 230px;
-    justify-content: flex-start;
+    width: 20%;
+    float: left;
 }
 
 .app-title {
-    flex: 1 1 600px;
-    justify-content: center;
+    padding-top: 1vh;
+    width: 60%;
+    text-align: center;
+    float: left;
 }
 
-user {
-    flex: 1 1 200px;
-    justify-content: flex-end;
-}
-
-.help {
-    margin-right: 15px;
+.user-profile {
+    padding-top: 1vh;
+    width: 20%;
+    text-align: right;
+    float: right;
 }

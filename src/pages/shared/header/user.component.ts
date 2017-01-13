@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { RxLoginedUser } from '../../../shared/session/';
 import { Logout } from '../../../shared/auth/';
@@ -12,10 +12,12 @@ import { Logout } from '../../../shared/auth/';
 export class UserComponent {
     constructor(private router: Router) {
     }
-
+    
     rxName = RxLoginedUser.map(u => u.fullname);
 
     Logout = Logout;
+
+    hidden = true;
 
     Reload() {
         setTimeout(() => {

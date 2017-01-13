@@ -1,32 +1,8 @@
-.droplabel {
-    background-color: transparent;
-    color: black;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    &:hover {
-        .dropdown-content {
-            display: block;
-        }
-        .droplabel {
-            background-color: #f9f9f9;
-        }
-    }
-}
-
 .dropdown-content {
-right:0;
-    display: none;
     position: absolute;
-    padding: 0px;
+    right: 0px;
     background-color: #f9f9f9;
-    min-width: 100px;
+    // min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -35,56 +11,18 @@ right:0;
     padding: 6px 6px;
     text-decoration: none;
     display: block;
+    text-align: left;
     &:hover {
         background-color: #f1f1f1;
         cursor: pointer;
     }
 }
 
-$colors: #E74C3C,
-#0072B5,
-#2C3E50;
-@for $i from 1 through length($colors) {
-    .dropdown-content li:nth-child(#{$i}) {
-        border-left: 4px solid nth($colors, $i);
-        .fa {
-            color: nth($colors, $i);
-        }
-        &:hover {
-            background: nth($colors, $i);
-            color: white;
-            .fa {
-                color: white;
-            }
-        }
-    }
+.droplabel {
+    background-color: transparent;
+    color: black;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-right: 15px;
 }
-
-.float-right {
-    float: right;
-}
-
-.float-left {
-    float: left;
-}
-
-.animate {
-    transition: all .3s;
-}
-
-///////////////////////
-// .dropdown {
-//     position: relative;
-//     display: inline-block;
-// }
-// .dropdown-content {
-//     display: none;
-//     position: absolute;
-//     background-color: #f9f9f9;
-//     min-width: 160px;
-//     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-//     padding: 0px 16px;
-// }
-// .dropdown:hover .dropdown-content {
-//     display: block;
-// }

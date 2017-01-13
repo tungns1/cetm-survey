@@ -51,7 +51,7 @@
                 <div class="table-row" *ngFor="let t of ticket.tracks">
                     <div> {{t.mtime*1000 | date:"h:mm:ss"}} </div>
                     <div> {{t.state | state}} </div>
-                    <div> {{t.services | ticketServiceName}} </div>
+                    <div title="t.services | ticketServiceName"> {{t.services | ticketServiceName}} </div>
                 </div>
             </div>
         </div>
