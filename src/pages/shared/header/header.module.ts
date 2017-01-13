@@ -9,7 +9,7 @@ import { ModalModule } from '../../../x/ui/modal';
 import { UserSettingComponent } from './user-setting';
 
 @NgModule({
-    imports: [CommonModule, I18n.LanguageModule, RouterModule, ModalModule],
+    imports: [CommonModule, I18n.TranslateModule, RouterModule, ModalModule],
     declarations: [HeaderComponent, LogoComponent, UserComponent, UserSettingComponent],
     exports: [HeaderComponent]
 })

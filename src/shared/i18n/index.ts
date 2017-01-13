@@ -17,9 +17,8 @@ export function AddLanguages(translate: TranslateService) {
     translate.use(SelectedLanguage);
 }
 
-import { LanguageModule } from './lang.module';
 
 export {
     TranslateService,
-    LanguageModule
+    TranslateModule
 }
