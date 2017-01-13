@@ -20,7 +20,6 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
 export class ActionComponent {
     auto = autoNext;
     fbs = feedbackDone;
-    td = ticketDialog;
     action = '';
     username = '';
     pass = '';
@@ -28,13 +27,22 @@ export class ActionComponent {
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
 
-    getTicket() {
+    canMove() {
+        return this.action == 'move' && this.CurrentTicket != null;
+    }
+
+    ngAfterViewInit() {
+        this.dialog.close.subscribe(() => {
+            this.action = '';
+        })
+    }
+
+    get CurrentTicket() {
         return Serving.first();
     }
 
-
     checkFinish() {
-        if (PassFeedbackRequirement(this.getTicket())) {
+        if (PassFeedbackRequirement(this.CurrentTicket)) {
             return true;
         }
         feedbackDone.next(false);
@@ -49,57 +57,52 @@ export class ActionComponent {
             }
         })
     }
-    Move() {   
-        this.action = 'move';
-        if (this.getTicket() != null) {
-            if (!this.checkFinish()) {
-                return;
-            } else {
-                var t=this.getTicket();
-                t.counters=[];
-                t.services=[];
-                this.dialog.SetTicket(t);
-                this.td.next(false);
-            }
-        }
 
+    SetAction(action: string) {
+        this.action = action;
+        if (!this.checkFinish()) {
+            return;
+        }
+        this.HandleAction();
     }
+
+    HandleAction() {
+        switch (this.action) {
+            case 'move':
+                this.Move();
+                break;
+            case 'finish':
+                this.Finish();
+                break;
+            case 'next':
+                this.Next();
+                break;
+        }
+        this.action = '';
+    }
+
+    Move() {
+        if (this.CurrentTicket) {
+            this.dialog.SetTicket(this.CurrentTicket);
+        }
+    }
+
     onSubmit() {
-        Skip(this.username, this.pass, this.getTicket().id).subscribe(v => {
+        Skip(this.username, this.pass, this.CurrentTicket.id).subscribe(v => {
             if (v) {
                 this.needFeedback.Close();
-                switch (this.action) {
-                    case 'move':
-                        this.dialog.SetTicket(this.getTicket());
-                        this.td.next(false);
-                        break;
-                    case 'next':
-                        this.next();
-                        break;
-                    case 'finish':
-                        this.finish();
-                        break
-                }
-
+                this.HandleAction();
             } else {
                 var toast = new Toast();
                 toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
             }
-
         });
         this.pass = '';
     }
 
-    Next() {
-        this.action = 'next';
-        if (!this.checkFinish()) {
-            return;
-        }
-        this.next();
 
-    }
-    next() {
-        let ticket = this.getTicket();
+    Next() {
+        let ticket = this.CurrentTicket;
         if (ticket) {
             Finish(ticket).subscribe(v => console.log(v));
         }
@@ -125,30 +128,22 @@ export class ActionComponent {
     }
 
     Recall() {
-        if (this.getTicket() != null) {
-            Recall(this.getTicket()).subscribe(v => console.log(v));
+        if (this.CurrentTicket != null) {
+            Recall(this.CurrentTicket).subscribe(v => console.log(v));
         }
 
     }
 
     Finish() {
-        this.action = 'finish';
-        if (!this.checkFinish()) {
-            return;
-        }
-        this.finish();
-    }
-    finish() {
-
-        if (this.getTicket() != null) {
+        if (this.CurrentTicket != null) {
             // can finish
-            Finish(this.getTicket()).subscribe(v => console.log(v));
+            Finish(this.CurrentTicket).subscribe(v => console.log(v));
         }
     }
 
     Miss() {
-        if (this.getTicket() != null) {
-            Miss(this.getTicket()).subscribe(v => console.log(v));
+        if (this.CurrentTicket != null) {
+            Miss(this.CurrentTicket).subscribe(v => console.log(v));
         }
     }
 

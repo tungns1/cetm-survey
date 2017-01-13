@@ -22,11 +22,10 @@ combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([co
 })
 export class TicketDetailDialog {
   constructor() { }
-  td = ticketDialog;
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
-    this.checkedCounters = Array.from(t.counters || []);
-    this.checkedServices = Array.from(t.services || []);
+    this.checkedCounters = [];
+    this.checkedServices = [];
     this.isServing = t.state === Model.House.TicketStateServing;
     this.isWaiting = t.state === Model.House.TicketStateWaiting;
     this.isMissed = t.state === Model.House.TicketStateMissed;
@@ -46,7 +45,6 @@ export class TicketDetailDialog {
 
   Close() {
     this.close.emit(true);
-    this.td.next(true);
   }
 
   Move() {

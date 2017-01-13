@@ -1,4 +1,4 @@
-<button (click)="Next()" [ngClass]="{'hidden': auto | async}">
+<button (click)="SetAction('next')" [ngClass]="{'hidden': auto | async}">
     KẾ TIẾP
 </button>
 <button (click)="NoNext()" class="danger" [ngClass]="{'hidden': !(auto | async)}">
@@ -7,16 +7,17 @@
 <button (click)="Recall()"> 
     GỌI LẠI
 </button>
-<button (click)="Move()"> 
+<button (click)="SetAction('move')"> 
     CHUYỂN
 </button>
 <button (click)="Miss()">
     ĐẶT NHỠ
 </button>
-<button (click)="Finish()" class="danger">
+<button (click)="SetAction('finish')" class="danger">
     KẾT THÚC
 </button>
-<ticket-detail-dialog #dialog [ngClass]="{'hidden': td | async}"></ticket-detail-dialog>
+
+<ticket-detail-dialog #dialog [class.hidden]="!canMove()"></ticket-detail-dialog>
 
 <modal #fb [ngClass]="{'hidden': fbs | async}">
     <div style="text-align: center;color: red;font-size:18px;font-weight:700;"> Khách hàng chưa phản hồi</div>

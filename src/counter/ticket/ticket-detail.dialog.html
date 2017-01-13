@@ -10,7 +10,7 @@
             <div *ngIf="isServing" style="margin-bottom:10px;">
                 <div>Bắt đầu phục vụ: {{ticket.mtime | hour}}</div>
                 <br> Chuyển dịch vụ:
-                <div class="dichvu" *ngIf="services">
+                <div class="dichvu">
                     <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
                     </select-check>
                 </div>
@@ -20,7 +20,7 @@
                 Thời điểm đặt nhỡ: {{ticket.mtime | hour}}
             </div>
             Chuyển quầy:
-            <div class="dichvu" *ngIf="counters">
+            <div class="dichvu">
                 <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
                 </select-check>
             </div>
