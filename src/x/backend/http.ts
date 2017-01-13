@@ -111,3 +111,7 @@ export function PostForm(url: string, data?: Object) {
   }
   return http(HTTP_METHOD_POST, url, form);
 }
+
+export function GetRaw(url: string) {
+  return http('GET', url);
+}

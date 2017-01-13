@@ -18,6 +18,7 @@ const routes: Routes = [
 
 import { HeaderModule } from './shared/header/header.module';
 import { NavModule } from './shared/nav/nav.module';
+import { TranslateModule } from '../x/i18n/';
 
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, CommonModule, RouterModule.forChild(routes)],
@@ -25,7 +26,7 @@ import { NavModule } from './shared/nav/nav.module';
     providers: [AuthGuard],
     exports: [
         RouterModule, CommonModule, BrowserModule,
-        FormsModule, ReactiveFormsModule,
+        FormsModule, ReactiveFormsModule, TranslateModule,
         HeaderModule, NavModule
     ]
 })
