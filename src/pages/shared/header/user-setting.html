@@ -1,9 +1,14 @@
-User Setting
 <div>
-    {{ 'HOME.SELECT' | translate }}
-    <select #langSelect (change)="translate.use(langSelect.value)">
+    <div>
+        <span class="head-text">User Setting</span>
+        <hr class="hr-css">
+    </div>
+    <div>
+        <span class="text-language">   {{ 'HOME.SELECT' | translate }}</span>
+        <select class="select" #langSelect (change)="translate.use(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
     </select>
-    <br>
-    <button class="button" (click)="Close()"> Đóng </button>
+        <br>
+        <button class="button btn-footer" (click)="Close()"> Đóng </button>
+    </div>
 </div>
