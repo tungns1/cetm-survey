@@ -78,7 +78,6 @@ export class ActionComponent {
                 this.Next();
                 break;
         }
-        this.action = '';
     }
 
     Move() {
