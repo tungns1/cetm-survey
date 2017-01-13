@@ -4,10 +4,11 @@ import { PageModule } from '../pages/';
 
 import { Branch, Editor, Form } from './shared/';
 import { AppComponent } from './app.component';
+import { I18n } from '../shared/';
 
 @NgModule({
     imports: [
-        PageModule, Branch.BranchModule, 
+        PageModule, Branch.BranchModule, I18n.forRoot("admin"), 
         Editor.EditorModule, Form.JSONFormModule, routing
     ],
     declarations: [AppComponent, ...components],

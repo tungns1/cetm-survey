@@ -3,13 +3,16 @@
         font-size: 16px;
     }
     
-    .main {
-        display: flex;
+    .container {
+        display: block;
+        width: 100%;
         background-color: #f4f4f4;
     }
     
     .left {
-        flex: 1 1 800px;
+        display: block;
+        float: left;
+        width: 80%;
         border-right: 1px solid #afb1b4;
     }
     
@@ -21,16 +24,10 @@
         flex: 1;
     }
     
-    sta {
-        flex: 1 1 200px;
-        border: 0px solid !important;
-    }
-    
-    .ft {
-        text-align: center;
-        position: relative;
-        bottom: 5px;
-        font-size: 12px;
+    .sta {
+        display: block;
+        float: right;
+        width: 19.8%;
     }
 </style>
 
@@ -38,7 +35,7 @@
     <div class="module-name">MQ-COUNTER:&nbsp;{{counterName | async}}</div>
 </app-header>
 
-<div class="main">
+<div class="container">
     <div class="left">
         <serving></serving>
         <div class="queue">
@@ -46,7 +43,7 @@
             <missed></missed>
         </div>
     </div>
-    <sta></sta>
+    <sta class="sta"></sta>
 </div>
 
-<p class="ft">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+<div class="copyright">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</div>

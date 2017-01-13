@@ -6,9 +6,12 @@ import { routing } from './report.routing';
 import { PageModule } from '../pages/';
 import { ReportFilterModule } from './filter/filter.module';
 import { AppComponent } from './app.component';
+import { I18n } from '../shared/';
 
 @NgModule({
-  imports: [PageModule, routing, ReportFilterModule, CommonModule],
+  imports: [
+    PageModule, routing, ReportFilterModule, 
+    CommonModule, I18n.forRoot("report")],
   declarations: [AppComponent, ReportComponent],
   bootstrap: [AppComponent]
 })

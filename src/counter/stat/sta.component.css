@@ -6,12 +6,6 @@
     line-height: 40px;
 }
 
-:host {
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: #cccccc;
-}
-
 .count {
     color: #0b8fdb;
 }

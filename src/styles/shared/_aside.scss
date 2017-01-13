@@ -2,16 +2,24 @@
     width: 100%;
     border-top: 1px solid #b0b1b5;
     background-color: #f4f4f4;
-    display: flex;
+    display: block;
 }
 
 .aside {
-    flex: 1 1 250px;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 20%;
     border-right: 1px solid #b0b1b5;
     background-color: #f4f4f4;
 }
 
 .main {
-    flex: 2 1 800px;
+    float: right;
+    width: 80%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: block;
     background-color: #f4f4f4;
 }

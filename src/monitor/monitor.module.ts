@@ -6,9 +6,12 @@ import { MonitorComponent } from './monitor.component';
 import { routing } from './monitor.routing';
 import { AppComponent } from './app.component';
 import { MonitorFilterModule } from './shared/';
+import { I18n } from '../shared/';
 
 @NgModule({
-  imports: [PageModule, Branch.BranchModule, CommonModule, routing, MonitorFilterModule],
+  imports: [
+    PageModule, Branch.BranchModule, CommonModule, 
+    routing, MonitorFilterModule, I18n.forRoot("monitor")],
   declarations: [AppComponent, MonitorComponent],
   bootstrap: [AppComponent]
 })

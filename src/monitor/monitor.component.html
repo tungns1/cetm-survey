@@ -7,10 +7,13 @@
 <br>
 
 <div class="container" style="height:100vh;">
-    <monitor-filter *ngIf="hidden" class="aside" style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
-    <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color: gray;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
-    <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color:gray;" (click)="hidden=!hidden" title="Đóng bộ lọc"></i>
-    <div class="main" style="padding: 20px 20px 0px 0px;">
+    <div class="aside">
+        <monitor-filter *ngIf="hidden" style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
+        <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color: gray;" (click)="hidden=!hidden" title="Hiển thị bộ lọc"></i>
+        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color:gray;" (click)="hidden=!hidden" title="Đóng bộ lọc"></i>
+    </div>
+
+    <div class="main">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">
                 Tự cập nhật:
