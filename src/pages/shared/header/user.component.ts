@@ -19,7 +19,7 @@ export class UserComponent {
 
     hidden = true;
 
-    Reload() {
+    Refresh() {
         setTimeout(() => {
             window.location.reload();
         }, 200);
