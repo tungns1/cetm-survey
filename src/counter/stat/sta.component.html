@@ -1,15 +1,15 @@
 <div class="content">
-    <div class="title">
-        THỐNG KÊ
+    <div class="title" translate>
+        STAT
     </div>
 
     <div class="tabs">
         <div [ngClass]="{'active': tab === 'finished'}" (click)="tab = 'finished'">
-            &nbsp; Giao dịch đã thực hiện&nbsp; (
+            &nbsp;<span translate> SERVICE_FINISH</span>&nbsp; (
             <span class="count">{{fc | async}}</span>) &nbsp;
         </div>
         <div [ngClass]="{'active': tab === 'cancelled'}" (click)="tab = 'cancelled'">
-            Giao dịch đã hủy&nbsp;(
+            <span translate>SERVICE_CANCEL</span>&nbsp;(
             <span class="count">{{cc | async}}</span>) &nbsp;
         </div>
     </div>

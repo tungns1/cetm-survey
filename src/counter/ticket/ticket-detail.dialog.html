@@ -1,15 +1,15 @@
 <div class="modal">
     <div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px; position:absolute;">
-        <div class="tl">CHI TIẾT VÉ</div>
+        <div class="tl" translate>TICKET_DETAILS</div>
         <div style="margin-top: 50px;">
-            <div class="info"> Số vé: <span style="font-size:18px;">{{ticket.cnum}}</span></div>
+            <div class="info"><span translate> TICKET_NUMBER</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
             <div class="info hidden"> Priority:{{ticket.priority}}</div>
-            <div class="info"> Thời điểm lấy vé: {{ticket.ctime | hour}}</div>
+            <div class="info"><span translate> TIME_CREATE_TICKET</span> {{ticket.ctime | hour}}</div>
             <hr>
 
             <div *ngIf="isServing" style="margin-bottom:10px;">
-                <div>Bắt đầu phục vụ: {{ticket.mtime | hour}}</div>
-                <br> Chuyển dịch vụ:
+                <div><span translate>START_SERVING</span> {{ticket.mtime | hour}}</div>
+                <br> <span translate> MOVE_SERVICE</span>
                 <div class="dichvu">
                     <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
                     </select-check>
@@ -17,29 +17,29 @@
             </div>
 
             <div *ngIf="isMissed" style="margin-bottom:10px;">
-                Thời điểm đặt nhỡ: {{ticket.mtime | hour}}
+                <span translate>TIME_MISS</span> {{ticket.mtime | hour}}
             </div>
-            Chuyển quầy:
+            <span translate> MOVE_COUNTER</span>
             <div class="dichvu">
                 <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
                 </select-check>
             </div>
 
             <div style="margin: 30px 0px 20px 0px;" *ngIf="isMissed">
-                <button class="close miss" (click)="Close()">ĐÓNG</button>
+                <button class="close miss" (click)="Close()" translate>CLOSE</button>
 
-                <button class="move big" (click)="Move()">CHUYỂN</button>
+                <button class="move big" (click)="Move()" translate>MOVE</button>
 
-                <button class="recall big" (click)="Recall()">GỌI LẠI</button>
+                <button class="recall big" (click)="Recall()" translate>RECALL</button>
 
-                <button class="delete miss" (click)="Delete()">XÓA</button>
+                <button class="delete miss" (click)="Delete()" translate>DELETE</button>
             </div>
             <div style="margin: 30px 0px 20px 0px;" *ngIf="!isMissed">
-                <button class="close nomiss" (click)="Close()">ĐÓNG</button>
+                <button class="close nomiss" (click)="Close()" translate>CLOSE</button>
 
-                <button class="move nomiss" (click)="Move()">CHUYỂN</button>
+                <button class="move nomiss" (click)="Move()" translate>MOVE</button>
 
-                <button class="delete nomiss" (click)="Delete()">XÓA</button>
+                <button class="delete nomiss" (click)="Delete()" translate>DELETE</button>
             </div>
         </div>
     </div>
@@ -48,5 +48,5 @@
 <modal #alert>
     <div style="text-align: center;color: red;font-size:18px;font-weight:700;">{{title}}</div>
     <p style="text-align: center;font-size:13px;">{{message}}</p>
-    <button class="close" (click)="alert.Close()" style="float:right; height:25px;"> Đồng ý </button>
+    <button class="close" (click)="alert.Close()" style="float:right; height:25px;" translate> YES </button>
 </modal>

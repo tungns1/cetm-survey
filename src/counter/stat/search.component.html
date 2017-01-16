@@ -33,19 +33,19 @@
 
 <div class="search-result" *ngIf="ticket">
 
-    <p>Thời điểm lấy vé:&nbsp; {{ticket.ctime*1000 | date:"h:mm:ss"}}</p>
+    <p><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime*1000 | date:"h:mm:ss"}}</p>
     <p [class.hidden]="!serving">
-        Thời điểm gọi vào:
+        <span translate> TIME_CALL_TICKET</span>
         <span style="text-align: right;">{{ticket.mtime *1000 | date:"h:mm:ss"}}</span>
     </p>
-    <p>Trạng thái hiện tại:&nbsp; {{ticket.state | state}} </p>
+    <p><span translate>STATUS_NOW</span>&nbsp; {{ticket.state | state}} </p>
     <div>
-        <p>Lịch sử:</p>
+        <p translate>HISTORY</p>
         <div class="table">
             <div class="table-row header">
-                <div>Thời điểm</div>
-                <div>Trạng thái</div>
-                <div>Dịch vụ</div>
+                <div translate>TIME</div>
+                <div translate>STATUS</div>
+                <div translate>SERVICE</div>
             </div>
             <div style="height:100px;overflow: auto;">
                 <div class="table-row" *ngFor="let t of ticket.tracks">
