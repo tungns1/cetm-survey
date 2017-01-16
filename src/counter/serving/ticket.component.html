@@ -2,7 +2,7 @@
     <div class="service uppercase"> {{ticket.service_id | ticketServiceName}}</div>
     <div class="padding">
     </div>
-    <div class="more">
+    <div class="more" [ticket-highlight]="ticket">
         <div class="so">
             <div class="title" translate> NUMBER_SERVING </div>
             <div class="item">
