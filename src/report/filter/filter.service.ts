@@ -28,7 +28,12 @@ RxDetails.subscribe(v => {
     counters.sort((a, b) => a.name > b.name ? 1 : -1);
     RxCounters.next(counters);
     const users: Model.IUser[] = v['users'];
-    users.filter(v => v.role === 'admin').sort((a, b) => a.fullname > b.fullname ? 1 : -1);
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].role!='staff') {
+            users.splice(i, 1);
+        }
+    }
+    users.sort((a, b) => a.fullname > b.fullname ? 1 : -1);
     RxUsers.next(users);
     users.forEach(u => NameMap.set(u.id, u.fullname));
     counters.forEach(c => NameMap.set(c.id, c.name));
