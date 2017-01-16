@@ -9,10 +9,12 @@ function LoadI18n(lang: string, app: string) {
                 let v = JSON.parse(res.body);
                 return v;
             } catch (e) {
-                throw e;
+                console.error(`parse json from ${uri} failed ${e}`);
+                return {};
             }
         } else {
-            throw res.body;
+            console.error(`load file ${uri} failed ${res.body}`);
+            return {};
         }
     });
 }

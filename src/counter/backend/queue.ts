@@ -55,7 +55,7 @@ class Queue {
             const v = queue[pos];
             // priority first
             if (v.priority === t.priority) {
-                // mtime
+                // older
                 if (v.mtime < t.mtime) {
                     break;
                 }
