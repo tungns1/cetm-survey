@@ -28,7 +28,7 @@
     }
 </style>
 
-<input type="text" #tm placeholder="Tìm kiếm số vé" (keyup.enter)="searchTicket(tm.value)">
+<input type="text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
 <div class="message"> {{message}} </div>
 
 <div class="search-result" *ngIf="ticket">

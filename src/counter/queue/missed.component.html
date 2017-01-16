@@ -18,8 +18,8 @@
 </style>
 <div class="content">
     <div class="title">
-        <div translate>LIST_MISS&nbsp;(<span class="total">{{count | async}}</span>) </div>
-        <input #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" placeholder="số vé">
+        <div><span translate> LIST_MISS</span> &nbsp;(<span class="total">{{count | async}}</span>) </div>
+        <input #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" placeholder="{{'TICKET_NUMBER_MISS' | translate}}">
         <img src="../asset/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" width="20" height="20" style="cursor: pointer">
     </div>
 

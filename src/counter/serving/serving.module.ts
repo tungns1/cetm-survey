@@ -8,9 +8,10 @@ import { EmptyComponent } from './empty.component';
 import { ActionComponent } from './action.component';
 import { TicketComponent } from './ticket.component';
 import { ModalModule } from '../../x/ui/modal/';
+import { I18n } from '../../shared';
 
 @NgModule({
-    imports: [BrowserModule, TicketModule, CommonModule, ModalModule, ReactiveFormsModule, FormsModule],
+    imports: [BrowserModule, TicketModule, CommonModule, ModalModule, ReactiveFormsModule, FormsModule,I18n.TranslateModule],
     declarations: [ServingComponent, EmptyComponent, ActionComponent, TicketComponent],
     exports: [ServingComponent]
 })
