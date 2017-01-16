@@ -5,14 +5,17 @@
         <input type="text" formControlName="code" placeholder="Mã"><br>Số quầy:
         <input type="text" formControlName="cnum" placeholder="Số quầy"><br>Tên:
         <input type="text" formControlName="name" placeholder="Tên"><br>Địa chỉ thiết bị led:
-        <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led"> Dịch vụ thường:
+        <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led">
+        <hr> Dịch vụ thường:
         <div class="dichvu">
             <select-check formControlName="services" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <!--<hr> Dịch vụ VIP
-        <select-check formControlName="vservices" [data]="services | async" textField="name">
-        </select-check>-->
+        <hr> Dịch vụ VIP:
+        <div class="dichvu">
+            <select-check formControlName="vservices" [data]="services | async" textField="name">
+            </select-check>
+        </div>
         <hr> Chi nhánh:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
     </form>

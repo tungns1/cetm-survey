@@ -1,0 +1,20 @@
+<editor #edit name="luồng dịch vụ" [fields]="fields" [data]="data | async" [service]="service">
+    <editor-title> Danh sách luồng dịch vụ</editor-title>
+    <form *ngIf="edit.form" [formGroup]="edit.form">
+        <hr> Chi nhánh:
+        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+        <hr> Dịch vụ:
+        <select formControlName="service_id">
+            <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>
+        </select>
+        <hr> Số vé:
+        <select formControlName="tform_normal">
+            <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
+        </select>
+
+        <br> Số vé vip:
+        <select formControlName="tform_vip">
+            <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
+        </select>
+    </form>
+</editor>
