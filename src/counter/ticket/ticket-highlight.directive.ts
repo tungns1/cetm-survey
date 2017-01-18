@@ -2,7 +2,7 @@ import {Directive, Input} from '@angular/core';
 import {Model} from '../shared';
 
 
-const VipColor = 'rgba(1, 38, 1, 0.96)';
+const VipColor = 'cyan';
 
 @Directive({
     selector: '[ticket-highlight]',
