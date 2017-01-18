@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {
     GeneralComponent
 } from './general.component';
+import { I18n } from '../shared';
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -20,7 +21,7 @@ import { ReportChartModule } from '../chart/chart.module';
 import { ReportTabModule } from '../tab/tab.module';
 
 @NgModule({
-    imports: [routing, ReportSumModule, ReportOverviewModule, ReportChartModule, ReportTabModule,CommonModule],
+    imports: [routing, ReportSumModule, ReportOverviewModule, ReportChartModule, ReportTabModule,CommonModule,I18n.TranslateModule],
     declarations: [
         GeneralComponent
     ]

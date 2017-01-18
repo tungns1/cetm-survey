@@ -4,22 +4,29 @@ import { ITab } from '../shared/';
 
 const tabDevice: ITab[] = [{
     tag: 'branch',
-    title: 'SERVER'
+    title: 'SERVER',
+    titleTable: 'SERVER_TABLE'
 }, {
     tag: 'kiosk',
     title: 'KIOSK',
+    titleTable: 'KIOSK_TABLE'
 }, {
     tag: 'counter',
-    title: 'QUẦY'
+    title: 'COUNTER',
+    titleTable: 'COUNTER_TABLE'
+
 }, {
     tag: 'screen',
-    title: 'MÀN HÌNH TRUNG TÂM'
+    title: 'SCREEN',
+    titleTable: 'SCREEN_TABLE'
 }, {
     tag: 'led',
-    title: 'LED'
+    title: 'LED',
+    titleTable: 'LED_TABLE'
 }, {
     tag: 'feedback',
-    title: 'PHẢN HỒI'
+    title: 'FEEDBACK',
+    titleTable: 'FEEDBACK_TABLE'
 }]
 
 @Component({
@@ -32,7 +39,7 @@ export class MonitorDeviceComponent {
         TrackDevice();
     }
     rxData = RxDeviceData.map(data => {
-        return data.sort((a, b) => a.off_at < b.off_at? -1 : 1);
+        return data.sort((a, b) => a.off_at < b.off_at ? -1 : 1);
     });
     tabs = tabDevice;
     tag = 'branch';

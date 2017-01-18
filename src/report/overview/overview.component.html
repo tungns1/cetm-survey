@@ -2,14 +2,14 @@
     <table *ngIf="tag==='general'">
         <thead>
             <th> STT </th>
-            <th> {{groupTitle | async}} </th>
-            <th> Tổng số giao dịch </th>
-            <th> Giao dịch thành công </th>
-            <th> Giao dịch hủy </th>
-            <th> Giao dịch thời gian đợi chuẩn </th>
-            <th> Giao dịch thời gian đợi vượt chuẩn </th>
-            <th> Giao dịch thời gian phục vụ chuẩn </th>
-            <th> Giao dịch thời gian phục vụ vượt chuẩn </th>
+            <th translate> {{groupTitle | async}} </th>
+            <th translate> GENERAL.TOTAL_TRANSACTION </th>
+            <th translate> GENERAL.TRANSACTION_FINISH </th>
+            <th translate> GENERAL.TRANSACTION_CANCEL </th>
+            <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
+            <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
+            <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
+            <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
         </thead>
         <tbody class="table-row">
             <tr *ngFor="let d of data | async; let i = index">
@@ -28,16 +28,16 @@
     <table *ngIf="tag==='time'">
         <thead>
             <th> STT </th>
-            <th> {{groupTitle | async}} </th>
-            <th> Tổng thời gian giao dịch </th>
-            <th> Tổng thời gian phục vụ</th>
-            <th> Tổng thời gian chờ </th>
-            <th> Thời gian phục vụ trung bình </th>
-            <th> Thời gian phục vụ ngắn nhất </th>
-            <th> Thời gian phục vụ dài nhất </th>
-            <th> Thời gian chờ trung bình </th>
-            <th> Thời gian chờ ngắn nhất </th>
-            <th> Thời gian chờ dài nhất </th>
+            <th translate> {{groupTitle | async}} </th>
+            <th translate> GENERAL.TOTAL_TIME_TRANSACTION </th>
+            <th translate> GENERAL.TOTAL_TIME_SERVING</th>
+            <th translate> GENERAL.TOTAL_TIME_WAIT </th>
+            <th translate> GENERAL.TIME_SERVING_AVERAGE </th>
+            <th translate> GENERAL.TIME_SERVING_MIN </th>
+            <th translate> GENERAL.TIME_SERVING_MAX </th>
+            <th translate> GENERAL.TIME_WAIT_AVERAGE </th>
+            <th translate> GENERAL.TIME_WAIT_MIN </th>
+            <th translate> GENERAL.TIME_WAIT_MAX </th>
         </thead>
         <tbody class="table-row">
             <tr *ngFor="let d of data | async; let i = index">
@@ -58,13 +58,13 @@
     <table *ngIf="tag==='customer'">
         <thead>
             <th> STT </th>
-            <th> {{groupTitle | async}} </th>
-            <th> Giao dịch có phản hồi </th>
-            <th> Giao dịch không có phản hồi </th>
-            <th> Giao dịch phản hồi tốt </th>
-            <th> Giao dịch phản hồi khá</th>
-            <th> Giao dịch phản hồi trung bình </th>
-            <th> Giao dịch phản hồi kém</th>
+            <th translate> {{groupTitle | async}} </th>
+            <th translate> GENERAL.TRANSACTION_FEEDBACK </th>
+            <th translate> GENERAL.TRANSACTION_NO_FEEDBACK </th>
+            <th translate> GENERAL.FEEDBACK_VERY_GOOD </th>
+            <th translate> GENERAL.FEEDBACK_GOOD</th>
+            <th translate> GENERAL.FEEDBACK_MEDIUM </th>
+            <th translate> GENERAL.FEEDBACK_BAD</th>
         </thead>
         <tbody class="table-row">
             <tr *ngFor="let d of data | async; let i = index">

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Branch } from '../shared/';
 import { ReportOverViewComponent } from './overview.component';
 import { HourPipe } from './time.pipe';
+import { I18n } from '../shared';
 
 @NgModule({
-    imports: [CommonModule, Branch.BranchModule],
+    imports: [CommonModule, Branch.BranchModule,I18n.TranslateModule],
     declarations: [ReportOverViewComponent,HourPipe],
     exports: [ReportOverViewComponent],
 })

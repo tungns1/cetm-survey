@@ -2,13 +2,13 @@
 <table *ngIf="waitLong">
     <thead>
         <th> STT </th>
-        <th> Khu vực </th>
-        <th> Chi nhánh </th>
-        <th> Phòng giao dịch </th>
-        <th> Dịch vụ </th>
-        <th> Số vé </th>
-        <th> Thời điểm lấy vé </th>
-        <th> Thời điểm gọi vào </th>
+        <th translate> AREA </th>
+        <th translate> BRANCH</th>
+        <th translate> TRANSACTION_ROOM</th>
+        <th translate>SERVICE </th>
+        <th translate> TICKET_NUMBER </th>
+        <th translate> TIME_CREATE_TICKET</th>
+        <th translate> TIME_CALL_TICKET </th>
         <!--<th> Thời gian đợi chuẩn </th>-->
     </thead>
     <tbody class="table-row">
@@ -29,13 +29,13 @@
 <table *ngIf="!waitLong">
     <thead>
         <th> STT </th>
-        <th> Khu vực </th>
-        <th> Chi nhánh </th>
-        <th> Phòng giao dịch </th>
-        <th> Dịch vụ </th>
-        <th> Số vé </th>
-        <th> Thời điểm phục vụ</th>
-        <th> Thời điểm kết thúc </th>
+        <th translate>AREA</th>
+        <th translate> BRANCH</th>
+        <th translate> TRANSACTION_ROOM</th>
+        <th translate>SERVICE</th>
+        <th translate> TICKET_NUMBER </th>
+        <th translate> TIME_SERVING</th>
+        <th translate> TIME_FINISH </th>
         <!--<th> Thời gian phục vụ chuẩn </th>-->
     </thead>
     <tbody class="table-row">

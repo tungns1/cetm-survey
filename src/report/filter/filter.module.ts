@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Branch } from '../shared/';
 import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
+import { I18n } from '../shared';
 import {
     ReportNamePipe,
     CounterSelectorComponent, UserSelectorComponent, ServiceSelectorComponent
@@ -11,7 +12,7 @@ import {
     from './detail.component';
 
 @NgModule({
-    imports: [Branch.BranchModule, CommonModule, FormsModule, ReactiveFormsModule, DatePickerModule],
+    imports: [Branch.BranchModule, CommonModule, FormsModule, ReactiveFormsModule, DatePickerModule,I18n.TranslateModule],
     declarations: [
         ReportNamePipe,
         CounterSelectorComponent, UserSelectorComponent, ServiceSelectorComponent,

@@ -4,9 +4,9 @@ import { LineChartComponent } from './line';
 import { BarChartComponent } from './bar';
 import { PieChartComponent } from './pie';
 import { StackChartComponent } from './stack';
-
+import { I18n } from '../../shared';
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule,I18n.TranslateModule],
     declarations: [LineChartComponent, BarChartComponent, PieChartComponent, StackChartComponent],
     exports: [LineChartComponent, BarChartComponent, PieChartComponent, StackChartComponent]
 })

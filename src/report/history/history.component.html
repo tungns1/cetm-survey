@@ -3,20 +3,20 @@
         <table class="search-table">
             <thead>
                 <th class="stt"> STT </th>
-                <th> Ngày </th>
-                <th> Khu vực </th>
-                <th> Chi nhánh </th>
-                <th> PGD </th>
-                <th> Dịch vụ </th>
-                <th> Quầy </th>
-                <th> Giao dịch viên </th>
-                <th> Số vé </th>
-                <th> Thời điểm lấy vé </th>
-                <th> Thời gian đợi </th>
-                <th> Thời điểm phục vụ </th>
-                <th> Thời gian phục vụ </th>
-                <th> Thời điểm kết thúc </th>
-                <th class="number"> Kết quả phản hồi </th>
+                <th translate> HISTORY.DATE </th>
+                <th translate> HISTORY.AREA</th>
+                <th translate> HISTORY.BRANCH </th>
+                <th translate> HISTORY.TRANSACTION_ROOM </th>
+                <th translate>HISTORY.SERVICE </th>
+                <th translate>HISTORY.COUNTER</th>
+                <th translate>HISTORY.TELLERS </th>
+                <th translate>HISTORY.TICKET_NUMBER </th>
+                <th translate>HISTORY.TIME_CREATE_TICKET </th>
+                <th translate>HISTORY.TIME_WAIT </th>
+                <th translate>HISTORY.TIME_CALL_TICKET </th>
+                <th translate>HISTORY.TIME_SERVING </th>
+                <th translate>HISTORY.TIME_FINISH </th>
+                <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
             </thead>
             <tbody class="table-row">
                 <tr *ngFor="let d of data | async; let i = index">
@@ -53,5 +53,5 @@
 
 
 <div style="float: right;margin-top: 20px;">
-    <button class="bt btpointer" (click)="excel()"> XUẤT RA FILE EXCEL </button>
+    <button class="bt btpointer" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>

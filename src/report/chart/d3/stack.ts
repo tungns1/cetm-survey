@@ -47,7 +47,7 @@ export class StackChart extends AbstractChart {
                 const date = this.dateFormat(d['data']['date']);
                 const offsetX = x(date);
                 const offsetY = y(d[1]);
-                const html = items.map(i => `<li>  ${i.title}: ${d['data'][i.field]} </li>`).join("");
+                const html = items.map(i => `<li> <span translate> ${i.title}</span>: ${d['data'][i.field]} </li>`).join("");
                 this.tooltip.Html(`${date} <br> ${html}`).Offset(offsetX, offsetY).Show();
             })
             .transition().duration(500)

@@ -16,12 +16,12 @@
     <div class="main">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">
-                Tự cập nhật:
+                <span translate>AUTO_UPDATE</span>
                 <select (ngModelChange)="setRefreshInterval($event)">
                     <option *ngFor="let a of intervals" [value]="a.interval">{{a.name}}</option>
                 </select>
-                <button class="gd btpointer" type="submit" routerLink="/ticket" routerLinkActive="active">GIAO DỊCH VƯỢT CHUẨN</button>
-                <button type="submit" routerLink="/device" routerLinkActive="active">THIẾT BỊ MẤT KẾT NỐI</button>
+                <button class="gd btpointer" type="submit" routerLink="/ticket" routerLinkActive="active" translate>BUTTON_TRANSACTION</button>
+                <button type="submit" routerLink="/device" routerLinkActive="active" translate>BUTTON_DEVICE</button>
             </div>
         </div>
 

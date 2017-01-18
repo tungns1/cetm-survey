@@ -9,11 +9,11 @@
 
 <div>
     <select [(ngModel)]="type">
-            <option disabled selected value> -- Chọn biểu đồ -- </option>
-            <option value="line">Biểu đồ đường</option>
-            <option value="bar">Biểu đồ cột</option>
-            <option value="stack">Biểu đồ cột xếp</option>
-            <option value="pie">Biểu đồ tròn</option>
+            <option disabled selected value translate>SELECT_CHART</option>
+            <option value="line" translate>LINE_CHART</option>
+            <option value="bar" translate>COLUMN_CHART</option>
+            <option value="stack" translate>STACK_CHART</option>
+            <option value="pie" translate>PIE_CHART</option>
         </select>
 </div>
 <div class="legend" style="margin:10px 20px;" *ngIf="type!='pie'">
@@ -22,7 +22,7 @@
             <div style="float:left; margin-right:3px;" [style.background-color]="item._hidden? '':item.color ">
                 <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
             </div>
-            <span style="font-size: 12px; "> {{item.title}}</span>
+            <span style="font-size: 12px; " translate> {{item.title}}</span>
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@
                 <div style="float:left; margin-right:3px;" [style.background-color]="t._hidden? '':t.color ">
                     <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
                 </div>
-                <span style="font-size: 12px;"> {{t.title}}</span>
+                <span style="font-size: 12px;" translate> {{t.title}}</span>
             </div>
         </div>
     </div>

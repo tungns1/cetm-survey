@@ -10,121 +10,121 @@ const Fields: MyItem[] = [{
     field: 'c_t',
     color: '#9933ff',
     tab: 'general',
-    title: 'Tổng số giao dịch'
+    title: 'GENERAL.TOTAL_TRANSACTION'
 }, {
     field: 'c_ft',
     color: '#99b3ff',
     tab: 'general',
-    title: 'Giao dịch thành công'
+    title: 'GENERAL.TRANSACTION_FINISH'
 }, {
     field: 'c_ct',
     color: '#969c9c',
     tab: 'general',
-    title: 'Giao dịch bị hủy'
+    title: 'GENERAL.TRANSACTION_CANCEL'
 }, {
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    title: 'Thời gian đợi',
+    title: 'GENERAL.TIME_WAIT',
     axis: 'left'
 }, {
     field: 's_st_h',
     tab: 'time',
     color: 'green',
-    title: 'Thời gian phục vụ'
+    title: 'GENERAL.TIME_SERVING'
 }, {
     field: 'c_r_a',
     tab: 'customer',
     color: '#0088cc',
-    title: 'Phản hồi tốt'
+    title: 'GENERAL.FEEDBACK_VERY_GOOD'
 }, {
     field: 'c_r_b',
     tab: 'customer',
     color: '#73e600',
-    title: 'Phản hồi khá'
+    title: 'GENERAL.FEEDBACK_GOOD'
 }, {
     field: 'c_r_c',
     tab: 'customer',
     color: '#ffcc00',
-    title: 'Phản hồi trung bình'
+    title: 'GENERAL.FEEDBACK_MEDIUM'
 }, {
     field: 'c_r_d',
     tab: 'customer',
     color: '#ff3333',
-    title: 'Phản hồi kém'
+    title: 'GENERAL.FEEDBACK_BAD'
 }];
 
 const FieldPie: MyItem[][] = [[{
     field: 'c_ft',
     color: '#99b3ff',
     tab: 'general',
-    title: 'Giao dịch thành công'
+    title: 'GENERAL.TRANSACTION_FINISH'
 }, {
     field: 'c_ct',
     color: '#969c9c',
     tab: 'general',
-    title: 'Giao dịch bị hủy'
+    title: 'GENERAL.TRANSACTION_CANCEL'
 }], [{
     field: 'c_bwt',
     color: '#339933',
     tab: 'general',
-    title: 'Giao dịch đợi chuẩn'
+    title: 'GENERAL.TRANSACTION_WAIT_STANDARD'
 }, {
     field: 'c_awt',
     color: '#b4e4b4',
     tab: 'general',
-    title: 'Giao dịch đợi vượt chuẩn'
+    title: 'GENERAL.TRANSACTION_WAIT_BEYOND_STANDARD'
 }], [{
     field: 'c_bst',
     color: '#339966',
     tab: 'general',
-    title: 'Giao dịch phục vụ chuẩn'
+    title: 'GENERAL.TRANSACTION_SERVING_STANDARD'
 }, {
     field: 'c_ast',
     color: '#9fdfbf',
     tab: 'general',
-    title: 'Giao dịch phục vụ vượt chuẩn'
+    title: 'GENERAL.TRANSACTION_SERVING_BEYOND_STANDARD'
 }], [{
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    title: 'Thời gian đợi',
+    title: 'GENERAL.TIME_WAIT',
     axis: 'left'
 }, {
     field: 's_st_h',
     tab: 'time',
     color: 'green',
-    title: 'Thời gian phục vụ'
+    title: 'GENERAL.TIME_SERVING'
 }], [{
     field: 'c_r',
     color: '#99b3ff',
     tab: 'customer',
-    title: 'Giao dịch có phản hồi'
+    title: 'GENERAL.TRANSACTION_FEEDBACK'
 }, {
     field: 'c_r_o',
     color: '#969c9c',
     tab: 'customer',
-    title: 'Giao dịch không có phản hồi'
+    title: 'GENERAL.TRANSACTION_NO_FEEDBACK'
 }], [{
     field: 'c_r_a',
     tab: 'customer',
     color: '#0088cc',
-    title: 'Phản hồi tốt'
+    title: 'GENERAL.FEEDBACK_VERY_GOOD'
 }, {
     field: 'c_r_b',
     tab: 'customer',
     color: '#73e600',
-    title: 'Phản hồi khá'
+    title: 'GENERAL.FEEDBACK_GOOD'
 }, {
     field: 'c_r_c',
     tab: 'customer',
     color: '#ffcc00',
-    title: 'Phản hồi trung bình'
+    title: 'GENERAL.FEEDBACK_MEDIUM'
 }, {
     field: 'c_r_d',
     tab: 'customer',
     color: '#ff3333',
-    title: 'Phản hồi kém'
+    title: 'GENERAL.FEEDBACK_BAD'
 }]];
 
 

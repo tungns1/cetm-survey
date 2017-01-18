@@ -14,15 +14,15 @@ export class ReportTabComponent {
   @Output() select = new EventEmitter();
   tabs = [{
     name: 'general',
-    title: 'TỔNG QUAN',
+    title: 'GENERAL.TAB_GENERAL',
     tag: 'general'
   }, {
     name: 'time',
-    title: 'THỜI GIAN GIAO DỊCH',
+    title: 'GENERAL.TAB_TIME_TRANSACTION',
     tag: 'time'
   }, {
     name: 'customer',
-    title: 'KHÁCH HÀNG ĐÁNH GIÁ',
+    title: 'GENERAL.TAB_CUSTOMER_FEEDBACK',
     tag: 'customer'
   }]
 

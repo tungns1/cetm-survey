@@ -64,10 +64,10 @@ export const RxGroupBy = new BehaviorSubject<string>('branch_id');
 export const RxPeriod = new BehaviorSubject<string>('day');
 
 const Titles = {
-    branch_id: "PGD",
-    service_id: 'Dịch vụ',
-    counter_id: 'Quầy GD',
-    user_id: 'Nhân viên'
+    branch_id: "TRANSACTION_ROOM",
+    service_id: 'SERVICE',
+    counter_id: 'COUNTER',
+    user_id: 'TELLERS'
 }
 
 export const RxGroupTitle = RxGroupBy.map(group => Titles[group]);

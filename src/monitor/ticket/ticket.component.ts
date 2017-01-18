@@ -5,11 +5,10 @@ import { ITab } from '../shared';
 
 const ticketTabs: ITab[] = [{
     tag: 'wait',
-    title: 'GIAO DỊCH ĐỢI VƯỢT CHUẨN'
+    title: 'TAB_TRANSACTION_WAIT'
 }, {
-    subtitles: ['Thời điểm phục vụ', 'Thời điểm kết thúc', 'Thời gian phục vụ'],
     tag: 'serve',
-    title: 'GIAO DỊCH PHỤC VỤ VƯỢT CHUẨN',
+    title: 'TAB_TRANSACTION_SERVING',
 }];
 
 @Component({
