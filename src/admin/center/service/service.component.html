@@ -1,17 +1,17 @@
 <editor #edit name="dịch vụ" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách dịch vụ</editor-title>
+    <editor-title> <span translate>LABEL_LIST_SERVICE</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        Hình ảnh:
-        <input formControlName="image" placeholder="Hình ảnh"><br> Mã:
-        <input formControlName="code" placeholder="Mã"><br> Ưu tiên:
-        <input type="number" formControlName="priority" placeholder="Ưu tiên">
+        <span translate>LABEL_IMAGE</span>:
+        <input formControlName="image" placeholder="{{'LABEL_IMAGE' | translate}}"><br> <span translate>LABEL_CODE</span>:
+        <input formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br> <span translate>LABEL_PRIORITIZE</span>:
+        <input type="number" formControlName="priority" placeholder="{{'LABEL_PRIORITIZE' | translate}}">
         <l10n-form formControlName="l10n"></l10n-form>
-        Số vé:
+        <span translate>LABEL_NUM_TICKET</span>:
         <select formControlName="tform_normal">
             <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
         </select>
 
-        <br> Số vé vip:
+        <br> <span translate>LABEL_NUM_TICKET_VIP</span>:
         <select formControlName="tform_vip">
             <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
         </select>

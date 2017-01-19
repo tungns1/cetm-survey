@@ -1,15 +1,17 @@
 <editor #edit name="người dùng" [fields]="fields" [data]="users | async" [service]="service" (refresh)="Refresh()">
-    <editor-title> Danh sách người dùng</editor-title>
+    <editor-title> <span translate>LABEL_LIST_USER</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        Tên đăng nhập:
-        <input type="text" formControlName="username" placeholder="Username" style="width: 100%;"><br>Họ và tên:
-        <input type="text" formControlName="fullname" placeholder="Họ và tên" style="width: 100%;"><br>Mật khẩu:
-        <input type="password" formControlName="password" id="password" placeholder="Mật khẩu" style="width: 100%;">
+        <span translate>LABEL_USERNAME</span>:
+        <input type="text" formControlName="username" placeholder="{{'LABEL_USERNAME' | translate}}" style="width: 100%;"><br>
+        <span translate>LABEL_FULLNAME</span>:
+        <input type="text" formControlName="fullname" placeholder="Họ và tên" style="width: 100%;"><br>
+        <span translate>LABEL_PASSWORD</span>:
+        <input type="password" formControlName="password" id="password" placeholder="{{'LABEL_PASSWORD'|translate}}" style="width: 100%;">
         <br> Role:
         <select formControlName="role">
             <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
-        </select>
-        <br>Địa điểm:
+        </select><br>
+        <span translate>LABEL_ADDRESS</span>:
         <select formControlName="branch_id">
             <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
         </select>

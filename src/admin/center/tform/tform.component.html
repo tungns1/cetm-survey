@@ -1,13 +1,13 @@
 <editor #edit name="số vé" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách số vé</editor-title>
+    <editor-title><span translate>LABEL_LIST_NUM_TICKET</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        Mã:
-        <input formControlName="code" placeholder="Mã">
-        <br> Định dạng:
-        <input formControlName="format" placeholder="Định dạng">
-        <br> Giá trị nhỏ nhất:
-        <input formControlName="minnum" type="number" placeholder="Giá trị Nhỏ nhất">
-        <br> Giá trị lớn nhất:
-        <input formControlName="maxnum" type="number" placeholder="Giá trị Lớn nhất">
+        <span translate>LABEL_CODE</span>:
+        <input formControlName="code" placeholder="{{'LABEL_CODE' | translate}}">
+        <br><span translate>LABEL_FORMAT</span>:
+        <input formControlName="format" placeholder="{{'LABEL_FORMAT' | translate}}">
+        <br> <span translate>LABEL_VALUE_MIN</span>:
+        <input formControlName="minnum" type="number" placeholder="{{'LABEL_VALUE_MIN' | translate}}">
+        <br> <span translate>LABEL_VALUE_MAX</span>:
+        <input formControlName="maxnum" type="number" placeholder="{{'LABEL_VALUE_MAX' | translate}}">
     </form>
 </editor>

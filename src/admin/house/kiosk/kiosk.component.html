@@ -1,28 +1,29 @@
 <editor #edit name="kiosk" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách Kiosk<button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> sửa giao diện </button></editor-title>
+    <editor-title> <span translate>LABEL_LIST_KIOSK </span>
+        <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> <span translate>LABEL_EDIT_LAYOUT</span> </button></editor-title>
     <form *ngIf="edit.form" class="form" [formGroup]="edit.form">
-        Mã:
-        <input class="inputs" type="text" formControlName="code" placeholder="Mã"><br>Tên kiosk:
-        <input class="inputs" type="text" formControlName="name" placeholder="Tên kiosk"><br>Vip code:
-        <input class="inputs" type="text" formControlName="vcodes" placeholder="Vip code">
-        <input class="check" type="checkbox" formControlName="inheritable"> Có thể kế thừa
+        <span translate>LABEL_CODE</span> <input class="inputs" type="text" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br>
+        <span translate>LABEL_NAME_KIOSK</span>:<input class="inputs" type="text" formControlName="name" placeholder="{{'LABEL_NAME_KIOSK' | translate }}"><br>
+        <span translate>LABEL_CODE_VIP</span>: <input class="inputs" type="text" formControlName="vcodes" placeholder="{{'LABEL_CODE_VIP' | translate}}">
 
-        <br> Kiosk cha:
+        <input class="check" type="checkbox" formControlName="inheritable"> <span translate>LABEL_CAN_INHERIT</span>
+
+        <br> <span translate>LABEL_KIOSK_FATHER</span>:
         <select formControlName="parent_id">           
             <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
         </select>
 
-        <br> Giao diện:
+        <br> <span translate>LABEL_LAYOUT</span>
         <select formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
         </select>
-        <br> Dịch vụ:
+        <br><span translate>LABEL_SERVICE</span>:
         <div class="dichvu">
             <service-list formControlName="services" [services]="services | async">
             </service-list>
         </div>
 
-        <hr> Chi nhánh:
+        <hr> <span translate>LABEL_BRACH</span>
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
     </form>
 </editor>

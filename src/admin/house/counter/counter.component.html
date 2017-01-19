@@ -1,22 +1,25 @@
 <editor #edit name="quầy" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> Danh sách Quầy</editor-title>
+    <editor-title> <span translate>LABEL_LIST_COUNTER</span> </editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        Mã:
-        <input type="text" formControlName="code" placeholder="Mã"><br>Số quầy:
-        <input type="text" formControlName="cnum" placeholder="Số quầy"><br>Tên:
-        <input type="text" formControlName="name" placeholder="Tên"><br>Địa chỉ thiết bị led:
-        <input type="number" formControlName="dev_addr" placeholder="Địa chỉ thiết bị led">
-        <hr> Dịch vụ thường:
+        <span translate>LABEL_CODE</span>
+        <input type="text" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br>
+        <span translate>LABEL_NUM_COUNTER</span>:
+        <input type="text" formControlName="cnum" placeholder="{{'LABEL_NUM_COUNTER' | translate}}"><br>
+        <span translate>LABEL_NAME</span>:
+        <input type="text" formControlName="name" placeholder="{{'LABEL_NAME'| translate}}"><br>
+        <span translate>LABEL_LED_ADD_DEVICE</span> :
+        <input type="number" formControlName="dev_addr" placeholder="{{'LABEL_LED_ADD_DEVICE' | translate}}">
+        <hr> <span translate>LABEL_SERVICE_NORMAL</span>:
         <div class="dichvu">
             <select-check formControlName="services" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> Dịch vụ VIP:
+        <hr> <span translate>LABEL_SERVICE_VIP</span>:
         <div class="dichvu">
             <select-check formControlName="vservices" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> Chi nhánh:
+        <hr> <span translate>LABEL_BRACH</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
     </form>
 </editor>

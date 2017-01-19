@@ -9,7 +9,7 @@ import { I18n } from '../shared/';
 @NgModule({
     imports: [
         PageModule, Branch.BranchModule, I18n.forRoot("admin"), 
-        Editor.EditorModule, Form.JSONFormModule, routing
+        Editor.EditorModule, Form.JSONFormModule, routing,I18n.TranslateModule
     ],
     declarations: [AppComponent, ...components],
     bootstrap: [AppComponent]
