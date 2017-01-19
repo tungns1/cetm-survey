@@ -50,12 +50,12 @@ export class TicketDetailDialog {
   Move() {
     if (this.isServing) {
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
-        this.ShowMessage("Không thành công", "Bạn phải chọn quầy hoặc dịch vụ");
+        this.ShowMessage("TITLE_MODAL", "CONTENT_MOVE_TICKET_SERVING");
         return;
       }
     } else {
       if (this.checkedCounters.length < 1) {
-        this.ShowMessage("Không thành công", "Bạn phải chọn quầy");
+        this.ShowMessage("TITLE_MODAL", "CONTENT_MOVE_TICKET_WAITTING_OR_MISS");
         return;
       }
     }
@@ -67,7 +67,7 @@ export class TicketDetailDialog {
 
   Recall() {
     if (Serving.RxData.value.length > 0) {
-      this.ShowMessage("Không thành công", "Bạn phải kết thúc vé đang thực hiện");
+      this.ShowMessage("TITLE_MODAL", "RECALL_MISS");
       return;
     }
     CallFromMissed(this.ticket).subscribe(v => {
