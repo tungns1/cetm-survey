@@ -48,7 +48,7 @@ export class BarChart extends AbstractChart {
                 const date = d.date;
                 const x = d.x;
                 const y = d.y;
-                const html = items.map(i => `<li>  <span translate>${i.title}</span>: ${d.data[i.field]} </li>`).join("");
+                const html = items.map(i => `<li>${i.title}: ${d.data[i.field]} </li>`).join("");
                 this['style'].opacity = 1;
                 that.tooltip.Html(`${date} <br> ${html}`).Offset(x, y).Show();
             })
