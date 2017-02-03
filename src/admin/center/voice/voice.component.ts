@@ -26,7 +26,7 @@ export class LayoutComponent {
         refresh: () => this.data.refresh()
     };
 
-    data = Center.Layout.AutoRefresh();
+    data = Center.Layout.AutoRefresh('');
     
     fields = [
         { title: 'LABEL_NAME', name: 'name' },
