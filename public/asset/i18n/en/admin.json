@@ -73,8 +73,13 @@
     "LABEL_TYPE_LAYOUT": "Type of Interface",
     "BUTTON_ADD_TRANSACTION_ROOM": "Add Agency",
     "BUTTON_EDIT_TRANSACTION_ROOM": "Edit Agency",
-    "LABEL_HEAD": "Head",
-    "LABEL_NAME_SERVICE": "Name service"
+    "LABEL_ROOT": "Root",
+    "AREA": "Area",
+    "LABEL_SUB_BRANCH": "Sub Branch",
+    "LABEL_NAME_SERVICE": "Name service",
+    "LABEL_SELECT_AREA": "Choose area",
+    "LABEL_SELECT_BRACNH": "Choose bracnh",
+    "LABEL_SELECT_SUB_BRACNH": "Choose sub bracnh"
 
 
 

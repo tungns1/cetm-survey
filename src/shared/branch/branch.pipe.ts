@@ -19,10 +19,10 @@ export class BranchNamePipe implements PipeTransform {
 
 
 export const Levels = [
-    'Phòng giao dịch',
-    'Chi nhánh',
-    'Tỉnh/Thành',
-    'Hội Sở'
+    'LABEL_SUB_BRACNH',
+    'LABEL_BRANCH',
+    'AREA',
+    'LABEL_ROOT'
 ]
 
 @Pipe({
