@@ -2,6 +2,7 @@
 
 # QAPP
 'http://localhost:4200/admin/#/house/screen'
+'http://localhost:4200/admin/#/branch/2'
 'http://localhost:4200/counter/#/pgd-vinh-phuc/quay_1'
 ## Installation
 Windows:

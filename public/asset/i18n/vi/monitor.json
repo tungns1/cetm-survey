@@ -27,5 +27,7 @@
     "SCREEN_TABLE": "Màn hình trung tâm",
     "KIOSK_TABLE": "Kiosk",
     "LED_TABLE": "Led",
-    "BUTTON_SEND": "XEM"
+    "BUTTON_SEND": "XEM",
+    "SHOW_FILTER": "Hiển thị bộ lọc",
+    "HIDDEN_FILTER": "Đóng bộ lọc"
 }

@@ -3,6 +3,7 @@ import { Component, Input, forwardRef, ExistingProvider, Attribute } from '@angu
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AbstractControl } from '@angular/forms';
+import { TranslateService } from '../../i18n/translate.service';
 
 
 const SELECT_CHECK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -16,7 +17,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'select-check',
     template: `
-        <input type="checkbox" (change)="checkAll()" >&nbsp;Chọn tất cả<br>
+        <input type="checkbox" (change)="checkAll()" >&nbsp;<span translate>Chọn tất cả</span><br>
         <span *ngFor="let d of data" class="pointer">
             <input type="checkbox" [(ngModel)]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
         </span>

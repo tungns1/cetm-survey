@@ -29,7 +29,7 @@
 </style>
 
 <input type="text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
-<div class="message"> {{message}} </div>
+<div class="message"><span translate> {{message}}</span>&nbsp;{{number}} </div>
 
 <div class="search-result" *ngIf="ticket">
 

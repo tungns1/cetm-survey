@@ -18,6 +18,7 @@
     "LABEL_HEADQUARTERS": "Headquarters",
     "SELECT_CHOOSE_CITY": "Select Province",
     "SELECT_CHOOSE_BRACH": "Select Branch",
+    "LABAEL_TRACTION_ROOM": "Agency",
     "SELECT_CHOOSE_TRACTION_ROOM": "Select Agency",
     "LABEL_DEL_QUESTION": "Do you want to delete?",
     "LABEL_ANSWER_YES": "Yes",
@@ -71,7 +72,10 @@
     "LABEL_LIST_LAYOUT": "List of Interface",
     "LABEL_TYPE_LAYOUT": "Type of Interface",
     "BUTTON_ADD_TRANSACTION_ROOM": "Add Agency",
-    "BUTTON_EDIT_TRANSACTION_ROOM": "Edit Agency"
+    "BUTTON_EDIT_TRANSACTION_ROOM": "Edit Agency",
+    "LABEL_HEAD": "Head",
+    "LABEL_NAME_SERVICE": "Name service"
+
 
 
 
