@@ -79,5 +79,7 @@
     "LINE_CHART": "Biểu đồ đường",
     "COLUMN_CHART": "Biểu đồ cột",
     "STACK_CHART": "Biểu đồ cột xếp",
-    "PIE_CHART": "Biểu đồ tròn"
+    "PIE_CHART": "Biểu đồ tròn",
+    "SHOW_FILTER": "Hiển thị bộ lọc",
+    "HIDDEN_FILTER": "Đóng bộ lọc"
 }

@@ -47,5 +47,7 @@
     "TITLE_MODAL": "Không thành công",
     "CONTENT_MOVE_TICKET_SERVING": "Bạn phải chọn quầy hoặc dịch vụ",
     "CONTENT_MOVE_TICKET_WAITTING_OR_MISS": "Bạn phải chọn quầy",
-    "RECALL_MISS": "Bạn phải kết thúc vé đang thực hiện"
+    "RECALL_MISS": "Bạn phải kết thúc vé đang thực hiện",
+    "NOT_FOUND_TICKET": "Không tìm thấy vé",
+    "SEARCH_TICKET": "Đang tìm vé"
 }
