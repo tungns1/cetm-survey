@@ -8,6 +8,7 @@
     "LABEL_NUMERICAL_ORDER": "NUMBER",
     "CITY": "Province",
     "LABEL_NAME_ADDRESS": "Address",
+    "LABEL_NAME_ADDRESS_FATHER": "Address father",
     "LABEL_CODE": "Code",
     "LABEL_EDIT_DEL": "Edit/Del",
     "LIST_CITY": "List of Provinces",

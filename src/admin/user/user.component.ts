@@ -35,8 +35,8 @@ export class UserComponent {
   private branches = Branch.LowestLayerBranch;
 
   fields = [
-    { title: 'Phòng giao dịch', name: 'branch' },
-    { title: 'Họ và tên', name: 'fullname' }
+    { title: 'LABEL_BRACH', name: 'branch' },
+    { title: 'LABEL_FULLNAME', name: 'fullname' }
   ]
 }
 
