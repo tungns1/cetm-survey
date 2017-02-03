@@ -9,22 +9,23 @@ import { Model } from '../shared/';
 export class SearchComponent {
     message: string;
     ticket: Model.House.ITicket;
-
+    number = '';
     serving: boolean;
 
     searchTicket(cnum: string) {
+        this.number = cnum;
         this.ticket = void 0;
-        this.message = 'Đang tìm vé ' + cnum + ' ...';
+        this.message = 'SEARCH_TICKET';
         Search(cnum).subscribe(t => {
             if (!t || t.length < 1) {
-                this.message = `Không tìm thấy vé ${cnum}`;
+                this.message = 'NOT_FOUND_TICKET';
             } else {
                 this.ticket = t[0];
                 this.serving = this.ticket.state == Model.House.TicketStateServing;
                 this.message = '';
             }
         }, e => {
-            this.message = `Không tìm thấy vé ${cnum}`;
+            this.message = 'NOT_FOUND_TICKET';
         })
     }
 }

@@ -71,7 +71,14 @@
     "LABEL_LIST_LAYOUT": "Danh sách giao diện",
     "LABEL_TYPE_LAYOUT": "Kiểu giao diện",
     "BUTTON_ADD_TRANSACTION_ROOM": "THÊM PHÒNG GIAO DỊCH",
-    "BUTTON_EDIT_TRANSACTION_ROOM": "Sửa phòng giao dịch"
+    "BUTTON_EDIT_TRANSACTION_ROOM": "Sửa phòng giao dịch",
+    "LABEL_SUB_BRANCH": "Phòng giao dịch",
+    "LABEL_ROOT": "Hội sở",
+    "AREA": "Tỉnh /thành",
+    "LABEL_NAME_SERVICE": "Tên dịch vụ",
+    "LABEL_SELECT_AREA": "Chọn Tỉnh/Thành",
+    "LABEL_SELECT_BRACNH": "Chọn chi nhánh",
+    "LABEL_SELECT_SUB_BRACNH": "Chọn phòng giao dịch"
 
 
 

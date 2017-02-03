@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BranchSelectorComponent, MultiBranchSelectorComponent } from './branch.component';
 import { BranchPickerComponent } from './branch_picker.component';
 import { BranchNamePipe, LevelNamePipe } from './branch.pipe';
+import { TranslateModule } from '../i18n';
 
 @NgModule({
     imports: [CommonModule, FormsModule],

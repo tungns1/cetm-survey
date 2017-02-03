@@ -14,8 +14,8 @@ export interface IBranch {
 
 
 export const BranchLevels = [
-    { name: 'Hội sở', value: 3 },
-    { name: 'Tỉnh/Thành', value: 2 },
-    { name: 'Chi nhánh', value: 1 },
-    { name: 'Phòng giao dịch', value: 0 }
+    { name: 'LABEL_ROOT', value: 3 },
+    { name: 'AREA', value: 2 },
+    { name: 'LABEL_BRANCH', value: 1 },
+    { name: 'LABEL_SUB_BRANCH', value: 0 }
 ]

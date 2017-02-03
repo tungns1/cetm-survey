@@ -41,8 +41,8 @@ export class LayoutComponent {
     data = Center.Layout.AutoRefresh('kiosk,screen');
 
     fields = [
-        { title: 'Tên', name: 'name' },
-        { title: 'Loại', name: 'type' }
+        { title: 'LABEL_NAME', name: 'name' },
+        { title: 'LABEL_TYPE', name: 'type' }
     ]
 }
 
