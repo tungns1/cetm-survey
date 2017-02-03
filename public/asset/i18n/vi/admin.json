@@ -27,6 +27,7 @@
     "LABEL_FULLNAME": "Họ và tên",
     "LABEL_PASSWORD": "Mật khẩu",
     "LABEL_ADDRESS": "Địa điểm",
+    "LABEL_NAME_ADDRESS_FATHER": "Địa chỉ cha",
     "LABEL_LIST_COUNTER": "Danh sách quầy",
     "LABEL_NUM_COUNTER": "Số quầy",
     "LABEL_LED_ADD_DEVICE": "Địa chỉ thiết bị led",

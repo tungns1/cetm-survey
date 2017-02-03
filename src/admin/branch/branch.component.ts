@@ -64,9 +64,9 @@ export class BranchComponent {
   };
 
   fields: Editor.IField[] = [
-    { title: "Địa điểm cha", name: "parent_name" },
-    { title: "Tên địa điểm", name: "name" },
-    { title: "Mã", name: "code" }
+    { title: "LABEL_NAME_ADDRESS_FATHER", name: "parent_name" },
+    { title: "LABEL_NAME_ADDRESS", name: "name" },
+    { title: "LABEL_CODE", name: "code" }
   ]
 
 }
