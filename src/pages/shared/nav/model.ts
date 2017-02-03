@@ -9,24 +9,24 @@ export class Item {
 }
 
 const settingMenu = [
-    { app: 'admin', href: "/branch/2", name: "Tỉnh/Thành" },
-    { app: 'admin', href: "/branch/1", name: "Chi nhánh" },
-    { app: 'admin', href: "/branch/0", name: "Phòng giao dịch" },
-    { app: 'admin', href: "/center/tform", name: "Số vé" },
-    { app: 'admin', href: "/center/service", name: "Dịch vụ" },
-    { app: 'admin', href: '/config', name: 'Cài đặt' },
-    { app: 'admin', href: '/house/sflow', name: 'Luồng dịch vụ cục bộ' },
-    { app: 'admin', href: "/house/counter", name: "Quầy giao dịch" },
-    { app: 'admin', href: "/user", name: "Người dùng", icon: "fa-user" },
+    { app: 'admin', href: "/branch/2", name: "CITY" },
+    { app: 'admin', href: "/branch/1", name: "BRANCH" },
+    { app: 'admin', href: "/branch/0", name: "TRANSACTION_ROOM" },
+    { app: 'admin', href: "/center/tform", name: 'TICKET_NUMBER' },
+    { app: 'admin', href: "/center/service", name: 'SERVICE' },
+    { app: 'admin', href: '/config', name: 'SETTING' },
+    { app: 'admin', href: '/house/sflow', name: 'STREAM_SERVICE_LOCAL' },
+    { app: 'admin', href: "/house/counter", name: "COUNTER" },
+    { app: 'admin', href: "/user", name: "USER", icon: "fa-user" },
 ]
 
 
 export const AdminMenu: Item[] = [
-    { app: 'admin', href: "/branch/0", name: "Quản lý Trung Tâm", icon: "fa-home", children: settingMenu },
-    { app: 'report', href: "/tonghop", name: "Báo cáo", icon: "fa-line-chart" },
-    { app: 'monitor', href: "/ticket", name: "Giám sát", icon: "fa-bell" },
-    { app: 'admin', href: "/house/kiosk", name: "Quản lý Kiosk", icon: "fa-ticket" },
-    { app: 'admin', href: "/house/screen", name: "Quản lý Màn hình", icon: "fa-desktop" }
+    { app: 'admin', href: "/branch/0", name: "MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
+    { app: 'report', href: "/tonghop", name: "REPORT", icon: "fa-line-chart" },
+    { app: 'monitor', href: "/ticket", name: "MONITOR", icon: "fa-bell" },
+    { app: 'admin', href: "/house/kiosk", name: "MANAGER_KIOSK", icon: "fa-ticket" },
+    { app: 'admin', href: "/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" }
 ]
 
 import { GetAppName } from '../../../config/';
