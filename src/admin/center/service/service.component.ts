@@ -35,7 +35,7 @@ export class ServiceComponent {
     tformVips = Center.TForm.AutoRefresh();
 
     fields = [
-        { title: 'Tên dịch vụ', name: 'name' },
+        { title: 'LABEL_NAME_SERVICE', name: 'name' },
     ]
 }
 

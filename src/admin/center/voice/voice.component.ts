@@ -26,12 +26,12 @@ export class LayoutComponent {
         refresh: () => this.data.refresh()
     };
 
-    data = Center.Layout.AutoRefresh();
+    data = Center.Layout.AutoRefresh('');
     
     fields = [
-        { title: 'Tên', name: 'name' },
+        { title: 'LABEL_NAME', name: 'name' },
         { title: 'Code', name: 'code' },
-        {title: 'Loại', name: 'type'}
+        {title: 'LABEL_TYPE', name: 'type'}
     ]
 }
 
