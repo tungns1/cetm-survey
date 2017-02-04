@@ -1,0 +1,82 @@
+<a routerLink="../../summary"> Tổng quan </a>
+<table class="table" style="width:300px">
+    <tbody>
+        <tr>
+            <td> Phòng giao dịch </td>
+            <td> {{summary.branch}}</td>
+        </tr>
+        <tr>
+            <td> SL. vé đã in</td>
+            <td> {{summary.printed}}</td>
+        </tr>
+        <tr>
+            <td> SL. vé đợi </td>
+            <td> {{summary.waiting}}</td>
+        </tr>
+        <tr>
+            <td> SL. vé đang phục vụ </td>
+            <td> {{summary.serving}}</td>
+        </tr>
+        <tr>
+            <td> SL. vé đã phục vụ </td>
+            <td> {{summary.finished}}</td>
+        </tr>
+        <tr>
+            <td> SL. vé nhỡ </td>
+            <td> {{summary.missed}}</td>
+        </tr>
+        <tr>
+            <td> SL. vé hủy </td>
+            <td> {{summary.cancalled}} </td>
+        </tr>
+    </tbody>
+</table>
+
+<h1> Khách hàng chưa được phục vụ </h1>
+
+<table class="table">
+    <thead>
+        <th> STT </th>
+        <th translate> TICKET_NUMBER </th>
+        <th translate>SERVICE </th>
+        <th translate> TIME_CREATE_TICKET</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of waiting | async; let i = index">
+            <td> {{i + 1}} </td>
+            <td>
+
+            </td>
+            <td> {{t.cnum}}</td>
+            <td> {{t.service_id}}</td>
+            <td> {{t.created_at}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h1> Khách hàng đã được phục vụ </h1>
+
+<table class="table">
+    <thead>
+        <th> STT </th>
+        <th translate>SERVICE </th>
+        <th translate> TICKET_NUMBER </th>
+        <th translate> TIME_CREATE_TICKET</th>
+        <th translate> TIME_CALL_TICKET </th>
+        <!--<th> Thời gian đợi chuẩn </th>-->
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of called | async; let i = index">
+            <td> {{i + 1}} </td>
+            <td>
+
+            </td>
+            <td> {{s.printed}}</td>
+            <td> {{s.waiting}}</td>
+            <td> {{s.serving}}</td>
+            <td> {{s.finished}}</td>
+            <td> {{s.missed}}</td>
+            <td> {{s.cancelled}}</td>
+        </tr>
+    </tbody>
+</table>

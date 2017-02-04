@@ -11,11 +11,18 @@ export class ConstPoll {
     }
 
     Run() {
+        console.log("run");
+        if (this.disabled) {
+            return;
+        }
         this.work();
     }
 
     Start() {
         this.Stop();
+        if (this.disabled) {
+            return;
+        }
         this.timer = setInterval(this.work, this.interval);
     }
 
@@ -29,6 +36,17 @@ export class ConstPoll {
     get Stopped() {
         return this.timer === null;
     }
+
+    Disable() {
+        this.disabled = true;
+        this.Stop();
+    }
+
+    Enable() {
+        this.disabled = false;
+    }
+
+    private disabled = false;
 
     private interval = 1000;
     private timer = null;

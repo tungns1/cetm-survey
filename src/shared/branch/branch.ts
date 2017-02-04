@@ -123,3 +123,8 @@ export function GetLayer(level: number) {
 export function GetMax() {
     return maxLevel;
 }
+
+export function GetName(branch_id: string) {
+    var branch = Branches.get(branch_id);
+    return branch? branch.name : 'n/a';
+}

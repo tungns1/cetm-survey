@@ -81,7 +81,7 @@ export class Socket {
   }
 
   OnConnected(cb: () => void) {
-    this.rxConnected.filter(v => v).subscribe(cb);
+    return this.rxConnected.filter(v => v).subscribe(cb);
   }
 
   Subscribe<T>(uri: string, onEvent: (v: T) => void) {
@@ -223,4 +223,8 @@ export class Socket {
   private aliveOut = MAX_ALIVE_OUT;
   rxConnected = new BehaviorSubject(false);
   rxServerEvent = new Subject<WsResponse>();
+
+  disbaleCheckAlive() {
+    this.alivePoll.Disable();
+  }
 }

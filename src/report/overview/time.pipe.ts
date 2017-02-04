@@ -1,9 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 
-
 function TwoDigit(n: number): string {
-    n = Math.round(n);
+    n = Math.floor(n);
     return (n > 9 ? '' : '0') + n;
 }
 
