@@ -20,7 +20,7 @@
 </style>
 
 <div *ngFor="let d of _data" style="margin: 0px 10px;">
-    <p class="service">{{d.service_id | ticketServiceName}}</p>
+    <p class="service">{{d.service_id | serviceName}}</p>
     <div class="max">
         <div class="bar" [style.width]="''+d.count/max*100+'%'">
             <p style="color: #fff;font-size: 10px; padding-right: 5px;">{{d.count}}</p>

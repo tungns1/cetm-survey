@@ -3,7 +3,10 @@ import { socket } from '../backend';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Summary } from '../backend';
 
-export type ITicket = Model.House.ITicket;
+export interface ITicket extends Model.House.ITicket {
+    serving: Model.House.ITicketTrack;
+}
+
 export const RxCalledTickets = new BehaviorSubject<ITicket[]>([]);
 export const RxWaitingTickets = new BehaviorSubject<ITicket[]>([]);
 
@@ -17,15 +20,20 @@ const summary = new Summary();
 export const RxSummary = new BehaviorSubject<Summary>(summary);
 
 const TicketStates = Model.House.TicketStates;
+const servingTrack = <Model.House.ITicketTrack>{
+    state: TicketStates.Serving,
+};
 
 function addTicket(t: ITicket) {
     if (t.state == TicketStates.Waiting) {
         Waiting.set(t.id, t);
     } else {
-        Waiting.delete(t.id);
+        t.serving = t.tracks.find(
+            track => track.state === TicketStates.Serving
+        ) || servingTrack;
+        
         Called.set(t.id, t);
     }
-    refresh();
 }
 
 function init(tickets: ITickets) {
@@ -33,8 +41,8 @@ function init(tickets: ITickets) {
     Called.clear();
     Object.keys(tickets).forEach(id => {
         addTicket(tickets[id]);
-    })
-    refresh();
+    });
+    setTimeout(refresh, 250);
 }
 
 
@@ -52,5 +60,8 @@ export function SetBranchID(branch_id: string) {
     RxSummary.next(summary);
 }
 
-socket.Subscribe<ITicket>("/ticket", addTicket);
+socket.Subscribe<ITicket>("/ticket", t => {
+    addTicket(t);
+    refresh();
+});
 socket.Subscribe<ITickets>("/tickets", init);

@@ -15,7 +15,7 @@ export const RxLoginedUser = RxMySetting.filter(v => !!v).map(v => v.me);
 import 'rxjs/add/operator/filter';
 
 RxMySetting.filter(v => !!v).subscribe(v => {
-  Center.RxServices.next(v.services || []);
+  Center.CacheService.Refresh(v.services);
   if (v.me.branch_id) {
     SetBranches(v.branches, v.me.branch_id);
   }

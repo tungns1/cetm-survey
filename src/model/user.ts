@@ -1,5 +1,7 @@
-export interface IUser {
-    id?: string;
+
+import { MemCache, ID } from '../x/cache/';
+
+export interface IUser extends ID {
     branch_id?: string;
     mtime?: number;
     username: string;
@@ -28,5 +30,4 @@ export const AllRoles: IRole[] = [
     { code: 'media', name: 'Media' }
 ]
 
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+export const CacheUsers = new MemCache<IUser>();

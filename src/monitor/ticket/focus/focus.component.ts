@@ -29,4 +29,5 @@ export class FocusComponent {
     called = RxCalledTickets;
     private summary = RxSummary.value;
     private subs: ISubscription[] = [];
+
 }

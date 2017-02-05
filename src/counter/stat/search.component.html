@@ -38,7 +38,7 @@
         <span translate> TIME_CALL_TICKET</span>
         <span style="text-align: right;">{{ticket.mtime | localDayTime}}</span>
     </p>
-    <p><span translate>STATUS_NOW</span>&nbsp; {{stateKey(ticket.state) | translate}} </p>
+    <p><span translate>STATUS_NOW</span>&nbsp; {{ticket | ticketState}} </p>
     <div>
         <p translate>HISTORY</p>
         <div class="table">
@@ -50,8 +50,8 @@
             <div style="height:100px;overflow: auto;">
                 <div class="table-row" *ngFor="let t of ticket.tracks">
                     <div> {{t.mtime | localDayTime}} </div>
-                    <div> {{stateKey(t.state) | translate}} </div>
-                    <div title="t.services | ticketServiceName"> {{t.services | ticketServiceName}} </div>
+                    <div> {{t | ticketState}} </div>
+                    <div title="t | ticketServiceName"> {{t | ticketServiceName}} </div>
                 </div>
             </div>
         </div>

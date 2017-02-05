@@ -16,8 +16,7 @@ export const RxUsers = new BehaviorSubject<Model.IUser[]>([]);
 export const RxCounters = new BehaviorSubject<Model.House.ICounter[]>([]);
 export const NameMap = new Map<string, string>();
 
-Model.Center.RxServices.subscribe(services => {
-    services.forEach(r => Model.Center.AddServiceName(r));
+Model.Center.CacheService.RxListView.subscribe(services => {
     services.sort((a, b) => a.name > b.name ? 1 : -1);
     RxServices.next(services);
     services.forEach(s => NameMap.set(s.id, s.name));

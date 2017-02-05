@@ -6,6 +6,7 @@ import { MonitorTabModule } from '../shared';
 import { I18n } from '../shared';
 import { FocusComponent } from './focus/focus.component';
 import { SummaryComponent } from './summary/summary.component';
+import { SharedPipe } from '../shared';
 
 const routing = RouterModule.forChild([
     {
@@ -28,7 +29,9 @@ const routing = RouterModule.forChild([
 
 
 @NgModule({
-    imports: [routing, MonitorTabModule, CommonModule, I18n.TranslateModule],
+    imports: [
+        routing, MonitorTabModule, CommonModule,
+        I18n.TranslateModule, SharedPipe.UtilPipeModule],
     declarations: [
         MonitorTicketComponent, FocusComponent, SummaryComponent]
 })
