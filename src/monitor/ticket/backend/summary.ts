@@ -1,4 +1,4 @@
-interface ISummary {
+export interface ISummary {
     branch_id: string;
     waiting: number;
     serving: number;

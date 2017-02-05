@@ -77,6 +77,7 @@ export class Socket {
   Terminate() {
     this.rxConnected.complete();
     this.rxServerEvent.complete();
+    this.alivePoll.Disable();
     this.onClose(true);
   }
 
@@ -181,7 +182,9 @@ export class Socket {
       socket.onmessage = null;
       socket.onopen = null;
       socket.onclose = null;
-      socket.close();
+      if (socket.readyState !== WebSocket.CLOSED) {
+        socket.close();
+      }
       this.alivePoll.Stop();
     }
     this.rxConnected.next(false);

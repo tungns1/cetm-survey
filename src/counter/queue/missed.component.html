@@ -33,7 +33,7 @@
             <div><img src="../asset/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
             <div>{{t.services | ticketServiceName}}</div>
             <div>
-                {{t.mtime | ticketHour}}
+                {{t.mtime | localDayTime}}
             </div>
         </div>
     </div>

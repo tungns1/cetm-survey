@@ -1,4 +1,4 @@
-import { socket, Summary } from '../backend';
+import { socket, Summary, ISummary } from '../backend';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 const MapSummary = new Map<string, Summary>();
@@ -15,5 +15,4 @@ function refresh() {
 
 export const RxSummary = new BehaviorSubject<Summary[]>([]);
 
-import { socket } from './socket';
 socket.Subscribe<ISummary>("/summary", addSummary);

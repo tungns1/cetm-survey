@@ -33,12 +33,12 @@
 
 <div class="search-result" *ngIf="ticket">
 
-    <p><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime*1000 | date:"h:mm:ss"}}</p>
+    <p><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime | localDayTime}}</p>
     <p [class.hidden]="!serving">
         <span translate> TIME_CALL_TICKET</span>
-        <span style="text-align: right;">{{ticket.mtime *1000 | date:"h:mm:ss"}}</span>
+        <span style="text-align: right;">{{ticket.mtime | localDayTime}}</span>
     </p>
-    <p><span translate>STATUS_NOW</span>&nbsp; {{ticket.state | state}} </p>
+    <p><span translate>STATUS_NOW</span>&nbsp; {{stateKey(ticket.state) | translate}} </p>
     <div>
         <p translate>HISTORY</p>
         <div class="table">
@@ -49,8 +49,8 @@
             </div>
             <div style="height:100px;overflow: auto;">
                 <div class="table-row" *ngFor="let t of ticket.tracks">
-                    <div> {{t.mtime*1000 | date:"h:mm:ss"}} </div>
-                    <div> {{t.state | state}} </div>
+                    <div> {{t.mtime | localDayTime}} </div>
+                    <div> {{stateKey(t.state) | translate}} </div>
                     <div title="t.services | ticketServiceName"> {{t.services | ticketServiceName}} </div>
                 </div>
             </div>

@@ -8,7 +8,6 @@ import { socket } from './backend';
 })
 export class MonitorTicketComponent implements OnInit {
     ngOnInit() {
-        console.log('init');
         socket.Connect({});
     }
 

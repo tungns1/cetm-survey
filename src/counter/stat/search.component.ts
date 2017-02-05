@@ -28,4 +28,8 @@ export class SearchComponent {
             this.message = 'NOT_FOUND_TICKET';
         })
     }
+
+    stateKey(state: string) {
+        return `STATE_${state.toUpperCase()}`;
+    } 
 }

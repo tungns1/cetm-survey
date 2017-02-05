@@ -43,15 +43,15 @@
             <tr *ngFor="let d of data | async; let i = index">
                 <td> {{i + 1}} </td>
                 <td style="text-align: left;">{{d.name}} </td>
-                <td> {{d.s_tt | hour}} </td>
-                <td> {{d.s_st | hour}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_st/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span></td>
-                <td> {{d.s_wt | hour}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_wt/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span> </td>
-                <td> {{d.a_st | hour}} </td>
-                <td> {{d.min_st | hour}} </td>
-                <td> {{d.max_st | hour}} </td>
-                <td> {{d.a_wt | hour}} </td>
-                <td> {{d.min_wt | hour}} </td>
-                <td> {{d.max_wt | hour}} </td>
+                <td> {{d.s_tt | timeDuration}} </td>
+                <td> {{d.s_st | timeDuration}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_st/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span></td>
+                <td> {{d.s_wt | timeDuration}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_wt/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span> </td>
+                <td> {{d.a_st | timeDuration}} </td>
+                <td> {{d.min_st | timeDuration}} </td>
+                <td> {{d.max_st | timeDuration}} </td>
+                <td> {{d.a_wt | timeDuration}} </td>
+                <td> {{d.min_wt | timeDuration}} </td>
+                <td> {{d.max_wt | timeDuration}} </td>
             </tr>
         </tbody>
     </table>
