@@ -1,38 +1,32 @@
-import { Setting } from '../x/platform/index';
+import { LocalSetting } from '../x/platform/index';
 import { Query } from '../x/fmt/qs';
-
+import { LOCAL_SETTING_KEYS } from './const';
 const qs = Query(window.location.hash.split('?')[1]);
 
 interface IAppSetting {
-    locale: string;
+    culture: string;
+    lang: string;
     host: string;
     secure: boolean;
     debug: boolean;
 }
 
-const keyAppSetting = "_setting_";
-export const AppSetting = new Setting<IAppSetting>(keyAppSetting);
-AppSetting.data.locale = qs['local'] || 'vi';
+export const AppSetting = new LocalSetting<IAppSetting>(LOCAL_SETTING_KEYS.APPLICATION);
 AppSetting.data.host = qs['host'] || AppSetting.data.host || window.location.host;
 
-function Host() {
-    return AppSetting.data.host;
-}
-
-function Secure() {
-    return AppSetting.data.secure;
-}
-
-export function Locale() {
-    return 'vi';
+export function Setting() {
+    return AppSetting.data;
 }
 
 export function HttpHost() {
-    return `http${Secure() ? "s" : ""}://${Host()}`;
+    return `http${AppSetting.data.secure ? "s" : ""}://${AppSetting.data.host}`;
 }
 
 export function WsHost() {
-    return `ws${Secure() ? "s" : ""}://${Host()}`;
+    return `ws${AppSetting.data.secure ? "s" : ""}://${AppSetting.data.host}`;
 }
 
-export const Debug = qs['debug'];
+export function SetLanguage(lang: string) {
+    // change locale and lang
+    AppSetting.saveField("lang", lang);
+}

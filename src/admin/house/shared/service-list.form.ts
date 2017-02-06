@@ -113,10 +113,10 @@ class ServiceListComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { L10n, Form } from '../../shared';
+import { I18n, Form } from '../../shared';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, L10n.L10nModule, Form.JSONFormModule, ModalModule],
+    imports: [FormsModule, CommonModule, I18n.CultureModule, Form.JSONFormModule, ModalModule],
     declarations: [ServiceListComponent],
     exports: [ServiceListComponent]
 })

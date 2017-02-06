@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Setting } from '../../x/platform/setting';
+import { LocalSetting } from '../../x/platform/setting';
+import { LOCAL_SETTING_KEYS } from '../../config/const';
 
 export interface ISession {
   user_id?: string;
@@ -10,8 +11,7 @@ export interface ISession {
   id?: string;
 }
 
-const sessionKey = "_session_";
-var sessionSetting = new Setting<ISession>(sessionKey);
+var sessionSetting = new LocalSetting<ISession>(LOCAL_SETTING_KEYS.SESSION);
 
 export function Activate(session: ISession) {
   sessionSetting.save(session);

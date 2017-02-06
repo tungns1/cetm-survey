@@ -1,4 +1,4 @@
-import { L10nText, Localize } from '../../shared/l10n/model';
+import { L10nText, Localize } from '../shared/i18n';
 import { MemCache, ID } from '../../x/cache/';
 
 export interface IService extends ID {

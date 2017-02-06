@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AppSettingComponent {
     message = "";
     form = (new FormBuilder()).group({
-        locale: [AppSetting.data.locale, Validators.required],
+        locale: [AppSetting.data.culture, Validators.required],
         host: [AppSetting.data.host, Validators.required],
         debug: [AppSetting.data.debug],
     });

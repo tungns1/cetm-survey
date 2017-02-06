@@ -37,8 +37,6 @@ export const TicketStates = {
     Cancelled: TicketStateCancelled,
 }
 
-import { Locale } from '../../config/';
-
 export interface IFeedback {
     rating: number;
 }

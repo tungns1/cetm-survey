@@ -1,11 +1,11 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { Localizations, Locales } from '../../config/l10n';
-import { L10nText } from './model';
+import { Cultures } from '../../config';
+import { L10nText } from '../../model/shared/i18n';
 
 export function NewL10nForm(data: L10nText) {
     data = data || {};
     const forms = {};
-    Localizations.forEach(code => forms[code] = new FormControl(data[code] || ''));
+    Object.keys(Cultures).forEach(code => forms[code] = new FormControl(data[code] || ''));
     return new FormGroup(forms);
 }
 
@@ -29,7 +29,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
         <input [(ngModel)]="values[code]" (change)="OnChange()" />
     </div>
     `,
-    styles:[`
+    styles: [`
         input {
          margin-bottom: 15px;
         border-radius: 3px;
@@ -42,8 +42,8 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 class L10nFormComponent implements ControlValueAccessor {
-    codes = Localizations;
-    names = Locales;
+    codes = Object.keys(Cultures);
+    names = Cultures;
     private values: L10nText = {};
     private onChangeCallback = (v) => { };
 
@@ -73,6 +73,6 @@ import { CommonModule } from '@angular/common';
     declarations: [L10nFormComponent],
     exports: [L10nFormComponent]
 })
-export class L10nModule {
+export class CultureModule {
 
 }

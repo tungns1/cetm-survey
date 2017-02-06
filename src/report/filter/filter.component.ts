@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
 import { GetServices, GetCounters, GetUsers, RxGroupBy, RxPeriod } from './filter.service';
 import { Branch } from '../shared/';
-import { Locale } from '../../config/';
+import { Setting } from '../../config/';
 
 export interface IFilter {
     period?: string;
@@ -52,8 +52,7 @@ function getFormValue(): IFilter {
 export function GetFilter() {
     const filter: IFilter = getFormValue();
     filter.branch_id = Branch.SelectedBranchIDLevel0.value;
-    filter.lang = Locale();
-
+    filter.lang = Setting().culture;
 
     let group_by = 'branch_id';
 

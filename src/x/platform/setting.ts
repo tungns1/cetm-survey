@@ -1,7 +1,7 @@
-import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export class Setting<T> {
+export class LocalSetting<T> {
     private _data: T = <any>{};
     rxMessage = new BehaviorSubject<string>('');
 
