@@ -1,5 +1,5 @@
 <editor #edit name="LABEL_LAYOUT" [fields]="fields" [data]="data | async" [service]="service">
-    <editor-title> <span translate> LABEL_LIST_LAYOUT</span> <b> {{tag}} </b> </editor-title>
+    <editor-title> <span translate> LABEL_LIST_LAYOUT</span><b> {{tag}} </b> </editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_NAME</span>
         <input formControlName="name" placeholder="{{'LABEL_NAME' | translate}}"><br> <span translate>LABEL_TYPE_LAYOUT</span>

@@ -86,7 +86,8 @@
     "LABEL_ID_SERVICE": "ID Dịch vụ",
     "LABEL_SERVICE_SFLOW": "Luồng dịch vụ",
     "LABEL_SCREEN": "Màn hình",
-    "LABEL_USER": "Người dùng"
+    "LABEL_USER": "Người dùng",
+    "LABEL_CHOOSE_ALL": "Chọn tất cả"
 
 
 
