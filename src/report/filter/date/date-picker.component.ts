@@ -8,6 +8,7 @@ interface FlatPickrOptions {
     allowInput?: boolean;
     dateFormat?: string;
     defaultDate?: string | Date;
+    onChange?: (d: Date) => void;
 }
 
 declare class Flatpickr {
@@ -45,7 +46,8 @@ const datePickerOptions: FlatPickrOptions = {
     template: `
         <input style="width:45%;" #input 
         [disabled]="disabled" [required]="required" 
-        (blur)="_handleChange($event)" >
+        (change)="onChange($event)"
+        (blur)="onBlur($event)" >
     `,
     providers: [DATE_PICKER_CONTROL_VALUE_ACCESSOR],
     styleUrls: ['material_green.css'],
@@ -66,20 +68,18 @@ class DatePickerComponent implements ControlValueAccessor {
     /** Callback registered via registerOnChange (ControlValueAccessor) */
     private _onChangeCallback: (_: any) => void = noop;
 
-
-    /** Set focus on input */
-    focus() {
-        this._inputElement.nativeElement.focus();
-        this.picker.open();
-    }
-
-    _handleChange(event: Event) {
+    onBlur(event: Event) {
         event.preventDefault();
         event.stopPropagation();
         const d = this.picker.selectedDates[0];
         // refresh the view
         this.picker.setDate(d);
-        // this._onChangeCallback(this._value);
+    }
+
+    onChange(event: Event) {
+        event.preventDefault();
+        const d = this.picker.selectedDates[0];
+        this._onChangeCallback(d);
     }
 
     @ViewChild('input') _inputElement: ElementRef;
