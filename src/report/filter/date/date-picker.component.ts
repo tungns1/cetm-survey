@@ -42,9 +42,13 @@ const datePickerOptions: FlatPickrOptions = {
 
 @Component({
     selector: 'date-picker',
-    template: `<input style="width:45%;" #input [disabled]="disabled" [required]="required" (change)="_handleChange($event)" (blur)="_handleChange($event)" >`,
+    template: `
+        <input style="width:45%;" #input 
+        [disabled]="disabled" [required]="required" 
+        (blur)="_handleChange($event)" >
+    `,
     providers: [DATE_PICKER_CONTROL_VALUE_ACCESSOR],
-    styleUrls: ['flatpickr.material_green.min.css'],
+    styleUrls: ['material_green.css'],
     encapsulation: ViewEncapsulation.None
 })
 class DatePickerComponent implements ControlValueAccessor {
@@ -73,8 +77,9 @@ class DatePickerComponent implements ControlValueAccessor {
         event.preventDefault();
         event.stopPropagation();
         const d = this.picker.selectedDates[0];
-        this._value = d;
-        this._onChangeCallback(this._value);
+        // refresh the view
+        this.picker.setDate(d);
+        // this._onChangeCallback(this._value);
     }
 
     @ViewChild('input') _inputElement: ElementRef;

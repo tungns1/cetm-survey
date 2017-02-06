@@ -41,7 +41,10 @@ function getFormValue(): IFilter {
     } = Form.value;
     var startOf = GetStartOf[value.period];
     const start = startOf.floor(value.start);
-    const end = startOf.ceil(value.end);
+    let end = startOf.floor(value.end);
+    if (startOf.count(start, end) < 1) {
+        end = startOf.offset(end, 1);
+    }
     const res: IFilter = {};
     res.period = value.period;
     res.start = dayFormat(start);
