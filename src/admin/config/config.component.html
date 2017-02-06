@@ -1,11 +1,11 @@
-<editor #edit name="cấu hình" [fields]="fields" [data]="data | async" [service]="service" (refresh)="Refresh()">
-    <editor-title> Danh sách cấu hình</editor-title>
+<editor #edit name="LABEL_CONFIG" [fields]="fields" [data]="data | async" [service]="service" (refresh)="Refresh()">
+    <editor-title> <span translate>LABEL_LIST_CONFIG</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <hr>Địa điểm:
+        <hr><span translate>LABEL_ADDRESS</span>
         <select formControlName="branch_id">
             <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
         </select>
-        <hr> Thiết bị phản hồi:
+        <hr> <span translate>LABEL_DEVICE_FEEDBACK</span>:
         <feedback-config formControlName="feedback"></feedback-config>
     </form>
 </editor>

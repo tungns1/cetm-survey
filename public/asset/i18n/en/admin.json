@@ -34,7 +34,7 @@
     "LABEL_LED_ADD_DEVICE": "LED Address",
     "LABEL_SERVICE_NORMAL": "Normal Service",
     "LABEL_SERVICE_VIP": "VIP Service",
-    "LABEL_BRACH": "Branch",
+    "LABEL_BRANCH": "Branch",
     "LABEL_LIST_KIOSK": "List of Kiosk",
     "LABEL_CODE_VIP": "VIP Code",
     "LABEL_NAME_KIOSK": "Kiosk's name",
@@ -74,12 +74,21 @@
     "BUTTON_ADD_TRANSACTION_ROOM": "Add Agency",
     "BUTTON_EDIT_TRANSACTION_ROOM": "Edit Agency",
     "LABEL_ROOT": "Root",
-    "AREA": "Area",
+    "AREA": "Province",
     "LABEL_SUB_BRANCH": "Sub Branch",
     "LABEL_NAME_SERVICE": "Name service",
-    "LABEL_SELECT_AREA": "Choose area",
+    "LABEL_SELECT_AREA": "Choose province",
     "LABEL_SELECT_BRANCH": "Choose bracnh",
-    "LABEL_SELECT_SUB_BRANCH": "Choose sub bracnh"
+    "LABEL_SELECT_SUB_BRANCH": "Choose sub bracnh",
+    "LABEL_CONFIG": "Config",
+    "LABEL_LIST_CONFIG": "List Config",
+    "LABEL_DEVICE_FEEDBACK": "Device Feedback",
+    "LABEL_FEEDBACK_REQUIER": "Feedback requirement",
+    "LABEL_ID_SERVICE": "ID SERVICE",
+    "LABEL_SERVICE_SFLOW": "Service's flows",
+    "LABEL_SCREEN": "SCREEN",
+    "LABEL_USER": "USER",
+    "LABEL_CHOOSE_ALL": "Choose all"
 
 
 

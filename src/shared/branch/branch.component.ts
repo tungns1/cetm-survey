@@ -4,10 +4,11 @@ import { FormControl } from '@angular/forms';
 import { IBranch, GetLayer, BranchLayer } from './branch';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+
 @Component({
     selector: 'multi-branch-selector',
     template: `
-     <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;Chọn tất cả<br>
+     <input type="checkbox" (change)="checkAll(changes=!changes)" >&nbsp;<span translate>LABEL_CHOOSE_ALL</span><br>
     <div *ngFor="let b of o?.shown | async">
         <input type="checkbox" [ngModel]="b._checked" (ngModelChange)="change($event, b.id)" />&nbsp;{{b.name}}
     </div>
@@ -55,19 +56,19 @@ export class MultiBranchSelectorComponent {
     selector: 'branch-selector',
     template: `
         <div>
-            <div class="tl" (click)="active='tinhthanh'">Chọn Tỉnh/Thành<i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="tl" (click)="active='tinhthanh'"> <span translate>LABEL_SELECT_AREA</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='tinhthanh'}">
                 <multi-branch-selector level="2"></multi-branch-selector>
             </div>
         </div>
         <div>
-            <div class="tl" (click)="active='chinhanh'">Chọn chi nhánh<i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="tl" (click)="active='chinhanh'"> <span translate>LABEL_SELECT_BRACNH</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='chinhanh'}">
                 <multi-branch-selector level="1"></multi-branch-selector>
             </div>
         </div>
         <div>
-            <div class="tl" (click)="active='giaodich'">Chọn phòng giao dịch<i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="tl" (click)="active='giaodich'"> <span translate>LABEL_SELECT_SUB_BRACNH</span>  <i class="fa fa-caret-down" aria-hidden="true"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='giaodich'}">
                 <multi-branch-selector level="0"></multi-branch-selector>
             </div>

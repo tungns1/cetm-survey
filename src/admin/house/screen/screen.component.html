@@ -1,4 +1,4 @@
-<editor #edit name="màn hình" (edit)="onEdit($event)" [fields]="fields" [data]="data | async" [service]="service">
+<editor #edit name="LABEL_SCREEN" (edit)="onEdit($event)" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> <span translate>LABEL_LIST_SCREEN</span>
         <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'screen'}"> <span translate>LABEL_EDIT_LAYOUT</span> </button>
     </editor-title>
@@ -25,7 +25,7 @@
         <select class="select" formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
         </select>
-        <br><span translate>LABEL_BRACH</span>:
+        <br><span translate>LABEL_BRANCH</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
         <br> <span translate>LABEL_COUNTERS</span>:
         <div class="dichvu" *ngIf="counters">

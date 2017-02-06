@@ -1,6 +1,6 @@
 <div class="title">
     <ng-content select="editor-title"></ng-content>
-    <button class="add uppercase btpointer" (click)="onAdd()"><span translate> BUTTON_ADD</span>&nbsp; {{name  | translate}} </button>
+    <button class="add uppercase btpointer" (click)="onAdd()"><span translate> BUTTON_ADD</span>&nbsp;{{name  | translate}} </button>
 </div>
 
 <table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
@@ -24,7 +24,7 @@
 <modal #edit>
     <div *ngIf="form">
         <div class="header">
-            <div class="uppercase btpointer" *ngIf="current"> <span translate>BUTTON_EDIT</span>&nbsp; {{name | translate}} </div>
+            <div class="uppercase btpointer" *ngIf="current"> <span translate>BUTTON_EDIT</span>&nbsp;{{name | translate}} </div>
             <div class="uppercase btpointer" *ngIf="!current"> <span translate>BUTTON_ADD</span>&nbsp; {{name | translate}} </div>
         </div>
 

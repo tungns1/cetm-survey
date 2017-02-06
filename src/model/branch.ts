@@ -16,6 +16,6 @@ export interface IBranch {
 export const BranchLevels = [
     { name: 'LABEL_ROOT', value: 3 },
     { name: 'AREA', value: 2 },
-    { name: 'LABEL_BRACH', value: 1 },
+    { name: 'LABEL_BRANCH', value: 1 },
     { name: 'LABEL_SUB_BRANCH', value: 0 }
 ]

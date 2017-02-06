@@ -1,5 +1,5 @@
 <editor #edit [name]="level | levelName" [fields]="fields" [data]="branches | async" [service]="service">
-    <editor-title> <span translate>LABEL_LIST</span>&nbsp; {{level | levelName| translate}}</editor-title>
+    <editor-title> <span translate>LABEL_LIST</span>&nbsp;{{level | levelName| translate}}</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_NAME</span>:
         <input type="text" formControlName="name" placeholder="{{'LABEL_NAME' | translate}}"><br>

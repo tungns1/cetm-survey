@@ -29,7 +29,7 @@ export class ConfigComponent {
   private branches = Branch.LowestLayerBranch;
 
   fields = [
-    { title: 'Phòng giao dịch', name: 'branch' }
+    { title: 'LABEL_SUB_BRANCH', name: 'branch' }
   ]
 }
 
