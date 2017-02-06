@@ -15,13 +15,17 @@ const routing = RouterModule.forChild([
         children: [{
             path: '',
             pathMatch: 'full',
-            redirectTo: 'summary'
+            redirectTo: 'summary/all'
+        }, {
+            path: 'summary',
+            pathMatch: 'full',
+            redirectTo: 'summary/all'
         },
         {
             path: 'focus/:branch_id',
             component: FocusComponent
         }, {
-            path: 'summary',
+            path: 'summary/:branches',
             component: SummaryComponent
         }]
     }

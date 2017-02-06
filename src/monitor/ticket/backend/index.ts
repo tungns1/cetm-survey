@@ -2,8 +2,8 @@
 export * from './summary';
 export * from './socket';
 
-import * as Focus from './focus';
+import * as Service from './service';
 
 export {
-    Focus
+    Service
 }

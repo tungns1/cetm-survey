@@ -1,3 +1,4 @@
+<h1> {{message | translate}}</h1>
 <table class="table">
     <thead>
         <td> Chi nhánh</td>
@@ -11,7 +12,7 @@
     <tbody>
         <tr *ngFor="let s of data | async">
             <td class="pointer">
-                <a [routerLink]="['../focus', s.branch_id]">
+                <a [routerLink]="['../../focus', s.branch_id]">
                     {{s.branch}}
                     </a>
             </td>

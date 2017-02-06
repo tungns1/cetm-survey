@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { IAsideFilter } from './filter';
 import { Branch } from '../../../shared/';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'monitor-filter',
@@ -8,6 +9,8 @@ import { Branch } from '../../../shared/';
     styleUrls: ['filter.component.css']
 })
 export class MonitorFilterComponent {
+    constructor(private route: ActivatedRoute) {}
+    
     active = '';
     @Output() filter = new EventEmitter<IAsideFilter>();
     refresh() {

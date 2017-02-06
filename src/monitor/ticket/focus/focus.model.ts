@@ -10,7 +10,7 @@ export interface ITicket extends Model.House.ITicket {
 export const RxCalledTickets = new BehaviorSubject<ITicket[]>([]);
 export const RxWaitingTickets = new BehaviorSubject<ITicket[]>([]);
 
-interface ITickets {
+export interface ITickets {
     [index: string]: ITicket;
 }
 
@@ -24,23 +24,30 @@ const servingTrack = <Model.House.ITicketTrack>{
     state: TicketStates.Serving,
 };
 
-function addTicket(t: ITicket) {
+export function UpdateTicket(t: ITicket, keepDirty = false) {
     if (t.state == TicketStates.Waiting) {
         Waiting.set(t.id, t);
     } else {
         t.serving = t.tracks.find(
             track => track.state === TicketStates.Serving
-        ) || servingTrack;
+        );
+        if (!t.serving) {
+            return;
+        }
         
         Called.set(t.id, t);
     }
+
+    if (!keepDirty) {
+        refresh();
+    }
 }
 
-function init(tickets: ITickets) {
+export function RefreshTicket(tickets: ITickets) {
     Waiting.clear();
     Called.clear();
     Object.keys(tickets).forEach(id => {
-        addTicket(tickets[id]);
+        UpdateTicket(tickets[id], true);
     });
     setTimeout(refresh, 250);
 }
@@ -59,9 +66,3 @@ export function SetBranchID(branch_id: string) {
     summary.setBranchID(branch_id);
     RxSummary.next(summary);
 }
-
-socket.Subscribe<ITicket>("/ticket", t => {
-    addTicket(t);
-    refresh();
-});
-socket.Subscribe<ITickets>("/tickets", init);
