@@ -33,7 +33,7 @@
     "LABEL_LED_ADD_DEVICE": "Địa chỉ thiết bị led",
     "LABEL_SERVICE_NORMAL": "Dịch vụ thường",
     "LABEL_SERVICE_VIP": "Dịch vụ VIP",
-    "LABEL_BRACH": "Chi nhánh",
+    "LABEL_BRANCH": "Chi nhánh",
     "LABEL_LIST_KIOSK": "Danh sách kiosk",
     "LABEL_CODE_VIP": "Mã VIP",
     "LABEL_NAME_KIOSK": "Tên kiosk",
@@ -78,7 +78,16 @@
     "LABEL_NAME_SERVICE": "Tên dịch vụ",
     "LABEL_SELECT_AREA": "Chọn Tỉnh/Thành",
     "LABEL_SELECT_BRACNH": "Chọn chi nhánh",
-    "LABEL_SELECT_SUB_BRACNH": "Chọn phòng giao dịch"
+    "LABEL_SELECT_SUB_BRACNH": "Chọn phòng giao dịch",
+    "LABEL_CONFIG": "Cấu hình",
+    "LABEL_LIST_CONFIG": "Danh sách cấu hình",
+    "LABEL_DEVICE_FEEDBACK": "Thiết bị phản hồi",
+    "LABEL_FEEDBACK_REQUIER": "Bắt buộc có phản hồi",
+    "LABEL_ID_SERVICE": "ID Dịch vụ",
+    "LABEL_SERVICE_SFLOW": "Luồng dịch vụ",
+    "LABEL_SCREEN": "Màn hình",
+    "LABEL_USER": "Người dùng"
+
 
 
 

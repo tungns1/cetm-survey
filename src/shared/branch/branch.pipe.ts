@@ -20,7 +20,7 @@ export class BranchNamePipe implements PipeTransform {
 
 export const Levels = [
     'LABEL_SUB_BRANCH',
-    'LABEL_BRACH',
+    'LABEL_BRANCH',
     'AREA',
     'LABEL_ROOT'
 ]

@@ -15,7 +15,7 @@ const FEEDBACK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'feedback-config',
     template: `
         <br>
-        Bắt buộc có phản hồi: 
+        <span translate>LABEL_FEEDBACK_REQUIER</span> : 
         <input [(ngModel)]="value.required" (change)="OnChange()" type="checkbox" />
     `,
     providers: [FEEDBACK_CONTROL_VALUE_ACCESSOR]
@@ -48,9 +48,10 @@ class FeedbackConfigComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {I18n} from '../shared';
 
 @NgModule({
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule, CommonModule,I18n.TranslateModule],
     declarations: [FeedbackConfigComponent],
     exports: [FeedbackConfigComponent]
 })

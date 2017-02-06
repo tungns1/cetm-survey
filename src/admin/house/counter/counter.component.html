@@ -1,4 +1,4 @@
-<editor #edit name="quầy" [fields]="fields" [data]="data | async" [service]="service">
+<editor #edit name="LABEL_COUNTERS" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> <span translate>LABEL_LIST_COUNTER</span> </editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_CODE</span>
@@ -19,7 +19,7 @@
             <select-check formControlName="vservices" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> <span translate>LABEL_BRACH</span>:
+        <hr> <span translate>LABEL_BRANCH</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
     </form>
 </editor>

@@ -33,8 +33,8 @@ export class SFlowComponent {
     tformVips = Center.TForm.AutoRefresh();
 
     fields = [
-        { title: 'Phòng giao dịch', name: 'branch' },
-        { title: 'ID Dịch vụ', name: 'service_id' },
+        { title: 'LABEL_SUB_BRANCH', name: 'branch' },
+        { title: 'LABEL_ID_SERVICE', name: 'service_id' },
     ]
 }
 

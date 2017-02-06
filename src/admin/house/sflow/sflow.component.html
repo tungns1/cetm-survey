@@ -1,7 +1,7 @@
-<editor #edit name="luồng dịch vụ" [fields]="fields" [data]="data | async" [service]="service">
+<editor #edit name="LABEL_SERVICE_SFLOW" [fields]="fields" [data]="data | async" [service]="service">
     <editor-title> <span translate>LABEL_LIST_THREAD_SERVICE</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
-        <hr> <span translate>LABEL_BRACH</span>:
+        <hr> <span translate>LABEL_BRANCH</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
         <hr> <span translate>LABEL_SERVICE</span>:
         <select formControlName="service_id">

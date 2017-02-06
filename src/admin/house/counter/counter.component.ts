@@ -35,8 +35,8 @@ export class CounterComponent {
     services = Center.Service.GetAll();
 
     fields = [
-        { title: 'Phòng giao dịch', name: 'branch' },
-        { title: 'Tên', name: 'name' }
+        { title: 'LABEL_SUB_BRANCH', name: 'branch' },
+        { title: 'LABEL_NAME', name: 'name' }
     ]
 }
 
