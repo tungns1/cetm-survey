@@ -79,10 +79,10 @@ class Queue {
 
 }
 
-
-export const Waiting = new Queue(Model.House.TicketStateWaiting)
-export const Serving = new Queue(Model.House.TicketStateServing);
-export const Missed = new Queue(Model.House.TicketStateMissed);
+const TicketStates = Model.House.TicketStates;
+export const Waiting = new Queue(TicketStates.Waiting)
+export const Serving = new Queue(TicketStates.Serving);
+export const Missed = new Queue(TicketStates.Missed);
 
 interface ITicketMap { [index: string]: Model.House.ITicket }
 
@@ -108,11 +108,11 @@ export function RemoveTicket(prev: Model.House.TicketState, id: string) {
 
 function GetQueue(state: Model.House.TicketState) {
     switch (state) {
-        case Model.House.TicketStateWaiting:
+        case TicketStates.Waiting:
             return Waiting;
-        case Model.House.TicketStateServing:
+        case TicketStates.Serving:
             return Serving;
-        case Model.House.TicketStateMissed:
+        case TicketStates.Missed:
             return Missed;
         default:
             return null;

@@ -85,12 +85,12 @@
     <div class="column">
         <div style="padding: 0px 10px;">
             <div class="tl">
-                <span translate>GENERAL.TOTAL_TIME_TRANSACTION</span>: {{data.s_tt | hour}}
+                <span translate>GENERAL.TOTAL_TIME_TRANSACTION</span>: {{data.s_tt | timeDuration}}
             </div>
             <div>
                 <div class="ct">
                     <span translate>GENERAL.TOTAL_TIME_SERVING</span>
-                    <span *ngIf="data.s_tt>0" class="thoigian">{{data.s_st | hour}}&nbsp; ({{data.s_st/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.s_tt>0" class="thoigian">{{data.s_st | timeDuration}}&nbsp; ({{data.s_st/data.s_tt*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.s_tt>0">
@@ -103,7 +103,7 @@
             <div>
                 <div class="ct">
                     <span translate>GENERAL.TOTAL_TIME_WAIT</span>
-                    <span *ngIf="data.s_tt>0" class="thoigian">{{(data.s_tt-data.s_st) | hour}}&nbsp; ({{(data.s_tt-data.s_st)/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.s_tt>0" class="thoigian">{{(data.s_tt-data.s_st) | timeDuration}}&nbsp; ({{(data.s_tt-data.s_st)/data.s_tt*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.s_tt>0">
@@ -114,13 +114,13 @@
                 </div>
             </div>
             <div class="tl" style="margin-top:10px;">
-                <span translate>GENERAL.TIME_SERVING_AVERAGE</span>: {{data.a_st | hour}}
+                <span translate>GENERAL.TIME_SERVING_AVERAGE</span>: {{data.a_st | timeDuration}}
             </div>
 
             <div class="ctt">
                 <div>
                     <span translate>GENERAL.TIME_SERVING_MIN</span>
-                    <span *ngIf="data.a_st>0" class="thoigian">{{data.min_st | hour}}</span>
+                    <span *ngIf="data.a_st>0" class="thoigian">{{data.min_st | timeDuration}}</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.a_st>0">
@@ -133,7 +133,7 @@
             <div class="ctt">
                 <div>
                     <span translate>GENERAL.TIME_SERVING_MAX</span>
-                    <span *ngIf="data.a_st>0" class="thoigian">{{data.max_st | hour}}</span>
+                    <span *ngIf="data.a_st>0" class="thoigian">{{data.max_st | timeDuration}}</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.a_st>0">
@@ -145,12 +145,12 @@
             </div>
 
             <div class="tl" style="margin-top:10px;">
-                <span translate>GENERAL.TIME_WAIT_AVERAGE</span>: {{data.a_wt | hour}}
+                <span translate>GENERAL.TIME_WAIT_AVERAGE</span>: {{data.a_wt | timeDuration}}
             </div>
             <div class="ctt">
                 <div>
                     <span translate>GENERAL.TIME_WAIT_MIN</span>
-                    <span *ngIf="data.a_wt>0" class="thoigian">{{data.min_wt | hour}}</span>
+                    <span *ngIf="data.a_wt>0" class="thoigian">{{data.min_wt | timeDuration}}</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.a_wt>0">
@@ -163,7 +163,7 @@
             <div class="ctt">
                 <div>
                     <span translate>GENERAL.TIME_WAIT_MAX</span>
-                    <span *ngIf="data.a_wt>0" class="thoigian">{{data.max_wt | hour}}</span>
+                    <span *ngIf="data.a_wt>0" class="thoigian">{{data.max_wt | timeDuration}}</span>
                 </div>
                 <div class="max">
                     <div *ngIf="data.a_wt>0">

@@ -22,12 +22,20 @@ export interface ITicket {
 export type TicketState = "waiting" | "serving" | "missed" | "cancelled" | "finished" | "unknown";
 
 
-export const TicketStateWaiting: TicketState = "waiting";
-export const TicketStateServing: TicketState = "serving";
-export const TicketStateMissed: TicketState = "missed";
-export const TicketStateFinished: TicketState = "finished";
-export const TicketStateCancelled: TicketState = "cancelled";
-export const TicketStateUnknown: TicketState = "unknown";
+const TicketStateWaiting: TicketState = "waiting";
+const TicketStateServing: TicketState = "serving";
+const TicketStateMissed: TicketState = "missed";
+const TicketStateFinished: TicketState = "finished";
+const TicketStateCancelled: TicketState = "cancelled";
+const TicketStateUnknown: TicketState = "unknown";
+
+export const TicketStates = {
+    Waiting: TicketStateWaiting,
+    Serving: TicketStateServing,
+    Missed: TicketStateMissed,
+    Finished: TicketStateFinished,
+    Cancelled: TicketStateCancelled,
+}
 
 import { Locale } from '../../config/';
 

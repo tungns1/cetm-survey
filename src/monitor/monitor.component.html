@@ -14,21 +14,6 @@
     </div>
 
     <div class="main">
-        <div style="height: 50px;">
-            <div style="float: right; margin-top: 5px;">
-                <span translate>AUTO_UPDATE</span>
-                <select (ngModelChange)="setRefreshInterval($event)">
-                    <option *ngFor="let a of intervals" [value]="a.interval">{{a.name}}</option>
-                </select>
-                <button class="gd btpointer" type="submit" routerLink="/ticket" routerLinkActive="active" translate>BUTTON_TRANSACTION</button>
-                <button type="submit" routerLink="/device" routerLinkActive="active" translate>BUTTON_DEVICE</button>
-            </div>
-        </div>
-
         <router-outlet></router-outlet>
-
-        <div class="ft">
-            <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
-        </div>
     </div>
 </div>

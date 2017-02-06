@@ -10,6 +10,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 export const RxOtherCounters = new ReplaySubject<ICounter[]>(1);
+const TicketStates = Model.House.TicketStates;
 
 combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
   RxOtherCounters.next(counters.filter(c => c.id != current.id));
@@ -26,9 +27,9 @@ export class TicketDetailDialog {
     this.ticket = t;
     this.checkedCounters = [];
     this.checkedServices = [];
-    this.isServing = t.state === Model.House.TicketStateServing;
-    this.isWaiting = t.state === Model.House.TicketStateWaiting;
-    this.isMissed = t.state === Model.House.TicketStateMissed;
+    this.isServing = t.state === TicketStates.Serving;
+    this.isWaiting = t.state === TicketStates.Waiting;
+    this.isMissed = t.state === TicketStates.Missed;
   }
   private ticket: Model.House.ITicket = <any>{};
   close = new EventEmitter();

@@ -1,5 +1,6 @@
-export interface ICounter{
-    id?:string;
+import {ID, MemCache} from '../../x/cache';
+
+export interface ICounter extends ID {
     branch_id:string;
     code:string;
     name:string;
@@ -9,8 +10,8 @@ export interface ICounter{
     services: string[];
     vservices: string[];
     settings?:Object;
-    mtime?:number;
-    dtime?:number;
     
     _checked?: boolean;
 }
+
+export const CacheCounter = new MemCache<ICounter>();

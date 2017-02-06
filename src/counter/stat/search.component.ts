@@ -21,11 +21,15 @@ export class SearchComponent {
                 this.message = 'NOT_FOUND_TICKET';
             } else {
                 this.ticket = t[0];
-                this.serving = this.ticket.state == Model.House.TicketStateServing;
+                this.serving = this.ticket.state == Model.House.TicketStates.Serving;
                 this.message = '';
             }
         }, e => {
             this.message = 'NOT_FOUND_TICKET';
         })
     }
+
+    stateKey(state: string) {
+        return `STATE_${state.toUpperCase()}`;
+    } 
 }

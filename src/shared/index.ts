@@ -6,7 +6,9 @@ import * as Session from './session/';
 
 import * as Model from '../model/';
 import * as I18n from './i18n/';
+import * as SharedPipe from './pipe/';
 
 export {
+    SharedPipe,
     L10n, Backend, Auth, Branch, Session, Model, I18n
 }

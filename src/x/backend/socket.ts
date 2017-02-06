@@ -4,12 +4,20 @@ import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import * as Loading from './loading';
+import { Log, Poller } from '../util';
 
-const INITIAL_TIMEOUT = 5000;
-const MAX_TIMEOUT = 5 * 60 * 1000;
+export function WsHost(secure: boolean, host: string) {
+  return `${secure ? "wss" : "ws"}://${host}`;
+}
 
 const NormalCloseCode = 1000;
 const ReconnectableStatusCode = [4000];
+const RECONNECT_INTERVAL = 1000;
+const MESSAGE_TIMEOUT = 30000;
+const ALIVE_CHECK_INTERVAL = 1000;
+const MIN_ALIVE_OUT = 3000;
+const MAX_ALIVE_OUT = 31000;
+const ALIVE_PING_URI = "/__alive";
 
 interface WsResponse {
   uri: string;
@@ -23,23 +31,12 @@ interface WsRequest {
 
 
 if (window['MozWebSocket']) {
-  console.log('Using MozWebSocket contructor');
+  Log.Info('Using MozWebSocket contructor');
   window['WebSocket'] = window['MozWebSocket'];
 }
 
 if (!window['WebSocket']) {
-  console.error('This browser do not support WebSocket');
-}
-
-// Exponential Backoff Formula by Prof. Douglas Thain
-// http://dthain.blogspot.co.uk/2009/02/exponential-backoff-in-distributed.html
-function getBackoffDelay(attempt: number) {
-  var R = Math.random() + 1;
-  var T = INITIAL_TIMEOUT;
-  var F = 2;
-  var N = attempt;
-  var M = MAX_TIMEOUT;
-  return Math.floor(Math.min(R * T * Math.pow(F, N), T))
+  Log.Error('This browser do not support WebSocket');
 }
 
 function createSocket(url: string) {
@@ -50,10 +47,10 @@ function createSocket(url: string) {
   return new WebSocket(url);
 }
 
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-
 export class Socket {
+  constructor() {
+    this.alivePoll.Interval(ALIVE_CHECK_INTERVAL).Work(() => this.checkAlive());
+  }
 
   protected _doConnect(url: string) {
     if (url) {
@@ -65,7 +62,6 @@ export class Socket {
   }
 
   Send<T>(uri: string, data: any): Observable<T> {
-    Loading.Show();
     var request: WsRequest = { uri: uri, data: data }
     var response = new Observable<any>((responseObserver: Observer<any>) => {
       request.uri = request.uri + '?once=' + Math.random().toString(36).substring(7);
@@ -79,14 +75,14 @@ export class Socket {
   }
 
   Terminate() {
-    this.shouldReconnect = false;
     this.rxConnected.complete();
     this.rxServerEvent.complete();
-    this.socket.close();
+    this.alivePoll.Disable();
+    this.onClose(true);
   }
 
   OnConnected(cb: () => void) {
-    this.rxConnected.filter(v => v).subscribe(cb);
+    return this.rxConnected.filter(v => v).subscribe(cb);
   }
 
   Subscribe<T>(uri: string, onEvent: (v: T) => void) {
@@ -94,9 +90,34 @@ export class Socket {
       .map(v => v.data).subscribe(onEvent);
   }
 
+  private lastMessageAt = 0;
+
   private onMessageHandler(msg: MessageEvent) {
+    if (this.lastMessageAt === 0) {
+      this.alivePoll.Start();
+    }
+
+    this.lastMessageAt = Date.now();
     try {
       var body: string = msg.data;
+
+      if (body.startsWith(ALIVE_PING_URI)) {
+        this.secondLastAlive = this.lastAliveAt;
+        this.lastAliveAt = this.lastMessageAt;
+        // live
+        if (this.lastAliveAt > 0) {
+          if (this.secondLastAlive > 0) {
+            const aliveOut = (this.lastAliveAt - this.secondLastAlive) + 3000;
+            const c = Math.abs(this.aliveOut - aliveOut);
+            Log.Debug("change", c);
+            if (c > 1000 && aliveOut > MIN_ALIVE_OUT && aliveOut < MAX_ALIVE_OUT) {
+              this.aliveOut = aliveOut;
+              Log.Debug("alive", this.aliveOut);
+            }
+          }
+        }
+        return;
+      }
       var index = body.indexOf(" ");
       var uri = body.substring(0, index);
       var isError = uri.indexOf("/error") === 0;
@@ -105,19 +126,18 @@ export class Socket {
         uri = data['uri'];
       }
     } catch (e) {
-      console.error("parse server data to json " + e);
+      Log.Error("parse server data to json " + e);
       return;
     }
 
     var observer = uri ? this.responseObservers[uri] : null;
 
     if (observer) {
-      Loading.Hide();
       if (isError) {
-        console.log("response error", uri, data['err']);
+        Log.Info("response error", uri, data['err']);
         observer.error(data['err']);
       } else {
-        console.log("response", uri, data);
+        Log.Debug("response", uri, data);
         observer.next(data);
         observer.complete();
       }
@@ -127,7 +147,7 @@ export class Socket {
         uri: uri,
         data: data,
       })
-      console.log("server event", uri, data);
+      Log.Debug("server event", uri, data);
     }
   }
 
@@ -139,62 +159,75 @@ export class Socket {
     while (this.sendQueue.length && this.socket.readyState === WebSocket.OPEN) {
       let item = this.sendQueue.shift();
       let request = item.wsRequest;
-      let payload = request.data;
-      if (Array.isArray(payload) || typeof payload === 'object') {
-        payload = JSON.stringify(payload);
-      }
-      this.socket.send(`${request.uri} ${payload}`);
+      let data = [request.uri, JSON.stringify(request.data)].join(' ');
+      this.socket.send(data);
       if (item.observer) {
         this.responseObservers[request.uri] = item.observer;
+        setTimeout(_ => {
+          delete this.responseObservers[request.uri];
+        }, MESSAGE_TIMEOUT);
       }
     }
   }
 
   private onOpenHandler() {
     this.rxConnected.next(true);
-    this._reconnectAttempts = 0;
     // emit event
     this.fireQueue();
   }
 
-  private onErrorHandler(err) {
-
+  private onClose(force?: boolean) {
+    if (this.socket) {
+      const socket = this.socket;
+      socket.onmessage = null;
+      socket.onopen = null;
+      socket.onclose = null;
+      if (socket.readyState !== WebSocket.CLOSED) {
+        socket.close();
+      }
+      this.alivePoll.Stop();
+    }
+    this.rxConnected.next(false);
+    if (!force) {
+      this.lastMessageAt = 0;
+      this.lastAliveAt = 0;
+      Log.Info('Reconnect in ', RECONNECT_INTERVAL / 1000, 'seconds');
+      setTimeout(() => this._connect(), RECONNECT_INTERVAL);
+    }
   }
 
-  private shouldReconnect = true;
 
-  private onCloseHandler(event) {
-    // notify error
-    this.rxConnected.next(false);
-    if (this.shouldReconnect) {
-      if (event.code !== NormalCloseCode || ReconnectableStatusCode.indexOf(event.code) > -1) {
-        this.reconnect();
+  private checkAlive() {
+    const inactive = Date.now() - this.lastMessageAt;
+    Log.Debug('inactive', inactive);
+    if (inactive > this.aliveOut) {
+      // close the socket 
+      if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+        this.onClose();
       }
     }
   }
 
-  private reconnect() {
-    if (!this.socket.bufferedAmount) {
-      this.socket.close();
-    }
-    var backoffDelay = getBackoffDelay(++this._reconnectAttempts);
-    console.log('Reconnecting in ' + backoffDelay / 1000 + ' seconds...');
-    setTimeout(_ => this._connect(), backoffDelay);
-  }
-
   private _connect() {
-    if (!this.socket || this.socket.readyState !== WebSocket.OPEN) {
-      this.socket = createSocket(this.url);
-      this.socket.onmessage = msg => this.onMessageHandler(msg);
-      this.socket.onopen = _ => this.onOpenHandler();
-      this.socket.onerror = e => this.onErrorHandler(e);
-      this.socket.onclose = e => this.onCloseHandler(e);
+    if (this.socket && this.socket.readyState === WebSocket.CONNECTING) {
+      return;
     }
+    this.socket = createSocket(this.url);
+    this.socket.onmessage = msg => this.onMessageHandler(msg);
+    this.socket.onopen = _ => this.onOpenHandler();
+    this.socket.onclose = _ => this.onClose();
   }
 
-  private _reconnectAttempts = 0;
   private socket: WebSocket;
+  private lastAliveAt = 0;
+  private secondLastAlive = 0;
   private url: string;
+  private alivePoll = new Poller.ConstPoll();
+  private aliveOut = MAX_ALIVE_OUT;
   rxConnected = new BehaviorSubject(false);
   rxServerEvent = new Subject<WsResponse>();
+
+  disbaleCheckAlive() {
+    this.alivePoll.Disable();
+  }
 }

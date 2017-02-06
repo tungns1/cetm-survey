@@ -4,11 +4,11 @@
         <div style="margin-top: 50px;">
             <div class="info"><span translate> TICKET_NUMBER</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
             <div class="info hidden"> Priority:{{ticket.priority}}</div>
-            <div class="info"><span translate> TIME_CREATE_TICKET</span> {{ticket.ctime | hour}}</div>
+            <div class="info"><span translate> TIME_CREATE_TICKET</span> {{ticket.ctime | localDayTime}}</div>
             <hr>
 
             <div *ngIf="isServing" style="margin-bottom:10px;">
-                <div><span translate>START_SERVING</span> {{ticket.mtime | hour}}</div>
+                <div><span translate>START_SERVING</span> {{ticket.mtime | localDayTime}}</div>
                 <br> <span translate> MOVE_SERVICE</span>
                 <div class="dichvu">
                     <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
@@ -17,7 +17,7 @@
             </div>
 
             <div *ngIf="isMissed" style="margin-bottom:10px;">
-                <span translate>TIME_MISS</span> {{ticket.mtime | hour}}
+                <span translate>TIME_MISS</span> {{ticket.mtime | localDayTime}}
             </div>
             <span translate> MOVE_COUNTER</span>
             <div class="dichvu">
