@@ -77,8 +77,8 @@
     "AREA": "Tỉnh /thành",
     "LABEL_NAME_SERVICE": "Tên dịch vụ",
     "LABEL_SELECT_AREA": "Chọn Tỉnh/Thành",
-    "LABEL_SELECT_BRACNH": "Chọn chi nhánh",
-    "LABEL_SELECT_SUB_BRACNH": "Chọn phòng giao dịch",
+    "LABEL_SELECT_BRANCH": "Chọn chi nhánh",
+    "LABEL_SELECT_SUB_BRANCH": "Chọn phòng giao dịch",
     "LABEL_CONFIG": "Cấu hình",
     "LABEL_LIST_CONFIG": "Danh sách cấu hình",
     "LABEL_DEVICE_FEEDBACK": "Thiết bị phản hồi",
@@ -87,7 +87,8 @@
     "LABEL_SERVICE_SFLOW": "Luồng dịch vụ",
     "LABEL_SCREEN": "Màn hình",
     "LABEL_USER": "Người dùng",
-    "LABEL_CHOOSE_ALL": "Chọn tất cả"
+    "LABEL_CHOOSE_ALL": "Chọn tất cả",
+    "LABEL_CLOSE": "Đóng"
 
 
 

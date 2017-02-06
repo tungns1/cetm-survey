@@ -4,11 +4,11 @@
         <hr class="hr-css">
     </div>
     <div>
-        <span class="text-language">   {{ 'HOME.SELECT' | translate }}</span>
+        <span class="text-language">   {{ 'HOME.SELECT' | translate }}:&nbsp;</span>
         <select class="select" #langSelect (change)="translate.use(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
     </select>
         <br>
-        <button class="button btn-footer" (click)="Close()"> Đóng </button>
+        <button class="button btn-footer" (click)="Close()"> <span translate>LABEL_CLOSE</span> </button>
     </div>
 </div>

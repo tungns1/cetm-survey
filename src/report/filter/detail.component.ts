@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { RxCounters, RxServices, RxUsers } from './filter.service';
-import { Model } from '../shared/';
+import { Model,I18n } from '../shared/';
+
 
 @Component({
     selector: 'counter-selector',

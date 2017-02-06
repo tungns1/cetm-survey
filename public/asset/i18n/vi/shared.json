@@ -25,5 +25,7 @@
     "REPORT": "Báo cáo",
     "MONITOR": "Giám sát",
     "MANAGER_KIOSK": "Quản lý Kiosk",
-    "MANAGER_SCREEN": "Quản lý Màn hình"
+    "MANAGER_SCREEN": "Quản lý Màn hình",
+    "HOME.SELECT": "Ngôn ngữ"
+
 }

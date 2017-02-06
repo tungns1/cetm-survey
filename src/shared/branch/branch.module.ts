@@ -7,7 +7,7 @@ import { BranchNamePipe, LevelNamePipe } from './branch.pipe';
 import { TranslateModule } from '../i18n';
 
 @NgModule({
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule,TranslateModule],
     exports: [BranchSelectorComponent, BranchPickerComponent, MultiBranchSelectorComponent, BranchNamePipe, LevelNamePipe],
     declarations: [BranchSelectorComponent, BranchPickerComponent, MultiBranchSelectorComponent, BranchNamePipe, LevelNamePipe],
 })

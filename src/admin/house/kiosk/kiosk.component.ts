@@ -40,8 +40,8 @@ export class KioskComponent {
     layouts = Center.Layout.GetByType('kiosk');
 
     fields = [
-        { title: 'Phòng giao dịch', name: 'branch' },
-        { title: 'Tên', name: 'name' }
+        { title: 'LABEL_SUB_BRANCH', name: 'branch' },
+        { title: 'LABEL_NAME', name: 'name' }
     ]
 }
 

@@ -88,7 +88,8 @@
     "LABEL_SERVICE_SFLOW": "Service's flows",
     "LABEL_SCREEN": "SCREEN",
     "LABEL_USER": "USER",
-    "LABEL_CHOOSE_ALL": "Choose all"
+    "LABEL_CHOOSE_ALL": "Choose all",
+    "LABEL_CLOSE": "Close"
 
 
 

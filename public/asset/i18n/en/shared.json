@@ -1,5 +1,31 @@
 {
-    "HELLO": "Hi,",
+    "HELLO": "Hello,",
     "REFRESH": "Refresh",
-    "MANAGER_SCREEN": "Screen Managenment"
+    "LOGOUT": "Logout",
+    "LOGIN_SYSTEM": "LOGIN SYSTEM",
+    "LOGIN": "LOGIN",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "PAGE_NOT_FOUND": "The page you are looking for does not exist",
+    "SETTING": "Setting",
+    "LANG": "Language",
+    "SERVER_ADDRESS": "Server address",
+    "RUN_WITH_DEBUG": "Run with debug",
+    "SAVE": "Save",
+    "CLOSE": "Close",
+    "CITY": "Province",
+    "BRANCH": "Branch",
+    "TRANSACTION_ROOM": "Agency",
+    "TICKET_NUMBER": "Ticket Number",
+    "SERVICE": "Service",
+    "STREAM_SERVICE_LOCAL": "Service's flows",
+    "COUNTER": "Counter",
+    "USER": "User",
+    "MANAGER_SYSTEM": "Center Management",
+    "REPORT": "Report",
+    "MONITOR": "Monitor",
+    "MANAGER_KIOSK": "Kiosk Management",
+    "MANAGER_SCREEN": "Screen Management",
+    "HOME.SELECT": "Language"
+
 }

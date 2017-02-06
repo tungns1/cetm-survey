@@ -62,13 +62,13 @@ export class MultiBranchSelectorComponent {
             </div>
         </div>
         <div>
-            <div class="tl" (click)="active='chinhanh'"> <span translate>LABEL_SELECT_BRACNH</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="tl" (click)="active='chinhanh'"> <span translate>LABEL_SELECT_BRANCH</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='chinhanh'}">
                 <multi-branch-selector level="1"></multi-branch-selector>
             </div>
         </div>
         <div>
-            <div class="tl" (click)="active='giaodich'"> <span translate>LABEL_SELECT_SUB_BRACNH</span>  <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div class="tl" (click)="active='giaodich'"> <span translate>LABEL_SELECT_SUB_BRANCH</span>  <i class="fa fa-caret-down" aria-hidden="true"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='giaodich'}">
                 <multi-branch-selector level="0"></multi-branch-selector>
             </div>

@@ -17,7 +17,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'select-check',
     template: `
-        <input type="checkbox" (change)="checkAll()" >&nbsp;<span translate>Chọn tất cả</span><br>
+        <input type="checkbox" (change)="checkAll()" >&nbsp;<span translate>LABEL_CHOOSE_ALL</span><br>
         <span *ngFor="let d of data" class="pointer">
             <input type="checkbox" [(ngModel)]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
         </span>
