@@ -31,11 +31,19 @@ const routing = RouterModule.forChild([
     }
 ]);
 
+import { MonitorTicketService } from './ticket.service';
+import { Reducers } from './reducers';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
     imports: [
         routing, MonitorTabModule, CommonModule,
-        I18n.TranslateModule, SharedPipe.UtilPipeModule],
+        I18n.TranslateModule, SharedPipe.UtilPipeModule,
+        StoreModule.provideStore(Reducers)
+    ],
+    providers: [
+        MonitorTicketService
+    ],
     declarations: [
         MonitorTicketComponent, FocusComponent, SummaryComponent]
 })

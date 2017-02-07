@@ -88,6 +88,7 @@ export class Socket {
   Subscribe<T>(uri: string, onEvent: (v: T) => void) {
     let s = this.rxServerEvent.filter(v => v.uri == uri)
       .map(v => v.data).subscribe(onEvent);
+    return s;
   }
 
   private lastMessageAt = 0;
@@ -227,7 +228,7 @@ export class Socket {
   rxConnected = new BehaviorSubject(false);
   rxServerEvent = new Subject<WsResponse>();
 
-  disbaleCheckAlive() {
+  disableCheckAlive() {
     this.alivePoll.Disable();
   }
 }

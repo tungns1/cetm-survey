@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { socket } from './backend';
+import { Router } from '@angular/router';
+import { Branch, Backend } from '../shared';
+import { MonitorTicketService } from './ticket.service';
 
 @Component({
     selector: 'monitor-ticket',
@@ -7,12 +9,16 @@ import { socket } from './backend';
     styleUrls: ['ticket.component.css']
 })
 export class MonitorTicketComponent implements OnInit {
+    constructor(
+        private ticketService: MonitorTicketService
+    ) { }
+
     ngOnInit() {
-        socket.Connect({});
+        this.ticketService.onInit();
     }
 
     ngOnDestroy() {
-        socket.Terminate();
+        this.ticketService.onDestroy();
     }
 
 }

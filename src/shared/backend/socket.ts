@@ -11,9 +11,10 @@ export const RxError = new BehaviorSubject<{ type?: string, message?: string }>(
 RxError.subscribe(e => console.info(e));
 import 'rxjs/add/operator/skip';
 
-export class AppSocket<T> extends Socket {
-    constructor(private uri: string, private fields: string[]) {
+export class AppSocket extends Socket {
+    constructor(private uri: string, private fields?: string[]) {
         super();
+        this.fields = this.fields || [];
         this.init();
     }
 
@@ -37,7 +38,7 @@ export class AppSocket<T> extends Socket {
         return `${WsHost()}${link}`;
     }
 
-    Connect(params: T) {
+    Connect<T>(params: T) {
         const isValid = this.fields.every(field => {
             if (!params[field]) {
                 RxError.next({ type: "system", message: `missing ${field}` });

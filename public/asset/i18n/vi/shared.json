@@ -28,5 +28,6 @@
     "MANAGER_SCREEN": "Quản lý Màn hình",
     "HOME.SELECT": "Ngôn ngữ",
     "LABEL_CHOOSE_ALL": "Chọn tất cả",
-    "LABEL_CLOSE": "Đóng"
+    "LABEL_CLOSE": "Đóng",
+    "MESSAGE_PLEASE_SELECT_BRANCH": "Vui lòng chọn phòng giao dịch"
 }
