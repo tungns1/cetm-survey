@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Branch } from './shared/';
+import { Branch } from '../shared/';
 import { PageModule } from '../pages/';
-import { MonitorComponent } from './monitor.component';
-import { routing } from './monitor.routing';
+import { routing } from './app.routing';
 import { AppComponent } from './app.component';
-import { MonitorFilterModule } from './shared/';
 import { I18n } from '../shared/';
-import { Backend } from './shared';
-
+import { Backend } from '../shared';
+import { FilterService } from './service/';
+import { MonitorComponent, MonitorFilterModule } from './component/';
 
 @NgModule({
   imports: [
@@ -16,9 +15,10 @@ import { Backend } from './shared';
     routing, MonitorFilterModule, I18n.forRoot("monitor")
   ],
   declarations: [AppComponent, MonitorComponent],
+  providers: [FilterService],
   bootstrap: [AppComponent]
 })
-export default class MonitorModule {
+export class AppModule {
 
 }
 

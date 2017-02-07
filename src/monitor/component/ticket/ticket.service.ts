@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Backend, Model } from '../shared';
+import { Backend, Model } from '../../shared';
 import { ACTION, IAppState } from './reducers';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { ITicket, ITickets, Summary } from '../model';
+import { ITicket, ITickets, Summary } from '../../model';
 
 interface IFocusReply {
     counters: Model.House.ICounter[];
@@ -40,7 +40,7 @@ export class MonitorTicketService {
 
     observeSummaryOnBranch(branches: string[]) {
         const sub = this.socket.OnConnected(() => {
-            this.socket.Send("/summary", { branches }).subscribe(data => {
+            this.socket.Send<Summary[]>("/summary", { branches }).subscribe(data => {
                 if (!data) {
                     return;
                 }
@@ -75,9 +75,10 @@ export class MonitorTicketService {
                 }
                 Model.House.CacheCounter.Refresh(data.counters);
                 Model.CacheUsers.Refresh(data.users);
+                const tickets = Object.keys(data.tickets).map(id => data.tickets[id]);
                 this.store.dispatch({
                     type: ACTION.REFRESH_TICKET,
-                    payload: data.tickets
+                    payload: tickets
                 });
             });
         });

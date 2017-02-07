@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Branch, Backend } from '../../shared';
-import { ACTION, IAppState } from '../../backend';
+import { Branch, Backend } from '../../../shared';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { Summary } from '../../model';
+import { Summary } from '../../../model';
 import { MonitorTicketService } from '../ticket.service';
 
 @Component({
@@ -19,22 +18,24 @@ export class SummaryComponent {
 
     ngOnInit() {
         this.data = this.ticketService.Summary;
-        let branches: string[] = this.route.snapshot.params['branches'].split(",");
-        if (branches.length == 1) {
-            if (branches[0].trim() === 'all') {
-                branches = Branch.SelectedBranchIDLevel0.value.split(",");
+        this.route.params.subscribe(p => {
+            console.log(p);
+            let branches: string[] = p['branches'].split(",");
+            if (branches.length == 1) {
+                if (branches[0].trim() === 'all') {
+                    branches = Branch.SelectedBranchIDLevel0.value.split(",");
+                }
             }
-        }
 
-        branches = branches.filter(id => id.length > 2);
+            branches = branches.filter(id => id.length > 2);
 
-        if (branches.length < 1) {
-            this.message = "MESSAGE_PLEASE_SELECT_BRANCH";
-            return;
-        }
+            if (branches.length < 1) {
+                this.message = "MESSAGE_PLEASE_SELECT_BRANCH";
+                return;
+            }
 
-        console.log('send');
-        this.ticketService.observeSummaryOnBranch(branches);
+            this.ticketService.observeSummaryOnBranch(branches);
+        });
     }
 
     ngOnDestroy() {

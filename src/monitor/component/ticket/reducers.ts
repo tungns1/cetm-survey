@@ -1,4 +1,4 @@
-import { ISummary, Summary, ITicket } from '../model/';
+import { ISummary, Summary, ITicket } from '../../model/';
 
 export interface IAppState {
     summary: Summary[];
@@ -40,7 +40,7 @@ export function SummaryReducer(state: Summary[] = [], action: Action) {
     }
 }
 
-import { Model } from '../shared';
+import { Model } from '../../shared';
 const TicketStates = Model.House.TicketStates;
 
 export function WaitingReducer(state: ITicket[] = [], action: Action) {

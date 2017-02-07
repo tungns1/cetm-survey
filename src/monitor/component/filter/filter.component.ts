@@ -1,7 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { IAsideFilter } from './filter';
-import { Branch } from '../../../shared/';
+import { Branch } from '../../shared/';
 import { Router } from '@angular/router';
+
+import { FilterService } from '../../service';
 
 @Component({
     selector: 'monitor-filter',
@@ -9,12 +10,11 @@ import { Router } from '@angular/router';
     styleUrls: ['filter.component.css']
 })
 export class MonitorFilterComponent {
-    constructor(private router: Router) { }
+    constructor(private filterService: FilterService) { }
 
     active = '';
-    @Output() filter = new EventEmitter<IAsideFilter>();
     refresh() {
         const branches = Branch.SelectedBranchIDLevel0.value;
-        this.router.navigate(["/ticket/summary", branches]);        
+        this.filterService.Refresh(branches.split(","));
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Branch, Backend } from '../shared';
+import { Branch, Backend } from '../../shared';
+import { FilterService } from '../../service';
 import { MonitorTicketService } from './ticket.service';
 
 @Component({
@@ -10,10 +11,12 @@ import { MonitorTicketService } from './ticket.service';
 })
 export class MonitorTicketComponent implements OnInit {
     constructor(
+        private filterService: FilterService,
         private ticketService: MonitorTicketService
     ) { }
 
     ngOnInit() {
+        this.filterService.SummaryMode();
         this.ticketService.onInit();
     }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { I18n } from './shared';
+import { I18n } from '../shared';
 
 @Component({
     selector: 'app-root',

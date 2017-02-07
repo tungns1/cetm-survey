@@ -1,12 +1,9 @@
 import { Routes, RouterModule } from '@angular/router'
 import { Auth } from '../shared/';
-import { MonitorComponent } from './monitor.component';
-import { MonitorDeviceModule } from './device/';
-import { MonitorTicketModule } from './ticket/';
+import { MonitorComponent, MonitorTicketModule } from './component';
 
 const children: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'ticket' },
-    { path: 'device', loadChildren: () => MonitorDeviceModule },
     { path: 'ticket', loadChildren: () => MonitorTicketModule }
 ];
 
