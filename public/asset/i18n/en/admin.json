@@ -87,10 +87,7 @@
     "LABEL_ID_SERVICE": "ID SERVICE",
     "LABEL_SERVICE_SFLOW": "Service's flows",
     "LABEL_SCREEN": "SCREEN",
-    "LABEL_USER": "USER",
-    "LABEL_CHOOSE_ALL": "Choose all",
-    "LABEL_CLOSE": "Close"
-
+    "LABEL_USER": "USER"
 
 
 

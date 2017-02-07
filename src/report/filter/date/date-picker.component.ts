@@ -3,21 +3,6 @@ import { EventEmitter, Output, ViewChild, SimpleChange } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-interface FlatPickrOptions {
-    clickOpen?: boolean;
-    allowInput?: boolean;
-    dateFormat?: string;
-    defaultDate?: string | Date;
-    onChange?: (d: Date) => void;
-}
-
-declare class Flatpickr {
-    constructor(el: HTMLElement, options?: FlatPickrOptions);
-    open();
-    setDate(d: Date);
-    selectedDates: Date[];
-}
-
 
 const DATE_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -25,16 +10,9 @@ const DATE_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     multi: true
 };
 
-// A simple change event emitted by the MdCheckbox component.
-class DatePickerChange {
-    source: DatePickerComponent;
-    value: Date;
-}
-
 const noop = function () {
 
 }
-
 const datePickerOptions: FlatPickrOptions = {
     allowInput: true,
     clickOpen: true,

@@ -26,6 +26,7 @@
     "MONITOR": "Monitor",
     "MANAGER_KIOSK": "Kiosk Management",
     "MANAGER_SCREEN": "Screen Management",
-    "HOME.SELECT": "Language"
-
+    "HOME.SELECT": "Language",
+    "LABEL_CHOOSE_ALL": "Choose all",
+    "LABEL_CLOSE": "Close"
 }

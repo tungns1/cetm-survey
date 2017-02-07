@@ -56,7 +56,7 @@
         "TOTAL_TIME_WAIT": "Tổng thời gian chờ",
         "TIME_SERVING_AVERAGE": "Thời gian phục vụ trung bình",
         "TIME_SERVING_MIN": "Thời gian phục vụ ngắn nhất",
-        "TIME_SERVING_MAX": "Thời gian phục vụ dài nhất",
+        "TIME_SERVING_MAX": "Thời gian phục vụ lấu nhất",
         "TIME_WAIT_AVERAGE": "Thời gian chờ trung bình",
         "TIME_WAIT_MIN": "Thời gian chờ ngắn nhất",
         "TIME_WAIT_MAX": "Thời gian chờ dài nhất"

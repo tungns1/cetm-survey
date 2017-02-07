@@ -1,8 +1,4 @@
 {
-    "HOME": {
-        "TITLE": "Hello Angular 2 with ng2-translate!",
-        "SELECT": "Change language"
-    },
     "SERVICE_NAME": "TÊN DỊCH VỤ",
     "AUTO_NEXT": "TỰ  ĐỘNG GỌI",
     "NEXT": "KẾ TIẾP",
@@ -49,5 +45,5 @@
     "CONTENT_MOVE_TICKET_WAITTING_OR_MISS": "Bạn phải chọn quầy",
     "RECALL_MISS": "Bạn phải kết thúc vé đang thực hiện",
     "NOT_FOUND_TICKET": "Không tìm thấy vé",
-    "SEARCH_TICKET": "Đang tìm vé"
+    "SEARCHING_TICKET": "Đang tìm vé"
 }

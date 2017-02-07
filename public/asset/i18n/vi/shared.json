@@ -26,6 +26,7 @@
     "MONITOR": "Giám sát",
     "MANAGER_KIOSK": "Quản lý Kiosk",
     "MANAGER_SCREEN": "Quản lý Màn hình",
-    "HOME.SELECT": "Ngôn ngữ"
-
+    "HOME.SELECT": "Ngôn ngữ",
+    "LABEL_CHOOSE_ALL": "Chọn tất cả",
+    "LABEL_CLOSE": "Đóng"
 }
