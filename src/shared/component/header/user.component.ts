@@ -10,13 +10,15 @@ import { Session, Auth } from '../../service/';
     styleUrls: ['user.component.scss']
 })
 export class UserComponent {
-    constructor(private router: Router) {
-    }
+    constructor(
+        private authService: Auth.AuthService,
+        private router: Router
+    ) { }
 
     rxName = Session.RxLoginedUser.map(u => u.fullname);
 
     Logout() {
-        Auth.Logout;
+        this.authService.Logout();
     }
 
     hidden = true;

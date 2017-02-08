@@ -3,7 +3,7 @@ import { SetAppName } from './config/';
 import { BranchModule } from './branch/';
 import { NavModule, HeaderModule } from './component/';
 import { SharedModule } from './shared.module';
-import { I18n } from './service/';
+import { I18n, Auth } from './service/';
 import { BrowserModule } from '@angular/platform-browser';
 
 export function NewBaseAppModule(appName: string) {
@@ -15,6 +15,8 @@ export function NewBaseAppModule(appName: string) {
             BrowserModule
         ],
         providers: [
+            Auth.AuthGuard,
+            Auth.AuthService,
             I18n.I18nService.provider()
         ],
         exports: [

@@ -14,7 +14,10 @@ export const Api = new SharedService.Backend.HttpApi<Model.IBranch>("/api/admin/
   styleUrls: ['branch.component.css']
 })
 export class BranchComponent {
-  constructor(route: ActivatedRoute) {
+  constructor(
+    private authService: SharedService.Auth.AuthService,
+    private route: ActivatedRoute
+  ) {
     route.params.forEach(params => {
       this.level = +params['level'];
       if (isNaN(this.level)) {
@@ -37,7 +40,7 @@ export class BranchComponent {
   private level: number;
 
   Refresh() {
-    SharedService.Auth.RefreshMySettings().subscribe(console.log);
+    this.authService.RefreshMySettings().subscribe(console.log);
   }
 
 

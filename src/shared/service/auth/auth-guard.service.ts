@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { CanActivate, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { AuthOptions, Refresh, IsAuth } from './auth.service';
+import { AuthOptions, AuthService } from './auth.service';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,18 +11,21 @@ const loginUrl = "/login";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
     if (state.url === loginUrl) {
       return true;
     }
 
-    if (!IsAuth()) {
+    if (!this.authService.IsAuth()) {
       return this.loginPage(route, state);
     }
 
-    return Refresh().map(ok => {
+    return this.authService.Refresh().map(ok => {
       if (!ok) {
         this.loginPage(route, state);
       }

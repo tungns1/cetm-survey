@@ -48,9 +48,10 @@ export class LoginComponent {
   })
   message = '';
 
-  constructor(public router: Router) {
-
-  }
+  constructor(
+    private authService: Auth.AuthService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
     if (this.IsLogin()) {
@@ -68,7 +69,7 @@ export class LoginComponent {
   }
 
   login(auto?: boolean) {
-    Auth.Login(this.loginForm.value).subscribe((v) => {
+    this.authService.Login(this.loginForm.value).subscribe((v) => {
       let redirect = Auth.AuthOptions.redirect;
       if (!redirect || redirect.length < 1) {
         redirect = '/';
@@ -81,11 +82,11 @@ export class LoginComponent {
   }
 
   logout() {
-    Auth.Logout();
+    this.authService.Logout();
   }
 
   private IsLogin() {
-    return Auth.IsAuth();
+    return this.authService.IsAuth();
   }
 }
 
