@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation,ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Api } from '../backend/time';
@@ -14,7 +14,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     encapsulation: ViewEncapsulation.None
 })
 export class TimeComponent {
-    disable=false;
+    disable = false;
     err = '';
     value = '';
     key = '';
@@ -31,7 +31,6 @@ export class TimeComponent {
         })
     }
     edit(s: ISetting) {
-        this.disable=true;
         this.setting = true;
         this.show = true;
         this.v = s;
@@ -39,7 +38,6 @@ export class TimeComponent {
         this.value = s.value;
     }
     add() {
-         this.disable=false;
         this.value = '';
         this.key = '';
         this.setting = false;
@@ -68,8 +66,10 @@ export class TimeComponent {
 
 
     Update() {
+        this.v.value=this.value;
         Api.Update(this.v).subscribe(_ => {
             this.show = false;
+            this.getAllSetting();
             Success("Sửa thành công");
         }, err => {
             this.err = err;
