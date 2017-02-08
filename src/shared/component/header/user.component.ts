@@ -2,7 +2,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from '../../service/';
-
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'user',
@@ -15,7 +15,11 @@ export class UserComponent {
         private router: Router
     ) { }
 
-    rxName = Auth.RxLoginedUser.map(u => u.fullname);
+    ngOnInit() {
+        this.username = this.authService.RxMySetting.map(d => d.me.fullname);
+    }
+
+    username= this.authService.RxMySetting.map(d => d.me.fullname)
 
     Logout() {
         this.authService.Logout();

@@ -1,6 +1,5 @@
 export * from './auth.service';
 export * from './auth-guard.service';
-export * from './my-settings';
 export * from './session.service';
 
 import { AuthService } from './auth.service';

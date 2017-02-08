@@ -12,24 +12,25 @@ export interface ISession {
   id?: string;
 }
 
-var sessionSetting = new Platform.LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-export const RxCurrentSession = new BehaviorSubject<ISession>(sessionSetting.data);
-
 @Injectable()
 export class SessionService {
   constructor(private appService: AppService) {
-
+    this.sessionSetting = new Platform.LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
   }
 
   Activate(session: ISession) {
-    sessionSetting.save(session);
-    RxCurrentSession.next(session);
+    this.sessionSetting.save(session);
+    RxCurrentToken.next(session.id);
   }
 
   Destroy() {
-    sessionSetting.save({});
-    RxCurrentSession.next({});
+    this.sessionSetting.save({});
+    RxCurrentToken.next('');
   }
+
+  private sessionSetting: Platform.LocalSetting<ISession>;
 }
+
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+export const RxCurrentToken = new BehaviorSubject<string>('');

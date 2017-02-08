@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/filter';
+
 import * as Loading from './loading';
 import { Log, Poller } from '../util';
 

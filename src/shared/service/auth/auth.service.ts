@@ -5,6 +5,9 @@ import { HttpError } from '../../../x/backend/';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { SetBranches } from '../../branch/';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Router } from '@angular/router';
 
 export const AuthOptions = {
     branch_code: '',
@@ -14,17 +17,27 @@ export const AuthOptions = {
 }
 
 import { Injectable } from '@angular/core';
-import { IMySettings, RxMySetting } from './my-settings';
-import { ISession, RxCurrentSession, SessionService } from './session.service';
+import { ISession, RxCurrentToken, SessionService } from './session.service';
+import { IUser, IBranch, Center, IConfig } from '../../model/';
+
+export interface IMySettings {
+    me: IUser;
+    branches: IBranch[];
+    services: Center.IService[];
+    config: IConfig;
+}
 
 @Injectable()
 export class AuthService {
     constructor(
+        private router: Router,
         private sessionService: SessionService
-    ) { }
+    ) {
+        // console.log('created auth');
+    }
 
     IsAuth() {
-        return RxCurrentSession.value.id;
+        return RxCurrentToken.value;
     }
 
     Login(form) {
@@ -38,14 +51,18 @@ export class AuthService {
 
     Logout() {
         this.sessionService.Destroy();
-        setTimeout(_ => {
-            window.location.reload();
-        }, 250);
+        this.router.navigateByUrl("/login");
+        // setTimeout(_ => {
+        //     window.location.reload();
+        // }, 250);
     }
 
     RefreshMySettings() {
-        return this.authBackend.Get<IMySettings>("my_settings", { scope: AuthOptions.scope }).map(v => {
-            RxMySetting.next(v);
+        return this.authBackend.Get<IMySettings>(
+            "my_settings",
+            { scope: AuthOptions.scope }
+        ).map(v => {
+            this.updateMySetting(v);
             return true;
         })
     }
@@ -65,5 +82,18 @@ export class AuthService {
         });
     }
 
+    private updateMySetting(v: IMySettings) {
+        Center.CacheService.Refresh(v.services);
+        if (v.me.branch_id) {
+            SetBranches(v.branches, v.me.branch_id);
+        }
+        this.rxMySetting.next(v);
+    }
+
+    get RxMySetting() {
+        return this.rxMySetting;
+    }
+
     private authBackend = new HttpApi<any>("/api/auth");
+    private rxMySetting = new ReplaySubject<IMySettings>(1);
 }

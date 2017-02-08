@@ -1,9 +1,10 @@
 import { Backend } from '../../shared';
-import { Component, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { HttpHost } from '../../config/';
-import { RxCurrentSession } from '../auth/';
+import { RxCurrentToken } from '../auth/';
 
+@Injectable()
 export class HttpApi<T> {
 
     constructor(uri: string) {
@@ -17,7 +18,7 @@ export class HttpApi<T> {
     }
 
     protected wrapToken(o?) {
-        return Object.assign({}, o, { token: RxCurrentSession.value.id });
+        return Object.assign({}, o, { token: RxCurrentToken.value });
     }
 
     MakeURL(sub: string, o?: any) {
