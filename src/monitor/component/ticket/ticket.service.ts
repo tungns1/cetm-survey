@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Backend, Model } from '../../shared';
+import { SharedService, Model } from '../../shared';
 import { ACTION, IAppState } from './reducers';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -19,7 +19,7 @@ export class MonitorTicketService {
         private store: Store<IAppState>
     ) { }
 
-    private socket = new Backend.AppSocket(MonitorSocketLink);
+    private socket = new SharedService.Backend.AppSocket(MonitorSocketLink);
 
     onInit() {
         this.socket.Connect({});

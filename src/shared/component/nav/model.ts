@@ -29,11 +29,7 @@ export const AdminMenu: Item[] = [
     { app: 'admin', href: "/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" }
 ]
 
-import { GetAppName } from '../../config/';
-export { GetAppName } from '../../config/';
-
-export function GetActiveItemIndex(url: string) {
-    let app = GetAppName();
+export function GetActiveItemIndex(app: string, url: string) {
     for (let i = AdminMenu.length - 1; i >= 0; i--) {
         let v = AdminMenu[i];
         if (v.app !== app) {

@@ -1,6 +1,5 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, ValueProvider } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
@@ -15,20 +14,29 @@ const routes: Routes = [
 ]
 
 import { I18n } from './shared';
+import { BranchModule } from './branch';
 
 @NgModule({
-    imports: [BrowserModule, ReactiveFormsModule, CommonModule, RouterModule.forChild(routes)],
+    imports: [
+        ReactiveFormsModule, CommonModule,
+        RouterModule.forChild(routes), I18n.TranslateModule
+    ],
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
-        RouterModule, CommonModule, BrowserModule,
-        FormsModule, ReactiveFormsModule, I18n.TranslateModule
+        RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
+        I18n.TranslateModule, BranchModule
     ]
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(appName: string): ModuleWithProviders {
+        const appServiceProvider = <ValueProvider>{
+            provide: AppService,
+            useValue: new AppService(appName)
+        };
+
         return {
             ngModule: SharedModule,
-            providers: [Auth.AuthGuard, AppService]
+            providers: [Auth.AuthGuard, appServiceProvider]
         }
     }
 }
