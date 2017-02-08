@@ -9,8 +9,8 @@ import { TicketHighlightDirective } from './ticket-highlight.directive';
 
 @NgModule({
     imports: [
-        SharedModule, Ng.Time.TimeModule, SelectCheckModule,
-        Ng.Modal.ModalModule, SharedPipe.UtilPipeModule
+        SharedModule, Ng.TimeModule, SelectCheckModule,
+        Ng.ModalModule, SharedPipe.UtilPipeModule
     ],
     declarations: [
         TicketDetailDialog, TicketDetailDirective,
@@ -19,7 +19,7 @@ import { TicketHighlightDirective } from './ticket-highlight.directive';
     exports: [
         SharedModule,
         TicketDetailDialog, TicketDetailDirective,
-        Ng.Time.TimeModule, SharedPipe.UtilPipeModule,
+        Ng.TimeModule, SharedPipe.UtilPipeModule,
         TicketTimerComopnent, TicketHighlightDirective
     ],
     entryComponents: [TicketDetailDialog]

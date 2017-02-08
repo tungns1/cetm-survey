@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Backend } from '../../../shared/';
+import { SharedService } from '../shared/';
 import { AbstractControl } from '@angular/forms';
 import { BaseUpdateComponent } from './update';
 
@@ -17,14 +17,14 @@ export class BaseEditorComponent<T> {
     constructor(
         protected componentFactoryResolver: ComponentFactoryResolver,
         protected viewContainerRef: ViewContainerRef,
-        protected service: Backend.HttpApi<T>,
+        protected service: SharedService.Backend.HttpApi<T>,
         protected updateComponent: typeof BaseUpdateComponent) { }
 
     dialog: ComponentRef<BaseUpdateComponent<T>>;
-    err:string;
+    err: string;
 
     editor(previous?: T) {
-        
+
         this.dialog = this.createDialog();
         this.dialog.instance.Init(previous);
         this.dialog.instance.Previous = previous;
@@ -62,7 +62,7 @@ export class BaseEditorComponent<T> {
             Success("Xóa thành công");
             this.Refresh();
         }, err => {
-            this.err=err.error;
+            this.err = err.error;
             Error(err.error);
         });
     }
@@ -73,7 +73,7 @@ export class BaseEditorComponent<T> {
             this.Refresh();
             this.closeDialog();
         }, err => {
-            this.err=err.error;
+            this.err = err.error;
             Error(err.error);
         });
     }
@@ -84,7 +84,7 @@ export class BaseEditorComponent<T> {
             this.Refresh();
             this.closeDialog();
         }, err => {
-            this.err=err.error;
+            this.err = err.error;
             Error(err.error);
         });
     }

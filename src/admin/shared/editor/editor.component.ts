@@ -1,14 +1,17 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ComponentRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { Backend } from '../../../shared/';
-import { ModalComponent } from '../../../x/ui/modal/';
-import { Toast } from '../../../x/ui/noti/';
+import { SharedService, Lib } from '../shared/';
 
-interface IEditService<T> {
-    api: Backend.HttpApi<T>;
+export interface IEditService<T> {
+    api: SharedService.Backend.HttpApi<T>;
     refresh: () => void;
     form: (u?: T) => FormGroup;
+}
+
+export interface IField {
+    name: string;
+    title: string;
 }
 
 @Component({
@@ -40,8 +43,8 @@ export class EditorComponent<T> {
         this.service.refresh();
     }
 
-    @ViewChild("edit") editorRef: ModalComponent;
-    @ViewChild("remove") removeRef: ModalComponent;
+    @ViewChild("edit") editorRef: Lib.Ng.ModalComponent;
+    @ViewChild("remove") removeRef: Lib.Ng.ModalComponent;
 
     onAdd() {
         this.current = null;
@@ -108,11 +111,11 @@ export class EditorComponent<T> {
 
 
 function Error(message: string) {
-    const toast = new Toast;
+    const toast = new Lib.Ui.Notification.Toast;
     toast.Title('Lỗi').Error(message).Show();
 }
 
 function Success(message: string) {
-    const toast = new Toast;
+    const toast = new Lib.Ui.Notification.Toast;
     toast.Title('Thành công').Info(message).Show();
 }

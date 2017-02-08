@@ -9,7 +9,7 @@ import { I18n, Ng } from '../../shared';
 import { ModalModule } from '../../../x/ng/modal';
 
 @NgModule({
-    imports: [CommonModule, I18n.TranslateModule, RouterModule, Ng.Modal.ModalModule],
+    imports: [CommonModule, I18n.TranslateModule, RouterModule, Ng.ModalModule],
     declarations: [HeaderComponent, LogoComponent, UserComponent, UserSettingComponent],
     exports: [HeaderComponent]
 })

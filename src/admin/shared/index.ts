@@ -1,8 +1,5 @@
-export * from '../../shared/';
-import { Branch } from '../../shared/';
 
-export const RxBranches = Branch.RxBranches;
-
+export * from './shared';
 import * as Editor from './editor/';
 import * as Form from './form/';
 

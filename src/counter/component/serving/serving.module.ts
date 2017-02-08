@@ -7,7 +7,7 @@ import { TicketComponent } from './ticket.component';
 import { I18n, Ng } from '../../shared';
 
 @NgModule({
-    imports: [TicketModule, Ng.Modal.ModalModule],
+    imports: [TicketModule, Ng.ModalModule],
     declarations: [ServingComponent, EmptyComponent, ActionComponent, TicketComponent],
     exports: [ServingComponent]
 })

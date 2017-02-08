@@ -1,8 +1,5 @@
+
 export * from './editor.module';
-export * from './declare';
+export * from './editor.component';
 
-import {EditorComponent} from './editor.component';
 
-export {
-    EditorComponent
-}

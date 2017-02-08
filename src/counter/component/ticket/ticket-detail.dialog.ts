@@ -92,7 +92,7 @@ export class TicketDetailDialog {
     this.alert.Open();
   }
 
-  @ViewChild(Ng.Modal.ModalComponent) protected alert: Ng.Modal.ModalComponent;
+  @ViewChild(Ng.ModalComponent) protected alert: Ng.ModalComponent;
   protected message = "";
   protected title = "";
 

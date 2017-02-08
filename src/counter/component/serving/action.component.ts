@@ -24,7 +24,7 @@ export class ActionComponent {
     pass = '';
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
-    @ViewChild(Ng.Modal.ModalComponent) needFeedback: Ng.Modal.ModalComponent;
+    @ViewChild(Ng.ModalComponent) needFeedback: Ng.ModalComponent;
 
     canMove() {
         return this.action == 'move' && this.CurrentTicket != null;
