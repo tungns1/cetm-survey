@@ -19,6 +19,7 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
 })
 export class ActionComponent {
     auto = autoNext;
+    td=ticketDialog;
     fbs = feedbackDone;
     action = '';
     username = '';
@@ -63,6 +64,7 @@ export class ActionComponent {
         if (!this.checkFinish()) {
             return;
         }
+        this.td.next(true);
         this.HandleAction();
     }
 
