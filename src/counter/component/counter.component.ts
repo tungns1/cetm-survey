@@ -1,6 +1,6 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RxCurrentCounter, socket } from './backend/index';
+import { RxCurrentCounter, socket } from '../service/';
 
 @Component({
     selector: 'app-counter',

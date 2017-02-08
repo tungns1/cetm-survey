@@ -13,3 +13,7 @@ export {
     SharedService, SharedPipe, SharedModule,
     NewBaseAppModule
 }
+
+
+import { enableProdMode } from '@angular/core';
+enableProdMode();

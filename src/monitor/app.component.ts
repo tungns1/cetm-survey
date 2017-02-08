@@ -8,10 +8,10 @@ import { SharedService } from './shared';
     `,
 })
 export class AppComponent {
-    constructor(private translate: SharedService.I18n.TranslateService) { }
+    constructor(private translate: SharedService.I18n.I18nService) { }
 
     ngOnInit() {
-        SharedService.I18n.AddLanguages(this.translate);
+        
     }
 
 } 

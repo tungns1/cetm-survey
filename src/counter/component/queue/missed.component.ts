@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Missed } from '../backend/queue';
-
-
-import { Model } from '../shared/';
+import { Missed } from '../../service/queue';
+import { Model } from '../../shared/';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 const search = new BehaviorSubject<string>('');

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Waiting } from '../backend/queue';
+import { Waiting } from '../../service/queue';
 
 @Component({
 

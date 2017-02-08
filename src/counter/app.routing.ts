@@ -1,13 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../shared/auth/';
+import { SharedService } from '../shared/';
 
-import { CounterComponent } from './counter.component';
+import { CounterComponent } from './component/';
 
 const routes: Routes = [
   {
     path: ':branch_code/:counter_code',
     component: CounterComponent,
-    canActivate: [AuthGuard]
+    canActivate: [SharedService.Auth.AuthGuard]
   }
 ];
 

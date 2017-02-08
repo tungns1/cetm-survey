@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Model } from '../shared/';
+import { Model } from '../../shared/';
 
 @Pipe({
     name: 'ticketServiceName'

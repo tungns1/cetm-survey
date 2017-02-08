@@ -1,4 +1,4 @@
-import { Session, Model } from '../shared';
+import { SharedService, Model } from '../../shared';
 import 'rxjs/add/operator/skip';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IsFeedbackAvailable } from './device/feedback';
@@ -7,7 +7,7 @@ const Feedback = {
     required: false
 }
 
-Session.RxMySetting.skip(1).subscribe(s => {
+SharedService.Session.RxMySetting.skip(1).subscribe(s => {
     if (s.config) {
         Object.assign(Feedback, s.config.feedback);
     }

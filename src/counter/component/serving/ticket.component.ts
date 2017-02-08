@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, Input } from '@angular/core';
-import { Model } from '../shared';
+import { Model } from '../../shared';
 
 @Component({
     selector: 'ticket',

@@ -1,5 +1,5 @@
-import {Directive, Input} from '@angular/core';
-import {Model} from '../shared';
+import { Directive, Input } from '@angular/core';
+import { Model } from '../../shared';
 
 
 const VipColor = 'cyan';

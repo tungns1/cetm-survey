@@ -1,5 +1,5 @@
 import { Component, OnChanges } from '@angular/core';
-import { RxBusy } from '../backend/queue';
+import { RxBusy } from '../../service/queue';
 
 @Component({
     selector: 'empty',

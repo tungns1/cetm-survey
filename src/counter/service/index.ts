@@ -2,7 +2,7 @@ export * from './socket';
 export * from './model';
 export { RxStat } from './stat';
 
-import { Init, ITicket, AddTicket, RemoveTicket ,feedbackDone} from './queue';
+import { Init, ITicket, AddTicket, RemoveTicket, feedbackDone } from './queue';
 import { socket } from './socket';
 import { IStatMap, RxStat } from './stat';
 import { RxCounters, RxCurrentCounter, RxServices, ICounter } from './model';
@@ -25,22 +25,25 @@ socket.Subscribe<ICounter[]>("/counters", c => {
 socket.Subscribe<any>("/tickets", Init);
 socket.Subscribe<Model.House.ITicket>('/add_ticket', AddTicket);
 socket.Subscribe<[Model.House.TicketState, string]>("/remove_ticket", ([prev, id]) => RemoveTicket(prev, id));
-socket.Subscribe<Model.House.ITicket>("/feedback_done", t=>{ AddTicket(t),feedbackDone.next(true)});
+socket.Subscribe<Model.House.ITicket>("/feedback_done", t => { AddTicket(t), feedbackDone.next(true) });
 socket.Subscribe<IStatMap>("/stat", stat => {
     RxStat.next(stat);
 });
 
 // set login user
-import { RxMySetting, IMySettings } from '../../shared/session/';
+import { SharedService } from '../../shared/';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
-combineLatest<boolean, IMySettings>(socket.rxConnected, RxMySetting).subscribe(([connected, my]) => {
-    if (connected && my && my.me) {
-        socket.Send("/set_user", { user_id: my.me.id }).subscribe();
-    }
-})
+const RxMySetting = SharedService.Session.RxMySetting;
 
-combineLatest<ICounter[], IMySettings>(RxCounters, RxMySetting)
+combineLatest<boolean, SharedService.Session.IMySettings>(socket.rxConnected, RxMySetting)
+    .subscribe(([connected, my]) => {
+        if (connected && my && my.me) {
+            socket.Send("/set_user", { user_id: my.me.id }).subscribe();
+        }
+    })
+
+combineLatest<ICounter[], SharedService.Session.IMySettings>(RxCounters, RxMySetting)
     .subscribe(([counters, my]) => {
         if (my && my.services && counters) {
             const servicable = {}

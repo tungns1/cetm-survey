@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
-
-// Component
+import { Branch, SharedService } from './shared/';
+import { NewBaseAppModule } from './shared/';
 import { AppComponent } from './app.component';
-import { CounterComponent } from './counter.component';
-import { QueueModule } from './queue/queue.module';
-import { StatModule } from './stat/stat.module';
-import { ServingModule } from './serving/serving.module';
 import { routing } from './app.routing';
-import { PageModule } from '../pages/pages.module';
-import { I18n } from '../shared/';
+import { CounterComponent, QueueModule, StatModule, ServingModule } from './component';
+
+const appName = "counter";
 
 @NgModule({
     imports: [
-        PageModule, routing,
-        QueueModule, StatModule, ServingModule,
-        I18n.forRoot("counter"),
+        NewBaseAppModule(appName), routing,
+        QueueModule, StatModule, ServingModule
     ],
     declarations: [AppComponent, CounterComponent],
     bootstrap: [AppComponent]
 })
-export default class CounterModule {
+export class AppModule {
+
 }
 
-import { Auth } from './shared/';
-Auth.AuthOptions.scope = "staff";
-Auth.AuthOptions.auto = true;
+SharedService.Auth.AuthOptions.scope = "staff";
+SharedService.Auth.AuthOptions.auto = true;

@@ -1,11 +1,10 @@
 import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Model } from '../shared';
+import { Model, Ng } from '../../shared';
 
-import { Move, CallFromMissed, Cancel } from '../backend/ticket';
-import { PassFeedbackRequirement, ICounter, RxCounters, RxCurrentCounter, RxServices } from '../backend/';
-import { Serving, autoNext, ticketDialog } from '../backend/queue';
-import { ModalComponent } from '../../x/ui/modal';
+import { Move, CallFromMissed, Cancel } from '../../service/ticket';
+import { PassFeedbackRequirement, ICounter, RxCounters, RxCurrentCounter, RxServices } from '../../service';
+import { Serving, autoNext, ticketDialog } from '../../service/queue';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
@@ -93,7 +92,7 @@ export class TicketDetailDialog {
     this.alert.Open();
   }
 
-  @ViewChild(ModalComponent) protected alert: ModalComponent;
+  @ViewChild(Ng.Modal.ModalComponent) protected alert: Ng.Modal.ModalComponent;
   protected message = "";
   protected title = "";
 

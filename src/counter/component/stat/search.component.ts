@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Search, ITicket } from '../backend/ticket';
-import { Model } from '../shared/';
+import { Search, ITicket } from '../../service/ticket';
+import { Model } from '../../shared';
 
 @Component({
     selector: 'search',
@@ -31,5 +31,5 @@ export class SearchComponent {
 
     stateKey(state: string) {
         return `STATE_${state.toUpperCase()}`;
-    } 
+    }
 }

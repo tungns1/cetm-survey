@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../backend/ticket';
-import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone, ticketDialog } from '../backend/queue';
+import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../../service/ticket';
+import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone, ticketDialog } from '../../service/queue';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ModalComponent } from '../../x/ui/modal/';
 import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
 import { combineLatest } from 'rxjs/observable/combineLatest';
-import { PassFeedbackRequirement } from '../backend/';
-import * as Status from '../backend/status';
-import { Toast } from '../../x/ui/noti/toastr';
+import { PassFeedbackRequirement } from '../../service';
+import * as Status from '../../service/status';
+import { Ui, Ng } from '../../shared';
 
 export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
     .filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
@@ -25,7 +24,7 @@ export class ActionComponent {
     pass = '';
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
-    @ViewChild(ModalComponent) needFeedback: ModalComponent;
+    @ViewChild(Ng.Modal.ModalComponent) needFeedback: Ng.Modal.ModalComponent;
 
     canMove() {
         return this.action == 'move' && this.CurrentTicket != null;
@@ -92,7 +91,7 @@ export class ActionComponent {
                 this.needFeedback.Close();
                 this.HandleAction();
             } else {
-                var toast = new Toast();
+                var toast = new Ui.Notification.Toast();
                 toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
             }
         });

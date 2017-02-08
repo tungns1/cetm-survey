@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-
-import { IStat } from '../backend/stat';
+import { IStat } from '../../service/stat';
 import { Observable } from 'rxjs/Observable';
-
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RxFinished, RxCancelled, SumStat } from '../backend/stat';
+import { RxFinished, RxCancelled, SumStat } from '../../service/stat';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 

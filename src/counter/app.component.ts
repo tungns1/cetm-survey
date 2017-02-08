@@ -1,15 +1,17 @@
-import { Component, OnInit, ApplicationRef, HostBinding, Input } from '@angular/core';
-import { I18n } from './shared';
+import { Component } from '@angular/core';
+import { SharedService } from './shared';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html'
+    selector: 'app-root',
+    template: `
+    <router-outlet></router-outlet>
+    `,
 })
 export class AppComponent {
-  constructor(private translate: I18n.TranslateService) { }
+    constructor(private translate: SharedService.I18n.I18nService) { }
 
-  ngOnInit() {
-    I18n.AddLanguages(this.translate);
-  }
+    ngOnInit() {
+        
+    }
 
 } 

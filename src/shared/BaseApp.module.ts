@@ -10,8 +10,12 @@ export function NewBaseAppModule(appName: string) {
     SetAppName(appName);
     @NgModule({
         imports: [
-            SharedModule.forRoot(appName), I18n.provideTranslateModule(appName),
+            SharedModule.forRoot(appName),
+            I18n.provideTranslateModule(appName),
             BrowserModule
+        ],
+        providers: [
+            I18n.I18nService.provider()
         ],
         exports: [
             SharedModule, NavModule, HeaderModule
