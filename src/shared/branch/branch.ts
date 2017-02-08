@@ -1,4 +1,4 @@
-import { IBranch } from '../../model/branch';
+import { IBranch } from '../model/branch';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export const RxBranches = new BehaviorSubject<IBranch[]>([]);
 export const Branches = new Map<string, IBranch>();
-export * from '../../model/branch';
+export * from '../model/branch';
 
 let maxLevel = 0;
 

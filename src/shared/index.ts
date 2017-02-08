@@ -1,13 +1,15 @@
-import * as Backend from './backend/index';
-import * as Auth from './auth/';
 import * as Branch from './branch/';
-import * as Session from './session/';
-
-import * as Model from '../model/';
-import * as I18n from './i18n/';
+import * as Model from './model/';
 import * as SharedPipe from './pipe/';
+import * as SharedConfig from './config/';
+import * as SharedService from './service/';
+
+import { SharedModule } from './shared.module';
+import { NewBaseAppModule } from './BaseApp.module';
 
 export {
-    SharedPipe, Backend, Auth, Branch, Session, Model,
-    I18n
+    Branch, Model,
+    SharedConfig,
+    SharedService, SharedPipe, SharedModule,
+    NewBaseAppModule
 }

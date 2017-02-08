@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Branch, Backend } from '../../shared';
+import { Branch } from '../../shared';
 import { FilterService } from '../../service';
 import { MonitorTicketService } from './ticket.service';
 

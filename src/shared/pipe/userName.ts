@@ -1,5 +1,5 @@
-import {Pipe} from '@angular/core';
-import {CacheUsers} from '../../model/';
+import { Pipe } from '@angular/core';
+import { CacheUsers } from '../model/';
 
 @Pipe({
     name: 'userFullName'
@@ -7,6 +7,6 @@ import {CacheUsers} from '../../model/';
 export class UserFullNamePipe {
     transform(user_id: string) {
         const u = CacheUsers.GetByID(user_id);
-        return u? u.fullname : 'n/a';
+        return u ? u.fullname : 'n/a';
     }
 }

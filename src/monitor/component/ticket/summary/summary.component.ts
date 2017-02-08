@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Branch, Backend } from '../../../shared';
+import { Branch } from '../../../shared';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Summary } from '../../../model';

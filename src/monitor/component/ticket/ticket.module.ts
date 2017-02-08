@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MonitorTicketComponent } from './ticket.component';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { I18n } from '../../shared';
+import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
 import { SummaryComponent } from './summary/summary.component';
 import { SharedPipe } from '../../shared';
@@ -36,8 +35,7 @@ import { StoreModule } from '@ngrx/store';
 
 @NgModule({
     imports: [
-        routing, CommonModule,
-        I18n.TranslateModule, SharedPipe.UtilPipeModule,
+        routing, SharedModule, SharedPipe.UtilPipeModule,
         StoreModule.provideStore(Reducers)
     ],
     providers: [
