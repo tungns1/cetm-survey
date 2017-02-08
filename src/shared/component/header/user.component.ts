@@ -1,7 +1,7 @@
 
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { Session, Auth } from '../../service/';
+import { Auth } from '../../service/';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class UserComponent {
         private router: Router
     ) { }
 
-    rxName = Session.RxLoginedUser.map(u => u.fullname);
+    rxName = Auth.RxLoginedUser.map(u => u.fullname);
 
     Logout() {
         this.authService.Logout();

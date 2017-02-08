@@ -15,8 +15,7 @@ export function NewBaseAppModule(appName: string) {
             BrowserModule
         ],
         providers: [
-            Auth.AuthGuard,
-            Auth.AuthService,
+            Auth.authProviders,
             I18n.I18nService.provider()
         ],
         exports: [

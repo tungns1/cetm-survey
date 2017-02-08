@@ -1,4 +1,3 @@
-import { ISession, Activate, Destroy, RxCurrentSession, IMySettings, RxMySetting } from '../session';
 import { Observable } from 'rxjs/Observable';
 import { HttpApi } from '../backend';
 import { HttpError } from '../../../x/backend/';
@@ -15,10 +14,14 @@ export const AuthOptions = {
 }
 
 import { Injectable } from '@angular/core';
+import { IMySettings, RxMySetting } from './my-settings';
+import { ISession, RxCurrentSession, SessionService } from './session.service';
 
 @Injectable()
 export class AuthService {
-    constructor() { }
+    constructor(
+        private sessionService: SessionService
+    ) { }
 
     IsAuth() {
         return RxCurrentSession.value.id;
@@ -28,13 +31,13 @@ export class AuthService {
         const values = Object.assign({}, AuthOptions, form);
         return this.authBackend.Post("login", values).map(v => {
             let session: ISession = v.session;
-            Activate(session);
+            this.sessionService.Activate(session);
             return session;
         })
     }
 
     Logout() {
-        Destroy();
+        this.sessionService.Destroy();
         setTimeout(_ => {
             window.location.reload();
         }, 250);

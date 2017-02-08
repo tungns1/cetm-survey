@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AppService } from '../app.service';
 import { Platform } from '../../shared';
 import { Const } from '../../shared';
 
@@ -13,15 +14,22 @@ export interface ISession {
 
 var sessionSetting = new Platform.LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
 
-export function Activate(session: ISession) {
-  sessionSetting.save(session);
-  RxCurrentSession.next(session);
-}
-
-export function Destroy() {
-  sessionSetting.save({});
-  RxCurrentSession.next({});
-}
-
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export const RxCurrentSession = new BehaviorSubject<ISession>(sessionSetting.data);
+
+@Injectable()
+export class SessionService {
+  constructor(private appService: AppService) {
+
+  }
+
+  Activate(session: ISession) {
+    sessionSetting.save(session);
+    RxCurrentSession.next(session);
+  }
+
+  Destroy() {
+    sessionSetting.save({});
+    RxCurrentSession.next({});
+  }
+}

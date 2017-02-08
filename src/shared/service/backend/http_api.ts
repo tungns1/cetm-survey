@@ -2,7 +2,7 @@ import { Backend } from '../../shared';
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { HttpHost } from '../../config/';
-import { RxCurrentSession } from '../session/';
+import { RxCurrentSession } from '../auth/';
 
 export class HttpApi<T> {
 
