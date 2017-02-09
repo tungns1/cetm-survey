@@ -123,3 +123,4 @@ export const RxBusy = Serving.RxData.map(v => v.length > 0);
 export const autoNext = new BehaviorSubject<boolean>(false);
 export const feedbackDone = new BehaviorSubject<boolean>(true);
 export const ticketDialog = new BehaviorSubject<boolean>(true);
+export const RxWaiting = Waiting.RxData.map(v => v.length > 0);

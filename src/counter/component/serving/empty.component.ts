@@ -1,5 +1,5 @@
 import { Component, OnChanges } from '@angular/core';
-import { RxBusy } from '../../service/queue';
+import { RxBusy, RxWaiting } from '../../service/queue';
 
 @Component({
     selector: 'empty',
@@ -7,5 +7,11 @@ import { RxBusy } from '../../service/queue';
     styleUrls: ['ticket.component.css']
 })
 export class EmptyComponent {
-    display = RxBusy.map(b => b? 'none': 'block');
+    display = RxBusy;
+    waiting = RxWaiting;
+    ngOnInit() {
+        if (this.waiting) {
+            setTimeout(function () { alert("Hello"); }, 60000 * 1);
+        }
+    }
 }
