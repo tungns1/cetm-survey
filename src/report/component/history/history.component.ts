@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { RxCount, RxHistory, RefreshHistory, ExportHistory } from '../../service/history.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IFilter, GetFilter } from '../filter/';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { SetRefresh } from '../../service/';
+import { SetRefresh, TransactionHistoryApi } from '../../service/';
 
 interface IPage {
     page: number;
@@ -22,7 +21,11 @@ const RxCurrentPage = new BehaviorSubject(1);
     styleUrls: ['history.component.css']
 })
 export class HistoryComponent {
-    data = RxHistory;
+    constructor(
+        private transactionHistoryApi: TransactionHistoryApi
+    ) { }
+
+    data = this.transactionHistoryApi.RxHistory;
     active: IFilter = null;
 
     ngOnInit() {
@@ -33,7 +36,7 @@ export class HistoryComponent {
         this.active = GetFilter();
         this.active.limit = pageSize;
         this.active.skip = pageSize * (RxCurrentPage.value - 1);
-        RefreshHistory(this.active);
+        this.transactionHistoryApi.Refresh(this.active);
     }
 
     chuyenTrang(value) {
@@ -45,7 +48,7 @@ export class HistoryComponent {
     current = RxCurrentPage;
     info = RxCurrentPage.map(c => `Hiển thị ${pageSize} GD từ số ${(c - 1) * pageSize + 1} đến số ${c * pageSize}`);
 
-    pages = Observable.combineLatest(RxCount, RxCurrentPage, (count, current) => {
+    pages = Observable.combineLatest(this.transactionHistoryApi.RxCount, RxCurrentPage, (count, current) => {
 
         const totalPage: number = Math.ceil(count / 15);
 
@@ -101,7 +104,7 @@ export class HistoryComponent {
     })
 
     excel() {
-        ExportHistory();
+        this.transactionHistoryApi.ExportHistory();
     }
 
 }

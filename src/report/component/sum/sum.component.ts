@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { AggregateView, RxSummaryView } from '../../service/aggregate.service';
+import { RxSummaryView } from '../../service/';
+import { AggregateView } from '../../model';
 
 @Component({
     selector: 'report-sum',

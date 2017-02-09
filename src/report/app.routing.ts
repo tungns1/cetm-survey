@@ -4,7 +4,7 @@ import { ReportComponent, ReportHistoryModule, ReportDashboardModule } from './c
 
 const children: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-    { path: 'lichsu', loadChildren: () => ReportHistoryModule },
+    { path: 'history', loadChildren: () => ReportHistoryModule },
     { path: 'dashboard', loadChildren: () => ReportDashboardModule },
     { path: 'sosanh', loadChildren: 'admin/report/compare/compare.module' },
 ];

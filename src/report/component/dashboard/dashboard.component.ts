@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
-import { SetRefresh, RefreshAggregate } from '../../service/';
+import { SetRefresh, AggregateService } from '../../service/';
 import { IFilter } from '../filter/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -8,9 +8,14 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent {
-    tag = 'general';
+    constructor(
+        private aggregateService: AggregateService
+    ) { }
+
+    tag = 'dashboard';
+    
     ngOnInit() {
-        SetRefresh(RefreshAggregate);
+        SetRefresh(this.aggregateService.Refresh.bind(this.aggregateService));
     }
 
     setActive(tab) {

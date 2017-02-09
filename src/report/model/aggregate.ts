@@ -18,7 +18,7 @@ export interface IAggregate {
     min_st?: number;
     min_wt?: number;
 
-     // max
+    // max
     max_st?: number;
     max_wt?: number;
 
@@ -103,7 +103,7 @@ export class AggregateView {
         if (this.min_st > s.min_st || this.min_st == 0) {
             this.min_st = s.min_st;
         }
-         if (this.max_wt < s.max_wt) {
+        if (this.max_wt < s.max_wt) {
             this.max_wt = s.max_wt;
         }
 
@@ -131,10 +131,10 @@ export class AggregateView {
     get c_ct() {
         return this.c_t - this.c_ft;
     }
-      get c_awt() {
+    get c_awt() {
         return this.c_t - this.c_bwt;
     }
-       get c_ast() {
+    get c_ast() {
         return this.c_ft - this.c_bst;
     }
 
@@ -187,7 +187,3 @@ export class AggregateView {
     }
 }
 
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-export const RxAggregate = new BehaviorSubject<IAggregate[]>([]);

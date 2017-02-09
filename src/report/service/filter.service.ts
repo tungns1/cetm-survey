@@ -161,3 +161,7 @@ export const Form = (new FormBuilder).group({
     start: [new Date(Date.now() - 30 * oneDay)],
     end: [new Date()]
 });
+
+export class FilterService {
+    
+}
