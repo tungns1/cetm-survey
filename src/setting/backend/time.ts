@@ -1,7 +1,8 @@
 import { FormBuilder, Validators } from '@angular/forms';
-import { Model, Backend } from '../../shared/';
+import {SharedService } from '../../shared/';
+import { ISetting } from '../../model/setting';
 
-export const Api = new Backend.HttpApi<Model.ISetting>("/api/setting");
+export const Api = new SharedService.Backend.HttpApi<ISetting>("/api/setting");
 
 
 import { Observable } from 'rxjs/Observable';
