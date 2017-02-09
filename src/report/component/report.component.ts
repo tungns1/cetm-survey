@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { Refresh } from '../service/';
-import { RxFilter, IFilter } from '../service/filter.service';
+import { FilterService } from '../service/';
+import { IFilter } from '../service/filter.service';
 
 @Component({
     selector: 'app-root',
@@ -10,9 +10,14 @@ import { RxFilter, IFilter } from '../service/filter.service';
 
 })
 export class ReportComponent {
+
+    constructor(
+        private fitlerService: FilterService
+    ) { }
+
     hidden = true;
     setFilter(filter: IFilter) {
-        Refresh(filter);
+        this.fitlerService.Refresh(filter);
     }
 
     excel() {

@@ -4,7 +4,7 @@ import { IFilter, GetFilter } from '../filter/';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { SetRefresh, TransactionHistoryApi } from '../../service/';
+import { FilterService, TransactionHistoryApi } from '../../service/';
 
 interface IPage {
     page: number;
@@ -22,6 +22,7 @@ const RxCurrentPage = new BehaviorSubject(1);
 })
 export class HistoryComponent {
     constructor(
+        private filterService: FilterService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
@@ -29,11 +30,11 @@ export class HistoryComponent {
     active: IFilter = null;
 
     ngOnInit() {
-        SetRefresh(this.refresh.bind(this));
+        this.filterService.SetRefresh(this.refresh.bind(this));
     }
 
     refresh() {
-        this.active = GetFilter();
+        this.active = this.filterService.GetFilter();
         this.active.limit = pageSize;
         this.active.skip = pageSize * (RxCurrentPage.value - 1);
         this.transactionHistoryApi.Refresh(this.active);

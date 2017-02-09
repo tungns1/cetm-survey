@@ -1,14 +1,11 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export const RxAggregate = new BehaviorSubject<IAggregate[]>([]);
-import { IAggregate, AggregateView } from '../model';
+import { IAggregate, AggregateView, IFilter } from '../model';
 import { SharedService } from '../shared/';
 
 const backendReport = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 
-import {
-    RxGroupBy, RxPeriod, RxFilter, IFilter, NameMap,
-    GetUsers, GetCounters, GetServices, GetBranch
-} from './filter.service';
+import { RxGroupBy, RxPeriod } from './filter.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -34,17 +31,17 @@ export const RxActiveAggregate = RxAggregate.map(v => {
 
     let ids: string[] = [];
     if (group_by === 'branch_id') {
-        ids = GetBranch();
+        // ids = GetBranch();
     } else if (group_by === 'service_id') {
-        ids = GetServices();
+        // ids = GetServices();
     } else if (group_by === 'counter_id') {
-        ids = GetCounters();
+        // ids = GetCounters();
     } else if (group_by === 'user_id') {
-        ids = GetUsers();
+        // ids = GetUsers();
     }
 
     views.forEach(v => {
-        v.name = NameMap.get(v[group_by]) || 'n/a';
+        // v.name = NameMap.get(v[group_by]) || 'n/a';
         v.Finalize();
 
         if (ids.indexOf(v[group_by]) != -1) {
@@ -54,7 +51,7 @@ export const RxActiveAggregate = RxAggregate.map(v => {
 
     ids.forEach(id => {
         let v = new AggregateView();
-        v.name = NameMap.get(id) || 'n/a';
+        // v.name = NameMap.get(id) || 'n/a';
         views.push(v);
     });
 

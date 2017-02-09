@@ -1,11 +1,15 @@
 import { ITransaction, IHistory, ITransactionView } from '../model';
 import { SharedService, Branch } from '../shared/';
-import { IFilter, GetFilter } from './filter.service';
+import { IFilter, FilterService } from './filter.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TransactionHistoryApi {
+    constructor(
+        private filterService: FilterService
+    ) { }
+
     Refresh(filter: IFilter) {
         let res = this.api.Get<IHistory>("read", filter).do(v => {
             console.log(v);
@@ -26,7 +30,7 @@ export class TransactionHistoryApi {
     RxHistory = new BehaviorSubject<ITransactionView[]>([]);
 
     ExportHistory() {
-        const url = this.api.MakeURL("export", GetFilter());
+        const url = this.api.MakeURL("export", this.filterService.GetFilter());
         window.open(url, "_blank");
     }
 

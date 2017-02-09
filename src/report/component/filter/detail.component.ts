@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RxCounters, RxServices, RxUsers } from '../../service/filter.service';
+import { FocusBranchService } from '../../service';
 import { Model } from '../../shared/';
 
 @Component({
@@ -14,14 +14,19 @@ import { Model } from '../../shared/';
     `
 })
 export class CounterSelectorComponent {
-    counters = RxCounters;
+
+    constructor(
+        private filterService: FocusBranchService
+    ) { }
+
+    counters = this.filterService.RxCounters;
     checkAll(event) {
         let selects: Model.House.ICounter[] = [];
-        RxCounters.value.forEach(u => {
+        this.filterService.RxCounters.value.forEach(u => {
             u._checked = event
             selects.push(u);
         });
-        RxCounters.next(selects);
+        this.filterService.RxCounters.next(selects);
     }
 }
 
@@ -38,15 +43,19 @@ export class CounterSelectorComponent {
     `
 })
 export class UserSelectorComponent {
-    users = RxUsers;
+    constructor(
+        private filterService: FocusBranchService
+    ) { }
+
+    users = this.filterService.RxUsers;
 
     checkAll(event) {
         let selects: Model.IUser[] = [];
-        RxUsers.value.forEach(u => {
+        this.filterService.RxUsers.value.forEach(u => {
             u._checked = event
             selects.push(u);
         });
-        RxUsers.next(selects);
+        this.filterService.RxUsers.next(selects);
     }
 }
 
@@ -61,26 +70,18 @@ export class UserSelectorComponent {
     `
 })
 export class ServiceSelectorComponent {
-    services = RxServices;
+    constructor(
+        private filterService: FocusBranchService
+    ) { }
+
+    services = this.filterService.RxServices;
     checkAll(event) {
         let selects: Model.Center.IService[] = [];
-        RxServices.value.forEach(u => {
+        this.services.value.forEach(u => {
             u._checked = event
             selects.push(u);
         });
-        RxServices.next(selects);
+        this.services.next(selects);
     }
 
-}
-
-import { Pipe, PipeTransform } from '@angular/core';
-import { NameMap } from '../../service/filter.service';
-
-@Pipe({
-    name: 'reportName'
-})
-export class ReportNamePipe implements PipeTransform {
-    transform(id: string) {
-        return NameMap[id] || 'n/a';
-    }
 }
