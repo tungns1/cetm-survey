@@ -6,17 +6,15 @@ import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
 
 import {
-    ReportNamePipe,
     CounterSelectorComponent, UserSelectorComponent, ServiceSelectorComponent
 } from './detail.component';
 
 @NgModule({
     imports: [SharedModule, DatePickerModule],
     declarations: [
-        ReportNamePipe,
         CounterSelectorComponent, UserSelectorComponent, ServiceSelectorComponent,
         ReportFilterComponent
     ],
-    exports: [ReportNamePipe, ReportFilterComponent],
+    exports: [ReportFilterComponent],
 })
 export class ReportFilterModule { }

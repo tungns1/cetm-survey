@@ -1,25 +1,14 @@
-// import { StartDate, EndDate } from '../shared/date-filter.component';
-// import { SelectedBranchIDLevel0 } from '../../../o/branch/branch.module';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-// import { ServiceCode, UserID, CounterID } from '../shared/branch-details.component';
-import { IAggregate, RxAggregate, AggregateView } from './aggregate.model';
+export const RxAggregate = new BehaviorSubject<IAggregate[]>([]);
+import { IAggregate, AggregateView, IFilter } from '../model';
 import { SharedService } from '../shared/';
 
 const backendReport = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 
-import { 
-    RxGroupBy, RxPeriod, RxFilter, IFilter, NameMap, 
-    GetUsers, GetCounters, GetServices, GetBranch 
-} from './filter.service';
-
-export function RefreshAggregate(filter: IFilter) {
-    let res = backendReport.Get<IAggregate[]>("aggregate", filter).do(v => RxAggregate.next(v));
-    res.subscribe();
-}
+import { RxGroupBy, RxPeriod } from './filter.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-export * from './aggregate.model';
 
 export const RxSummaryView = RxAggregate.map(AggregateView.Make);
 
@@ -42,17 +31,17 @@ export const RxActiveAggregate = RxAggregate.map(v => {
 
     let ids: string[] = [];
     if (group_by === 'branch_id') {
-        ids = GetBranch();
+        // ids = GetBranch();
     } else if (group_by === 'service_id') {
-        ids = GetServices();
+        // ids = GetServices();
     } else if (group_by === 'counter_id') {
-        ids = GetCounters();
+        // ids = GetCounters();
     } else if (group_by === 'user_id') {
-        ids = GetUsers();
+        // ids = GetUsers();
     }
 
     views.forEach(v => {
-        v.name = NameMap.get(v[group_by]) || 'n/a';
+        // v.name = NameMap.get(v[group_by]) || 'n/a';
         v.Finalize();
 
         if (ids.indexOf(v[group_by]) != -1) {
@@ -62,14 +51,18 @@ export const RxActiveAggregate = RxAggregate.map(v => {
 
     ids.forEach(id => {
         let v = new AggregateView();
-        v.name = NameMap.get(id) || 'n/a';
+        // v.name = NameMap.get(id) || 'n/a';
         views.push(v);
     });
 
     return views;
 });
 
-
-
+export class AggregateService {
+    Refresh(filter: IFilter) {
+        let res = backendReport.Get<IAggregate[]>("aggregate", filter).do(v => RxAggregate.next(v));
+        res.subscribe();
+    }
+}
 
 

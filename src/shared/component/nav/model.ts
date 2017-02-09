@@ -23,7 +23,7 @@ const settingMenu = [
 
 export const AdminMenu: Item[] = [
     { app: 'admin', href: "/branch/0", name: "MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
-    { app: 'report', href: "/tonghop", name: "REPORT", icon: "fa-line-chart" },
+    { app: 'report', href: "/dashboard", name: "REPORT", icon: "fa-line-chart" },
     { app: 'monitor', href: "/ticket", name: "MONITOR", icon: "fa-bell" },
     { app: 'admin', href: "/house/kiosk", name: "MANAGER_KIOSK", icon: "fa-ticket" },
     { app: 'admin', href: "/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" }

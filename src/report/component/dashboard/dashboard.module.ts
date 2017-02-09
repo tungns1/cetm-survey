@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-    GeneralComponent
-} from './general.component';
+    DashboardComponent
+} from './dashboard.component';
 import { SharedService } from '../../shared';
 
 import { Routes, RouterModule } from '@angular/router'
@@ -10,7 +10,7 @@ import { Routes, RouterModule } from '@angular/router'
 const routing = RouterModule.forChild([
     {
         path: '',
-        component: GeneralComponent
+        component: DashboardComponent
     }
 ]);
 
@@ -25,9 +25,9 @@ import { ReportTabModule } from '../tab/tab.module';
         routing, ReportSumModule, ReportOverviewModule, ReportChartModule,
         ReportTabModule, CommonModule, SharedService.I18n.TranslateModule],
     declarations: [
-        GeneralComponent
+        DashboardComponent
     ]
 })
-export class ReportGeneralModule {
+export class ReportDashboardModule {
 
 }

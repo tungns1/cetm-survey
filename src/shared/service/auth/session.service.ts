@@ -28,6 +28,11 @@ export class SessionService {
     RxCurrentToken.next('');
   }
 
+  GetToken() {
+    console.log('get token', this.sessionSetting.data.id);
+    return this.sessionSetting.data.id;
+  }
+
   private sessionSetting: Platform.LocalSetting<ISession>;
 }
 

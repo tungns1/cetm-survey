@@ -18,7 +18,7 @@ export class HttpApi<T> {
     }
 
     protected wrapToken(o?) {
-        return Object.assign({}, o, { token: RxCurrentToken.value });
+        return Object.assign({}, { token: RxCurrentToken.value }, o);
     }
 
     MakeURL(sub: string, o?: any) {

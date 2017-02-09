@@ -37,7 +37,7 @@ export class AuthService {
     }
 
     IsAuth() {
-        return RxCurrentToken.value;
+        return this.sessionService.GetToken();
     }
 
     Login(form) {
@@ -60,11 +60,11 @@ export class AuthService {
     RefreshMySettings() {
         return this.authBackend.Get<IMySettings>(
             "my_settings",
-            { scope: AuthOptions.scope }
+            { scope: AuthOptions.scope, token: this.sessionService.GetToken() }
         ).map(v => {
             this.updateMySetting(v);
             return true;
-        })
+        });
     }
 
     Refresh() {

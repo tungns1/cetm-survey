@@ -138,7 +138,7 @@ export const RxItemPie = new BehaviorSubject<MyItem[][]>([]);
 export const RxW = new BehaviorSubject<number>(0);
 
 
-import {combineLatest} from 'rxjs/observable/combineLatest';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 
 const I18n = SharedService.I18n;
@@ -187,7 +187,7 @@ export function TogglePie(item: MyItem) {
 }
 import { timeParse } from 'd3-time-format';
 
-import { IAggregate, AggregateView, RxSummaryView, RxAggregate, MakeIndexBy } from '../../service/aggregate.service';
+import { RxAggregate, MakeIndexBy } from '../../service/aggregate.service';
 import { RxPeriod } from '../filter/';
 
 const timeDay = timeParse("%Y-%m-%d");
