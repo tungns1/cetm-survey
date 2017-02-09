@@ -1,0 +1,30 @@
+.ft {
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin: 20px 100px 20px 0px;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    line-height: 30px;
+    background-color: #fff;
+    color: #0b8fdb;
+    border: 1px solid #0b8fdb;
+}
+
+.actives {
+    color: #0b8fdb;
+    border-bottom: 3px solid #0b8fdb;
+}
+
+label {
+    margin: 0px 10px;
+}
+
+tab {
+    margin-left: 20px;
+}

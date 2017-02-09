@@ -1,5 +1,5 @@
 <div style="padding:10px 10px;">
-    <div [style.display]="display | async">
+    <div *ngIf="!(display | async)">
         <div class="service" translate> SERVICE_NAME</div>
         <div class="padding">
         </div>
