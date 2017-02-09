@@ -60,6 +60,9 @@ export const RxActiveAggregate = RxAggregate.map(v => {
 
 export class AggregateService {
     Refresh(filter: IFilter) {
+        if (filter.branch_id === 'all') {
+            filter.branch_id = '';
+        }
         let res = backendReport.Get<IAggregate[]>("aggregate", filter).do(v => RxAggregate.next(v));
         res.subscribe();
     }

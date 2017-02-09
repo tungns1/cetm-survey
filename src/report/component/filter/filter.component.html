@@ -60,19 +60,22 @@
         <div>
             <div class="tl" (click)="active='dichvu'"><span translate>SELECT_SERVICE</span><i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='dichvu'}">
-                <service-selector></service-selector>
+                <select-check formControlName="service_id" [data]="services$ | async" textField="name">
+                </select-check>
             </div>
         </div>
         <div>
             <div class="tl" (click)="active='quay';"><span translate>SELECT_COUNTER</span><i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='quay'}">
-                <counter-selector></counter-selector>
+                <select-check formControlName="counter_id" [data]="counters$ | async" textField="name">
+                </select-check>
             </div>
         </div>
         <div>
             <div class="tl" (click)="active='nhanvien'"><span translate> SELECT_STAFF</span><i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
             <div class="select" [ngClass]="{'hidden': active!='nhanvien'}">
-                <user-selector></user-selector>
+                <select-check formControlName="user_id" [data]="users$ | async" textField="fullname">
+                </select-check>
             </div>
         </div>
         <div style=" padding: 20px 20px;">

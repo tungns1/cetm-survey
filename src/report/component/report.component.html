@@ -1,5 +1,3 @@
-<!--<md-icon style="cursor:pointer;position:absolute;" (click)="show=!show" title="Hiển thị bộ lọc"> menu</md-icon>-->
-
 <app-header>
     <div class="module-name"> Báo Cáo </div>
 </app-header>
@@ -9,7 +7,7 @@
 <br>
 <div class="container" style="height:100vh;">
     <div class="aside">
-        <report-filter *ngIf="hidden" style="padding-top: 50px;" (filter)="setFilter($event)"></report-filter>
+        <report-filter *ngIf="hidden" style="padding-top: 50px;"></report-filter>
         <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color: gray;" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
         <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color:gray;" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
     </div>

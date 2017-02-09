@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FilterService, AggregateService } from '../../service/';
-import { IFilter } from '../filter/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -10,17 +10,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DashboardComponent {
     constructor(
         private aggregateService: AggregateService,
-        private filterService: FilterService
+        private route: ActivatedRoute
     ) { }
 
-    tag = 'dashboard';
-
     ngOnInit() {
-        this.filterService.SetRefresh(this.aggregateService.Refresh.bind(this.aggregateService));
+        this.route.queryParams.subscribe(query => {
+            this.aggregateService.Refresh(Object.assign({}, query));
+        });
     }
-
-    setActive(tab) {
-        this.tag = tab.tag;
-    }
-
 }
