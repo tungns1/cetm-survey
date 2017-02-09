@@ -28,16 +28,22 @@ type ServiceList = Model.Center.IService[];
 })
 export class KioskComponent {
 
+    constructor(
+        private layoutApi: Center.Layout.LayoutApi,
+        private serviceApi: Center.Service.ServiceApi,
+        private kioskApi: House.Kiosk.KioskApi
+    ) { }
+
     service: Editor.IEditService<Model.House.IKiosk> = {
-        api: House.Kiosk.Api,
+        api: this.kioskApi,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
-    data = House.Kiosk.AutoRefresh();
+    data = this.kioskApi.AutoRefresh();
     kiosks = this.data.map(values => values.filter(v => v.inheritable));
-    services = Center.Service.GetAll();
-    layouts = Center.Layout.GetByType('kiosk');
+    services = this.serviceApi.GetAll();
+    layouts = this.layoutApi.GetByType('kiosk');
 
     fields = [
         { title: 'LABEL_SUB_BRANCH', name: 'branch' },

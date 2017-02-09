@@ -25,14 +25,19 @@ function NewForm(b?: Model.House.ICounter) {
 })
 export class CounterComponent {
 
+    constructor(
+        private counterApi: House.Counter.CounterApi,
+        private serviceApi: Center.Service.ServiceApi
+    ) { }
+
     service: Editor.IEditService<Model.House.ICounter> = {
-        api: House.Counter.Api,
+        api: this.counterApi,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
-    data = House.Counter.AutoRefresh();
-    services = Center.Service.GetAll();
+    data = this.counterApi.AutoRefresh();
+    services = this.serviceApi.GetAll();
 
     fields = [
         { title: 'LABEL_SUB_BRANCH', name: 'branch' },

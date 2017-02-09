@@ -20,17 +20,20 @@ function NewForm(u?: Model.IUser) {
 @Component({
   selector: 'admin-user',
   templateUrl: 'user.component.html',
-   styleUrls: ['user.component.css']
+  styleUrls: ['user.component.css']
 })
 export class UserComponent {
+  constructor(
+    private userApi: User.UserApi
+  ) { }
 
   service: Editor.IEditService<Model.IUser> = {
-    api: User.Api,
+    api: this.userApi,
     form: NewForm,
     refresh: () => this.users.refresh()
   };
 
-  users = User.AutoRefresh();
+  users = this.userApi.AutoRefresh();
   private roles = Model.AllRoles;
   private branches = Branch.LowestLayerBranch;
 

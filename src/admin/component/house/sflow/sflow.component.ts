@@ -21,16 +21,22 @@ export function NewSFlowForm(b?: Model.House.ISFlow) {
 })
 export class SFlowComponent {
 
+    constructor(
+        private serviceApi: Center.Service.ServiceApi,
+        private tformApi: Center.TForm.TFormApi,
+        private sflowApi: House.SFlow.SFlowApi
+    ) { }
+
     service: Editor.IEditService<Model.House.ISFlow> = {
-        api: House.SFlow.Api,
+        api: this.sflowApi,
         form: NewSFlowForm,
         refresh: () => this.data.refresh()
     };
 
-    data = House.SFlow.AutoRefresh();
-    services = Center.Service.GetAll();
-    tforms = Center.TForm.AutoRefresh();
-    tformVips = Center.TForm.AutoRefresh();
+    data = this.sflowApi.AutoRefresh();
+    services = this.serviceApi.GetAll();
+    tforms = this.tformApi.AutoRefresh();
+    tformVips = this.tformApi.AutoRefresh();
 
     fields = [
         { title: 'LABEL_SUB_BRANCH', name: 'branch' },

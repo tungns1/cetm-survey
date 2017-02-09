@@ -23,22 +23,25 @@ function NewForm(b?: Model.Center.ILayout) {
 })
 export class LayoutComponent {
 
-    constructor(private route: ActivatedRoute) {
+    constructor(
+        private layoutApi: Center.Layout.LayoutApi,
+        private route: ActivatedRoute
+    ) {
         route.queryParams.forEach(v => {
             this.tag = v['tag'] || 'kiosk,screen';
-            this.data = Center.Layout.AutoRefresh(this.tag);
+            this.data = this.layoutApi.AutoRefresh(this.tag);
         })
     }
 
     tag: string;
 
     service: Editor.IEditService<Model.Center.ILayout> = {
-        api: Center.Layout.Api,
+        api: this.layoutApi,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
-    data = Center.Layout.AutoRefresh('kiosk,screen');
+    data = this.layoutApi.AutoRefresh('kiosk,screen');
 
     fields = [
         { title: 'LABEL_NAME', name: 'name' },

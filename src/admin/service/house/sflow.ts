@@ -1,13 +1,18 @@
 import { Model, Branch, SharedService } from '../../shared/';
-
-export const Api = new SharedService.Backend.HttpApi<Model.House.ISFlow>("/api/admin/house/sflow");
-
-export function GetByBranch(branch_id: string) {
-    return Branch.AddBranchName<Model.House.ISFlow>(Api.Search({ branch_id: branch_id }));
-}
-
 import { RepeatedObservable } from '../rx';
+import { Injectable } from '@angular/core';
 
-export function AutoRefresh() {
-    return new RepeatedObservable(Branch.SelectedBranchIDLevel0, GetByBranch);
+@Injectable()
+export class SFlowApi extends SharedService.Backend.HttpApi<Model.House.ISFlow> {
+    constructor() {
+        super("/api/admin/house/sflow");
+    }
+
+    GetByBranch(branch_id: string) {
+        return Branch.AddBranchName<Model.House.ISFlow>(this.Search({ branch_id: branch_id }));
+    }
+
+    AutoRefresh() {
+        return new RepeatedObservable(Branch.SelectedBranchIDLevel0, b => this.GetByBranch(b));
+    }
 }

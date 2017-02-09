@@ -1,5 +1,4 @@
 import { Component, HostBinding } from '@angular/core';
-import { Branch } from '../shared/';
 
 @Component({
   selector: 'admin-house',

@@ -1,14 +1,18 @@
-import { FormBuilder, Validators } from '@angular/forms';
-import { Model, Branch, SharedService } from '../../shared/';
-
-export const Api = new SharedService.Backend.HttpApi<Model.Center.ILayout>("/api/admin/center/layout");
-
+import { Model, SharedService } from '../../shared/';
 import { RefreshObservable } from '../rx';
+import { Injectable } from '@angular/core';
 
-export function GetByType(type: string) {
-    return Api.Search({ type: type });
-}
+@Injectable()
+export class LayoutApi extends SharedService.Backend.HttpApi<Model.Center.ILayout> {
+    constructor() {
+        super("/api/admin/center/layout");
+    }
 
-export function AutoRefresh(type: string) {
-    return new RefreshObservable(() => GetByType(type));
+    GetByType(type: string) {
+        return this.Search({ type: type });
+    }
+
+    AutoRefresh(type: string) {
+        return new RefreshObservable(() => this.GetByType(type));
+    }
 }

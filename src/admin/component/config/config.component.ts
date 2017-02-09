@@ -18,14 +18,17 @@ function NewForm(u?: Model.IConfig) {
   templateUrl: 'config.component.html'
 })
 export class ConfigComponent {
+  constructor(
+    private configApi: Config.ConfigApi
+  ) { }
 
   service: Editor.IEditService<Model.IConfig> = {
-    api: Config.Api,
+    api: this.configApi,
     form: NewForm,
     refresh: () => this.data.refresh()
   };
 
-  data = Config.AutoRefresh();
+  data = this.configApi.AutoRefresh();
   private branches = Branch.LowestLayerBranch;
 
   fields = [

@@ -18,18 +18,21 @@ function NewForm(b?: Model.Center.ITForm) {
 @Component({
     selector: 'center-tform',
     templateUrl: 'tform.component.html',
-     styleUrls: ['tform.component.css']
+    styleUrls: ['tform.component.css']
 })
 export class TFormComponent {
+    constructor(
+        private tformApi: Center.TForm.TFormApi
+    ) { }
 
     service: Editor.IEditService<Model.Center.ITForm> = {
-        api: Center.TForm.Api,
+        api: this.tformApi,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
-    data = Center.TForm.AutoRefresh();
-    
+    data = this.tformApi.AutoRefresh();
+
     fields = [
         { title: 'Code', name: 'code' }
     ]

@@ -20,13 +20,6 @@ function NewForm(b?: Model.Center.ILayout) {
 })
 export class LayoutComponent {
 
-    service: Editor.IEditService<Model.Center.ILayout> = {
-        api: Center.Layout.Api,
-        form: NewForm,
-        refresh: () => this.data.refresh()
-    };
-
-    data = Center.Layout.AutoRefresh('');
     
     fields = [
         { title: 'LABEL_NAME', name: 'name' },

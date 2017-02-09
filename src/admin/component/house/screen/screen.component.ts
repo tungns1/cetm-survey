@@ -23,19 +23,25 @@ function NewForm(b?: Model.House.IScreen) {
 @Component({
     selector: 'house-screen',
     templateUrl: 'screen.component.html',
-     styleUrls: ['screen.component.css']
+    styleUrls: ['screen.component.css']
 })
 export class ScreenComponent {
 
+    constructor(
+        private layoutApi: Center.Layout.LayoutApi,
+        private counterApi: House.Counter.CounterApi,
+        private screenApi: House.Screen.ScreenApi
+    ) { }
+
     service: Editor.IEditService<Model.House.IScreen> = {
-        api: House.Screen.Api,
+        api: this.screenApi,
         form: NewForm,
         refresh: () => this.data.refresh()
     };
 
-    data = House.Screen.AutoRefresh();
+    data = this.screenApi.AutoRefresh();
     screens = this.data.map(values => values.filter(v => v.inheritable));
-    layouts = Center.Layout.GetByType('screen');
+    layouts = this.layoutApi.GetByType('screen');
     counters: Model.House.ICounter[] = [];
 
     onEdit(form: FormGroup) {
@@ -43,7 +49,7 @@ export class ScreenComponent {
     }
 
     onBranchChange(branch_id: string) {
-        House.Counter.GetByBranch(branch_id).subscribe(v => this.counters = v);
+        this.counterApi.GetByBranch(branch_id).subscribe(v => this.counters = v);
     }
 
     fields = [

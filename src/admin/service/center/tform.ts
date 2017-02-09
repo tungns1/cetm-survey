@@ -1,10 +1,14 @@
-import { FormBuilder, Validators } from '@angular/forms';
-import { Model, Branch, SharedService } from '../../shared/';
-
-export const Api = new SharedService.Backend.HttpApi<Model.Center.ITForm>("/api/admin/center/tform");
-
+import { Model, SharedService } from '../../shared/';
 import { RefreshObservable } from '../rx';
+import { Injectable } from '@angular/core';
 
-export function AutoRefresh() {
-    return new RefreshObservable(() => Api.Search({}));
+@Injectable()
+export class TFormApi extends SharedService.Backend.HttpApi<Model.Center.ITForm> {
+    constructor() {
+        super("/api/admin/center/tform");
+    }
+
+    AutoRefresh() {
+        return new RefreshObservable(() => this.Search({}));
+    }
 }

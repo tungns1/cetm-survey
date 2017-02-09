@@ -23,16 +23,20 @@ export function NewServiceForm(b?: Model.Center.IService) {
     styleUrls: ['service.component.css']
 })
 export class ServiceComponent {
+    constructor(
+        private serviceApi: Center.Service.ServiceApi,
+        private tformApi: Center.TForm.TFormApi
+    ) { }
 
     service: Editor.IEditService<Model.Center.IService> = {
-        api: Center.Service.Api,
+        api: this.serviceApi,
         form: NewServiceForm,
         refresh: () => this.data.refresh()
     };
 
-    data = Center.Service.AutoRefresh();
-    tforms = Center.TForm.AutoRefresh();
-    tformVips = Center.TForm.AutoRefresh();
+    data = this.serviceApi.AutoRefresh();
+    tforms = this.tformApi.AutoRefresh();
+    tformVips = this.tformApi.AutoRefresh();
 
     fields = [
         { title: 'LABEL_NAME_SERVICE', name: 'name' },
