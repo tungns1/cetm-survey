@@ -1,11 +1,11 @@
 import { Routes, RouterModule } from '@angular/router'
 import { SharedService } from './shared/';
-import { ReportComponent, ReportHistoryModule, ReportGeneralModule } from './component';
+import { ReportComponent, ReportHistoryModule, ReportDashboardModule } from './component';
 
 const children: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'tonghop' },
+    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     { path: 'lichsu', loadChildren: () => ReportHistoryModule },
-    { path: 'tonghop', loadChildren: () => ReportGeneralModule },
+    { path: 'dashboard', loadChildren: () => ReportDashboardModule },
     { path: 'sosanh', loadChildren: 'admin/report/compare/compare.module' },
 ];
 

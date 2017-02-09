@@ -3,12 +3,11 @@ import { SetRefresh, RefreshAggregate } from '../../service/';
 import { IFilter } from '../filter/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-
 @Component({
-    selector: 'general',
-    templateUrl: 'general.component.html'
+    selector: 'dashboard',
+    templateUrl: 'dashboard.component.html'
 })
-export class GeneralComponent {
+export class DashboardComponent {
     tag = 'general';
     ngOnInit() {
         SetRefresh(RefreshAggregate);

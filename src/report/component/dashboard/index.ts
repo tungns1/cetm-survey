@@ -1,1 +1,1 @@
-export * from './general.module';
+export * from './dashboard.module';
