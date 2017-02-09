@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { FilterService, AggregateService } from '../../service/';
-import { IFilter } from '../filter/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
