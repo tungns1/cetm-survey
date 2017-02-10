@@ -1,5 +1,5 @@
 
-import { Cache } from '../shared/';
+import { Cache } from '../../shared/';
 
 export interface IUser extends Cache.ID {
     branch_id?: string;
