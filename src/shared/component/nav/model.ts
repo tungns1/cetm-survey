@@ -9,20 +9,20 @@ export class Item {
 }
 
 const settingMenu = [
-    { app: 'admin', href: "/branch/2", name: "CITY" },
-    { app: 'admin', href: "/branch/1", name: "BRANCH" },
-    { app: 'admin', href: "/branch/0", name: "TRANSACTION_ROOM" },
+    { app: 'admin', href: "/org/branch/2", name: "CITY" },
+    { app: 'admin', href: "/org/branch/1", name: "BRANCH" },
+    { app: 'admin', href: "/org/branch/0", name: "TRANSACTION_ROOM" },
     { app: 'admin', href: "/center/tform", name: 'TICKET_NUMBER' },
     { app: 'admin', href: "/center/service", name: 'SERVICE' },
     { app: 'admin', href: '/config', name: 'SETTING' },
     { app: 'admin', href: '/house/sflow', name: 'STREAM_SERVICE_LOCAL' },
     { app: 'admin', href: "/house/counter", name: "COUNTER" },
-    { app: 'admin', href: "/user", name: "USER", icon: "fa-user" },
+    { app: 'admin', href: "/org/user", name: "USER", icon: "fa-user" },
 ]
 
 
 export const AdminMenu: Item[] = [
-    { app: 'admin', href: "/branch/0", name: "MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
+    { app: 'admin', href: "/org/branch/0", name: "MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
     { app: 'report', href: "/dashboard", name: "REPORT", icon: "fa-line-chart" },
     { app: 'monitor', href: "/ticket", name: "MONITOR", icon: "fa-bell" },
     { app: 'admin', href: "/house/kiosk", name: "MANAGER_KIOSK", icon: "fa-ticket" },

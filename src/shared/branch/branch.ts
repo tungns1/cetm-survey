@@ -1,4 +1,4 @@
-import { IBranch } from '../model/branch';
+import { Org } from '../model/';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -7,15 +7,15 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export const RxBranches = new BehaviorSubject<IBranch[]>([]);
-export const Branches = new Map<string, IBranch>();
-export * from '../model/branch';
+export const RxBranches = new BehaviorSubject<Org.IBranch[]>([]);
+export const Branches = new Map<string, Org.IBranch>();
+export * from '../model/';
 
 let maxLevel = 0;
 
 export class BranchLayer {
-    constructor(private level: number, private rxParents: BehaviorSubject<IBranch[]>) {
-        combineLatest<IBranch[], IBranch[]>(RxBranches, rxParents).subscribe(
+    constructor(private level: number, private rxParents: BehaviorSubject<Org.IBranch[]>) {
+        combineLatest<Org.IBranch[], Org.IBranch[]>(RxBranches, rxParents).subscribe(
             ([branches, parents]) => {
                 const layer = branches.filter(b => {
                     if (b.level === level) {
@@ -35,8 +35,8 @@ export class BranchLayer {
         });
     }
 
-    shown = new BehaviorSubject<IBranch[]>([]);
-    selected = new BehaviorSubject<IBranch[]>([]);
+    shown = new BehaviorSubject<Org.IBranch[]>([]);
+    selected = new BehaviorSubject<Org.IBranch[]>([]);
 
     ChangeByID(id: string, value: boolean) {
         this.shown.value.forEach(b => {
@@ -65,9 +65,9 @@ export class BranchLayer {
 
 
 export const SelectedBranchIDLevel0 = new BehaviorSubject<string>('');
-export const LowestLayerBranch = new BehaviorSubject<IBranch[]>([]);
+export const LowestLayerBranch = new BehaviorSubject<Org.IBranch[]>([]);
 
-const Level3 = new BranchLayer(3, new BehaviorSubject<IBranch[]>([]));
+const Level3 = new BranchLayer(3, new BehaviorSubject<Org.IBranch[]>([]));
 const Level2 = new BranchLayer(2, Level3.selected);
 const Level1 = new BranchLayer(1, Level2.selected);
 const Level0 = new BranchLayer(0, Level1.selected);
@@ -79,9 +79,9 @@ Level0.selected.subscribe(branches => {
     LowestLayerBranch.next(layer.selected.value);
 });
 
-export const RxMax = new BehaviorSubject<IBranch>(null);
+export const RxMax = new BehaviorSubject<Org.IBranch>(null);
 
-export function SetBranches(branches: IBranch[], maxBranchID: string) {
+export function SetBranches(branches: Org.IBranch[], maxBranchID: string) {
     let branch = branches.find(b => b.id === maxBranchID);
     maxLevel = branch? branch.level : 0;
     branches.forEach(b => Branches.set(b.id, b));

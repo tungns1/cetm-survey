@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { User } from '../../service/';
+import { User } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../../shared/';
+import { Branch, Editor, Model } from '../../../shared/';
 
-function NewForm(u?: Model.IUser) {
+function NewForm(u?: Model.Org.IUser) {
   u = u || <any>{};
   return (new FormBuilder).group({
     id: [u.id],
@@ -27,7 +27,7 @@ export class UserComponent {
     private userApi: User.UserApi
   ) { }
 
-  service: Editor.IEditService<Model.IUser> = {
+  service: Editor.IEditService<Model.Org.IUser> = {
     api: this.userApi,
     form: NewForm,
     refresh: () => this.users.refresh()

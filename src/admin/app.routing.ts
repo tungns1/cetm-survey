@@ -1,24 +1,19 @@
 import { Routes, RouterModule } from '@angular/router';
 import { SharedService } from './shared/';
 import {
-  AdminComponent, BranchComponent, UserComponent,
+  AdminComponent, OrgModule,
   CenterModule, HouseModule, ConfigModule
 } from './component';
-
 
 const children: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'branch/0'
+    redirectTo: 'org'
   },
   {
-    path: 'user',
-    component: UserComponent
-  },
-  {
-    path: 'branch/:level',
-    component: BranchComponent
+    path: 'org',
+    loadChildren: () => OrgModule
   },
   {
     path: 'config',

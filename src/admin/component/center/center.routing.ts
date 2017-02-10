@@ -6,7 +6,7 @@ import { CenterComponent } from './center.component';
 
 const children: Routes = [
   {
-    path: 'center',
+    path: '',
     pathMatch: 'full',
     redirectTo: 'service'
   },

@@ -1,6 +1,6 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { IBranch, RxBranches } from './branch';
+import { Org, RxBranches } from './branch';
 
 var branchNames = {};
 

@@ -1,7 +1,7 @@
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { IBranch, GetLayer, BranchLayer } from './branch';
+import { Org, GetLayer, BranchLayer } from './branch';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
@@ -30,7 +30,7 @@ export class MultiBranchSelectorComponent {
     }
 
     checkAll(event) {
-        let selects: IBranch[] = [];
+        let selects: Org.IBranch[] = [];
         this.o.shown.value.forEach(u => {
             u._checked = event
             selects.push(u);

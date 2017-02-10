@@ -7,7 +7,7 @@ import { ITicket, ITickets, Summary } from '../../model';
 
 interface IFocusReply {
     counters: Model.House.ICounter[];
-    users: Model.IUser[];
+    users: Model.Org.IUser[];
     tickets: ITickets;
 }
 

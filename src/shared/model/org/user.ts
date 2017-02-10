@@ -30,4 +30,4 @@ export const AllRoles: IRole[] = [
     { code: 'media', name: 'Media' }
 ]
 
-export const CacheUsers = new Cache.MemCache<IUser>();
+export const CacheUsers = new Cache.MemCache<Org.IUser>();

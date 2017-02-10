@@ -29,7 +29,7 @@ export class ReportFilterComponent {
 
     counters$: Observable<Model.House.ICounter[]>;
     services$: Observable<Model.Center.IService[]>;
-    users$: Observable<Model.IUser[]>;
+    users$: Observable<Model.Org.IUser[]>;
 
     ngOnInit() {
         this.store.select<ReportFilter>('filter').subscribe(filter => {

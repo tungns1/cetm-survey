@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { SharedService, Model, Branch } from '../shared';
 
 interface IDetais {
-    users: Model.IUser[];
+    users: Model.Org.IUser[];
     counters: Model.House.ICounter[];
     services: Model.Center.IService[];
 }

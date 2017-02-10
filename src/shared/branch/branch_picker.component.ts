@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { IBranch } from './branch';
+import { Org } from './branch';
 import { RxBranches, GetLayer } from './branch';
 
 export const BRANCH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
@@ -46,7 +46,7 @@ export class BranchPickerComponent implements ControlValueAccessor {
 
     }
 
-    private branches: Observable<IBranch[]>;
+    private branches: Observable<Org.IBranch[]>;
     private selected = '';
     private onChangeCallback = (v: string) => { };
 

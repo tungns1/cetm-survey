@@ -6,7 +6,7 @@ import { SFlowComponent } from './sflow/sflow.component';
 
 const children: Routes = [
   {
-    path: 'house',
+    path: '',
     pathMatch: 'full',
     redirectTo: 'screen'
   },

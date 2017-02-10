@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../service/';
-import { SharedService, Branch, Editor, Model } from '../../shared/';
+import { User } from '../../../service/';
+import { SharedService, Branch, Editor, Model } from '../../../shared/';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 
-export const Api = new SharedService.Backend.HttpApi<Model.IBranch>("/api/admin/branch");
+export const Api = new SharedService.Backend.HttpApi<Model.Org.IBranch>("/api/admin/branch");
 
 @Component({
   selector: 'admin-branch',
@@ -35,8 +35,8 @@ export class BranchComponent {
     });
   }
 
-  branches: Observable<Model.IBranch[]>;
-  upperLayers: Observable<Model.IBranch[]>;
+  branches: Observable<Model.Org.IBranch[]>;
+  upperLayers: Observable<Model.Org.IBranch[]>;
   private level: number;
 
   Refresh() {
@@ -44,7 +44,7 @@ export class BranchComponent {
   }
 
 
-  NewForm(b?: Model.IBranch) {
+  NewForm(b?: Model.Org.IBranch) {
     b = b || <any>{};
     if (this.level === Branch.RxMax.value.level - 1) {
       b.parent = b.parent || Branch.RxMax.value.id;
@@ -58,7 +58,7 @@ export class BranchComponent {
     });
   }
 
-  service: Editor.IEditService<Model.IBranch> = {
+  service: Editor.IEditService<Model.Org.IBranch> = {
     api: Api,
     form: u => this.NewForm(u),
     refresh: () => this.Refresh()
