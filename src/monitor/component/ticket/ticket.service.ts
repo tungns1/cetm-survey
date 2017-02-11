@@ -74,7 +74,7 @@ export class MonitorTicketService {
                     return;
                 }
                 Model.House.CacheCounter.Refresh(data.counters);
-                Model.CacheUsers.Refresh(data.users);
+                Model.Org.CacheUsers.Refresh(data.users);
                 const tickets = Object.keys(data.tickets).map(id => data.tickets[id]);
                 this.store.dispatch({
                     type: ACTION.REFRESH_TICKET,
