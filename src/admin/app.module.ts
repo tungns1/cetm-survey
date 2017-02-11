@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { Branch, SharedService } from './shared/';
 import { NewBaseAppModule } from './shared/';
 import { AppComponent } from './app.component';
+import { AdminFilterModule } from './component';
 import { routing, components } from './app.routing';
 import { adminServiceProvider } from './service';
-
 const appName = "admin";
 
 @NgModule({
     imports: [
-        NewBaseAppModule(appName), routing
+        NewBaseAppModule(appName), routing, AdminFilterModule
     ],
     providers: [adminServiceProvider],
     declarations: [AppComponent, ...components],

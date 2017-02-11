@@ -17,7 +17,10 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'select-check',
     template: `
-        <input type="checkbox" (change)="checkAll()" >&nbsp;<span translate>LABEL_CHOOSE_ALL</span><br>
+        <div *ngIf="canCheckAll" >
+            <input type="checkbox" (change)="checkAll()" >
+            &nbsp;<span translate>LABEL_CHOOSE_ALL</span><br>
+        </div>
         <span *ngFor="let d of data" class="pointer">
             <input type="checkbox" [(ngModel)]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}<br>
         </span>
@@ -33,6 +36,11 @@ class SelectCheckComponent implements ControlValueAccessor {
     }
 
     @Input() data = [];
+
+    get canCheckAll() {
+        return this.data && this.data.length > 1;
+    }
+
     private isAll = false;
     private values = {};
     protected value = [];
@@ -92,9 +100,10 @@ class SelectCheckComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '../../i18n';
 
 @NgModule({
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule, CommonModule, TranslateModule],
     declarations: [SelectCheckComponent],
     exports: [SelectCheckComponent]
 })

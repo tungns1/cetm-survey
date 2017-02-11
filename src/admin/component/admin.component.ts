@@ -9,9 +9,7 @@ import { Branch } from '../shared';
   encapsulation: ViewEncapsulation.None
 })
 export class AdminComponent {
-  hidden = true;
 
-  Refresh() {
-    
-  }
+
 }
+

@@ -13,40 +13,24 @@ export interface IBranch extends Cache.ID {
 }
 
 export const BranchLevels = [
-    { name: 'LABEL_ROOT', value: 3 },
-    { name: 'AREA', value: 2 },
+    { name: 'LABEL_SUB_BRANCH', value: 0 },
     { name: 'LABEL_BRANCH', value: 1 },
-    { name: 'LABEL_SUB_BRANCH', value: 0 }
-]
-
-
-export const Levels = [
-    'LABEL_SUB_BRANCH',
-    'LABEL_BRANCH',
-    'AREA',
-    'LABEL_ROOT'
+    { name: 'AREA', value: 2 },
+    { name: 'LABEL_ROOT', value: 3 }
 ]
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 class BranchCache extends Cache.MemCache<IBranch> {
-    Refresh(branches: IBranch[], maxBranchID?: string) {
-        let branch = branches.find(b => b.id === maxBranchID);
-        const maxLevel = branch ? branch.level : 0;
-        branches.forEach(b => this.mapView.set(b.id, b));
-        branches.forEach(b => {
-            let p = this.mapView.get(b.id);
-            b.parent_name = (p && p.name) ? p.name : 'n/a';
-        });
-        branches = branches.filter(b => b.level < maxLevel);
-        branches.push(branch);
-        this.RxListView.next(branches);
-        this.RxMax.next(branch);
+    RxByLevel(level: number) {
+        return this.RxListView.map(branches =>
+            branches.filter(b => b.level === level)
+        );
     }
 
     RxMax = new BehaviorSubject<IBranch>(null);
 
     GetMaxLevel() {
-        return this.RxMax.value? this.RxMax.value.level : 0;
+        return this.RxMax.value ? this.RxMax.value.level : 0;
     }
 
 }
