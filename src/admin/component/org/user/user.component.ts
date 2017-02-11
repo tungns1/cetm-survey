@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Org } from '../../../service/';
+import { AdminFilterService, Org } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Branch, Editor, Model } from '../../../shared/';
 
@@ -24,16 +24,23 @@ function NewForm(u?: Model.Org.IUser) {
 })
 export class UserComponent {
   constructor(
+    private filterService: AdminFilterService,
     private userApi: Org.UserApi
   ) { }
+
+  ngOnInit() {
+    this.filterService.ValueChanges.subscribe(v => {
+      this.users = this.userApi.GetByBranch(v.GetBranchIDAtLowestLevel());
+    });
+  }
 
   service: Editor.IEditService<Model.Org.IUser> = {
     api: this.userApi,
     form: NewForm,
-    refresh: () => this.users.refresh()
+    refresh: () => { }
   };
 
-  users = this.userApi.AutoRefresh();
+  users;
   private roles = Model.Org.AllRoles;
   private branches = Branch.LowestLayerBranch;
 

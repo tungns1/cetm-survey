@@ -4,11 +4,13 @@ import * as House from './house';
 import * as Center from './center/';
 import * as Org from './org';
 
+import {AdminFilterService} from './filter.service';
 const adminServiceProvider = [
     Org.orgServiceProvider,
     Config.ConfigApi,
     Center.CenterProvider,
-    House.houseServiceProvider
+    House.houseServiceProvider,
+    AdminFilterService
 ]
 
 export {
@@ -17,4 +19,5 @@ export {
     House,
     Center,
     adminServiceProvider,
+    AdminFilterService
 }

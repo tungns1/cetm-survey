@@ -13,8 +13,10 @@ export class UserApi extends SharedService.Backend.HttpApi<Model.Org.IUser> {
         super("/api/admin/org/user");
     }
 
-    GetByBranch(branch_id: string) {
-        return Model.Org.AddBranchName<Model.Org.IUser>(this.Search({ branch_id: branch_id }));
+    GetByBranch(branch_id: string[]) {
+        return Model.Org.AddBranchName<Model.Org.IUser>(
+            this.Search({ branch_id: branch_id.join(',') })
+        );
     }
 
     AutoRefresh() {

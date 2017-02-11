@@ -1,5 +1,5 @@
 <form [formGroup]="form" (submit)="refresh()">
-    <div *ngFor="let l of levels">
+    <div *ngFor="let l of viewLevels">
         <label style="font-size:2em" translate>{{l | branchLevelName | translate}} </label>
         <br>
         <select-check [formControlName]="l" [data]="data[l] | async" textField="name">

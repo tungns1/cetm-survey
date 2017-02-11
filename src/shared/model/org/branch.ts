@@ -27,6 +27,10 @@ class BranchCache extends Cache.MemCache<IBranch> {
         );
     }
 
+    GetByLevel(level: number) {
+        return this.RxListView.value.filter(b => b.level === level);
+    }
+
     RxMax = new BehaviorSubject<IBranch>(null);
 
     GetMaxLevel() {

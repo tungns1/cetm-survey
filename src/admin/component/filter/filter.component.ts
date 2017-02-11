@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AdminFilterService } from './filter.service';
+import { AdminFilterService } from '../shared';
 import { Observable } from 'rxjs/Observable';
 import { Model } from '../../shared';
 
@@ -21,7 +21,8 @@ export class AdminFilterComponent implements OnInit, AfterViewInit {
     ) { }
 
     form: FormArray;
-    levels: number[];;
+    levels: number[];
+    viewLevels: number[];
     data: rxBranch[] = [];
 
     ngOnInit() {
@@ -34,6 +35,7 @@ export class AdminFilterComponent implements OnInit, AfterViewInit {
             this.data[i] = this.makeData(i);
         });
 
+        this.viewLevels = [].concat(this.levels).reverse();
     }
 
     ngAfterViewInit() {
@@ -60,7 +62,7 @@ export class AdminFilterComponent implements OnInit, AfterViewInit {
                 );
                 const value: string[] = activeForm.value;
                 const updateValue = value.filter(id => parent_id.indexOf(id) !== -1);
-                activeForm.setValue(updateValue);
+                // setTimeout(_ => activeForm.setValue(updateValue));
                 return shownBranches;
             }
         )
