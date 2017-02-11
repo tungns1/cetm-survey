@@ -1,20 +1,20 @@
 
 import * as Config from './config';
-import * as User from './user';
 import * as House from './house';
 import * as Center from './center/';
+import * as Org from './org';
 
 const adminServiceProvider = [
+    Org.orgServiceProvider,
     Config.ConfigApi,
-    User.UserApi,
     Center.CenterProvider,
     House.houseServiceProvider
 ]
 
 export {
-    adminServiceProvider,
+    Org,
     Config,
-    User,
     House,
     Center,
+    adminServiceProvider,
 }

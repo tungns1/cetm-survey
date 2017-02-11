@@ -1,6 +1,6 @@
-export interface IBranch {
-    id?: string;
-    mtime?: number;
+import { Cache } from '../../shared/';
+
+export interface IBranch extends Cache.ID {
     code?: string;
     name?: string;
 
@@ -19,3 +19,11 @@ export const BranchLevels = [
     { name: 'LABEL_BRANCH', value: 1 },
     { name: 'LABEL_SUB_BRANCH', value: 0 }
 ]
+
+class BranchCache extends Cache.MemCache<IBranch> {
+    Refresh(arr: IBranch[]) {
+        super.Refresh(arr);
+    }
+}
+
+export const CacheBranch = new BranchCache();

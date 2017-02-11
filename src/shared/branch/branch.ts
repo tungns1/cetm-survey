@@ -83,13 +83,13 @@ export const RxMax = new BehaviorSubject<Org.IBranch>(null);
 
 export function SetBranches(branches: Org.IBranch[], maxBranchID: string) {
     let branch = branches.find(b => b.id === maxBranchID);
-    maxLevel = branch? branch.level : 0;
+    maxLevel = branch ? branch.level : 0;
     branches.forEach(b => Branches.set(b.id, b));
     branches.forEach(b => {
         let p = Branches.get(b.id);
         b.parent_name = (p && p.name) ? p.name : 'n/a';
     });
-    branches= branches.filter(b => b.level < maxLevel);
+    branches = branches.filter(b => b.level < maxLevel);
     branches.push(branch);
     RxBranches.next(branches);
     RxMax.next(branch);
@@ -106,25 +106,29 @@ function FindLowest() {
     return Level3;
 }
 
-export function GetTreeNames(branch_id: string, level?: number) {
-    let names = [];
-    let branch = Branches.get(branch_id) || { name: "n/a" };
-    for (let i = 0; i < AllLayers.length; i++) {
-        names.push(branch.name || "n/a");
-        branch = Branches.get(branch.parent) || { name: 'n/a' };
-    }
-    return names;
-}
-
 export function GetLayer(level: number) {
     return AllLayers[level];
 }
 
-export function GetMax() {
-    return maxLevel;
+
+class BranchLevel {
+    constructor(private level: number) {
+        this.onInit();
+    }
+
+    private onInit() {
+        RxBranches.subscribe(branches => {
+            const myBranches = branches.filter(b => b.level === this.level);
+            this.RxBranches.next(myBranches);
+        })
+    }
+
+    RxBranches = new BehaviorSubject<Org.IBranch[]>([]);
 }
 
-export function GetName(branch_id: string) {
-    var branch = Branches.get(branch_id);
-    return branch? branch.name : 'n/a';
+
+export class BranchLevel0 extends BranchLevel {
+    constructor() {
+        super(0);
+    }
 }

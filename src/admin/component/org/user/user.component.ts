@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../../service/';
+import { Org } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Branch, Editor, Model } from '../../../shared/';
 
@@ -24,7 +24,7 @@ function NewForm(u?: Model.Org.IUser) {
 })
 export class UserComponent {
   constructor(
-    private userApi: User.UserApi
+    private userApi: Org.UserApi
   ) { }
 
   service: Editor.IEditService<Model.Org.IUser> = {

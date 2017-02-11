@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../../service/';
 import { SharedService, Branch, Editor, Model } from '../../../shared/';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 
-export const Api = new SharedService.Backend.HttpApi<Model.Org.IBranch>("/api/admin/branch");
+export const Api = new SharedService.Backend.HttpApi<Model.Org.IBranch>("/api/admin/org/branch");
 
 @Component({
   selector: 'admin-branch',
