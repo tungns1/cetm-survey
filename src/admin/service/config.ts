@@ -14,7 +14,7 @@ export class ConfigApi extends SharedService.Backend.HttpApi<Model.IConfig> {
     }
 
     GetByBranch(branch_id: string) {
-        return Branch.AddBranchName<Model.IConfig>(this.Search({ branch_id: branch_id }));
+        return Model.Org.AddBranchName<Model.IConfig>(this.Search({ branch_id: branch_id }));
     }
 
     AutoRefresh() {

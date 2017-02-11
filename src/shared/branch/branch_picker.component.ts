@@ -1,8 +1,8 @@
 import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { Org } from './branch';
 import { RxBranches, GetLayer } from './branch';
+import { Org } from '../model';
 
 export const BRANCH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -38,7 +38,7 @@ export class BranchPickerComponent implements ControlValueAccessor {
         if (o) {
             this.branches = o.shown;
         } else {
-            this.branches = RxBranches;
+            this.branches = Org.CacheBranch.RxListView;
         }
     }
 

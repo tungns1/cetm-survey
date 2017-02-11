@@ -9,7 +9,7 @@ export class ScreenApi extends SharedService.Backend.HttpApi<Model.House.IScreen
     }
 
     GetByBranch(branch_id: string) {
-        return Branch.AddBranchName<Model.House.IScreen>(this.Search({ branch_id: branch_id }));
+        return Model.Org.AddBranchName<Model.House.IScreen>(this.Search({ branch_id: branch_id }));
     }
 
     AutoRefresh() {

@@ -1,22 +1,14 @@
 import { Org } from '../model/';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
 import { combineLatest } from 'rxjs/observable/combineLatest';
-
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-export const RxBranches = new BehaviorSubject<Org.IBranch[]>([]);
-export const Branches = new Map<string, Org.IBranch>();
-export * from '../model/';
-
-let maxLevel = 0;
 
 export class BranchLayer {
     constructor(private level: number, private rxParents: BehaviorSubject<Org.IBranch[]>) {
-        combineLatest<Org.IBranch[], Org.IBranch[]>(RxBranches, rxParents).subscribe(
+        combineLatest<Org.IBranch[], Org.IBranch[]>(Org.CacheBranch.RxListView, rxParents).subscribe(
             ([branches, parents]) => {
+                const maxLevel = Org.CacheBranch.GetMaxLevel();
                 const layer = branches.filter(b => {
                     if (b.level === level) {
                         if (maxLevel <= level) {
@@ -79,24 +71,9 @@ Level0.selected.subscribe(branches => {
     LowestLayerBranch.next(layer.selected.value);
 });
 
-export const RxMax = new BehaviorSubject<Org.IBranch>(null);
-
-export function SetBranches(branches: Org.IBranch[], maxBranchID: string) {
-    let branch = branches.find(b => b.id === maxBranchID);
-    maxLevel = branch ? branch.level : 0;
-    branches.forEach(b => Branches.set(b.id, b));
-    branches.forEach(b => {
-        let p = Branches.get(b.id);
-        b.parent_name = (p && p.name) ? p.name : 'n/a';
-    });
-    branches = branches.filter(b => b.level < maxLevel);
-    branches.push(branch);
-    RxBranches.next(branches);
-    RxMax.next(branch);
-}
-
 function FindLowest() {
     let i = 0;
+    const maxLevel = Org.CacheBranch.GetMaxLevel();
     for (i = 0; i <= maxLevel; i++) {
         let layer = AllLayers[i];
         if (layer.Active()) {
@@ -110,25 +87,3 @@ export function GetLayer(level: number) {
     return AllLayers[level];
 }
 
-
-class BranchLevel {
-    constructor(private level: number) {
-        this.onInit();
-    }
-
-    private onInit() {
-        RxBranches.subscribe(branches => {
-            const myBranches = branches.filter(b => b.level === this.level);
-            this.RxBranches.next(myBranches);
-        })
-    }
-
-    RxBranches = new BehaviorSubject<Org.IBranch[]>([]);
-}
-
-
-export class BranchLevel0 extends BranchLevel {
-    constructor() {
-        super(0);
-    }
-}

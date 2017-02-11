@@ -34,7 +34,7 @@ export class UserComponent {
   };
 
   users = this.userApi.AutoRefresh();
-  private roles = Model.AllRoles;
+  private roles = Model.Org.AllRoles;
   private branches = Branch.LowestLayerBranch;
 
   fields = [

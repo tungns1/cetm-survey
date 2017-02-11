@@ -5,7 +5,6 @@ import { HttpError } from '../../../x/backend/';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { SetBranches } from '../../branch/';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Router } from '@angular/router';
 
@@ -85,7 +84,7 @@ export class AuthService {
     private updateMySetting(v: IMySettings) {
         Center.CacheService.Refresh(v.services);
         if (v.me.branch_id) {
-            SetBranches(v.branches, v.me.branch_id);
+            Org.CacheBranch.Refresh(v.branches, v.me.branch_id);
         }
         this.rxMySetting.next(v);
     }

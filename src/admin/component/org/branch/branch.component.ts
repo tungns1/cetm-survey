@@ -23,7 +23,7 @@ export class BranchComponent {
         this.level = 2;
       }
       this.branches = Branch.GetLayer(this.level).shown;
-      let level = Branch.BranchLevels.filter(v => v.value === this.level)[0];
+      let level = Model.Org.BranchLevels.filter(v => v.value === this.level)[0];
       this.fields[0].title = level.name;
       let up = Branch.GetLayer(this.level + 1);
       if (up) {
@@ -45,8 +45,9 @@ export class BranchComponent {
 
   NewForm(b?: Model.Org.IBranch) {
     b = b || <any>{};
-    if (this.level === Branch.RxMax.value.level - 1) {
-      b.parent = b.parent || Branch.RxMax.value.id;
+    const maxLevel = Model.Org.CacheBranch.GetMaxLevel();
+    if (this.level === maxLevel - 1) {
+      b.parent = b.parent || maxLevel;
     }
     return (new FormBuilder).group({
       id: [b.id],

@@ -11,6 +11,7 @@
         <branch-selector *ngIf="hidden" style="padding-top: 50px;"></branch-selector>
         <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color: gray;" (click)="hidden=!hidden" title="{{'LABEL_DISPLAY_FILTER' | translate}}"></i>
         <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color: gray;" (click)="hidden=!hidden" title="{{'LABEL_CLOSE_FILTER' | translate}}"></i>
+        <button class="btn" (click)="Refresh()"></button>
     </div>
     <div class="main">
         <router-outlet></router-outlet>

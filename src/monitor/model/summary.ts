@@ -34,7 +34,7 @@ export class Summary {
 
     setBranchID(branch_id: string) {
         this.branch_id = branch_id;
-        const b = Branch.Branches.get(this.branch_id);
+        const b = Model.Org.CacheBranch.GetByID(this.branch_id);
         this.branch = b ? b.name : 'n/a';
     }
 

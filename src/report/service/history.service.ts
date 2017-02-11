@@ -1,5 +1,5 @@
 import { ITransaction, IHistory, ITransactionView } from '../model';
-import { SharedService, Branch } from '../shared/';
+import { SharedService, Model } from '../shared/';
 import { FilterService } from './filter.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
@@ -28,11 +28,11 @@ export class TransactionHistoryApi {
 
     GetTreeNames(branch_id: string, level?: number) {
         let names = [];
-        const Branches = Branch.Branches;
-        let branch = Branches.get(branch_id) || { name: "n/a" };
+        const cache = Model.Org.CacheBranch;
+        let branch = cache.GetByID(branch_id) || { name: "n/a", parent: '' };
         for (let i = 0; i < Branch.AllLayers.length; i++) {
             names.push(branch.name || "n/a");
-            branch = Branches.get(branch.parent) || { name: 'n/a' };
+            branch = cache.GetByID(branch.parent) || { name: 'n/a', parent: '' };
         }
         return names;
     }

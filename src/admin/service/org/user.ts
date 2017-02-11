@@ -14,7 +14,7 @@ export class UserApi extends SharedService.Backend.HttpApi<Model.Org.IUser> {
     }
 
     GetByBranch(branch_id: string) {
-        return Branch.AddBranchName<Model.Org.IUser>(this.Search({ branch_id: branch_id }));
+        return Model.Org.AddBranchName<Model.Org.IUser>(this.Search({ branch_id: branch_id }));
     }
 
     AutoRefresh() {

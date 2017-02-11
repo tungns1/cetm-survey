@@ -9,7 +9,7 @@ export class CounterApi extends SharedService.Backend.HttpApi<Model.House.ICount
     }
 
     GetByBranch(branch_id: string) {
-        return Branch.AddBranchName<Model.House.ICounter>(this.Search({ branch_id: branch_id }));
+        return Model.Org.AddBranchName<Model.House.ICounter>(this.Search({ branch_id: branch_id }));
     }
 
     AutoRefresh() {

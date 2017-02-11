@@ -9,7 +9,7 @@ export class KioskApi extends SharedService.Backend.HttpApi<Model.House.IKiosk> 
     }
 
     GetByBranch(branch_id: string) {
-        return Branch.AddBranchName<Model.House.IKiosk>(this.Search({ branch_id: branch_id }));
+        return Model.Org.AddBranchName<Model.House.IKiosk>(this.Search({ branch_id: branch_id }));
     }
 
     AutoRefresh() {

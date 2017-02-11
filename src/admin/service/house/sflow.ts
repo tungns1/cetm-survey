@@ -9,7 +9,7 @@ export class SFlowApi extends SharedService.Backend.HttpApi<Model.House.ISFlow> 
     }
 
     GetByBranch(branch_id: string) {
-        return Branch.AddBranchName<Model.House.ISFlow>(this.Search({ branch_id: branch_id }));
+        return Model.Org.AddBranchName<Model.House.ISFlow>(this.Search({ branch_id: branch_id }));
     }
 
     AutoRefresh() {

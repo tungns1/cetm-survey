@@ -14,6 +14,7 @@ const routes: Routes = [
 ]
 
 import { I18n } from './shared';
+import { UtilPipeModule } from './pipe';
 import { BranchModule } from './branch';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BranchModule } from './branch';
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
         RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
-        I18n.TranslateModule, BranchModule
+        I18n.TranslateModule, UtilPipeModule,
+        BranchModule
     ]
 })
 export class SharedModule {

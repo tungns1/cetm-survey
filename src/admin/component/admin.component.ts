@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { Branch } from '../shared';
 
 @Component({
   selector: 'app-admin',
@@ -8,4 +10,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AdminComponent {
   hidden = true;
+
+  Refresh() {
+    
+  }
 }
