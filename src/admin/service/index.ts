@@ -9,7 +9,7 @@ import { CrudApiService, FilterService } from './shared';
 const adminServiceProvider = [
     Org.OrgService,
     Config.ConfigApi,
-    Center.CenterProvider,
+    Center.CenterService,
     House.houseServiceProvider,
     FilterService
 ]

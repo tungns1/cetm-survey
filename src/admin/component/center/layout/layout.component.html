@@ -1,4 +1,4 @@
-<editor #edit name="LABEL_LAYOUT" [fields]="fields" [data]="data | async" [service]="service">
+<editor #edit [makeForm]="makeForm" [service]="service">
     <editor-title> <span translate> LABEL_LIST_LAYOUT</span><b> {{tag}} </b> </editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_NAME</span>

@@ -24,7 +24,7 @@ export class EditorComponent<T> {
         this.listFields = this.api.ListFields;
         this.listView$ = this.api.RxListView;
     };
-    @Input() formMaker: (u?: T) => FormGroup;
+    @Input() makeForm: (u?: T) => FormGroup;
     @Output() edit = new EventEmitter<FormGroup>();
 
     @ViewChild("edit") editorRef: Lib.Ng.ModalComponent;
@@ -32,7 +32,7 @@ export class EditorComponent<T> {
 
     private onAdd() {
         this.current = null;
-        this.form = this.formMaker();
+        this.form = this.makeForm();
         this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
         this.edit.next(this.form);
@@ -40,7 +40,7 @@ export class EditorComponent<T> {
 
     private onEdit(u: T) {
         this.current = u;
-        this.form = this.formMaker(u);
+        this.form = this.makeForm(u);
         this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
         this.edit.next(this.form);
@@ -48,7 +48,7 @@ export class EditorComponent<T> {
 
     private onRemove(u: T) {
         this.removeRef.Open();
-        this.form = this.formMaker(u);
+        this.form = this.makeForm(u);
     }
 
     private CloseEditor() {

@@ -13,7 +13,7 @@ export class UserComponent {
     private org: Org.OrgService
   ) { }
 
-  formMaker(u?: Model.Org.IUser) {
+  makeForm(u?: Model.Org.IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],

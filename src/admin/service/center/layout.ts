@@ -1,18 +1,21 @@
-import { Model, SharedService } from '../../shared/';
-import { RefreshObservable } from '../rx';
 import { Injectable } from '@angular/core';
+import { Model, Branch, SharedService } from '../../shared/';
+import { CrudApiService, AdminFilter } from '../shared';
 
 @Injectable()
-export class LayoutApi extends SharedService.Backend.HttpApi<Model.Center.ILayout> {
-    constructor() {
-        super("/api/admin/center/layout");
-    }
-
+export class LayoutService extends CrudApiService<Model.Center.IService> {
     GetByType(type: string) {
-        return this.Search({ type: type });
+        return this.api.Search({ type: type });
     }
 
-    AutoRefresh(type: string) {
-        return new RefreshObservable(() => this.GetByType(type));
+    protected filter(d: AdminFilter) {
+        return this.GetByType('kiosk,screen');
     }
+
+    ListFields = [
+        { title: 'LABEL_NAME', name: 'name' },
+        { title: 'LABEL_TYPE', name: 'type' }
+    ]
+
+    Name = "LABEL_LAYOUT";
 }

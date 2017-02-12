@@ -1,4 +1,4 @@
-<editor #edit [name]="level | branchLevelName" [formMaker]="formMaker" [service]="service">
+<editor #edit [name]="level | branchLevelName" [makeForm]="makeForm" [service]="service">
     <editor-title> <span translate>LABEL_LIST</span>&nbsp;{{level | branchLevelName| translate}}</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_NAME</span>:

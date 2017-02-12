@@ -1,4 +1,4 @@
-<editor #edit [service]="service" [formMaker]="formMaker">
+<editor #edit [service]="service" [makeForm]="makeForm">
     <editor-title> <span translate>LABEL_LIST_USER</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_USERNAME</span>:

@@ -25,7 +25,7 @@ export class BranchComponent {
   parents: Observable<Model.Org.IBranch[]>;
   private level: number;
 
-  formMaker(b?: Model.Org.IBranch) {
+  makeForm(b?: Model.Org.IBranch) {
     b = b || <any>{ parent: '' };
     const maxLevel = Model.Org.CacheBranch.GetMaxLevel();
     if (this.level === maxLevel - 1) {

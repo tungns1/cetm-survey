@@ -1,21 +1,8 @@
 import { Component } from '@angular/core';
 import { Center } from '../../../service/';
-import { Branch, Editor, Model } from '../../../shared/';
+import { Branch, Model } from '../../../shared/';
 
 import { FormBuilder, Validators } from '@angular/forms';
-
-export function NewServiceForm(b?: Model.Center.IService) {
-    b = b || <any>{};
-    return (new FormBuilder).group({
-        id: [b.id],
-        tform_normal: [b.tform_normal, Validators.required],
-        tform_vip: [b.tform_vip],
-        image: [b.image],
-        code: [b.code],
-        l10n: [b.l10n],
-        priority: [b.priority]
-    });
-}
 
 @Component({
     selector: 'admin-service',
@@ -24,19 +11,26 @@ export function NewServiceForm(b?: Model.Center.IService) {
 })
 export class ServiceComponent {
     constructor(
-        private serviceApi: Center.Service.ServiceApi,
-        private tformApi: Center.TForm.TFormApi
+        private center: Center.CenterService
     ) { }
 
-    service: Editor.IEditService<Model.Center.IService> = {
-        api: this.serviceApi,
-        form: NewServiceForm,
-        refresh: () => this.data.refresh()
-    };
+    service = this.center.ServiceService;
 
-    data = this.serviceApi.AutoRefresh();
-    tforms = this.tformApi.AutoRefresh();
-    tformVips = this.tformApi.AutoRefresh();
+    makeForm(b?: Model.Center.IService) {
+        b = b || <any>{};
+        return (new FormBuilder).group({
+            id: [b.id],
+            tform_normal: [b.tform_normal, Validators.required],
+            tform_vip: [b.tform_vip],
+            image: [b.image],
+            code: [b.code],
+            l10n: [b.l10n],
+            priority: [b.priority]
+        });
+    }
+
+    tforms = this.center.TFormService.RxListView;
+    tformVips = this.center.TFormService.RxListView;
 
     fields = [
         { title: 'LABEL_NAME_SERVICE', name: 'name' },
