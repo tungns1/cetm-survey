@@ -1,8 +1,10 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ComponentRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { SharedService, Lib } from '../../../shared/';
 import { CrudApiService, IField } from '../../shared';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
     selector: "editor-title",
@@ -25,25 +27,38 @@ export class EditorComponent<T> {
         this.listView$ = this.api.RxListView;
     };
     @Input() makeForm: (u?: T) => FormGroup;
-    @Output() edit = new EventEmitter<FormGroup>();
+    @Output() edit = new EventEmitter<T>();
 
     @ViewChild("edit") editorRef: Lib.Ng.ModalComponent;
     @ViewChild("remove") removeRef: Lib.Ng.ModalComponent;
 
-    private onAdd() {
-        this.current = null;
-        this.form = this.makeForm();
+
+    private formSub: ISubscription;
+
+    private createForm(v?: T) {
+        this.current = v;
+        this.form = this.makeForm(v);
+        if (this.formSub) {
+            this.formSub.unsubscribe();
+        }
+
+        if (v) {
+            this.edit.next(v);
+        }
+        
+        this.formSub = this.form.valueChanges.subscribe(d => this.edit.next(d));
         this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
-        this.edit.next(this.form);
+    }
+
+    private onAdd() {
+        this.createForm();
+        this.editorRef.Open();
     }
 
     private onEdit(u: T) {
-        this.current = u;
-        this.form = this.makeForm(u);
-        this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
+        this.createForm(u);
         this.editorRef.Open();
-        this.edit.next(this.form);
     }
 
     private onRemove(u: T) {

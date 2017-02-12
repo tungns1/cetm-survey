@@ -1,7 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Center, House } from '../../../service/';
 import { Model } from '../../../shared';
+
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
     selector: 'house-screen',
@@ -19,15 +22,16 @@ export class ScreenComponent {
     screens = this.house.ScreenService.RxListView
         .map(values => values.filter(v => v.inheritable));
     layouts = this.center.LayoutService.GetByType('screen');
-    counters: Model.House.ICounter[] = [];
+    private focusBranchID$ = new ReplaySubject<string>(1);
 
-    onEdit(form: FormGroup) {
-        this.onBranchChange(form.value.branch_id);
-    }
+    counters = this.focusBranchID$.distinctUntilChanged().switchMap(branch_id => {
+        return this.house.CounterService.GetByBranch([branch_id]);
+    });
 
-    onBranchChange(branch_id: string) {
-        this.house.CounterService.GetByBranch(branch_id.split(','))
-            .subscribe(v => this.counters = v);
+
+    onEdit(d: Model.House.IScreen) {
+        console.log(d);
+        this.focusBranchID$.next(d.branch_id);
     }
 
     makeForm(b?: Model.House.IScreen) {

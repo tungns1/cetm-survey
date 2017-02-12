@@ -3,7 +3,7 @@ import { SharedModule, Branch } from '../../shared';
 import { AdminFilterComponent } from './filter.component';
 
 @NgModule({
-    imports: [SharedModule, Branch.BranchFilterModule],
+    imports: [SharedModule, Branch.BranchModule],
     declarations: [AdminFilterComponent],
     exports: [AdminFilterComponent]
 })

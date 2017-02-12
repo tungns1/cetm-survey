@@ -12,8 +12,6 @@
             <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
         </select><br>
         <span translate>LABEL_ADDRESS</span>:
-        <select formControlName="branch_id">
-            <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
-        </select>
+        <branch-picker formControlName="branch_id"></branch-picker>
     </form>
 </editor>

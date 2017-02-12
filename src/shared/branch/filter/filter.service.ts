@@ -47,6 +47,10 @@ export class BranchFilter {
         return this.branch_id;
     }
 
+    GetArrayBranchID() {
+        return this.branch_id.reduce((res, arr) => res.concat(arr), []);
+    }
+
     SetBranchID(value: IDList[]) {
         this.setBranchID(value);
     }
@@ -63,6 +67,18 @@ export class BranchFilter {
             }
         }
         return [];
+    }
+
+    GetLowestLevel() {
+        const len = this.branch_id.length;
+        let i = 0;
+        while (i < len) {
+            if (this.branch_id[i] && this.branch_id[i].length > 0) {
+                break;
+            }
+            i++;
+        }
+        return i;
     }
 
     private toString(arr: string[]) {
@@ -83,8 +99,23 @@ export class BranchFilter {
     private levels = Org.BranchLevels.map(v => v.value).sort((a, b) => a < b ? -1 : 1)
 }
 
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+
 @Injectable()
 export class BranchFilterService {
+    constructor() {
+        console.log('create');
+    }
+
+    onChange() {
+        this.ValueChanges.next(this.filter);
+    }
+
+    FromQuery(p: Params) {
+        this.filter.FromQuery(p);
+        this.onChange();
+    }
+
     get Levels() {
         return this.filter.Levels;
     }
@@ -95,6 +126,7 @@ export class BranchFilterService {
 
     SetBranchID(branch_id: IDList[]) {
         this.filter.SetBranchID(branch_id);
+        this.onChange();
     }
 
     get Filter() {
@@ -102,4 +134,5 @@ export class BranchFilterService {
     }
 
     private filter = new BranchFilter();
+    ValueChanges = new ReplaySubject<BranchFilter>(1);
 }

@@ -29,7 +29,6 @@ export class SessionService {
   }
 
   GetToken() {
-    console.log('get token', this.sessionSetting.data.id);
     return this.sessionSetting.data.id;
   }
 

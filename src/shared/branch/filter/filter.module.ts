@@ -13,7 +13,6 @@ import { UtilPipeModule } from '../../pipe';
         Ng.SelectCheckModule
     ],
     declarations: [BranchFilterComponent],
-    providers: [BranchFilterService],
     exports: [BranchFilterComponent]
 })
 export class BranchFilterModule { }

@@ -5,7 +5,7 @@ import { routing, components } from './org.routing';
 
 @NgModule({
     imports: [
-        SharedModule, Editor.EditorModule, routing
+        SharedModule, Editor.EditorModule, Branch.BranchModule, routing
     ],
     declarations: [...components]
 })

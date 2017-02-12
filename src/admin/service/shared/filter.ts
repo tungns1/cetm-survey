@@ -6,13 +6,7 @@ import { Model, Branch } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 export class AdminFilter {
-    constructor(
-        private branch: Branch.BranchFilterService
-    ) { }
-
-    get Branch() {
-        return this.branch.Filter;
-    }
+    Branch: Branch.BranchFilter;
 
     FromQuery(p: Params) {
         this.Branch.FromQuery(p);
@@ -29,23 +23,29 @@ export class AdminFilterService {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public Branch: Branch.BranchFilterService
+        private branchFilterService: Branch.BranchFilterService
     ) {
         this.onInit();
     }
 
-    Refresh() {
+    private onInit() {
+        this.filter.Branch = this.branchFilterService.Filter;
+        this.filter.FromQuery(this.route.snapshot.queryParams);
+        this.onChange();
+    }
+
+    private onChange() {
+        this.branchFilterService.onChange();
         this.ValueChanges.next(this.filter);
+    }
+
+    Refresh() {
+        this.onChange();
         this.router.navigate([], {
             queryParams: this.filter.ToQuery()
         });
     }
 
-    private onInit() {
-        this.filter.FromQuery(this.route.snapshot.queryParams);
-        this.ValueChanges.next(this.filter);
-    }
-
-    private filter = new AdminFilter(this.Branch);
+    private filter = new AdminFilter();
     ValueChanges = new ReplaySubject<AdminFilter>(1);
 }

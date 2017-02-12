@@ -28,8 +28,8 @@
         <br><span translate>LABEL_BRANCH</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
         <br> <span translate>LABEL_COUNTERS</span>:
-        <div class="dichvu" *ngIf="counters">
-            <select-check formControlName="counters" [data]="counters" textField="name">
+        <div class="dichvu">
+            <select-check formControlName="counters" [data]="counters | async" textField="name">
             </select-check>
         </div>
     </form>

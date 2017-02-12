@@ -12,6 +12,7 @@ export function NewBaseAppModule(appName: string) {
         imports: [
             SharedModule.forRoot(appName),
             I18n.provideTranslateModule(appName),
+            BranchModule.forRoot(),
             BrowserModule
         ],
         providers: [
