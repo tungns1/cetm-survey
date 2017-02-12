@@ -45,7 +45,7 @@ interface IL10nConfig {
     locales: string[];
 }
 
-export interface IConfig {
+export interface IBranchConfig {
     id: string;
     branch_id: string;
     service: IServiceConfig;

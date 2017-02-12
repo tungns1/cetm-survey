@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { MetaService } from '../../service/';
+import { Meta } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../shared/';
+import { Branch, Editor, Model } from '../../shared/';
 
 @Component({
   selector: 'admin-config',
-  templateUrl: 'config.component.html'
+  templateUrl: 'branch_config.component.html'
 })
-export class ConfigComponent {
+export class BranchConfigComponent {
   constructor(
-    private meta: MetaService,
+    private meta: Meta.MetaService,
   ) { }
 
-  service = this.meta.ConfigService;
+  service = this.meta.BranchConfigService;
 
-  makeForm(u?: Model.IConfig) {
+  makeForm(u?: Model.Meta.IBranchConfig) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],

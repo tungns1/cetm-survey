@@ -3,7 +3,7 @@ import { Model, Branch, SharedService } from '../../shared/';
 import { BranchCrudApiService, AdminFilter } from '../shared';
 
 @Injectable()
-export class ConfigService extends BranchCrudApiService<Model.IConfig> {
+export class BranchConfigService extends BranchCrudApiService<Model.Meta.IBranchConfig> {
     ListFields = [
         { title: 'LABEL_BRANCH', name: 'branch' }
     ]

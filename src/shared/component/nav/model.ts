@@ -14,7 +14,7 @@ const settingMenu = [
     { app: 'admin', href: "/org/branch/0", name: "TRANSACTION_ROOM" },
     { app: 'admin', href: "/center/tform", name: 'TICKET_NUMBER' },
     { app: 'admin', href: "/center/service", name: 'SERVICE' },
-    { app: 'admin', href: '/config', name: 'SETTING' },
+    { app: 'admin', href: '/meta/branch_config', name: 'SETTING' },
     { app: 'admin', href: '/house/sflow', name: 'STREAM_SERVICE_LOCAL' },
     { app: 'admin', href: "/house/counter", name: "COUNTER" },
     { app: 'admin', href: "/org/user", name: "USER", icon: "fa-user" },

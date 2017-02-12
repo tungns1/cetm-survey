@@ -1,14 +1,14 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ConfigComponent } from './config.component';
+import { BranchConfigComponent } from './branch_config.component';
 import { FeedbackConfigModule } from './feedback.module';
 import { SharedService, SharedModule } from '../../shared/';
-import { Editor, Form } from '../shared';
+import { Editor, Form } from '../../shared';
 
 export const routing = RouterModule.forChild([
     {
         path: '',
-        component: ConfigComponent
+        component: BranchConfigComponent
     }
 ]);
 
@@ -18,8 +18,8 @@ export const routing = RouterModule.forChild([
         Editor.EditorModule, Form.JSONFormModule, FeedbackConfigModule,
         SharedService.I18n.TranslateModule
     ],
-    declarations: [ConfigComponent]
+    declarations: [BranchConfigComponent]
 })
-export class ConfigModule {
+export class BranchConfigModule {
 
 }

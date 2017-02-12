@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedService } from './shared/';
 import {
   AdminComponent, OrgModule,
-  CenterModule, HouseModule, ConfigModule
+  CenterModule, HouseModule, MetaModule
 } from './component';
 
 const children: Routes = [
@@ -16,8 +16,8 @@ const children: Routes = [
     loadChildren: () => OrgModule
   },
   {
-    path: 'config',
-    loadChildren: () => ConfigModule
+    path: 'meta',
+    loadChildren: () => MetaModule
   },
   {
     path: 'house',

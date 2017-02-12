@@ -17,13 +17,13 @@ export const AuthOptions = {
 
 import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
-import { Org, Center, IConfig } from '../../model/';
+import { Org, Center, Meta } from '../../model/';
 
 export interface IMySettings {
     me: Org.IUser;
     branches: Org.IBranch[];
     services: Center.IService[];
-    config: IConfig;
+    config: Meta.IBranchConfig;
 }
 
 @Injectable()
