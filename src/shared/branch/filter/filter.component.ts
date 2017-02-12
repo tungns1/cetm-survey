@@ -37,12 +37,14 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        const branch_id = this.filterService.GetBranchID();
-        // delay the value change until the ui is ready
-        this.form.setValue(branch_id, { emitEvent: true, onlySelf: true });
-        this.form.valueChanges.subscribe(v => {
-            this.filterService.SetBranchID(v);
-        })
+        setTimeout(() => {
+            const branch_id = this.filterService.GetBranchID();
+            // delay the value change until the ui is ready
+            this.form.setValue(branch_id, { emitEvent: true });
+            this.form.valueChanges.subscribe(v => {
+                this.filterService.SetBranchID(v);
+            });
+        });
     }
 
 
@@ -57,14 +59,16 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
         return combineLatest(byLevel, parentForm.valueChanges).map(
             ([branches, parents]) => {
                 const parent_id: string[] = parents;
+                const value: string[] = activeForm.value;
+                const updateValue = value.filter(id => {
+                    const branch = Org.CacheBranch.GetByID(id);
+                    return parent_id.indexOf(branch.parent) !== -1;
+                });
+                setTimeout(_ => activeForm.setValue(updateValue));
                 // children: only show if parent is on
-                const shownBranches = branches.filter(b =>
+                return branches.filter(b =>
                     parent_id.indexOf(b.parent) !== -1
                 );
-                const value: string[] = activeForm.value;
-                const updateValue = value.filter(id => parent_id.indexOf(id) !== -1);
-                // setTimeout(_ => activeForm.setValue(updateValue));
-                return shownBranches;
             }
         )
     }
