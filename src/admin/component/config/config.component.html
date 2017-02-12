@@ -1,4 +1,4 @@
-<editor #edit name="LABEL_CONFIG" [fields]="fields" [data]="data | async" [service]="service" (refresh)="Refresh()">
+<editor #edit name="LABEL_CONFIG" [makeForm]="makeForm" [service]="service" (refresh)="Refresh()">
     <editor-title> <span translate>LABEL_LIST_CONFIG</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <hr><span translate>LABEL_ADDRESS</span>

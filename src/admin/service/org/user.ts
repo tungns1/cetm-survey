@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Model, Branch, SharedService } from '../../shared/';
-import { CrudApiService, AdminFilter } from '../shared';
+import { BranchCrudApiService, AdminFilter } from '../shared';
 
 @Injectable()
-export class UserService extends CrudApiService<Model.Org.IUser> {
-    GetByBranch(branch_id: string[]) {
-        return this.api.Search({ branch_id: branch_id.join(',') });
-    }
-
+export class UserService extends BranchCrudApiService<Model.Org.IUser> {
     protected filter(d: AdminFilter) {
         return this.GetByBranch(d.GetBranchIDAtLowestLevel())
             .do(data => Model.Org.CacheBranch.Join(data));
