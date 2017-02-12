@@ -1,4 +1,4 @@
-<editor #edit name="kiosk" [fields]="fields" [data]="data | async" [service]="service">
+<editor #edit [makeForm]="makeForm" [service]="service">
     <editor-title> <span translate>LABEL_LIST_KIOSK </span>
         <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> <span translate>LABEL_EDIT_LAYOUT</span> </button></editor-title>
     <form *ngIf="edit.form" class="form" [formGroup]="edit.form">

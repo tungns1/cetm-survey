@@ -10,7 +10,7 @@ const adminServiceProvider = [
     Org.OrgService,
     Config.ConfigApi,
     Center.CenterService,
-    House.houseServiceProvider,
+    House.HouseService,
     FilterService
 ]
 

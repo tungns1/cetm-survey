@@ -1,19 +1,35 @@
-import * as Counter from './counter';
-import * as Kiosk from './kiosk';
-import * as Screen from './screen';
-import * as SFlow from './sflow';
+import { Injectable } from '@angular/core';
+import { FilterService } from '../shared';
+import { SharedService } from '../../shared';
+import { CounterService } from './counter';
+import { KioskService } from './kiosk';
+import { ScreenService } from './screen';
+import { SFlowService } from './sflow';
 
-const houseServiceProvider = [
-    Counter.CounterApi,
-    Kiosk.KioskApi,
-    Screen.ScreenApi,
-    SFlow.SFlowApi
-]
+@Injectable()
+export class HouseService {
+    constructor(
+        protected filterService: FilterService
+    ) {
+        this.onInit();
+    }
 
-export {
-    houseServiceProvider,
-    Counter,
-    Kiosk,
-    Screen,
-    SFlow,
+    private onInit() {
+        this.CounterService = new CounterService(this.Link.Counter, this.filterService);
+        this.KioskService = new KioskService(this.Link.Kiosk, this.filterService);
+        this.ScreenService = new ScreenService(this.Link.Screen, this.filterService);
+        this.SFlowService = new SFlowService(this.Link.SFlow, this.filterService);
+    }
+
+    CounterService: CounterService;
+    KioskService: KioskService;
+    ScreenService: ScreenService;
+    SFlowService: SFlowService;
+
+    Link = {
+        Counter: '/api/admin/house/counter',
+        Kiosk: '/api/admin/house/kiosk',
+        Screen: '/api/admin/house/screen',
+        SFlow: '/api/admin/house/sflow'
+    }
 }

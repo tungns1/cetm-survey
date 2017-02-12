@@ -1,4 +1,4 @@
-import { SharedService } from '../../shared';
+import { SharedService, Model } from '../../shared';
 import { Injectable } from '@angular/core';
 import { FilterService, AdminFilter } from './filter';
 import { Observable } from 'rxjs/Observable';
@@ -40,4 +40,20 @@ export class CrudApiService<T> {
     Name: string;
     ListFields: IField[] = [];
     protected api: SharedService.Backend.HttpApi<T>;
+}
+
+export class BranchCrudApiService<T> extends CrudApiService<T> {
+    GetByBranch(branch_id: string[]) {
+        return this.api.Search({ branch_id: branch_id.join(',') });
+    }
+
+    protected filter(d: AdminFilter) {
+        return this.GetByBranch(d.GetBranchIDAtLowestLevel())
+            .do(data => Model.Org.CacheBranch.Join(data));
+    }
+
+    ListFields = [
+        { title: 'LABEL_SUB_BRANCH', name: 'branch' },
+        { title: 'LABEL_NAME', name: 'name' }
+    ]
 }
