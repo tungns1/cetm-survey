@@ -28,19 +28,17 @@ export class UserComponent {
     private userApi: Org.UserApi
   ) { }
 
-  ngOnInit() {
-    this.filterService.ValueChanges.subscribe(v => {
-      this.users = this.userApi.GetByBranch(v.GetBranchIDAtLowestLevel());
-    });
-  }
-
   service: Editor.IEditService<Model.Org.IUser> = {
     api: this.userApi,
     form: NewForm,
     refresh: () => { }
   };
 
-  users;
+  users = this.filterService.ValueChanges.switchMap(v => {
+    return this.userApi.GetByBranch(v.GetBranchIDAtLowestLevel())
+      .do(data => Model.Org.CacheBranch.Join(data))
+  });
+
   private roles = Model.Org.AllRoles;
   private branches = Branch.LowestLayerBranch;
 

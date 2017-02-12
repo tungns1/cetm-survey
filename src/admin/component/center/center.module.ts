@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule, Model, Editor, Form } from '../../shared/';
+import { SharedModule, Model } from '../../shared/';
+import { Editor, Form } from '../shared/';
 import { routing, components } from './center.routing';
 import { SelectCheckModule } from '../shared';
 

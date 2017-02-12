@@ -2,7 +2,8 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ConfigComponent } from './config.component';
 import { FeedbackConfigModule } from './feedback.module';
-import { SharedService, SharedModule, Editor, Form } from '../../shared/';
+import { SharedService, SharedModule } from '../../shared/';
+import { Editor, Form } from '../shared';
 
 export const routing = RouterModule.forChild([
     {

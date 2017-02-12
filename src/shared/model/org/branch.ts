@@ -37,16 +37,9 @@ class BranchCache extends Cache.MemCache<IBranch> {
         return this.RxMax.value ? this.RxMax.value.level : 0;
     }
 
-}
-
-interface IModel { branch_id?: string, branch?: string };
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-
-export function AddBranchName<T extends IModel>(src: Observable<T[]>) {
-    return src.do(models => {
-        models.forEach(v => v.branch = CacheBranch.GetByID(v.branch_id).name || 'n/a');
-    });
+    Join(arr: any[]) {
+        return super.Join(arr, 'name', { from: 'branch_id', to: 'branch' });
+    }
 }
 
 export const CacheBranch = new BranchCache();

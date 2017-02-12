@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Lib, SharedModule } from '../../shared';
+import { Lib, SharedModule } from '../../../shared';
 import { EditorComponent, EditorTitleComponent } from './editor.component';
 
 @NgModule({

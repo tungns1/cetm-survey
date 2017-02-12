@@ -24,7 +24,7 @@ class AdminFilter {
         const branch_id = p['branch_id'];
         this.setBranchID(this.toArray(branch_id));
         // check the highest       
-        this.checkTheRoot(); 
+        this.checkTheRoot();
     }
 
     ToQuery() {
@@ -95,6 +95,7 @@ export class AdminFilterService {
     }
 
     Refresh() {
+        this.ValueChanges.next(this.filter);
         this.router.navigate([], {
             queryParams: this.filter.ToQuery()
         });
@@ -116,7 +117,10 @@ export class AdminFilterService {
 
     SetBranchID(branch_id: IDList[]) {
         this.filter.SetBranchID(branch_id);
-        this.ValueChanges.next(this.filter);
+    }
+
+    get Filter() {
+        return this.filter;
     }
 
     private filter = new AdminFilter();

@@ -1,5 +1,5 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { SharedConfig, SharedUtil } from '../shared';
+import { SharedConfig, SharedUtil } from '../../../shared';
 
 export function NewL10nForm(data: SharedUtil.L10nText) {
     data = data || {};

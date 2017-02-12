@@ -11,14 +11,14 @@ const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 
-import { Toast } from '../../../x/ui/noti/';
+import { Lib } from '../../../shared';
 
 @Component({
     selector: 'json-form',
     template: `
         <input [(ngModel)]="text" (change)="OnChange()" />
     `,
-     styles: [`
+    styles: [`
         input {
         margin-bottom: 15px;
         border-radius: 3px;
@@ -51,7 +51,7 @@ class JSONFormComponent implements ControlValueAccessor {
             let val = JSON.parse(this.text);
             this.onChangeCallback(val);
         } catch (e) {
-            const toast = new Toast();
+            const toast = new Lib.Ui.Notification.Toast();
             toast.Error("Dữ liệu không đúng dạng JSON").Show();
         }
     }

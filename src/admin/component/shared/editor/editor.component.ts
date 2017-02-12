@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ComponentRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { SharedService, Lib } from '../shared/';
+import { SharedService, Lib } from '../../../shared/';
+import { AdminFilterService } from '../../../service';
 
 export interface IEditService<T> {
     api: SharedService.Backend.HttpApi<T>;
-    refresh: () => void;
     form: (u?: T) => FormGroup;
 }
 
@@ -26,6 +26,8 @@ export class EditorTitleComponent { }
     styleUrls: ['editor.component.scss']
 })
 export class EditorComponent<T> {
+    constructor(private filterService: AdminFilterService) { }
+
     @Input() name = "";
     err = '';
 
@@ -40,7 +42,7 @@ export class EditorComponent<T> {
     @Output() edit = new EventEmitter<FormGroup>();
 
     private Refresh() {
-        this.service.refresh();
+        this.filterService.Refresh();
     }
 
     @ViewChild("edit") editorRef: Lib.Ng.ModalComponent;

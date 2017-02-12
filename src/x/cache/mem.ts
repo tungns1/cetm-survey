@@ -16,9 +16,17 @@ export class MemCache<T extends ID> {
         this.RxListView.next(arr);
     }
 
-    beforeAdd = (t: T) => {}
+    beforeAdd = (t: T) => { }
 
     GetByID(id: string) {
         return this.mapView.get(id);
+    }
+
+    // field of T
+    Join(arr: any[], field: string, map?: { from: string; to: string }) {
+        arr.forEach(v => {
+            const d = this.GetByID(v[map.from]);
+            v[map.to] = d ? d[field] : 'n/a';
+        });
     }
 }
