@@ -37,6 +37,11 @@ class BranchCache extends Cache.MemCache<IBranch> {
         return this.RxMax.value ? this.RxMax.value.level : 0;
     }
 
+    GetNameForID(id: string) {
+        const b = this.GetByID(id);
+        return b ? b.name : this.NotApplicable;
+    }
+
     Join(arr: any[]) {
         return super.Join(arr, 'name', { from: 'branch_id', to: 'branch' });
     }

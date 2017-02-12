@@ -26,7 +26,9 @@ export class MemCache<T extends ID> {
     Join(arr: any[], field: string, map?: { from: string; to: string }) {
         arr.forEach(v => {
             const d = this.GetByID(v[map.from]);
-            v[map.to] = d ? d[field] : 'n/a';
+            v[map.to] = d ? d[field] : this.NotApplicable;
         });
     }
+
+    NotApplicable = "n/a";
 }

@@ -6,7 +6,7 @@ import { CrudApiService, AdminFilter, FilterService } from '../shared';
 const Cache = Model.Org.CacheBranch;
 
 @Injectable()
-export class BranchService extends CrudApiService<Model.Org.IUser> {
+export class BranchService extends CrudApiService<Model.Org.IBranch> {
     constructor(
         uri: string,
         filterService: FilterService,
@@ -23,13 +23,22 @@ export class BranchService extends CrudApiService<Model.Org.IUser> {
         return Cache.RxByLevel(level);
     }
 
-    protected filter(d: AdminFilter) {
+    GetListViewByLevelAndParents(parents: string[], level: number) {
         return this.GetListViewByLevel(this.level).map(data => {
-            const parents = d.GetBranchID()[this.level + 1];
             if (!parents) {
                 return data;
             }
+            data.forEach(d => {
+                d.parent_name = Cache.GetNameForID(d.parent);
+            })
             return data.filter(d => parents.indexOf(d.parent) !== -1);
+        });
+    }
+
+    protected filter(d: AdminFilter) {
+        const parents = d.GetBranchID()[this.level + 1];
+        return this.authService.RefreshMySettings().switchMap(() => {
+            return this.GetListViewByLevelAndParents(parents, this.level);
         });
     }
 
@@ -47,11 +56,3 @@ export class BranchService extends CrudApiService<Model.Org.IUser> {
 
     private level = 2;
 }
-
-
-export const Levels = [
-    { name: 'LABEL_HEAD', value: 3 },
-    { name: 'CITY', value: 2 },
-    { name: 'LABEL_BRANCH', value: 1 },
-    { name: 'LABAEL_TRACTION_ROOM', value: 0 }
-]
