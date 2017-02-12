@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AdminFilterService } from '../shared';
+import { FilterService } from '../shared';
 import { Observable } from 'rxjs/Observable';
 import { Model } from '../../shared';
 
@@ -17,7 +17,7 @@ export class AdminFilterComponent implements OnInit, AfterViewInit {
 
     constructor(
         private route: ActivatedRoute,
-        private filterService: AdminFilterService
+        private filterService: FilterService
     ) { }
 
     form: FormArray;

@@ -1,18 +1,8 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ComponentRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
+import { Observable } from 'rxjs/Observable';
 import { SharedService, Lib } from '../../../shared/';
-import { AdminFilterService } from '../../../service';
-
-export interface IEditService<T> {
-    api: SharedService.Backend.HttpApi<T>;
-    form: (u?: T) => FormGroup;
-}
-
-export interface IField {
-    name: string;
-    title: string;
-}
+import { CrudApiService, IField } from '../../shared';
 
 @Component({
     selector: "editor-title",
@@ -26,61 +16,52 @@ export class EditorTitleComponent { }
     styleUrls: ['editor.component.scss']
 })
 export class EditorComponent<T> {
-    constructor(private filterService: AdminFilterService) { }
 
-    @Input() name = "";
-    err = '';
 
-    @Input() data: any[] = [];
-    @Input() fields: { title: string, name: string }[] = [];
-
-    @Input() service: IEditService<T>;
-
-    private form: FormGroup;
-    private current: T;
-
+    @Input() set service(s: CrudApiService<T>) {
+        this.api = s;
+        this.name = this.api.Name;
+        this.listFields = this.api.ListFields;
+        this.listView$ = this.api.RxListView;
+    };
+    @Input() formMaker: (u?: T) => FormGroup;
     @Output() edit = new EventEmitter<FormGroup>();
-
-    private Refresh() {
-        this.filterService.Refresh();
-    }
 
     @ViewChild("edit") editorRef: Lib.Ng.ModalComponent;
     @ViewChild("remove") removeRef: Lib.Ng.ModalComponent;
 
-    onAdd() {
+    private onAdd() {
         this.current = null;
-        this.form = this.service.form();
+        this.form = this.formMaker();
         this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
         this.edit.next(this.form);
     }
 
-    onEdit(u: T) {
+    private onEdit(u: T) {
         this.current = u;
-        this.form = this.service.form(u);
+        this.form = this.formMaker(u);
         this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
         this.edit.next(this.form);
     }
 
-    onRemove(u: T) {
+    private onRemove(u: T) {
         this.removeRef.Open();
-        this.form = this.service.form(u);
+        this.form = this.formMaker(u);
     }
 
-    CloseEditor() {
+    private CloseEditor() {
         this.editorRef.Close();
     }
 
-    CloseRemove() {
+    private CloseRemove() {
         this.removeRef.Close();
     }
 
-    Create() {
-        this.service.api.Create(this.form.value).subscribe(_ => {
+    private Create() {
+        this.api.Create(this.form.value).subscribe(_ => {
             Success("Thêm thành công");
-            this.Refresh();
             this.editorRef.Close();
         }, err => {
             this.err = err;
@@ -88,27 +69,36 @@ export class EditorComponent<T> {
         });
     }
 
-    Delete() {
-        this.service.api.MarkDelete(this.form.value.id).subscribe(_ => {
+    private Delete() {
+        this.api.MarkDelete(this.form.value.id).subscribe(_ => {
             Success("Xóa thành công");
             this.removeRef.Close();
-            this.Refresh();
         }, err => {
             this.err = err;
             Error(err);
         });
     }
 
-    Update() {
-        this.service.api.Update(this.form.value).subscribe(_ => {
+    private Update() {
+        this.api.Update(this.form.value).subscribe(_ => {
             Success("Sửa thành công");
-            this.Refresh();
             this.editorRef.Close();
         }, err => {
             this.err = err;
             Error(err);
         });
     }
+
+
+    private api: CrudApiService<T>;
+    private form: FormGroup;
+    private current: T;
+
+    private err = '';
+
+    private name: string;
+    private listView$: Observable<T[]>;
+    private listFields: IField[];
 }
 
 

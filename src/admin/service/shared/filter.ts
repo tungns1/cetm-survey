@@ -18,7 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Model } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-class AdminFilter {
+export class AdminFilter {
 
     FromQuery(p: Params) {
         const branch_id = p['branch_id'];
@@ -86,7 +86,7 @@ class AdminFilter {
 }
 
 @Injectable()
-export class AdminFilterService {
+export class FilterService {
     constructor(
         private route: ActivatedRoute,
         private router: Router,

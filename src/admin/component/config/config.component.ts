@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Config } from '../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../../shared/';
+import { Branch, Editor, Model, AdminFilterService } from '../shared/';
 
 function NewForm(u?: Model.IConfig) {
   u = u || <any>{};
@@ -24,8 +24,7 @@ export class ConfigComponent {
 
   service: Editor.IEditService<Model.IConfig> = {
     api: this.configApi,
-    form: NewForm,
-    refresh: () => this.data.refresh()
+    form: NewForm
   };
 
   data = this.configApi.AutoRefresh();

@@ -4,20 +4,22 @@ import * as House from './house';
 import * as Center from './center/';
 import * as Org from './org';
 
-import {AdminFilterService} from './filter.service';
+import { CrudApiService, FilterService } from './shared';
+
 const adminServiceProvider = [
-    Org.orgServiceProvider,
+    Org.OrgService,
     Config.ConfigApi,
     Center.CenterProvider,
     House.houseServiceProvider,
-    AdminFilterService
+    FilterService
 ]
+
+export * from './shared';
 
 export {
     Org,
     Config,
     House,
     Center,
-    adminServiceProvider,
-    AdminFilterService
+    adminServiceProvider
 }

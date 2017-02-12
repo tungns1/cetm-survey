@@ -1,4 +1,4 @@
-<editor #edit name="LABEL_USER" [fields]="fields" [data]="users | async" [service]="service" (refresh)="Refresh()">
+<editor #edit [service]="service" [formMaker]="formMaker">
     <editor-title> <span translate>LABEL_LIST_USER</span></editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_USERNAME</span>:
