@@ -2,24 +2,31 @@ export * from './branch';
 export * from './user';
 import { UserService } from './user';
 
+import { BranchService } from './branch';
 
 import { Injectable } from '@angular/core';
 import { FilterService } from '../shared';
+import { SharedService } from '../../shared';
 
 @Injectable()
 export class OrgService {
     constructor(
-        protected filterService: FilterService
+        protected filterService: FilterService,
+        private authService: SharedService.Auth.AuthService
     ) {
         this.onInit();
     }
 
     private onInit() {
+        this.BranchService = new BranchService(this.Link.Branch, this.filterService, this.authService);
         this.UserService = new UserService(this.Link.User, this.filterService);
     }
 
+    BranchService: BranchService;
     UserService: UserService;
+
     Link = {
+        Branch: '/api/admin/org/branch',
         User: '/api/admin/org/user'
     }
 }

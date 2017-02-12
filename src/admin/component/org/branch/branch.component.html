@@ -1,4 +1,4 @@
-<!--<editor #edit [name]="level | branchLevelName" [fields]="fields" [data]="branches | async" [service]="service">
+<editor #edit [name]="level | branchLevelName" [formMaker]="formMaker" [service]="service">
     <editor-title> <span translate>LABEL_LIST</span>&nbsp;{{level | branchLevelName| translate}}</editor-title>
     <form *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_NAME</span>:
@@ -9,8 +9,8 @@
         <div>
             <label style="margin-right: 14px;">{{level + 1 | branchLevelName| translate}}</label>
             <select formControlName="parent">
-                <option *ngFor="let br of upperLayers | async" [value]="br.id">{{br.name}}</option>
+                <option *ngFor="let br of parents | async" [value]="br.id">{{br.name}}</option>
             </select>
         </div>
     </form>
-</editor>-->
+</editor>

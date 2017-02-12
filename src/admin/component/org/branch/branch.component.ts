@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SharedService, Branch, Editor, Model } from '../../../shared/';
-
+import { SharedService, Branch, Model, Org } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
-
-export const Api = new SharedService.Backend.HttpApi<Model.Org.IBranch>("/api/admin/org/branch");
 
 @Component({
   selector: 'admin-branch',
@@ -14,40 +11,25 @@ export const Api = new SharedService.Backend.HttpApi<Model.Org.IBranch>("/api/ad
 })
 export class BranchComponent {
   constructor(
+    private org: Org.OrgService,
     private authService: SharedService.Auth.AuthService,
     private route: ActivatedRoute
   ) {
     route.params.forEach(params => {
-      this.level = +params['level'];
-      if (isNaN(this.level)) {
-        this.level = 2;
-      }
-      this.branches = Branch.GetLayer(this.level).shown;
-      let level = Model.Org.BranchLevels.filter(v => v.value === this.level)[0];
-      this.fields[0].title = level.name;
-      let up = Branch.GetLayer(this.level + 1);
-      if (up) {
-        this.upperLayers = up.shown;
-      } else {
-        this.upperLayers = null;
-      }
+      this.level = +params['level'] || 0;
+      this.service.SetLevel(this.level);
+      this.parents = this.service.GetListViewByLevel(this.level + 1);
     });
   }
 
-  branches: Observable<Model.Org.IBranch[]>;
-  upperLayers: Observable<Model.Org.IBranch[]>;
+  parents: Observable<Model.Org.IBranch[]>;
   private level: number;
 
-  Refresh() {
-    this.authService.RefreshMySettings().subscribe(console.log);
-  }
-
-
-  NewForm(b?: Model.Org.IBranch) {
-    b = b || <any>{};
+  formMaker(b?: Model.Org.IBranch) {
+    b = b || <any>{ parent: '' };
     const maxLevel = Model.Org.CacheBranch.GetMaxLevel();
     if (this.level === maxLevel - 1) {
-      b.parent = b.parent || maxLevel;
+      b.parent = b.parent || `${maxLevel}`;
     }
     return (new FormBuilder).group({
       id: [b.id],
@@ -58,16 +40,6 @@ export class BranchComponent {
     });
   }
 
-  service: Editor.IEditService<Model.Org.IBranch> = {
-    api: Api,
-    form: u => this.NewForm(u),
-    refresh: () => this.Refresh()
-  };
-
-  fields: Editor.IField[] = [
-    { title: "LABEL_NAME_ADDRESS_FATHER", name: "parent_name" },
-    { title: "LABEL_NAME_ADDRESS", name: "name" },
-    { title: "LABEL_CODE", name: "code" }
-  ]
+  service = this.org.BranchService;
 
 }
