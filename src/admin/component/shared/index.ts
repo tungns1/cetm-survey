@@ -7,7 +7,6 @@ export {
     Form
 }
 
-export * from '../../../x/ng/select';
 export * from '../../service';
 export * from '../../shared';
 

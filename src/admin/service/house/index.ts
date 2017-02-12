@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FilterService } from '../shared';
+import { AdminFilterService } from '../shared';
 import { SharedService } from '../../shared';
 import { CounterService } from './counter';
 import { KioskService } from './kiosk';
@@ -9,7 +9,7 @@ import { SFlowService } from './sflow';
 @Injectable()
 export class HouseService {
     constructor(
-        protected filterService: FilterService
+        protected filterService: AdminFilterService
     ) {
         this.onInit();
     }

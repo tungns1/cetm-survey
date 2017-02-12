@@ -1,95 +1,35 @@
 
-type IDList = string[];
-
-function toIdList(v: string | string[]) {
-    if (Array.isArray(v)) {
-        return v;
-    }
-    return v ? v.split(',') : [];
-}
-
-function idListToString(d: IDList) {
-    return d.join(',');
-}
-
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Model } from '../../shared';
+import { Model, Branch } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 export class AdminFilter {
+    constructor(
+        private branch: Branch.BranchFilterService
+    ) { }
+
+    get Branch() {
+        return this.branch.Filter;
+    }
 
     FromQuery(p: Params) {
-        const branch_id = p['branch_id'];
-        this.setBranchID(this.toArray(branch_id));
-        // check the highest       
-        this.checkTheRoot();
+        this.Branch.FromQuery(p);
     }
 
     ToQuery() {
-        const branch_id = this.branch_id.map(idListToString);
-        return {
-            once: Date.now(),
-            branch_id: this.toString(branch_id)
-        }
+        return Object.assign({}, this.Branch.ToQuery());
     }
 
-    private checkTheRoot() {
-        const maxLevel = this.levels.length - 1;
-        const branchAtRoot = Model.Org.CacheBranch.GetByLevel(maxLevel);
-        this.branch_id[maxLevel] = branchAtRoot.map(b => b.id);
-    }
-
-    private toArray(v: string) {
-        return v ? v.split(";") : [];
-    }
-
-    GetBranchID() {
-        return this.branch_id;
-    }
-
-    SetBranchID(value: IDList[]) {
-        this.setBranchID(value);
-    }
-
-    GetBranchIDByLevel(level = 0) {
-        return this.branch_id[level] || [];
-    }
-
-    GetBranchIDAtLowestLevel() {
-        const len = this.branch_id.length;
-        for (let i = 0; i < len; i++) {
-            if (this.branch_id[i] && this.branch_id[i].length > 0) {
-                return this.branch_id[i];
-            }
-        }
-        return [];
-    }
-
-    private toString(arr: string[]) {
-        return arr.join(';');
-    }
-
-    private setBranchID(value: string[] | IDList[]) {
-        this.branch_id = this.levels.map(l => value[l] || []).map(toIdList);
-    }
-
-    get Levels() {
-        return this.levels;
-    }
-
-    private branch_id: IDList[] = [];
-
-    // top down 
-    private levels = Model.Org.BranchLevels.map(v => v.value).sort((a, b) => a < b ? -1 : 1)
 }
 
 @Injectable()
-export class FilterService {
+export class AdminFilterService {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        public Branch: Branch.BranchFilterService
     ) {
         this.onInit();
     }
@@ -103,27 +43,9 @@ export class FilterService {
 
     private onInit() {
         this.filter.FromQuery(this.route.snapshot.queryParams);
-        console.log('on', this.filter.GetBranchID());
         this.ValueChanges.next(this.filter);
     }
 
-    get Levels() {
-        return this.filter.Levels;
-    }
-
-    GetBranchID() {
-        return this.filter.GetBranchID();
-    }
-
-    SetBranchID(branch_id: IDList[]) {
-        this.filter.SetBranchID(branch_id);
-    }
-
-    get Filter() {
-        return this.filter;
-    }
-
-    private filter = new AdminFilter();
+    private filter = new AdminFilter(this.Branch);
     ValueChanges = new ReplaySubject<AdminFilter>(1);
-
 }

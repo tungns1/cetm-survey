@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Meta } from '../../../service/';
+import { Meta, Org } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Branch, Editor, Model } from '../../shared/';
 
@@ -10,6 +10,7 @@ import { Branch, Editor, Model } from '../../shared/';
 export class BranchConfigComponent {
   constructor(
     private meta: Meta.MetaService,
+    private org: Org.OrgService
   ) { }
 
   service = this.meta.BranchConfigService;
@@ -23,6 +24,6 @@ export class BranchConfigComponent {
     });
   }
 
-  private branches = Branch.LowestLayerBranch;
+  private branches = this.org.BranchService.RxListView;
 }
 

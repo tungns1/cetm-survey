@@ -5,7 +5,7 @@ import { BranchCrudApiService, AdminFilter } from '../shared';
 @Injectable()
 export class UserService extends BranchCrudApiService<Model.Org.IUser> {
     protected filter(d: AdminFilter) {
-        return this.GetByBranch(d.GetBranchIDAtLowestLevel())
+        return this.GetByBranch(d.Branch.GetBranchIDAtLowestLevel())
             .do(data => Model.Org.CacheBranch.Join(data));
     }
 

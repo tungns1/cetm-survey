@@ -5,13 +5,13 @@ import { UserService } from './user';
 import { BranchService } from './branch';
 
 import { Injectable } from '@angular/core';
-import { FilterService } from '../shared';
+import { AdminFilterService } from '../shared';
 import { SharedService } from '../../shared';
 
 @Injectable()
 export class OrgService {
     constructor(
-        protected filterService: FilterService,
+        protected filterService: AdminFilterService,
         private authService: SharedService.Auth.AuthService
     ) {
         this.onInit();

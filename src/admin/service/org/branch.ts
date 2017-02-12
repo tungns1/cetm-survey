@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Model, Branch, SharedService } from '../../shared/';
-import { CrudApiService, AdminFilter, FilterService } from '../shared';
+import { CrudApiService, AdminFilter, AdminFilterService } from '../shared';
 
 const Cache = Model.Org.CacheBranch;
 
@@ -9,7 +9,7 @@ const Cache = Model.Org.CacheBranch;
 export class BranchService extends CrudApiService<Model.Org.IBranch> {
     constructor(
         uri: string,
-        filterService: FilterService,
+        filterService: AdminFilterService,
         private authService: SharedService.Auth.AuthService
     ) {
         super(uri, filterService);
@@ -36,7 +36,7 @@ export class BranchService extends CrudApiService<Model.Org.IBranch> {
     }
 
     protected filter(d: AdminFilter) {
-        const parents = d.GetBranchID()[this.level + 1];
+        const parents = d.Branch.GetBranchID()[this.level + 1];
         return this.authService.RefreshMySettings().switchMap(() => {
             return this.GetListViewByLevelAndParents(parents, this.level);
         });

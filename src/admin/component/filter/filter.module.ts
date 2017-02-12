@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SelectCheckModule } from '../shared';
-import { SharedModule } from '../../shared';
+import { SharedModule, Branch } from '../../shared';
 import { AdminFilterComponent } from './filter.component';
 
 @NgModule({
-    imports: [SelectCheckModule, SharedModule],
+    imports: [SharedModule, Branch.BranchFilterModule],
     declarations: [AdminFilterComponent],
     exports: [AdminFilterComponent]
 })

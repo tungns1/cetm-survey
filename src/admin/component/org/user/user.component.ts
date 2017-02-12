@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FilterService, Org } from '../../shared/';
+import { AdminFilterService, Org } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Branch, Editor, Model } from '../../shared/';
 
@@ -28,6 +28,6 @@ export class UserComponent {
 
   service = this.org.UserService;
   private roles = Model.Org.AllRoles;
-  private branches = Branch.LowestLayerBranch;
+  private branches = this.org.BranchService.RxListView;
 }
 

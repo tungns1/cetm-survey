@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { FilterService } from '../shared';
+import { AdminFilterService } from '../shared';
 import { SharedService } from '../../shared';
 
 import { BranchConfigService } from './branch_config';
@@ -8,7 +8,7 @@ import { BranchConfigService } from './branch_config';
 @Injectable()
 export class MetaService {
     constructor(
-        protected filterService: FilterService,
+        protected filterService: AdminFilterService,
         private authService: SharedService.Auth.AuthService
     ) {
         this.onInit();

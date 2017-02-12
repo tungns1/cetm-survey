@@ -3,7 +3,7 @@ import * as Layout from './layout';
 import * as Service from './service';
 
 import { Injectable } from '@angular/core';
-import { FilterService } from '../shared';
+import { AdminFilterService } from '../shared';
 import { SharedService } from '../../shared';
 import { TFormService } from './tform';
 import { ServiceService } from './service';
@@ -12,7 +12,7 @@ import { LayoutService } from './layout';
 @Injectable()
 export class CenterService {
     constructor(
-        protected filterService: FilterService
+        protected filterService: AdminFilterService
     ) {
         this.onInit();
     }
