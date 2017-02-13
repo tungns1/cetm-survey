@@ -15,7 +15,7 @@ export class DashboardComponent {
     ) { }
 
     ngOnInit() {
-        this.filterService.ValueChanges.subscribe(filter => {
+        this.filterService.ExclusiveSubscribe(filter => {
             this.aggregateService.Refresh(filter);
         });
     }

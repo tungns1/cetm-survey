@@ -31,9 +31,4 @@ export class AdminFilterService extends Model.SharedModel.AbstractStateService<A
         super(route);
         this.onInit(new AdminFilter(this.branchFilterService.Current));
     }
-
-    triggerChange() {
-        this.branchFilterService.Refresh();
-        super.triggerChange();
-    }
 }

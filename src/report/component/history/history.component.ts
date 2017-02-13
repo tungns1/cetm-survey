@@ -39,7 +39,7 @@ export class HistoryComponent {
         this.active = this.filterService.Current;
         this.active.limit = pageSize;
         this.active.skip = pageSize * (RxCurrentPage.value - 1);
-        this.filterService.Refresh();
+        // this.filterService.Refresh();
     }
 
     skip = RxCurrentPage.map(v => (v - 1) * pageSize);

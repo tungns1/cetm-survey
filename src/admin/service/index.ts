@@ -4,14 +4,14 @@ import * as Center from './center/';
 import * as Org from './org';
 import * as Meta from './meta';
 
-import { CrudApiService, AdminFilterService } from './shared';
+import { shareServiceProvider } from './shared';
 
 const adminServiceProvider = [
     Org.OrgService,
     Center.CenterService,
     House.HouseService,
     Meta.MetaService,
-    AdminFilterService
+    shareServiceProvider
 ]
 
 export * from './shared';

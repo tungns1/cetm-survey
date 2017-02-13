@@ -27,7 +27,7 @@ export class BranchFilter extends SharedModel.AbstractState {
     private checkTheRoot() {
         const maxLevel = this.branch_id.Max;
         const branchAtRoot = Org.CacheBranch.GetByLevel(maxLevel);
-        this.branch_id[maxLevel] = branchAtRoot.map(b => b.id);
+        this.branch_id.set(maxLevel, branchAtRoot.map(b => b.id)) ;
     }
 
     GetBranchID() {

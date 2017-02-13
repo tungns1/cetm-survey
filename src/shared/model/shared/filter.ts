@@ -85,6 +85,10 @@ export class MultipleIDList {
         return this.data[i].valueOf();
     }
 
+    set(i: number, v: string[]) {
+        this.data[i] = new IDList(v);
+    }
+
     protected toMultipleIdList(v: string[] | string[][], len = 0) {
         return this.levels.map(l => new IDList(v[l] || []));
     }
