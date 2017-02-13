@@ -20,7 +20,6 @@ function NewForm(b?: Model.Center.ILayout) {
 })
 export class LayoutComponent {
 
-    
     fields = [
         { title: 'LABEL_NAME', name: 'name' },
         { title: 'Code', name: 'code' },

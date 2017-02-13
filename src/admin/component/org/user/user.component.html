@@ -1,14 +1,14 @@
 <editor #edit [service]="service" [makeForm]="makeForm">
     <editor-title> <span translate>LABEL_LIST_USER</span></editor-title>
-    <form *ngIf="edit.form" [formGroup]="edit.form">
+    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_USERNAME</span>:
-        <input type="text" formControlName="username" placeholder="{{'LABEL_USERNAME' | translate}}" style="width: 100%;"><br>
+        <input class="hl-input" type="text" formControlName="username" placeholder="{{'LABEL_USERNAME' | translate}}" style="width: 100%;"><br>
         <span translate>LABEL_FULLNAME</span>:
-        <input type="text" formControlName="fullname" placeholder="{{'LABEL_FULLNAME' | translate}}" style="width: 100%;"><br>
+        <input class="hl-input" type="text" formControlName="fullname" placeholder="{{'LABEL_FULLNAME' | translate}}" style="width: 100%;"><br>
         <span translate>LABEL_PASSWORD</span>:
-        <input type="password" formControlName="password" id="password" placeholder="{{'LABEL_PASSWORD'|translate}}" style="width: 100%;">
+        <input class="hl-input" type="password" formControlName="password" id="password" placeholder="{{'LABEL_PASSWORD'|translate}}" style="width: 100%;">
         <br> Role:
-        <select formControlName="role">
+        <select class="hl-select" formControlName="role">
             <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
         </select><br>
         <span translate>LABEL_ADDRESS</span>:

@@ -1,4 +1,4 @@
-/*.inputs {
+.hl-input {
     margin-bottom: 15px;
     border-radius: 3px;
     height: 30px;
@@ -9,27 +9,25 @@
     width: 100%;
 }
 
-form {
+.hl-form {
     margin-bottom: 20px;
-}*/
+}
 
+.hl-select {
+    width: 150px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
 
-/*.dichvu {
+.dichvu {
     background-color: #fff;
     padding: 5px 20px 5px 20px;
     overflow: auto;
     height: 150px;
-}*/
+}
 
-
-/*select {
-    width: 150px;
-    height: 30px;
-    margin-bottom: 10px;
-}*/
-
-
-/*.add {
+.add {
     float: right;
     height: 40px;
     color: #01947a;
@@ -40,4 +38,4 @@ form {
     border-radius: 3px;
     border: 1px solid #01947a;
     text-transform: uppercase;
-}*/
+}
