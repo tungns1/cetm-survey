@@ -1,119 +1,77 @@
-
-type IDList = string[];
-
-function toIdList(v: string | string[]) {
-    if (Array.isArray(v)) {
-        return v;
-    }
-    return v ? v.split(',') : [];
-}
-
-function idListToString(d: IDList) {
-    return d.join(',');
-}
-
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
-import { Org } from '../../model';
+import { Org, SharedModel } from '../../model';
 
-export class BranchFilter {
+export class BranchFilter extends SharedModel.AbstractFilter {
+    constructor() {
+        super();
+        this.branch_id = new SharedModel.MultipleIDList(Org.BranchLevels.length);
+    }
 
     FromQuery(p: Params) {
         const branch_id = p['branch_id'];
-        this.setBranchID(this.toArray(branch_id));
+        this.branch_id.rebuild(branch_id);
         // check the highest       
         this.checkTheRoot();
     }
 
     ToQuery() {
-        const branch_id = this.branch_id.map(idListToString);
         return {
-            once: Date.now(),
-            branch_id: this.toString(branch_id)
+            branch_id: this.branch_id.toString()
         }
     }
 
+    valueOf() {
+        return this.branch_id.valueOf();
+    }
+
     private checkTheRoot() {
-        const maxLevel = this.levels.length - 1;
+        const maxLevel = this.branch_id.Max;
         const branchAtRoot = Org.CacheBranch.GetByLevel(maxLevel);
         this.branch_id[maxLevel] = branchAtRoot.map(b => b.id);
     }
 
-    private toArray(v: string) {
-        return v ? v.split(";") : [];
-    }
-
     GetBranchID() {
-        return this.branch_id;
+        return this.branch_id.valueOf();
     }
 
     GetArrayBranchID() {
-        return this.branch_id.reduce((res, arr) => res.concat(arr), []);
+        return this.branch_id.toArray();
     }
 
-    SetBranchID(value: IDList[]) {
-        this.setBranchID(value);
+    SetBranchID(value: string[][]) {
+        this.branch_id.rebuild(value);
     }
 
-    GetBranchIDByLevel(level = 0) {
-        return this.branch_id[level] || [];
+    GetBranchIDByLevel(level = 0): string[] {
+        return this.branch_id.at(level) || [];
     }
 
     GetBranchIDAtLowestLevel() {
-        const len = this.branch_id.length;
-        for (let i = 0; i < len; i++) {
-            if (this.branch_id[i] && this.branch_id[i].length > 0) {
-                return this.branch_id[i];
-            }
-        }
-        return [];
+        return this.branch_id.at(this.branch_id.getLowest()) || [];
     }
 
     GetLowestLevel() {
-        const len = this.branch_id.length;
-        let i = 0;
-        while (i < len) {
-            if (this.branch_id[i] && this.branch_id[i].length > 0) {
-                break;
-            }
-            i++;
-        }
-        return i;
-    }
-
-    private toString(arr: string[]) {
-        return arr.join(';');
-    }
-
-    private setBranchID(value: string[] | IDList[]) {
-        this.branch_id = this.levels.map(l => value[l] || []).map(toIdList);
+        return this.branch_id.getLowest();
     }
 
     get Levels() {
-        return this.levels;
+        return this.branch_id.Levels;
     }
 
-    private branch_id: IDList[] = [];
-
-    // top down 
-    private levels = Org.BranchLevels.map(v => v.value).sort((a, b) => a < b ? -1 : 1)
+    private branch_id: SharedModel.MultipleIDList;
 }
 
+import { Params, ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
-export class BranchFilterService {
-    constructor() {
-        console.log('create');
-    }
-
-    onChange() {
-        this.ValueChanges.next(this.filter);
-    }
-
-    FromQuery(p: Params) {
-        this.filter.FromQuery(p);
-        this.onChange();
+export class BranchFilterService extends SharedModel.AbstractFitlerService<BranchFilter> {
+    constructor(
+        route: ActivatedRoute,
+        router: Router
+    ) {
+        super(route, router);
+        this.onInit(new BranchFilter);
     }
 
     get Levels() {
@@ -124,15 +82,8 @@ export class BranchFilterService {
         return this.filter.GetBranchID();
     }
 
-    SetBranchID(branch_id: IDList[]) {
+    SetBranchID(branch_id: string[][]) {
         this.filter.SetBranchID(branch_id);
         this.onChange();
     }
-
-    get Filter() {
-        return this.filter;
-    }
-
-    private filter = new BranchFilter();
-    ValueChanges = new ReplaySubject<BranchFilter>(1);
 }

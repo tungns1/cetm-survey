@@ -5,8 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Model, Branch } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-export class AdminFilter {
-    Branch: Branch.BranchFilter;
+export class AdminFilter extends Model.SharedModel.AbstractFilter {
+    constructor(
+        public Branch: Branch.BranchFilter
+    ) {
+        super();
+     }
 
     FromQuery(p: Params) {
         this.Branch.FromQuery(p);
@@ -19,33 +23,18 @@ export class AdminFilter {
 }
 
 @Injectable()
-export class AdminFilterService {
+export class AdminFilterService extends Model.SharedModel.AbstractFitlerService<AdminFilter> {
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
+        route: ActivatedRoute,
+        router: Router,
         private branchFilterService: Branch.BranchFilterService
     ) {
-        this.onInit();
+        super(route, router);
+        this.onInit(new AdminFilter(this.branchFilterService.Filter));
     }
 
-    private onInit() {
-        this.filter.Branch = this.branchFilterService.Filter;
-        this.filter.FromQuery(this.route.snapshot.queryParams);
-        this.onChange();
-    }
-
-    private onChange() {
+    protected onChange() {
         this.branchFilterService.onChange();
-        this.ValueChanges.next(this.filter);
+        super.onChange();
     }
-
-    Refresh() {
-        this.onChange();
-        this.router.navigate([], {
-            queryParams: this.filter.ToQuery()
-        });
-    }
-
-    private filter = new AdminFilter();
-    ValueChanges = new ReplaySubject<AdminFilter>(1);
 }

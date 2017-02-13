@@ -4,6 +4,7 @@ import * as Center from './center/';
 import * as House from './house/';
 import * as Ui from './ui/';
 import * as Meta from './meta';
+import * as SharedModel from './shared';
 
 export {
     Org,
@@ -11,4 +12,5 @@ export {
     House,
     Ui,
     Meta,
+    SharedModel
 }

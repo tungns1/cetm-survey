@@ -36,7 +36,7 @@ export class BranchService extends CrudApiService<Model.Org.IBranch> {
     }
 
     protected filter(d: AdminFilter) {
-        const parents = d.Branch.GetBranchID()[this.level + 1];
+        const parents = d.Branch.GetBranchIDByLevel(this.level + 1);
         return this.authService.RefreshMySettings().switchMap(() => {
             return this.GetListViewByLevelAndParents(parents, this.level);
         });
