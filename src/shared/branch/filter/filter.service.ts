@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Org, SharedModel } from '../../model';
 
-export class BranchFilter extends SharedModel.AbstractFilter {
+export class BranchFilter extends SharedModel.AbstractState {
     constructor() {
         super();
         this.branch_id = new SharedModel.MultipleIDList(Org.BranchLevels.length);
@@ -65,25 +65,24 @@ import { Params, ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
-export class BranchFilterService extends SharedModel.AbstractFitlerService<BranchFilter> {
+export class BranchFilterService extends SharedModel.AbstractStateService<BranchFilter> {
     constructor(
-        route: ActivatedRoute,
-        router: Router
+        route: ActivatedRoute
     ) {
-        super(route, router);
+        super(route);
         this.onInit(new BranchFilter);
     }
 
     get Levels() {
-        return this.filter.Levels;
+        return this.state.Levels;
     }
 
     GetBranchID() {
-        return this.filter.GetBranchID();
+        return this.state.GetBranchID();
     }
 
     SetBranchID(branch_id: string[][]) {
-        this.filter.SetBranchID(branch_id);
-        this.onChange();
+        this.state.SetBranchID(branch_id);
+        this.triggerChange();
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AggregateService } from '../../shared';
+import { AggregateService, ReportViewService } from '../../shared';
+import { MAIN_TABS } from '../shared';
 
 @Component({
     selector: 'report-overview',
@@ -10,16 +11,20 @@ import { AggregateService } from '../../shared';
 export class ReportOverViewComponent {
 
     constructor(
-        private aggregateService: AggregateService
+        private aggregateService: AggregateService,
+        private viewService: ReportViewService
     ) { }
 
-    @Input() tag: string;
-    tab = 'general';
+
+    ngOnInit() {
+
+    }
+
+    tab$ = this.viewService.ValueChanges.map(v => v.GetTab()).share();
+    general$ = this.tab$.map(tab => tab === MAIN_TABS.GENERAL.name);
+    time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
+    customer$ = this.tab$.map(tab => tab === MAIN_TABS.CUSTOMER.name);
+    
     data = this.aggregateService.RxActiveAggregate;
     groupTitle = this.aggregateService.RxGroupTitle;
-    ngOnChanges(change) {
-        if (change.tag) {
-            this.tab = this.tag;
-        }
-    }
 }

@@ -1,15 +1,15 @@
 export * from './history.service';
 export * from './aggregate.service';
-export * from './filter';
+export * from './shared';
 
 import { TransactionHistoryApi } from './history.service';
 import { AggregateService } from './aggregate.service';
-import { filterServiceProvider } from './filter';
+import { sharedServiceProvider } from './shared';
 
 const reportServiceProvider = [
-    ...filterServiceProvider,
+    sharedServiceProvider,
     TransactionHistoryApi,
-    AggregateService
+    AggregateService,
 ]
 
 export {

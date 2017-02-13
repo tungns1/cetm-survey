@@ -15,7 +15,7 @@ export function MakeIndexBy(records: IAggregate[], field: string) {
     return values;
 }
 
-import { ReportFilterService, ReportFilter } from './filter';
+import { ReportFilterService, ReportFilter } from './shared';
 
 import { Injectable } from '@angular/core';
 

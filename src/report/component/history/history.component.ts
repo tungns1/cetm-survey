@@ -29,14 +29,14 @@ export class HistoryComponent {
     active: any = {};
 
     ngOnInit() {
-        this.filterService.OnceSubscribe(filter => {
+        this.filterService.ExclusiveSubscribe(filter => {
             this.transactionHistoryApi.Refresh(filter);
-        })
+        });
     }
 
     chuyenTrang(value) {
         RxCurrentPage.next(value);
-        this.active = this.filterService.Filter;
+        this.active = this.filterService.Current;
         this.active.limit = pageSize;
         this.active.skip = pageSize * (RxCurrentPage.value - 1);
         this.filterService.Refresh();

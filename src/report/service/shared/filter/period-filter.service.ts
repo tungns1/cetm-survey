@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Model } from '../../shared';
+import { Model } from '../../../shared';
 
 const now = Math.floor(Date.now() / 111);
 const oneDay = 24 * 3600 * 1000;
@@ -28,7 +28,7 @@ export interface IPeriodFilter {
     period?: string;
 }
 
-export class PeriodFilter extends Model.SharedModel.AbstractFilter {
+export class PeriodFilter extends Model.SharedModel.AbstractState {
     Rebuild(d?: IPeriodFilter) {
         d = d || {};
         let startDate = this.toDate(d.start);
@@ -50,7 +50,7 @@ export class PeriodFilter extends Model.SharedModel.AbstractFilter {
         }
         this.endDate = end;
     }
-    
+
     FromQuery(p: Params) {
         this.Rebuild(p);
     }
@@ -82,9 +82,6 @@ export class PeriodFilter extends Model.SharedModel.AbstractFilter {
         }
     }
 
-    
-
-
     private startDate: Date;
     private endDate: Date;
     private period: string;
@@ -97,17 +94,16 @@ import { Params, ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
-export class PeriodFilterService extends Model.SharedModel.AbstractFitlerService<PeriodFilter> {
+export class PeriodFilterService extends Model.SharedModel.AbstractStateService<PeriodFilter> {
     constructor(
-        route: ActivatedRoute,
-        router: Router
+        route: ActivatedRoute
     ) {
-        super(route, router);
+        super(route);
         this.onInit(new PeriodFilter);
     }
 
     SetPeriod(v: IPeriodFilter) {
-        this.filter.Rebuild(v);
-        this.onChange();
+        this.state.Rebuild(v);
+        this.triggerChange();
     }
 }

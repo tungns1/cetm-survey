@@ -1,6 +1,6 @@
 import { ITransaction, IHistory, ITransactionView } from '../model';
 import { SharedService, Model } from '../shared/';
-import { ReportFilterService, ReportFilter } from './filter';
+import { ReportFilterService, ReportFilter } from './shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 
@@ -12,7 +12,6 @@ export class TransactionHistoryApi {
 
     Refresh(filter: ReportFilter) {
         this.api.Get<IHistory>("read", filter.ToBackendQuery()).subscribe(v => {
-            console.log(v);
             this.RxHistory.next(v.data.map(d => this.toTransactionView(d)));
             this.RxCount.next(v.total);
         });

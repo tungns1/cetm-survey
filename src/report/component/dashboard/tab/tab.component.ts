@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Output, EventEmitter } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-export const RxTab = new BehaviorSubject<string>('general');
+import { ReportViewService, NavService } from '../../shared';
+import { MAIN_TABS } from '../shared';
 
 @Component({
   selector: 'report-tab',
@@ -9,26 +8,22 @@ export const RxTab = new BehaviorSubject<string>('general');
   styleUrls: ['tab.component.css']
 })
 export class ReportTabComponent {
-  active: string = 'general';
-  @Output() select = new EventEmitter();
-  tabs = [{
-    name: 'general',
-    title: 'GENERAL.TAB_GENERAL',
-    tag: 'general'
-  }, {
-    name: 'time',
-    title: 'GENERAL.TAB_TIME_TRANSACTION',
-    tag: 'time'
-  }, {
-    name: 'customer',
-    title: 'GENERAL.TAB_CUSTOMER_FEEDBACK',
-    tag: 'customer'
-  }]
+  constructor(
+    private viewService: ReportViewService,
+    private navService: NavService
+  ) { }
 
+  ngOnInit() {
+    this.active = this.viewService.Current.GetTab();
+  }
+
+  tabs = [MAIN_TABS.GENERAL, MAIN_TABS.TIME, MAIN_TABS.CUSTOMER];
 
   setActive(t: { name: string }) {
     this.active = t.name;
-    RxTab.next(t.name);
-    this.select.emit(t);
+    this.viewService.SetTab(t.name);
+    this.navService.SyncView();
   }
+
+  private active: string;
 }

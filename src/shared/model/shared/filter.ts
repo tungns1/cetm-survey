@@ -115,7 +115,7 @@ interface IMap {
     [index: string]: string;
 }
 
-export abstract class AbstractFilter {
+export abstract class AbstractState {
 
     FromQuery(p: Params) {
 
@@ -133,50 +133,38 @@ export abstract class AbstractFilter {
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ISubscription } from 'rxjs/Subscription';
 
-export abstract class AbstractFitlerService<T extends AbstractFilter> {
+export abstract class AbstractStateService<T extends AbstractState> {
     constructor(
-        protected route: ActivatedRoute,
-        protected router: Router
+        protected route: ActivatedRoute
     ) {
 
     }
 
-    SetLink(link: string) {
-        this.link = link;
+    protected onInit(state: T) {
+        this.state = state;
+        this.state.FromQuery(this.route.snapshot.queryParams);
+        this.triggerChange();
     }
 
-    Refresh() {
-        this.onChange();
-        this.router.navigate([], {
-            queryParams: this.filter.ToQuery()
-        });
-    }
-
-    protected onInit(filter: T) {
-        this.filter = filter;
-        this.filter.FromQuery(this.route.snapshot.queryParams);
-        this.onChange();
-    }
-
-    protected onChange() {
-        this.ValueChanges.next(this.filter);
+    triggerChange() {
+        this.ValueChanges.next(this.state);
     }
 
     protected FromQuery(p: Params) {
-        this.filter.FromQuery(p);
-        this.onChange();
+        this.state.FromQuery(p);
+        this.triggerChange();
     }
 
-    get Filter() {
-        return this.filter;
+    get Current() {
+        return this.state;
     }
 
-    protected filter: T;
+    protected state: T;
     ValueChanges = new ReplaySubject<T>(1);
     private link = '';
     private old: ISubscription;
 
-    OnceSubscribe(cb: (v: T) => void) {
+    ExclusiveSubscribe(cb: (v: T) => void) {
         if (this.old) {
             this.old.unsubscribe();
         }

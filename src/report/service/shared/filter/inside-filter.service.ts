@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SharedService, Model, Branch } from '../../shared/';
+import { SharedService, Model, Branch } from '../../../shared/';
 
 const GROUP_BYS = {
     BRANCH_ID: 'branch_id',
@@ -16,7 +16,7 @@ export interface IInsideBranchFilter {
 }
 
 
-export class InsideBranchFilter extends Model.SharedModel.AbstractFilter {
+export class InsideBranchFilter extends Model.SharedModel.AbstractState {
     FromQuery(p: Params) {
         this.service_id = new Model.SharedModel.IDList(p['service_id']);
         this.counter_id = new Model.SharedModel.IDList(p['counter_id']);
@@ -69,13 +69,12 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
-export class InsideBranchFilterService extends Model.SharedModel.AbstractFitlerService<InsideBranchFilter> {
+export class InsideBranchFilterService extends Model.SharedModel.AbstractStateService<InsideBranchFilter> {
     constructor(
         route: ActivatedRoute,
-        router: Router,
         private branchFilter: Branch.BranchFilterService
     ) {
-        super(route, router);
+        super(route);
         this.onInit(new InsideBranchFilter);
     }
 
@@ -113,8 +112,8 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractFitlerS
     }
 
     SetInsideInfilter(v: IInsideBranchFilter) {
-        this.filter.SetValue(v);
-        this.onChange();
+        this.state.SetValue(v);
+        this.triggerChange();
     }
 
     private api = new SharedService.Backend.HttpApi("/api/auth");

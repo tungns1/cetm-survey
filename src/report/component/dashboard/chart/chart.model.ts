@@ -8,7 +8,7 @@ export interface ChartItem extends Item {
     key_title: string;
 }
 
-export const Fields: ChartItem[] = [{
+export const MainItems: ChartItem[] = [{
     field: 'c_t',
     color: '#9933ff',
     tab: 'general',
@@ -56,7 +56,7 @@ export const Fields: ChartItem[] = [{
     key_title: 'GENERAL.FEEDBACK_BAD'
 }];
 
-export const FieldPie: ChartItem[][] = [[{
+export const PieItems: ChartItem[][] = [[{
     field: 'c_ft',
     color: '#99b3ff',
     tab: 'general',

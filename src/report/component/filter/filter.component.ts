@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { ReportFilterService } from '../shared';
+import { NavService } from '../shared';
 
 @Component({
     selector: 'report-filter',
@@ -8,10 +8,10 @@ import { ReportFilterService } from '../shared';
 })
 export class ReportFilterComponent {
     constructor(
-        private filterService: ReportFilterService
+        private navService: NavService
     ) { }
 
     refresh() {
-        this.filterService.Refresh();
+        this.navService.SyncFilter();
     }
 }
