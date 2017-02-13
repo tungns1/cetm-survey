@@ -15,7 +15,8 @@ export class DashboardComponent {
     ) { }
 
     ngOnInit() {
-        this.filterService.SetLink("/dashboard");
-        this.filterService.Refresh();
+        this.filterService.ValueChanges.subscribe(filter => {
+            this.aggregateService.Refresh(filter);
+        });
     }
 }

@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { MakeIndexBy } from '../../shared';
 
-import { RxSummaryView, RxAggregate, MakeIndexBy } from '../../service/aggregate.service';
-import { RxPeriod } from '../filter/';
-import { RxAggregateByTime, Toggle, RxItems, RxItemPie, TogglePie, RxW } from './chart.model';
+import { ChartService } from './chart.service';
 
 @Component({
     selector: 'report-chart',
@@ -10,15 +9,23 @@ import { RxAggregateByTime, Toggle, RxItems, RxItemPie, TogglePie, RxW } from '.
     styleUrls: ['chart.component.css']
 })
 export class ReportChartComponent {
+    constructor(
+        private chartService: ChartService
+    ) { }
+
     type: string = 'pie';
-    data = RxAggregateByTime;
-    period = RxPeriod;
-    items = RxItems;
-    pieData = RxSummaryView;
-    itemPie = RxItemPie;
-    w = RxW;
+    data = this.chartService.RxAggregateByTime;
+    period = this.chartService.RxPeriod;
+    items = this.chartService.RxItems;
+    pieData = this.chartService.RxSummaryView;
+    itemPie = this.chartService.RxItemPie;
+    w = this.chartService.RxW;
 
-    Toggle = Toggle;
-    TogglePie = TogglePie;
+    Toggle(d) {
+        this.chartService.Toggle(d);
+    }
 
+    TogglePie(v) {
+        this.chartService.TogglePie(v);
+    }
 }

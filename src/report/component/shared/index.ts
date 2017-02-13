@@ -1,2 +1,3 @@
+export * from '../../shared';
 export * from '../../service/';
-export * from '../../../x/ng/select';
+export * from '../../model';

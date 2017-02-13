@@ -55,6 +55,14 @@ export class PeriodFilter extends Model.SharedModel.AbstractFilter {
         this.Rebuild(p);
     }
 
+    ToQuery() {
+        return {
+            start: this.fromDate(this.startDate),
+            end: this.fromDate(this.endDate),
+            period: this.period
+        }
+    }
+
     private toDate(d: string | Date) {
         if (d instanceof Date) {
             return d;
@@ -74,13 +82,7 @@ export class PeriodFilter extends Model.SharedModel.AbstractFilter {
         }
     }
 
-    toString() {
-        return {
-            start: this.fromDate(this.startDate),
-            end: this.fromDate(this.endDate),
-            period: this.period
-        }
-    }
+    
 
 
     private startDate: Date;

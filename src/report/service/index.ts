@@ -7,9 +7,9 @@ import { AggregateService } from './aggregate.service';
 import { filterServiceProvider } from './filter';
 
 const reportServiceProvider = [
+    ...filterServiceProvider,
     TransactionHistoryApi,
-    AggregateService,
-    filterServiceProvider
+    AggregateService
 ]
 
 export {

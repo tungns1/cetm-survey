@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { SharedModule, Branch } from '../../shared/';
 import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
 
 import { InsideFilterComponent } from './inside/inside.component';
 import { PeriodFilterComponent } from './period/period.component';
 
+import { filterServiceProvider } from '../shared';
+
 @NgModule({
-    imports: [SharedModule, DatePickerModule],
+    imports: [SharedModule, DatePickerModule, Branch.BranchModule],
     declarations: [
         InsideFilterComponent,
         PeriodFilterComponent,
@@ -15,4 +17,13 @@ import { PeriodFilterComponent } from './period/period.component';
     ],
     exports: [ReportFilterComponent],
 })
-export class ReportFilterModule { }
+export class ReportFilterModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: ReportFilterModule,
+            providers: [
+                filterServiceProvider
+            ]
+        }
+    }
+}

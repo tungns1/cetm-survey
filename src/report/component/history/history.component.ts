@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IFilter, GetFilter } from '../filter/';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { FilterService, TransactionHistoryApi } from '../../service/';
+import { ReportFilterService, TransactionHistoryApi } from '../../service/';
 
 interface IPage {
     page: number;
@@ -22,27 +21,25 @@ const RxCurrentPage = new BehaviorSubject(1);
 })
 export class HistoryComponent {
     constructor(
-        private filterService: FilterService,
+        private filterService: ReportFilterService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
     data = this.transactionHistoryApi.RxHistory;
-    active: IFilter = null;
+    active: any = {};
 
     ngOnInit() {
-        this.filterService.SetRefresh(this.refresh.bind(this));
-    }
-
-    refresh() {
-        this.active = this.filterService.GetFilter();
-        this.active.limit = pageSize;
-        this.active.skip = pageSize * (RxCurrentPage.value - 1);
-        this.transactionHistoryApi.Refresh(this.active);
+        this.filterService.OnceSubscribe(filter => {
+            this.transactionHistoryApi.Refresh(filter);
+        })
     }
 
     chuyenTrang(value) {
         RxCurrentPage.next(value);
-        this.refresh();
+        this.active = this.filterService.Filter;
+        this.active.limit = pageSize;
+        this.active.skip = pageSize * (RxCurrentPage.value - 1);
+        this.filterService.Refresh();
     }
 
     skip = RxCurrentPage.map(v => (v - 1) * pageSize);

@@ -42,8 +42,7 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractFilter {
         return {
             service_id: this.service_id.valueOf(),
             counter_id: this.counter_id.valueOf(),
-            user_id: this.user_id.valueOf(),
-            group_by: this.getGroupBy()
+            user_id: this.user_id.valueOf()
         }
     }
 
@@ -67,6 +66,7 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractFilter {
 
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class InsideBranchFilterService extends Model.SharedModel.AbstractFitlerService<InsideBranchFilter> {
@@ -82,8 +82,12 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractFitlerS
     protected onInit(v: InsideBranchFilter) {
         super.onInit(v);
         Model.Center.CacheService.RxListView.subscribe(data => this.updateService(data));
-        this.branchFilter.ValueChanges.map(b => b.GetBranchIDByLevel(0))
+        this.branchFilter.ValueChanges.throttleTime(250)
+            .map(b => b.GetBranchIDByLevel(0))
             .switchMap(branch_id => {
+                if (branch_id.length < 1) {
+                    return of({});
+                }
                 return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
             }).subscribe(d => {
                 this.updateService(d.services);
@@ -94,19 +98,20 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractFitlerS
 
     private updateService(services: Model.Center.IService[] = []) {
         services.sort((a, b) => a.name < b.name ? -1 : 1);
+        services.forEach(Model.Center.AddServiceName);
         this.services$.next(services);
     }
 
     private updateUsers(users: Model.Org.IUser[] = []) {
-        users.sort((a, b) => a.fullname < b.fullname? -1 : 1);
+        users.sort((a, b) => a.fullname < b.fullname ? -1 : 1);
         this.users$.next(users);
     }
 
     private updateCounters(counters: Model.House.ICounter[] = []) {
-        counters.sort((a, b) => a.name < b.name? -1 : 1);
+        counters.sort((a, b) => a.name < b.name ? -1 : 1);
         this.counters$.next(counters);
     }
-    
+
     SetInsideInfilter(v: IInsideBranchFilter) {
         this.filter.SetValue(v);
         this.onChange();

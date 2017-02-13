@@ -18,5 +18,7 @@ export {
     Lib
 }
 
+import './rx';
+
 import { enableProdMode } from '@angular/core';
 enableProdMode();

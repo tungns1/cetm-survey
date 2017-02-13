@@ -16,14 +16,22 @@ export class ReportFilter extends Model.SharedModel.AbstractFilter {
         super();
     }
 
-    FromQuery(p: Params) {
-        this.Branch.FromQuery(p);
-    }
-
     ToQuery() {
-        return Object.assign({}, this.Branch.ToQuery());
+        return Object.assign({},
+            this.Branch.ToQuery(),
+            this.Inside.ToQuery(),
+            this.Period.ToQuery()
+        );
     }
 
+    ToBackendQuery() {
+        const branch_id = this.Branch.GetBranchIDAtLowestLevel();
+        return Object.assign({}, {
+            branch_id: branch_id.join(','),
+        }, this.Inside.ToBackendQuery(),
+            this.Period.ToBackendQuery()
+        )
+    }
 }
 
 @Injectable()

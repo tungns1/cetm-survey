@@ -15,10 +15,10 @@ const routing = RouterModule.forChild([
 ]);
 
 
-import { ReportSumModule } from '../sum/sum.module';
-import { ReportOverviewModule } from '../overview/overview.module';
-import { ReportChartModule } from '../chart/chart.module';
-import { ReportTabModule } from '../tab/tab.module';
+import { ReportSumModule } from './sum/sum.module';
+import { ReportOverviewModule } from './overview/overview.module';
+import { ReportChartModule } from './chart/chart.module';
+import { ReportTabModule } from './tab/tab.module';
 
 @NgModule({
     imports: [

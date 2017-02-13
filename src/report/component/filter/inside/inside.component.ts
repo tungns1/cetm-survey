@@ -4,7 +4,7 @@ import { InsideBranchFilterService } from '../../shared';
 
 @Component({
     selector: 'inside-filter',
-    templateUrl: 'inside-filter.component.html',
+    templateUrl: 'inside.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InsideFilterComponent implements OnInit {
@@ -30,6 +30,6 @@ export class InsideFilterComponent implements OnInit {
     }
 
     users$ = this.insideFilterService.users$;
-    counter$ = this.insideFilterService.counters$;
+    counters$ = this.insideFilterService.counters$;
     services$ = this.insideFilterService.services$;
 }
