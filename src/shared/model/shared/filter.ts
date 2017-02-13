@@ -1,6 +1,10 @@
 
 export class IDList {
     constructor(v: string | string[]) {
+        this.rebuild(v);
+    }
+
+    rebuild(v: undefined | string | string[]) {
         this.data = this.toIdList(v);
     }
 
@@ -126,6 +130,10 @@ export abstract class AbstractFitlerService<T extends AbstractFilter> {
 
     }
 
+    SetLink(link: string) {
+        this.link = link;
+    }
+
     Refresh() {
         this.onChange();
         this.router.navigate([], {
@@ -154,4 +162,5 @@ export abstract class AbstractFitlerService<T extends AbstractFilter> {
 
     protected filter: T;
     ValueChanges = new ReplaySubject<T>(1);
+    private link = '';
 }

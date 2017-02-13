@@ -4,9 +4,17 @@ import { Params } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Model, Branch } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { InsideBranchFilter, InsideBranchFilterService } from './inside-filter.service';
+import { PeriodFilter, PeriodFilterService } from './period-filter.service';
 
-export class ReportFilter {
-    Branch: Branch.BranchFilter;
+export class ReportFilter extends Model.SharedModel.AbstractFilter {
+    constructor(
+        public Branch: Branch.BranchFilter,
+        public Inside: InsideBranchFilter,
+        public Period: PeriodFilter
+    ) {
+        super();
+    }
 
     FromQuery(p: Params) {
         this.Branch.FromQuery(p);
@@ -19,33 +27,19 @@ export class ReportFilter {
 }
 
 @Injectable()
-export class ReportFilterService {
+export class ReportFilterService extends Model.SharedModel.AbstractFitlerService<ReportFilter> {
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private branchFilterService: Branch.BranchFilterService
+        route: ActivatedRoute,
+        router: Router,
+        private branchFilterService: Branch.BranchFilterService,
+        private insideFilterService: InsideBranchFilterService,
+        private periodFilterService: PeriodFilterService
     ) {
-        this.onInit();
+        super(route, router);
+        this.onInit(new ReportFilter(
+            this.branchFilterService.Filter,
+            this.insideFilterService.Filter,
+            this.periodFilterService.Filter
+        ));
     }
-
-    private onInit() {
-        this.filter.Branch = this.branchFilterService.Filter;
-        this.filter.FromQuery(this.route.snapshot.queryParams);
-        this.onChange();
-    }
-
-    private onChange() {
-        this.branchFilterService.onChange();
-        this.ValueChanges.next(this.filter);
-    }
-
-    Refresh() {
-        this.onChange();
-        this.router.navigate([], {
-            queryParams: this.filter.ToQuery()
-        });
-    }
-
-    private filter = new ReportFilter();
-    ValueChanges = new ReplaySubject<ReportFilter>(1);
 }

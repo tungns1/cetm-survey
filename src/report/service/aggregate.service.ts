@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export const RxAggregate = new BehaviorSubject<IAggregate[]>([]);
-import { IAggregate, AggregateView, IFilter } from '../model';
+import { IAggregate, AggregateView, } from '../model';
 import { SharedService } from '../shared/';
 
 const backendReport = new SharedService.Backend.HttpApi<any>("/api/report/transaction");

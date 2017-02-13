@@ -1,8 +1,8 @@
-import { IFocus, ReportFilter } from '../model';
+import { IInsideBranch, ReportFilter } from '../model';
 
 export interface IAppState {
     filter: ReportFilter;
-    focus: IFocus;
+    focus: IInsideBranch;
 }
 
 export const ACTION = {
@@ -26,7 +26,7 @@ function FilterReducer(state: ReportFilter = new ReportFilter(), action: Action)
     }
 }
 
-function focusReducer(state: IFocus = {}, action: Action) {
+function focusReducer(state: IInsideBranch = {}, action: Action) {
     switch (action.type) {
         case ACTION.FOCUS_UPDATE:
             return Object.assign({}, state, action.payload);

@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/';
-import { SelectCheckModule } from '../shared/';
 import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
 
+import { InsideFilterComponent } from './inside/inside.component';
+import { PeriodFilterComponent } from './period/period.component';
+
 @NgModule({
-    imports: [SharedModule, DatePickerModule, SelectCheckModule],
+    imports: [SharedModule, DatePickerModule],
     declarations: [
+        InsideFilterComponent,
+        PeriodFilterComponent,
         ReportFilterComponent
     ],
     exports: [ReportFilterComponent],

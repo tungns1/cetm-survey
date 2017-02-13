@@ -1,13 +1,13 @@
 import { ITransaction, IHistory, ITransactionView } from '../model';
 import { SharedService, Model } from '../shared/';
-import { FilterService } from './filter.service';
+import { ReportFilterService } from './filter';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TransactionHistoryApi {
     constructor(
-        private filterService: FilterService
+        private filterService: ReportFilterService
     ) { }
 
     Refresh() {
@@ -30,16 +30,15 @@ export class TransactionHistoryApi {
         let names = [];
         const cache = Model.Org.CacheBranch;
         let branch = cache.GetByID(branch_id) || { name: "n/a", parent: '' };
-        for (let i = 0; i < Branch.AllLayers.length; i++) {
-            names.push(branch.name || "n/a");
-            branch = cache.GetByID(branch.parent) || { name: 'n/a', parent: '' };
-        }
+        // for (let i = 0; i < Branch.AllLayers.length; i++) {
+        //     names.push(branch.name || "n/a");
+        //     branch = cache.GetByID(branch.parent) || { name: 'n/a', parent: '' };
+        // }
         return names;
     }
 
     GetName(branch_id: string) {
-        var branch = Branch.Branches.get(branch_id);
-        return branch ? branch.name : 'n/a';
+        return Model.Org.CacheBranch.GetNameForID(branch_id);
     }
 
     RxCount = new BehaviorSubject<number>(0);
