@@ -31,7 +31,7 @@
                     <td class="td-date-rp"> {{d.stime}} </td>
                     <td class="td-date-rp"> {{d.fi_at}} </td>-->
                     <td class="td-number-rp">{{d.rating}}</td>
-                    <td><a href="#" (click)="Detail(d)">Chi tiết</a></td>
+                    <td><label (click)="Detail(d)" style="text-decoration: underline;">Chi tiết</label></td>
                 </tr>
             </tbody>
         </table>
@@ -53,7 +53,7 @@
     <button class="bt btpointer" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
 
-<modal #detail [ngClass]="{'hidden': dt | async}">
+<modal #detail *ngIf="dt | async">
     <div style="text-align: center;color: red;font-size:18px;font-weight:700;" translate> HISTORY.TITLE_DETAIL</div>
     <span translate> HISTORY.TICKET_NUMBER </span><br>
     <span>{{transaction.cnum}}</span>

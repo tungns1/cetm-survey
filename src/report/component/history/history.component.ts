@@ -31,6 +31,7 @@ export class HistoryComponent {
     dt=RxDetails;
     data = this.transactionHistoryApi.RxHistory;
     url_audio='';
+    transaction=RxTransaction;
     active: any = {};
 
     ngOnInit() {
@@ -112,7 +113,7 @@ export class HistoryComponent {
     Detail(ts:ITransactionView){
         RxDetails.next(true);
         RxTransaction.next(ts);
-        this.url_audio="data/record/"+ts.branch+'/'+ts.v_cdate+'/'+ts.ticket_id+'_'+ts.cnum;
+        this.url_audio="data/record/"+ts.branch+'/'+ts.cdate+'/'+ts.ticket_id+'_'+ts.cnum;
     }
 
 }

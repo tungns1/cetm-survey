@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HistoryComponent } from './history.component';
 import { Routes, RouterModule } from '@angular/router'
 import { SharedService } from '../../shared';
-
+import { ModalModule } from '../../../x/ng/modal';
 const routing = RouterModule.forChild([
     {
         path: '',
@@ -13,7 +13,7 @@ const routing = RouterModule.forChild([
 
 
 @NgModule({
-    imports: [routing, CommonModule, SharedService.I18n.TranslateModule],
+    imports: [routing, CommonModule, SharedService.I18n.TranslateModule,ModalModule],
     declarations: [HistoryComponent]
 })
 export class ReportHistoryModule {
