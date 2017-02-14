@@ -3,7 +3,7 @@ import { SharedService, Model } from '../../shared';
 import { ACTION, IAppState } from './reducers';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { ITicket, ITickets, Summary, ISummary } from '../../model';
+import { ITicket, ITickets, ISummary } from '../../model';
 import { MonitorFilterService } from '../shared';
 
 interface IFocusReply {
