@@ -1,35 +1,17 @@
-<style>
-    .title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .title>div {
-        flex: 4 1 40px;
-    }
-    
-    input {
-        flex: 1 1 10px;
-        max-width: 100px;
-        height: 20px;
-        margin-right: 2px;
-    }
-</style>
-<div class="content">
-    <div class="title">
+<div class="hl-content-missed">
+    <div class="hl-title-missed">
         <div><span translate> LIST_MISS</span> &nbsp;(<span class="total">{{count | async}}</span>) </div>
-        <input #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" placeholder="{{'TICKET_NUMBER_MISS' | translate}}">
+        <input class="hl-input-missed" #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" placeholder="{{'TICKET_NUMBER_MISS' | translate}}">
         <img src="../asset/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" width="20" height="20" style="cursor: pointer">
     </div>
 
-    <div class="table">
-        <div class="table-row header">
+    <div class="hl-table-missed">
+        <div class="hl-table-row-missed  hl-header-missed">
             <div translate>NUMBER</div>
             <div translate>SERVICE</div>
             <div translate>MISS_AT</div>
         </div>
-        <div class="table-row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
+        <div class="hl-table-row-missed" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
             <div><img src="../asset/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
             <div>{{t.services | multipleServiceName}}</div>
             <div>

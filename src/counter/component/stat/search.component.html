@@ -1,5 +1,5 @@
-<style>
-    input[type=text] {
+<!--<style>
+    .hl-input-text {
         box-sizing: border-box;
         border: 2px solid #ccc;
         margin: 10px 15px;
@@ -14,41 +14,41 @@
         transition: width 0.4s ease-in-out;
     }
     
-    .message {
+    .hl-message-search {
         color: brown;
     }
     
-    .search-result {
+    .hl-search-result {
         height: 200px;
     }
     
-    p {
+    .hl-p-stat {
         padding: 2px 10px;
         margin: 0px;
     }
-</style>
+</style>-->
 
-<input type="text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
-<div class="message"><span translate> {{message}}</span>&nbsp;{{number}} </div>
+<input type="text" class="hl-input-text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
+<div class="hl-message-search"><span translate> {{message}}</span>&nbsp;{{number}} </div>
 
-<div class="search-result" *ngIf="ticket">
+<div class="hl-search-result" *ngIf="ticket">
 
-    <p><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime | localDayTime}}</p>
-    <p [class.hidden]="!serving">
+    <p class="hl-p-stat"><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime | localDayTime}}</p>
+    <p [class.hidden]="!serving" class="hl-p-stat">
         <span translate> TIME_CALL_TICKET</span>
         <span style="text-align: right;">{{ticket.mtime | localDayTime}}</span>
     </p>
-    <p><span translate>STATUS_NOW</span>&nbsp; {{ticket | ticketState}} </p>
+    <p class="hl-p-stat"><span translate>STATUS_NOW</span>&nbsp; {{ticket | ticketState}} </p>
     <div>
-        <p translate>HISTORY</p>
-        <div class="table">
-            <div class="table-row header">
+        <p class="hl-p-stat" translate>HISTORY</p>
+        <div class="hl-table-missed">
+            <div class="hl-table-row-missed hl-header-missed">
                 <div translate>TIME</div>
                 <div translate>STATUS</div>
                 <div translate>SERVICE</div>
             </div>
             <div style="height:100px;overflow: auto;">
-                <div class="table-row" *ngFor="let t of ticket.tracks">
+                <div class="hl-table-row-missed" *ngFor="let t of ticket.tracks">
                     <div> {{t.mtime | localDayTime}} </div>
                     <div> {{t | ticketState}} </div>
                     <div title="t | ticketServiceName"> {{t | ticketServiceName}} </div>

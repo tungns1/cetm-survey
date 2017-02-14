@@ -1,21 +1,21 @@
 <div style="padding:10px 10px;">
-    <div class="service uppercase"> {{ticket.service_id | serviceName}}</div>
+    <div class="hl-service-sving uppercase"> {{ticket.service_id | serviceName}}</div>
     <div class="padding">
     </div>
     <div class="more" [ticket-highlight]="ticket">
-        <div class="so">
-            <div class="title" translate> NUMBER_SERVING </div>
+        <div class="hl-number-sving">
+            <div class="hl-title-serving" translate> NUMBER_SERVING </div>
             <div class="item">
                 <img src="../asset/img/icon/person.png" alt="Number Ticket">&nbsp;
-                <span class="number">{{ticket.cnum}}</span>
+                <span class="hl-number">{{ticket.cnum}}</span>
             </div>
         </div>
 
-        <div class="tg">
-            <div class="title" translate>TIME_SERVING</div>
+        <div class="hl-time-sving">
+            <div class="hl-title-serving" translate>TIME_SERVING</div>
             <div class="item">
                 <img src="../asset/img/icon/time.png" alt="Time">
-                <ticket-timer class="number" [start]="ticket.mtime"></ticket-timer>
+                <ticket-timer class="hl-number ticket-timer-srving" [start]="ticket.mtime"></ticket-timer>
             </div>
         </div>
     </div>

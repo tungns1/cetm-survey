@@ -1,3 +1,19 @@
+.body {
+    display: flex;
+    flex-flow: row;
+    border-top: 1px solid #b0b1b5;
+    background-color: #f4f4f4;
+}
+
+.branch-selector {
+    flex: 1 1 200px;
+    border-left: 1px solid #b0b1b5;
+}
+
+.main-view {
+    flex: 1 1 800px;
+}
+
 .hl-input {
     margin-bottom: 15px;
     border-radius: 3px;
@@ -38,4 +54,141 @@
     border-radius: 3px;
     border: 1px solid #01947a;
     text-transform: uppercase;
+}
+
+.hl-add-editor {
+    float: right;
+    height: 40px;
+    color: #fff;
+    background-color: #01947a;
+    line-height: 40px;
+    padding: 0px 30px;
+    border-radius: 3px;
+    border: 0px solid #01947a;
+    text-transform: uppercase;
+}
+
+.hl-them-editor {
+    background-color: #0b8fda;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 25px;
+    border-width: 0px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.hl-huy-editor {
+    background-color: #fff;
+    color: #0d8fdd;
+    height: 30px;
+    line-height: 30px;
+    border-width: 1px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.hl-no-editor {
+    background-color: #0b8fda;
+    color: #fff;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 10px;
+    border-width: 0px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.hl-yes-editor {
+    background-color: #fff;
+    color: #0d8fdd;
+    height: 25px;
+    width: 70px;
+    line-height: 25px;
+    border-width: 1px;
+    border-style: solid;
+    text-transform: uppercase;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.err {
+    color: #ff0000;
+    margin-bottom: 2px;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f1f9fc;
+    border-top: 1px solid #f4f4f4;
+}
+
+table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.hl-thr-editor {
+    background-color: #dee0df;
+    height: 50px;
+    line-height: 50px;
+}
+
+.hl-title-edittor {
+    height: 56px;
+    font-size: 26px;
+}
+
+.hl-header-editor {
+    text-align: center;
+    background-color: #dee0df;
+    height: 40px;
+    line-height: 40px;
+    margin: -20px -20px 20px;
+}
+
+.trash {
+    color: red;
+    cursor: pointer;
+}
+
+.edit {
+    color: blue;
+    cursor: pointer;
+}
+
+.col-header {
+    text-align: center;
+    font-weight: bold;
+}
+
+.col-center {
+    text-align: center;
+}
+
+.mod-ft-editor {
+    margin-bottom: 20px;
+}
+
+.hl-row-sv:nth-child(even) {
+    background: #f1f9fc;
+    border-top: 1px solid #f4f4f4;
+}
+
+.hl-row-sv:nth-child(odd) {
+    background: #ffffff;
+}
+
+.hl-pointer-sv {
+    cursor: pointer;
+}
+
+.hl-pointer-sv:hover {
+    color: green;
+}
+
+.iput-fnews-hlm {
+    width: 95%;
 }

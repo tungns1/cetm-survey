@@ -16,18 +16,9 @@ import { Lib } from '../../../shared';
 @Component({
     selector: 'json-form',
     template: `
-        <input [(ngModel)]="text" (change)="OnChange()" />
+        <input class="hl-input" [(ngModel)]="text" (change)="OnChange()" />
     `,
-    styles: [`
-        input {
-        margin-bottom: 15px;
-        border-radius: 3px;
-        height: 30px;
-        border-style: solid;
-        border: 1px solid #aeb0af;
-        width: 100%;
-    }
- `],
+   
     providers: [JSON_CONTROL_VALUE_ACCESSOR]
 })
 class JSONFormComponent implements ControlValueAccessor {

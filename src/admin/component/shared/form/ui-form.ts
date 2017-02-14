@@ -13,18 +13,9 @@ const UI_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 @Component({
     selector: 'ui-form',
     template: `
-        <input [(ngModel)]="text" (change)="OnChange()" />
+        <input class="hl-input" [(ngModel)]="text" (change)="OnChange()" />
     `,
-    styles: [`
-        input {
-        margin-bottom: 15px;
-        border-radius: 3px;
-        height: 30px;
-        border-style: solid;
-        border: 1px solid #aeb0af;
-        width: 100%;
-    }
- `],
+  
     providers: [UI_CONTROL_VALUE_ACCESSOR]
 })
 class UIFormComponent implements ControlValueAccessor {

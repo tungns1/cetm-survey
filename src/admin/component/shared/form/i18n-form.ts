@@ -25,19 +25,10 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     template: `
     <div *ngFor="let code of codes">
         <label>{{names[code]}}</label>
-        <input [(ngModel)]="values[code]" (change)="OnChange()" />
+        <input class="hl-input" [(ngModel)]="values[code]" (change)="OnChange()" />
     </div>
     `,
-    styles: [`
-        input {
-         margin-bottom: 15px;
-        border-radius: 3px;
-        height: 30px;
-        padding-left: 5px;
-        border: 1px solid #aeb0af;
-        width: 100%;
-        }
-    `],
+   
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 class L10nFormComponent implements ControlValueAccessor {

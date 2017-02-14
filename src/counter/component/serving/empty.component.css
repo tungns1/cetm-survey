@@ -1,32 +1,35 @@
-.sp {
+/*.sp {
     width: 100%;
-}
+}*/
 
-.so {
+
+/*.hl-number-sving {
     width: 50%;
     text-align: center;
     border-right: 0.5px solid #cccccc;
 }
 
-.tg {
+.hl-time-sving {
     width: 50%;
     text-align: center;
-}
+}*/
 
-.padding {
-    /*height: 15px;
-    background-color: #fff;*/
+
+/*.padding {
+    height: 15px;
+    background-color: #fff;
     border-left: 0.5px solid #cccccc;
     border-right: 0.5px solid #cccccc;
-}
+}*/
 
-.service {
+
+/*.service {
     border: 0.5px solid #cccccc;
     text-align: center;
     background-color: #dee0e0;
     height: 40px;
     line-height: 40px;
-}
+}*/
 
 
 /*.more {
@@ -37,7 +40,8 @@
     display: flex;
 }*/
 
-.more>span {
+
+/*.more>span {
     flex: 1;
     text-align: center;
     font-size: 24px;
@@ -51,4 +55,4 @@
 :host {
     align-content: center;
     justify-content: center;
-}
+}*/

@@ -1,4 +1,4 @@
-button {
+/*button {
     color: #ffffff;
     font-size: 14px;
     text-align: center;
@@ -37,9 +37,10 @@ button.hidden {
 .dis {
     cursor: not-allowed;
     opacity: 0.6;
-}
+}*/
 
-input {
+
+/*input {
     margin-bottom: 15px;
     border-radius: 3px;
     height: 30px;
@@ -47,4 +48,4 @@ input {
     border-style: solid;
     border-width: 1px;
     border-color: #aeb0af;
-}
+}*/
