@@ -10,13 +10,13 @@
         <td> SL. vé hủy </td>
     </thead>
     <tbody>
-        <tr *ngFor="let s of data | async">
+        <tr *ngFor="let s of summary$ | async">
             <td class="pointer">
-                <a [routerLink]="['../../focus', s.branch_id]">
-                    {{s.branch}}
-                    </a>
+                <a href="javascript:void(0);" (click)="focus(s.branch_id)">
+                    {{s.branch_id | branchName}}
+                </a>
             </td>
-            <td> {{s.printed}}</td>
+            <td> {{printed(s)}}</td>
             <td> {{s.waiting}}</td>
             <td> {{s.serving}}</td>
             <td> {{s.finished}}</td>

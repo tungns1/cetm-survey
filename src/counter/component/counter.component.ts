@@ -20,5 +20,9 @@ export class CounterComponent {
         socket.Connect({ branch_code, counter_code });
     }
 
+    ngOnDestroy() {
+        
+    }
+
     counterName = RxCurrentCounter.map(c => c.name);
 } 

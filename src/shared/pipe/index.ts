@@ -4,12 +4,12 @@ import { ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe } from 
 import { TicketStatePipe } from './ticketState';
 import { CounterNamePipe } from './counterName';
 import { UserFullNamePipe } from './userName';
-import { BranchLevelNamePipe } from './branch.pipe';
+import { BranchLevelNamePipe, BranchNamePipe } from './branch.pipe';
 
 const exports = [
     ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe,
     TicketStatePipe, CounterNamePipe, UserFullNamePipe,
-    BranchLevelNamePipe
+    BranchLevelNamePipe, BranchNamePipe
 ]
 
 @NgModule({

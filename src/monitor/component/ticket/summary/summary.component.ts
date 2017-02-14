@@ -1,47 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Branch } from '../../../shared';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import { Summary } from '../../../model';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ISummary, MonitorNavService, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
 
 @Component({
     selector: 'ticket-summary',
-    templateUrl: 'summary.component.html'
+    templateUrl: 'summary.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SummaryComponent {
     constructor(
-        private route: ActivatedRoute,
+        private navService: MonitorNavService,
+        private filterService: MonitorFilterService,
         private ticketService: MonitorTicketService
     ) { }
 
     ngOnInit() {
-        this.data = this.ticketService.Summary;
-        this.route.params.subscribe(p => {
-            console.log(p);
-            let branches: string[] = p['branches'].split(",");
-            if (branches.length == 1) {
-                if (branches[0].trim() === 'all') {
-                    branches = Branch.SelectedBranchIDLevel0.value.split(",");
-                }
-            }
-
-            branches = branches.filter(id => id.length > 2);
-
+        this.filterService.ExclusiveSubscribe(filter => {
+            let branches: string[] = filter.Branch.GetBranchIDByLevel(0);
             if (branches.length < 1) {
                 this.message = "MESSAGE_PLEASE_SELECT_BRANCH";
-                return;
             }
-
-            this.ticketService.observeSummaryOnBranch(branches);
         });
     }
 
     ngOnDestroy() {
-        this.ticketService.observeSummaryOnBranch([]);
+
     }
 
-    data: Observable<Summary[]>;
+    printed(s: ISummary) {
+        return s.waiting + s.serving + s.missed + s.finished + s.cancelled;
+    }
+
+    focus(branch_id: string) {
+        this.filterService.SetFocus(branch_id);
+        this.navService.SyncLink();
+    }
+
     message = '';
+    summary$ = this.ticketService.summary$;
 }

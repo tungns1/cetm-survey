@@ -3,7 +3,8 @@ import { SharedService, Model } from '../../shared';
 import { ACTION, IAppState } from './reducers';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { ITicket, ITickets, Summary } from '../../model';
+import { ITicket, ITickets, Summary, ISummary } from '../../model';
+import { MonitorFilterService } from '../shared';
 
 interface IFocusReply {
     counters: Model.House.ICounter[];
@@ -16,7 +17,7 @@ const MonitorSocketLink = "/room/monitor/join";
 @Injectable()
 export class MonitorTicketService {
     constructor(
-        private store: Store<IAppState>
+        private filterService: MonitorFilterService
     ) { }
 
     private socket = new SharedService.Backend.AppSocket(MonitorSocketLink);
@@ -24,90 +25,74 @@ export class MonitorTicketService {
     onInit() {
         this.socket.Connect({});
         this.socket.disableCheckAlive();
+        this.summary$.subscribe(data => console.log(data));
     }
 
     onDestroy() {
-        while (this.subs.length) {
-            const s = this.subs.pop();
-            s.unsubscribe();
-        }
-        this.unfocus();
         this.socket.Terminate();
     }
 
     private subs: ISubscription[] = [];
-
-
-    observeSummaryOnBranch(branches: string[]) {
-        const sub = this.socket.OnConnected(() => {
-            this.socket.Send<Summary[]>("/summary", { branches }).subscribe(data => {
-                if (!data) {
-                    return;
-                }
-                this.store.dispatch({
-                    type: ACTION.REFRESH_SUMMARY,
-                    payload: data
-                });
-            });
-
-            this.subs.push(this.socket.Subscribe("/summary/update", data => {
-                this.store.dispatch({
-                    type: ACTION.UPDATE_SUMMARY,
-                    payload: data
-                });
-            }));
+    private initialSummary$ = this.socket.Connected$.switchMap(_ => {
+        return this.filterService.ValueChanges.switchMap(filter => {
+            const branches = filter.Branch.GetBranchIDByLevel(0);
+            return this.socket.Send<ISummary[]>("/summary", {
+                branches
+            }).map(data => data || []);
         });
-        this.subs.push(sub);
-    }
+    }).share();
 
-    FocusOnBranch(branch_id: string) {
-        this.store.dispatch({
-            type: ACTION.FOCUS_BRANCH,
-            payload: branch_id
-        });
+    private summaryUpdate$ = this.socket.RxEvent<ISummary>("/summary/update").startWith(null);
 
-        const sub = this.socket.OnConnected(() => {
-            this.socket.Send<IFocusReply>("/focus", {
+    summary$ = this.initialSummary$.switchMap(initial => {
+        const add = (s: ISummary) => {
+            return AddToSet(initial, s, o => o.branch_id === s.branch_id);
+        }
+        return this.summaryUpdate$.map(add);
+    });
+
+    private initialFocus$ = this.socket.Connected$.switchMap(_ => {
+        return this.filterService.ValueChanges.switchMap(filter => {
+            const branch_id = filter.GetFocus();
+            return this.socket.Send<IFocusReply>("/focus", {
                 branch_id
-            }).subscribe(data => {
-                if (!data) {
-                    return;
-                }
-                Model.House.CacheCounter.Refresh(data.counters);
-                Model.Org.CacheUsers.Refresh(data.users);
-                const tickets = Object.keys(data.tickets).map(id => data.tickets[id]);
-                this.store.dispatch({
-                    type: ACTION.REFRESH_TICKET,
-                    payload: tickets
-                });
+            }).do(data => {
+                Model.House.CacheCounter.Refresh(data ? data.counters : []);
+                Model.Org.CacheUsers.Refresh(data ? data.users : []);
             });
         });
-        this.unfocus = () => sub.unsubscribe();
-    }
+    }).share();
 
-    private unfocus = () => { }
+    private ticketUpdate$ = this.socket.RxEvent<ITicket>("/ticket/update").startWith(null);
+
+    tickets$ = this.initialFocus$
+        .map(data => data ? data.tickets : {})
+        .switchMap(tickets => {
+            return this.ticketUpdate$.map(t => {
+                if (t) {
+                    tickets[t.id] = t;
+                }
+                return tickets;
+            });
+        }).map(tickets => {
+            return Object.keys(tickets).map(id => tickets[id]);
+        });
 
     Unfocus() {
-        if (this.unfocus) {
-            this.unfocus();
-            this.unfocus = null;
-        }
         this.socket.Send("/focus", {}).subscribe();
     }
+}
 
-    get Summary() {
-        return this.store.select<Summary[]>('summary');
+function AddToSet<T>(arr: T[] = [], a: T, checker: (old: T) => boolean) {
+    if (!a) {
+        return arr;
     }
-
-    get Waiting() {
-        return this.store.select<ITicket[]>('waiting');
+    const i = arr.findIndex(checker);
+    const v: T[] = [].concat(arr);
+    if (i < 0) {
+        v.push(a);
+    } else {
+        v[i] = a;
     }
-
-    get Focus() {
-        return this.store.select<Summary>("focus");
-    }
-
-    get Served() {
-        return this.store.select<ITicket[]>('served');
-    }
+    return v;
 }

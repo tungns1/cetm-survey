@@ -51,4 +51,6 @@ export class AppSocket extends Backend.Socket {
         const link = `${this.uri}?${q}`;
         this._doConnect(this.build(link));
     }
+
+    Connected$ = this.rxConnected.filter(c => c);
 }

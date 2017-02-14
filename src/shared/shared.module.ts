@@ -24,7 +24,7 @@ import { UtilPipeModule } from './pipe';
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
         RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
-        I18n.TranslateModule, UtilPipeModule, Ng.SelectCheckModule
+        I18n.TranslateModule, UtilPipeModule, Ng.SelectCheckModule, Ng.ModalModule
     ]
 })
 export class SharedModule {
