@@ -23,7 +23,8 @@
         "BUTTON_EXPORT_FILE": "XUẤT RA FILE EXCEL",
         "SHOW": "Hiển thị",
         "FROM_NUMBER": "từ số",
-        "TO_NUMBER": "đến số"
+        "TO_NUMBER": "đến số",
+        "AUDIO": "File ghi âm"
     },
     "GENERAL": {
         "TAB_GENERAL": "TỔNG QUAN",

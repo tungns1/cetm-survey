@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import {ITransactionView } from '../../model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IFilter, GetFilter } from '../filter/';
 import 'rxjs/add/Observable/combineLatest';
@@ -14,6 +15,8 @@ interface IPage {
 const pageSize = 15;
 
 const RxCurrentPage = new BehaviorSubject(1);
+const RxDetails = new BehaviorSubject<boolean>(false);
+const RxTransaction=new BehaviorSubject<ITransactionView>(null);
 
 @Component({
     selector: 'history',
@@ -25,8 +28,10 @@ export class HistoryComponent {
         private filterService: FilterService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
-
+  
+    dt=RxDetails;
     data = this.transactionHistoryApi.RxHistory;
+    url_audio='';
     active: IFilter = null;
 
     ngOnInit() {
@@ -107,5 +112,11 @@ export class HistoryComponent {
     excel() {
         this.transactionHistoryApi.ExportHistory();
     }
+    Detail(ts:ITransactionView){
+        RxDetails.next(true);
+        RxTransaction.next(ts);
+        this.url_audio="data/record/"+ts.branch+'/'+ts.v_cdate+'/'+ts.ticket_id+'_'+ts.cnum;
+    }
 
 }
+ 

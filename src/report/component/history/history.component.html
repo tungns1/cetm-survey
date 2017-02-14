@@ -11,12 +11,8 @@
                 <th translate>HISTORY.COUNTER</th>
                 <th translate>HISTORY.TELLERS </th>
                 <th translate>HISTORY.TICKET_NUMBER </th>
-                <th translate>HISTORY.TIME_CREATE_TICKET </th>
-                <th translate>HISTORY.TIME_WAIT </th>
-                <th translate>HISTORY.TIME_CALL_TICKET </th>
-                <th translate>HISTORY.TIME_SERVING </th>
-                <th translate>HISTORY.TIME_FINISH </th>
                 <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
+                <th></th>
             </thead>
             <tbody class="table-row">
                 <tr *ngFor="let d of data | async; let i = index">
@@ -29,12 +25,13 @@
                     <td class="td-counter-rp"> {{d.counter}} </td>
                     <td class="td-string-rp"> {{d.user}} </td>
                     <td class="td-number-rp"> {{d.cnum}} </td>
-                    <td class="td-date-rp"> {{d.ctime}} </td>
+                    <!--<td class="td-date-rp"> {{d.ctime}} </td>
                     <td class="td-date-rp"> {{d.wtime}} </td>
                     <td class="td-date-rp"> {{d.fc_at}} </td>
                     <td class="td-date-rp"> {{d.stime}} </td>
-                    <td class="td-date-rp"> {{d.fi_at}} </td>
+                    <td class="td-date-rp"> {{d.fi_at}} </td>-->
                     <td class="td-number-rp">{{d.rating}}</td>
+                    <td><a href="#" (click)="Detail(d)">Chi tiết</a></td>
                 </tr>
             </tbody>
         </table>
@@ -55,3 +52,29 @@
 <div style="float: right;margin-top: 20px;">
     <button class="bt btpointer" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
+
+<modal #detail [ngClass]="{'hidden': dt | async}">
+    <div style="text-align: center;color: red;font-size:18px;font-weight:700;" translate> HISTORY.TITLE_DETAIL</div>
+    <span translate> HISTORY.TICKET_NUMBER </span><br>
+    <span>{{transaction.cnum}}</span>
+    <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
+    <span>{{transaction.ctime}}</span>
+    <span translate> HISTORY.TIME_WAIT</span><br>
+    <span>{{transaction.wtime}}</span>
+    <span translate> HISTORY.TIME_CALL_TICKET</span><br>
+    <span>{{transaction.fc_at}}</span>
+    <span translate> HISTORY.TIME_SERVING</span><br>
+    <span>{{transaction.stime}}</span>
+    <span translate> HISTORY.TIME_FINISH</span><br>
+    <span>{{transaction.fi_at}}</span>
+    <span translate> HISTORY.AUDIO</span><br>
+    <audio controls>
+        <source [src]="url_audio" type="audio/ogg">
+        <source [src]="url_audio" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div style="float:right;">
+        <button class="button" (click)="detail.Close()" style="height:25px;" translate> BUTTON_CLOSE </button>
+    </div>
+
+</modal>
