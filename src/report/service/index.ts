@@ -1,18 +1,15 @@
 export * from './history.service';
 export * from './aggregate.service';
-export * from './filter.service';
-export * from './focus.service';
+export * from './shared';
 
 import { TransactionHistoryApi } from './history.service';
 import { AggregateService } from './aggregate.service';
-import { FilterService } from './filter.service';
-import { FocusBranchService } from './focus.service';
+import { sharedServiceProvider } from './shared';
 
 const reportServiceProvider = [
+    sharedServiceProvider,
     TransactionHistoryApi,
     AggregateService,
-    FilterService,
-    FocusBranchService
 ]
 
 export {

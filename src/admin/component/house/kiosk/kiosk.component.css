@@ -1,4 +1,4 @@
-.inputs {
+/*.inputs {
     margin-bottom: 15px;
     border-radius: 3px;
     height: 30px;
@@ -11,22 +11,25 @@
 
 form {
     margin-bottom: 20px;
-}
+}*/
 
-.dichvu {
+
+/*.dichvu {
     background-color: #fff;
     padding: 5px 20px 5px 20px;
     overflow: auto;
     height: 150px;
-}
+}*/
 
-select {
+
+/*select {
     width: 150px;
-    border-radius: 3px;
     height: 30px;
     margin-bottom: 10px;
-}
-.add {
+}*/
+
+
+/*.add {
     float: right;
     height: 40px;
     color: #01947a;
@@ -37,4 +40,4 @@ select {
     border-radius: 3px;
     border: 1px solid #01947a;
     text-transform: uppercase;
-}
+}*/

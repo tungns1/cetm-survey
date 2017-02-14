@@ -33,7 +33,7 @@ function Round2Decimal(v: number) {
     return Math.round(v * 100) / 100;
 }
 
-export class AggregateView {
+export class Aggregate {
     data: IAggregate[] = null;
     count: number = 0;
 
@@ -180,7 +180,7 @@ export class AggregateView {
     }
 
     static Make(records: IAggregate[]) {
-        let res = new AggregateView();
+        let res = new Aggregate();
         records.forEach(v => res.Add(v));
         res.Finalize();
         return res;

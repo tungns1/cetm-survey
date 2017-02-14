@@ -1,13 +1,13 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
     <editor-title><span translate>LABEL_LIST_NUM_TICKET</span></editor-title>
-    <form *ngIf="edit.form" [formGroup]="edit.form">
+    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LABEL_CODE</span>:
-        <input formControlName="code" placeholder="{{'LABEL_CODE' | translate}}">
+        <input class="hl-input" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}">
         <br><span translate>LABEL_FORMAT</span>:
-        <input formControlName="format" placeholder="{{'LABEL_FORMAT' | translate}}">
+        <input class="hl-input" formControlName="format" placeholder="{{'LABEL_FORMAT' | translate}}">
         <br> <span translate>LABEL_VALUE_MIN</span>:
-        <input formControlName="minnum" type="number" placeholder="{{'LABEL_VALUE_MIN' | translate}}">
+        <input class="hl-input" formControlName="minnum" type="number" placeholder="{{'LABEL_VALUE_MIN' | translate}}">
         <br> <span translate>LABEL_VALUE_MAX</span>:
-        <input formControlName="maxnum" type="number" placeholder="{{'LABEL_VALUE_MAX' | translate}}">
+        <input class="hl-input" formControlName="maxnum" type="number" placeholder="{{'LABEL_VALUE_MAX' | translate}}">
     </form>
 </editor>

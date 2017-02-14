@@ -1,8 +1,9 @@
-<div class="chart" bar-chart *ngIf="type==='bar'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
-<div class="chart" stack-chart *ngIf="type==='stack'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
-<div class="chart" line-chart *ngIf="type==='line'" [period]="period | async" [data]="data | async" [items]="items | async"></div>
-<div class="chart" *ngIf="type==='pie'">
-    <div style="width:33%;height:300px;float:left;" *ngFor="let item of itemPie | async">
+<div class="chart" bar-chart *ngIf="isBar" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<div class="chart" stack-chart *ngIf="isStack" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<div class="chart" line-chart *ngIf="isLine" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+
+<div class="chart" *ngIf="isPie">
+    <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
         <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
     </div>
 </div>
@@ -16,8 +17,9 @@
             <option value="pie" translate>PIE_CHART</option>
         </select>
 </div>
-<div class="legend" style="margin:10px 20px;" *ngIf="type!='pie'">
-    <div *ngFor=" let item of items | async " style="float:left; margin-right:10px; ">
+
+<div class="legend" style="margin:10px 20px;" *ngIf="!isPie">
+    <div *ngFor=" let item of items$ | async " style="float:left; margin-right:10px; ">
         <div style="float:left;">
             <div style="float:left; margin-right:3px;" [style.background-color]="item._hidden? '':item.color ">
                 <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
@@ -26,8 +28,9 @@
         </div>
     </div>
 </div>
-<div class="legend " style="margin:10px 20px; " *ngIf="type==='pie' ">
-    <div *ngFor="let item of itemPie | async">
+
+<div class="legend " style="margin:10px 20px; " *ngIf="isPie">
+    <div *ngFor="let item of pieItems$ | async">
         <div *ngFor="let t of item" style="float:left; margin-right:10px; ">
             <div style="float:left;">
                 <div style="float:left; margin-right:3px;" [style.background-color]="t._hidden? '':t.color ">

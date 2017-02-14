@@ -1,20 +1,20 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
     <editor-title> <span translate>LABEL_LIST_KIOSK </span>
         <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> <span translate>LABEL_EDIT_LAYOUT</span> </button></editor-title>
-    <form *ngIf="edit.form" class="form" [formGroup]="edit.form">
-        <span translate>LABEL_CODE</span> <input class="inputs" type="text" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br>
-        <span translate>LABEL_NAME_KIOSK</span>:<input class="inputs" type="text" formControlName="name" placeholder="{{'LABEL_NAME_KIOSK' | translate }}"><br>
-        <span translate>LABEL_CODE_VIP</span>: <input class="inputs" type="text" formControlName="vcodes" placeholder="{{'LABEL_CODE_VIP' | translate}}">
+    <form class="hl-form form" *ngIf="edit.form" [formGroup]="edit.form">
+        <span translate>LABEL_CODE</span> <input class="hl-input" type="text" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br>
+        <span translate>LABEL_NAME_KIOSK</span>:<input class="hl-input" type="text" formControlName="name" placeholder="{{'LABEL_NAME_KIOSK' | translate }}"><br>
+        <span translate>LABEL_CODE_VIP</span>: <input class="hl-input" type="text" formControlName="vcodes" placeholder="{{'LABEL_CODE_VIP' | translate}}">
 
-        <input class="check" type="checkbox" formControlName="inheritable"> <span translate>LABEL_CAN_INHERIT</span>
+        <input class="hl-input" class="check" type="checkbox" formControlName="inheritable"> <span translate>LABEL_CAN_INHERIT</span>
 
         <br> <span translate>LABEL_KIOSK_FATHER</span>:
-        <select formControlName="parent_id">           
+        <select class="hl-select" formControlName="parent_id">           
             <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
         </select>
 
         <br> <span translate>LABEL_LAYOUT</span>
-        <select formControlName="layout_id">
+        <select class="hl-select" formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
         </select>
         <br><span translate>LABEL_SERVICE</span>:

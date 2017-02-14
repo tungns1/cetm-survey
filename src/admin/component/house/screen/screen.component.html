@@ -3,11 +3,11 @@
         <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'screen'}"> <span translate>LABEL_EDIT_LAYOUT</span> </button>
     </editor-title>
 
-    <form *ngIf="edit.form" class="form" [formGroup]="edit.form">
+    <form *ngIf="edit.form" class=" hl-form form" [formGroup]="edit.form">
         <span translate>LABEL_SCREEN_CODE</span>:
-        <input class="inputs" formControlName="code" placeholder="{{'LABEL_SCREEN_CODE' | translate}}" style="width: 100%;">
+        <input class="hl-input" formControlName="code" placeholder="{{'LABEL_SCREEN_CODE' | translate}}" style="width: 100%;">
         <br> <span translate>LABEL_SCREEN_NAME</span>:
-        <input class="inputs" formControlName="name" placeholder="{{'LABEL_SCREEN_NAME' | translate}}" style="width: 100%;">
+        <input class="hl-input" formControlName="name" placeholder="{{'LABEL_SCREEN_NAME' | translate}}" style="width: 100%;">
         <input type="checkbox" formControlName="inheritable"> <span translate>LABEL_CAN_INHERIT</span>
 
         <br> Videos:
@@ -17,12 +17,12 @@
         <arr-form formControlName="news"></arr-form>
 
         <br><span translate>LABEL_SCREEN_FATHER</span>:
-        <select class="select" formControlName="parent_id">
+        <select class="hl-select" formControlName="parent_id">
             <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
         </select>
 
         <br><span translate>LABEL_LAYOUT</span>:
-        <select class="select" formControlName="layout_id">
+        <select class="hl-select" formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
         </select>
         <br><span translate>LABEL_BRANCH</span>:

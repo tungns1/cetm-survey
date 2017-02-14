@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { RxSummaryView } from '../../service/';
-import { AggregateView } from '../../model';
+import { Aggregate, AggregateService } from '../../shared/';
 
 @Component({
     selector: 'report-sum',
@@ -8,10 +7,14 @@ import { AggregateView } from '../../model';
     styleUrls: ['sum.component.scss']
 })
 export class ReportSumComponent {
-    data: AggregateView;
+    constructor(
+        private aggregateService: AggregateService
+    ) { }
+
+    data: Aggregate;
 
     ngOnInit() {
-        RxSummaryView.subscribe(v => {
+        this.aggregateService.RxSummaryView.subscribe(v => {
             this.data = v;
             console.log(v);
         })

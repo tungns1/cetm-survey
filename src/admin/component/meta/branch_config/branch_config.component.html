@@ -1,8 +1,8 @@
 <editor #edit name="LABEL_CONFIG" [makeForm]="makeForm" [service]="service" (refresh)="Refresh()">
     <editor-title> <span translate>LABEL_LIST_CONFIG</span></editor-title>
-    <form *ngIf="edit.form" [formGroup]="edit.form">
+    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <hr><span translate>LABEL_ADDRESS</span>
-        <select formControlName="branch_id">
+        <select class="hl-select" formControlName="branch_id">
             <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
         </select>
         <hr> <span translate>LABEL_DEVICE_FEEDBACK</span>:

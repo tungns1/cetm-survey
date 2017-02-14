@@ -69,7 +69,7 @@ function http(method: string, url: string, body?: any) {
 const errResponseFormat = new HttpError(0, "invalid response format");
 const errConnectionError = new HttpError(0, "connection error");
 
-function convertJSON<T>(data: HttpResponse) {
+function convertJSON<T>(data: HttpResponse): T {
 
   let o: IResponse<T>;
   try {
@@ -81,7 +81,8 @@ function convertJSON<T>(data: HttpResponse) {
     return o.data;
   } else {
     const err = new HttpError(data.status, o.error);
-    throw err;
+    // throw err;
+    return <T>{}
   }
 }
 

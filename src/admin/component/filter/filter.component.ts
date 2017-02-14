@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angu
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AdminFilterService } from '../shared';
+import { AdminNavService } from '../shared';
 
 @Component({
     selector: 'admin-filter',
@@ -13,10 +13,10 @@ export class AdminFilterComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private filterService: AdminFilterService
+        private navService: AdminNavService
     ) { }
 
     refresh() {
-        this.filterService.Refresh();
+        this.navService.SyncFilter();
     }
 }

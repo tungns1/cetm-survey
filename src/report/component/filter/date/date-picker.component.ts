@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@angular/core';
-import { EventEmitter, Output, ViewChild, SimpleChange } from '@angular/core';
+import { EventEmitter, Output, ViewChild, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
@@ -29,6 +29,7 @@ const datePickerOptions: FlatPickrOptions = {
     `,
     providers: [DATE_PICKER_CONTROL_VALUE_ACCESSOR],
     styleUrls: ['material_green.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 class DatePickerComponent implements ControlValueAccessor {

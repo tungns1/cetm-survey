@@ -1,0 +1,26 @@
+<form [formGroup]="form">
+    <!-- select period -->
+    <div>
+        <input type="radio" formControlName="period" value="day"><span translate> DAY</span>
+        <input type="radio" formControlName="period" value="week" checked><span translate> WEEK</span>
+        <br>
+        <input type="radio" formControlName="period" value="month"><span translate> MONTH</span>
+        <input type="radio" formControlName="period" value="year"><span translate> YEAR</span>
+    </div>
+    <hr>
+    <!-- select time -->
+    <div>
+        <div style="padding-bottom:20px;">
+            <div style="width:45%;float:left;">
+                <label translate>FROM_DAY</label>
+            </div>
+            <div style="width:45%;float:left; padding-left:5px;">
+                <label translate>TO_DAY</label>
+            </div>
+        </div>
+        <div>
+            <date-picker formControlName="start" timestamp="true"></date-picker>
+            <date-picker formControlName="end" timestamp="true"></date-picker>
+        </div>
+    </div>
+</form>

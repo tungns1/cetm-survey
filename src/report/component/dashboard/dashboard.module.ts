@@ -15,17 +15,17 @@ const routing = RouterModule.forChild([
 ]);
 
 
-import { ReportSumModule } from '../sum/sum.module';
-import { ReportOverviewModule } from '../overview/overview.module';
-import { ReportChartModule } from '../chart/chart.module';
-import { ReportTabModule } from '../tab/tab.module';
+import { ReportSumModule } from './sum/sum.module';
+import { ReportOverviewModule } from './overview/overview.module';
+import { ReportChartModule } from './chart/chart.module';
+import { ReportTabComponent } from './tab/tab.component';
 
 @NgModule({
     imports: [
         routing, ReportSumModule, ReportOverviewModule, ReportChartModule,
-        ReportTabModule, CommonModule, SharedService.I18n.TranslateModule],
+        CommonModule, SharedService.I18n.TranslateModule],
     declarations: [
-        DashboardComponent
+        DashboardComponent, ReportTabComponent
     ]
 })
 export class ReportDashboardModule {

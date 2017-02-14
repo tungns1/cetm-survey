@@ -27,7 +27,7 @@ export class I18nService {
     }
 
     Translate(key: string) {
-        return this.translateService.get(key);
+        return this.translateService.instant(key);
     }
 
     static provider(): FactoryProvider {

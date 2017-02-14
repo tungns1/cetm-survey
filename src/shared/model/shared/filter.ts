@@ -1,6 +1,10 @@
 
 export class IDList {
     constructor(v: string | string[]) {
+        this.rebuild(v);
+    }
+
+    rebuild(v: undefined | string | string[]) {
         this.data = this.toIdList(v);
     }
 
@@ -36,15 +40,18 @@ export class IDList {
 }
 
 export class MultipleIDList {
-    constructor(private len = 0) {
+    constructor(count = 1) {
         this.levels = [];
-        for (let i = 0; i < len; i++) {
+        this.max = count - 1;
+        for (let i = 0; i <= this.max; i++) {
             this.levels.push(i);
         }
     }
 
+    private max = 0;
+
     get Max() {
-        return this.levels.length - 1;
+        return this.max;
     }
 
     private separator = ';';
@@ -56,7 +63,7 @@ export class MultipleIDList {
         if (typeof v === 'string') {
             v = v.split(this.separator) || [];
         }
-        this.data = this.toMultipleIdList(v, this.len);
+        this.data = this.toMultipleIdList(v, this.max);
     }
 
     toArray(): string[] {
@@ -64,19 +71,22 @@ export class MultipleIDList {
     }
 
     getLowest() {
-        const len = this.data.length;
         let i = 0;
-        while (i < len) {
+        while (i <= this.max) {
             if (this.data[i] && this.data[i].length > 0) {
-                break;
+                return i;
             }
             i++;
         }
-        return i;
+        return this.max
     }
 
     at(i: number) {
         return this.data[i].valueOf();
+    }
+
+    set(i: number, v: string[]) {
+        this.data[i] = new IDList(v);
     }
 
     protected toMultipleIdList(v: string[] | string[][], len = 0) {
@@ -105,7 +115,11 @@ export class MultipleIDList {
 
 import { Params, ActivatedRoute, Router } from '@angular/router';
 
-export abstract class AbstractFilter {
+interface IMap {
+    [index: string]: string;
+}
+
+export abstract class AbstractState {
 
     FromQuery(p: Params) {
 
@@ -114,44 +128,50 @@ export abstract class AbstractFilter {
     ToQuery(): Params {
         return {};
     }
+
+    ToBackendQuery(): IMap {
+        return this.ToQuery();
+    }
 }
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ISubscription } from 'rxjs/Subscription';
 
-export abstract class AbstractFitlerService<T extends AbstractFilter> {
+export abstract class AbstractStateService<T extends AbstractState> {
     constructor(
-        protected route: ActivatedRoute,
-        protected router: Router
+        protected route: ActivatedRoute
     ) {
 
     }
 
-    Refresh() {
-        this.onChange();
-        this.router.navigate([], {
-            queryParams: this.filter.ToQuery()
-        });
+    protected onInit(state: T) {
+        this.state = state;
+        this.state.FromQuery(this.route.snapshot.queryParams);
+        this.triggerChange();
     }
 
-    protected onInit(filter: T) {
-        this.filter = filter;
-        this.filter.FromQuery(this.route.snapshot.queryParams);
-        this.onChange();
-    }
-
-    protected onChange() {
-        this.ValueChanges.next(this.filter);
+    triggerChange() {
+        this.ValueChanges.next(this.state);
     }
 
     protected FromQuery(p: Params) {
-        this.filter.FromQuery(p);
-        this.onChange();
+        this.state.FromQuery(p);
+        this.triggerChange();
     }
 
-    get Filter() {
-        return this.filter;
+    get Current() {
+        return this.state;
     }
 
-    protected filter: T;
+    protected state: T;
     ValueChanges = new ReplaySubject<T>(1);
+    private link = '';
+    private old: ISubscription;
+
+    ExclusiveSubscribe(cb: (v: T) => void) {
+        if (this.old) {
+            this.old.unsubscribe();
+        }
+        this.old = this.ValueChanges.subscribe(cb);
+    }
 }

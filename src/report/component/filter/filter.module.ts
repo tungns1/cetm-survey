@@ -1,17 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule,Branch } from '../../shared/';
-import { SelectCheckModule } from '../shared/';
+
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { SharedModule, Branch } from '../../shared/';
 import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
 
+import { InsideFilterComponent } from './inside/inside.component';
+import { PeriodFilterComponent } from './period/period.component';
+
+import { filterServiceProvider } from '../shared';
 
 @NgModule({
-    imports: [SharedModule, DatePickerModule, SelectCheckModule,Branch.BranchModule],
+    imports: [SharedModule, DatePickerModule, Branch.BranchModule],
     declarations: [
+        InsideFilterComponent,
+        PeriodFilterComponent,
         ReportFilterComponent
     ],
     exports: [ReportFilterComponent],
 })
-export class ReportFilterModule { }
+export class ReportFilterModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: ReportFilterModule,
+            providers: [
+                filterServiceProvider
+            ]
+        }
+    }
+}

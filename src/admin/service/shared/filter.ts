@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Model, Branch } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-export class AdminFilter extends Model.SharedModel.AbstractFilter {
+export class AdminFilter extends Model.SharedModel.AbstractState {
     constructor(
         public Branch: Branch.BranchFilter
     ) {
@@ -23,18 +23,12 @@ export class AdminFilter extends Model.SharedModel.AbstractFilter {
 }
 
 @Injectable()
-export class AdminFilterService extends Model.SharedModel.AbstractFitlerService<AdminFilter> {
+export class AdminFilterService extends Model.SharedModel.AbstractStateService<AdminFilter> {
     constructor(
         route: ActivatedRoute,
-        router: Router,
         private branchFilterService: Branch.BranchFilterService
     ) {
-        super(route, router);
-        this.onInit(new AdminFilter(this.branchFilterService.Filter));
-    }
-
-    protected onChange() {
-        this.branchFilterService.onChange();
-        super.onChange();
+        super(route);
+        this.onInit(new AdminFilter(this.branchFilterService.Current));
     }
 }
