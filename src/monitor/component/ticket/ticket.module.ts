@@ -9,34 +9,15 @@ import { SharedPipe } from '../../shared';
 const routing = RouterModule.forChild([
     {
         path: '',
-        component: MonitorTicketComponent,
-        children: [{
-            path: '',
-            pathMatch: 'full',
-            redirectTo: 'summary/all'
-        }, {
-            path: 'summary',
-            pathMatch: 'full',
-            redirectTo: 'summary/all'
-        },
-        {
-            path: 'focus/:branch_id',
-            component: FocusComponent
-        }, {
-            path: 'summary/:branches',
-            component: SummaryComponent
-        }]
+        component: MonitorTicketComponent
     }
 ]);
 
 import { MonitorTicketService } from './ticket.service';
-import { Reducers } from './reducers';
-import { StoreModule } from '@ngrx/store';
 
 @NgModule({
     imports: [
-        routing, SharedModule, SharedPipe.UtilPipeModule,
-        StoreModule.provideStore(Reducers)
+        routing, SharedModule, SharedPipe.UtilPipeModule
     ],
     providers: [
         MonitorTicketService

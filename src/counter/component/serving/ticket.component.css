@@ -1,8 +1,9 @@
-.sp {
+/*.sp {
     width: 100%;
-}
+}*/
 
-.so {
+
+/*.so {
     width: 50%;
     text-align: center;
     border-right: 0.5px solid #cccccc;
@@ -11,22 +12,24 @@
 .tg {
     width: 50%;
     text-align: center;
-}
+}*/
 
-.padding {
-    /*height: 15px;
-    background-color: #fff;*/
+
+/*.padding {
+    height: 15px;
+    background-color: #fff;
     border-left: 0.5px solid #cccccc;
     border-right: 0.5px solid #cccccc;
-}
+}*/
 
-.service {
+
+/*.hl-service-sving {
     border: 0.5px solid #cccccc;
     text-align: center;
     background-color: #dee0e0;
     height: 40px;
     line-height: 40px;
-}
+}*/
 
 
 /*.more {
@@ -37,6 +40,8 @@
     display: flex;
 }*/
 
+
+/*
 .more>span {
     flex: 1;
     text-align: center;
@@ -46,9 +51,10 @@
 
 .more:nth-child(2) {
     border-left: 0.5px solid #cccccc;
-}
+}*/
 
-.number {
+
+/*.hl-number {
     font-size: 75px;
     margin-left: 10px;
     background: -webkit-linear-gradient(left, #008eef, #03c2df);
@@ -56,19 +62,20 @@
     -webkit-text-fill-color: transparent;
 }
 
-ticket-timer {
+.ticket-timer-srving {
     font-size: 75px;
     margin-left: 10px;
     background: -webkit-linear-gradient(left, #008eef, #03c2df);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+}*/
 
-.title {
+
+/*.hl-title-serving {
     font-size: 24px;
 }
 
 :host {
     align-content: center;
     justify-content: center;
-}
+}*/

@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { Branch } from '../../shared/';
 import { Router } from '@angular/router';
 
-import { FilterService } from '../../service';
+import { MonitorNavService } from '../../service';
 
 @Component({
     selector: 'monitor-filter',
@@ -10,11 +10,9 @@ import { FilterService } from '../../service';
     styleUrls: ['filter.component.css']
 })
 export class MonitorFilterComponent {
-    constructor(private filterService: FilterService) { }
+    constructor(private navService: MonitorNavService) { }
 
-    active = '';
     refresh() {
-        const branches = Branch.SelectedBranchIDLevel0.value;
-        this.filterService.Refresh(branches.split(","));
+        this.navService.SyncFilter();
     }
 }

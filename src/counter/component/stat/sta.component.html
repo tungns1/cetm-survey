@@ -1,21 +1,21 @@
-<div class="content">
-    <div class="title" translate>
+<div class="hl-content-stat">
+    <div class="hl-title-stat" translate>
         STAT
     </div>
 
-    <div class="tabs">
+    <div class="hl-tabs-stat">
         <div [ngClass]="{'active': tab === 'finished'}" (click)="tab = 'finished'">
             &nbsp;<span translate> SERVICE_FINISH</span>&nbsp; (
-            <span class="count">{{fc | async}}</span>) &nbsp;
+            <span class="hl-count">{{fc | async}}</span>) &nbsp;
         </div>
         <div [ngClass]="{'active': tab === 'cancelled'}" (click)="tab = 'cancelled'">
             <span translate>SERVICE_CANCEL</span>&nbsp;(
-            <span class="count">{{cc | async}}</span>) &nbsp;
+            <span class="hl-count">{{cc | async}}</span>) &nbsp;
         </div>
     </div>
-    <div class="padding">
+    <div class="hl-padding-stat">
     </div>
-    <div class="detail">
+    <div class="hl-detail-stat">
         <div *ngIf="tab == 'finished'">
             <bar [data]="finished | async"></bar>
         </div>
@@ -24,6 +24,6 @@
         </div>
     </div>
 </div>
-<div class="search">
+<div class="hl-search-stat">
     <search></search>
 </div>

@@ -1,4 +1,4 @@
-<style>
+<!--<style>
     .module-name {
         font-size: 16px;
     }
@@ -29,20 +29,20 @@
         float: right;
         width: 25.8%;
     }
-</style>
+</style>-->
 <app-header>
-    <div class="module-name">MQ-COUNTER:&nbsp;{{counterName | async}}</div>
+    <div class="module-name-counter">MQ-COUNTER:&nbsp;{{counterName | async}}</div>
 </app-header>
 
-<div class="container">
-    <div class="left">
+<div class="container-counter">
+    <div class="left-counter">
         <serving></serving>
-        <div class="queue">
+        <div class="queue-counter">
             <waiting></waiting>
             <missed></missed>
         </div>
     </div>
-    <sta class="sta"></sta>
+    <sta class="sta-counter"></sta>
 </div>
 
 <!--<div class="copyright">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</div>-->

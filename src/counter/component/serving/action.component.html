@@ -1,19 +1,19 @@
-<button (click)="SetAction('next')" [ngClass]="{'hidden': auto | async}" translate>
+<button class="hl-button" (click)="SetAction('next')" [ngClass]="{'hidden': auto | async}" translate>
     NEXT
 </button>
-<button (click)="NoNext()" class="danger" [ngClass]="{'hidden': !(auto | async)}" translate>
+<button class="hl-button" (click)="NoNext()" class="danger" [ngClass]="{'hidden': !(auto | async)}" translate>
     AUTO_NEXT
 </button>
-<button (click)="Recall()" translate> 
+<button class="hl-button" (click)="Recall()" translate> 
     RECALL
 </button>
-<button (click)="SetAction('move')" translate> 
+<button class="hl-button" (click)="SetAction('move')" translate> 
     MOVE
 </button>
-<button (click)="Miss()" translate>
+<button class="hl-button" (click)="Miss()" translate>
     MISS
 </button>
-<button (click)="SetAction('finish')" class="danger" translate>
+<button class="hl-button" (click)="SetAction('finish')" class="danger" translate>
     FINISH
 </button>
 
@@ -24,11 +24,11 @@
     <p style="text-align: center;font-size:13px;" translate>CONTENT_FEDDBACK</p>
 
     <span translate> USERNAME_MANAGER</span>
-    <input type="text" [(ngModel)]="username" placeholder="Tên quản lý" autocomplete="off"><br><span translate> PASSWORD</span>
-    <input type="password" [(ngModel)]="pass" placeholder="Mật khẩu" autocomplete="off"><br>
+    <input class="hl-input" type="text" [(ngModel)]="username" placeholder="Tên quản lý" autocomplete="off"><br><span translate> PASSWORD</span>
+    <input class="hl-input" type="password" [(ngModel)]="pass" placeholder="Mật khẩu" autocomplete="off"><br>
     <div style="float:right;">
-        <button class="button" (click)="onSubmit()" style="width:50px;height:25px;margin-right: 15px;" translate> BUTTON_SEND </button>
-        <button class="button" (click)="fb.Close()" style="height:25px;" translate> BUTTON_CLOSE </button>
+        <button class="hl-button" (click)="onSubmit()" style="width:50px;height:25px;margin-right: 15px;" translate> BUTTON_SEND </button>
+        <button class="hl-button" (click)="fb.Close()" style="height:25px;" translate> BUTTON_CLOSE </button>
     </div>
 
 </modal>

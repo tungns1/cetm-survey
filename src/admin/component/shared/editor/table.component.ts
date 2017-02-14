@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
     selector: 'table-view',
     template: `
     <table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
-        <thead>
+        <thead class="hl-thr-editor">
             <td> STT </td>
             <td *ngFor="let fi of fields">{{fi.title}} </td>
             <td></td>
@@ -18,23 +18,7 @@ import { Component, Input } from '@angular/core';
             </td>
         </tr>
     </table>
-    `,
-    styles: [`
-        thead {
-        background-color: #dee0df;
-        height: 50px;
-        line-height: 50px;
-    }
-
-    table tbody tr:nth-child(even) {
-        background: #f1f9fc;
-        border-top: 1px solid #f4f4f4;
-    }
-
-    table tbody tr:nth-child(odd) {
-        background: #ffffff;
-    }
-    `]
+    `
 })
 export class TableComponent {
     @Input() data: any[] = [];

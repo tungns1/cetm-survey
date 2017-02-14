@@ -10,3 +10,12 @@ export class BranchLevelNamePipe implements PipeTransform {
         return Org.BranchLevels[id].name;
     }
 }
+
+@Pipe({
+    name: 'branchName'
+})
+export class BranchNamePipe implements PipeTransform {
+    transform(id: string) {
+        return Org.CacheBranch.GetNameForID(id);
+    }
+}

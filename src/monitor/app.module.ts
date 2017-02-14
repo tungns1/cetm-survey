@@ -4,7 +4,7 @@ import { Branch, SharedService } from './shared/';
 import { NewBaseAppModule } from './shared/';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
-import { FilterService } from './service/';
+import { monitorServiceProvider } from './service/';
 import { MonitorComponent, MonitorFilterModule } from './component/';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { MonitorComponent, MonitorFilterModule } from './component/';
     NewBaseAppModule("monitor"), routing, MonitorFilterModule
   ],
   declarations: [AppComponent, MonitorComponent],
-  providers: [FilterService],
+  providers: [monitorServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,30 +1,27 @@
-.table-row {
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-grow: 0;
-    flex-wrap: wrap;
-    cursor: pointer;
-    border-bottom: 1px solid #e0e0e0;
-    border-collapse: collapse;
-}
-
-.table-row:nth-child(even) {
-    background: #edf7fc;
-}
-
-.table-row:nth-child(odd) {
-    background: #ffffff;
-}
-
-.table-row>* {
-    flex-grow: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 80px;
-    padding-right: 20px;
-    text-align: center;
-}
+// .table-row {
+//     font-size: 14px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: row;
+//     flex-grow: 0;
+//     flex-wrap: wrap;
+//     cursor: pointer;
+//     border-bottom: 1px solid #e0e0e0;
+//     border-collapse: collapse;
+// }
+// .table-row:nth-child(even) {
+//     background: #edf7fc;
+// }
+// .table-row:nth-child(odd) {
+//     background: #ffffff;
+// }
+// .table-row>* {
+//     flex-grow: 1;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     width: 80px;
+//     padding-right: 20px;
+//     text-align: center;
+// }

@@ -93,6 +93,11 @@ export class Socket {
     return s;
   }
 
+  RxEvent<T>(uri: string) {
+    return this.rxServerEvent.filter(v => v.uri === uri)
+      .map<T>(v => v.data);
+  }
+
   private lastMessageAt = 0;
 
   private onMessageHandler(msg: MessageEvent) {

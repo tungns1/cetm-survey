@@ -1,4 +1,4 @@
-.row:nth-child(even) {
+/*.row:nth-child(even) {
     background: #f1f9fc;
     border-top: 1px solid #f4f4f4;
 }
@@ -13,4 +13,4 @@
 
 .pointer:hover {
     color: green;
-}
+}*/

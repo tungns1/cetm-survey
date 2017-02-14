@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { MonitorFilterComponent } from './filter.component';
-import { SharedModule } from '../../shared/';
+import { SharedModule, Branch } from '../../shared/';
 
 @NgModule({
-    imports: [SharedModule],
+    imports: [SharedModule, Branch.BranchModule],
     declarations: [
         MonitorFilterComponent
     ],

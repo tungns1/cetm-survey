@@ -84,7 +84,7 @@ export class AuthService {
     private updateMySetting(v: IMySettings) {
         Center.CacheService.Refresh(v.services);
         if (v.me.branch_id) {
-            Org.CacheBranch.Refresh(v.branches, v.me.branch_id);
+            Org.CacheBranch.Refresh(v.branches);
         }
         this.rxMySetting.next(v);
     }

@@ -1,23 +1,2 @@
-<div>
-    <div>
-        <div class="tl" (click)="active='tinhthanh'"><span translate>SELECT_CITY</span><i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
-        <div class="select" [ngClass]="{'hidden': active!='tinhthanh'}">
-            <multi-branch-selector level="2"></multi-branch-selector>
-        </div>
-    </div>
-    <div>
-        <div class="tl" (click)="active='chinhanh'"><span translate>SELECT_BRANCH</span><i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
-        <div class="select" [ngClass]="{'hidden': active!='chinhanh'}">
-            <multi-branch-selector level="1"></multi-branch-selector>
-        </div>
-    </div>
-    <div>
-        <div class="tl" (click)="active='giaodich'"><span translate>SELECT_TRANSACTION_ROOM</span><i class="fa fa-caret-down" aria-hidden="true" style="float: right;cursor: pointer;"></i></div>
-        <div class="select" [ngClass]="{'hidden': active!='giaodich'}">
-            <multi-branch-selector level="0"></multi-branch-selector>
-        </div>
-    </div>
-    <div style=" padding: 20px 20px;">
-        <button class="filter btpointer" type="submit" (click)="refresh()" translate>BUTTON_SEND</button>
-    </div>
-</div>
+<branch-filter></branch-filter>
+<button (click)="refresh()" translate>BUTTON_SEND</button>
