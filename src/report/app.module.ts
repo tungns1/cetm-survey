@@ -1,24 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Branch, SharedService } from './shared/';
-import { NewBaseAppModule } from './shared/';
+import { BaseAppModule } from './shared/';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { ReportComponent, ReportFilterModule } from './component/';
 import { reportServiceProvider } from './service';
 
 const appName = "report";
+const appState = new SharedService.AppState(appName);
 
 @NgModule({
   imports: [
-    NewBaseAppModule(appName), routing, ReportFilterModule
+    BaseAppModule, routing, ReportFilterModule
   ],
   declarations: [AppComponent, ReportComponent],
-  providers: [reportServiceProvider],
+  providers: [appState.toProvider(), reportServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
 }
-
-SharedService.Auth.AuthOptions.scope = "report";

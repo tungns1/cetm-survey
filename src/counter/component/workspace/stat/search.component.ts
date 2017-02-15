@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ITicket, TicketService } from '../shared';
-import { Model } from '../../shared';
+import { Model, ITicket } from '../../shared';
+import { TicketService } from '../service';
 
 @Component({
     selector: 'search',

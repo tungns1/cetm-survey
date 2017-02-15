@@ -15,7 +15,7 @@ interface ITicketAction {
     counters?: string[];
 }
 
-import { ITicket } from '../model';
+import { ITicket } from '../../shared';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';

@@ -81,8 +81,7 @@ function convertJSON<T>(data: HttpResponse): T {
     return o.data;
   } else {
     const err = new HttpError(data.status, o.error);
-    // throw err;
-    return <T>{}
+    throw err;
   }
 }
 

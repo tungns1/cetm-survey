@@ -5,7 +5,7 @@ import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/c
 import { Routes, RouterModule } from '@angular/router';
 import { AppSettingComponent, LoginComponent, PageNotFoundComponent } from './component/';
 
-import { AppService, Auth } from './service/';
+import { AppState, Auth } from './service/';
 
 const routes: Routes = [
     { path: 'setting', component: AppSettingComponent },
@@ -28,15 +28,10 @@ import { UtilPipeModule } from './pipe';
     ]
 })
 export class SharedModule {
-    static forRoot(appName: string): ModuleWithProviders {
-        const appServiceProvider = <ValueProvider>{
-            provide: AppService,
-            useValue: new AppService(appName)
-        };
-
+    static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: [appServiceProvider]
+            providers: []
         }
     }
 }

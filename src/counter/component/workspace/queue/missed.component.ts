@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { QueueService } from '../../service';
+import { QueueService } from '../service';
 import { Model } from '../../shared/';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

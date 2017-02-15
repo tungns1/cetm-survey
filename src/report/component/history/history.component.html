@@ -4,7 +4,6 @@
             <thead>
                 <th class="hl-stt-history"> STT </th>
                 <th translate> HISTORY.DATE </th>
-                <th translate> HISTORY.AREA</th>
                 <th translate> HISTORY.BRANCH </th>
                 <th translate> HISTORY.TRANSACTION_ROOM </th>
                 <th translate>HISTORY.SERVICE </th>
@@ -18,9 +17,8 @@
                 <tr *ngFor="let d of data | async; let i = index">
                     <td class="stt">{{(i+1)+(skip | async)}}</td>
                     <td class="td-date-rp"> {{d.cdate}} </td>
-                    <td class="td-string-rp"> {{d.branches[2]}} </td>
                     <td class="td-string-rp"> {{d.branches[1]}} </td>
-                    <td class="td-string-rp"> {{d.branches[0]}} </td>
+                    <td class="td-string-rp"> {{d.branch}} </td>
                     <td class="td-string-rp"> {{d.service}} </td>
                     <td class="td-counter-rp"> {{d.counter}} </td>
                     <td class="td-string-rp"> {{d.user}} </td>

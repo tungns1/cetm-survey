@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
+import { Ui, Ng } from '../../shared';
+
 import {
-    Ui, Ng,
     WorkspaceService, QueueService,
     LedService, TicketService
-} from '../shared';
+} from '../service';
 
 @Component({
     selector: 'action',

@@ -6,7 +6,7 @@ import * as SharedService from './service/';
 import * as SharedUtil from './util/';
 
 import { SharedModule } from './shared.module';
-import { NewBaseAppModule } from './BaseApp.module';
+import { BaseAppModule } from './BaseApp.module';
 
 import * as Lib from '../x/';
 
@@ -14,7 +14,7 @@ export {
     Branch, Model,
     SharedConfig, SharedUtil,
     SharedService, SharedPipe, SharedModule,
-    NewBaseAppModule,
+    BaseAppModule,
     Lib
 }
 

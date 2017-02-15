@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminMenu, Item, GetActiveItemIndex } from './model';
-import { AppService } from '../../service';
+import { AppState } from '../../service';
 
 @Component({
     selector: 'top-nav',
@@ -12,7 +12,7 @@ export class TopNavComponent {
 
     constructor(
         private router: Router,
-        private appService: AppService
+        private appService: AppState
     ) { }
 
     ngOnInit() {

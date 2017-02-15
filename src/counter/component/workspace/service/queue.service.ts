@@ -2,7 +2,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
 import {
     ITicket, TicketState, TicketStates, ITicketQueue, ITickets
-} from '../model';
+} from '../../shared';
 import { WorkspaceService } from './workspace.service';
 import { of } from 'rxjs/observable/of';
 

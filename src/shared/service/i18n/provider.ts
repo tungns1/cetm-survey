@@ -1,10 +1,14 @@
 import { I18n } from '../../shared';
 import { RawTranslateLoader } from './load';
+import { AppState } from '../app.service';
 
-export function provideTranslateModule(files: string | string[]) {
-    const v = [].concat(files);
+export function provideTranslateModule() {
     return I18n.TranslateModule.forRoot({
         provide: I18n.TranslateLoader,
-        useFactory: () => new RawTranslateLoader(v)
+        deps: [AppState],
+        useFactory: (state: AppState) => {
+            const files = [].concat(state.AppName);
+            return new RawTranslateLoader(files);
+        }
     })
 }

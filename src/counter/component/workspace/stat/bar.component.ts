@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IStat } from '../shared';
+import { IStat } from '../../shared';
 import { Observable } from 'rxjs/Observable';
 
 

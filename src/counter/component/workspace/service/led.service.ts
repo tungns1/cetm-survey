@@ -1,6 +1,6 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
-import { ITicket, TicketState, TicketStates } from '../model';
+import { ITicket, TicketState, TicketStates } from '../../shared';
 import { WorkspaceService } from './workspace.service';
 
 @Injectable()

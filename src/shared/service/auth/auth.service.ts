@@ -3,21 +3,15 @@ import { HttpApi } from '../backend';
 import { HttpError } from '../../../x/backend/';
 
 import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Router } from '@angular/router';
-
-export const AuthOptions = {
-    branch_code: '',
-    auto: false,
-    scope: '',
-    redirect: '/'
-}
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
 import { Org, Center, Meta } from '../../model/';
+
+import { AppState } from '../app.service';
+import { AuthScopes } from './auth.config';
 
 export interface IMySettings {
     me: Org.IUser;
@@ -30,9 +24,15 @@ export interface IMySettings {
 export class AuthService {
     constructor(
         private router: Router,
-        private sessionService: SessionService
+        private route: ActivatedRoute,
+        private sessionService: SessionService,
+        private appState: AppState
     ) {
         // console.log('created auth');
+    }
+
+    private get scope() {
+        return AuthScopes[this.appState.AppName];
     }
 
     IsAuth() {
@@ -40,7 +40,7 @@ export class AuthService {
     }
 
     Login(form) {
-        const values = Object.assign({}, AuthOptions, form);
+        const values = Object.assign({ scope: this.scope }, this.options, form);
         return this.authBackend.Post("login", values).map(v => {
             let session: ISession = v.session;
             this.sessionService.Activate(session);
@@ -50,16 +50,15 @@ export class AuthService {
 
     Logout() {
         this.sessionService.Destroy();
-        this.router.navigateByUrl("/login");
-        // setTimeout(_ => {
-        //     window.location.reload();
-        // }, 250);
+        this.router.navigate(["/login"], {
+            queryParams: this.route.snapshot.queryParams
+        });
     }
 
     RefreshMySettings() {
         return this.authBackend.Get<IMySettings>(
             "my_settings",
-            { scope: AuthOptions.scope, token: this.sessionService.GetToken() }
+            { scope: this.scope, token: this.sessionService.GetToken() }
         ).map(v => {
             this.updateMySetting(v);
             return true;
@@ -81,6 +80,16 @@ export class AuthService {
         });
     }
 
+    OnLoginDone() {
+        let redirect = this.redirect;
+        if (!redirect || redirect.length < 1) {
+            redirect = '/';
+        }
+        this.router.navigate([redirect], {
+            queryParams: this.route.snapshot.queryParams
+        });
+    }
+
     private updateMySetting(v: IMySettings) {
         Center.CacheService.Refresh(v.services);
         if (v.me.branch_id) {
@@ -93,6 +102,10 @@ export class AuthService {
         return this.rxMySetting;
     }
 
+    options = {};
+
     private authBackend = new HttpApi<any>("/api/auth");
     private rxMySetting = new ReplaySubject<IMySettings>(1);
+    autoLogin = false;
+    redirect = '/';
 }

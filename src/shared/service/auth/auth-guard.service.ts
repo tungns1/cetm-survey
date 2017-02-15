@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { CanActivate, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { AuthOptions, AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -34,11 +34,10 @@ export class AuthGuard implements CanActivate {
   }
 
   loginPage(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let branch_code = route.params['branch_code'];
-    AuthOptions.redirect = state.url;
-    AuthOptions.branch_code = branch_code;
-    console.log(AuthOptions);
-    this.router.navigate(['/login']);
+    this.authService.redirect = state.url;
+    this.router.navigate(['/login'], {
+      queryParams: route.queryParams
+    });
     return false
   }
 }

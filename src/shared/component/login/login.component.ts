@@ -1,38 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import {
-  Router,
-  ActivatedRoute
-} from '@angular/router';
-
 import { Backend, Platform } from '../../shared';
 import { Auth } from '../../service';
+import { I18nHttpError } from './errors';
 
 interface ILoginModel {
   username: string;
   password: string;
   auto: boolean;
-}
-
-const ViErrors = {
-
-}
-
-ViErrors['record not found'] = 'Sai tên đăng nhập';
-ViErrors['wrong password'] = 'Sai mật khẩu';
-ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
-
-function Format(e: string) {
-  if (typeof e !== 'string') {
-    return '';
-  }
-  if (ViErrors[e]) {
-    return ViErrors[e];
-  }
-  if (e.toLowerCase().startsWith("unauthorized")) {
-    return ViErrors["unauthorize"]
-  }
-  return e;
 }
 
 @Component({
@@ -49,35 +24,29 @@ export class LoginComponent {
   message = '';
 
   constructor(
-    private authService: Auth.AuthService,
-    public router: Router
+    private authService: Auth.AuthService
   ) { }
 
   ngOnInit() {
     if (this.IsLogin()) {
-      console.log('navigate');
-      this.router.navigate(['/']);
+      this.authService.OnLoginDone();
       return;
     }
-    if (Auth.AuthOptions.auto) {
+    if (this.authService.autoLogin) {
       let user = Platform.CurrentUser();
       if (user) {
         this.loginForm.controls['username'].setValue(user);
-        this.login(true);
+        this.login();
       }
     }
   }
 
-  login(auto?: boolean) {
+  login() {
     this.authService.Login(this.loginForm.value).subscribe((v) => {
-      let redirect = Auth.AuthOptions.redirect;
-      if (!redirect || redirect.length < 1) {
-        redirect = '/';
-      }
-      this.router.navigateByUrl(redirect);
+      this.authService.OnLoginDone();
     }, (e: Backend.HttpError) => {
       console.log(e);
-      this.message = `Đã có lỗi: ${Format(e.Message())}`;
+      this.message = I18nHttpError(e);
     });
   }
 
@@ -90,9 +59,3 @@ export class LoginComponent {
   }
 }
 
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

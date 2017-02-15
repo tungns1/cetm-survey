@@ -1,6 +1,5 @@
 export * from './counter.component';
-export * from './queue/queue.module';
-export * from './serving/serving.module';
-export * from './stat/stat.module';
+export * from './workspace/workspace.module';
+export * from './legacy/legacy.module';
 
 

@@ -3,10 +3,9 @@ import { SharedService, Model } from '../../shared';
 import { Store } from '@ngrx/store';
 import {
     ICounter, ITicketQueue, ITicket,
-    TicketState, IStatMap
-} from '../model';
-
-import { CounterStateService } from './shared';
+    TicketState, IStatMap,
+    CounterStateService
+} from '../../shared';
 
 const SOCKET_LINK = "/room/counter/join";
 const SOCKET_PARAMS = ['branch_code', 'counter_code']
@@ -25,7 +24,6 @@ export class WorkspaceService {
     }
 
     onInit(data) {
-        // this.socket.Connect(this.stateService.Current.GetBranchAndCounter());
         this.socket.Connect(data);
         this.socket.disableCheckAlive();
         this.setUser();

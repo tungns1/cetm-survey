@@ -4,7 +4,7 @@
 
         <div *ngIf="!IsLogin()">
             <div class="hl-title-login">ĐĂNG NHẬP HỆ THỐNG</div>
-            <form [formGroup]="loginForm">
+            <form [formGroup]="loginForm" (submit)="login()">
                 <div class="hl-form-login">
                     <div class="hl-message-login"> {{message}} </div>
                     <div class="hl-info-login">
@@ -15,7 +15,7 @@
                             <input class="hl-input-login" type="password" formControlName="password" placeholder="Mật khẩu">
                         </div>
                         <div class="hl-divbtn-login">
-                            <button class="hl-btnLogin btpointer" (click)="login()">ĐĂNG NHẬP</button>
+                            <button class="hl-btnLogin btpointer" type="submit">ĐĂNG NHẬP</button>
                         </div>
                     </div>
                     <!--<a href="#" class="mk">Bạn quên mật khẩu ? Yêu cầu Admin cấp lại mật khẩu</a>-->
