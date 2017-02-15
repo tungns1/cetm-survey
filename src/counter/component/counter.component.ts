@@ -1,6 +1,6 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RxCurrentCounter, socket } from '../service/';
+import { WorkspaceService } from '../service/';
 
 @Component({
     selector: 'app-counter',
@@ -9,7 +9,10 @@ import { RxCurrentCounter, socket } from '../service/';
     encapsulation: ViewEncapsulation.None
 })
 export class CounterComponent {
-    constructor(private route: ActivatedRoute) {
+    constructor(
+        private route: ActivatedRoute,
+        private workspaceService: WorkspaceService
+    ) {
 
     }
 
@@ -17,12 +20,12 @@ export class CounterComponent {
         const params = this.route.snapshot.params;
         const branch_code = params['branch_code'];
         const counter_code = params['counter_code'];
-        socket.Connect({ branch_code, counter_code });
+        this.workspaceService.onInit({ branch_code, counter_code });
     }
 
     ngOnDestroy() {
-        
+
     }
 
-    counterName = RxCurrentCounter.map(c => c.name);
+    counterName = this.workspaceService.currentCounter$.map(c => c.name);
 } 

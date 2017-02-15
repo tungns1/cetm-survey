@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Search, ITicket } from '../../service/ticket';
+import { ITicket, TicketService } from '../shared';
 import { Model } from '../../shared';
 
 @Component({
@@ -7,6 +7,10 @@ import { Model } from '../../shared';
     templateUrl: 'search.component.html'
 })
 export class SearchComponent {
+    constructor(
+        private ticketService: TicketService
+    ) { }
+
     message: string;
     ticket: Model.House.ITicket;
     number = '';
@@ -16,7 +20,7 @@ export class SearchComponent {
         this.number = cnum;
         this.ticket = void 0;
         this.message = 'SEARCH_TICKET';
-        Search(cnum).subscribe(t => {
+        this.ticketService.Search(cnum).subscribe(t => {
             if (!t || t.length < 1) {
                 this.message = 'NOT_FOUND_TICKET';
             } else {

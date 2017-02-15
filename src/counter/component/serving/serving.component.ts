@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Serving } from '../../service/queue';
+import { QueueService } from '../../service/';
 
 @Component({
 
     selector: 'serving',
     template: `
-    <ticket *ngFor="let t of tickets | async" [ticket]="t"></ticket>
+    <ticket *ngFor="let t of serving$ | async" [ticket]="t"></ticket>
     <empty></empty>
     <action></action>
     <hr style="margin: 10px;">
@@ -18,5 +18,9 @@ import { Serving } from '../../service/queue';
     `]
 })
 export class ServingComponent {
-    tickets = Serving.RxData;
+    constructor(
+        private queueService: QueueService
+    ) {}
+
+    serving$ = this.queueService.serving$;
 }

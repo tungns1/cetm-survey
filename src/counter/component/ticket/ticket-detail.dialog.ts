@@ -2,18 +2,13 @@ import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Model, Ng } from '../../shared';
 
-import { Move, CallFromMissed, Cancel } from '../../service/ticket';
-import { PassFeedbackRequirement, ICounter, RxCounters, RxCurrentCounter, RxServices } from '../../service';
-import { Serving, autoNext, ticketDialog } from '../../service/queue';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-export const RxOtherCounters = new ReplaySubject<ICounter[]>(1);
-const TicketStates = Model.House.TicketStates;
-
-combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([counters, current]) => {
-  RxOtherCounters.next(counters.filter(c => c.id != current.id));
-})
+import {
+  TicketStates,
+  TicketService, QueueService, WorkspaceService
+} from '../shared';
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -21,7 +16,12 @@ combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([co
   styleUrls: ['ticket-detail.dialog.scss']
 })
 export class TicketDetailDialog {
-  constructor() { }
+  constructor(
+    private ticketService: TicketService,
+    private queueService: QueueService,
+    private workspaceService: WorkspaceService
+  ) { }
+
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
     this.checkedCounters = [];
@@ -33,15 +33,20 @@ export class TicketDetailDialog {
   private ticket: Model.House.ITicket = <any>{};
   close = new EventEmitter();
 
-
   private isServing = false;
   private isWaiting = false;
   private isMissed = false;
 
   private checkedCounters = [];
   private checkedServices = [];
-  private counters = RxOtherCounters;
-  private services = RxServices;
+  private counters = this.workspaceService.counters$.combineLatest(
+    this.workspaceService.currentCounter$,
+    (counters, currentCounter) => {
+      return counters.filter(c => c.id !== currentCounter.id);
+    }
+  );
+
+  private services = this.workspaceService.services$;
 
   Close() {
     this.close.emit(true);
@@ -60,24 +65,26 @@ export class TicketDetailDialog {
       }
     }
 
-    Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
+    this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
       this.Close();
     });
   }
 
   Recall() {
-    if (Serving.RxData.value.length > 0) {
-      this.ShowMessage("TITLE_MODAL", "RECALL_MISS");
-      return;
-    }
-    CallFromMissed(this.ticket).subscribe(v => {
-      autoNext.next(false);
-      this.Close();
+    this.queueService.busy$.first().subscribe(b => {
+      if (b) {
+        this.ShowMessage("TITLE_MODAL", "RECALL_MISS");
+        return;
+      }
+      this.ticketService.CallFromMissed(this.ticket).subscribe(v => {
+        this.queueService.SetAutoNext(false);
+        this.Close();
+      });
     });
   }
 
   Delete() {
-    Cancel(this.ticket).subscribe(_ => {
+    this.ticketService.Cancel(this.ticket).subscribe(_ => {
       // toastr.success("Delete success counter");
       this.Close();
     }, err => {
@@ -86,7 +93,6 @@ export class TicketDetailDialog {
   }
 
   protected ShowMessage(title: string, message: string) {
-
     this.message = message;
     this.title = title;
     this.alert.Open();

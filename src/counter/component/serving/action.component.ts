@@ -1,15 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Recall, Miss, CallFromWaiting, Finish, Remind, Skip } from '../../service/ticket';
-import { Serving, Waiting, RxBusy, ITicket, autoNext, feedbackDone, ticketDialog } from '../../service/queue';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import { PassFeedbackRequirement } from '../../service';
-import * as Status from '../../service/status';
-import { Ui, Ng } from '../../shared';
-
-export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Serving.RxData)
-    .filter(([waiting, serving]) => waiting.length > 0 && serving.length < 1);
+import {
+    Ui, Ng,
+    WorkspaceService, QueueService,
+    LedService, TicketService
+} from '../shared';
 
 @Component({
     selector: 'action',
@@ -17,11 +12,19 @@ export const RxCanNext = combineLatest<ITicket[], ITicket[]>(Waiting.RxData, Ser
     styleUrls: ['action.component.css'],
 })
 export class ActionComponent {
-    auto = autoNext;
-    fbs = feedbackDone;
+    constructor(
+        private workspaceService: WorkspaceService,
+        private queueService: QueueService,
+        private ticketService: TicketService,
+        private ledService: LedService
+    ) { }
+
+    auto = this.ticketService.autoNext$;
+    fbs = this.workspaceService.feedbackDone$;
     action = '';
     username = '';
     pass = '';
+    canNext$ = this.queueService.canNext$;
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(Ng.ModalComponent) needFeedback: Ng.ModalComponent;
@@ -37,23 +40,23 @@ export class ActionComponent {
     }
 
     get CurrentTicket() {
-        return Serving.first();
+        return this.queueService.FirstServing();
     }
 
     checkFinish() {
-        if (PassFeedbackRequirement(this.CurrentTicket)) {
-            return true;
-        }
-        feedbackDone.next(false);
-        this.needFeedback.Open();
-        return false;
+        // if (PassFeedbackRequirement(this.CurrentTicket)) {
+        return true;
+        // }
+        // feedbackDone.next(false);
+        // this.needFeedback.Open();
+        // return false;
     }
 
     sub() {
-        RxCanNext.first().subscribe(can => {
-            if (this.auto.value) {
-                this.Next();
-            }
+        this.canNext$.first().switchMap(s => {
+            return this.auto.first()
+        }).subscribe(can => {
+            this.Next();
         })
     }
 
@@ -86,48 +89,39 @@ export class ActionComponent {
     }
 
     onSubmit() {
-        Skip(this.username, this.pass, this.CurrentTicket.id).subscribe(v => {
-            if (v) {
-                this.needFeedback.Close();
-                this.HandleAction();
-            } else {
-                var toast = new Ui.Notification.Toast();
-                toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
-            }
-        });
-        this.pass = '';
+        // Skip(this.username, this.pass, this.CurrentTicket.id).subscribe(v => {
+        //     if (v) {
+        //         this.needFeedback.Close();
+        //         this.HandleAction();
+        //     } else {
+        //         var toast = new Ui.Notification.Toast();
+        //         toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
+        //     }
+        // });
+        // this.pass = '';
+        this.HandleAction();
     }
 
 
     Next() {
         let ticket = this.CurrentTicket;
         if (ticket) {
-            Finish(ticket).subscribe(v => console.log(v));
+            this.ticketService.Finish(ticket).subscribe(v => console.log(v));
         }
-        let firstTicket = Waiting.first();
-        if (firstTicket) {
-            CallFromWaiting(firstTicket).subscribe(v => {
-                this.auto.next(false);
-            }, e => {
-                console.log(e);
-                this.sub();
-            });
-        } else {
-            this.auto.next(true);
-            setTimeout(_ => Status.Welcome(), 100);
-            this.sub();
-        }
+        const firstWaiting = this.queueService.FirstWaiting();
+
+        this.ticketService.SetAutoNext(true);
     }
 
     NoNext() {
         this.auto.next(false);
         // stop
-        Status.Stop();
+        this.ledService.ShowStop();
     }
 
     Recall() {
         if (this.CurrentTicket != null) {
-            Recall(this.CurrentTicket).subscribe(v => console.log(v));
+            this.ticketService.Recall(this.CurrentTicket).subscribe(v => console.log(v));
         }
 
     }
@@ -135,13 +129,13 @@ export class ActionComponent {
     Finish() {
         if (this.CurrentTicket != null) {
             // can finish
-            Finish(this.CurrentTicket).subscribe(v => console.log(v));
+            this.ticketService.Finish(this.CurrentTicket).subscribe(v => console.log(v));
         }
     }
 
     Miss() {
         if (this.CurrentTicket != null) {
-            Miss(this.CurrentTicket).subscribe(v => console.log(v));
+            this.ticketService.Miss(this.CurrentTicket).subscribe(v => console.log(v));
         }
     }
 

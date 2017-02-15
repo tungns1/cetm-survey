@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { SharedService, Model } from '../../shared';
-import { ACTION, IAppState } from './reducers';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { ITicket, ITickets, ISummary } from '../../model';

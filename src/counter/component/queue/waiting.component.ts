@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Waiting } from '../../service/queue';
+import { QueueService } from '../../service';
 
 @Component({
-
     selector: 'waiting',
     templateUrl: 'waiting.component.html',
     styleUrls: ['waiting.component.css']
 })
 export class WaitingComponent {
-    tickets = Waiting.RxData;
-    count = Waiting.count();
+    constructor(
+        private queueService: QueueService
+    ) { }
+
+    waiting$ = this.queueService.waiting$;
+    count$ = this.waiting$.map(data => data.length);
 }

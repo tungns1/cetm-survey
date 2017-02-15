@@ -4,6 +4,7 @@ import { NewBaseAppModule } from './shared/';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { CounterComponent, QueueModule, StatModule, ServingModule } from './component';
+import { counterServiceProvider } from './service';
 
 const appName = "counter";
 
@@ -13,6 +14,7 @@ const appName = "counter";
         QueueModule, StatModule, ServingModule
     ],
     declarations: [AppComponent, CounterComponent],
+    providers: [counterServiceProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule {

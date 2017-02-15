@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Missed } from '../../service/queue';
+import { QueueService } from '../../service';
 import { Model } from '../../shared/';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -14,12 +14,18 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
     styleUrls: ['waiting.component.css']
 })
 export class MissedComponent {
-    count = Missed.count();
-    tickets = combineLatest<Model.House.ITicket[], string>(Missed.RxData, search).map(([tickets, text]) => {
-        return tickets.filter(v => v.cnum.indexOf(text) !== -1);
-    })
+    constructor(
+        private queueService: QueueService
+    ) { }
 
-    onSearch(ticket:string) {
+    missed$ = this.queueService.missed$;
+
+    count = this.missed$.map(data => data.length);
+    tickets = combineLatest<Model.House.ITicket[], string>(this.missed$, search).map(([tickets, text]) => {
+        return tickets.filter(v => v.cnum.indexOf(text) !== -1);
+    });
+    
+    onSearch(ticket: string) {
         search.next(ticket);
     }
 }

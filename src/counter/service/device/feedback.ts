@@ -1,4 +1,4 @@
-import { feedbackDone } from '../queue';
+// import { feedbackDone } from '../queue';
 let feedbackAvailable = false;
 
 
@@ -11,7 +11,7 @@ try {
         console.log("Feedback shown");
     });
     feedback.OnHide(() => {
-        feedbackDone.next(true);
+        // feedbackDone.next(true);
         feedbackAvailable = false;
         console.log("Feedback hide");
     });

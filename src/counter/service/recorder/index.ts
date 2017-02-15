@@ -1,4 +1,4 @@
-import { Serving } from '../../service/queue';
+import { Serving } from '../../service/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 declare var nodeRequire: any;
 var ipcRenderer: any;

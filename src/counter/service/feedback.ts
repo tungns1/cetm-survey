@@ -7,11 +7,11 @@ const Feedback = {
     required: false
 }
 
-SharedService.Session.RxMySetting.skip(1).subscribe(s => {
-    if (s.config) {
-        Object.assign(Feedback, s.config.feedback);
-    }
-})
+// SharedService.Session.RxMySetting.skip(1).subscribe(s => {
+//     if (s.config) {
+//         Object.assign(Feedback, s.config.feedback);
+//     }
+// })
 
 export function PassFeedbackRequirement(t: Model.House.ITicket) {
     if (!IsFeedbackAvailable()) {

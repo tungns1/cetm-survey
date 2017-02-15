@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RxFinished, RxCancelled, SumStat } from '../../service/stat';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { WorkspaceService, IStat } from '../shared';
 
 @Component({
     selector: 'sta',
@@ -9,12 +8,28 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     styleUrls: ['sta.component.css']
 })
 export class StaComponent {
-    finished = RxFinished;
-    fc = RxFinished.map(SumStat);
+    constructor(
+        private workspaceService: WorkspaceService
+    ) { }
 
-    cancelled = RxCancelled;
-    cc = RxCancelled.map(SumStat);
+    finished$ = this.workspaceService.stat$.map(s => this.toArray(s.finished));
+    fc = this.finished$.map(SumStat);
+    cancelled = this.workspaceService.stat$.map(s => this.toArray(s.cancelled));
+    cc = this.cancelled.map(SumStat);
 
     tab = 'finished';
 
+    toArray(o: {[index: string]: number}) {
+        return Object.keys(o).map(id => <IStat>{
+            service_id: id,
+            count: o[id]
+        });
+    }
+
+}
+
+export function SumStat(stats: IStat[]) {
+    let s = 0;
+    stats.forEach(a => s += a.count);
+    return s;
 }

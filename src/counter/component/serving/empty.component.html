@@ -1,5 +1,5 @@
 <div style="padding:10px 10px;">
-    <div *ngIf="!(display | async)">
+    <div *ngIf="!(busy$ | async)">
         <div class="hl-service-sving" translate> SERVICE_NAME</div>
         <div class="padding">
         </div>
