@@ -147,6 +147,7 @@
  
  .hl-title-missed>div {
      flex: 4 1 40px;
+     text-align: center;
  }
  
  .hl-input-missed {
@@ -406,7 +407,7 @@
  .hl-tabs-stat>.active {
      border-bottom-width: 1px;
      border-bottom-style: solid;
-     color: #0b8fdb;
+     //  color: #0b8fdb;
      font-weight: bold;
      border-bottom-width: 1px;
      border-bottom-style: solid;

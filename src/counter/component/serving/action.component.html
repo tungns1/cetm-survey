@@ -1,7 +1,7 @@
 <button class="hl-button" (click)="SetAction('next')" [ngClass]="{'hidden': auto | async}" translate>
     NEXT
 </button>
-<button class="hl-button" (click)="NoNext()" class="danger" [ngClass]="{'hidden': !(auto | async)}" translate>
+<button class="hl-button danger" (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
     AUTO_NEXT
 </button>
 <button class="hl-button" (click)="Recall()" translate> 
