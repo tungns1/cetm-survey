@@ -1,5 +1,5 @@
-<button class="button" (click)="add()" style="width:50px;height:25px;margin-right: 15px;">Add</button>
-<table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
+<button class="button hl-btn-setting" (click)="add()">Add</button>
+<table width="100%" class="hl-tabletime-setting">
     <thead>
         <td class="col-header"> STT </td>
         <td class="col-header"> <span>Kiểu dữ liệu</span> </td>
@@ -11,11 +11,11 @@
         <td class="col-center">{{s.key}}</td>
         <td class="col-center">{{s.value}}</td>
         <td class="col-center">
-            <img src="../asset/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="edit(s)">
+            <img src="../asset/img/icon/edit.png" alt="Edit" class="hl-imgtime-setting" (click)="edit(s)">
         </td>
     </tr>
 </table>
-<div style="margin-left: 50px;" *ngIf="show">
+<div class="hl-showtime-setting" *ngIf="show">
     <select [(ngModel)]="key" (change)="onChange()">
             <option disabled selected value>Chọn </option>
             <option value="TIME_WAIT">Thời gian đợi chuẩn</option>
@@ -23,7 +23,7 @@
             <option value="TIME_FINISH">Thời gian tự động kết thúc giao dịch</option>
             <option value="TIME_AUTO_CALL">Thời gian tự động gọi vào</option>
         </select>
-    <input type="number" [(ngModel)]="value" min="0"><br>
-    <button class="button" *ngIf="!setting" (click)="Create()" style="width:50px;height:25px;margin-right: 15px;">Gửi</button>
-    <button class="button" *ngIf="setting" (click)="Update()" style="width:50px;height:25px;margin-right: 15px;">Lưu</button>
+    <input class="hl-input-setting" type="number" [(ngModel)]="value" min="0"><br>
+    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()">Gửi</button>
+    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()">Lưu</button>
 </div>

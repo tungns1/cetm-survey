@@ -1,4 +1,4 @@
-thead {
+/*thead {
     background-color: #f4f4f4;
     height: 300px;
     font-size: 12px;
@@ -21,26 +21,28 @@ td {
 table {
     border-bottom: 1px solid #a8a8aa;
     width: 100%;
-}
+}*/
 
+
+/*
 .search-table {
-    /*table-layout: fixed;*/
+    table-layout: fixed;
     margin: 0px auto 0px auto;
 }
 
 .search-table-outter {
-    /*overflow-x: scroll;*/
+   
     border: 1px solid gray;
     width: 100%;
     max-width: 100%;
 }
 
-.stt {
-    /*width: 30px;*/
+.hl-stt-history {
+   
     min-width: 50px;
 }
 
-button {
+.hl-btn-history {
     margin-right: 2px;
     border: 1px solid #3db1f5;
     background-color: #fff;
@@ -49,43 +51,43 @@ button {
     height: 30px;
 }
 
-button.active {
+.hl-btn-history.active {
     background-color: #3db1f5;
     border: 1px solid #a8a8aa;
     color: white;
 }
 
-button.first {
+.hl-btn-history.first {
     background-color: #fff;
     border: 1px solid #a8a8aa;
     color: #a8a8aa;
     cursor: not-allowed;
 }
 
-button.last {
+.hl-btn-history.last {
     background-color: #fff;
     border: 1px solid #a8a8aa;
     color: #a8a8aa;
     cursor: not-allowed;
 }
 
-.footer {
+.hl-footer-history {
     display: flex;
     margin-top: 15px;
 }
 
-.info {
+.hl-info-history {
     flex: 1 1 60px;
     text-align: left;
 }
 
-.pagination {
+.hl-pagination-history {
     display: flex;
     flex: 1 1 200px;
     text-align: right;
 }
 
-.pagination>button {
+.hl-pagination-history>button {
     flex: 0 1 20px;
 }
 
@@ -110,3 +112,15 @@ button.last {
 .td-number-rp {
     min-width: 80px;
 }
+
+.hl-detail-history {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.hl-exportf-history {
+    float: right;
+    margin-top: 20px;
+}*/

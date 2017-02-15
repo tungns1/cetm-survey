@@ -2,7 +2,7 @@
     <div class="report-scrollbar">
         <table class="search-table">
             <thead>
-                <th class="stt"> STT </th>
+                <th class="hl-stt-history"> STT </th>
                 <th translate> HISTORY.DATE </th>
                 <th translate> HISTORY.AREA</th>
                 <th translate> HISTORY.BRANCH </th>
@@ -38,23 +38,23 @@
     </div>
 </div>
 
-<div class="footer">
-    <div class="info">
+<div class="hl-footer-history">
+    <div class="hl-info-history">
         {{info | async}}
     </div>
-    <div class="pagination">
-        <button md-button *ngFor="let p of pages  | async" [ngClass]="{'active':(current | async)==p.page,'first':(current | async)==1 && p.page==1 && (p.title=='Previous' || p.title=='First'),'last':(current | async)==total && p.page==total && (p.title=='Next' || p.title=='Last')}"
+    <div class="hl-pagination-history">
+        <button class="hl-btn-history" md-button *ngFor="let p of pages  | async" [ngClass]="{'active':(current | async)==p.page,'first':(current | async)==1 && p.page==1 && (p.title=='Previous' || p.title=='First'),'last':(current | async)==total && p.page==total && (p.title=='Next' || p.title=='Last')}"
             (click)="chuyenTrang(p.page)">{{p.title}}</button>
     </div>
 </div>
 
 
-<div style="float: right;margin-top: 20px;">
-    <button class="bt btpointer" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
+<div class="hl-exportf-history">
+    <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
 
 <modal #detail *ngIf="dt | async">
-    <div style="text-align: center;color: red;font-size:18px;font-weight:700;" translate> HISTORY.TITLE_DETAIL</div>
+    <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
     <span translate> HISTORY.TICKET_NUMBER </span><br>
     <span>{{transaction.cnum}}</span>
     <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
@@ -74,7 +74,7 @@
         Your browser does not support the audio element.
     </audio>
     <div style="float:right;">
-        <button class="button" (click)="detail.Close()" style="height:25px;" translate> BUTTON_CLOSE </button>
+        <button class="button hl-btn-history" (click)="detail.Close()" style="height:25px;" translate> BUTTON_CLOSE </button>
     </div>
 
 </modal>

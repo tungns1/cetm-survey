@@ -1,3 +1,3 @@
-<div style="border-bottom: 1px solid #b0b1b5; background-color: #dee0e0; height: 50px;line-height: 50px;">
-    <label *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" translate>{{d.title}} </label>
+<div class="hl-total-tab">
+    <label class="hl-label-tab" *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" translate>{{d.title}} </label>
 </div>

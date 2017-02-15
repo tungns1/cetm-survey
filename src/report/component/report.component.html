@@ -8,20 +8,20 @@
 <div class="container" style="height:100vh;">
     <div class="aside">
         <report-filter *ngIf="hidden" style="padding-top: 50px;"></report-filter>
-        <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color: gray;" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
-        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x" aria-hidden="true" style="cursor:pointer; margin:250px 2px 0px 2px;color:gray;" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
+        <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
+        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
     </div>
     <div class="main">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px;">
-                <button class="bt btpointer" type="submit" routerLink="/dashboard" routerLinkActive="active" translate>BUTTON_GENERAL</button>
-                <button class="bt btpointer" type="submit" routerLink="/history" routerLinkActive="active" translate>BUTTON_HISTORY</button>
+                <button class="hl-bt-report btpointer" type="submit" routerLink="/dashboard" routerLinkActive="active" translate>BUTTON_GENERAL</button>
+                <button class="hl-bt-report btpointer" type="submit" routerLink="/history" routerLinkActive="active" translate>BUTTON_HISTORY</button>
             </div>
         </div>
 
         <router-outlet></router-outlet>
 
-        <div class="ft">
+        <div class="hl-ft-report">
             <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
         </div>
     </div>

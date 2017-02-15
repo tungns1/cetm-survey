@@ -12,7 +12,7 @@
         <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
         <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
     </thead>
-    <tbody class="table-row">
+    <tbody class="hl-table-row-missed">
         <tr *ngFor="let d of data | async; let i = index">
             <td> {{i + 1}} </td>
             <td style="text-align: left;">{{d.name}} </td>
@@ -42,7 +42,7 @@
         <th translate> GENERAL.TIME_WAIT_MIN </th>
         <th translate> GENERAL.TIME_WAIT_MAX </th>
     </thead>
-    <tbody class="table-row">
+    <tbody class="hl-table-row-missed">
         <tr *ngFor="let d of data | async; let i = index">
             <td> {{i + 1}} </td>
             <td style="text-align: left;">{{d.name}} </td>
@@ -71,7 +71,7 @@
         <th translate> GENERAL.FEEDBACK_MEDIUM </th>
         <th translate> GENERAL.FEEDBACK_BAD</th>
     </thead>
-    <tbody class="table-row">
+    <tbody class="hl-table-row-missed">
         <tr *ngFor="let d of data | async; let i = index">
             <td> {{i + 1}} </td>
             <td style="text-align: left;">{{d.name}} </td>

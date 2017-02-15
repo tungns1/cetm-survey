@@ -1,4 +1,4 @@
-button {
+/*button {
     width: 100px;
     height: 30px;
     border-radius: 3px;
@@ -9,7 +9,7 @@ button {
     border: 0px solid;
 }
 
-select {
+.hl-select-chart {
     float: right;
     width: 150px;
     height: 30px;
@@ -17,13 +17,13 @@ select {
     margin: 0px 20px 15px 0px;
 }
 
-.chart {
+.hl-chart {
     width: 100%;
     height: 300px;
 }
 
-.chart>[pie-chart] {
+.hl-chart>[pie-chart] {
     display: inline-block;
     width: 100%;
     height: 100%;
-}
+}*/

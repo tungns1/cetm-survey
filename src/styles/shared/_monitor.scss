@@ -1,4 +1,14 @@
-/*.ft {
+.done {
+    background-color: #f4f4f4 !important;
+}
+
+:host {
+    display: block;
+    border: 1px solid #b0b1b5;
+    background-color: #fff;
+}
+
+.ft {
     width: 100%;
     position: relative;
     bottom: 0;
@@ -58,4 +68,4 @@ button {
 
 .table-row {
     font-size: 14px;
-}*/
+}

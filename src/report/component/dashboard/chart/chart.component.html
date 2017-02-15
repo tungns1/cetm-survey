@@ -1,15 +1,15 @@
-<div class="chart" bar-chart *ngIf="isBar" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
-<div class="chart" stack-chart *ngIf="isStack" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
-<div class="chart" line-chart *ngIf="isLine" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<div class="hl-chart" bar-chart *ngIf="isBar" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<div class="hl-chart" stack-chart *ngIf="isStack" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<div class="hl-chart" line-chart *ngIf="isLine" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
 
-<div class="chart" *ngIf="isPie">
+<div class="hl-chart" *ngIf="isPie">
     <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
         <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
     </div>
 </div>
 
 <div>
-    <select [(ngModel)]="type">
+    <select class="hl-select-chart" [(ngModel)]="type">
             <option disabled selected value translate>SELECT_CHART</option>
             <option value="line" translate>LINE_CHART</option>
             <option value="bar" translate>COLUMN_CHART</option>

@@ -17,7 +17,7 @@ const noop = function () {
 @Component({
     selector: 'branch-picker',
     template: `
-        <select [(ngModel)]="selected" (ngModelChange)="onChangeCallback($event)" > // value is a string or number
+        <select class="hl-select-picker" [(ngModel)]="selected" (ngModelChange)="onChangeCallback($event)" > // value is a string or number
             <option *ngFor="let opt of branches | async" [value]="opt.id">{{opt.name}}</option>
         </select>
     ` ,

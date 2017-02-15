@@ -1,4 +1,4 @@
-.ft {
+/*.hl-ft-report {
     width: 100%;
     position: relative;
     bottom: 0;
@@ -6,7 +6,7 @@
     margin: 20px 100px 20px 0px;
 }
 
-.bt {
+.hl-bt-report {
     width: 200px;
     height: 30px;
     border-radius: 3px;
@@ -23,4 +23,10 @@
 
 .table-row {
     font-size: 14px;
+
 }
+.hl-hfl-report{
+    cursor:pointer; margin:250px 2px 0px 2px;color: gray;
+}
+
+*/
