@@ -508,32 +508,32 @@
      height: 100px;
  }
  
- .module-name {
+ .module-name-counter {
      font-size: 16px;
  }
  
- .container {
+ .container-counter {
      display: block;
      width: 100%;
      background-color: #f4f4f4;
  }
  
- .left {
+ .left-counter {
      display: block;
      float: left;
      width: 74%;
      border-right: 1px solid #afb1b4;
  }
  
- .queue {
+ .queue-counter {
      display: flex;
  }
  
- .queue>* {
+ .queue-counter>* {
      flex: 1;
  }
  
- .sta {
+ .sta-counter {
      display: block;
      float: right;
      width: 25.8%;
