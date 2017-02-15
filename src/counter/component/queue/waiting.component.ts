@@ -3,8 +3,7 @@ import { QueueService } from '../../service';
 
 @Component({
     selector: 'waiting',
-    templateUrl: 'waiting.component.html',
-    styleUrls: ['waiting.component.css']
+    templateUrl: 'waiting.component.html'
 })
 export class WaitingComponent {
     constructor(
