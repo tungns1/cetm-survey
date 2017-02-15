@@ -10,8 +10,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 
 @Component({
     selector: 'missed',
-    templateUrl: 'missed.component.html',
-    styleUrls: ['waiting.component.css']
+    templateUrl: 'missed.component.html'
 })
 export class MissedComponent {
     constructor(

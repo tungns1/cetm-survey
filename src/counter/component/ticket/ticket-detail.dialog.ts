@@ -42,7 +42,13 @@ export class TicketDetailDialog {
   private counters = this.workspaceService.counters$.combineLatest(
     this.workspaceService.currentCounter$,
     (counters, currentCounter) => {
-      return counters.filter(c => c.id !== currentCounter.id);
+      return counters.filter(c => c.id !== currentCounter.id)
+        .sort((a, b) => {
+          if (a.name.length === b.name.length) {
+            return a.name < b.name ? -1 : 1;
+          }
+          return a.name.length < b.name.length ? -1 : 1;
+        });
     }
   );
 

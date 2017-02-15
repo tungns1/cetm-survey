@@ -36,15 +36,7 @@ export class WorkspaceService {
     }
 
     currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
-    counters$ = this.socket.RxEvent<ICounter[]>("/counters")
-        .map(counters => {
-            return counters.sort((a, b) => {
-                if (a.name.length === b.name.length) {
-                    return a.name < b.name ? -1 : 1;
-                }
-                return a.name.length < b.name.length ? -1 : 1;
-            });
-        });
+    counters$ = this.socket.RxEvent<ICounter[]>("/counters");
 
     feedbackDone$ = this.socket.RxEvent<ITicket>("/feedback_done").share();
     stat$ = this.socket.RxEvent<IStatMap>("/stat").share();
