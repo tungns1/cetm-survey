@@ -77,7 +77,7 @@ export class TicketDetailDialog {
         return;
       }
       this.ticketService.CallFromMissed(this.ticket).subscribe(v => {
-        this.queueService.SetAutoNext(false);
+        this.ticketService.SetAutoNext(false);
         this.Close();
       });
     });

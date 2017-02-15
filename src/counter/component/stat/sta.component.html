@@ -4,26 +4,21 @@
     </div>
 
     <div class="hl-tabs-stat">
-        <div [ngClass]="{'active': tab === 'finished'}" (click)="tab = 'finished'">
+        <div [class.active]="showFinished$ | async" (click)="showFinished()">
             &nbsp;<span translate> SERVICE_FINISH</span>
             <!-- <span class="hl-count">{{fc | async}}</span>) &nbsp;-->
-            <span>&nbsp; ( {{fc | async}} ) &nbsp; </span>
+            <span>&nbsp; ( {{fcount$ | async}} ) &nbsp; </span>
         </div>
-        <div [ngClass]="{'active': tab === 'cancelled'}" (click)="tab = 'cancelled'">
+        <div [class.active]="showCancelled$ | async" (click)="showCancelled()">
             <span translate>SERVICE_CANCEL</span>
             <!--<span class="hl-count">&nbsp;({{cc | async}}) &nbsp;</span>-->
-            <span>&nbsp;({{cc | async}}) &nbsp;</span>
+            <span>&nbsp;({{ccount$ | async}}) &nbsp;</span>
         </div>
     </div>
     <div class="hl-padding-stat">
     </div>
     <div class="hl-detail-stat">
-        <div *ngIf="tab == 'finished'">
-            <bar [data]="finished | async"></bar>
-        </div>
-        <div *ngIf="tab == 'cancelled'">
-            <bar [data]="cancelled | async"></bar>
-        </div>
+        <bar [data]="data$ | async"></bar>
     </div>
 </div>
 <div class="hl-search-stat">

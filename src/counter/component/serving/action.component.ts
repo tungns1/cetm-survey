@@ -30,17 +30,13 @@ export class ActionComponent {
     @ViewChild(Ng.ModalComponent) needFeedback: Ng.ModalComponent;
 
     canMove() {
-        return this.action == 'move' && this.CurrentTicket != null;
+        return this.action == 'move';
     }
 
     ngAfterViewInit() {
         this.dialog.close.subscribe(() => {
             this.action = '';
         })
-    }
-
-    get CurrentTicket() {
-        return this.queueService.FirstServing();
     }
 
     checkFinish() {
@@ -50,14 +46,6 @@ export class ActionComponent {
         // feedbackDone.next(false);
         // this.needFeedback.Open();
         // return false;
-    }
-
-    sub() {
-        this.canNext$.first().switchMap(s => {
-            return this.auto.first()
-        }).subscribe(can => {
-            this.Next();
-        })
     }
 
     SetAction(action: string) {
@@ -83,9 +71,11 @@ export class ActionComponent {
     }
 
     Move() {
-        if (this.CurrentTicket) {
-            this.dialog.SetTicket(this.CurrentTicket);
-        }
+        this.ticketService.serving$.subscribe(t => {
+            if (t[0]) {
+                this.dialog.SetTicket(t[0]);
+            }
+        });
     }
 
     onSubmit() {
@@ -104,39 +94,27 @@ export class ActionComponent {
 
 
     Next() {
-        let ticket = this.CurrentTicket;
-        if (ticket) {
-            this.ticketService.Finish(ticket).subscribe(v => console.log(v));
-        }
-        const firstWaiting = this.queueService.FirstWaiting();
-
+        this.ticketService.FinishAll().subscribe(v => console.log(v));
         this.ticketService.SetAutoNext(true);
     }
 
     NoNext() {
-        this.auto.next(false);
-        // stop
+        this.ticketService.SetAutoNext(false);
         this.ledService.ShowStop();
     }
 
     Recall() {
-        if (this.CurrentTicket != null) {
-            this.ticketService.Recall(this.CurrentTicket).subscribe(v => console.log(v));
-        }
+        this.ticketService.RecallAll().subscribe(v => console.log(v));
 
     }
 
     Finish() {
-        if (this.CurrentTicket != null) {
-            // can finish
-            this.ticketService.Finish(this.CurrentTicket).subscribe(v => console.log(v));
-        }
+        // can finish
+        this.ticketService.FinishAll().subscribe(v => console.log(v));
     }
 
     Miss() {
-        if (this.CurrentTicket != null) {
-            this.ticketService.Miss(this.CurrentTicket).subscribe(v => console.log(v));
-        }
+        this.ticketService.MissAll().subscribe(v => console.log(v));
     }
 
 }

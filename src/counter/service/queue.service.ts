@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
 import {
     ITicket, TicketState, TicketStates, ITicketQueue, ITickets
@@ -39,19 +39,11 @@ export class QueueService {
         });
     }
 
-    waiting$ = new BehaviorSubject<ITicket[]>([]);
-    serving$ = new BehaviorSubject<ITicket[]>([]);
-    missed$ = new BehaviorSubject<ITicket[]>([]);
+    waiting$ = new ReplaySubject<ITicket[]>(1);
+    serving$ = new ReplaySubject<ITicket[]>(1);
+    missed$ = new ReplaySubject<ITicket[]>(1);
     busy$ = this.serving$.map(s => s.length > 0);
     canNext$ = this.waiting$.map(data => data.length > 0)
         .combineLatest(this.busy$, (a, b) => a && !b);
 
-
-    FirstServing() {
-        return this.serving$.value[0];
-    }
-
-    FirstWaiting() {
-        return this.waiting$.value[0];
-    }
 }

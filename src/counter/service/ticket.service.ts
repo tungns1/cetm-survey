@@ -19,7 +19,8 @@ import { ITicket } from '../model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class TicketService {
@@ -42,22 +43,37 @@ export class TicketService {
         }).share();
     }
 
-    Recall(t: ITicket) {
-        return this.socket.Send('/recall', t.id).share();
-    }
-
-    Finish(t: ITicket) {
-        return this.sendAction({
-            action: ActionFinish,
-            ticket_id: t.id,
+    RecallAll() {
+        return this.serving$.switchMap(t => {
+            if (!t || !t[0]) {
+                return of(null)
+            }
+            return this.socket.Send('/recall', t[0].id)
         });
     }
 
-    Miss(t: ITicket) {
-        return this.sendAction({
-            action: ActionMiss,
-            ticket_id: t.id
-        });
+    get serving$() {
+        return this.queueService.serving$.first();
+    }
+
+    private updateServing(action: string) {
+        return this.serving$.switchMap(t => {
+            if (!t || !t[0]) {
+                return of(null);
+            }
+            return this.sendAction({
+                action: action,
+                ticket_id: t[0].id
+            })
+        })
+    }
+
+    FinishAll() {
+        return this.updateServing(ActionFinish);
+    }
+
+    MissAll() {
+        return this.updateServing(ActionMiss);
     }
 
     CallFromMissed(t: ITicket) {
@@ -104,7 +120,7 @@ export class TicketService {
         });
     }
 
-    autoNext$ = new BehaviorSubject<boolean>(false);
+    autoNext$ = new Subject<boolean>();
 
     SetAutoNext(b = false) {
         this.autoNext$.next(b);
@@ -112,17 +128,19 @@ export class TicketService {
 
     private onInit() {
         // if auto next
-        this.autoNext$.filter(a => a).switchMap(auto => {
+        this.autoNext$.switchMap(auto => {
+            if (!auto) {
+                return of();
+            }
             // if can next
-            return this.queueService.canNext$.filter(b => b);
-        }).switchMap(_ => {
-            // the first ticket
-            return this.queueService.waiting$.map(t => t[0]).first();
-        }).switchMap(t => {
-            // call the first ticket
-            return this.CallFromWaiting(t);
-        }).subscribe(v => {
-            this.SetAutoNext(false);
-        });
+            return this.queueService.canNext$.filter(b => b)
+                .switchMap(_ => {
+                    // the first ticket
+                    return this.queueService.waiting$.map(t => t[0]).first();
+                }).switchMap(t => {
+                    // call the first ticket
+                    return this.CallFromWaiting(t);
+                }).do(_ => this.SetAutoNext(false));
+        }).subscribe();
     }
 }
