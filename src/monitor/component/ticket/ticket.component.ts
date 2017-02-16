@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Branch } from '../../shared';
+import { MonitorFilterService } from '../shared';
 import { MonitorTicketService } from './ticket.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { MonitorTicketService } from './ticket.service';
 })
 export class MonitorTicketComponent implements OnInit {
     constructor(
+        private filterService: MonitorFilterService,
         private ticketService: MonitorTicketService
     ) { }
 
@@ -20,5 +22,9 @@ export class MonitorTicketComponent implements OnInit {
     ngOnDestroy() {
         this.ticketService.onDestroy();
     }
+
+    notFocus = this.filterService.ValueChanges.map(filter => {
+        return filter.GetFocus().length < 2;
+    });
 
 }
