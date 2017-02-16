@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/filter';
 
 import * as Loading from './loading';
@@ -94,8 +94,10 @@ export class Socket {
   }
 
   RxEvent<T>(uri: string) {
-    return this.rxServerEvent.filter(v => v.uri === uri)
-      .map<T>(v => v.data);
+    const res = new ReplaySubject<T>(1);
+    this.rxServerEvent.filter(v => v.uri === uri)
+      .map<T>(v => v.data).subscribe(res);
+    return res;
   }
 
   private lastMessageAt = 0;
@@ -233,7 +235,7 @@ export class Socket {
   private alivePoll = new Poller.ConstPoll();
   private aliveOut = MAX_ALIVE_OUT;
   rxConnected = new BehaviorSubject(false);
-  rxServerEvent = new Subject<WsResponse>();
+  rxServerEvent = new ReplaySubject<WsResponse>(4);
 
   disableCheckAlive() {
     this.alivePoll.Disable();

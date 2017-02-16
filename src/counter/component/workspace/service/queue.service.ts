@@ -15,9 +15,7 @@ export class QueueService {
     }
 
     private onInit() {
-        this.getByState(TicketStates.Waiting).subscribe(this.waiting$);
-        this.getByState(TicketStates.Serving).subscribe(this.serving$);
-        this.getByState(TicketStates.Missed).subscribe(this.missed$);
+        
     }
 
     private socket = this.workspaceService.Socket;
@@ -39,9 +37,9 @@ export class QueueService {
         });
     }
 
-    waiting$ = new ReplaySubject<ITicket[]>(1);
-    serving$ = new ReplaySubject<ITicket[]>(1);
-    missed$ = new ReplaySubject<ITicket[]>(1);
+    waiting$ = this.getByState(TicketStates.Waiting);
+    serving$ = this.getByState(TicketStates.Serving);
+    missed$ = this.getByState(TicketStates.Missed);
     busy$ = this.serving$.map(s => s.length > 0);
     canNext$ = this.waiting$.map(data => data.length > 0)
         .combineLatest(this.busy$, (a, b) => a && !b);

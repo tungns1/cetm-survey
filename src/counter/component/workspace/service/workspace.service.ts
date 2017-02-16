@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { SharedService, Model } from '../../shared';
 import { Store } from '@ngrx/store';
 import {

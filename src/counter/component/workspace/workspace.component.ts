@@ -25,5 +25,5 @@ export class CounterComponent {
         this.workspaceService.onDestroy();
     }
 
-    counterName = this.workspaceService.currentCounter$.map(c => c.name);
+    counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
 } 
