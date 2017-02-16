@@ -14,7 +14,7 @@ export class MonitorFilter extends Model.SharedModel.AbstractState {
 
     FromQuery(p: Params) {
         this.Branch.FromQuery(p);
-        this.focus = p['focus'];
+        this.focus = p['focus'] || '';
     }
 
     ToQuery() {
@@ -29,13 +29,12 @@ export class MonitorFilter extends Model.SharedModel.AbstractState {
     private focus: string;
 
     Focus(branch_id: string) {
-        this.focus = branch_id;
+        this.focus = branch_id || '';
     }
 
     GetFocus() {
         return this.focus;
     }
-
 }
 
 @Injectable()
@@ -53,7 +52,5 @@ export class MonitorFilterService extends Model.SharedModel.AbstractStateService
         this.triggerChange();
     }
 
-    IsFocus() {
-        return this.Current.GetFocus().length > 0;
-    }
+
 }

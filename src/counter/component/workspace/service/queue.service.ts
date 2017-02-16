@@ -5,6 +5,7 @@ import {
 } from '../../shared';
 import { WorkspaceService } from './workspace.service';
 import { of } from 'rxjs/observable/of';
+import { SendToRecorder } from '../../../device';
 
 @Injectable()
 export class QueueService {
@@ -15,7 +16,7 @@ export class QueueService {
     }
 
     private onInit() {
-        
+        this.serving$.subscribe(SendToRecorder);
     }
 
     private socket = this.workspaceService.Socket;
