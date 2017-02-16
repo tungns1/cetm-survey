@@ -21,11 +21,13 @@ import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
+import { FeedbackService } from './feedback.service';
 
 @Injectable()
 export class TicketService {
     constructor(
         private workspaceService: WorkspaceService,
+        private feedbackService: FeedbackService,
         private queueService: QueueService
     ) {
         this.onInit();
@@ -68,8 +70,25 @@ export class TicketService {
         })
     }
 
-    FinishAll() {
-        return this.updateServing(ActionFinish);
+    CheckFeedbackDone() {
+        return this.serving$.switchMap(t => {
+            if (!t || !t[0]) {
+                return of(null);
+            }
+            return this.feedbackService.CheckFeedback(t[0]);
+        });
+    }
+
+    CheckFeedbackAndFinishAll() {
+        return this.CheckFeedbackDone().switchMap(t => {
+            if (t) {
+                return this.sendAction({
+                    action: ActionFinish,
+                    ticket_id: t.id
+                })
+            }
+            return of(null);
+        });
     }
 
     MissAll() {

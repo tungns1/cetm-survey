@@ -37,7 +37,7 @@ export class WorkspaceService {
     currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
     counters$ = this.socket.RxEvent<ICounter[]>("/counters");
 
-    feedbackDone$ = this.socket.RxEvent<ITicket>("/feedback_done").share();
+    
     stat$ = this.socket.RxEvent<IStatMap>("/stat").share();
 
     private setUser() {

@@ -1,24 +1,25 @@
-// import { feedbackDone } from '../queue';
-let feedbackAvailable = false;
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
+export const FeedbackDeviceAvailabel$ = new BehaviorSubject<boolean>(false);
 
 try {
     var myRequire = window['myRequire'];
     var feedback = myRequire('app/counter/feedback');
     console.log("Feedback is supported");
     feedback.OnShow(() => {
-        feedbackAvailable = true;
+        FeedbackDeviceAvailabel$.next(true);
         console.log("Feedback shown");
     });
     feedback.OnHide(() => {
-        // feedbackDone.next(true);
-        feedbackAvailable = false;
+        FeedbackDeviceAvailabel$.next(false);
         console.log("Feedback hide");
     });
 } catch (e) {
     console.log("Fail to determine feedback supportability", e);
 }
 
-export function IsFeedbackAvailable() {
-    return feedbackAvailable;
+function test() {
+    FeedbackDeviceAvailabel$.next(true);
 }
+
+// test();

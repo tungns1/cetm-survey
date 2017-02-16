@@ -21,10 +21,8 @@ export class ActionComponent {
     ) { }
 
     auto = this.ticketService.autoNext$;
-    fbs = this.workspaceService.feedbackDone$;
     action = '';
-    username = '';
-    pass = '';
+
     canNext$ = this.queueService.canNext$;
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
@@ -40,63 +38,18 @@ export class ActionComponent {
         })
     }
 
-    checkFinish() {
-        // if (PassFeedbackRequirement(this.CurrentTicket)) {
-        return true;
-        // }
-        // feedbackDone.next(false);
-        // this.needFeedback.Open();
-        // return false;
-    }
-
-    SetAction(action: string) {
-        this.action = action;
-        if (!this.checkFinish()) {
-            return;
-        }
-        this.HandleAction();
-    }
-
-    HandleAction() {
-        switch (this.action) {
-            case 'move':
-                this.Move();
-                break;
-            case 'finish':
-                this.Finish();
-                break;
-            case 'next':
-                this.Next();
-                break;
-        }
-    }
-
     Move() {
-        this.ticketService.serving$.subscribe(t => {
-            if (t[0]) {
-                this.dialog.SetTicket(t[0]);
+        this.ticketService.CheckFeedbackDone().subscribe(t => {
+            if (t) {
+                this.dialog.SetTicket(t);
             }
         });
     }
 
-    onSubmit() {
-        // Skip(this.username, this.pass, this.CurrentTicket.id).subscribe(v => {
-        //     if (v) {
-        //         this.needFeedback.Close();
-        //         this.HandleAction();
-        //     } else {
-        //         var toast = new Ui.Notification.Toast();
-        //         toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
-        //     }
-        // });
-        // this.pass = '';
-        this.HandleAction();
-    }
-
-
     Next() {
-        this.ticketService.FinishAll().subscribe(v => console.log(v));
-        this.ticketService.SetAutoNext(true);
+        this.ticketService.CheckFeedbackAndFinishAll().subscribe(v => {
+            this.ticketService.SetAutoNext(true);
+        });
     }
 
     NoNext() {
@@ -110,7 +63,7 @@ export class ActionComponent {
 
     Finish() {
         // can finish
-        this.ticketService.FinishAll().subscribe(v => console.log(v));
+        this.ticketService.CheckFeedbackAndFinishAll().subscribe(v => console.log(v));
     }
 
     Miss() {
