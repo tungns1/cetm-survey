@@ -30,7 +30,9 @@
     "LABEL_CHOOSE_ALL": "Chọn tất cả",
     "LABEL_CLOSE": "Đóng",
     "MESSAGE_PLEASE_SELECT_BRANCH": "Vui lòng chọn phòng giao dịch",
-    "LABEL_SELECT_AREA": "Chọn Tỉnh/Thành",
-    "LABEL_SELECT_BRANCH": "Chọn chi nhánh",
-    "LABEL_SELECT_SUB_BRANCH": "Chọn phòng giao dịch"
+    "LABEL_COUNTRY": "Quốc gia",
+    "LABEL_AREA": "Chọn Tỉnh/Thành",
+    "LABEL_BRANCH": "Chọn chi nhánh",
+    "LABEL_SUB_BRANCH": "Chọn phòng giao dịch",
+    "SELECT_BRANCH": "Chọn {{level}}"
 }
