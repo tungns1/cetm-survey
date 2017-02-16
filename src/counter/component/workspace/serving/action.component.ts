@@ -101,7 +101,6 @@ export class ActionComponent {
 
     NoNext() {
         this.ticketService.SetAutoNext(false);
-        this.ledService.ShowStop();
     }
 
     Recall() {

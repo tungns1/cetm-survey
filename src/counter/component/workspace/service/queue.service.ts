@@ -33,7 +33,7 @@ export class QueueService {
             })).merge(this.removeTicket$.filter(v => v[0] === state).do(v => {
                 delete data[v[1]];
             })).map(_ => {
-                console.log("====", state, "===", data);
+                // console.log("====", state, "===", data);
                 return Object.keys(data).map(id => data[id]);
             });
         });

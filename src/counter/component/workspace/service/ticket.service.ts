@@ -137,7 +137,7 @@ export class TicketService {
                 .switchMap(_ => {
                     // the first ticket
                     return this.queueService.waiting$.map(t => t[0]).first();
-                }).switchMap(t => {
+                }).throttleTime(250).switchMap(t => {
                     // call the first ticket
                     return this.CallFromWaiting(t);
                 }).do(_ => this.SetAutoNext(false));
