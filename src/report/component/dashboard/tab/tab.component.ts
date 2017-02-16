@@ -15,6 +15,9 @@ export class ReportTabComponent {
 
   ngOnInit() {
     this.active = this.viewService.Current.GetTab();
+    if (!this.active) {
+      this.setActive(this.tabs[0]);
+    }
   }
 
   tabs = [MAIN_TABS.GENERAL, MAIN_TABS.TIME, MAIN_TABS.CUSTOMER];

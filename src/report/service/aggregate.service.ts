@@ -22,10 +22,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AggregateService {
     constructor(
-
+        private filterService: ReportFilterService
     ) { }
-
-    private filterService: ReportFilterService;
 
     Refresh(v: ReportFilter) {
         this.backend.Get<IAggregate[]>("aggregate", v.ToBackendQuery()).subscribe(data => {
@@ -41,7 +39,7 @@ export class AggregateService {
 
     get RxActiveAggregate() {
         return this.RxAggregate.map(v => {
-            const group_by = 'branch_id';
+            const group_by = this.filterService.Current.Inside.GetGroupBy();
             const views = MakeIndexBy(v, group_by);
 
             let ids: string[] = [];

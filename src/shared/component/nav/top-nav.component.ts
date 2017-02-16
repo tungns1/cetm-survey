@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminMenu, Item, GetActiveItemIndex } from './model';
 import { AppState } from '../../service';
 
@@ -11,6 +11,7 @@ import { AppState } from '../../service';
 export class TopNavComponent {
 
     constructor(
+        private route: ActivatedRoute,
         private router: Router,
         private appService: AppState
     ) { }
@@ -21,10 +22,14 @@ export class TopNavComponent {
 
     onClick(item: Item, index: number) {
         this.active = index;
+        const queryParams = this.route.root.snapshot.queryParams;
         if (item.app === this.appService.AppName) {
-            this.router.navigateByUrl(item.href);
+            this.router.navigate([item.href], {
+                queryParams: queryParams
+            });
         } else {
-            window.location.assign(`../${item.app}/#${item.href}`);
+            const query = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('=');
+            window.location.assign(`../${item.app}/#${item.href}?${query}`);
         }
     }
 

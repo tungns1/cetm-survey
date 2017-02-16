@@ -28,7 +28,7 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractState {
             service_id: this.service_id.toString(),
             counter_id: this.counter_id.toString(),
             user_id: this.user_id.toString(),
-            group_by: this.getGroupBy()
+            group_by: this.GetGroupBy()
         }
     }
 
@@ -46,7 +46,7 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractState {
         }
     }
 
-    private getGroupBy() {
+    GetGroupBy() {
         if (this.service_id.length > 0) {
             return GROUP_BYS.SERVICE_ID;
         }
