@@ -17,6 +17,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'select-check',
     template: `
+    <div class="scroll-filter">
         <div *ngIf="canCheckAll" class="hlft-div-checkbox" >
             <input type="checkbox" (change)="checkAll()"  >
             &nbsp;<span translate>LABEL_CHOOSE_ALL</span><br>
@@ -24,7 +25,7 @@ import { FormArray, FormControl } from '@angular/forms';
         <div *ngFor="let d of data" class="hlft-div-checkbox pointer">
             <input type="checkbox"  [(ngModel)]="values[d[idField]]" (change)="check(d, $event)"><label >{{d[textField]}}</label><br>
         </div>
-    
+    </div>
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
