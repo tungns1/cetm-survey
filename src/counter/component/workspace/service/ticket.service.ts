@@ -73,7 +73,7 @@ export class TicketService {
     CheckFeedbackDone() {
         return this.serving$.switchMap(t => {
             if (!t || !t[0]) {
-                return of(null);
+                return of(t[0]);
             }
             return this.feedbackService.CheckFeedback(t[0]);
         });

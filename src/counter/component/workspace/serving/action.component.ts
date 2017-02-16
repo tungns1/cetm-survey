@@ -21,26 +21,24 @@ export class ActionComponent {
     ) { }
 
     auto = this.ticketService.autoNext$;
-    action = '';
+    moveDialog = false;
 
     canNext$ = this.queueService.canNext$;
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(Ng.ModalComponent) needFeedback: Ng.ModalComponent;
 
-    canMove() {
-        return this.action == 'move';
-    }
 
     ngAfterViewInit() {
         this.dialog.close.subscribe(() => {
-            this.action = '';
+            this.moveDialog = false;
         })
     }
 
     Move() {
         this.ticketService.CheckFeedbackDone().subscribe(t => {
             if (t) {
+                this.moveDialog = true;
                 this.dialog.SetTicket(t);
             }
         });
