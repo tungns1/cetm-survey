@@ -264,6 +264,7 @@ date-picker {}
     display: flex;
     flex: 1 1 200px;
     text-align: right;
+    width: 75%;
 }
 
 .hl-pagination-history>button {
@@ -310,6 +311,7 @@ date-picker {}
     bottom: 0;
     float: left;
     margin: 20px 100px 20px 0px;
+    text-align: center;
 }
 
 .hl-bt-report {
@@ -320,15 +322,13 @@ date-picker {}
     background-color: #fff;
     color: #0b8fdb;
     border: 1px solid #0b8fdb;
+    padding: 3px;
+    text-decoration: none;
 }
 
 .active {
     background-color: #0b8fda;
     color: white;
-}
-
-.table-row {
-    font-size: 14px;
 }
 
 .hl-hfl-report {

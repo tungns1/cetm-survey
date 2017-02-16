@@ -24,6 +24,7 @@ import { FormArray, FormControl } from '@angular/forms';
         <div *ngFor="let d of data" class="hlft-div-checkbox pointer">
             <input type="checkbox"  [(ngModel)]="values[d[idField]]" (change)="check(d, $event)"><label >{{d[textField]}}</label><br>
         </div>
+    
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })

@@ -1,6 +1,6 @@
 <div></div>
 
-<table *ngIf="general$ | async">
+<table class="table" *ngIf="general$ | async">
     <thead>
         <th> STT </th>
         <th translate> {{groupTitle | async}} </th>
@@ -12,7 +12,7 @@
         <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
         <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
     </thead>
-    <tbody class="hl-table-row-missed">
+    <tbody class="table-row">
         <tr *ngFor="let d of data | async; let i = index">
             <td> {{i + 1}} </td>
             <td style="text-align: left;">{{d.name}} </td>
@@ -28,7 +28,7 @@
 </table>
 
 <!-- Time View -->
-<table *ngIf="time$ | async">
+<table class="table" *ngIf="time$ | async">
     <thead>
         <th> STT </th>
         <th translate> {{groupTitle | async}} </th>
@@ -42,7 +42,7 @@
         <th translate> GENERAL.TIME_WAIT_MIN </th>
         <th translate> GENERAL.TIME_WAIT_MAX </th>
     </thead>
-    <tbody class="hl-table-row-missed">
+    <tbody class="table-row">
         <tr *ngFor="let d of data | async; let i = index">
             <td> {{i + 1}} </td>
             <td style="text-align: left;">{{d.name}} </td>
@@ -60,7 +60,7 @@
 </table>
 
 <!-- Feedback -->
-<table *ngIf="customer$ | async">
+<table class="table" *ngIf="customer$ | async">
     <thead>
         <th> STT </th>
         <th translate> {{groupTitle | async}} </th>
@@ -71,7 +71,7 @@
         <th translate> GENERAL.FEEDBACK_MEDIUM </th>
         <th translate> GENERAL.FEEDBACK_BAD</th>
     </thead>
-    <tbody class="hl-table-row-missed">
+    <tbody class="table-row">
         <tr *ngFor="let d of data | async; let i = index">
             <td> {{i + 1}} </td>
             <td style="text-align: left;">{{d.name}} </td>
