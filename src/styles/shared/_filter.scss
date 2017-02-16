@@ -1,8 +1,7 @@
 .hl-lbtitle-filter {
-    position: relative;
     margin-bottom: .2em;
-    padding: 10px 0 10px 20px;
-    color: #9a9a9a;
+    padding: 0px 0 3px 15px;
+    color: #1C1C1C;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1rem;
@@ -12,23 +11,11 @@
     user-select: none;
     cursor: pointer;
 }
-// .hl-span-filter input{
-//     font-family: "Open Sans", sans-serif;   
-//     border-radius: 0;
-//     background-color: #ffffff;
-//     border: 2px solid #e6e6e6;
-// }
-// .hl-span-filter input[type=checkbox] {
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     margin: 0;
-//     padding: 0;
-//     opacity: 0;
-//     z-index: 2;
-// }
-// .hl-span-filter{
-//     font-size: 1rem;
-//     font: inherit;
-//     vertical-align: baseline;
-// }
+
+.hlft-div-checkbox {
+    padding: 0px 0px 3px 15px;
+}
+
+.hl-div-titlefiler {
+    padding: 5px 0px 3px 0px;
+}

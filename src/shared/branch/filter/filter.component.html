@@ -1,7 +1,9 @@
 <form [formGroup]="form">
     <div *ngFor="let l of viewLevels">
-        <label style="font-size:2em" translate [translateParams]="{level: l | branchLevelName | translate}">SELECT_BRANCH</label>
-        <br>
+        <div class="hl-div-titlefiler">
+            <label class="hl-lbtitle-filter" translate [translateParams]="{level: l | branchLevelName | translate}">SELECT_BRANCH</label>
+        </div>
+
         <select-check [formControlName]="l" [data]="data[l] | async" textField="name">
         </select-check>
     </div>
