@@ -1,7 +1,7 @@
 <input type="text" class="hl-input-text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
-<div class="hl-message-search"><span translate> {{message}}</span>&nbsp;{{number}} </div>
+<div class="hl-message-search"><span translate> {{message}}</span>&nbsp;{{cnum$ | async}} </div>
 
-<div class="hl-search-result" *ngIf="ticket">
+<div class="hl-search-result" *ngFor="let ticket of tickets$ | async">
 
     <p class="hl-p-stat"><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime | localDayTime}}</p>
     <p [class.hidden]="!serving" class="hl-p-stat">

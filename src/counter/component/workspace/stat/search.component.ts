@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Model, ITicket } from '../../shared';
 import { TicketService } from '../service';
+import { Subject } from 'rxjs/Subject';
+import { of } from 'rxjs/observable/of';
 
 @Component({
     selector: 'search',
@@ -12,25 +14,22 @@ export class SearchComponent {
     ) { }
 
     message: string;
-    ticket: Model.House.ITicket;
-    number = '';
-    serving: boolean;
+    cnum$ = new Subject<string>();
+    tickets$ = this.cnum$.switchMap(cnum => {
+        return this.ticketService.Search(cnum);
+    }).do(tickets => {
+        if (!tickets || tickets.length < 1) {
+            this.message = 'NOT_FOUND_TICKET';
+        } else {
+            this.message = '';
+        }
+    }, e => {
+        this.message = 'NOT_FOUND_TICKET';
+    })
 
     searchTicket(cnum: string) {
-        this.number = cnum;
-        this.ticket = void 0;
         this.message = 'SEARCH_TICKET';
-        this.ticketService.Search(cnum).subscribe(t => {
-            if (!t || t.length < 1) {
-                this.message = 'NOT_FOUND_TICKET';
-            } else {
-                this.ticket = t[0];
-                this.serving = this.ticket.state == Model.House.TicketStates.Serving;
-                this.message = '';
-            }
-        }, e => {
-            this.message = 'NOT_FOUND_TICKET';
-        })
+        this.cnum$.next(cnum);
     }
 
     stateKey(state: string) {
