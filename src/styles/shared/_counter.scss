@@ -11,7 +11,7 @@
      margin: 0 auto;
  }
  
- span[class*="l-"] {
+ span[class*="loader-"] {
      height: 10px;
      width: 10px;
      background: #000;
@@ -34,42 +34,42 @@
      animation-fill-mode: both;
  }
  
- span.l-1 {
+ span.loader-1 {
      -webkit-animation-delay: 1s;
      animation-delay: 1s;
      -ms-animation-delay: 1s;
      -moz-animation-delay: 1s;
  }
  
- span.l-2 {
+ span.loader-2 {
      -webkit-animation-delay: 0.8s;
      animation-delay: 0.8s;
      -ms-animation-delay: 0.8s;
      -moz-animation-delay: 0.8s;
  }
  
- span.l-3 {
+ span.loader-3 {
      -webkit-animation-delay: 0.6s;
      animation-delay: 0.6s;
      -ms-animation-delay: 0.6s;
      -moz-animation-delay: 0.6s;
  }
  
- span.l-4 {
+ span.loader-4 {
      -webkit-animation-delay: 0.4s;
      animation-delay: 0.4s;
      -ms-animation-delay: 0.4s;
      -moz-animation-delay: 0.4s;
  }
  
- span.l-5 {
+ span.loader-5 {
      -webkit-animation-delay: 0.2s;
      animation-delay: 0.2s;
      -ms-animation-delay: 0.2s;
      -moz-animation-delay: 0.2s;
  }
  
- span.l-6 {
+ span.loader-6 {
      -webkit-animation-delay: 0;
      animation-delay: 0;
      -ms-animation-delay: 0;

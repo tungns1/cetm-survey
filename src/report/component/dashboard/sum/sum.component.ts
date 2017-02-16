@@ -3,8 +3,7 @@ import { Aggregate, AggregateService } from '../../shared/';
 
 @Component({
     selector: 'report-sum',
-    templateUrl: 'sum.component.html',
-    styleUrls: ['sum.component.scss']
+    templateUrl: 'sum.component.html'
 })
 export class ReportSumComponent {
     constructor(
