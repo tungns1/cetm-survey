@@ -169,7 +169,11 @@ export class Socket {
     while (this.sendQueue.length && this.socket.readyState === WebSocket.OPEN) {
       let item = this.sendQueue.shift();
       let request = item.wsRequest;
-      let data = [request.uri, JSON.stringify(request.data)].join(' ');
+      let data = [
+        request.uri,
+        typeof request.data === 'string' ? request.data : JSON.stringify(request.data)
+      ].join(' ');
+      
       this.socket.send(data);
       if (item.observer) {
         this.responseObservers[request.uri] = item.observer;
