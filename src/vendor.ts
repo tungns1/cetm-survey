@@ -10,8 +10,6 @@ import * as _angular_http from '@angular/http';
 import * as _angular_router from '@angular/router';
 import * as _angular_forms from '@angular/forms';
 import * as _angular_material from '@angular/material';
-import * as _ngrx_store from '@ngrx/store';
-import * as _ngrx_core from '@ngrx/core';
 import * as rxjs from 'rxjs/Rx';
 
 export default {
@@ -23,7 +21,5 @@ export default {
   _angular_router,
   _angular_forms,
   _angular_material,
-  _ngrx_core,
-  _ngrx_store,
   rxjs
 };
