@@ -1,10 +1,10 @@
-.dragover {
+/*.dragover {
     background-color: grey;
 }
 
 .file-upload {
     font-size: 1.25rem;
-    /* 20 */
+ 
     background-color: #c8dadf;
     position: relative;
     display: inline-block;
@@ -62,7 +62,7 @@ tr:nth-child(even) {
 
 td:empty {
     background: #e9e9e9;
-}
+}*/
 
 
 /*

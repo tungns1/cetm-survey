@@ -7,13 +7,10 @@ import { FileUploadComponent } from './upload.component';
     template: `
     <div>
         <file-tree [node]="node" (select)="view.open($event)"></file-tree>
-        <folder-view #view (select)="choose($event)"></folder-view>
+        <folder-view class="folder-view-filebrowser" #view (select)="choose($event)"></folder-view>
     </div>
     `,
-    styles: [`
-    folder-view {
-        width: 80vw
-    }`]
+   
 })
 export class FileBrowserComponent {
     node = new FileNode("/upload/", "Upload");

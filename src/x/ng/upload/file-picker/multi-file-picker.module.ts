@@ -22,17 +22,7 @@ import { FormArray, FormControl } from '@angular/forms';
             <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,
-    styles: [`
-        input {
-        margin-bottom: 15px;
-        border-radius: 3px;
-        height: 30px;
-        border-style: solid;
-        border: 1px solid #aeb0af;
-        width: 78%;
-    }
-    
- `],
+
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 class MultiFilePickerComponent implements ControlValueAccessor {
