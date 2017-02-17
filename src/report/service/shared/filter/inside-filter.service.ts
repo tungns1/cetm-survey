@@ -89,9 +89,9 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractStateSe
                 }
                 return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
             }).subscribe(d => {
-                this.updateService(d.services);
-                this.updateCounters(d.counters);
-                this.updateUsers(d.users);
+                this.updateService(d.services || []);
+                this.updateCounters(d.counters || []);
+                this.updateUsers(d.users || []);
             })
     }
 

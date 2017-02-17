@@ -28,7 +28,8 @@ export class TopNavComponent {
                 queryParams: queryParams
             });
         } else {
-            const query = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('=');
+            const query = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
+            console.log(query);
             window.location.assign(`../${item.app}/#${item.href}?${query}`);
         }
     }

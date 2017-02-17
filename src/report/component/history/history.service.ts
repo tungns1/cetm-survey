@@ -1,8 +1,14 @@
-import { ITransaction, IHistory, ITransactionView } from '../model';
+import { ITransaction, ITransactionView } from '../shared';
 import { SharedService, Model } from '../shared/';
-import { ReportFilterService, ReportFilter } from './shared';
+import { ReportFilterService, ReportFilter } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
+
+
+export interface IHistory {
+    data: ITransaction[];
+    total: number;
+}
 
 @Injectable()
 export class TransactionHistoryApi {
@@ -11,10 +17,17 @@ export class TransactionHistoryApi {
     ) { }
 
     Refresh(filter: ReportFilter) {
-        this.api.Get<IHistory>("read", filter.ToBackendQuery()).subscribe(v => {
-            this.RxHistory.next(v.data.map(d => this.toTransactionView(d)));
-            this.RxCount.next(v.total);
+        this.api.Get<IHistory>("read", this.makeQuery(filter)).subscribe(v => {
+            this.data$.next(v.data.map(d => this.toTransactionView(d)));
+            this.count$.next(v.total);
         });
+    }
+
+    private makeQuery(filter: ReportFilter) {
+        return Object.assign({
+            skip: (this.currentPage$.value - 1) * this.pageSize$.value,
+            limit: this.pageSize$.value,
+        }, filter.ToBackendQuery());
     }
 
     private toTransactionView(t: ITransaction) {
@@ -39,11 +52,13 @@ export class TransactionHistoryApi {
         return Model.Org.CacheBranch.GetNameForID(branch_id);
     }
 
-    RxCount = new BehaviorSubject<number>(0);
-    RxHistory = new BehaviorSubject<ITransactionView[]>([]);
+    count$ = new BehaviorSubject<number>(0);
+    data$ = new BehaviorSubject<ITransactionView[]>([]);
+    currentPage$ = new BehaviorSubject<number>(1);
+    pageSize$ = new BehaviorSubject<number>(20);
 
-    ExportHistory() {
-        const url = this.api.MakeURL("export");
+    ExportHistory(filter: ReportFilter) {
+        const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
 

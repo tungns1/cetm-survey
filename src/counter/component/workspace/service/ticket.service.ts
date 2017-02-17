@@ -147,7 +147,7 @@ export class TicketService {
 
     private onInit() {
         // if auto next
-        this.autoNext$.switchMap(auto => {
+        this.autoNext$.throttleTime(1000) .switchMap(auto => {
             if (!auto) {
                 return of();
             }

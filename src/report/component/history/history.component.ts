@@ -1,21 +1,19 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import {ITransactionView } from '../../model';
+import { ITransactionView } from '../../model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { ReportFilterService, TransactionHistoryApi } from '../../service/';
+import { ReportFilterService } from '../../service/';
+import { TransactionHistoryApi } from './history.service';
 
 interface IPage {
     page: number;
     title: string;
 }
 
-const pageSize = 15;
-
-const RxCurrentPage = new BehaviorSubject(1);
 const RxDetails = new BehaviorSubject<boolean>(false);
-const RxTransaction=new BehaviorSubject<ITransactionView>(null);
+const RxTransaction = new BehaviorSubject<ITransactionView>(null);
 
 @Component({
     selector: 'history',
@@ -27,11 +25,11 @@ export class HistoryComponent {
         private filterService: ReportFilterService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
-  
-    dt=RxDetails;
-    data = this.transactionHistoryApi.RxHistory;
-    url_audio='';
-    transaction=RxTransaction;
+
+    dt = RxDetails;
+    data = this.transactionHistoryApi.data$;
+    url_audio = '';
+    transaction = RxTransaction;
     active: any = {};
 
     ngOnInit() {
@@ -41,18 +39,19 @@ export class HistoryComponent {
     }
 
     chuyenTrang(value) {
-        RxCurrentPage.next(value);
+        this.current.next(value);
         this.active = this.filterService.Current;
-        this.active.limit = pageSize;
-        this.active.skip = pageSize * (RxCurrentPage.value - 1);
+        this.active.limit = this.pageSize$.value;
+        this.active.skip = this.pageSize$.value * (this.current.value - 1);
         // this.filterService.Refresh();
     }
 
-    skip = RxCurrentPage.map(v => (v - 1) * pageSize);
-    current = RxCurrentPage;
-    info = RxCurrentPage.map(c => `Hiển thị ${pageSize} GD từ số ${(c - 1) * pageSize + 1} đến số ${c * pageSize}`);
+    current = this.transactionHistoryApi.currentPage$;
+    pageSize$ = this.transactionHistoryApi.pageSize$;
+    skip = this.current.map(v => (v - 1) * this.pageSize$.value);
+    info = this.current.map(c => `Hiển thị ${this.pageSize$.value} GD từ số ${(c - 1) * this.pageSize$.value + 1} đến số ${c * this.pageSize$.value}`);
 
-    pages = Observable.combineLatest(this.transactionHistoryApi.RxCount, RxCurrentPage, (count, current) => {
+    pages = Observable.combineLatest(this.transactionHistoryApi.count$, this.current, (count, current) => {
 
         const totalPage: number = Math.ceil(count / 15);
 
@@ -108,13 +107,13 @@ export class HistoryComponent {
     })
 
     excel() {
-        this.transactionHistoryApi.ExportHistory();
+        this.transactionHistoryApi.ExportHistory(this.filterService.Current);
     }
-    Detail(ts:ITransactionView){
+
+    Detail(ts: ITransactionView) {
         RxDetails.next(true);
         RxTransaction.next(ts);
-        this.url_audio="data/record/"+ts.branch+'/'+ts.cdate+'/'+ts.ticket_id+'_'+ts.cnum;
+        this.url_audio = "data/record/" + ts.branch + '/' + ts.cdate + '/' + ts.ticket_id + '_' + ts.cnum;
     }
 
 }
- 
