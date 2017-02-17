@@ -147,19 +147,18 @@ export class TicketService {
 
     private onInit() {
         // if auto next
-        this.autoNext$.throttleTime(1000) .switchMap(auto => {
+        this.autoNext$.throttleTime(100).switchMap(auto => {
             if (!auto) {
                 return of();
             }
-            // if can next
-            return this.queueService.canNext$.filter(b => b)
-                .switchMap(_ => {
-                    // the first ticket
-                    return this.queueService.waiting$.map(t => t[0]).first();
-                }).throttleTime(250).switchMap(t => {
+            // wait until not busy
+            return this.queueService.busy$.filter(b => !b).first().switchMap(_ => {
+                // the first ticket
+                return this.queueService.waiting$.filter(t => t.length > 0).map(t => t[0]).first().throttleTime(250).switchMap(t => {
                     // call the first ticket
                     return this.CallFromWaiting(t);
                 }).do(_ => this.SetAutoNext(false));
+            });
         }).subscribe();
     }
 }

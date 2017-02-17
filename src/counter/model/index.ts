@@ -12,7 +12,7 @@ export interface ITickets {
     [index: string]: ITicket;
 }
 
-export function ticketSort(a: ITicket, b: ITicket) {
+export function SortTicket(a: ITicket, b: ITicket) {
     if (a.priority > b.priority) {
         return -1;
     } else if (a.priority < b.priority) {

@@ -1,6 +1,7 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
 import {
+    SortTicket,
     ITicket, TicketState, TicketStates, ITicketQueue, ITickets
 } from '../../shared';
 import { WorkspaceService } from './workspace.service';
@@ -33,7 +34,8 @@ export class QueueService {
                 delete data[v[1]];
             })).map(_ => {
                 // console.log("====", state, "===", data);
-                return Object.keys(data).map(id => data[id]);
+                return Object.keys(data)
+                    .map(id => data[id]).sort(SortTicket);
             });
         });
     }
