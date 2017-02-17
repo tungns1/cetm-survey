@@ -7,39 +7,36 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     selector: 'feedback-skip',
     templateUrl: 'feedback-skip.component.html'
 })
-export class FeedbackSkipDialog implements OnInit {
+export class FeedbackSkipDialog {
 
     constructor(
         private feedbackService: FeedbackService,
         private ticketService: TicketService,
     ) { }
 
-    ngOnInit() {
-        this.ticket$.subscribe(t => this.hidden$.next(!t));
-    }
-
+ 
     ticket$ = this.feedbackService.promptForSkip$;
-    hidden$ = new BehaviorSubject(false);
+    hidden$ = this.ticket$.map(t => t.length < 1);
 
     username = '';
     pass = '';
 
     Submit() {
-        this.ticket$.switchMap(t => {
-            return this.ticketService.Skip(this.username, this.pass, t.id).do(v => {
-                if (v) {
-                    this.feedbackService.SkipFeedback(t);
-                } else {
-                    var toast = new Ui.Notification.Toast();
-                    toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
-                }
-            });
+        const ticket = this.ticket$.value;
+        const t = ticket[0];
+        return this.ticketService.Skip(this.username, this.pass, t.id).do(v => {
+            if (v) {
+                this.feedbackService.SkipFeedback(t);
+            } else {
+                var toast = new Ui.Notification.Toast();
+                toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
+            }
         }).subscribe(_ => {
             this.pass = '';
         });
     }
 
-    Close() {
-        this.hidden$.next(true);
+    Cancel() {
+        this.feedbackService.CancelSkipFeedback();
     }
 }

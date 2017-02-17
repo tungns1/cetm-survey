@@ -17,7 +17,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'file-picker',
     template: `
-        <input class="hlm-input inputs" [(ngModel)]="value" (change)="setValue($event)" /> 
+        <input class="hlm-input hl-input-filemulti inputs" [(ngModel)]="value" (change)="setValue($event)" /> 
         <button class="hlm-button" (click)="modal.Open()">Chọn</button>
         <modal #modal>
             <div class="file-browser">
@@ -26,35 +26,7 @@ import { FormArray, FormControl } from '@angular/forms';
             </div>
         </modal>
     `,
-    styles: [`
-    .file-browser {
-        width: 100%;
-    }
-    .hlm-button{
-        opacity:0.7;
-    }
-    .hlm-input{
-        width:85%;
-    }
-    .btn-close{
-    background-color: #AA0000;
-	border-color: rgba(0,0,0,0.3);
-	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
-	color: #FFF;
-    padding: 2px 15px 2px 15px;
-    position: fixed;
-    right: 20px;
-    top: 5px;
-    }
-    	.btn-close:hover {
-		background-color: #AA0000;
-		border-color: rgba(0,0,0,0.5);
-	}
-	.btn-close:active {
-		background-color: #AA0000;
-		border-color: rgba(0,0,0,0.9);
-	}
-    `],
+   
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 class FilePickerComponent implements ControlValueAccessor {
