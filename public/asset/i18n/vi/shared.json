@@ -34,5 +34,6 @@
     "LABEL_AREA": "Chọn Tỉnh/Thành",
     "LABEL_BRANCH": "Chọn chi nhánh",
     "LABEL_SUB_BRANCH": "Chọn phòng giao dịch",
-    "SELECT_BRANCH": "Chọn {{level}}"
+    "SELECT_BRANCH": "Chọn {{level}}",
+    "BUTTON_CANCEL": "Hủy"
 }
