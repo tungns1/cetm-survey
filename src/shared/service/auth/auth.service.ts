@@ -85,9 +85,7 @@ export class AuthService {
         if (!redirect || redirect.length < 1) {
             redirect = '/';
         }
-        this.router.navigate([redirect], {
-            queryParams: this.route.snapshot.queryParams
-        });
+        this.router.navigateByUrl(redirect);
     }
 
     private updateMySetting(v: IMySettings) {
