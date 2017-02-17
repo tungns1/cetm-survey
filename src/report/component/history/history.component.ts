@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import {ITransactionView } from '../../model';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { ITransactionView } from '../../model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/Observable/combineLatest';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ReportFilterService, TransactionHistoryApi } from '../../service/';
+import { Ng } from '../../../x/';
 
 interface IPage {
     page: number;
@@ -15,7 +16,7 @@ const pageSize = 15;
 
 const RxCurrentPage = new BehaviorSubject(1);
 const RxDetails = new BehaviorSubject<boolean>(false);
-const RxTransaction=new BehaviorSubject<ITransactionView>(null);
+const RxTransaction = new BehaviorSubject<ITransactionView>(null);
 
 @Component({
     selector: 'history',
@@ -27,11 +28,12 @@ export class HistoryComponent {
         private filterService: ReportFilterService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
-  
-    dt=RxDetails;
+    @ViewChild(Ng.ModalComponent) protected detail: Ng.ModalComponent;
+    dt = RxDetails;
+    audio_file: ITransactionView;
     data = this.transactionHistoryApi.RxHistory;
-    url_audio='';
-    transaction=RxTransaction;
+    url_audio = '';
+    transaction = RxTransaction;
     active: any = {};
 
     ngOnInit() {
@@ -110,11 +112,26 @@ export class HistoryComponent {
     excel() {
         this.transactionHistoryApi.ExportHistory();
     }
-    Detail(ts:ITransactionView){
-        RxDetails.next(true);
-        RxTransaction.next(ts);
-        this.url_audio="data/record/"+ts.branch+'/'+ts.cdate+'/'+ts.ticket_id+'_'+ts.cnum;
+    Detail(ts: ITransactionView) {
+        this.detail.Open();
+        this.transaction.next(ts);
+        // this.url_audio = "data/record/" + ts.branch + '/' + ts.cdate + '/' + ts.ticket_id + '_' + ts.cnum;
+    }
+    Listen(ts: ITransactionView) {
+        if (this.audio_file) {
+            this.Pause(this.audio_file);
+        }
+        this.audio_file = ts;
+        ts.check = true;
+        let audio_url = "";
+        var audio = new Audio('http://zmp3-mp3-s1.zmp3-vtnhcm-2.za.zdn.vn/d41230d1df9536cb6f84/1181817601640857205?key=5BpCdf_q23-Dy85d2NfQBA&expires=1487334536');
+        audio.play();
+    }
+    Pause(ts: ITransactionView) {
+        ts.check = false;
+        let audio_url = "";
+        var audio = new Audio('http://zmp3-mp3-s1.zmp3-vtnhcm-2.za.zdn.vn/d41230d1df9536cb6f84/1181817601640857205?key=5BpCdf_q23-Dy85d2NfQBA&expires=1487334536');
+        audio.pause();
     }
 
 }
- 

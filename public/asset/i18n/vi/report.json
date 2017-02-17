@@ -9,7 +9,7 @@
         "DATE": "Ngày",
         "AREA": "Khu vực",
         "BRANCH": "Chi nhánh",
-        "TRANSACTION_ROOM": "Phòng giao dịch",
+        "TRANSACTION_ROOM": "Cửa hàng",
         "SERVICE": "Dịch vụ",
         "TICKET_NUMBER": "Số vé",
         "COUNTER": "Quầy",
@@ -24,7 +24,16 @@
         "SHOW": "Hiển thị",
         "FROM_NUMBER": "từ số",
         "TO_NUMBER": "đến số",
-        "AUDIO": "File ghi âm"
+        "AUDIO": "File ghi âm",
+        "CUSTOMER": "Khách hàng",
+        "PHONE": "Số điện thoại",
+        "ID": "ID",
+        "SEGMENT": "Phân khúc",
+        "ADMIN": "Admin",
+        "MANAGER": "Quản lý",
+        "TITLE_DETAIL": "Chi Tiết",
+        "BUTTON_CLOSE": "Đóng"
+
     },
     "GENERAL": {
         "TAB_GENERAL": "TỔNG QUAN",

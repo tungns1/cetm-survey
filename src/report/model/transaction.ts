@@ -46,5 +46,6 @@ export interface ITransactionView extends ITransaction {
     v_se_at: string;
     v_fi_at: string;
     v_state: string;
+	check:boolean;
 }
 
