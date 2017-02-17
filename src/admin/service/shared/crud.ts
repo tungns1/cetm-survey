@@ -1,6 +1,7 @@
 import { SharedService, Model } from '../../shared';
 import { Injectable } from '@angular/core';
 import { AdminFilterService, AdminFilter } from './filter';
+import { AdminNavService } from './nav';
 import { Observable } from 'rxjs/Observable';
 
 export interface IField {
@@ -9,7 +10,9 @@ export interface IField {
 }
 
 export class CrudApiService<T> {
-    constructor(private uri: string, private filterService: AdminFilterService) {
+    constructor(private uri: string,
+        private filterService: AdminFilterService
+    ) {
         this.api = new SharedService.Backend.HttpApi<T>(uri);
     }
 
@@ -30,7 +33,7 @@ export class CrudApiService<T> {
     }
 
     protected onChange = () => {
-        this.filterService.Refresh();
+        this.filterService.triggerChange();
     }
 
     get RxListView() {
