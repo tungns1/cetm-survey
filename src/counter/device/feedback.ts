@@ -26,4 +26,4 @@ function test() {
     feedbackDeviceAvailable = true;
 }
 
-// test();
+test();

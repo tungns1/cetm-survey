@@ -39,14 +39,14 @@ export class ActionComponent {
         this.ticketService.CheckFeedbackDone().subscribe(t => {
             if (t) {
                 this.moveDialog = true;
-                this.dialog.SetTicket(t);
+                this.dialog.SetTicket(t[0]);
             }
         });
     }
 
     Next() {
-        this.ticketService.CheckFeedbackAndFinishAll().subscribe(v => {
-            this.ticketService.SetAutoNext(true);
+        this.ticketService.CheckFeedbackAndFinishAll().subscribe(done => {
+            this.ticketService.SetAutoNext(done);
         });
     }
 
@@ -56,7 +56,6 @@ export class ActionComponent {
 
     Recall() {
         this.ticketService.RecallAll().subscribe(v => console.log(v));
-
     }
 
     Finish() {

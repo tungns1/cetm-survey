@@ -72,22 +72,22 @@ export class TicketService {
 
     CheckFeedbackDone() {
         return this.serving$.switchMap(t => {
-            if (!t || !t[0]) {
-                return of(t[0]);
-            }
-            return this.feedbackService.CheckFeedback(t[0]);
+            return this.feedbackService.CheckFeedback(t);
         });
     }
 
     CheckFeedbackAndFinishAll() {
         return this.CheckFeedbackDone().switchMap(t => {
-            if (t) {
+            if (!t) {
+                return of(false);
+            }
+            if (t[0]) {
                 return this.sendAction({
                     action: ActionFinish,
-                    ticket_id: t.id
-                })
+                    ticket_id: t[0].id
+                }).map(_ => true);
             }
-            return of(null);
+            return of(true);
         });
     }
 
