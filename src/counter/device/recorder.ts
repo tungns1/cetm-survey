@@ -11,7 +11,7 @@ try {
     recorder.EnableRecorder();
     onServing = recorder.OnServing;
 } catch (e) {
-    console.log("Fail to determine feedback supportability", e);
+    console.log("Fail to determine recorder supportability", e);
 }
 
 export function SendToRecorder(tickets: ITicket[]) {
