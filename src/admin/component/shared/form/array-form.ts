@@ -16,7 +16,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'arr-form',
     template: `
-        <i class="fa fa-plus" (click)="add()" translate=""> BUTTON_ADD </i>        
+        <i class="fa fa-plus" (click)="add()" translate>  </i>        
         <div *ngFor="let c of values; let i = index;" >
             <input class="iput-fnews-hlm hl-input" [ngModel]="values[i]" (change)="onChange($event, i)" /> 
             <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
