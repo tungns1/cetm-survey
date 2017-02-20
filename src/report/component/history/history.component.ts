@@ -13,27 +13,22 @@ interface IPage {
     page: number;
     title: string;
 }
-
-const RxDetails = new BehaviorSubject<boolean>(false);
-const RxTransaction = new BehaviorSubject<ITransactionView>(null);
-
 @Component({
     selector: 'history',
     templateUrl: 'history.component.html',
     styleUrls: ['history.component.css']
 })
+
+
 export class HistoryComponent {
     constructor(
         private filterService: ReportFilterService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
-
-    dt = RxDetails;
     data = this.transactionHistoryApi.data$;
     @ViewChild(Ng.ModalComponent) protected detail: Ng.ModalComponent;
-    audio_file: ITransactionView;
     url_audio = '';
-    transaction = RxTransaction;
+    ts :ITransactionView;
     active: any = {};
 
     ngOnInit() {
@@ -114,24 +109,25 @@ export class HistoryComponent {
         this.transactionHistoryApi.ExportHistory(this.filterService.Current);
     }
     Detail(ts: ITransactionView) {
-        this.detail.Open();
-        this.transaction.next(ts);
-        // this.url_audio = "data/record/" + ts.branch + '/' + ts.cdate + '/' + ts.ticket_id + '_' + ts.cnum;
+        this.ts=ts;
+        this.detail.Open();  
+    }
+    Close(){
+       this.detail.Close();
+       this.Pause(this.ts);
     }
     Listen(ts: ITransactionView) {
-        if (this.audio_file) {
-            this.Pause(this.audio_file);
+        if (this.ts) {
+            this.Pause(this.ts);
         }
-        this.audio_file = ts;
+         this.ts=ts;
         ts.check = true;
-        let audio_url = ts.linkaudio;
-        var audio = new Audio(audio_url);
+        var audio = new Audio( ts.linkaudio);
         audio.play();
     }
     Pause(ts: ITransactionView) {
         ts.check = false;
-        let audio_url = ts.linkaudio;
-        var audio = new Audio(audio_url);
+        var audio = new Audio( ts.linkaudio);
         audio.pause();
     }
 
