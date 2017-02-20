@@ -124,14 +124,14 @@ export class HistoryComponent {
         }
         this.audio_file = ts;
         ts.check = true;
-        let audio_url = "";
-        var audio = new Audio('http://zmp3-mp3-s1.zmp3-vtnhcm-2.za.zdn.vn/d41230d1df9536cb6f84/1181817601640857205?key=5BpCdf_q23-Dy85d2NfQBA&expires=1487334536');
+        let audio_url = ts.linkaudio;
+        var audio = new Audio(audio_url);
         audio.play();
     }
     Pause(ts: ITransactionView) {
         ts.check = false;
-        let audio_url = "";
-        var audio = new Audio('http://zmp3-mp3-s1.zmp3-vtnhcm-2.za.zdn.vn/d41230d1df9536cb6f84/1181817601640857205?key=5BpCdf_q23-Dy85d2NfQBA&expires=1487334536');
+        let audio_url = ts.linkaudio;
+        var audio = new Audio(audio_url);
         audio.pause();
     }
 
