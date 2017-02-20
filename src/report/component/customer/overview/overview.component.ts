@@ -25,6 +25,6 @@ export class ReportOverViewComponent {
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
     customer$ = this.tab$.map(tab => tab === MAIN_TABS.CUSTOMER.name);
     
-    data = this.aggregateService.RxActiveAggregate;
-    groupTitle = this.aggregateService.RxGroupTitle;
+    data$ = this.aggregateService.ActiveAggregate$;
+    groupBy$ = this.aggregateService.groupBy$;
 }

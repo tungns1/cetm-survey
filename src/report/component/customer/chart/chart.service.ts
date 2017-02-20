@@ -42,5 +42,5 @@ export class ChartService {
         return this.RxAggregate.map(Aggregate.Make);
     };
 
-    RxPeriod = this.aggregateService.RxPeriod;
+    RxPeriod = this.aggregateService.period$;
 }

@@ -23,11 +23,19 @@ export interface IRole {
     name: string;
 }
 
-export const AllRoles: IRole[] = [
-    { code: 'admin', name: 'Admin' },
-    { code: 'staff', name: 'Staff' },
-    { code: 'manager', name: 'Manager' },
-    { code: 'media', name: 'Media' }
-]
+export const USER_ROLES = {
+    ADMIN: 'admin',
+    STAFF: 'staff',
+    MANAGER: 'manager',
+    MEDIA: 'media'
+}
+
+export const AllRoles: IRole[] = Object.keys(USER_ROLES).map(role => {
+    const code: string = USER_ROLES[role];
+    return <IRole>{
+        code: code,
+        name: code.toUpperCase()
+    }
+})
 
 export const CacheUsers = new Cache.MemCache<IUser>();
