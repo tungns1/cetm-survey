@@ -18,9 +18,6 @@
     "SELECT_CHOOSE_CITY": "Chọn Tỉnh/Thành",
     "SELECT_CHOOSE_BRACH": "Chọn  Chi Nhánh",
     "SELECT_CHOOSE_TRACTION_ROOM": "Chọn Phòng Giao Dịch",
-    "LABEL_DEL_QUESTION": "Bạn có muốn xóa không?",
-    "LABEL_ANSWER_YES": "Có",
-    "LABEL_ANSWER_NO": "Không",
     "LABEL_LIST": "Danh sách",
     "LABEL_LIST_USER": "Danh sách người dùng",
     "LABEL_USERNAME": "Tên đăng nhập",
@@ -76,9 +73,6 @@
     "LABEL_ROOT": "Hội sở",
     "AREA": "Tỉnh /thành",
     "LABEL_NAME_SERVICE": "Tên dịch vụ",
-    "LABEL_SELECT_AREA": "Chọn Tỉnh/Thành",
-    "LABEL_SELECT_BRANCH": "Chọn chi nhánh",
-    "LABEL_SELECT_SUB_BRANCH": "Chọn phòng giao dịch",
     "LABEL_CONFIG": "Cấu hình",
     "LABEL_LIST_CONFIG": "Danh sách cấu hình",
     "LABEL_DEVICE_FEEDBACK": "Thiết bị phản hồi",
@@ -87,5 +81,4 @@
     "LABEL_SERVICE_SFLOW": "Luồng dịch vụ",
     "LABEL_SCREEN": "Màn hình",
     "LABEL_USER": "Người dùng"
-
 }

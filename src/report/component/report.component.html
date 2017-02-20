@@ -1,0 +1,28 @@
+<app-header>
+    <div class="module-name"> Báo Cáo </div>
+</app-header>
+
+<top-nav></top-nav>
+<br>
+<br>
+<div class="container" style="height:100vh;">
+    <div class="aside">
+        <report-filter *ngIf="hidden" style="padding-top: 50px;"></report-filter>
+        <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
+        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
+    </div>
+    <div class="main">
+        <div style="height: 50px;">
+            <div style="float: right; margin-top: 5px;">
+                <a class="hl-bt-report btpointer" routerLink="/dashboard" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_GENERAL</a>
+                <a class="hl-bt-report btpointer" routerLink="/history" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_HISTORY</a>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+
+        <div class="hl-ft-report">
+            <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+        </div>
+    </div>
+</div>

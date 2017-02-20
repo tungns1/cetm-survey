@@ -29,7 +29,9 @@ const externals = {
   '@angular/router': 'vendor._angular_router',
   '@angular/http': 'vendor._angular_http',
   '@angular/forms': 'vendor._angular_forms',
-  "@angular/material": 'vendor._angular_material'
+  "@angular/material": 'vendor._angular_material',
+  '@ngrx/core': 'vendor._ngrx_core',
+  '@ngrx/store': 'vendor._ngrx_store'
 }
 
 let debug = true;

@@ -1,0 +1,20 @@
+<editor #edit [makeForm]="makeForm" [service]="service">
+    <editor-title> <span translate>LABEL_LIST_THREAD_SERVICE</span></editor-title>
+    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
+        <hr> <span translate>LABEL_BRANCH</span>:
+        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+        <hr> <span translate>LABEL_SERVICE</span>:
+        <select class="hl-select" formControlName="service_id">
+            <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>
+        </select>
+        <hr> <span translate>LABEL_NUM_TICKET</span>:
+        <select class="hl-select" formControlName="tform_normal">
+            <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
+        </select>
+
+        <br> <span translate>LABEL_NUM_TICKET_VIP</span>:
+        <select class="hl-select" formControlName="tform_vip">
+            <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
+        </select>
+    </form>
+</editor>

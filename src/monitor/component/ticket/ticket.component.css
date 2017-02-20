@@ -1,4 +1,4 @@
-thead {
+/*thead {
     background-color: #f4f4f4;
     height: 300px;
     line-height: 30px;
@@ -23,9 +23,10 @@ td {
 
 table {
     width: 100%;
-}
+}*/
 
-.done {
+
+/*.done {
     background-color: #f4f4f4 !important;
 }
 
@@ -33,4 +34,4 @@ table {
     display: block;
     border: 1px solid #b0b1b5;
     background-color: #fff;
-}
+}*/

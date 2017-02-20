@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ISubscription } from 'rxjs/Subscription';
+import { Model, ISummary, ITicket, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
-import { ISummary, ITicket, Summary } from '../../../model';
-import { Observable } from 'rxjs/Observable';
+
+const TicketStates = Model.House.TicketStates;
 
 @Component({
     selector: 'focus-on-branch',
@@ -11,24 +11,48 @@ import { Observable } from 'rxjs/Observable';
 })
 export class FocusComponent {
     constructor(
-        private router: ActivatedRoute,
+        private route: ActivatedRoute,
+        private filterService: MonitorFilterService,
         private ticketService: MonitorTicketService
     ) { }
 
     ngOnInit() {
-        this.waiting = this.ticketService.Waiting;
-        this.focus = this.ticketService.Focus.map(f => [].concat(f));
-        this.router.params.subscribe(params => {
-            const branch_id = params['branch_id'];
-            this.ticketService.FocusOnBranch(branch_id);
-        });
+
     }
 
     ngOnDestroy() {
-        this.ticketService.Unfocus();
+
     }
 
-    waiting: Observable<ITicket[]>;
-    called: Observable<ITicket[]>;
-    focus: Observable<Summary[]>;
+    printed(s: ISummary) {
+        return s.waiting + s.serving + s.missed + s.finished + s.cancelled;
+    }
+
+    focus$ = this.filterService.ValueChanges.switchMap(filter => {
+        const branch_id = filter.GetFocus()
+        return this.ticketService.summary$.map(data => {
+            return data.filter(d => d.branch_id === branch_id);
+        })
+    })
+
+    waiting$ = this.ticketService.tickets$
+        .map(tickets => tickets.filter(t => t.state === TicketStates.Waiting));
+    served$ = this.ticketService.tickets$
+        .map(tickets => tickets.filter(t => {
+            if (t.state === TicketStates.Waiting) {
+                return false;
+            }
+            this.addServingTrack(t);
+            return true;
+        }));
+
+    addServingTrack(t: ITicket) {
+        t.serving = t.tracks.find(
+            track => track.state === TicketStates.Serving
+        ) || <Model.House.ITicketTrack>{
+            state: TicketStates.Serving,
+        };
+        return t;
+    }
+    // focus: Observable<Summary[]>;
 }

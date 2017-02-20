@@ -1,0 +1,31 @@
+.hl-lbtitle-filter {
+    margin-bottom: .2em;
+    padding: 0px 0 3px 15px;
+    color: #1C1C1C;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.hlft-div-checkbox {
+    padding: 0px 0px 3px 15px;
+    color: #333;
+}
+
+.hlft-div-checkbox:hover {
+    color: #6CA6CD;
+}
+
+.hl-div-titlefiler {
+    padding: 5px 0px 3px 0px;
+}
+
+.scroll-filter {
+    min-height: 25px;
+    overflow: auto;
+}

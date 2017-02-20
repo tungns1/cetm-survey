@@ -1,0 +1,50 @@
+<div class="hl-title-edittor">
+    <ng-content select="editor-title"></ng-content>
+    <button class="hl-add-editor uppercase btpointer" (click)="onAdd()"><span translate> BUTTON_ADD</span>&nbsp;{{name  | translate}} </button>
+</div>
+
+<table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
+    <thead class="hl-thr-editor">
+        <td class="col-header"> <span translate>LABEL_NUMERICAL_ORDER</span> </td>
+        <td class="col-header" *ngFor="let fi of listFields">{{fi.title | translate}}</td>
+        <td class="col-header" translate>LABEL_EDIT_DEL</td>
+    </thead>
+    <tr *ngFor="let da of listView$ | async; let i = index">
+        <td class="col-center">{{i+1}}</td>
+        <td class="col-center" *ngFor="let fi of listFields">{{da[fi.name]}}</td>
+        <td class="col-center">
+            <!--<i class="fa fa-edit edit" (click)="onEdit(da)"></i>-->
+            <!--<i class="fa fa-trash trash" (click)="onRemove(da)"></i>-->
+            <img src="../asset/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onEdit(da)">
+            <img src="../asset/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" (click)="onRemove(da)">
+        </td>
+    </tr>
+</table>
+
+<modal #edit>
+    <div *ngIf="form">
+        <div class="hl-header-editor">
+            <div class="uppercase btpointer" *ngIf="current"> <span translate>BUTTON_EDIT</span>&nbsp;{{name | translate}} </div>
+            <div class="uppercase btpointer" *ngIf="!current"> <span translate>BUTTON_ADD</span>&nbsp; {{name | translate}} </div>
+        </div>
+
+        <span class="err">{{err}}</span>
+
+        <ng-content></ng-content>
+        <modal-footer class="mod-ft-editor">
+            <button class="hl-huy-editor btpointer" (click)="CloseEditor()" style="width: 45%"><span translate>BUTTON_CANCEL</span>&nbsp; </button>
+            <button *ngIf="!current" class="hl-them-editor" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;"><span translate>BUTTON_ADD</span>&nbsp; </button>
+            <button *ngIf="current" class="hl-them-editor" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;"><span translate>BUTTON_SAVE</span>&nbsp; </button>
+        </modal-footer>
+    </div>
+</modal>
+
+<modal #remove>
+    <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
+        <span translate>LABEL_DEL_QUESTION</span>
+    </div>
+    <div style="float: right;margin-right: 40px">
+        <button class="hl-yes-editor btpointer" (click)="Delete()">  <span translate>LABEL_ANSWER_YES</span></button>
+        <button class="hl-no-editor btpointer" (click)="CloseRemove()"> <span translate>LABEL_ANSWER_NO</span></button>
+    </div>
+</modal>

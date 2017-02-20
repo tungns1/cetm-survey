@@ -1,0 +1,124 @@
+<div class="search-table-outter">
+    <div class="report-scrollbar">
+        <table class="search-table">
+            <thead>
+                <th class="hl-stt-history"> STT </th>
+                <th translate> HISTORY.DATE </th>
+                <th translate> HISTORY.BRANCH </th>
+                <th translate> HISTORY.TRANSACTION_ROOM </th>
+                <th translate>HISTORY.SERVICE </th>
+                <th translate>HISTORY.COUNTER</th>
+                <th translate>HISTORY.TELLERS </th>
+                <th translate>HISTORY.TICKET_NUMBER </th>
+                <td translate> HISTORY.TIME_CREATE_TICKET</td>
+                <td translate> HISTORY.TIME_SERVING</td>
+                <td translate> HISTORY.TIME_WAIT</td>
+                <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
+                <th>Chi tiết</th>
+            </thead>
+            <tbody class="table-row">
+                <tr *ngFor="let d of data | async; let i = index">
+                    <td class="stt">{{(i+1)+(skip | async)}}</td>
+                    <td class="td-date-rp"> {{d.cdate}} </td>
+                    <td class="td-string-rp"> {{d.branches[1]}} </td>
+                    <td class="td-string-rp"> {{d.branch}} </td>
+                    <td class="td-string-rp"> {{d.service}} </td>
+                    <td class="td-counter-rp"> {{d.counter}} </td>
+                    <td class="td-string-rp"> {{d.user}} </td>
+                    <td class="td-number-rp"> {{d.cnum}} </td>
+                    <td class="td-date-rp"> {{d.ctime}} </td>
+                    <td class="td-date-rp"> {{d.wtime}} </td>
+                    <td class="td-date-rp"> {{d.stime}} </td>
+                    <td class="td-number-rp">{{d.rating}}</td>
+                    <td class="td-number-rp"><i class="fa fa-eye" aria-hidden="true" (click)="Detail(d)" style="cursor: pointer;"></i><i class="fa fa-volume-down" aria-hidden="true" style="margin-left: 15px;cursor: pointer;" (click)="Listen(d)" *ngIf="!d.check"></i><i class="fa fa-pause"
+                            aria-hidden="true" style="margin-left: 15px;cursor: pointer;" (click)="Pause(d)" *ngIf="d.check"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="hl-footer-history">
+    <div class="hl-info-history">
+        {{info | async}}
+    </div>
+    <div class="hl-pagination-history">
+        <button class="hl-btn-history" md-button *ngFor="let p of pages  | async" [ngClass]="{'active':(current | async)==p.page,'first':(current | async)==1 && p.page==1 && (p.title=='Previous' || p.title=='First'),'last':(current | async)==total && p.page==total && (p.title=='Next' || p.title=='Last')}"
+            (click)="chuyenTrang(p.page)">{{p.title}}</button>
+    </div>
+</div>
+
+
+<div class="hl-exportf-history">
+    <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
+</div>
+
+
+<modal #detail>
+    <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
+    <div>
+        <div style="float: left;border: 1px solid gray;">
+            <div>
+                <span translate> HISTORY.TICKET_NUMBER </span><br>
+                <span translate> HISTORY.SERVICE </span><br>
+                <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
+                <span translate> HISTORY.TIME_WAIT</span><br>
+                <span translate> HISTORY.TIME_SERVING</span><br>
+                <span translate> HISTORY.DATE</span><br>
+            </div>
+            <div>
+                <span>{{transaction.cnum | async}}</span>
+                <span>{{transaction.service | async}}</span>
+                <span>{{transaction.ctime | async}}</span>
+                <span>{{transaction.wtime | async}}</span>
+                <span>{{transaction.stime | async}}</span>
+                <span>{{transaction.cdate | async}}</span>
+            </div>
+
+
+        </div>
+
+        <div style="float: left;border: 1px solid gray; margin-left: 20px;">
+            <div>
+                <span translate> HISTORY.BRANCH </span><br>
+                <span translate> HISTORY.TRANSACTION_ROOM </span><br>
+                <span translate> HISTORY.TELLERS</span><br>
+                <span translate> HISTORY.COUNTER</span><br>
+                <span translate> HISTORY.MANAGER</span><br>
+                <span translate> HISTORY.ADMIN</span><br>
+            </div>
+            <div>
+                <span>{{transaction.branch | async}}</span>
+                <span>{{transaction.branch | async}}</span>
+                <span>{{transaction.user | async}}</span>
+                <span>{{transaction.counter | async}}</span>
+                <span>{{transaction.stime | async}}</span>
+                <span>{{transaction.cdate | async}}</span>
+            </div>
+
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div style="float: left;">
+            <span translate> HISTORY.CUSTOMER</span><br>
+            <span translate> HISTORY.PHONE</span><br>
+            <span translate> HISTORY.ID</span><br>
+            <span translate> HISTORY.SEGMENT</span><br>
+        </div>
+        <div style="float: left;margin-left: 20px;">
+            <span> </span><br>
+            <span> </span><br>
+            <span> </span><br>
+            <span> </span><br>
+        </div>
+        <audio controls>
+        <source [src]="url_audio" type="audio/ogg">
+        <source [src]="url_audio" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio>
+    </div>
+    <div style="float:right;">
+        <button class="button hl-btn-history" (click)="detail.Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
+    </div>
+
+</modal>

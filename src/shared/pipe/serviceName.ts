@@ -1,5 +1,5 @@
 import { Pipe } from '@angular/core';
-import { Center, House } from '../../model/';
+import { Center, House } from '../model/';
 
 @Pipe({
     name: 'serviceName'

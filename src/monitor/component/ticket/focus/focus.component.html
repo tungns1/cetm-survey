@@ -1,13 +1,12 @@
-<a routerLink="../../summary"> Tổng quan </a>
-<table class="table" style="width:300px" *ngFor="let summary of focus | async">
+<table class="table" style="width:300px" *ngFor="let summary of focus$ | async">
     <tbody>
         <tr>
             <td> Phòng giao dịch </td>
-            <td> {{summary.branch}}</td>
+            <td> {{summary.branch_id | branchName}}</td>
         </tr>
         <tr>
             <td> SL. vé đã in</td>
-            <td> {{summary.printed}}</td>
+            <td> {{printed(summary)}}</td>
         </tr>
         <tr>
             <td> SL. vé đợi </td>
@@ -42,7 +41,7 @@
         <th translate> TIME_CREATE_TICKET</th>
     </thead>
     <tbody>
-        <tr *ngFor="let t of waiting | async; let i = index">
+        <tr *ngFor="let t of waiting$ | async; let i = index">
             <td> {{i + 1}} </td>
             <td> {{t.cnum}}</td>
             <td> {{t.services | multipleServiceName}}</td>
@@ -65,7 +64,7 @@
         <th translate> TIME_CALL_TICKET </th>
     </thead>
     <tbody>
-        <tr *ngFor="let t of called | async; let i = index">
+        <tr *ngFor="let t of served$ | async; let i = index">
             <td> {{i + 1}} </td>
             <td> {{t | ticketState}}</td>
             <td> {{t.cnum}} </td>
