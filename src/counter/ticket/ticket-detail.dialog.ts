@@ -23,6 +23,7 @@ combineLatest<ICounter[], ICounter>(RxCounters, RxCurrentCounter).subscribe(([co
 })
 export class TicketDetailDialog {
   constructor() { }
+  td=ticketDialog;
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
     this.checkedCounters = [];
