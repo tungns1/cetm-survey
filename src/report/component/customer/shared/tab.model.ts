@@ -1,16 +1,20 @@
 
 
 export const MAIN_TABS = {
-    GENERAL: {
-        name: 'general',
-        title: 'GENERAL.TAB_GENERAL',
+    STORE: {
+        name: 'store',
+        title: 'CUSTOMER.TAB_STORE',
     },
     TIME: {
         name: 'time',
-        title: 'GENERAL.TAB_TIME_TRANSACTION'
+        title: 'CUSTOMER.TAB_TIME_TRANSACTION'
     },
-    CUSTOMER: {
-        name: 'customer',
-        title: 'GENERAL.TAB_CUSTOMER_FEEDBACK'
+    FREQUENCY: {
+        name: 'frequency',
+        title: 'CUSTOMER.TAB_FREQUENCY'
+    },
+    SERVICE: {
+        name: 'service',
+        title: 'CUSTOMER.TAB_SERVICE'
     }
 }

@@ -11,6 +11,7 @@ export interface ITransaction {
 	service_id: string;
 	service: string;
 	cid: string;
+	linkaudio:string;
 	vcode: string;
 	cnum: string;
 	lang: string;

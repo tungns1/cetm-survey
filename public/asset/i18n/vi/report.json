@@ -1,6 +1,7 @@
 {
     "BUTTON_GENERAL": "TỔNG HỢP",
     "BUTTON_HISTORY": "LỊCH SỬ GIAO DỊCH",
+    "BUTTON_CUSTOMER": "KHÁCH HÀNG",
     "TRANSACTION_ROOM": "Phòng giao dịch",
     "SERVICE": "Dịch vụ",
     "COUNTER": "Quầy",
@@ -70,6 +71,14 @@
         "TIME_WAIT_AVERAGE": "Thời gian chờ trung bình",
         "TIME_WAIT_MIN": "Thời gian chờ ngắn nhất",
         "TIME_WAIT_MAX": "Thời gian chờ dài nhất"
+    },
+    "CUSTOMER": {
+        "ID_USER": "Mã người dùng",
+        "TAB_STORE": "CỬA HÀNG",
+        "TAB_TIME_TRANSACTION": "THỜI GIAN GIAO DỊCH",
+        "TAB_FREQUENCY": "TẦN SUẤT",
+        "TAB_SERVICE": "DỊCH VỤ"
+
     },
     "BUTTON_SEND": "XEM BÁO CÁO",
     "SELECT_TIME": "Chọn thời gian",
