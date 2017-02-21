@@ -17,10 +17,10 @@
                 <th>Chi tiết</th>
             </thead>
             <tbody class="table-row">
-                <tr *ngFor="let d of data | async; let i = index">
-                    <td class="stt">{{(i+1)+(skip | async)}}</td>
+                <tr *ngFor="let d of paging.data$ | async; let i = index">
+                    <td class="stt">{{(i+1)+(paging.Skip)}}</td>
                     <td class="td-date-rp"> {{d.cdate}} </td>
-                    <td class="td-string-rp"> {{d.branches[1]}} </td>
+                    <td class="td-string-rp"> {{d.parent}} </td>
                     <td class="td-string-rp"> {{d.branch}} </td>
                     <td class="td-string-rp"> {{d.service}} </td>
                     <td class="td-counter-rp"> {{d.counter}} </td>
@@ -40,17 +40,18 @@
 
 <div class="hl-footer-history">
     <div class="hl-info-history">
-        {{info | async}}
+        {{paging.info$ | async}}
     </div>
     <div class="hl-pagination-history">
-        <button class="hl-btn-history" md-button *ngFor="let p of pages  | async" [ngClass]="{'active':(current | async)==p.page,'first':(current | async)==1 && p.page==1 && (p.title=='Previous' || p.title=='First'),'last':(current | async)==total && p.page==total && (p.title=='Next' || p.title=='Last')}"
-            (click)="chuyenTrang(p.page)">{{p.title}}</button>
+        <button class="hl-btn-history" md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="chuyenTrang(p.page)">
+            {{p.title}}
+        </button>
     </div>
 </div>
 <div class="hl-exportf-history">
     <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
-
+<!--
 <modal #detail>
 
     <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
@@ -119,4 +120,4 @@
         <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
     </div>
 
-</modal>
+</modal>-->

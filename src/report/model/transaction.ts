@@ -30,7 +30,8 @@ export interface ITransaction {
 
 
 export interface ITransactionView extends ITransaction {
-	branches: string[];
+	branch: string;
+	parent: string;
 
 	v_cdate: string;
 	v_ctime: string;
