@@ -28,10 +28,13 @@ export class HistoryComponent {
     data = this.transactionHistoryApi.data$;
     @ViewChild(Ng.ModalComponent) protected detail: Ng.ModalComponent;
     url_audio = '';
-    ts :ITransactionView;
+    ts: ITransactionView;
     active: any = {};
 
     ngOnInit() {
+        this.Refresh();
+    }
+    Refresh() {
         this.filterService.ExclusiveSubscribe(filter => {
             this.transactionHistoryApi.Refresh(filter);
         });
@@ -42,7 +45,7 @@ export class HistoryComponent {
         this.active = this.filterService.Current;
         this.active.limit = this.pageSize$.value;
         this.active.skip = this.pageSize$.value * (this.current.value - 1);
-        // this.filterService.Refresh();
+        this.Refresh()
     }
 
     current = this.transactionHistoryApi.currentPage$;
@@ -109,25 +112,25 @@ export class HistoryComponent {
         this.transactionHistoryApi.ExportHistory(this.filterService.Current);
     }
     Detail(ts: ITransactionView) {
-        this.ts=ts;
-        this.detail.Open();  
+        this.ts = ts;
+        this.detail.Open();
     }
-    Close(){
-       this.detail.Close();
-       this.Pause(this.ts);
+    Close() {
+        this.detail.Close();
+        this.Pause(this.ts);
     }
     Listen(ts: ITransactionView) {
         if (this.ts) {
             this.Pause(this.ts);
         }
-         this.ts=ts;
+        this.ts = ts;
         ts.check = true;
-        var audio = new Audio( ts.linkaudio);
+        var audio = new Audio(ts.linkaudio);
         audio.play();
     }
     Pause(ts: ITransactionView) {
         ts.check = false;
-        var audio = new Audio( ts.linkaudio);
+        var audio = new Audio(ts.linkaudio);
         audio.pause();
     }
 
