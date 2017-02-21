@@ -13,12 +13,12 @@ import { TicketService, QueueService, WorkspaceService } from '../service';
   styleUrls: ['ticket-detail.dialog.scss']
 })
 export class TicketDetailDialog {
+
   constructor(
     private ticketService: TicketService,
     private queueService: QueueService,
     private workspaceService: WorkspaceService
   ) { }
-
   SetTicket(t: Model.House.ITicket) {
     this.ticket = t;
     this.checkedCounters = [];
