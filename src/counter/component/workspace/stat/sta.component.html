@@ -1,0 +1,26 @@
+<div class="hl-content-stat">
+    <div class="hl-title-stat" translate>
+        STAT
+    </div>
+
+    <div class="hl-tabs-stat">
+        <div [class.active]="showFinished$ | async" (click)="showFinished()">
+            &nbsp;<span translate> SERVICE_FINISH</span>
+            <!-- <span class="hl-count">{{fc | async}}</span>) &nbsp;-->
+            <span>&nbsp; ( {{fcount$ | async}} ) &nbsp; </span>
+        </div>
+        <div [class.active]="showCancelled$ | async" (click)="showCancelled()">
+            <span translate>SERVICE_CANCEL</span>
+            <!--<span class="hl-count">&nbsp;({{cc | async}}) &nbsp;</span>-->
+            <span>&nbsp;({{ccount$ | async}}) &nbsp;</span>
+        </div>
+    </div>
+    <div class="hl-padding-stat">
+    </div>
+    <div class="hl-detail-stat">
+        <bar [data]="data$ | async"></bar>
+    </div>
+</div>
+<div class="hl-search-stat">
+    <search></search>
+</div>

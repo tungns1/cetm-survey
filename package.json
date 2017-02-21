@@ -31,6 +31,8 @@
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
     "@angular/router": "3.2.1",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.1",
     "angular2-universal": "2.1.0-rc.1",
     "core-js": "2.4.1",
     "d3": "^4.4.0",

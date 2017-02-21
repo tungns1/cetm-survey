@@ -1,0 +1,21 @@
+<div class="hl-droplabel-user" (click)="hidden=!hidden">
+    <span translate> HELLO</span> {{ username | async}}
+    <i class="fa fa-chevron-circle-down"></i>
+</div>
+
+<ul [class.hidden]="hidden" class="hl-dropdown-content-user">
+    <li class="hl-dropdown-item-user animate" (click)="Refresh()">
+        <i class="fa fa-refresh"></i> <span translate>REFRESH</span>
+    </li>
+    <li class="hl-dropdown-item-user animate" (click)="setting=true">
+        <i class="fa fa-cog"></i> <span translate>SETTING</span>
+    </li>
+    <li class="hl-dropdown-item-user animate" (click)="Logout()">
+        <i class="fa fa-power-off"></i> <span translate>LOGOUT</span>
+    </li>
+</ul>
+<div class="modal" *ngIf="setting">
+    <div class="dialog hl-dialog-user">
+        <user-setting (close)="setting=false"></user-setting>
+    </div>
+</div>

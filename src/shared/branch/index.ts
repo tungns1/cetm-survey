@@ -1,22 +1,26 @@
 
-import { RepeatedObservable } from './repeatable';
-import { SelectedBranchIDLevel0 } from './branch';
-import { Observable } from 'rxjs/Observable';
+import { BranchFilterModule, BranchFilterService } from './filter';
+import { BranchPickerModule } from './picker/picker.module';
+import {Org} from '../model';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
-export function RefreshSelectedBranchIDLevel0<T>(func: (any) => Observable<T>) {
-    return new RepeatedObservable<T>(SelectedBranchIDLevel0, func);
+@NgModule({
+    exports: [BranchFilterModule, BranchPickerModule]
+})
+export class BranchModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: BranchFilterModule,
+            providers: [BranchFilterService]
+        }
+    }
 }
 
-export * from './branch';
-export * from './branch.module';
+export { BranchFilterService, BranchFilter } from './filter';
+const CacheBranch = Org.CacheBranch;
 
-import { Branches } from './branch';
-
-interface IModel { branch_id?: string, branch?: string }
-
-import 'rxjs/add/operator/do';
-export function AddBranchName<T extends IModel>(src: Observable<T[]>) {
-    return src.do(models => {
-        models.forEach(v => v.branch = Branches.get(v.branch_id).name || 'n/a');
-    });
+export {
+    CacheBranch
 }
+
+

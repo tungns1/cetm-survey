@@ -1,5 +1,5 @@
-import {Pipe} from '@angular/core';
-import {House} from '../../model/';
+import { Pipe } from '@angular/core';
+import { House } from '../model/';
 
 @Pipe({
     name: 'counterName'
@@ -7,6 +7,6 @@ import {House} from '../../model/';
 export class CounterNamePipe {
     transform(counter_id: string) {
         const c = House.CacheCounter.GetByID(counter_id);
-        return c? c.name : 'n/a';
+        return c ? c.name : 'n/a';
     }
 }

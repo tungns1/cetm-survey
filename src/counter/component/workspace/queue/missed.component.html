@@ -1,0 +1,22 @@
+<div class="hl-content-missed">
+    <div class="hl-title-missed">
+        <div><span translate> LIST_MISS</span> &nbsp;(<span class="total">{{count | async}}</span>) </div>
+        <input class="hl-input-missed" #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" placeholder="{{'TICKET_NUMBER_MISS' | translate}}">
+        <img src="../asset/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" width="20" height="20" style="cursor: pointer">
+    </div>
+
+    <div class="hl-table-missed">
+        <div class="hl-table-row-missed  hl-header-missed">
+            <div translate>NUMBER</div>
+            <div translate>SERVICE</div>
+            <div translate>MISS_AT</div>
+        </div>
+        <div class="hl-table-row-missed" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
+            <div><img src="../asset/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
+            <div>{{t.services | multipleServiceName}}</div>
+            <div>
+                {{t.mtime | localDayTime}}
+            </div>
+        </div>
+    </div>
+</div>
