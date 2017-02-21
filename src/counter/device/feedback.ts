@@ -25,5 +25,3 @@ export function IsFeedbackDeviceAvailable() {
 function test() {
     feedbackDeviceAvailable = true;
 }
-
-test();

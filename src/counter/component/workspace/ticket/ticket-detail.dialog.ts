@@ -14,7 +14,6 @@ import { TicketService, QueueService, WorkspaceService } from '../service';
 })
 export class TicketDetailDialog {
 
-
   constructor(
     private ticketService: TicketService,
     private queueService: QueueService,

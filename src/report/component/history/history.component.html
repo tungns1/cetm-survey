@@ -47,18 +47,16 @@
             (click)="chuyenTrang(p.page)">{{p.title}}</button>
     </div>
 </div>
-
-
 <div class="hl-exportf-history">
     <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
 
-
 <modal #detail>
+
     <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
-    <div>
+    <div *ngIf="ts">
         <div style="float: left;border: 1px solid gray;">
-            <div>
+            <div style="float: left;">
                 <span translate> HISTORY.TICKET_NUMBER </span><br>
                 <span translate> HISTORY.SERVICE </span><br>
                 <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
@@ -66,20 +64,20 @@
                 <span translate> HISTORY.TIME_SERVING</span><br>
                 <span translate> HISTORY.DATE</span><br>
             </div>
-            <div>
-                <span>{{transaction.cnum | async}}</span>
-                <span>{{transaction.service | async}}</span>
-                <span>{{transaction.ctime | async}}</span>
-                <span>{{transaction.wtime | async}}</span>
-                <span>{{transaction.stime | async}}</span>
-                <span>{{transaction.cdate | async}}</span>
+            <div style="float: left;margin-left: 10px;">
+                <span>{{ts.cnum}}</span><br>
+                <span>{{ts.service}}</span><br>
+                <span>{{ts.ctime}}</span><br>
+                <span>{{ts.wtime}}</span><br>
+                <span>{{ts.stime}}</span><br>
+                <span>{{ts.cdate}}</span><br>
             </div>
 
 
         </div>
 
         <div style="float: left;border: 1px solid gray; margin-left: 20px;">
-            <div>
+            <div style="float: left">
                 <span translate> HISTORY.BRANCH </span><br>
                 <span translate> HISTORY.TRANSACTION_ROOM </span><br>
                 <span translate> HISTORY.TELLERS</span><br>
@@ -87,13 +85,13 @@
                 <span translate> HISTORY.MANAGER</span><br>
                 <span translate> HISTORY.ADMIN</span><br>
             </div>
-            <div>
-                <span>{{transaction.branch | async}}</span>
-                <span>{{transaction.branch | async}}</span>
-                <span>{{transaction.user | async}}</span>
-                <span>{{transaction.counter | async}}</span>
-                <span>{{transaction.stime | async}}</span>
-                <span>{{transaction.cdate | async}}</span>
+            <div style="float: left;margin-left: 10px;">
+                <span>{{ts.branch}}</span><br>
+                <span>{{ts.branch}}</span><br>
+                <span>{{ts.user}}</span><br>
+                <span>{{ts.counter}}</span><br>
+                <span>{{ts.stime}}</span><br>
+                <span>{{ts.cdate}}</span><br>
             </div>
 
         </div>
@@ -118,7 +116,7 @@
         </audio>
     </div>
     <div style="float:right;">
-        <button class="button hl-btn-history" (click)="detail.Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
+        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
     </div>
 
 </modal>

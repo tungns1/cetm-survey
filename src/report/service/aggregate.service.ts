@@ -29,6 +29,8 @@ export class AggregateService {
         this.backend.Get<IAggregate[]>("aggregate", v.ToBackendQuery()).subscribe(data => {
             this.RxAggregate.next(data);
         });
+        this.period$.next(v.Period.valueOf().period);
+        this.groupBy$.next(v.Inside.GetGroupBy());
     }
 
     RxAggregate = new BehaviorSubject<IAggregate[]>([]);
@@ -37,7 +39,7 @@ export class AggregateService {
         return this.RxAggregate.map(Aggregate.Make);
     };
 
-    get RxActiveAggregate() {
+    get ActiveAggregate$() {
         return this.RxAggregate.map(v => {
             const group_by = this.filterService.Current.Inside.GetGroupBy();
             const views = MakeIndexBy(v, group_by);
@@ -72,8 +74,8 @@ export class AggregateService {
         });
     }
 
-    RxGroupTitle = new BehaviorSubject<string>('branch_id');
-    RxPeriod = new BehaviorSubject<string>('day');
+    groupBy$ = new BehaviorSubject<string>('branch_id');
+    period$ = new BehaviorSubject<string>('day');
 
     backend = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 }
