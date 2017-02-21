@@ -120,6 +120,7 @@ export class HistoryComponent {
         this.Pause(this.ts);
     }
     Listen(ts: ITransactionView) {
+        console.log(ts);
         if (this.ts) {
             this.Pause(this.ts);
         }
