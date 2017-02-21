@@ -143,6 +143,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
+     background-color: whitesmoke;
  }
  
  .hl-title-missed>div {
@@ -247,6 +248,25 @@
      border-right: 0.5px solid #cccccc;
  }
  
+ :host {
+     display: flex;
+     flex-flow: row wrap;
+     align-content: space-between;
+ }
+ 
+ .button-counter {
+     width: 130px;
+     height: 40px;
+     border-radius: 5px;
+     line-height: 30px;
+     background-color: #0b8fdb;
+     cursor: pointer;
+     text-transform: uppercase;
+     color: #fff;
+     margin: 0px 0px 0px 10px;
+     border: 1px solid #fff;
+ }
+ 
  .hl-button {
      color: #ffffff;
      font-size: 14px;
@@ -261,25 +281,19 @@
      align-content: space-around;
  }
  
- .hl-button:hover {
+ .button-counter:hover {
      opacity: 1;
  }
  
- .hl-button.warn {
+ .button-counter.warn {
      background-color: #f39207;
  }
  
- .hl-button.danger {
+ .button-counter.danger {
      background-color: #f63e30;
  }
  
- :host {
-     display: flex;
-     flex-flow: row wrap;
-     align-content: space-between;
- }
- 
- .hl-button.hidden {
+ .button-counter.hidden {
      display: none;
  }
  

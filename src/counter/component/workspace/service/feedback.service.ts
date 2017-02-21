@@ -20,7 +20,7 @@ export class FeedbackService {
 
     private onInit() {
         this.authService.RxMySetting.subscribe(s => {
-            this.required = s.config.feedback.required;
+            // this.required = s.config.feedback.required;
         })
     }
 
