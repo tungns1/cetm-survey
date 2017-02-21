@@ -54,7 +54,7 @@
 <modal #detail>
 
     <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
-    <div *ngIf="ts">
+    <div *ngIf="ts" style="text-align: center;">
         <div style="float: left;border: 1px solid gray;">
             <div style="float: left;">
                 <span translate> HISTORY.TICKET_NUMBER </span><br>
@@ -97,17 +97,19 @@
         </div>
     </div>
     <div style="text-align: center;">
-        <div style="float: left;">
-            <span translate> HISTORY.CUSTOMER</span><br>
-            <span translate> HISTORY.PHONE</span><br>
-            <span translate> HISTORY.ID</span><br>
-            <span translate> HISTORY.SEGMENT</span><br>
-        </div>
-        <div style="float: left;margin-left: 20px;">
-            <span> </span><br>
-            <span> </span><br>
-            <span> </span><br>
-            <span> </span><br>
+        <div>
+            <div style="float: left;">
+                <span translate> HISTORY.CUSTOMER</span><br>
+                <span translate> HISTORY.PHONE</span><br>
+                <span translate> HISTORY.ID</span><br>
+                <span translate> HISTORY.SEGMENT</span><br>
+            </div>
+            <div style="float: left;margin-left: 20px;">
+                <span> </span><br>
+                <span> </span><br>
+                <span> </span><br>
+                <span> </span><br>
+            </div>
         </div>
         <audio controls>
         <source [src]="url_audio" type="audio/ogg">

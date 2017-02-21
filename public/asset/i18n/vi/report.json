@@ -77,7 +77,12 @@
         "TAB_STORE": "CỬA HÀNG",
         "TAB_TIME_TRANSACTION": "THỜI GIAN GIAO DỊCH",
         "TAB_FREQUENCY": "TẦN SUẤT",
-        "TAB_SERVICE": "DỊCH VỤ"
+        "TAB_SERVICE": "DỊCH VỤ",
+        "TOTAL_TRANSACTION": "Tổng số giao dịch",
+        "TRANSACTION_HAVE_WAIT_STANDARD": "Giao dịch có thời gian đợi chuẩn",
+        "TRANSACTION_HAVE_WAIT_BEYOND_STANDARD": "Giao dịch có thời gian đợi vượt chuẩn",
+        "TRANSACTION_HAVE_SERVING_STANDARD": "Giao dịch có thời gian phục vụ chuẩn",
+        "TRANSACTION_HAVE_SERVING_BEYOND_STANDARD": "Giao dịch có thời gian phục vụ vượt chuẩn"
 
     },
     "BUTTON_SEND": "XEM BÁO CÁO",
