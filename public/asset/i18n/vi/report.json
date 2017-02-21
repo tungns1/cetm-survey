@@ -1,6 +1,7 @@
 {
     "BUTTON_GENERAL": "TỔNG HỢP",
     "BUTTON_HISTORY": "LỊCH SỬ GIAO DỊCH",
+    "BUTTON_CUSTOMER": "KHÁCH HÀNG",
     "TRANSACTION_ROOM": "Phòng giao dịch",
     "SERVICE": "Dịch vụ",
     "COUNTER": "Quầy",
@@ -9,7 +10,7 @@
         "DATE": "Ngày",
         "AREA": "Khu vực",
         "BRANCH": "Chi nhánh",
-        "TRANSACTION_ROOM": "Phòng giao dịch",
+        "TRANSACTION_ROOM": "Cửa hàng",
         "SERVICE": "Dịch vụ",
         "TICKET_NUMBER": "Số vé",
         "COUNTER": "Quầy",
@@ -23,7 +24,17 @@
         "BUTTON_EXPORT_FILE": "XUẤT RA FILE EXCEL",
         "SHOW": "Hiển thị",
         "FROM_NUMBER": "từ số",
-        "TO_NUMBER": "đến số"
+        "TO_NUMBER": "đến số",
+        "AUDIO": "File ghi âm",
+        "CUSTOMER": "Khách hàng",
+        "PHONE": "Số điện thoại",
+        "ID": "ID",
+        "SEGMENT": "Phân khúc",
+        "ADMIN": "Admin",
+        "MANAGER": "Quản lý",
+        "TITLE_DETAIL": "Chi Tiết",
+        "BUTTON_CLOSE": "Đóng"
+
     },
     "GENERAL": {
         "TAB_GENERAL": "TỔNG QUAN",
@@ -60,6 +71,14 @@
         "TIME_WAIT_AVERAGE": "Thời gian chờ trung bình",
         "TIME_WAIT_MIN": "Thời gian chờ ngắn nhất",
         "TIME_WAIT_MAX": "Thời gian chờ dài nhất"
+    },
+    "CUSTOMER": {
+        "ID_USER": "Mã người dùng",
+        "TAB_STORE": "CỬA HÀNG",
+        "TAB_TIME_TRANSACTION": "THỜI GIAN GIAO DỊCH",
+        "TAB_FREQUENCY": "TẦN SUẤT",
+        "TAB_SERVICE": "DỊCH VỤ"
+
     },
     "BUTTON_SEND": "XEM BÁO CÁO",
     "SELECT_TIME": "Chọn thời gian",

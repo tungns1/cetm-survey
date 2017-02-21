@@ -1,0 +1,19 @@
+<editor #edit [makeForm]="makeForm" [service]="service">
+    <editor-title> <span translate>LABEL_LIST_SERVICE</span></editor-title>
+    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
+        <span translate>LABEL_IMAGE</span>:
+        <input class="hl-input" formControlName="image" placeholder="{{'LABEL_IMAGE' | translate}}"><br> <span translate>LABEL_CODE</span>:
+        <input class="hl-input" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br> <span translate>LABEL_PRIORITIZE</span>:
+        <input class="hl-input" type="number" formControlName="priority" placeholder="{{'LABEL_PRIORITIZE' | translate}}">
+        <l10n-form formControlName="l10n"></l10n-form>
+        <span translate>LABEL_NUM_TICKET</span>:
+        <select class="hl-select" formControlName="tform_normal">
+            <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
+        </select>
+
+        <br> <span translate>LABEL_NUM_TICKET_VIP</span>:
+        <select class="hl-select" formControlName="tform_vip">
+            <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
+        </select>
+    </form>
+</editor>

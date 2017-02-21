@@ -1,0 +1,62 @@
+<div class="modal">
+    <div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px; position:absolute;">
+        <div class="hl-tl-ticket" translate>TICKET_DETAILS</div>
+        <div style="margin-top: 50px;">
+            <div class="hl-info-ticket"><span translate> TICKET_NUMBER</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
+            <div class="hl-info-ticket hidden"> Priority:{{ticket.priority}}</div>
+            <div class="hl-info-ticket"><span translate> TIME_CREATE_TICKET</span> {{ticket.ctime | localDayTime}}</div>
+            <hr>
+
+            <div *ngIf="isServing" style="margin-bottom:10px;">
+                <div><span translate>START_SERVING</span> {{ticket.mtime | localDayTime}}</div>
+                <br> <span translate> MOVE_SERVICE</span>
+                <div class="hl-dichvu-ticket">
+                    <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
+                    </select-check>
+                </div>
+            </div>
+
+            <div *ngIf="isMissed" style="margin-bottom:10px;">
+                <span translate>TIME_MISS</span> {{ticket.mtime | localDayTime}}
+            </div>
+            <span translate> MOVE_COUNTER</span>
+            <div class="hl-dichvu-ticket">
+                <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
+                </select-check>
+            </div>
+
+            <div style="margin: 30px 0px 20px 0px;" *ngIf="isMissed">
+                <button class="hl-close-ticket hl-miss-ticket button-ticket" (click)="Close()" translate>CLOSE</button>
+
+                <button class="hl-move-ticket hl-big-ticket button-ticket" (click)="Move()" translate>MOVE</button>
+
+                <button class="hl-recall-ticket hl-big-ticket button-ticket" (click)="Recall()" translate>RECALL</button>
+
+                <button class="hl-delete-ticket hl-miss-ticket button-ticket" (click)="remove.Open()" translate>DELETE</button>
+            </div>
+            <div style="margin: 30px 0px 20px 0px;" *ngIf="!isMissed">
+                <button class="hl-close-ticket hl-nomiss-ticket button-ticket" (click)="Close()" translate>CLOSE</button>
+
+                <button class="hl-move-ticket hl-nomiss-ticket button-ticket" (click)="Move()" translate>MOVE</button>
+
+                <button class="hl-delete-ticket hl-nomiss-ticket button-ticket" (click)="remove.Open()" translate>DELETE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<modal #alert>
+    <div style="text-align: center;color: red;font-size:18px;font-weight:700;" translate>{{title}}</div>
+    <p style="text-align: center;font-size:13px;" translate>{{message}}</p>
+    <button class="hl-close-ticket button-ticket" (click)="alert.Close()" style="float:right; height:25px;" translate> YES </button>
+</modal>
+
+<modal #remove>
+    <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
+        <span translate>LABEL_DEL_QUESTION</span>
+    </div>
+    <div style="float: right;margin-right: 40px">
+        <button class="hl-yes-editor btpointer" (click)="Delete()">  <span translate>LABEL_ANSWER_YES</span></button>
+        <button class="hl-no-editor btpointer" (click)="remove.Close()"> <span translate>LABEL_ANSWER_NO</span></button>
+    </div>
+</modal>

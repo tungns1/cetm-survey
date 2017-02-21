@@ -1,0 +1,36 @@
+<editor #edit (edit)="onEdit($event)" [makeForm]="makeForm" [service]="service">
+    <editor-title> <span translate>LABEL_LIST_SCREEN</span>
+        <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'screen'}"> <span translate>LABEL_EDIT_LAYOUT</span> </button>
+    </editor-title>
+
+    <form *ngIf="edit.form" class=" hl-form form" [formGroup]="edit.form">
+        <span translate>LABEL_SCREEN_CODE</span>:
+        <input class="hl-input" formControlName="code" placeholder="{{'LABEL_SCREEN_CODE' | translate}}" style="width: 100%;">
+        <br> <span translate>LABEL_SCREEN_NAME</span>:
+        <input class="hl-input" formControlName="name" placeholder="{{'LABEL_SCREEN_NAME' | translate}}" style="width: 100%;">
+        <input type="checkbox" formControlName="inheritable"> <span translate>LABEL_CAN_INHERIT</span>
+
+        <br> Videos:
+        <multi-file-picker formControlName="videos"></multi-file-picker>
+
+        <br> <span translate>LABEL_NEWS</span>:
+        <arr-form formControlName="news"></arr-form>
+
+        <br><span translate>LABEL_SCREEN_FATHER</span>:
+        <select class="hl-select" formControlName="parent_id">
+            <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
+        </select>
+
+        <br><span translate>LABEL_LAYOUT</span>:
+        <select class="hl-select" formControlName="layout_id">
+            <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
+        </select>
+        <br><span translate>LABEL_BRANCH</span>:
+        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+        <br> <span translate>LABEL_COUNTERS</span>:
+        <div class="dichvu">
+            <select-check formControlName="counters" [data]="counters | async" textField="name">
+            </select-check>
+        </div>
+    </form>
+</editor>

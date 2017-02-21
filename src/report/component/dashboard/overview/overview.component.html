@@ -1,0 +1,86 @@
+<div></div>
+
+<table class="table" *ngIf="general$ | async">
+    <thead>
+        <th> STT </th>
+        <th translate> {{groupBy$ | async}} </th>
+        <th translate> GENERAL.TOTAL_TRANSACTION </th>
+        <th translate> GENERAL.TRANSACTION_FINISH </th>
+        <th translate> GENERAL.TRANSACTION_CANCEL </th>
+        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
+        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
+        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
+        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+    </thead>
+    <tbody class="table-row">
+        <tr *ngFor="let d of data$ | async; let i = index">
+            <td> {{i + 1}} </td>
+            <td style="text-align: left;">{{d.name}} </td>
+            <td> {{d.c_t}} </td>
+            <td> {{d.c_ft}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ft/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span> </td>
+            <td> {{d.c_ct}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ct/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span> </td>
+            <td> {{d.c_bwt}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0">0.00%</span></td>
+            <td> {{d.c_t-d.c_bwt}}&nbsp; <span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bwt)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></td>
+            <td> {{d.c_bst}}&nbsp; <span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></td>
+            <td> {{d.c_t-d.c_bst}}&nbsp; <span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bst)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span> </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Time View -->
+<table class="table" *ngIf="time$ | async">
+    <thead>
+        <th> STT </th>
+        <th translate> {{groupBy$ | async}} </th>
+        <th translate> GENERAL.TOTAL_TIME_TRANSACTION </th>
+        <th translate> GENERAL.TOTAL_TIME_SERVING</th>
+        <th translate> GENERAL.TOTAL_TIME_WAIT </th>
+        <th translate> GENERAL.TIME_SERVING_AVERAGE </th>
+        <th translate> GENERAL.TIME_SERVING_MIN </th>
+        <th translate> GENERAL.TIME_SERVING_MAX </th>
+        <th translate> GENERAL.TIME_WAIT_AVERAGE </th>
+        <th translate> GENERAL.TIME_WAIT_MIN </th>
+        <th translate> GENERAL.TIME_WAIT_MAX </th>
+    </thead>
+    <tbody class="table-row">
+        <tr *ngFor="let d of data$ | async; let i = index">
+            <td> {{i + 1}} </td>
+            <td style="text-align: left;">{{d.name}} </td>
+            <td> {{d.s_tt | timeDuration}} </td>
+            <td> {{d.s_st | timeDuration}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_st/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span></td>
+            <td> {{d.s_wt | timeDuration}}&nbsp; <span *ngIf="d.s_tt>0">({{d.s_wt/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0">0.00%</span> </td>
+            <td> {{d.a_st | timeDuration}} </td>
+            <td> {{d.min_st | timeDuration}} </td>
+            <td> {{d.max_st | timeDuration}} </td>
+            <td> {{d.a_wt | timeDuration}} </td>
+            <td> {{d.min_wt | timeDuration}} </td>
+            <td> {{d.max_wt | timeDuration}} </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Feedback -->
+<table class="table" *ngIf="customer$ | async">
+    <thead>
+        <th> STT </th>
+        <th translate> {{groupBy$ | async}} </th>
+        <th translate> GENERAL.TRANSACTION_FEEDBACK </th>
+        <th translate> GENERAL.TRANSACTION_NO_FEEDBACK </th>
+        <th translate> GENERAL.FEEDBACK_VERY_GOOD </th>
+        <th translate> GENERAL.FEEDBACK_GOOD</th>
+        <th translate> GENERAL.FEEDBACK_MEDIUM </th>
+        <th translate> GENERAL.FEEDBACK_BAD</th>
+    </thead>
+    <tbody class="table-row">
+        <tr *ngFor="let d of data$ | async; let i = index">
+            <td> {{i + 1}} </td>
+            <td style="text-align: left;">{{d.name}} </td>
+            <td> {{d.c_r}}&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
+            <td> {{d.c_r_o}}&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r_o/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0">0.00%</span></td>
+            <td> {{d.c_r_a}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_a/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span></td>
+            <td> {{d.c_r_b}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_b/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
+            <td> {{d.c_r_c}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_c/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
+            <td> {{d.c_r_d}}&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_d/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0">0.00%</span> </td>
+        </tr>
+    </tbody>
+</table>

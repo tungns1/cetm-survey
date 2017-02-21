@@ -1,0 +1,27 @@
+<h1> {{message | translate}}</h1>
+<table class="table">
+    <thead>
+        <td> Chi nhánh</td>
+        <td> SL. vé đã in</td>
+        <td> SL. vé đợi </td>
+        <td> SL. vé đang phục vụ </td>
+        <td> SL. vé đã phục vụ </td>
+        <td> SL. vé nhỡ </td>
+        <td> SL. vé hủy </td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of summary$ | async">
+            <td class="pointer">
+                <a href="javascript:void(0);" (click)="focus(s.branch_id)">
+                    {{s.branch_id | branchName}}
+                </a>
+            </td>
+            <td> {{printed(s)}}</td>
+            <td> {{s.waiting}}</td>
+            <td> {{s.serving}}</td>
+            <td> {{s.finished}}</td>
+            <td> {{s.missed}}</td>
+            <td> {{s.cancelled}}</td>
+        </tr>
+    </tbody>
+</table>

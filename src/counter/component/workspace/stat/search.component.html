@@ -1,0 +1,29 @@
+<input type="text" class="hl-input-text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
+<div class="hl-message-search"><span translate> {{message}}</span>&nbsp;{{cnum$ | async}} </div>
+
+<div class="hl-search-result" *ngFor="let ticket of tickets$ | async">
+
+    <p class="hl-p-stat"><span translate> TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime | localDayTime}}</p>
+    <p [class.hidden]="!serving" class="hl-p-stat">
+        <span translate> TIME_CALL_TICKET</span>
+        <span style="text-align: right;">{{ticket.mtime | localDayTime}}</span>
+    </p>
+    <p class="hl-p-stat"><span translate>STATUS_NOW</span>&nbsp; {{ticket | ticketState}} </p>
+    <div>
+        <p class="hl-p-stat" translate>HISTORY</p>
+        <div class="hl-table-missed">
+            <div class="hl-table-row-missed hl-header-missed">
+                <div translate>TIME</div>
+                <div translate>STATUS</div>
+                <div translate>SERVICE</div>
+            </div>
+            <div style="height:100px;overflow: auto;">
+                <div class="hl-table-row-missed" *ngFor="let t of ticket.tracks">
+                    <div> {{t.mtime | localDayTime}} </div>
+                    <div> {{t | ticketState}} </div>
+                    <div title="t | ticketServiceName"> {{t | ticketServiceName}} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

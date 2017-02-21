@@ -1,14 +1,24 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../shared/auth/';
+import { SharedService } from '../shared/';
 
-import { CounterComponent } from './counter.component';
+import { CounterComponent, WorkspaceModule, LegacyModule } from './component/';
 
-const routes: Routes = [
+const children: Routes = [
   {
     path: ':branch_code/:counter_code',
-    component: CounterComponent,
-    canActivate: [AuthGuard]
+    loadChildren: () => LegacyModule
+  },
+  {
+    path: 'workspace',
+    loadChildren: () => WorkspaceModule,
+    canActivate: [SharedService.Auth.AuthGuard]
   }
 ];
 
-export const routing = RouterModule.forRoot(routes, { useHash: true });
+export const routing = RouterModule.forRoot([
+  {
+    path: '',
+    component: CounterComponent,
+    children: children
+  }
+], { useHash: true });

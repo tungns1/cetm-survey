@@ -2,7 +2,7 @@
 
 while true; do 
 
-    if [[ $(git pull origin master) == *up-to-date* ]]; 
+    if [[ $(git pull origin) == *up-to-date* ]]; 
     then
         echo "no change"
     else

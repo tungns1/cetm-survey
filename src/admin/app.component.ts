@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { I18n } from './shared';
+import { SharedService } from './shared';
 
 @Component({
     selector: 'app-root',
@@ -8,10 +8,10 @@ import { I18n } from './shared';
     `,
 })
 export class AppComponent {
-    constructor(private translate: I18n.TranslateService) { }
+    constructor(private translate: SharedService.I18n.I18nService) { }
 
     ngOnInit() {
-        I18n.AddLanguages(this.translate);
+        
     }
 
 } 

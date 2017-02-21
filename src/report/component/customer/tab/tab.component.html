@@ -1,0 +1,3 @@
+<div class="hl-total-tab">
+    <label class="hl-label-tab" *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" translate>{{d.title}} </label>
+</div>

@@ -2,7 +2,9 @@
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import 'rxjs/add/operator/filter';
+
 import * as Loading from './loading';
 import { Log, Poller } from '../util';
 
@@ -88,6 +90,14 @@ export class Socket {
   Subscribe<T>(uri: string, onEvent: (v: T) => void) {
     let s = this.rxServerEvent.filter(v => v.uri == uri)
       .map(v => v.data).subscribe(onEvent);
+    return s;
+  }
+
+  RxEvent<T>(uri: string, replay = 1) {
+    const res = new ReplaySubject<T>(replay);
+    this.rxServerEvent.filter(v => v.uri === uri)
+      .map<T>(v => v.data).subscribe(res);
+    return res;
   }
 
   private lastMessageAt = 0;
@@ -159,7 +169,11 @@ export class Socket {
     while (this.sendQueue.length && this.socket.readyState === WebSocket.OPEN) {
       let item = this.sendQueue.shift();
       let request = item.wsRequest;
-      let data = [request.uri, JSON.stringify(request.data)].join(' ');
+      let data = [
+        request.uri,
+        typeof request.data === 'string' ? request.data : JSON.stringify(request.data)
+      ].join(' ');
+      
       this.socket.send(data);
       if (item.observer) {
         this.responseObservers[request.uri] = item.observer;
@@ -225,9 +239,9 @@ export class Socket {
   private alivePoll = new Poller.ConstPoll();
   private aliveOut = MAX_ALIVE_OUT;
   rxConnected = new BehaviorSubject(false);
-  rxServerEvent = new Subject<WsResponse>();
+  rxServerEvent = new ReplaySubject<WsResponse>(4);
 
-  disbaleCheckAlive() {
+  disableCheckAlive() {
     this.alivePoll.Disable();
   }
 }

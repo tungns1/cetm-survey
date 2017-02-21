@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+    <span class="title" translate>SELECT_SERVICE</span>
+    <select-check formControlName="service_id" [data]="services$ | async" textField="name">
+    </select-check>
+    <span class="title" translate> SELECT_STAFF</span>
+    <select-check formControlName="user_id" [data]="users$ | async" textField="fullname">
+    </select-check>
+    <span class="title" translate>SELECT_COUNTER</span>
+    <select-check formControlName="counter_id" [data]="counters$ | async" textField="name">
+    </select-check>
+</form>
+<hr>
