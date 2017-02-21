@@ -21,10 +21,11 @@ export class ReportOverViewComponent {
     }
 
     tab$ = this.viewService.ValueChanges.map(v => v.GetTab()).share();
-    general$ = this.tab$.map(tab => tab === MAIN_TABS.GENERAL.name);
+    store$ = this.tab$.map(tab => tab === MAIN_TABS.STORE.name);
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
-    customer$ = this.tab$.map(tab => tab === MAIN_TABS.CUSTOMER.name);
-    
+    service$ = this.tab$.map(tab => tab === MAIN_TABS.SERVICE.name);
+    frequency$ = this.tab$.map(tab => tab === MAIN_TABS.FREQUENCY.name);
+
     data$ = this.aggregateService.ActiveAggregate$;
     groupBy$ = this.aggregateService.groupBy$;
 }

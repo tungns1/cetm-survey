@@ -310,7 +310,8 @@ date-picker {}
     position: relative;
     bottom: 0;
     float: left;
-    margin: 20px 100px 20px 0px;
+    background-color: lightsteelblue;
+    margin: 0px 0px 0px 0px;
     text-align: center;
 }
 
@@ -333,10 +334,15 @@ date-picker {}
 
 .hl-hfl-report {
     cursor: pointer;
-    margin: 250px 2px 0px 2px;
+    margin: 0px 2px 0px 2px;
     color: gray;
 }
 
 .hl-date-report {
     padding: 0px 0px 0px 5px;
+}
+
+.hl-scroll-filter {
+    overflow: auto;
+    max-height: 840px;
 }
