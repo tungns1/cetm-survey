@@ -55,7 +55,7 @@ export class HistoryComponent {
 
     pages = Observable.combineLatest(this.transactionHistoryApi.count$, this.current, (count, current) => {
 
-        const totalPage: number = Math.ceil(count / 15);
+        const totalPage: number = Math.ceil(count / this.pageSize$.value);
 
         const pages: IPage[] = [];
         if (totalPage > 0) {
