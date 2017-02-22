@@ -37,47 +37,18 @@ export class Paging<T> {
 
     pages$ = this.count$.combineLatest(this.currentPage$, (count, current) => {
         const totalPage = this.TotalPage;
-        const pages: IPage[] = [];
+        let pages: IPage[] = [];
         if (totalPage < 1) {
             return pages;
         }
-
-
         pages.push({ page: 1, title: 'First' });
-        pages.push({ page: current - 1, title: 'Previous' });
-
-        // 
-        if (current > 1) {
-            pages.push({ page: 1, title: '1' });
-            if (current > 2) {
-                pages.push({ page: -1, title: '...' });
-            }
-            pages.push({ page: current - 1, title: `${current - 1}` });
-        }
-
-        pages.push({ page: current, title: `${current}` });
-
-        // 
-        if (current > 2 && current < totalPage - 2) {
-            pages.push({ page: current + 1, title: `${current + 1}` });
-            if (current < totalPage - 3) {
-                pages.push({ page: -1, title: '...' });
-            }
-        }
-
-        if (totalPage > current - 1) {
-            pages.push({ page: totalPage - 1, title: `${totalPage - 1}` });
-        }
-
-        if ((current + 1) < totalPage) {
-            pages.push({ page: current + 1, title: 'Next' });
-        }
-
+        pages = pages.concat(this.makePageRange(1, current, current - 1));
+        pages = pages.concat(this.makePageRange(current + 1, totalPage, current + 1));
         pages.push({ page: totalPage, title: 'Last' });
         return pages;
     });
 
-    info$ = this.currentPage$.map(c => `Hiển thị ${this.pageSize$.value} GD từ số ${c * this.pageSize$.value + 1} đến số ${(c + 1) * this.pageSize$.value}`);
+    info$ = this.currentPage$.map(c => `Hiển thị ${this.pageSize$.value} GD từ số ${(c - 1) * this.pageSize$.value + 1} đến số ${c * this.pageSize$.value}`);
 
     MoveToPage(page: number) {
         if (page <= this.TotalPage && page >= 0) {
@@ -85,6 +56,32 @@ export class Paging<T> {
             return true;
         }
         return false;
+    }
+
+    private newPage(page: number) {
+        const p: IPage = { page: page, title: `${page}` };
+        return p;
+    }
+
+    // make page exclusive
+    private makePageRange(from: number, to: number, near: number) {
+        const pages: IPage[] = [];
+        if (from > to) {
+            return pages;
+        }
+        if (from == to) {
+            pages.push(this.newPage(from));
+            return pages;
+        }
+        if (from + 1 == to) {
+            pages.push(this.newPage(from));
+            pages.push(this.newPage(to));
+            return pages;
+        }
+        pages.push(this.newPage(from));
+        pages.push({ page: near, title: '...' });
+        pages.push(this.newPage(to));
+        return pages;
     }
 
 }
