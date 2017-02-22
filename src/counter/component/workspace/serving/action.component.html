@@ -1,19 +1,19 @@
-<button class="hl-button" (click)="Next()" [ngClass]="{'hidden': auto | async}" translate>
+<button class="hl-btn-counter" (click)="Next()" [ngClass]="{'hidden': auto | async}" translate>
     NEXT
 </button>
-<button class="hl-button danger" (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
+<button class="hl-btn-counter danger" (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
     AUTO_NEXT
 </button>
-<button class="hl-button" (click)="Recall()" translate> 
+<button class="hl-btn-counter" (click)="Recall()" translate> 
     RECALL
 </button>
-<button class="hl-button" (click)="Move()" translate> 
+<button class="hl-btn-counter" (click)="Move()" translate> 
     MOVE
 </button>
-<button class="hl-button" (click)="Miss()" translate>
+<button class="hl-btn-counter" (click)="Miss()" translate>
     MISS
 </button>
-<button class="hl-button danger" (click)="Finish()" translate>
+<button class="hl-btn-counter danger" (click)="Finish()" translate>
     FINISH
 </button>
 
