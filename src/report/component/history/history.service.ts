@@ -16,24 +16,13 @@ export class TransactionHistoryApi {
         private filterService: ReportFilterService
     ) { }
 
-    private paging = new Paging<ITransactionView>();
-
-    get Paging() {
-        return this.paging;
-    }
-
-    Refresh(filter: ReportFilter) {
-        this.api.Get<IHistory>("read", this.makeQuery(filter)).subscribe(v => {
-            this.paging.SetData(v.data);
-            this.paging.SetCount(v.total);
-        });
-    }
-
-    private makeQuery(filter: ReportFilter) {
-        return Object.assign({
-            skip: this.paging.Skip,
-            limit: this.paging.Limit,
+    GetHistory(filter: ReportFilter, skip: number, limit: number) {
+        const query = Object.assign({
+            skip: skip,
+            limit: limit,
         }, filter.ToBackendQuery());
+
+        return this.api.Get<IHistory>("read", query);
     }
 
     ExportHistory(filter: ReportFilter) {
