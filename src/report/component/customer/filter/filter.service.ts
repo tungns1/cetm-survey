@@ -36,12 +36,12 @@ export class CustomerAPI {
         return Object.assign({
             skip: (this.currentPage$.value - 1) * this.pageSize$.value,
             limit: this.pageSize$.value,
-            id: id
+            id_customer: id
         }, filter.ToBackendQuery());
     }
     private makeQueryAgg(filter: ReportFilter, id: string) {
         return Object.assign({
-            id: id,
+            id_customer: id,
         }, filter.ToBackendQueryCustomer());
     }
 

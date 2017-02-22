@@ -15,13 +15,13 @@ export class ReportFilterComponent {
         private customerApi: CustomerAPI,
     ) { }
 
-    id_user: string = '';
+    id_customer: string = '';
     Search() {
         this.filterService.ExclusiveSubscribe(filter => {
-            this.customerApi.Search_History(filter, this.id_user);
+            this.customerApi.Search_History(filter, this.id_customer);
         });
          this.filterService.ExclusiveSubscribe(filter => {
-            this.customerApi.Search_Agg(filter, this.id_user);
+            this.customerApi.Search_Agg(filter, this.id_customer);
         });
     }
 
