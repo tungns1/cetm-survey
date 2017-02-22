@@ -11,16 +11,17 @@ export class Paging<T> {
     currentPage$ = new BehaviorSubject<number>(1);
     pageSize$ = new BehaviorSubject<number>(20);
 
-    SetData(data: T[]) {
+    Reset(data: T[], count: number) {
         this.data$.next(data);
-    }
-
-    SetCount(count: number) {
         this.count$.next(count);
     }
 
     get Skip() {
-        return (this.currentPage$.value - 1) * this.pageSize$.value;
+        return this.SkipForPage(this.currentPage$.value);
+    }
+
+    SkipForPage(page: number) {
+        return (page - 1) * this.pageSize$.value;
     }
 
     get Limit() {
@@ -50,7 +51,7 @@ export class Paging<T> {
 
     info$ = this.currentPage$.map(c => `Hiển thị ${this.pageSize$.value} GD từ số ${(c - 1) * this.pageSize$.value + 1} đến số ${c * this.pageSize$.value}`);
 
-    MoveToPage(page: number) {
+    SetPage(page: number) {
         if (page <= this.TotalPage && page >= 0) {
             this.currentPage$.next(page);
             return true;

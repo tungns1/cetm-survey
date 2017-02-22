@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ITransactionView } from '../../model';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/Observable/combineLatest';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { ReportFilterService } from '../../service/';
+import { ReportFilterService, ReportFilter } from '../../service/';
 import { TransactionHistoryApi } from './history.service';
+import { Paging } from './paging.service';
+
 
 @Component({
     selector: 'history',
@@ -18,21 +16,22 @@ export class HistoryComponent {
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
-    paging = this.transactionHistoryApi.Paging;
+    paging = new Paging<ITransactionView>();
 
     ngOnInit() {
-        this.Refresh();
-    }
-
-    Refresh() {
         this.filterService.ExclusiveSubscribe(filter => {
-            this.transactionHistoryApi.Refresh(filter);
+            this.chuyenTrang(1);
         });
     }
 
     chuyenTrang(page: number) {
-        this.paging.MoveToPage(page);
-        this.transactionHistoryApi.Refresh(this.filterService.Current);
+        const skip = this.paging.SkipForPage(page);
+        const limit = this.paging.Limit;
+        this.transactionHistoryApi.GetHistory(this.filterService.Current, skip, limit)
+            .subscribe(v => {
+                this.paging.SetPage(page);
+                this.paging.Reset(v.data, v.total);
+            });
     }
 
     excel() {
