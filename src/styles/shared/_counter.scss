@@ -267,6 +267,23 @@
      border: 1px solid #fff;
  }
  
+ .hl-btn-counter {
+     color: #ffffff;
+     font-size: 14px;
+     text-align: center;
+     margin: 5px 10px;
+     height: 40px;
+     opacity: 0.9;
+     cursor: pointer;
+     background-color: #0b8fdb;
+     border: 1px solid #fff;
+     border-radius: 5px;
+     flex: 1 1 120px;
+     text-transform: uppercase;
+     align-content: space-around;
+     width: 160px;
+ }
+ 
  .hl-button {
      color: #ffffff;
      font-size: 14px;
@@ -281,19 +298,19 @@
      align-content: space-around;
  }
  
- .button-counter:hover {
+ .hl-btn-counter:hover {
      opacity: 1;
  }
  
- .button-counter.warn {
+ .hl-btn-counter.warn {
      background-color: #f39207;
  }
  
- .button-counter.danger {
+ .hl-btn-counter.danger {
      background-color: #f63e30;
  }
  
- .button-counter.hidden {
+ .hl-btn-counter.hidden {
      display: none;
  }
  
