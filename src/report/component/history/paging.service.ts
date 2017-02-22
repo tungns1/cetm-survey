@@ -28,7 +28,7 @@ export class Paging<T> {
     }
 
     get TotalPage() {
-        return Math.ceil(this.count$.value / this.pageSize$.value);
+        return Math.ceil(this.count$.value * 1.0 / this.pageSize$.value);
     }
 
     IsActive(p: IPage) {
@@ -73,7 +73,7 @@ export class Paging<T> {
             pages.push({ page: current + 1, title: 'Next' });
         }
 
-        pages.push({ page: totalPage - 1, title: 'Last' });
+        pages.push({ page: totalPage, title: 'Last' });
         return pages;
     });
 

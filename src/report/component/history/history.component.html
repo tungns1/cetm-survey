@@ -30,8 +30,9 @@
                     <td class="td-date-rp"> {{d.wtime}} </td>
                     <td class="td-date-rp"> {{d.stime}} </td>
                     <td class="td-number-rp">{{d.rating}}</td>
-                    <td class="td-number-rp"><i class="fa fa-eye" aria-hidden="true" (click)="Detail(d)" style="cursor: pointer;"></i><i class="fa fa-volume-down" aria-hidden="true" style="margin-left: 15px;cursor: pointer;" (click)="Listen(d)" *ngIf="!d.check"></i><i class="fa fa-pause"
-                            aria-hidden="true" style="margin-left: 15px;cursor: pointer;" (click)="Pause(d)" *ngIf="d.check"></i></td>
+                    <td class="td-number-rp">
+                        <i class="fa fa-eye pointer" (click)="detail.SetData(d)"></i> &nbsp;
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -51,75 +52,5 @@
 <div class="hl-exportf-history">
     <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
-<!--
-<modal #detail>
 
-    <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
-    <div *ngIf="ts" style="text-align: center;">
-        <div style="float: left;border: 1px solid gray;">
-            <div style="float: left;">
-                <span translate> HISTORY.TICKET_NUMBER </span><br>
-                <span translate> HISTORY.SERVICE </span><br>
-                <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
-                <span translate> HISTORY.TIME_WAIT</span><br>
-                <span translate> HISTORY.TIME_SERVING</span><br>
-                <span translate> HISTORY.DATE</span><br>
-            </div>
-            <div style="float: left;margin-left: 10px;">
-                <span>{{ts.cnum}}</span><br>
-                <span>{{ts.service}}</span><br>
-                <span>{{ts.ctime}}</span><br>
-                <span>{{ts.wtime}}</span><br>
-                <span>{{ts.stime}}</span><br>
-                <span>{{ts.cdate}}</span><br>
-            </div>
-
-
-        </div>
-
-        <div style="float: left;border: 1px solid gray; margin-left: 20px;">
-            <div style="float: left">
-                <span translate> HISTORY.BRANCH </span><br>
-                <span translate> HISTORY.TRANSACTION_ROOM </span><br>
-                <span translate> HISTORY.TELLERS</span><br>
-                <span translate> HISTORY.COUNTER</span><br>
-                <span translate> HISTORY.MANAGER</span><br>
-                <span translate> HISTORY.ADMIN</span><br>
-            </div>
-            <div style="float: left;margin-left: 10px;">
-                <span>{{ts.branch}}</span><br>
-                <span>{{ts.branch}}</span><br>
-                <span>{{ts.user}}</span><br>
-                <span>{{ts.counter}}</span><br>
-                <span>{{ts.stime}}</span><br>
-                <span>{{ts.cdate}}</span><br>
-            </div>
-
-        </div>
-    </div>
-    <div style="text-align: center;">
-        <div>
-            <div style="float: left;">
-                <span translate> HISTORY.CUSTOMER</span><br>
-                <span translate> HISTORY.PHONE</span><br>
-                <span translate> HISTORY.ID</span><br>
-                <span translate> HISTORY.SEGMENT</span><br>
-            </div>
-            <div style="float: left;margin-left: 20px;">
-                <span> </span><br>
-                <span> </span><br>
-                <span> </span><br>
-                <span> </span><br>
-            </div>
-        </div>
-        <audio controls>
-        <source [src]="url_audio" type="audio/ogg">
-        <source [src]="url_audio" type="audio/mpeg">
-        Your browser does not support the audio element.
-        </audio>
-    </div>
-    <div style="float:right;">
-        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
-    </div>
-
-</modal>-->
+<transaction #detail></transaction>
