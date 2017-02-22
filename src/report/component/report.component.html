@@ -6,7 +6,7 @@
 <br>
 <br>
 <div class="container" style="height:100vh;">
-    <div class="aside" *ngIf="show">
+    <div class="aside">
         <report-filter *ngIf="hidden" style="padding-top: 50px;"></report-filter>
         <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
         <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
@@ -14,9 +14,9 @@
     <div class="main">
         <div style="height: 50px;">
             <div style="float: right; margin-top: 5px; margin-right: 20px;">
-                <a class="hl-bt-report btpointer" routerLink="/dashboard" preserveQueryParams preserveFragment routerLinkActive="active" (click)="Show()" translate>BUTTON_GENERAL</a>
-                <a class="hl-bt-report btpointer" routerLink="/history" preserveQueryParams preserveFragment routerLinkActive="active" (click)="Show()" translate>BUTTON_HISTORY</a>
-                <a class="hl-bt-report btpointer" routerLink="/customer" preserveQueryParams preserveFragment routerLinkActive="active" (click)="Hiden()" translate>BUTTON_CUSTOMER</a>
+                <a class="hl-bt-report btpointer" routerLink="/dashboard" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_GENERAL</a>
+                <a class="hl-bt-report btpointer" routerLink="/history" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_HISTORY</a>
+                <a class="hl-bt-report btpointer" routerLink="/customer" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_CUSTOMER</a>
             </div>
         </div>
 

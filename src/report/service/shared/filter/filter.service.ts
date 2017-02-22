@@ -32,6 +32,11 @@ export class ReportFilter extends Model.SharedModel.AbstractState {
             this.Period.ToBackendQuery()
         )
     }
+    ToBackendQueryCustomer() {
+        return Object.assign({},
+            this.Period.ToBackendQuery()
+        )
+    }
 }
 
 @Injectable()

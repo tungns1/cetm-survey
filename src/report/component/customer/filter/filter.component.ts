@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Aggregate, AggregateService } from '../../shared/';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ReportFilterService } from '../../../service/';
+import { CustomerAPI } from './filter.service';
+
 
 @Component({
     selector: 'report-filter',
@@ -7,23 +11,18 @@ import { Aggregate, AggregateService } from '../../shared/';
 })
 export class ReportFilterComponent {
     constructor(
-        private aggregateService: AggregateService
+        private filterService: ReportFilterService,
+        private customerApi: CustomerAPI,
     ) { }
 
-    data: Aggregate;
-
-    ngOnInit() {
-        this.aggregateService.RxSummaryView.subscribe(v => {
-            this.data = v;
-            console.log(v);
-        })
-    }
-
-    ngOnDestroy() {
-
-    }
-    Search(value:string){
-        
+    id_user: string = '';
+    Search() {
+        this.filterService.ExclusiveSubscribe(filter => {
+            this.customerApi.Search_History(filter, this.id_user);
+        });
+         this.filterService.ExclusiveSubscribe(filter => {
+            this.customerApi.Search_Agg(filter, this.id_user);
+        });
     }
 
 

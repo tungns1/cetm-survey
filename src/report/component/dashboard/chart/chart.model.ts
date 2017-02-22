@@ -1,8 +1,8 @@
 import { SharedService } from '../../shared';
-
-import { Item } from '../chart/d3/chart';
+import { Item } from '../../../../x/ng/d3/chart';
 
 export interface ChartItem extends Item {
+
     tab: string;
     title?: string;
     key_title: string;
