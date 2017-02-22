@@ -48,8 +48,7 @@ export class CustomerAPI {
     private toTransactionView(t: ITransaction) {
         var res = <ITransactionView>t;
         // name
-        res.check = false;
-        res.branches = this.GetTreeNames(res.branch_id);
+        // res.branches = this.GetTreeNames(res.branch_id);
         return res;
     }
 
