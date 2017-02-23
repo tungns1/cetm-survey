@@ -7,9 +7,14 @@
 <br>
 <div class="container" style="height:100vh;">
     <div class="aside">
+
+        <!--<i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
+        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>-->
+        <div class="hl-asidehead-filter">
+            <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
+            <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
+        </div>
         <report-filter *ngIf="hidden" style="padding-top: 50px;"></report-filter>
-        <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
-        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
     </div>
     <div class="main">
         <div style="height: 50px;">
