@@ -45,5 +45,11 @@
     "CONTENT_MOVE_TICKET_WAITTING_OR_MISS": "Bạn phải chọn quầy",
     "RECALL_MISS": "Bạn phải kết thúc vé đang thực hiện",
     "NOT_FOUND_TICKET": "Không tìm thấy vé",
-    "SEARCHING_TICKET": "Đang tìm vé"
+    "SEARCHING_TICKET": "Đang tìm vé",
+    "STATE_UNKNOWN": "Unknown",
+    "STATE_WAITING": "Waiting",
+    "STATE_SERVING": "Serving",
+    "STATE_MISSED": "Missed",
+    "STATE_FINISHED": "Finished",
+    "STATE_CANCELLED": "Cancelled"
 }

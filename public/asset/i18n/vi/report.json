@@ -105,12 +105,6 @@
     "STACK_CHART": "Biểu đồ cột xếp",
     "PIE_CHART": "Biểu đồ tròn",
     "SHOW_FILTER": "Hiển thị bộ lọc",
-    "HIDDEN_FILTER": "Đóng bộ lọc",
-    "STATE_UNKNOWN": "Unknown",
-    "STATE_WAITING": "Waiting",
-    "STATE_SERVING": "Serving",
-    "STATE_MISSED": "Missed",
-    "STATE_FINISHED": "Finished",
-    "STATE_CANCELLED": "Cancelled"
+    "HIDDEN_FILTER": "Đóng bộ lọc"
 
 }

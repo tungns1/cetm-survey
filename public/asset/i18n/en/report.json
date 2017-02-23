@@ -79,11 +79,5 @@
     "LINE_CHART": "Line Graph",
     "COLUMN_CHART": "Column Chart",
     "STACK_CHART": "Stacked Chart",
-    "PIE_CHART": "Pie Chart",
-    "STATE_UNKNOWN": "Unknown",
-    "STATE_WAITING": "Waiting",
-    "STATE_SERVING": "Serving",
-    "STATE_MISSED": "Missed",
-    "STATE_FINISHED": "Finished",
-    "STATE_CANCELLED": "Cancelled"
+    "PIE_CHART": "Pie Chart"
 }

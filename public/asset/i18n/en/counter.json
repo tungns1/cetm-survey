@@ -47,5 +47,11 @@
     "TITLE_MODAL": "Unsuccess",
     "CONTENT_MOVE_TICKET_SERVING": "Please, select counter or service",
     "CONTENT_MOVE_TICKET_WAITTING_OR_MISS": "Please, select counter",
-    "RECALL_MISS": "Please, finish current ticket"
+    "RECALL_MISS": "Please, finish current ticket",
+    "STATE_UNKNOWN": "Unknown",
+    "STATE_WAITING": "Waiting",
+    "STATE_SERVING": "Serving",
+    "STATE_MISSED": "Missed",
+    "STATE_FINISHED": "Finished",
+    "STATE_CANCELLED": "Cancelled"
 }

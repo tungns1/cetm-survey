@@ -20,7 +20,7 @@
             <div style="height:100px;overflow: auto;">
                 <div class="hl-table-row-missed" *ngFor="let t of ticket.tracks">
                     <div> {{t.mtime | localDayTime}} </div>
-                    <div> {{t | ticketState}} </div>
+                    <div translate> {{t | ticketState}} </div>
                     <div title="t | ticketServiceName"> {{t | ticketServiceName}} </div>
                 </div>
             </div>
