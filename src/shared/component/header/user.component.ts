@@ -19,12 +19,15 @@ export class UserComponent {
         this.username = this.authService.RxMySetting.map(d => d.me.fullname);
     }
 
-    username= this.authService.RxMySetting.map(d => d.me.fullname)
+    username = this.authService.RxMySetting.map(d => d.me.fullname)
 
     Logout() {
         this.authService.Logout();
     }
-
+   onBLur() {
+        
+       document.getElementById("myMenudrop").style.visibility = "hidden"
+   }
     hidden = true;
 
     Refresh() {
@@ -32,8 +35,8 @@ export class UserComponent {
             window.location.reload();
         }, 200);
     }
-   
-    
+
+
     //  myFunction() {
     //     document.getElementById("myDropdown").classList.toggle("show");
     // }
