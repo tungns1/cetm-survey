@@ -103,11 +103,11 @@
             <div>
                 <div class="hl-ct-sum">
                     <span translate>GENERAL.TOTAL_TIME_WAIT</span>
-                    <span *ngIf="data.s_tt>0" class="hl-thoigian">{{(data.s_tt-data.s_st) | timeDuration}}&nbsp; ({{(data.s_tt-data.s_st)/data.s_tt*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.s_tt>0" class="hl-thoigian">{{(data.s_wt) | timeDuration}}&nbsp; ({{(data.s_wt)/data.s_tt*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.s_tt>0">
-                        <div class="hl-tg-sum" [style.width]="''+(data.s_tt-data.s_st)/data.s_tt*100+'%'">
+                        <div class="hl-tg-sum" [style.width]="''+(data.s_wt)/data.s_tt*100+'%'">
 
                         </div>
                     </div>

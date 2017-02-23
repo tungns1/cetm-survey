@@ -144,7 +144,7 @@ export class Aggregate {
     }
 
     get c_r_o() {
-        return this.c_t - this.c_r;
+        return this.c_ft - this.c_r;
     }
 
     get c_r() {
