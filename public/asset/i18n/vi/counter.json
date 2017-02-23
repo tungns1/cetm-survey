@@ -46,10 +46,10 @@
     "RECALL_MISS": "Bạn phải kết thúc vé đang thực hiện",
     "NOT_FOUND_TICKET": "Không tìm thấy vé",
     "SEARCHING_TICKET": "Đang tìm vé",
-    "STATE_UNKNOWN": "Unknown",
-    "STATE_WAITING": "Waiting",
-    "STATE_SERVING": "Serving",
-    "STATE_MISSED": "Missed",
-    "STATE_FINISHED": "Finished",
-    "STATE_CANCELLED": "Cancelled"
+    "STATE_UNKNOWN": "Không xác định",
+    "STATE_WAITING": "Đang đợi",
+    "STATE_SERVING": "Đang phục vụ",
+    "STATE_MISSED": "Gọi nhỡ",
+    "STATE_FINISHED": "Đã kết thúc",
+    "STATE_CANCELLED": "Đã hủy"
 }

@@ -25,7 +25,6 @@ export class ReportOverViewComponent {
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
     service$ = this.tab$.map(tab => tab === MAIN_TABS.SERVICE.name);
     frequency$ = this.tab$.map(tab => tab === MAIN_TABS.FREQUENCY.name);
-
     data$ = this.aggregateService.ActiveAggregate$;
     groupBy$ = this.aggregateService.groupBy$;
 }
