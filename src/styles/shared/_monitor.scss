@@ -72,3 +72,24 @@
 .table-row {
     font-size: 14px;
 }
+
+.hl-asidehead-filter {
+    text-align: center;
+}
+
+.hl-asidehead-filter:hover {
+    background-color: #FFFAFA;
+}
+
+.hl-dishead-filter {
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 4px 2px 4px 2px;
+    color: #9a9a9a;
+    text-transform: uppercase;
+}
+
+.hl-dishead-filter:hover {
+    color: #333366;
+}

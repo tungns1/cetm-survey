@@ -1,9 +1,16 @@
-<div class="hl-droplabel-user" (click)="hidden=!hidden">
+<div class="hl-droplabel-user" (click)="hidden=!hidden" (blur)="onBLur()">
     <span translate> HELLO</span> {{ username | async}}
-    <i class="fa fa-chevron-circle-down"></i>
+    <i class="fa fa-chevron-circle-down dropbtn"></i>
 </div>
-
-<ul [class.hidden]="hidden" class="hl-dropdown-content-user">
+<!--<div class="dropdown">
+    <i class="fa fa-chevron-circle-down dropbtn" (click)="myFunction()"></i>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="#home"> <i class="fa fa-refresh"></i> <span>REFRESH</span> </a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>-->
+<ul [class.hidden]="hidden" class="hl-dropdown-content-user " #myMenudrop>
     <li class="hl-dropdown-item-user animate" (click)="Refresh()">
         <i class="fa fa-refresh"></i> <span translate>REFRESH</span>
     </li>
@@ -14,6 +21,7 @@
         <i class="fa fa-power-off"></i> <span translate>LOGOUT</span>
     </li>
 </ul>
+
 <div class="modal" *ngIf="setting">
     <div class="dialog hl-dialog-user">
         <user-setting (close)="setting=false"></user-setting>
