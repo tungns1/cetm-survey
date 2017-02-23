@@ -30,7 +30,7 @@ export interface IAggregate {
 }
 
 function Round2Decimal(v: number) {
-    return Math.round(v * 100) / 100;
+    return Math.floor(v * 100) / 100;
 }
 
 export class Aggregate {
