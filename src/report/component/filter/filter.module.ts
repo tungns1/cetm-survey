@@ -8,15 +8,20 @@ import { InsideFilterComponent } from './inside/inside.component';
 import { PeriodFilterComponent } from './period/period.component';
 
 import { filterServiceProvider } from '../shared';
+import { AccordionModule } from '../../../x/ui/accordion/accordion';
+
 
 @NgModule({
-    imports: [SharedModule, DatePickerModule, Branch.BranchModule],
+    imports: [SharedModule, DatePickerModule, Branch.BranchModule, 
+        AccordionModule],
     declarations: [
         InsideFilterComponent,
         PeriodFilterComponent,
         ReportFilterComponent
     ],
-    exports: [ReportFilterComponent],
+    exports: [ReportFilterComponent, 
+              AccordionModule
+    ],
 })
 export class ReportFilterModule {
     static forRoot(): ModuleWithProviders {
