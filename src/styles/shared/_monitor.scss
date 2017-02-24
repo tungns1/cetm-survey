@@ -93,3 +93,76 @@
 .hl-dishead-filter:hover {
     color: #333366;
 }
+
+.hl-table-mn-ck {
+    margin: 1em 0;
+    width: 100%;
+    overflow: hidden;
+    background: #FFF;
+    color: #024457;
+    border-radius: 10px;
+    border: 1px solid #167F92;
+}
+
+.hl-table-mn-cke tr {
+    border: 1px solid #D9E4E6;
+}
+
+.hl-table-mn-ck tr:nth-child(odd) {
+    background-color: #EAF3F3;
+}
+
+.hl-table-mn-ck th {
+    display: none;
+    border: 1px solid #FFF;
+    background-color: #167F92;
+    color: #FFF;
+    padding: 1em;
+}
+
+.hl-table-mn-ck th:first-child {
+    display: table-cell;
+    text-align: center;
+}
+
+.hl-table-mn-ck th:nth-child(2) {
+    display: table-cell;
+}
+
+.hl-table-mn-ck td {
+    display: block;
+    word-wrap: break-word;
+    max-width: 7em;
+}
+
+.hl-table-mn-ck td:first-child {
+    display: table-cell;
+    text-align: left;
+    border-right: 1px solid #D9E4E6;
+}
+
+.hl-table-mn-ck td {
+    border: 1px solid #D9E4E6;
+    text-align: center;
+}
+
+.hl-table-mn-ck th,
+.hl-table-mn-ck td {
+    margin: .5em 1em;
+}
+
+.hl-table-mn-ck th,
+.hl-table-mn-ck td {
+    display: table-cell;
+    padding: 1em;
+}
+
+.hl-table-mn-ck a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #024457;
+}
+
+.hl-table-mn-ck a:hover {
+    color: #006699;
+}
