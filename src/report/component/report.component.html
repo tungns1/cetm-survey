@@ -7,9 +7,11 @@
 <br>
 <div class="container" style="height:100vh;">
     <div class="aside" *ngIf="show">
-        <report-filter *ngIf="hidden" style="padding-top: 50px;"></report-filter>
+        <report-filter [hidden]="!hidden" style="padding-top: 50px;"></report-filter>
+        <!-- <div style="position: absolute; top: 11vh; left: 1vw;"> -->
         <i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
         <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>
+        <!-- </div> -->
     </div>
     <div class="main">
         <div style="height: 50px;">
