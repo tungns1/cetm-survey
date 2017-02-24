@@ -27,5 +27,11 @@
     "SCREEN_TABLE": "Center Screen",
     "KIOSK_TABLE": "Kiosk",
     "LED_TABLE": "Led",
-    "BUTTON_SEND": "DONE"
+    "BUTTON_SEND": "DONE",
+    "STATE_UNKNOWN": "Unknown",
+    "STATE_WAITING": "Waiting",
+    "STATE_SERVING": "Serving",
+    "STATE_MISSED": "Missed",
+    "STATE_FINISHED": "Finished",
+    "STATE_CANCELLED": "Cancelled"
 }

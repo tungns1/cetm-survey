@@ -30,7 +30,7 @@ export interface IAggregate {
 }
 
 function Round2Decimal(v: number) {
-    return Math.round(v * 100) / 100;
+    return Math.floor(v * 100) / 100;
 }
 
 export class Aggregate {
@@ -144,7 +144,7 @@ export class Aggregate {
     }
 
     get c_r_o() {
-        return this.c_t - this.c_r;
+        return this.c_ft - this.c_r;
     }
 
     get c_r() {

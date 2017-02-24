@@ -126,3 +126,18 @@
     cursor: pointer;
     margin-right: 15px;
 }
+
+.dropbtn {
+    background-color: #00688B;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #36648B;
+}

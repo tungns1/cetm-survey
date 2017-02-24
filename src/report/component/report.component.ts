@@ -8,11 +8,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class ReportComponent {
     hidden = true;
-    show=true;
-    Hiden(){
-        this.show=false;
-    }
-    Show(){
-        this.show=true;
-    }
 }

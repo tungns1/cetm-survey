@@ -47,5 +47,11 @@
     "TITLE_MODAL": "Fracasado",
     "CONTENT_MOVE_TICKET_SERVING": "Por favor, seleccione contador o servicio",
     "CONTENT_MOVE_TICKET_WAITTING_OR_MISS": "Por favor, seleccione contador",
-    "RECALL_MISS": "Por favor, termine el boleto actual"
+    "RECALL_MISS": "Por favor, termine el boleto actual",
+    "STATE_UNKNOWN": "Unknown",
+    "STATE_WAITING": "Waiting",
+    "STATE_SERVING": "Serving",
+    "STATE_MISSED": "Missed",
+    "STATE_FINISHED": "Finished",
+    "STATE_CANCELLED": "Cancelled"
 }

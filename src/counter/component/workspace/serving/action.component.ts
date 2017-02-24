@@ -27,7 +27,7 @@ export class ActionComponent {
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(Ng.ModalComponent) needFeedback: Ng.ModalComponent;
-
+  
 
     ngAfterViewInit() {
         this.dialog.close.subscribe(() => {
@@ -37,7 +37,7 @@ export class ActionComponent {
 
     Move() {
         this.ticketService.CheckFeedbackDone().subscribe(t => {
-            if (t) {
+            if (t && t.length > 0) {
                 this.moveDialog = true;
                 this.dialog.SetTicket(t[0]);
             }

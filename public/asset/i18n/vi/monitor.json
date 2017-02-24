@@ -29,5 +29,11 @@
     "LED_TABLE": "Led",
     "BUTTON_SEND": "XEM",
     "SHOW_FILTER": "Hiển thị bộ lọc",
-    "HIDDEN_FILTER": "Đóng bộ lọc"
+    "HIDDEN_FILTER": "Đóng bộ lọc",
+    "STATE_UNKNOWN": "Không xác định",
+    "STATE_WAITING": "Đang đợi",
+    "STATE_SERVING": "Đang phục vụ",
+    "STATE_MISSED": "Gọi nhỡ",
+    "STATE_FINISHED": "Đã kết thúc",
+    "STATE_CANCELLED": "Đã hủy"
 }

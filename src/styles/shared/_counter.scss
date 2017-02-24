@@ -143,6 +143,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
+     background-color: whitesmoke;
  }
  
  .hl-title-missed>div {
@@ -247,6 +248,42 @@
      border-right: 0.5px solid #cccccc;
  }
  
+ :host {
+     display: flex;
+     flex-flow: row wrap;
+     align-content: space-between;
+ }
+ 
+ .button-counter {
+     width: 130px;
+     height: 40px;
+     border-radius: 5px;
+     line-height: 30px;
+     background-color: #0b8fdb;
+     cursor: pointer;
+     text-transform: uppercase;
+     color: #fff;
+     margin: 0px 0px 0px 10px;
+     border: 1px solid #fff;
+ }
+ 
+ .hl-btn-counter {
+     color: #ffffff;
+     font-size: 14px;
+     text-align: center;
+     margin: 5px 8px;
+     height: 40px;
+     opacity: 0.9;
+     cursor: pointer;
+     background-color: #0b8fdb;
+     border: 1px solid #fff;
+     border-radius: 5px;
+     flex: 1 1 120px;
+     text-transform: uppercase;
+     align-content: space-around;
+     width: 180px;
+ }
+ 
  .hl-button {
      color: #ffffff;
      font-size: 14px;
@@ -261,25 +298,19 @@
      align-content: space-around;
  }
  
- .hl-button:hover {
+ .hl-btn-counter:hover {
      opacity: 1;
  }
  
- .hl-button.warn {
+ .hl-btn-counter.warn {
      background-color: #f39207;
  }
  
- .hl-button.danger {
+ .hl-btn-counter.danger {
      background-color: #f63e30;
  }
  
- :host {
-     display: flex;
-     flex-flow: row wrap;
-     align-content: space-between;
- }
- 
- .hl-button.hidden {
+ .hl-btn-counter.hidden {
      display: none;
  }
  
