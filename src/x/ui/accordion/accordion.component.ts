@@ -24,7 +24,6 @@ export class AccordionTitleComponent {
 export class AccordionComponent {
 	
 	isHidden = true;
-
 	@Input() isOpen : boolean;
 	ngOnInit() {
 		if(this.isOpen) {
