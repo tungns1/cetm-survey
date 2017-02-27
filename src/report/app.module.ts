@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { Branch, SharedService } from './shared/';
 import { BaseAppModule } from './shared/';
 import { routing } from './app.routing';
@@ -12,7 +13,8 @@ const appState = new SharedService.AppState(appName);
 
 @NgModule({
   imports: [
-    BaseAppModule, routing, ReportFilterModule
+    BaseAppModule, routing, ReportFilterModule,
+    FlexLayoutModule.forRoot(),
   ],
   declarations: [AppComponent, ReportComponent],
   providers: [appState.toProvider(), reportServiceProvider],
