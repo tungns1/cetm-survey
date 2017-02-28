@@ -1,11 +1,7 @@
 <table class="table" *ngIf="store$ | async">
     <thead>
-        <th translate> {{groupTitle | async}} </th>
-        <th translate> GENERAL.TOTAL_TRANSACTION </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+        <th translate>Tên cửa hàng</th>
+        <th translate> Lượt giao dịch </th>
     </thead>
     <tbody class="table-row">
         <tr>
@@ -16,16 +12,31 @@
 
 <table class="table" *ngIf="time$ | async">
     <thead>
-        <th translate> {{groupTitle | async}} </th>
-        <th translate> GENERAL.TOTAL_TRANSACTION </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+        <th translate> CUSTOMER.TOTAL_TRANSACTION </th>
+        <th translate> CUSTOMER.TRANSACTION_HAVE_WAIT_STANDARD </th>
+        <th translate> CUSTOMER.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
+        <th translate> CUSTOMER.TRANSACTION_HAVE_SERVING_STANDARD </th>
+        <th translate> CUSTOMER.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
     </thead>
     <tbody class="table-row">
-        <tr>
-
+        <tr *ngFor="let d of data$ | async">
+            <td> {{d.c_t}} </td>
+            <td>
+                <div class="hl-numrp-align"> {{d.c_bwt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0">0.00%</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align"> {{d.s_wt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{(d.s_wt)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align"> {{d.c_bst}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align"> {{d.s_st}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{(d.s_st)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></div>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -33,16 +44,13 @@
 
 <table class="table" *ngIf="service$ | async">
     <thead>
-        <th translate> {{groupTitle | async}} </th>
-        <th translate> GENERAL.TOTAL_TRANSACTION </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+        <th translate> Tên dịch vụ </th>
+        <th translate> Lượt giao dịch </th>
     </thead>
     <tbody class="table-row">
-        <tr>
-
+        <tr *ngFor="let d of data$ | async">
+            <td></td>
+            <td></td>
         </tr>
     </tbody>
 </table>
@@ -50,12 +58,8 @@
 
 <table class="table" *ngIf="frequency$ | async">
     <thead>
-        <th translate> {{groupTitle | async}} </th>
-        <th translate> GENERAL.TOTAL_TRANSACTION </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+        <th translate> Tháng </th>
+        <th translate> Lượt giao dịch </th>
     </thead>
     <tbody class="table-row">
         <tr>

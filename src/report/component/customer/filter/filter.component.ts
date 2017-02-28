@@ -2,7 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Aggregate, AggregateService } from '../../shared/';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ReportFilterService } from '../../../service/';
-import { CustomerAPI } from './filter.service';
+import { CustomerAPI } from '../service/customer.service';
 
 
 @Component({
@@ -11,18 +11,12 @@ import { CustomerAPI } from './filter.service';
 })
 export class ReportFilterComponent {
     constructor(
-        private filterService: ReportFilterService,
         private customerApi: CustomerAPI,
     ) { }
 
     id_customer: string = '';
     Search() {
-        this.filterService.ExclusiveSubscribe(filter => {
-            this.customerApi.Search_History(filter, this.id_customer);
-        });
-         this.filterService.ExclusiveSubscribe(filter => {
-            this.customerApi.Search_Agg(filter, this.id_customer);
-        });
+       this.customerApi.Search(this.id_customer);
     }
 
 

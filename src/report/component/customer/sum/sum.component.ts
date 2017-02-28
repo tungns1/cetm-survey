@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Aggregate, AggregateService } from '../../shared/';
+import { Customer } from '../../shared/';
+import { CustomerAPI } from '../service/customer.service';
 
 @Component({
     selector: 'report-sum',
@@ -7,13 +8,13 @@ import { Aggregate, AggregateService } from '../../shared/';
 })
 export class ReportSumComponent {
     constructor(
-        private aggregateService: AggregateService
+        private customerAPI: CustomerAPI
     ) { }
 
-    data: Aggregate;
+    data: Customer;
 
     ngOnInit() {
-        this.aggregateService.RxSummaryView.subscribe(v => {
+        this.customerAPI.RxSummaryView.subscribe(v => {
             this.data = v;
             console.log(v);
         })

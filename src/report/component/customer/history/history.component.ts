@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { ITransactionView } from '../../model';
-import { ReportFilterService, ReportFilter } from '../../service/';
-import { TransactionHistoryApi } from './history.service';
-import { Paging } from '../../shared/paging.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { ITransactionView } from '../../../model';
+import { ReportFilterService, ReportFilter } from '../../../service/';
+import { Paging} from '../../../shared/paging.service';
+import { CustomerAPI} from '../service/customer.service';
 
 
 @Component({
     selector: 'history',
-    templateUrl: 'history.component.html',
-    styleUrls: ['history.component.css']
+    templateUrl: 'history.component.html'
 })
+
 export class HistoryComponent {
     constructor(
         private filterService: ReportFilterService,
-        private transactionHistoryApi: TransactionHistoryApi
+        private customerAPI: CustomerAPI
     ) { }
-
+    @Input() customer: string;
     paging = new Paging<ITransactionView>();
 
     ngOnInit() {
@@ -23,19 +23,19 @@ export class HistoryComponent {
             this.chuyenTrang(1);
         });
     }
-
     chuyenTrang(page: number) {
         const skip = this.paging.SkipForPage(page);
         const limit = this.paging.Limit;
-        this.transactionHistoryApi.GetHistory(this.filterService.Current, skip, limit)
+        this.customerAPI.GetHistory(this.filterService.Current, skip, limit, this.customer)
             .subscribe(v => {
                 this.paging.SetPage(page);
                 this.paging.Reset(v.data, v.total);
             });
     }
 
+
     excel() {
-        this.transactionHistoryApi.ExportHistory(this.filterService.Current);
+        this.customerAPI.ExportHistory(this.filterService.Current);
     }
 
 }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CustomerAPI } from './service/customer.service';
+
 import {
     CustomerComponent
 } from './customer.component';
@@ -20,14 +22,16 @@ import { ReportOverviewModule } from './overview/overview.module';
 import { ReportChartModule } from './chart/chart.module';
 import { ReportTabComponent } from './tab/tab.component';
 import { ReportInfoModule } from './info/info.module'
+import { ReportHistoryModule } from './history/history.module'
 
 @NgModule({
     imports: [
-        routing, ReportSumModule, ReportOverviewModule, ReportChartModule,ReportInfoModule,ReportFilterModule,
+        routing, ReportSumModule, ReportOverviewModule, ReportChartModule, ReportInfoModule, ReportFilterModule, ReportHistoryModule,
         CommonModule, SharedService.I18n.TranslateModule],
     declarations: [
         CustomerComponent, ReportTabComponent
-    ]
+    ],
+    providers: [CustomerAPI],
 })
 export class ReportCustomerModule {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITransactionView, Lib, SharedService } from '../shared';
+import { ITransactionView, Lib, SharedService } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({

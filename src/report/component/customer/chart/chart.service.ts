@@ -1,7 +1,7 @@
 import { ChartItem, MainItems, PieItems } from './chart.model';
 
 import { timeParse } from 'd3-time-format';
-import { MakeIndexBy, Aggregate } from '../../shared';
+import { MakeIndexBy, Customer } from '../../shared';
 
 const timeDay = timeParse("%Y-%m-%d");
 const timeWeek = timeParse("W%Y-%W");
@@ -15,19 +15,19 @@ const TimeParse = {
     year: timeYear
 }
 
-import { AggregateService, Lib } from '../../shared';
+import { CustomerAPI } from '../service/customer.service';
 
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ChartService {
     constructor(
-        private aggregateService: AggregateService
+        private customerAPI: CustomerAPI
     ) { }
 
-    private RxAggregate = this.aggregateService.RxAggregate;
+    private RxCustomer = this.customerAPI.RxCustomer;
 
-    RxAggregateByTime = this.RxAggregate.map(records => {
+    RxCustomerByTime = this.RxCustomer.map(records => {
         const views = MakeIndexBy(records, 'ctime');
         const parseTime = TimeParse[this.RxPeriod.value];
         // views.sort((a, b) => a.time > b.time ? 1 : -1);
@@ -39,8 +39,8 @@ export class ChartService {
     });
 
     get RxSummaryView() {
-        return this.RxAggregate.map(Aggregate.Make);
+        return this.RxCustomer.map(Customer.Make);
     };
 
-    RxPeriod = this.aggregateService.period$;
+    RxPeriod = this.customerAPI.period$;
 }
