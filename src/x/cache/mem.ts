@@ -30,5 +30,10 @@ export class MemCache<T extends ID> {
         });
     }
 
+    GetName(id: string, field: string) {
+        const o = this.GetByID(id);
+        return o? (o[field] || this.NotApplicable) : this.NotApplicable;
+    }
+
     NotApplicable = "n/a";
 }

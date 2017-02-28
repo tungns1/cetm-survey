@@ -59,6 +59,19 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractState {
         return GROUP_BYS.BRANCH_ID
     }
 
+    GetActiveID() {
+        if (this.counter_id.length > 0) {
+            return this.counter_id.valueOf();
+        }
+        if (this.user_id.length > 0) {
+            return this.user_id.valueOf();
+        }
+        if (this.service_id.length > 0) {
+            return this.service_id.valueOf();
+        }
+        return [];
+    }
+
     private service_id: Model.SharedModel.IDList;
     private user_id: Model.SharedModel.IDList;
     private counter_id: Model.SharedModel.IDList;
