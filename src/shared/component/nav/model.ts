@@ -20,18 +20,24 @@ const settingMenu = [
     { app: 'admin', href: "/org/user", name: "USER", icon: "fa-user" },
 ]
 
+const reportMenu: Item[] = [
+    {app: 'report', href: '/dashboard', name: 'BUTTON_GENERAL'},
+    {app: 'report', href: '/history', name: 'BUTTON_HISTORY'},
+    {app: 'report', href: '/customer', name: 'BUTTON_CUSTOMER'},
+]
 
-export const AdminMenu: Item[] = [
+
+export const TopNavMenu: Item[] = [
     { app: 'admin', href: "/org/branch/0", name: "MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
-    { app: 'report', href: "/dashboard", name: "REPORT", icon: "fa-line-chart" },
+    { app: 'report', href: "/dashboard", name: "REPORT", icon: "fa-line-chart", children: reportMenu },
     { app: 'monitor', href: "/ticket", name: "MONITOR", icon: "fa-bell" },
     { app: 'admin', href: "/house/kiosk", name: "MANAGER_KIOSK", icon: "fa-ticket" },
     { app: 'admin', href: "/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" }
 ]
 
 export function GetActiveItemIndex(app: string, url: string) {
-    for (let i = AdminMenu.length - 1; i >= 0; i--) {
-        let v = AdminMenu[i];
+    for (let i = TopNavMenu.length - 1; i >= 0; i--) {
+        let v = TopNavMenu[i];
         if (v.app !== app) {
             continue;
         }

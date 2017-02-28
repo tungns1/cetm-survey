@@ -6,13 +6,16 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { ReportComponent, ReportFilterModule } from './component/';
 import { reportServiceProvider } from './service';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const appName = "report";
 const appState = new SharedService.AppState(appName);
 
 @NgModule({
   imports: [
-    BaseAppModule, routing, ReportFilterModule
+    BaseAppModule, routing, 
+    FlexLayoutModule.forRoot(),
+    ReportFilterModule
   ],
   declarations: [AppComponent, ReportComponent],
   providers: [appState.toProvider(), reportServiceProvider],

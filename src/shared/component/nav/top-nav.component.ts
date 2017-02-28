@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminMenu, Item, GetActiveItemIndex } from './model';
+import { TopNavMenu, Item, GetActiveItemIndex } from './model';
 import { AppState } from '../../service';
 
 @Component({
@@ -34,6 +34,6 @@ export class TopNavComponent {
         }
     }
 
-    menu = AdminMenu;
+    menu = TopNavMenu;
     active = -1;
 }

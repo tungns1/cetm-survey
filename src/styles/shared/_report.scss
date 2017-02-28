@@ -1,26 +1,5 @@
-report-filter {
-    flex: 1 1 200px;
-}
-
 .main-view {
     flex: 1 1 800px;
-}
-
-:host {
-    display: flex;
-    height: 80vh;
-}
-
-report-sum {
-    height: 30%;
-}
-
-report-overview {
-    height: 40%;
-}
-
-report-chart {
-    height: 30%;
 }
 
 .hl-select-chart {
@@ -120,12 +99,6 @@ report-chart {
 .actives {
     color: #0b8fdb;
     border-bottom: 3px solid #0b8fdb;
-}
-
-.hl-total-dashdoard {
-    border: 1px solid #b0b1b5;
-    margin: 20px 0px 0px 0px;
-    background-color: #fff;
 }
 
 .hl-total-tab {
@@ -340,11 +313,6 @@ date-picker {}
 
 .hl-date-report {
     padding: 0px 0px 0px 5px;
-}
-
-.hl-scroll-filter {
-    overflow: auto;
-    max-height: 840px;
 }
 
 .hl-numrp-align {

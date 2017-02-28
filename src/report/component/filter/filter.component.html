@@ -1,6 +1,9 @@
-<div class="hl-scroll-filter">
-    <period-filter></period-filter>
-    <branch-filter></branch-filter>
-    <inside-filter></inside-filter>
-    <button class="button active" (click)="refresh()" translate>REFRESH</button>
+<div style="height: 100%" fxLayout="column" fxLayoutAlign="start start">
+    <button fxFlex="30px" class="button active" (click)="refresh()" translate>REFRESH</button>
+
+    <div fxFlex style="overflow: scroll">
+        <period-filter></period-filter>
+        <branch-filter></branch-filter>
+        <inside-filter></inside-filter>
+    </div>
 </div>
