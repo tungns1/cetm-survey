@@ -19,11 +19,10 @@ import { FormArray, FormControl } from '@angular/forms';
     template: `
     <div class="scroll-filter">
         <div *ngIf="canCheckAll" class="hlft-div-checkbox" >
-            <input type="checkbox" (change)="checkAll()"  >
-            &nbsp;<span translate>LABEL_CHOOSE_ALL</span><br>
+            <label translate><input type="checkbox" (change)="checkAll()" >LABEL_CHOOSE_ALL</label><br>
         </div>
         <div *ngFor="let d of data" class="hlft-div-checkbox pointer">
-            <input type="checkbox"  [(ngModel)]="values[d[idField]]" (change)="check(d, $event)"><label >{{d[textField]}}</label><br>
+            <label ><input type="checkbox"  [(ngModel)]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}</label><br>
         </div>
     </div>
     `,

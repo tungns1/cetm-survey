@@ -3,7 +3,7 @@
 <table class="table" *ngIf="general$ | async">
     <thead>
         <th> STT </th>
-        <th translate> {{groupBy$ | async}} </th>
+        <th translate> {{groupBy$ | async | groupByTitle}} </th>
         <th translate> GENERAL.TOTAL_TRANSACTION </th>
         <th translate> GENERAL.TRANSACTION_FINISH </th>
         <th translate> GENERAL.TRANSACTION_CANCEL </th>
@@ -49,7 +49,7 @@
 <table class="table" *ngIf="time$ | async">
     <thead>
         <th> STT </th>
-        <th translate> {{groupBy$ | async}} </th>
+        <th translate> {{groupBy$ | async | groupByTitle}} </th>
         <th translate> GENERAL.TOTAL_TIME_TRANSACTION </th>
         <th translate> GENERAL.TOTAL_TIME_SERVING</th>
         <th translate> GENERAL.TOTAL_TIME_WAIT </th>
@@ -81,7 +81,7 @@
 <table class="table" *ngIf="customer$ | async">
     <thead>
         <th> STT </th>
-        <th translate> {{groupBy$ | async}} </th>
+        <th translate> {{groupBy$ | async | groupByTitle}} </th>
         <th translate> GENERAL.TRANSACTION_FEEDBACK </th>
         <th translate> GENERAL.TRANSACTION_NO_FEEDBACK </th>
         <th translate> GENERAL.FEEDBACK_VERY_GOOD </th>

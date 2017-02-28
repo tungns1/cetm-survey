@@ -37,6 +37,10 @@ export class ReportFilter extends Model.SharedModel.AbstractState {
             this.Period.ToBackendQuery()
         )
     }
+
+    GetActiveID() {
+        return this.Inside.GetActiveID() || this.Branch.GetBranchIDByLevel(0);
+    }
 }
 
 @Injectable()

@@ -1,19 +1,19 @@
 <h1> {{message | translate}}</h1>
-<table class="table">
+<table class="hl-table-mn-ck">
     <thead>
-        <td> Chi nhánh</td>
-        <td> SL. vé đã in</td>
-        <td> SL. vé đợi </td>
-        <td> SL. vé đang phục vụ </td>
-        <td> SL. vé đã phục vụ </td>
-        <td> SL. vé nhỡ </td>
-        <td> SL. vé hủy </td>
+        <th> Chi nhánh</th>
+        <th> SL. vé đã in</th>
+        <th> SL. vé đợi </th>
+        <th> SL. vé đang phục vụ </th>
+        <th> SL. vé đã phục vụ </th>
+        <th> SL. vé nhỡ </th>
+        <th> SL. vé hủy </th>
     </thead>
     <tbody>
         <tr *ngFor="let s of summary$ | async">
             <td class="pointer">
                 <a href="javascript:void(0);" (click)="focus(s.branch_id)">
-                    {{s.branch_id | branchName}}
+                    <span>  {{s.branch_id | branchName}} </span>&nbsp;<i class="fa fa-chevron-circle-down" _ngcontent-syn-12=""></i>
                 </a>
             </td>
             <td> {{printed(s)}}</td>
