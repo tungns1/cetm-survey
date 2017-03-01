@@ -9,7 +9,7 @@
         "DATE": "Date",
         "AREA": "Area",
         "BRANCH": "Branch",
-        "TRANSACTION_ROOM": "Agency",
+        "TRANSACTION_ROOM": "Store",
         "SERVICE": "Service",
         "TICKET_NUMBER": "Number of ticket",
         "COUNTER": "Counter",
