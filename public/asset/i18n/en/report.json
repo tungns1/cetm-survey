@@ -80,5 +80,6 @@
     "COLUMN_CHART": "Column Chart",
     "STACK_CHART": "Stacked Chart",
     "PIE_CHART": "Pie Chart",
-    "LABEL_REPORT": "REPORT"
+    "LABEL_REPORT": "REPORT",
+    "LABEL_DETAIL": "Detail"
 }
