@@ -33,8 +33,10 @@
         "ADMIN": "Admin",
         "MANAGER": "Quản lý",
         "TITLE_DETAIL": "Chi Tiết",
-        "BUTTON_CLOSE": "Đóng"
-
+        "BUTTON_CLOSE": "Đóng",
+        "DETAIL": "Chi tiết",
+        "TICKET_PRINTED_TIME": "Thời điểm in vé",
+        "NUMERICAL_ORDER": "STT"
     },
     "GENERAL": {
         "TAB_GENERAL": "TỔNG QUAN",
@@ -110,7 +112,6 @@
     "PIE_CHART": "Biểu đồ tròn",
     "SHOW_FILTER": "Hiển thị bộ lọc",
     "HIDDEN_FILTER": "Đóng bộ lọc",
-    "LABEL_REPORT": "BÁO CÁO",
-    "LABEL_DETAIL": "Chi tiết"
+    "LABEL_REPORT": "BÁO CÁO"
 
 }

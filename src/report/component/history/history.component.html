@@ -35,7 +35,7 @@
     <div class="report-scrollbar">
         <table class="search-table">
             <thead>
-                <th class="hl-stt-history"> STT </th>
+                <th class="hl-stt-history" translate> HISTORY.NUMERICAL_ORDER </th>
                 <th translate> HISTORY.DATE </th>
                 <th translate> HISTORY.BRANCH </th>
                 <th translate> HISTORY.TRANSACTION_ROOM </th>
@@ -43,11 +43,11 @@
                 <th translate>HISTORY.COUNTER</th>
                 <th translate>HISTORY.TELLERS </th>
                 <th translate>HISTORY.TICKET_NUMBER </th>
-                <th> Ticket Printed Time</th>
+                <th translate> HISTORY.TICKET_PRINTED_TIME</th>
                 <th translate> HISTORY.TIME_WAIT</th>
                 <th translate> HISTORY.TIME_SERVING</th>
                 <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
-                <th>Details</th>
+                <th translate>HISTORY.DETAIL</th>
             </thead>
             <tbody class="table-row">
                 <tr *ngFor="let d of paging.data$ | async; let i = index">

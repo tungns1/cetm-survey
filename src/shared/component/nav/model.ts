@@ -32,7 +32,8 @@ export const TopNavMenu: Item[] = [
     { app: 'report', href: "/dashboard", name: "REPORT", icon: "fa-line-chart", children: reportMenu },
     { app: 'monitor', href: "/ticket", name: "MONITOR", icon: "fa-bell" },
     { app: 'admin', href: "/house/kiosk", name: "MANAGER_KIOSK", icon: "fa-ticket" },
-    { app: 'admin', href: "/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" }
+    { app: 'admin', href: "/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" },
+    { app: 'admin', href: "/house/screen", name: "Feedback Management", icon: "fa-commenting" }
 ]
 
 export function GetActiveItemIndex(app: string, url: string) {

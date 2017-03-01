@@ -23,7 +23,10 @@
         "BUTTON_EXPORT_FILE": "EXPORT TO EXCEL",
         "SHOW": "Show",
         "FROM_NUMBER": "From number",
-        "TO_NUMBER": "To number"
+        "TO_NUMBER": "To number",
+        "DETAIL": "Detail",
+        "TICKET_PRINTED_TIME": "Ticket printed time",
+        "NUMERICAL_ORDER": "Number"
     },
     "GENERAL": {
         "TAB_GENERAL": "OVERVIEW",
