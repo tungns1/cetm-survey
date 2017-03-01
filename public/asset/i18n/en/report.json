@@ -70,7 +70,7 @@
     "FROM_DAY": "From day",
     "TO_DAY": "To day",
     "SELECT_CITY": "Select Province",
-    "SELECT_BRANCH": "Select Branch",
+    "SELECT_BRANCH": "Select {{level}}",
     "SELECT_TRANSACTION_ROOM": "Select Agency",
     "SELECT_SERVICE": "Select Service",
     "SELECT_COUNTER": "Select Counter",
