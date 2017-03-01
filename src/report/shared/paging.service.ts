@@ -49,7 +49,7 @@ export class Paging<T> {
         return pages;
     });
 
-    info$ = currentPage$.map(c => `Hiển thị ${pageSize$.value} GD từ số ${(c - 1) * pageSize$.value + 1} đến số ${c * pageSize$.value}`);
+    info$ = currentPage$.map(c => `Show ${pageSize$.value} transactions from ${(c - 1) * pageSize$.value + 1} to ${c * pageSize$.value}`);
 
     SetPage(page: number) {
         if (page <= this.TotalPage && page >= 0) {

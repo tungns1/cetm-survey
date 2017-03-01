@@ -10,20 +10,20 @@
 
 <div class="advanced-filter">
     <form fxLayout="row" fxLayoutAlign="center center">
-        <label fxFlex="30%">Waiting Time (min-max minutes):
+        <label fxFlex="30%">Waiting Time (minutes):
             <input type="number" placeholder="min"> 
             <input type="number" placeholder="max">
         </label>
-        <label fxFlex="30%">Serving Time (min-max minutes):
+        <label fxFlex="30%">Serving Time (minutes):
             <input type="number" placeholder="min"> 
             <input type="number" placeholder="max">
         </label>
         <label fxFlex="30%"> Feedback
             <select>
-                <option>Excellent</option>
+                <option>Very Good</option>
                 <option>Good</option>
-                <option>Normal</option>
-                <option>Terrible</option>
+                <option>Average</option>
+                <option>Poor</option>
             </select>
         </label>
         <div fxFlex></div>
@@ -42,11 +42,11 @@
                 <th translate>HISTORY.COUNTER</th>
                 <th translate>HISTORY.TELLERS </th>
                 <th translate>HISTORY.TICKET_NUMBER </th>
-                <td translate> HISTORY.TIME_CREATE_TICKET</td>
+                <td> Ticket Printed Time</td>
                 <td translate> HISTORY.TIME_WAIT</td>
                 <td translate> HISTORY.TIME_SERVING</td>
                 <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
-                <th>Chi tiết</th>
+                <th>Details</th>
             </thead>
             <tbody class="table-row">
                 <tr *ngFor="let d of paging.data$ | async; let i = index">
