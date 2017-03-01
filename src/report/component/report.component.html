@@ -4,7 +4,7 @@
     </app-header>
     <top-nav fxFlex="5%"></top-nav>
     <div fxFlex="85%" fxLayout="row">
-        <div [fxFlex]="hideFilter? '60px':'300px'">
+        <div [fxFlex]="hideFilter? '60px':'300px'" style="transition: width 2s">
             <a (click)="hideFilter=!hideFilter">Toggle Filter</a>
             <report-filter [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%"></report-filter>
         </div>

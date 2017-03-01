@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HistoryComponent } from './history.component';
 import { Routes, RouterModule } from '@angular/router'
-import { SharedService } from '../../shared';
+import { SharedModule } from '../../shared';
 import { ModalModule } from '../../../x/ng/modal';
 import { TransactionHistoryApi } from './history.service';
 import { TransactionComponent } from './transaction.component';
@@ -15,7 +15,7 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, CommonModule, SharedService.I18n.TranslateModule, ModalModule],
+    imports: [routing, SharedModule],
     declarations: [HistoryComponent, TransactionComponent],
     providers: [TransactionHistoryApi]
 })
