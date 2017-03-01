@@ -81,5 +81,9 @@
     "STACK_CHART": "Stacked Chart",
     "PIE_CHART": "Pie Chart",
     "LABEL_REPORT": "REPORT",
-    "LABEL_DETAIL": "Detail"
+    "LABEL_DETAIL": "Detail",
+    "LABEL_COUNTRY": "Country",
+    "LABEL_AREA": "Area",
+    "LABEL_BRANCH": "Branch",
+    "LABEL_SUB_BRANCH": "Store"
 }
