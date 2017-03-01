@@ -1,5 +1,5 @@
 // Language default is based by partner
-export const LanguageDefault = 'vi';
+export const LanguageDefault = 'en';
 
 export const Languages = {
     en: 'English',

@@ -15,6 +15,7 @@
     "CLOSE": "Close",
     "CITY": "Province",
     "BRANCH": "Branch",
+    "SUB_BRANCH": "Store",
     "TRANSACTION_ROOM": "Agency",
     "TICKET_NUMBER": "Ticket Number",
     "SERVICE": "Service",

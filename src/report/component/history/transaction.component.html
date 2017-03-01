@@ -9,7 +9,7 @@
 </style>
 
 <modal *ngIf="data">
-    <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
+    <div class="hl-detail-history" translate> TICKET DETAILS</div>
     <div fxLayout="row" fxLayoutGap="20px">
         <div class="bb1" fxFlex="50%">
             <label translate> Ticket Number </label> :
@@ -35,26 +35,26 @@
             <span>{{data.user}}</span><br>
             <label translate> HISTORY.COUNTER</label> :
             <span>{{data.counter}}</span><br>
-            <label translate> HISTORY.MANAGER</label> :
-            <span>{{data.stime}}</span><br>
-            <label translate> HISTORY.ADMIN</label> :
-            <span>{{data.cdate}}</span><br>
+            <label translate> Manager</label> :
+            <span></span><br>
+            <label translate> Admin</label> :
+            <span></span><br>
         </div>
     </div>
     <div class="bb1" fxLayout="row" fxLayoutAlign="space-around center">
         <div fxFlex="100%">
-            <label translate> HISTORY.CUSTOMER</label> :
+            <label> Customer</label> :
             <span> Nguyen Van A</span><br>
-            <label translate> HISTORY.PHONE</label> :
+            <label> Phone Number</label> :
             <span> 8490234734 </span><br>
-            <label translate> HISTORY.ID</label> :
+            <label> Customer ID</label> :
             <span><a (click)="goToCustomer(data.customer_id)">1021234356621</a> </span><br>
-            <label translate> HISTORY.SEGMENT</label> :
+            <label translate> Customer Segment</label> :
             <span> Normal</span><br>
-            <audio *ngIf="link" controls [src]="link"> </audio>
+            <audio controls src="http://c34.vdc.nixcdn.com/1012d84a3eda801111910265864873e5/58b689b7/NhacCuaTui118/FurElise-Beethoven_tcf8.mp3?t=1488358703894"> </audio>
         </div>
     </div>
     <div>
-        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
+        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> CLOSE </button>
     </div>
 </modal>

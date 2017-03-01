@@ -33,8 +33,10 @@
         "ADMIN": "Admin",
         "MANAGER": "Quản lý",
         "TITLE_DETAIL": "Chi Tiết",
-        "BUTTON_CLOSE": "Đóng"
-
+        "BUTTON_CLOSE": "Đóng",
+        "DETAIL": "Chi tiết",
+        "TICKET_PRINTED_TIME": "Thời điểm in vé",
+        "NUMERICAL_ORDER": "STT"
     },
     "GENERAL": {
         "TAB_GENERAL": "TỔNG QUAN",
@@ -88,7 +90,6 @@
         "TRANSACTION_HAVE_WAIT_BEYOND_STANDARD": "Giao dịch có thời gian đợi vượt chuẩn",
         "TRANSACTION_HAVE_SERVING_STANDARD": "Giao dịch có thời gian phục vụ chuẩn",
         "TRANSACTION_HAVE_SERVING_BEYOND_STANDARD": "Giao dịch có thời gian phục vụ vượt chuẩn"
-
     },
     "BUTTON_SEND": "XEM BÁO CÁO",
     "SELECT_TIME": "Chọn thời gian",

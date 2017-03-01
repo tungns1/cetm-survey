@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITransactionView } from '../../../model';
 import { ReportFilterService, ReportFilter } from '../../../service/';
-import { Paging} from '../../../shared/paging.service';
-import { CustomerAPI} from '../service/customer.service';
+import { Paging } from '../../../shared/paging.service';
+import { CustomerAPI,paging } from '../service/customer.service';
 
 
 @Component({
@@ -16,21 +16,13 @@ export class HistoryComponent {
         private customerAPI: CustomerAPI
     ) { }
     @Input() customer: string;
-    paging = new Paging<ITransactionView>();
+    paging = paging;
 
     ngOnInit() {
-        this.filterService.ExclusiveSubscribe(filter => {
-            this.chuyenTrang(1);
-        });
+        this.customerAPI.ChuyenTrang(1, this.customer);
     }
     chuyenTrang(page: number) {
-        const skip = this.paging.SkipForPage(page);
-        const limit = this.paging.Limit;
-        this.customerAPI.GetHistory(this.filterService.Current, skip, limit, this.customer)
-            .subscribe(v => {
-                this.paging.SetPage(page);
-                this.paging.Reset(v.data, v.total);
-            });
+        this.customerAPI.ChuyenTrang(page, this.customer);
     }
 
 

@@ -12,7 +12,7 @@
             <!--<a (click)="hideFilter=!hideFilter">Toggle Filter</a>-->
             <report-filter *ngIf="hidden" [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%"></report-filter>
         </div>
-        <div fxFlex>
+        <div fxFlex style="overflow: auto;">
             <router-outlet></router-outlet>
         </div>
     </div>
