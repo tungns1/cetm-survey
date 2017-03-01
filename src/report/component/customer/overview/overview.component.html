@@ -4,8 +4,9 @@
         <th translate> Lượt giao dịch </th>
     </thead>
     <tbody class="table-row">
-        <tr>
-
+        <tr *ngFor="let s of stores">
+            <td>{{s.name}}</td>
+            <td>{{s.count}}</td>
         </tr>
     </tbody>
 </table>
@@ -19,23 +20,23 @@
         <th translate> CUSTOMER.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
     </thead>
     <tbody class="table-row">
-        <tr *ngFor="let d of data$ | async">
-            <td> {{d.c_t}} </td>
+        <tr *ngIf="data">
+            <td> {{data.c_t}} </td>
             <td>
-                <div class="hl-numrp-align"> {{d.c_bwt}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0">0.00%</span></div>
+                <div class="hl-numrp-align"> {{data.c_bwt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="data.c_t>0"> ({{data.c_bwt/data.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="data.c_t===0">0.00%</span></div>
             </td>
             <td>
-                <div class="hl-numrp-align"> {{d.s_wt}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{(d.s_wt)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></div>
+                <div class="hl-numrp-align"> {{data.s_wt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="data.c_t>0"> ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
             </td>
             <td>
-                <div class="hl-numrp-align"> {{d.c_bst}}</div>
-                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></div>
+                <div class="hl-numrp-align"> {{data.c_bst}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="data.c_t>0"> ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
             </td>
             <td>
-                <div class="hl-numrp-align"> {{d.s_st}}</div>
-                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{(d.s_st)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0">0.00%</span></div>
+                <div class="hl-numrp-align"> {{data.s_st}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="data.c_t>0"> ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
             </td>
         </tr>
     </tbody>
@@ -48,9 +49,10 @@
         <th translate> Lượt giao dịch </th>
     </thead>
     <tbody class="table-row">
-        <tr *ngFor="let d of data$ | async">
-            <td></td>
-            <td></td>
+
+        <tr *ngFor="let s of services">
+            <td>{{s.name}}</td>
+            <td>{{s.count}}</td>
         </tr>
     </tbody>
 </table>
@@ -62,8 +64,9 @@
         <th translate> Lượt giao dịch </th>
     </thead>
     <tbody class="table-row">
-        <tr>
-
+        <tr *ngFor="let s of fres">
+            <td>{{s.name}}</td>
+            <td>{{s.count}}</td>
         </tr>
     </tbody>
 </table>
