@@ -169,6 +169,7 @@
 #modal_monitor_detailTicket {
     .header {
         text-align: center;
+        padding: 10px;
         margin-top: 0px;
         color: #ffffff;
         background-color: #0b8fda;
@@ -190,6 +191,25 @@
 }
 
 #focusComponent{
+    .header{
+        background-color: #0b8fda;
+        color: #ffffff;
+        padding: 0px 20px;
+        .btn_back{
+            padding-top: 10px;
+            float: right;
+            cursor: pointer;
+        }
+    }
+    .overview{
+        span{
+            font-weight: 600;
+            margin: 0px 10px;
+        }
+    }
+    .padding_monitor{
+        padding: 10px;
+    }
     .waiting{
         background-color: #FFFFFF;
     }

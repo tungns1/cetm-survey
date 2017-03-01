@@ -11,10 +11,10 @@ function TwoDigit(n: number): string {
 const oneSecond = interval(1000).share();
 
 @Component({
-    selector: 'ticket-timer',
+    selector: 'timer',
     template: ``
 })
-export class TicketTimerComopnent {
+export class TimerComopnent {
     constructor(private ref: ElementRef) {
 
     }

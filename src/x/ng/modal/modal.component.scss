@@ -35,7 +35,8 @@ $blue-dark: darken($blue, 5%);
 // Modal Dialog
 // ----------------------
 .modal-dialog {
-    width: 600px;
+    width: 80%;
+    max-width: 700px;
     background: #fefefe;
     border: $gray solid 1px;
     // margin-left: -200px;

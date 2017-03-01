@@ -1,6 +1,6 @@
 <form [formGroup]="form">
     <div *ngFor="let l of viewLevels">
-        <accordion isOpen="true">
+        <accordion>
             <accordion-title>
                 <span class="title hl-lbtitle-filter"> {{l | branchLevelName | translate}}</span>
             </accordion-title>

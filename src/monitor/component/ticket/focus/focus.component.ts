@@ -4,6 +4,7 @@ import { Model, ISummary, ITicket, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
 import { MonitorNavService } from '../../../service/shared/nav';
 import { ModalComponent } from '../../../../x/ng/modal/modal.component';
+import { TimerComopnent } from '../../../../x/ng/time/timer.component';
 
 const TicketStates = Model.House.TicketStates;
 
@@ -62,6 +63,11 @@ export class FocusComponent {
             state: TicketStates.Serving,
         };
         return t;
+    }
+
+    private goBackBranchList() {
+        this.navService.isShowDetail = false;
+        this.navService.selectedBranch = null;
     }
 
     private closeModal() {
