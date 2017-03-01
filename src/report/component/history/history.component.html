@@ -2,20 +2,25 @@
     input[type=number] {
         width: 50px;
     }
+    
+    .advanced-filter {
+        top: 30px;
+    }
 </style>
 
-<b>Advanced Filters</b>
+<div class="advanced-filter">
+    <b>Advanced Filters</b>
 
-<form fxLayout="row" fxLayoutAlign="center center">
-    <label fxFlex="30%">Waiting Time (min-max minutes):
+    <form fxLayout="row" fxLayoutAlign="center center">
+        <label fxFlex="30%">Waiting Time (min-max minutes):
         <input type="number" placeholder="min"> 
         <input type="number" placeholder="max">
     </label>
-    <label fxFlex="30%">Serving Time (min-max minutes):
+        <label fxFlex="30%">Serving Time (min-max minutes):
         <input type="number" placeholder="min"> 
         <input type="number" placeholder="max">
     </label>
-    <label fxFlex="30%"> Feedback
+        <label fxFlex="30%"> Feedback
         <select>
             <option>Excellent</option>
             <option>Good</option>
@@ -23,7 +28,8 @@
             <option>Terrible</option>
         </select>
     </label>
-</form>
+    </form>
+</div>
 
 <div class="search-table-outter">
     <div class="report-scrollbar">
