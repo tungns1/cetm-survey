@@ -44,7 +44,18 @@ export interface ITransactionView extends ITransaction {
     audio: string;
 }
 
-
+export interface IService {
+    name: string;
+    count: number;
+}
+export interface IStore {
+    name: string;
+    count: number;
+}
+export interface IFre {
+    name: string;
+    count: number;
+}
 
 export class Customer {
     data: ITransaction[] = null;
@@ -101,6 +112,7 @@ export class Customer {
         if (+pw < 10) {
             this.c_bwt = this.c_bwt + 1;
         }
+
         if (this.services[s.service]) {
             var count = this.services[s.service]
             count++
@@ -144,8 +156,9 @@ export class Customer {
             this.c_t = this.data.length;
             this.count = this.data.length;
         }
+
         if (this.stores != null) {
-           
+
         }
         if (this.services != null) {
 
