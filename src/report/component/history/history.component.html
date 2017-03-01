@@ -5,21 +5,22 @@
     
     .advanced-filter {
         padding-bottom: 10px;
+        padding-top: 10px;
     }
 </style>
 
 <div class="advanced-filter">
     <form fxLayout="row" fxLayoutAlign="center center">
-        <label fxFlex="30%">Waiting Time (min-max minutes):
-            <input type="number" placeholder="min"> 
-            <input type="number" placeholder="max">
+        <label fxFlex="35%">Waiting Time (min-max minutes):
+            <input class="hl-input" type="number" placeholder="min"> 
+            <input class="hl-input" type="number" placeholder="max">
         </label>
-        <label fxFlex="30%">Serving Time (min-max minutes):
-            <input type="number" placeholder="min"> 
-            <input type="number" placeholder="max">
+        <label fxFlex="35%">Serving Time (min-max minutes):
+            <input class="hl-input" type="number" placeholder="min"> 
+            <input class="hl-input" type="number" placeholder="max">
         </label>
         <label fxFlex="30%"> Feedback
-            <select>
+            <select class="hl-select">
                 <option>Excellent</option>
                 <option>Good</option>
                 <option>Normal</option>
