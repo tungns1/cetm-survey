@@ -8,6 +8,8 @@
         <th> SL. vé đã phục vụ </th>
         <th> SL. vé nhỡ </th>
         <th> SL. vé hủy </th>
+        <th> SL. vé đợi trên 15' </th>
+        <th> SL. vé phục vụ dưới 2' </th>
     </thead>
     <tbody>
         <tr *ngFor="let s of summary$ | async">
@@ -22,6 +24,19 @@
             <td translate> {{s.finished}}</td>
             <td translate> {{s.missed}}</td>
             <td translate> {{s.cancelled}}</td>
+            <td translate> {{s.wait_long}}</td>
+            <td translate> {{s.serve_short}}</td>
+        </tr>
+        <tr>
+            <td class="pointer"> Tổng </td>
+            <td> {{printed(totalSummary$)}}</td>
+            <td translate> {{totalSummary$.waiting}}</td>
+            <td translate> {{totalSummary$.serving}}</td>
+            <td translate> {{totalSummary$.finished}}</td>
+            <td translate> {{totalSummary$.missed}}</td>
+            <td translate> {{totalSummary$.cancelled}}</td>
+            <td translate> {{totalSummary$.wait_long}}</td>
+            <td translate> {{totalSummary$.serve_short}}</td>
         </tr>
     </tbody>
 </table>

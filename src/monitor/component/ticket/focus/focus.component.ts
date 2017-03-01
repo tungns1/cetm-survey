@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Model, ISummary, ITicket, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
+import { MonitorNavService } from '../../../service/shared/nav';
+import { ModalComponent } from '../../../../x/ng/modal/modal.component';
 
 const TicketStates = Model.House.TicketStates;
 
@@ -10,14 +12,21 @@ const TicketStates = Model.House.TicketStates;
     templateUrl: 'focus.component.html'
 })
 export class FocusComponent {
+
+    @ViewChild("edit") editorRef: ModalComponent;
+
     constructor(
+        private navService: MonitorNavService,
         private route: ActivatedRoute,
         private filterService: MonitorFilterService,
         private ticketService: MonitorTicketService
     ) { }
 
-    ngOnInit() {
+    selectedTicket: Object;
+    isServed: boolean = true;
 
+    ngOnInit() {
+        
     }
 
     ngOnDestroy() {
@@ -54,5 +63,18 @@ export class FocusComponent {
         };
         return t;
     }
-    // focus: Observable<Summary[]>;
+
+    private closeModal() {
+        this.selectedTicket = null;
+        this.editorRef.Close();
+    }
+
+    private detail (ticket) {
+        if(ticket.serving){
+            this.isServed = true;
+        } else this.isServed = false;
+        this.selectedTicket = ticket;
+        console.log(this.selectedTicket);
+        this.editorRef.Open();
+    }
 }

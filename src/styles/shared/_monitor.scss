@@ -166,3 +166,49 @@
 .hl-table-mn-ck a:hover {
     color: #006699;
 }
+#modal_monitor_detailTicket {
+    .header {
+        text-align: center;
+        margin-top: 0px;
+        color: #ffffff;
+        background-color: #0b8fda;
+    }
+    .twoColumn{
+        display: inline-block;
+        width: 48%;
+        margin-bottom: 20px;
+    }
+    .notServeYet{
+        margin-bottom: 112px;
+    }
+    table{
+        margin: auto;
+        th {
+            text-align: left;
+        }
+    }
+}
+
+#focusComponent{
+    .waiting{
+        background-color: #FFFFFF;
+    }
+    .missed{
+        background-color: #0b8fda;
+        color: #ffffff;
+    }
+    .serving{
+        background-color: #ffffff;
+        color: #000000;
+    }
+    .serveDone{
+        background-color: #0b8fda;
+        color: #ffffff;
+    }
+    .cancelled{
+        background-color: #ff5858;
+        color: #ffffff;
+    }
+}
+
+        

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SharedService, Model } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { ITicket, ITickets, ISummary } from '../../model';
+import { ITicket, ITickets, ISummary, Summary } from '../../model';
 import { MonitorFilterService } from '../shared';
 
 interface IFocusReply {
