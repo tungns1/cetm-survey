@@ -33,8 +33,8 @@
         "TRANSACTION_NO_FEEDBACK": "Transaction without feedback",
         "FEEDBACK_VERY_GOOD": "Very good feedback",
         "FEEDBACK_GOOD": "Good feedback",
-        "FEEDBACK_MEDIUM": "Medium feedback",
-        "FEEDBACK_BAD": "Bad feedback",
+        "FEEDBACK_MEDIUM": "Average feedback",
+        "FEEDBACK_BAD": "Poor feedback",
         "CUSTOMER_FEEDBACK": "Customer Feedback",
 
         "TOTAL_TRANSACTION": "Total transaction",
