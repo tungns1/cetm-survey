@@ -35,5 +35,6 @@
     "STATE_SERVING": "Đang phục vụ",
     "STATE_MISSED": "Gọi nhỡ",
     "STATE_FINISHED": "Đã kết thúc",
-    "STATE_CANCELLED": "Đã hủy"
+    "STATE_CANCELLED": "Đã hủy",
+    "LABEL_MONITOR": "GIÁM SÁT"
 }
