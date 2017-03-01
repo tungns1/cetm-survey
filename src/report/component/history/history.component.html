@@ -30,7 +30,7 @@
     </form>
 </div>
 
-<div class="search-table-outter">
+<div class="search-table-outter" style="width: 80vw">
     <div class="report-scrollbar">
         <table class="search-table">
             <thead>
@@ -42,9 +42,9 @@
                 <th translate>HISTORY.COUNTER</th>
                 <th translate>HISTORY.TELLERS </th>
                 <th translate>HISTORY.TICKET_NUMBER </th>
-                <td> Ticket Printed Time</td>
-                <td translate> HISTORY.TIME_WAIT</td>
-                <td translate> HISTORY.TIME_SERVING</td>
+                <th> Ticket Printed Time</th>
+                <th translate> HISTORY.TIME_WAIT</th>
+                <th translate> HISTORY.TIME_SERVING</th>
                 <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
                 <th>Details</th>
             </thead>
@@ -69,18 +69,18 @@
             </tbody>
         </table>
     </div>
-</div>
-
-<div class="hl-footer-history">
-    <div class="hl-info-history">
-        {{paging.info$ | async}}
-    </div>
-    <div class="hl-pagination-history">
-        <button class="hl-btn-history" md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="chuyenTrang(p.page)">
+    <div class="hl-footer-history">
+        <div class="hl-info-history">
+            {{paging.info$ | async}}
+        </div>
+        <div class="hl-pagination-history">
+            <button class="hl-btn-history" md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="chuyenTrang(p.page)">
             {{p.title}}
         </button>
+        </div>
     </div>
 </div>
+
 <div class="hl-exportf-history">
     <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
 </div>
