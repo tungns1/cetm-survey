@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { I18n, SharedModule, SharedPipe, Ui, Ng } from '../../shared';
 import { TicketDetailDialog } from './ticket-detail.dialog';
 import { TicketDetailDirective } from './ticket-detail.directive';
-import { TicketTimerComopnent } from './timer.component';
 import { TicketHighlightDirective } from './ticket-highlight.directive';
 import { FeedbackSkipDialog } from './feedback-skip.component';
 
@@ -13,7 +12,7 @@ import { FeedbackSkipDialog } from './feedback-skip.component';
     ],
     declarations: [
         TicketDetailDialog, TicketDetailDirective,
-        TicketTimerComopnent, TicketHighlightDirective,
+        TicketHighlightDirective,
         FeedbackSkipDialog
     ],
     exports: [
@@ -21,7 +20,7 @@ import { FeedbackSkipDialog } from './feedback-skip.component';
         TicketDetailDialog, TicketDetailDirective,
         Ng.TimeModule, SharedPipe.UtilPipeModule,
         FeedbackSkipDialog,
-        TicketTimerComopnent, TicketHighlightDirective
+       TicketHighlightDirective
     ],
     entryComponents: [TicketDetailDialog, FeedbackSkipDialog]
 })

@@ -31,15 +31,75 @@
     </tbody>
 </table>-->
 <div id="focusComponent">
-    <div class="flex-container" fxLayout="row" 
-        fxLayout.xs="column"
-        fxLayoutAlign="center center"
-        fxLayoutAlign.xs="start">
-        <span fxFlex>  {{navService.selectedBranch | branchName}} </span>&nbsp;<i class="fa fa-chevron-circle-down" _ngcontent-syn-12=""></i>
-        <button fxFlex="20%" (click)="navService.isShowDetail = false" style="float: right;">Go back</button>
+    <div class="flex-container header" fxLayout="row" fxLayoutAlign="space-between none">
+        <h1 fxFlex> {{navService.selectedBranch | branchName}} </h1>
+        <h3 fxFlex="10%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
     </div> 
+    <!--*************************************************************************-->
+    <div class="flex-container overview" fxLayout="row" fxLayoutAlign="space-between none">
+        <div fxLayout="column" fxFlex class="padding_monitor">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Chi nhánh: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Admin: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Manager: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Tổng số quầy: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Tổng số quầy đang bật: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Tổng số quầy đang tắt: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé đã in: </span>
+                <span>222222222222</span>
+            </div>
+        </div>
+        <div fxLayout="column" fxFlex class="padding_monitor">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé đang đợi: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé đang được phục vụ: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé đã được phục vụ: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé đặt nhỡ: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé hủy: </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé đợi trên 15': </span>
+                <span>222222222222</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span>Số lượng vé được phục vụ dưới 2': </span>
+                <span>222222222222</span>
+            </div>
+        </div>
+    </div>
 
-    <h1> Khách hàng chưa được phục vụ </h1>
+    <h3> Khách hàng chưa được phục vụ </h3>
 
     <table class="table">
         <thead>
@@ -61,7 +121,8 @@
                 <td> {{t.cnum}}</td>
                 <td> customer X</td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td> _______ </td>
+                <td><timer [start]="t.mtime"></timer></td>
+                
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -71,7 +132,7 @@
         </tbody>
     </table>
 
-    <h1> Khách hàng đã được phục vụ </h1>
+    <h3> Khách hàng đã được phục vụ </h3>
 
     <table class="table">
         <thead>
@@ -137,7 +198,10 @@
                 </tr>
                 <tr>
                     <th translate> WAIT_TIME </th>
-                    <th>{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</th>
+                    <th>
+                        <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime"></timer></span>
+                        <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                    </th>
                 </tr>
                 <tr>
                     <th translate> DATE </th>
