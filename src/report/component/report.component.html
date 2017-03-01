@@ -8,7 +8,7 @@
             <a (click)="hideFilter=!hideFilter">Toggle Filter</a>
             <report-filter [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%"></report-filter>
         </div>
-        <div fxFlex style="overflow: scroll">
+        <div fxFlex>
             <router-outlet></router-outlet>
         </div>
     </div>
