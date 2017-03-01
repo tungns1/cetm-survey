@@ -15,6 +15,7 @@ const routes: Routes = [
 
 import { I18n, Ng } from './shared';
 import { UtilPipeModule } from './pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { UtilPipeModule } from './pipe';
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
         RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
+        FlexLayoutModule,
         I18n.TranslateModule, UtilPipeModule, Ng.SelectCheckModule, Ng.ModalModule
     ]
 })

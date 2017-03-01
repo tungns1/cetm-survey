@@ -1,18 +1,18 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AggregateService, ReportViewService } from '../../shared';
+import { ReportViewService } from '../../shared';
 import { MAIN_TABS } from '../shared';
+import { CustomerAPI } from '../service/customer.service';
 
 @Component({
     selector: 'report-overview',
-    templateUrl: 'overview.component.html',
-    styleUrls: ['overview.component.css']
+    templateUrl: 'overview.component.html'
 })
 export class ReportOverViewComponent {
 
     constructor(
-        private aggregateService: AggregateService,
-        private viewService: ReportViewService
+        private viewService: ReportViewService,
+        private customerAPI:CustomerAPI
     ) { }
 
 
@@ -25,6 +25,5 @@ export class ReportOverViewComponent {
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
     service$ = this.tab$.map(tab => tab === MAIN_TABS.SERVICE.name);
     frequency$ = this.tab$.map(tab => tab === MAIN_TABS.FREQUENCY.name);
-    data$ = this.aggregateService.ActiveAggregate$;
-    groupBy$ = this.aggregateService.groupBy$;
+    data$ = this.customerAPI.ActiveCustomer$;
 }

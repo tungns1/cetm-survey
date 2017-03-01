@@ -41,7 +41,7 @@ export class ReportChartComponent {
         return this.type === 'line';
     }
 
-    data = this.chartService.RxAggregateByTime;
+    data = this.chartService.RxCustomerByTime;
     period = this.chartService.RxPeriod;
     pieData = this.chartService.RxSummaryView;
 

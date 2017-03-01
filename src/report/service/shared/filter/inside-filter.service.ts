@@ -59,6 +59,19 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractState {
         return GROUP_BYS.BRANCH_ID
     }
 
+    GetActiveID() {
+        if (this.counter_id.length > 0) {
+            return this.counter_id.valueOf();
+        }
+        if (this.user_id.length > 0) {
+            return this.user_id.valueOf();
+        }
+        if (this.service_id.length > 0) {
+            return this.service_id.valueOf();
+        }
+        return [];
+    }
+
     private service_id: Model.SharedModel.IDList;
     private user_id: Model.SharedModel.IDList;
     private counter_id: Model.SharedModel.IDList;
@@ -106,11 +119,13 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractStateSe
         const staff = users.filter(u => u.role.indexOf(role) !== -1)
             .sort((a, b) => a.fullname < b.fullname ? -1 : 1);
         this.users$.next(staff);
+        Model.Org.CacheUsers.Refresh(staff);
     }
 
     private updateCounters(counters: Model.House.ICounter[] = []) {
         counters.sort((a, b) => a.name < b.name ? -1 : 1);
         this.counters$.next(counters);
+        Model.House.CacheCounter.Refresh(counters);
     }
 
     SetInsideInfilter(v: IInsideBranchFilter) {

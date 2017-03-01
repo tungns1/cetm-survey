@@ -20,7 +20,7 @@ export class ReportTabComponent {
     }
   }
 
-  tabs = [MAIN_TABS.SERVICE, MAIN_TABS.TIME, MAIN_TABS.STORE,MAIN_TABS.FREQUENCY];
+  tabs = [MAIN_TABS.TIME,MAIN_TABS.FREQUENCY,MAIN_TABS.SERVICE, MAIN_TABS.STORE];
 
   setActive(t: { name: string }) {
     this.active = t.name;

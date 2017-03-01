@@ -1,0 +1,65 @@
+<modal *ngIf="data">
+    <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
+    <div style="text-align: center;">
+        <div style="float: left;border: 1px solid gray;">
+            <div style="float: left;">
+                <span translate> HISTORY.TICKET_NUMBER </span><br>
+                <span translate> HISTORY.SERVICE </span><br>
+                <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
+                <span translate> HISTORY.TIME_WAIT</span><br>
+                <span translate> HISTORY.TIME_SERVING</span><br>
+                <span translate> HISTORY.DATE</span><br>
+            </div>
+            <div style="float: left;margin-left: 10px;">
+                <span>{{data.cnum}}</span><br>
+                <span>{{data.service}}</span><br>
+                <span>{{data.ctime}}</span><br>
+                <span>{{data.wtime}}</span><br>
+                <span>{{data.stime}}</span><br>
+                <span>{{data.cdate}}</span><br>
+            </div>
+
+
+        </div>
+
+        <div style="float: left;border: 1px solid gray; margin-left: 20px;">
+            <div style="float: left">
+                <span translate> HISTORY.BRANCH </span><br>
+                <span translate> HISTORY.TRANSACTION_ROOM </span><br>
+                <span translate> HISTORY.TELLERS</span><br>
+                <span translate> HISTORY.COUNTER</span><br>
+                <span translate> HISTORY.MANAGER</span><br>
+                <span translate> HISTORY.ADMIN</span><br>
+            </div>
+            <div style="float: left;margin-left: 10px;">
+                <span>{{data.branch}}</span><br>
+                <span>{{data.branch}}</span><br>
+                <span>{{data.user}}</span><br>
+                <span>{{data.counter}}</span><br>
+                <span>{{data.stime}}</span><br>
+                <span>{{data.cdate}}</span><br>
+            </div>
+
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <div>
+            <div style="float: left;">
+                <span translate> HISTORY.CUSTOMER</span><br>
+                <span translate> HISTORY.PHONE</span><br>
+                <span translate> HISTORY.ID</span><br>
+                <span translate> HISTORY.SEGMENT</span><br>
+            </div>
+            <div style="float: left;margin-left: 20px;">
+                <span> </span><br>
+                <span> </span><br>
+                <span>{{data.customer_id}}</span><br>
+                <span> </span><br>
+            </div>
+        </div>
+        <audio *ngIf="link" controls [src]="link"> </audio>
+    </div>
+    <div style="float:right;">
+        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
+    </div>
+</modal>

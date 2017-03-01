@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IAggregate, Aggregate, } from '../model';
-import { SharedService } from '../shared/';
+import { IAggregate, Aggregate } from '../model';
+import { SharedService, Model } from '../shared/';
 
 export function MakeIndexBy(records: IAggregate[], field: string) {
     let res: { [index: string]: Aggregate } = {};
@@ -44,34 +44,41 @@ export class AggregateService {
             const group_by = this.filterService.Current.Inside.GetGroupBy();
             const views = MakeIndexBy(v, group_by);
 
-            let ids: string[] = [];
-            if (group_by === 'branch_id') {
-                // ids = GetBranch();
-            } else if (group_by === 'service_id') {
-                // ids = GetServices();
-            } else if (group_by === 'counter_id') {
-                // ids = GetCounters();
-            } else if (group_by === 'user_id') {
-                // ids = GetUsers();
-            }
+            let ids = this.filterService.Current.GetActiveID();
 
             views.forEach(v => {
-                // v.name = NameMap.get(v[group_by]) || 'n/a';
+                const id = v[group_by];
+                v.name = this.GetName(id, group_by);
                 v.Finalize();
-
-                if (ids.indexOf(v[group_by]) != -1) {
-                    ids.splice(ids.indexOf(v[group_by]), 1)
+                const i = ids.indexOf(id);
+                // remove from ids 
+                if (i != -1) {
+                    ids.splice(i, 1)
                 }
-            })
+            });
 
             ids.forEach(id => {
                 let v = new Aggregate();
-                // v.name = NameMap.get(id) || 'n/a';
+                v.name = this.GetName(id, group_by);
                 views.push(v);
             });
 
             return views;
         });
+    }
+
+    GetName(id: string, model: string) {
+        switch (model) {
+            case 'service_id':
+                return Model.Center.ServiceName(id);
+            case 'branch_id':
+                return Model.Org.CacheBranch.GetNameForID(id);
+            case 'user_id':
+                return Model.Org.CacheUsers.GetName(id, 'fullname');
+            case 'counter_id':
+                return Model.House.CacheCounter.GetName(id, 'name');
+        }
+        return Model.House.CacheCounter.NotApplicable;
     }
 
     groupBy$ = new BehaviorSubject<string>('branch_id');

@@ -1,34 +1,22 @@
-<app-header>
-    <div class="module-name"> Báo Cáo </div>
-</app-header>
-
-<top-nav></top-nav>
-<br>
-<br>
-<div class="container" style="height:100vh;">
-    <div class="aside">
-
-        <!--<i *ngIf="!hidden" class="fa fa-angle-double-right fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}"></i>
-        <i *ngIf="hidden" class="fa fa-angle-double-left fa-2x hl-hfl-report" aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}"></i>-->
-        <div class="hl-asidehead-filter">
-            <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
-            <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
-        </div>
-        <report-filter [hidden]="!hidden" style="padding-top: 50px;"></report-filter>
-    </div>
-    <div class="main">
-        <div style="height: 50px;">
-            <div style="float: right; margin-top: 5px; margin-right: 20px;">
-                <a class="hl-bt-report btpointer" routerLink="/dashboard" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_GENERAL</a>
-                <a class="hl-bt-report btpointer" routerLink="/history" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_HISTORY</a>
-                <a class="hl-bt-report btpointer" routerLink="/customer" preserveQueryParams preserveFragment routerLinkActive="active" translate>BUTTON_CUSTOMER</a>
+<div fxLayout="column" style="height: 100vh;overflow: hidden">
+    <app-header fxFlex="5%">
+        <div class="module-name" translate> LABEL_REPORT </div>
+    </app-header>
+    <top-nav fxFlex="5%"></top-nav>
+    <div fxFlex="85%" fxLayout="row">
+        <div [fxFlex]="hideFilter? '60px':'300px'" style="transition: width 2s;">
+            <div class="hl-asidehead-filter">
+                <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
+                <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
             </div>
+            <!--<a (click)="hideFilter=!hideFilter">Toggle Filter</a>-->
+            <report-filter *ngIf="hidden" [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%"></report-filter>
         </div>
-
-        <router-outlet></router-outlet>
+        <div fxFlex>
+            <router-outlet></router-outlet>
+        </div>
     </div>
-
-</div>
-<div class="hl-ft-report">
-    <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+    <div fxFlex="5%" class="hl-ft-report">
+        <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+    </div>
 </div>

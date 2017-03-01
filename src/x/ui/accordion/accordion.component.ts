@@ -11,10 +11,10 @@ export class AccordionTitleComponent {
 @Component({
 	selector: 'accordion',
 	template: `
-	<div (click)="Toggle()">
+	<div (click)="Toggle()" class="hl-title-branch">
 		<ng-content select="accordion-title"></ng-content>
-        <span *ngIf="isHidden" style="float: right; margin-right: 1vw"><i _ngcontent-lat-10="" class="fa fa-angle-double-right"> </i></span>
-        <span *ngIf="!isHidden" style="float: right; margin-right: 1vw"><i _ngcontent-lat-10="" class="fa fa-angle-double-down"> </i></span>
+        <span *ngIf="isHidden" style="float: right;"><i _ngcontent-lat-10="" class="fa fa-angle-double-up"> </i></span>
+        <span *ngIf="!isHidden" style="float: right;"><i _ngcontent-lat-10="" class="fa fa-angle-double-down"> </i></span>
 	</div>
 	<div [class.hidden]="isHidden">
 		<ng-content></ng-content>

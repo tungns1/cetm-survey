@@ -3,5 +3,7 @@
     <report-info></report-info>
     <report-sum></report-sum>
 </div>
+<report-tab (select)="setActive($event) "></report-tab>
 <report-chart></report-chart>
 <report-overview></report-overview>
+<history [customer]="customer_id"></history>

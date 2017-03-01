@@ -19,6 +19,7 @@ import { ReportSumModule } from './sum/sum.module';
 import { ReportOverviewModule } from './overview/overview.module';
 import { ReportChartModule } from './chart/chart.module';
 import { ReportTabComponent } from './tab/tab.component';
+import {} from '@angular/flex-layout';
 
 @NgModule({
     imports: [

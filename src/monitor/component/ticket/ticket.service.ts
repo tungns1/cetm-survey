@@ -45,6 +45,7 @@ export class MonitorTicketService {
 
     summary$ = this.initialSummary$.switchMap(initial => {
         const add = (s: ISummary) => {
+            console.log(s);
             return AddToSet(initial, s, o => o.branch_id === s.branch_id);
         }
         return this.summaryUpdate$.map(add);

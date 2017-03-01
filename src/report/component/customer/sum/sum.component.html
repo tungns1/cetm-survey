@@ -19,11 +19,11 @@
             <div>
                 <div class="hl-ct-sum">
                     <span translate>CUSTOMER.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD</span>
-                    <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_t-data.c_bwt}}&nbsp; ({{(data.c_t-data.c_bwt)/data.c_t*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_wt}}&nbsp; ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+(data.c_t-data.c_bwt)/data.c_t*100+'%'">
+                        <div class="hl-gd-sum" [style.width]="''+(data.s_wt)/data.c_t*100+'%'">
 
                         </div>
                     </div>
@@ -32,11 +32,11 @@
             <div>
                 <div class="hl-ct-sum">
                     <span translate>CUSTOMER.TRANSACTION_HAVE_SERVING_STANDARD</span>
-                    <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_ft*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+data.c_bst/data.c_ft*100+'%'">
+                        <div class="hl-gd-sum" [style.width]="''+data.c_bst/data.c_t*100+'%'">
 
                         </div>
                     </div>
@@ -45,11 +45,11 @@
             <div>
                 <div class="hl-ct-sum">
                     <span translate>CUSTOMER.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD</span>
-                    <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_ft-data.c_bst}}&nbsp; ({{(data.c_ft-data.c_bst)/data.c_ft*100 | number : '1.2-2'}}%)</span>
+                    <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_st}}&nbsp; ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+(data.c_t-data.c_bst)/data.c_ft*100+'%'">
+                        <div class="hl-gd-sum" [style.width]="''+(data.s_st)/data.c_t*100+'%'">
 
                         </div>
                     </div>

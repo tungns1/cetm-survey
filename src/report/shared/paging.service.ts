@@ -4,39 +4,39 @@ export interface IPage {
     page: number;
     title: string;
 }
+export const count$ = new BehaviorSubject<number>(0);
+export const currentPage$ = new BehaviorSubject<number>(1);
+export const pageSize$ = new BehaviorSubject<number>(20);
 
 export class Paging<T> {
-    count$ = new BehaviorSubject<number>(0);
-    data$ = new BehaviorSubject<T[]>([]);
-    currentPage$ = new BehaviorSubject<number>(1);
-    pageSize$ = new BehaviorSubject<number>(20);
 
+    data$ = new BehaviorSubject<T[]>([]);
     Reset(data: T[], count: number) {
         this.data$.next(data);
-        this.count$.next(count);
+        count$.next(count);
     }
 
     get Skip() {
-        return this.SkipForPage(this.currentPage$.value);
+        return this.SkipForPage(currentPage$.value);
     }
 
     SkipForPage(page: number) {
-        return (page - 1) * this.pageSize$.value;
+        return (page - 1) * pageSize$.value;
     }
 
     get Limit() {
-        return this.pageSize$.value;
+        return pageSize$.value;
     }
 
     get TotalPage() {
-        return Math.ceil(this.count$.value * 1.0 / this.pageSize$.value);
+        return Math.ceil(count$.value * 1.0 / pageSize$.value);
     }
 
     IsActive(p: IPage) {
-        return this.currentPage$.value === p.page;
+        return currentPage$.value === p.page;
     }
 
-    pages$ = this.count$.combineLatest(this.currentPage$, (count, current) => {
+    pages$ = count$.combineLatest(currentPage$, (count, current) => {
         const totalPage = this.TotalPage;
         let pages: IPage[] = [];
         if (totalPage < 1) {
@@ -49,11 +49,11 @@ export class Paging<T> {
         return pages;
     });
 
-    info$ = this.currentPage$.map(c => `Hiển thị ${this.pageSize$.value} GD từ số ${(c - 1) * this.pageSize$.value + 1} đến số ${c * this.pageSize$.value}`);
+    info$ = currentPage$.map(c => `Hiển thị ${pageSize$.value} GD từ số ${(c - 1) * pageSize$.value + 1} đến số ${c * pageSize$.value}`);
 
     SetPage(page: number) {
         if (page <= this.TotalPage && page >= 0) {
-            this.currentPage$.next(page);
+            currentPage$.next(page);
             return true;
         }
         return false;

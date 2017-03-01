@@ -13,8 +13,9 @@ const appState = new SharedService.AppState(appName);
 
 @NgModule({
   imports: [
-    BaseAppModule, routing, ReportFilterModule,
+    BaseAppModule, routing, 
     FlexLayoutModule.forRoot(),
+    ReportFilterModule
   ],
   declarations: [AppComponent, ReportComponent],
   providers: [appState.toProvider(), reportServiceProvider],

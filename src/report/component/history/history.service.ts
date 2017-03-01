@@ -3,8 +3,7 @@ import { SharedService, Model } from '../shared/';
 import { ReportFilterService, ReportFilter } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Paging } from './paging.service';
-
+import { Paging } from '../../shared/paging.service';
 export interface IHistory {
     data: ITransactionView[];
     total: number;

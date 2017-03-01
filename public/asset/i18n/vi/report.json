@@ -73,6 +73,11 @@
         "TIME_WAIT_MAX": "Thời gian chờ dài nhất"
     },
     "CUSTOMER": {
+        "TOTAL_TRANSACTION": "Tổng số giao dịch",
+        "TRANSACTION_WAIT_STANDARD": "Giao dịch đợi chuẩn",
+        "TRANSACTION_WAIT_BEYOND_STANDARD": "Giao dịch đợi vượt chuẩn",
+        "TRANSACTION_SERVING_STANDARD": "Giao dịch phục vụ chuẩn",
+        "TRANSACTION_SERVING_BEYOND_STANDARD": "Giao dịch phục vụ vượt chuẩn",
         "ID_USER": "Mã người dùng",
         "TAB_STORE": "CỬA HÀNG",
         "TAB_TIME_TRANSACTION": "THỜI GIAN GIAO DỊCH",
@@ -105,6 +110,7 @@
     "STACK_CHART": "Biểu đồ cột xếp",
     "PIE_CHART": "Biểu đồ tròn",
     "SHOW_FILTER": "Hiển thị bộ lọc",
-    "HIDDEN_FILTER": "Đóng bộ lọc"
+    "HIDDEN_FILTER": "Đóng bộ lọc",
+    "LABEL_REPORT": "BÁO CÁO"
 
 }

@@ -1,65 +1,60 @@
+<style>
+    .bb1 {
+        border: 1px solid gray;
+    }
+    
+    label {
+        font-weight: bold;
+    }
+</style>
+
 <modal *ngIf="data">
     <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
-    <div style="text-align: center;">
-        <div style="float: left;border: 1px solid gray;">
-            <div style="float: left;">
-                <span translate> HISTORY.TICKET_NUMBER </span><br>
-                <span translate> HISTORY.SERVICE </span><br>
-                <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
-                <span translate> HISTORY.TIME_WAIT</span><br>
-                <span translate> HISTORY.TIME_SERVING</span><br>
-                <span translate> HISTORY.DATE</span><br>
-            </div>
-            <div style="float: left;margin-left: 10px;">
-                <span>{{data.cnum}}</span><br>
-                <span>{{data.service}}</span><br>
-                <span>{{data.ctime}}</span><br>
-                <span>{{data.wtime}}</span><br>
-                <span>{{data.stime}}</span><br>
-                <span>{{data.cdate}}</span><br>
-            </div>
-
-
+    <div fxLayout="row" fxLayoutGap="20px">
+        <div class="bb1" fxFlex="50%">
+            <label translate> Ticket Number </label> :
+            <span>{{data.cnum}}</span><br>
+            <label translate> HISTORY.SERVICE </label> :
+            <span>{{data.service}}</span><br>
+            <label translate> HISTORY.TIME_CREATE_TICKET</label> :
+            <span>{{data.ctime}}</span><br>
+            <label translate> HISTORY.TIME_WAIT</label> :
+            <span>{{data.wtime}}</span><br>
+            <label translate> HISTORY.TIME_SERVING</label> :
+            <span>{{data.stime}}</span><br>
+            <label translate> HISTORY.DATE</label> :
+            <span>{{data.cdate}}</span><br>
         </div>
 
-        <div style="float: left;border: 1px solid gray; margin-left: 20px;">
-            <div style="float: left">
-                <span translate> HISTORY.BRANCH </span><br>
-                <span translate> HISTORY.TRANSACTION_ROOM </span><br>
-                <span translate> HISTORY.TELLERS</span><br>
-                <span translate> HISTORY.COUNTER</span><br>
-                <span translate> HISTORY.MANAGER</span><br>
-                <span translate> HISTORY.ADMIN</span><br>
-            </div>
-            <div style="float: left;margin-left: 10px;">
-                <span>{{data.branch}}</span><br>
-                <span>{{data.branch}}</span><br>
-                <span>{{data.user}}</span><br>
-                <span>{{data.counter}}</span><br>
-                <span>{{data.stime}}</span><br>
-                <span>{{data.cdate}}</span><br>
-            </div>
-
+        <div class="bb1" fxFlex="50%">
+            <label translate> HISTORY.BRANCH </label> :
+            <span>{{data.branch}}</span><br>
+            <label translate> HISTORY.TRANSACTION_ROOM </label> :
+            <span>{{data.branch}}</span><br>
+            <label translate> HISTORY.TELLERS</label> :
+            <span>{{data.user}}</span><br>
+            <label translate> HISTORY.COUNTER</label> :
+            <span>{{data.counter}}</span><br>
+            <label translate> HISTORY.MANAGER</label> :
+            <span>{{data.stime}}</span><br>
+            <label translate> HISTORY.ADMIN</label> :
+            <span>{{data.cdate}}</span><br>
         </div>
     </div>
-    <div style="text-align: center;">
-        <div>
-            <div style="float: left;">
-                <span translate> HISTORY.CUSTOMER</span><br>
-                <span translate> HISTORY.PHONE</span><br>
-                <span translate> HISTORY.ID</span><br>
-                <span translate> HISTORY.SEGMENT</span><br>
-            </div>
-            <div style="float: left;margin-left: 20px;">
-                <span> </span><br>
-                <span> </span><br>
-                <span> </span><br>
-                <span> </span><br>
-            </div>
+    <div class="bb1" fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxFlex="100%">
+            <label translate> HISTORY.CUSTOMER</label> :
+            <span> Nguyen Van A</span><br>
+            <label translate> HISTORY.PHONE</label> :
+            <span> 8490234734 </span><br>
+            <label translate> HISTORY.ID</label> :
+            <span><a (click)="goToCustomer(data.customer_id)">1021234356621</a> </span><br>
+            <label translate> HISTORY.SEGMENT</label> :
+            <span> Normal</span><br>
+            <audio *ngIf="link" controls [src]="link"> </audio>
         </div>
-        <audio *ngIf="link" controls [src]="link"> </audio>
     </div>
-    <div style="float:right;">
+    <div>
         <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
     </div>
 </modal>

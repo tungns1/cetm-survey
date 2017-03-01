@@ -2,22 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HistoryComponent } from './history.component';
 import { Routes, RouterModule } from '@angular/router'
-import { SharedModule } from '../../shared';
-import { ModalModule } from '../../../x/ng/modal';
-import { TransactionHistoryApi } from './history.service';
+import { SharedService } from '../../shared';
+import { ModalModule } from '../../../../x/ng/modal';
 import { TransactionComponent } from './transaction.component';
 
-const routing = RouterModule.forChild([
-    {
-        path: '',
-        component: HistoryComponent
-    }
-]);
 
 @NgModule({
-    imports: [routing, SharedModule],
+    imports: [CommonModule, SharedService.I18n.TranslateModule, ModalModule],
     declarations: [HistoryComponent, TransactionComponent],
-    providers: [TransactionHistoryApi]
+    exports:[HistoryComponent]
 })
 export class ReportHistoryModule {
 

@@ -1,10 +1,6 @@
 
 
 export const MAIN_TABS = {
-    STORE: {
-        name: 'store',
-        title: 'CUSTOMER.TAB_STORE',
-    },
     TIME: {
         name: 'time',
         title: 'CUSTOMER.TAB_TIME_TRANSACTION'
@@ -16,5 +12,9 @@ export const MAIN_TABS = {
     SERVICE: {
         name: 'service',
         title: 'CUSTOMER.TAB_SERVICE'
+    },
+    STORE: {
+        name: 'store',
+        title: 'CUSTOMER.TAB_STORE',
     }
 }

@@ -28,5 +28,6 @@
     "MANAGER_SCREEN": "Screen Management",
     "HOME.SELECT": "Language",
     "LABEL_CHOOSE_ALL": "Choose all",
-    "LABEL_CLOSE": "Close"
+    "LABEL_CLOSE": "Close",
+    "LABEL_SETTING": "SETTING"
 }

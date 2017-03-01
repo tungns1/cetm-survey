@@ -1,5 +1,5 @@
 <div style="border: 1px solid #b0b1b5; padding: 10px 0px; background-color: #fff; height: 300px">
-    <div>
+    <div style="float: left;">
         <span>Tên khách hàng:</span><br>
         <span>Mã ID:</span><br>
         <span>Số điện thoại</span><br>
@@ -7,13 +7,13 @@
         <span>Dịch vụ dùng nhiều nhất</span><br>
         <span>Cửa hàng giao dịch nhiều nhất</span>
     </div>
-    <div>
-        <span></span><br>
-        <span></span><br>
-        <span></span><br>
-        <span></span><br>
-        <span></span><br>
-        <span></span>
+    <div style="float: left;">
+        <span>{{data.customer_name}}</span><br>
+        <span>{{data.customer_id}}</span><br>
+        <span>{{data.customer_phone}}</span><br>
+        <span>{{data.segment}}</span><br>
+        <span>{{data.max_service}}</span><br>
+        <span>{{data.max_store}}</span>
     </div>
 
 </div>
