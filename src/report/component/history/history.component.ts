@@ -3,7 +3,7 @@ import { ITransactionView } from '../../model';
 import { ReportFilterService, ReportFilter } from '../../service/';
 import { TransactionHistoryApi } from './history.service';
 import { Paging } from '../../shared/paging.service';
-
+import { Model } from '@swimlane/ngx-datatable';
 
 @Component({
     selector: 'history',
@@ -37,5 +37,16 @@ export class HistoryComponent {
     excel() {
         this.transactionHistoryApi.ExportHistory(this.filterService.Current);
     }
+
+    rows = [
+        { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+        { name: 'Dany', gender: 'Male', company: 'KFC' },
+        { name: 'Molly', gender: 'Female', company: 'Burger King' },
+    ];
+    columns = [
+        { prop: 'name' },
+        { name: 'Gender' },
+        { name: 'Company' }
+    ];
 
 }
