@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Branch } from '../../shared';
 import { MonitorFilterService } from '../shared';
 import { MonitorTicketService } from './ticket.service';
+import { SummaryComponent } from './summary/summary.component';
+import { FocusComponent } from './focus/focus.component';
+import { MonitorNavService } from '../../service/shared/nav';
 
 @Component({
     selector: 'monitor-ticket',
@@ -10,7 +13,8 @@ import { MonitorTicketService } from './ticket.service';
     styleUrls: ['ticket.component.css']
 })
 export class MonitorTicketComponent implements OnInit {
-    constructor(
+    constructor(        
+        private navService: MonitorNavService,
         private filterService: MonitorFilterService,
         private ticketService: MonitorTicketService
     ) { }

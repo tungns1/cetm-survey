@@ -30,49 +30,169 @@
         </tr>
     </tbody>
 </table>-->
+<div id="focusComponent">
+    <div class="flex-container" fxLayout="row" 
+        fxLayout.xs="column"
+        fxLayoutAlign="center center"
+        fxLayoutAlign.xs="start">
+        <span fxFlex>  {{navService.selectedBranch | branchName}} </span>&nbsp;<i class="fa fa-chevron-circle-down" _ngcontent-syn-12=""></i>
+        <button fxFlex="20%" (click)="navService.isShowDetail = false" style="float: right;">Go back</button>
+    </div> 
 
-<h1> Khách hàng chưa được phục vụ </h1>
+    <h1> Khách hàng chưa được phục vụ </h1>
 
-<table class="table">
-    <thead>
-        <th> STT </th>
-        <th translate> TICKET_NUMBER </th>
-        <th translate>SERVICE </th>
-        <th translate> TIME_CREATE_TICKET</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let t of waiting$ | async; let i = index">
-            <td> {{i + 1}} </td>
-            <td> {{t.cnum}}</td>
-            <td> {{t.services | multipleServiceName}}</td>
-            <td> {{t.ctime | localDayTime}}</td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <th> STT </th>
+            <th translate>BRANCH </th>
+            <th translate>SERVICE </th>
+            <th translate> TICKET_NUMBER </th>
+            <th translate>CUSTOMER </th>
+            <th translate> TIME_CREATE_TICKET</th>
+            <th translate> WAIT_TIME</th>
+            <th translate> DETAIL </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of waiting$ | async; let i = index"
+                [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
+                <td> {{i + 1}} </td>
+                <td translate> {{t.branch_id | branchName}}</td>
+                <td> {{t.services | multipleServiceName}}</td>
+                <td> {{t.cnum}}</td>
+                <td> customer X</td>
+                <td> {{t.ctime | localDayTime}}</td>
+                <td> _______ </td>
+                <td>
+                    <span (click)="detail(t)">
+                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<h1> Khách hàng đã được phục vụ </h1>
+    <h1> Khách hàng đã được phục vụ </h1>
 
-<table class="table">
-    <thead>
-        <th> STT </th>
-        <th translate>STATE</th>
-        <th translate> TICKET_NUMBER </th>
-        <th translate>SERVICE </th>
-        <th translate>COUNTER</th>
-        <th translate>STAFF</th>
-        <th translate> TIME_CREATE_TICKET</th>
-        <th translate> TIME_CALL_TICKET </th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let t of served$ | async; let i = index">
-            <td> {{i + 1}} </td>
-            <td translate> {{t | ticketState}}</td>
-            <td> {{t.cnum}} </td>
-            <td> {{t.serving.service_id | serviceName}} </td>
-            <td> {{t.serving.counter_id | counterName}}</td>
-            <td> {{t.serving.user_id | userFullName}}</td>
-            <td> {{t.ctime | localDayTime}}</td>
-            <td> {{t.serving.mtime | localDayTime}} </td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <th> STT </th>
+            <th translate>BRANCH</th>
+            <th translate>SERVICE </th>
+            <th translate>COUNTER</th>
+            <th translate>STAFF</th>
+            <th translate> TICKET_NUMBER </th>
+            <th translate> CUSTOMER </th>
+            <th translate> TIME_CREATE_TICKET</th>
+            <th translate> WAIT_TIME </th>
+            <th translate> DETAIL </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of served$ | async; let i = index" 
+                [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished'}">
+                <td> {{i + 1}} </td>
+                <td translate> {{t.branch_id | branchName}}</td>
+                <td> {{t.serving.service_id | serviceName}} </td>
+                <td> {{t.serving.counter_id | counterName}}</td>
+                <td> {{t.serving.user_id | userFullName}}</td>
+                <td> {{t.cnum}} </td>
+                <td> customer x </td>
+                <td> {{t.ctime | localDayTime}}</td>
+                <td> {{t.serving.mtime - t.ctime | timeDuration}} </td>
+                <td>
+                    <span (click)="detail(t)">
+                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
+                    </span>
+                    <span>
+                        <i class="fa fa-volume-down" aria-hidden="true" style="cursor: pointer"></i>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<modal #edit id="modal_monitor_detailTicket">
+    <div *ngIf="selectedTicket">
+        <h3 class="header">TICKET DETAIL</h3>
+        <div class="twoColumn">
+            <table>
+                <tr>
+                    <th translate> TICKET_NUMBER </th>
+                    <th>{{selectedTicket.cnum}}</th>
+                </tr>
+                <tr>
+                    <th translate> STATE </th>
+                    <th>{{selectedTicket.state}}</th>
+                </tr>
+                <tr>
+                    <th translate> SERVICE </th>
+                    <th>
+                        <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
+                        <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
+                    </th>
+                </tr>
+                <tr>
+                    <th translate> TIME_CREATE_TICKET </th>
+                    <th>{{selectedTicket.ctime | localDayTime}}</th>
+                </tr>
+                <tr>
+                    <th translate> WAIT_TIME </th>
+                    <th>{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</th>
+                </tr>
+                <tr>
+                    <th translate> DATE </th>
+                    <th>{{selectedTicket.ctime | localDayTime}}</th>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="twoColumn" [ngClass]="{'notServeYet': !isServed}">
+            <table>
+                <tr>
+                    <th translate> BRANCH </th>
+                    <th translate>{{selectedTicket.branch_id | branchName}}</th>
+                </tr>
+                <tr>
+                    <th translate> STORE </th>
+                    <th translate>{{selectedTicket.branch_id | branchName}}</th>
+                </tr>
+                <tr *ngIf="selectedTicket.serving">
+                    <th translate> STAFF </th>
+                    <th>{{selectedTicket.serving.user_id | userFullName}}</th>
+                </tr>
+                <tr *ngIf="selectedTicket.serving">
+                    <th translate> COUNTER </th>
+                    <th>{{selectedTicket.serving.counter_id | counterName }}</th>
+                </tr>
+                <tr *ngIf="selectedTicket.serving">
+                    <th translate> MANAGER </th>
+                    <th>testing</th>
+                </tr>
+                <tr *ngIf="selectedTicket.serving">
+                    <th translate> ADDMINISTRATOR </th>
+                    <th>testing</th>
+                </tr>
+            </table>
+        </div>
+        <table>
+            <tr>
+                <th translate> CUSTOMER </th>
+                <th>{{selectedTicket.customer_id }}</th>
+            </tr>
+            <tr>
+                <th translate> TEL </th>
+                <th>testing</th>
+            </tr>
+            <tr>
+                <th translate> ID </th>
+                <th>testing</th>
+            </tr>
+            <tr>
+                <th translate> TYPE </th>
+                <th>testing</th>
+            </tr>
+        </table>
+
+        <button (click)="closeModal()" style="float: right;">Close</button>
+    </div>
+</modal>

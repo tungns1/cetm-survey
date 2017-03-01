@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ISummary, MonitorNavService, MonitorFilterService } from '../../shared';
+import { ISummary, Summary, MonitorNavService, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
 
 @Component({
@@ -34,8 +34,13 @@ export class SummaryComponent {
     focus(branch_id: string) {
         this.filterService.SetFocus(branch_id);
         this.navService.SyncLink();
+        this.navService.isShowDetail = true;
+        this.navService.selectedBranch = branch_id;
     }
 
     message = '';
     summary$ = this.ticketService.summary$;
+    totalSummary$ = this.summary$.map(data =>{
+        return Summary.Aggrgate(data);
+    });
 }
