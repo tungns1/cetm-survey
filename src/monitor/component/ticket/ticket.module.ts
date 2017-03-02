@@ -5,6 +5,9 @@ import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
 import { SummaryComponent } from './summary/summary.component';
 import { SharedPipe } from '../../shared';
+import { MonitorChartComponent } from './chart/chart.component';
+import { D3Module } from '../../../x/ng/d3/d3.module';
+import { PieChartComponent } from '../../../x/ng/d3/pie';
 
 const routing = RouterModule.forChild([
     {
@@ -17,12 +20,13 @@ import { MonitorTicketService } from './ticket.service';
 
 @NgModule({
     imports: [
-        routing, SharedModule, SharedPipe.UtilPipeModule
+        routing, SharedModule, SharedPipe.UtilPipeModule, D3Module
     ],
     providers: [
         MonitorTicketService
     ],
     declarations: [
-        MonitorTicketComponent, FocusComponent, SummaryComponent]
+        MonitorTicketComponent, FocusComponent, 
+        SummaryComponent, MonitorChartComponent]
 })
 export class MonitorTicketModule { }

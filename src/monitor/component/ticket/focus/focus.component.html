@@ -1,103 +1,72 @@
-<!--<table class="table" style="width:300px" *ngFor="let summary of focus$ | async">
-    <tbody>
-        <tr>
-            <td> Phòng giao dịch </td>
-            <td> {{summary.branch_id | branchName}}</td>
-        </tr>
-        <tr>
-            <td> SL. vé đã in</td>
-            <td> {{printed(summary)}}</td>
-        </tr>
-        <tr>
-            <td> SL. vé đợi </td>
-            <td> {{summary.waiting}}</td>
-        </tr>
-        <tr>
-            <td> SL. vé đang phục vụ </td>
-            <td> {{summary.serving}}</td>
-        </tr>
-        <tr>
-            <td> SL. vé đã phục vụ </td>
-            <td> {{summary.finished}}</td>
-        </tr>
-        <tr>
-            <td> SL. vé nhỡ </td>
-            <td> {{summary.missed}}</td>
-        </tr>
-        <tr>
-            <<td> SL. vé hủy </td>
-            <td> {{summary.cancellled}} </td>
-        </tr>
-    </tbody>
-</table>-->
-<div id="focusComponent">
+<div id="focusComponent" *ngIf="data">
     <div class="flex-container header" fxLayout="row" fxLayoutAlign="space-between none">
-        <h1 fxFlex> {{navService.selectedBranch | branchName}} </h1>
-        <h3 fxFlex="10%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
+        <h1 fxFlex> {{data.branch_id | branchName}} </h1>
+        <h3 fxFlex="15%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
     </div> 
-    <!--*************************************************************************-->
     <div class="flex-container overview" fxLayout="row" fxLayoutAlign="space-between none">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Chi nhánh: </span>
-                <span>222222222222</span>
+                <span>{{data.parent_id | branchName}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Admin: </span>
-                <span>222222222222</span>
+                <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Manager: </span>
-                <span>222222222222</span>
+                <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Tổng số quầy: </span>
-                <span>222222222222</span>
+                <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Tổng số quầy đang bật: </span>
-                <span>222222222222</span>
+                <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Tổng số quầy đang tắt: </span>
-                <span>222222222222</span>
+                <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé đã in: </span>
-                <span>222222222222</span>
+                <span>{{data.printed}}</span>
             </div>
         </div>
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé đang đợi: </span>
-                <span>222222222222</span>
+                <span>{{data.waiting}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé đang được phục vụ: </span>
-                <span>222222222222</span>
+                <span>{{data.serving}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé đã được phục vụ: </span>
-                <span>222222222222</span>
+                <span>{{data.finished}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé đặt nhỡ: </span>
-                <span>222222222222</span>
+                <span>{{data.missed}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé hủy: </span>
-                <span>222222222222</span>
+                <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé đợi trên 15': </span>
-                <span>222222222222</span>
+                <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Số lượng vé được phục vụ dưới 2': </span>
-                <span>222222222222</span>
+                <span>{{data.serve_short}}</span>
             </div>
         </div>
     </div>
+
+    <monitor-chart [data]="data" ></monitor-chart>
 
     <h3> Khách hàng chưa được phục vụ </h3>
 
@@ -145,6 +114,7 @@
             <th translate> CUSTOMER </th>
             <th translate> TIME_CREATE_TICKET</th>
             <th translate> WAIT_TIME </th>
+            <th translate> SERVE_TIME </th>
             <th translate> DETAIL </th>
         </thead>
         <tbody>
@@ -159,6 +129,7 @@
                 <td> customer x </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td> {{t.serving.mtime - t.ctime | timeDuration}} </td>
+                <td> serve time </td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>

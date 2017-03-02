@@ -59,6 +59,7 @@ export class ReportChartComponent {
             }
         });
         this.pieItems$.next(pieItems);
+        console.log(tab);
     }
 
     Toggle(item: ChartItem) {

@@ -21,26 +21,22 @@ export class SummaryComponent {
                 this.message = "MESSAGE_PLEASE_SELECT_BRANCH";
             }
         });
+        this.totalSummary$.subscribe(data => this.total = data);
     }
 
     ngOnDestroy() {
 
     }
 
-    printed(s: ISummary) {
-        return s.waiting + s.serving + s.missed + s.finished + s.cancelled;
-    }
-
-    focus(branch_id: string) {
-        this.filterService.SetFocus(branch_id);
+    focus(selectedBranch) {
+        this.filterService.SetFocus(selectedBranch.branch_id);
         this.navService.SyncLink();
-        this.navService.isShowDetail = true;
-        this.navService.selectedBranch = branch_id;
     }
 
     message = '';
+    total = new Summary();
     summary$ = this.ticketService.summary$;
     totalSummary$ = this.summary$.map(data =>{
-        return Summary.Aggrgate(data);
+        return Summary.Aggregate(data);
     });
 }

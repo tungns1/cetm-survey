@@ -37,7 +37,7 @@ export class MonitorTicketService {
             const branches = filter.Branch.GetBranchIDByLevel(0);
             return this.socket.Send<ISummary[]>("/summary", {
                 branches
-            }).map(data => data || []);
+            }).map(data => (data || []).map(d => new Summary(d)));
         });
     }).share();
 
@@ -45,8 +45,10 @@ export class MonitorTicketService {
 
     summary$ = this.initialSummary$.switchMap(initial => {
         const add = (s: ISummary) => {
-            console.log(s);
-            return AddToSet(initial, s, o => o.branch_id === s.branch_id);
+            if (!s) {
+                return initial;
+            }
+            return AddToSet(initial, new Summary(s), o => o.branch_id === s.branch_id);
         }
         return this.summaryUpdate$.map(add);
     });

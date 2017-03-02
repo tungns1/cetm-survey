@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Model, ISummary, ITicket, MonitorFilterService } from '../../shared';
+import { Model, ISummary, Summary, ITicket, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
 import { MonitorNavService } from '../../../service/shared/nav';
 import { ModalComponent } from '../../../../x/ng/modal/modal.component';
 import { TimerComopnent } from '../../../../x/ng/time/timer.component';
+// import { ReportChartComponent } from '../../chart/chart.component';
 
 const TicketStates = Model.House.TicketStates;
 
@@ -25,17 +26,15 @@ export class FocusComponent {
 
     selectedTicket: Object;
     isServed: boolean = true;
+    data: Summary;
+
 
     ngOnInit() {
-        
+        this.focus$.subscribe(d => this.data = d[0]);
     }
 
     ngOnDestroy() {
 
-    }
-
-    printed(s: ISummary) {
-        return s.waiting + s.serving + s.missed + s.finished + s.cancelled;
     }
 
     focus$ = this.filterService.ValueChanges.switchMap(filter => {
@@ -66,8 +65,7 @@ export class FocusComponent {
     }
 
     private goBackBranchList() {
-        this.navService.isShowDetail = false;
-        this.navService.selectedBranch = null;
+        this.filterService.SetFocus('');
     }
 
     private closeModal() {
@@ -75,8 +73,9 @@ export class FocusComponent {
         this.editorRef.Close();
     }
 
-    private detail (ticket) {
-        if(ticket.serving){
+    private detail(ticket) {
+        console.log(ticket);
+        if (ticket.serving) {
             this.isServed = true;
         } else this.isServed = false;
         this.selectedTicket = ticket;

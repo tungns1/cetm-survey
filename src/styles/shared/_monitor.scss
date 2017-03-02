@@ -167,6 +167,7 @@
     color: #006699;
 }
 #modal_monitor_detailTicket {
+    font-size: 14px;
     .header {
         text-align: center;
         padding: 10px;
@@ -191,6 +192,7 @@
 }
 
 #focusComponent{
+    font-size: 14px;
     .header{
         background-color: #0b8fda;
         color: #ffffff;
@@ -214,20 +216,20 @@
         background-color: #FFFFFF;
     }
     .missed{
-        background-color: #0b8fda;
-        color: #ffffff;
+        // background-color: #0b8fda;
+        color: #0b8fda;
     }
     .serving{
         background-color: #ffffff;
         color: #000000;
     }
     .serveDone{
-        background-color: #0b8fda;
-        color: #ffffff;
+        // background-color: #0b8fda;
+        color: #156a9a;
     }
     .cancelled{
-        background-color: #ff5858;
-        color: #ffffff;
+        // background-color: #ff5858;
+        color: #ff5858;
     }
 }
 

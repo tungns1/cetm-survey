@@ -1,2 +1,2 @@
-<ticket-summary [hidden]="navService.isShowDetail"></ticket-summary>
-<focus-on-branch [hidden]="!navService.isShowDetail"></focus-on-branch>
+<ticket-summary [hidden]="isFocus$ | async"></ticket-summary>
+<focus-on-branch [hidden]="!(isFocus$ | async)"></focus-on-branch>

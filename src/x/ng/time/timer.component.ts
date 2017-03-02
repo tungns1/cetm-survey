@@ -34,6 +34,7 @@ export class TimerComopnent {
     }
 
     @Input() set start(s: number) {
+        // console.log(s);
         this.clear();
         let ctime=0;
         if((Date.now() / 1000-s)<0){

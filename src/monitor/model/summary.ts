@@ -1,13 +1,15 @@
 export interface ISummary {
-    branch_id: string;
-    waiting: number;
-    serving: number;
-    missed: number;
-    cancelled: number;
-    finished: number;
-    wait_long: number;
-    serve_short:number;
+	branch_id: string;
+	waiting: number;
+	serving: number;
+	missed: number;
+	cancelled: number;
+	finished: number;
+	wait_long: number;
+	serve_short: number;
 }
+
+import { Model } from '../shared';
 
 export class Summary {
 	constructor(data?: ISummary) {
@@ -20,33 +22,39 @@ export class Summary {
 		this.finished = +data.finished || 0;
 		this.wait_long = +data.wait_long || 0;
 		this.serve_short = +data.serve_short || 0;
+		const branch = Model.Org.CacheBranch.GetByID(this.branch_id);
+		if (branch) {
+			this.parent_id = branch.parent;
+		}
 	}
 
 	branch_id: string;
+	parent_id: string;
 	waiting: number;
-    serving: number;
-    missed: number;
-    cancelled: number;
-    finished: number;
-    wait_long: number;
-    serve_short:number;
+	serving: number;
+	missed: number;
+	cancelled: number;
+	finished: number;
+	wait_long: number;
+	serve_short: number;
 
-    get printed() {
-    	return this.waiting + this.serving + this.cancelled + this.finished + this.missed;
-    }
 
-    static Aggrgate(data: ISummary[]) : ISummary {
-    	const s = new Summary();
-    	data.forEach(d => {
-    		s.waiting += d.waiting;
-    		s.serving += d.serving;
-    		s.missed += d.missed;
-    		s.cancelled += d.cancelled;
-    		s.finished += d.finished;
-    		s.wait_long += d.wait_long;
-    		s.serve_short += d.serve_short
-    	})
-    	return s;
-    }
+	get printed() {
+		return this.waiting + this.serving + this.cancelled + this.finished + this.missed;
+	}
+
+	static Aggregate(data: ISummary[]) {
+		const s = new Summary();
+		data.forEach(d => {
+			s.waiting += d.waiting;
+			s.serving += d.serving;
+			s.missed += d.missed;
+			s.cancelled += d.cancelled;
+			s.finished += d.finished;
+			s.wait_long += d.wait_long;
+			s.serve_short += d.serve_short
+		})
+		return s;
+	}
 
 }

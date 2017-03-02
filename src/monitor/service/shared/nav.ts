@@ -15,7 +15,6 @@ export class MonitorNavService {
     }
 
     isShowDetail = false;
-    selectedBranch:string;
 
     SyncFilter() {
         this.filterService.triggerChange();

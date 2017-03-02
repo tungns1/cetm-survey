@@ -1,7 +1,6 @@
-<h1> {{message | translate}}</h1>
 <table class="hl-table-mn-ck">
     <thead>
-        <th> Chi nhánh</th>
+        <th> Cửa hàng</th>
         <th> SL. vé đã in</th>
         <th> SL. vé đợi </th>
         <th> SL. vé đang phục vụ </th>
@@ -14,11 +13,11 @@
     <tbody>
         <tr *ngFor="let s of summary$ | async">
             <td class="pointer">
-                <a href="javascript:void(0);" (click)="focus(s.branch_id)">
+                <a href="javascript:void(0);" (click)="focus(s)">
                     <span>  {{s.branch_id | branchName}} </span>&nbsp;<i class="fa fa-chevron-circle-down" _ngcontent-syn-12=""></i>
                 </a>
             </td>
-            <td> {{printed(s)}}</td>
+            <td> {{s.printed}}</td>
             <td translate> {{s.waiting}}</td>
             <td translate> {{s.serving}}</td>
             <td translate> {{s.finished}}</td>
@@ -29,14 +28,14 @@
         </tr>
         <tr>
             <td class="pointer"> Tổng </td>
-            <td> {{printed(totalSummary$)}}</td>
-            <td translate> {{totalSummary$.waiting}}</td>
-            <td translate> {{totalSummary$.serving}}</td>
-            <td translate> {{totalSummary$.finished}}</td>
-            <td translate> {{totalSummary$.missed}}</td>
-            <td translate> {{totalSummary$.cancelled}}</td>
-            <td translate> {{totalSummary$.wait_long}}</td>
-            <td translate> {{totalSummary$.serve_short}}</td>
+            <td> {{total.printed}}</td>
+            <td translate> {{total.waiting}}</td>
+            <td translate> {{total.serving}}</td>
+            <td translate> {{total.finished}}</td>
+            <td translate> {{total.missed}}</td>
+            <td translate> {{total.cancelled}}</td>
+            <td translate> {{total.wait_long}}</td>
+            <td translate> {{total.serve_short}}</td>
         </tr>
     </tbody>
 </table>
