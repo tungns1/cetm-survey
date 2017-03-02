@@ -6,6 +6,7 @@ import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { CounterComponent } from './workspace.component';
 import { workspaceServiceProvider } from './service';
+import { InfoCustomerModule } from './info-customer/info.module';
 
 const routing = RouterModule.forChild([
     {
@@ -15,7 +16,7 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, QueueModule, ServingModule, StatModule],
+    imports: [routing, SharedModule, QueueModule, ServingModule, StatModule,InfoCustomerModule],
     declarations: [CounterComponent],
     providers: [workspaceServiceProvider]
 })
