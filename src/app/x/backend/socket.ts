@@ -96,7 +96,7 @@ export class Socket {
   RxEvent<T>(uri: string, replay = 1) {
     const res = new ReplaySubject<T>(replay);
     this.rxServerEvent.filter(v => v.uri === uri)
-      .map<T>(v => v.data).subscribe(res);
+      .map(v => v.data).subscribe(res);
     return res;
   }
 

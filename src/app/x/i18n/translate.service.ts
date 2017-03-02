@@ -93,6 +93,8 @@ export class TranslateService {
     /**
      * The lang currently used
      */
+
+    private defaultLang: string;
     public currentLang: string = this.defaultLang;
 
     /**
@@ -124,7 +126,7 @@ export class TranslateService {
 
     private pending: any;
     private translations: any = {};
-    private defaultLang: string;
+
     private langs: Array<string> = [];
 
     /**

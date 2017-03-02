@@ -23,15 +23,9 @@ export class TopNavComponent {
     onClick(item: Item, index: number) {
         this.active = index;
         const queryParams = this.route.root.snapshot.queryParams;
-        if (item.app === this.appService.AppName) {
             this.router.navigate([item.href], {
                 queryParams: queryParams
             });
-        } else {
-            const query = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
-            console.log(query);
-            window.location.assign(`../${item.app}/#${item.href}?${query}`);
-        }
     }
 
     menu = TopNavMenu;

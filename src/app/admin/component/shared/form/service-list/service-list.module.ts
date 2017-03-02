@@ -12,8 +12,10 @@ const SERVICE_LIST_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 import { FormArray, FormControl } from '@angular/forms';
-import { Model, Lib, Form } from '../../../shared';
+import { Model, Lib } from '../../../../shared';
 import { ViewChild } from '@angular/core';
+import {CultureModule} from '../i18n-form';
+import {JSONFormModule} from '../json-form';
 
 type IServiceList = Model.Center.IService[];
 
@@ -115,7 +117,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
     imports: [
         FormsModule, CommonModule,
-        Form.CultureModule, Form.JSONFormModule,
+        CultureModule, JSONFormModule,
         Lib.Ng.ModalModule
     ],
     declarations: [ServiceListComponent],

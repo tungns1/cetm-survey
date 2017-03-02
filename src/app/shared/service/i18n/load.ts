@@ -1,7 +1,7 @@
 import { Backend, I18n } from '../../shared';
 
 function LoadI18n(lang: string, app: string) {
-    const uri = `../asset/i18n/${lang}/${app}.json`;
+    const uri = `../i18n/${lang}/${app}.json`;
     return Backend.GetRaw(uri).map(res => {
         if (res.status == 200) {
             try {
