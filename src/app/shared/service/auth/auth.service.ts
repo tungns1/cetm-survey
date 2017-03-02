@@ -58,7 +58,7 @@ export class AuthService {
     RefreshMySettings() {
         return this.authBackend.Get<IMySettings>(
             "my_settings",
-            { scope: this.scope, token: this.sessionService.GetToken() }
+            { scope: this.options['scope'] || this.scope, token: this.sessionService.GetToken(), }
         ).map(v => {
             this.updateMySetting(v);
             return true;
