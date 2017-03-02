@@ -66,8 +66,6 @@ export class Customer {
     customer_name: string;
     customer_phone: string;
     segment: string;
-    max_store: number;
-    max_service: number;
     services = new Object();
     stores = new Object();
     fres = new Object();

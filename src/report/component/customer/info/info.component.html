@@ -7,13 +7,13 @@
         <span>Dịch vụ dùng nhiều nhất</span><br>
         <span>Cửa hàng giao dịch nhiều nhất</span>
     </div>
-    <div style="float: left;">
+    <div style="float: left;" *ngIf="data !=null">
         <span>{{data.customer_name}}</span><br>
         <span>{{data.customer_id}}</span><br>
         <span>{{data.customer_phone}}</span><br>
         <span>{{data.segment}}</span><br>
-        <span>{{data.max_service}}</span><br>
-        <span>{{data.max_store}}</span>
-    </div>
+        <span *ngIf="service">{{service.name}}&nbsp;{{service.count}}/{{data.c_t}}</span><br>
+        <span *ngIf="store">{{store.name}}&nbsp;{{store.count}}/{{data.c_t}}</span>
 
+    </div>
 </div>
