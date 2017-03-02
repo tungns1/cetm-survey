@@ -1,34 +1,25 @@
-import { ITransaction, ITransactionView, Customer } from '../../shared';
+import { ITransaction, ITransactionView, Customer, IService, IStore } from '../../shared';
 import { SharedService, Model } from '../../shared/';
 import { ReportFilterService, ReportFilter } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Paging, count$, currentPage$, pageSize$ } from '../../../shared/paging.service';
-export function MakeIndexBy(records: ITransaction[], field: string) {
-    let res: { [index: string]: Customer } = {};
-    records.forEach(v => {
-        let fieldValue = v[field];
-        if (res[fieldValue] == null) {
-            res[fieldValue] = new Customer();
-        }
-        res[fieldValue].Add(v);
-    })
-    let values = Object.keys(res).map(k => res[k]);
-    return values;
-}
+
 export interface IHistory {
     data: ITransactionView[];
     total: number;
 }
 
-export const  paging = new Paging<ITransactionView>();
+export const max_service = new BehaviorSubject<IService>(null);
+export const max_store = new BehaviorSubject<IStore>(null);
+export const paging = new Paging<ITransactionView>();
 
 @Injectable()
 export class CustomerAPI {
     constructor(
         private filterService: ReportFilterService
     ) { }
-   
+
 
     GetHistory(filter: ReportFilter, skip: number, limit: number, id: string) {
         const query = Object.assign({
@@ -39,10 +30,10 @@ export class CustomerAPI {
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number,customer:string) {
+    ChuyenTrang(page: number, customer: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
-        this.GetHistory(this.filterService.Current, skip, limit,customer)
+        this.GetHistory(this.filterService.Current, skip, limit, customer)
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
@@ -52,7 +43,13 @@ export class CustomerAPI {
     Search(id: string) {
         let filter = this.filterService.Current;
         this.api.Get<IHistory>("customer_history", this.makeQuery(filter, id)).subscribe(v => {
-            this.RxCustomer.next(v.data);
+            if (v.data.length>0) {
+                this.RxCustomer.next(v.data);
+            } else {
+                alert("Dữ liệu khách hàng không có");
+            }
+
+
         });
     }
 
@@ -76,21 +73,12 @@ export class CustomerAPI {
         return res;
     }
 
-    GetName(branch_id: string) {
-        return Model.Org.CacheBranch.GetNameForID(branch_id);
-    }
+
     RxCustomer = new BehaviorSubject<ITransaction[]>([]);
 
     get RxSummaryView() {
         return this.RxCustomer.map(Customer.Make);
     };
-    get ActiveCustomer$() {
-        return this.RxCustomer.map(v => {
-            const group_by = this.filterService.Current.Inside.GetGroupBy();
-            const views = MakeIndexBy(v, group_by);
-            return views;
-        });
-    }
 
     groupBy$ = new BehaviorSubject<string>('branch_id');
 

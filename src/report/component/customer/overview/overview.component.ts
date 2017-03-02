@@ -2,7 +2,7 @@ import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReportViewService } from '../../shared';
 import { MAIN_TABS } from '../shared';
-import { CustomerAPI } from '../service/customer.service';
+import { CustomerAPI,max_service,max_store } from '../service/customer.service';
 import { Customer, IService, IStore, IFre } from '../../shared/';
 @Component({
     selector: 'report-overview',
@@ -23,6 +23,9 @@ export class ReportOverViewComponent {
         });
     }
     push(v: Customer) {
+        this.services=[];
+        this.stores=[];
+        this.fres=[];
         var v_service = Object.keys(v.services).map(function (k) { return v.services[k] });
         var k_service = Object.keys(v.services);
 
@@ -32,6 +35,10 @@ export class ReportOverViewComponent {
                 count: v_service[i]
             })
         }
+        this.services.sort(function(a,b){
+            return a.count - b.count;
+        })
+        max_service.next(this.services[this.services.length-1]);
         var v_store = Object.keys(v.stores).map(function (k) { return v.stores[k] });
         var k_store = Object.keys(v.stores);
 
@@ -41,6 +48,10 @@ export class ReportOverViewComponent {
                 count: v_store[i]
             })
         }
+         this.stores.sort(function(a,b){
+            return a.count - b.count;
+        })
+        max_store.next(this.stores[this.stores.length-1]);
         var v_fre = Object.keys(v.fres).map(function (k) { return v.fres[k] });
         var k_fre = Object.keys(v.fres);
 

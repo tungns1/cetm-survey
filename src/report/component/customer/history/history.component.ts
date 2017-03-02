@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ITransactionView } from '../../../model';
 import { ReportFilterService, ReportFilter } from '../../../service/';
 import { Paging } from '../../../shared/paging.service';
-import { CustomerAPI,paging } from '../service/customer.service';
+import { CustomerAPI, paging } from '../service/customer.service';
 
 
 @Component({
@@ -18,10 +18,14 @@ export class HistoryComponent {
     @Input() customer: string;
     paging = paging;
 
+
     ngOnInit() {
         this.customerAPI.ChuyenTrang(1, this.customer);
     }
     chuyenTrang(page: number) {
+        this.customerAPI.RxSummaryView.subscribe(v => {
+            this.customer = v.customer_id;
+        });
         this.customerAPI.ChuyenTrang(page, this.customer);
     }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Customer } from '../../shared/';
-import { CustomerAPI } from '../service/customer.service';
+import { Customer, IService, IStore } from '../../shared/';
+import { CustomerAPI, max_service, max_store } from '../service/customer.service';
 
 @Component({
     selector: 'report-info',
@@ -12,11 +12,18 @@ export class ReportInfoComponent {
     ) { }
 
     data: Customer;
+    service: IService;
+    store: IStore;
 
     ngOnInit() {
+        max_service.subscribe(v => {
+            this.service = v;
+        });
+        max_store.subscribe(v => {
+            this.store = v;
+        })
         this.customerAPI.RxSummaryView.subscribe(v => {
             this.data = v;
-            console.log(v);
         })
     }
 
