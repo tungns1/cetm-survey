@@ -31,6 +31,9 @@ export class TimerComopnent {
     private view(duration: number) {
         let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
         (this.ref.nativeElement).innerHTML = view;
+        if(((duration % 3600) / 60 > 15) || (duration / 3600) > 1){
+            (this.ref.nativeElement).style.backgroundColor = '#ff4d4d';
+        }
     }
 
     @Input() set start(s: number) {
