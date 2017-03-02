@@ -10,7 +10,7 @@
             <div class="text" translate>TIME_WAIT</div>
         </div>
         <div class="hl-table-row-missed" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
-            <div class="text"><img src="../asset/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
+            <div class="text"><img src="../assets/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
             <div class="text">{{t.services | multipleServiceName}}</div>
             <div class="text">
                 <timer [start]="t.mtime"></timer>

@@ -22,6 +22,7 @@ export class AppComponent {
             Object.assign(this.authService.options, p);
             this.stateService.SetBranchAndCounter(p["branch_code"], p["counter_code"])
         });
+        console.log('counter');
         this.authService.redirect = "/workspace";
         this.authService.autoLogin = true;
     }

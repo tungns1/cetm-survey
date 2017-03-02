@@ -5,8 +5,7 @@ export const routes: Routes = [
     { path: "admin", loadChildren: "./admin/index#AdminModule" },
     { path: "monitor", loadChildren: "./monitor/index" },
     { path: "report", loadChildren: "./report/index" },
-    { path: "counter", loadChildren: "./counter/index"},
-    { path: "**", pathMatch: "full", redirectTo: "admin" }
+    { path: "counter", loadChildren: "./counter/index"}
 ];
 
 export const appRouting = RouterModule.forRoot(routes);

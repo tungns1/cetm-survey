@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { QueueService } from '../service';
+
 @Component({
     selector: 'info-customer',
     templateUrl: 'info.component.html'
