@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-const logoLink = "../assets/img/share/miraway.png"
+const logoLink = "./assets/img/share/miraway.png"
 const logoWidth = "120px"
 
 @Component({

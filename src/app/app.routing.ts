@@ -9,4 +9,4 @@ export const routes: Routes = [
     { path: "**", redirectTo: "report" }
 ];
 
-export const appRouting = RouterModule.forRoot(routes);
+export const appRouting = RouterModule.forRoot(routes, {useHash: true});

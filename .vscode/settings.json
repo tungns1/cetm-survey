@@ -8,11 +8,6 @@
         "e2e": true,
         "tests": true,
         ".editorconfig": true,
-        ".npmignore": true,
-        "tslint.json": true,
-        ".travis.yml": true,
-        "config": true,
-        "_README.md": true,
         "**/.DS_Store": true
     },
     "typescript.tsdk": "node_modules/typescript/lib"
