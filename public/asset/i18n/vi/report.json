@@ -36,7 +36,8 @@
         "BUTTON_CLOSE": "Đóng",
         "DETAIL": "Chi tiết",
         "TICKET_PRINTED_TIME": "Thời điểm in vé",
-        "NUMERICAL_ORDER": "STT"
+        "NUMERICAL_ORDER": "STT",
+        "TICKET_DETAIL": "Chi tiết vé"
     },
     "GENERAL": {
         "TAB_GENERAL": "TỔNG QUAN",

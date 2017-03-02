@@ -7,5 +7,5 @@ import { QueueService } from '../service';
 
 export class InfoComponent {
     constructor(private queueService: QueueService) { }
-    serving$ = this.queueService.serving$.map(v=>v[0]);
+    tkserving$ = this.queueService.serving$.map(v=>v[0]);
 }

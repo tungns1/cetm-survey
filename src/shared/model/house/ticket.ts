@@ -15,9 +15,10 @@ export interface ITicket {
     ctime: number;
     mtime: number;
     tracks: ITicketTrack[];
+    customer:ICustomerData;
 }
 export interface ICustomerData{
-    
+    phone:number;
 }
 
 

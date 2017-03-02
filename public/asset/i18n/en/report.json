@@ -26,7 +26,8 @@
         "TO_NUMBER": "To number",
         "DETAIL": "Detail",
         "TICKET_PRINTED_TIME": "Ticket printed time",
-        "NUMERICAL_ORDER": "Number"
+        "NUMERICAL_ORDER": "Number",
+        "TICKET_DETAIL": "Ticket detail"
     },
     "GENERAL": {
         "TAB_GENERAL": "OVERVIEW",

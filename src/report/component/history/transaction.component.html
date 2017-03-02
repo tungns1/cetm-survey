@@ -1,6 +1,7 @@
 <style>
     .bb1 {
         border: 1px solid gray;
+        margin-top: 10px;
     }
     
     label {
@@ -9,53 +10,97 @@
 </style>
 
 <modal *ngIf="data">
-    <div class="hl-detail-history" translate> TICKET DETAILS</div>
+    <div class="hl-detail-history"><span translate> HISTORY.TICKET_DETAIL</span></div>
     <div fxLayout="row" fxLayoutGap="20px">
         <div class="bb1" fxFlex="50%">
-            <label translate> Ticket Number </label> :
-            <span>{{data.cnum}}</span><br>
-            <label translate> HISTORY.SERVICE </label> :
-            <span>{{data.service}}</span><br>
-            <label translate> HISTORY.TIME_CREATE_TICKET</label> :
-            <span>{{data.ctime}}</span><br>
-            <label translate> HISTORY.TIME_WAIT</label> :
-            <span>{{data.wtime}}</span><br>
-            <label translate> HISTORY.TIME_SERVING</label> :
-            <span>{{data.stime}}</span><br>
-            <label translate> HISTORY.DATE</label> :
-            <span>{{data.cdate}}</span><br>
+            <table class="hl-table-customerdetail">
+                <tr>
+                    <td><b translate>HISTORY.TICKET_NUMBER</b>:</td>
+                    <td translate>{{data.cnum}}</td>
+                </tr>
+                <tr>
+                    <td> <b translate>HISTORY.SERVICE </b>:</td>
+                    <td translate>{{data.service}}</td>
+                </tr>
+                <tr>
+                    <td><b translate>HISTORY.TIME_CREATE_TICKET</b>:</td>
+                    <td>{{data.ctime}}</td>
+                </tr>
+                <tr>
+                    <td><b translate>HISTORY.TIME_WAIT</b>:</td>
+                    <td>{{data.wtime}}</td>
+                </tr>
+                <tr>
+                    <td><b translate> HISTORY.TIME_SERVING</b>:</td>
+                    <td>{{data.stime}}</td>
+                </tr>
+                <tr>
+                    <td><b translate>HISTORY.DATE</b>:</td>
+                    <td>{{data.cdate}}</td>
+                </tr>
+            </table>
         </div>
 
         <div class="bb1" fxFlex="50%">
-            <label translate> HISTORY.BRANCH </label> :
-            <span>{{data.branch}}</span><br>
-            <label translate> HISTORY.TRANSACTION_ROOM </label> :
-            <span>{{data.branch}}</span><br>
-            <label translate> HISTORY.TELLERS</label> :
-            <span>{{data.user}}</span><br>
-            <label translate> HISTORY.COUNTER</label> :
-            <span>{{data.counter}}</span><br>
-            <label translate> Manager</label> :
-            <span></span><br>
-            <label translate> Admin</label> :
-            <span></span><br>
+            <table class="hl-table-customerdetail">
+                <tr>
+                    <td><b translate>HISTORY.BRANCH</b>:</td>
+                    <td translate>{{data.branch}}</td>
+                </tr>
+                <tr>
+                    <td> <b translate>HISTORY.TRANSACTION_ROOM</b>:</td>
+                    <td translate>{{data.branch}}</td>
+                </tr>
+                <tr>
+                    <td><b translate>HISTORY.TELLERS</b>:</td>
+                    <td>{{data.user}}</td>
+                </tr>
+                <tr>
+                    <td><b translate> HISTORY.COUNTER</b>:</td>
+                    <td>{{data.counter}}</td>
+                </tr>
+                <tr>
+                    <td><b translate> Manager</b>:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b translate>Admin</b>:</td>
+                    <td></td>
+                </tr>
+            </table>
+
         </div>
     </div>
 
     <div class="bb1" fxLayout="row" fxLayoutAlign="space-around center">
         <div fxFlex="100%">
-            <label> Customer</label> :
-            <span> Nguyen Van A</span><br>
-            <label> Phone Number</label> :
-            <span> 8490234734 </span><br>
-            <label> Customer ID</label> :
-            <span><a (click)="goToCustomer(data.customer_id)">1021234356621</a> </span><br>
-            <label translate> Customer Segment</label> :
-            <span> Normal</span><br>
-            <audio [class.hidden]="!link" controls [src]="link"> </audio>
+            <table class="hl-table-customerdetail">
+                <tr>
+                    <td><b translate>Customer</b>:</td>
+                    <td translate>Nguyen Van A</td>
+                </tr>
+                <tr>
+                    <td> <b translate> Phone Number</b>:</td>
+                    <td translate>8490234734 </td>
+                </tr>
+                <tr>
+                    <td><b translate>Customer ID</b>:</td>
+                    <td><a (click)="goToCustomer(data.customer_id)">1021234356621</a> </td>
+                </tr>
+                <tr>
+                    <td><b translate> Customer Segment</b>:</td>
+                    <td>Normal</td>
+                </tr>
+                <tr>
+                    <td><b translate> </b></td>
+                    <td> <audio [class.hidden]="!link" controls [src]="link"> </audio></td>
+                </tr>
+
+            </table>
+
         </div>
     </div>
     <div>
-        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> CLOSE </button>
+        <button class="button hl-btn-history btn-custommer-close" (click)="Close()" style="height:30px;" translate> CLOSE </button>
     </div>
 </modal>
