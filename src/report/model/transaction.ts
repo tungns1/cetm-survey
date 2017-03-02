@@ -91,6 +91,8 @@ export class Customer {
         var month = s.cdate.substring(5, 7);
         var ps = s.stime.substring(3, 5);
         var pw = s.wtime.substring(3, 5);
+        var hs = s.stime.substring(0, 2);
+        var hw = s.wtime.substring(0, 2);
         this.customer_phone = "0989999999";
         this.customer_name = "Nguyen Van A";
         this.customer_id = s.customer_id;
@@ -98,16 +100,16 @@ export class Customer {
         if (s == null) {
             return;
         }
-        if (+ps > 10) {
+        if (+hs > 0 || +ps > 10) {
             this.s_st = this.s_st + 1;
         }
-        if (+pw > 10) {
+        if (+hw > 0 || +pw > 10) {
             this.s_wt = this.s_wt + 1;
         }
-        if (+ps < 10) {
+        if (+hs == 0 && +ps < 10) {
             this.c_bst = this.c_bst + 1;
         }
-        if (+pw < 10) {
+        if (+hw == 0 && +pw < 10) {
             this.c_bwt = this.c_bwt + 1;
         }
 
