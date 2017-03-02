@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { SharedService } from './shared';
+import { Component } from "@angular/core";
+import { SharedService } from "./shared";
 
 @Component({
-    selector: 'app-root',
+    selector: "app-root",
     template: `
     <router-outlet></router-outlet>
     `,

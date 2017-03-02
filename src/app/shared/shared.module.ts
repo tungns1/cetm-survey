@@ -1,21 +1,22 @@
-import { NgModule, ModuleWithProviders, ValueProvider } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NgModule, ModuleWithProviders, ValueProvider } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule, LocationStrategy, HashLocationStrategy } from "@angular/common";
 
-import { Routes, RouterModule } from '@angular/router';
-import { AppSettingComponent, LoginComponent, PageNotFoundComponent } from './component/';
+import { Routes, RouterModule } from "@angular/router";
+import { AppSettingComponent, LoginComponent, PageNotFoundComponent } from "./component/";
 
-import { AppState, Auth } from './service/';
+import { AppState, Auth } from "./service/";
 
 const routes: Routes = [
-    { path: 'setting', component: AppSettingComponent },
-    { path: 'login', component: LoginComponent },
-    // { path: '**', component: PageNotFoundComponent }
+    { path: "setting", component: AppSettingComponent },
+    { path: "login", component: LoginComponent },
+    // { path: "**", component: PageNotFoundComponent }
 ]
 
-import { I18n, Ng } from './shared';
-import { UtilPipeModule } from './pipe';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { I18n, Ng } from "./shared";
+import { UtilPipeModule } from "./pipe";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { NavModule, HeaderModule } from "./component/";
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
         RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
-        FlexLayoutModule,
+        FlexLayoutModule, NavModule, HeaderModule,
         I18n.TranslateModule, UtilPipeModule, Ng.SelectCheckModule, Ng.ModalModule
     ]
 })

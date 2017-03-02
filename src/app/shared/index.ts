@@ -1,14 +1,14 @@
-import * as Branch from './branch/';
-import * as Model from './model/';
-import * as SharedPipe from './pipe/';
-import * as SharedConfig from './config/';
-import * as SharedService from './service/';
-import * as SharedUtil from './util/';
+import * as Branch from "./branch/";
+import * as Model from "./model/";
+import * as SharedPipe from "./pipe/";
+import * as SharedConfig from "./config/";
+import * as SharedService from "./service/";
+import * as SharedUtil from "./util/";
 
-import { SharedModule } from './shared.module';
-import { BaseAppModule } from './BaseApp.module';
+import { SharedModule } from "./shared.module";
+import { BaseAppModule } from "./BaseApp.module";
 
-import * as Lib from '../x/';
+import * as Lib from "../x/";
 
 export {
     Branch, Model,
@@ -18,7 +18,7 @@ export {
     Lib
 }
 
-import './rx';
+import "./rx";
 
-import { enableProdMode } from '@angular/core';
+import { enableProdMode } from "@angular/core";
 enableProdMode();
