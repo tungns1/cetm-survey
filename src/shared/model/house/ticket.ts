@@ -16,6 +16,9 @@ export interface ITicket {
     mtime: number;
     tracks: ITicketTrack[];
 }
+export interface ICustomerData{
+    
+}
 
 
 
