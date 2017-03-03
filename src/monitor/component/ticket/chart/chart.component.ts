@@ -13,8 +13,7 @@ export class MonitorChartComponent {
         private translateService: Lib.I18n.TranslateService,
     ) { }
 
-    @Input() data = {
-    };
+    @Input() data = {};
 
 
     itemGroup = PieItems;

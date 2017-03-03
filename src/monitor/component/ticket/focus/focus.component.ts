@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Model, ISummary, Summary, ITicket, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
@@ -16,12 +16,14 @@ const TicketStates = Model.House.TicketStates;
 export class FocusComponent {
 
     @ViewChild("edit") editorRef: ModalComponent;
+    @ViewChild(TimerComopnent) wait_long: TimerComopnent;
 
     constructor(
         private navService: MonitorNavService,
         private route: ActivatedRoute,
         private filterService: MonitorFilterService,
-        private ticketService: MonitorTicketService
+        private ticketService: MonitorTicketService,
+        private ref: ElementRef
     ) { }
 
     selectedTicket: Object;
@@ -64,6 +66,13 @@ export class FocusComponent {
         return t;
     }
 
+    private test(){
+        var temp = (this.ref.nativeElement).parentElement;
+        // this.ref.nativeElement;
+        // console.log(temp);
+        // console.log(this.wait_long);
+    }
+
     private goBackBranchList() {
         this.filterService.SetFocus('');
     }
@@ -74,7 +83,6 @@ export class FocusComponent {
     }
 
     private detail(ticket) {
-        console.log(ticket);
         if (ticket.serving) {
             this.isServed = true;
         } else this.isServed = false;
