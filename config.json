@@ -1,5 +1,0 @@
-{
-    "externalPackages": {},
-    "styles": ["../css/app.css", "../asset/vendor/font-awesome/css/font-awesome.css"],
-    "universalRoutes": ["/"]
-}
