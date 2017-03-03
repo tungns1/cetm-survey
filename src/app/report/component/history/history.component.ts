@@ -3,7 +3,6 @@ import { ITransactionView } from '../../model';
 import { ReportFilterService, ReportFilter } from '../../service/';
 import { TransactionHistoryApi } from './history.service';
 import { Paging } from '../../shared/paging.service';
-import { Model } from '@swimlane/ngx-datatable';
 
 @Component({
     selector: 'history',
