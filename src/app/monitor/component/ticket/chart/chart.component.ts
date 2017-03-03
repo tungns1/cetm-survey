@@ -14,8 +14,22 @@ export class MonitorChartComponent {
     ) { }
 
     @Input() data = {};
+    
+    // itemGroup = PieItems;
+    itemGroup = [];
 
+    ngOnInit() {
+        this.setTitle();
+    }
 
-    itemGroup = PieItems;
+    private setTitle() {
+        let pieItems: ChartItem[][] = [];
+        PieItems.forEach(v => {
+            v.forEach(f => f.title = this.translateService.instant(f.key_title));
+            if (v.length > 0) {
+                this.itemGroup.push(v);
+            }
+        });
+    }
 
 }

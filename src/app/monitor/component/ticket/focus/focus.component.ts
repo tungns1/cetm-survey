@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Model, ISummary, Summary, ITicket, MonitorFilterService } from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
 import { MonitorNavService } from '../../../service/shared/nav';
 import { ModalComponent } from '../../../../x/ng/modal/modal.component';
 import { TimerComopnent } from '../../../../x/ng/time/timer.component';
-// import { ReportChartComponent } from '../../chart/chart.component';
 
 const TicketStates = Model.House.TicketStates;
 
@@ -22,8 +21,7 @@ export class FocusComponent {
         private navService: MonitorNavService,
         private route: ActivatedRoute,
         private filterService: MonitorFilterService,
-        private ticketService: MonitorTicketService,
-        private ref: ElementRef
+        private ticketService: MonitorTicketService
     ) { }
 
     selectedTicket: Object;
@@ -47,14 +45,27 @@ export class FocusComponent {
     })
 
     waiting$ = this.ticketService.tickets$
-        .map(tickets => tickets.filter(t => t.state === TicketStates.Waiting));
+        .map(tickets => tickets.filter(t => t.state === TicketStates.Waiting))
+        .map(tickets => tickets.sort((a, b) => {
+            return a.mtime < b.mtime? -1 : 1;
+        }));
+
+    missed$ = this.ticketService.tickets$
+        .map(tickets => tickets.filter(t => t.state === TicketStates.Missed))
+        .map(tickets => tickets.sort((a, b) => {
+            return a.mtime < b.mtime? -1 : 1;
+        }));
+
     served$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => {
-            if (t.state === TicketStates.Waiting) {
+            if (t.state === TicketStates.Waiting || t.state === TicketStates.Missed) {
                 return false;
             }
             this.addServingTrack(t);
             return true;
+        }))
+        .map(tickets => tickets.sort((a, b) => {
+            return a.state < b.state? 1 : -1;
         }));
 
     addServingTrack(t: ITicket) {
@@ -66,15 +77,9 @@ export class FocusComponent {
         return t;
     }
 
-    private test(){
-        var temp = (this.ref.nativeElement).parentElement;
-        // this.ref.nativeElement;
-        // console.log(temp);
-        // console.log(this.wait_long);
-    }
-
     private goBackBranchList() {
         this.filterService.SetFocus('');
+        this.navService.SyncLink();
     }
 
     private closeModal() {

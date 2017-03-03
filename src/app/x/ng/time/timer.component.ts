@@ -33,6 +33,8 @@ export class TimerComopnent {
         (this.ref.nativeElement).innerHTML = view;
         if(((duration % 3600) / 60 > 15) || (duration / 3600) > 1){
             (this.ref.nativeElement).style.backgroundColor = '#ff4d4d';
+            (this.ref.nativeElement).style.color = '#ffffff';
+            (this.ref.nativeElement).style.fontWeight = '600';
         }
     }
 

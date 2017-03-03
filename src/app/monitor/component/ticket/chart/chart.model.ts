@@ -38,7 +38,7 @@ export const PieItems: ChartItem[][] =
     ],
     [
         {
-            field: 'normal',
+            field: 'waiting',
             color: '#65c553',
             key_title: 'GENERAL.TRANSACTION_FINISH'
         }, 
@@ -50,7 +50,7 @@ export const PieItems: ChartItem[][] =
     ],
     [
         {
-            field: 'normal',
+            field: 'finished',
             color: '#65c553',
             key_title: 'GENERAL.TRANSACTION_FINISH'
         }, {

@@ -6,20 +6,21 @@
 <br>
 <br>
 
-<div class="container" style="height:100vh;">
-    <div class="aside">
-        <div class="hl-asidehead-filter">
-            <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
-            <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
-        </div>
-        <monitor-filter *ngIf="hidden" style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
+<div class="hl-asidehead-filter">
+    <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
+    <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
+</div>
 
+<div class="flex-container container" fxLayout="row" fxLayoutAlign="space-between none">
+    <div class="aside" fxFlex="20%" *ngIf="hidden">
+        <monitor-filter style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
     </div>
 
-    <div class="main">
+    <div fxFlex>
         <router-outlet></router-outlet>
     </div>
 </div>
+
 <div class="hl-ft-report">
     <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
 </div>

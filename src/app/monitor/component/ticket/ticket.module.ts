@@ -7,7 +7,6 @@ import { SummaryComponent } from './summary/summary.component';
 import { SharedPipe } from '../../shared';
 import { MonitorChartComponent } from './chart/chart.component';
 import { D3Module } from '../../../x/ng/d3/d3.module';
-import { PieChartComponent } from '../../../x/ng/d3/pie';
 
 const routing = RouterModule.forChild([
     {

@@ -10,7 +10,7 @@ const appName = "admin";
 const appState = new SharedService.AppState(appName);
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent
   ],
   imports: [
