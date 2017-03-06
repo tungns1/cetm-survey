@@ -10,30 +10,24 @@
 </style>
 
 <div class="advanced-filter">
-    <form fxLayout="row" fxLayoutAlign="center center" [formGroup]="filter.form">
+    <form fxLayout="row" fxLayoutAlign="center center">
         <label fxFlex="30%">Waiting Time (minutes):
-            <span>From: </span>
-            <input type="number" formControlName="waitingTime.from">
-            <span>To: </span>
-            <input type="number" formControlName="waitingTime.to">
+            <input type="number" placeholder="min"> 
+            <input type="number" placeholder="max">
         </label>
         <label fxFlex="30%">Serving Time (minutes):
-            <span>From: </span>
-            <input type="number" formControlName="servingTime.from"> 
-            <span>To: </span>
-            <input type="number" formControlName="servingTime.to">
+            <input type="number" placeholder="min"> 
+            <input type="number" placeholder="max">
         </label>
         <label fxFlex="30%"> Feedback
-            <select formControlName="feedback">
-                <option [value]="veryGood">Very Good</option>
-                <option [value]="good">Good</option>
-                <option [value]="average">Average</option>
-                <option [value]="poor">Poor</option>
+            <select>
+                <option>Very Good</option>
+                <option>Good</option>
+                <option>Average</option>
+                <option>Poor</option>
             </select>
         </label>
-        <div fxFlex>
-            <button (click)="filterHistory()">Go now!</button>
-        </div>
+        <div fxFlex></div>
     </form>
 </div>
 
