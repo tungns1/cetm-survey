@@ -65,10 +65,12 @@
             </div>
         </div>
     </div>
+    
+    <div class="divider"></div>
 
     <monitor-chart [data]="data" ></monitor-chart>
 
-    <h3> Khách hàng chưa được phục vụ </h3>
+    <h3 class="tableHeader"> Khách hàng chưa được phục vụ </h3>
 
     <table class="table">
         <thead>
@@ -87,7 +89,7 @@
                 <td> {{t.cnum}}</td>
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td><timer [start]="t.mtime"></timer></td>
+                <td><timer [start]="t.mtime" [timeWarning]="15"></timer></td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -101,7 +103,7 @@
                 <td> {{t.cnum}}</td>
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td><timer [start]="t.mtime"></timer></td>
+                <td> {{t.mtime - t.ctime | timeDuration}}</td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -111,7 +113,9 @@
         </tbody>
     </table>
 
-    <h3> Khách hàng đã được phục vụ </h3>
+    <div class="divider"></div>
+
+    <h3 class="tableHeader"> Khách hàng đã được phục vụ </h3>
 
     <table class="table">
         <thead>
@@ -127,8 +131,7 @@
             <th translate> DETAIL </th>
         </thead>
         <tbody>
-            <tr *ngFor="let t of served$ | async; let i = index" 
-                [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished'}">
+            <tr *ngFor="let t of serving$ | async; let i = index" class="serving">
                 <td> {{i + 1}} </td>
                 <td> {{t.serving.service_id | serviceName}} </td>
                 <td> {{t.serving.counter_id | counterName}}</td>
@@ -137,7 +140,27 @@
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td> {{t.serving.mtime - t.ctime | timeDuration}} </td>
-                <td> serve time </td>
+                <td> <timer [start]="t.serving.mtime" [timeWarning]="15"></timer> </td>
+                <td>
+                    <span (click)="detail(t)">
+                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
+                    </span>
+                    <span>
+                        <i class="fa fa-volume-down" aria-hidden="true" style="cursor: pointer"></i>
+                    </span>
+                </td>
+            </tr>
+            <tr *ngFor="let t of served$ | async; let i = index" 
+                [ngClass]="{'cancelled': t.state === 'cancelled', 'serveDone': t.state === 'finished'}">
+                <td> {{i + 1}} </td>
+                <td> {{t.serving.service_id | serviceName}} </td>
+                <td> {{t.serving.counter_id | counterName}}</td>
+                <td> {{t.serving.user_id | userFullName}}</td>
+                <td> {{t.cnum}} </td>
+                <td> {{t.customer_id }} </td>
+                <td> {{t.ctime | localDayTime}}</td>
+                <td> {{t.serving.mtime - t.ctime | timeDuration}} </td>
+                <td> {{t.stime | localDayTime}} </td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -150,6 +173,8 @@
         </tbody>
     </table>
 </div>
+
+<div class="divider"></div>
 
 <modal #edit id="modal_monitor_detailTicket">
     <div *ngIf="selectedTicket">
@@ -178,7 +203,7 @@
                 <tr>
                     <th translate> WAIT_TIME </th>
                     <th>
-                        <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime"></timer></span>
+                        <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
                         <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
                     </th>
                 </tr>

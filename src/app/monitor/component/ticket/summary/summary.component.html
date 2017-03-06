@@ -24,7 +24,9 @@
                 <td translate> {{s.finished}}</td>
                 <td translate> {{s.missed}}</td>
                 <td translate> {{s.cancelled}}</td>
-                <td translate> {{s.wait_long}}</td>
+                <td translate [ngClass]="{'warning': (s.wait_long/(s.printed - s.cancelled))*100 > 40}"> 
+                    <span>{{s.wait_long}} ({{(s.wait_long/(s.printed - s.cancelled))*100}})%</span>
+                </td>
                 <td translate> {{s.serve_short}}</td>
             </tr>
             <tr>
@@ -35,7 +37,9 @@
                 <td translate> {{total.finished}}</td>
                 <td translate> {{total.missed}}</td>
                 <td translate> {{total.cancelled}}</td>
-                <td translate> {{total.wait_long}}</td>
+                <td translate [ngClass]="{'warning': (total.wait_long/(total.printed - total.cancelled))*100 > 40}"> 
+                    <span>{{total.wait_long}} ({{(total.wait_long/(total.printed - total.cancelled))*100}})%</span>
+                </td>
                 <td translate> {{total.serve_short}}</td>
             </tr>
         </tbody>
