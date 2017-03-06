@@ -1,9 +1,9 @@
-<button class="button hl-btn-setting" (click)="add()">Add</button>
+<button class="button hl-btn-setting" (click)="add()" translate>LANGAUGE_ADD</button>
 <table width="100%" class="hl-tabletime-setting">
     <thead>
-        <td class="col-header"> STT </td>
-        <td class="col-header"> <span>Kiểu dữ liệu</span> </td>
-        <td class="col-header">Thời gian</td>
+        <td class="col-header" translate> STT </td>
+        <td class="col-header" translate> <span>Kiểu dữ liệu</span> </td>
+        <td class="col-header" translate>Thời gian</td>
         <td></td>
     </thead>
     <tr *ngFor="let s of settings | async; let i = index">
@@ -18,12 +18,12 @@
 <div class="hl-showtime-setting" *ngIf="show">
     <select [(ngModel)]="key" (change)="onChange()">
             <option disabled selected value>Chọn </option>
-            <option value="TIME_WAIT">Thời gian đợi chuẩn</option>
-            <option value="TIME_SERVING">Thời gian phục vụ chuẩn</option>
-            <option value="TIME_FINISH">Thời gian tự động kết thúc giao dịch</option>
-            <option value="TIME_AUTO_CALL">Thời gian tự động gọi vào</option>
+            <option value="TIME_WAIT" translate>Thời gian đợi chuẩn</option>
+            <option value="TIME_SERVING" translate>Thời gian phục vụ chuẩn</option>
+            <option value="TIME_FINISH" translate>Thời gian tự động kết thúc giao dịch</option>
+            <option value="TIME_AUTO_CALL" translate>Thời gian tự động gọi vào</option>
         </select>
     <input class="hl-input-setting" type="number" [(ngModel)]="value" min="0"><br>
-    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()">Gửi</button>
-    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()">Lưu</button>
+    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()" translate>Gửi</button>
+    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()" translate>Lưu</button>
 </div>

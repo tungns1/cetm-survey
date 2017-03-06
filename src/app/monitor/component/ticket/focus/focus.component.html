@@ -75,12 +75,12 @@
     <table class="table">
         <thead>
             <th> STT </th>
-            <th translate>SERVICE </th>
-            <th translate> TICKET_NUMBER </th>
-            <th translate>CUSTOMER </th>
-            <th translate> TIME_CREATE_TICKET</th>
-            <th translate> WAIT_TIME</th>
-            <th translate> DETAIL </th>
+            <th translate>LANGAUGE_SERVICE </th>
+            <th translate> LANGAUGE_TICKET_NUMBER </th>
+            <th translate>LANGAUGE_CUSTOMER </th>
+            <th translate> LANGAUGE_TIME_CREATE_TICKET</th>
+            <th translate> LANGAUGE_WAIT_TIME</th>
+            <th translate> LANGAUGE_DETAIL </th>
         </thead>
         <tbody>
             <tr *ngFor="let t of waiting$ | async ; let i = index" class="waiting">
@@ -134,15 +134,15 @@
     <table class="table">
         <thead>
             <th> STT </th>
-            <th translate>SERVICE </th>
-            <th translate>COUNTER</th>
-            <th translate>STAFF</th>
-            <th translate> TICKET_NUMBER </th>
-            <th translate> CUSTOMER </th>
-            <th translate> TIME_CREATE_TICKET</th>
-            <th translate> WAIT_TIME </th>
-            <th translate> SERVE_TIME </th>
-            <th translate> DETAIL </th>
+            <th translate>LANGAUGE_SERVICE </th>
+            <th translate>LANGAUGE_COUNTER</th>
+            <th translate>LANGAUGE_STAFF</th>
+            <th translate> LANGAUGE_TICKET_NUMBER </th>
+            <th translate> LANGAUGE_CUSTOMER </th>
+            <th translate> LANGAUGE_TIME_CREATE_TICKET</th>
+            <th translate> LANGAUGE_WAIT_TIME </th>
+            <th translate>LANGAUGE_SERVE_TIME </th>
+            <th translate> LANGAUGE_DETAIL </th>
         </thead>
         <tbody>
 
@@ -197,37 +197,37 @@
 
 <modal #edit id="modal_monitor_detailTicket">
     <div *ngIf="selectedTicket">
-        <h3 class="header">TICKET DETAIL</h3>
+        <h3 class="header" translate>LANGAUGE_TICKET_DETAIL</h3>
         <div class="twoColumn">
             <table>
                 <tr>
-                    <th translate> TICKET_NUMBER </th>
+                    <th translate> LANGAUGE_TICKET_NUMBER </th>
                     <th>{{selectedTicket.cnum}}</th>
                 </tr>
                 <tr>
-                    <th translate> STATE </th>
+                    <th translate> LANGAUGE_STATE </th>
                     <th>{{selectedTicket.state}}</th>
                 </tr>
                 <tr>
-                    <th translate> SERVICE </th>
+                    <th translate> LANGAUGE_SERVICE </th>
                     <th>
                         <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
                         <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
                     </th>
                 </tr>
                 <tr>
-                    <th translate> TIME_CREATE_TICKET </th>
+                    <th translate> LANGAUGE_TIME_CREATE_TICKET </th>
                     <th>{{selectedTicket.ctime | localDayTime}}</th>
                 </tr>
                 <tr>
-                    <th translate> WAIT_TIME </th>
+                    <th translate> LANGAUGE_WAIT_TIME </th>
                     <th>
                         <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
                         <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
                     </th>
                 </tr>
                 <tr>
-                    <th translate> DATE </th>
+                    <th translate>LANGAUGE_DATE </th>
                     <th>{{selectedTicket.ctime | localDayTime}}</th>
                 </tr>
             </table>
@@ -236,46 +236,46 @@
         <div class="twoColumn" [ngClass]="{'notServeYet': !isServed}">
             <table>
                 <tr>
-                    <th translate> BRANCH </th>
+                    <th translate> LANGAUGE_BRANCH </th>
                     <th translate>{{selectedTicket.branch_id | branchName}}</th>
                 </tr>
                 <tr>
-                    <th translate> STORE </th>
+                    <th translate> LANGAUGE_STORE </th>
                     <th translate>{{selectedTicket.branch_id | branchName}}</th>
                 </tr>
                 <tr *ngIf="selectedTicket.serving">
-                    <th translate> STAFF </th>
+                    <th translate> LANGAUGE_STAFF </th>
                     <th>{{selectedTicket.serving.user_id | userFullName}}</th>
                 </tr>
                 <tr *ngIf="selectedTicket.serving">
-                    <th translate> COUNTER </th>
+                    <th translate> LANGAUGE_COUNTER </th>
                     <th>{{selectedTicket.serving.counter_id | counterName }}</th>
                 </tr>
                 <tr *ngIf="selectedTicket.serving">
-                    <th translate> MANAGER </th>
+                    <th translate> LANGAUGE_MANAGER </th>
                     <th>testing</th>
                 </tr>
                 <tr *ngIf="selectedTicket.serving">
-                    <th translate> ADDMINISTRATOR </th>
+                    <th translate> LANGAUGE_ADDMINISTRATOR </th>
                     <th>testing</th>
                 </tr>
             </table>
         </div>
         <table>
             <tr>
-                <th translate> CUSTOMER </th>
+                <th translate> LANGAUGE_CUSTOMER </th>
                 <th>{{selectedTicket.customer_id }}</th>
             </tr>
             <tr>
-                <th translate> TEL </th>
+                <th translate> LANGAUGE_TEL </th>
                 <th>testing</th>
             </tr>
             <tr>
-                <th translate> ID </th>
+                <th translate> LANGAUGE_ID </th>
                 <th>testing</th>
             </tr>
             <tr>
-                <th translate> TYPE </th>
+                <th translate> LANGAUGE_TYPE </th>
                 <th>testing</th>
             </tr>
         </table>

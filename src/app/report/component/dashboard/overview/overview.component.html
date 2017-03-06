@@ -2,15 +2,15 @@
 
 <table class="table" *ngIf="general$ | async">
     <thead>
-        <th> STT </th>
+        <th translate> LANGAUGE_NUMERICAL_ORDER </th>
         <th translate> {{groupBy$ | async | groupByTitle}} </th>
-        <th translate> GENERAL.TOTAL_TRANSACTION </th>
-        <th translate> GENERAL.TRANSACTION_FINISH </th>
-        <th translate> GENERAL.TRANSACTION_CANCEL </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_STANDARD </th>
-        <th translate> GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+        <th translate> LANGAUGE_TOTAL_TRANSACTION </th>
+        <th translate> LANGAUGE_TRANSACTION_FINISH </th>
+        <th translate> LANGAUGE_TRANSACTION_CANCEL </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_WAIT_STANDARD </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_SERVING_STANDARD </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
     </thead>
     <tbody class="table-row">
         <tr *ngFor="let d of data$ | async; let i = index">
@@ -48,17 +48,17 @@
 <!-- Time View -->
 <table class="table" *ngIf="time$ | async">
     <thead>
-        <th> STT </th>
+        <th translate> LANGAUGE_NUMERICAL_ORDER </th>
         <th translate> {{groupBy$ | async | groupByTitle}} </th>
-        <th translate> GENERAL.TOTAL_TIME_TRANSACTION </th>
-        <th translate> GENERAL.TOTAL_TIME_SERVING</th>
-        <th translate> GENERAL.TOTAL_TIME_WAIT </th>
-        <th translate> GENERAL.TIME_SERVING_AVERAGE </th>
-        <th translate> GENERAL.TIME_SERVING_MIN </th>
-        <th translate> GENERAL.TIME_SERVING_MAX </th>
-        <th translate> GENERAL.TIME_WAIT_AVERAGE </th>
-        <th translate> GENERAL.TIME_WAIT_MIN </th>
-        <th translate> GENERAL.TIME_WAIT_MAX </th>
+        <th translate> LANGAUGE_TOTAL_TIME_TRANSACTION </th>
+        <th translate> LANGAUGE_TOTAL_TIME_SERVING</th>
+        <th translate> LANGAUGE_TOTAL_TIME_WAIT </th>
+        <th translate> LANGAUGE_TIME_SERVING_AVERAGE </th>
+        <th translate> LANGAUGE_TIME_SERVING_MIN </th>
+        <th translate> LANGAUGE_TIME_SERVING_MAX </th>
+        <th translate> LANGAUGE_TIME_WAIT_AVERAGE </th>
+        <th translate> LANGAUGE_TIME_WAIT_MIN </th>
+        <th translate> LANGAUGE_TIME_WAIT_MAX </th>
     </thead>
     <tbody class="table-row">
         <tr *ngFor="let d of data$ | async; let i = index">
@@ -80,14 +80,14 @@
 <!-- Feedback -->
 <table class="table" *ngIf="customer$ | async">
     <thead>
-        <th> STT </th>
+        <th translate> LANGAUGE_NUMERICAL_ORDER </th>
         <th translate> {{groupBy$ | async | groupByTitle}} </th>
-        <th translate> GENERAL.TRANSACTION_FEEDBACK </th>
-        <th translate> GENERAL.TRANSACTION_NO_FEEDBACK </th>
-        <th translate> GENERAL.FEEDBACK_VERY_GOOD </th>
-        <th translate> GENERAL.FEEDBACK_GOOD</th>
-        <th translate> GENERAL.FEEDBACK_MEDIUM </th>
-        <th translate> GENERAL.FEEDBACK_BAD</th>
+        <th translate> LANGAUGE_TRANSACTION_FEEDBACK </th>
+        <th translate> LANGAUGE_TRANSACTION_NO_FEEDBACK </th>
+        <th translate> LANGAUGE_FEEDBACK_VERY_GOOD </th>
+        <th translate> LANGAUGE_FEEDBACK_GOOD</th>
+        <th translate> LANGAUGE_FEEDBACK_MEDIUM </th>
+        <th translate> LANGAUGE_FEEDBACK_BAD</th>
     </thead>
     <tbody class="table-row">
         <tr *ngFor="let d of data$ | async; let i = index">
