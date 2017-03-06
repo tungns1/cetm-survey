@@ -193,6 +193,26 @@
 
 #focusComponent{
     font-size: 14px;
+    .chartHeader{
+        text-align: center;
+        background-color: #0b8fda;
+        color: #fff;
+        margin: 0 50px;
+        border-radius: 10px;
+    }
+    .tableHeader{
+        text-align: center;
+        background-color: #0b8fda;
+        padding: 10px;
+        color: #fff;
+        margin: 0px;
+    }
+    .divider{
+        width: 96%;
+        height: 1px;
+        margin: 10px 2%;
+        background-color: #a5a5a5;
+    }
     .header{
         background-color: #0b8fda;
         color: #ffffff;
@@ -217,7 +237,7 @@
     }
     .missed{
         // background-color: #0b8fda;
-        color: #0b8fda;
+        color: #156a9a;
     }
     .serving{
         background-color: #ffffff;
@@ -230,6 +250,17 @@
     .cancelled{
         // background-color: #ff5858;
         color: #ff5858;
+    }
+}
+
+#summaryComponent{
+    .chartHeader{
+        text-align: center;
+    }
+    .warning{
+        background-color: #ff5858;
+        color: #fff;
+        font-weight: 600;
     }
 }
 

@@ -13,7 +13,7 @@
             <div class="text"><img src="./assets/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
             <div class="text">{{t.services | multipleServiceName}}</div>
             <div class="text">
-                <timer [start]="t.mtime"></timer>
+                <timer [start]="t.mtime" [timeWarning]="15"></timer>
             </div>
         </div>
     </div>

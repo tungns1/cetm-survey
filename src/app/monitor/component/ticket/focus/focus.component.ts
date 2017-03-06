@@ -56,9 +56,17 @@ export class FocusComponent {
             return a.mtime < b.mtime? -1 : 1;
         }));
 
+    serving$ = this.ticketService.tickets$
+        .map(tickets => tickets.filter(t => {
+            if (t.state === TicketStates.Serving) {
+                this.addServingTrack(t);
+                return true;
+            }
+        }));
+
     served$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => {
-            if (t.state === TicketStates.Waiting || t.state === TicketStates.Missed) {
+            if (t.state === TicketStates.Waiting || t.state === TicketStates.Missed || t.state === TicketStates.Serving) {
                 return false;
             }
             this.addServingTrack(t);

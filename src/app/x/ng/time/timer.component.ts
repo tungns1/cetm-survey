@@ -14,7 +14,12 @@ const oneSecond = interval(1000).share();
     selector: 'timer',
     template: ``
 })
+
+
 export class TimerComopnent {
+
+    @Input() timeWarning: number;
+
     constructor(private ref: ElementRef) {
 
     }
@@ -31,7 +36,7 @@ export class TimerComopnent {
     private view(duration: number) {
         let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
         (this.ref.nativeElement).innerHTML = view;
-        if(((duration % 3600) / 60 > 15) || (duration / 3600) > 1){
+        if(((duration % 3600) / 60 > this.timeWarning) || (duration / 3600) > 1){
             (this.ref.nativeElement).style.backgroundColor = '#ff4d4d';
             (this.ref.nativeElement).style.color = '#ffffff';
             (this.ref.nativeElement).style.fontWeight = '600';
