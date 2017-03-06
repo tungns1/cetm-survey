@@ -1,7 +1,7 @@
 <table class="table" *ngIf="store$ | async">
     <thead>
-        <th translate>Tên cửa hàng</th>
-        <th translate> Lượt giao dịch </th>
+        <th translate>LANGAUGE_NAME_STOREg</th>
+        <th translate>LANGAUGE_NUMBER_TRANSACTION </th>
     </thead>
     <tbody class="table-row">
         <tr *ngFor="let s of stores">
@@ -13,11 +13,11 @@
 
 <table class="table" *ngIf="time$ | async">
     <thead>
-        <th translate> CUSTOMER.TOTAL_TRANSACTION </th>
-        <th translate> CUSTOMER.TRANSACTION_HAVE_WAIT_STANDARD </th>
-        <th translate> CUSTOMER.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
-        <th translate> CUSTOMER.TRANSACTION_HAVE_SERVING_STANDARD </th>
-        <th translate> CUSTOMER.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
+        <th translate> LANGAUGE_TOTAL_TRANSACTION </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_WAIT_STANDARD </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_WAIT_BEYOND_STANDARD </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_SERVING_STANDARD </th>
+        <th translate> LANGAUGE_TRANSACTION_HAVE_SERVING_BEYOND_STANDARD </th>
     </thead>
     <tbody class="table-row">
         <tr *ngIf="data">
@@ -45,8 +45,8 @@
 
 <table class="table" *ngIf="service$ | async">
     <thead>
-        <th translate> Tên dịch vụ </th>
-        <th translate> Lượt giao dịch </th>
+        <th translate> LANGAUGE_NAME_SERVICE </th>
+        <th translate> LANGAUGE_NUMBER_TRANSACTION </th>
     </thead>
     <tbody class="table-row">
 
@@ -60,8 +60,8 @@
 
 <table class="table" *ngIf="frequency$ | async">
     <thead>
-        <th translate> Tháng </th>
-        <th translate> Lượt giao dịch </th>
+        <th translate> LANGAUGE_MONTH </th>
+        <th translate> LANGAUGE_NUMBER_TRANSACTION </th>
     </thead>
     <tbody class="table-row">
         <tr *ngFor="let s of fres">

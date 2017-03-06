@@ -10,9 +10,9 @@ export class UserService extends BranchCrudApiService<Model.Org.IUser> {
     }
 
     ListFields = [
-        { title: 'LABEL_BRANCH', name: 'branch' },
-        { title: 'LABEL_FULLNAME', name: 'fullname' }
+        { title: 'LANGAUGE_BRANCH', name: 'branch' },
+        { title: 'LANGAUGE_FULLNAME', name: 'fullname' }
     ]
 
-    Name = "LABEL_USER";
+    Name = "LANGAUGE_USER";
 }

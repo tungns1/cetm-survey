@@ -5,8 +5,8 @@ import { BranchCrudApiService, AdminFilter } from '../shared';
 @Injectable()
 export class BranchConfigService extends BranchCrudApiService<Model.Meta.IBranchConfig> {
     ListFields = [
-        { title: 'LABEL_BRANCH', name: 'branch' }
+        { title: 'LANGAUGE_BRANCH', name: 'branch' }
     ]
 
-    Name = "LABEL_CONFIG";
+    Name = "LANGAUGE_CONFIG";
 }

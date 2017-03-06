@@ -13,9 +13,9 @@ export class LayoutService extends CrudApiService<Model.Center.IService> {
     }
 
     ListFields = [
-        { title: 'LABEL_NAME', name: 'name' },
-        { title: 'LABEL_TYPE', name: 'type' }
+        { title: 'LANGAUGE_NAME', name: 'name' },
+        { title: 'LANGAUGE_TYPE', name: 'type' }
     ]
 
-    Name = "LABEL_LAYOUT";
+    Name = "LANGAUGE_LAYOUT";
 }

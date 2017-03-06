@@ -56,7 +56,7 @@ export class BranchCrudApiService<T> extends CrudApiService<T> {
     }
 
     ListFields = [
-        { title: 'LABEL_SUB_BRANCH', name: 'branch' },
-        { title: 'LABEL_NAME', name: 'name' }
+        { title: 'LANGAUGE_SUB_BRANCH', name: 'branch' },
+        { title: 'LANGAUGE_NAME', name: 'name' }
     ]
 }

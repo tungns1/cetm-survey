@@ -2,11 +2,11 @@
     <div class="flex-container header" fxLayout="row" fxLayoutAlign="space-between none">
         <h1 fxFlex> {{data.branch_id | branchName}} </h1>
         <h3 fxFlex="10%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
-    </div> 
+    </div>
     <div class="flex-container overview" fxLayout="row" fxLayoutAlign="space-between none">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Chi nhánh: </span>
+                <span translate>LANGAUGE_BRANCH: </span>
                 <span>{{data.parent_id | branchName}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <monitor-chart [data]="data" ></monitor-chart>
+    <monitor-chart [data]="data"></monitor-chart>
 
     <h3> Khách hàng chưa được phục vụ </h3>
 
@@ -87,7 +87,9 @@
                 <td> {{t.cnum}}</td>
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td><timer [start]="t.mtime"></timer></td>
+                <td>
+                    <timer [start]="t.mtime"></timer>
+                </td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -101,7 +103,9 @@
                 <td> {{t.cnum}}</td>
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td><timer [start]="t.mtime"></timer></td>
+                <td>
+                    <timer [start]="t.mtime"></timer>
+                </td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -127,8 +131,7 @@
             <th translate> DETAIL </th>
         </thead>
         <tbody>
-            <tr *ngFor="let t of served$ | async; let i = index" 
-                [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished'}">
+            <tr *ngFor="let t of served$ | async; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished'}">
                 <td> {{i + 1}} </td>
                 <td> {{t.serving.service_id | serviceName}} </td>
                 <td> {{t.serving.counter_id | counterName}}</td>
@@ -188,7 +191,7 @@
                 </tr>
             </table>
         </div>
-        
+
         <div class="twoColumn" [ngClass]="{'notServeYet': !isServed}">
             <table>
                 <tr>

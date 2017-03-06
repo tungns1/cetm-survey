@@ -4,9 +4,9 @@ import { BranchCrudApiService, AdminFilter } from '../shared';
 
 @Injectable()
 export class SFlowService extends BranchCrudApiService<Model.House.ISFlow> {
-    Name = "LABEL_SERVICE_SFLOW";
+    Name = "LANGAUGE_SERVICE_SFLOW";
     ListFields = [
-        { title: 'LABEL_SUB_BRANCH', name: 'branch' },
-        { title: 'LABEL_ID_SERVICE', name: 'service_id' },
+        { title: 'LANGAUGE_SUB_BRANCH', name: 'branch' },
+        { title: 'LANGAUGE_ID_SERVICE', name: 'service_id' },
     ]
 }

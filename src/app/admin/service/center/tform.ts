@@ -9,8 +9,8 @@ export class TFormService extends CrudApiService<Model.Org.IUser> {
     }
 
     ListFields = [
-        { title: 'CODE', name: 'code' }
+        { title: 'LANGAUGE_CODE', name: 'code' }
     ]
 
-    Name = "LABEL_NUM_TICKET";
+    Name = "LANGAUGE_NUM_TICKET";
 }
