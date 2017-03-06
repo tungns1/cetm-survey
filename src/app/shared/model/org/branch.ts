@@ -13,10 +13,10 @@ export interface IBranch extends Cache.ID {
 }
 
 export const BranchLevels = [
-    { name: 'LABEL_SUB_BRANCH', value: 0 },
-    { name: 'LABEL_BRANCH', value: 1 },
-    { name: 'LABEL_AREA', value: 2 },
-    { name: 'LABEL_COUNTRY', value: 3 }
+    { name: 'LANGAUGE_SUB_BRANCH', value: 0 },
+    { name: 'LANGAUGE_BRANCH', value: 1 },
+    { name: 'LANGAUGE_AREA', value: 2 },
+    { name: 'LANGAUGE_COUNTRY', value: 3 }
 ]
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
