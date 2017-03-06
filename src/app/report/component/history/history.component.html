@@ -9,8 +9,8 @@
     }
 </style>
 
-<div class="advanced-filter" [makeForm]="makeForm">
-    <form fxLayout="row" fxLayoutAlign="center center" *ngIf="filter.form" [formGroup]="filter.form">
+<div class="advanced-filter">
+    <form fxLayout="row" fxLayoutAlign="center center" [formGroup]="filter.form">
         <label fxFlex="30%">Waiting Time (minutes):
             <span>From: </span>
             <input type="number" formControlName="waitingTime.from">

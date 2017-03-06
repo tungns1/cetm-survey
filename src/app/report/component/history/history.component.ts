@@ -28,18 +28,18 @@ export class HistoryComponent {
         console.log('im in');
     }
 
-    makeForm(u) {
-        u = u || <any>{};
-        return (new FormBuilder).group({
-        id: [u.id],
-        password: ['', u.id ? null : Validators.required], // do not require password on update
-        username: [u.username, Validators.required],
-        fullname: [u.fullname, Validators.required],
-        email: [u.email],
-        role: [u.role, Validators.required],
-        branch_id: [u.branch_id, Validators.required],
-        });
-    }
+    // makeForm(u) {
+    //     u = u || <any>{};
+    //     return (new FormBuilder).group({
+    //     id: [u.id],
+    //     password: ['', u.id ? null : Validators.required], // do not require password on update
+    //     username: [u.username, Validators.required],
+    //     fullname: [u.fullname, Validators.required],
+    //     email: [u.email],
+    //     role: [u.role, Validators.required],
+    //     branch_id: [u.branch_id, Validators.required],
+    //     });
+    // }
 
     chuyenTrang(page: number) {
         const skip = this.paging.SkipForPage(page);
