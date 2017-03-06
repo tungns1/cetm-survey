@@ -1,9 +1,9 @@
 <button class="button hl-btn-setting" (click)="add()" translate>LANGAUGE_ADD</button>
 <table width="100%" class="hl-tabletime-setting">
     <thead>
-        <td class="col-header" translate> STT </td>
-        <td class="col-header" translate> <span>Kiểu dữ liệu</span> </td>
-        <td class="col-header" translate>Thời gian</td>
+        <td class="col-header"><span translate> LANGAUGE_NUMERICAL_ORDER </span></td>
+        <td class="col-header"> <span translate>LANGAUGE_DATA_TYPE</span> </td>
+        <td class="col-header"><span translate>LANGAUGE_TIME </span></td>
         <td></td>
     </thead>
     <tr *ngFor="let s of settings | async; let i = index">
@@ -17,13 +17,13 @@
 </table>
 <div class="hl-showtime-setting" *ngIf="show">
     <select [(ngModel)]="key" (change)="onChange()">
-            <option disabled selected value>Chọn </option>
-            <option value="TIME_WAIT" translate>Thời gian đợi chuẩn</option>
-            <option value="TIME_SERVING" translate>Thời gian phục vụ chuẩn</option>
-            <option value="TIME_FINISH" translate>Thời gian tự động kết thúc giao dịch</option>
-            <option value="TIME_AUTO_CALL" translate>Thời gian tự động gọi vào</option>
+            <option disabled selected value translate>LANGAUGE_SELECT </option>
+            <option value="TIME_WAIT" translate>LANGAUGE_TIME_WAIT_STANDARD</option>
+            <option value="TIME_SERVING" translate>LANGAUGE_TIME_SERVING_STANDARD</option>
+            <option value="TIME_FINISH" translate>LANGAUGE_TIME_AUTO_FINISH_TRANS</option>
+            <option value="TIME_AUTO_CALL" translate>LANGAUGE_TIME_AUTO_CALL</option>
         </select>
     <input class="hl-input-setting" type="number" [(ngModel)]="value" min="0"><br>
-    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()" translate>Gửi</button>
-    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()" translate>Lưu</button>
+    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()" translate>LANGAUGE_SENT</button>
+    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()" translate>LANGAUGE_SAVE</button>
 </div>

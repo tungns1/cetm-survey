@@ -23,7 +23,7 @@
     "LANGAUGE_MONITOR": "Giám sát",
     "LANGAUGE_MANAGER_KIOSK": "Quản lý Kiosk",
     "LANGAUGE_MANAGER_SCREEN": "Quản lý Màn hình",
-    "LANGAUGE_SELECT": "Ngôn ngữ",
+    "LANGAUGE_SELECT_LANG": "Ngôn ngữ",
     "LANGAUGE_CHOOSE_ALL": "Chọn tất cả",
     "LANGAUGE_MESSAGE_PLEASE_SELECT_BRANCH": "Vui lòng chọn phòng giao dịch",
     "LANGAUGE_COUNTRY": "Quốc gia",
@@ -72,6 +72,10 @@
     "LANGAUGE_TOTAL_TIME_TRANSACTION": "Tổng thời gian giao dịch",
     "LANGAUGE_TOTAL_TIME_SERVING": "Tổng thời gian phục vụ",
     "LANGAUGE_TOTAL_TIME_WAIT": "Tổng thời gian chờ",
+    "LANGAUGE_TIME_WAIT_STANDARD": "Thời gian đợi chuẩn",
+    "LANGAUGE_TIME_SERVING_STANDARD": "Thời gian phục vụ chuẩn",
+    "LANGAUGE_TIME_AUTO_FINISH_TRANS": "Thời gian tự động kết thúc giao dịch",
+    "LANGAUGE_TIME_AUTO_CALL": "Thời gian tự động gọi vào",
     "LANGAUGE_TIME_SERVING_AVERAGE": "Thời gian phục vụ trung bình",
     "LANGAUGE_TIME_SERVING_MIN": "Thời gian phục vụ ngắn nhất",
     "LANGAUGE_TIME_SERVING_MAX": "Thời gian phục vụ lấu nhất",
@@ -123,7 +127,7 @@
     "LANGAUGE_HISTORY": "Lịch sử:",
     "LANGAUGE_STATUS": "Trạng thái",
     "LANGAUGE_STATUS_NOW": "Trạng thái hiện tại:",
-    "LANGAUGE_TIME": "Thời điểm",
+    "LANGAUGE_TIME": "Thời gian",
     "LANGAUGE_START_SERVING": "Bắt đầu phục vụ:",
     "LANGAUGE_MOVE_SERVICE": "Chuyển dịch vụ:",
     "LANGAUGE_TIME_MISS": "Thời điểm đặt nhỡ:",
@@ -142,7 +146,6 @@
     "LANGAUGE_STATE_MISSED": "Gọi nhỡ",
     "LANGAUGE_STATE_FINISHED": "Đã kết thúc",
     "LANGAUGE_STATE_CANCELLED": "Đã hủy",
-    "LANGAUGE_TIME_WAIT_STANDARD": "Thời gian đợi chuẩn",
     "LANGAUGE_SHOW": "Hiển thị",
     "LANGAUGE_FROM_NUMBER": "từ số",
     "LANGAUGE_TO_NUMBER": "đến số",
@@ -250,6 +253,10 @@
     "LANGAUGE_MOST_USED_SERVICE": "Dịch vụ dùng nhiều nhất",
     "LANGAUGE_STORE_MOST_DEAL": "Cửa hàng giao dịch nhiều nhất",
     "LANGAUGE_NAME_STORE": "Tên cửa hàng",
-    "LANGAUGE_NUMBER_TRANSACTION": "Lượt giao dịch"
+    "LANGAUGE_NUMBER_TRANSACTION": "Lượt giao dịch",
+    "LANGAUGE_DATA_TYPE": "Kiểu dữ liệu",
+    "LANGAUGE_SELECT": "Chọn",
+    "LANGAUGE_SENT": "Gửi"
+
 
 }
