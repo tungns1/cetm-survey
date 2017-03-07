@@ -30,7 +30,7 @@
     "LANGAUGE_COUNTRY": "Quốc gia",
     "LANGAUGE_BRANCH": "Chi nhánh",
     "LANGAUGE_SUB_BRANCH": "Chọn phòng giao dịch",
-    "LANGAUGE_SELECT_BRANCH": "Chọn {{level}}",
+    "LANGAUGE_SELECT_BRANCH": " {{level}}",
     "LANGAUGE_BUTTON_CANCEL": "Hủy",
     "LANGAUGE_DEL_QUESTION": "Bạn có muốn xóa không?",
     "LANGAUGE_ANSWER_YES": "Có",
