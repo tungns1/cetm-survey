@@ -27,10 +27,12 @@ export class FocusComponent {
     selectedTicket: Object;
     isServed: boolean = true;
     data: Summary;
+    // waitingCount = 0;
 
 
     ngOnInit() {
         this.focus$.subscribe(d => this.data = d[0]);
+        // this.waiting$.subscribe(data => this.waitingCount = data.length);
     }
 
     ngOnDestroy() {
@@ -56,6 +58,10 @@ export class FocusComponent {
             return a.mtime < b.mtime? -1 : 1;
         }));
 
+    waitingAndMissed$ = this.waiting$.combineLatest(this.missed$, (waiting, missed) => {
+        return [].concat(waiting).concat(missed);
+    })
+
     serving$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => {
             if (t.state === TicketStates.Serving) {
@@ -66,8 +72,41 @@ export class FocusComponent {
 
     served$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => {
-            if (t.state === TicketStates.Waiting || t.state === TicketStates.Missed || t.state === TicketStates.Serving) {
+            if (t.state === TicketStates.Missed || t.state === TicketStates.Serving) {
                 return false;
+            }
+            if(t.state === TicketStates.Waiting) {
+                let flag = 0;
+                for(let i = 0; i < t.tracks.length; i++){
+                    if(t.tracks[i].state === 'finished'){
+                        t.counter_id = t.tracks[i-1].counter_id;
+                        t.mtime = t.tracks[i].mtime;
+                        t.service_id = t.tracks[i-1].service_id;                      
+                        t.counter_id = t.tracks[i-1].counter_id;                      
+                        t.user_id = t.tracks[i-1].user_id;
+                        t.stime = t.mtime - t.tracks[i-1].mtime;
+                        flag++;
+                    }
+                }
+                if(flag == 0) return false;
+                else {
+                    return true;
+                }
+            }
+            if(t.state === TicketStates.Cancelled) {
+                for(let i = 0; i < t.tracks.length; i++){
+                    if(t.tracks[i].state === 'serving') {
+                        t.stime = t.tracks[i+1].mtime - t.tracks[i].mtime;
+                        this.addServingTrack(t);
+                        return true;
+                    }
+                }
+                t.stime = 0;
+                this.addServingTrack(t);
+                return true;
+            }
+            if(t.state === TicketStates.Finished) {
+                t.stime = t.tracks[t.tracks.length - 1].mtime - t.tracks[t.tracks.length - 2].mtime;
             }
             this.addServingTrack(t);
             return true;
@@ -76,10 +115,19 @@ export class FocusComponent {
             return a.state < b.state? 1 : -1;
         }));
 
+    servingNServed$ = this.serving$.combineLatest(this.served$, (serving, served) => {
+        return [].concat(serving).concat(served);
+    })
+
     addServingTrack(t: ITicket) {
-        t.serving = t.tracks.find(
-            track => track.state === TicketStates.Serving
-        ) || <Model.House.ITicketTrack>{
+        for(let i = t.tracks.length - 1; i >= 0; i--){
+            if(t.tracks[i].state === 'serving'){
+                t.serving = t.tracks[i];
+                return t;
+            }
+        }
+
+        t.serving = <Model.House.ITicketTrack>{
             state: TicketStates.Serving,
         };
         return t;

@@ -5,7 +5,7 @@
             <th> SL. vé đã in</th>
             <th> SL. vé đợi </th>
             <th> SL. vé đang phục vụ </th>
-            <th> SL. vé đã phục vụ </th>
+            <th> Lượt vé đã phục vụ </th>
             <th> SL. vé nhỡ </th>
             <th> SL. vé hủy </th>
             <th> SL. vé đợi trên 15' </th>
@@ -24,8 +24,8 @@
                 <td translate> {{s.finished}}</td>
                 <td translate> {{s.missed}}</td>
                 <td translate> {{s.cancelled}}</td>
-                <td translate [ngClass]="{'warning': (s.wait_long/(s.printed - s.cancelled))*100 > 40}"> 
-                    <span>{{s.wait_long}} ({{(s.wait_long/(s.printed - s.cancelled))*100}})%</span>
+                <td translate [ngClass]="{'warning': (s.wait_long/s.waiting)*100 > 40}"> 
+                    <span>{{s.wait_long}} ({{s.wl_percent.toFixed(2)}})%</span>
                 </td>
                 <td translate> {{s.serve_short}}</td>
             </tr>
@@ -37,8 +37,8 @@
                 <td translate> {{total.finished}}</td>
                 <td translate> {{total.missed}}</td>
                 <td translate> {{total.cancelled}}</td>
-                <td translate [ngClass]="{'warning': (total.wait_long/(total.printed - total.cancelled))*100 > 40}"> 
-                    <span>{{total.wait_long}} ({{(total.wait_long/(total.printed - total.cancelled))*100}})%</span>
+                <td translate [ngClass]="{'warning': (total.wait_long/total.waiting)*100 > 40}"> 
+                    <span>{{total.wait_long}} ({{total.wl_percent.toFixed(2)}})%</span>
                 </td>
                 <td translate> {{total.serve_short}}</td>
             </tr>
