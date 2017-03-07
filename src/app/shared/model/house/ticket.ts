@@ -14,6 +14,7 @@ export interface ITicket {
     lang?: string;
     ctime: number;
     mtime: number;
+    stime: number;
     tracks: ITicketTrack[];
     customer:ICustomerData;
 }
@@ -48,6 +49,7 @@ export interface IFeedback {
 export interface ITicketTrack {
     state: TicketState;
     mtime: number;
+    // stime: number;
     services?: string[];
     user_id?: string;
     counter_id?: string;

@@ -10,24 +10,30 @@
 </style>
 
 <div class="advanced-filter">
-    <form fxLayout="row" fxLayoutAlign="center center">
-        <label fxFlex="30%">Waiting Time (minutes):
-            <input type="number" placeholder="min"> 
-            <input type="number" placeholder="max">
+    <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
+        <label>Waiting Time (minutes):
+            <input type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin"
+               #wtimemin="ngModel" min="0" (ngModelChange)="sync()"> 
+            <input type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax"
+               #wtimemax="ngModel" min="{{filter.wtimemin}}">
         </label>
-        <label fxFlex="30%">Serving Time (minutes):
-            <input type="number" placeholder="min"> 
-            <input type="number" placeholder="max">
+        <label>Serving Time (minutes):
+            <input type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin"
+               #stimemin="ngModel" min="0" (ngModelChange)="sync()"> 
+            <input type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax"
+               #stimemax="ngModel" min="{{filter.stimemin}}">
         </label>
-        <label fxFlex="30%"> Feedback
-            <select>
-                <option>Very Good</option>
-                <option>Good</option>
-                <option>Average</option>
-                <option>Poor</option>
-            </select>
+        <label> Feedback
+        <select [(ngModel)]="filter.rating" name="rating"
+               #rating="ngModel">
+            <option value="">Choose feedback</option>
+            <option value="veryGood">Very Good</option>
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+        </select>
         </label>
-        <div fxFlex></div>
+        <button type="submit">Go now!</button>
     </form>
 </div>
 
