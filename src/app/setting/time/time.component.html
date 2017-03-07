@@ -1,4 +1,4 @@
-<button class="button hl-btn-setting" (click)="add()" translate>LANGAUGE_ADD</button>
+<button class="button hl-btn-setting" (click)="add()" translate>LANGAUGE_BUTTON_ADD</button>
 <table width="100%" class="hl-tabletime-setting">
     <thead>
         <td class="col-header"><span translate> LANGAUGE_NUMERICAL_ORDER </span></td>
@@ -24,6 +24,6 @@
             <option value="TIME_AUTO_CALL" translate>LANGAUGE_TIME_AUTO_CALL</option>
         </select>
     <input class="hl-input-setting" type="number" [(ngModel)]="value" min="0"><br>
-    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()" translate>LANGAUGE_SENT</button>
-    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()" translate>LANGAUGE_SAVE</button>
+    <button class="button hl-btn-setting" *ngIf="!setting" (click)="Create()" translate>LANGAUGE_BUTTON_SENT</button>
+    <button class="button hl-btn-setting" *ngIf="setting" (click)="Update()" translate>LANGAUGE_BUTTON_SAVE</button>
 </div>

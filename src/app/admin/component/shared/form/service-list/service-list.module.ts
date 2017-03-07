@@ -3,7 +3,7 @@ import { Component, Input, forwardRef, ExistingProvider, Attribute } from '@angu
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AbstractControl } from '@angular/forms';
-
+import { SharedService } from '../../../../shared';
 
 const SERVICE_LIST_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -118,7 +118,7 @@ import { CommonModule } from '@angular/common';
     imports: [
         FormsModule, CommonModule,
         CultureModule, JSONFormModule,
-        Lib.Ng.ModalModule
+        Lib.Ng.ModalModule,SharedService.I18n.TranslateModule
     ],
     declarations: [ServiceListComponent],
     exports: [ServiceListComponent]

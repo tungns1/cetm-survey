@@ -9,31 +9,31 @@ export class Item {
 }
 
 const settingMenu = [
-    { app: "admin", href: "/admin/org/branch/2", name: "CITY" },
-    { app: "admin", href: "/admin/org/branch/1", name: "BRANCH" },
-    { app: "admin", href: "/admin/org/branch/0", name: "TRANSACTION_ROOM" },
-    { app: "admin", href: "/admin/center/tform", name: "TICKET_NUMBER" },
-    { app: "admin", href: "/admin/center/service", name: "SERVICE" },
-    { app: "admin", href: "/admin/meta/branch_config", name: "SETTING" },
-    { app: "admin", href: "/admin/house/sflow", name: "STREAM_SERVICE_LOCAL" },
-    { app: "admin", href: "/admin/house/counter", name: "COUNTER" },
-    { app: "admin", href: "/admin/org/user", name: "USER", icon: "fa-user" },
+    { app: "admin", href: "/admin/org/branch/2", name: "LANGAUGE_CITY" },
+    { app: "admin", href: "/admin/org/branch/1", name: "LANGAUGE_BRANCH" },
+    { app: "admin", href: "/admin/org/branch/0", name: "LANGAUGE_TRANSACTION_ROOM" },
+    { app: "admin", href: "/admin/center/tform", name: "LANGAUGE_TICKET_NUMBER" },
+    { app: "admin", href: "/admin/center/service", name: "LANGAUGE_SERVICE" },
+    { app: "admin", href: "/admin/meta/branch_config", name: "LANGAUGE_SETTING" },
+    { app: "admin", href: "/admin/house/sflow", name: "LANGAUGE_STREAM_SERVICE_LOCAL" },
+    { app: "admin", href: "/admin/house/counter", name: "LANGAUGE_COUNTERS" },
+    { app: "admin", href: "/admin/org/user", name: "LANGAUGE_USER", icon: "fa-user" },
 ]
 
 const reportMenu: Item[] = [
-    {app: "report", href: "/report/dashboard", name: "BUTTON_GENERAL"},
-    {app: "report", href: "/report/history", name: "BUTTON_HISTORY"},
-    {app: "report", href: "/report/customer", name: "BUTTON_CUSTOMER"},
+    {app: "report", href: "/report/dashboard", name: "LANGAUGE_BUTTON_GENERAL"},
+    {app: "report", href: "/report/history", name: "LANGAUGE_BUTTON_HISTORY"},
+    {app: "report", href: "/report/customer", name: "LANGAUGE_BUTTON_CUSTOMER"},
 ]
 
 
 export const TopNavMenu: Item[] = [
-    { app: "admin", href: "/admin/org/branch/0", name: "MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
-    { app: "report", href: "/report/dashboard", name: "REPORT", icon: "fa-line-chart", children: reportMenu },
-    { app: "monitor", href: "/monitor/ticket", name: "MONITOR", icon: "fa-bell" },
-    { app: "admin", href: "/admin/house/kiosk", name: "MANAGER_KIOSK", icon: "fa-ticket" },
-    { app: "admin", href: "/admin/house/screen", name: "MANAGER_SCREEN", icon: "fa-desktop" },
-    { app: "admin", href: "/admin/house/screen", name: "Feedback Management", icon: "fa-commenting" }
+    { app: "admin", href: "/admin/org/branch/0", name: "LANGAUGE_MANAGER_SYSTEM", icon: "fa-home", children: settingMenu },
+    { app: "report", href: "/report/dashboard", name: "LANGAUGE_REPORT", icon: "fa-line-chart", children: reportMenu },
+    { app: "monitor", href: "/monitor/ticket", name: "LANGAUGE_MONITOR", icon: "fa-bell" },
+    { app: "admin", href: "/admin/house/kiosk", name: "LANGAUGE_MANAGER_KIOSK", icon: "fa-ticket" },
+    { app: "admin", href: "/admin/house/screen", name: "LANGAUGE_MANAGER_SCREEN", icon: "fa-desktop" },
+    { app: "admin", href: "/admin/house/screen", name: "LANGAUGE_FEEDBACK_MANAGEMENT", icon: "fa-commenting" }
     ]
 
 export function GetActiveItemIndex(app: string, url: string) {
