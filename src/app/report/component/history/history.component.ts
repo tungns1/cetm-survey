@@ -49,15 +49,11 @@ export class HistoryComponent {
 
     ngOnInit() {
         this.filterService.ExclusiveSubscribe(filter => {
-            this.chuyenTrang(1);
+            this.pagin(1);
         });
     }
 
-    filterHistory() {
-        // console.log(this.form);
-    }
-
-    chuyenTrang(page: number) {
+    pagin(page: number) {
         const skip = this.paging.SkipForPage(page);
         const limit = this.paging.Limit;
         const filter = {};
@@ -71,16 +67,5 @@ export class HistoryComponent {
     excel() {
         this.transactionHistoryApi.ExportHistory(this.filterService.Current);
     }
-
-    // rows = [
-    //     { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    //     { name: 'Dany', gender: 'Male', company: 'KFC' },
-    //     { name: 'Molly', gender: 'Female', company: 'Burger King' },
-    // ];
-    // columns = [
-    //     { prop: 'name' },
-    //     { name: 'Gender' },
-    //     { name: 'Company' }
-    // ];
 
 }

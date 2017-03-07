@@ -120,9 +120,14 @@ export class FocusComponent {
     })
 
     addServingTrack(t: ITicket) {
-        t.serving = t.tracks.find(
-            track => track.state === TicketStates.Serving
-        ) || <Model.House.ITicketTrack>{
+        for(let i = t.tracks.length - 1; i >= 0; i--){
+            if(t.tracks[i].state === 'serving'){
+                t.serving = t.tracks[i];
+                return t;
+            }
+        }
+
+        t.serving = <Model.House.ITicketTrack>{
             state: TicketStates.Serving,
         };
         return t;

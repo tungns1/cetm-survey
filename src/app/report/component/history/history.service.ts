@@ -15,11 +15,11 @@ export class TransactionHistoryApi {
         private filterService: ReportFilterService
     ) { }
 
-    GetHistory(filter: ReportFilter, skip: number, limit: number, test: object) {
+    GetHistory(filter: ReportFilter, skip: number, limit: number, filterHistory: object) {
         const query = Object.assign({
             skip: skip,
             limit: limit
-        }, filter.ToBackendQuery(), test);
+        }, filter.ToBackendQuery(), filterHistory);
 
         return this.api.Get<IHistory>("read", query);
     }
