@@ -135,7 +135,7 @@
         <thead>
             <th> STT </th>
             <th translate>LANGAUGE_SERVICE </th>
-            <th translate>LANGAUGE_COUNTER</th>
+            <th translate>LANGAUGE_COUNTERS</th>
             <th translate>LANGAUGE_STAFF</th>
             <th translate> LANGAUGE_TICKET_NUMBER </th>
             <th translate> LANGAUGE_CUSTOMER </th>
@@ -248,7 +248,7 @@
                     <th>{{selectedTicket.serving.user_id | userFullName}}</th>
                 </tr>
                 <tr *ngIf="selectedTicket.serving">
-                    <th translate> LANGAUGE_COUNTER </th>
+                    <th translate> LANGAUGE_COUNTERS </th>
                     <th>{{selectedTicket.serving.counter_id | counterName }}</th>
                 </tr>
                 <tr *ngIf="selectedTicket.serving">

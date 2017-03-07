@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 const GroupByTitles = {
     service_id: "LANGAUGE_SERVICE",
     branch_id: "LANGAUGE_SUB_BRANCH",
-    counter_id: "LANGAUGE_COUNTER",
+    counter_id: "LANGAUGE_COUNTERS",
     user_id: "LANGAUGE_STAFF"
 }
 
