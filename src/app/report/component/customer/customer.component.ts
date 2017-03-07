@@ -20,6 +20,5 @@ export class CustomerComponent {
             this.customer_id = id;
             this.customerApi.Search(id);
         }
-
     }
 }

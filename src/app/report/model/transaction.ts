@@ -1,3 +1,4 @@
+
 export interface ITransaction {
     id: string;
     ticket_id: string;
@@ -44,6 +45,8 @@ export interface ITransactionView extends ITransaction {
     audio: string;
 }
 
+
+
 export interface IService {
     name: string;
     count: number;
@@ -55,6 +58,9 @@ export interface IStore {
 export interface IFre {
     name: string;
     count: number;
+    ctime: string;
+    date?: Date;
+
 }
 
 export class Customer {
@@ -66,9 +72,10 @@ export class Customer {
     customer_name: string;
     customer_phone: string;
     segment: string;
-    services = new Object();
-    stores = new Object();
-    fres = new Object();
+
+    services: IService[] = [];
+    stores: IStore[] = [];
+    fres: IFre[] = [];
     branch_id: string;
     user_id: string;
     counter_id: string;
@@ -84,10 +91,8 @@ export class Customer {
 
 
 
-
-
-
     Add(s: ITransaction) {
+
         var month = s.cdate.substring(5, 7);
         var ps = s.stime.substring(3, 5);
         var pw = s.wtime.substring(3, 5);
@@ -97,6 +102,67 @@ export class Customer {
         this.customer_name = "Nguyen Van A";
         this.customer_id = s.customer_id;
         this.segment = "Tra Sau";
+        if (this.services.length > 0) {
+            for (var i = 0; i < this.services.length; i++) {
+                if (s.service === this.services[i].name) {
+                    this.services[i].count++;
+                    break;
+                } else {
+                    this.services.push({
+                        name: s.service,
+                        count: 1,                       
+                    })
+                    break;
+                }
+            }
+        } else {
+            this.services.push({
+                name: s.service,
+                count: 1
+            })
+        }
+        if (this.stores.length > 0) {
+            for (var i = 0; i < this.stores.length; i++) {
+                if (s.counter === this.stores[i].name) {
+                    this.stores[i].count++;
+                    break;
+                } else {
+                    this.stores.push({
+                        name: s.counter,
+                        count: 1
+                    })
+                    break;
+                }
+            }
+        } else {
+            this.stores.push({
+                name: s.counter,
+                count: 1
+            })
+        }
+        if (this.fres.length > 0) {
+            for (var i = 0; i < this.fres.length; i++) {
+                if (month === this.fres[i].name) {
+                    this.fres[i].count++;
+                    break;
+                } else {
+                    this.fres.push({
+                        name: month,
+                        ctime: s.ctime,
+                        count: 1
+                    })
+                    break;
+                }
+            }
+        } else {
+            this.fres.push({
+                name: month,
+                ctime: s.ctime,
+                count: 1
+            })
+        }
+
+
         if (s == null) {
             return;
         }
@@ -111,33 +177,6 @@ export class Customer {
         }
         if (+hw == 0 && +pw < 10) {
             this.c_bwt = this.c_bwt + 1;
-        }
-
-        if (this.services[s.service]) {
-            var count = this.services[s.service]
-            count++
-            this.services[s.service] = count
-        } else {
-            this.services[s.service] = 1
-        }
-
-        if (this.stores[s.counter]) {
-            var count = this.stores[s.counter]
-            count++
-            this.stores[s.counter] = count
-
-        } else {
-            this.stores[s.counter] = 1
-
-        }
-        if (this.fres[month]) {
-            var count = this.fres[month]
-            count++
-            this.fres[month] = count
-
-        } else {
-            this.fres[month] = 1
-
         }
 
 
@@ -180,11 +219,15 @@ export class Customer {
 
 
     static Make(records: ITransaction[]) {
+
         let res = new Customer();
-        records.forEach(v => res.Add(v));
+        records.forEach(v => {
+            res.Add(v);
+        });
+
         res.Finalize();
         return res;
     }
-}
 
+}
 

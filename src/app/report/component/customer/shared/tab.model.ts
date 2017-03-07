@@ -2,7 +2,7 @@
 
 export const MAIN_TABS = {
     TIME: {
-        name: 'time',
+        name: 'times',
         title: 'CUSTOMER.TAB_TIME_TRANSACTION'
     },
     FREQUENCY: {

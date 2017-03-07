@@ -1,0 +1,18 @@
+<div class="hl-chart">
+    <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
+        <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
+    </div>
+</div>
+
+<div class="legend " style="margin:10px 20px; ">
+    <div *ngFor="let item of pieItems$ | async">
+        <div *ngFor="let t of item" style="float:left; margin-right:10px; ">
+            <div style="float:left;">
+                <div style="float:left; margin-right:3px;" [style.background-color]="t._hidden? '':t.color ">
+                    <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
+                </div>
+                <span style="font-size: 12px;"> {{t.title}}</span>
+            </div>
+        </div>
+    </div>
+</div>

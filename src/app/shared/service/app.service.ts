@@ -5,7 +5,7 @@ import { HttpHost } from '../config';
 export class AppState {
     constructor(private name: string) { }
 
-    get AppName() {
+    get AppName() { 
         return this.name;
     }
 
