@@ -58,7 +58,7 @@ export interface IStore {
 export interface IFre {
     name: string;
     count: number;
-    ctime: string;
+    cdate: string;
     date?: Date;
 
 }
@@ -72,7 +72,7 @@ export class Customer {
     customer_name: string;
     customer_phone: string;
     segment: string;
-
+   
     services: IService[] = [];
     stores: IStore[] = [];
     fres: IFre[] = [];
@@ -148,7 +148,7 @@ export class Customer {
                 } else {
                     this.fres.push({
                         name: month,
-                        ctime: s.ctime,
+                        cdate: s.cdate,
                         count: 1
                     })
                     break;
@@ -157,7 +157,7 @@ export class Customer {
         } else {
             this.fres.push({
                 name: month,
-                ctime: s.ctime,
+                cdate: s.cdate,
                 count: 1
             })
         }
