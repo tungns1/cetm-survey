@@ -14,22 +14,39 @@ export const TimeItems: ChartItem[][] = [
     [{
         field: 'c_bwt',
         color: '#339933',
-        tab: 'general',
         key_title: 'LANGAUGE_TRANSACTION_WAIT_STANDARD'
     }, {
         field: 's_wt',
         color: '#b4e4b4',
-        tab: 'general',
         key_title: 'LANGAUGE_TRANSACTION_WAIT_BEYOND_STANDARD'
     }], [{
         field: 'c_bst',
         color: '#339966',
-        tab: 'general',
         key_title: 'LANGAUGE_TRANSACTION_SERVING_STANDARD'
     }, {
         field: 'c_st',
         color: '#9fdfbf',
-        tab: 'general',
         key_title: 'LANGAUGE_TRANSACTION_SERVING_BEYOND_STANDARD'
     }]
+];
+
+
+export const FresItems: ChartItem[]= [
+    {
+        field: 'count',
+        color: '#339933',
+    }
+];
+
+export const ServiceItems: ChartItem[] = [
+    {
+        field: 'count',
+        color: '#339933',
+    }
+];
+export const StoreItems: ChartItem[] = [
+    {
+        field: 'count',
+        color: '#339933',
+    }
 ];

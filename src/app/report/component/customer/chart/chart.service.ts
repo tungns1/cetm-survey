@@ -30,7 +30,7 @@ export class ChartService {
         var fres = v.fres;
         const parseTime = TimeParse[this.RxPeriod.value];
         fres.forEach(v => {
-            v.date = parseTime(v.ctime);
+            v.date = parseTime(v.cdate);
         })
         fres.sort((a, b) => a.date < b.date ? -1 : 1);
         return fres;
@@ -44,21 +44,15 @@ export class ChartService {
         return stores;
     })
     RxService = this.RxSummaryView.map(v => {
-        // var serviceItems: ChartItem[] = [];
         var services = v.services;
         services.sort(function (a, b) {
             return a.count - b.count;
         })
-        // services.forEach(v => {
-        //     var service: ChartItem = null;
-        //     service.field = v.count.toString();
-
-        // })
         return services;
     })
     get RxSummaryView() {
         return this.RxCustomer.map(Customer.Make);
     };
 
-    RxPeriod = this.customerAPI.period_month$;
+    RxPeriod = this.customerAPI.period$;
 }
