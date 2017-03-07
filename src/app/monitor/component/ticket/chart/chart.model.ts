@@ -3,6 +3,7 @@ import { SharedService } from '../../shared';
 import { Item } from '../../../../x/ng/d3/chart';
 
 export interface ChartItem extends Item {
+    header?: string;
     title?: string;
     key_title: string;
 }
@@ -11,6 +12,7 @@ export const PieItems: ChartItem[][] =
 [
     [
         {
+            header: 'Chi tiết vé',
             field: 'finished',
             color: '#65c553',
             key_title: 'GENERAL.TRANSACTION_FINISH'
@@ -38,6 +40,7 @@ export const PieItems: ChartItem[][] =
     ],
     [
         {
+            header: 'Vé đợi trên 15\'',
             field: 'waiting',
             color: '#65c553',
             key_title: 'GENERAL.TRANSACTION_FINISH'
@@ -50,6 +53,7 @@ export const PieItems: ChartItem[][] =
     ],
     [
         {
+            header: 'Vé phục vụ dưới 2\'',
             field: 'finished',
             color: '#65c553',
             key_title: 'GENERAL.TRANSACTION_FINISH'

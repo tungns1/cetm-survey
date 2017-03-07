@@ -9,8 +9,8 @@
 <div class="container" style="height:100vh;">
     <div class="aside">
         <div class="hl-asidehead-filter">
-            <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
-            <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
+            <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | translate}}">&nbsp; Filters</i>
+            <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
         </div>
         <admin-filter *ngIf="hidden" style="padding-top: 50px;"></admin-filter>
     </div>

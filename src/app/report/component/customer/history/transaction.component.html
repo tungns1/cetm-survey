@@ -1,14 +1,14 @@
 <modal *ngIf="data">
-    <div class="hl-detail-history" translate> HISTORY.TITLE_DETAIL</div>
+    <div class="hl-detail-history" translate> LANGAUGE_TITLE_DETAIL</div>
     <div style="text-align: center;">
         <div style="float: left;border: 1px solid gray;">
             <div style="float: left;">
-                <span translate> HISTORY.TICKET_NUMBER </span><br>
-                <span translate> HISTORY.SERVICE </span><br>
-                <span translate> HISTORY.TIME_CREATE_TICKET</span><br>
-                <span translate> HISTORY.TIME_WAIT</span><br>
-                <span translate> HISTORY.TIME_SERVING</span><br>
-                <span translate> HISTORY.DATE</span><br>
+                <span translate> LANGAUGE_TICKET_NUMBER </span><br>
+                <span translate> LANGAUGE_SERVICE </span><br>
+                <span translate> LANGAUGE_TIME_CREATE_TICKET</span><br>
+                <span translate> LANGAUGE_TIME_WAIT</span><br>
+                <span translate> LANGAUGE_TIME_SERVING</span><br>
+                <span translate> LANGAUGE_DATE</span><br>
             </div>
             <div style="float: left;margin-left: 10px;">
                 <span>{{data.cnum}}</span><br>
@@ -24,12 +24,12 @@
 
         <div style="float: left;border: 1px solid gray; margin-left: 20px;">
             <div style="float: left">
-                <span translate> HISTORY.BRANCH </span><br>
-                <span translate> HISTORY.TRANSACTION_ROOM </span><br>
-                <span translate> HISTORY.TELLERS</span><br>
-                <span translate> HISTORY.COUNTER</span><br>
-                <span translate> HISTORY.MANAGER</span><br>
-                <span translate> HISTORY.ADMIN</span><br>
+                <span translate> LANGAUGE_BRANCH </span><br>
+                <span translate> LANGAUGE_TRANSACTION_ROOM </span><br>
+                <span translate> LANGAUGE_TELLERS</span><br>
+                <span translate> LANGAUGE_COUNTERS</span><br>
+                <span translate> LANGAUGE_MANAGER</span><br>
+                <span translate> LANGAUGE_ADMIN</span><br>
             </div>
             <div style="float: left;margin-left: 10px;">
                 <span>{{data.branch}}</span><br>
@@ -45,10 +45,10 @@
     <div style="text-align: center;">
         <div>
             <div style="float: left;">
-                <span translate> HISTORY.CUSTOMER</span><br>
-                <span translate> HISTORY.PHONE</span><br>
-                <span translate> HISTORY.ID</span><br>
-                <span translate> HISTORY.SEGMENT</span><br>
+                <span translate> LANGAUGE_CUSTOMER</span><br>
+                <span translate> LANGAUGE_PHONE</span><br>
+                <span translate> LANGAUGE_ID</span><br>
+                <span translate> LANGAUGE_SEGMENT</span><br>
             </div>
             <div style="float: left;margin-left: 20px;">
                 <span> </span><br>
@@ -60,6 +60,6 @@
         <audio *ngIf="link" controls [src]="link"> </audio>
     </div>
     <div style="float:right;">
-        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> HISTORY.BUTTON_CLOSE </button>
+        <button class="button hl-btn-history" (click)="Close()" style="height:25px;" translate> LANGAUGE_BUTTON_CLOSE </button>
     </div>
 </modal>

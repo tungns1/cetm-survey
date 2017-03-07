@@ -1,20 +1,20 @@
 <button class="hl-btn-counter" (click)="Next()" [ngClass]="{'hidden': auto | async}" translate>
-    NEXT
+    LANGAUGE_NEXT
 </button>
 <button class="hl-btn-counter danger" (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
-    AUTO_NEXT
+    LANGAUGE_AUTO_NEXT
 </button>
 <button class="hl-btn-counter" (click)="Recall()" translate> 
-    RECALL
+    LANGAUGE_RECALL
 </button>
 <button class="hl-btn-counter" (click)="Move()" translate> 
-    MOVE
+    LANGAUGE_MOVE
 </button>
 <button class="hl-btn-counter" (click)="Miss()" translate>
-    MISS
+    LANGAUGE_MISS
 </button>
 <button class="hl-btn-counter danger" (click)="Finish()" translate>
-    FINISH
+    LANGAUGE_FINISH
 </button>
 
 <ticket-detail-dialog #dialog [class.hidden]="!moveDialog"></ticket-detail-dialog>

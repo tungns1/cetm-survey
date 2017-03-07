@@ -4,5 +4,5 @@ import { BranchCrudApiService, AdminFilter } from '../shared';
 
 @Injectable()
 export class ScreenService extends BranchCrudApiService<Model.House.IScreen> {
-    Name = "LABEL_SCREEN";
+    Name = "LANGAUGE_SCREEN";
 }

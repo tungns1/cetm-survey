@@ -2,11 +2,11 @@
     <div class="hl-column-sum">
         <div style="padding: 0px 10px;">
             <div class="hl-tl-sum">
-                <span translate>CUSTOMER.TOTAL_TRANSACTION</span>: {{data.c_t}}
+                <span translate>LANGSUGE_TOTAL_TRANSACTION</span>: {{data.c_t}}
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span translate>CUSTOMER.TRANSACTION_HAVE_WAIT_STANDARD</span>
+                    <span translate>LANGSUGE_TRANSACTION_HAVE_WAIT_STANDARD</span>
                     <span class="hl-giaodich" *ngIf="data.c_t>0">{{data.c_bwt}}&nbsp; ({{data.c_bwt/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
@@ -18,7 +18,7 @@
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span translate>CUSTOMER.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD</span>
+                    <span translate>LANGSUGE_TRANSACTION_HAVE_WAIT_BEYOND_STANDARD</span>
                     <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_wt}}&nbsp; ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
@@ -31,7 +31,7 @@
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span translate>CUSTOMER.TRANSACTION_HAVE_SERVING_STANDARD</span>
+                    <span translate>LANGSUGE_TRANSACTION_HAVE_SERVING_STANDARD</span>
                     <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
@@ -44,7 +44,7 @@
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span translate>CUSTOMER.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD</span>
+                    <span translate>LANGSUGE_TRANSACTION_HAVE_SERVING_BEYOND_STANDARD</span>
                     <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_st}}&nbsp; ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">

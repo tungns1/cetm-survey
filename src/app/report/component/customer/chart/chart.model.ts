@@ -9,43 +9,27 @@ export interface ChartItem extends Item {
     key_title?: string;
 }
 
-export const TimeItems: ChartItem[][] = [[{
-    field: 'c_bwt',
-    color: '#99b3ff',
-    key_title: 'GENERAL.TRANSACTION_HAVE_WAIT_STANDARD'
-}, {
-    field: 's_wt',
-    color: '#969c9c',
-    key_title: 'GENERAL.TRANSACTION_HAVE_WAIT_BEYOND_STANDARD'
-}], [{
-    field: 'c_bst',
-    color: 'steelblue',
-    key_title: 'GENERAL.TRANSACTION_HAVE_SERVING_STANDARD',
-    axis: 'left'
-}, {
-    field: 's_st',
-    color: 'green',
-    key_title: 'GENERAL.TRANSACTION_HAVE_SERVING_BEYOND_STANDARD'
-}]];
-export const FresItems: ChartItem[] = [
-    {
-        field: 'count',
-        color: '#99b3ff',
-        key_title: 'GENERAL.TRANSACTION_HAVE_WAIT_STANDARD'
-    }
-];
-// export const FresItems:ChartItem[]=[];
-export const ServiceItems : ChartItem[] = [
-    {
-        field: 'count',
-        color: '#99b3ff',
-        key_title: 'GENERAL.TRANSACTION_HAVE_WAIT_STANDARD'
-    }
-];
-export const StoreItems : ChartItem[] = [
-    {
-        field: 'count',
-        color: '#99b3ff',
-        key_title: 'GENERAL.TRANSACTION_HAVE_WAIT_STANDARD'
-    }
+
+export const TimeItems: ChartItem[][] = [
+    [{
+        field: 'c_bwt',
+        color: '#339933',
+        tab: 'general',
+        key_title: 'LANGAUGE_TRANSACTION_WAIT_STANDARD'
+    }, {
+        field: 's_wt',
+        color: '#b4e4b4',
+        tab: 'general',
+        key_title: 'LANGAUGE_TRANSACTION_WAIT_BEYOND_STANDARD'
+    }], [{
+        field: 'c_bst',
+        color: '#339966',
+        tab: 'general',
+        key_title: 'LANGAUGE_TRANSACTION_SERVING_STANDARD'
+    }, {
+        field: 'c_st',
+        color: '#9fdfbf',
+        tab: 'general',
+        key_title: 'LANGAUGE_TRANSACTION_SERVING_BEYOND_STANDARD'
+    }]
 ];

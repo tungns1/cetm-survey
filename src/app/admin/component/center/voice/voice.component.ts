@@ -21,9 +21,9 @@ function NewForm(b?: Model.Center.ILayout) {
 export class LayoutComponent {
 
     fields = [
-        { title: 'LABEL_NAME', name: 'name' },
-        { title: 'Code', name: 'code' },
-        {title: 'LABEL_TYPE', name: 'type'}
+        { title: 'LANGAUGE_NAME', name: 'name' },
+        { title: 'LANGAUGE_Code', name: 'code' },
+        {title: 'LANGAUGE_TYPE', name: 'type'}
     ]
 }
 

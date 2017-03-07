@@ -4,9 +4,9 @@ const ViErrors = {
 
 }
 
-ViErrors['record not found'] = 'Sai tên đăng nhập';
-ViErrors['wrong password'] = 'Sai mật khẩu';
-ViErrors['unauthorize'] = 'Không đủ quyền truy cập ứng dụng';
+ViErrors['record not found'] = 'Error Username';
+ViErrors['wrong password'] = 'Error Password';
+ViErrors['unauthorize'] = 'Cannot authorities connect application';
 
 export function FormatError(e: string) {
   if (typeof e !== 'string') {
@@ -22,5 +22,5 @@ export function FormatError(e: string) {
 }
 
 export function I18nHttpError(err: Backend.HttpError) {
-    return `Đã có lỗi: ${FormatError(err.Message())}`
+    return `Error: ${FormatError(err.Message())}`
 }

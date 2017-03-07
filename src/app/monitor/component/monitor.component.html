@@ -1,5 +1,5 @@
 <app-header>
-    <div class="module-name" translate> LABEL_MONITOR </div>
+    <div class="module-name" translate> LANGAUGE_MONITOR </div>
 </app-header>
 
 <top-nav></top-nav>
@@ -7,8 +7,8 @@
 <br>
 
 <div class="hl-asidehead-filter">
-    <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{SHOW_FILTER | translate}}">&nbsp; Filters</i>
-    <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
+    <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | translate}}">&nbsp; Filters</i>
+    <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
 </div>
 
 <div class="flex-container container" fxLayout="row" fxLayoutAlign="space-between none">

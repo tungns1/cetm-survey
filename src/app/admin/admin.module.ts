@@ -8,7 +8,6 @@ import { adminServiceProvider } from "./service";
 const appName = "admin";
 const appState = new SharedService.AppState(appName);
 
-
 @NgModule({
     imports: [
         SharedModule, routing, AdminFilterModule
