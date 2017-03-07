@@ -2,7 +2,7 @@
     <div class="flex-container header" fxLayout="row" fxLayoutAlign="space-between none">
         <h1 fxFlex> {{data.branch_id | branchName}} </h1>
         <h3 fxFlex="10%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
-    </div> 
+    </div>
     <div class="flex-container overview" fxLayout="row" fxLayoutAlign="space-between none">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -65,10 +65,10 @@
             </div>
         </div>
     </div>
-    
+
     <div class="divider"></div>
 
-    <monitor-chart [data]="data" ></monitor-chart>
+    <monitor-chart [data]="data"></monitor-chart>
 
     <h3 class="tableHeader"> Khách hàng chưa được phục vụ </h3>
 
@@ -83,27 +83,17 @@
             <th translate> DETAIL </th>
         </thead>
         <tbody>
-            <tr *ngFor="let t of waiting$ | async ; let i = index" class="waiting">
+            <tr *ngFor="let t of waitingAndMissed$ | async ; let i = index" 
+                [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
                 <td> {{i + 1}} </td>
                 <td> {{t.services | multipleServiceName}}</td>
                 <td> {{t.cnum}}</td>
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td><timer [start]="t.mtime" [timeWarning]="15"></timer></td>
-                <td>
-                    <span (click)="detail(t)">
-                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
-                    </span>
+                <td *ngIf="t.state === 'waiting'">
+                    <timer [start]="t.mtime" [timeWarning]="15"></timer>
                 </td>
-            </tr>
-
-            <tr *ngFor="let t of missed$ | async; let i = index" class="missed">
-                <td> {{i + 1}} </td>
-                <td> {{t.services | multipleServiceName}}</td>
-                <td> {{t.cnum}}</td>
-                <td> {{t.customer_id }} </td>
-                <td> {{t.ctime | localDayTime}}</td>
-                <td> {{t.mtime - t.ctime | timeDuration}}</td>
+                <td *ngIf="t.state === 'missed'"> {{t.mtime - t.ctime | timeDuration}}</td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -131,36 +121,27 @@
             <th translate> DETAIL </th>
         </thead>
         <tbody>
-            <tr *ngFor="let t of serving$ | async; let i = index" class="serving">
+            <tr *ngFor="let t of servingNServed$ | async; let i = index" 
+                [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished' || t.state === 'waiting'}">
                 <td> {{i + 1}} </td>
-                <td> {{t.serving.service_id | serviceName}} </td>
-                <td> {{t.serving.counter_id | counterName}}</td>
-                <td> {{t.serving.user_id | userFullName}}</td>
+                <td *ngIf="t.serving"> {{t.serving.service_id | serviceName}} </td>
+                <td *ngIf="t.serving"> {{t.serving.counter_id | counterName}}</td>
+                <td *ngIf="t.serving"> {{t.serving.user_id | userFullName}}</td>
+
+                <td *ngIf="!t.serving">{{t.service_id | serviceName}}</td>
+                <td *ngIf="!t.serving">{{t.counter_id | counterName}}</td>
+                <td *ngIf="!t.serving">{{t.user_id | userFullName}}</td>
+
                 <td> {{t.cnum}} </td>
                 <td> {{t.customer_id }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td> {{t.serving.mtime - t.ctime | timeDuration}} </td>
-                <td> <timer [start]="t.serving.mtime" [timeWarning]="15"></timer> </td>
-                <td>
-                    <span (click)="detail(t)">
-                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
-                    </span>
-                    <span>
-                        <i class="fa fa-volume-down" aria-hidden="true" style="cursor: pointer"></i>
-                    </span>
+                <td *ngIf="t.serving"> {{t.serving.mtime - t.ctime | timeDuration}} </td>
+                <td *ngIf="!t.serving"> {{t.mtime - t.ctime | timeDuration}} </td>
+
+                <td *ngIf="t.state === 'serving'">
+                    <timer [start]="t.mtime" [timeWarning]="15"></timer>
                 </td>
-            </tr>
-            <tr *ngFor="let t of served$ | async; let i = index" 
-                [ngClass]="{'cancelled': t.state === 'cancelled', 'serveDone': t.state === 'finished'}">
-                <td> {{i + 1}} </td>
-                <td> {{t.serving.service_id | serviceName}} </td>
-                <td> {{t.serving.counter_id | counterName}}</td>
-                <td> {{t.serving.user_id | userFullName}}</td>
-                <td> {{t.cnum}} </td>
-                <td> {{t.customer_id }} </td>
-                <td> {{t.ctime | localDayTime}}</td>
-                <td> {{t.serving.mtime - t.ctime | timeDuration}} </td>
-                <td> {{t.stime | localDayTime}} </td>
+                <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
                 <td>
                     <span (click)="detail(t)">
                         <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
@@ -213,7 +194,7 @@
                 </tr>
             </table>
         </div>
-        
+
         <div class="twoColumn" [ngClass]="{'notServeYet': !isServed}">
             <table>
                 <tr>

@@ -1,6 +1,6 @@
 <div class="hl-chart">
     <div style="width:33%; height:300px; float:left;" *ngFor="let item of itemGroup">
-        <h3 class="chartHeader">{{item[0].header}}</h3>
+        <h3 *ngIf="data" class="chartHeader">{{item[0].header}}</h3>
         <div style="width:100%; height:300px;" pie-chart [data]="data" [items]="item"></div>
     </div>
 </div>
