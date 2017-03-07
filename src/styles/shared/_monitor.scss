@@ -24,7 +24,7 @@
     cursor: pointer;
     text-transform: uppercase;
     color: #0b8fdb;
-    margin: 0px 0px 0px 10px;
+    margin: 5px 0px 5px 10px;
     border: 1px solid #0b8fdb;
 }
 
@@ -166,6 +166,7 @@
 .hl-table-mn-ck a:hover {
     color: #006699;
 }
+
 #modal_monitor_detailTicket {
     font-size: 14px;
     .header {
@@ -175,15 +176,15 @@
         color: #ffffff;
         background-color: #0b8fda;
     }
-    .twoColumn{
+    .twoColumn {
         display: inline-block;
         width: 48%;
         margin-bottom: 20px;
     }
-    .notServeYet{
+    .notServeYet {
         margin-bottom: 112px;
     }
-    table{
+    table {
         margin: auto;
         th {
             text-align: left;
@@ -191,77 +192,75 @@
     }
 }
 
-#focusComponent{
+#focusComponent {
     font-size: 14px;
-    .chartHeader{
+    .chartHeader {
         text-align: center;
         background-color: #0b8fda;
         color: #fff;
         margin: 0 50px;
         border-radius: 10px;
     }
-    .tableHeader{
+    .tableHeader {
         text-align: center;
         background-color: #0b8fda;
         padding: 10px;
         color: #fff;
         margin: 0px;
     }
-    .divider{
+    .divider {
         width: 96%;
         height: 1px;
         margin: 10px 2%;
         background-color: #a5a5a5;
     }
-    .header{
+    .header {
         background-color: #0b8fda;
         color: #ffffff;
         padding: 0px 20px;
-        .btn_back{
+        .btn_back {
             padding-top: 10px;
             float: right;
             cursor: pointer;
         }
     }
-    .overview{
-        span{
+    .overview {
+        span {
             font-weight: 600;
             margin: 0px 10px;
         }
     }
-    .padding_monitor{
+    .padding_monitor {
         padding: 10px;
     }
-    .waiting{
+    .waiting {
         background-color: #FFFFFF;
     }
-    .missed{
+    .missed {
         // background-color: #0b8fda;
         color: #156a9a;
     }
-    .serving{
+    .serving {
         background-color: #ffffff;
         color: #000000;
     }
-    .serveDone{
+    .serveDone {
         // background-color: #0b8fda;
         color: #156a9a;
     }
-    .cancelled{
+    .cancelled {
         // background-color: #ff5858;
         color: #ff5858;
     }
 }
 
-#summaryComponent{
-    .chartHeader{
+#summaryComponent {
+    .chartHeader {
         text-align: center;
     }
-    .warning{
+    .warning {
         background-color: #ff5858;
         color: #fff;
         font-weight: 600;
     }
 }
-
-        
