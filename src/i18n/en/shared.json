@@ -157,7 +157,7 @@
     "LANGAUGE_SEGMENT": "Segment",
     "LANGAUGE_ADMIN": "Admin",
     "LANGAUGE_MANAGER": "Manager",
-    "LANGAUGE_LANGAUGE_DETAIL": "Detail",
+    "LANGAUGE_DETAIL": "Detail",
     "LANGAUGE_BUTTON_TRANSACTION": "Transaction Beyond Standard",
     "LANGAUGE_BUTTON_DEVICE": "Device lost connection",
     "LANGAUGE_AUTO_UPDATE": "Auto Update",
