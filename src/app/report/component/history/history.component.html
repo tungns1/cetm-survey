@@ -81,7 +81,7 @@
             {{paging.info$ | async}}
         </div>
         <div class="hl-pagination-history">
-            <button class="hl-btn-history" md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="chuyenTrang(p.page)">
+            <button class="hl-btn-history" md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">
             {{p.title}}
         </button>
         </div>
