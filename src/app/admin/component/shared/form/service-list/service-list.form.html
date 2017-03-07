@@ -1,4 +1,4 @@
-<i class="fa fa-plus hl-pointer-sv" (click)="Add()"><span translate>BUTTON_ADD</span></i>
+<i class="fa fa-plus hl-pointer-sv" (click)="Add()"><span translate>LANGAUGE_BUTTON_ADD</span></i>
 <div *ngFor="let v of value; let i = index" class="hl-row-sv">
     <div>
         {{getName(v.id)}}
@@ -9,15 +9,15 @@
 </div>
 <modal #m>
     <div *ngIf="active">
-        <h2> <span translate>LABEL_REPAIR_SERVICE_KIOSK</span> </h2>
+        <h2> <span translate>LANGAUGE_REPAIR_SERVICE_KIOSK</span> </h2>
         <select class="select" [(ngModel)]="active.id" (ngModelChange)="setActive()">
             <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
         </select>
-        <input class="inputs" [(ngModel)]="active.code" placeholder="Mã hiển thị">
+        <input class="inputs" [(ngModel)]="active.code" placeholder="Display code">
         <l10n-form [(ngModel)]="active.l10n"></l10n-form>
         <hr>
-        <button (click)="Close()"> <i class="fa fa-close"></i> <span translate>BUTTON_CANCEL</span> </button>
-        <button (click)="Save()"> <i class="fa fa-save"></i> <span translate>BUTTON_SAVE</span> </button>
-        <button (click)="Remove()"> <i class="fa fa-trash"></i><span translate>BUTTON_DEL</span>  </button>
+        <button (click)="Close()"> <i class="fa fa-close"></i> <span translate>LANGAUGE_BUTTON_CANCEL</span> </button>
+        <button (click)="Save()"> <i class="fa fa-save"></i> <span translate>LANGAUGE_BUTTON_SAVE</span> </button>
+        <button (click)="Remove()"> <i class="fa fa-trash"></i><span translate>LANGAUGE_BUTTON_DELETE</span>  </button>
     </div>
 </modal>

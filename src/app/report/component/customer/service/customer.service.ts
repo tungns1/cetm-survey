@@ -1,14 +1,17 @@
-import { ITransaction, ITransactionView, Customer, IService, IStore } from '../../shared';
+import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from '../../shared';
 import { SharedService, Model } from '../../shared/';
 import { ReportFilterService, ReportFilter } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
+import { IAggregate, Aggregate } from '../../../model';
 import { Paging, count$, currentPage$, pageSize$ } from '../../../shared/paging.service';
 
 export interface IHistory {
     data: ITransactionView[];
     total: number;
 }
+
+
 
 export const max_service = new BehaviorSubject<IService>(null);
 export const max_store = new BehaviorSubject<IStore>(null);
@@ -43,7 +46,7 @@ export class CustomerAPI {
     Search(id: string) {
         let filter = this.filterService.Current;
         this.api.Get<IHistory>("customer_history", this.makeQuery(filter, id)).subscribe(v => {
-            if (v.data.length>0) {
+            if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
                 alert("Dữ liệu khách hàng không có");
@@ -86,6 +89,7 @@ export class CustomerAPI {
     currentPage$ = currentPage$;
     pageSize$ = pageSize$
     period$ = new BehaviorSubject<string>('day');
+    period_month$ = new BehaviorSubject<string>('month');
 
     ExportHistory(filter: ReportFilter) {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());

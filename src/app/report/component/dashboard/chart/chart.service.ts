@@ -37,7 +37,7 @@ export class ChartService {
         views.sort((a, b) => a.date < b.date ? -1 : 1);
         return views;
     });
-
+ 
     get RxSummaryView() {
         return this.RxAggregate.map(Aggregate.Make);
     };

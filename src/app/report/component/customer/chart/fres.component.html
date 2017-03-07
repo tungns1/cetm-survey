@@ -1,0 +1,14 @@
+<div class="hl-chart" line-chart [period]="period | async" [data]="data | async" [items]="items$ | async">
+</div>
+
+
+<div class="legend" style="margin:10px 20px;">
+    <div *ngFor=" let item of items$ | async " style="float:left; margin-right:10px; ">
+        <div style="float:left;">
+            <div style="float:left; margin-right:3px;" [style.background-color]="item._hidden? '':item.color ">
+                <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
+            </div>
+            <span style="font-size: 12px; "> {{item.title}}</span>
+        </div>
+    </div>
+</div>

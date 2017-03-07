@@ -2,19 +2,19 @@
     <div class="report-scrollbar">
         <table class="search-table">
             <thead>
-                <th class="hl-stt-history" translate> HISTORY.NUMERICAL_ORDER </th>
-                <th translate> HISTORY.DATE </th>
-                <th translate> HISTORY.BRANCH </th>
-                <th translate> HISTORY.TRANSACTION_ROOM </th>
-                <th translate>HISTORY.SERVICE </th>
-                <th translate>HISTORY.COUNTER</th>
-                <th translate>HISTORY.TELLERS </th>
-                <th translate>HISTORY.TICKET_NUMBER </th>
-                <td translate> HISTORY.TIME_CREATE_TICKET</td>
-                <td translate> HISTORY.TIME_WAIT</td>.0.
-                <td translate> HISTORY.TIME_SERVING</td>
-                <th class="number" translate>HISTORY.FEEDBACK_RESULT</th>
-                <th translate>HISTORY.DETAIL</th>
+                <th class="hl-stt-history" translate> LANGAUGE_NUMERICAL_ORDER </th>
+                <th translate> LANGAUGE_DATE </th>
+                <th translate> LANGAUGE_BRANCH </th>
+                <th translate> LANGAUGE_TRANSACTION_ROOM </th>
+                <th translate>LANGAUGE_SERVICE </th>
+                <th translate>LANGAUGE_COUNTERS</th>
+                <th translate>LANGAUGE_TELLERS </th>
+                <th translate>LANGAUGE_TICKET_NUMBER </th>
+                <td translate> LANGAUGE_TIME_CREATE_TICKET</td>
+                <td translate> LANGAUGE_TIME_WAIT</td>.0.
+                <td translate> LANGAUGE_TIME_SERVING</td>
+                <th class="number" translate>LANGAUGE_FEEDBACK_RESULT</th>
+                <th translate>LANGAUGE_DETAIL</th>
             </thead>
             <tbody class="table-row">
                 <tr *ngFor="let d of paging.data$ | async; let i = index">
@@ -50,7 +50,7 @@
     </div>
 </div>
 <div class="hl-exportf-history">
-    <button class="bt btpointer hl-btn-history" (click)="excel()" translate>HISTORY.BUTTON_EXPORT_FILE</button>
+    <button class="bt btpointer hl-btn-history" (click)="excel()" translate>LANGAUGE_BUTTON_EXPORT_FILE</button>
 </div>
 
 <transaction #detail></transaction>

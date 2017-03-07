@@ -10,8 +10,8 @@ export class ServiceService extends CrudApiService<Model.Center.IService> {
     }
 
     ListFields = [
-        { title: 'LABEL_NAME_SERVICE', name: 'name' },
+        { title: 'LANGAUGE_NAME_SERVICE', name: 'name' },
     ]
 
-    Name = "LABEL_SERVICE";
+    Name = "LANGAUGE_SERVICE";
 }

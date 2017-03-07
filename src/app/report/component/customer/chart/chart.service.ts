@@ -1,7 +1,7 @@
-import { ChartItem, MainItems, PieItems } from './chart.model';
+import { ChartItem, FresItems, ServiceItems, StoreItems } from './chart.model';
 
 import { timeParse } from 'd3-time-format';
-import { MakeIndexBy, Customer } from '../../shared';
+import { Customer } from '../../shared';
 
 const timeDay = timeParse("%Y-%m-%d");
 const timeWeek = timeParse("W%Y-%W");
@@ -26,18 +26,30 @@ export class ChartService {
     ) { }
 
     private RxCustomer = this.customerAPI.RxCustomer;
-
-    RxCustomerByTime = this.RxCustomer.map(records => {
-        const views = MakeIndexBy(records, 'ctime');
+    RxFres = this.RxSummaryView.map(v => {
+        var fres = v.fres;
         const parseTime = TimeParse[this.RxPeriod.value];
-        // views.sort((a, b) => a.time > b.time ? 1 : -1);
-        views.forEach(v => {
-            v.date = parseTime(v.ctime);
+        fres.forEach(v => {
+            v.date = parseTime(v.cdate);
         })
-        views.sort((a, b) => a.date < b.date ? -1 : 1);
-        return views;
-    });
+        fres.sort((a, b) => a.date < b.date ? -1 : 1);
+        return fres;
+    })
+    RxStore = this.RxSummaryView.map(v => {
+        var stores = v.stores;
+        stores.sort(function (a, b) {
+            return a.count - b.count;
+        })
 
+        return stores;
+    })
+    RxService = this.RxSummaryView.map(v => {
+        var services = v.services;
+        services.sort(function (a, b) {
+            return a.count - b.count;
+        })
+        return services;
+    })
     get RxSummaryView() {
         return this.RxCustomer.map(Customer.Make);
     };

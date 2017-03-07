@@ -1,25 +1,25 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title> <span translate>LABEL_LIST_COUNTER</span> </editor-title>
+    <editor-title> <span translate>LANGAUGE_LIST_COUNTER</span> </editor-title>
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span translate>LABEL_CODE</span>
-        <input class="hl-input" type="text" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br>
-        <span translate>LABEL_NUM_COUNTER</span>:
-        <input class="hl-input" type="text" formControlName="cnum" placeholder="{{'LABEL_NUM_COUNTER' | translate}}"><br>
-        <span translate>LABEL_NAME</span>:
+        <span translate>LANGAUGE_CODE</span>
+        <input class="hl-input" type="text" formControlName="code" placeholder="{{'LANGAUGE_CODE' | translate}}"><br>
+        <span translate>LANGAUGE_NUM_COUNTER</span>:
+        <input class="hl-input" type="text" formControlName="cnum" placeholder="{{'LANGAUGE_NUM_COUNTER' | translate}}"><br>
+        <span translate>LANGAUGE_NAME</span>:
         <input class="hl-input" type="text" formControlName="name" placeholder="{{'LABEL_NAME'| translate}}"><br>
-        <span translate>LABEL_LED_ADD_DEVICE</span> :
-        <input class="hl-input" type="number" formControlName="dev_addr" placeholder="{{'LABEL_LED_ADD_DEVICE' | translate}}">
-        <hr> <span translate>LABEL_SERVICE_NORMAL</span>:
+        <span translate>LANGAUGE_LED_ADD_DEVICE</span> :
+        <input class="hl-input" type="number" formControlName="dev_addr" placeholder="{{'LANGAUGE_LED_ADD_DEVICE' | translate}}">
+        <hr> <span translate>LANGAUGE_SERVICE_NORMAL</span>:
         <div class="dichvu">
             <select-check formControlName="services" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> <span translate>LABEL_SERVICE_VIP</span>:
+        <hr> <span translate>LANGAUGE_SERVICE_VIP</span>:
         <div class="dichvu">
             <select-check formControlName="vservices" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> <span translate>LABEL_BRANCH</span>:
+        <hr> <span translate>LANGAUGE_BRANCH</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
     </form>
 </editor>

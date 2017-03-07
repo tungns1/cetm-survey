@@ -49,7 +49,6 @@ export class LoginComponent {
       this.message = I18nHttpError(e);
     });
   }
-
   logout() {
     this.authService.Logout();
   }

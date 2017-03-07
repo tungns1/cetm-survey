@@ -3,12 +3,12 @@
     <div>
         <table>
             <thead>
-                <th> STT </th>
-                <th translate>AREA</th>
-                <th translate> BRANCH</th>
-                <th translate> TRANSACTION_ROOM </th>
+                <th translate>LANGAUGE_NUMERICAL_ORDER </th>
+                <th translate>LANGAUGE_AREA</th>
+                <th translate> LANGAUGE_BRANCH</th>
+                <th translate> LANGAUGE_TRANSACTION_ROOM </th>
                 <th *ngIf="tag!='branch'" translate> {{tab.active?.titleTable}} </th>
-                <th translate> Thời điểm mất kết nối </th>
+                <th translate> LANGAUGE_TIME_DISCONNECT </th>
             </thead>
             <tbody class=".hl-table-row-missed">
                 <tr *ngFor="let item of rxData | async; let i = index">
