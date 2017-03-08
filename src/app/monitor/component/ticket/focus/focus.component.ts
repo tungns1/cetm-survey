@@ -49,13 +49,13 @@ export class FocusComponent {
     waiting$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => t.state === TicketStates.Waiting))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime? -1 : 1;
+            return a.mtime < b.mtime ? -1 : 1;
         }));
 
     missed$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => t.state === TicketStates.Missed))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime? -1 : 1;
+            return a.mtime < b.mtime ? -1 : 1;
         }));
 
     waitingAndMissed$ = this.waiting$.combineLatest(this.missed$, (waiting, missed) => {
@@ -75,28 +75,28 @@ export class FocusComponent {
             if (t.state === TicketStates.Missed || t.state === TicketStates.Serving) {
                 return false;
             }
-            if(t.state === TicketStates.Waiting) {
+            if (t.state === TicketStates.Waiting) {
                 let flag = 0;
-                for(let i = 0; i < t.tracks.length; i++){
-                    if(t.tracks[i].state === 'finished'){
-                        t.counter_id = t.tracks[i-1].counter_id;
+                for (let i = 0; i < t.tracks.length; i++) {
+                    if (t.tracks[i].state === 'finished') {
+                        t.counter_id = t.tracks[i - 1].counter_id;
                         t.mtime = t.tracks[i].mtime;
-                        t.service_id = t.tracks[i-1].service_id;                      
-                        t.counter_id = t.tracks[i-1].counter_id;                      
-                        t.user_id = t.tracks[i-1].user_id;
-                        t.stime = t.mtime - t.tracks[i-1].mtime;
+                        t.service_id = t.tracks[i - 1].service_id;
+                        t.counter_id = t.tracks[i - 1].counter_id;
+                        t.user_id = t.tracks[i - 1].user_id;
+                        t.stime = t.mtime - t.tracks[i - 1].mtime;
                         flag++;
                     }
                 }
-                if(flag == 0) return false;
+                if (flag == 0) return false;
                 else {
                     return true;
                 }
             }
-            if(t.state === TicketStates.Cancelled) {
-                for(let i = 0; i < t.tracks.length; i++){
-                    if(t.tracks[i].state === 'serving') {
-                        t.stime = t.tracks[i+1].mtime - t.tracks[i].mtime;
+            if (t.state === TicketStates.Cancelled) {
+                for (let i = 0; i < t.tracks.length; i++) {
+                    if (t.tracks[i].state === 'serving') {
+                        t.stime = t.tracks[i + 1].mtime - t.tracks[i].mtime;
                         this.addServingTrack(t);
                         return true;
                     }
@@ -105,23 +105,24 @@ export class FocusComponent {
                 this.addServingTrack(t);
                 return true;
             }
-            if(t.state === TicketStates.Finished) {
+            if (t.state === TicketStates.Finished) {
                 t.stime = t.tracks[t.tracks.length - 1].mtime - t.tracks[t.tracks.length - 2].mtime;
             }
             this.addServingTrack(t);
             return true;
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.state < b.state? 1 : -1;
+            return a.state < b.state ? 1 : -1;
         }));
 
     servingNServed$ = this.serving$.combineLatest(this.served$, (serving, served) => {
         return [].concat(serving).concat(served);
     })
 
+
     addServingTrack(t: ITicket) {
-        for(let i = t.tracks.length - 1; i >= 0; i--){
-            if(t.tracks[i].state === 'serving'){
+        for (let i = t.tracks.length - 1; i >= 0; i--) {
+            if (t.tracks[i].state === 'serving') {
                 t.serving = t.tracks[i];
                 return t;
             }
