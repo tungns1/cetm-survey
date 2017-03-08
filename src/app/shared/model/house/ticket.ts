@@ -1,3 +1,4 @@
+import {ICustomer} from '../org/customer'
 export interface ITicket {
     id: string;
     cnum: string;
@@ -16,10 +17,7 @@ export interface ITicket {
     mtime: number;
     stime: number;
     tracks: ITicketTrack[];
-    customer:ICustomerData;
-}
-export interface ICustomerData{
-    phone:number;
+    customer:ICustomer;
 }
 
 
