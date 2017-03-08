@@ -37,17 +37,10 @@ export class ChartService {
     })
     RxStore = this.RxSummaryView.map(v => {
         var stores = v.stores;
-        stores.sort(function (a, b) {
-            return a.count - b.count;
-        })
-
-        return stores;
+        return stores; 
     })
     RxService = this.RxSummaryView.map(v => {
         var services = v.services;
-        services.sort(function (a, b) {
-            return a.count - b.count;
-        })
         return services;
     })
     get RxSummaryView() {

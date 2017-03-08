@@ -49,11 +49,11 @@ export interface ITransactionView extends ITransaction {
 
 export interface IService {
     name: string;
-    count: number;
+    value: number;
 }
 export interface IStore {
     name: string;
-    count: number;
+    value: number;
 }
 export interface IFre {
     name: string;
@@ -105,12 +105,12 @@ export class Customer {
         if (this.services.length > 0) {
             for (var i = 0; i < this.services.length; i++) {
                 if (s.service === this.services[i].name) {
-                    this.services[i].count++;
+                    this.services[i].value++;
                     break;
                 } else {
                     this.services.push({
                         name: s.service,
-                        count: 1,                       
+                        value: 1,                       
                     })
                     break;
                 }
@@ -118,18 +118,18 @@ export class Customer {
         } else {
             this.services.push({
                 name: s.service,
-                count: 1
+                value: 1
             })
         }
         if (this.stores.length > 0) {
             for (var i = 0; i < this.stores.length; i++) {
                 if (s.counter === this.stores[i].name) {
-                    this.stores[i].count++;
+                    this.stores[i].value++;
                     break;
                 } else {
                     this.stores.push({
                         name: s.counter,
-                        count: 1
+                        value: 1
                     })
                     break;
                 }
@@ -137,7 +137,7 @@ export class Customer {
         } else {
             this.stores.push({
                 name: s.counter,
-                count: 1
+                value: 1
             })
         }
         if (this.fres.length > 0) {

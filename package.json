@@ -24,9 +24,11 @@
     "@angular/platform-browser": "^4.0.0-rc.2",
     "@angular/platform-browser-dynamic": "^4.0.0-rc.2",
     "@angular/router": "^4.0.0-rc.2",
+    "@swimlane/ngx-charts": "^4.2.1",
     "angular-io-slimscroll": "^1.2.0",
     "core-js": "^2.4.1",
     "d3": "^4.7.0",
+    "ngx-charts": "^3.0.2",
     "rxjs": "^5.2.0",
     "zone.js": "^0.7.7"
   },

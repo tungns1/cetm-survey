@@ -7,10 +7,11 @@ import {ServiceChartComponent} from './service.component';
 import {StoreChartComponent} from './store.component';
 import {TimeChartComponent} from './time.component';
 import { SharedModule } from '../../shared';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 
 @NgModule({
-    imports: [SharedModule, D3Module],
+    imports: [SharedModule, D3Module,NgxChartsModule],
     declarations: [ReportChartComponent,TimeChartComponent,StoreChartComponent,ServiceChartComponent,FresChartComponent],
     providers: [ChartService],
     exports: [ReportChartComponent],

@@ -1,3 +1,4 @@
+import {ICustomer} from '../org/customer'
 export interface ITicket {
     id: string;
     cnum: string;
@@ -14,11 +15,9 @@ export interface ITicket {
     lang?: string;
     ctime: number;
     mtime: number;
+    stime: number;
     tracks: ITicketTrack[];
-    customer:ICustomerData;
-}
-export interface ICustomerData{
-    phone:number;
+    customer:ICustomer;
 }
 
 
@@ -48,6 +47,7 @@ export interface IFeedback {
 export interface ITicketTrack {
     state: TicketState;
     mtime: number;
+    // stime: number;
     services?: string[];
     user_id?: string;
     counter_id?: string;
