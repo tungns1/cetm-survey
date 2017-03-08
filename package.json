@@ -10,7 +10,8 @@
     "build:watch": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:auto": "concurrently \"npm run build:watch\" \"node script/update.js \""
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,7 @@
     "babel-cli": "^6.23.0",
     "babel-preset-es2016": "^6.22.0",
     "codelyzer": "~2.0.0",
+    "concurrently": "^3.4.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
