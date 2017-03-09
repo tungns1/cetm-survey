@@ -1,11 +1,11 @@
-<nav>
-    <ul>
-        <li *ngFor="let item of menu; let i = index;">
+<div id="topNav">
+    <ul class="firstLv">
+        <li class="li_firstLv" *ngFor="let item of menu; let i = index;">
             <a (click)="onClick(item, i)" [class.current-menu-item]="i == active">
                 <i class="fa" [addClass]="item.icon"> </i>
                 <span translate> {{item.name}} </span>
             </a>
-            <ul>
+            <ul class="secondLv" *ngIf="item.children">
                 <li *ngFor="let child of item.children">
                     <a (click)="onClick(child, i)">
                         <span translate> {{child.name}}</span>
@@ -14,4 +14,4 @@
             </ul>
         </li>
     </ul>
-</nav>
+</div>

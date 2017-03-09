@@ -19,7 +19,6 @@ export class HistoryComponent {
     submitted = false;
 
     onSubmit() {
-        console.log(this.filter);
         this.submitted = true;
         const skip = this.paging.SkipForPage(1);
         const limit = this.paging.Limit;

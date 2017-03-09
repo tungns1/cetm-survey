@@ -1,9 +1,10 @@
-<div style="height: 100%" fxLayout="column" fxLayoutAlign="start start">
-    <button fxFlex="30px" class="button active" (click)="refresh()" translate>LANGAUGE_REFRESH</button>
-
-    <div fxFlex style="width: 100%;overflow: auto">
+<div id="filter" fxLayout="column">
+    <div fxFlex class="content">
         <period-filter></period-filter>
         <branch-filter></branch-filter>
         <inside-filter></inside-filter>
+    </div>
+    <div fxFlex="7vh" class="action">
+        <button class="btnFill" (click)="refresh()" translate>LANGAUGE_REFRESH</button>
     </div>
 </div>
