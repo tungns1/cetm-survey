@@ -1,4 +1,4 @@
-<div class="hl-chart" bar-chart [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<!--<div class="hl-chart" bar-chart [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
 
 <div class="legend" style="margin:10px 20px;">
     <div *ngFor=" let item of items$ | async " style="float:left; margin-right:10px; ">
@@ -9,6 +9,8 @@
             <span style="font-size: 12px; "> {{item.title}}</span>
         </div>
     </div>
-</div>
+</div>-->
 
-{{data | async | json}}
+
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
+</ngx-charts-bar-vertical>

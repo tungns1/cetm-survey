@@ -10,35 +10,30 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     templateUrl: 'store.component.html'
 })
 export class StoreChartComponent {
-    constructor(
-        private chartService: ChartService,
-        private translateService: Lib.I18n.TranslateService,
-        private viewService: ReportViewService
-    ) { }
+    single: any[];
 
-    ngOnInit() {
-        this.viewService.ValueChanges.subscribe(v => {
-            this.setTab();
+    view: any[] = [800, 400];
+
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    showYAxisLabel = true;
+
+
+    colorScheme = {
+        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#ff0000', '#3333ff', '#6600cc', '#00ff00', '#800000', '#999966', '#660066', '#ff00ff']
+    };
+
+    constructor(private chartService: ChartService) {
+        this.chartService.RxStore.subscribe(v=>{
+            this.single=v;
         })
     }
 
-    data = this.chartService.RxStore;
-    period = this.chartService.RxPeriod;
-
-    private setTab() {
-        this.items$.next(StoreItems);
+    onSelect(event) {
+        console.log(event);
     }
-
-
-     Toggle(item: ChartItem) {
-        const items: ChartItem[] = [];
-        this.items$.value.forEach(i => {
-            if (i.field === item.field) {
-                i._hidden = !i._hidden;
-            }
-            items.push(i);
-        });
-        this.items$.next(items);
-    }
-    items$ = new BehaviorSubject<ChartItem[]>([]);
 }  

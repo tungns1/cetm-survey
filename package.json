@@ -10,7 +10,8 @@
     "build:watch": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:auto": "concurrently \"npm run build:watch\" \"node script/update.js \""
   },
   "private": true,
   "dependencies": {
@@ -23,9 +24,11 @@
     "@angular/platform-browser": "^4.0.0-rc.2",
     "@angular/platform-browser-dynamic": "^4.0.0-rc.2",
     "@angular/router": "^4.0.0-rc.2",
+    "@swimlane/ngx-charts": "^4.2.1",
     "angular-io-slimscroll": "^1.2.0",
     "core-js": "^2.4.1",
     "d3": "^4.7.0",
+    "ngx-charts": "^3.0.2",
     "rxjs": "^5.2.0",
     "zone.js": "^0.7.7"
   },
@@ -39,6 +42,7 @@
     "babel-cli": "^6.23.0",
     "babel-preset-es2016": "^6.22.0",
     "codelyzer": "~2.0.0",
+    "concurrently": "^3.4.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
