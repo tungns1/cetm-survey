@@ -23,11 +23,15 @@ export class TransactionHistoryApi {
 
         return this.api.Get<IHistory>("read", query);
     }
+    GetInfoCustomer(idCustomer: string) {
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: idCustomer });
+    }
+
 
     ExportHistory(filter: ReportFilter) {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-
+    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/org/customer");
     api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 }

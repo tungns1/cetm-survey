@@ -10,17 +10,13 @@
         <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
             <div class="waitTime">
                 <label><strong>Thời gian đợi</strong>(phút)</label>
-                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.wtimemin"
-                        name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
-                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" 
-                        name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
+                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
+                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="serveTime">
                 <label><strong>Thời gian phục vụ</strong>(phút)</label>
-                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.stimemin" 
-                        name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
-                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.stimemax" 
-                        name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
+                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
+                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="feedback">
                 <strong>Phản hồi của khách hàng</strong>
@@ -65,7 +61,7 @@
                 <td> {{d.stime}} </td>
                 <td>{{d.rating}}</td>
                 <td>
-                    <i class="fa fa-eye pointer fa-lg" (click)="detail.SetData(d)"></i> &nbsp;
+                    <i class="fa fa-eye pointer fa-lg" (click)="detail.SetData(d);detail.GetInfoCustomer(d)"></i> &nbsp;
                 </td>
             </tr>
         </tbody>
@@ -74,8 +70,7 @@
     <transaction #detail></transaction>
     <div class="paginNExport">
         <div class="pagin">
-            <button md-button *ngFor="let p of paging.pages$ | async" 
-            [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
+            <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
         <button class="btnClear export" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
     </div>

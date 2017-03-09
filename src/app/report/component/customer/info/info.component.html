@@ -8,10 +8,10 @@
         <span translate>LANGAUGE_STORE_MOST_DEAL</span>
     </div>
     <div style="float: left;" *ngIf="data !=null">
-        <span>{{data.customer_name}}</span><br>
-        <span>{{data.customer_id}}</span><br>
-        <span>{{data.customer_phone}}</span><br>
-        <span>{{data.segment}}</span><br>
+        <span>{{customer.full_name}}</span><br>
+        <span>{{customer.code}}</span><br>
+        <span>{{customer.phone_number}}</span><br>
+        <span>{{customer.segment}}</span><br>
         <span *ngIf="service">{{service.name}}&nbsp;{{service.count}}/{{data.c_t}}</span><br>
         <span *ngIf="store">{{store.name}}&nbsp;{{store.count}}/{{data.c_t}}</span>
 

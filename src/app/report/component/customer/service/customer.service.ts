@@ -24,49 +24,50 @@ export class CustomerAPI {
     ) { }
 
 
-    GetHistory(filter: ReportFilter, skip: number, limit: number, id: string) {
+    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string,id:string) {
         const query = Object.assign({
             skip: skip,
             limit: limit,
-            customer_id: id,
+            code: code,
+            id:id,
+
         }, filter.ToBackendQuery());
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number, customer: string) {
+    ChuyenTrang(page: number, code: string,id :string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
-        this.GetHistory(this.filterService.Current, skip, limit, customer)
+        this.GetHistory(this.filterService.Current, skip, limit, code,id)
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
             });
     }
 
-    Search(id: string) {
+    Search(code: string,id:string) {
         let filter = this.filterService.Current;
-        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, id)).subscribe(v => {
+        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code,id)).subscribe(v => {
             if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
                 alert("Dữ liệu khách hàng không có");
             }
-
-
         });
     }
-
-
-    private makeQuery(filter: ReportFilter, id: string) {
-        return Object.assign({
-            customer_id: id
-        }, filter.ToBackendQuery());
+    GetInfoCustomerByCode(code: string) {
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code });
     }
-    private makeQueryHistory(filter: ReportFilter, id: string) {
+      GetInfoCustomerById(id: string) {
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id });
+    }
+    
+
+
+    private makeQuery(filter: ReportFilter, code: string,id:string) {
         return Object.assign({
-            skip: (this.currentPage$.value - 1) * this.pageSize$.value,
-            limit: this.pageSize$.value,
-            customer_id: id
+            code: code,
+            id:id,
         }, filter.ToBackendQuery());
     }
 
@@ -95,7 +96,7 @@ export class CustomerAPI {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-
+    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/org/customer");
     api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 
 }

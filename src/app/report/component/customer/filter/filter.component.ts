@@ -13,10 +13,10 @@ export class ReportFilterComponent {
         private customerApi: CustomerAPI,
     ) { }
 
-    id_customer: string = '';
-    Search() {
-       this.customerApi.Search(this.id_customer);
-       this.customerApi.ChuyenTrang(1,this.id_customer);
+    code: string = '';
+    Filter() {
+       this.customerApi.Search(this.code,'');
+       this.customerApi.ChuyenTrang(1,this.code,'');
     }
 
 

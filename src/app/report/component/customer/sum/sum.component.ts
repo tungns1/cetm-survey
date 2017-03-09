@@ -16,7 +16,6 @@ export class ReportSumComponent {
     ngOnInit() {
         this.customerAPI.RxSummaryView.subscribe(v => {
             this.data = v;
-            console.log(v);
         })
     }
 

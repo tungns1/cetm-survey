@@ -103,6 +103,7 @@ export class Customer {
         this.customer_id = s.customer_id;
         this.segment = "Tra Sau";
         if (this.services.length > 0) {
+           console.log(abc);
             for (var i = 0; i < this.services.length; i++) {
                 if (s.service === this.services[i].name) {
                     this.services[i].value++;

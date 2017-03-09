@@ -15,18 +15,18 @@ export class HistoryComponent {
         private filterService: ReportFilterService,
         private customerAPI: CustomerAPI
     ) { }
-    @Input() customer: string;
+    @Input() id: string;
     paging = paging;
 
 
     ngOnInit() {
-        this.customerAPI.ChuyenTrang(1, this.customer);
+        this.customerAPI.ChuyenTrang(1,'', this.id);
     }
     chuyenTrang(page: number) {
         this.customerAPI.RxSummaryView.subscribe(v => {
-            this.customer = v.customer_id;
+            this.id = v.customer_id;
         });
-        this.customerAPI.ChuyenTrang(page, this.customer);
+        this.customerAPI.ChuyenTrang(page,'', this.id);
     }
 
 

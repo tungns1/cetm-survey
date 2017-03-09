@@ -77,19 +77,19 @@
             <table class="hl-table-customerdetail">
                 <tr>
                     <td><b translate>Customer</b>:</td>
-                    <td translate>Nguyen Van A</td>
+                    <td translate>{{customer.full_name}}</td>
                 </tr>
                 <tr>
                     <td> <b translate> Phone Number</b>:</td>
-                    <td translate>8490234734 </td>
+                    <td translate>{{customer.phone_number}} </td>
                 </tr>
                 <tr>
                     <td><b translate>Customer ID</b>:</td>
-                    <td><a (click)="goToCustomer(data.customer_id)">1021234356621</a> </td>
+                    <td><a (click)="goToCustomer(data.customer_id)">{{customer.code}}</a> </td>
                 </tr>
                 <tr>
                     <td><b translate> Customer Segment</b>:</td>
-                    <td>Normal</td>
+                    <td>{{customer.segment}}</td>
                 </tr>
                 <tr>
                     <td><b translate> </b></td>

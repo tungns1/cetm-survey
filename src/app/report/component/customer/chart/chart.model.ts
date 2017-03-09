@@ -24,7 +24,7 @@ export const TimeItems: ChartItem[][] = [
         color: '#339966',
         key_title: 'LANGAUGE_TRANSACTION_SERVING_STANDARD'
     }, {
-        field: 'c_st',
+        field: 's_st',
         color: '#9fdfbf',
         key_title: 'LANGAUGE_TRANSACTION_SERVING_BEYOND_STANDARD'
     }]
