@@ -69,10 +69,6 @@ export class Customer {
 
     name: string;
     customer_id: string;
-    customer_name: string;
-    customer_phone: string;
-    segment: string;
-   
     services: IService[] = [];
     stores: IStore[] = [];
     fres: IFre[] = [];
@@ -98,24 +94,20 @@ export class Customer {
         var pw = s.wtime.substring(3, 5);
         var hs = s.stime.substring(0, 2);
         var hw = s.wtime.substring(0, 2);
-        this.customer_phone = "0989999999";
-        this.customer_name = "Nguyen Van A";
         this.customer_id = s.customer_id;
-        this.segment = "Tra Sau";
         if (this.services.length > 0) {
-           console.log(abc);
             for (var i = 0; i < this.services.length; i++) {
                 if (s.service === this.services[i].name) {
                     this.services[i].value++;
                     break;
                 } else {
-                    this.services.push({
-                        name: s.service,
-                        value: 1,                       
-                    })
-                    break;
+                    continue;
                 }
             }
+            this.services.push({
+                name: s.service,
+                value: 1,
+            })
         } else {
             this.services.push({
                 name: s.service,
@@ -128,13 +120,13 @@ export class Customer {
                     this.stores[i].value++;
                     break;
                 } else {
-                    this.stores.push({
-                        name: s.counter,
-                        value: 1
-                    })
-                    break;
+                    continue;
                 }
             }
+            this.stores.push({
+                name: s.counter,
+                value: 1
+            })
         } else {
             this.stores.push({
                 name: s.counter,
@@ -147,14 +139,14 @@ export class Customer {
                     this.fres[i].count++;
                     break;
                 } else {
-                    this.fres.push({
-                        name: month,
-                        cdate: s.cdate,
-                        count: 1
-                    })
-                    break;
+                    continue;
                 }
             }
+            this.fres.push({
+                name: month,
+                cdate: s.cdate,
+                count: 1
+            })
         } else {
             this.fres.push({
                 name: month,

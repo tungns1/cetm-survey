@@ -16,6 +16,7 @@ export interface IHistory {
 export const max_service = new BehaviorSubject<IService>(null);
 export const max_store = new BehaviorSubject<IStore>(null);
 export const paging = new Paging<ITransactionView>();
+export const customer = new BehaviorSubject<Model.Org.ICustomer>(null);
 
 @Injectable()
 export class CustomerAPI {
@@ -24,30 +25,30 @@ export class CustomerAPI {
     ) { }
 
 
-    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string,id:string) {
+    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string, id: string) {
         const query = Object.assign({
             skip: skip,
             limit: limit,
             code: code,
-            id:id,
+            id: id,
 
         }, filter.ToBackendQuery());
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number, code: string,id :string) {
+    ChuyenTrang(page: number, code: string, id: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
-        this.GetHistory(this.filterService.Current, skip, limit, code,id)
+        this.GetHistory(this.filterService.Current, skip, limit, code, id)
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
             });
     }
 
-    Search(code: string,id:string) {
+    Search(code: string, id: string) {
         let filter = this.filterService.Current;
-        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code,id)).subscribe(v => {
+        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code, id)).subscribe(v => {
             if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
@@ -56,18 +57,24 @@ export class CustomerAPI {
         });
     }
     GetInfoCustomerByCode(code: string) {
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code });
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
+            if (v != null) {
+                customer.next(v);
+            } else {
+                alert("Dữ liệu khách hàng không có");
+            }
+        });
     }
-      GetInfoCustomerById(id: string) {
+    GetInfoCustomerById(id: string) {
         return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id });
     }
-    
 
 
-    private makeQuery(filter: ReportFilter, code: string,id:string) {
+
+    private makeQuery(filter: ReportFilter, code: string, id: string) {
         return Object.assign({
             code: code,
-            id:id,
+            id: id,
         }, filter.ToBackendQuery());
     }
 
