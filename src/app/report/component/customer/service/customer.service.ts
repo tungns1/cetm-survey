@@ -43,9 +43,9 @@ export class CustomerAPI {
             });
     }
 
-    Search(code: string) {
+    Search(code: string,id:string) {
         let filter = this.filterService.Current;
-        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code)).subscribe(v => {
+        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code,id)).subscribe(v => {
             if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
@@ -62,16 +62,10 @@ export class CustomerAPI {
     
 
 
-    private makeQuery(filter: ReportFilter, id: string) {
+    private makeQuery(filter: ReportFilter, code: string,id:string) {
         return Object.assign({
-            customer_id: id
-        }, filter.ToBackendQuery());
-    }
-    private makeQueryHistory(filter: ReportFilter, id: string) {
-        return Object.assign({
-            skip: (this.currentPage$.value - 1) * this.pageSize$.value,
-            limit: this.pageSize$.value,
-            customer_id: id
+            code: code,
+            id:id,
         }, filter.ToBackendQuery());
     }
 
