@@ -18,7 +18,6 @@ export class CustomerComponent {
         let id = this.route.snapshot.params['id'];
         if (id) {
             this.customer_id = id;
-            this.customerApi.Search(id);
         }
     }
 }

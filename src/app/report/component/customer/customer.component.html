@@ -1,9 +1,9 @@
 <report-filter></report-filter>
 <div>
-    <report-info></report-info>
+    <report-info [id]="customer_id"></report-info>
     <report-sum></report-sum>
 </div>
 <report-tab (select)="setActive($event) "></report-tab>
 <customer-chart></customer-chart>
 <report-overview></report-overview>
-<history [customer]="customer_id"></history>
+<history [id]="customer_id"></history>

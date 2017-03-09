@@ -1,4 +1,4 @@
 <div style="float: left;">
-    <input [(ngModel)]="id_customer" class="hl-input" type="text" placeholder="{{'LANGAUGE_ID_USER' | translate}}" (keyup.enter)="Search()">
+    <input [(ngModel)]="code" class="hl-input" type="text" placeholder="{{'LANGAUGE_ID_USER' | translate}}" (keyup.enter)="Filter()">
 </div>
-<button (click)="Search()" translate>LANGAUGE_REFRESH</button>
+<button (click)="Filter()" translate>LANGAUGE_REFRESH</button>

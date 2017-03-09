@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ITransactionView, Lib, SharedService } from '../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { TransactionHistoryApi } from './history.service';
+import { Model } from '../shared/';
 
 @Component({
     selector: 'transaction',
@@ -11,8 +13,9 @@ export class TransactionComponent implements OnInit {
     constructor(
         private appService: SharedService.AppState,
         private router: Router,
+        private transactionHistoryApi: TransactionHistoryApi,
     ) { }
-
+    customer:Model.Org.ICustomer;
     ngOnInit() {
 
     }
@@ -27,6 +30,12 @@ export class TransactionComponent implements OnInit {
         }
         this.modal.Open();
     }
+    GetInfoCustomer(d: ITransactionView) {
+        this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v=>{
+              this.customer=v;
+        });
+    }
+
 
     Close() {
         this.modal.Close();

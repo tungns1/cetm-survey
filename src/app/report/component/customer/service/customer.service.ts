@@ -24,37 +24,42 @@ export class CustomerAPI {
     ) { }
 
 
-    GetHistory(filter: ReportFilter, skip: number, limit: number, id: string) {
+    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string) {
         const query = Object.assign({
             skip: skip,
             limit: limit,
-            customer_id: id,
+            code: code,
         }, filter.ToBackendQuery());
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number, customer: string) {
+    ChuyenTrang(page: number, code: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
-        this.GetHistory(this.filterService.Current, skip, limit, customer)
+        this.GetHistory(this.filterService.Current, skip, limit, code)
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
             });
     }
 
-    Search(id: string) {
+    Search(code: string) {
         let filter = this.filterService.Current;
-        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, id)).subscribe(v => {
+        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code)).subscribe(v => {
             if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
                 alert("Dữ liệu khách hàng không có");
             }
-
-
         });
     }
+    GetInfoCustomerByCode(code: string) {
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code });
+    }
+      GetInfoCustomerById(id: string) {
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id });
+    }
+    
 
 
     private makeQuery(filter: ReportFilter, id: string) {
@@ -95,7 +100,7 @@ export class CustomerAPI {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-
+    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/org/customer");
     api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 
 }
