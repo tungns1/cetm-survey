@@ -20,13 +20,13 @@ export class HistoryComponent {
 
 
     ngOnInit() {
-        this.customerAPI.ChuyenTrang(1, this.id);
+        this.customerAPI.ChuyenTrang(1,'', this.id);
     }
     chuyenTrang(page: number) {
         this.customerAPI.RxSummaryView.subscribe(v => {
             this.id = v.customer_id;
         });
-        this.customerAPI.ChuyenTrang(page, this.id);
+        this.customerAPI.ChuyenTrang(page,'', this.id);
     }
 
 

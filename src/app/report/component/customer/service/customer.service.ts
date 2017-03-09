@@ -24,19 +24,21 @@ export class CustomerAPI {
     ) { }
 
 
-    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string) {
+    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string,id:string) {
         const query = Object.assign({
             skip: skip,
             limit: limit,
             code: code,
+            id:id,
+
         }, filter.ToBackendQuery());
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number, code: string) {
+    ChuyenTrang(page: number, code: string,id :string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
-        this.GetHistory(this.filterService.Current, skip, limit, code)
+        this.GetHistory(this.filterService.Current, skip, limit, code,id)
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);

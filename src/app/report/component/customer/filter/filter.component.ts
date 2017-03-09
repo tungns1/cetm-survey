@@ -16,7 +16,7 @@ export class ReportFilterComponent {
     code: string = '';
     Filter() {
        this.customerApi.Search(this.code,'');
-       this.customerApi.ChuyenTrang(1,this.code);
+       this.customerApi.ChuyenTrang(1,this.code,'');
     }
 
 
