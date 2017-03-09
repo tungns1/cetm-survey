@@ -1,0 +1,104 @@
+#historyReport{
+    font-size: 10px;
+    padding: 0px 50px;
+    $primary-color: #0b8fdb;
+    /***************** Global *********************/
+    .btnClear{
+        padding: 5px 10px;
+        border: solid;
+        border-width: 1px;
+        border-color: $primary-color;
+        border-radius: 3px;
+        width: 150px;
+        background-color: transparent;
+        color: $primary-color;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    /*************************************************/
+    .header{
+        display: inline-block;
+        font-size: 25px;
+    }
+    .nav{
+        float: right;
+        margin: 25px 0px;
+    }
+    .filterHistory{
+        .inputCtrl{
+            width: 40px;
+            display: inline-block;
+            margin: 0px 5px;
+            font-size: 10px;
+        }
+        .waitTime{
+            display: inline-block;
+            width: 250px;
+        }
+        .serveTime{
+            display: inline-block;
+            width: 250px;
+        }
+        .feedback{
+            float: right;
+            position: relative;
+            top: -21px;
+            left: -100px;
+            width: 300px;
+            strong{
+                display: inline-block;
+            }
+            select{
+                display: inline-block;
+                margin-left: 5px;
+                font-size: 10px;
+            }
+        }
+    }
+    .content{
+        border: 1px solid #a7a9ac;
+        border-spacing: 0;
+        width: 100%;
+        thead{
+            text-align: left;
+            
+            th{
+                padding: 5px;
+                background-color: #dee0e0;
+            }
+        }
+        tbody{
+            text-align: left;
+            td{
+                padding: 10px;
+                font-weight: 600;
+            }
+            i{
+                color: $primary-color;
+            }
+        }
+    }
+    .paginNExport{
+        margin: 20px 0px 50px 0px;
+        .pagin{
+            display: inline-block;
+            button{
+                margin-right: 3px;
+                border: none;
+                background-color: transparent;
+                color: $primary-color;
+            }
+            .active{
+                font-weight: bold;
+            }
+        }
+        .export{
+            display: inline-block;
+            float: right;
+            width: 250px;
+            i{
+                margin: 0 10px;
+            }
+        }
+    }
+}

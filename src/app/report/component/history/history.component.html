@@ -1,95 +1,82 @@
-<style>
-    input[type=number] {
-        width: 50px;
-    }
-    
-    .advanced-filter {
-        padding-bottom: 10px;
-        padding-top: 10px;
-    }
-</style>
-
-<div class="advanced-filter">
-    <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
-        <label>Waiting Time (minutes):
-            <input type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin"
-               #wtimemin="ngModel" min="0" (ngModelChange)="sync()"> 
-            <input type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax"
-               #wtimemax="ngModel" min="{{filter.wtimemin}}">
-        </label>
-        <label>Serving Time (minutes):
-            <input type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin"
-               #stimemin="ngModel" min="0" (ngModelChange)="sync()"> 
-            <input type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax"
-               #stimemax="ngModel" min="{{filter.stimemin}}">
-        </label>
-        <label> Feedback
-        <select [(ngModel)]="filter.rating" name="rating"
-               #rating="ngModel">
-            <option value="">Choose feedback</option>
-            <option value="veryGood">Very Good</option>
-            <option value="good">Good</option>
-            <option value="average">Average</option>
-            <option value="poor">Poor</option>
-        </select>
-        </label>
-        <button type="submit">Go now!</button>
-    </form>
-</div>
-
-<div class="search-table-outter" style="width: 80vw">
-    <div class="report-scrollbar">
-        <table class="search-table">
-            <thead>
-                <th class="hl-stt-history" translate> LANGAUGE_NUMERICAL_ORDER </th>
-                <th translate> LANGAUGE_DATE </th>
-                <th translate> LANGAUGE_BRANCH </th>
-                <th translate> LANGAUGE_TRANSACTION_ROOM </th>
-                <th translate>LANGAUGE_SERVICE </th>
-                <th translate>LANGAUGE_COUNTERS</th>
-                <th translate>LANGAUGE_TELLERS </th>
-                <th translate>LANGAUGE_TICKET_NUMBER </th>
-                <th translate> LANGAUGE_TICKET_PRINTED_TIME</th>
-                <th translate> LANGAUGE_TIME_WAIT</th>
-                <th translate> LANGAUGE_TIME_SERVING</th>
-                <th class="number" translate>LANGAUGE_FEEDBACK_RESULT</th>
-                <th translate>LANGAUGE_DETAIL</th>
-            </thead>
-            <tbody class="table-row">
-                <tr *ngFor="let d of paging.data$ | async; let i = index">
-                    <td class="stt">{{(i+1)+(paging.Skip)}}</td>
-                    <td class="td-date-rp"> {{d.cdate}} </td>
-                    <td class="td-string-rp"> {{d.parent}} </td>
-                    <td class="td-string-rp"> {{d.branch}} </td>
-                    <td class="td-string-rp"> {{d.service}} </td>
-                    <td class="td-counter-rp"> {{d.counter}} </td>
-                    <td class="td-string-rp"> {{d.user}} </td>
-                    <td class="td-number-rp"> {{d.cnum}} </td>
-                    <td class="td-date-rp"> {{d.ctime}} </td>
-                    <td class="td-date-rp"> {{d.wtime}} </td>
-                    <td class="td-date-rp"> {{d.stime}} </td>
-                    <td class="td-number-rp">{{d.rating}}</td>
-                    <td class="td-number-rp">
-                        <i class="fa fa-eye pointer" (click)="detail.SetData(d)"></i> &nbsp;
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="hl-footer-history">
-        <div class="hl-info-history">
-            {{paging.info$ | async}}
-        </div>
-        <div class="hl-pagination-history">
-            <button class="hl-btn-history" md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">
-            {{p.title}}
-        </button>
+<div id="historyReport">
+    <div class="headerAndNav">
+        <h2 class="header">Lịch Sử Giao Dịch</h2>
+        <div class="nav">
+            <button class="btnClear">TỔNG HỢP</button>
+            <button class="btnClear">KHÁCH HÀNG</button>
         </div>
     </div>
-</div>
+    <div class="filterHistory">
+        <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
+            <div class="waitTime">
+                <label><strong>Thời gian đợi</strong>(phút)</label>
+                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.wtimemin"
+                        name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
+                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" 
+                        name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
+            </div>
+            <div class="serveTime">
+                <label><strong>Thời gian phục vụ</strong>(phút)</label>
+                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.stimemin" 
+                        name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
+                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.stimemax" 
+                        name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
+            </div>
+            <div class="feedback">
+                <strong>Phản hồi của khách hàng</strong>
+                <select [(ngModel)]="filter.rating" name="rating" #rating="ngModel" (ngModelChange)="onSubmit()">
+                    <option value="">Choose feedback</option>
+                    <option value="veryGood">Very Good</option>
+                    <option value="good">Good</option>
+                    <option value="average">Average</option>
+                    <option value="poor">Poor</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <table class="content">
+        <thead>
+            <th translate> LANGAUGE_NUMERICAL_ORDER </th>
+            <th translate> LANGAUGE_DATE </th>
+            <th translate> LANGAUGE_BRANCH </th>
+            <th translate> LANGAUGE_TRANSACTION_ROOM </th>
+            <th translate>LANGAUGE_SERVICE </th>
+            <th translate>LANGAUGE_COUNTERS</th>
+            <th translate>LANGAUGE_TELLERS </th>
+            <th translate>LANGAUGE_TICKET_NUMBER </th>
+            <th translate> LANGAUGE_TICKET_PRINTED_TIME</th>
+            <th translate> LANGAUGE_TIME_WAIT</th>
+            <th translate> LANGAUGE_TIME_SERVING</th>
+            <th translate>LANGAUGE_FEEDBACK_RESULT</th>
+            <th translate>LANGAUGE_DETAIL</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of paging.data$ | async; let i = index">
+                <td>{{(i+1)+(paging.Skip)}}</td>
+                <td> {{d.cdate}} </td>
+                <td> {{d.parent}} </td>
+                <td> {{d.branch}} </td>
+                <td> {{d.service}} </td>
+                <td> {{d.counter}} </td>
+                <td> {{d.user}} </td>
+                <td> {{d.cnum}} </td>
+                <td> {{d.ctime}} </td>
+                <td> {{d.wtime}} </td>
+                <td> {{d.stime}} </td>
+                <td>{{d.rating}}</td>
+                <td>
+                    <i class="fa fa-eye pointer fa-lg" (click)="detail.SetData(d)"></i> &nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<div class="hl-exportf-history">
-    <button class="bt btpointer hl-btn-history" (click)="excel()" translate>LANGAUGE_BUTTON_EXPORT_FILE</button>
+    <transaction #detail></transaction>
+    <div class="paginNExport">
+        <div class="pagin">
+            <button md-button *ngFor="let p of paging.pages$ | async" 
+            [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
+        </div>
+        <button class="btnClear export" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
+    </div>
 </div>
-
-<transaction #detail></transaction>
