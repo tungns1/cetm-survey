@@ -4,7 +4,8 @@ import { NavService } from '../shared';
 
 @Component({
     selector: 'report-filter',
-    templateUrl: 'filter.component.html'
+    templateUrl: 'filter.component.html',
+    styleUrls: ['filter.component.scss']
 })
 export class ReportFilterComponent {
     constructor(

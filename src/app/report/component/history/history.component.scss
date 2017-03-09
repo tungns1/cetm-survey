@@ -1,21 +1,7 @@
 #historyReport{
-    font-size: 10px;
     padding: 0px 50px;
     $primary-color: #0b8fdb;
-    /***************** Global *********************/
-    .btnClear{
-        padding: 5px 10px;
-        border: solid;
-        border-width: 1px;
-        border-color: $primary-color;
-        border-radius: 3px;
-        width: 150px;
-        background-color: transparent;
-        color: $primary-color;
-        font-weight: 600;
-        cursor: pointer;
-    }
-    /*************************************************/
+    $font-size: 12px;
     .header{
         display: inline-block;
         font-size: 25px;
@@ -29,7 +15,7 @@
             width: 40px;
             display: inline-block;
             margin: 0px 5px;
-            font-size: 10px;
+            font-size: $font-size;
         }
         .waitTime{
             display: inline-block;
@@ -51,7 +37,7 @@
             select{
                 display: inline-block;
                 margin-left: 5px;
-                font-size: 10px;
+                font-size: $font-size;
             }
         }
     }
@@ -71,7 +57,6 @@
             text-align: left;
             td{
                 padding: 10px;
-                font-weight: 600;
             }
             i{
                 color: $primary-color;

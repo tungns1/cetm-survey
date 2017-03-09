@@ -1,22 +1,22 @@
 <form [formGroup]="form">
     <accordion>
-        <accordion-title>
-            <span class="title hl-lbtitle-filter" translate>LANGAUGE_SELECT_SERVICE</span>
+        <accordion-title class="accordionTitle">
+            <span translate>LANGAUGE_SELECT_SERVICE</span>
         </accordion-title>
         <select-check formControlName="service_id" [data]="services$ | async" textField="name">
         </select-check>
     </accordion>
 
     <accordion>
-        <accordion-title>
-            <span class="title hl-lbtitle-filter" translate> LANGAUGE_SELECT_STAFF</span>
+        <accordion-title class="accordionTitle">
+            <span translate> LANGAUGE_SELECT_STAFF</span>
         </accordion-title>
         <select-check formControlName="user_id" [data]="users$ | async" textField="fullname">
         </select-check>
     </accordion>
     <accordion>
-        <accordion-title>
-            <span class="title hl-lbtitle-filter" translate>LANGAUGE_SELECT_COUNTER</span>
+        <accordion-title class="accordionTitle">
+            <span translate>LANGAUGE_SELECT_COUNTER</span>
         </accordion-title>
         <select-check formControlName="counter_id" [data]="counters$ | async" textField="name">
         </select-check>

@@ -1,60 +1,60 @@
-nav {
-    z-index: 1000;
-    ul {
+#topNav{
+    width: 100%;
+    height: 33px;
+    border-bottom: solid;
+    border-bottom-color: #c1c1c1;
+    border-bottom-width: 1px;
+    box-shadow: 0px 1px 3px #e8e8e8;
+    background-color: #fff;
+    .firstLv {
         list-style: none;
-        position: relative;
-        float: left;
-        margin: 0;
-        padding: 0;
-        a {
-            display: block;
-            color: #333;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 32px;
-            margin: 0 10px;
-            font-family: Arial, sans-serif;
-        }
-        li {
+        margin: 0 0 0 -30px;
+        color: #333;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 32px;
+        .li_firstLv {
             position: relative;
             float: left;
-            margin: 0;
-            padding: 0;
+            padding: 0 20px;
+            cursor: pointer;
             &:hover {
-                background: #f6f6f6;
-                >ul {
+                background: #c1c1c1;
+                >.secondLv {
                     display: block
                 }
             }
-        }
-        ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #fff;
-            padding: 0;
-            li {
-                float: none;
-                width: 200px;
-            }
-            a {
-                line-height: 120%;
-                padding: 10px 15px
+            .secondLv {
+                display: none;
+                list-style: none;
+                position: absolute;
+                top: 32px;
+                left: 0px;
+                background: #fff;
+                padding: 0;
+                li {
+                    width: 134px;
+                    padding: 5px 35px 5px 0px;
+                    padding-left: 35px;
+                    border-bottom: solid;
+                    border-bottom-color: #c1c1c1;
+                    border-bottom-width: 1px;
+                    cursor: pointer;
+                    &:hover {
+                        background: #c1c1c1;
+                    }
+                }
             }
         }
     }
 }
 
 .current-menu-item {
-    border-bottom: 2px solid #0a8fda;
+    border-bottom: 2px solid #0b8fdb;
 }
 
 .current-menu-item {
-    i,
     span {
-        color: #0a8fda;
+        color: #0b8fdb;
     }
 }
