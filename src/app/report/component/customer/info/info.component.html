@@ -1,4 +1,4 @@
-<div style="border: 1px solid #b0b1b5; padding: 10px 0px; background-color: #fff; height: 300px" *ngIf="customer">
+<div style="border: 1px solid #b0b1b5; padding: 10px 0px; background-color: #fff; height: 300px">
     <div style="float: left;">
         <span translate>LANGAUGE_CUSTOMER_NAME</span><br>
         <span translate>LANGAUGE_CODE_ID</span><br>
@@ -7,7 +7,7 @@
         <span translate>LANGAUGE_MOST_USED_SERVICE</span><br>
         <span translate>LANGAUGE_STORE_MOST_DEAL</span>
     </div>
-    <div style="float: left;" *ngIf="data !=null">
+    <div style="float: left;" *ngIf="data !=null && customer">
         <span>{{customer.full_name}}</span><br>
         <span>{{customer.code}}</span><br>
         <span>{{customer.phone_number}}</span><br>
