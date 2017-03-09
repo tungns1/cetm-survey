@@ -8,10 +8,10 @@ import { Model } from '../../shared/';
 
 export class InfoComponent {
     constructor(private queueService: QueueService) { }
-    ticket: Model.House.ITicket
+    customer: Model.Org.ICustomer;
     ngOnInit() {
         this.queueService.serving$.map(v => v[0]).subscribe(v => {
-            this.ticket = v;
+            this.customer = v.customer;
         });
     }
 

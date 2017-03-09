@@ -1,1 +1,19 @@
-{{tkserving$ | async}}
+<div style="border: 1px solid #b0b1b5; padding: 10px 0px; background-color: #fff; height: 300px">
+    <div style="float: left;">
+        <span translate>LANGAUGE_CUSTOMER_NAME</span><br>
+        <span translate>LANGAUGE_CODE_ID</span><br>
+        <span translate> LANGAUGE_NUMBER_PHONE</span><br>
+        <span translate>LANGAUGE_SEGMENT</span><br>
+        <span translate>LANGAUGE_MOST_USED_SERVICE</span><br>
+        <span translate>LANGAUGE_STORE_MOST_DEAL</span>
+    </div>
+    <div style="float: left;" *ngIf="data !=null">
+        <span>{{customer.full_name}}</span><br>
+        <span>{{customer.code}}</span><br>
+        <span>{{customer.phone_number}}</span><br>
+        <span>{{customer.segment}}</span><br>
+        <span *ngIf="service">{{service.name}}&nbsp;{{service.count}}/{{data.c_t}}</span><br>
+        <span *ngIf="store">{{store.name}}&nbsp;{{store.count}}/{{data.c_t}}</span>
+
+    </div>
+</div>
