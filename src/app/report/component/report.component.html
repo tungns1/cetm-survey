@@ -1,9 +1,9 @@
-<div id="report" style="height: 100vh;overflow: hidden">
-    <app-header>
+<div id="report" fxLayout="column" style="height: 100vh;overflow: hidden">
+    <app-header fxFlex="5%">
         <div class="module-name" translate> LANGAUGE_REPORT </div>
     </app-header>
-    <top-nav></top-nav>
-    <div fxLayout="row">
+    <top-nav fxFlex="5%"></top-nav>
+    <div fxLayout="row" fxFlex="90%">
         <div [fxFlex]="hideFilter? '60px':'250px'" class="leftFilter">
             <!--<div class="hl-asidehead-filter">
                 <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | translate}}">&nbsp; Filters</i>
@@ -13,9 +13,10 @@
         </div>
         <div fxFlex style="overflow: auto;">
             <router-outlet></router-outlet>
+            <p class="footer">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
         </div>
     </div>
-    <div class="hl-ft-report">
-        <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
-    </div>
+    <!--<div class="hl-ft-report">
+        
+    </div>-->
 </div>
