@@ -117,11 +117,14 @@
 
 .hl-droplabel-user {
     background-color: transparent;
-    color: black;
-    font-size: 16px;
+    color: #0b8fdb;
+    font-size: 12px;
     border: none;
     cursor: pointer;
     margin-right: 15px;
+    span{
+        color: #000;
+    }
 }
 
 .dropbtn {
