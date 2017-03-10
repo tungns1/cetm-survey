@@ -25,7 +25,9 @@ const datePickerOptions: FlatPickrOptions = {
         <input style="width:80%;" #input 
         [disabled]="disabled" [required]="required" 
         (change)="onChange($event)"
-        (blur)="onBlur($event)" >
+        (blur)="onBlur($event)"
+        style="background: url(../../../../assets/img/icon/calendar.png) no-repeat scroll 75px 7px;
+                width: 85%;">
     `,
     providers: [DATE_PICKER_CONTROL_VALUE_ACCESSOR],
     styleUrls: ['material_green.css'],

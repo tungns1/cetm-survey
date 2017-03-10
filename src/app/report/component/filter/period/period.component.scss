@@ -8,4 +8,31 @@
     date-picker{
         margin: 5px 0 10px 15px;
     }
+    input[type='radio']:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #fff;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid #c1c1c1;
+    }
+
+    input[type='radio']:checked:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #0b8fdb;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid #c1c1c1;
+    }
 }
