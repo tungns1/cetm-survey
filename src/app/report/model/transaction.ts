@@ -88,26 +88,31 @@ export class Customer {
 
 
     Add(s: ITransaction) {
-
         var month = s.cdate.substring(5, 7);
         var ps = s.stime.substring(3, 5);
         var pw = s.wtime.substring(3, 5);
         var hs = s.stime.substring(0, 2);
         var hw = s.wtime.substring(0, 2);
         this.customer_id = s.customer_id;
+        var addservice = false;
+        var addstore = false;
+        var addfres = false;
         if (this.services.length > 0) {
             for (var i = 0; i < this.services.length; i++) {
                 if (s.service === this.services[i].name) {
                     this.services[i].value++;
+                    addservice = true;
                     break;
                 } else {
                     continue;
                 }
             }
-            this.services.push({
-                name: s.service,
-                value: 1,
-            })
+            if (!addservice) {
+                this.services.push({
+                    name: s.service,
+                    value: 1,
+                })
+            }
         } else {
             this.services.push({
                 name: s.service,
@@ -118,15 +123,18 @@ export class Customer {
             for (var i = 0; i < this.stores.length; i++) {
                 if (s.counter === this.stores[i].name) {
                     this.stores[i].value++;
+                    addstore = true;
                     break;
                 } else {
                     continue;
                 }
             }
-            this.stores.push({
-                name: s.counter,
-                value: 1
-            })
+            if (!addstore) {
+                this.stores.push({
+                    name: s.counter,
+                    value: 1
+                })
+            }
         } else {
             this.stores.push({
                 name: s.counter,
@@ -137,16 +145,20 @@ export class Customer {
             for (var i = 0; i < this.fres.length; i++) {
                 if (month === this.fres[i].name) {
                     this.fres[i].count++;
+                    addfres = true;
                     break;
                 } else {
                     continue;
                 }
             }
-            this.fres.push({
-                name: month,
-                cdate: s.cdate,
-                count: 1
-            })
+            if (!addfres) {
+                this.fres.push({
+                    name: month,
+                    cdate: s.cdate,
+                    count: 1
+                })
+            }
+
         } else {
             this.fres.push({
                 name: month,
