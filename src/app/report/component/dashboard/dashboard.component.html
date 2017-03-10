@@ -1,8 +1,21 @@
-<div fxLayout="column" class="hl-main-right">
+<!--<div fxLayout="column" class="hl-main-right">
     <report-sum class="cem-box"></report-sum>
     <div class="cem-box">
         <report-tab (select)="setActive($event) "></report-tab>
         <report-chart></report-chart>
         <report-overview></report-overview>
     </div>
+</div>-->
+<div id="dashboardReport">
+    <div class="headerAndNav">
+        <h2 class="header">LỊCH SỬ GIAO DỊCH</h2>
+        <div class="nav">
+            <button class="btnClear">LỊCH SỬ GIAO DỊCH</button>
+        </div>
+    </div>
+    <report-sum class="summaryReport"></report-sum>
+    <div class="divider"></div>
+    <report-tab (select)="setActive($event) "></report-tab>
+    <report-chart></report-chart>
+    <report-overview></report-overview>
 </div>

@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Component({
     selector: 'report-chart',
     templateUrl: 'chart.component.html',
-    styleUrls: ['chart.component.css']
+    styleUrls: ['chart.component.scss']
 })
 export class ReportChartComponent {
     constructor(

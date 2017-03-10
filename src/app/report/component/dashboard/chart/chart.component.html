@@ -1,42 +1,42 @@
-<div class="hl-chart" bar-chart *ngIf="isBar" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
-<div class="hl-chart" stack-chart *ngIf="isStack" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
-<div class="hl-chart" line-chart *ngIf="isLine" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+<div id="chartReport">
+    <div class="hl-chart" bar-chart *ngIf="isBar" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+    <div class="hl-chart" stack-chart *ngIf="isStack" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+    <div class="hl-chart" line-chart *ngIf="isLine" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
 
-<div class="hl-chart" *ngIf="isPie">
-    <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
-        <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
-    </div>
-</div>
-
-<div>
-    <select class="hl-select-chart" [(ngModel)]="type">
-            <option disabled selected value translate>LANGAUGE_SELECT_CHART</option>
-            <option value="line" translate>LANGAUGE_LINE_CHART</option>
-            <option value="bar" translate>LANGAUGE_COLUMN_CHART</option>
-            <option value="stack" translate>LANGAUGE_STACK_CHART</option>
-            <option value="pie" translate>LANGAUGE_PIE_CHART</option>
-        </select>
-</div>
-
-<div class="legend" style="margin:10px 20px;" *ngIf="!isPie">
-    <div *ngFor=" let item of items$ | async " style="float:left; margin-right:10px; ">
-        <div style="float:left;">
-            <div style="float:left; margin-right:3px;" [style.background-color]="item._hidden? '':item.color ">
-                <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
-            </div>
-            <span style="font-size: 12px; "> {{item.title}}</span>
+    <div class="hl-chart" *ngIf="isPie">
+        <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
+            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
         </div>
     </div>
-</div>
 
-<div class="legend " style="margin:10px 20px; " *ngIf="isPie">
-    <div *ngFor="let item of pieItems$ | async">
-        <div *ngFor="let t of item" style="float:left; margin-right:10px; ">
+    <select class="chartType" [(ngModel)]="type">
+        <option disabled selected value translate>LANGAUGE_SELECT_CHART</option>
+        <option value="line" translate>LANGAUGE_LINE_CHART</option>
+        <option value="bar" translate>LANGAUGE_COLUMN_CHART</option>
+        <option value="stack" translate>LANGAUGE_STACK_CHART</option>
+        <option value="pie" translate>LANGAUGE_PIE_CHART</option>
+    </select>
+
+    <div class="chartOptions" *ngIf="!isPie">
+        <div *ngFor=" let item of items$ | async " class="option">
             <div style="float:left;">
-                <div style="float:left; margin-right:3px;" [style.background-color]="t._hidden? '':t.color ">
-                    <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
+                <div class="checkBox" [style.background-color]="item._hidden? '':item.color ">
+                    <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
                 </div>
-                <span style="font-size: 12px;"> {{t.title}}</span>
+                <span style="font-size: 12px; "> {{item.title}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="chartOptions" *ngIf="isPie">
+        <div *ngFor="let item of pieItems$ | async">
+            <div *ngFor="let t of item" class="option">
+                <div style="float:left;">
+                    <div class="checkBox" [style.background-color]="t._hidden? '':t.color ">
+                        <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
+                    </div>
+                    <span style="font-size: 12px;"> {{t.title}}</span>
+                </div>
             </div>
         </div>
     </div>

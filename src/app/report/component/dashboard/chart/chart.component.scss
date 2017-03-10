@@ -1,0 +1,24 @@
+#chartReport{
+    border: 1px solid #c1c1c1;
+    height: 35vw;
+    background-color: #fff;
+    .chartType{
+        float: right;
+        width: 150px;
+        height: 30px;
+        border-radius: 3px;
+        margin: 20px 50px 0px 0px;
+    }
+    .chartOptions{
+        margin: 30px 40px;
+        width: 80%;
+        .option{
+            float: left;
+            margin: 10px;
+            .checkBox{
+                float:left; 
+                margin: 0 5px;
+            }
+        }
+    }
+}

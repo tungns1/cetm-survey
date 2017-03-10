@@ -6,7 +6,7 @@ import { MAIN_TABS } from '../shared';
 @Component({
     selector: 'report-overview',
     templateUrl: 'overview.component.html',
-    styleUrls: ['overview.component.css']
+    styleUrls: ['overview.component.scss']
 })
 export class ReportOverViewComponent {
 
