@@ -5,7 +5,7 @@ const logoWidth = "120px"
 
 @Component({
     selector: 'logo',
-    template: `<img src="${logoLink}" alt="Miraway" style="max-width:${logoWidth};height:34px">`
+    template: `<img src="${logoLink}" alt="Miraway" style="max-width:${logoWidth};height:33px">`
 })
 export class LogoComponent {
 

@@ -22,7 +22,7 @@ const datePickerOptions: FlatPickrOptions = {
 @Component({
     selector: 'date-picker',
     template: `
-        <input style="width:45%;" #input 
+        <input style="width:80%;" #input 
         [disabled]="disabled" [required]="required" 
         (change)="onChange($event)"
         (blur)="onBlur($event)" >

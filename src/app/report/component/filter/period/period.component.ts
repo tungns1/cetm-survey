@@ -5,6 +5,7 @@ import { PeriodFilterService } from '../../shared';
 @Component({
     selector: 'period-filter',
     templateUrl: 'period.component.html',
+    styleUrls: ['period.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeriodFilterComponent implements OnInit {

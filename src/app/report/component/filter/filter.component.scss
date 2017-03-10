@@ -2,6 +2,9 @@
     height: 78vh;
     .content{
         overflow: auto;
+        .inputCtrl{
+            margin: 10px 20px;
+        }
     }
     .action{
         text-align: center;

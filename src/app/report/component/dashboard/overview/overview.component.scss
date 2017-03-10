@@ -3,6 +3,7 @@
         width: 100%;
         border-spacing: 0px;
         border: 1px solid #c1c1c1;
+        border-radius: 3px;
         border-top: none;
         th{
             background-color: #f4f4f4;
@@ -11,7 +12,7 @@
         td{
             border-top: 1px solid #c1c1c1;
             padding: 10px;
-            text-align: left
+            text-align: center;
         }
     }
 }
