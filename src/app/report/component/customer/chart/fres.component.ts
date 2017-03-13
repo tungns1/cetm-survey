@@ -24,6 +24,7 @@ export class FresChartComponent {
     period = this.chartService.RxPeriod;
 
     private setTab() {
+        FresItems.forEach(f => f.title = this.translateService.instant(f.key_title));
         this.items$.next(FresItems);
     }
 
