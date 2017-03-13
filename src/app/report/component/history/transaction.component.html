@@ -1,106 +1,61 @@
-<style>
-    .bb1 {
-        border: 1px solid gray;
-        margin-top: 10px;
-    }
-    
-    label {
-        font-weight: bold;
-    }
-</style>
-
-<modal *ngIf="data">
-    <div class="hl-detail-history"><span translate> LANGAUGE_TICKET_DETAIL</span></div>
-    <div fxLayout="row" fxLayoutGap="20px">
-        <div class="bb1" fxFlex="50%">
-            <table class="hl-table-customerdetail">
-                <tr>
-                    <td><b translate>LANGAUGE_TICKET_NUMBER</b>:</td>
-                    <td translate>{{data.cnum}}</td>
-                </tr>
-                <tr>
-                    <td> <b translate>LANGAUGE_SERVICE </b>:</td>
-                    <td translate>{{data.service}}</td>
-                </tr>
-                <tr>
-                    <td><b translate>LANGAUGE_TIME_CREATE_TICKET</b>:</td>
-                    <td>{{data.ctime}}</td>
-                </tr>
-                <tr>
-                    <td><b translate>LANGAUGE_TIME_WAIT</b>:</td>
-                    <td>{{data.wtime}}</td>
-                </tr>
-                <tr>
-                    <td><b translate> LANGAUGE_TIME_SERVING</b>:</td>
-                    <td>{{data.stime}}</td>
-                </tr>
-                <tr>
-                    <td><b translate>LANGAUGE_DATE</b>:</td>
-                    <td>{{data.cdate}}</td>
-                </tr>
-            </table>
+<modal id="history_modal" *ngIf="data">
+    <accordion>
+        <accordion-title class="accordionTitle">
+            <span translate> LANGAUGE_TICKET_DETAIL</span>
+        </accordion-title>
+        <table class="detailTicket">
+            <tr>
+                <td class="ctrlLable"><b translate>LANGAUGE_TICKET_NUMBER</b>:</td>
+                <td translate>{{data.cnum}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"> <b translate>LANGAUGE_SERVICE </b>:</td>
+                <td translate>{{data.service}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b translate>LANGAUGE_TIME_CREATE_TICKET</b>:</td>
+                <td>{{data.ctime}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b translate>LANGAUGE_TIME_WAIT</b>:</td>
+                <td>{{data.wtime}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b translate> LANGAUGE_TIME_SERVING</b>:</td>
+                <td>{{data.stime}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b translate>LANGAUGE_DATE</b>:</td>
+                <td>{{data.cdate}}</td>
+            </tr>
+        </table>
+    </accordion>
+    <div *ngIf="customer">
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex  class="ctrlLable" translate>Customer:</b>
+            <span fxFlex translate>{{customer.full_name}}</span>
         </div>
-
-        <div class="bb1" fxFlex="50%">
-            <table class="hl-table-customerdetail">
-                <tr>
-                    <td><b translate>LANGAUGE_BRANCH</b>:</td>
-                    <td translate>{{data.branch}}</td>
-                </tr>
-                <tr>
-                    <td> <b translate>LANGAUGE_TRANSACTION_ROOM</b>:</td>
-                    <td translate>{{data.branch}}</td>
-                </tr>
-                <tr>
-                    <td><b translate>LANGAUGE_TELLERS</b>:</td>
-                    <td>{{data.user}}</td>
-                </tr>
-                <tr>
-                    <td><b translate> LANGAUGE_COUNTERS</b>:</td>
-                    <td>{{data.counter}}</td>
-                </tr>
-                <tr>
-                    <td><b translate> Manager</b>:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><b translate>Admin</b>:</td>
-                    <td></td>
-                </tr>
-            </table>
-
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex  class="ctrlLable" translate>Phone Number:</b>
+            <span fxFlex translate>{{customer.phone_number}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex  class="ctrlLable" translate>Customer ID:</b>
+            <span fxFlex translate (click)="goToCustomer(data.customer_id)">{{customer.code}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex  class="ctrlLable" translate>Customer Segment:</b>
+            <span fxFlex translate>{{customer.segment}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <div fxFlex></div>
+            <div fxFlex>
+                <audio [class.hidden]="!link" controls [src]="link"> </audio>
+            </div>
         </div>
     </div>
-
-    <div class="bb1" fxLayout="row" fxLayoutAlign="space-around center" *ngIf="customer">
-        <div fxFlex="100%">
-            <table class="hl-table-customerdetail">
-                <tr>
-                    <td><b translate>Customer</b>:</td>
-                    <td translate>{{customer.full_name}}</td>
-                </tr>
-                <tr>
-                    <td> <b translate> Phone Number</b>:</td>
-                    <td translate>{{customer.phone_number}} </td>
-                </tr>
-                <tr>
-                    <td><b translate>Customer ID</b>:</td>
-                    <td><a (click)="goToCustomer(data.customer_id)">{{customer.code}}</a> </td>
-                </tr>
-                <tr>
-                    <td><b translate> Customer Segment</b>:</td>
-                    <td>{{customer.segment}}</td>
-                </tr>
-                <tr>
-                    <td><b translate> </b></td>
-                    <td> <audio [class.hidden]="!link" controls [src]="link"> </audio></td>
-                </tr>
-
-            </table>
-
-        </div>
-    </div>
-    <div>
-        <button class="button hl-btn-history btn-custommer-close" (click)="Close()" style="height:30px;" translate> CLOSE </button>
+    <div fxLayout="row">
+        <div fxFlex ></div>
+        <button fxFlex class="btnFill ctrlBtn" (click)="Close()" translate> CLOSE </button>
     </div>
 </modal>
