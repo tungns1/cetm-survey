@@ -20,7 +20,6 @@ export class ReportOverViewComponent {
         this.customerAPI.RxSummaryView.subscribe(v => {
             this.data = v;
             this.services = v.services;
-            console.log(this.services)
             this.stores = v.stores;
             this.fres = v.fres;
             max_service.next(this.services[this.services.length - 1]);

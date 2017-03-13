@@ -32,6 +32,6 @@ export class HistoryComponent {
 
     excel() {
         this.customerAPI.ExportHistory(this.filterService.Current);
-    }
+    } 
 
 }
