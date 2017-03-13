@@ -6,7 +6,8 @@ import { CustomerAPI, max_service, max_store } from '../service/customer.service
 import { Customer, IService, IStore, IFre } from '../../shared/';
 @Component({
     selector: 'report-overview',
-    templateUrl: 'overview.component.html'
+    templateUrl: 'overview.component.html',
+    styleUrls: ['overview.component.scss']
 })
 export class ReportOverViewComponent {
 

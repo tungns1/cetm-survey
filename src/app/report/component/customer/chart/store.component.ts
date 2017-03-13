@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class StoreChartComponent {
     single: any[];
 
-    view: any[] = [800, 400];
+    view: any[] = [900, 400];
 
     // options
     showXAxis = true;

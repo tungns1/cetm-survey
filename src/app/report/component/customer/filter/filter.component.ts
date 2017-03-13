@@ -13,11 +13,11 @@ export class ReportFilterComponent {
     constructor(
         private customerApi: CustomerAPI,
     ) { }
-
-    code: string = '';
+    
+    code: string = 'aabbcc1';
     Filter() {
        this.customerApi.Search(this.code,'');
-       this.customerApi.ChuyenTrang(1,this.code,'');
+       this.customerApi.pagin(1,this.code,'');
        this.customerApi.GetInfoCustomerByCode(this.code);
     }
 

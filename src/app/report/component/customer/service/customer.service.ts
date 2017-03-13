@@ -36,7 +36,7 @@ export class CustomerAPI {
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number, code: string, id: string) {
+    pagin(page: number, code: string, id: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
         this.GetHistory(this.filterService.Current, skip, limit, code, id)

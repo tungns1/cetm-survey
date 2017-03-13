@@ -7,7 +7,8 @@ import { CustomerAPI, paging } from '../service/customer.service';
 
 @Component({
     selector: 'history',
-    templateUrl: 'history.component.html'
+    templateUrl: 'history.component.html',
+    styleUrls: ['history.component.scss']
 })
 
 export class HistoryComponent {
@@ -20,13 +21,13 @@ export class HistoryComponent {
 
 
     ngOnInit() {
-        this.customerAPI.ChuyenTrang(1,'', this.id);
+        this.customerAPI.pagin(1,'', this.id);
     }
-    chuyenTrang(page: number) {
+    pagin(page: number) {
         this.customerAPI.RxSummaryView.subscribe(v => {
             this.id = v.customer_id;
         });
-        this.customerAPI.ChuyenTrang(page,'', this.id);
+        this.customerAPI.pagin(page,'', this.id);
     }
 
 

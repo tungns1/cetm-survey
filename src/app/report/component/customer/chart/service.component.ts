@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class ServiceChartComponent {
     single: any[];
 
-    view: any[] = [1000, 400];
+    view: any[] = [900, 400];
 
     // options
     showXAxis = true;
