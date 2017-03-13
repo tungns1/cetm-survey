@@ -103,7 +103,7 @@ export class CustomerAPI {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/org/customer");
+    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/report/customer");
     api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
 
 }
