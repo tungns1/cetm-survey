@@ -10,13 +10,13 @@
         <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
             <div class="waitTime">
                 <label><strong>Thời gian đợi</strong>(phút)</label>
-                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
-                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
+                <input class="inputFilter ctrlInput" type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
+                <input class="inputFilter ctrlInput" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="serveTime">
                 <label><strong>Thời gian phục vụ</strong>(phút)</label>
-                <input class="inputCtrl" type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
-                <input class="inputCtrl" type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
+                <input class="inputFilter ctrlInput" type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
+                <input class="inputFilter ctrlInput" type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="feedback">
                 <strong>Phản hồi của khách hàng</strong>
