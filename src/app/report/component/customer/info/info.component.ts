@@ -5,7 +5,8 @@ import { Model } from '../../shared/';
 
 @Component({
     selector: 'report-info',
-    templateUrl: 'info.component.html'
+    templateUrl: 'info.component.html',
+    styleUrls: ['info.component.scss']
 })
 export class ReportInfoComponent {
     constructor(

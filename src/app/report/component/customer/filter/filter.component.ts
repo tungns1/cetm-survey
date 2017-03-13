@@ -5,8 +5,9 @@ import { CustomerAPI } from '../service/customer.service';
 
 
 @Component({
-    selector: 'report-filter',
-    templateUrl: 'filter.component.html'
+    selector: 'customer-filter',
+    templateUrl: 'filter.component.html',
+    styleUrls: ['filter.component.scss']
 })
 export class ReportFilterComponent {
     constructor(

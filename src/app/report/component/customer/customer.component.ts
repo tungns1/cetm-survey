@@ -6,7 +6,8 @@ import { CustomerAPI } from './service/customer.service';
 
 @Component({
     selector: 'customer',
-    templateUrl: 'customer.component.html'
+    templateUrl: 'customer.component.html',
+    styleUrls: ['customer.component.scss']
 })
 export class CustomerComponent {
     constructor(

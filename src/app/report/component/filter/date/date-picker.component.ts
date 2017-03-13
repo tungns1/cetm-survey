@@ -34,7 +34,7 @@ const datePickerOptions: FlatPickrOptions = {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-class DatePickerComponent implements ControlValueAccessor {
+export class DatePickerComponent implements ControlValueAccessor {
     ngAfterViewInit() {
         const options = Object.assign({}, datePickerOptions, { defaultDate: this._value });
         this.picker = new Flatpickr(this._inputElement.nativeElement, datePickerOptions);
@@ -92,21 +92,3 @@ class DatePickerComponent implements ControlValueAccessor {
 }
 
 
-
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-@NgModule({
-    declarations: [DatePickerComponent],
-    imports: [CommonModule, FormsModule],
-    exports: [DatePickerComponent],
-})
-export class DatePickerModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: DatePickerModule,
-            providers: []
-        };
-    }
-}

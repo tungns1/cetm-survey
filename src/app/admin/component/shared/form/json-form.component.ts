@@ -21,7 +21,7 @@ import { Lib } from '../../../shared';
    
     providers: [JSON_CONTROL_VALUE_ACCESSOR]
 })
-class JSONFormComponent implements ControlValueAccessor {
+export class JSONFormComponent implements ControlValueAccessor {
     private text: string;
     private onChangeCallback = (v) => { };
 
@@ -51,12 +51,3 @@ class JSONFormComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-@NgModule({
-    imports: [FormsModule, CommonModule],
-    declarations: [JSONFormComponent],
-    exports: [JSONFormComponent]
-})
-export class JSONFormModule {
-
-}

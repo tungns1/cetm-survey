@@ -18,7 +18,7 @@ const UI_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   
     providers: [UI_CONTROL_VALUE_ACCESSOR]
 })
-class UIFormComponent implements ControlValueAccessor {
+export class UIFormComponent implements ControlValueAccessor {
     private text: string;
     private onChangeCallback = (v) => { };
 
@@ -37,17 +37,5 @@ class UIFormComponent implements ControlValueAccessor {
     OnChange() {
         this.onChangeCallback(JSON.parse(this.text));
     }
-
-}
-
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@NgModule({
-    imports: [FormsModule, CommonModule],
-    declarations: [UIFormComponent],
-    exports: [UIFormComponent]
-})
-export class UIFormModule {
 
 }

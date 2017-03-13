@@ -1,4 +1,7 @@
-<div style="float: left;">
-    <input [(ngModel)]="code" class="hl-input" type="text" placeholder="{{'LANGAUGE_ID_USER' | translate}}" (keyup.enter)="Filter()">
+<!--<div style="float: left;">-->
+<div id="searchCus">
+    <input [(ngModel)]="code" type="text" placeholder="{{'LANGAUGE_ID_USER' | translate}}" (keyup.enter)="Filter()"
+        class="ctrlInput searchInput">
+    <!--</div>-->
+    <i class="fa fa-search fa-lg btnSearch" (click)="Filter()"></i>
 </div>
-<button (click)="Filter()" translate>LANGAUGE_REFRESH</button>
