@@ -28,7 +28,7 @@ import { FormArray, FormControl } from '@angular/forms';
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
-class SelectCheckComponent implements ControlValueAccessor {
+export class SelectCheckComponent implements ControlValueAccessor {
     constructor(
         @Attribute('idField') private idField,
         @Attribute('textField') private textField) {
@@ -96,18 +96,5 @@ class SelectCheckComponent implements ControlValueAccessor {
 
         this.OnChange();
     }
-
-}
-
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TranslateModule } from '../../i18n';
-
-@NgModule({
-    imports: [FormsModule, CommonModule, TranslateModule],
-    declarations: [SelectCheckComponent],
-    exports: [SelectCheckComponent]
-})
-export class SelectCheckModule {
 
 }

@@ -25,7 +25,7 @@ import { FormArray, FormControl } from '@angular/forms';
 
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
-class MultiFilePickerComponent implements ControlValueAccessor {
+export class MultiFilePickerComponent implements ControlValueAccessor {
     protected srcs = [];
     protected onChangeCallback = (v) => { };
 
@@ -56,17 +56,4 @@ class MultiFilePickerComponent implements ControlValueAccessor {
         this.srcs.splice(i, 1);
         this.OnChange();
     }
-}
-
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FilePickerModule } from './file-picker.module';
-
-@NgModule({
-    imports: [FormsModule, CommonModule, FilePickerModule],
-    declarations: [MultiFilePickerComponent],
-    exports: [MultiFilePickerComponent]
-})
-export class MultiFilePickerModule {
-
 }
