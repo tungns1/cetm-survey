@@ -1,4 +1,4 @@
-<report-filter></report-filter>
+<!--<customer-filter></customer-filter>
 <div>
     <report-info [id]="customer_id"></report-info>
     <report-sum></report-sum>
@@ -6,4 +6,23 @@
 <report-tab (select)="setActive($event) "></report-tab>
 <customer-chart></customer-chart>
 <report-overview></report-overview>
-<history [id]="customer_id"></history>
+<history [id]="customer_id"></history>-->
+<div id="customerReport">
+    <div class="headerAndNav">
+        <h2 class="header">KHÁCH HÀNG</h2>
+        <div class="nav">
+            <button class="btnClear">TỔNG HỢP</button>
+            <button class="btnClear">LỊCH SỬ GIAO DỊCH</button>
+        </div>
+    </div>
+    <div class="searchNSummary" fxLayout="row">
+        <div fxFlex="60%">
+            <customer-filter></customer-filter>
+            <report-info [id]="customer_id"></report-info>
+        </div>
+        <div fxFlex class="totalTrans">
+            <report-sum></report-sum>
+        </div>
+    </div>
+    
+</div>

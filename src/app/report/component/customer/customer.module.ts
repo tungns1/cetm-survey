@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { CustomerAPI } from './service/customer.service';
 
 import {
@@ -26,12 +27,14 @@ import { ReportHistoryModule } from './history/history.module'
 
 @NgModule({
     imports: [
-        routing, ReportSumModule, ReportOverviewModule, ReportChartModule, ReportInfoModule, ReportFilterModule, ReportHistoryModule,
-        CommonModule, SharedService.I18n.TranslateModule],
+        routing, ReportSumModule, ReportOverviewModule, ReportChartModule, 
+        ReportInfoModule, ReportFilterModule, ReportHistoryModule,
+        CommonModule, SharedService.I18n.TranslateModule, FlexLayoutModule],
     declarations: [
         CustomerComponent, ReportTabComponent
     ],
     providers: [CustomerAPI],
+    exports: [FlexLayoutModule]
 })
 export class ReportCustomerModule {
 
