@@ -31,22 +31,10 @@ export const TimeItems: ChartItem[][] = [
 ];
 
 
-export const FresItems: ChartItem[]= [
+export const FresItems: ChartItem[] = [
     {
         field: 'count',
         color: '#339933',
-    }
-];
-
-export const ServiceItems: ChartItem[] = [
-    {
-        field: 'count',
-        color: '#339933',
-    }
-];
-export const StoreItems: ChartItem[] = [
-    {
-        field: 'count',
-        color: '#339933',
+        key_title: 'LANGAUGE_TRANSACTION_FRES'
     }
 ];

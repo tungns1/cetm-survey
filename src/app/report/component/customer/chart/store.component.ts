@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AggregateService, Lib } from '../../shared';
 import { MakeIndexBy, ReportViewService } from '../../shared';
-import { ChartItem, StoreItems } from './chart.model';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 

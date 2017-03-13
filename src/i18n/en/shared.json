@@ -70,6 +70,7 @@
     "LANGAUGE_TRANSACTION_WAIT_STANDARD": "Transaction Wait Standard",
     "LANGAUGE_TRANSACTION_WAIT_BEYOND_STANDARD": "Transaction Wait Beyond Standard",
     "LANGAUGE_TRANSACTION_SERVING_BEYOND_STANDARD": "Transaction Serving Beyond Standard",
+    "LANGAUGE_TRANSACTION_FRES": "Frequency",
     "LANGAUGE_TOTAL_TIME_TRANSACTION": "Total Transaction Time",
     "LANGAUGE_TOTAL_TIME_SERVING": "Total Serving Time",
     "LANGAUGE_TOTAL_TIME_WAIT": "Total Waiting Time",

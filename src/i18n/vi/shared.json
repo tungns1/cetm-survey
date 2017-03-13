@@ -70,6 +70,7 @@
     "LANGAUGE_TRANSACTION_WAIT_STANDARD": "Giao dịch đợi chuẩn",
     "LANGAUGE_TRANSACTION_WAIT_BEYOND_STANDARD": "Giao dịch đợi vượt chuẩn",
     "LANGAUGE_TRANSACTION_SERVING_BEYOND_STANDARD": "Giao dịch phục vụ vượt chuẩn",
+    "LANGAUGE_TRANSACTION_FRES": "Tần suất",
     "LANGAUGE_TOTAL_TIME_TRANSACTION": "Tổng thời gian giao dịch",
     "LANGAUGE_TOTAL_TIME_SERVING": "Tổng thời gian phục vụ",
     "LANGAUGE_TOTAL_TIME_WAIT": "Tổng thời gian chờ",
