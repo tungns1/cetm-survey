@@ -24,7 +24,7 @@ import { FormArray, FormControl } from '@angular/forms';
     `,
     providers: [ARRAY_FORM_CONTROL_VALUE_ACCESSOR]
 })
-class ArrayFormComponent implements ControlValueAccessor {
+export class ArrayFormComponent implements ControlValueAccessor {
     protected values = [];
     protected onChangeCallback = (v) => { };
 
@@ -63,16 +63,4 @@ class ArrayFormComponent implements ControlValueAccessor {
         this.values.splice(i, 1);
         this.refresh();
     }
-}
-
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@NgModule({
-    imports: [FormsModule, CommonModule],
-    declarations: [ArrayFormComponent],
-    exports: [ArrayFormComponent]
-})
-export class ArrayFormModule {
-
 }
