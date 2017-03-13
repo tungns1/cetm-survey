@@ -4,6 +4,7 @@
     background-color: #fff;
 }
 /***************** Global *********************/
+// Buttons
 $primary-color: #0b8fdb;  
 .btnClear{
     padding: 5px 10px;
@@ -23,11 +24,15 @@ $primary-color: #0b8fdb;
     color: #fff;
     width: 12vw;
 }
+// End of buttons
+// Accodion
 .accordionTitle{
     font-size: 13px;
     padding: 0 10px;
     cursor: pointer;
 }
+// End of accordion
+// UI Elements
 .footer{
     margin: 50px 0;
 }
@@ -37,7 +42,36 @@ $primary-color: #0b8fdb;
     background-color: #c1c1c1;
     margin: 30px 0;
 }
-/************************************************/
+//End of UI elements
+// Modal
+.modal-header{
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    padding: 15px;
+    background-color: #dee0e0;
+}
+.report_history_modal{
+    .detailTicket{
+        width: 100%;
+        border-spacing: 0px;
+        .ctrlLable{
+            padding-left: 20px;
+            width: 50%;
+        }
+        td{
+            padding: 10px 0;
+        }
+    }
+    .cusDetail{
+        padding: 20px;
+    }
+    .ctrlBtn{
+        margin: 30px 20px;
+    }
+}
+// End of modal
+/******************** End of global ***********************/
 #report{
     font-size: 12px;
     background-color: #f4f4f4;

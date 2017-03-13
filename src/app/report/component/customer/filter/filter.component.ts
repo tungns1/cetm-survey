@@ -14,7 +14,7 @@ export class ReportFilterComponent {
         private customerApi: CustomerAPI,
     ) { }
     
-    code: string = 'AABBCC1';
+    code: string = '';
     Filter() {
        this.customerApi.Search(this.code,'');
        this.customerApi.pagin(1,this.code,'');

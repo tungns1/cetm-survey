@@ -4,7 +4,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'transaction',
-    templateUrl: 'transaction.component.html'
+    templateUrl: 'transaction.component.html',
+    styleUrls: ['transaction.component.scss']
 })
 export class TransactionComponent implements OnInit {
 
