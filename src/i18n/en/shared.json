@@ -258,7 +258,8 @@
     "LANGAUGE_NUMBER_TRANSACTION": "Number Transaction",
     "LANGAUGE_DATA_TYPE": "Data Type",
     "LANGAUGE_SELECT": "Select",
-    "LANGAUGE_BUTTON_SENT": "Done"
+    "LANGAUGE_BUTTON_SENT": "Done",
+    "LANGAUGE_TAB_SERVICE": "SERVICE"
 
 
 }
