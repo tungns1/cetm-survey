@@ -1,5 +1,3 @@
-import { ChartItem, FresItems, ServiceItems, StoreItems } from './chart.model';
-
 import { timeParse } from 'd3-time-format';
 import { Customer } from '../../shared';
 
