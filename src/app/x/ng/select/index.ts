@@ -1,3 +1,3 @@
 
-export * from './select_check';
+export * from './select.module';
 

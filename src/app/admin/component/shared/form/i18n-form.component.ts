@@ -31,7 +31,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
    
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
-class L10nFormComponent implements ControlValueAccessor {
+export class L10nFormComponent implements ControlValueAccessor {
     codes = Object.keys(SharedConfig.Cultures);
     names = SharedConfig.Cultures;
     private values: SharedUtil.L10nText = {};
@@ -52,17 +52,5 @@ class L10nFormComponent implements ControlValueAccessor {
     OnChange() {
         this.onChangeCallback(this.values);
     }
-
-}
-
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@NgModule({
-    imports: [FormsModule, CommonModule],
-    declarations: [L10nFormComponent],
-    exports: [L10nFormComponent]
-})
-export class CultureModule {
 
 }
