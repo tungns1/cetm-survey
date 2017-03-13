@@ -6,8 +6,7 @@ import { Model } from '../shared/';
 
 @Component({
     selector: 'transaction',
-    templateUrl: 'transaction.component.html',
-    styleUrls: ['transaction.component.scss']
+    templateUrl: 'transaction.component.html'
 })
 export class TransactionComponent implements OnInit {
 
