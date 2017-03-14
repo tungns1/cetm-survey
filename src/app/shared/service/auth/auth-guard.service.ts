@@ -36,8 +36,6 @@ export class AuthGuard implements CanActivate {
   loginPage(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authService.redirect = state.url;
     console.log("login redirect", this.authService.redirect);
-    const p = route.queryParams;
-    Object.assign(this.authService.options, p);
     this.router.navigate(['/login'], {
       queryParams: route.queryParams
     });

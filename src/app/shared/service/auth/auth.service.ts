@@ -31,16 +31,13 @@ export class AuthService {
         // console.log('created auth');
     }
 
-    private get scope() {
-        return AuthScopes[this.appState.AppName];
-    }
-
     IsAuth() {
         return this.sessionService.GetToken();
     }
 
     Login(form) {
-        const values = Object.assign({ scope: this.scope }, this.options, form);
+        const values = Object.assign(this.options, form);
+        values['scope'] = this.scope;
         return this.authBackend.Post("login", values).map(v => {
             let session: ISession = v.session;
             this.sessionService.Activate(session);
@@ -58,7 +55,7 @@ export class AuthService {
     RefreshMySettings() {
         return this.authBackend.Get<IMySettings>(
             "my_settings",
-            { scope: this.options['scope'] || this.scope, token: this.sessionService.GetToken(), }
+            { scope: this.options['scope'], token: this.sessionService.GetToken(), }
         ).map(v => {
             this.updateMySetting(v);
             return true;
@@ -101,6 +98,7 @@ export class AuthService {
     }
 
     options = {};
+    scope = 'admin';
 
     private authBackend = new HttpApi<any>("/api/auth");
     private rxMySetting = new ReplaySubject<IMySettings>(1);
