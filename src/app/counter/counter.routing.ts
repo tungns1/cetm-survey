@@ -2,6 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { SharedService } from "../shared/";
 
 import { CounterComponent, WorkspaceModule, LegacyModule } from "./component/";
+import { WorkspaceGuard } from './service';
 
 const children: Routes = [
   {
@@ -11,7 +12,10 @@ const children: Routes = [
   {
     path: "workspace",
     loadChildren: () => WorkspaceModule,
-    canActivate: [SharedService.Auth.AuthGuard]
+    canActivate: [
+      WorkspaceGuard,
+      SharedService.Auth.AuthGuard
+    ]
   }
 ];
 
