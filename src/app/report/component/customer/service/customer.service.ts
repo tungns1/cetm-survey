@@ -16,7 +16,7 @@ export interface IHistory {
 export const max_service = new BehaviorSubject<IService>(null);
 export const max_store = new BehaviorSubject<IStore>(null);
 export const paging = new Paging<ITransactionView>();
-export const customer = new BehaviorSubject<Model.Org.ICustomer>(null);
+export const RxInfoCustomer = new BehaviorSubject<Model.Org.ICustomer>(null);
 
 @Injectable()
 export class CustomerAPI {
@@ -36,7 +36,7 @@ export class CustomerAPI {
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    ChuyenTrang(page: number, code: string, id: string) {
+    pagin(page: number, code: string, id: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
         this.GetHistory(this.filterService.Current, skip, limit, code, id)
@@ -49,24 +49,22 @@ export class CustomerAPI {
     Search(code: string, id: string) {
         let filter = this.filterService.Current;
         this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code, id)).subscribe(v => {
-            if (v.data.length > 0) {
-                this.RxCustomer.next(v.data);
-            } else {
-                alert("Dữ liệu khách hàng không có");
-            }
+            this.RxCustomer.next(v.data);
         });
     }
     GetInfoCustomerByCode(code: string) {
         return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
             if (v != null) {
-                customer.next(v);
-            } else {
-                alert("Dữ liệu khách hàng không có");
+                RxInfoCustomer.next(v);
             }
         });
     }
     GetInfoCustomerById(id: string) {
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id });
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id }).subscribe(v => {
+            if (v != null) {
+                RxInfoCustomer.next(v);
+            }
+        });
     }
 
 

@@ -250,7 +250,7 @@
     "LANGAUGE_SCREEN": "Màn hình",
     "LANGAUGE_TIME_DISCONNECT": "Thời điểm mất kết nối",
     "LANGAUGE_CUSTOMER_NAME": "Tên khách hàng",
-    "LANGAUGE_CODE_ID": "Mã ID",
+    "LANGAUGE_CODE_ID": "Code",
     "LANGAUGE_NUMBER_PHONE": "Số điện thoại",
     "LANGAUGE_MOST_USED_SERVICE": "Dịch vụ dùng nhiều nhất",
     "LANGAUGE_STORE_MOST_DEAL": "Cửa hàng giao dịch nhiều nhất",
@@ -258,7 +258,8 @@
     "LANGAUGE_NUMBER_TRANSACTION": "Lượt giao dịch",
     "LANGAUGE_DATA_TYPE": "Kiểu dữ liệu",
     "LANGAUGE_SELECT": "Chọn",
-    "LANGAUGE_BUTTON_SENT": "Gửi"
+    "LANGAUGE_BUTTON_SENT": "Gửi",
+    "LANGAUGE_TAB_SERVICE": "DỊCH VỤ"
 
 
 }

@@ -250,7 +250,7 @@
     "LANGAUGE_SCREEN": "Screen",
     "LANGAUGE_TIME_DISCONNECT": "Time Disconnect",
     "LANGAUGE_CUSTOMER_NAME": "Customer Name",
-    "LANGAUGE_CODE_ID": "Code ID",
+    "LANGAUGE_CODE_ID": "Code",
     "LANGAUGE_NUMBER_PHONE": "Number Phone",
     "LANGAUGE_MOST_USED_SERVICE": "Most Used Service",
     "LANGAUGE_STORE_MOST_DEAL": "Most transactional stores",
@@ -258,7 +258,8 @@
     "LANGAUGE_NUMBER_TRANSACTION": "Number Transaction",
     "LANGAUGE_DATA_TYPE": "Data Type",
     "LANGAUGE_SELECT": "Select",
-    "LANGAUGE_BUTTON_SENT": "Done"
+    "LANGAUGE_BUTTON_SENT": "Done",
+    "LANGAUGE_TAB_SERVICE": "SERVICE"
 
 
 }

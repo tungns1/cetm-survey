@@ -1,4 +1,5 @@
-<modal id="history_modal" *ngIf="data">
+<modal class="report_history_modal" *ngIf="data">
+    <div class="modal-header"><span translate> LANGAUGE_TICKET_DETAIL</span></div>
     <accordion>
         <accordion-title class="accordionTitle">
             <span translate> LANGAUGE_TICKET_DETAIL</span>
@@ -32,19 +33,19 @@
     </accordion>
     <div *ngIf="customer">
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex  class="ctrlLable" translate>Customer:</b>
+            <b fxFlex class="ctrlLable" translate>Customer:</b>
             <span fxFlex translate>{{customer.full_name}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex  class="ctrlLable" translate>Phone Number:</b>
+            <b fxFlex class="ctrlLable" translate>Phone Number:</b>
             <span fxFlex translate>{{customer.phone_number}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex  class="ctrlLable" translate>Customer ID:</b>
+            <b fxFlex class="ctrlLable" translate>Customer Code:</b>
             <span fxFlex translate (click)="goToCustomer(data.customer_id)">{{customer.code}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex  class="ctrlLable" translate>Customer Segment:</b>
+            <b fxFlex class="ctrlLable" translate>Customer Segment:</b>
             <span fxFlex translate>{{customer.segment}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
@@ -55,7 +56,7 @@
         </div>
     </div>
     <div fxLayout="row">
-        <div fxFlex ></div>
+        <div fxFlex></div>
         <button fxFlex class="btnFill ctrlBtn" (click)="Close()" translate> CLOSE </button>
     </div>
 </modal>

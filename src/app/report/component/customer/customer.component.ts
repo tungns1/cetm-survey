@@ -20,6 +20,7 @@ export class CustomerComponent {
         if (id) {
             this.customer_id = id;
             this.customerApi.Search('',this.customer_id);
+            this.customerApi.GetInfoCustomerById(this.customer_id);
         }
     }
 }
