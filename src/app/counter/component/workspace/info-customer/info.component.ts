@@ -11,7 +11,10 @@ export class InfoComponent {
     customer: Model.Org.ICustomer;
     ngOnInit() {
         this.queueService.serving$.map(v => v[0]).subscribe(v => {
-            this.customer = v.customer;
+            if (v!=null) {
+                this.customer = v.customer;
+            }
+
         });
     }
 
