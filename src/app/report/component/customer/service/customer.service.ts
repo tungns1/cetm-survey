@@ -49,7 +49,12 @@ export class CustomerAPI {
     Search(code: string, id: string) {
         let filter = this.filterService.Current;
         this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code, id)).subscribe(v => {
-            this.RxCustomer.next(v.data);
+            if (v.data.length > 0) {
+                this.RxCustomer.next(v.data);
+            } else {
+                alert('Dữ liệu khách hàng không có');
+            }
+
         });
     }
     GetInfoCustomerByCode(code: string) {
