@@ -1,18 +1,26 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
-        "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
-            "es2016"
-        ]
+            "es2016",
+            "dom"
+        ],
+        "outDir": "../out-tsc/app",
+        "target": "es5",
+        "module": "es2015",
+        "baseUrl": "",
+        "types": []
     },
+    "files": [
+        "src/main.ts"
+    ],
     "exclude": [
         "test.ts",
+        "node_modules/**",
         "**/*.spec.ts"
     ]
 }
