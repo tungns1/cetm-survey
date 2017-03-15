@@ -1,0 +1,22 @@
+.emptyAndServing{
+    .leftBox, .rightBox{
+        padding: 20px;
+        min-height: 22vh;
+        text-align: center;
+        font-size: 14px;
+    }
+    .rightBox{
+        border-left: 1px solid #c1c1c1;
+    }
+    .content{
+        margin-top: 12px;
+        .icon{
+            width: 40px;
+            margin: 0 10px;
+        }
+        .number{
+            font-size: 70px;
+            color: #0190f0;
+        }
+    }
+}

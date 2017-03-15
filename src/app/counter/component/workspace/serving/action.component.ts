@@ -10,7 +10,7 @@ import {
 @Component({
     selector: 'action',
     templateUrl: 'action.component.html',
-    styleUrls: ['action.component.css'],
+    styleUrls: ['action.component.scss'],
 })
 export class ActionComponent {
     constructor(

@@ -5,7 +5,7 @@ import { TimerComopnent } from '../../../../x/ng/time/timer.component';
 @Component({
     selector: 'ticket',
     templateUrl: 'ticket.component.html',
-    styleUrls: ['ticket.component.css'],
+    styleUrls: ['emptyAndTicket.component.scss']
 })
 export class TicketComponent {
     @Input() ticket = null;

@@ -1,0 +1,40 @@
+.componentBorder{
+    .totalCount{
+        color: #0b8fba;
+    }
+    .headerTable{
+        background-color: #f4f4f4;
+        border-bottom: 1px solid #c1c1c1;
+    }
+    .row{
+        border-bottom: 1px solid #c1c1c1;
+    }
+    .cell{
+        text-align: center;
+        margin: 7px;
+        .icon{
+            width: 15px;
+            float: left;
+            margin: 0 10px 0 40px;
+        }
+        .ticketNum{
+            float: left;
+        }
+    }
+    .inputSearch{
+        float: right;
+        height: 25px;
+        border: 1px solid #c1c1c1;
+        border-radius: 3px;
+    }
+    .iconSearch{
+        cursor: pointer;
+        width: 20px;
+        float: right;
+        margin: 7px;
+    }
+}
+.queue{
+    height: 39.2vh;
+    overflow: auto;
+}

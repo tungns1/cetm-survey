@@ -1,0 +1,73 @@
+#sta{
+    height: 52vh;
+    overflow: auto;
+    .tabs{
+        background-color: #f4f4f4;
+        .tabCtrl{
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 5px;
+        }
+        .active{
+            color: #0190f0;
+            border-bottom: 3px solid #0190f0;
+        }
+    }
+}
+#bar{
+    margin: 10px 15px;
+    .label{
+        font-size: 10px;
+        margin: 10px 0px 5px;
+    }
+    .barBackground{
+        width: 100%;
+        height: 12px;
+        background-color: #dee0df;
+        border-radius: 12px;
+        .barGrap{
+            height: 12px;
+            text-align: right;
+            border-radius: 12px;
+            background: linear-gradient(to right, #008eef, #03c2df);
+            p{
+                color: #fff;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+#search{
+    margin-top: 15px;
+    height: 30vh;
+    padding: 15px;
+    overflow: auto;
+    input{
+        width: 100%;
+        border: 1px solid #c1c1c1;
+        border-radius: 3px;
+        height: 25px;
+        font-size: 12px;
+        text-indent: 10px;
+    }
+    .iconSearch{
+        float: right;
+        width: 20px;
+        position: relative;
+        top: -25px;
+    }
+    .marginY{
+        margin: 10px 0;
+    }
+    .searchResult{
+        .label{
+            text-align: left;
+        }
+        .detail{
+            text-align: right;
+        }
+        h3{
+            text-align: center;
+        }
+    }
+}

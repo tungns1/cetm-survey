@@ -3,7 +3,8 @@ import { QueueService } from '../service';
 import { Model } from '../../shared/';
 @Component({
     selector: 'info-customer',
-    templateUrl: 'info.component.html'
+    templateUrl: 'info.component.html',
+    styleUrls: ['info.component.scss']
 })
 
 export class InfoComponent {

@@ -1,29 +1,8 @@
-<!--<style>
-    .hl-bar-stat {
-        height: 10px;
-        text-align: right;
-        border-radius: 15px;
-        background: linear-gradient(to right, #008eef, #03c2df);
-    }
-    
-    .hl-max-bar-stat {
-        width: 100%;
-        height: 10px;
-        background-color: #dee0e0;
-        border-radius: 15px;
-    }
-    
-    .hl-service-bar-stat {
-        font-size: 11px;
-        margin: 10px 0px 5px;
-    }
-</style>-->
-
-<div *ngFor="let d of _data" style="margin: 0px 10px;">
-    <p class="hl-service-bar-stat">{{d.service_id | serviceName}}</p>
-    <div class="hl-max-bar-stat">
-        <div class="hl-bar-stat" [style.width]="''+d.count/max*100+'%'">
-            <p style="color: #fff;font-size: 10px; padding-right: 5px;">{{d.count}}</p>
+<div *ngFor="let d of _data" id="bar">
+    <p class="label">{{d.service_id | serviceName}}</p>
+    <div class="barBackground">
+        <div class="barGrap" [style.width]="''+d.count/max*100+'%'">
+            <p>{{d.count}}</p>
         </div>
     </div>
 </div>

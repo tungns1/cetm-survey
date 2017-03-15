@@ -8,12 +8,15 @@ import { QueueService } from '../service';
     <ticket *ngFor="let t of serving$ | async" [ticket]="t"></ticket>
     <empty></empty>
     <action></action>
-    <hr style="margin: 10px;">
+    <div class="divider"></div>
     `,
     styles: [`
     empty {
         height: 210px;
-        border:0px solid;
+        border: 0px solid;
+    }
+    .divider{
+        margin: 0px;
     }
     `]
 })

@@ -1,29 +1,33 @@
-<input type="text" class="hl-input-text" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
-<div class="hl-message-search"><span translate> {{message}}</span>&nbsp;{{cnum$ | async}} </div>
-
-<div class="hl-search-result" *ngFor="let ticket of tickets$ | async">
-
-    <p class="hl-p-stat"><span translate> LANGAUGE_TIME_CREATE_TICKET</span>&nbsp; {{ticket.ctime | localDayTime}}</p>
-    <p [class.hidden]="!serving" class="hl-p-stat">
-        <span translate> LANGAUGE_TIME_CALL_TICKET</span>
-        <span style="text-align: right;">{{ticket.mtime | localDayTime}}</span>
-    </p>
-    <p class="hl-p-stat"><span translate>LANGAUGE_STATUS_NOW</span >&nbsp;<span translate> {{ticket | ticketState}}</span> </p>
-    <div>
-        <p class="hl-p-stat" translate>LANGAUGE_HISTORY</p>
-        <div class="hl-table-missed">
-            <div class="hl-table-row-missed hl-header-missed">
-                <div translate>LANGAUGE_TIME</div>
-                <div translate>LANGAUGE_STATUS</div>
-                <div translate>LANGAUGE_SERVICE</div>
-            </div>
-            <div style="height:100px;overflow: auto;">
-                <div class="hl-table-row-missed" *ngFor="let t of ticket.tracks">
-                    <div> {{t.mtime | localDayTime}} </div>
-                    <div translate> {{t | ticketState}} </div>
-                    <div title="t | ticketServiceName"> {{t | ticketServiceName}} </div>
-                </div>
-            </div>
+<div id="search" class="componentBorder">
+    <input type="text" class="" #tm placeholder="{{'SEARCH_TICKET' | translate}}" (keyup.enter)="searchTicket(tm.value)">
+    <img src="./assets/img/icon/search.png" (click)="searchTicket(tm.value)" alt="Search" class="iconSearch">
+    <div class="marginY">
+        <span translate>{{message}} </span>
+        <span>{{cnum$ | async}}</span>
+    </div>
+    <div class="searchResult" *ngFor="let ticket of tickets$ | async">
+        <div fxLayout="row">
+            <span class="marginY label" fxFlex translate> LANGAUGE_TIME_CREATE_TICKET</span>
+            <span class="marginY detail" fxFlex>{{ticket.ctime | localDayTime}}</span>
+        </div>
+        <div fxLayout="row" [class.hidden]="!serving">
+            <span class="marginY label" fxFlex translate> LANGAUGE_TIME_CALL_TICKET</span>
+            <span class="marginY detail" fxFlex>{{ticket.mtime | localDayTime}}</span>
+        </div>
+        <div fxLayout="row">
+            <span class="marginY label" fxFlex translate>LANGAUGE_STATUS_NOW</span >
+            <span class="marginY detail" fxFlex translate> {{ticket | ticketState}}</span>
+        </div>
+        <h3 class="marginY" translate>LANGAUGE_HISTORY</h3>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <span fxFlex="20%" class="marginY" translate>LANGAUGE_TIME</span>
+            <span fxFlex class="marginY" translate>LANGAUGE_STATUS</span>
+            <span fxFlex class="marginY" translate>LANGAUGE_SERVICE</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let t of ticket.tracks">
+            <span fxFlex="20%" class="marginY"> {{t.mtime | localDayTime}} </span>
+            <span fxFlex class="marginY" translate> {{t | ticketState}} </span>
+            <span fxFlex class="marginY" title="t | ticketServiceName"> {{t | ticketServiceName}} </span>
         </div>
     </div>
 </div>

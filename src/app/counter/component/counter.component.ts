@@ -3,7 +3,8 @@ import { CounterStateService, SharedService, CounterNavService } from './shared'
 
 @Component({
     selector: 'app-counter',
-    templateUrl: 'counter.component.html'
+    templateUrl: 'counter.component.html',
+    styleUrls: ['counter.component.scss']
 })
 export class CounterComponent {
     constructor(

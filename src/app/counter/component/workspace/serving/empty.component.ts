@@ -4,7 +4,7 @@ import { QueueService } from '../service';
 @Component({
     selector: 'empty',
     templateUrl: 'empty.component.html',
-    styleUrls: ['ticket.component.css']
+    styleUrls: ['emptyAndTicket.component.scss']
 })
 export class EmptyComponent {
     constructor(

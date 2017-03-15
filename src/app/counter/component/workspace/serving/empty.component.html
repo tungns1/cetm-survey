@@ -1,22 +1,13 @@
-<div style="padding:10px 10px;">
-    <div *ngIf="!(busy$ | async)">
-        <div class="hl-service-sving" translate> LANGAUGE_SERVICE_NAME</div>
-        <div class="padding">
+<div *ngIf="!(busy$ | async)" class="componentBorder emptyAndServing">
+    <div class="componentHeader" translate> LANGAUGE_SERVICE_NAME</div>
+    
+    <div fxLayout="row">
+        <div fxFlex="50%" class="leftBox" translate>
+             LANGAUGE_NUMBER_SERVING 
         </div>
-        <div class="more">
-            <div class="hl-number-sving">
-                <div class="title" translate> LANGAUGE_NUMBER_SERVING </div>
-                <div class="item">
 
-                </div>
-            </div>
-
-            <div class="hl-time-sving">
-                <div class="title" translate>LANGAUGE_TIME_SERVING</div>
-                <div class="item">
-
-                </div>
-            </div>
+        <div fxFlex="50%" class="rightBox" translate>
+            LANGAUGE_TIME_SERVING
         </div>
     </div>
 </div>

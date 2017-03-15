@@ -4,7 +4,8 @@ import { TimerComopnent } from '../../../../x/ng/time/timer.component';
 
 @Component({
     selector: 'waiting',
-    templateUrl: 'waiting.component.html'
+    templateUrl: 'waiting.component.html',
+    styleUrls: ['queue.component.scss']
 })
 export class WaitingComponent {
     constructor(

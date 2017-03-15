@@ -1,21 +1,22 @@
-<button class="hl-btn-counter" (click)="Next()" [ngClass]="{'hidden': auto | async}" translate>
-    LANGAUGE_NEXT
-</button>
-<button class="hl-btn-counter danger" (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
-    LANGAUGE_AUTO_NEXT
-</button>
-<button class="hl-btn-counter" (click)="Recall()" translate> 
-    LANGAUGE_RECALL
-</button>
-<button class="hl-btn-counter" (click)="Move()" translate> 
-    LANGAUGE_MOVE
-</button>
-<button class="hl-btn-counter" (click)="Miss()" translate>
-    LANGAUGE_MISS
-</button>
-<button class="hl-btn-counter danger" (click)="Finish()" translate>
-    LANGAUGE_FINISH
-</button>
-
+<div id="actions" fxLayout="row" fxLayoutGap="20px">
+    <button class="btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}" translate>
+        LANGAUGE_NEXT
+    </button>
+    <button class="btnFill btnRed" fxFlex  (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
+        LANGAUGE_AUTO_NEXT
+    </button>
+    <button class="btnFill" fxFlex (click)="Recall()" translate> 
+        LANGAUGE_RECALL
+    </button>
+    <button class="btnFill" fxFlex (click)="Move()" translate> 
+        LANGAUGE_MOVE
+    </button>
+    <button class="btnFill btnRed" fxFlex (click)="Miss()" translate>
+        LANGAUGE_MISS
+    </button>
+    <button class="btnFill btnGreen" fxFlex (click)="Finish()" translate>
+        LANGAUGE_FINISH
+    </button>
+</div>
 <ticket-detail-dialog #dialog [class.hidden]="!moveDialog"></ticket-detail-dialog>
 <feedback-skip></feedback-skip>

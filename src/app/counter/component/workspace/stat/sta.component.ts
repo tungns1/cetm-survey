@@ -12,6 +12,7 @@ const TABS = {
 @Component({
     selector: 'sta',
     templateUrl: 'sta.component.html',
+    styleUrls: ['sta.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StaComponent {

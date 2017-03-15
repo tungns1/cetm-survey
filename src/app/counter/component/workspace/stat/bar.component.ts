@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 @Component({
 
     selector: 'bar',
-    templateUrl: 'bar.component.html'
+    templateUrl: 'bar.component.html',
+    styleUrls: ['sta.component.scss']
 })
 export class BarComponent {
     @Input() set data(v: IStat[]) {

@@ -1,20 +1,18 @@
-<div class="hl-content-missed">
-    <div class="hl-title-missed">
-        <span translate> LANGAUGE_LIST_WAIT</span> &nbsp;(<span class="total">{{count$ | async}}</span>)
+<div class="componentBorder queue">
+    <div class="componentHeader">
+        <span translate> LANGAUGE_LIST_WAIT</span> &nbsp;(<span class="totalCount">{{count$ | async}}</span>)
     </div>
-
-    <div class="hl-table-missed">
-        <div class="hl-table-row-missed hl-header-missed">
-            <div class="text" translate>LANGAUGE_NUMBER</div>
-            <div class="text" translate>LANGAUGE_SERVICE</div>
-            <div class="text" translate>LANGAUGE_TIME_WAIT</div>
+    <div fxLayout="row" class="headerTable">
+        <span fxFlex class="cell" translate>LANGAUGE_NUMBER</span>
+        <span fxFlex class="cell" translate>LANGAUGE_SERVICE</span>
+        <span fxFlex class="cell" translate>LANGAUGE_TIME_WAIT</span>
+    </div>
+    <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
+        <div fxFlex class="cell">
+            <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
+            <span class="ticketNum">{{t.cnum}}</span>
         </div>
-        <div class="hl-table-row-missed" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
-            <div class="text"><img src="./assets/img/icon/person.png" alt="Number Ticket" width="20" height="20">&nbsp;{{t.cnum}}</div>
-            <div class="text">{{t.services | multipleServiceName}}</div>
-            <div class="text">
-                <timer [start]="t.mtime" [timeWarning]="15"></timer>
-            </div>
-        </div>
+        <span fxFlex class="cell">{{t.services | multipleServiceName}}</span>
+        <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="15"></timer>
     </div>
 </div>

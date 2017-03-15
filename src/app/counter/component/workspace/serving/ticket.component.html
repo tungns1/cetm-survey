@@ -1,22 +1,20 @@
-<div style="padding:10px 10px;">
-    <div class="hl-service-sving uppercase"> {{ticket.service_id | serviceName}}</div>
-    <div class="padding">
-    </div>
-    <div class="more" [ticket-highlight]="ticket">
-        <div class="hl-number-sving">
-            <div class="hl-title-serving" translate> LANGAUGE_NUMBER_SERVING </div>
-            <div class="item">
-                <img src="./assets/img/icon/person.png" alt="Number Ticket">&nbsp;
-                <span class="hl-number">{{ticket.cnum}}</span>
+<div class="componentBorder emptyAndServing">
+    <div class="componentHeader">{{ticket.service_id | serviceName}}</div>
+    
+    <div fxLayout="row">
+        <div fxFlex="50%" class="leftBox">
+            <div translate> LANGAUGE_NUMBER_SERVING </div>
+            <div class="content">
+                <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
+                <span class="number">{{ticket.cnum}}</span>
             </div>
         </div>
 
-        <div class="hl-time-sving">
-            <div class="hl-title-serving" translate>LANGAUGE_TIME_SERVING</div>
-            <div class="item">
-                <img src="./assets/img/icon/time.png" alt="Time">
-                <timer class="timer-srving" [start]="ticket.mtime" [timeWarning]="1" style="font-size: 75px; 
-     margin-left: 10px; color: #008eef"></timer>
+        <div fxFlex="50%" class="rightBox">
+            <div translate>LANGAUGE_TIME_SERVING</div>
+            <div class="content">
+                <img class="icon" src="./assets/img/icon/time.png" alt="Time">
+                <timer class="number" [start]="ticket.mtime" [timeWarning]="1" ></timer>
             </div>
         </div>
     </div>

@@ -6,7 +6,8 @@ import { of } from 'rxjs/observable/of';
 
 @Component({
     selector: 'search',
-    templateUrl: 'search.component.html'
+    templateUrl: 'search.component.html',
+    styleUrls: ['sta.component.scss']
 })
 export class SearchComponent {
     constructor(

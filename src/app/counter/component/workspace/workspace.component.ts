@@ -5,7 +5,8 @@ import { CounterStateService } from '../shared';
 
 @Component({
     selector: 'workspace',
-    templateUrl: 'workspace.component.html'
+    templateUrl: 'workspace.component.html',
+    styleUrls: ['workspace.component.scss']
 })
 export class CounterComponent {
     constructor(

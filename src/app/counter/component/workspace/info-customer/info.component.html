@@ -1,10 +1,18 @@
-<div style="float: left;" *ngIf="customer">
-    <span translate>LANGAUGE_CUSTOMER_NAME</span>
-    <span>{{customer.full_name}}</span>
-    <span translate>LANGAUGE_CODE_ID</span>
-    <span>{{customer.code}}</span>
-    <span translate> LANGAUGE_NUMBER_PHONE</span>
-    <span>{{customer.phone_number}}</span>
-    <span translate>LANGAUGE_SEGMENT</span>
-    <span>{{customer.segment}}</span>
+<div id="cusInfo" fxLayout="row" fxLayoutAlign="space-between center" ><!-- *ngIf="customer"-->
+    <div fxFlex="30%">
+        <label translate>LANGAUGE_CUSTOMER_NAME</label>
+        <span *ngIf="customer" class="cusName">{{customer.full_name}}</span>
+    </div>
+    <div fxFlex="20%">
+        <label translate>LANGAUGE_CODE_ID</label>
+        <span *ngIf="customer">{{customer.code}}</span>
+    </div>
+    <div fxFlex>
+        <label translate> LANGAUGE_NUMBER_PHONE</label>
+        <span *ngIf="customer">{{customer.phone_number}}</span>
+    </div>
+    <div fxFlex>
+        <label translate>LANGAUGE_SEGMENT</label>
+        <span *ngIf="customer">{{customer.segment}}</span>
+    </div>
 </div>

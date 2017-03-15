@@ -1,9 +1,12 @@
-<div class="left-counter">
-    <serving></serving>
-    <info-customer></info-customer>
-    <div class="queue-counter">
-        <waiting></waiting>
-        <missed></missed>
+<div fxLayout="row" id="workSpace">
+    <div fxFlex="75%" id="leftWorkSpace">
+        <serving></serving>
+        <info-customer></info-customer>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <waiting fxFlex></waiting>
+            <missed fxFlex></missed>
+        </div>
+        <div class="footer">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</div>
     </div>
+    <sta fxFlex="25%" id="rightWorkSpace"></sta>
 </div>
-<sta class="sta-counter"></sta>

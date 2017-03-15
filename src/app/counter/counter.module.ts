@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { SharedModule, SharedService } from "./shared/";
 import { AppComponent } from "./counter.component";
 import { routing } from "./counter.routing";
