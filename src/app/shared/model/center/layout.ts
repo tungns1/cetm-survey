@@ -1,4 +1,11 @@
-import { UI } from '../ui/';
+
+export interface UI {
+    style: string;
+    layout: any;
+    resources: any;
+    navigations: any;
+    language: string;
+}
 
 export interface ILayout {
     id?: string;
