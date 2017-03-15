@@ -135,7 +135,7 @@ export class Aggregate {
         return this.c_t - this.c_bwt;
     }
     get c_ast() {
-        return this.c_ft - this.c_bst;
+        return this.c_t - this.c_bst;
     }
 
     // sum transaction time
