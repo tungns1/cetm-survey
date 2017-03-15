@@ -52,16 +52,16 @@ export class CustomerAPI {
             if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
+                this.RxCustomer.next(v.data);
                 alert('Dữ liệu khách hàng không có');
             }
 
         });
     }
     GetInfoCustomerByCode(code: string) {
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
-            if (v != null) {
+         RxInfoCustomer.next(null);
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {   
                 RxInfoCustomer.next(v);
-            }
         });
     }
     GetInfoCustomerById(id: string) {
