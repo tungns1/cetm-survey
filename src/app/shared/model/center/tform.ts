@@ -5,5 +5,5 @@ export interface ITForm {
     format: string;
     minnum: number;
     maxnum: number;
-    offnum?: number;
+    template: string;
 }

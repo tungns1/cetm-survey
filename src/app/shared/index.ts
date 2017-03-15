@@ -19,6 +19,3 @@ export {
 }
 
 import "./rx";
-
-import { enableProdMode } from "@angular/core";
-enableProdMode();
