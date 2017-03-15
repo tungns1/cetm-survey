@@ -59,6 +59,7 @@ export class CustomerAPI {
         });
     }
     GetInfoCustomerByCode(code: string) {
+         RxInfoCustomer.next(null);
         return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {   
                 RxInfoCustomer.next(v);
         });
