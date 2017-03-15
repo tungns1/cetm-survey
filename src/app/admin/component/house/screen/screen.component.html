@@ -1,7 +1,11 @@
 <editor #edit (edit)="onEdit($event)" [makeForm]="makeForm" [service]="service">
-    <editor-title> <span translate>LANGAUGE_LIST_SCREEN</span>
-        <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'screen'}"> <span translate>LANGAUGE_EDIT_LAYOUT</span> </button>
+    <editor-title>
+        <span translate>LANGAUGE_LIST_SCREEN </span>
+        <button class="add uppercase btpointer" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'screen'}"> 
+             <span translate>LANGAUGE_EDIT_LAYOUT</span> 
+        </button>
     </editor-title>
+
 
     <form *ngIf="edit.form" class=" hl-form form" [formGroup]="edit.form">
         <span translate>LANGAUGE_SCREEN_CODE</span>:
