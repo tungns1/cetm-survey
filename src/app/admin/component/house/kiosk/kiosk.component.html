@@ -1,6 +1,10 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title> <span translate>LANGAUGE_LIST_KIOSK </span>
-        <button class="add uppercase btpointer" routerLink="/center/layout" [queryParams]="{tag: 'kiosk'}"> <span translate>LANGAUGE_EDIT_LAYOUT</span> </button></editor-title>
+    <editor-title>
+        <span translate>LANGAUGE_LIST_KIOSK </span>
+        <button class="add uppercase btpointer" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'kiosk'}"> 
+             <span translate>LANGAUGE_EDIT_LAYOUT</span> 
+        </button>
+    </editor-title>
     <form class="hl-form form" *ngIf="edit.form" [formGroup]="edit.form">
         <span translate>LANGAUGE_CODE</span> <input class="hl-input" type="text" formControlName="code" placeholder="{{'LANGAUGE_CODE' | translate}}"><br>
         <span translate>LANGAUGE_NAME_KIOSK</span>:<input class="hl-input" type="text" formControlName="name" placeholder="{{'LANGAUGE_NAME_KIOSK' | translate }}"><br>

@@ -22,7 +22,8 @@ export class TFormComponent {
             code: [b.code, Validators.required],
             format: [b.format, Validators.required],
             minnum: [b.minnum || 0, Validators.required],
-            maxnum: [b.maxnum || 999, Validators.required]
+            maxnum: [b.maxnum || 999, Validators.required],
+            template: [b.template]
         });
     }
 }
