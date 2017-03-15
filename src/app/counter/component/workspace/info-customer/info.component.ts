@@ -12,6 +12,7 @@ export class InfoComponent {
     constructor(private queueService: QueueService) { }
     customer=c;
     ngOnInit() {
+        this.customer=null;
         this.queueService.serving$.map(v => v[0]).subscribe(v => {
             if (v != null) {
                 c.next(v.customer);
