@@ -1,18 +1,18 @@
 <div id="cusInfo" fxLayout="row" fxLayoutAlign="space-between center" >
     <div fxFlex="35%">
         <label translate>LANGAUGE_CUSTOMER_NAME</label>
-        <span *ngIf="customer | async; let c" class="cusName">{{c.full_name}}</span>
+        <span *ngIf="customer | async; let c" class="cusName uppercase">{{c.full_name}}</span>
     </div>
     <div fxFlex="20%">
         <label translate>LANGAUGE_CODE_ID</label>
-        <span *ngIf="customer | async; let c">{{c.code}}</span>
+        <span *ngIf="customer | async; let c" class="uppercase">{{c.code}}</span>
     </div>
     <div fxFlex>
         <label translate> LANGAUGE_NUMBER_PHONE</label>
-        <span *ngIf="customer | async; let c">{{c.phone_number}}</span>
+        <span *ngIf="customer | async; let c" class="uppercase">{{c.phone_number}}</span>
     </div>
     <div fxFlex="20%">
         <label translate>LANGAUGE_SEGMENT</label>
-        <span *ngIf="customer | async; let c">{{c.segment}}</span>
+        <span *ngIf="customer | async; let c" class="uppercase">{{c.segment}}</span>
     </div>
 </div>
