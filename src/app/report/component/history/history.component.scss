@@ -1,12 +1,13 @@
 #historyReport{
     $primary-color: #0b8fdb;
-    $font-size: 12px;
+    $font-size: 11px;
     .filterHistory{
         .inputFilter{
             width: 40px;
             display: inline-block;
-            margin: 0px 5px;
+            margin-left: 15px;
             font-size: $font-size;
+            text-indent: 5px;
         }
         .waitTime{
             display: inline-block;
@@ -27,9 +28,14 @@
             }
             select{
                 display: inline-block;
-                margin-left: 5px;
+                margin-left: 15px;
                 font-size: $font-size;
+                text-indent: 5px;
             }
+        }
+        .note{
+            font-size: $font-size - 1px;
+            margin-left: 5px;
         }
     }
     .content{
@@ -50,8 +56,8 @@
             td{
                 padding: 10px;
             }
-            i{
-                color: $primary-color;
+            .iconDetail{
+                width: 13px;
             }
         }
     }

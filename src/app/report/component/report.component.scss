@@ -7,7 +7,7 @@
     $primary-color: #0b8fdb;
 
     
-    font-size: 12px;
+    font-size: 11px;
     background-color: #f4f4f4;
     .footer{
         margin: 50px 0;
@@ -16,21 +16,24 @@
         padding-top: 50px;
         border-right: solid;
         border-width: 1px;
-        border-color: #c1c1c1;
+        border-color: #a7a9ac;
     }
     .mainContent{
-        padding: 0 50px;
+        padding: 0 35px;
         .header{
             display: inline-block;
-            font-size: 25px;
+            font-size: 23px;
         }
         .nav{
             float: right;
-            margin: 25px 0px;
+            margin: 20px 0px;
+            .btnMargin{
+                margin-left: 12px;
+            }
         }
         .ctrlInput{
             border-radius: 3px;
-            border: 1px solid #c1c1c1;
+            border: 1px solid #a7a9ac;
         }
         .paginNExport{
             margin: 20px 0px 30px 0px;
