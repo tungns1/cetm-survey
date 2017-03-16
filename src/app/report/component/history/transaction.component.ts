@@ -41,9 +41,9 @@ export class TransactionComponent implements OnInit {
     Close() {
         this.modal.Close();
     }
-    goToCustomer(customer_id: string) {
-        this.router.navigate(['/customer', { id: customer_id }]);
-    }
+    // goToCustomer(customer_id: string) {
+    //     this.router.navigate(['/customer']);
+    // }
 
     data = {};
     link: string;
