@@ -31,6 +31,7 @@ export class TransactionComponent implements OnInit {
         this.modal.Open();
     }
     GetInfoCustomer(d: ITransactionView) {
+        this.customer = null;
         this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
             this.customer = v;
         });
