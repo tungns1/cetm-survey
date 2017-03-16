@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-    DashboardComponent
-} from './dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 import { SharedService } from '../../shared';
 
 import { Routes, RouterModule } from '@angular/router'
@@ -30,5 +28,4 @@ import {} from '@angular/flex-layout';
     ]
 })
 export class ReportDashboardModule {
-
 }

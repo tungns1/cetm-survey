@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ITransactionView } from '../../model';
 import { ReportFilterService, ReportFilter } from '../../service/';
 import { TransactionHistoryApi } from './history.service';
@@ -13,6 +14,8 @@ export class HistoryComponent {
     constructor(
         private filterService: ReportFilterService,
         private transactionHistoryApi: TransactionHistoryApi,
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     
@@ -66,5 +69,11 @@ export class HistoryComponent {
     excel() {
         this.transactionHistoryApi.ExportHistory(this.filterService.Current);
     }
-
+    
+    nav(href: string){
+        const queryParams = this.route.root.snapshot.queryParams;
+        this.router.navigate([href], {
+            queryParams: queryParams
+        });
+    }
 }
