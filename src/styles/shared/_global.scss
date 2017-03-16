@@ -1,7 +1,9 @@
 
 /***************** Global *********************/
-// Buttons
 $primary-color: #0b8fdb;
+// Buttons
+
+
 .btnClear{
     padding: 5px 10px;
     border: solid;
@@ -23,8 +25,8 @@ $primary-color: #0b8fdb;
 // End of buttons
 // Accodion
 .accordionTitle{
-    font-size: 13px;
-    padding: 0 10px;
+    font-size: 11px;
+    padding: 0 5px;
     cursor: pointer;
 }
 // End of accordion
@@ -32,7 +34,7 @@ $primary-color: #0b8fdb;
 .divider{
     width: 100%;
     height: 1px;
-    background-color: #c1c1c1;
+    background-color: #a7a9ac;
     margin: 30px 0;
 }
 //End of UI elements

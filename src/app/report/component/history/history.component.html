@@ -2,19 +2,19 @@
     <div class="headerAndNav">
         <h2 class="header">Lịch Sử Giao Dịch</h2>
         <div class="nav">
-            <button class="btnClear" (click)="nav('/report/dashboard')">TỔNG HỢP</button>
-            <button class="btnClear" (click)="nav('/report/customer')">KHÁCH HÀNG</button>
+            <button class="btnClear btnMargin" (click)="nav('/report/dashboard')">TỔNG HỢP</button>
+            <button class="btnClear btnMargin" (click)="nav('/report/customer')">KHÁCH HÀNG</button>
         </div>
     </div>
     <div class="filterHistory">
         <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
             <div class="waitTime">
-                <label><strong>Thời gian đợi</strong>(phút)</label>
+                <strong>Thời gian đợi</strong><label class="note">(phút)</label>
                 <input class="inputFilter ctrlInput" type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter ctrlInput" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="serveTime">
-                <label><strong>Thời gian phục vụ</strong>(phút)</label>
+                <strong>Thời gian phục vụ</strong><label class="note">(phút)</label>
                 <input class="inputFilter ctrlInput" type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter ctrlInput" type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
             </div>
@@ -61,7 +61,8 @@
                 <td> {{d.stime}} </td>
                 <td>{{d.rating}}</td>
                 <td>
-                    <i class="fa fa-eye pointer fa-lg" (click)="detail.SetData(d);detail.GetInfoCustomer(d)"></i> &nbsp;
+                    <img class="iconDetail" src="./assets/img/icon/play.png" 
+                        (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search">
                 </td>
             </tr>
         </tbody>
