@@ -9,17 +9,17 @@
     <div class="filterHistory">
         <form (ngSubmit)="onSubmit()" #filterHistory="ngForm">
             <div class="waitTime">
-                <strong>Thời gian đợi</strong><label class="note">(phút)</label>
+                <strong class="uppercase">Thời gian đợi</strong><label class="note">(phút)</label>
                 <input class="inputFilter ctrlInput" type="number" placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter ctrlInput" type="number" placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="serveTime">
-                <strong>Thời gian phục vụ</strong><label class="note">(phút)</label>
+                <strong class="uppercase">Thời gian phục vụ</strong><label class="note">(phút)</label>
                 <input class="inputFilter ctrlInput" type="number" placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter ctrlInput" type="number" placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div class="feedback">
-                <strong>Phản hồi của khách hàng</strong>
+                <strong class="uppercase">Phản hồi của khách hàng</strong>
                 <select [(ngModel)]="filter.rating" name="rating" #rating="ngModel" (ngModelChange)="onSubmit()">
                     <option value="">Choose feedback</option>
                     <option value="veryGood">Very Good</option>
@@ -31,7 +31,7 @@
         </form>
     </div>
     <table class="content">
-        <thead>
+        <thead class="uppercase">
             <th translate> LANGAUGE_NUMERICAL_ORDER </th>
             <th translate> LANGAUGE_DATE </th>
             <th translate> LANGAUGE_BRANCH </th>
@@ -73,6 +73,6 @@
         <div class="pagin">
             <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
-        <button class="btnClear export" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
+        <button class="btnClear export uppercase" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
     </div>
 </div>

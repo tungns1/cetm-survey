@@ -1,5 +1,5 @@
 <div id="cusInfo" fxLayout="row" fxLayoutAlign="space-between center" >
-    <div fxFlex="30%">
+    <div fxFlex="35%">
         <label translate>LANGAUGE_CUSTOMER_NAME</label>
         <span *ngIf="customer | async; let c" class="cusName">{{c.full_name}}</span>
     </div>
@@ -11,7 +11,7 @@
         <label translate> LANGAUGE_NUMBER_PHONE</label>
         <span *ngIf="customer | async; let c">{{c.phone_number}}</span>
     </div>
-    <div fxFlex>
+    <div fxFlex="20%">
         <label translate>LANGAUGE_SEGMENT</label>
         <span *ngIf="customer | async; let c">{{c.segment}}</span>
     </div>

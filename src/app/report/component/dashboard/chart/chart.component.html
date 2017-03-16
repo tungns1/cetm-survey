@@ -23,7 +23,7 @@
                 <div class="checkBox" [style.background-color]="item._hidden? '':item.color ">
                     <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
                 </div>
-                <span style="font-size: 12px; "> {{item.title}}</span>
+                <span style="font-size: 10px; "> {{item.title}}</span>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
                     <div class="checkBox" [style.background-color]="t._hidden? '':t.color ">
                         <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
                     </div>
-                    <span style="font-size: 12px;"> {{t.title}}</span>
+                    <span style="font-size: 10px;"> {{t.title}}</span>
                 </div>
             </div>
         </div>

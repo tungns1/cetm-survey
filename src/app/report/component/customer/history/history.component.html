@@ -1,6 +1,6 @@
 <div id="cusHistory">
     <table>
-        <thead>
+        <thead class="uppercase">
             <th translate> LANGAUGE_NUMERICAL_ORDER </th>
             <th translate> LANGAUGE_DATE </th>
             <th translate> LANGAUGE_BRANCH </th>
@@ -40,7 +40,7 @@
     <div class="pagin">
         <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
     </div>
-    <button class="btnClear export" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
+    <button class="btnClear export uppercase" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
 </div>
 
 <transaction #detail></transaction>

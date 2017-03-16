@@ -1,15 +1,6 @@
-<!--<customer-filter></customer-filter>
-<div>
-    <report-info></report-info>
-    <report-sum></report-sum>
-</div>
-<report-tab (select)="setActive($event) "></report-tab>
-<customer-chart></customer-chart>
-<report-overview></report-overview>
-<history [id]="customer_id"></history>-->
 <div id="customerReport">
     <div class="headerAndNav">
-        <h2 class="header">KHÁCH HÀNG</h2>
+        <h2 class="header">Khách hàng</h2>
         <div class="nav">
             <button class="btnClear btnMargin" (click)="nav('/report/dashboard')">TỔNG HỢP</button>
             <button class="btnClear btnMargin" (click)="nav('/report/history')">LỊCH SỬ GIAO DỊCH</button>
@@ -25,7 +16,7 @@
         </div>
     </div>
     <div class="divider"></div>
-    <report-tab (select)="setActive($event) "></report-tab>
+    <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
     <customer-chart></customer-chart>
     <report-overview></report-overview>
     <history [id]="customer_id"></history>
