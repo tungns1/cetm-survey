@@ -13,7 +13,6 @@ export class ServiceComponent {
     constructor(
         private center: Center.CenterService
     ) { }
-
     service = this.center.ServiceService;
 
     makeForm(b?: Model.Center.IService) {

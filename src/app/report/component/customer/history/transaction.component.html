@@ -65,18 +65,18 @@
     </div>
     <div class="cusDetail" fxLayout="row">
         <b fxFlex class="ctrlLable" translate>LANGAUGE_PHONE</b>
-        <span fxFlex translate>{{data.counter}}</span>
+        <span fxFlex translate *ngIf="customer | async; let c">{{c.phone_number}}</span>
     </div>
     <div class="cusDetail" fxLayout="row">
         <b fxFlex class="ctrlLable" translate>LANGAUGE_ID</b>
-        <span fxFlex translate>{{data.customer_id}}</span>
+        <span fxFlex translate *ngIf="customer | async; let c">{{c.code}}</span>
     </div>
     <div class="cusDetail" fxLayout="row">
         <b fxFlex class="ctrlLable" translate>LANGAUGE_SEGMENT</b>
-        <span fxFlex translate>{{data.counter}}</span>
+        <span fxFlex translate *ngIf="customer | async; let c">{{c.segment}}</span>
     </div>
     <audio *ngIf="link" controls [src]="link"> </audio>
-    
+
     <div fxLayout="row">
         <div fxFlex></div>
         <button fxFlex class="btnFill ctrlBtn" (click)="Close()" translate> LANGAUGE_BUTTON_CLOSE </button>

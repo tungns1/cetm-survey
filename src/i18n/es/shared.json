@@ -1,6 +1,6 @@
 {
-    "LANGAUGE_HELLO": "Xin chào,",
-    "LANGAUGE_REFRESH": "Làm mới",
+    "LANGAUGE_HELLO": "hellos,",
+    "LANGAUGE_REFRESH": "Làm mớis",
     "LANGAUGE_LOGOUT": "Thoát",
     "LANGAUGE_LOGIN_SYSTEM": "ĐĂNG NHẬP HỆ THỐNG",
     "LANGAUGE_LOGIN": "ĐĂNG NHẬP",
@@ -259,13 +259,7 @@
     "LANGAUGE_DATA_TYPE": "Kiểu dữ liệu",
     "LANGAUGE_SELECT": "Chọn",
     "LANGAUGE_BUTTON_SENT": "Gửi",
-    "LANGAUGE_TAB_SERVICE": "DỊCH VỤ",
-    "LANGAUGE_SERVICE_NAME": "Tên dịch vụ",
-    "LANGAUGE_CHOOSE_FEEDBACK": "Chọn phản hồi",
-    "LANGAUGE_GOOD": "Tốt",
-    "LANGAUGE_VERY_GOOD": "Rất tốt",
-    "LANGAUGE_AVERAGE": "Trung bình",
-    "LANGAUGE_POOR": "Kém"
+    "LANGAUGE_TAB_SERVICE": "DỊCH VỤ"
 
 
 }
