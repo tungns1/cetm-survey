@@ -42,7 +42,7 @@ export class TransactionComponent implements OnInit {
         this.modal.Close();
     }
     goToCustomer(customer_id: string) {
-        this.router.navigate(['/customer', { id: customer_id }]);
+        this.router.navigate(['/customer']);
     }
 
     data = {};
