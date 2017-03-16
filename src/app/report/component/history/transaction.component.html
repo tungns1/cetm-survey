@@ -42,7 +42,7 @@
         </div>
         <div class="cusDetail" fxLayout="row">
             <b fxFlex class="ctrlLable" translate>Customer Code:</b>
-            <span fxFlex translate [routerLink]="['/customer', data.customer_id]" style="text-decoration: underline; color: blue;" title="Go to customer detail">{{customer.code}}</span>
+            <span fxFlex translate (click)="goToCustomer(data.customer_id)" style="text-decoration: underline; color: blue;" title="Go to customer detail">{{customer.code}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
             <b fxFlex class="ctrlLable" translate>Customer Segment:</b>
