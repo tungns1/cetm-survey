@@ -259,7 +259,13 @@
     "LANGAUGE_DATA_TYPE": "Data Type",
     "LANGAUGE_SELECT": "Select",
     "LANGAUGE_BUTTON_SENT": "Done",
-    "LANGAUGE_TAB_SERVICE": "SERVICE"
+    "LANGAUGE_TAB_SERVICE": "SERVICE",
+    "LANGAUGE_SERVICE_NAME": "Name service",
+    "LANGAUGE_CHOOSE_FEEDBACK": "Choose feedback",
+    "LANGAUGE_GOOD": "Good",
+    "LANGAUGE_VERY_GOOD": "Very good",
+    "LANGAUGE_AVERAGE": "Average",
+    "LANGAUGE_POOR": "Poor"
 
 
 }

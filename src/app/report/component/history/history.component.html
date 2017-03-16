@@ -21,11 +21,11 @@
             <div class="feedback">
                 <strong class="uppercase">Phản hồi của khách hàng</strong>
                 <select [(ngModel)]="filter.rating" name="rating" #rating="ngModel" (ngModelChange)="onSubmit()">
-                    <option value="">Choose feedback</option>
-                    <option value="veryGood">Very Good</option>
-                    <option value="good">Good</option>
-                    <option value="average">Average</option>
-                    <option value="poor">Poor</option>
+                    <option value="" translate>LANGAUGE_CHOOSE_FEEDBACK</option>
+                    <option value="veryGood" translate>Very Good</option>
+                    <option value="good" translate>Good</option>
+                    <option value="average" translate>Average</option>
+                    <option value="poor" translate>Poor</option>
                 </select>
             </div>
         </form>
@@ -61,8 +61,7 @@
                 <td> {{d.stime}} </td>
                 <td>{{d.rating}}</td>
                 <td>
-                    <img class="iconDetail" src="./assets/img/icon/play.png" 
-                        (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search">
+                    <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search">
                 </td>
             </tr>
         </tbody>
