@@ -15,7 +15,7 @@ export class TransactionComponent implements OnInit {
         private router: Router,
         private transactionHistoryApi: TransactionHistoryApi,
     ) { }
-    customer:Model.Org.ICustomer;
+    customer: Model.Org.ICustomer;
     ngOnInit() {
 
     }
@@ -31,8 +31,9 @@ export class TransactionComponent implements OnInit {
         this.modal.Open();
     }
     GetInfoCustomer(d: ITransactionView) {
-        this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v=>{
-              this.customer=v;
+        this.customer = null;
+        this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
+            this.customer = v;
         });
     }
 
@@ -41,7 +42,7 @@ export class TransactionComponent implements OnInit {
         this.modal.Close();
     }
     goToCustomer(customer_id: string) {
-        this.router.navigate(['/customer', customer_id]);
+        this.router.navigate(['/customer', { id: customer_id }]);
     }
 
     data = {};

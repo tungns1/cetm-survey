@@ -65,10 +65,11 @@ export class CustomerAPI {
         });
     }
     GetInfoCustomerById(id: string) {
+           RxInfoCustomer.next(null);
         return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id }).subscribe(v => {
-            if (v != null) {
+          
                 RxInfoCustomer.next(v);
-            }
+            
         });
     }
 
