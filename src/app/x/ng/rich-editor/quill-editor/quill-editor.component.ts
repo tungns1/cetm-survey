@@ -94,8 +94,12 @@ export class QuillEditorComponent implements OnInit {
 
   private updateEditor() {
     if (this.editor) {
-      const data = JSON.parse(this.content);
-      this.editor.setContents(data);
+      try {
+        const data = JSON.parse(this.content);
+        this.editor.setContents(data);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 

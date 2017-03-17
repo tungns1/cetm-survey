@@ -87,7 +87,7 @@
                 <td> {{i + 1}} </td>
                 <td> {{t.services | multipleServiceName}}</td>
                 <td> {{t.cnum}}</td>
-                <td> {{t.customer_id }} </td>
+                <td> {{t.customer.full_name }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td *ngIf="t.state === 'waiting'">
                     <timer [start]="t.mtime" [timeWarning]="15"></timer>
@@ -131,7 +131,7 @@
                 <td *ngIf="!t.serving">{{t.user_id | userFullName}}</td>
 
                 <td> {{t.cnum}} </td>
-                <td> {{t.customer_id }} </td>
+                <td> {{t.customer.full_name }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td *ngIf="t.serving"> {{t.serving.mtime - t.ctime | timeDuration}} </td>
                 <td *ngIf="!t.serving"> {{t.mtime - t.ctime | timeDuration}} </td>
