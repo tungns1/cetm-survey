@@ -1,15 +1,15 @@
 <div id="topNav">
     <ul class="firstLv">
         <li class="li_firstLv" *ngFor="let item of menu; let i = index;">
-            <a (click)="onClick(item, i)" [class.current-menu-item]="i == active">
+            <div class="paddingFirst" (click)="onClick(item, i)" [class.current-menu-item]="i == active">
                 <i class="fa" [addClass]="item.icon"> </i>
                 <span translate class="uppercase"> {{item.name}} </span>
-            </a>
+            </div>
             <ul class="secondLv" *ngIf="item.children">
                 <li *ngFor="let child of item.children">
-                    <a (click)="onClick(child, i)">
+                    <div class="paddingSecond" (click)="onClick(child, i)">
                         <span translate class="uppercase"> {{child.name}}</span>
-                    </a>
+                    </div>
                 </li>
             </ul>
         </li>

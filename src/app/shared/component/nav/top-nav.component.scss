@@ -16,13 +16,15 @@
         .li_firstLv {
             position: relative;
             float: left;
-            padding: 0 20px;
             cursor: pointer;
             &:hover {
                 background: #a7a9ac;
                 >.secondLv {
                     display: block
                 }
+            }
+            .paddingFirst{
+                padding: 0 20px;
             }
             .secondLv {
                 display: none;
@@ -33,15 +35,16 @@
                 background: #fff;
                 padding: 0;
                 li {
-                    width: 134px;
-                    padding: 5px 35px 5px 0px;
-                    padding-left: 35px;
+                    width: 167px;
                     border-bottom: solid;
                     border-bottom-color: #a7a9ac;
                     border-bottom-width: 1px;
                     cursor: pointer;
                     &:hover {
                         background: #a7a9ac;
+                    }
+                    .paddingSecond{
+                        padding-left: 20px;
                     }
                 }
             }
