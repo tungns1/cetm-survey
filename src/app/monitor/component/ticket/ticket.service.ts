@@ -4,6 +4,7 @@ import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { ITicket, ITickets, ISummary, Summary } from '../../model';
 import { MonitorFilterService } from '../shared';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 interface IFocusReply {
     counters: Model.House.ICounter[];
@@ -13,6 +14,7 @@ interface IFocusReply {
 
 const MonitorSocketLink = "/room/monitor/join";
 
+export const RxInfoCustomer = new BehaviorSubject<Model.Org.ICustomer>(null);
 @Injectable()
 export class MonitorTicketService {
     constructor(
@@ -83,6 +85,10 @@ export class MonitorTicketService {
     Unfocus() {
         this.socket.Send("/focus", {}).subscribe();
     }
+    GetInfoCustomer(idCustomer: string) {
+        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: idCustomer });
+    }
+    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/monitor");
 }
 
 function AddToSet<T>(arr: T[] = [], a: T, checker: (old: T) => boolean) {
