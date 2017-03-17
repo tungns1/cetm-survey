@@ -35,7 +35,7 @@ $blue-dark: darken($blue, 5%);
 // Modal Dialog
 // ----------------------
 .modal-dialog {
-    width: 350px;
+    width: 550px;
     border: $border-color solid 1px;
     border-radius: 3px;
     position: fixed;
@@ -68,12 +68,10 @@ $blue-dark: darken($blue, 5%);
 //         font-size: 20px;
 //     }
 // }
-
 // .modal-footer {
 //     border-top: $gray-lighter solid 1px;
 //     text-align: right;
 // }
-
 
 /*ADDED TO STOP SCROLLING TO TOP*/
 

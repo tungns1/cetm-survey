@@ -221,22 +221,22 @@
                 </tr>
             </table>
         </div>
-        <table>
+        <table *ngIf="customer">
             <tr>
-                <th translate> LANGAUGE_CUSTOMER </th>
-                <th>{{selectedTicket.customer_id }}</th>
+                <th translate> LANGAUGE_CUSTOMER_NAME </th>
+                <th>{{customer.full_name }}</th>
             </tr>
             <tr>
-                <th translate> LANGAUGE_TEL </th>
-                <th>testing</th>
+                <th translate> LANGAUGE_CODE_ID </th>
+                <th>{{customer.code }}</th>
             </tr>
             <tr>
-                <th translate> LANGAUGE_ID </th>
-                <th>testing</th>
+                <th translate> LANGAUGE_NUMBER_PHONE </th>
+                <th>{{customer.phone_number }}</th>
             </tr>
             <tr>
-                <th translate> LANGAUGE_TYPE </th>
-                <th>testing</th>
+                <th translate> LANGAUGE_SEGMENT </th>
+                <th>{{customer.segment }}</th>
             </tr>
         </table>
 

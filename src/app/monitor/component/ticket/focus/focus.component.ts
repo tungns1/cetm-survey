@@ -27,6 +27,7 @@ export class FocusComponent {
     selectedTicket: Object;
     isServed: boolean = true;
     data: Summary;
+    customer: Model.Org.ICustomer;
     // waitingCount = 0;
 
 
@@ -145,6 +146,10 @@ export class FocusComponent {
     }
 
     private detail(ticket) {
+        this.customer = null;
+        this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
+            this.customer = v;
+        });
         if (ticket.serving) {
             this.isServed = true;
         } else this.isServed = false;
