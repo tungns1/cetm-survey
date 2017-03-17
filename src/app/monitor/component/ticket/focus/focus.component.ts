@@ -147,6 +147,7 @@ export class FocusComponent {
 
     private detail(ticket:Model.House.ITicket) {
         this.customer = null;
+        console.log(ticket);
         this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
             this.customer = v;
         });
