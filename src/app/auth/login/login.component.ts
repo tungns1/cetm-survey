@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Backend, Platform } from '../../shared';
-import { Auth } from '../../service';
+import { Backend, Platform } from '../../x';
+import { Auth } from '../../shared/service';
 import { I18nHttpError } from './errors';
 
 interface ILoginModel {
@@ -10,12 +10,13 @@ interface ILoginModel {
   auto: boolean;
 }
 
+
 @Component({
-  selector: 'login',
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   loginForm = (new FormBuilder()).group({
     username: ['', Validators.compose([Validators.required])],
@@ -56,5 +57,5 @@ export class LoginComponent {
   private IsLogin() {
     return this.authService.IsAuth();
   }
-}
 
+}

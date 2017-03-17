@@ -3,15 +3,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule, LocationStrategy, HashLocationStrategy } from "@angular/common";
 
 import { Routes, RouterModule } from "@angular/router";
-import { AppSettingComponent, LoginComponent, PageNotFoundComponent } from "./component/";
 
 import { Auth } from "./service/";
-
-const routes: Routes = [
-    { path: "setting", component: AppSettingComponent },
-    { path: "login", component: LoginComponent },
-    // { path: "**", component: PageNotFoundComponent }
-]
 
 import { I18n, Ng } from "./shared";
 import { UtilPipeModule } from "./pipe";
@@ -23,10 +16,8 @@ import { EnvironmentModule } from './env';
 
 @NgModule({
     imports: [
-        ReactiveFormsModule, CommonModule,
-        RouterModule.forChild(routes), I18n.TranslateModule
+        ReactiveFormsModule, CommonModule, I18n.TranslateModule
     ],
-    declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
         RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,

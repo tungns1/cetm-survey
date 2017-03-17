@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PageModule } from '../pages/';
-import { SettingComponent } from './setting.component';
-import { routing } from './setting.routing';
-import { AppComponent } from './app.component';
+import { SettingComponent } from './setting/setting.component';
+import { EnvironmentSettingComponent } from './environment-setting/environment-setting.component';
 
-import { I18n,Auth } from '../shared/';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { RouterModule } from '@angular/router';
+import { DirectiveModule } from '../shared/directive/directive.module';
+
+const routing = RouterModule.forChild([
+  { path: '', component: SettingComponent }
+]);
 
 @NgModule({
   imports: [
-    PageModule, CommonModule,
-    routing, I18n.forRoot("setting")],
-  declarations: [AppComponent, SettingComponent],
-  bootstrap: [AppComponent]
+    CommonModule, 
+    ReactiveFormsModule, 
+    DirectiveModule,
+    routing
+  ],
+  declarations: [
+    SettingComponent,
+    EnvironmentSettingComponent
+  ],
 })
-export default class SettingModule {
-
-}
-
-
-import { SetAppName } from '../config/';
-SetAppName('setting');
-Auth.AuthOptions.scope = "report";
+export class SettingModule { }
