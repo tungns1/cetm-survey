@@ -1,27 +1,25 @@
 import { NgModule, ModuleWithProviders, ValueProvider } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule, LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { CommonModule } from "@angular/common";
 
-import { Routes, RouterModule } from "@angular/router";
-
-import { Auth } from "./service/";
-
-import { I18n, Ng } from "./shared";
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NavModule, HeaderModule } from "./component/";
 import { authProviders } from './service/auth';
 import { I18nService } from './service/i18n';
 import { EnvironmentModule } from './env';
+import { ModalModule, SelectCheckModule } from '../x/ng';
+import { TranslateModule } from '../x/i18n';
 
 @NgModule({
     imports: [
-        ReactiveFormsModule, CommonModule, I18n.TranslateModule
+        
     ],
     exports: [
-        RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
+        CommonModule, FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
-        I18n.TranslateModule, UtilPipeModule, Ng.SelectCheckModule, Ng.ModalModule
+        TranslateModule, UtilPipeModule, SelectCheckModule,
+        ModalModule
     ]
 })
 export class SharedModule {

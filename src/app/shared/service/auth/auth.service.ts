@@ -10,8 +10,6 @@ import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
 import { Org, Center, Meta } from '../../model/';
 
-import { AuthScopes } from './auth.config';
-
 export interface IMySettings {
     me: Org.IUser;
     branches: Org.IBranch[];
