@@ -145,13 +145,12 @@ export class FocusComponent {
         this.editorRef.Close();
     }
 
-    private detail(ticket:Model.House.ITicket) {
+    private detail(ticket) {
         this.customer = null;
-        console.log(ticket);
         this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
             this.customer = v;
         });
-        if (ticket.state==="serving") {
+        if (ticket.serving) {
             this.isServed = true;
         } else this.isServed = false;
         this.selectedTicket = ticket;
