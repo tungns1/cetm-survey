@@ -137,7 +137,7 @@
                 <td *ngIf="!t.serving"> {{t.mtime - t.ctime | timeDuration}} </td>
 
                 <td *ngIf="t.state === 'serving'">
-                    <timer [start]="t.mtime" [timeWarning]="15"></timer>
+                    <timer [start]="t.mtime" [timeWarning]="1"></timer>
                 </td>
                 <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
                 <td>
