@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AppState } from '../app.service';
 import { Platform } from '../../shared';
 import { Const } from '../../shared';
 
@@ -14,7 +13,7 @@ export interface ISession {
 
 @Injectable()
 export class SessionService {
-  constructor(private appService: AppState) {
+  constructor() {
     this.sessionSetting = new Platform.LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
   }
 

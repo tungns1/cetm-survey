@@ -8,16 +8,13 @@ import { AppComponent } from "./app.component";
 import { ReportComponent, ReportFilterModule } from "./component/";
 import { reportServiceProvider } from "./service";
 
-const appName = "report";
-const appState = new SharedService.AppState(appName);
-
 @NgModule({
   imports: [
     SharedModule, routing,
     ReportFilterModule
   ],
   declarations: [AppComponent, ReportComponent],
-  providers: [appState.toProvider(), reportServiceProvider],
+  providers: [reportServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

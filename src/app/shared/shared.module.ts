@@ -5,7 +5,7 @@ import { CommonModule, LocationStrategy, HashLocationStrategy } from "@angular/c
 import { Routes, RouterModule } from "@angular/router";
 import { AppSettingComponent, LoginComponent, PageNotFoundComponent } from "./component/";
 
-import { AppState, Auth } from "./service/";
+import { Auth } from "./service/";
 
 const routes: Routes = [
     { path: "setting", component: AppSettingComponent },
@@ -17,6 +17,9 @@ import { I18n, Ng } from "./shared";
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NavModule, HeaderModule } from "./component/";
+import { authProviders } from './service/auth';
+import { I18nService } from './service/i18n';
+import { EnvironmentModule } from './env';
 
 @NgModule({
     imports: [
@@ -34,7 +37,10 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: []
+            providers: [
+                EnvironmentModule.Providers(),
+                authProviders, I18nService.provider()
+            ]
         }
     }
 }

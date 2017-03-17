@@ -5,14 +5,12 @@ import { AppComponent } from "./admin.component";
 import { AdminFilterModule } from "./component";
 import { routing, components } from "./admin.routing";
 import { adminServiceProvider } from "./service";
-const appName = "admin";
-const appState = new SharedService.AppState(appName);
 
 @NgModule({
     imports: [
         SharedModule, routing, AdminFilterModule
     ],
-    providers: [appState.toProvider(), adminServiceProvider],
+    providers: [adminServiceProvider],
     declarations: [AppComponent, ...components],
     bootstrap: [AppComponent]
 })

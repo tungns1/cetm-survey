@@ -8,16 +8,13 @@ import { AppComponent } from "./monitor.component";
 import { monitorServiceProvider } from "./service/";
 import { MonitorComponent, MonitorFilterModule } from "./component/";
 
-const appName = "monitor";
-const appState = new SharedService.AppState(appName);
-
 
 @NgModule({
   imports: [
     SharedModule, routing, MonitorFilterModule
   ],
   declarations: [AppComponent, MonitorComponent],
-  providers: [appState.toProvider(), monitorServiceProvider],
+  providers: [monitorServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
 import { Org, Center, Meta } from '../../model/';
 
-import { AppState } from '../app.service';
 import { AuthScopes } from './auth.config';
 
 export interface IMySettings {
@@ -25,8 +24,7 @@ export class AuthService {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private sessionService: SessionService,
-        private appState: AppState
+        private sessionService: SessionService
     ) {
         // console.log('created auth');
     }

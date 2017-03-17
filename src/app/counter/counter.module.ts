@@ -6,15 +6,12 @@ import { routing } from "./counter.routing";
 import { CounterComponent } from "./component";
 import { counterServiceProvider } from "./service";
 
-const appName = "counter";
-const appState = new SharedService.AppState(appName);
-
 @NgModule({
     imports: [
         SharedModule, routing
     ],
     declarations: [AppComponent, CounterComponent],
-    providers: [appState.toProvider(), counterServiceProvider],
+    providers: [counterServiceProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,7 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 
-export const AppState = new BehaviorSubject<string>("init");
 const AuxStates: { [index: string]: BehaviorSubject<any> } = {};
 
 function GetAuxState(name: string) {
