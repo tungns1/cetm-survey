@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Model, Branch, SharedService } from '../../shared/';
-import { CrudApiService, AdminFilter } from '../shared';
+import { CrudApiService, AdminFilter, AddServiceName, IService } from '../shared';
 
 @Injectable()
-export class ServiceService extends CrudApiService<Model.Center.IService> {
+export class ServiceService extends CrudApiService<IService> {
     protected filter(d: AdminFilter) {
         return this.api.Search({})
-            .do(services => services.forEach(Model.Center.AddServiceName));
+            .do(services => services.forEach(AddServiceName));
     }
 
     ListFields = [

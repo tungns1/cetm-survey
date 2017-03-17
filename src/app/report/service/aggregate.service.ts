@@ -1,6 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IAggregate, Aggregate } from '../model';
-import { SharedService, Model } from '../shared/';
 
 export function MakeIndexBy(records: IAggregate[], field: string) {
     let res: { [index: string]: Aggregate } = {};

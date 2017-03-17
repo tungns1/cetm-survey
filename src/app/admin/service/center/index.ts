@@ -1,10 +1,5 @@
-import * as TForm from './tform';
-import * as Layout from './layout';
-import * as Service from './service';
-
 import { Injectable } from '@angular/core';
 import { AdminFilterService } from '../shared';
-import { SharedService } from '../../shared';
 import { TFormService } from './tform';
 import { ServiceService } from './service';
 import { LayoutService } from './layout';

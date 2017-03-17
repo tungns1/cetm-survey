@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Model } from '../../shared/';
+import { ServiceName } from '../../shared/';
 
 @Pipe({
     name: 'ticketServiceName'
@@ -9,7 +9,7 @@ export class TicketServiceNamePipe implements PipeTransform {
         if (!Array.isArray(ids)) {
             ids = [ids];
         }
-        return ids.map(id => Model.Center.ServiceName(id));
+        return ids.map(id => ServiceName(id));
     }
 }
 

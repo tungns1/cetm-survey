@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Platform } from '../../shared';
-import { Const } from '../../shared';
+import { Const } from '../shared';
+import { LocalSetting } from '../../x/platform';
 
 export interface ISession {
   user_id?: string;
@@ -14,7 +14,7 @@ export interface ISession {
 @Injectable()
 export class SessionService {
   constructor() {
-    this.sessionSetting = new Platform.LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
+    this.sessionSetting = new LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
   }
 
   Activate(session: ISession) {
@@ -31,7 +31,7 @@ export class SessionService {
     return this.sessionSetting.data.id;
   }
 
-  private sessionSetting: Platform.LocalSetting<ISession>;
+  private sessionSetting: LocalSetting<ISession>;
 }
 
 

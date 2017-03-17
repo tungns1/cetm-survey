@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminFilterService, Org } from '../../shared/';
+import { AdminFilterService, OrgService, IUser } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Branch, Editor, Model } from '../../shared/';
 
@@ -10,10 +10,10 @@ import { Branch, Editor, Model } from '../../shared/';
 })
 export class UserComponent {
   constructor(
-    private org: Org.OrgService
+    private org: OrgService
   ) { }
 
-  makeForm(u?: Model.Org.IUser) {
+  makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],

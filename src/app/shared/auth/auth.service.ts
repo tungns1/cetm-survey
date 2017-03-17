@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
-import { HttpApi } from '../backend';
-import { HttpError } from '../../../x/backend/';
+import { HttpApi } from '../service/backend';
+import { HttpError } from '../../x/backend/';
 
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -8,13 +8,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
-import { Org, Center, Meta } from '../../model/';
+
+import {
+    IUser, IBranch, IBranchConfig, IService,
+    CacheService, CacheBranch
+} from '../model/';
 
 export interface IMySettings {
-    me: Org.IUser;
-    branches: Org.IBranch[];
-    services: Center.IService[];
-    config: Meta.IBranchConfig;
+    me: IUser;
+    branches: IBranch[];
+    services: IService[];
+    config: IBranchConfig;
 }
 
 @Injectable()
@@ -82,9 +86,9 @@ export class AuthService {
     }
 
     private updateMySetting(v: IMySettings) {
-        Center.CacheService.Refresh(v.services);
+        CacheService.Refresh(v.services);
         if (v.me.branch_id) {
-            Org.CacheBranch.Refresh(v.branches);
+            CacheBranch.Refresh(v.branches);
         }
         this.rxMySetting.next(v);
     }

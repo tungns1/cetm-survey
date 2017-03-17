@@ -1,18 +1,19 @@
 export * from './branch';
 export * from './user';
+
 import { UserService } from './user';
 
 import { BranchService } from './branch';
 
 import { Injectable } from '@angular/core';
 import { AdminFilterService } from '../shared';
-import { SharedService } from '../../shared';
+import { AuthService } from '../../shared';
 
 @Injectable()
 export class OrgService {
     constructor(
         protected filterService: AdminFilterService,
-        private authService: SharedService.Auth.AuthService
+        private authService: AuthService
     ) {
         this.onInit();
     }

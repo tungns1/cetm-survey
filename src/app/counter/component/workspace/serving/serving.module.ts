@@ -4,10 +4,10 @@ import { ServingComponent } from './serving.component';
 import { EmptyComponent } from './empty.component';
 import { ActionComponent } from './action.component';
 import { TicketComponent } from './ticket.component';
-import { I18n, Ng } from '../../shared';
+import { ModalModule } from '../../shared';
 
 @NgModule({
-    imports: [TicketModule, Ng.ModalModule],
+    imports: [TicketModule, ModalModule],
     declarations: [ServingComponent, EmptyComponent, ActionComponent, TicketComponent],
     exports: [ServingComponent]
 })

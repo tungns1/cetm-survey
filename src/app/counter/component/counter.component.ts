@@ -1,5 +1,6 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { CounterStateService, SharedService, CounterNavService } from './shared';
+import { AuthService } from '../shared';
 
 @Component({
     selector: 'app-counter',
@@ -9,7 +10,7 @@ import { CounterStateService, SharedService, CounterNavService } from './shared'
 export class CounterComponent {
     constructor(
         private stateService: CounterStateService,
-        private authService: SharedService.Auth.AuthService,
+        private authService: AuthService,
         private navService: CounterNavService
     ) {
 

@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from "@angular/router";
-import { SharedService } from "../shared/";
+import { AuthGuard } from "./shared/";
 
 import { CounterComponent, WorkspaceModule, LegacyModule } from "./component/";
 import { WorkspaceGuard } from './service';
@@ -14,7 +14,7 @@ const children: Routes = [
     loadChildren: () => WorkspaceModule,
     canActivate: [
       WorkspaceGuard,
-      SharedService.Auth.AuthGuard
+      AuthGuard
     ]
   }
 ];

@@ -2,7 +2,6 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Router } from '@angular/router';
-import { Model, Branch } from '../../shared';
 import { AdminFilterService } from './filter';
 
 @Injectable()

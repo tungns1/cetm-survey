@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Model } from '../../shared/';
-import { BranchCrudApiService, AdminFilter } from '../shared';
+import { BranchCrudApiService, AdminFilter, IKiosk } from '../shared';
 
 @Injectable()
-export class KioskService extends BranchCrudApiService<Model.House.IKiosk> {
+export class KioskService extends BranchCrudApiService<IKiosk> {
     Name = "LANGAUGE_KIOSK";
 }

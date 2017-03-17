@@ -16,4 +16,6 @@ export {
     Lib
 }
 
+export * from './auth';
+
 import "./rx";

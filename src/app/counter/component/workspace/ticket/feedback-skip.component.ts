@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedbackService, TicketService } from '../service';
-import { ITicket, Ui } from '../../shared';
+import { ITicket } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({

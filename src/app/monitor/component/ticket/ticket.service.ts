@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SharedService, Model } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
-import { ITicket, ITickets, ISummary, Summary } from '../../model';
+import { IExtendedTicket, ITickets, ISummary, Summary } from '../../model';
 import { MonitorFilterService } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -67,7 +67,7 @@ export class MonitorTicketService {
         });
     }).share();
 
-    private ticketUpdate$ = this.socket.RxEvent<ITicket>("/ticket/update").startWith(null);
+    private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
 
     tickets$ = this.initialFocus$
         .map(data => data ? data.tickets : {})

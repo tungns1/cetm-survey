@@ -12,15 +12,17 @@ import { AccordionModule } from '../../../x/ui/accordion/accordion';
 
 
 @NgModule({
-    imports: [SharedModule, DatePickerModule, Branch.BranchModule, 
-        AccordionModule],
+    imports: [
+        SharedModule, DatePickerModule, Branch.BranchModule,
+        AccordionModule
+    ],
     declarations: [
         InsideFilterComponent,
         PeriodFilterComponent,
         ReportFilterComponent
     ],
-    exports: [ReportFilterComponent, 
-              AccordionModule
+    exports: [ReportFilterComponent,
+        AccordionModule
     ],
 })
 export class ReportFilterModule {

@@ -19,7 +19,7 @@ import { MonitorTicketService } from './ticket.service';
 
 @NgModule({
     imports: [
-        routing, SharedModule, SharedPipe.UtilPipeModule, D3Module
+        routing, SharedModule, D3Module
     ],
     providers: [
         MonitorTicketService

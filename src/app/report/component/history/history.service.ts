@@ -1,5 +1,4 @@
 import { ITransaction, ITransactionView } from '../shared';
-import { SharedService, Model } from '../shared/';
 import { ReportFilterService, ReportFilter } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';

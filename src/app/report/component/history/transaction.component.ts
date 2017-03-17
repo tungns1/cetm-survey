@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITransactionView, Lib, SharedService } from '../shared';
+import { ITransactionView, ModalComponent, ICustomer } from '../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TransactionHistoryApi } from './history.service';
-import { Model } from '../shared/';
 
 @Component({
     selector: 'transaction',
@@ -14,12 +13,12 @@ export class TransactionComponent implements OnInit {
         private router: Router,
         private transactionHistoryApi: TransactionHistoryApi,
     ) { }
-    customer: Model.Org.ICustomer;
+    customer: ICustomer;
     ngOnInit() {
 
     }
 
-    @ViewChild(Lib.Ng.ModalComponent) modal: Lib.Ng.ModalComponent;
+    @ViewChild(ModalComponent) modal: ModalComponent;
 
     SetData(d: ITransactionView) {
         this.link = '';

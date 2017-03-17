@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Model, Branch, SharedService } from '../../shared/';
-import { CrudApiService, AdminFilter } from '../shared';
+import { CrudApiService, AdminFilter, ITForm } from '../shared';
 
 @Injectable()
-export class TFormService extends CrudApiService<Model.Org.IUser> {
+export class TFormService extends CrudApiService<ITForm> {
     protected filter(d: AdminFilter) {
         return this.api.Search({});
     }

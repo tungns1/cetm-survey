@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Model, ISummary, Summary, ITicket, MonitorFilterService } from '../../shared';
+import {
+    ISummary, Summary, IExtendedTicket, TicketStates,
+    ICustomer, ITicketTrack, ITicket,
+    MonitorFilterService, ModalComponent, TimerComopnent
+} from '../../shared';
 import { MonitorTicketService } from '../ticket.service';
 import { MonitorNavService } from '../../../service/shared/nav';
-import { ModalComponent } from '../../../../x/ng/modal/modal.component';
-import { TimerComopnent } from '../../../../x/ng/time/timer.component';
-
-const TicketStates = Model.House.TicketStates;
 
 @Component({
     selector: 'focus-on-branch',
@@ -27,7 +27,7 @@ export class FocusComponent {
     selectedTicket: Object;
     isServed: boolean = true;
     data: Summary;
-    customer: Model.Org.ICustomer;
+    customer: ICustomer;
     // waitingCount = 0;
 
 
@@ -121,7 +121,8 @@ export class FocusComponent {
     })
 
 
-    addServingTrack(t: ITicket) {
+    addServingTrack(a: ITicket) {
+        const t = <IExtendedTicket>a;
         for (let i = t.tracks.length - 1; i >= 0; i--) {
             if (t.tracks[i].state === 'serving') {
                 t.serving = t.tracks[i];
@@ -129,7 +130,7 @@ export class FocusComponent {
             }
         }
 
-        t.serving = <Model.House.ITicketTrack>{
+        t.serving = <ITicketTrack>{
             state: TicketStates.Serving,
         };
         return t;

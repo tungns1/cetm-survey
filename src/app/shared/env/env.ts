@@ -3,8 +3,7 @@ export interface AuthEnv {
     Store: string;
     Module: string;
     Submodule: string;
-    Username: string;
-    Fullname: string;
+    Token: string;
     UserID: string;
     Role: string;
 }

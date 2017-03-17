@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AdminFilterService } from '../shared';
-import { SharedService } from '../../shared';
 import { CounterService } from './counter';
 import { KioskService } from './kiosk';
 import { ScreenService } from './screen';

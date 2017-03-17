@@ -1,7 +1,6 @@
 
 import { BranchFilterModule, BranchFilterService } from './filter';
 import { BranchPickerModule } from './picker/picker.module';
-import {Org} from '../model';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 @NgModule({
@@ -17,10 +16,5 @@ export class BranchModule {
 }
 
 export { BranchFilterService, BranchFilter } from './filter';
-const CacheBranch = Org.CacheBranch;
-
-export {
-    CacheBranch
-}
 
 

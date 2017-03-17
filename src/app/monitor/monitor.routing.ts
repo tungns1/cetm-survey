@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from "@angular/router"
-import { SharedService } from "./shared/";
+import { AuthGuard } from "./shared/";
 import { MonitorComponent, MonitorTicketModule } from "./component";
 
 const children: Routes = [
@@ -10,7 +10,7 @@ const children: Routes = [
 export const routing = RouterModule.forChild([
     {
         path: "",
-        canActivate: [SharedService.Auth.AuthGuard],
+        canActivate: [AuthGuard],
         component: MonitorComponent,
         children: children
     }

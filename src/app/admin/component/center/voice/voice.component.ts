@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Center } from '../../../service/';
-import { Branch, Editor, Model } from '../../../shared/';
+import { ILayout } from '../../../service/';
 
 import { FormBuilder, Validators } from '@angular/forms';
 
-function NewForm(b?: Model.Center.ILayout) {
+function NewForm(b?: ILayout) {
     b = b || <any>{};
     return (new FormBuilder).group({
         id: [b.id],

@@ -1,13 +1,13 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { Org } from '../model';
+import { BranchLevels, CacheBranch } from '../model';
 
 @Pipe({
     name: 'branchLevelName'
 })
 export class BranchLevelNamePipe implements PipeTransform {
     transform(id: number) {
-        return Org.BranchLevels[id].name;
+        return BranchLevels[id].name;
     }
 }
 
@@ -16,6 +16,6 @@ export class BranchLevelNamePipe implements PipeTransform {
 })
 export class BranchNamePipe implements PipeTransform {
     transform(id: string) {
-        return Org.CacheBranch.GetNameForID(id);
+        return CacheBranch.GetNameForID(id);
     }
 }

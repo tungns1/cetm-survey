@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Center } from '../../../service/';
-import { Branch, Model } from '../../../shared/';
+import { CenterService, ILayout } from '../../../service/';
 
 @Component({
     selector: 'center-layout',
@@ -12,7 +11,7 @@ import { Branch, Model } from '../../../shared/';
 export class LayoutComponent {
 
     constructor(
-        private center: Center.CenterService,
+        private center: CenterService,
         private route: ActivatedRoute
     ) {
         route.queryParams.forEach(v => {
@@ -22,7 +21,7 @@ export class LayoutComponent {
 
     tag: string;
 
-    makeForm(b?: Model.Center.ILayout) {
+    makeForm(b?: ILayout) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],

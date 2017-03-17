@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NavModule, HeaderModule } from "./component/";
-import { authProviders } from './service/auth';
+import { authProviders } from './auth';
 import { I18nService } from './service/i18n';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';

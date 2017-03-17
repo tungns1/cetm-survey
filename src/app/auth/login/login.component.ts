@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Backend, Platform } from '../../x';
-import { Auth } from '../../shared/service';
+import { AuthService } from '../../shared/service/auth';
 import { I18nHttpError } from './errors';
 
 interface ILoginModel {
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   message = '';
 
   constructor(
-    private authService: Auth.AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit() {

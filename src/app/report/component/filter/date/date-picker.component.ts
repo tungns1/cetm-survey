@@ -3,7 +3,6 @@ import { EventEmitter, Output, ViewChild, SimpleChange, ChangeDetectionStrategy 
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-
 const DATE_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => DatePickerComponent),

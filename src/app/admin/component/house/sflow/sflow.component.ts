@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { House, Center } from '../../../service/';
+import { HouseService, CenterService } from '../../../service/';
 import { Branch, Model } from '../../../shared/';
 
 import { FormBuilder, Validators } from '@angular/forms';
@@ -11,8 +11,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class SFlowComponent {
 
     constructor(
-        private center: Center.CenterService,
-        private house: House.HouseService,
+        private center: CenterService,
+        private house: HouseService,
     ) { }
 
     service = this.house.SFlowService;

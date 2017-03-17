@@ -9,4 +9,5 @@ export {
 
 export * from '../../service';
 export * from '../../shared';
+export { AuthService } from '../../../shared/service/auth';
 

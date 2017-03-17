@@ -1,12 +1,12 @@
 import { Pipe } from '@angular/core';
-import { Center, House } from '../model/';
+import { ServiceName, TicketStates, ITicket } from '../model/';
 
 @Pipe({
     name: 'serviceName'
 })
 export class ServiceNamePipe {
     transform(service_id: string) {
-        return Center.ServiceName(service_id);
+        return ServiceName(service_id);
     }
 }
 
@@ -15,26 +15,24 @@ export class ServiceNamePipe {
 })
 export class MultipleServiceNamePipe {
     transform(services: string[]) {
-        return services.map(Center.ServiceName);
+        return services.map(ServiceName);
     }
 }
-
-const TicketStates = House.TicketStates;
 
 @Pipe({
     name: 'ticketServiceName'
 })
 export class TicketServiceNamePipe {
-    transform(t: House.ITicket) {
+    transform(t: ITicket) {
         switch (t.state) {
             case TicketStates.Serving:
-                return Center.ServiceName(t.service_id);
+                return ServiceName(t.service_id);
             case TicketStates.Finished:
             // fallthrough
             case TicketStates.Missed:
             // fallthrough
             case TicketStates.Waiting:
-                return (t.services || []).map(Center.ServiceName);
+                return (t.services || []).map(ServiceName);
         }
         return 'n/a';
     }
