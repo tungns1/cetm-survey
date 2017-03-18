@@ -10,10 +10,11 @@ import { i18nServiceProvider } from './service/i18n';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
 import { TranslateModule } from '../x/i18n';
+import { RouterQueryStorageStrategy } from '../../lib/platform';
 
 @NgModule({
     imports: [
-        
+
     ],
     exports: [
         CommonModule, FormsModule, ReactiveFormsModule,
@@ -28,7 +29,8 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 EnvironmentModule.Providers(),
-                authProviders, i18nServiceProvider
+                authProviders, i18nServiceProvider,
+                RouterQueryStorageStrategy
             ]
         }
     }

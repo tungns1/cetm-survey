@@ -1,9 +1,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./shared/";
-import {
-  AdminComponent, OrgModule,
-  CenterModule, HouseModule, MetaModule
-} from "./component";
+import { AdminComponent } from "./component";
 
 export const children: Routes = [
   {
@@ -13,15 +10,15 @@ export const children: Routes = [
   },
   {
     path: "org",
-    loadChildren: "./org/org.module#OrgModule"
+    loadChildren: "./component/org/org.module#OrgModule"
   },
   {
     path: "meta",
-    loadChildren: "./meta/meta.module#MetaModule"
+    loadChildren: "./component/meta/meta.module#MetaModule"
   },
   {
     path: "house",
-    loadChildren: "./house/house.module#HouseModule"
+    loadChildren: "./component/house/house.module#HouseModule"
   },
   {
     path: "center",
