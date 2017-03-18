@@ -1,5 +1,16 @@
 import { Injectable } from '@angular/core';
-import { SharedService, Model, Branch } from '../../../shared/';
+import {
+    ICounter, IService, IUser,
+    AddServiceName, USER_ROLES, 
+    CacheCounter, CacheService, CacheUsers,
+    IDList
+} from '../../../../shared/model';
+import { HttpApi } from '../../../../shared/service/backend';
+
+import {
+    BranchFilter, BranchFilterService,
+    AbstractState, AbstractStateService, 
+} from '../../../shared';
 
 const GROUP_BYS = {
     BRANCH_ID: 'branch_id',
@@ -16,11 +27,11 @@ export interface IInsideBranchFilter {
 }
 
 
-export class InsideBranchFilter extends Model.SharedModel.AbstractState {
+export class InsideBranchFilter extends AbstractState {
     FromQuery(p: Params) {
-        this.service_id = new Model.SharedModel.IDList(p['service_id']);
-        this.counter_id = new Model.SharedModel.IDList(p['counter_id']);
-        this.user_id = new Model.SharedModel.IDList(p['user_id']);
+        this.service_id = new IDList(p['service_id']);
+        this.counter_id = new IDList(p['counter_id']);
+        this.user_id = new IDList(p['user_id']);
     }
 
     ToQuery() {
@@ -72,9 +83,9 @@ export class InsideBranchFilter extends Model.SharedModel.AbstractState {
         return [];
     }
 
-    private service_id: Model.SharedModel.IDList;
-    private user_id: Model.SharedModel.IDList;
-    private counter_id: Model.SharedModel.IDList;
+    private service_id: IDList;
+    private user_id: IDList;
+    private counter_id: IDList;
 }
 
 import { Params, ActivatedRoute, Router } from '@angular/router';
@@ -82,10 +93,10 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
-export class InsideBranchFilterService extends Model.SharedModel.AbstractStateService<InsideBranchFilter> {
+export class InsideBranchFilterService extends AbstractStateService<InsideBranchFilter> {
     constructor(
         route: ActivatedRoute,
-        private branchFilter: Branch.BranchFilterService
+        private branchFilter: BranchFilterService
     ) {
         super(route);
         this.onInit(new InsideBranchFilter);
@@ -93,7 +104,7 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractStateSe
 
     protected onInit(v: InsideBranchFilter) {
         super.onInit(v);
-        Model.Center.CacheService.RxListView.subscribe(data => this.updateService(data));
+        CacheService.RxListView.subscribe(data => this.updateService(data));
         this.branchFilter.ValueChanges.throttleTime(250)
             .map(b => b.GetBranchIDByLevel(0))
             .switchMap(branch_id => {
@@ -101,31 +112,31 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractStateSe
                     return of({});
                 }
                 return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
-            }).subscribe(d => {
+            }).subscribe((d: any) => {
                 this.updateService(d.services || []);
                 this.updateCounters(d.counters || []);
                 this.updateUsers(d.users || []);
             })
     }
 
-    private updateService(services: Model.Center.IService[] = []) {
+    private updateService(services: IService[] = []) {
         services.sort((a, b) => a.name < b.name ? -1 : 1);
-        services.forEach(Model.Center.AddServiceName);
+        services.forEach(AddServiceName);
         this.services$.next(services);
     }
 
-    private updateUsers(users: Model.Org.IUser[] = []) {
-        const role = Model.Org.USER_ROLES.STAFF;
+    private updateUsers(users: IUser[] = []) {
+        const role = USER_ROLES.STAFF;
         const staff = users.filter(u => u.role.indexOf(role) !== -1)
             .sort((a, b) => a.fullname < b.fullname ? -1 : 1);
         this.users$.next(staff);
-        Model.Org.CacheUsers.Refresh(staff);
+        CacheUsers.Refresh(staff);
     }
 
-    private updateCounters(counters: Model.House.ICounter[] = []) {
+    private updateCounters(counters: ICounter[] = []) {
         counters.sort((a, b) => a.name < b.name ? -1 : 1);
         this.counters$.next(counters);
-        Model.House.CacheCounter.Refresh(counters);
+        CacheCounter.Refresh(counters);
     }
 
     SetInsideInfilter(v: IInsideBranchFilter) {
@@ -133,8 +144,8 @@ export class InsideBranchFilterService extends Model.SharedModel.AbstractStateSe
         this.triggerChange();
     }
 
-    private api = new SharedService.Backend.HttpApi("/api/auth");
-    users$ = new ReplaySubject<Model.Org.IUser[]>(1);
-    counters$ = new ReplaySubject<Model.House.ICounter[]>(1);
-    services$ = new ReplaySubject<Model.Center.IService[]>(1);
+    private api = new HttpApi("/api/auth");
+    users$ = new ReplaySubject<IUser[]>(1);
+    counters$ = new ReplaySubject<ICounter[]>(1);
+    services$ = new ReplaySubject<IService[]>(1);
 }

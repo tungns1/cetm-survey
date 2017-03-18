@@ -1,4 +1,3 @@
-import { SharedService } from '../../shared';
 import { Item } from '../../../../x/ng/d3/chart';
 
 export interface ChartItem extends Item {

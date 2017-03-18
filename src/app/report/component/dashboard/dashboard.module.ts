@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
-import { SharedService } from '../../shared';
+import { SharedModule } from '../../shared';
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -20,8 +20,8 @@ import { ReportTabComponent } from './tab/tab.component';
 
 @NgModule({
     imports: [
-        routing, ReportSumModule, ReportOverviewModule, ReportChartModule,
-        CommonModule, SharedService.I18n.TranslateModule
+        CommonModule, SharedModule, routing,
+        ReportSumModule, ReportOverviewModule, ReportChartModule
     ],
     declarations: [
         DashboardComponent, ReportTabComponent

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HouseService, CenterService } from '../../../service/';
-import { Branch, Model } from '../../../shared/';
+import {
+    ISFlow, HouseService, CenterService
+} from '../../../service/';
 
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -21,7 +22,7 @@ export class SFlowComponent {
     tforms = this.center.TFormService.RxListView;
     tformVips = this.tforms;
 
-    makeForm(b?: Model.House.ISFlow) {
+    makeForm(b?: ISFlow) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],

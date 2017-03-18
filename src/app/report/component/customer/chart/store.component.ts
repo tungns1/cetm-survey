@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AggregateService, Lib } from '../../shared';
+import { AggregateService } from '../../shared';
 import { MakeIndexBy, ReportViewService } from '../../shared';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

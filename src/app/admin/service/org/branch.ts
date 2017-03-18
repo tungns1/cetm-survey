@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { SharedService, AuthService } from '../../shared/';
+import { AuthService } from '../../shared/';
 import { CrudApiService, AdminFilter, AdminFilterService, IBranch, CacheBranch } from '../shared';
 
 @Injectable()

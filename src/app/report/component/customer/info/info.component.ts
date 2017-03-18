@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Customer, IService, IStore } from '../../shared/';
 import { CustomerAPI, max_service, max_store, RxInfoCustomer } from '../service/customer.service';
-import { Model } from '../../shared/';
 
 @Component({
     selector: 'report-info',

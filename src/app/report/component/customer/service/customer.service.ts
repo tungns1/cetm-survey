@@ -1,5 +1,7 @@
 import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from '../../shared';
-import { SharedService, Model } from '../../shared/';
+import { 
+    ICustomer, HttpApi, AppSocket
+ } from '../../shared/';
 import { ReportFilterService, ReportFilter } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
@@ -16,7 +18,7 @@ export interface IHistory {
 export const max_service = new BehaviorSubject<IService>(null);
 export const max_store = new BehaviorSubject<IStore>(null);
 export const paging = new Paging<ITransactionView>();
-export const RxInfoCustomer = new BehaviorSubject<Model.Org.ICustomer>(null);
+export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
 
 @Injectable()
 export class CustomerAPI {
@@ -60,13 +62,13 @@ export class CustomerAPI {
     }
     GetInfoCustomerByCode(code: string) {
         RxInfoCustomer.next(null);
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
             RxInfoCustomer.next(v);
         });
     }
     GetInfoCustomerById(id: string) {
         RxInfoCustomer.next(null);
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: id }).subscribe(v => {
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: id }).subscribe(v => {
             RxInfoCustomer.next(v);
         });
     }
@@ -105,7 +107,7 @@ export class CustomerAPI {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/report/customer");
-    api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
+    apiCustomer = new HttpApi<any>("/api/report/customer");
+    api = new HttpApi<any>("/api/report/transaction");
 
 }

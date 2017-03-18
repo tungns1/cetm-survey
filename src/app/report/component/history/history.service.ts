@@ -1,4 +1,4 @@
-import { ITransaction, ITransactionView } from '../shared';
+import { ITransaction, ITransactionView, HttpApi, ICustomer } from '../shared';
 import { ReportFilterService, ReportFilter } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
@@ -23,7 +23,7 @@ export class TransactionHistoryApi {
         return this.api.Get<IHistory>("read", query);
     }
     GetInfoCustomer(idCustomer: string) {
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: idCustomer });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: idCustomer });
     }
 
 
@@ -31,6 +31,6 @@ export class TransactionHistoryApi {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/report/customer");
-    api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
+    apiCustomer = new HttpApi<any>("/api/report/customer");
+    api = new HttpApi<any>("/api/report/transaction");
 }

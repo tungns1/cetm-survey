@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { appRouting } from "./app.routing";
-import { SharedService } from "./shared";
 
 import { provideTranslateModule } from './shared/service/i18n';
 

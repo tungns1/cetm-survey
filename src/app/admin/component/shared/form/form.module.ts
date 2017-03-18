@@ -9,7 +9,7 @@ import { ArrayFormComponent } from './array-form.component';
     declarations: [ArrayFormComponent],
     exports: [ArrayFormComponent]
 })
-export class ArrayFormModule {
+class ArrayFormModule {
 
 }
 
@@ -43,6 +43,16 @@ import { UIFormComponent } from './ui-form.component';
     declarations: [UIFormComponent],
     exports: [UIFormComponent]
 })
-export class UIFormModule {
+class UIFormModule {
+
+}
+
+@NgModule({
+    exports: [
+        ArrayFormModule, JSONFormModule, UIFormModule,
+        CultureModule
+    ]
+})
+export class AdminFormModule {
 
 }

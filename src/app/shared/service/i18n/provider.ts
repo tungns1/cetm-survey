@@ -1,9 +1,9 @@
-import { I18n } from '../../shared';
+import { TranslateModule, TranslateLoader } from '../../../x/i18n';
 import { RawTranslateLoader } from './load';
 
 export function provideTranslateModule() {
-    return I18n.TranslateModule.forRoot({
-        provide: I18n.TranslateLoader,
+    return TranslateModule.forRoot({
+        provide: TranslateLoader,
         useFactory: () => {
             const files = [];
             return new RawTranslateLoader(files);

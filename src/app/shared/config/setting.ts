@@ -1,6 +1,5 @@
-import { Const } from '../shared';
-const qs = Fmt.Query(window.location.hash.split('?')[1]);
-import { Platform, Fmt } from '../shared/';
+import { Const } from '../../../const';
+import { LocalSetting } from '../shared/';
 
 interface IAppSetting {
     culture: string;
@@ -10,8 +9,8 @@ interface IAppSetting {
     debug: boolean;
 }
 
-export const AppSetting = new Platform.LocalSetting<IAppSetting>(Const.LOCAL_SETTING_KEYS.APPLICATION);
-AppSetting.data.host = qs['host'] || AppSetting.data.host || window.location.host;
+export const AppSetting = new LocalSetting<IAppSetting>(Const.LOCAL_SETTING_KEYS.APPLICATION);
+AppSetting.data.host = AppSetting.data.host || window.location.host;
 
 export function Setting() {
     return AppSetting.data;

@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { Branch, SharedService } from "./shared/";
 import { SharedModule } from "./shared/";
 import { AppComponent } from "./admin.component";
 import { AdminFilterModule } from "./component";

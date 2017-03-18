@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { MonitorTabModule } from '../shared/';
 import { CTimeDatePipe } from './time.pipe';
-import { I18n } from '../shared';
+import { SharedModule } from '../shared';
 
 const routing = RouterModule.forChild([
     {
@@ -14,7 +14,7 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, MonitorTabModule, CommonModule,I18n.TranslateModule],
+    imports: [routing, MonitorTabModule, CommonModule, SharedModule],
     declarations: [MonitorDeviceComponent, CTimeDatePipe]
 })
 export class MonitorDeviceModule { }

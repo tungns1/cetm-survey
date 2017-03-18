@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { Branch } from '../../shared/';
 import { Router } from '@angular/router';
 
 import { MonitorNavService } from '../../service';

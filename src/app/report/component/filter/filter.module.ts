@@ -1,6 +1,6 @@
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { SharedModule, Branch } from '../../shared/';
+import { SharedModule, BranchModule } from '../../shared/';
 import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
 
@@ -13,7 +13,7 @@ import { AccordionModule } from '../../../x/ui/accordion/accordion';
 
 @NgModule({
     imports: [
-        SharedModule, DatePickerModule, Branch.BranchModule,
+        SharedModule, DatePickerModule, BranchModule,
         AccordionModule
     ],
     declarations: [

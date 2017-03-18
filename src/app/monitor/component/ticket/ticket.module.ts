@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
 import { SummaryComponent } from './summary/summary.component';
-import { SharedPipe } from '../../shared';
 import { MonitorChartComponent } from './chart/chart.component';
 import { D3Module } from '../../../x/ng/d3/d3.module';
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Lib, SharedModule,SharedService } from '../../../shared';
+import { SharedModule, TranslateModule } from '../../../shared';
 import { EditorComponent, EditorTitleComponent } from './editor.component';
 
 @NgModule({
-    imports: [Lib.Ng.ModalModule, SharedModule,SharedService.I18n.TranslateModule],
+    imports: [SharedModule, TranslateModule],
     declarations: [
         EditorComponent, EditorTitleComponent
     ],

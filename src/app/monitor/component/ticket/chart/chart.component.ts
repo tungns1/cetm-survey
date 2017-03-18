@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Lib } from '../../shared';
+import { TranslateService } from '../../shared';
 import { ChartItem, PieItems } from './chart.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 export class MonitorChartComponent {
     constructor(
-        private translateService: Lib.I18n.TranslateService,
+        private translateService: TranslateService,
     ) { }
 
     @Input() data = {};

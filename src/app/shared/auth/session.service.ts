@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Const } from '../shared';
+import { Const } from '../../../const';
 import { LocalSetting } from '../../x/platform';
 
 export interface ISession {

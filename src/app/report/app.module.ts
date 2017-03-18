@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { Branch, SharedService } from "./shared/";
 import { SharedModule } from "./shared/";
 import { routing } from "./app.routing";
 import { AppComponent } from "./app.component";

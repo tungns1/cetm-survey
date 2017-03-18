@@ -1,5 +1,6 @@
-import { SharedConfig } from './shared';
-const UploadFolder = `${SharedConfig.HttpHost()}`;
+import { HttpHost } from '../../shared/config';
+
+const UploadFolder = `${HttpHost()}`;
 
 import { SetUploadURL, FilePickerModule, MultiFilePickerModule } from '../../x/ng/upload/';
 

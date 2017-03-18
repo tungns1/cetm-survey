@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AdminFilterService, OrgService, IUser } from '../../shared/';
+import { AdminFilterService, OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../../shared/';
 
 @Component({
   selector: 'admin-user',
@@ -27,7 +26,7 @@ export class UserComponent {
   }
 
   service = this.org.UserService;
-  private roles = Model.Org.AllRoles;
+  private roles = AllRoles;
   private branches = this.org.BranchService.RxListView;
 }
 

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { SharedModule, Branch } from '../../shared/';
-import { Editor } from '../shared';
+import { SharedModule, BranchModule } from '../../shared/';
+import { EditorModule } from '../shared';
 import { routing, components } from './org.routing';
 
 @NgModule({
     imports: [
-        SharedModule, Editor.EditorModule, Branch.BranchModule, routing
+        SharedModule, EditorModule, BranchModule, routing
     ],
     declarations: [...components]
 })

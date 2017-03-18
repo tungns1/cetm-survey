@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { I18n, SharedModule, TimeModule } from '../../shared';
+import { SharedModule, TimeModule } from '../../shared';
 import { TicketDetailDialog } from './ticket-detail.dialog';
 import { TicketDetailDirective } from './ticket-detail.directive';
 import { TicketHighlightDirective } from './ticket-highlight.directive';

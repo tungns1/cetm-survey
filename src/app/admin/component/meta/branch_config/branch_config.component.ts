@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MetaService, OrgService, IBranchConfig } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../../shared/';
 
 @Component({
   selector: 'admin-config',

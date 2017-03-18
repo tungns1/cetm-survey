@@ -4,10 +4,10 @@ import { TicketModule } from '../ticket/ticket.module';
 import { StaComponent } from './sta.component';
 import { BarComponent } from './bar.component';
 import { SearchComponent } from './search.component';
-import { I18n } from '../../shared';
+import { SharedModule } from '../../shared';
 
 @NgModule({
-    imports: [CommonModule, TicketModule, I18n.TranslateModule],
+    imports: [CommonModule, TicketModule, SharedModule],
     declarations: [StaComponent, BarComponent, SearchComponent],
     exports: [StaComponent]
 })

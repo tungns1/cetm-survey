@@ -2,8 +2,8 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BranchConfigComponent } from './branch_config.component';
 import { FeedbackConfigModule } from './feedback.module';
-import { SharedService, SharedModule } from '../../shared/';
-import { Editor, Form } from '../../shared';
+import { SharedModule } from '../../shared/';
+import { EditorModule, AdminFormModule } from '../../shared';
 
 export const routing = RouterModule.forChild([
     {
@@ -15,8 +15,7 @@ export const routing = RouterModule.forChild([
 @NgModule({
     imports: [
         routing, SharedModule,
-        Editor.EditorModule, Form.JSONFormModule, FeedbackConfigModule,
-        SharedService.I18n.TranslateModule
+        EditorModule, AdminFormModule, FeedbackConfigModule
     ],
     declarations: [BranchConfigComponent]
 })

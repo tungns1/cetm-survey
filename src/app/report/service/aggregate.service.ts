@@ -15,7 +15,9 @@ export function MakeIndexBy(records: IAggregate[], field: string) {
 }
 
 import { ReportFilterService, ReportFilter } from './shared';
-
+import {
+    HttpApi, ServiceName, CacheBranch, CacheCounter, CacheUsers
+} from '../shared';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -69,21 +71,21 @@ export class AggregateService {
     GetName(id: string, model: string) {
         switch (model) {
             case 'service_id':
-                return Model.Center.ServiceName(id);
+                return ServiceName(id);
             case 'branch_id':
-                return Model.Org.CacheBranch.GetNameForID(id);
+                return CacheBranch.GetNameForID(id);
             case 'user_id':
-                return Model.Org.CacheUsers.GetName(id, 'fullname');
+                return CacheUsers.GetName(id, 'fullname');
             case 'counter_id':
-                return Model.House.CacheCounter.GetName(id, 'name');
+                return CacheCounter.GetName(id, 'name');
         }
-        return Model.House.CacheCounter.NotApplicable;
+        return CacheCounter.NotApplicable;
     }
 
     groupBy$ = new BehaviorSubject<string>('branch_id');
     period$ = new BehaviorSubject<string>('day');
 
-    backend = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
+    backend = new HttpApi<any>("/api/report/transaction");
 }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
-import { CounterStateService, SharedService, CounterNavService } from './shared';
+import { CounterStateService, CounterNavService } from './shared';
 import { AuthService } from '../shared';
 
 @Component({

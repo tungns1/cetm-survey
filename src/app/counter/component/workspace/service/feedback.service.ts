@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
-import { ITicket, SharedService, AuthService } from '../../shared';
+import { ITicket, AuthService } from '../../shared';
 import { IsFeedbackDeviceAvailable } from '../../../device';
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
