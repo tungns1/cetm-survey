@@ -1,7 +1,7 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
     <editor-title> <span translate> LANGAUGE_LIST_LAYOUT</span><b> {{tag}} </b> </editor-title>
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span translate>LANGAUGE_NAME</span>
+        <span i18n translate>LANGAUGE_NAME</span>
         <input class="hl-input" formControlName="name" placeholder="{{'LABEL_NAME' | translate}}"><br> <span translate>LANGAUGE_TYPE_LAYOUT</span>
         <select class="hl-select" formControlName="type">
             <option value="kiosk"> Kiosk </option>

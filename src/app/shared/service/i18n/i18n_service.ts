@@ -22,14 +22,14 @@ export class I18nService {
         return this.translateService.instant(key);
     }
 
-    static provider(): FactoryProvider {
-        return {
-            provide: I18nService,
-            deps: [TranslateService],
-            useFactory: (translateService: TranslateService) => {
-                return new I18nService(translateService);
-            }
-        }
+}
 
-    }
+export function newI18nService(translateService: TranslateService) {
+    return new I18nService(translateService);
+}
+
+export const i18nServiceProvider: FactoryProvider = {
+    provide: I18nService,
+    deps: [TranslateService],
+    useFactory: newI18nService
 }
