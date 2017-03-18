@@ -17,7 +17,7 @@ function NewForm(b?: ILayout) {
     selector: 'center-voice',
     templateUrl: 'voice.component.html'
 })
-export class LayoutComponent {
+export class VoiceComponent {
 
     fields = [
         { title: 'LANGAUGE_NAME', name: 'name' },

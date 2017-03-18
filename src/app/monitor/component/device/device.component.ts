@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { TrackDevice, RxDeviceData, SetTabAndRefresh } from '../backend/';
-import { ITab } from '../shared/';
 
-const tabDevice: ITab[] = [{
+const tabDevice: any[] = [{
     tag: 'branch',
     title: 'SERVER',
     titleTable: 'SERVER_TABLE'
@@ -35,16 +33,5 @@ const tabDevice: ITab[] = [{
     styleUrls: ['device.component.css']
 })
 export class MonitorDeviceComponent {
-    ngOnInit() {
-        TrackDevice();
-    }
-    rxData = RxDeviceData.map(data => {
-        return data.sort((a, b) => a.off_at < b.off_at ? -1 : 1);
-    });
-    tabs = tabDevice;
-    tag = 'branch';
-    setActive(tab: ITab) {
-        this.tag = tab.tag;
-        SetTabAndRefresh(tab);
-    }
+    
 }

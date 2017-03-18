@@ -2,12 +2,12 @@ import { Routes, RouterModule } from "@angular/router"
 import { AuthGuard } from "./shared/";
 import { ReportComponent, ReportHistoryModule, ReportDashboardModule, ReportCustomerModule } from "./component";
 
-const children: Routes = [
+export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "dashboard" },
-    { path: "history", loadChildren: () => ReportHistoryModule },
-    { path: "dashboard", loadChildren: () => ReportDashboardModule },
-    { path: "customer/:id", loadChildren: () => ReportCustomerModule },
-    { path: "customer", loadChildren: () => ReportCustomerModule },
+    { path: "history", loadChildren: "./component/index#ReportHistoryModule" },
+    { path: "dashboard", loadChildren: "./component/index#ReportDashboardModule" },
+    { path: "customer/:id", loadChildren: "./component/index#ReportCustomerModule" },
+    { path: "customer", loadChildren: "./component/index#ReportCustomerModule" },
     { path: "sosanh", loadChildren: "admin/report/compare/compare.module" },
 ];
 

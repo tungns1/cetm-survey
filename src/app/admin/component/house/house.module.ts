@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { AdminFormModule, EditorModule, ServiceListModule } from '../shared';
 import { SharedModule, BranchModule } from '../../shared/';
-
-import { routing, components } from './house.routing';
 import { FilePickerModule, MultiFilePickerModule } from '../../shared/upload';
+
+import { HouseComponent } from './house.component';
+import { CounterComponent } from './counter/counter.component';
+import { KioskComponent } from './kiosk/kiosk.component';
+import { ScreenComponent } from './screen/screen.component';
+import { SFlowComponent } from './sflow/sflow.component';
+
+import { routing } from './house.routing';
 
 @NgModule({
     imports: [
@@ -12,7 +18,10 @@ import { FilePickerModule, MultiFilePickerModule } from '../../shared/upload';
         FilePickerModule, MultiFilePickerModule,
         routing
     ],
-    declarations: [...components]
+    declarations: [
+        HouseComponent, CounterComponent, KioskComponent,
+        ScreenComponent, SFlowComponent
+    ]
 })
 export class HouseModule {
 

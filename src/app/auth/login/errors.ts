@@ -1,4 +1,4 @@
-import { Backend } from '../../x';
+import { HttpError } from '../../x/backend';
 
 const ViErrors = {
 
@@ -21,6 +21,6 @@ export function FormatError(e: string) {
   return e;
 }
 
-export function I18nHttpError(err: Backend.HttpError) {
+export function I18nHttpError(err: HttpError) {
   return `Error: ${FormatError(err.Message())}`
 }

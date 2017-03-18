@@ -4,14 +4,22 @@ import { AuthGuard } from "./shared/";
 import { CounterComponent, WorkspaceModule, LegacyModule } from "./component/";
 import { WorkspaceGuard } from './service';
 
+export function loadLegacyModule() {
+  return LegacyModule;
+}
+
+export function loadWorkspace() {
+  return WorkspaceModule;
+}
+
 const children: Routes = [
   {
     path: ":branch_code/:counter_code",
-    loadChildren: () => LegacyModule
+    loadChildren: loadLegacyModule
   },
   {
     path: "workspace",
-    loadChildren: () => WorkspaceModule,
+    loadChildren: loadWorkspace,
     canActivate: [
       WorkspaceGuard,
       AuthGuard

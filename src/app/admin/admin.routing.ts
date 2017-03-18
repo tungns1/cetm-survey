@@ -5,7 +5,7 @@ import {
   CenterModule, HouseModule, MetaModule
 } from "./component";
 
-const children: Routes = [
+export const children: Routes = [
   {
     path: "",
     pathMatch: "full",
@@ -13,19 +13,19 @@ const children: Routes = [
   },
   {
     path: "org",
-    loadChildren: () => OrgModule
+    loadChildren: "./org/org.module#OrgModule"
   },
   {
     path: "meta",
-    loadChildren: () => MetaModule
+    loadChildren: "./meta/meta.module#MetaModule"
   },
   {
     path: "house",
-    loadChildren: () => HouseModule
+    loadChildren: "./house/house.module#HouseModule"
   },
   {
     path: "center",
-    loadChildren: () => CenterModule
+    loadChildren: "./center/center.module#CenterModule"
   }
 ]
 
@@ -37,8 +37,3 @@ export const routing = RouterModule.forChild([
     children: children
   }
 ]);
-
-export const components = children.map(c => c.component).filter(c => !!c);
-
-components.push(AdminComponent);
-

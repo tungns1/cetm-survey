@@ -37,7 +37,3 @@ export const routing = RouterModule.forChild([
     children: children
   }
 ]);
-
-export const components = children.map(c => c.component).filter(c => !!c);
-components.push(HouseComponent);
-

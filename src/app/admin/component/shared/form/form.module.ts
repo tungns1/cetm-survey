@@ -9,7 +9,7 @@ import { ArrayFormComponent } from './array-form.component';
     declarations: [ArrayFormComponent],
     exports: [ArrayFormComponent]
 })
-class ArrayFormModule {
+export class ArrayFormModule {
 
 }
 
@@ -43,7 +43,7 @@ import { UIFormComponent } from './ui-form.component';
     declarations: [UIFormComponent],
     exports: [UIFormComponent]
 })
-class UIFormModule {
+export class UIFormModule {
 
 }
 
