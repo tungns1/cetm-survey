@@ -90,7 +90,9 @@ export class TicketDetailDialog {
     this.ticketService.Cancel(this.ticket).subscribe(_ => {
       // toastr.success("Delete success counter");
       this.Close();
+      this.remove.Close();
     }, err => {
+       this.remove.Close();
       // toastr.error(err.error);
     });;
   }
