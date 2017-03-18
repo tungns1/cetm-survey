@@ -3,6 +3,12 @@
         <h1 fxFlex> {{data.branch_id | branchName}} </h1>
         <h3 fxFlex="10%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
     </div>
+
+    <!--<h2 class="header">LỊCH SỬ GIAO DỊCH</h2>
+    <div class="nav">
+        <button class="btnClear btnMargin" (click)="nav('/report/customer')">KHÁCH HÀNG</button>
+    </div>-->
+
     <div class="flex-container overview" fxLayout="row" fxLayoutAlign="space-between none">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -87,7 +93,8 @@
                 <td> {{i + 1}} </td>
                 <td> {{t.services | multipleServiceName}}</td>
                 <td> {{t.cnum}}</td>
-                <td> {{t.customer.full_name }} </td>
+                <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
+                <td *ngIf="!t.customer"> </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td *ngIf="t.state === 'waiting'">
                     <timer [start]="t.mtime" [timeWarning]="15"></timer>
@@ -131,7 +138,8 @@
                 <td *ngIf="!t.serving">{{t.user_id | userFullName}}</td>
 
                 <td> {{t.cnum}} </td>
-                <td> {{t.customer.full_name }} </td>
+                <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
+                <td *ngIf="!t.customer"> </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td *ngIf="t.serving"> {{t.serving.mtime - t.ctime | timeDuration}} </td>
                 <td *ngIf="!t.serving"> {{t.mtime - t.ctime | timeDuration}} </td>

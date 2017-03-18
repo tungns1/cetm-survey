@@ -5,6 +5,7 @@ import { MonitorTicketService } from '../ticket.service';
 @Component({
     selector: 'ticket-summary',
     templateUrl: 'summary.component.html',
+    styleUrls: ['summary.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SummaryComponent {

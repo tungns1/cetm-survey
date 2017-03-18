@@ -9,8 +9,7 @@ import { MonitorNavService } from '../../service/shared/nav';
 
 @Component({
     selector: 'monitor-ticket',
-    templateUrl: 'ticket.component.html',
-    styleUrls: ['ticket.component.css']
+    templateUrl: 'ticket.component.html'
 })
 export class MonitorTicketComponent implements OnInit {
     constructor(        

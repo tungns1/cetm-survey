@@ -5,57 +5,27 @@
 }
 #report{
     $primary-color: #0b8fdb;
-
     
-    font-size: 11px;
-    background-color: #f4f4f4;
-    .footer{
-        margin: 50px 0;
-    }
-    .leftFilter{
-        padding-top: 50px;
-        border-right: solid;
-        border-width: 1px;
-        border-color: #a7a9ac;
-    }
-    .mainContent{
-        padding: 0 35px;
-        .header{
+    .paginNExport{
+        margin: 20px 0px 30px 0px;
+        .pagin{
             display: inline-block;
-            font-size: 23px;
+            button{
+                margin-right: 3px;
+                border: none;
+                background-color: transparent;
+                color: $primary-color;
+            }
+            .active{
+                font-weight: bold;
+            }
         }
-        .nav{
+        .export{
+            display: inline-block;
             float: right;
-            margin: 20px 0px;
-            .btnMargin{
-                margin-left: 12px;
-            }
-        }
-        .ctrlInput{
-            border-radius: 3px;
-            border: 1px solid #a7a9ac;
-        }
-        .paginNExport{
-            margin: 20px 0px 30px 0px;
-            .pagin{
-                display: inline-block;
-                button{
-                    margin-right: 3px;
-                    border: none;
-                    background-color: transparent;
-                    color: $primary-color;
-                }
-                .active{
-                    font-weight: bold;
-                }
-            }
-            .export{
-                display: inline-block;
-                float: right;
-                width: 250px;
-                i{
-                    margin: 0 10px;
-                }
+            width: 250px;
+            i{
+                margin: 0 10px;
             }
         }
     }

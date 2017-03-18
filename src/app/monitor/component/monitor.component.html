@@ -1,26 +1,23 @@
-<app-header>
-    <div class="module-name" translate> LANGAUGE_MONITOR </div>
-</app-header>
+<div id="monitor" fxLayout="column" style="height: 100vh;overflow: hidden">
+    <app-header fxFlex="5%" style="z-index: 2">
+        <div class="module-name" translate> LANGAUGE_MONITOR </div>
+    </app-header>
 
-<top-nav></top-nav>
-<br>
-<br>
+    <top-nav fxFlex="5%" style="z-index: 1"></top-nav>
 
-<div class="hl-asidehead-filter">
-    <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | translate}}">&nbsp; Filters</i>
-    <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
-</div>
+    <!--<div class="hl-asidehead-filter">
+        <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | translate}}">&nbsp; Filters</i>
+        <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
+    </div>-->
 
-<div class="flex-container container" fxLayout="row" fxLayoutAlign="space-between none">
-    <div class="aside" fxFlex="20%" *ngIf="hidden">
-        <monitor-filter style="padding-top: 50px;" (filter)="setAsideFilter($event)"></monitor-filter>
+    <div fxLayout="row" fxFlex="90%">
+        <div [fxFlex]="hideFilter? '60px':'250px'" class="leftFilter">
+            <monitor-filter *ngIf="hidden" [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%" (filter)="setAsideFilter($event)"></monitor-filter>
+        </div>
+
+        <div fxFlex style="overflow: auto;" class="mainContent">
+            <router-outlet></router-outlet>
+            <p class="footer">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+        </div>
     </div>
-
-    <div fxFlex>
-        <router-outlet></router-outlet>
-    </div>
-</div>
-
-<div class="hl-ft-report">
-    <p style="font-size: 12px;">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
 </div>

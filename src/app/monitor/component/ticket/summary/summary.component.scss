@@ -1,0 +1,11 @@
+#summaryComponent{
+    .tableCtrl{
+        margin: 0px;
+        .branchSummary{
+            cursor: pointer;
+            &:hover{
+                background-color: #f4f4f4;
+            }
+        }
+    }
+}
