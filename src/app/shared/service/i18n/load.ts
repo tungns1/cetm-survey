@@ -27,8 +27,7 @@ function LoadMultiple(lang: string, files: string[]) {
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
 export class RawTranslateLoader implements TranslateLoader {
-    constructor(private files: string[]) { }
     getTranslation(lang: string) {
-        return LoadMultiple(lang, ['shared'].concat(this.files));
+        return LoadMultiple(lang, ['shared']);
     }
 }

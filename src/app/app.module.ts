@@ -5,7 +5,7 @@ import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { appRouting } from "./app.routing";
 
-import { provideTranslateModule } from './shared/service/i18n';
+import { RawTranslateLoader, TranslateLoader, TranslateModule } from './shared/service/i18n';
 
 import { BranchModule } from './shared/branch';
 import { SharedModule } from './shared/shared.module';
@@ -18,7 +18,10 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    provideTranslateModule(),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useClass: RawTranslateLoader
+    }),
     BranchModule.forRoot(),
     SharedModule.forRoot(),
     appRouting

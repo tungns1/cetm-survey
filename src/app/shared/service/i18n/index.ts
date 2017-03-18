@@ -1,8 +1,7 @@
-export * from './provider';
 export * from './i18n_service';
 
-import { TranslateService, TranslateModule } from '../../../x/i18n';
+export { RawTranslateLoader } from './load';
 
 export {
-    TranslateService, TranslateModule
-}
+    TranslateService, TranslateModule, TranslateLoader
+} from '../../../x/i18n';
