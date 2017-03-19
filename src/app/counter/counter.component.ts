@@ -4,7 +4,7 @@ import { AuthService, I18nService } from "./shared";
 import { CounterStateService } from "./service";
 
 @Component({
-    selector: "app-root",
+    selector: "app-counter",
     template: `
     <router-outlet></router-outlet>
     `,
