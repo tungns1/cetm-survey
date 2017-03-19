@@ -1,24 +1,23 @@
-import { GetJSON, GetRaw, MakeURL, PostJSON } from '../../../x/backend';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/Rx';
-import { HttpHost } from '../../config/';
-import { RxCurrentToken } from '../../auth/';
+import { GetJSON, GetRaw, MakeURL, PostJSON } from '../../x/backend';
+import { AppStorage } from '../shared';
 
-@Injectable()
 export class HttpApi<T> {
 
-    constructor(uri: string) {
-        this.url = `${HttpHost()}${uri}`;
+    constructor(
+        private url: string
+    ) {
     }
 
-    private url;
+    get token() {
+        return AppStorage.Token;
+    }
 
     protected getUrl(sub: string) {
-        return `${this.url}/${sub}`
+        return `${this.url}/${sub}`;
     }
 
     protected wrapToken(o?) {
-        return Object.assign({}, { token: RxCurrentToken.value }, o);
+        return Object.assign({}, { token: this.token }, o);
     }
 
     MakeURL(sub: string, o?: any) {
@@ -53,3 +52,4 @@ export class HttpApi<T> {
         return PostJSON<any>(this.getUrl('mark_delete'), this.wrapToken({ id: id }));
     }
 }
+

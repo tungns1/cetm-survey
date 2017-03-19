@@ -3,7 +3,6 @@ export interface AuthEnv {
     Store: string;
     Module: string;
     Submodule: string;
-    Token: string;
     UserID: string;
     Role: string;
 }
@@ -22,7 +21,7 @@ export interface DebugEnv {
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Router } from '@angular/router';
-import { SmallStorage, RouterQueryStorageStrategy } from '../shared';
+import { SmallStorage, RouterQueryStorageStrategy, LocalStorageStrategy } from '../shared';
 import { Injectable } from '@angular/core';
 
 const DefaultPlatform: PlatformEnv = {
@@ -58,6 +57,6 @@ export class RuntimeEnvironment {
     }
 
     private DebugStorage = new SmallStorage<DebugEnv>("debug", this.storageStrategy);
-    private PlatformStorage = new SmallStorage<PlatformEnv>("platform", this.storageStrategy);
+    private PlatformStorage = new SmallStorage<PlatformEnv>("platform", new LocalStorageStrategy);
     Auth$ = new ReplaySubject<AuthEnv>(1);
 }

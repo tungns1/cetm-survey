@@ -10,7 +10,9 @@ import { i18nServiceProvider } from './service/i18n';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
 import { TranslateModule } from '../x/i18n';
-import { RouterQueryStorageStrategy } from '../../lib/platform';
+
+import { LogService, RouterQueryStorageStrategy } from './shared';
+import { AppSocketGenerator, HttpServiceGenerator } from './service';
 
 @NgModule({
     imports: [
@@ -30,7 +32,8 @@ export class SharedModule {
             providers: [
                 EnvironmentModule.Providers(),
                 authProviders, i18nServiceProvider,
-                RouterQueryStorageStrategy
+                LogService, RouterQueryStorageStrategy,
+                AppSocketGenerator, HttpServiceGenerator
             ]
         }
     }

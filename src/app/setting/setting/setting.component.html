@@ -2,13 +2,14 @@
     CETM Application Setting
 </p>
 
+<span i18n="Translate plural">{wolves, plural, =0 {no wolves} =1 {one wolf} =2 {two wolves} other {a wolf pack}}</span>
+<span i18n>The hero is {gender, select, m {male} f {female}}</span>
+
 <div>
-    Choose Module To Redirect: <br>
-    <button appSafeNav="/screen"> Screen </button>
-    <br>
-    <button appSafeNav="/kiosk"> Kiosk </button>
+    <button (click)="back()">Back</button>
 </div>
 
 <div>
+    <app-application-store></app-application-store>
     <app-environment-setting></app-environment-setting>
 </div>

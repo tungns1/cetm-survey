@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
     ICounter, IService, IUser,
-    AddServiceName, USER_ROLES, 
+    AddServiceName, USER_ROLES,
     CacheCounter, CacheService, CacheUsers,
     IDList
 } from '../../../../shared/model';
-import { HttpApi } from '../../../../shared/service/backend';
-
+import { HttpServiceGenerator } from '../../../shared';
 import {
     BranchFilter, BranchFilterService,
-    AbstractState, AbstractStateService, 
+    AbstractState, AbstractStateService,
 } from '../../../shared';
 
 const GROUP_BYS = {
@@ -96,6 +95,7 @@ import { of } from 'rxjs/observable/of';
 export class InsideBranchFilterService extends AbstractStateService<InsideBranchFilter> {
     constructor(
         route: ActivatedRoute,
+        private httpServiceGenerator: HttpServiceGenerator,
         private branchFilter: BranchFilterService
     ) {
         super(route);
@@ -144,7 +144,7 @@ export class InsideBranchFilterService extends AbstractStateService<InsideBranch
         this.triggerChange();
     }
 
-    private api = new HttpApi("/api/auth");
+    private api = this.httpServiceGenerator.make("/api/auth");
     users$ = new ReplaySubject<IUser[]>(1);
     counters$ = new ReplaySubject<ICounter[]>(1);
     services$ = new ReplaySubject<IService[]>(1);

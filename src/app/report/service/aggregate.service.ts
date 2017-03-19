@@ -16,14 +16,15 @@ export function MakeIndexBy(records: IAggregate[], field: string) {
 
 import { ReportFilterService, ReportFilter } from './shared';
 import {
-    HttpApi, ServiceName, CacheBranch, CacheCounter, CacheUsers
+    HttpServiceGenerator, ServiceName, CacheBranch, CacheCounter, CacheUsers
 } from '../shared';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AggregateService {
     constructor(
-        private filterService: ReportFilterService
+        private filterService: ReportFilterService,
+        private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
     Refresh(v: ReportFilter) {
@@ -85,7 +86,7 @@ export class AggregateService {
     groupBy$ = new BehaviorSubject<string>('branch_id');
     period$ = new BehaviorSubject<string>('day');
 
-    backend = new HttpApi<any>("/api/report/transaction");
+    backend = this.httpServiceGenerator.make<any>("/api/report/transaction");
 }
 
 

@@ -1,6 +1,6 @@
 import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from '../../shared';
 import { 
-    ICustomer, HttpApi, AppSocket
+    ICustomer, HttpServiceGenerator
  } from '../../shared/';
 import { ReportFilterService, ReportFilter } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -23,7 +23,8 @@ export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
 @Injectable()
 export class CustomerAPI {
     constructor(
-        private filterService: ReportFilterService
+        private filterService: ReportFilterService,
+        private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
 
@@ -107,7 +108,7 @@ export class CustomerAPI {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-    apiCustomer = new HttpApi<any>("/api/report/customer");
-    api = new HttpApi<any>("/api/report/transaction");
+    apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
+    api = this.httpServiceGenerator.make<any>("/api/report/transaction");
 
 }

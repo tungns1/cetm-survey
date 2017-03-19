@@ -1,10 +1,12 @@
-import { Setting } from '../config/setting';
+import { AppStorage, LOCALES } from '../shared';
 
 export interface L10nText {
     [index: string]: string;
 }
 
+const defaultCulture = LOCALES.DEFAULT;
+const culture = AppStorage.Culture;
+
 export function Localize(l: L10nText) {
-    const locale = Setting().culture;
-    return l[locale] || l["en"];
+    return l[culture] || l[defaultCulture];
 }

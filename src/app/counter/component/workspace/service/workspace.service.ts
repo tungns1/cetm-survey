@@ -4,7 +4,7 @@ import {
     ICounter, ITicketQueue, ITicket,
     TicketState, IStatMap,
     CounterStateService, AuthService,
-    CacheService, AppSocket
+    CacheService, AppSocketGenerator
 } from '../../shared';
 
 const SOCKET_LINK = "/room/counter/join";
@@ -14,10 +14,11 @@ const SOCKET_PARAMS = ['branch_code', 'counter_code']
 export class WorkspaceService {
     constructor(
         private stateService: CounterStateService,
-        private authService: AuthService
+        private authService: AuthService,
+        private appSocketGenerator: AppSocketGenerator
     ) { }
 
-    private socket = new AppSocket(SOCKET_LINK, SOCKET_PARAMS);
+    private socket = this.appSocketGenerator.make(SOCKET_LINK);
 
     get Socket() {
         return this.socket;

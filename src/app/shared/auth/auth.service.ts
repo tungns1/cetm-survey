@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { HttpApi } from '../service/backend';
+import { HttpServiceGenerator } from '../service';
 import { HttpError } from '../../x/backend/';
 
 import { of } from 'rxjs/observable/of';
@@ -26,7 +26,8 @@ export class AuthService {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private sessionService: SessionService
+        private sessionService: SessionService,
+        private httpSG: HttpServiceGenerator
     ) {
         // console.log('created auth');
     }
@@ -100,7 +101,7 @@ export class AuthService {
     options = {};
     scope = 'admin';
 
-    private authBackend = new HttpApi<any>("/api/auth");
+    private authBackend = this.httpSG.make<any>("/api/auth");
     private rxMySetting = new ReplaySubject<IMySettings>(1);
     autoLogin = false;
     redirect = '/';

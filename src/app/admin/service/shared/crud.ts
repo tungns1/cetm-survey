@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AdminFilterService, AdminFilter } from './filter';
 import { AdminNavService } from './nav';
 import { Observable } from 'rxjs/Observable';
-import { HttpApi } from '../../../shared/service/backend'
+import { HttpApi } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
 
 export interface IField {
@@ -11,10 +11,11 @@ export interface IField {
 }
 
 export class CrudApiService<T> {
-    constructor(private uri: string,
+    constructor(
+        protected api: HttpApi<T>,
         private filterService: AdminFilterService
     ) {
-        this.api = new HttpApi<T>(uri);
+
     }
 
     Create(v: T) {
@@ -43,7 +44,6 @@ export class CrudApiService<T> {
 
     Name: string;
     ListFields: IField[] = [];
-    protected api: HttpApi<T>;
 }
 
 export class BranchCrudApiService<T> extends CrudApiService<T> {

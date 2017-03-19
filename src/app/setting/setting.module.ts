@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
 import { DirectiveModule } from '../shared/directive/directive.module';
+import { ApplicationStoreComponent } from './application-store/application-store.component';
 
 const routing = RouterModule.forChild([
   { path: '', component: SettingComponent }
@@ -21,7 +22,8 @@ const routing = RouterModule.forChild([
   ],
   declarations: [
     SettingComponent,
-    EnvironmentSettingComponent
+    EnvironmentSettingComponent,
+    ApplicationStoreComponent
   ],
 })
 export class SettingModule { }

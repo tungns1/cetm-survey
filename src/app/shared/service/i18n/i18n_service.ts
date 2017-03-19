@@ -1,6 +1,8 @@
 import { Subject } from 'rxjs/Subject';
-import { TranslateService, LangChangeEvent } from '../../shared';
-import { Languages, LanguageDefault, Setting, SetLanguage } from '../../config/';
+import {
+    TranslateService, LangChangeEvent, LOCALES,
+    AppStorage
+} from '../../shared';
 
 import { FactoryProvider } from '@angular/core';
 
@@ -11,11 +13,11 @@ export class I18nService {
 
     private onInit() {
         this.translateService.onLangChange.subscribe((e: LangChangeEvent) => {
-            SetLanguage(e.lang);
+            AppStorage.Locale = e.lang;
         });
-        this.translateService.addLangs(Object.keys(Languages));
-        this.translateService.setDefaultLang(LanguageDefault || 'en');
-        this.translateService.use(Setting().lang);
+        this.translateService.addLangs(Object.keys(LOCALES.LANGUAGES));
+        this.translateService.setDefaultLang(LOCALES.DEFAULT || 'en');
+        this.translateService.use(AppStorage.Locale);
     }
 
     Translate(key: string) {

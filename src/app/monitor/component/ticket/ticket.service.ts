@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core';
 import { ISubscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IExtendedTicket, ITickets, ISummary, Summary } from '../../model';
-import { AppSocket, HttpApi } from '../../../shared/service/backend';
-import { MonitorFilterService } from '../shared';
+
+import {
+    MonitorFilterService,
+    HttpServiceGenerator, AppSocketGenerator
+} from '../shared';
+
+
 import {
     CacheCounter, CacheUsers,
     ICounter, IUser, ICustomer
@@ -21,10 +26,12 @@ export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
 @Injectable()
 export class MonitorTicketService {
     constructor(
-        private filterService: MonitorFilterService
+        private filterService: MonitorFilterService,
+        private httpServiceGenerator: HttpServiceGenerator,
+        private appSocketGenerator: AppSocketGenerator
     ) { }
 
-    private socket = new AppSocket(MonitorSocketLink);
+    private socket = this.appSocketGenerator.make(MonitorSocketLink);
 
     onInit() {
         this.socket.Connect({});
@@ -91,7 +98,7 @@ export class MonitorTicketService {
     GetInfoCustomer(idCustomer: string) {
         return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: idCustomer });
     }
-    apiCustomer = new HttpApi<any>("/api/monitor");
+    apiCustomer = this.httpServiceGenerator.make<any>("/api/monitor");
 }
 
 function AddToSet<T>(arr: T[] = [], a: T, checker: (old: T) => boolean) {

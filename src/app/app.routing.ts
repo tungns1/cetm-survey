@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from "@angular/router";
+import {NgModule} from '@angular/core';
 
 export const routes: Routes = [
     { path: "admin", loadChildren: "./admin/index" },
@@ -11,3 +12,11 @@ export const routes: Routes = [
 ];
 
 export const appRouting = RouterModule.forRoot(routes, { useHash: true });
+
+@NgModule({
+    imports: [appRouting],
+    exports: [RouterModule]
+})
+export class AppRoutingModule {
+    
+}

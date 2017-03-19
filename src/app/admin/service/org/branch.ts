@@ -1,16 +1,16 @@
 
 import { Injectable } from '@angular/core';
-import { AuthService } from '../../shared/';
+import { AuthService, HttpApi } from '../../shared/';
 import { CrudApiService, AdminFilter, AdminFilterService, IBranch, CacheBranch } from '../shared';
 
 @Injectable()
 export class BranchService extends CrudApiService<IBranch> {
     constructor(
-        uri: string,
+        api: HttpApi<IBranch> ,
         filterService: AdminFilterService,
         private authService: AuthService
     ) {
-        super(uri, filterService);
+        super(api, filterService);
     }
 
     GetByBranch(branch_id: string[]) {

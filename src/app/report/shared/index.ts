@@ -5,5 +5,3 @@ export {
     ICounter, IUser, CacheBranch, CacheCounter, CacheUsers,
     ServiceName
 } from '../../shared/model';
-
-export { HttpApi } from '../../shared/service/backend';

@@ -12,4 +12,15 @@ export class SettingComponent implements OnInit {
   ngOnInit() {
   }
 
+  gender = "m";
+
+  wolves = 1;
+
+  back() {
+    if (window.history.length < 1) {
+      // 
+    }
+    window.history.back();
+  }
+
 }

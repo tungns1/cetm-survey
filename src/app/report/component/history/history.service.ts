@@ -1,5 +1,8 @@
-import { ITransaction, ITransactionView, HttpApi, ICustomer } from '../shared';
-import { ReportFilterService, ReportFilter } from '../shared';
+import { ITransaction, ITransactionView, ICustomer } from '../shared';
+import {
+    ReportFilterService, ReportFilter,
+    HttpServiceGenerator
+} from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Paging } from '../../shared/paging.service';
@@ -11,7 +14,8 @@ export interface IHistory {
 @Injectable()
 export class TransactionHistoryApi {
     constructor(
-        private filterService: ReportFilterService
+        private filterService: ReportFilterService,
+        private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
     GetHistory(filter: ReportFilter, skip: number, limit: number, filterHistory: object) {
@@ -31,6 +35,6 @@ export class TransactionHistoryApi {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-    apiCustomer = new HttpApi<any>("/api/report/customer");
-    api = new HttpApi<any>("/api/report/transaction");
+    apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
+    api = this.httpServiceGenerator.make<any>("/api/report/transaction");
 }

@@ -32,7 +32,7 @@ export class TicketServiceNamePipe {
             case TicketStates.Missed:
             // fallthrough
             case TicketStates.Waiting:
-                return (t.services || []).map(ServiceName);
+                return (t.services || []).map(ServiceName).join(',');
         }
         return 'n/a';
     }

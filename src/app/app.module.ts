@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
-import { appRouting } from "./app.routing";
+import { AppRoutingModule } from "./app.routing";
 
 import { RawTranslateLoader, TranslateLoader, TranslateModule } from './shared/service/i18n';
 
@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
     }),
     BranchModule.forRoot(),
     SharedModule.forRoot(),
-    appRouting
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import { ClassProvider, Injectable, Inject } from '@angular/core';
 import { AbstractStorageStrategy } from './storage';
 
 @Injectable()
-export class LocalStorageStragey extends AbstractStorageStrategy {
+export class LocalStorageStrategy extends AbstractStorageStrategy {
     readRaw(key: string) {
         return localStorage.getItem(key);
     }

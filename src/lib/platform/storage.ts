@@ -56,4 +56,8 @@ export class SmallStorage<T> {
         this.io.saveRaw(this.key, value);
     }
 
+    protected emitChange() {
+        this.Data$.next(this.value);
+    }
+
 }

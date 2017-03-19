@@ -6,4 +6,11 @@ export {
     BranchFilter
 } from './branch';
 
+export { Const, LOCALES } from '../../const';
+
+export { 
+    AppSocketGenerator, 
+    HttpServiceGenerator, HttpApi
+ } from './service';
+
 import "./rx";
