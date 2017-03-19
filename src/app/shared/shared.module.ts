@@ -4,13 +4,13 @@ import { CommonModule } from "@angular/common";
 
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
 import { authProviders } from './auth';
 import { i18nServiceProvider } from './service/i18n';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
 import { TranslateModule } from '../x/i18n';
-
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 
@@ -19,7 +19,8 @@ import { AppSocketGenerator, HttpServiceGenerator } from './service';
 
     ],
     exports: [
-        CommonModule, FormsModule, ReactiveFormsModule,
+        CommonModule, DirectiveModule,
+        FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
         TranslateModule, UtilPipeModule, SelectCheckModule,
         ModalModule
