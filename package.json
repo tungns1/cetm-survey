@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "ng": "ng",
-        "i18n": "ng xi18n --output-path src/locale",
+        "i18n": "ng xi18n --out-file locale/en/messages_en.xmb --i18n-format xmb --locale en",
         "start": "ng serve",
         "build": "ng build",
         "build:watch": "ng build --watch",

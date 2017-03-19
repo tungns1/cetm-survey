@@ -1,8 +1,8 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title><span translate>LANGAUGE_LIST_NUM_TICKET</span></editor-title>
+    <editor-title><span translate>List of Ticket Formats</span></editor-title>
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span translate>LANGAUGE_CODE</span>:
-        <input class="hl-input" formControlName="code" placeholder="{{'LANGAUGE_CODE' | translate}}">
+        <span translate>Code</span>:
+        <input class="hl-input" formControlName="code" placeholder="Code">
         <br><span translate>LANGAUGE_FORMAT</span>:
         <input class="hl-input" formControlName="format" placeholder="{{'LANGAUGE_FORMAT' | translate}}">
         <br> <span translate>LANGAUGE_VALUE_MIN</span>:

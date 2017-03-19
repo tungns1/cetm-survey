@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE messagebundle [
+<!ELEMENT messagebundle (msg)*>
+<!ATTLIST messagebundle class CDATA #IMPLIED>
+
+<!ELEMENT msg (#PCDATA|ph|source)*>
+<!ATTLIST msg id CDATA #IMPLIED>
+<!ATTLIST msg seq CDATA #IMPLIED>
+<!ATTLIST msg name CDATA #IMPLIED>
+<!ATTLIST msg desc CDATA #IMPLIED>
+<!ATTLIST msg meaning CDATA #IMPLIED>
+<!ATTLIST msg obsolete (obsolete) #IMPLIED>
+<!ATTLIST msg xml:space (default|preserve) "default">
+<!ATTLIST msg is_hidden CDATA #IMPLIED>
+
+<!ELEMENT source (#PCDATA)>
+
+<!ELEMENT ph (#PCDATA|ex)*>
+<!ATTLIST ph name CDATA #REQUIRED>
+
+<!ELEMENT ex (#PCDATA)>
+]>
+<messagebundle>
+  <msg id="5716127340663702879">List of Services</msg>
+  <msg id="8186013988289067040">Code</msg>
+  <msg id="2734022681675842051" desc="Mức ưu tiên dịch vụ">Priority</msg>
+  <msg id="1433795406962535368" desc="Định dạng số vé">Ticket Number Format</msg>
+  <msg id="1099516228764844014" desc="Định dạng số vé vip">VIP Ticket Number Format</msg>
+  <msg id="7176546090407248476">List of Layouts</msg>
+  <msg id="8953033926734869941">Name</msg>
+  <msg id="7206017366932622988">Type in name</msg>
+  <msg id="1747074827275577196">Layout Type</msg>
+</messagebundle>
