@@ -1,9 +1,9 @@
 <div class="componentBorder emptyAndServing">
     <div class="componentHeader">{{ticket.service_id | serviceName}}</div>
-    
+
     <div fxLayout="row">
         <div fxFlex="50%" class="leftBox">
-            <div translate> LANGAUGE_NUMBER_SERVING </div>
+            <div i18n>Number Serving</div>
             <div class="content">
                 <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
                 <span class="number">{{ticket.cnum}}</span>
@@ -11,10 +11,10 @@
         </div>
 
         <div fxFlex="50%" class="rightBox">
-            <div translate>LANGAUGE_TIME_SERVING</div>
+            <div i18n>Time Serving</div>
             <div class="content">
                 <img class="icon" src="./assets/img/icon/time.png" alt="Time">
-                <timer class="number" [start]="ticket.mtime" [timeWarning]="1" ></timer>
+                <timer class="number" [start]="ticket.mtime" [timeWarning]="1"></timer>
             </div>
         </div>
     </div>

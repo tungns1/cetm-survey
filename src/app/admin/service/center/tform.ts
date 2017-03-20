@@ -8,8 +8,8 @@ export class TFormService extends CrudApiService<ITForm> {
     }
 
     ListFields = [
-        { title: 'LANGAUGE_CODE', name: 'code' }
+        { title: 'Code', name: 'code' }
     ]
 
-    Name = "LANGAUGE_NUM_TICKET";
+    Name = "Number ticket";
 }

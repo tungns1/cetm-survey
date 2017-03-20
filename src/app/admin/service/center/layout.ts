@@ -16,6 +16,5 @@ export class LayoutService extends CrudApiService<ILayout> {
         { title: 'LANGAUGE_NAME', name: 'name' },
         { title: 'LANGAUGE_TYPE', name: 'type' }
     ]
-
     Name = "LANGAUGE_LAYOUT";
 }

@@ -9,8 +9,8 @@ export class UserService extends BranchCrudApiService<IUser> {
     }
 
     ListFields = [
-        { title: 'LANGAUGE_BRANCH', name: 'branch' },
-        { title: 'LANGAUGE_FULLNAME', name: 'fullname' }
+        { title: 'Branch', name: 'branch' },
+        { title: 'Fullname', name: 'fullname' }
     ]
 
     Name = "LANGAUGE_USER";

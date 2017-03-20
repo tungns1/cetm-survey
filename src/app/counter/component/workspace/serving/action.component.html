@@ -1,21 +1,21 @@
 <div id="actions" fxLayout="row" fxLayoutGap="20px">
-    <button class="btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}" translate>
-        LANGAUGE_NEXT
+    <button class="btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}" i18n>
+        Next
     </button>
-    <button class="btnFill btnRed" fxFlex  (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" translate>
-        LANGAUGE_AUTO_NEXT
+    <button class="btnFill btnRed" fxFlex (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}" i18n>
+        Auto text
     </button>
-    <button class="btnFill" fxFlex (click)="Recall()" translate> 
-        LANGAUGE_RECALL
+    <button class="btnFill" fxFlex (click)="Recall()" i18n> 
+        Recall
     </button>
-    <button class="btnFill" fxFlex (click)="Move()" translate> 
-        LANGAUGE_MOVE
+    <button class="btnFill" fxFlex (click)="Move()" i18n> 
+        Move
     </button>
-    <button class="btnFill btnRed" fxFlex (click)="Miss()" translate>
-        LANGAUGE_MISS
+    <button class="btnFill btnRed" fxFlex (click)="Miss()" i18n>
+        Miss
     </button>
-    <button class="btnFill btnGreen" fxFlex (click)="Finish()" translate>
-        LANGAUGE_FINISH
+    <button class="btnFill btnGreen" fxFlex (click)="Finish()" i18n>
+        Finish
     </button>
 </div>
 <ticket-detail-dialog #dialog [class.hidden]="!moveDialog"></ticket-detail-dialog>

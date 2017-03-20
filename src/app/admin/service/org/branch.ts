@@ -45,12 +45,12 @@ export class BranchService extends CrudApiService<IBranch> {
     }
 
     ListFields = [
-        { title: "LANGAUGE_NAME_ADDRESS_FATHER", name: "parent_name" },
-        { title: "LANGAUGE_NAME_ADDRESS", name: "name" },
-        { title: "LANGAUGE_CODE", name: "code" }
+        { title: "Parent address", name: "parent_name" },
+        { title: "Address", name: "name" },
+        { title: "Code", name: "code" }
     ]
 
-    Name = "LANGAUGE_USER";
+    Name = "User";
 
     private level = 2;
 }
