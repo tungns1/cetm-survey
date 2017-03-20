@@ -7,10 +7,4 @@ export class ServiceService extends CrudApiService<IService> {
         return this.api.Search({})
             .do(services => services.forEach(AddServiceName));
     }
-
-    ListFields = [
-        { title: 'LANGAUGE_NAME_SERVICE', name: 'name' },
-    ]
-
-    Name = "LANGAUGE_SERVICE";
 }

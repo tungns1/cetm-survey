@@ -1,15 +1,18 @@
-<editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title><span translate>List of Ticket Formats</span></editor-title>
+<editor #edit i18n-name name="Ticket Format" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span translate>Code</span>:
-        <input class="hl-input" formControlName="code" placeholder="Code">
-        <br><span translate>LANGAUGE_FORMAT</span>:
-        <input class="hl-input" formControlName="format" placeholder="{{'LANGAUGE_FORMAT' | translate}}">
-        <br> <span translate>LANGAUGE_VALUE_MIN</span>:
-        <input class="hl-input" formControlName="minnum" type="number" placeholder="{{'LANGAUGE_VALUE_MIN' | translate}}">
-        <br> <span translate>LANGAUGE_VALUE_MAX</span>:
-        <input class="hl-input" formControlName="maxnum" type="number" placeholder="{{'LANGAUGE_VALUE_MAX' | translate}}">
-        <br> <span translate>TICKET_TEMPLATE</span>:
+        <span i18n>Code</span>:
+        <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
+        <br><span i18n>Number Format</span>:
+        <input class="hl-input" formControlName="format" i18n-placeholder placeholder="Number Format">
+        <br> <span i18n>Min Value</span>:
+        <input class="hl-input" formControlName="minnum" type="number" i18n-placeholder placeholder="Min Value">
+        <br> <span i18n>Max Value</span>:
+        <input class="hl-input" formControlName="maxnum" type="number" i18n-placeholder placeholder="Max Value">
+        <br> <span i18n>Printing Template</span>:
         <app-quill-editor formControlName="template" rows="8" cols="40"></app-quill-editor>
     </form>
+    <editor-field name="code" i18n-title title="Code"></editor-field>
+    <editor-field name="format" i18n-title title="Number Format"></editor-field>
+    <editor-field name="minnum" i18n-title title="Min Value"></editor-field>
+    <editor-field name="maxnum" i18n-title title="Max Value"></editor-field>
 </editor>

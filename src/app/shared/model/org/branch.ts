@@ -13,10 +13,10 @@ export interface IBranch extends ID {
 }
 
 export const BranchLevels = [
-    { name: 'LANGAUGE_SUB_BRANCH', value: 0 },
-    { name: 'LANGAUGE_BRANCH', value: 1 },
-    { name: 'LANGAUGE_AREA', value: 2 },
-    { name: 'LANGAUGE_COUNTRY', value: 3 }
+    { name: 'STORE', value: 0 },
+    { name: 'BRANCH', value: 1 },
+    { name: 'AREA', value: 2 },
+    { name: 'COUNTRY', value: 3 }
 ]
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

@@ -1,5 +1,4 @@
-<editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title> <span i18n>List of Services</span></editor-title>
+<editor #edit i18n-name name="Service" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Code</span>:
         <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code"><br>
@@ -16,4 +15,5 @@
             <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
         </select>
     </form>
+    <editor-field name="name" i18n-title title="Name"></editor-field>
 </editor>

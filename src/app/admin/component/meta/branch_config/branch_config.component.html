@@ -1,11 +1,11 @@
-<editor #edit name="LANGAUGE_CONFIG" [makeForm]="makeForm" [service]="service" (refresh)="Refresh()">
-    <editor-title> <span translate>LANGAUGE_LIST_CONFIG</span></editor-title>
+<editor #edit i18n-name name="Branch Config" [makeForm]="makeForm" [service]="service" (refresh)="Refresh()">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <hr><span translate>LANGAUGE_ADDRESS</span>
+        <hr><span i18n>Location</span>
         <select class="hl-select" formControlName="branch_id">
             <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
         </select>
-        <hr> <span translate>LANGAUGE_DEVICE_FEEDBACK</span>:
+        <hr> <span i18n>Feedback Device</span>:
         <feedback-config formControlName="feedback"></feedback-config>
     </form>
+    <editor-field name="branch" i18n-title title="Location"></editor-field>
 </editor>

@@ -1,18 +1,17 @@
-<editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title> <span translate>LANGAUGE_LIST_THREAD_SERVICE</span></editor-title>
+<editor #edit i18n-name name="Service Flow" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <hr> <span translate>LANGAUGE_BRANCH</span>:
+        <hr> <span i18n>Location</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
-        <hr> <span translate>LANGAUGE_SERVICE</span>:
+        <hr> <span i18n>Service</span>:
         <select class="hl-select" formControlName="service_id">
             <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>
         </select>
-        <hr> <span translate>LANGAUGE_NUM_TICKET</span>:
+        <hr> <span i18n>Ticket Format</span>:
         <select class="hl-select" formControlName="tform_normal">
             <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
         </select>
 
-        <br> <span translate>LANGAUGE_NUM_TICKET_VIP</span>:
+        <br> <span i18n>Ticket Format Vip</span>:
         <select class="hl-select" formControlName="tform_vip">
             <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
         </select>
