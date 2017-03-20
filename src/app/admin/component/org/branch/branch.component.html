@@ -6,7 +6,7 @@
         <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
 
         <div>
-            <label style="margin-right: 14px;">{{level + 1 | branchLevelName| translate}}</label>
+            <label style="margin-right: 14px;">{{level + 1 | branchLevelName| i18n}}</label>
             <select class="hl-select" formControlName="parent">
                 <option *ngFor="let br of parents | async" [value]="br.id">{{br.name}}</option>
             </select>

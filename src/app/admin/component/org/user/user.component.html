@@ -1,4 +1,4 @@
-<editor #edit name="User" i18n-name [service]="service" [makeForm]="makeForm">
+<editor #edit i18n-name name="User" i18n-name [service]="service" [makeForm]="makeForm">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Username</span>:
         <input class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;"><br>
