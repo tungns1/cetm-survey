@@ -8,9 +8,11 @@ export {
 
 export { Const, LOCALES } from '../../const';
 
-export { 
-    AppSocketGenerator, 
+export { RuntimeEnvironment } from './env';
+
+export {
+    AppSocketGenerator,
     HttpServiceGenerator, HttpApi
- } from './service';
+} from './service';
 
 import "./rx";

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITransactionView, ModalComponent, ICustomer } from '../shared';
+import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment } from '../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TransactionHistoryApi } from './history.service';
 
@@ -13,6 +13,7 @@ export class TransactionComponent implements OnInit {
     constructor(
         private router: Router,
         private transactionHistoryApi: TransactionHistoryApi,
+        private env: RuntimeEnvironment
     ) { }
     customer: ICustomer;
     ngOnInit() {
@@ -25,6 +26,7 @@ export class TransactionComponent implements OnInit {
         this.link = '';
         this.data = d;
         if (d.audio) {
+            this.link=this.env.Platform.HttpHost+'/api/report/record/'+d.audio;
             // this.link = this.appService.MakeLink(`/api/report/record/${d.audio}`);
         }
         this.modal.Open();
