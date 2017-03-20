@@ -20,16 +20,16 @@ export class SearchComponent {
         return this.ticketService.Search(cnum);
     }).do(tickets => {
         if (!tickets || tickets.length < 1) {
-            this.message = 'NOT_FOUND_TICKET';
+            this.message = 'LANGAUGE_NOT_FOUND_TICKET';
         } else {
             this.message = '';
         }
     }, e => {
-        this.message = 'NOT_FOUND_TICKET';
+        this.message = 'LANGAUGE_NOT_FOUND_TICKET';
     })
 
     searchTicket(cnum: string) {
-        this.message = 'SEARCH_TICKET';
+        this.message = 'LANGAUGE_SEARCH_TICKET';
         this.cnum$.next(cnum);
     }
 

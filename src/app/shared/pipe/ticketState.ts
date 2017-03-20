@@ -6,6 +6,6 @@ import { ITicket } from '../model/';
 })
 export class TicketStatePipe {
     transform(t: ITicket) {
-        return `STATE_${t.state.toUpperCase()}`;
+        return `LANGAUGE_STATE_${t.state.toUpperCase()}`;
     }
 }

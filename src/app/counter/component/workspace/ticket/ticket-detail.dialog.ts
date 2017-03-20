@@ -59,12 +59,12 @@ export class TicketDetailDialog {
   Move() {
     if (this.isServing) {
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
-        this.ShowMessage("TITLE_MODAL", "LANGAUGE_CONTENT_MOVE_TICKET_SERVING");
+        this.ShowMessage("LANGAUGE_TITLE_MODAL", "LANGAUGE_CONTENT_MOVE_TICKET_SERVING");
         return;
       }
     } else {
       if (this.checkedCounters.length < 1) {
-        this.ShowMessage("TITLE_MODAL", "LANGAUGE_CONTENT_MOVE_TICKET_WAITTING_OR_MISS");
+        this.ShowMessage("LANGAUGE_TITLE_MODAL", "LANGAUGE_CONTENT_MOVE_TICKET_WAITTING_OR_MISS");
         return;
       }
     }
