@@ -25,8 +25,8 @@ import { SmallStorage, RouterQueryStorageStrategy, LocalStorageStrategy } from '
 import { Injectable } from '@angular/core';
 
 const DefaultPlatform: PlatformEnv = {
-    AssetHost: `${location.protocol}://${location.host}`,
-    HttpHost: `${location.protocol}://${location.host}`,
+    AssetHost: `${location.protocol}//${location.host}`,
+    HttpHost: `${location.protocol}//${location.host}`,
     SocketHost: `ws://${location.host}`
 }
 
