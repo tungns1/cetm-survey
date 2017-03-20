@@ -2,29 +2,29 @@ import { Component } from '@angular/core';
 
 const tabDevice: any[] = [{
     tag: 'branch',
-    title: 'SERVER',
-    titleTable: 'SERVER_TABLE'
+    title: 'Server',
+    titleTable: 'Server'
 }, {
     tag: 'kiosk',
-    title: 'KIOSK',
-    titleTable: 'KIOSK_TABLE'
+    title: 'Kiosk',
+    titleTable: 'Kiosk'
 }, {
     tag: 'counter',
-    title: 'COUNTER',
-    titleTable: 'COUNTER_TABLE'
+    title: 'Counter',
+    titleTable: 'Counter'
 
 }, {
     tag: 'screen',
-    title: 'SCREEN',
-    titleTable: 'SCREEN_TABLE'
+    title: 'Screen Center',
+    titleTable: 'Screen Center'
 }, {
     tag: 'led',
-    title: 'LED',
-    titleTable: 'LED_TABLE'
+    title: 'Led',
+    titleTable: 'Led'
 }, {
     tag: 'feedback',
-    title: 'FEEDBACK',
-    titleTable: 'FEEDBACK_TABLE'
+    title: 'Feedback',
+    titleTable: 'Feedback'
 }]
 
 @Component({

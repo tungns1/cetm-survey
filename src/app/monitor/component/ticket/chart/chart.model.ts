@@ -11,55 +11,55 @@ export const PieItems: ChartItem[][] =
 [
     [
         {
-            header: 'Chi tiết vé',
+            header: 'Ticket detail',
             field: 'finished',
             color: '#65c553',
-            key_title: 'GENERAL.TRANSACTION_FINISH'
+            key_title: 'Finished Transaction'
         }, 
         {
             field: 'cancelled',
             color: '#6f6f6f',
-            key_title: 'GENERAL.TRANSACTION_CANCEL'
+            key_title: 'Cancel Transaction'
         }, 
         {
             field: 'waiting',
             color: '#fcff47',
-            key_title: 'GENERAL.TRANSACTION_WAITING'
+            key_title: 'Waiting transaction'
         }, 
         {
             field: 'missed',
             color: '#fb6868',
-            key_title: 'GENERAL.TRANSACTION_MISSED'
+            key_title: 'Missed Transaction'
         }, 
         {
             field: 'serving',
             color: '#64a2ff',
-            key_title: 'GENERAL.TRANSACTION_SERVING'
+            key_title: 'Serving Transaction'
         }
     ],
     [
         {
-            header: 'Vé đợi trên 15\'',
+            header: 'Waiting ticket bigger 15 minute',
             field: 'waiting',
             color: '#65c553',
-            key_title: 'GENERAL.TRANSACTION_FINISH'
+            key_title: 'Finish Transaction'
         }, 
         {
             field: 'wait_long',
             color: '#fcff47',
-            key_title: 'GENERAL.TRANSACTION_CANCEL'
+            key_title: 'Cancel Transaction'
         }
     ],
     [
         {
-            header: 'Vé phục vụ dưới 2\'',
+            header: 'Ticket serve lessv 2 minute\'',
             field: 'finished',
             color: '#65c553',
-            key_title: 'GENERAL.TRANSACTION_FINISH'
+            key_title: 'Finish Transaction'
         }, {
             field: 'serve_short',
             color: '#fcff47',
-            key_title: 'GENERAL.TRANSACTION_CANCEL'
+            key_title: 'Cancel Transaction'
         }
     ]
 ];

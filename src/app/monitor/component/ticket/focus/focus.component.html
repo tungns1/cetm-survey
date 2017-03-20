@@ -7,81 +7,81 @@
     <div class="overview" fxLayout="row" fxLayoutGap="30px">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span translate>LANGAUGE_BRANCH </span>:
+                <span i18n>Branch:</span>:
                 <span>{{data.parent_id | branchName}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Admin: </span>
+                <span i18n>Admin:</span>
                 <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Manager: </span>
+                <span i18n>Manager:</span>
                 <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Tổng số quầy: </span>
+                <span i18n>Sum Counter:</span>
                 <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Tổng số quầy đang bật: </span>
+                <span i18n>Sum Counter Is On:</span>
                 <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Tổng số quầy đang tắt: </span>
+                <span>Sum Counter Off:</span>
                 <span>Testing</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé đã in: </span>
+                <span i18n>Number ticket printed:</span>
                 <span>{{data.printed}}</span>
             </div>
         </div>
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé đang đợi: </span>
+                <span i18n>Number of tickets waiting:</span>
                 <span>{{data.waiting}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé đang được phục vụ: </span>
+                <span i18n>Number of tickets being served:</span>
                 <span>{{data.serving}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé đã được phục vụ: </span>
+                <span i18n>Number of tickets already served:</span>
                 <span>{{data.finished}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé đặt nhỡ: </span>
+                <span i18n>Number of reserved tickets:</span>
                 <span>{{data.missed}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé hủy: </span>
+                <span i18n>Number of canceled tickets:</span>
                 <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé đợi trên 15': </span>
+                <span i18n>Number of tickets over 15':</span>
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Số lượng vé được phục vụ dưới 2': </span>
+                <span i18n>Number of tickets under 2':</span>
                 <span>{{data.serve_short}}</span>
             </div>
         </div>
     </div>
 
     <div class="divider"></div>
-        
+
     <monitor-chart [data]="data"></monitor-chart>
 
-    <h3> Khách hàng chưa được phục vụ </h3>
+    <h3 i18n>Customers are not served</h3>
 
     <table class="tableCtrl">
         <thead>
-            <th> STT </th>
-            <th translate>LANGAUGE_SERVICE </th>
-            <th translate> LANGAUGE_TICKET_NUMBER </th>
-            <th translate>LANGAUGE_CUSTOMER </th>
-            <th translate> LANGAUGE_TIME_CREATE_TICKET</th>
-            <th translate> LANGAUGE_TIME_WAIT</th>
-            <th translate> LANGAUGE_DETAIL </th>
+            <th i18n>Numerical order</th>
+            <th i18n>Service</th>
+            <th i18n>Ticket Number</th>
+            <th i18n>Customer</th>
+            <th i18n>Time create ticket</th>
+            <th i18n>Time wait</th>
+            <th i18n>Detail</th>
         </thead>
         <tbody>
             <tr *ngFor="let t of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
@@ -104,20 +104,20 @@
         </tbody>
     </table>
 
-    <h3> Khách hàng đã được phục vụ </h3>
+    <h3 i18n>Customers have been served</h3>
 
     <table class="tableCtrl">
         <thead>
-            <th> STT </th>
-            <th translate>LANGAUGE_SERVICE </th>
-            <th translate>LANGAUGE_COUNTERS</th>
-            <th translate>LANGAUGE_TELLERS</th>
-            <th translate> LANGAUGE_TICKET_NUMBER </th>
-            <th translate> LANGAUGE_CUSTOMER </th>
-            <th translate> LANGAUGE_TIME_CREATE_TICKET</th>
-            <th translate> LANGAUGE_TIME_WAIT </th>
-            <th translate>LANGAUGE_TIME_SERVING </th>
-            <th translate> LANGAUGE_DETAIL </th>
+            <th i18n>Numerical order</th>
+            <th i18n>Service</th>
+            <th i18n>Counter</th>
+            <th i18n>Tellers</th>
+            <th i18n>Ticket number</th>
+            <th i18n>Customer</th>
+            <th i18n>Time Create ticket</th>
+            <th i18n>Time Wait</th>
+            <th i18n>Time Serve</th>
+            <th i18n>Detail</th>
         </thead>
         <tbody>
             <tr *ngFor="let t of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished' || t.state === 'waiting'}">
@@ -155,32 +155,32 @@
 </div>
 
 <modal #edit id="modal_monitor_detailTicket">
-    <h3 class="modal-header" translate>LANGAUGE_TICKET_DETAIL</h3>
+    <h3 class="modal-header" i18n>Ticket detail</h3>
     <div *ngIf="selectedTicket" class="modalContent">
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxFlex>
                 <table>
                     <tr>
-                        <th translate> LANGAUGE_TICKET_NUMBER </th>
+                        <th i18n>Ticket number</th>
                         <th>{{selectedTicket.cnum}}</th>
                     </tr>
                     <tr>
-                        <th translate> LANGAUGE_STATE </th>
+                        <th i18n>State</th>
                         <th>{{selectedTicket.state}}</th>
                     </tr>
                     <tr>
-                        <th translate> LANGAUGE_SERVICE </th>
+                        <th i18n>Service</th>
                         <th>
                             <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
                             <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
                         </th>
                     </tr>
                     <tr>
-                        <th translate> LANGAUGE_TIME_CREATE_TICKET </th>
+                        <th i18n>Time create ticket</th>
                         <th>{{selectedTicket.ctime | localDayTime}}</th>
                     </tr>
                     <tr>
-                        <th translate> LANGAUGE_TIME_WAIT </th>
+                        <th i18n>Time wait</th>
                         <th>
                             <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
                             <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
@@ -188,7 +188,7 @@
                         </th>
                     </tr>
                     <tr *ngIf="isServed">
-                        <th translate>LANGAUGE_SERVING_TIME </th>
+                        <th i18n>Serving time</th>
                         <th> {{selectedTicket.stime | timeDuration}} </th>
                     </tr>
                 </table>
@@ -196,27 +196,27 @@
             <div fxFlex>
                 <table>
                     <tr>
-                        <th translate> LANGAUGE_BRANCH </th>
-                        <th translate>{{selectedTicket.branch_id | branchName}}</th>
+                        <th i18n>Branch</th>
+                        <th i18n>{{selectedTicket.branch_id | branchName}}</th>
                     </tr>
                     <tr>
-                        <th translate> LANGAUGE_STORE </th>
-                        <th translate>{{selectedTicket.branch_id | branchName}}</th>
+                        <th i18n>Store</th>
+                        <th i18n>{{selectedTicket.branch_id | branchName}}</th>
                     </tr>
                     <tr *ngIf="selectedTicket.serving">
-                        <th translate> LANGAUGE_TELLERS </th>
+                        <th i18n>Tellers</th>
                         <th>{{selectedTicket.serving.user_id | userFullName}}</th>
                     </tr>
                     <tr *ngIf="selectedTicket.serving">
-                        <th translate> LANGAUGE_COUNTERS </th>
+                        <th i18n>Counter</th>
                         <th>{{selectedTicket.serving.counter_id | counterName }}</th>
                     </tr>
                     <tr *ngIf="selectedTicket.serving">
-                        <th translate> LANGAUGE_MANAGER </th>
+                        <th i18n>Manager</th>
                         <th>testing</th>
                     </tr>
                     <tr *ngIf="selectedTicket.serving">
-                        <th translate> LANGAUGE_ADDMINISTRATOR </th>
+                        <th i18n>Administrator</th>
                         <th>testing</th>
                     </tr>
                 </table>
@@ -224,23 +224,23 @@
         </div>
         <table *ngIf="customer" class="cusDetail">
             <tr>
-                <th translate> LANGAUGE_CUSTOMER_NAME </th>
+                <th i18n>Name Counter</th>
                 <th> {{customer.full_name }}</th>
             </tr>
             <tr>
-                <th translate> LANGAUGE_CODE_ID </th>
+                <th i18n>Code ID</th>
                 <th> {{customer.code }}</th>
             </tr>
             <tr>
-                <th translate> LANGAUGE_NUMBER_PHONE </th>
+                <th i18n>Number Phone</th>
                 <th> {{customer.phone_number }}</th>
             </tr>
             <tr>
-                <th translate> LANGAUGE_SEGMENT </th>
+                <th i18n>Segment</th>
                 <th> {{customer.segment }}</th>
             </tr>
         </table>
 
-        <button class="btnFill uppercase" (click)="closeModal()">Close</button>
+        <button class="btnFill uppercase" (click)="closeModal()" i18n>Close</button>
     </div>
 </modal>
