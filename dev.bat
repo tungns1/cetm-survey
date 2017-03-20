@@ -1,1 +1,0 @@
-npm install @ngrx/core @ngrx/store --save

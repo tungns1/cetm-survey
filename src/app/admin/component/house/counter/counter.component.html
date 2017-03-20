@@ -18,9 +18,9 @@
             <select-check formControlName="vservices" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> <span translate>LANGAUGE_BRANCH</span>:
+        <hr> <span i18n>Branch</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
     </form>
-    <editor-field name="branch" i18n-title title="Location"></editor-field>
-    <editor-field name="name" i18n-title title="Name"></editor-field>
+    <editor-field i18n-name name="branch" i18n-title title="Location"></editor-field>
+    <editor-field i18n-name name="name" i18n-title title="Name"></editor-field>
 </editor>

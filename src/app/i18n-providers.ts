@@ -16,7 +16,7 @@ export function getTranslationProviders(): Promise<Object[]> {
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];
   // No locale or U.S. English: no translation providers
-  if (!locale) {
+  if (!locale || locale === LOCALES.DEFAULT) {
     return Promise.resolve(noProviders);
   }
   // Ex: 'locale/messages.fr.xlf`

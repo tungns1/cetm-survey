@@ -15,7 +15,7 @@ const FEEDBACK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'feedback-config',
     template: `
         <br>
-        <span translate>LANGAUGE_FEEDBACK_REQUIER</span> : 
+        <span i18n>Feedback Required</span> : 
         <input [(ngModel)]="value.required" (change)="OnChange()" type="checkbox" />
     `,
     providers: [FEEDBACK_CONTROL_VALUE_ACCESSOR]
