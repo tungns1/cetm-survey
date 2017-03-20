@@ -48,11 +48,8 @@
             <b fxFlex class="ctrlLable" translate>Customer Segment:</b>
             <span fxFlex translate>{{customer.segment}}</span>
         </div>
-        <div class="cusDetail" fxLayout="row">
-            <div fxFlex></div>
-            <div fxFlex>
-                <audio [class.hidden]="!link" controls [src]="link"> </audio>
-            </div>
+        <div class="cusDetail">
+            <audio [class.hidden]="!link" controls [src]="link"></audio>
         </div>
     </div>
     <div fxLayout="row">
