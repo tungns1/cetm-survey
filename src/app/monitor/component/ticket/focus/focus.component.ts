@@ -10,7 +10,8 @@ const TicketStates = Model.House.TicketStates;
 
 @Component({
     selector: 'focus-on-branch',
-    templateUrl: 'focus.component.html'
+    templateUrl: 'focus.component.html',
+    styleUrls: ['focus.component.scss']
 })
 export class FocusComponent {
 
@@ -147,9 +148,11 @@ export class FocusComponent {
 
     private detail(ticket) {
         this.customer = null;
-        this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
-            this.customer = v;
-        });
+        if(ticket.customer){
+            this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
+                this.customer = v;
+            });
+        }
         if (ticket.serving) {
             this.isServed = true;
         } else this.isServed = false;

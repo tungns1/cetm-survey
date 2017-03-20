@@ -1,15 +1,10 @@
 <div id="focusComponent" *ngIf="data">
-    <div class="flex-container header" fxLayout="row" fxLayoutAlign="space-between none">
-        <h1 fxFlex> {{data.branch_id | branchName}} </h1>
-        <h3 fxFlex="10%" (click)="goBackBranchList()" class="btn_back"><i _ngcontent-lat-10="" class="fa fa-angle-double-left"> </i>Go back</h3>
+    <h2 class="header uppercase"> {{data.branch_id | branchName}} </h2>
+    <div class="nav">
+        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
     </div>
 
-    <!--<h2 class="header">LỊCH SỬ GIAO DỊCH</h2>
-    <div class="nav">
-        <button class="btnClear btnMargin" (click)="nav('/report/customer')">KHÁCH HÀNG</button>
-    </div>-->
-
-    <div class="flex-container overview" fxLayout="row" fxLayoutAlign="space-between none">
+    <div class="overview" fxLayout="row" fxLayoutGap="30px">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span translate>LANGAUGE_BRANCH </span>:
@@ -73,12 +68,12 @@
     </div>
 
     <div class="divider"></div>
-
+        
     <monitor-chart [data]="data"></monitor-chart>
 
-    <h3 class="tableHeader"> Khách hàng chưa được phục vụ </h3>
+    <h3> Khách hàng chưa được phục vụ </h3>
 
-    <table class="table">
+    <table class="tableCtrl">
         <thead>
             <th> STT </th>
             <th translate>LANGAUGE_SERVICE </th>
@@ -102,18 +97,16 @@
                 <td *ngIf="t.state === 'missed'"> {{t.mtime - t.ctime | timeDuration}}</td>
                 <td>
                     <span (click)="detail(t)">
-                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
+                        <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <div class="divider"></div>
+    <h3> Khách hàng đã được phục vụ </h3>
 
-    <h3 class="tableHeader"> Khách hàng đã được phục vụ </h3>
-
-    <table class="table">
+    <table class="tableCtrl">
         <thead>
             <th> STT </th>
             <th translate>LANGAUGE_SERVICE </th>
@@ -150,10 +143,10 @@
                 <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
                 <td>
                     <span (click)="detail(t)">
-                        <i class="fa fa-eye" aria-hidden="true" style="cursor: pointer"></i>
+                        <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
                     <span>
-                        <i class="fa fa-volume-down" aria-hidden="true" style="cursor: pointer"></i>
+                        <img class="iconDetail" src="./assets/img/icon/volume.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
                 </td>
             </tr>
@@ -161,93 +154,92 @@
     </table>
 </div>
 
-<div class="divider"></div>
-
 <modal #edit id="modal_monitor_detailTicket">
-    <div *ngIf="selectedTicket">
-        <h3 class="header" translate>LANGAUGE_TICKET_DETAIL</h3>
-        <div class="twoColumn">
-            <table>
-                <tr>
-                    <th translate> LANGAUGE_TICKET_NUMBER </th>
-                    <th>{{selectedTicket.cnum}}</th>
-                </tr>
-                <tr>
-                    <th translate> LANGAUGE_STATE </th>
-                    <th>{{selectedTicket.state}}</th>
-                </tr>
-                <tr>
-                    <th translate> LANGAUGE_SERVICE </th>
-                    <th>
-                        <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
-                        <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
-                    </th>
-                </tr>
-                <tr>
-                    <th translate> LANGAUGE_TIME_CREATE_TICKET </th>
-                    <th>{{selectedTicket.ctime | localDayTime}}</th>
-                </tr>
-                <tr>
-                    <th translate> LANGAUGE_TIME_WAIT </th>
-                    <th>
-                        <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
-                        <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
-                    </th>
-                </tr>
-                <tr>
-                    <th translate>LANGAUGE_DATE </th>
-                    <th>{{selectedTicket.ctime | localDayTime}}</th>
-                </tr>
-            </table>
+    <h3 class="modal-header" translate>LANGAUGE_TICKET_DETAIL</h3>
+    <div *ngIf="selectedTicket" class="modalContent">
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex>
+                <table>
+                    <tr>
+                        <th translate> LANGAUGE_TICKET_NUMBER </th>
+                        <th>{{selectedTicket.cnum}}</th>
+                    </tr>
+                    <tr>
+                        <th translate> LANGAUGE_STATE </th>
+                        <th>{{selectedTicket.state}}</th>
+                    </tr>
+                    <tr>
+                        <th translate> LANGAUGE_SERVICE </th>
+                        <th>
+                            <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
+                            <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th translate> LANGAUGE_TIME_CREATE_TICKET </th>
+                        <th>{{selectedTicket.ctime | localDayTime}}</th>
+                    </tr>
+                    <tr>
+                        <th translate> LANGAUGE_TIME_WAIT </th>
+                        <th>
+                            <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
+                            <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th translate>LANGAUGE_DATE </th>
+                        <th>{{selectedTicket.ctime | localDayTime}}</th>
+                    </tr>
+                </table>
+            </div>
+            <div fxFlex>
+                <table>
+                    <tr>
+                        <th translate> LANGAUGE_BRANCH </th>
+                        <th translate>{{selectedTicket.branch_id | branchName}}</th>
+                    </tr>
+                    <tr>
+                        <th translate> LANGAUGE_STORE </th>
+                        <th translate>{{selectedTicket.branch_id | branchName}}</th>
+                    </tr>
+                    <tr *ngIf="selectedTicket.serving">
+                        <th translate> LANGAUGE_TELLERS </th>
+                        <th>{{selectedTicket.serving.user_id | userFullName}}</th>
+                    </tr>
+                    <tr *ngIf="selectedTicket.serving">
+                        <th translate> LANGAUGE_COUNTERS </th>
+                        <th>{{selectedTicket.serving.counter_id | counterName }}</th>
+                    </tr>
+                    <tr *ngIf="selectedTicket.serving">
+                        <th translate> LANGAUGE_MANAGER </th>
+                        <th>testing</th>
+                    </tr>
+                    <tr *ngIf="selectedTicket.serving">
+                        <th translate> LANGAUGE_ADDMINISTRATOR </th>
+                        <th>testing</th>
+                    </tr>
+                </table>
+            </div>
         </div>
-
-        <div class="twoColumn" [ngClass]="{'notServeYet': !isServed}">
-            <table>
-                <tr>
-                    <th translate> LANGAUGE_BRANCH </th>
-                    <th translate>{{selectedTicket.branch_id | branchName}}</th>
-                </tr>
-                <tr>
-                    <th translate> LANGAUGE_STORE </th>
-                    <th translate>{{selectedTicket.branch_id | branchName}}</th>
-                </tr>
-                <tr *ngIf="selectedTicket.serving">
-                    <th translate> LANGAUGE_TELLERS </th>
-                    <th>{{selectedTicket.serving.user_id | userFullName}}</th>
-                </tr>
-                <tr *ngIf="selectedTicket.serving">
-                    <th translate> LANGAUGE_COUNTERS </th>
-                    <th>{{selectedTicket.serving.counter_id | counterName }}</th>
-                </tr>
-                <tr *ngIf="selectedTicket.serving">
-                    <th translate> LANGAUGE_MANAGER </th>
-                    <th>testing</th>
-                </tr>
-                <tr *ngIf="selectedTicket.serving">
-                    <th translate> LANGAUGE_ADDMINISTRATOR </th>
-                    <th>testing</th>
-                </tr>
-            </table>
-        </div>
-        <table *ngIf="customer">
+        <table *ngIf="customer" class="cusDetail">
             <tr>
                 <th translate> LANGAUGE_CUSTOMER_NAME </th>
-                <th>{{customer.full_name }}</th>
+                <th> {{customer.full_name }}</th>
             </tr>
             <tr>
                 <th translate> LANGAUGE_CODE_ID </th>
-                <th>{{customer.code }}</th>
+                <th> {{customer.code }}</th>
             </tr>
             <tr>
                 <th translate> LANGAUGE_NUMBER_PHONE </th>
-                <th>{{customer.phone_number }}</th>
+                <th> {{customer.phone_number }}</th>
             </tr>
             <tr>
                 <th translate> LANGAUGE_SEGMENT </th>
-                <th>{{customer.segment }}</th>
+                <th> {{customer.segment }}</th>
             </tr>
         </table>
 
-        <button (click)="closeModal()" style="float: right;">Close</button>
+        <button class="btnFill uppercase" (click)="closeModal()">Close</button>
     </div>
 </modal>

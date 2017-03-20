@@ -1,4 +1,6 @@
-<div class="hl-scroll-filter">
-    <branch-filter></branch-filter>
-    <button class="button active" (click)="refresh()" translate>LANGAUGE_BUTTON_SEND</button>
+<div fxLayout="column" class="filter">
+    <branch-filter fxFlex class="content"></branch-filter>
+    <div fxFlex="7vh" class="action">
+        <button class="btnFill uppercase" (click)="refresh()" translate>LANGAUGE_BUTTON_SEND</button>
+    </div>
 </div>

@@ -39,3 +39,22 @@
         }
     }
 }
+#report_history_modal{
+    .detailTicket{
+        width: 100%;
+        border-spacing: 0px;
+        .ctrlLable{
+            padding-left: 20px;
+            width: 50%;
+        }
+        td{
+            padding: 10px 0;
+        }
+    }
+    .cusDetail{
+        padding: 20px;
+    }
+    .ctrlBtn{
+        margin: 30px 20px;
+    }
+}

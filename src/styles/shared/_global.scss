@@ -45,6 +45,21 @@ $primary-color: #0b8fdb;
     border-right: solid;
     border-width: 1px;
     border-color: #a7a9ac;
+    .filter{
+        height: 78vh;
+        .content{
+            overflow: auto;
+            .inputCtrl{
+                margin: 10px 20px;
+            }
+        }
+        .action{
+            text-align: center;
+            button{
+                margin: 15px 0px;
+            }
+        }
+    }
 }
 .mainContent{
     padding: 0 35px;
@@ -67,6 +82,7 @@ $primary-color: #0b8fdb;
         margin-top: 20px;
         border: 1px solid #a7a9ac;
         border-spacing: 0;
+        border-radius: 3px;
         width: 100%;
         thead{
             text-align: left;
@@ -94,25 +110,7 @@ $primary-color: #0b8fdb;
     text-align: center;
     padding: 15px;
     background-color: #dee0e0;
-}
-.report_history_modal{
-    .detailTicket{
-        width: 100%;
-        border-spacing: 0px;
-        .ctrlLable{
-            padding-left: 20px;
-            width: 50%;
-        }
-        td{
-            padding: 10px 0;
-        }
-    }
-    .cusDetail{
-        padding: 20px;
-    }
-    .ctrlBtn{
-        margin: 30px 20px;
-    }
+    margin: 0px;
 }
 // End of modal
 /******************** End of global ***********************/
