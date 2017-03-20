@@ -2,7 +2,7 @@
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <hr> <span i18n>Location</span>:
         <branch-picker level="0" formControlName="branch_id"></branch-picker>
-        <hr> <span i18n>Service</span>:
+        <hr> <span i18n>Service ID</span>:
         <select class="hl-select" formControlName="service_id">
             <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>
         </select>
@@ -16,4 +16,6 @@
             <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
         </select>
     </form>
+    <editor-field name="branch" i18n-title title="Location"></editor-field>
+    <editor-field name="service_id" i18n-title title="Service ID"></editor-field>
 </editor>

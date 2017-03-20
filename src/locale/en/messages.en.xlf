@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
-    <body source-language="en" datatype="plaintext" original="ng">
+    <body>
       <trans-unit id="786ddee68d768c63a9975b422ffa702d6afe375e" datatype="html">
         <source>List of <x id="INTERPOLATION"/></source>
         <target>List of <x id="INTERPOLATION"/></target>
@@ -13,14 +13,7 @@
       <trans-unit id="8675a724bb3952337aef7625c81b11e39a82d31b" datatype="html">
         <source>No.</source>
         <target>No.</target>
-      </trans-unit>
-      <trans-unit id="61cafedb85466ab789b3ae817bba1a545468ee1c" datatype="html">
-        <source>The hero is <x id="ICU"/></source>
-        <target>The hero is <x id="ICU"/></target>
-      </trans-unit>
-      <trans-unit id="14c7055d67771a3b7b6888d282ac092896be06b6" datatype="html">
-        <source>{gender, select, m {male} f {female}}</source>
-        <target>{gender, select, m {male} f {female}}</target>
+        <note priority="1" from="description">Ordered number in table</note>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
         <source>Delete</source>
@@ -65,10 +58,6 @@
         <source>Parent Location</source>
         <target>Parent Location</target>
       </trans-unit>
-      <trans-unit id="90a81dccc53bca3e796cac1242eb65f64de834f6" datatype="html">
-        <source>{level, select, =0 {Store} =1{Branch} =2 {Area} =3 {Country} }</source>
-        <target>{level, select, =0 {Store} =1{Branch} =2 {Area} =3 {Country} }</target>
-      </trans-unit>
       <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
         <source>Username</source>
         <target>Username</target>
@@ -93,10 +82,6 @@
         <source>User</source>
         <target>User</target>
       </trans-unit>
-      <trans-unit id="c756612b69eb697856ad44474d3ad1cab3b0b037" datatype="html">
-        <source>List of Services</source>
-        <target>List of Services</target>
-      </trans-unit>
       <trans-unit id="b74af38005e8a8914e45af2ec412e11ceafef8b6" datatype="html">
         <source>Priority</source>
         <target>Priority</target>
@@ -112,13 +97,115 @@
         <target>VIP Ticket Number Format</target>
         <note priority="1" from="description">Định dạng số vé vip</note>
       </trans-unit>
-      <trans-unit id="10fb043bfa88a3ecd437d50e9e87fbfa9b72028f" datatype="html">
-        <source>List of Layouts</source>
-        <target>List of Layouts</target>
+      <trans-unit id="d473e0f684a60db45d6f31e993f693f74290e056" datatype="html">
+        <source>Service</source>
+        <target>Service</target>
+      </trans-unit>
+      <trans-unit id="17f89aaf700f3dbdae17936f52eb0be8e4bc2cd9" datatype="html">
+        <source>Number Format</source>
+        <target>Number Format</target>
+      </trans-unit>
+      <trans-unit id="cee9a1f7aa61303650890f5c5daabc71daf3107c" datatype="html">
+        <source>Min Value</source>
+        <target>Min Value</target>
+      </trans-unit>
+      <trans-unit id="c500899f62c2504443a67509337443e3dd0005c7" datatype="html">
+        <source>Max Value</source>
+        <target>Max Value</target>
+      </trans-unit>
+      <trans-unit id="20de4b242b7a7ae33a8abb9110b3d3a262c28f07" datatype="html">
+        <source>Printing Template</source>
+        <target>Printing Template</target>
+      </trans-unit>
+      <trans-unit id="88ff44636e701d6140175ad3532cafc9d784531b" datatype="html">
+        <source>Ticket Format</source>
+        <target>Ticket Format</target>
       </trans-unit>
       <trans-unit id="50914def9b9b29a7e760e8463ec25d4adfbeb68c" datatype="html">
         <source>Layout Type</source>
         <target>Layout Type</target>
+      </trans-unit>
+      <trans-unit id="785fb65be4f15d2392d38d08255a18ba3688f153" datatype="html">
+        <source>Layout</source>
+        <target>Layout</target>
+      </trans-unit>
+      <trans-unit id="fbcb0d75afbe6aec04269381598a737f4bd19db7" datatype="html">
+        <source>Number</source>
+        <target>Number</target>
+      </trans-unit>
+      <trans-unit id="5b49b2048ba380f6e8e9d15e3cfee50389f7a7fd" datatype="html">
+        <source>Led Address</source>
+        <target>Led Address</target>
+      </trans-unit>
+      <trans-unit id="0a92ec0feac25c559cbd3aedbc2b023dd73a50bf" datatype="html">
+        <source>Normal Services</source>
+        <target>Normal Services</target>
+      </trans-unit>
+      <trans-unit id="3245767f7156901a5e647ee9ca9a56c6c7c155ff" datatype="html">
+        <source>Vip Services</source>
+        <target>Vip Services</target>
+      </trans-unit>
+      <trans-unit id="d718ee3de035ebf939f91baf92aa1a4420a809db" datatype="html">
+        <source>Counter</source>
+        <target>Counter</target>
+      </trans-unit>
+      <trans-unit id="902bff247e87d3420c797ea9dfacc85405012f35" datatype="html">
+        <source>Vip Codes</source>
+        <target>Vip Codes</target>
+        <note priority="1" from="description">Default Kiosk Vip Codes</note>
+      </trans-unit>
+      <trans-unit id="6f14fbdf29d1ff8d003783deee3ee6568584059d" datatype="html">
+        <source>Inheritable</source>
+        <target>Inheritable</target>
+      </trans-unit>
+      <trans-unit id="942bd887154a69f6a84fa59f91ac05bc7f406663" datatype="html">
+        <source>Inherit from</source>
+        <target>Inherit from</target>
+        <note priority="1" from="description">Inherit kiosk attributes</note>
+      </trans-unit>
+      <trans-unit id="2e920b02272eb5b7838ca623e957b4a24869469c" datatype="html">
+        <source>Edit Layout</source>
+        <target>Edit Layout</target>
+      </trans-unit>
+      <trans-unit id="419d940613972cc3fae9c8ea0a4306dbf80616e5" datatype="html">
+        <source>Services</source>
+        <target>Services</target>
+      </trans-unit>
+      <trans-unit id="a542432f0f03637a257aabb20a20cc6a111a7ba9" datatype="html">
+        <source>Kiosk</source>
+        <target>Kiosk</target>
+      </trans-unit>
+      <trans-unit id="1d0974afae70914072a4fbf19e53328e517bae73" datatype="html">
+        <source>News</source>
+        <target>News</target>
+      </trans-unit>
+      <trans-unit id="383fb610b5d24aaab08bd531f3e2bbf2727ac3bc" datatype="html">
+        <source>Counters</source>
+        <target>Counters</target>
+      </trans-unit>
+      <trans-unit id="9ddf964b8522432df2a1b0d61389fc448f6d0712" datatype="html">
+        <source>Screen</source>
+        <target>Screen</target>
+      </trans-unit>
+      <trans-unit id="d2a3fc67944a5e8c6a17c546a29690d7e3b41b60" datatype="html">
+        <source>Service ID</source>
+        <target>Service ID</target>
+      </trans-unit>
+      <trans-unit id="516a265737b7ff487f27867eced84aac3fefddee" datatype="html">
+        <source>Ticket Format Vip</source>
+        <target>Ticket Format Vip</target>
+      </trans-unit>
+      <trans-unit id="88537ede496ea8408e7e5327884cd6aee50528c6" datatype="html">
+        <source>Service Flow</source>
+        <target>Service Flow</target>
+      </trans-unit>
+      <trans-unit id="158902c46d9250aea022aeaa41b004d4d9e6b47f" datatype="html">
+        <source>Feedback Device</source>
+        <target>Feedback Device</target>
+      </trans-unit>
+      <trans-unit id="dd4720f14288ba841d69f8a80e910786fe299e0b" datatype="html">
+        <source>Branch Config</source>
+        <target>Branch Config</target>
       </trans-unit>
     </body>
   </file>
