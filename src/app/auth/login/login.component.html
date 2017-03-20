@@ -3,19 +3,19 @@
     <div class="hl-bodys-login">
 
         <div *ngIf="!IsLogin()">
-            <div class="hl-title-login" translate>LANGAUGE_LOGIN_SYSTEM</div>
+            <div class="hl-title-login" i18n>System login</div>
             <form [formGroup]="loginForm" (submit)="login()">
                 <div class="hl-form-login">
-                    <div class="hl-message-login"> {{message}} </div>
+                    <div class="hl-message-login" i18n> {{message}} </div>
                     <div class="hl-info-login">
                         <div class="hl-divinp-login">
-                            <input class="hl-input-login" type="text" formControlName="username" placeholder="Username">
+                            <input class="hl-input-login" type="text" formControlName="username" i18n-placeholder="Username">
                         </div>
                         <div>
-                            <input class="hl-input-login" type="password" formControlName="password" placeholder="Password">
+                            <input class="hl-input-login" type="password" formControlName="password" i18n-placeholder="Password">
                         </div>
                         <div class="hl-divbtn-login">
-                            <button class="hl-btnLogin btpointer" type="submit" translate>LANGAUGE_LOGIN</button>
+                            <button class="hl-btnLogin btpointer" type="submit" i18n>Login</button>
                         </div>
                     </div>
                     <!--<a href="#" class="mk">Bạn quên mật khẩu ? Yêu cầu Admin cấp lại mật khẩu</a>-->
@@ -23,8 +23,8 @@
             </form>
         </div>
         <div *ngIf="IsLogin()">
-            <h2 style="text-align: center;" translate>LANGAUGE_HELLO</h2>
-            <button (click)="logout()" class="hl-btn-logout" translate>LANGAUGE_LOGOUT</button>
+            <h2 style="text-align: center;" i18n>Hello</h2>
+            <button (click)="logout()" class="hl-btn-logout" i18n>Logout</button>
         </div>
     </div>
     <div class="hl-ft-login">

@@ -3,5 +3,5 @@ import { BranchCrudApiService, AdminFilter, IScreen } from '../shared';
 
 @Injectable()
 export class ScreenService extends BranchCrudApiService<IScreen> {
-    Name = "LANGAUGE_SCREEN";
+    Name = "Screen";
 }
