@@ -19,7 +19,7 @@ export class TicketDetailDirective {
   open() {
 
     if (!this.ticket) {
-      console.log("missing ticket for detail");
+      console.log("Missing ticket for detail");
       return;
     }
 

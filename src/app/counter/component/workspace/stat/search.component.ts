@@ -20,20 +20,20 @@ export class SearchComponent {
         return this.ticketService.Search(cnum);
     }).do(tickets => {
         if (!tickets || tickets.length < 1) {
-            this.message = 'LANGAUGE_NOT_FOUND_TICKET';
+            this.message = 'Not Found Ticket';
         } else {
             this.message = '';
         }
     }, e => {
-        this.message = 'LANGAUGE_NOT_FOUND_TICKET';
+        this.message = 'Not Found Ticket';
     })
 
     searchTicket(cnum: string) {
-        this.message = 'LANGAUGE_SEARCH_TICKET';
+        this.message = 'Search Ticket';
         this.cnum$.next(cnum);
     }
 
     stateKey(state: string) {
-        return `STATE_${state.toUpperCase()}`;
+        return `State ${state.toUpperCase()}`;
     }
 }

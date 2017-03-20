@@ -59,12 +59,12 @@ export class TicketDetailDialog {
   Move() {
     if (this.isServing) {
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
-        this.ShowMessage("LANGAUGE_TITLE_MODAL", "LANGAUGE_CONTENT_MOVE_TICKET_SERVING");
+        this.ShowMessage("Unsuccess", "Please, select counter or service");
         return;
       }
     } else {
       if (this.checkedCounters.length < 1) {
-        this.ShowMessage("LANGAUGE_TITLE_MODAL", "LANGAUGE_CONTENT_MOVE_TICKET_WAITTING_OR_MISS");
+        this.ShowMessage("Unsuccess", "Please, select counter");
         return;
       }
     }
@@ -77,7 +77,7 @@ export class TicketDetailDialog {
   Recall() {
     this.queueService.busy$.first().subscribe(b => {
       if (b) {
-        this.ShowMessage("LANGAUGE_TITLE_MODAL", "LANGAUGE_RECALL_MISS");
+        this.ShowMessage("Unsuccess", "Recall Miss");
         return;
       }
       this.ticketService.CallFromMissed(this.ticket).subscribe(v => {
