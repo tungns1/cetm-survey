@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportOverViewComponent } from './overview.component';
-import { SharedModule, Lib } from '../../shared';
+import { SharedModule, TimeModule } from '../../shared';
 import { GroupByTitlePipe } from './groupBy.pipe';
 
 @NgModule({
-    imports: [SharedModule, Lib.Ng.TimeModule],
+    imports: [SharedModule, TimeModule],
     declarations: [ReportOverViewComponent, GroupByTitlePipe],
     exports: [ReportOverViewComponent],
 })

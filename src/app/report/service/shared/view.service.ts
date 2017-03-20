@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Model } from '../../shared';
+import { AbstractState, AbstractStateService } from '../../shared';
 
-export class ReportView extends Model.SharedModel.AbstractState {
+export class ReportView extends AbstractState {
     private tab: string;
 
     FromQuery(p: Params) {
@@ -23,7 +23,7 @@ export class ReportView extends Model.SharedModel.AbstractState {
 }
 
 @Injectable()
-export class ReportViewService extends Model.SharedModel.AbstractStateService<ReportView> {
+export class ReportViewService extends AbstractStateService<ReportView> {
     constructor(
         route: ActivatedRoute
     ) {

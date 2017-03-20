@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
-import { Ui, Ng } from '../../shared';
+import { ModalComponent } from '../../shared';
 
 import {
     WorkspaceService, QueueService,
@@ -26,7 +26,7 @@ export class ActionComponent {
     canNext$ = this.queueService.canNext$;
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
-    @ViewChild(Ng.ModalComponent) needFeedback: Ng.ModalComponent;
+    @ViewChild(ModalComponent) needFeedback: ModalComponent;
   
 
     ngAfterViewInit() {

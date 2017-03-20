@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
-import { Editor, Form } from '../shared';
-import { SharedModule, Branch } from '../../shared/';
-
-import { routing, components } from './house.routing';
+import { AdminFormModule, EditorModule, ServiceListModule } from '../shared';
+import { SharedModule, BranchModule } from '../../shared/';
 import { FilePickerModule, MultiFilePickerModule } from '../../shared/upload';
+
+import { HouseComponent } from './house.component';
+import { CounterComponent } from './counter/counter.component';
+import { KioskComponent } from './kiosk/kiosk.component';
+import { ScreenComponent } from './screen/screen.component';
+import { SFlowComponent } from './sflow/sflow.component';
+
+import { routing } from './house.routing';
 
 @NgModule({
     imports: [
-        SharedModule, Branch.BranchModule,
-        Editor.EditorModule, Form.CultureModule, Form.ArrayFormModule,
-        FilePickerModule, MultiFilePickerModule, Form.ServiceListModule,
+        SharedModule, BranchModule,
+        EditorModule, AdminFormModule, ServiceListModule,
+        FilePickerModule, MultiFilePickerModule,
         routing
     ],
-    declarations: [...components]
+    declarations: [
+        HouseComponent, CounterComponent, KioskComponent,
+        ScreenComponent, SFlowComponent
+    ]
 })
 export class HouseModule {
 

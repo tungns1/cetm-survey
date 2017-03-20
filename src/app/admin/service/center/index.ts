@@ -1,26 +1,32 @@
-import * as TForm from './tform';
-import * as Layout from './layout';
-import * as Service from './service';
-
 import { Injectable } from '@angular/core';
 import { AdminFilterService } from '../shared';
-import { SharedService } from '../../shared';
 import { TFormService } from './tform';
 import { ServiceService } from './service';
 import { LayoutService } from './layout';
+import { HttpServiceGenerator } from '../../shared';
 
 @Injectable()
 export class CenterService {
     constructor(
-        protected filterService: AdminFilterService
+        protected filterService: AdminFilterService,
+        private httpSG: HttpServiceGenerator
     ) {
         this.onInit();
     }
 
     private onInit() {
-        this.TFormService = new TFormService(this.Link.TForm, this.filterService);
-        this.ServiceService = new ServiceService(this.Link.Service, this.filterService);
-        this.LayoutService = new LayoutService(this.Link.Layout, this.filterService);
+        this.TFormService = new TFormService(
+            this.httpSG.make(this.Link.TForm),
+            this.filterService
+        );
+        this.ServiceService = new ServiceService(
+            this.httpSG.make(this.Link.Service),
+            this.filterService
+        );
+        this.LayoutService = new LayoutService(
+            this.httpSG.make(this.Link.Layout),
+            this.filterService
+        );
     }
 
     TFormService: TFormService;

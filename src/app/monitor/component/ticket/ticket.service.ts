@@ -1,27 +1,37 @@
 import { Injectable } from '@angular/core';
-import { SharedService, Model } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
-import { Store } from '@ngrx/store';
-import { ITicket, ITickets, ISummary, Summary } from '../../model';
-import { MonitorFilterService } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { IExtendedTicket, ITickets, ISummary, Summary } from '../../model';
+
+import {
+    MonitorFilterService,
+    HttpServiceGenerator, AppSocketGenerator
+} from '../shared';
+
+
+import {
+    CacheCounter, CacheUsers,
+    ICounter, IUser, ICustomer
+} from '../../../shared/model';
 
 interface IFocusReply {
-    counters: Model.House.ICounter[];
-    users: Model.Org.IUser[];
+    counters: ICounter[];
+    users: IUser[];
     tickets: ITickets;
 }
 
 const MonitorSocketLink = "/room/monitor/join";
 
-export const RxInfoCustomer = new BehaviorSubject<Model.Org.ICustomer>(null);
+export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
 @Injectable()
 export class MonitorTicketService {
     constructor(
-        private filterService: MonitorFilterService
+        private filterService: MonitorFilterService,
+        private httpServiceGenerator: HttpServiceGenerator,
+        private appSocketGenerator: AppSocketGenerator
     ) { }
 
-    private socket = new SharedService.Backend.AppSocket(MonitorSocketLink);
+    private socket = this.appSocketGenerator.make(MonitorSocketLink);
 
     onInit() {
         this.socket.Connect({});
@@ -61,13 +71,13 @@ export class MonitorTicketService {
             return this.socket.Send<IFocusReply>("/focus", {
                 branch_id
             }).do(data => {
-                Model.House.CacheCounter.Refresh(data ? data.counters : []);
-                Model.Org.CacheUsers.Refresh(data ? data.users : []);
+                CacheCounter.Refresh(data ? data.counters : []);
+                CacheUsers.Refresh(data ? data.users : []);
             });
         });
     }).share();
 
-    private ticketUpdate$ = this.socket.RxEvent<ITicket>("/ticket/update").startWith(null);
+    private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
 
     tickets$ = this.initialFocus$
         .map(data => data ? data.tickets : {})
@@ -86,9 +96,9 @@ export class MonitorTicketService {
         this.socket.Send("/focus", {}).subscribe();
     }
     GetInfoCustomer(idCustomer: string) {
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: idCustomer });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: idCustomer });
     }
-    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/monitor");
+    apiCustomer = this.httpServiceGenerator.make<any>("/api/monitor");
 }
 
 function AddToSet<T>(arr: T[] = [], a: T, checker: (old: T) => boolean) {

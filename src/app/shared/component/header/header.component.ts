@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
-import { AuxState } from '../../config/';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { RuntimeEnvironment } from '../../env/';
 
 @Component({
     selector: "app-header",
     templateUrl: 'header.component.html',
-    styleUrls: ['header.component.scss']
+    styleUrls: ['header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-    title = AuxState('title');
+    constructor(
+        private env: RuntimeEnvironment
+    ) {}
+    
+    moduleName$ = this.env.Auth$.map(a => a.Module);
+    subModuleName$ = this.env.Auth$.map(a => a.Submodule);
 }

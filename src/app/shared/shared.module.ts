@@ -1,40 +1,41 @@
 import { NgModule, ModuleWithProviders, ValueProvider } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule, LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { CommonModule } from "@angular/common";
 
-import { Routes, RouterModule } from "@angular/router";
-import { AppSettingComponent, LoginComponent, PageNotFoundComponent } from "./component/";
-
-import { AppState, Auth } from "./service/";
-
-const routes: Routes = [
-    { path: "setting", component: AppSettingComponent },
-    { path: "login", component: LoginComponent },
-    // { path: "**", component: PageNotFoundComponent }
-]
-
-import { I18n, Ng } from "./shared";
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
+import { authProviders } from './auth';
+import { i18nServiceProvider } from './service/i18n';
+import { EnvironmentModule } from './env';
+import { ModalModule, SelectCheckModule } from '../x/ng';
+import { TranslateModule } from '../x/i18n';
+import { LogService, RouterQueryStorageStrategy } from './shared';
+import { AppSocketGenerator, HttpServiceGenerator } from './service';
 
 @NgModule({
     imports: [
-        ReactiveFormsModule, CommonModule,
-        RouterModule.forChild(routes), I18n.TranslateModule
+
     ],
-    declarations: [AppSettingComponent, LoginComponent, PageNotFoundComponent],
     exports: [
-        RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
+        CommonModule, DirectiveModule,
+        FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
-        I18n.TranslateModule, UtilPipeModule, Ng.SelectCheckModule, Ng.ModalModule
+        TranslateModule, UtilPipeModule, SelectCheckModule,
+        ModalModule
     ]
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: []
+            providers: [
+                EnvironmentModule.Providers(),
+                authProviders, i18nServiceProvider,
+                LogService, RouterQueryStorageStrategy,
+                AppSocketGenerator, HttpServiceGenerator
+            ]
         }
     }
 }

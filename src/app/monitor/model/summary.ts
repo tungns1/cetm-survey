@@ -10,7 +10,7 @@ export interface ISummary {
 	serve_short: number;
 }
 
-import { Model } from '../shared';
+import { CacheBranch } from '../shared';
 
 export class Summary {
 	constructor(data?: ISummary) {
@@ -28,7 +28,7 @@ export class Summary {
 			this.wl_percent = this.wait_long/ this.waiting * 100;
 		else this.wl_percent = 0;
 
-		const branch = Model.Org.CacheBranch.GetByID(this.branch_id);
+		const branch = CacheBranch.GetByID(this.branch_id);
 		if (branch) {
 			this.parent_id = branch.parent;
 		}

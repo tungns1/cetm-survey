@@ -1,7 +1,7 @@
 
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { I18n } from '../../shared';
+import { TranslateService } from '../../shared';
 
 @Component({
     selector: 'user-setting',
@@ -9,7 +9,7 @@ import { I18n } from '../../shared';
     styleUrls: ['user-setting.scss']
 })
 export class UserSettingComponent {
-    constructor(private translate: I18n.TranslateService) { }
+    constructor(private translate: TranslateService) { }
 
     @Output() close = new EventEmitter();
 

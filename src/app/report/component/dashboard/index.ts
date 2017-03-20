@@ -1,1 +1,1 @@
-export * from './dashboard.module';
+export { ReportDashboardModule } from './dashboard.module';

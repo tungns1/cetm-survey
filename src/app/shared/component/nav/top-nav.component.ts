@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TopNavMenu, Item, GetActiveItemIndex } from './model';
-import { AppState } from '../../service';
 
 @Component({
     selector: 'top-nav',
@@ -12,12 +11,11 @@ export class TopNavComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private router: Router,
-        private appService: AppState
+        private router: Router
     ) { }
 
     ngOnInit() {
-        this.active = GetActiveItemIndex(this.appService.AppName, this.router.url);
+        // this.active = GetActiveItemIndex(this.appService.AppName, this.router.url);
     }
 
     onClick(item: Item, index: number) {

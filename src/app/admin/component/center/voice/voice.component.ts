@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Center } from '../../../service/';
-import { Branch, Editor, Model } from '../../../shared/';
+import { ILayout } from '../../../service/';
 
 import { FormBuilder, Validators } from '@angular/forms';
 
-function NewForm(b?: Model.Center.ILayout) {
+function NewForm(b?: ILayout) {
     b = b || <any>{};
     return (new FormBuilder).group({
         id: [b.id],
@@ -18,7 +17,7 @@ function NewForm(b?: Model.Center.ILayout) {
     selector: 'center-voice',
     templateUrl: 'voice.component.html'
 })
-export class LayoutComponent {
+export class VoiceComponent {
 
     fields = [
         { title: 'LANGAUGE_NAME', name: 'name' },

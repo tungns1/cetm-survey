@@ -6,7 +6,6 @@ import { CustomerAPI } from './service/customer.service';
 import {
     CustomerComponent
 } from './customer.component';
-import { SharedService } from '../../shared';
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -27,9 +26,10 @@ import { ReportHistoryModule } from './history/history.module'
 
 @NgModule({
     imports: [
-        routing, ReportSumModule, ReportOverviewModule, ReportChartModule, 
+        routing, ReportSumModule, ReportOverviewModule, ReportChartModule,
         ReportInfoModule, ReportFilterModule, ReportHistoryModule,
-        CommonModule, SharedService.I18n.TranslateModule, FlexLayoutModule],
+        CommonModule, FlexLayoutModule
+    ],
     declarations: [
         CustomerComponent, ReportTabComponent
     ],

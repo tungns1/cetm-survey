@@ -1,7 +1,7 @@
 import { L10nText, Localize } from '../../util/i18n';
-import { Cache } from '../../shared/';
+import { MemCache, ID } from '../../shared/';
 
-export interface IService extends Cache.ID {
+export interface IService extends ID {
     code: string;
     tform_normal: string;
     tform_vip: string;
@@ -14,7 +14,7 @@ export interface IService extends Cache.ID {
 }
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-export const CacheService = new Cache.MemCache<IService>();
+export const CacheService = new MemCache<IService>();
 
 export function ServiceName(service_id: string): string {
     const s = CacheService.GetByID(service_id);

@@ -2,7 +2,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { BranchConfigModule } from './branch_config/branch_config.module';
 import { MetaComponent } from './meta.component';
 
-const children: Routes = [
+export function loadBranchConfigModule() {
+  return BranchConfigModule;
+}
+
+export const children: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -10,7 +14,7 @@ const children: Routes = [
   },
   {
     path: 'branch_config',
-    loadChildren: () => BranchConfigModule
+    loadChildren: loadBranchConfigModule
   }
 ]
 
@@ -21,8 +25,3 @@ export const routing = RouterModule.forChild([
     children: children
   }
 ]);
-
-export const components = children.map(c => c.component).filter(c => !!c);
-
-components.push(MetaComponent);
-

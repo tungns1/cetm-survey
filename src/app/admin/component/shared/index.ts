@@ -1,12 +1,6 @@
 
-import * as Editor from './editor/';
-import * as Form from './form/';
-
-export {
-    Editor,
-    Form
-}
-
 export * from '../../service';
 export * from '../../shared';
+export { EditorComponent, EditorModule } from './editor';
+export { AdminFormModule, ServiceListModule } from './form';
 

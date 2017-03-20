@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Org, SharedModel } from '../../model';
+import { BranchLevels, AbstractState, CacheBranch, AbstractStateService, MultipleIDList } from '../../model';
 
-export class BranchFilter extends SharedModel.AbstractState {
+export class BranchFilter extends AbstractState {
     constructor() {
         super();
-        this.branch_id = new SharedModel.MultipleIDList(Org.BranchLevels.length);
+        this.branch_id = new MultipleIDList(BranchLevels.length);
     }
 
     FromQuery(p: Params) {
@@ -26,7 +26,7 @@ export class BranchFilter extends SharedModel.AbstractState {
 
     private checkTheRoot() {
         const maxLevel = this.branch_id.Max;
-        const branchAtRoot = Org.CacheBranch.GetByLevel(maxLevel);
+        const branchAtRoot = CacheBranch.GetByLevel(maxLevel);
         this.branch_id.set(maxLevel, branchAtRoot.map(b => b.id)) ;
     }
 
@@ -58,14 +58,14 @@ export class BranchFilter extends SharedModel.AbstractState {
         return this.branch_id.Levels;
     }
 
-    private branch_id: SharedModel.MultipleIDList;
+    private branch_id: MultipleIDList;
 }
 
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
-export class BranchFilterService extends SharedModel.AbstractStateService<BranchFilter> {
+export class BranchFilterService extends AbstractStateService<BranchFilter> {
     constructor(
         route: ActivatedRoute
     ) {

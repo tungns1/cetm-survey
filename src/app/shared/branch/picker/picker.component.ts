@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { Org } from '../../model';
+import { CacheBranch } from '../../model';
 import { BranchFilterService, BranchFilterModule } from '../filter';
 
 const BRANCH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
@@ -37,7 +37,7 @@ export class BranchPickerComponent implements ControlValueAccessor {
 
     private branches = this.branchFilterService.ValueChanges.switchMap(filter => {
         const ids = filter.GetArrayBranchID();
-        return Org.CacheBranch.RxListView.map(branches => {
+        return CacheBranch.RxListView.map(branches => {
             return branches.filter(b => ids.indexOf(b.id) !== -1);
         })
     });

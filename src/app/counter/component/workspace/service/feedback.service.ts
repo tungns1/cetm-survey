@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
-import { ITicket, SharedService } from '../../shared';
+import { ITicket, AuthService } from '../../shared';
 import { IsFeedbackDeviceAvailable } from '../../../device';
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -13,7 +13,7 @@ export class FeedbackService {
 
     constructor(
         private workspaceService: WorkspaceService,
-        private authService: SharedService.Auth.AuthService
+        private authService: AuthService
     ) {
         this.onInit();
     }

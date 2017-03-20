@@ -1,10 +1,11 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { SharedConfig, SharedUtil } from '../../../shared';
+import { LOCALES } from '../../../shared';
+import { L10nText } from '../../../../shared/util';
 
-export function NewL10nForm(data: SharedUtil.L10nText) {
+export function NewL10nForm(data: L10nText) {
     data = data || {};
     const forms = {};
-    Object.keys(SharedConfig.Cultures).forEach(code => forms[code] = new FormControl(data[code] || ''));
+    Object.keys(LOCALES.CULTURES).forEach(code => forms[code] = new FormControl(data[code] || ''));
     return new FormGroup(forms);
 }
 
@@ -28,16 +29,16 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
         <input class="hl-input" [(ngModel)]="values[code]" (change)="OnChange()" />
     </div>
     `,
-   
+
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 export class L10nFormComponent implements ControlValueAccessor {
-    codes = Object.keys(SharedConfig.Cultures);
-    names = SharedConfig.Cultures;
-    private values: SharedUtil.L10nText = {};
+    codes = Object.keys(LOCALES.CULTURES);
+    names = LOCALES.CULTURES;
+    private values: L10nText = {};
     private onChangeCallback = (v) => { };
 
-    writeValue(v: SharedUtil.L10nText) {
+    writeValue(v: L10nText) {
         this.values = v || {};
     }
 

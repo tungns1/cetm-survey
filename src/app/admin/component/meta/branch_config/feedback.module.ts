@@ -20,7 +20,7 @@ const FEEDBACK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     `,
     providers: [FEEDBACK_CONTROL_VALUE_ACCESSOR]
 })
-class FeedbackConfigComponent implements ControlValueAccessor {
+export class FeedbackConfigComponent implements ControlValueAccessor {
     private text: string;
     private value = {
         required: false
@@ -48,10 +48,10 @@ class FeedbackConfigComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {SharedService} from '../../shared';
+import { TranslateModule } from '../../shared';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, SharedService.I18n.TranslateModule],
+    imports: [FormsModule, CommonModule, TranslateModule],
     declarations: [FeedbackConfigComponent],
     exports: [FeedbackConfigComponent]
 })

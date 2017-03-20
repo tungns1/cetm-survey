@@ -3,25 +3,28 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
-import { appRouting } from "./app.routing";
-import { BaseAppModule, SharedService } from "./shared";
+import { AppRoutingModule } from "./app.routing";
 
-const appName = "admin";
-const appState = new SharedService.AppState(appName);
+import { RawTranslateLoader, TranslateLoader, TranslateModule } from './shared/service/i18n';
+
+import { BranchModule } from './shared/branch';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    BaseAppModule,
-    appRouting
-  ],
-  providers: [
-    appState.toProvider()
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useClass: RawTranslateLoader
+    }),
+    BranchModule.forRoot(),
+    SharedModule.forRoot(),
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })

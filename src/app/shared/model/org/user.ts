@@ -1,7 +1,7 @@
 
-import { Cache } from '../../shared/';
+import { ID, MemCache } from '../../shared/';
 
-export interface IUser extends Cache.ID {
+export interface IUser extends ID {
     branch_id?: string;
     mtime?: number;
     username: string;
@@ -38,4 +38,4 @@ export const AllRoles: IRole[] = Object.keys(USER_ROLES).map(role => {
     }
 })
 
-export const CacheUsers = new Cache.MemCache<IUser>();
+export const CacheUsers = new MemCache<IUser>();

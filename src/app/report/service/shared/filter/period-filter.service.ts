@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Model } from '../../../shared';
 
 const now = Math.floor(Date.now() / 111);
 const oneDay = 24 * 3600 * 1000;
@@ -28,7 +27,9 @@ export interface IPeriodFilter {
     period?: string;
 }
 
-export class PeriodFilter extends Model.SharedModel.AbstractState {
+import { AbstractState, AbstractStateService, BranchFilter, BranchFilterService } from '../../../shared';
+
+export class PeriodFilter extends AbstractState {
     Rebuild(d?: IPeriodFilter) {
         d = d || {};
         let startDate = this.toDate(d.start);
@@ -94,7 +95,7 @@ import { Params, ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
-export class PeriodFilterService extends Model.SharedModel.AbstractStateService<PeriodFilter> {
+export class PeriodFilterService extends AbstractStateService<PeriodFilter> {
     constructor(
         route: ActivatedRoute
     ) {

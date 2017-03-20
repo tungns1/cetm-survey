@@ -1,8 +1,9 @@
-import { Backend, I18n } from '../../shared';
+import { GetRaw } from '../../../x/backend';
+import { TranslateLoader } from '../../../x/i18n';
 
 function LoadI18n(lang: string, app: string) {
     const uri = `./i18n/${lang}/${app}.json`;
-    return Backend.GetRaw(uri).map(res => {
+    return GetRaw(uri).map(res => {
         if (res.status == 200) {
             try {
                 let v = JSON.parse(res.body);
@@ -25,9 +26,8 @@ function LoadMultiple(lang: string, files: string[]) {
 
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
-export class RawTranslateLoader implements I18n.TranslateLoader {
-    constructor(private files: string[]) { }
+export class RawTranslateLoader implements TranslateLoader {
     getTranslation(lang: string) {
-        return LoadMultiple(lang, ['shared'].concat(this.files));
+        return LoadMultiple(lang, ['shared']);
     }
 }

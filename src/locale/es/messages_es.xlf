@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6e22e74e8cbd3095560cfe08993c4fdfa3c50eb0" datatype="html">
+        <source/>
+        <target/>
+        <note priority="1" from="description">Translate plural</note>
+      </trans-unit>
+      <trans-unit id="61cafedb85466ab789b3ae817bba1a545468ee1c" datatype="html">
+        <source>The hero is <x id="ICU"/></source>
+        <target>The hero is <x id="ICU"/></target>
+      </trans-unit>
+      <trans-unit id="14c7055d67771a3b7b6888d282ac092896be06b6" datatype="html">
+        <source/>
+        <target>{gender, select, m {hombre} f {mujer}}</target>
+      </trans-unit>
+      <trans-unit id="7044509a02801b150e1470e001f01d0db404425d" datatype="html">
+        <source>LANGAUGE_NAME</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

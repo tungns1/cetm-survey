@@ -1,1 +1,1 @@
-export * from './org.module';
+export { OrgModule } from './org.module';

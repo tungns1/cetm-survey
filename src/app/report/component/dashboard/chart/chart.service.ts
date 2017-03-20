@@ -15,7 +15,7 @@ const TimeParse = {
     year: timeYear
 }
 
-import { AggregateService, Lib } from '../../shared';
+import { AggregateService } from '../../shared';
 
 import { Injectable } from '@angular/core';
 

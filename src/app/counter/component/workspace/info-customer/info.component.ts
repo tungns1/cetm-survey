@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { QueueService } from '../service';
-import { Model } from '../../shared/';
+import { ICustomer } from '../../shared/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-const c = new BehaviorSubject<Model.Org.ICustomer>(null);
+const c = new BehaviorSubject<ICustomer>(null);
 
 @Component({
     selector: 'info-customer',

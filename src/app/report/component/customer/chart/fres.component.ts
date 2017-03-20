@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AggregateService, Lib } from '../../shared';
+import { AggregateService, TranslateService } from '../../shared';
 import { MakeIndexBy, ReportViewService } from '../../shared';
 import { ChartItem, FresItems } from './chart.model';
 import { ChartService } from './chart.service';
@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FresChartComponent {
     constructor(
         private chartService: ChartService,
-        private translateService: Lib.I18n.TranslateService,
+        private translateService: TranslateService,
         private viewService: ReportViewService
     ) { } 
 

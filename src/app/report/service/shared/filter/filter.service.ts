@@ -2,14 +2,14 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Model, Branch } from '../../../shared';
+import { AbstractState, AbstractStateService, BranchFilter, BranchFilterService } from '../../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { InsideBranchFilter, InsideBranchFilterService } from './inside-filter.service';
 import { PeriodFilter, PeriodFilterService } from './period-filter.service';
 
-export class ReportFilter extends Model.SharedModel.AbstractState {
+export class ReportFilter extends AbstractState {
     constructor(
-        public Branch: Branch.BranchFilter,
+        public Branch: BranchFilter,
         public Inside: InsideBranchFilter,
         public Period: PeriodFilter
     ) {
@@ -44,10 +44,10 @@ export class ReportFilter extends Model.SharedModel.AbstractState {
 }
 
 @Injectable()
-export class ReportFilterService extends Model.SharedModel.AbstractStateService<ReportFilter> {
+export class ReportFilterService extends AbstractStateService<ReportFilter> {
     constructor(
         route: ActivatedRoute,
-        private branchFilterService: Branch.BranchFilterService,
+        private branchFilterService: BranchFilterService,
         private insideFilterService: InsideBranchFilterService,
         private periodFilterService: PeriodFilterService
     ) {

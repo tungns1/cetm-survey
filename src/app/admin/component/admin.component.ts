@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { Branch } from '../shared';
 
 @Component({
   selector: 'app-admin',

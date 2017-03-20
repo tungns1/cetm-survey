@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { QueueService } from '../service';
-import { Model } from '../../shared/';
+import { ITicket } from '../../shared/';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 const search = new BehaviorSubject<string>('');
@@ -21,7 +21,7 @@ export class MissedComponent {
     missed$ = this.queueService.missed$;
 
     count = this.missed$.map(data => data.length);
-    tickets = combineLatest<Model.House.ITicket[], string>(this.missed$, search).map(([tickets, text]) => {
+    tickets = combineLatest<ITicket[], string>(this.missed$, search).map(([tickets, text]) => {
         return tickets.filter(v => v.cnum.indexOf(text) !== -1);
     });
     

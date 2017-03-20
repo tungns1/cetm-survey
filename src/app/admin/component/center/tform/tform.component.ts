@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Center } from '../../../service/';
-import { Branch, Model } from '../../../shared/';
+import { CenterService, ITForm } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -10,12 +9,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class TFormComponent {
     constructor(
-        private center: Center.CenterService
+        private center: CenterService
     ) { }
 
     service = this.center.TFormService;
 
-    makeForm(b?: Model.Center.ITForm) {
+    makeForm(b?: ITForm) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],

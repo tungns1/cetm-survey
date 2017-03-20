@@ -1,35 +1,37 @@
 import { Subject } from 'rxjs/Subject';
-import { I18n } from '../../shared';
-import { Languages, LanguageDefault, Setting, SetLanguage } from '../../config/';
+import {
+    TranslateService, LangChangeEvent, LOCALES,
+    AppStorage
+} from '../../shared';
 
 import { FactoryProvider } from '@angular/core';
 
 export class I18nService {
-    constructor(private translateService: I18n.TranslateService) {
+    constructor(private translateService: TranslateService) {
         this.onInit();
     }
 
     private onInit() {
-        this.translateService.onLangChange.subscribe((e: I18n.LangChangeEvent) => {
-            SetLanguage(e.lang);
+        this.translateService.onLangChange.subscribe((e: LangChangeEvent) => {
+            AppStorage.Locale = e.lang;
         });
-        this.translateService.addLangs(Object.keys(Languages));
-        this.translateService.setDefaultLang(LanguageDefault || 'en');
-        this.translateService.use(Setting().lang);
+        this.translateService.addLangs(Object.keys(LOCALES.LANGUAGES));
+        this.translateService.setDefaultLang(LOCALES.DEFAULT || 'en');
+        this.translateService.use(AppStorage.Locale);
     }
 
     Translate(key: string) {
         return this.translateService.instant(key);
     }
 
-    static provider(): FactoryProvider {
-        return {
-            provide: I18nService,
-            deps: [I18n.TranslateService],
-            useFactory: (translateService: I18n.TranslateService) => {
-                return new I18nService(translateService);
-            }
-        }
+}
 
-    }
+export function newI18nService(translateService: TranslateService) {
+    return new I18nService(translateService);
+}
+
+export const i18nServiceProvider: FactoryProvider = {
+    provide: I18nService,
+    deps: [TranslateService],
+    useFactory: newI18nService
 }

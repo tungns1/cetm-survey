@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Center, House, Org } from '../../../service/';
-import { Branch, Model } from '../../../shared/';
+import { CenterService, HouseService, IKiosk } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -11,8 +10,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class KioskComponent {
 
     constructor(
-        private center: Center.CenterService,
-        private house: House.HouseService
+        private center: CenterService,
+        private house: HouseService
     ) { }
 
     service = this.house.KioskService;
@@ -20,7 +19,7 @@ export class KioskComponent {
     services = this.center.ServiceService.RxListView;
     layouts = this.center.LayoutService.GetByType('kiosk');
 
-    makeForm(b?: Model.House.IKiosk) {
+    makeForm(b?: IKiosk) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],

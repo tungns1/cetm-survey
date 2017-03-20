@@ -1,16 +1,20 @@
 import { Routes, RouterModule } from "@angular/router"
-import { SharedService } from "./shared/";
+import { AuthGuard } from "./shared/";
 import { MonitorComponent, MonitorTicketModule } from "./component";
 
-const children: Routes = [
+export function loadMonitorTicketModule() {
+    return MonitorTicketModule
+}
+
+export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "ticket" },
-    { path: "ticket", loadChildren: () => MonitorTicketModule }
+    { path: "ticket", loadChildren: loadMonitorTicketModule }
 ];
 
 export const routing = RouterModule.forChild([
     {
         path: "",
-        canActivate: [SharedService.Auth.AuthGuard],
+        canActivate: [AuthGuard],
         component: MonitorComponent,
         children: children
     }

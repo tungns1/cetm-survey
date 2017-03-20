@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angu
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Org } from '../../model';
+import { IBranch, CacheBranch } from '../../model';
 import { BranchFilterService } from './filter.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
@@ -21,7 +21,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
     form: FormArray;
     levels: number[];
     viewLevels: number[];
-    data: Observable<Org.IBranch[]>[] = [];
+    data: Observable<IBranch[]>[] = [];
 
     ngOnInit() {
         this.levels = this.filterService.Levels;
@@ -51,7 +51,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
     private makeData(i: number) {
         const parentForm = this.form.at(i + 1);
         const activeForm = this.form.at(i);
-        const byLevel = Org.CacheBranch.RxByLevel(i);
+        const byLevel = CacheBranch.RxByLevel(i);
         if (!parentForm) {
             return byLevel;
         }
@@ -61,7 +61,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
                 const parent_id: string[] = parents;
                 const value: string[] = activeForm.value;
                 const updateValue = value.filter(id => {
-                    const branch = Org.CacheBranch.GetByID(id);
+                    const branch = CacheBranch.GetByID(id);
                     return parent_id.indexOf(branch.parent) !== -1;
                 });
                 setTimeout(_ => activeForm.setValue(updateValue));

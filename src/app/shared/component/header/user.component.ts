@@ -1,7 +1,7 @@
 
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from '../../service/';
+import { AuthService } from '../../auth';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class UserComponent {
     constructor(
-        private authService: Auth.AuthService,
+        private authService: AuthService,
         private router: Router
     ) { }
 

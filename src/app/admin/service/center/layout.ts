@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Model, Branch, SharedService } from '../../shared/';
 import { CrudApiService, AdminFilter } from '../shared';
+import { ILayout } from '../shared';
 
 @Injectable()
-export class LayoutService extends CrudApiService<Model.Center.IService> {
+export class LayoutService extends CrudApiService<ILayout> {
     GetByType(type: string) {
         return this.api.Search({ type: type });
     }
