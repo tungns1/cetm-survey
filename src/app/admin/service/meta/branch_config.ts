@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Model, Branch, SharedService } from '../../shared/';
-import { BranchCrudApiService, AdminFilter } from '../shared';
+import { BranchCrudApiService, AdminFilter, IBranchConfig } from '../shared';
 
 @Injectable()
-export class BranchConfigService extends BranchCrudApiService<Model.Meta.IBranchConfig> {
+export class BranchConfigService extends BranchCrudApiService<IBranchConfig> {
     ListFields = [
         { title: 'LANGAUGE_BRANCH', name: 'branch' }
     ]

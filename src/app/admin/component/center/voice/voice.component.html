@@ -1,26 +1,15 @@
-<br>
-<a routerLink="/admin/ui"><span translate>LANGAUGE_BACK_LAYOUT</span></a>
-<md-card class="demo-card">
-    <md-card-title>
-        <span translate>LANGAUGE_LIST_SOUND</span>
-        <a class="btpointer" (click)="editor()"> <span translate>LANGAUGE_BUTTON_ADD</span> </a>
-    </md-card-title>
-    <md-card-content>
-        <table width="100%">
-            <thead>
-                <td><span translate>LANGAUGE_NUMERICAL_ORDER</span></td>
-                <td><span translate>LANGAUGE_NAME</span></td>
-                <td><span translate>LANGAUGE_TYPE</span></td>
-            </thead>
-            <tr *ngFor="let voice of voices | async; let i = index">
-                <td>{{i+1}}</td>
-                <td>{{voice.name}}</td>
-                <td>{{voice.type}}</td>
-                <td>
-                    <button md-button (click)="editor(voice)"> <span translate>LANGAUGE_BUTTON_EDIT</span> </button>
-                    <button md-button [confirm]="[voice.id]" (done)="Delete($event)"> <span translate>LANGAUGE_BUTTON_DEL</span> </button>
-                </td>
-            </tr>
-        </table>
-    </md-card-content>
-</md-card>
+<editor #edit [makeForm]="makeForm" [service]="service">
+    <editor-title><span translate>LANGAUGE_LIST_NUM_TICKET</span></editor-title>
+    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
+        <span translate>LANGAUGE_CODE</span>:
+        <input class="hl-input" formControlName="code" placeholder="{{'LANGAUGE_CODE' | translate}}">
+        <br><span translate>LANGAUGE_FORMAT</span>:
+        <input class="hl-input" formControlName="format" placeholder="{{'LANGAUGE_FORMAT' | translate}}">
+        <br> <span translate>LANGAUGE_VALUE_MIN</span>:
+        <input class="hl-input" formControlName="minnum" type="number" placeholder="{{'LANGAUGE_VALUE_MIN' | translate}}">
+        <br> <span translate>LANGAUGE_VALUE_MAX</span>:
+        <input class="hl-input" formControlName="maxnum" type="number" placeholder="{{'LANGAUGE_VALUE_MAX' | translate}}">
+        <br> <span translate>TICKET_TEMPLATE</span>:
+        <app-quill-editor formControlName="template" rows="8" cols="40"></app-quill-editor>
+    </form>
+</editor>

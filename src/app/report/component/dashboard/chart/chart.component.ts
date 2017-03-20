@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MakeIndexBy, ReportViewService } from '../../shared';
-import { AggregateService, Lib } from '../../shared';
+import { AggregateService, TranslateService } from '../../shared';
 import { ChartItem, MainItems, PieItems } from './chart.model';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -13,7 +13,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class ReportChartComponent {
     constructor(
         private chartService: ChartService,
-        private translateService: Lib.I18n.TranslateService,
+        private translateService: TranslateService,
         private viewService: ReportViewService
     ) { }
 

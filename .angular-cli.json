@@ -9,6 +9,7 @@
         "assets": [
             "assets",
             "i18n",
+            "locale",
             "favicon.ico"
         ],
         "index": "index.html",

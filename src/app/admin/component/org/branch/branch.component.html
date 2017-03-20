@@ -1,10 +1,10 @@
 <editor #edit [name]="level | branchLevelName" [makeForm]="makeForm" [service]="service">
     <editor-title> <span translate>LANGAUGE_LIST</span>&nbsp;{{level | branchLevelName| translate}}</editor-title>
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span translate>LANGAUGE_NAME</span>:
-        <input class="hl-input" type="text" formControlName="name" placeholder="{{'LANGAUGE_NAME' | translate}}"><br>
+        <span i18n>Name</span>:
+        <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name"><br>
         <span translate>LANGAUGE_CODE</span>:
-        <input class="hl-input" type="text" formControlName="code" placeholder="{{'LANGAUGE_CODE' | translate}}">
+        <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
 
         <div>
             <label style="margin-right: 14px;">{{level + 1 | branchLevelName| translate}}</label>
@@ -13,4 +13,6 @@
             </select>
         </div>
     </form>
+    <editor-field name="name" i18n-title title="Name"></editor-field>
+    <editor-field name="parent_name" i18n-title title="Parent Location"></editor-field>
 </editor>

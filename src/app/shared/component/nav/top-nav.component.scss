@@ -1,4 +1,4 @@
-#topNav{
+#topNav {
     width: 100%;
     height: 33px;
     border-bottom: solid;
@@ -8,6 +8,7 @@
     background-color: #fff;
     margin-top: 2px;
     .firstLv {
+        position: absolute;
         list-style: none;
         margin: 0 0 0 -30px;
         color: #333;
@@ -23,7 +24,7 @@
                     display: block
                 }
             }
-            .paddingFirst{
+            .paddingFirst {
                 padding: 0 20px;
             }
             .secondLv {
@@ -43,7 +44,7 @@
                     &:hover {
                         background: #a7a9ac;
                     }
-                    .paddingSecond{
+                    .paddingSecond {
                         padding-left: 20px;
                     }
                 }

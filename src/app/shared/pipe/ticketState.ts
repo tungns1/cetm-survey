@@ -1,11 +1,11 @@
 import { Pipe } from '@angular/core';
-import { House } from '../model/';
+import { ITicket } from '../model/';
 
 @Pipe({
     name: 'ticketState'
 })
 export class TicketStatePipe {
-    transform(t: House.ITicket) {
+    transform(t: ITicket) {
         return `STATE_${t.state.toUpperCase()}`;
     }
 }

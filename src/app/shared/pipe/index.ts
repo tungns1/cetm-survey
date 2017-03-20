@@ -6,7 +6,7 @@ import { CounterNamePipe } from './counterName';
 import { UserFullNamePipe } from './userName';
 import { BranchLevelNamePipe, BranchNamePipe } from './branch.pipe';
 
-const exports = [
+const exportComponents = [
     ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe,
     TicketStatePipe, CounterNamePipe, UserFullNamePipe,
     BranchLevelNamePipe, BranchNamePipe
@@ -14,8 +14,8 @@ const exports = [
 
 @NgModule({
     imports: [TimeModule],
-    declarations: [...exports],
-    exports: [...exports, TimeModule]
+    declarations: [...exportComponents],
+    exports: [...exportComponents, TimeModule]
 })
 export class UtilPipeModule {
 

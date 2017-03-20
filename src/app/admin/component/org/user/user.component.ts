@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AdminFilterService, Org } from '../../shared/';
+import { AdminFilterService, OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../../shared/';
 
 @Component({
   selector: 'admin-user',
@@ -10,10 +9,10 @@ import { Branch, Editor, Model } from '../../shared/';
 })
 export class UserComponent {
   constructor(
-    private org: Org.OrgService
+    private org: OrgService
   ) { }
 
-  makeForm(u?: Model.Org.IUser) {
+  makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],
@@ -27,7 +26,7 @@ export class UserComponent {
   }
 
   service = this.org.UserService;
-  private roles = Model.Org.AllRoles;
+  private roles = AllRoles;
   private branches = this.org.BranchService.RxListView;
 }
 

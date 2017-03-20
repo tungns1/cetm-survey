@@ -1,11 +1,3 @@
-export * from './app.service';
-
-import * as Auth from './auth';
-import * as Backend from './backend';
-import * as I18n from './i18n';
-
-export {
-    Auth,
-    Backend,
-    I18n
-}
+export { HttpServiceGenerator } from './http_service_generator';
+export { AppSocketGenerator } from './app_socket_generator';
+export { HttpApi } from './http_service';

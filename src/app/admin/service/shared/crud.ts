@@ -1,8 +1,9 @@
-import { SharedService, Model } from '../../shared';
 import { Injectable } from '@angular/core';
 import { AdminFilterService, AdminFilter } from './filter';
 import { AdminNavService } from './nav';
 import { Observable } from 'rxjs/Observable';
+import { HttpApi } from '../../shared';
+import { CacheBranch } from '../../../shared/model';
 
 export interface IField {
     name: string;
@@ -10,10 +11,11 @@ export interface IField {
 }
 
 export class CrudApiService<T> {
-    constructor(private uri: string,
+    constructor(
+        protected api: HttpApi<T>,
         private filterService: AdminFilterService
     ) {
-        this.api = new SharedService.Backend.HttpApi<T>(uri);
+
     }
 
     Create(v: T) {
@@ -42,7 +44,6 @@ export class CrudApiService<T> {
 
     Name: string;
     ListFields: IField[] = [];
-    protected api: SharedService.Backend.HttpApi<T>;
 }
 
 export class BranchCrudApiService<T> extends CrudApiService<T> {
@@ -52,7 +53,7 @@ export class BranchCrudApiService<T> extends CrudApiService<T> {
 
     protected filter(d: AdminFilter) {
         return this.GetByBranch(d.Branch.GetBranchIDAtLowestLevel())
-            .do(data => Model.Org.CacheBranch.Join(data));
+            .do(data => CacheBranch.Join(data));
     }
 
     ListFields = [

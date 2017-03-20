@@ -46,3 +46,13 @@ import { UIFormComponent } from './ui-form.component';
 export class UIFormModule {
 
 }
+
+@NgModule({
+    exports: [
+        ArrayFormModule, JSONFormModule, UIFormModule,
+        CultureModule
+    ]
+})
+export class AdminFormModule {
+
+}

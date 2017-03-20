@@ -1,44 +1,40 @@
 import { Routes, RouterModule } from "@angular/router";
-import { SharedService } from "./shared/";
-import {
-  AdminComponent, OrgModule,
-  CenterModule, HouseModule, MetaModule
-} from "./component";
+import { AuthGuard } from "./shared/";
+import { AdminComponent } from "./component";
+import { OrgModule } from './component/org';
+import { CenterModule } from './component/center';
+import { HouseModule } from './component/house';
+import { MetaModule } from './component/meta';
 
-const children: Routes = [
-  {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "org"
-  },
-  {
-    path: "org",
-    loadChildren: () => OrgModule
-  },
-  {
-    path: "meta",
-    loadChildren: () => MetaModule
-  },
-  {
-    path: "house",
-    loadChildren: () => HouseModule
-  },
-  {
-    path: "center",
-    loadChildren: () => CenterModule
-  }
+export function loadMetaModule() {
+  return MetaModule;
+}
+
+export function loadCenterModule() {
+  return CenterModule;
+}
+
+export function loadHouseModule() {
+  return HouseModule;
+}
+
+export function loadOrgModule() {
+  return OrgModule;
+}
+
+export const children: Routes = [
+  { path: "", pathMatch: "full", redirectTo: "org" },
+  { path: "org", loadChildren: loadOrgModule },
+  { path: "meta", loadChildren: loadMetaModule },
+  { path: "house", loadChildren: loadHouseModule },
+  { path: "center", loadChildren: loadCenterModule }
 ]
 
 export const routing = RouterModule.forChild([
   {
     path: "",
-    canActivate: [SharedService.Auth.AuthGuard],
+    canActivate: [AuthGuard],
     component: AdminComponent,
     children: children
   }
 ]);
-
-export const components = children.map(c => c.component).filter(c => !!c);
-
-components.push(AdminComponent);
-

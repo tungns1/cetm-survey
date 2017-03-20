@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Center } from '../../../service/';
-import { Branch, Model } from '../../../shared/';
-
+import { CenterService, IService } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -11,11 +9,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class ServiceComponent {
     constructor(
-        private center: Center.CenterService
+        private center: CenterService
     ) { }
     service = this.center.ServiceService;
 
-    makeForm(b?: Model.Center.IService) {
+    makeForm(b?: IService) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],

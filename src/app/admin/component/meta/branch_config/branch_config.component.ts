@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Meta, Org } from '../../../service/';
+import { MetaService, OrgService, IBranchConfig } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Branch, Editor, Model } from '../../shared/';
 
 @Component({
   selector: 'admin-config',
@@ -9,13 +8,13 @@ import { Branch, Editor, Model } from '../../shared/';
 })
 export class BranchConfigComponent {
   constructor(
-    private meta: Meta.MetaService,
-    private org: Org.OrgService
+    private meta: MetaService,
+    private org: OrgService
   ) { }
 
   service = this.meta.BranchConfigService;
 
-  makeForm(u?: Model.Meta.IBranchConfig) {
+  makeForm(u?: IBranchConfig) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],

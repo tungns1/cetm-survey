@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Center, House } from '../../../service/';
-import { Model } from '../../../shared';
-
+import { CenterService, HouseService, IScreen } from '../../../service/';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
@@ -14,8 +12,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 export class ScreenComponent {
 
     constructor(
-        private center: Center.CenterService,
-        private house: House.HouseService
+        private center: CenterService,
+        private house: HouseService
     ) { }
 
     service = this.house.ScreenService;
@@ -29,12 +27,12 @@ export class ScreenComponent {
     });
 
 
-    onEdit(d: Model.House.IScreen) {
+    onEdit(d: IScreen) {
         console.log(d);
         this.focusBranchID$.next(d.branch_id);
     }
 
-    makeForm(b?: Model.House.IScreen) {
+    makeForm(b?: IScreen) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],

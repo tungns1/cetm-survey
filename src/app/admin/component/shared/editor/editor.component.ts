@@ -1,8 +1,12 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ComponentRef } from '@angular/core';
+import {
+    Component, Input, Output, EventEmitter, ViewChild,
+    ContentChildren, QueryList, AfterContentInit
+} from '@angular/core';
+
 import { FormGroup } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
-import { SharedService, Lib } from '../../../shared/';
+import { ModalComponent, Toast } from '../../../shared/';
 import { CrudApiService, IField } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
 
@@ -11,6 +15,16 @@ import { ISubscription } from 'rxjs/Subscription';
     template: `<ng-content></ng-content>`
 })
 export class EditorTitleComponent { }
+
+
+@Component({
+    selector: "editor-field",
+    template: `<ng-content></ng-content>`
+})
+export class EditorFieldComponent {
+    @Input() name: string;
+    @Input() title: string;
+}
 
 @Component({
     selector: 'editor',
@@ -29,8 +43,13 @@ export class EditorComponent<T> {
     @Input() makeForm: (u?: T) => FormGroup;
     @Output() edit = new EventEmitter<T>();
 
-    @ViewChild("edit") editorRef: Lib.Ng.ModalComponent;
-    @ViewChild("remove") removeRef: Lib.Ng.ModalComponent;
+    @ViewChild("edit") editorRef: ModalComponent;
+    @ViewChild("remove") removeRef: ModalComponent;
+    @ContentChildren(EditorFieldComponent) fields: QueryList<EditorFieldComponent>;
+
+    ngAfterContentInit() {
+        this.listFields = this.fields.toArray();
+    }
 
 
     private formSub: ISubscription;
@@ -45,7 +64,7 @@ export class EditorComponent<T> {
         if (v) {
             this.edit.next(v);
         }
-        
+
         this.formSub = this.form.valueChanges.subscribe(d => this.edit.next(d));
         this.form.updateValueAndValidity({ onlySelf: false, emitEvent: true });
         this.editorRef.Open();
@@ -117,11 +136,11 @@ export class EditorComponent<T> {
 
 
 function Error(message: string) {
-    const toast = new Lib.Ui.Notification.Toast;
+    const toast = new Toast;
     toast.Title('Lỗi').Error(message).Show();
 }
 
 function Success(message: string) {
-    const toast = new Lib.Ui.Notification.Toast;
+    const toast = new Toast;
     toast.Title('Thành công').Info(message).Show();
 }

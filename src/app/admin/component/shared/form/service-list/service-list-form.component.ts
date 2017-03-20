@@ -11,10 +11,11 @@ const SERVICE_LIST_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 import { FormArray, FormControl } from '@angular/forms';
-import { Model, Lib, SharedService } from '../../../../shared';
+import { ModalComponent } from '../../../../shared';
+import { IService, ServiceName } from '../../../../../shared/model';
 import { ViewChild } from '@angular/core';
 
-type IServiceList = Model.Center.IService[];
+type IServiceList = IService[];
 
 @Component({
     selector: 'service-list',
@@ -25,11 +26,11 @@ type IServiceList = Model.Center.IService[];
 export class ServiceListComponent implements ControlValueAccessor {
 
     @Input() services: IServiceList = [];
-    @ViewChild(Lib.Ng.ModalComponent) modal: Lib.Ng.ModalComponent;
+    @ViewChild(ModalComponent) modal: ModalComponent;
 
     protected value: IServiceList = [];
     protected onChangeCallback = (v) => { };
-    private active: Model.Center.IService = null;
+    private active: IService = null;
 
     writeValue(data: IServiceList) {
         if (!Array.isArray(data)) {
@@ -50,7 +51,7 @@ export class ServiceListComponent implements ControlValueAccessor {
         setTimeout(_ => this.onChangeCallback(this.value));
     }
 
-    Edit(d: Model.Center.IService) {
+    Edit(d: IService) {
         this.active = d;
         this.modal.Open();
     }
@@ -91,7 +92,7 @@ export class ServiceListComponent implements ControlValueAccessor {
     }
 
     getName(service_id: string) {
-        return Model.Center.ServiceName(service_id);
+        return ServiceName(service_id);
     }
 
     Swap(i: number, j: number) {

@@ -2,7 +2,7 @@
     <logo class="head-logo"></logo>
     <div class="head-app-title uppercase">
         <ng-content name="module-name"></ng-content>
-        {{title | async}}
+        {{moduleName$ | async}} - {{subModuleName$ | async}}
     </div>
 
     <user class="head-user-profile"></user>

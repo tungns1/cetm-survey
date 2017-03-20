@@ -1,7 +1,7 @@
-import { Model } from '../shared';
+import { IService, ICounter, IUser} from '../../shared/model';
 
 export interface IInsideBranch {
-    services?: Model.Center.IService[];
-    counters?: Model.House.ICounter[];
-    users?: Model.Org.IUser[];
+    services?: IService[];
+    counters?: ICounter[];
+    users?: IUser[];
 }

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Lib, SharedModule,SharedService } from '../../../shared';
-import { EditorComponent, EditorTitleComponent } from './editor.component';
+import { SharedModule, TranslateModule } from '../../../shared';
+import { EditorComponent, EditorTitleComponent, EditorFieldComponent } from './editor.component';
 
 @NgModule({
-    imports: [Lib.Ng.ModalModule, SharedModule,SharedService.I18n.TranslateModule],
+    imports: [SharedModule, TranslateModule],
     declarations: [
-        EditorComponent, EditorTitleComponent
+        EditorComponent, EditorTitleComponent, EditorFieldComponent
     ],
-    exports: [EditorComponent, EditorTitleComponent]
+    exports: [EditorComponent, EditorTitleComponent, EditorFieldComponent]
 })
 export class EditorModule {
 

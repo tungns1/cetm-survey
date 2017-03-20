@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {LocalDayTimePipe} from './localDayTime';
-import {TimeDurationPipe} from './timeDuration';
-import {TimerComopnent} from './timer.component';
+import { LocalDayTimePipe } from './localDayTime';
+import { TimeDurationPipe } from './timeDuration';
+import { TimerComopnent } from './timer.component';
 
-let exports = [LocalDayTimePipe, TimeDurationPipe, TimerComopnent]
+let exportDefault = [LocalDayTimePipe, TimeDurationPipe, TimerComopnent]
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [...exports],
-    exports: [...exports]
+    declarations: [...exportDefault],
+    exports: [...exportDefault]
 })
 export class TimeModule { }
+
+export { TimerComopnent } from './timer.component';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SharedService, Branch, Model, Org, AdminNavService } from '../../shared/';
+import { IBranch, CacheBranch, OrgService, AdminNavService, AuthService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 
@@ -11,13 +11,13 @@ import { Observable } from 'rxjs/observable';
 })
 export class BranchComponent {
   constructor(
-    private org: Org.OrgService,
-    private authService: SharedService.Auth.AuthService,
+    private org: OrgService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private navService: AdminNavService
   ) { }
 
-  parents: Observable<Model.Org.IBranch[]>;
+  parents: Observable<IBranch[]>;
   private level: number;
 
   ngOnInit() {
@@ -29,9 +29,9 @@ export class BranchComponent {
     });
   }
 
-  makeForm(b?: Model.Org.IBranch) {
+  makeForm(b?: IBranch) {
     b = b || <any>{ parent: '' };
-    const maxLevel = Model.Org.CacheBranch.GetMaxLevel();
+    const maxLevel = CacheBranch.GetMaxLevel();
     if (this.level === maxLevel - 1) {
       b.parent = b.parent || `${maxLevel}`;
     }

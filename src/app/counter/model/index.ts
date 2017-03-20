@@ -1,10 +1,15 @@
-import { Model, Backend } from '../shared';
+import {
+    ITicket
+} from '../../shared/model';
 
-export type ITicket = Model.House.ITicket;
-export type TicketState = Model.House.TicketState;
-export const TicketStates = Model.House.TicketStates;
-
-export type ICounter = Model.House.ICounter;
+export {
+    ITicket,
+    TicketState,
+    TicketStates,
+    ICounter,
+    ServiceName,
+    ICustomer
+} from '../../shared/model';
 
 export * from './stat';
 

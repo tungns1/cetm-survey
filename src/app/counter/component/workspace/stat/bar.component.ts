@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 
 @Component({
-
     selector: 'bar',
     templateUrl: 'bar.component.html',
     styleUrls: ['sta.component.scss']

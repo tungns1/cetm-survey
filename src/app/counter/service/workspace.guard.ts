@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { SharedService } from '../shared';
+import { AuthService } from '../shared';
 
 @Injectable()
 export class WorkspaceGuard implements CanActivate {
   constructor(
-    private authService: SharedService.Auth.AuthService
+    private authService: AuthService
   ) {
 
   }

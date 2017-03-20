@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITransactionView, Lib, SharedService } from '../../shared';
+import { ITransactionView, ModalComponent } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RxInfoCustomer } from '../service/customer.service';
 
@@ -11,7 +11,6 @@ import { RxInfoCustomer } from '../service/customer.service';
 export class TransactionComponent implements OnInit {
 
     constructor(
-        private appService: SharedService.AppState,
         private router: Router,
     ) { }
 
@@ -19,13 +18,13 @@ export class TransactionComponent implements OnInit {
 
     }
     customer = RxInfoCustomer;
-    @ViewChild(Lib.Ng.ModalComponent) modal: Lib.Ng.ModalComponent;
+    @ViewChild(ModalComponent) modal: ModalComponent;
 
     SetData(d: ITransactionView) {
         this.link = '';
         this.data = d;
         if (d.audio) {
-            this.link = this.appService.MakeLink(`/api/report/record/${d.audio}`);
+            // this.link = this.appService.MakeLink(`/api/report/record/${d.audio}`);
         }
         this.modal.Open();
     }

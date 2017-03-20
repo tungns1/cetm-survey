@@ -1,8 +1,8 @@
-import { Model } from '../shared';
+import { ITicket, ITicketTrack } from '../shared';
 
 
-export interface ITicket extends Model.House.ITicket {
-    serving: Model.House.ITicketTrack;
+export interface IExtendedTicket extends ITicket {
+    serving: ITicketTrack;
 }
 
 export interface ITickets {

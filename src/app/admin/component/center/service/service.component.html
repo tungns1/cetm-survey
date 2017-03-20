@@ -1,17 +1,17 @@
 <editor #edit [makeForm]="makeForm" [service]="service">
-    <editor-title> <span translate>LANGAUGE_LIST_SERVICE</span></editor-title>
+    <editor-title> <span i18n>List of Services</span></editor-title>
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span translate>LANGAUGE_IMAGE</span>:
-        <input class="hl-input" formControlName="image" placeholder="{{'LANGAUGE_IMAGE' | translate}}"><br> <span translate>LANGAUGE_CODE</span>:
-        <input class="hl-input" formControlName="code" placeholder="{{'LABEL_CODE' | translate}}"><br> <span translate>LANGAUGE_PRIORITIZE</span>:
-        <input class="hl-input" type="number" formControlName="priority" placeholder="{{'LANGAUGE_PRIORITIZE' | translate}}">
+        <span i18n>Code</span>:
+        <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code"><br>
+        <span i18n="Mức ưu tiên dịch vụ">Priority</span>:
+        <input class="hl-input" type="number" formControlName="priority" i18n-placeholder placeholder="Priority">
         <l10n-form formControlName="l10n"></l10n-form>
-        <span translate>LANGAUGE_NUM_TICKET</span>:
+        <span i18n="Định dạng số vé">Ticket Number Format</span>:
         <select class="hl-select" formControlName="tform_normal">
             <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
         </select>
 
-        <br> <span translate>LANGAUGE_NUM_TICKET_VIP</span>:
+        <br> <span i18n="Định dạng số vé vip">VIP Ticket Number Format</span>:
         <select class="hl-select" formControlName="tform_vip">
             <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
         </select>

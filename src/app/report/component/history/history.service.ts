@@ -1,6 +1,8 @@
-import { ITransaction, ITransactionView } from '../shared';
-import { SharedService, Model } from '../shared/';
-import { ReportFilterService, ReportFilter } from '../shared';
+import { ITransaction, ITransactionView, ICustomer } from '../shared';
+import {
+    ReportFilterService, ReportFilter,
+    HttpServiceGenerator
+} from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Paging } from '../../shared/paging.service';
@@ -12,7 +14,8 @@ export interface IHistory {
 @Injectable()
 export class TransactionHistoryApi {
     constructor(
-        private filterService: ReportFilterService
+        private filterService: ReportFilterService,
+        private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
     GetHistory(filter: ReportFilter, skip: number, limit: number, filterHistory: object) {
@@ -24,7 +27,7 @@ export class TransactionHistoryApi {
         return this.api.Get<IHistory>("read", query);
     }
     GetInfoCustomer(idCustomer: string) {
-        return this.apiCustomer.Get<Model.Org.ICustomer>("get_customer_by_id", { id: idCustomer });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: idCustomer });
     }
 
 
@@ -32,6 +35,6 @@ export class TransactionHistoryApi {
         const url = this.api.MakeURL("export", filter.ToBackendQuery());
         window.open(url, "_blank");
     }
-    apiCustomer = new SharedService.Backend.HttpApi<any>("/api/report/customer");
-    api = new SharedService.Backend.HttpApi<any>("/api/report/transaction");
+    apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
+    api = this.httpServiceGenerator.make<any>("/api/report/transaction");
 }

@@ -2,10 +2,13 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Model, Branch } from '../../shared';
+import {
+    AbstractState, AbstractStateService,
+    BranchFilter, BranchFilterService
+} from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-export class CounterState extends Model.SharedModel.AbstractState {
+export class CounterState extends AbstractState {
     FromQuery(p: Params) {
         this.branch_code = p['branch_code'];
         this.counter_code = p['counter_code'];
@@ -36,10 +39,10 @@ export class CounterState extends Model.SharedModel.AbstractState {
 }
 
 @Injectable()
-export class CounterStateService extends Model.SharedModel.AbstractStateService<CounterState> {
+export class CounterStateService extends AbstractStateService<CounterState> {
     constructor(
         route: ActivatedRoute,
-        private branchFilterService: Branch.BranchFilterService
+        private branchFilterService: BranchFilterService
     ) {
         super(route);
         this.onInit(new CounterState);

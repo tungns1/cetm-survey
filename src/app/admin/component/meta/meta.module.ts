@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import { SharedModule, Model } from '../../shared/';
-import { Editor, Form } from '../shared/';
-import { routing, components } from './meta.routing';
+import { SharedModule } from '../../shared/';
+import { EditorModule, AdminFormModule } from '../shared/';
+import { routing } from './meta.routing';
+import { MetaComponent } from './meta.component';
 
 @NgModule({
     imports: [
-        SharedModule, 
-        Editor.EditorModule, Form.UIFormModule, Form.CultureModule,
+        SharedModule,
+        EditorModule, AdminFormModule,
         routing
     ],
-    declarations: [...components]
+    declarations: [MetaComponent]
 })
 export class MetaModule {
 

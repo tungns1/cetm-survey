@@ -1,6 +1,6 @@
-import { Cache } from '../../shared/';
+import { ID, MemCache } from '../../shared/';
 
-export interface IBranch extends Cache.ID {
+export interface IBranch extends ID {
     code?: string;
     name?: string;
 
@@ -20,7 +20,7 @@ export const BranchLevels = [
 ]
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-class BranchCache extends Cache.MemCache<IBranch> {
+class BranchCache extends MemCache<IBranch> {
     RxByLevel(level: number) {
         return this.RxListView.map(branches =>
             branches.filter(b => b.level === level)

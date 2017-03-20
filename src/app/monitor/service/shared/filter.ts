@@ -2,12 +2,12 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Model, Branch } from '../../shared';
+import { AbstractState, AbstractStateService, BranchFilter,BranchFilterService } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-export class MonitorFilter extends Model.SharedModel.AbstractState {
+export class MonitorFilter extends AbstractState {
     constructor(
-        public Branch: Branch.BranchFilter
+        public Branch: BranchFilter
     ) {
         super();
     }
@@ -38,10 +38,10 @@ export class MonitorFilter extends Model.SharedModel.AbstractState {
 }
 
 @Injectable()
-export class MonitorFilterService extends Model.SharedModel.AbstractStateService<MonitorFilter> {
+export class MonitorFilterService extends AbstractStateService<MonitorFilter> {
     constructor(
         route: ActivatedRoute,
-        private branchFilterService: Branch.BranchFilterService
+        private branchFilterService: BranchFilterService
     ) {
         super(route);
         this.onInit(new MonitorFilter(this.branchFilterService.Current));

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { SharedService, Model } from '../../shared';
-import { Store } from '@ngrx/store';
 import {
     ICounter, ITicketQueue, ITicket,
     TicketState, IStatMap,
-    CounterStateService
+    CounterStateService, AuthService,
+    CacheService, AppSocketGenerator
 } from '../../shared';
 
 const SOCKET_LINK = "/room/counter/join";
@@ -15,10 +14,11 @@ const SOCKET_PARAMS = ['branch_code', 'counter_code']
 export class WorkspaceService {
     constructor(
         private stateService: CounterStateService,
-        private authService: SharedService.Auth.AuthService
+        private authService: AuthService,
+        private appSocketGenerator: AppSocketGenerator
     ) { }
 
-    private socket = new SharedService.Backend.AppSocket(SOCKET_LINK, SOCKET_PARAMS);
+    private socket = this.appSocketGenerator.make(SOCKET_LINK);
 
     get Socket() {
         return this.socket;
@@ -37,7 +37,7 @@ export class WorkspaceService {
     currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
     counters$ = this.socket.RxEvent<ICounter[]>("/counters");
 
-    
+
     stat$ = this.socket.RxEvent<IStatMap>("/stat").share();
 
     private setUser() {
@@ -49,7 +49,7 @@ export class WorkspaceService {
     }
 
     services$ = this.counters$.combineLatest(
-        Model.Center.CacheService.RxListView,
+        CacheService.RxListView,
         (counters, allServices) => {
             const servicable = {}
             counters.forEach(c => {

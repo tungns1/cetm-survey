@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { SharedService } from "./shared";
+import { I18nService } from "./shared";
 
 @Component({
     selector: "app-root",
@@ -8,7 +8,7 @@ import { SharedService } from "./shared";
     `,
 })
 export class AppComponent {
-    constructor(private translate: SharedService.I18n.I18nService) { }
+    constructor(private translate: I18nService) { }
 
     ngOnInit() {
         

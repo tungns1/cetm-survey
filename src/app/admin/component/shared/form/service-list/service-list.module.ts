@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import {CultureModule, JSONFormModule} from '../form.module';
 import {FormsModule} from '@angular/forms';
 import {ServiceListComponent} from './service-list-form.component';
-import { Model, Lib, SharedService } from '../../../../shared';
+import { TranslateModule, ModalModule } from '../../../../shared';
 
 
 @NgModule({
     imports: [
         FormsModule, CommonModule,
         CultureModule, JSONFormModule,
-        Lib.Ng.ModalModule,SharedService.I18n.TranslateModule
+        ModalModule, TranslateModule
     ],
     declarations: [ServiceListComponent],
     exports: [ServiceListComponent]

@@ -1,21 +1,16 @@
-import * as Branch from "./branch/";
-import * as Model from "./model/";
-import * as SharedPipe from "./pipe/";
-import * as SharedConfig from "./config/";
-import * as SharedService from "./service/";
-import * as SharedUtil from "./util/";
-
-import { SharedModule } from "./shared.module";
-import { BaseAppModule } from "./BaseApp.module";
-
-import * as Lib from "../x/";
-
+export * from './auth';
+export { SharedModule } from './shared.module';
+export { I18nService, TranslateService } from './service/i18n';
 export {
-    Branch, Model,
-    SharedConfig, SharedUtil,
-    SharedService, SharedPipe, SharedModule,
-    BaseAppModule,
-    Lib
-}
+    BranchModule, BranchFilterService,
+    BranchFilter
+} from './branch';
+
+export { Const, LOCALES } from '../../const';
+
+export { 
+    AppSocketGenerator, 
+    HttpServiceGenerator, HttpApi
+ } from './service';
 
 import "./rx";

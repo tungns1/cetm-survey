@@ -1,6 +1,6 @@
-import { Cache } from '../../shared/';
+import { ID, MemCache } from '../../shared/';
 
-export interface ICounter extends Cache.ID {
+export interface ICounter extends ID {
     branch_id: string;
     code: string;
     name: string;
@@ -14,4 +14,4 @@ export interface ICounter extends Cache.ID {
     _checked?: boolean;
 }
 
-export const CacheCounter = new Cache.MemCache<ICounter>();
+export const CacheCounter = new MemCache<ICounter>();

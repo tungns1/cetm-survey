@@ -1,6 +1,6 @@
 import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Model, Ng, TicketStates } from '../../shared';
+import { ITicket, TicketStates, ModalComponent } from '../../shared';
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -19,7 +19,7 @@ export class TicketDetailDialog {
     private queueService: QueueService,
     private workspaceService: WorkspaceService
   ) { }
-  SetTicket(t: Model.House.ITicket) {
+  SetTicket(t: ITicket) {
     this.ticket = t;
     this.checkedCounters = [];
     this.checkedServices = [];
@@ -27,7 +27,7 @@ export class TicketDetailDialog {
     this.isWaiting = t.state === TicketStates.Waiting;
     this.isMissed = t.state === TicketStates.Missed;
   }
-  private ticket: Model.House.ITicket = <any>{};
+  private ticket: ITicket = <any>{};
   close = new EventEmitter();
 
   private isServing = false;
@@ -103,8 +103,8 @@ export class TicketDetailDialog {
     this.alert.Open();
   }
 
-  @ViewChild(Ng.ModalComponent) protected alert: Ng.ModalComponent;
-  @ViewChild(Ng.ModalComponent) protected remove: Ng.ModalComponent;
+  @ViewChild(ModalComponent) protected alert: ModalComponent;
+  @ViewChild(ModalComponent) protected remove: ModalComponent;
   protected message = "";
   protected title = "";
 

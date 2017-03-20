@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { Model } from '../../shared';
+import { ITicket } from '../../shared';
 
 
 const VipColor = 'cyan';
@@ -11,7 +11,7 @@ const VipColor = 'cyan';
     }
 })
 export class TicketHighlightDirective {
-    @Input('ticket-highlight') set ticket(t: Model.House.ITicket) {
+    @Input('ticket-highlight') set ticket(t: ITicket) {
         if (t && t.vcode && t.vcode.length > 0) {
             this.color = VipColor;
         }
