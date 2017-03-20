@@ -182,13 +182,14 @@
                     <tr>
                         <th translate> LANGAUGE_TIME_WAIT </th>
                         <th>
-                            <span *ngIf="!isServed"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
+                            <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
+                            <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
                             <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
                         </th>
                     </tr>
-                    <tr>
-                        <th translate>LANGAUGE_DATE </th>
-                        <th>{{selectedTicket.ctime | localDayTime}}</th>
+                    <tr *ngIf="isServed">
+                        <th translate>LANGAUGE_SERVING_TIME </th>
+                        <th> {{selectedTicket.stime | timeDuration}} </th>
                     </tr>
                 </table>
             </div>
