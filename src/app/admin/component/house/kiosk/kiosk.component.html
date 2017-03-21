@@ -2,9 +2,9 @@
     <form class="hl-form form" *ngIf="edit.form" [formGroup]="edit.form">
 
         <span i18n>Code</span>
-        <input class="hl-input" type="text" formControlName="code" placeholder="Code"><br>
-        <span i18n>Name</span>:<input class="hl-input" type="text" formControlName="name" placeholder="Name"><br>
-        <span i18n="Default Kiosk Vip Codes">Vip Codes</span>: <input class="hl-input" type="text" formControlName="vcodes" placeholder="Vip Codes">
+        <input class="hl-input" type="text" formControlName="code" i18n-placeholder="Code"><br>
+        <span i18n>Name</span>:<input class="hl-input" type="text" formControlName="name" i18n-placeholder="Name"><br>
+        <span i18n="Default Kiosk Vip Codes">Vip Codes</span>: <input class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
 
         <span i18n>Inheritable</span>
         <input class="hl-input" class="check" type="checkbox" formControlName="inheritable">

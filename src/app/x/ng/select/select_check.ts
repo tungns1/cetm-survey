@@ -20,10 +20,10 @@ import { FormArray, FormControl } from '@angular/forms';
     <div class="scroll-filter">
         <div *ngIf="canCheckAll" class="hlft-div-checkbox" >
             <div *ngIf="isAll">
-                <label translate><input type="checkbox" (change)="checkAll()" checked>LANGAUGE_CHOOSE_ALL</label><br>
+                <label i18n><input type="checkbox" (change)="checkAll()" checked>LANGAUGE_CHOOSE_ALL</label><br>
             </div>
               <div *ngIf="!isAll">
-                <label translate><input type="checkbox" (change)="checkAll()" >LANGAUGE_CHOOSE_ALL</label><br>
+                <label i18n><input type="checkbox" (change)="checkAll()" >LANGAUGE_CHOOSE_ALL</label><br>
             </div>
         </div>
         <div *ngFor="let d of data" class="hlft-div-checkbox pointer">

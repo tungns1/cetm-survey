@@ -2,7 +2,7 @@
     <div *ngFor="let l of viewLevels">
         <accordion>
             <accordion-title class="accordionTitle">
-                <span> {{l | branchLevelName | translate}}</span>
+                <span i18n> {{l | branchLevelName}}</span>
             </accordion-title>
             <select-check [formControlName]="l" [data]="data[l] | async" textField="name">
             </select-check>
