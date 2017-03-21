@@ -11,7 +11,7 @@ export const MAIN_TABS = {
     },
     SERVICE: {
         name: 'service',
-        title: 'service'
+        title: 'Service'
     },
     STORE: {
         name: 'store',

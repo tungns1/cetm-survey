@@ -1,3 +1,6 @@
 <div class="tabHeader">
-    <label class="hl-label-tab" *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" i18n>{{d.title}} </label>
+    <!--<label class="hl-label-tab" *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" i18n>{{d.title}} </label>-->
+    <label class="hl-label-tab" [ngClass]="{'actives': active == general}" (click)="setActive('general')" i18n>Overview</label>
+    <label class="hl-label-tab" [ngClass]="{'actives': active == time}" (click)="setActive('time')" i18n>Time Transaction</label>
+    <label class="hl-label-tab" [ngClass]="{'actives': active == customer}" (click)="setActive('customer')" i18n>Customer Feedback</label>
 </div>
