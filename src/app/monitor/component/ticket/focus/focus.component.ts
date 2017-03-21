@@ -129,6 +129,7 @@ export class FocusComponent {
                 t.service_id = t.tracks[i].service_id;
                 t.counter_id = t.tracks[i].counter_id;
                 t.user_id = t.tracks[i].user_id;
+                t.serving=t.tracks[i];
                 return t;
             }
         }
@@ -151,6 +152,7 @@ export class FocusComponent {
     }
 
     private detail(ticket) {
+        console.log("ok");
         this.customer = null;
         if (ticket.customer) {
             this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
