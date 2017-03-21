@@ -17,26 +17,9 @@ export class FresChartComponent {
     ) { } 
 
     ngOnInit() {
-        this.setTab()
+    
     }
 
     data = this.chartService.RxFres;
     period = this.chartService.RxPeriod;
-
-    private setTab() {
-        FresItems.forEach(f => f.title = this.translateService.instant(f.key_title));
-        this.items$.next(FresItems);
-    }
-
-   Toggle(item: ChartItem) {
-        const items: ChartItem[] = [];
-        this.items$.value.forEach(i => {
-            if (i.field === item.field) {
-                i._hidden = !i._hidden;
-            }
-            items.push(i);
-        });
-        this.items$.next(items);
-    }
-    items$ = new BehaviorSubject<ChartItem[]>([]);
 }

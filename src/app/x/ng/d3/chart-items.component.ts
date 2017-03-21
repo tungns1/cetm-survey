@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     template: ``
 })
 export class ChartItemComponent {
-    id = Math.random().toString(36).substring(3,6);
+    id = Math.random().toString(36).substring(3, 6);
     @Input() field: string;
     @Input() color: string;
     @Input() title: string;
@@ -63,10 +63,13 @@ export class ChartItemGroupView {
     });
 
     private refresh() {
-        if (!this.view || !this.groups) {
+        if (!this.groups) {
             return;
         }
-        let groups = this.groups.filter(g => g.group === this.view);
+        let groups = this.groups.toArray();
+        if (this.view) {
+            groups = groups.filter(g => g.group === this.view);
+        }
         this.groups$.next(groups.map(g => g.items));
     }
 

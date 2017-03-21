@@ -1,14 +1,21 @@
-<div class="hl-chart" line-chart [period]="period | async" [data]="data | async" [items]="items$ | async">
-</div>
+<div id="chartReport">
+    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
 
 
-<div class="legend" style="margin: 20px;">
-    <div *ngFor=" let item of items$ | async " style="float:left; margin: 15px; ">
-        <div style="float:left;">
-            <div style="float:left; margin: 0 5px;" [style.background-color]="item._hidden? '':item.color ">
-                <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
+    <div class="chartOptions">
+        <div *ngFor=" let item of config.items$ | async " class="option">
+            <div style="float:left;">
+                <div class="checkBox" [style.background-color]="item.active? item.color : ''">
+                    <input type="checkbox" [ngModel]="item.active " (ngModelChange)="config.Toggle(item) ">
+                </div>
+                <span style="font-size: 10px; "> {{item.title}}</span>
             </div>
-            <span style="font-size: 10px; "> {{item.title}}</span>
         </div>
     </div>
+
+    <chart-item-group-view #config>
+        <chart-item-group>
+            <chart-item field="count" color="#339933" title="Frequency"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
 </div>
