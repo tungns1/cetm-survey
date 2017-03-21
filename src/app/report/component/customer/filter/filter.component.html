@@ -1,5 +1,4 @@
 <div id="searchCus">
-    <input [(ngModel)]="code" type="text" placeholder="{{'LANGAUGE_ID_USER' | translate}}" (keyup.enter)="Filter()"
-        class="ctrlInput searchInput">
+    <input [(ngModel)]="code" type="text" i18n-placeholder="User ID" (keyup.enter)="Filter()" class="ctrlInput searchInput">
     <i class="fa fa-search fa-lg btnSearch" (click)="Filter()"></i>
 </div>

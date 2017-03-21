@@ -3,14 +3,14 @@
 export const MAIN_TABS = {
     GENERAL: {
         name: 'general',
-        title: 'LANGAUGE_TAB_GENERAL',
+        title: 'Overview',
     },
     TIME: {
         name: 'time',
-        title: 'LANGAUGE_TAB_TIME_TRANSACTION'
+        title: 'Time Transaction'
     },
     CUSTOMER: {
         name: 'customer',
-        title: 'LANGAUGE_TAB_CUSTOMER_FEEDBACK'
+        title: 'Customer Feedback'
     }
 }

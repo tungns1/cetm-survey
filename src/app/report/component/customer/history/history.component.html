@@ -1,19 +1,19 @@
 <div id="cusHistory">
     <table>
         <thead class="uppercase">
-            <th translate> LANGAUGE_NUMERICAL_ORDER </th>
-            <th translate> LANGAUGE_DATE </th>
-            <th translate> LANGAUGE_BRANCH </th>
-            <th translate> LANGAUGE_TRANSACTION_ROOM </th>
-            <th translate>LANGAUGE_SERVICE </th>
-            <th translate>LANGAUGE_COUNTERS</th>
-            <th translate>LANGAUGE_TELLERS </th>
-            <th translate>LANGAUGE_TICKET_NUMBER </th>
-            <th translate> LANGAUGE_TIME_CREATE_TICKET</th>
-            <th translate> LANGAUGE_TIME_WAIT</th>
-            <th translate> LANGAUGE_TIME_SERVING</th>
-            <th translate>LANGAUGE_FEEDBACK_RESULT</th>
-            <th translate>LANGAUGE_DETAIL</th>
+            <th i18n>Numrical Order</th>
+            <th i18n>Date</th>
+            <th i18n>Branch</th>
+            <th i18n>Agency</th>
+            <th i18n>Service</th>
+            <th i18n>Counter</th>
+            <th i18n>Teller</th>
+            <th i18n>Ticket Number</th>
+            <th i18n>Time Create Ticket</th>
+            <th i18n>Time Wait</th>
+            <th i18n>Time Serving</th>
+            <th i18n>Feedback result</th>
+            <th i18n>Detail</th>
         </thead>
         <tbody>
             <tr *ngFor="let d of paging.data$ | async; let i = index">
@@ -40,7 +40,7 @@
     <div class="pagin">
         <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
     </div>
-    <button class="btnClear export uppercase" (click)="excel()" translate><i class="fa fa-file-excel-o fa-lg"></i>LANGAUGE_BUTTON_EXPORT_FILE</button>
+    <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export Excel</button>
 </div>
 
 <transaction #detail></transaction>

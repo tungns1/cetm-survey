@@ -1,9 +1,9 @@
 <div class="info">
     <table>
         <tr>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Progress</th>
+            <th i18n>Name</th>
+            <th i18n>Size</th>
+            <th i18n>Progress</th>
         </tr>
 
         <tr *ngFor="let file of files" upload-item [data]="{file: file, node: node}">
