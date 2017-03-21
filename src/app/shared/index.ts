@@ -7,7 +7,7 @@ export {
 } from './branch';
 
 export { Const, LOCALES } from '../../const';
-
+export { AppStorage } from '../../store';
 export { RuntimeEnvironment } from './env';
 
 export {
