@@ -8,6 +8,7 @@ export const routes: Routes = [
     { path: "counter", loadChildren: "./counter/index" },
     { path: "setting", loadChildren: "./setting/index" },
     { path: "auth", loadChildren: "./auth/index" },
+    { path: "setup", loadChildren: "./setup/index" },
     { path: "", pathMatch: "full", redirectTo: "report" }
 ];
 

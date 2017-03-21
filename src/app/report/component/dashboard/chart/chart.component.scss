@@ -1,23 +1,23 @@
-#chartReport{
+#chartReport {
     border: 1px solid #a7a9ac;
     height: 35vw;
     background-color: #fff;
     width: 100%;
-    .chartType{
+    .chartType {
         float: right;
         width: 150px;
         height: 30px;
         border-radius: 3px;
         margin: 20px 50px 0px 0px;
     }
-    .chartOptions{
+    .chartOptions {
         margin: 30px 40px;
         width: 80%;
-        .option{
+        .option {
             float: left;
             margin: 10px;
-            .checkBox{
-                float:left; 
+            .checkBox {
+                float: left;
                 margin: 0 5px;
             }
         }
