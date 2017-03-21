@@ -1,9 +1,27 @@
 <div id="monitorChart" class="hl-chart">
-    <div style="width:33%; height:300px; float:left;" *ngFor="let item of itemGroup">
-        <p *ngIf="data" class="chartHeader">{{item[0].header}}</p>
-        <div style="width:100%; height:300px;" pie-chart [data]="data" [items]="item"></div>
+    <div style="width:33%; height:300px; float:left;" *ngFor="let g of config.groups$ | async">
+        <p *ngIf="data" class="chartHeader">{{g.title}}</p>
+        <div style="width:100%; height:300px;" pie-chart [data]="data" [items]="g.activeItems"></div>
     </div>
 </div>
+
+<chart-item-group-view #config>
+    <chart-item-group title="Ticket detail">
+        <chart-item field="finished" color="#65c553" title="Finished Transaction"></chart-item>
+        <chart-item field="cancelled" color="#6f6f6f" title="Cancel Transaction"></chart-item>
+        <chart-item field="waiting" color="#fcff47" title="Waiting Transaction"></chart-item>
+        <chart-item field="missed" color="#fb6868" title="Missed Transaction"></chart-item>
+        <chart-item field="serving" color="#64a2ff" title="Serving Transaction"></chart-item>
+    </chart-item-group>
+    <chart-item-group title="Waiting ticket bigger 15 minute">
+        <chart-item field="waiting" color="#65c553" title="Finished Transaction"></chart-item>
+        <chart-item field="wait_long" color="#fcff47" title="Cancel Transaction"></chart-item>
+    </chart-item-group>
+    <chart-item-group title="Ticket serve less than 2 minute">
+        <chart-item field="finished" color="#65c553" title="Finished Transaction"></chart-item>
+        <chart-item field="serve_short" color="#6f6f6f" title="Cancel Transaction"></chart-item>
+    </chart-item-group>
+</chart-item-group-view>
 
 <!--<div class="legend " style="margin:10px 20px; ">
     <div *ngFor="let item of itemGroup ">

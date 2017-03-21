@@ -4,8 +4,8 @@
     <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
 
     <div class="hl-chart" *ngIf="isPie">
-        <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieConfig.activeGroups$ | async">
-            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
+        <div style="width:33%;height:300px;float:left;" *ngFor="let g of pieConfig.groups$ | async">
+            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
         </div>
     </div>
 
@@ -29,8 +29,8 @@
     </div>
 
     <div class="chartOptions" *ngIf="isPie">
-        <div *ngFor="let item of pieConfig.groups$ | async">
-            <div *ngFor="let t of item" class="option">
+        <div *ngFor="let g of pieConfig.groups$ | async">
+            <div *ngFor="let t of g.items" class="option">
                 <div style="float:left;">
                     <div class="checkBox" [style.background-color]="t.active? t.color : ''">
                         <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">

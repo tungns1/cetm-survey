@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { I18nService } from "./shared";
 
 @Component({
   selector: "app-root",
@@ -7,7 +6,7 @@ import { I18nService } from "./shared";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  constructor(private translate: I18nService) { }
+  constructor() { }
 
   title = "app works!";
 }
