@@ -57,8 +57,10 @@
     </div>
 
     <div class="modal" *ngIf="isAlert">
-        <div style="text-align: center;color: red;font-size:18px;font-weight:700;" i18n>{{title}}</div>
-        <p style="text-align: center;font-size:13px;" i18n>{{message}}</p>
-        <button class="hl-close-ticket button-ticket" (click)="CloseAlert()" style="float:right; height:25px;" i18n>Yes</button>
+        <div class="dialog">
+            <div style="text-align: center;color: red;font-size:18px;font-weight:700;" i18n>{{title}}</div>
+            <p style="text-align: center;font-size:13px;" i18n>{{message}}</p>
+            <button class="hl-close-ticket button-ticket" (click)="CloseAlert()" style="float:right; height:25px;" i18n>Yes</button>
+        </div>
     </div>
 </div>
