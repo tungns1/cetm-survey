@@ -126,13 +126,16 @@ export class FocusComponent {
         const t = <IExtendedTicket>a;
         for (let i = t.tracks.length - 1; i >= 0; i--) {
             if (t.tracks[i].state === 'serving') {
-                t.serving = t.tracks[i];
+                t.service_id = t.tracks[i].service_id;
+                t.counter_id = t.tracks[i].counter_id;
+                t.user_id = t.tracks[i].user_id;
                 return t;
             }
         }
 
         t.serving = <ITicketTrack>{
             state: TicketStates.Serving,
+            //  service_id: t.services[0]
         };
         return t;
     }
@@ -149,7 +152,7 @@ export class FocusComponent {
 
     private detail(ticket) {
         this.customer = null;
-        if(ticket.customer){
+        if (ticket.customer) {
             this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
                 this.customer = v;
             });
