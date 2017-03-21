@@ -28,6 +28,6 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 
 export class RawTranslateLoader implements TranslateLoader {
     getTranslation(lang: string) {
-        return LoadMultiple(lang, ['shared']);
+        return LoadMultiple("en", ['shared']);
     }
 }

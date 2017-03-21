@@ -16,15 +16,15 @@ export class ReportTabComponent {
   ngOnInit() {
     this.active = this.viewService.Current.GetTab();
     if (!this.active) {
-      this.setActive(this.tabs[0]);
+      this.setActive('gerenal');
     }
   }
 
-  tabs = [MAIN_TABS.GENERAL, MAIN_TABS.TIME, MAIN_TABS.CUSTOMER];
+   tabs = [MAIN_TABS.GENERAL, MAIN_TABS.TIME, MAIN_TABS.CUSTOMER];
 
-  setActive(t: { name: string }) {
-    this.active = t.name;
-    this.viewService.SetTab(t.name);
+  setActive(name: string ) {
+    this.active = name;
+    this.viewService.SetTab(name);
     this.navService.SyncView();
   }
 
