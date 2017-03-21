@@ -3,18 +3,18 @@
 export const MAIN_TABS = {
     TIME: {
         name: 'time',
-        title: 'LANGAUGE_TAB_TIME_TRANSACTION'
+        title: 'Time Transaction'
     },
     FREQUENCY: {
         name: 'frequency',
-        title: 'LANGAUGE_TAB_FREQUENCY'
+        title: 'Frequency'
     },
     SERVICE: {
         name: 'service',
-        title: 'LANGAUGE_TAB_SERVICE'
+        title: 'service'
     },
     STORE: {
         name: 'store',
-        title: 'LANGAUGE_TAB_STORE',
+        title: 'Store',
     }
 }

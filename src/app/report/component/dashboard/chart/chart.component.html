@@ -10,11 +10,11 @@
     </div>
 
     <select class="chartType" [(ngModel)]="type">
-        <option disabled selected value translate>LANGAUGE_SELECT_CHART</option>
-        <option value="line" translate>LANGAUGE_LINE_CHART</option>
-        <option value="bar" translate>LANGAUGE_COLUMN_CHART</option>
-        <option value="stack" translate>LANGAUGE_STACK_CHART</option>
-        <option value="pie" translate>LANGAUGE_PIE_CHART</option>
+        <option disabled selected value i18n>-- Select the chart --</option>
+        <option value="line" i18n>Line Graph</option>
+        <option value="bar" i18n>Column Chart</option>
+        <option value="stack" i18n>Stacked Chart</option>
+        <option value="pie" i18n>Pie Chart</option>
     </select>
 
     <div class="chartOptions" *ngIf="!isPie">

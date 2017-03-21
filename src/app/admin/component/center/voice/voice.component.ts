@@ -20,9 +20,9 @@ function NewForm(b?: ILayout) {
 export class VoiceComponent {
 
     fields = [
-        { title: 'LANGAUGE_NAME', name: 'name' },
-        { title: 'LANGAUGE_Code', name: 'code' },
-        {title: 'LANGAUGE_TYPE', name: 'type'}
+        { title: 'Name', name: 'name' },
+        { title: 'Code', name: 'code' },
+        {title: 'Typoe', name: 'type'}
     ]
 }
 

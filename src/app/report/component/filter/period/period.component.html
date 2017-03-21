@@ -1,32 +1,32 @@
 <accordion id="period">
     <accordion-title class="accordionTitle">
-        <span translate>Chọn thời gian</span>
+        <span i18n>Choose Time</span>
     </accordion-title>
     <form [formGroup]="form">
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <div fxFlex class="radioCtrl">
                 <input type="radio" formControlName="period" value="day">
-                <span translate> LANGAUGE_DAY</span>
+                <span i18n>Day</span>
             </div>
             <div fxFlex class="radioCtrl">
                 <input type="radio" formControlName="period" value="week" checked>
-                <span translate> LANGAUGE_WEEK</span>
+                <span i18n>Week</span>
             </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <div fxFlex class="radioCtrl">
                 <input type="radio" formControlName="period" value="month">
-                <span translate> LANGAUGE_MONTH</span>
+                <span i18n>Month</span>
             </div>
             <div fxFlex class="radioCtrl">
                 <input type="radio" formControlName="period" value="year">
-                <span translate> LANGAUGE_YEAR</span>
+                <span i18n>Year</span>
             </div>
         </div>
         <hr>
         <div fxLayout="row" fxLayoutAlign="space-around center">
-            <label fxFlex translate>LANGAUGE_FROM_DAY</label>
-            <label fxFlex translate>LANGAUGE_TO_DAY</label>
+            <label fxFlex i18n>From Day</label>
+            <label fxFlex i18n>To Day</label>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <date-picker fxFlex formControlName="start" timestamp="true"></date-picker>

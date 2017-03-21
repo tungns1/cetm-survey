@@ -56,7 +56,7 @@ export class CustomerAPI {
                 this.RxCustomer.next(v.data);
             } else {
                 this.RxCustomer.next(v.data);
-                alert('Dữ liệu khách hàng không có');
+                alert('Not Customer Data');
             }
 
         });

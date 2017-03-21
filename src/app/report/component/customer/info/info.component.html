@@ -1,26 +1,26 @@
 <div id="cusDetail">
     <div fxLayout="row" class="row">
-        <span translate fxFlex="25%">LANGAUGE_CUSTOMER_NAME</span>
+        <span i18n fxFlex="25%">Customer Name</span>
         <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.full_name}}</b>
         <div fxFlex="25%" *ngIf="!(data && customer)"></div>
-        <span translate fxFlex="28%">LANGAUGE_MOST_USED_SERVICE</span>
+        <span i18n fxFlex="28%">Most Used Service</span>
         <b *ngIf="data && service" fxFlex="22%">{{service.name}}&nbsp;{{service.value}}/{{data.c_t}}</b>
         <div fxFlex="22%" *ngIf="!(data && customer)"></div>
     </div>
     <div fxLayout="row" class="row">
-        <span translate fxFlex="25%">LANGAUGE_CODE_ID</span>
+        <span i18n fxFlex="25%">Code ID</span>
         <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.code}}</b>
         <div fxFlex="25%" *ngIf="!(data && customer)"></div>
-        <span translate fxFlex="28%">LANGAUGE_STORE_MOST_DEAL</span>
+        <span i18n fxFlex="28%">Most Transactional Stores</span>
         <b *ngIf="data && store" fxFlex="22%">{{store.name}}&nbsp;{{store.value}}/{{data.c_t}}</b>
         <div fxFlex="22%" *ngIf="!(data && customer)"></div>
     </div>
     <div fxLayout="row" class="row">
-        <span translate fxFlex="25%"> LANGAUGE_NUMBER_PHONE</span>
+        <span i18n fxFlex="25%">Number Phone</span>
         <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.phone_number}}</b>
     </div>
     <div fxLayout="row" class="row">
-        <span translate fxFlex="25%">LANGAUGE_SEGMENT</span>
+        <span i18n fxFlex="25%">Segment</span>
         <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.segment}}</b>
 
     </div>

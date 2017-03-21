@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ExistingProvider, Attribute } from '@angular/core';
+import { Component, Input, forwardRef, ExistingProvider, Attribute,OnChanges } from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -19,7 +19,12 @@ import { FormArray, FormControl } from '@angular/forms';
     template: `
     <div class="scroll-filter">
         <div *ngIf="canCheckAll" class="hlft-div-checkbox" >
-            <label translate><input type="checkbox" (change)="checkAll()" >LANGAUGE_CHOOSE_ALL</label><br>
+            <div *ngIf="isAll">
+                <label i18n><input type="checkbox" (change)="checkAll()" checked>Choose All</label><br>
+            </div>
+              <div *ngIf="!isAll">
+                <label i18n><input type="checkbox" (change)="checkAll()" >Choose All</label><br>
+            </div>
         </div>
         <div *ngFor="let d of data" class="hlft-div-checkbox pointer">
             <label ><input type="checkbox"  [(ngModel)]="values[d[idField]]" (change)="check(d, $event)">{{d[textField]}}</label><br>
@@ -28,7 +33,7 @@ import { FormArray, FormControl } from '@angular/forms';
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
-export class SelectCheckComponent implements ControlValueAccessor {
+export class SelectCheckComponent implements ControlValueAccessor,OnChanges {
     constructor(
         @Attribute('idField') private idField,
         @Attribute('textField') private textField) {
@@ -37,12 +42,20 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
 
     @Input() data = [];
+    ngOnInit() {
+        this.isAll = false;
+    }
+    ngOnChanges(changes) {
+        if (changes.data) {
+            this.isAll = false;
+        }
+    }
 
     get canCheckAll() {
         return this.data && this.data.length > 1;
     }
 
-    private isAll = false;
+    isAll: boolean;
     private values = {};
     protected value = [];
     protected onChangeCallback = (v) => { };

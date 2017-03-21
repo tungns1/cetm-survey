@@ -1,9 +1,9 @@
 <div *ngIf="node" class="list-file-upload">
-    <h1> Danh sách file {{node.name}} </h1>
+    <h1 i18n>List File {{node.name}} </h1>
     <div class="div-scroll">
         <table>
             <tr>
-                <th>Tên file</th>
+                <th i18n>Name file</th>
                 <th></th>
             </tr>
 
@@ -30,6 +30,6 @@
                 </li>
                 </ul>-->
 
-    <button class="btn-hlm btn-upload" (click)="upload.open(node)">Tải lên</button>
+    <button class="btn-hlm btn-upload" (click)="upload.open(node)" i18n>Upload</button>
     <file-upload #upload style="bottom:0;right:0;"></file-upload>
 </div>

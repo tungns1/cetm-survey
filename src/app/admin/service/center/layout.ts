@@ -13,8 +13,8 @@ export class LayoutService extends CrudApiService<ILayout> {
     }
 
     ListFields = [
-        { title: 'LANGAUGE_NAME', name: 'name' },
-        { title: 'LANGAUGE_TYPE', name: 'type' }
+        { title: 'Name', name: 'name' },
+        { title: 'Type', name: 'type' }
     ]
-    Name = "LANGAUGE_LAYOUT";
+    Name = "Layout";
 }

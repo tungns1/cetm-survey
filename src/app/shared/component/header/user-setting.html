@@ -1,14 +1,14 @@
 <div>
     <div>
-        <span class="user-head-text">User Setting</span>
+        <span class="user-head-text" i18n>User Setting</span>
         <hr class="user-hr-css">
     </div>
     <div>
-        <span class="user-text-language">   {{ 'LANGAUGE_SELECT_LANG' | translate }}:&nbsp;</span>
+        <span class="user-text-language" i18n>Language: </span>
         <select class="hl-user-select" #langSelect (change)="translate.use(langSelect.value)">
         <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
     </select>
         <br>
-        <button class="hl-button-user btn-footer-user" (click)="Close()"> <span translate>LANGAUGE_CLOSE</span> </button>
+        <button class="hl-button-user btn-footer-user" (click)="Close()"> <span i18n>Close</span> </button>
     </div>
 </div>

@@ -12,19 +12,19 @@ export const TimeItems: ChartItem[][] = [
     [{
         field: 'c_bwt',
         color: '#339933',
-        key_title: 'LANGAUGE_TRANSACTION_WAIT_STANDARD'
+        key_title: 'Transaction Wait Standard'
     }, {
         field: 's_wt',
         color: '#b4e4b4',
-        key_title: 'LANGAUGE_TRANSACTION_WAIT_BEYOND_STANDARD'
+        key_title: 'Transaction Wait Beyond Standard'
     }], [{
         field: 'c_bst',
         color: '#339966',
-        key_title: 'LANGAUGE_TRANSACTION_SERVING_STANDARD'
+        key_title: 'Transaction Serving Standard'
     }, {
         field: 's_st',
         color: '#9fdfbf',
-        key_title: 'LANGAUGE_TRANSACTION_SERVING_BEYOND_STANDARD'
+        key_title: 'Transaction Serving Beyond Standard'
     }]
 ];
 
@@ -33,6 +33,6 @@ export const FresItems: ChartItem[] = [
     {
         field: 'count',
         color: '#339933',
-        key_title: 'LANGAUGE_TRANSACTION_FRES'
+        key_title: 'Frequency'
     }
 ];

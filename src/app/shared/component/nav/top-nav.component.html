@@ -3,12 +3,12 @@
         <li class="li_firstLv" *ngFor="let item of menu; let i = index;">
             <div class="paddingFirst" (click)="onClick(item, i)" [class.current-menu-item]="i == active">
                 <i class="fa" [addClass]="item.icon"> </i>
-                <span translate class="uppercase"> {{item.name}} </span>
+                <span i18n class="uppercase"> {{item.name}} </span>
             </div>
             <ul class="secondLv" *ngIf="item.children">
                 <li *ngFor="let child of item.children">
                     <div class="paddingSecond" (click)="onClick(child, i)">
-                        <span translate class="uppercase"> {{child.name}}</span>
+                        <span i18n class="uppercase"> {{child.name}}</span>
                     </div>
                 </li>
             </ul>

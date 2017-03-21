@@ -1,13 +1,13 @@
 <div id="report" fxLayout="column" style="height: 100vh;overflow: hidden">
     <app-header fxFlex="5%" style="z-index: 2">
-        <div class="module-name" translate> LANGAUGE_REPORT </div>
+        <div class="module-name" i18n>REPORT</div>
     </app-header>
     <top-nav fxFlex="5%" style="z-index: 1"></top-nav>
     <div fxLayout="row" fxFlex="90%">
         <div [fxFlex]="hideFilter? '60px':'250px'" class="leftFilter">
             <!--<div class="hl-asidehead-filter">
-                <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | translate}}">&nbsp; Filters</i>
-                <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_HIDDEN_FILTER | translate}}">&nbsp; Filters</i>
+                <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_SHOW_FILTER | i18n}}">&nbsp; Filters</i>
+                <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" title="{{LANGAUGE_HIDDEN_FILTER | i18n}}">&nbsp; Filters</i>
             </div>-->
             <report-filter *ngIf="hidden" [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%"></report-filter>
         </div>
