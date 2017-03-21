@@ -3,26 +3,16 @@
     $font-size: 11px;
     .filterHistory{
         .inputFilter{
-            width: 40px;
+            width: 2.5vw;
             display: inline-block;
-            margin-left: 15px;
+            margin-left: 1vw;
             font-size: $font-size;
             text-indent: 5px;
         }
-        .waitTime{
-            display: inline-block;
-            width: 20vw;
-        }
-        .serveTime{
-            display: inline-block;
-            width: 20vw;
+        form{
+            width: 100%;
         }
         .feedback{
-            float: right;
-            position: relative;
-            top: -18px;
-            left: -100px;
-            width: 300px;
             strong{
                 display: inline-block;
             }
