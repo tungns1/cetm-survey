@@ -20,12 +20,14 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
   SetTicket(t: ITicket) {
+    this.isModal = true;
     this.ticket = t;
     this.checkedCounters = [];
     this.checkedServices = [];
     this.isServing = t.state === TicketStates.Serving;
     this.isWaiting = t.state === TicketStates.Waiting;
     this.isMissed = t.state === TicketStates.Missed;
+
   }
   private ticket: ITicket = <any>{};
   close = new EventEmitter();
@@ -33,6 +35,10 @@ export class TicketDetailDialog {
   private isServing = false;
   private isWaiting = false;
   private isMissed = false;
+  private isModal = false;
+  private isRemove = false;
+  private isAlert = false;
+
 
   private checkedCounters = [];
   private checkedServices = [];
@@ -52,9 +58,6 @@ export class TicketDetailDialog {
 
   private services = this.workspaceService.services$;
 
-  Close() {
-    this.close.emit(true);
-  }
 
   Move() {
     if (this.isServing) {
@@ -70,7 +73,7 @@ export class TicketDetailDialog {
     }
 
     this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-      this.Close();
+      this.isModal = false;
     });
   }
 
@@ -82,15 +85,25 @@ export class TicketDetailDialog {
       }
       this.ticketService.CallFromMissed(this.ticket).subscribe(v => {
         this.ticketService.SetAutoNext(false);
-        this.Close();
+        this.isModal = false;
       });
     });
+  }
+  OpenRemove() {
+    this.isRemove = true;
+  }
+  CloseRmove() {
+    this.isRemove = false;
+  }
+  Close() {
+    this.isModal = false;
   }
 
   Delete() {
     this.ticketService.Cancel(this.ticket).subscribe(_ => {
       // toastr.success("Delete success counter");
-      this.Close();
+      this.isRemove = false;
+      this.isModal = false;
     }, err => {
     });
   }
@@ -98,8 +111,12 @@ export class TicketDetailDialog {
   protected ShowMessage(title: string, message: string) {
     this.message = message;
     this.title = title;
-    this.alert.Open();
+    this.isAlert = true;
   }
+  CloseAlert() {
+    this.isAlert = false;
+  }
+
 
   @ViewChild(ModalComponent) protected alert: ModalComponent;
   @ViewChild(ModalComponent) protected remove: ModalComponent;
