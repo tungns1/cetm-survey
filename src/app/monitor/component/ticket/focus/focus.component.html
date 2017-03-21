@@ -188,7 +188,10 @@
                     </tr>
                     <tr *ngIf="isServed">
                         <th i18n>Serving time</th>
-                        <th> {{selectedTicket.stime | timeDuration}} </th>
+                        <th *ngIf="selectedTicket.state === 'serving'">
+                            <timer [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
+                        </th>
+                        <th *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </th>
                     </tr>
                 </table>
             </div>
