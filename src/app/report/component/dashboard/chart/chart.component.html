@@ -1,10 +1,10 @@
 <div id="chartReport">
-    <div class="hl-chart" bar-chart *ngIf="isBar" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
-    <div class="hl-chart" stack-chart *ngIf="isStack" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
-    <div class="hl-chart" line-chart *ngIf="isLine" [period]="period | async" [data]="data | async" [items]="items$ | async"></div>
+    <div class="hl-chart" bar-chart *ngIf="type === 'bar' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
+    <div class="hl-chart" stack-chart *ngIf="type === 'stack'" [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
+    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
 
     <div class="hl-chart" *ngIf="isPie">
-        <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
+        <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieConfig.activeGroups$ | async">
             <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
         </div>
     </div>
@@ -18,10 +18,10 @@
     </select>
 
     <div class="chartOptions" *ngIf="!isPie">
-        <div *ngFor=" let item of items$ | async " class="option">
+        <div *ngFor=" let item of config.items$ | async " class="option">
             <div style="float:left;">
-                <div class="checkBox" [style.background-color]="item._hidden? '':item.color ">
-                    <input type="checkbox" [ngModel]="!item._hidden " (ngModelChange)="Toggle(item) ">
+                <div class="checkBox" [style.background-color]="item.active? item.color : ''">
+                    <input type="checkbox" [ngModel]="item.active " (ngModelChange)="config.Toggle(item) ">
                 </div>
                 <span style="font-size: 10px; "> {{item.title}}</span>
             </div>
@@ -29,15 +29,62 @@
     </div>
 
     <div class="chartOptions" *ngIf="isPie">
-        <div *ngFor="let item of pieItems$ | async">
+        <div *ngFor="let item of pieConfig.groups$ | async">
             <div *ngFor="let t of item" class="option">
                 <div style="float:left;">
-                    <div class="checkBox" [style.background-color]="t._hidden? '':t.color ">
-                        <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
+                    <div class="checkBox" [style.background-color]="t.active? t.color : ''">
+                        <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
                     </div>
                     <span style="font-size: 10px;"> {{t.title}}</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <chart-item-group-view [active]="tab$ | async" #config>
+        <chart-item-group group="general">
+            <chart-item field="c_t" color="#9933ff" title="Total Transaction"></chart-item>
+            <chart-item field="c_ft" color="#99b3ff" title="Finished Transaction"></chart-item>
+            <chart-item field="c_ct" color="#969c9c" title="Cancelled Transaction"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="time">
+            <chart-item field="s_wt_h" color="steelblue" title="Time Wait"></chart-item>
+            <chart-item field="s_st_h" color="green" title="Time Serving"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="customer">
+            <chart-item field="c_r_a" color="#0088cc" title="Very Good Feedback"></chart-item>
+            <chart-item field="c_r_b" color="#73e600" title="Good Feedback"></chart-item>
+            <chart-item field="c_r_c" color="#ffcc00" title="Average Feedback"></chart-item>
+            <chart-item field="c_r_d" color="#ff3333" title="Poor Feedback"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
+
+    <chart-item-group-view [active]="tab$ | async" #pieConfig>
+        <chart-item-group group="general">
+            <chart-item field="c_ft" color="#99b3ff" title="Finished Transaction"></chart-item>
+            <chart-item field="c_ct" color="#969c9c" title="Cancelled Transaction"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="general">
+            <chart-item field="c_bwt" color="339933" title="Transaction Wait Standard"></chart-item>
+            <chart-item field="c_awt" color="b4e4b4" title="Transaction Wait Beyond Standard"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="general">
+            <chart-item field="c_bst" color="#339966" title="Transaction Serving Standard"></chart-item>
+            <chart-item field="c_ast" color="#9fdfbf" title="Transaction Serving Beyond Standard"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="time">
+            <chart-item field="s_wt_h" color="steelblue" title="Time Wait"></chart-item>
+            <chart-item field="s_st_h" color="green" title="Time Serving"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="customer">
+            <chart-item field="c_r" color="#99b3ff" title="Transaction Feedback"></chart-item>
+            <chart-item field="c_r_o" color="#969c9c" title="Transaction No Feedback"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="customer">
+            <chart-item field="c_r_a" color="#0088cc" title="Very Good Feedback"></chart-item>
+            <chart-item field="c_r_b" color="#73e600" title="Good Feedback"></chart-item>
+            <chart-item field="c_r_c" color="#ffcc00" title="Average Feedback"></chart-item>
+            <chart-item field="c_r_d" color="#ff3333" title="Poor Feedback"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
 </div>
