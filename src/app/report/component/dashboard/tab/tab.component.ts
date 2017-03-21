@@ -20,8 +20,6 @@ export class ReportTabComponent {
     }
   }
 
-   tabs = [MAIN_TABS.GENERAL, MAIN_TABS.TIME, MAIN_TABS.CUSTOMER];
-
   setActive(name: string ) {
     this.active = name;
     this.viewService.SetTab(name);
