@@ -4,8 +4,8 @@
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
             <th i18n>Total transaction</th>
-            <th i18n>Transaction finish</th>
-            <th i18n>Transaction cancel</th>
+            <th i18n>Finished transaction</th>
+            <th i18n>Canceled transaction</th>
             <th i18n>Standard waiting time transaction</th>
             <th class="widthCtrl" i18n>Exceeded waiting time transaction</th>
             <th class="widthCtrl" i18n>Standard serving time transaction</th>
@@ -14,7 +14,7 @@
         <tbody>
             <tr *ngFor="let d of data$ | async; let i = index">
                 <td> {{i + 1}} </td>
-                <td style="text-align: left;">{{d.name}}</td>
+                <td style="text-align: center;">{{d.name}}</td>
                 <td> {{d.c_t}} </td>
                 <td>
                     <div class="hl-numrp-align">{{d.c_ft}}</div>
