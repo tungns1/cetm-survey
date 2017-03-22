@@ -1,9 +1,9 @@
 <div id="historyReport">
     <div class="headerAndNav">
-        <h2 class="header" i18n>TRANSACTION HISTORY</h2>
+        <h2 class="header" i18n>Transaction history</h2>
         <div class="nav">
-            <button class="btnClear btnMargin" (click)="nav('/report/dashboard')" i18n>GENERAL</button>
-            <button class="btnClear btnMargin" (click)="nav('/report/customer')" i18n>CUSTOMER</button>
+            <button class="btnClear btnMargin" (click)="nav('/report/dashboard')" i18n>Gerenal</button>
+            <button class="btnClear btnMargin" (click)="nav('/report/customer')" i18n>Customer</button>
         </div>
     </div>
     <div class="filterHistory">
@@ -19,9 +19,9 @@
                 <input class="inputFilter ctrlInput" type="number" i18n-placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div fxFlex="40%" class="feedback">
-                <strong class="uppercase" i18n>Feedback Customer</strong>
+                <strong class="uppercase" i18n>Customer Feedback</strong>
                 <select [(ngModel)]="filter.rating" name="rating" #rating="ngModel" (ngModelChange)="onSubmit()">
-                    <option value="" i18n>Choose Feedback</option>
+                    <option value="" i18n>Feedback filter</option>
                     <option value="veryGood" i18n>Very Good</option>
                     <option value="good" i18n>Good</option>
                     <option value="average" i18n>Average</option>
@@ -31,7 +31,7 @@
         </form>
     </div>
     <table class="tableCtrl">
-        <thead class="uppercase">
+        <thead class="">
             <th i18n>No.</th>
             <th i18n>Date</th>
             <th i18n>Branch</th>
@@ -39,11 +39,11 @@
             <th i18n>Service</th>
             <th i18n>Counter</th>
             <th i18n>Teller</th>
-            <th i18n>Ticket Number</th>
-            <th i18n>Time Printed Ticket</th>
-            <th i18n>Time Wait</th>
-            <th i18n>Time Serving</th>
-            <th i18n>Feedback result</th>
+            <th i18n>Ticket</th>
+            <th i18n>Printed time</th>
+            <th i18n>Waiting time</th>
+            <th i18n>Serving time </th>
+            <th i18n>Feedback</th>
             <th i18n>Detail</th>
         </thead>
         <tbody>
@@ -72,6 +72,6 @@
         <div class="pagin">
             <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
-        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export Excel</button>
+        <button class="btnClear export" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export file in excel</button>
     </div>
 </div>
