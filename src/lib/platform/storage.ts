@@ -1,6 +1,9 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable, InjectionToken } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/skip';
+import 'rxjs/add/operator/throttleTime';
+
 
 @Injectable()
 export abstract class AbstractStorageStrategy {
@@ -59,21 +62,24 @@ export class SmallStorage<T> {
         this.onInit();
     }
 
-    Data$: BehaviorSubject<T>;
+
+    Data$: Observable<T>;
+    private _data$: BehaviorSubject<T>;
 
     get data() {
-        return this.Data$.value;
+        return this._data$.value;
     }
 
     SetData(data: T) {
-        this.Data$.next(data);
+        this._data$.next(data);
     }
 
     protected onInit() {
-        this.Data$ = new BehaviorSubject<T>(this.read());
-        this.Data$.skip(1).subscribe(data => {
+        this._data$ = new BehaviorSubject<T>(this.read());
+        this._data$.skip(1).subscribe(data => {
             this.save(data);
         });
+        this.Data$ = this._data$.throttleTime(250);
     }
 
     protected serialize(data: T) {
@@ -105,7 +111,7 @@ export class SmallStorage<T> {
     }
 
     protected emitChange() {
-        this.Data$.next(this.data);
+        this._data$.next(this.data);
     }
 
 }
