@@ -2,9 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RuntimeEnvironment } from '../shared';
 
 @Component({
-  selector: 'app-env-set',
-  templateUrl: './env-set.component.html',
-  styleUrls: ['./env-set.component.scss']
+  selector: 'app-env',
+  template: ``
 })
 export class EnvSetComponent implements OnInit {
 
@@ -13,10 +12,12 @@ export class EnvSetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
 
   @Input() set module(m: string) {
     this.env.Auth.Module = m;
+    console.log("set module", m);
   }
 
   @Input() set subModule(sm: string) {

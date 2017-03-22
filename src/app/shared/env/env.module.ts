@@ -11,7 +11,8 @@ import { EnvSetComponent } from './env-set/env-set.component';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [EnvSetComponent]
+    declarations: [EnvSetComponent],
+    exports: [EnvSetComponent]
 })
 export class EnvironmentModule {
     static Providers() {

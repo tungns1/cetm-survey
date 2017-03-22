@@ -2,7 +2,7 @@ import { Injectable, InjectionToken } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/operator/debounceTime';
 
 
 @Injectable()
@@ -79,7 +79,7 @@ export class SmallStorage<T> {
         this._data$.skip(1).subscribe(data => {
             this.save(data);
         });
-        this.Data$ = this._data$.throttleTime(250);
+        this.Data$ = this._data$.debounceTime(250);
     }
 
     protected serialize(data: T) {

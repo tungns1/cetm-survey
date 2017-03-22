@@ -20,6 +20,7 @@ import { AppSocketGenerator, HttpServiceGenerator } from './service';
     ],
     exports: [
         CommonModule, DirectiveModule,
+        EnvironmentModule,
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
         TranslateModule, UtilPipeModule, SelectCheckModule,
