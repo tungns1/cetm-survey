@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { CustomerAPI } from './service/customer.service';
+import { TransactionHistoryApi } from '../history/history.service';
 
 import {
     CustomerComponent
@@ -33,7 +34,7 @@ import { ReportHistoryModule } from './history/history.module'
     declarations: [
         CustomerComponent, ReportTabComponent
     ],
-    providers: [CustomerAPI],
+    providers: [CustomerAPI, TransactionHistoryApi],
     exports: [FlexLayoutModule]
 })
 export class ReportCustomerModule {
