@@ -1,5 +1,5 @@
-import { LocalStorageStrategy, SmallStorage } from '../lib/platform';
-import { Const } from '../const/';
+import { AbstractSerializable, SmallStorage } from '../lib/platform';
+import { Const, LOCALES } from '../const/';
 
 interface IApplication {
     locale: string;
@@ -9,34 +9,31 @@ interface IApplication {
 
 export class ApplicationStore extends SmallStorage<IApplication> {
     constructor() {
-        super(
-            Const.LOCAL_SETTING_KEYS.APPLICATION,
-            new LocalStorageStrategy
-        );
+        super(Const.LOCAL_SETTING_KEYS.APPLICATION);
     }
 
     get Locale() {
-        return this.value.locale;
-    }
-
-    get Culture() {
-        return this.value.culture || this.value.locale;
+        return this.data.locale || LOCALES.DEFAULT;
     }
 
     set Locale(locale: string) {
-        this.value.locale = locale;
+        this.data.locale = locale;
         this.emitChange();
+    }
+
+    get Culture() {
+        return this.data.culture || this.Locale;
     }
 
     get Token() {
-        return this.value.token;
+        return this.data.token || '';
     }
 
-    set Token(t: string) {
-        this.value.token = t;
+    set Token(token: string) {
+        this.data.token = token;
         this.emitChange();
     }
-    
+
 }
 
 

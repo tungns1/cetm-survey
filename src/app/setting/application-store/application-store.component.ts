@@ -15,7 +15,7 @@ export class ApplicationStoreComponent implements OnInit {
   }
 
   storeForm = new FormGroup({
-    locale: new FormControl(AppStorage.value.locale)
+    locale: new FormControl(AppStorage.data.locale)
   });
 
   save() {

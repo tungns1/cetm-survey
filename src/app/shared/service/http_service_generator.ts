@@ -10,7 +10,7 @@ export class HttpServiceGenerator {
     }
 
     private get host() {
-        return this.env.Platform.HttpHost;
+        return this.env.Platform.Http;
     }
 
     make<T>(uri = '') {

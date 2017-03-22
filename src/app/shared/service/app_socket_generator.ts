@@ -11,11 +11,11 @@ export class AppSocketGenerator {
     }
 
     private get host() {
-        return this.env.Platform.SocketHost;
+        return this.env.Platform.WebSocket;
     }
 
     private get debug() {
-        return this.env.Debug.Socket;
+        return this.env.Debug.socket;
     }
 
     make(uri = '') {
