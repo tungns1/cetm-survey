@@ -22,20 +22,23 @@ export class ChartService {
     constructor(
         private customerAPI: CustomerAPI
     ) { }
+    Fres = [
+        {
+            "name": "Frequency",
+            "series": [
+            ]
+        }
+    ];
 
     private RxCustomer = this.customerAPI.RxCustomer;
     RxFres = this.RxSummaryView.map(v => {
-        var fres = v.fres;
-        const parseTime = TimeParse[this.RxPeriod.value];
-        fres.forEach(v => {
-            v.date = parseTime(v.cdate);
-        })
-        fres.sort((a, b) => a.date < b.date ? -1 : 1);
+        var fres = this.Fres;
+        fres[0].series = v.fres;
         return fres;
     })
     RxStore = this.RxSummaryView.map(v => {
         var stores = v.stores;
-        return stores; 
+        return stores;
     })
     RxService = this.RxSummaryView.map(v => {
         var services = v.services;

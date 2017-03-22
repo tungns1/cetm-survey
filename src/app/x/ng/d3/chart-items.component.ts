@@ -62,7 +62,9 @@ export class ChartItemGroupView {
 
     @ContentChildren(ChartItemGroup) groups: QueryList<ChartItemGroup>;
     ngAfterContentInit() {
-        this.refresh();
+        setTimeout(_ => {
+            this.refresh();
+        }, 500);
     }
 
     groups$ = new ReplaySubject<ChartItemGroup[]>(1);

@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { TranslateService } from '../../shared';
 import { ChartItem, PieItems } from './chart.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { ChartItemGroupView, ChartItemGroup } from '../../../../x/ng/d3/chart-items.component';
 
 @Component({
     selector: 'monitor-chart',
     templateUrl: 'chart.component.html',
-    styleUrls: ['chart.component.scss']
+    styleUrls: ['chart.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonitorChartComponent {
     constructor(
@@ -15,12 +16,22 @@ export class MonitorChartComponent {
     ) { }
 
     @Input() data = {};
-    
+
     // itemGroup = PieItems;
     itemGroup = [];
 
     ngOnInit() {
         this.setTitle();
+        console.log(this.data);
+    }
+
+    ngAfterContentInit() {
+        this.view.groups$.subscribe(groups => {
+            console.log(groups);
+            setTimeout(_ => {
+                this.groups$.next(groups);
+            }, 1000)
+        });
     }
 
     private setTitle() {
@@ -32,5 +43,8 @@ export class MonitorChartComponent {
             }
         });
     }
+
+    @ViewChild(ChartItemGroupView) view: ChartItemGroupView;
+    groups$ = new BehaviorSubject<ChartItemGroup[]>([]);
 
 }

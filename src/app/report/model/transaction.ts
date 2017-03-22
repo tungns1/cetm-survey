@@ -57,10 +57,7 @@ export interface IStore {
 }
 export interface IFre {
     name: string;
-    count: number;
-    cdate: string;
-    date?: Date;
-
+    value: number;
 }
 
 export class Customer {
@@ -144,7 +141,7 @@ export class Customer {
         if (this.fres.length > 0) {
             for (var i = 0; i < this.fres.length; i++) {
                 if (month === this.fres[i].name) {
-                    this.fres[i].count++;
+                    this.fres[i].value++;
                     addfres = true;
                     break;
                 } else {
@@ -154,16 +151,14 @@ export class Customer {
             if (!addfres) {
                 this.fres.push({
                     name: month,
-                    cdate: s.cdate,
-                    count: 1
+                    value: 1
                 })
             }
 
         } else {
             this.fres.push({
                 name: month,
-                cdate: s.cdate,
-                count: 1
+                value: 1
             })
         }
 
