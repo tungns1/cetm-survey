@@ -3,7 +3,7 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Component({
     selector: "chart-item",
@@ -65,7 +65,8 @@ export class ChartItemGroupView {
         this.refresh();
     }
 
-    groups$ = new BehaviorSubject<ChartItemGroup[]>([]);
+    groups$ = new ReplaySubject<ChartItemGroup[]>(1);
+    
     items$ = this.groups$.map(groups => {
         return groups.reduce<ChartItemComponent[]>((res, g) => res.concat(g.items), []);
     });
