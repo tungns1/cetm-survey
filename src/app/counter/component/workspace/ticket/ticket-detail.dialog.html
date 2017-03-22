@@ -8,8 +8,8 @@
             <hr>
 
             <div *ngIf="isServing" style="margin-bottom:10px;">
-                <div><span i18n>Start Serving</span> {{ticket.mtime | localDayTime}}</div>
-                <br> <span i18n>Transfer Service</span>
+                <div><span i18n>Start serving</span> {{ticket.mtime | localDayTime}}</div>
+                <br> <span i18n>Transfer service</span>
                 <div class="hl-dichvu-ticket">
                     <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
                     </select-check>
@@ -17,7 +17,7 @@
             </div>
 
             <div *ngIf="isMissed" style="margin-bottom:10px;">
-                <span i18n>Missing Time</span> {{ticket.mtime | localDayTime}}
+                <span i18n>Missing time</span> {{ticket.mtime | localDayTime}}
             </div>
             <span i18n>Transfer Counter</span>
             <div class="hl-dichvu-ticket">

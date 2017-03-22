@@ -6,14 +6,14 @@
         <input class="hl-input" type="text" formControlName="cnum" i18n-placeholder placeholder="Number"><br>
         <span i18n>Name</span>:
         <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name"><br>
-        <span i18n>Led Address</span> :
+        <span i18n>Led address</span> :
         <input class="hl-input" type="number" formControlName="dev_addr" i18n-placeholder placeholder="Led Address">
-        <hr> <span i18n>Normal Services</span>:
+        <hr> <span i18n>Normal services</span>:
         <div class="dichvu">
             <select-check formControlName="services" [data]="services | async" textField="name">
             </select-check>
         </div>
-        <hr> <span i18n>Vip Services</span>:
+        <hr> <span i18n>Vip services</span>:
         <div class="dichvu">
             <select-check formControlName="vservices" [data]="services | async" textField="name">
             </select-check>

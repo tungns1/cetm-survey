@@ -2,13 +2,13 @@
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Code</span>:
         <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
-        <br><span i18n>Number Format</span>:
+        <br><span i18n>Number format</span>:
         <input class="hl-input" formControlName="format" i18n-placeholder placeholder="Number Format">
-        <br> <span i18n>Min Value</span>:
+        <br> <span i18n>Min value</span>:
         <input class="hl-input" formControlName="minnum" type="number" i18n-placeholder placeholder="Min Value">
-        <br> <span i18n>Max Value</span>:
+        <br> <span i18n>Max value</span>:
         <input class="hl-input" formControlName="maxnum" type="number" i18n-placeholder placeholder="Max Value">
-        <br> <span i18n>Printing Template</span>:
+        <br> <span i18n>Printing template</span>:
         <app-quill-editor formControlName="template" rows="8" cols="40"></app-quill-editor>
     </form>
     <editor-field name="code" i18n-title title="Code"></editor-field>
