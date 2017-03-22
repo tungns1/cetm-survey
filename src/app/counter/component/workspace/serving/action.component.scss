@@ -1,13 +1,16 @@
-#actions{
+#actions {
     margin: 20px 0;
-    .btnFill{
+    .btnFill {
         padding: 10px;
+        left: 0;
+        right: 0;
+        margin: auto;
     }
-    .btnRed{
+    .btnRed {
         background-color: #f53e30;
         border: 1px solid #f53e30;
     }
-    .btnGreen{
+    .btnGreen {
         background-color: #01947a;
         border: 1px solid #01947a;
     }

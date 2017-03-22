@@ -1,6 +1,6 @@
 <div id="historyReport">
     <div class="headerAndNav">
-        <h2 class="header" i18n>HISTORY TRANSACTION</h2>
+        <h2 class="header" i18n>TRANSACTION HISTORY</h2>
         <div class="nav">
             <button class="btnClear btnMargin" (click)="nav('/report/dashboard')" i18n>GENERAL</button>
             <button class="btnClear btnMargin" (click)="nav('/report/customer')" i18n>CUSTOMER</button>
@@ -9,12 +9,12 @@
     <div class="filterHistory">
         <form (ngSubmit)="onSubmit()" #filterHistory="ngForm" fxLayout="row">
             <div fxFlex="28%">
-                <strong class="uppercase" i18n>Time Wait</strong><label class="note" i18n>(minute)</label>
+                <strong class="uppercase" i18n>Waiting time</strong><label class="note" i18n>(minute)</label>
                 <input class="inputFilter ctrlInput" type="number" i18n-placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter ctrlInput" type="number" i18n-placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
             </div>
             <div fxFlex="32%">
-                <strong class="uppercase" i18n>Time Serve</strong><label class="note">(minute)</label>
+                <strong class="uppercase" i18n>Serving time</strong><label class="note">(minute)</label>
                 <input class="inputFilter ctrlInput" type="number" i18n-placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter ctrlInput" type="number" i18n-placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}" (ngModelChange)="onSubmit()">
             </div>
@@ -35,7 +35,7 @@
             <th i18n>No.</th>
             <th i18n>Date</th>
             <th i18n>Branch</th>
-            <th i18n>Agency</th>
+            <th i18n>Store</th>
             <th i18n>Service</th>
             <th i18n>Counter</th>
             <th i18n>Teller</th>
