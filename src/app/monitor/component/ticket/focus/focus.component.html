@@ -12,23 +12,23 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Admin:</span>
-                <span>Testing</span>
+                <span>Nguyễn Trường Minh</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Manager:</span>
-                <span>Testing</span>
+                <span>Nguyễn Sỹ Trung</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Sum Counter:</span>
-                <span>Testing</span>
+                <span>4</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Sum Counter Is On:</span>
-                <span>Testing</span>
+                <span>2</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Sum Counter Off:</span>
-                <span>Testing</span>
+                <span>2</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Printed ticket:</span>
@@ -156,8 +156,8 @@
 <modal #edit id="modal_monitor_detailTicket">
     <h3 class="modal-header" i18n>Ticket detail</h3>
     <div *ngIf="selectedTicket" class="modalContent">
-        <div fxLayout="row" fxLayoutGap="20px">
-            <div fxFlex>
+        <!--<div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex>-->
                 <table>
                     <tr>
                         <th i18n>Ticket number</th>
@@ -194,8 +194,8 @@
                         <th *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </th>
                     </tr>
                 </table>
-            </div>
-            <div fxFlex>
+            <!--</div>
+            <div fxFlex>-->
                 <table>
                     <tr>
                         <th i18n>Branch</th>
@@ -222,9 +222,9 @@
                         <th>testing</th>
                     </tr>
                 </table>
-            </div>
-        </div>
-        <table *ngIf="customer" class="cusDetail">
+            <!--</div>
+        </div>-->
+        <table *ngIf="customer">
             <tr>
                 <th i18n>Name Counter</th>
                 <th> {{customer.full_name }}</th>
