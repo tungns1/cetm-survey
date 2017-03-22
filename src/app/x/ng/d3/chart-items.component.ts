@@ -23,18 +23,27 @@ export class ChartItemComponent {
 })
 export class ChartItemGroup {
     @Input() group: string;
-    @ContentChildren(ChartItemComponent) fields: QueryList<ChartItemComponent>;
-    get items() {
-        return this.fields.toArray();
-    }
+    @Input() title: string;
+
+    @ContentChildren(ChartItemComponent) private fields: QueryList<ChartItemComponent>;
+    
 
     Toggle(item: ChartItemComponent) {
         this.fields.forEach(f => {
             if (f.field === item.field) {
                 f.active = !f.active;
             }
-        })
+        });
+        this.refresh();
     }
+
+    refresh() {
+        this.items = this.fields.toArray();
+        this.activeItems = this.fields.filter(f => f.active);
+    }
+
+    items: ChartItemComponent[] = [];
+    activeItems: ChartItemComponent[] = [];
 }
 
 @Component({
@@ -52,25 +61,24 @@ export class ChartItemGroupView {
         this.refresh();
     }
 
-    groups$ = new BehaviorSubject<ChartItemComponent[][]>([]);
+    groups$ = new BehaviorSubject<ChartItemGroup[]>([]);
     items$ = this.groups$.map(groups => {
-        return groups.reduce((res, g) => res.concat(g), []);
+        return groups.reduce<ChartItemComponent[]>((res, g) => res.concat(g.items), []);
     });
 
     activeItems$ = this.items$.map(items => items.filter(t => t.active));
-    activeGroups$ = this.groups$.map(groups => {
-        return groups.map(g => g.filter(i => i.active));
-    });
 
     private refresh() {
         if (!this.groups) {
             return;
         }
+        this.groups.forEach(g => g.refresh());
         let groups = this.groups.toArray();
         if (this.view) {
             groups = groups.filter(g => g.group === this.view);
         }
-        this.groups$.next(groups.map(g => g.items));
+        this.groups$.next(groups);
+
     }
 
     Toggle(item: ChartItemComponent) {

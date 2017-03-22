@@ -6,7 +6,7 @@ export class ReportView extends AbstractState {
     private tab: string;
 
     FromQuery(p: Params) {
-        this.tab = p['tab'];
+        this.tab = p['tab'] || 'general';
     }
 
     ToQuery() {

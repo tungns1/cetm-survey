@@ -3,7 +3,7 @@ const LanguageDefault = 'en';
 
 const Languages = {
     en: 'English',
-    sp: 'Espanol',
+    es: 'Espanol',
     vi: 'Tiếng Việt',
 }
 

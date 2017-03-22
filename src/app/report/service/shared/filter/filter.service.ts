@@ -6,6 +6,7 @@ import { AbstractState, AbstractStateService, BranchFilter, BranchFilterService 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { InsideBranchFilter, InsideBranchFilterService } from './inside-filter.service';
 import { PeriodFilter, PeriodFilterService } from './period-filter.service';
+import { AppStorage } from '../../../shared';
 
 export class ReportFilter extends AbstractState {
     constructor(
@@ -28,6 +29,7 @@ export class ReportFilter extends AbstractState {
         const branch_id = this.Branch.GetBranchIDAtLowestLevel();
         return Object.assign({}, {
             branch_id: branch_id.join(','),
+            lang: AppStorage.Locale
         }, this.Inside.ToBackendQuery(),
             this.Period.ToBackendQuery()
         )
