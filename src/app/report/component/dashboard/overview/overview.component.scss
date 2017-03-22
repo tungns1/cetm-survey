@@ -7,14 +7,17 @@
         border-top: none;
         th{
             background-color: #f4f4f4;
-            padding: 10px;
+            padding: 7px;
             font-weight: 100;
         }
         td{
             border-top: 1px solid #a7a9ac;
-            padding: 10px;
+            padding: 7px;
             text-align: center;
             font-weight: 100;
         }
     }
+        .widthCtrl{
+            max-width: 140px;
+        }
 }
