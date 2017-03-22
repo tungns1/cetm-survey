@@ -1,20 +1,20 @@
 <div id="summaryComponent">
     <h2 class="header uppercase" i18n>Overview</h2>
     <div class="nav">
-        <button class="btnFill btnMargin uppercase" i18n>Deal</button>
+        <button class="btnFill btnMargin uppercase" i18n>TRANSACTION</button>
         <button class="btnClear btnMargin uppercase" i18n>Device</button>
     </div>
     <table class="tableCtrl">
         <thead class="uppercase">
             <th i18n>Store</th>
-            <th i18n>Number Ticket Printed</th>
-            <th i18n>Number Ticket Wait</th>
-            <th i18n>Number Ticket serving</th>
-            <th i18n>Number Ticket Been Serve</th>
-            <th i18n>Number Ticket Missed</th>
-            <th i18n>Number Ticket Cancel</th>
-            <th i18n>Number of tickets over 15'</th>
-            <th i18n>Number of tickets under 2'</th>
+            <th i18n>rinted ticket</th>
+            <th i18n>Waiting ticket</th>
+            <th i18n>Serving ticket</th>
+            <th i18n>Served ticket </th>
+            <th i18n>Missed ticket</th>
+            <th i18n>Canceled ticket</th>
+            <th i18n>Serving over 15'</th>
+            <th i18n>Serving under 2'</th>
         </thead>
         <tbody>
             <tr *ngFor="let s of summary$ | async" (click)="focus(s)" class="branchSummary">

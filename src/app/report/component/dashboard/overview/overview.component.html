@@ -1,7 +1,7 @@
 <div id="overView">
     <table class="tableOverView" *ngIf="general$ | async">
         <thead>
-            <th i18n>Numerical Order</th>
+            <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
             <th i18n>Total Transaction</th>
             <th i18n>TRansactipn Finish</th>
@@ -47,7 +47,7 @@
     <!-- Time View -->
     <table class="tableOverView" *ngIf="time$ | async">
         <thead>
-            <th i18n>Numrical Order</th>
+            <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
             <th i18n>Total Time Transaction</th>
             <th i18n>Total Time Serving/th>
@@ -79,7 +79,7 @@
     <!-- Feedback -->
     <table class="tableOverView" *ngIf="customer$ | async">
         <thead>
-            <th i18n>Numrical Order</th>
+            <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
             <th i18n>Transaction Feedback</th>
             <th i18n>Transaction No Feedback</th>
