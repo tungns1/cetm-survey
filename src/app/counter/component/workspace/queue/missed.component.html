@@ -1,20 +1,22 @@
-<div class="componentBorder queue">
+<div class="componentBorder">
     <div class="componentHeader">
-        <span i18n>List miss</span> &nbsp;(<span class="total">{{count | async}}</span>)
+        <span i18n>Missed Calls list</span> &nbsp;(<span class="total">{{count | async}}</span>)
         <input #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number" class="inputSearch">
         <img src="./assets/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" class="iconSearch">
     </div>
-    <div fxLayout="row" class="headerTable">
-        <span fxFlex class="cell" i18n>Number</span>
-        <span fxFlex="50%" class="cell" i18n>Service</span>
-        <span fxFlex class="cell" i18n>Miss At</span>
-    </div>
-    <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
-        <div fxFlex class="cell">
-            <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
-            <span class="ticketNum">{{t.cnum}}</span>
+    <div class="queue">
+        <div fxLayout="row" class="headerTable">
+            <span fxFlex class="cell" i18n>No</span>
+            <span fxFlex="50%" class="cell" i18n>Service name</span>
+            <span fxFlex class="cell" i18n>Last call</span>
         </div>
-        <span fxFlex="50%" class="cell">{{t.services | multipleServiceName}}</span>
-        <span fxFlex class="cell">{{t.mtime | localDayTime}}</span>
+        <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
+            <div fxFlex class="cell">
+                <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
+                <span class="ticketNum">{{t.cnum}}</span>
+            </div>
+            <span fxFlex="50%" class="cell">{{t.services | multipleServiceName}}</span>
+            <span fxFlex class="cell">{{t.mtime | localDayTime}}</span>
+        </div>
     </div>
 </div>

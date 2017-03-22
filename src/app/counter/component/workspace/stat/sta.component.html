@@ -1,6 +1,6 @@
 <div id="sta" class="componentBorder">
     <div class="componentHeader">
-        <span i18n>Statistic</span>
+        <span i18n>Transaction summary</span>
     </div>
     <div fxLayout="row" class="tabs">
         <div fxFlex class="tabCtrl" [class.active]="showFinished$ | async" (click)="showFinished()">
@@ -9,7 +9,7 @@
             <span>&nbsp; ({{fcount$ | async}}) &nbsp; </span>
         </div>
         <div fxFlex class="tabCtrl" [class.active]="showCancelled$ | async" (click)="showCancelled()">
-            <span i18n>Cancel Transaction</span>
+            <span i18n>Cancelled Transactions</span>
             <!--<span class="hl-count">&nbsp;({{cc | async}}) &nbsp;</span>-->
             <span>&nbsp;({{ccount$ | async}}) &nbsp;</span>
         </div>

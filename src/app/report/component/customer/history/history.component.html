@@ -1,10 +1,10 @@
 <div id="cusHistory">
     <table>
         <thead class="uppercase">
-            <th i18n>Numrical Order</th>
+            <th i18n>No.</th>
             <th i18n>Date</th>
             <th i18n>Branch</th>
-            <th i18n>Agency</th>
+            <th i18n>Store</th>
             <th i18n>Service</th>
             <th i18n>Counter</th>
             <th i18n>Teller</th>
@@ -40,7 +40,7 @@
     <div class="pagin">
         <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
     </div>
-    <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export Excel</button>
+    <button class="btnClear export" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export file in excel</button>
 </div>
 
 <transaction #detail></transaction>

@@ -10,9 +10,9 @@
             <tr *ngFor="let d of node.rxChildren | async">
                 <td> <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
             {{ d.name }}</a></td>
-                <td> <button class="btn-hlm btn-view" (click)="view(d)">
+                <td> <button class="btn-hlm btn-view" (click)="view(d)" i18n>
             <i class="fa fa-data"></i>
-            Xem          
+            View          
         </button></td>
             </tr>
 

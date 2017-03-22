@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 const GroupByTitles = {
     service_id: "Service",
-    branch_id: "Choose Agency",
+    branch_id: "Choose Store",
     counter_id: "Counter",
     user_id: "Teller"
 }

@@ -3,15 +3,15 @@
         <label i18n>Customer Name</label>
         <span *ngIf="customer | async; let c" class="cusName uppercase">{{c.full_name}}</span>
     </div>
-    <div fxFlex="20%">
-        <label i18n>Code ID</label>
+    <div fxFlex="28%">
+        <label i18n>Customer ID</label>
         <span *ngIf="customer | async; let c" class="uppercase">{{c.code}}</span>
     </div>
     <div fxFlex>
         <label i18n>Number phone</label>
         <span *ngIf="customer | async; let c" class="uppercase">{{c.phone_number}}</span>
     </div>
-    <div fxFlex="20%">
+    <div fxFlex="16%">
         <label i18n>Segment</label>
         <span *ngIf="customer | async; let c" class="uppercase">{{c.segment}}</span>
     </div>

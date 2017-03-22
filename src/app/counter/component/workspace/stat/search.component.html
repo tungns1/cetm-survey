@@ -7,15 +7,15 @@
     </div>
     <div class="searchResult" *ngFor="let ticket of tickets$ | async">
         <div fxLayout="row">
-            <span class="marginY label" fxFlex i18n>Time create ticket</span>
+            <span class="marginY label" fxFlex i18n>Time of ticket printed</span>
             <span class="marginY detail" fxFlex>{{ticket.ctime | localDayTime}}</span>
         </div>
         <div fxLayout="row" [class.hidden]="!serving">
-            <span class="marginY label" fxFlex i18n>Time Call Ticket</span>
+            <span class="marginY label" fxFlex i18n>Time of ticket called</span>
             <span class="marginY detail" fxFlex>{{ticket.mtime | localDayTime}}</span>
         </div>
         <div fxLayout="row">
-            <span class="marginY label" fxFlex i18n>Status Now</span >
+            <span class="marginY label" fxFlex i18n>Ticket status</span >
             <span class="marginY detail" fxFlex i18n>{{ticket | ticketState}}</span>
         </div>
         <h3 class="marginY" i18n>Hisstory</h3>
