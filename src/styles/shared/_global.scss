@@ -10,7 +10,7 @@ $primary-color: #0b8fdb;
     border-width: 1px;
     border-color: $primary-color;
     border-radius: 3px;
-    width: 160px;
+    width: 190px;
     background-color: transparent;
     color: $primary-color;
     font-weight: 500;
@@ -27,6 +27,7 @@ $primary-color: #0b8fdb;
     font-size: 11px;
     padding: 0 5px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 // End of accordion
 // Some UI Elements

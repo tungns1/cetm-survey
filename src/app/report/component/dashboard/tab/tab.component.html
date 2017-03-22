@@ -1,3 +1,3 @@
 <div class="tabHeader">
-    <label class="hl-label-tab" *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" i18n>{{d.title}} </label>
+    <label class="hl-label-tab uppercase" *ngFor="let d of tabs" [ngClass]="{'actives': active == d.name}" (click)="setActive(d)" i18n>{{d.title}} </label>
 </div>
