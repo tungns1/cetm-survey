@@ -7,8 +7,8 @@
     </div>
 
     <div class="chartOptions" *ngIf="isPie">
-        <div *ngFor="let item of pieConfig.groups$ | async">
-            <div *ngFor="let t of item" class="option">
+        <div *ngFor="let g of pieConfig.groups$ | async">
+            <div *ngFor="let t of g.items" class="option">
                 <div style="float:left;">
                     <div class="checkBox" [style.background-color]="t.active? t.color : ''">
                         <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
