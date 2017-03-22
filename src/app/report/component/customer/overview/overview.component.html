@@ -2,8 +2,8 @@
 
     <table *ngIf="store$ | async">
         <thead>
-            <th i18n>Name Store</th>
-            <th i18n>Number Transaction </th>
+            <th i18n>Name store</th>
+            <th i18n>Number transaction </th>
         </thead>
         <tbody>
             <tr *ngFor="let s of stores">
@@ -15,11 +15,11 @@
 
     <table *ngIf="time$ | async">
         <thead>
-            <th i18n>Total Transaction</th>
-            <th i18n>Standard Waiting Time Transaction</th>
-            <th i18n>Exceeded Waiting Time Transaction</th>
-            <th i18n>Standard Serving Time Transaction</th>
-            <th i18n>Exceeded Serving Time Transaction</th>
+            <th i18n>Total transaction</th>
+            <th i18n>Standard waiting time transaction</th>
+            <th i18n>Exceeded waiting time transaction</th>
+            <th i18n>Standard serving time transaction</th>
+            <th i18n>Exceeded serving time transaction</th>
         </thead>
         <tbody>
             <tr *ngIf="data">
@@ -47,8 +47,8 @@
 
     <table *ngIf="service$ | async">
         <thead>
-            <th i18n>Service Name</th>
-            <th i18n>Number Transaction</th>
+            <th i18n>Service name</th>
+            <th i18n>Number transaction</th>
         </thead>
         <tbody>
 
@@ -63,7 +63,7 @@
     <table *ngIf="frequency$ | async">
         <thead>
             <th i18n>Month</th>
-            <th i18n>Number Transaction</th>
+            <th i18n>Number transaction</th>
         </thead>
         <tbody>
             <tr *ngFor="let s of fres">
