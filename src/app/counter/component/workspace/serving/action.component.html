@@ -14,7 +14,7 @@
     <button class="btnFill btnRed" fxFlex (click)="Miss()" i18n>
         Miss
     </button>
-    <button class="btnFill btnGreen" fxFlex (click)="Finish()" i18n>
+    <button class="btnFill btnGreen" fxFlex (throttle)="Finish()" throttle i18n>
         Finish
     </button>
 </div>

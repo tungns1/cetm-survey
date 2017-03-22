@@ -5,9 +5,11 @@ import { EmptyComponent } from './empty.component';
 import { ActionComponent } from './action.component';
 import { TicketComponent } from './ticket.component';
 import { ModalModule } from '../../shared';
+import { DirectiveModule } from '../../../../shared/directive/directive.module';
+
 
 @NgModule({
-    imports: [TicketModule, ModalModule],
+    imports: [TicketModule, ModalModule,DirectiveModule],
     declarations: [ServingComponent, EmptyComponent, ActionComponent, TicketComponent],
     exports: [ServingComponent]
 })
