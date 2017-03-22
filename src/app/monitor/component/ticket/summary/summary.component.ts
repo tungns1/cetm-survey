@@ -19,7 +19,7 @@ export class SummaryComponent {
         this.filterService.ExclusiveSubscribe(filter => {
             let branches: string[] = filter.Branch.GetBranchIDByLevel(0);
             if (branches.length < 1) {
-                this.message = "Please,Choose Agency";
+                this.message = "Please,Choose Store";
             }
         });
         this.totalSummary$.subscribe(data => this.total = data);

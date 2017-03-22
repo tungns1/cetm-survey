@@ -25,7 +25,6 @@ export class TransactionComponent implements OnInit {
     SetData(d: ITransactionView) {
         this.link = '';
         this.data = d;
-        console.log(this.data);
         if (d.audio) {
             this.link=this.env.Platform.HttpHost+'/api/report/record/'+d.audio;
             // this.link = this.appService.MakeLink(`/api/report/record/${d.audio}`);

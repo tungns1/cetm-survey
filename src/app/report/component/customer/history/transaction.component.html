@@ -6,12 +6,32 @@
         </accordion-title>
         <table class="detailTicket">
             <tr>
+                <td class="ctrlLable"><b i18n>Branch</b>:</td>
+                <td i18n>{{data.parent}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Store</b>:</td>
+                <td i18n>{{data.branch}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Counter no</b>:</td>
+                <td i18n>{{data.counter}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Teller</b>:</td>
+                <td i18n>{{data.user}}</td>
+            </tr>
+            <tr>
                 <td class="ctrlLable"><b i18n>Ticket Number</b>:</td>
                 <td i18n>{{data.cnum}}</td>
             </tr>
             <tr>
-                <td class="ctrlLable"> <b i18n>Serving</b>:</td>
+                <td class="ctrlLable"> <b i18n>Service</b>:</td>
                 <td i18n>{{data.service}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Ticket Status</b>:</td>
+                <td>{{state}}</td>
             </tr>
             <tr>
                 <td class="ctrlLable"><b i18n>Time Create Ticket</b>:</td>
@@ -31,51 +51,27 @@
             </tr>
         </table>
     </accordion>
-    <div class="divider"></div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Branch</b>
-        <span fxFlex i18n>{{data.branch}}</span>
+    <div *ngIf="customer" class="customer">
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex class="ctrlLable" i18n>Customer:</b>
+            <span fxFlex i18n>{{customer.full_name}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex class="ctrlLable" i18n>Phone Number:</b>
+            <span fxFlex i18n>{{customer.phone_number}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex class="ctrlLable" i18n>Customer Code:</b>
+            <span fxFlex i18n style="text-decoration: underline; color: blue;" i18n-title="Go to customer detail">{{customer.code}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex class="ctrlLable" i18n>Customer Segment:</b>
+            <span fxFlex i18n>{{customer.segment}}</span>
+        </div>
+        <div class="cusDetail">
+            <audio [class.hidden]="!link" controls [src]="link"></audio>
+        </div>
     </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Agency</b>
-        <span fxFlex i18n>{{data.branch}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Tellers</b>
-        <span fxFlex i18n>{{data.user}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Counter</b>
-        <span fxFlex i18n>{{data.counter}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Manager</b>
-        <span fxFlex i18n>{{data.counter}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Admin</b>
-        <span fxFlex i18n>{{data.counter}}</span>
-    </div>
-    <div class="divider"></div>
-
-
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Customer</b>
-        <span fxFlex i18n>{{data.counter}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Phone</b>
-        <span fxFlex i18n *ngIf="customer | async; let c">{{c.phone_number}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>ID</b>
-        <span fxFlex i18n *ngIf="customer | async; let c">{{c.code}}</span>
-    </div>
-    <div class="cusDetail" fxLayout="row">
-        <b fxFlex class="ctrlLable" i18n>Segment</b>
-        <span fxFlex i18n *ngIf="customer | async; let c">{{c.segment}}</span>
-    </div>
-    <audio *ngIf="link" controls [src]="link"> </audio>
 
     <div fxLayout="row">
         <div fxFlex></div>

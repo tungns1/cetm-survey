@@ -34,6 +34,6 @@ export class SearchComponent {
     }
 
     stateKey(state: string) {
-        return `State ${state.toUpperCase()}`;
+        return `State ${state}`;
     }
 }
