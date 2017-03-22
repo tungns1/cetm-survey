@@ -33,6 +33,7 @@ export class TransactionComponent implements OnInit {
     }
     GetInfoCustomer(d: ITransactionView) {
         this.customer = null;
+        this.state=d.state;
         this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
             this.customer = v;
         });
@@ -48,4 +49,5 @@ export class TransactionComponent implements OnInit {
 
     data = {};
     link: string;
+    state:string;
 }
