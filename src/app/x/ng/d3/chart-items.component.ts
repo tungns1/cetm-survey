@@ -1,12 +1,14 @@
 import {
-    Component, Input, ContentChildren, QueryList
+    Component, Input, ContentChildren, QueryList,
+    ChangeDetectionStrategy
 } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: "chart-item",
-    template: ``
+    template: ``,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartItemComponent {
     id = Math.random().toString(36).substring(3, 6);
@@ -19,7 +21,8 @@ export class ChartItemComponent {
 
 @Component({
     selector: "chart-item-group",
-    template: `<ng-content></ng-content>`
+    template: `<ng-content></ng-content>`,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartItemGroup {
     @Input() group: string;
@@ -48,7 +51,8 @@ export class ChartItemGroup {
 
 @Component({
     selector: "chart-item-group-view",
-    template: `<ng-content></ng-content>`
+    template: `<ng-content></ng-content>`,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartItemGroupView {
     @Input() set active(group: string) {

@@ -5,9 +5,6 @@
     <div class="chartOptions">
         <div *ngFor=" let item of config.items$ | async " class="option">
             <div style="float:left;">
-                <div class="checkBox" [style.background-color]="item.active? item.color : ''">
-                    <input type="checkbox" [ngModel]="item.active " (ngModelChange)="config.Toggle(item) ">
-                </div>
                 <span style="font-size: 10px; "> {{item.title}}</span>
             </div>
         </div>
