@@ -49,15 +49,15 @@
         <thead>
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
-            <th i18n>Total Time Transaction</th>
-            <th i18n>Total Time Serving/th>
-                <th i18n>Total Time Wait</th>
-                <th i18n>Time Serving Avarage</th>
-                <th i18n>Time Serving Min</th>
-                <th i18n>Time Serving Max</th>
-                <th i18n>Time Wait Avarage</th>
-                <th i18n>Time Wait Min</th>
-                <th i18n>Time Wait Max</th>
+            <th i18n>Total time transaction</th>
+            <th i18n>Total serving time</th>
+            <th i18n>Total time wait</th>
+            <th i18n>Serving time avarage</th>
+            <th i18n>Serving time min</th>
+            <th i18n>Serving time max</th>
+            <th i18n>Waiting time avarage</th>
+            <th i18n>Waiting time min</th>
+            <th i18n>Waiting time max</th>
         </thead>
         <tbody>
             <tr *ngFor="let d of data$ | async; let i = index">
@@ -81,12 +81,12 @@
         <thead>
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
-            <th i18n>Transaction Feedback</th>
-            <th i18n>Transaction No Feedback</th>
-            <th i18n>Very Good Feedback</th>
-            <th i18n>Good Feedback</th>
-            <th i18n>Average Feedback</th>
-            <th i18n>Poor Feedback</th>
+            <th i18n>Transaction feedback</th>
+            <th i18n>Transaction no feedback</th>
+            <th i18n>Very good feedback</th>
+            <th i18n>Good feedback</th>
+            <th i18n>Average feedback</th>
+            <th i18n>Poor feedback</th>
         </thead>
         <tbody>
             <tr *ngFor="let d of data$ | async; let i = index">

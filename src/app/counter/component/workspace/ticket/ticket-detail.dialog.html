@@ -4,7 +4,7 @@
         <div style="margin-top: 50px;">
             <div class="hl-info-ticket"><span i18n>Ticket Number</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
             <div class="hl-info-ticket hidden" i18n> Priority:{{ticket.priority}}</div>
-            <div class="hl-info-ticket"><span i18n>Time create ticket</span> {{ticket.ctime | localDayTime}}</div>
+            <div class="hl-info-ticket"><span i18n>Time of ticket printed</span> {{ticket.ctime | localDayTime}}</div>
             <hr>
 
             <div *ngIf="isServing" style="margin-bottom:10px;">
