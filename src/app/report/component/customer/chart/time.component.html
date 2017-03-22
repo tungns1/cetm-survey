@@ -1,13 +1,10 @@
 <div id="chartReport">
 
     <div class="hl-chart" *ngIf="isPie">
-        <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieConfig.activeGroups$ | async">
-            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
+        <div style="width:33%;height:300px;float:left;" *ngFor="let g of pieConfig.groups$ | async">
+            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
         </div>
     </div>
-
-
-
 
     <div class="chartOptions" *ngIf="isPie">
         <div *ngFor="let item of pieConfig.groups$ | async">
