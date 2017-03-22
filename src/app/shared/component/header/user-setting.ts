@@ -1,7 +1,7 @@
 
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '../../shared';
+import { TranslateService, LOCALES, AppStorage } from '../../shared';
 
 @Component({
     selector: 'user-setting',
@@ -16,4 +16,21 @@ export class UserSettingComponent {
     Close() {
         this.close.next();
     }
+
+
+    items = Object.keys(LOCALES.LANGUAGES).map(l => {
+        return {
+            key: l,
+            value: LOCALES.LANGUAGES[l]
+        };
+    });
+
+    locale = AppStorage.Locale;
+
+    SetLocale(locale: string) {
+        AppStorage.Locale = locale;
+        window.location.reload();
+    }
+
+
 }

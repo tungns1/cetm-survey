@@ -2,14 +2,7 @@
     <span i18n>Hello</span> {{ username | async}}
     <i class="fa fa-caret-down fa-lg"></i>
 </div>
-<!--<div class="dropdown">
-    <i class="fa fa-chevron-circle-down dropbtn" (click)="myFunction()"></i>
-    <div id="myDropdown" class="dropdown-content">
-        <a href="#home"> <i class="fa fa-refresh"></i> <span>REFRESH</span> </a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-</div>-->
+
 <ul [class.hidden]="hidden" class="hl-dropdown-content-user " #myMenudrop>
     <li class="hl-dropdown-item-user animate" (click)="Refresh()">
         <i class="fa fa-refresh"></i> <span i18n>Refresh</span>

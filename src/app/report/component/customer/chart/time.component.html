@@ -1,18 +1,33 @@
-<div class="hl-chart">
-    <div style="width:33%;height:300px;float:left;" *ngFor="let item of pieItems$ | async">
-        <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="item"></div>
-    </div>
-</div>
+<div id="chartReport">
 
-<div class="legend " style="margin: 20px; ">
-    <div *ngFor="let item of pieItems$ | async">
-        <div *ngFor="let t of item" style="float:left; margin: 15px; ">
-            <div style="float:left;">
-                <div style="float:left; margin: 0 5px;" [style.background-color]="t._hidden? '':t.color ">
-                    <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
+    <div class="hl-chart" *ngIf="isPie">
+        <div style="width:33%;height:300px;float:left;" *ngFor="let g of pieConfig.groups$ | async">
+            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
+        </div>
+    </div>
+
+    <div class="chartOptions" *ngIf="isPie">
+        <div *ngFor="let g of pieConfig.groups$ | async">
+            <div *ngFor="let t of g.items" class="option">
+                <div style="float:left;">
+                    <div class="checkBox" [style.background-color]="t.active? t.color : ''">
+                        <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
+                    </div>
+                    <span style="font-size: 10px;"> {{t.title}}</span>
                 </div>
-                <span style="font-size: 10px;"> {{t.title}}</span>
             </div>
         </div>
     </div>
+
+
+    <chart-item-group-view #pieConfig>
+        <chart-item-group>
+            <chart-item field="c_bwt" color="#99b3ff" i18n-title title="Transaction Wait Standard"></chart-item>
+            <chart-item field="s_wt" color="#969c9c" i18n-title title="Transaction Wait Beyond Standard"></chart-item>
+        </chart-item-group>
+        <chart-item-group>
+            <chart-item field="c_bst" color="339933" i18n-title title="Transaction Serving Standard"></chart-item>
+            <chart-item field="s_st" color="b4e4b4" i18n-title title="Transaction Serving Beyond Standard"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
 </div>

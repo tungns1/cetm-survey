@@ -24,10 +24,10 @@ export class UserComponent {
     Logout() {
         this.authService.Logout();
     }
-   onBLur() {
-        
-       document.getElementById("myMenudrop").style.visibility = "hidden"
-   }
+    onBLur() {
+
+        document.getElementById("myMenudrop").style.visibility = "hidden"
+    }
     hidden = true;
 
     Refresh() {
@@ -35,25 +35,4 @@ export class UserComponent {
             window.location.reload();
         }, 200);
     }
-
-
-    //  myFunction() {
-    //     document.getElementById("myDropdown").classList.toggle("show");
-    // }
-
-    // window.onclick = function(event) {
-    //     if (!event.target.matches('.dropbtn')) {
-
-    //         var dropdowns = document.getElementsByClassName("dropdown-content");
-    //         var i;
-    //         for (i = 0; i < dropdowns.length; i++) {
-    //             var openDropdown = dropdowns[i];
-    //             if (openDropdown.classList.contains('show')) {
-    //                 openDropdown.classList.remove('show');
-    //             }
-    //         }
-    //     }
-    // }
-
-
 }

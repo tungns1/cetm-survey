@@ -122,20 +122,19 @@
         <tbody>
             <tr *ngFor="let t of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished' || t.state === 'waiting'}">
                 <td> {{i + 1}} </td>
-                <td *ngIf="t.serving"> {{t.serving.service_id | serviceName}} </td>
-                <td *ngIf="t.serving"> {{t.serving.counter_id | counterName}}</td>
-                <td *ngIf="t.serving"> {{t.serving.user_id | userFullName}}</td>
+                <td> {{t.service_id | serviceName}} </td>
+                <td> {{t.counter_id | counterName}}</td>
+                <td> {{t.user_id | userFullName}}</td>
 
-                <td *ngIf="!t.serving">{{t.service_id | serviceName}}</td>
+                <!--<td *ngIf="!t.serving">{{t.service_id | serviceName}}</td>
                 <td *ngIf="!t.serving">{{t.counter_id | counterName}}</td>
-                <td *ngIf="!t.serving">{{t.user_id | userFullName}}</td>
+                <td *ngIf="!t.serving">{{t.user_id | userFullName}}</td>-->
 
                 <td> {{t.cnum}} </td>
                 <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
                 <td *ngIf="!t.customer"> </td>
                 <td> {{t.ctime | localDayTime}}</td>
-                <td *ngIf="t.serving"> {{t.serving.mtime - t.ctime | timeDuration}} </td>
-                <td *ngIf="!t.serving"> {{t.mtime - t.ctime | timeDuration}} </td>
+                <td> {{t.mtime - t.ctime | timeDuration}} </td>
 
                 <td *ngIf="t.state === 'serving'">
                     <timer [start]="t.mtime" [timeWarning]="1"></timer>
@@ -189,7 +188,10 @@
                     </tr>
                     <tr *ngIf="isServed">
                         <th i18n>Serving time</th>
-                        <th> {{selectedTicket.stime | timeDuration}} </th>
+                        <th *ngIf="selectedTicket.state === 'serving'">
+                            <timer [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
+                        </th>
+                        <th *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </th>
                     </tr>
                 </table>
             </div>

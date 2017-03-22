@@ -26,11 +26,11 @@
 <modal #edit>
     <div *ngIf="form">
         <div class="hl-header-editor">
-            <div class="uppercase btpointer" *ngIf="current"> <span i18n="Edit {{name}}">Edit {{name}} </span></div>
-            <div class="uppercase btpointer" *ngIf="!current"> <span i18n="Add {{name}}">Add {{name}}</span> </div>
+            <div class="uppercase btpointer" *ngIf="current"> <span i18n="Edit Name">Edit {{name}} </span></div>
+            <div class="uppercase btpointer" *ngIf="!current"> <span i18n="Add Name">Add {{name}}</span> </div>
         </div>
 
-        <span class="err" i18n>{{err}}</span>
+        <span class="err">{{err}}</span>
 
         <ng-content></ng-content>
         <modal-footer class="mod-ft-editor">

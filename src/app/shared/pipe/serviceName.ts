@@ -27,6 +27,8 @@ export class TicketServiceNamePipe {
         switch (t.state) {
             case TicketStates.Serving:
                 return ServiceName(t.service_id);
+            case TicketStates.Cancelled:
+                return ServiceName(t.service_id);
             case TicketStates.Finished:
             // fallthrough
             case TicketStates.Missed:

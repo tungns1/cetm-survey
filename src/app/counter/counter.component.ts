@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AuthService, I18nService } from "./shared";
+import { AuthService } from "./shared";
 import { CounterStateService } from "./service";
 
 @Component({
@@ -11,7 +11,6 @@ import { CounterStateService } from "./service";
 })
 export class AppComponent {
     constructor(
-        private translate: I18nService,
         private route: ActivatedRoute,
         private stateService: CounterStateService,
         private authService: AuthService

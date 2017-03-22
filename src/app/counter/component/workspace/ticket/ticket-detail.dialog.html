@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal" *ngIf="isModal">
     <div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px; position:absolute;">
         <div class="hl-tl-ticket" i18n>Ticket detail</div>
         <div style="margin-top: 50px;">
@@ -32,31 +32,35 @@
 
                 <button class="hl-recall-ticket hl-big-ticket button-ticket" (click)="Recall()" i18n>Recall</button>
 
-                <button class="hl-delete-ticket hl-miss-ticket button-ticket" (click)="remove.Open()" i18n>Delete</button>
+                <button class="hl-delete-ticket hl-miss-ticket button-ticket" (click)="OpenRemove()" i18n>Delete</button>
             </div>
             <div style="margin: 30px 0px 20px 0px;" *ngIf="!isMissed">
                 <button class="hl-close-ticket hl-nomiss-ticket button-ticket" (click)="Close()" i18n>Close</button>
 
                 <button class="hl-move-ticket hl-nomiss-ticket button-ticket" (click)="Move()" i18n>Move</button>
 
-                <button class="hl-delete-ticket hl-nomiss-ticket button-ticket" (click)="remove.Open()" i18n>Delete</button>
+                <button class="hl-delete-ticket hl-nomiss-ticket button-ticket" (click)="OpenRemove()" i18n>Delete</button>
             </div>
         </div>
     </div>
+
+    <div class="modal" *ngIf="isRemove">
+        <div class="dialog">
+            <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
+                <span i18n>Do you want to delete?</span>
+            </div>
+            <div style="float: right;margin-right: 40px">
+                <button class="hl-yes-editor btpointer" (click)="Delete()">  <span i18n>Yes</span></button>
+                <button class="hl-no-editor btpointer" (click)="CloseRmove()"> <span i18n>No</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" *ngIf="isAlert">
+        <div class="dialog">
+            <div style="text-align: center;color: red;font-size:18px;font-weight:700;" i18n>{{title}}</div>
+            <p style="text-align: center;font-size:13px;" i18n>{{message}}</p>
+            <button class="hl-close-ticket button-ticket" (click)="CloseAlert()" style="float:right; height:25px;" i18n>Yes</button>
+        </div>
+    </div>
 </div>
-
-<modal #alert>
-    <div style="text-align: center;color: red;font-size:18px;font-weight:700;" i18n>{{title}}</div>
-    <p style="text-align: center;font-size:13px;" i18n>{{message}}</p>
-    <button class="hl-close-ticket button-ticket" (click)="alert.Close()" style="float:right; height:25px;" i18n>Yes</button>
-</modal>
-
-<modal #remove>
-    <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
-        <span i18n>Do you want to delete?</span>
-    </div>
-    <div style="float: right;margin-right: 40px">
-        <button class="hl-yes-editor btpointer" (click)="Delete()">  <span i18n>Yes</span></button>
-        <button class="hl-no-editor btpointer" (click)="remove.Close()"> <span i18n>No</span></button>
-    </div>
-</modal>
