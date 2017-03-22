@@ -1,13 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { RuntimeEnvironment } from '../shared';
 
 @Component({
-  selector: 'app-env',
-  template: ``
+  selector: 'app-env-module',
+  template: `<ng-content></ng-content>`
 })
-export class EnvSetComponent implements OnInit {
+export class AppEnvModuleComponent implements OnInit {
 
   constructor(
+    private el: ElementRef,
     private env: RuntimeEnvironment
   ) { }
 
@@ -15,13 +16,35 @@ export class EnvSetComponent implements OnInit {
     
   }
 
-  @Input() set module(m: string) {
-    this.env.Auth.Module = m;
-    console.log("set module", m);
-  }
-
-  @Input() set subModule(sm: string) {
-    this.env.Auth.SubModule = sm;
+  ngAfterContentInit() {
+    const el: HTMLElement = this.el.nativeElement;
+    el.style.display = "none";
+    this.env.Auth.Module = el.innerHTML;
   }
 
 }
+
+
+@Component({
+  selector: 'app-env-sub-module',
+  template: `<ng-content></ng-content>`
+})
+export class AppEnvSubModuleComponent implements OnInit {
+
+  constructor(
+    private el: ElementRef,
+    private env: RuntimeEnvironment
+  ) { }
+
+  ngOnInit() {
+    
+  }
+  
+  ngAfterContentInit() {
+    const el: HTMLElement = this.el.nativeElement;
+    el.style.display = "none";
+    this.env.Auth.SubModule = el.innerHTML;
+  }
+
+}
+

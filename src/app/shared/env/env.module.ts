@@ -7,12 +7,12 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { RuntimeEnvironment } from './shared';
 import { AbstractStorageStrategy } from '../shared';
-import { EnvSetComponent } from './env-set/env-set.component';
+import { AppEnvModuleComponent, AppEnvSubModuleComponent } from './env-set/env-set.component';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [EnvSetComponent],
-    exports: [EnvSetComponent]
+    declarations: [AppEnvModuleComponent, AppEnvSubModuleComponent],
+    exports: [AppEnvModuleComponent, AppEnvSubModuleComponent]
 })
 export class EnvironmentModule {
     static Providers() {
