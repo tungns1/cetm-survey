@@ -3,6 +3,7 @@ import { AggregateService, TranslateService } from '../../shared';
 import { ChartItem, TimeItems } from './chart.model';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Customer } from '../../shared';
 
 @Component({
     selector: 'time-chart',
@@ -15,9 +16,9 @@ export class TimeChartComponent {
     ) { }
 
     ngOnInit() {
+        this.chartService.RxSummaryView.subscribe(v=>{
+            this.pieData=v
+        })
     }
-
-    period = this.chartService.RxPeriod;
-    pieData = this.chartService.RxSummaryView;
-    pieItems$ = new BehaviorSubject<ChartItem[][]>([]);
+    pieData :Customer;
 }

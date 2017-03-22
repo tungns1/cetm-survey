@@ -72,6 +72,6 @@
         <div class="pagin">
             <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
-        <button class="btnClear export" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export file in excel</button>
+        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export to excel</button>
     </div>
 </div>

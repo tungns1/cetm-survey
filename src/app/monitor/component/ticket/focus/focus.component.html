@@ -79,8 +79,8 @@
             <th i18n>Service name</th>
             <th i18n>Ticket Number</th>
             <th i18n>Customer</th>
-            <th i18n>Time create ticket</th>
-            <th i18n>Time wait</th>
+            <th i18n>Time of ticket printed</th>
+            <th i18n>Waiting time</th>
             <th i18n>Detail</th>
         </thead>
         <tbody>
@@ -114,9 +114,9 @@
             <th i18n>Tellers</th>
             <th i18n>Ticket number</th>
             <th i18n>Customer</th>
-            <th i18n>Time Create ticket</th>
-            <th i18n>Time Wait</th>
-            <th i18n>Time Serve</th>
+            <th i18n>Time of ticket printed</th>
+            <th i18n>Waiting time</th>
+            <th i18n>TiServing time</th>
             <th i18n>Detail</th>
         </thead>
         <tbody>
@@ -175,11 +175,11 @@
                         </th>
                     </tr>
                     <tr>
-                        <th i18n>Time create ticket</th>
+                        <th i18n>Time of ticket printed</th>
                         <th>{{selectedTicket.ctime | localDayTime}}</th>
                     </tr>
                     <tr>
-                        <th i18n>Time wait</th>
+                        <th i18n>Waiting time</th>
                         <th>
                             <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
                             <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>

@@ -1,8 +1,8 @@
-<div id="chartReport">
+<div id="chartReport" *ngIf="pieData">
 
     <div class="hl-chart">
         <div style="width:33%;height:300px;float:left;" *ngFor="let g of pieConfig.groups$ | async">
-            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
+            <div style="width:100%;height:300px;" pie-chart [data]="pieData" [items]="g.activeItems"></div>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
                     <div class="checkBox" [style.background-color]="t.active? t.color : ''">
                         <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
                     </div>
-                    <span style="font-size: 10px;"> {{t.title}}</span>
+                    <span style="font-size: 10px;">{{t.title}} &nbsp;</span>
                 </div>
             </div>
         </div>
@@ -26,8 +26,8 @@
             <chart-item field="s_wt" color="#969c9c" i18n-title title="Transaction Wait Beyond Standard"></chart-item>
         </chart-item-group>
         <chart-item-group>
-            <chart-item field="c_bst" color="339933" i18n-title title="Transaction Serving Standard"></chart-item>
-            <chart-item field="s_st" color="b4e4b4" i18n-title title="Transaction Serving Beyond Standard"></chart-item>
+            <chart-item field="c_bst" color="#339933" i18n-title title="Transaction Serving Standard"></chart-item>
+            <chart-item field="s_st" color="#b4e4b4" i18n-title title="Transaction Serving Beyond Standard"></chart-item>
         </chart-item-group>
     </chart-item-group-view>
 </div>

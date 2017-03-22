@@ -1,18 +1,3 @@
-<div id="chartReport">
-    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
-
-
-    <div class="chartOptions">
-        <div *ngFor=" let item of config.items$ | async " class="option">
-            <div style="float:left;">
-                <span style="font-size: 10px; "> {{item.title}}</span>
-            </div>
-        </div>
-    </div>
-
-    <chart-item-group-view #config>
-        <chart-item-group>
-            <chart-item field="count" color="#339933" title="Frequency"></chart-item>
-        </chart-item-group>
-    </chart-item-group-view>
-</div>
+<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
+    (select)="onSelect($event)">
+</ngx-charts-line-chart>
