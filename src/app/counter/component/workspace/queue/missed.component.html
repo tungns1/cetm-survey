@@ -6,7 +6,7 @@
     </div>
     <div fxLayout="row" class="headerTable">
         <span fxFlex class="cell" i18n>Number</span>
-        <span fxFlex class="cell" i18n>Service</span>
+        <span fxFlex="50%" class="cell" i18n>Service</span>
         <span fxFlex class="cell" i18n>Miss At</span>
     </div>
     <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
@@ -14,7 +14,7 @@
             <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
             <span class="ticketNum">{{t.cnum}}</span>
         </div>
-        <span fxFlex class="cell">{{t.services | multipleServiceName}}</span>
+        <span fxFlex="50%" class="cell">{{t.services | multipleServiceName}}</span>
         <span fxFlex class="cell">{{t.mtime | localDayTime}}</span>
     </div>
 </div>

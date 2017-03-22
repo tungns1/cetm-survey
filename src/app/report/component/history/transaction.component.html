@@ -1,10 +1,26 @@
-<modal id="report_history_modal" *ngIf="data">
+<modal class="report_history_modal" *ngIf="data">
     <div class="modal-header"><span i18n>Ticket Detail</span></div>
     <accordion>
         <accordion-title class="accordionTitle">
             <span i18n>Ticket Detail</span>
         </accordion-title>
         <table class="detailTicket">
+            <tr>
+                <td class="ctrlLable"><b i18n>Branch</b>:</td>
+                <td i18n>{{data.parent}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Store</b>:</td>
+                <td i18n>{{data.branch}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Counter no</b>:</td>
+                <td i18n>{{data.counter}}</td>
+            </tr>
+            <tr>
+                <td class="ctrlLable"><b i18n>Teller</b>:</td>
+                <td i18n>{{data.user}}</td>
+            </tr>
             <tr>
                 <td class="ctrlLable"><b i18n>Ticket Number</b>:</td>
                 <td i18n>{{data.cnum}}</td>
@@ -35,7 +51,7 @@
             </tr>
         </table>
     </accordion>
-    <div *ngIf="customer">
+    <div *ngIf="customer" class="customer">
         <div class="cusDetail" fxLayout="row">
             <b fxFlex class="ctrlLable" i18n>Customer:</b>
             <span fxFlex i18n>{{customer.full_name}}</span>

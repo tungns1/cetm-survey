@@ -1,18 +1,20 @@
-<div class="componentBorder queue">
+<div class="componentBorder ">
     <div class="componentHeader">
         <span i18n>List wait</span> &nbsp;(<span class="totalCount">{{count$ | async}}</span>)
     </div>
-    <div fxLayout="row" class="headerTable">
-        <span fxFlex class="cell" i18n>Number</span>
-        <span fxFlex class="cell" i18n>Service</span>
-        <span fxFlex class="cell" i18n>Time Wait</span>
-    </div>
-    <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
-        <div fxFlex class="cell">
-            <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
-            <span class="ticketNum">{{t.cnum}}</span>
+    <div class="queue">
+        <div fxLayout="row" class="headerTable">
+            <span fxFlex class="cell" i18n>Number</span>
+            <span fxFlex="50%" class="cell" i18n>Service</span>
+            <span fxFlex class="cell" i18n>Time Wait</span>
         </div>
-        <span fxFlex class="cell">{{t.services | multipleServiceName}}</span>
-        <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="15"></timer>
+        <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
+            <div fxFlex class="cell">
+                <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
+                <span class="ticketNum">{{t.cnum}}</span>
+            </div>
+            <span fxFlex="50%" class="cell">{{t.services | multipleServiceName}}</span>
+            <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="15"></timer>
+        </div>
     </div>
 </div>
