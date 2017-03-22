@@ -98,8 +98,8 @@ export class EditorComponent<T> {
             Success("Thêm thành công");
             this.editorRef.Close();
         }, err => {
-            this.err = err;
-            Error(err);
+            this.err = err.message;
+            Error(err.message);
         });
     }
 
