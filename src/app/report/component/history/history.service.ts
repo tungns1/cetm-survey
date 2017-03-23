@@ -1,11 +1,11 @@
 import { ITransaction, ITransactionView, ICustomer } from '../shared';
 import {
     ReportFilterService, 
-    HttpServiceGenerator
+    HttpServiceGenerator, Paging
 } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Paging } from '../../shared/paging.service';
+
 export interface IHistory {
     data: ITransactionView[];
     total: number;
