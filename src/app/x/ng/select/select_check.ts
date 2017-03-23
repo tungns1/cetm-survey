@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, ExistingProvider, Attribute,OnChanges } from '@angular/core';
+import { Component, Input, forwardRef, ExistingProvider, Attribute, OnChanges } from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -33,7 +33,7 @@ import { FormArray, FormControl } from '@angular/forms';
     `,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
-export class SelectCheckComponent implements ControlValueAccessor,OnChanges {
+export class SelectCheckComponent implements ControlValueAccessor, OnChanges {
     constructor(
         @Attribute('idField') private idField,
         @Attribute('textField') private textField) {
@@ -43,7 +43,16 @@ export class SelectCheckComponent implements ControlValueAccessor,OnChanges {
 
     @Input() data = [];
     ngOnInit() {
-        this.isAll = false;
+        if (this.value.length > 0) {
+            if (this.value.length === this.data.length) {
+                this.isAll = true;
+            }
+            else {
+                this.isAll = false;
+            }
+        }else{
+            this.isAll = false;
+        }
     }
     ngOnChanges(changes) {
         if (changes.data) {
@@ -90,14 +99,16 @@ export class SelectCheckComponent implements ControlValueAccessor,OnChanges {
 
     OnChange() {
         setTimeout(_ => this.onChangeCallback(this.value));
+
     }
 
     check(d: any, e: Event) {
+
         let id = d[this.idField];
         e.preventDefault();
         e.stopPropagation();
-        let b = e.target['checked'];
 
+        let b = e.target['checked'];
         if (b) {
             this.value.push(id);
         } else {
@@ -105,6 +116,12 @@ export class SelectCheckComponent implements ControlValueAccessor,OnChanges {
             if (index !== -1) {
                 this.value.splice(index, 1);
             }
+        }
+        if (this.value.length === this.data.length) {
+            this.isAll = true;
+        }
+        else {
+            this.isAll = false;
         }
 
         this.OnChange();
