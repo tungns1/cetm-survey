@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { RxInfoCustomer } from '../service/customer.service';
 import { TransactionHistoryApi } from '../../history/history.service';
 
 
