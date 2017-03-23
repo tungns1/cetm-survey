@@ -26,7 +26,7 @@ export class TransactionComponent implements OnInit {
         this.link = '';
         this.data = d;
         if (d.audio) {
-            this.link=this.env.Platform.HttpHost+'/api/report/record/'+d.audio;
+            this.link=this.env.Platform.Http+'/api/report/record/'+d.audio;
             // this.link = this.appService.MakeLink(`/api/report/record/${d.audio}`);
         }
         this.modal.Open();

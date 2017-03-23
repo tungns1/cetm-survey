@@ -35,4 +35,4 @@ export class UserComponent {
             window.location.reload();
         }, 200);
     }
-}
+} 
