@@ -9,7 +9,7 @@ interface IApplication {
 
 export class ApplicationStore extends SmallStorage<IApplication> {
     constructor() {
-        super(Const.LOCAL_SETTING_KEYS.APPLICATION);
+        super("app");
     }
 
     get Locale() {

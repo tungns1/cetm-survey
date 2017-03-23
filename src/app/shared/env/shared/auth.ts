@@ -2,6 +2,8 @@ import {
     AbstractSerializable, AbstractStorageStrategy, SmallStorage
 } from '../../shared';
 
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 interface IAuthEnv {
     branch: string;
     store: string;
@@ -11,9 +13,15 @@ interface IAuthEnv {
     role: string;
 }
 
-export class AuthEnvStorage extends SmallStorage<IAuthEnv> {
-    constructor() {
-        super("auth");
+export class AuthEnvStorage {
+    Data$ = new BehaviorSubject<IAuthEnv>(<any>{});
+
+    get data() {
+        return this.Data$.value;
+    }
+
+    emitChange() {
+        this.Data$.next(this.data);
     }
 
     set Module(m: string) {

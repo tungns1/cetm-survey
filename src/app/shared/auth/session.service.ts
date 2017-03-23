@@ -14,7 +14,7 @@ export interface ISession {
 @Injectable()
 export class SessionService {
   constructor() {
-    this.sessionSetting = new LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.SESSION);
+    this.sessionSetting = new LocalSetting<ISession>(Const.LOCAL_SETTING_KEYS.STORAGE_PREFIX);
   }
 
   Activate(session: ISession) {

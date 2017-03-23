@@ -50,6 +50,16 @@ export class LocalStorageStrategy extends AbstractStorageStrategy {
     }
 }
 
+export function SetStoragePrefix(prefix: string) {
+    _prefix = prefix;
+}
+
+let _prefix = '';
+
+function getKey(key: string) {
+    return `${_prefix}_${key}`;
+}
+
 @Injectable()
 export class SmallStorage<T> {
     constructor(
@@ -57,6 +67,7 @@ export class SmallStorage<T> {
         private io?: AbstractStorageStrategy,
         private serializer?: AbstractSerializeStrategy<T>
     ) {
+        this.key = getKey(key);
         this.io = this.io || new LocalStorageStrategy;
         this.serializer = this.serializer || new JsonSerializeStrategy<T>();
         this.onInit();
@@ -113,5 +124,4 @@ export class SmallStorage<T> {
     protected emitChange() {
         this._data$.next(this.data);
     }
-
 }
