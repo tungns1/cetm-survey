@@ -3,22 +3,15 @@ import { BranchFilterService } from '../../shared';
 import { Observable } from 'rxjs/Observable';
 import { HttpApi, HttpServiceGenerator } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
-
-export interface IField {
-    name: string;
-    title: string;
-}
+import { AdminNavService } from './nav';
 
 export class CrudApiService<T> {
     constructor(
-        protected uri: string,
-        protected hsg: HttpServiceGenerator,
-        protected filterService: BranchFilterService
+        private nav: AdminNavService,
+        protected api: HttpApi<T>
     ) {
 
     }
-
-    protected api = this.hsg.make(this.uri);
 
     Create(v: T) {
         return this.api.Create(v).do(this.onChange);
@@ -36,22 +29,30 @@ export class CrudApiService<T> {
         return Observable.of([]);
     }
 
-    protected onChange = () => {
-        this.filterService.triggerChange();
+    private onChange = () => {
+        this.nav.Refresh$.next(null);
     }
 
     get RxListView() {
-        return this.filterService.Data$.switchMap(v => this.filter());
+        return this.nav.Refresh$.switchMap(v => this.filter());
     }
 }
 
 export class BranchCrudApiService<T> extends CrudApiService<T> {
+    constructor(
+        nav: AdminNavService,
+        api: HttpApi<T>,
+        protected branchFilter: BranchFilterService
+    ) {
+        super(nav, api);
+    }
+
     GetByBranch(branch_id: string[]) {
         return this.api.Search({ branch_id: branch_id.join(',') });
     }
 
     protected filter() {
-        let branches = this.filterService.getLowestBranches();
+        let branches = this.branchFilter.getLowestBranches();
         return this.GetByBranch(branches).do(data => CacheBranch.Join(data));
     }
 }
