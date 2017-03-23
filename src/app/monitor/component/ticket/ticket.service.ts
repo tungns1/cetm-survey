@@ -60,7 +60,7 @@ export class MonitorTicketService {
             if (!s) {
                 return initial;
             }
-            return AddToSet(initial, new Summary(s), o => o.branch_id === s.branch_id);
+            return AddToSet(initial, new Summary(s));
         }
         return this.summaryUpdate$.map(add);
     });
@@ -101,16 +101,25 @@ export class MonitorTicketService {
     apiCustomer = this.httpServiceGenerator.make<any>("/api/monitor");
 }
 
-function AddToSet<T>(arr: T[] = [], a: T, checker: (old: T) => boolean) {
-    if (!a) {
-        return arr;
-    }
-    const i = arr.findIndex(checker);
-    const v: T[] = [].concat(arr);
-    if (i < 0) {
-        v.push(a);
+function AddToSet(arr: Summary[] = [], a: Summary) {
+    var v = arr;
+    var add = true;
+    if (arr.length > 0) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].branch_id === a.branch_id) {
+                v.splice(i, 1);
+                v.push(a);
+                add = false;
+                break;
+            } else {
+                continue;
+            }
+        }
     } else {
-        v[i] = a;
+        if (add) {
+            arr.push(a);
+        }
+
     }
     return v;
 }
