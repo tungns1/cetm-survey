@@ -1,1 +1,1 @@
-export { ExclusiveSubject } from './exclusive_subject';
+export { ExclusiveEventEmitter } from './exclusive_subject';

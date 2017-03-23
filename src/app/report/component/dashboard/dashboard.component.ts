@@ -17,7 +17,7 @@ export class DashboardComponent {
     ) { }
 
     ngOnInit() {
-        this.nav.Refresh$.subscribe(_ => {
+        this.nav.Refresh$.ExclusiveSubscribe(_ => {
             this.aggregateService.Refresh()
         });
     }

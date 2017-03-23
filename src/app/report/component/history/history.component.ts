@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ITransactionView } from '../../model';
-import { ReportFilterService } from '../../service/';
+import { Paging, ReportNavService  } from '../../service/';
 import { TransactionHistoryApi } from './history.service';
-import { Paging } from '../../shared/paging.service';
 
 @Component({
     selector: 'history',
@@ -12,17 +11,12 @@ import { Paging } from '../../shared/paging.service';
 })
 export class HistoryComponent {
     constructor(
-        private filterService: ReportFilterService,
-        private transactionHistoryApi: TransactionHistoryApi,
-        private route: ActivatedRoute,
-        private router: Router
+        private nav: ReportNavService,
+        private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
     
-    submitted = false;
-
     onSubmit() {
-        this.submitted = true;
         const skip = this.paging.SkipForPage(1);
         const limit = this.paging.Limit;
         this.transactionHistoryApi.GetHistory(skip, limit, this.filter)
@@ -50,9 +44,9 @@ export class HistoryComponent {
     paging = new Paging<ITransactionView>();
 
     ngOnInit() {
-        // this.filterService.ExclusiveSubscribe(filter => {
-        //     this.pagin(1);
-        // });
+        this.nav.Refresh$.ExclusiveSubscribe(_ => {
+            this.pagin(1);
+        });
     }
 
     pagin(page: number) {
@@ -70,10 +64,4 @@ export class HistoryComponent {
         this.transactionHistoryApi.ExportHistory();
     }
     
-    nav(href: string){
-        const queryParams = this.route.root.snapshot.queryParams;
-        this.router.navigate([href], {
-            queryParams: queryParams
-        });
-    }
 }

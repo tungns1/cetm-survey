@@ -13,6 +13,6 @@ export class ReportFilterComponent {
     ) { }
 
     refresh() {
-        this.navService.Refresh();
+        this.navService.Refresh$.Next();
     }
 }

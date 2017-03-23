@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITransactionView } from '../../../model';
-import { ReportFilterService } from '../../../service/';
-import { Paging } from '../../../shared/paging.service';
+import { ReportFilterService, Paging } from '../../../service/';
 import { CustomerAPI, paging } from '../service/customer.service';
 
 

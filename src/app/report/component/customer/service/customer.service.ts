@@ -1,12 +1,11 @@
 import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from '../../shared';
 import { 
-    ICustomer, HttpServiceGenerator
+    ICustomer, HttpServiceGenerator, Paging
  } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { IAggregate, Aggregate } from '../../../model';
-import { Paging, count$, currentPage$, pageSize$ } from '../../../shared/paging.service';
 
 export interface IHistory {
     data: ITransactionView[];
@@ -92,9 +91,6 @@ export class CustomerAPI {
 
     groupBy$ = new BehaviorSubject<string>('branch_id');
 
-    count$ = count$;
-    currentPage$ = currentPage$;
-    pageSize$ = pageSize$
     period$ = new BehaviorSubject<string>('day');
     period_month$ = new BehaviorSubject<string>('month');
 
