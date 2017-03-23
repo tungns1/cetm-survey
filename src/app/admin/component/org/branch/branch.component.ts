@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IBranch, CacheBranch, BranchService, AdminNavService, AuthService } from '../../shared/';
+import { IBranch, CacheBranch, BranchService, AuthService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 
@@ -13,8 +13,7 @@ export class BranchComponent {
   constructor(
     private branchService: BranchService,
     private authService: AuthService,
-    private route: ActivatedRoute,
-    private navService: AdminNavService
+    private route: ActivatedRoute
   ) { }
 
   parents: Observable<IBranch[]>;
@@ -25,7 +24,6 @@ export class BranchComponent {
       this.level = +params['level'] || 0;
       this.branchService.SetLevel(this.level);
       this.parents = this.branchService.GetListViewByLevel(this.level + 1);
-      this.navService.SyncFilter();
     });
   }
 

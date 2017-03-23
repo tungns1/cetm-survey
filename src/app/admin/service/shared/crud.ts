@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BranchFilterService } from '../../shared';
-import { AdminNavService } from './nav';
 import { Observable } from 'rxjs/Observable';
 import { HttpApi, HttpServiceGenerator } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
