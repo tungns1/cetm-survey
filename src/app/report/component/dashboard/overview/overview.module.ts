@@ -9,4 +9,5 @@ import { GroupByTitlePipe } from './groupBy.pipe';
     declarations: [ReportOverViewComponent, GroupByTitlePipe],
     exports: [ReportOverViewComponent],
 })
+
 export class ReportOverviewModule { }

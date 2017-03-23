@@ -13,8 +13,8 @@
             <th i18n>Served ticket </th>
             <th i18n>Missed ticket</th>
             <th i18n>Cancelled ticket</th>
-            <th i18n>Serving over 15'</th>
-            <th i18n>Serving under 2'</th>
+            <th i18n>Exceeded waiting time transaction</th>
+            <th i18n>Exceeded serving time transaction</th>
         </thead>
         <tbody>
             <tr *ngFor="let s of summary$ | async" (click)="focus(s)" class="branchSummary">

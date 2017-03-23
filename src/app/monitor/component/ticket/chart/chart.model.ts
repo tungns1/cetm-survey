@@ -39,7 +39,7 @@ export const PieItems: ChartItem[][] =
     ],
     [
         {
-            header: 'Waiting ticket bigger 15 minute',
+            header: 'Exceeded waiting time transaction',
             field: 'waiting',
             color: '#65c553',
             key_title: 'Finish Transaction'
