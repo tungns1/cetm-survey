@@ -204,11 +204,11 @@
             </tr>
             <tr>
                 <th i18n>Tellers</th>
-                <td> {{selectedTicket.user_id | userFullName}}</td>
+                <td *ngIf="selectedTicket.state != 'waiting'"> {{selectedTicket.user_id | userFullName}}</td>
             </tr>
             <tr>
                 <th i18n>Counter</th>
-                <td> {{selectedTicket.counter_id | counterName}}</td>
+                <td *ngIf="selectedTicket.state != 'waiting'"> {{selectedTicket.counter_id | counterName}}</td>
             </tr>
             <tr *ngIf="selectedTicket.serving">
                 <th i18n>Manager</th>
