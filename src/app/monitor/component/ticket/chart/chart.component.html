@@ -3,36 +3,36 @@
         <p *ngIf="data" class="chartHeader">{{g.title}}</p>
         <div style="width:100%; height:300px;" pie-chart [data]="data" [items]="g.activeItems"></div>
     </div>
+
+    <div class="legend " style="margin-top: 48vh; margin-left: 20px">
+        <div *ngFor="let item of itemGroup ">
+            <div *ngFor="let t of item" style="float:left; margin: 10px; ">
+                <div style="float:left;">
+                    <div style="float:left; margin: 0 10px;" [style.background-color]="t._hidden? '':t.color ">
+                        <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
+                    </div>
+                    <span style="font-size: 12px;"> {{t.title}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <chart-item-group-view #config>
     <chart-item-group title="Ticket detail">
-        <chart-item field="finished" color="#65c553" title="Finished Transaction"></chart-item>
-        <chart-item field="cancelled" color="#6f6f6f" title="Cancel Transaction"></chart-item>
-        <chart-item field="waiting" color="#fcff47" title="Waiting Transaction"></chart-item>
-        <chart-item field="missed" color="#fb6868" title="Missed Transaction"></chart-item>
-        <chart-item field="serving" color="#64a2ff" title="Serving Transaction"></chart-item>
+        <chart-item field="finished" color="#65c553" title="Finished transaction"></chart-item>
+        <chart-item field="cancelled" color="#6f6f6f" title="Cancel transaction"></chart-item>
+        <chart-item field="waiting" color="#fcff47" title="Waiting transaction"></chart-item>
+        <chart-item field="missed" color="#fb6868" title="Missed transaction"></chart-item>
+        <chart-item field="serving" color="#64a2ff" title="Serving transaction"></chart-item>
     </chart-item-group>
     <chart-item-group title="Exceeded waiting time transaction">
-        <chart-item field="waiting" color="#65c553" title="Finished Transaction"></chart-item>
-        <chart-item field="wait_long" color="#fcff47" title="Cancel Transaction"></chart-item>
+        <chart-item field="waiting" color="#65c553" title="Finished transaction"></chart-item>
+        <chart-item field="wait_long" color="#fcff47" title="Cancel transaction"></chart-item>
     </chart-item-group>
     <chart-item-group title="Exceeded serving time transaction">
-        <chart-item field="finished" color="#65c553" title="Finished Transaction"></chart-item>
-        <chart-item field="serve_short" color="#6f6f6f" title="Cancel Transaction"></chart-item>
+        <chart-item field="finished" color="#65c553" title="Finished transaction"></chart-item>
+        <chart-item field="serve_short" color="#6f6f6f" title="Cancel transaction"></chart-item>
     </chart-item-group>
 </chart-item-group-view>
-
-<!--<div class="legend " style="margin:10px 20px; ">
-    <div *ngFor="let item of itemGroup ">
-        <div *ngFor="let t of item" style="float:left; margin-right:10px; ">
-            <div style="float:left;">
-                <div style="float:left; margin-right:3px;" [style.background-color]="t._hidden? '':t.color ">
-                    <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
-                </div>
-                <span style="font-size: 12px;"> {{t.title}}</span>
-            </div>
-        </div>
-    </div>
-</div>-->
 <div class="divider"></div>

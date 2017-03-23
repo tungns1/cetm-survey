@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Aggregate, AggregateService } from '../../shared/';
 import { ReportFilterService } from '../../../service/';
-import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
+import { CustomerAPI } from '../service/customer.service';
 
 
 @Component({
@@ -11,12 +12,18 @@ import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
 })
 export class ReportFilterComponent {
     constructor(
-        private customerApi: CustomerAPI,
+        private customerApi: CustomerAPI, 
+        private route: ActivatedRoute,
     ) { }
     ngOnInit() {
-        RxInfoCustomer.subscribe(v => {
-            this.code = v.id;
-        })
+        let id = this.route.snapshot.params['id'];
+        if (id) {
+            this.customerApi.GetInfoCustomerById(id).subscribe(c => {
+                if(c){
+                    this.code = c.id;
+                }
+            })
+        }
     }
 
     code: string = '';
