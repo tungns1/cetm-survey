@@ -17,9 +17,9 @@ export class DashboardComponent {
     ) { }
 
     ngOnInit() {
-        this.filterService.ExclusiveSubscribe(filter => {
-            this.aggregateService.Refresh(filter);
-        });
+        // this.filterService.ExclusiveSubscribe(filter => {
+        //     this.aggregateService.Refresh(filter);
+        // });
     }
     nav(href: string){
         const queryParams = this.route.root.snapshot.queryParams;

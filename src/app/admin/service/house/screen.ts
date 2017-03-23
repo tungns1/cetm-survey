@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BranchCrudApiService, AdminFilter, IScreen } from '../shared';
+import { BranchCrudApiService, IScreen } from '../shared';
+import { HttpServiceGenerator, BranchFilterService } from '../../shared';
 
 @Injectable()
 export class ScreenService extends BranchCrudApiService<IScreen> {
-    Name = "Screen";
+    constructor(
+        hsg: HttpServiceGenerator,
+        filterService: BranchFilterService,
+    ) {
+        super("/api/admin/house/screen", hsg, filterService);
+    }
 }

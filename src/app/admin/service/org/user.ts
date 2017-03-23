@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BranchCrudApiService, AdminFilter, IUser, CacheBranch } from '../shared';
+import { BranchCrudApiService, IUser, CacheBranch } from '../shared';
+import { HttpServiceGenerator, BranchFilterService } from '../../shared';
 
 @Injectable()
 export class UserService extends BranchCrudApiService<IUser> {
-    protected filter(d: AdminFilter) {
-        return this.GetByBranch(d.Branch.GetBranchIDAtLowestLevel())
-            .do(data => CacheBranch.Join(data));
+    constructor(
+        hsg: HttpServiceGenerator,
+        filterService: BranchFilterService,
+    ) {
+        super("/api/admin/org/user", hsg, filterService);
     }
 
-    ListFields = [
-        { title: 'Branch', name: 'branch' },
-        { title: 'Fullname', name: 'fullname' }
-    ]
-
-    Name = "LANGAUGE_USER";
+    protected filter() {
+        return this.GetByBranch(this.filterService.getLowestBranches())
+            .do(data => CacheBranch.Join(data));
+    }
 }

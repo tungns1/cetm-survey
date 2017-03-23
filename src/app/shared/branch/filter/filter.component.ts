@@ -38,13 +38,13 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            const branch_id = this.filterService.GetBranchID();
+            const branch_id = this.filterService.getAllID();
             // delay the value change until the ui is ready
             this.form.setValue(branch_id, { emitEvent: true });
             this.form.valueChanges.subscribe(v => {
-                this.filterService.SetBranchID(v);
+                this.filterService.SetData(v);
             });
-        });
+        }, 100);
     }
 
 

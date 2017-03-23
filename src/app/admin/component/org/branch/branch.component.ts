@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IBranch, CacheBranch, OrgService, AdminNavService, AuthService } from '../../shared/';
+import { IBranch, CacheBranch, BranchService, AdminNavService, AuthService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/observable';
 })
 export class BranchComponent {
   constructor(
-    private org: OrgService,
+    private branchService: BranchService,
     private authService: AuthService,
     private route: ActivatedRoute,
     private navService: AdminNavService
@@ -23,8 +23,8 @@ export class BranchComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.level = +params['level'] || 0;
-      this.service.SetLevel(this.level);
-      this.parents = this.service.GetListViewByLevel(this.level + 1);
+      this.branchService.SetLevel(this.level);
+      this.parents = this.branchService.GetListViewByLevel(this.level + 1);
       this.navService.SyncFilter();
     });
   }
@@ -43,7 +43,5 @@ export class BranchComponent {
       level: [this.level || 0, Validators.required],
     });
   }
-
-  service = this.org.BranchService;
 
 }

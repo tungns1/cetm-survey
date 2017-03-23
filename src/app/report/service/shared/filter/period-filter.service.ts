@@ -22,16 +22,23 @@ const GetStartOf: { [index: string]: CountableTimeInterval } = {
 
 
 export interface IPeriodFilter {
-    start?: Date | string;
-    end?: Date | string;
+    start: string;
+    end: string;
     period?: string;
 }
 
-import { AbstractState, AbstractStateService, BranchFilter, BranchFilterService } from '../../../shared';
+import { SmallStorage, RouterQueryStorageStrategy } from '../../../shared';
 
-export class PeriodFilter extends AbstractState {
-    Rebuild(d?: IPeriodFilter) {
-        d = d || {};
+@Injectable()
+export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
+    constructor(
+        storageStrategy: RouterQueryStorageStrategy
+    ) {
+        super("period", storageStrategy);
+    }
+
+    Rebuild() {
+        const d = this.data || <IPeriodFilter>{};
         let startDate = this.toDate(d.start);
         let endDate = this.toDate(d.end);
         this.period = d.period || PERIODS.DAY;
@@ -52,10 +59,7 @@ export class PeriodFilter extends AbstractState {
         this.endDate = end;
     }
 
-    FromQuery(p: Params) {
-        this.Rebuild(p);
-    }
-
+   
     ToQuery() {
         return {
             start: this.fromDate(this.startDate),
@@ -89,22 +93,4 @@ export class PeriodFilter extends AbstractState {
     private formatDate = timeFormat("%Y-%m-%d");
     private parseDate = timeParse("%Y-%m-%d");
 
-}
-
-import { Params, ActivatedRoute, Router } from '@angular/router';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-
-@Injectable()
-export class PeriodFilterService extends AbstractStateService<PeriodFilter> {
-    constructor(
-        route: ActivatedRoute
-    ) {
-        super(route);
-        this.onInit(new PeriodFilter);
-    }
-
-    SetPeriod(v: IPeriodFilter) {
-        this.state.Rebuild(v);
-        this.triggerChange();
-    }
 }

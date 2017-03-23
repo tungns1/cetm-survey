@@ -12,7 +12,6 @@ export class NavService {
     ) { }
 
     SyncFilter() {
-        this.filterService.triggerChange();
         this.SyncLink();
     }
 
@@ -29,7 +28,7 @@ export class NavService {
 
     private GetQuery() {
         return Object.assign({},
-            this.filterService.Current.ToQuery(),
+            this.filterService.ToBackendQuery(),
             this.viewService.Current.ToQuery()
         );
     }

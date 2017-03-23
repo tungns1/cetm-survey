@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { CenterService, HouseService, IScreen } from '../../../service/';
+import { LayoutService, CounterService, ScreenService, IScreen } from '../../../service/';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
@@ -12,18 +12,18 @@ import 'rxjs/add/operator/distinctUntilChanged';
 export class ScreenComponent {
 
     constructor(
-        private center: CenterService,
-        private house: HouseService
+        private layoutService: LayoutService,
+        private counterService: CounterService,
+        private service: ScreenService
     ) { }
 
-    service = this.house.ScreenService;
-    screens = this.house.ScreenService.RxListView
+    screens = this.service.RxListView
         .map(values => values.filter(v => v.inheritable));
-    layouts = this.center.LayoutService.GetByType('screen');
+    layouts = this.layoutService.GetByType('screen');
     private focusBranchID$ = new ReplaySubject<string>(1);
 
     counters = this.focusBranchID$.distinctUntilChanged().switchMap(branch_id => {
-        return this.house.CounterService.GetByBranch([branch_id]);
+        return this.counterService.GetByBranch([branch_id]);
     });
 
 

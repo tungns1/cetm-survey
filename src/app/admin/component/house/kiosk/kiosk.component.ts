@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { CenterService, HouseService, IKiosk } from '../../../service/';
+import { ServiceService, KioskService, LayoutService, IKiosk } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,14 +10,14 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class KioskComponent {
 
     constructor(
-        private center: CenterService,
-        private house: HouseService
+        private serviceService: ServiceService,
+        private layoutService: LayoutService,
+        private service: KioskService
     ) { }
 
-    service = this.house.KioskService;
     kiosks = this.service.RxListView.map(values => values.filter(v => v.inheritable));
-    services = this.center.ServiceService.RxListView;
-    layouts = this.center.LayoutService.GetByType('kiosk');
+    services = this.serviceService.RxListView;
+    layouts = this.layoutService.GetByType('kiosk');
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};

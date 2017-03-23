@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CenterService, ITForm } from '../../../service/';
+import { TFormService, ITForm } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class TFormComponent {
     constructor(
-        private center: CenterService
+        private tformService: TFormService
     ) { }
-
-    service = this.center.TFormService;
 
     makeForm(b?: ITForm) {
         b = b || <any>{};

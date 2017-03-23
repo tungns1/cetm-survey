@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CenterService, IService } from '../../../service/';
+import { ServiceService, IService, TFormService } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,9 +9,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class ServiceComponent {
     constructor(
-        private center: CenterService
+        private service: ServiceService,
+        private tformService: TFormService
     ) { }
-    service = this.center.ServiceService;
 
     makeForm(b?: IService) {
         b = b || <any>{};
@@ -26,8 +26,8 @@ export class ServiceComponent {
         });
     }
 
-    tforms = this.center.TFormService.RxListView;
-    tformVips = this.center.TFormService.RxListView;
+    tforms = this.tformService.RxListView;
+    tformVips = this.tformService.RxListView;
 
     fields = [
         { title: 'LABEL_NAME_SERVICE', name: 'name' },

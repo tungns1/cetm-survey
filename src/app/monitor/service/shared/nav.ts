@@ -16,7 +16,7 @@ export class MonitorNavService {
     isShowDetail = false;
 
     SyncFilter() {
-        this.filterService.triggerChange();
+        // this.filterService.triggerChange();
         this.SyncLink();
     }
 
@@ -29,7 +29,7 @@ export class MonitorNavService {
     private ToQuery() {
         return Object.assign(
             {},
-            this.filterService.Current.ToQuery()
+            this.filterService.ToQuery()
         )
     }
 

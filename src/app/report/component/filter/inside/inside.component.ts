@@ -21,10 +21,14 @@ export class InsideFilterComponent implements OnInit {
 
     ngOnInit() {
         setTimeout(() => {
-            const value = this.insideFilterService.Current.valueOf();
-            this.form.setValue(value);
+            const value = this.insideFilterService.data;
+            this.form.setValue({
+                user_id: value.user_id,
+                counter_id: value.counter_id,
+                service_id: value.service_id
+            });
             this.form.valueChanges.subscribe(v => {
-                this.insideFilterService.SetInsideInfilter(v);
+                this.insideFilterService.SetData(v);
             })
         });
     }

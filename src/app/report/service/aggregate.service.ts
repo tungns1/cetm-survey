@@ -14,7 +14,8 @@ export function MakeIndexBy(records: IAggregate[], field: string) {
     return values;
 }
 
-import { ReportFilterService, ReportFilter } from './shared';
+import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from './shared';
+
 import {
     HttpServiceGenerator, ServiceName, CacheBranch, CacheCounter, CacheUsers
 } from '../shared';
@@ -24,15 +25,17 @@ import { Injectable } from '@angular/core';
 export class AggregateService {
     constructor(
         private filterService: ReportFilterService,
+        private periodService: PeriodFilterService,
+        private insideService: InsideBranchFilterService,
         private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
-    Refresh(v: ReportFilter) {
-        this.backend.Get<IAggregate[]>("aggregate", v.ToBackendQuery()).subscribe(data => {
+    Refresh() {
+        this.backend.Get<IAggregate[]>("aggregate", this.filterService.ToBackendQuery()).subscribe(data => {
             this.RxAggregate.next(data);
         });
-        this.period$.next(v.Period.valueOf().period);
-        this.groupBy$.next(v.Inside.GetGroupBy());
+        this.period$.next(this.periodService.data.period);
+        this.groupBy$.next(this.insideService.GetGroupBy());
     }
 
     RxAggregate = new BehaviorSubject<IAggregate[]>([]);
@@ -43,10 +46,10 @@ export class AggregateService {
 
     get ActiveAggregate$() {
         return this.RxAggregate.map(v => {
-            const group_by = this.filterService.Current.Inside.GetGroupBy();
+            const group_by = this.insideService.GetGroupBy();
             const views = MakeIndexBy(v, group_by);
 
-            let ids = this.filterService.Current.GetActiveID();
+            let ids = this.filterService.GetActiveID();
 
             views.forEach(v => {
                 const id = v[group_by];

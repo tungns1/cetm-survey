@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
-    AbstractState, AbstractStateService,
-    BranchFilter, BranchFilterService
+    AbstractState, AbstractStateService
 } from '../../shared';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
@@ -41,8 +40,7 @@ export class CounterState extends AbstractState {
 @Injectable()
 export class CounterStateService extends AbstractStateService<CounterState> {
     constructor(
-        route: ActivatedRoute,
-        private branchFilterService: BranchFilterService
+        route: ActivatedRoute
     ) {
         super(route);
         this.onInit(new CounterState);

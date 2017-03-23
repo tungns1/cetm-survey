@@ -15,7 +15,9 @@ export class AdminFilterComponent {
         private route: ActivatedRoute,
         private navService: AdminNavService
     ) { }
+
     hidden = true;
+    
     refresh() {
         this.navService.SyncFilter();
     }

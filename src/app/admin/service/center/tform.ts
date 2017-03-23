@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { CrudApiService, AdminFilter, ITForm } from '../shared';
+import { CrudApiService, ITForm } from '../shared';
+import { HttpServiceGenerator, BranchFilterService } from '../../shared';
 
 @Injectable()
 export class TFormService extends CrudApiService<ITForm> {
-    protected filter(d: AdminFilter) {
-        return this.api.Search({});
+    constructor(
+        hsg: HttpServiceGenerator,
+        filterService: BranchFilterService,
+    ) {
+        super("/api/admin/center/tform", hsg, filterService);
     }
 
-    ListFields = [
-        { title: 'Code', name: 'code' }
-    ]
-
-    Name = "Number ticket";
+    protected filter() {
+        return this.api.Search({});
+    }
 }

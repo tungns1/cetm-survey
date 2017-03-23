@@ -1,16 +1,16 @@
 
-import { HouseService } from './house';
-import { CenterService } from './center/';
-import { OrgService } from './org';
-import { MetaService } from './meta';
+import { houseServiceProviders } from './house';
+import { centerServiceProviders } from './center/';
+import { orgServiceProvider } from './org';
+import { metaServiceProviders } from './meta';
 
 import { shareServiceProvider } from './shared';
 
 const adminServiceProvider = [
-    OrgService,
-    CenterService,
-    HouseService,
-    MetaService,
+    orgServiceProvider,
+    centerServiceProviders,
+    houseServiceProviders,
+    metaServiceProviders,
     shareServiceProvider
 ]
 

@@ -2,7 +2,7 @@ import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from
 import { 
     ICustomer, HttpServiceGenerator
  } from '../../shared/';
-import { ReportFilterService, ReportFilter } from '../../shared';
+import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { IAggregate, Aggregate } from '../../../model';
@@ -28,21 +28,21 @@ export class CustomerAPI {
     ) { }
 
 
-    GetHistory(filter: ReportFilter, skip: number, limit: number, code: string, id: string) {
+    GetHistory(skip: number, limit: number, code: string, id: string) {
         const query = Object.assign({
             skip: skip,
             limit: limit,
             code: code,
             id: id,
 
-        }, filter.ToBackendQuery());
+        }, this.filterService.ToBackendQuery());
 
         return this.api.Get<IHistory>("customer_history", query);
     }
     pagin(page: number, code: string, id: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
-        this.GetHistory(this.filterService.Current, skip, limit, code, id)
+        this.GetHistory(skip, limit, code, id)
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
@@ -50,8 +50,7 @@ export class CustomerAPI {
     }
 
     Search(code: string, id: string) {
-        let filter = this.filterService.Current;
-        this.api.Get<IHistory>("customer_history", this.makeQuery(filter, code, id)).subscribe(v => {
+        this.api.Get<IHistory>("customer_history", this.makeQuery(code, id)).subscribe(v => {
             if (v.data.length > 0) {
                 this.RxCustomer.next(v.data);
             } else {
@@ -76,11 +75,11 @@ export class CustomerAPI {
 
 
 
-    private makeQuery(filter: ReportFilter, code: string, id: string) {
+    private makeQuery(code: string, id: string) {
         return Object.assign({
             code: code,
             id: id,
-        }, filter.ToBackendQuery());
+        }, this.filterService.ToBackendQuery());
     }
 
     private toTransactionView(t: ITransaction) {
@@ -104,8 +103,8 @@ export class CustomerAPI {
     period$ = new BehaviorSubject<string>('day');
     period_month$ = new BehaviorSubject<string>('month');
 
-    ExportHistory(filter: ReportFilter) {
-        const url = this.api.MakeURL("export", filter.ToBackendQuery());
+    ExportHistory() {
+        const url = this.api.MakeURL("export", this.filterService.ToBackendQuery());
         window.open(url, "_blank");
     }
     apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
