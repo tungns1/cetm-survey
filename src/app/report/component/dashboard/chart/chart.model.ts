@@ -69,22 +69,22 @@ export const PieItems: ChartItem[][] = [[{
     field: 'c_bwt',
     color: '#339933',
     tab: 'general',
-    key_title: 'Transaction Wait Standard'
+    key_title: 'Standard wait transaction'
 }, {
     field: 'c_awt',
     color: '#b4e4b4',
     tab: 'general',
-    key_title: 'Transaction Wait Beyond Standard'
+    key_title: 'Exceeded waiting time transaction'
 }], [{
     field: 'c_bst',
     color: '#339966',
     tab: 'general',
-    key_title: 'Transaction Serving Standard'
+    key_title: 'Standard serving time transaction'
 }, {
     field: 'c_ast',
     color: '#9fdfbf',
     tab: 'general',
-    key_title: 'Transaction Serving Beyond Standard'
+    key_title: 'Exceeded serving time transaction'
 }], [{
     field: 's_wt_h',
     tab: 'time',

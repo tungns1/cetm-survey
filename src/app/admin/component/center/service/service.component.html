@@ -5,12 +5,12 @@
         <span i18n="Mức ưu tiên dịch vụ">Priority</span>:
         <input class="hl-input" type="number" formControlName="priority" i18n-placeholder placeholder="Priority">
         <l10n-form formControlName="l10n"></l10n-form>
-        <span i18n="Định dạng số vé">Ticket Number Format</span>:
+        <span i18n="Định dạng số vé">Ticket number format</span>:
         <select class="hl-select" formControlName="tform_normal">
             <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
         </select>
 
-        <br> <span i18n="Định dạng số vé vip">VIP Ticket Number Format</span>:
+        <br> <span i18n="Định dạng số vé vip">VIP Ticket number format</span>:
         <select class="hl-select" formControlName="tform_vip">
             <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
         </select>

@@ -24,18 +24,18 @@ import { ReportChartModule } from './chart/chart.module';
 import { ReportTabComponent } from './tab/tab.component';
 import { ReportInfoModule } from './info/info.module'
 import { ReportHistoryModule } from './history/history.module'
+import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
         routing, ReportSumModule, ReportOverviewModule, ReportChartModule,
         ReportInfoModule, ReportFilterModule, ReportHistoryModule,
-        CommonModule, FlexLayoutModule
+        SharedModule
     ],
     declarations: [
         CustomerComponent, ReportTabComponent
     ],
-    providers: [CustomerAPI, TransactionHistoryApi],
-    exports: [FlexLayoutModule]
+    providers: [CustomerAPI, TransactionHistoryApi]
 })
 export class ReportCustomerModule {
 

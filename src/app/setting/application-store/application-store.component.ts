@@ -12,17 +12,13 @@ export class ApplicationStoreComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.storeForm.valueChanges.subscribe(data => {
+      AppStorage.Locale = data.locale;
+    });
   }
 
   storeForm = new FormGroup({
-    locale: new FormControl(AppStorage.value.locale)
+    locale: new FormControl(AppStorage.data.locale)
   });
-
-  save() {
-    AppStorage.Data$.next(this.storeForm.value);
-    setTimeout(_ => {
-      window.location.reload();
-    }, 250);
-  }
 
 }

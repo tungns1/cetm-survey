@@ -11,7 +11,7 @@ export class HeaderComponent {
     constructor(
         private env: RuntimeEnvironment
     ) {}
-    
-    moduleName$ = this.env.Auth$.map(a => a.Module);
-    subModuleName$ = this.env.Auth$.map(a => a.Submodule);
+
+    moduleName$ = this.env.Auth.Data$.map(a => a.module);
+    subModuleName$ = this.env.Auth.Data$.map(a => a.sub_module);
 }

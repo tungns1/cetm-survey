@@ -19,7 +19,7 @@
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
         </select>
         <button class="add uppercase btpointer" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'kiosk'}"> 
-             <span i18n>Edit Layout</span> 
+             <span i18n>Edit layout</span> 
         </button>
 
         <br><span i18n>Services</span>:

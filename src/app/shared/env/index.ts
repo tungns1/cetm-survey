@@ -1,2 +1,2 @@
-export * from './env';
+export { RuntimeEnvironment } from './shared';
 export * from './env.module';

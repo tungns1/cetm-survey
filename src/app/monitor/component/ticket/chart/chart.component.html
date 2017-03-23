@@ -1,5 +1,5 @@
 <div id="monitorChart" class="hl-chart">
-    <div style="width:33%; height:300px; float:left;" *ngFor="let g of groups$ | async">
+    <div style="width:33%; height:300px; float:left;" *ngFor="let g of config.groups$ | async">
         <p *ngIf="data" class="chartHeader">{{g.title}}</p>
         <div style="width:100%; height:300px;" pie-chart [data]="data" [items]="g.activeItems"></div>
     </div>
@@ -13,11 +13,11 @@
         <chart-item field="missed" color="#fb6868" title="Missed Transaction"></chart-item>
         <chart-item field="serving" color="#64a2ff" title="Serving Transaction"></chart-item>
     </chart-item-group>
-    <chart-item-group title="Waiting ticket bigger 15 minute">
+    <chart-item-group title="Exceeded waiting time transaction">
         <chart-item field="waiting" color="#65c553" title="Finished Transaction"></chart-item>
         <chart-item field="wait_long" color="#fcff47" title="Cancel Transaction"></chart-item>
     </chart-item-group>
-    <chart-item-group title="Ticket serve less than 2 minute">
+    <chart-item-group title="Exceeded serving time transaction">
         <chart-item field="finished" color="#65c553" title="Finished Transaction"></chart-item>
         <chart-item field="serve_short" color="#6f6f6f" title="Cancel Transaction"></chart-item>
     </chart-item-group>

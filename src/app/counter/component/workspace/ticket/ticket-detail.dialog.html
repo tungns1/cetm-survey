@@ -2,14 +2,14 @@
     <div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px; position:absolute;">
         <div class="hl-tl-ticket" i18n>Ticket detail</div>
         <div style="margin-top: 50px;">
-            <div class="hl-info-ticket"><span i18n>Ticket Number</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
+            <div class="hl-info-ticket"><span i18n>Ticket number</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
             <div class="hl-info-ticket hidden" i18n> Priority:{{ticket.priority}}</div>
             <div class="hl-info-ticket"><span i18n>Time of ticket printed</span> {{ticket.ctime | localDayTime}}</div>
             <hr>
 
             <div *ngIf="isServing" style="margin-bottom:10px;">
-                <div><span i18n>Start Serving</span> {{ticket.mtime | localDayTime}}</div>
-                <br> <span i18n>Transfer Service</span>
+                <div><span i18n>Start serving</span> {{ticket.mtime | localDayTime}}</div>
+                <br> <span i18n>Transfer service</span>
                 <div class="hl-dichvu-ticket">
                     <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
                     </select-check>
@@ -17,7 +17,7 @@
             </div>
 
             <div *ngIf="isMissed" style="margin-bottom:10px;">
-                <span i18n>Missing Time</span> {{ticket.mtime | localDayTime}}
+                <span i18n>Missing time</span> {{ticket.mtime | localDayTime}}
             </div>
             <span i18n>Transfer Counter</span>
             <div class="hl-dichvu-ticket">

@@ -19,15 +19,15 @@
                 <span>Nguyễn Sỹ Trung</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Sum Counter:</span>
+                <span i18n>Sum counter:</span>
                 <span>4</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Sum Counter Is On:</span>
+                <span i18n>Sum counter is on:</span>
                 <span>2</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Sum Counter Off:</span>
+                <span>Sum counter off:</span>
                 <span>2</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -57,7 +57,7 @@
                 <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving over :</span>
+                <span i18n>Serving over 15':</span>
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -77,7 +77,7 @@
         <thead>
             <th i18n>No.</th>
             <th i18n>Service name</th>
-            <th i18n>Ticket Number</th>
+            <th i18n>Ticket number</th>
             <th i18n>Customer</th>
             <th i18n>Time of ticket printed</th>
             <th i18n>Waiting time</th>
@@ -116,7 +116,7 @@
             <th i18n>Customer</th>
             <th i18n>Time of ticket printed</th>
             <th i18n>Waiting time</th>
-            <th i18n>TiServing time</th>
+            <th i18n>Serving time</th>
             <th i18n>Detail</th>
         </thead>
         <tbody>
@@ -156,77 +156,77 @@
 <modal #edit id="modal_monitor_detailTicket">
     <h3 class="modal-header" i18n>Ticket detail</h3>
     <div *ngIf="selectedTicket" class="modalContent">
-        <div fxLayout="row" fxLayoutGap="20px">
-            <div fxFlex>
-                <table>
-                    <tr>
-                        <th i18n>Ticket number</th>
-                        <th>{{selectedTicket.cnum}}</th>
-                    </tr>
-                    <tr>
-                        <th i18n>State</th>
-                        <th>{{selectedTicket.state}}</th>
-                    </tr>
-                    <tr>
-                        <th i18n>Service</th>
-                        <th>
-                            <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
-                            <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th i18n>Time of ticket printed</th>
-                        <th>{{selectedTicket.ctime | localDayTime}}</th>
-                    </tr>
-                    <tr>
-                        <th i18n>Waiting time</th>
-                        <th>
-                            <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
-                            <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
-                            <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
-                        </th>
-                    </tr>
-                    <tr *ngIf="isServed">
-                        <th i18n>Serving time</th>
-                        <th *ngIf="selectedTicket.state === 'serving'">
-                            <timer [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
-                        </th>
-                        <th *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </th>
-                    </tr>
-                </table>
-            </div>
-            <div fxFlex>
-                <table>
-                    <tr>
-                        <th i18n>Branch</th>
-                        <th i18n>{{selectedTicket.branch_id | branchName}}</th>
-                    </tr>
-                    <tr>
-                        <th i18n>Store</th>
-                        <th i18n>{{selectedTicket.branch_id | branchName}}</th>
-                    </tr>
-                    <tr *ngIf="selectedTicket.serving">
-                        <th i18n>Tellers</th>
-                        <th>{{selectedTicket.serving.user_id | userFullName}}</th>
-                    </tr>
-                    <tr *ngIf="selectedTicket.serving">
-                        <th i18n>Counter</th>
-                        <th>{{selectedTicket.serving.counter_id | counterName }}</th>
-                    </tr>
-                    <tr *ngIf="selectedTicket.serving">
-                        <th i18n>Manager</th>
-                        <th>testing</th>
-                    </tr>
-                    <tr *ngIf="selectedTicket.serving">
-                        <th i18n>Administrator</th>
-                        <th>testing</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <table *ngIf="customer" class="cusDetail">
+        <!--<div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex>-->
+        <table>
             <tr>
-                <th i18n>Name Counter</th>
+                <th i18n>Ticket number</th>
+                <th>{{selectedTicket.cnum}}</th>
+            </tr>
+            <tr>
+                <th i18n>State</th>
+                <th>{{selectedTicket.state}}</th>
+            </tr>
+            <tr>
+                <th i18n>Service</th>
+                <th>
+                    <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
+                    <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
+                </th>
+            </tr>
+            <tr>
+                <th i18n>Time of ticket printed</th>
+                <th>{{selectedTicket.ctime | localDayTime}}</th>
+            </tr>
+            <tr>
+                <th i18n>Waiting time</th>
+                <th>
+                    <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
+                    <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                    <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                </th>
+            </tr>
+            <tr *ngIf="isServed">
+                <th i18n>Serving time</th>
+                <th *ngIf="selectedTicket.state === 'serving'">
+                    <timer [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
+                </th>
+                <th *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </th>
+            </tr>
+        </table>
+        <!--</div>
+            <div fxFlex>-->
+        <table>
+            <tr>
+                <th i18n>Branch</th>
+                <th i18n>{{selectedTicket.branch_id | branchName}}</th>
+            </tr>
+            <tr>
+                <th i18n>Store</th>
+                <th i18n>{{selectedTicket.branch_id | branchName}}</th>
+            </tr>
+            <tr *ngIf="selectedTicket.serving">
+                <th i18n>Tellers</th>
+                <th>{{selectedTicket.serving.user_id | userFullName}}</th>
+            </tr>
+            <tr *ngIf="selectedTicket.serving">
+                <th i18n>Counter</th>
+                <th>{{selectedTicket.serving.counter_id | counterName }}</th>
+            </tr>
+            <tr *ngIf="selectedTicket.serving">
+                <th i18n>Manager</th>
+                <th>testing</th>
+            </tr>
+            <tr *ngIf="selectedTicket.serving">
+                <th i18n>Administrator</th>
+                <th>testing</th>
+            </tr>
+        </table>
+        <!--</div>
+        </div>-->
+        <table *ngIf="customer">
+            <tr>
+                <th i18n>Name counter</th>
                 <th> {{customer.full_name }}</th>
             </tr>
             <tr>
@@ -234,7 +234,7 @@
                 <th> {{customer.code }}</th>
             </tr>
             <tr>
-                <th i18n>Number Phone</th>
+                <th i18n>Number phone</th>
                 <th> {{customer.phone_number }}</th>
             </tr>
             <tr>
