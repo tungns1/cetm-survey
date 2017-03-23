@@ -11,7 +11,7 @@ export class ReportInfoComponent {
     constructor(
         private customerAPI: CustomerAPI
     ) { }
-    customer
+    customer = {};
     data: Customer;
     service: IService;
     store: IStore;
@@ -24,8 +24,14 @@ export class ReportInfoComponent {
             this.store = v;
         })
         this.customerAPI.RxSummaryView.subscribe(v=>{
-            this.customer=v;
+            this.data=v;
         })
+        
+        // this.customerAPI.GetInfoCustomerById('aabb').subscribe(c => {
+        //     if(c){
+        //         console.log(c);
+        //     }
+        // })
     }
 
     ngOnDestroy() {
