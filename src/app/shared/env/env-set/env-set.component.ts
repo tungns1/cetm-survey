@@ -3,12 +3,11 @@ import { RuntimeEnvironment } from '../shared';
 
 @Component({
   selector: 'app-env-module',
-  template: `<ng-content></ng-content>`
+  template: ``
 })
 export class AppEnvModuleComponent implements OnInit {
 
   constructor(
-    private el: ElementRef,
     private env: RuntimeEnvironment
   ) { }
 
@@ -16,10 +15,8 @@ export class AppEnvModuleComponent implements OnInit {
     
   }
 
-  ngAfterContentInit() {
-    const el: HTMLElement = this.el.nativeElement;
-    el.style.display = "none";
-    this.env.Auth.Module = el.innerHTML;
+  @Input() set title(s: string) {
+    this.env.Auth.Module = s;
   }
 
 }
@@ -27,23 +24,20 @@ export class AppEnvModuleComponent implements OnInit {
 
 @Component({
   selector: 'app-env-sub-module',
-  template: `<ng-content></ng-content>`
+  template: ``
 })
 export class AppEnvSubModuleComponent implements OnInit {
 
   constructor(
-    private el: ElementRef,
     private env: RuntimeEnvironment
   ) { }
 
   ngOnInit() {
     
   }
-  
-  ngAfterContentInit() {
-    const el: HTMLElement = this.el.nativeElement;
-    el.style.display = "none";
-    this.env.Auth.SubModule = el.innerHTML;
+
+  @Input() set title(s: string) {
+    this.env.Auth.SubModule = s;
   }
 
 }

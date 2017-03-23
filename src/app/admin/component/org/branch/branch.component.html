@@ -1,4 +1,4 @@
-<app-env-sub-module>Branch</app-env-sub-module>
+<app-env-sub-module [title]="level | branchLevelName"></app-env-sub-module>
 
 <editor #edit [name]="level | branchLevelName" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
