@@ -1,37 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { ReportFilterService } from './filter';
-import { ReportViewService } from './view.service';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
-export class NavService {
-    constructor(
-        private router: Router,
-        private filterService: ReportFilterService,
-        private viewService: ReportViewService
-    ) { }
-
-    SyncFilter() {
-        this.SyncLink();
+export class ReportNavService {
+    get Refresh$() {
+        return this._refresh$.asObservable();
     }
 
-    SyncView() {
-        this.viewService.triggerChange();
-        this.SyncLink();
+    private _refresh$ = new ReplaySubject<any>(1);
+    Refresh() {
+        this._refresh$.next(null);
     }
-
-    SyncLink() {
-        this.router.navigate([], {
-            queryParams: this.GetQuery()
-        })
-    }
-
-    private GetQuery() {
-        return Object.assign({},
-            this.filterService.ToBackendQuery(),
-            this.viewService.Current.ToQuery()
-        );
-    }
-
 
 }
