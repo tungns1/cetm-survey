@@ -20,16 +20,17 @@ export class ReportFilterComponent {
         if (id) {
             this.customerApi.GetInfoCustomerById(id).subscribe(c => {
                 if(c){
-                    this.code = c.code;
+                    this.code = c.id;
                 }
             })
         }
     }
+
     code: string = '';
     Filter() {
-       this.customerApi.Search(this.code,'');
-       this.customerApi.pagin(1,this.code,'');
-       this.customerApi.GetInfoCustomerByCode(this.code);
+        this.customerApi.Search(this.code, '');
+        this.customerApi.pagin(1, this.code, '');
+        this.customerApi.GetInfoCustomerByCode(this.code);
     }
 
 

@@ -56,7 +56,6 @@ export class MonitorTicketService {
     private summaryUpdate$ = this.socket.RxEvent<ISummary>("/summary/update").startWith(null);
 
     summary$ = this.initialSummary$.switchMap(initial => {
-        console.log(initial);
         const add = (s: ISummary) => {
             if (!s) {
                 return initial;
@@ -64,7 +63,7 @@ export class MonitorTicketService {
             return AddToSet(initial, new Summary(s), o => o.branch_id === s.branch_id);
         }
         return this.summaryUpdate$.map(add);
-    }).share();
+    });
 
     private initialFocus$ = this.socket.Connected$.switchMap(_ => {
         return this.filterService.ValueChanges.switchMap(filter => {

@@ -49,13 +49,35 @@ export class FocusComponent {
     })
 
     waiting$ = this.ticketService.tickets$
-        .map(tickets => tickets.filter(t => t.state === TicketStates.Waiting))
+        .map(tickets => tickets.filter(t => {
+            if (t.state === TicketStates.Waiting) {
+                for (let i = 0; i < t.tracks.length; i++) {
+                    if (t.tracks[i].state === 'waiting') {
+                        t.service_id = t.tracks[i].services[0];
+                    }
+                }
+                return t;
+            }
+        }))
         .map(tickets => tickets.sort((a, b) => {
             return a.mtime < b.mtime ? -1 : 1;
         }));
 
     missed$ = this.ticketService.tickets$
-        .map(tickets => tickets.filter(t => t.state === TicketStates.Missed))
+        .map(tickets => tickets.filter(t => {
+            if (t.state === TicketStates.Missed) {
+                for (let i = 0; i < t.tracks.length; i++) {
+                    if (t.tracks[i].state === 'serving') {
+                        t.stime = t.tracks[i + 1].mtime - t.tracks[i].mtime;
+                        this.addServingTrack(t);
+                        return true;
+                    }
+                }
+                t.stime = 0;
+                this.addServingTrack(t);
+                return true;
+            }
+        }))
         .map(tickets => tickets.sort((a, b) => {
             return a.mtime < b.mtime ? -1 : 1;
         }));
@@ -129,7 +151,7 @@ export class FocusComponent {
                 t.service_id = t.tracks[i].service_id;
                 t.counter_id = t.tracks[i].counter_id;
                 t.user_id = t.tracks[i].user_id;
-                t.serving=t.tracks[i];
+                t.serving = t.tracks[i];
                 return t;
             }
         }
