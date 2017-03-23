@@ -18,7 +18,6 @@ export interface IHistory {
 export const max_service = new BehaviorSubject<IService>(null);
 export const max_store = new BehaviorSubject<IStore>(null);
 export const paging = new Paging<ITransactionView>();
-export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
 
 @Injectable()
 export class CustomerAPI {
@@ -60,17 +59,13 @@ export class CustomerAPI {
 
         });
     }
+    
     GetInfoCustomerByCode(code: string) {
-        RxInfoCustomer.next(null);
-        return this.apiCustomer.Get<ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
-            RxInfoCustomer.next(v);
-        });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_code", { code: code });
     }
+
     GetInfoCustomerById(id: string) {
-        RxInfoCustomer.next(null);
-        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: id }).subscribe(v => {
-            RxInfoCustomer.next(v);
-        });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: id });
     }
 
 

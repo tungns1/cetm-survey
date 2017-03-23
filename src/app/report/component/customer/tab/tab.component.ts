@@ -14,10 +14,7 @@ export class ReportTabComponent {
   ) { }
 
   ngOnInit() {
-    this.active = this.viewService.Current.GetTab();
-    if (!this.active) {
       this.setActive('time');
-    }
   }
 
   tabs = [MAIN_TABS.TIME,MAIN_TABS.FREQUENCY,MAIN_TABS.SERVICE, MAIN_TABS.STORE];
