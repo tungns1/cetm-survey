@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AdminFilterService, AdminFilter } from './filter';
-import { AdminNavService } from './nav';
+import { BranchFilterService } from '../../shared';
 import { Observable } from 'rxjs/Observable';
-import { HttpApi } from '../../shared';
+import { HttpApi, HttpServiceGenerator } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
-
-export interface IField {
-    name: string;
-    title: string;
-}
+import { AdminNavService } from './nav';
 
 export class CrudApiService<T> {
     constructor(
-        protected api: HttpApi<T>,
-        private filterService: AdminFilterService
+        protected nav: AdminNavService,
+        protected api: HttpApi<T>
     ) {
 
+    }
+
+    protected filter() {
+        return Observable.of<T[]>();
     }
 
     Create(v: T) {
@@ -30,34 +29,67 @@ export class CrudApiService<T> {
         return this.api.MarkDelete(id).do(this.onChange);
     }
 
-    protected filter(d: AdminFilter): Observable<T[]> {
-        return Observable.of([]);
-    }
-
-    protected onChange = () => {
-        this.filterService.triggerChange();
+    private onChange = () => {
+        this.nav.Refresh();
     }
 
     get RxListView() {
-        return this.filterService.ValueChanges.switchMap(v => this.filter(v));
+        return this.nav.Refresh$.switchMap(v => this.filter());
     }
-
-    Name: string;
-    ListFields: IField[] = [];
 }
 
+@Injectable()
 export class BranchCrudApiService<T> extends CrudApiService<T> {
+    constructor(
+        nav: AdminNavService,
+        api: HttpApi<T>,
+        protected branchFilter: BranchFilterService
+    ) {
+        super(nav, api);
+    }
+
+    protected filter() {
+        let branches = this.branchFilter.getLowestBranches();
+        return this.GetByBranch(branches).do(data => CacheBranch.Join(data));
+    }
+
     GetByBranch(branch_id: string[]) {
         return this.api.Search({ branch_id: branch_id.join(',') });
     }
+}
 
-    protected filter(d: AdminFilter) {
-        return this.GetByBranch(d.Branch.GetBranchIDAtLowestLevel())
-            .do(data => CacheBranch.Join(data));
+@Injectable()
+export class BranchCrudApiServiceGenerator {
+    constructor(
+        private nav: AdminNavService,
+        private hsg: HttpServiceGenerator,
+        protected branchFilter: BranchFilterService
+    ) {
+
     }
 
-    ListFields = [
-        { title: 'Store', name: 'branch' },
-        { title: 'Name', name: 'name' }
-    ]
+    make<T>(uri: string) {
+        return new BranchCrudApiService<T>(
+            this.nav,
+            this.hsg.make<T>(uri),
+            this.branchFilter
+        );
+    }
+}
+
+@Injectable()
+export class CrudApiServiceGenerator {
+    constructor(
+        private nav: AdminNavService,
+        private hsg: HttpServiceGenerator
+    ) {
+
+    }
+
+    make<T>(uri: string) {
+        return new CrudApiService<T>(
+            this.nav,
+            this.hsg.make<T>(uri)
+        );
+    }
 }

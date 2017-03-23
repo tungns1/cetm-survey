@@ -18,7 +18,7 @@ export class ApplicationStore extends SmallStorage<IApplication> {
 
     set Locale(locale: string) {
         this.data.locale = locale;
-        this.emitChange();
+        this.SaveData();
     }
 
     get Culture() {
@@ -31,7 +31,7 @@ export class ApplicationStore extends SmallStorage<IApplication> {
 
     set Token(token: string) {
         this.data.token = token;
-        this.emitChange();
+        this.SaveData();
     }
 
 }

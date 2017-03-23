@@ -5,3 +5,5 @@ export {
     ICounter, IUser, CacheBranch, CacheCounter, CacheUsers,
     ServiceName
 } from '../../shared/model';
+
+export { ExclusiveEventEmitter } from '../../../lib/rx';

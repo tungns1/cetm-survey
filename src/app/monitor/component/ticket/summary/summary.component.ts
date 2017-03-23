@@ -16,8 +16,8 @@ export class SummaryComponent {
     ) { }
 
     ngOnInit() {
-        this.filterService.ExclusiveSubscribe(filter => {
-            let branches: string[] = filter.Branch.GetBranchIDByLevel(0);
+        this.filterService.Data$.subscribe(filter => {
+            let branches: string[] = [];
             if (branches.length < 1) {
                 this.message = "Please,Choose Store";
             }
@@ -31,7 +31,6 @@ export class SummaryComponent {
 
     focus(selectedBranch) {
         this.filterService.SetFocus(selectedBranch.branch_id);
-        this.navService.SyncLink();
     }
 
     message = '';

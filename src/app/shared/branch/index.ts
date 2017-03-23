@@ -15,6 +15,6 @@ export class BranchModule {
     }
 }
 
-export { BranchFilterService, BranchFilter } from './filter';
+export { BranchFilterService } from './filter';
 
 

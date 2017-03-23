@@ -1,13 +1,20 @@
-export * from './filter';
-export * from './crud';
-export * from './nav';
 
+export {
+    CrudApiService,
+    BranchCrudApiService,
+    CrudApiServiceGenerator,
+    BranchCrudApiServiceGenerator
+} from './crud';
+
+export { AdminNavService } from './nav';
+export { BranchFilterService } from '../../shared';
 export * from '../../../shared/model';
 
-import { AdminFilterService } from './filter';
 import { AdminNavService } from './nav';
+import { BranchCrudApiServiceGenerator, CrudApiServiceGenerator } from './crud';
 
 export const shareServiceProvider = [
-    AdminFilterService,
-    AdminNavService
+    AdminNavService,
+    CrudApiServiceGenerator,
+    BranchCrudApiServiceGenerator
 ]

@@ -1,35 +1,16 @@
 
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
-import { Router } from '@angular/router';
-import { AdminFilterService } from './filter';
+import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class AdminNavService {
-    constructor(
-        private router: Router,
-        private filterService: AdminFilterService
-    ) {
-
+    get Refresh$() {
+        return this._refresh$.asObservable();
     }
 
-    SyncFilter() {
-        this.filterService.triggerChange();
-        this.SyncLink();
+    private _refresh$ = new ReplaySubject<any>(1);
+    Refresh() {
+        this._refresh$.next(null);
     }
-
-    SyncLink() {
-        this.router.navigate([], {
-            queryParams: this.ToQuery()
-        });
-    }
-
-    private ToQuery() {
-        return Object.assign(
-            {},
-            this.filterService.Current.ToQuery()
-        )
-    }
-
-
 }

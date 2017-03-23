@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { ModalComponent, Toast } from '../../../shared/';
-import { CrudApiService, IField } from '../../shared';
+import { CrudApiService } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
@@ -36,8 +36,7 @@ export class EditorComponent<T> {
     @Input() name: string;
     @Input() set service(s: CrudApiService<T>) {
         this.api = s;
-        this.name = this.name || this.api.Name;
-        this.listFields = this.api.ListFields;
+
         this.listView$ = this.api.RxListView;
     };
     @Input() makeForm: (u?: T) => FormGroup;
@@ -131,7 +130,7 @@ export class EditorComponent<T> {
     private err = '';
 
     private listView$: Observable<T[]>;
-    private listFields: IField[];
+    private listFields: EditorFieldComponent[];
 }
 
 

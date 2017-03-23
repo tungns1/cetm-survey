@@ -70,7 +70,7 @@ export class SmallStorage<T> {
         this.key = getKey(key);
         this.io = this.io || new LocalStorageStrategy;
         this.serializer = this.serializer || new JsonSerializeStrategy<T>();
-        this.onInit();
+        this._onInit();
     }
 
 
@@ -81,16 +81,16 @@ export class SmallStorage<T> {
         return this._data$.value;
     }
 
-    SetData(data: T) {
-        this._data$.next(data);
+    protected SaveData(data?: T) {
+        this._data$.next(data || this.data);
     }
 
-    protected onInit() {
+    private _onInit() {
         this._data$ = new BehaviorSubject<T>(this.read());
         this._data$.skip(1).subscribe(data => {
             this.save(data);
         });
-        this.Data$ = this._data$.debounceTime(250);
+        this.Data$ = this._data$.debounceTime(20);
     }
 
     protected serialize(data: T) {
@@ -121,7 +121,4 @@ export class SmallStorage<T> {
         this.io.saveRaw(this.key, value);
     }
 
-    protected emitChange() {
-        this._data$.next(this.data);
-    }
 }

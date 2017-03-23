@@ -20,7 +20,7 @@ export class ReportOverViewComponent {
 
     }
 
-    tab$ = this.viewService.ValueChanges.map(v => v.GetTab()).share();
+    tab$ = this.viewService.Tab$;
     general$ = this.tab$.map(tab => tab === MAIN_TABS.GENERAL.name);
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
     customer$ = this.tab$.map(tab => tab === MAIN_TABS.CUSTOMER.name);

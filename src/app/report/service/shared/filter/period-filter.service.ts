@@ -22,89 +22,73 @@ const GetStartOf: { [index: string]: CountableTimeInterval } = {
 
 
 export interface IPeriodFilter {
-    start?: Date | string;
-    end?: Date | string;
+    start: string;
+    end: string;
     period?: string;
 }
 
-import { AbstractState, AbstractStateService, BranchFilter, BranchFilterService } from '../../../shared';
+import { SmallStorage, RouterQueryStorageStrategy } from '../../../shared';
 
-export class PeriodFilter extends AbstractState {
-    Rebuild(d?: IPeriodFilter) {
-        d = d || {};
-        let startDate = this.toDate(d.start);
-        let endDate = this.toDate(d.end);
-        this.period = d.period || PERIODS.DAY;
-        var startOf = GetStartOf[this.period];
-
-        if (!startDate || startDate.getTime() < 1000) {
-            startDate = new Date(Date.now() - 30 * oneDay);
-        }
-        this.startDate = startOf.floor(startDate);
-
-        if (!endDate || endDate.getTime() < 1000) {
-            endDate = new Date();
-        }
-        let end = startOf.floor(endDate);
-        if (startOf.count(this.startDate, end) < 1) {
-            end = startOf.offset(end, 1);
-        }
-        this.endDate = end;
+@Injectable()
+export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
+    constructor(
+        storageStrategy: RouterQueryStorageStrategy
+    ) {
+        super("period", storageStrategy);
+        this.setDefault();
     }
 
-    FromQuery(p: Params) {
-        this.Rebuild(p);
+    private setDefault() {
+        this.Update(
+            this.parseDate(this.data.start),
+            this.parseDate(this.data.end),
+            this.data.period
+        );
     }
 
     ToQuery() {
+        let end = this.parseDate(this.data.end);
+        let startOf = GetStartOf[this.data.period];
+        let start = this.parseDate(this.data.start);
+        if (startOf.count(start, end) < 1) {
+            end = startOf.offset(start, 1);
+        }
+
         return {
-            start: this.fromDate(this.startDate),
-            end: this.fromDate(this.endDate),
-            period: this.period
+            start: this.formatDate(start),
+            end: this.formatDate(end),
+            period: this.data.period
         }
     }
 
-    private toDate(d: string | Date) {
-        if (d instanceof Date) {
-            return d;
+    Update(start: Date, end: Date, period: string) {
+        this.data.period = period || PERIODS.DAY;
+        var startOf = GetStartOf[this.data.period];
+        if (!start || start.getTime() < 1000) {
+            start = new Date(Date.now() - 30 * oneDay);
         }
-        return this.parseDate(d);
-    }
-
-    private fromDate(d: Date) {
-        return this.formatDate(d);
-    }
-
-    valueOf() {
-        return {
-            start: this.startDate,
-            end: this.endDate,
-            period: this.period
+        this.data.start = this.formatDate(startOf.floor(start));
+        if (!end || end.getTime() < 1000) {
+            end = new Date();
         }
+        this.data.end = this.formatDate(startOf.floor(end));
+        this.SaveData();
     }
 
-    private startDate: Date;
-    private endDate: Date;
-    private period: string;
+
     private formatDate = timeFormat("%Y-%m-%d");
     private parseDate = timeParse("%Y-%m-%d");
 
-}
-
-import { Params, ActivatedRoute, Router } from '@angular/router';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-
-@Injectable()
-export class PeriodFilterService extends AbstractStateService<PeriodFilter> {
-    constructor(
-        route: ActivatedRoute
-    ) {
-        super(route);
-        this.onInit(new PeriodFilter);
+    get startDate() {
+        return this.parseDate(this.data.start);
     }
 
-    SetPeriod(v: IPeriodFilter) {
-        this.state.Rebuild(v);
-        this.triggerChange();
+    get endDate() {
+        return this.parseDate(this.data.end);
     }
+
+    get period() {
+        return this.data.period;
+    }
+
 }

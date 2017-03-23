@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AggregateService, ReportFilterService } from '../../service/';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CustomerAPI } from './service/customer.service';
 
 @Component({
@@ -12,10 +10,11 @@ import { CustomerAPI } from './service/customer.service';
 export class CustomerComponent {
     constructor(
         private customerApi: CustomerAPI,
-        private route: ActivatedRoute,
-        private router: Router
+        private route: ActivatedRoute
     ) { }
+
     customer_id :string;
+    
     ngOnInit() {
         let id = this.route.snapshot.params['id'];
         if (id) {
@@ -25,10 +24,4 @@ export class CustomerComponent {
         }
     }
     
-    nav(href: string){
-        const queryParams = this.route.root.snapshot.queryParams;
-        this.router.navigate([href], {
-            queryParams: queryParams
-        });
-    }
 }

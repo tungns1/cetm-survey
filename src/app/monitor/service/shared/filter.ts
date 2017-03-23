@@ -1,56 +1,38 @@
 
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AbstractState, AbstractStateService, BranchFilter,BranchFilterService } from '../../shared';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import {
+    SmallStorage, RouterQueryStorageStrategy,
+    BranchFilterService
+} from '../../shared';
 
-export class MonitorFilter extends AbstractState {
-    constructor(
-        public Branch: BranchFilter
-    ) {
-        super();
-    }
-
-    FromQuery(p: Params) {
-        this.Branch.FromQuery(p);
-        this.focus = p['focus'] || '';
-    }
-
-    ToQuery() {
-        return Object.assign(
-            {},
-            this.Branch.ToQuery(), {
-                focus: this.focus
-            }
-        );
-    }
-
-    private focus: string;
-
-    Focus(branch_id: string) {
-        this.focus = branch_id || '';
-    }
-
-    GetFocus() {
-        return this.focus;
-    }
+interface IMonitorFilder {
+    focus: string;
 }
 
 @Injectable()
-export class MonitorFilterService extends AbstractStateService<MonitorFilter> {
+export class MonitorFilterService extends SmallStorage<IMonitorFilder> {
     constructor(
-        route: ActivatedRoute,
+        storageStrategy: RouterQueryStorageStrategy,
         private branchFilterService: BranchFilterService
     ) {
-        super(route);
-        this.onInit(new MonitorFilter(this.branchFilterService.Current));
+        super("monitor", storageStrategy);
+        this.SetFocus();
     }
 
-    SetFocus(branch_id: string) {
-        this.Current.Focus(branch_id);
-        this.triggerChange();
+    SetFocus(branch_id: string = '') {
+        this.data.focus = branch_id;
+        this.SaveData();
     }
 
+    GetStores() {
+        return this.branchFilterService.getByLevel(0);
+    }
 
+    ToQuery() {
+        const branches = this.GetStores();
+        return Object.assign(
+            { branch_id: branches.join(',') },
+            { focus: this.data.focus }
+        );
+    }
 }

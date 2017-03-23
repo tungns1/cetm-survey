@@ -22,10 +22,17 @@ export class PeriodFilterComponent implements OnInit {
 
     ngOnInit() {
         setTimeout(() => {
-            const value = this.periodFilterService.Current.valueOf();
-            this.form.setValue(value);
+            const value = this.periodFilterService;
+            this.form.setValue({
+                start: value.startDate,
+                end: value.endDate,
+                period: value.period
+            });
+            
             this.form.valueChanges.subscribe(v => {
-                this.periodFilterService.SetPeriod(v);
+                this.periodFilterService.Update(
+                    v.start, v.end, v.period
+                );
             })
         });
     }

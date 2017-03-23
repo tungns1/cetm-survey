@@ -6,13 +6,14 @@ import { UserService } from './user';
 import { BranchService } from './branch';
 
 import { Injectable } from '@angular/core';
-import { AdminFilterService } from '../shared';
+import { BranchFilterService, AdminNavService } from '../shared';
 import { AuthService, HttpServiceGenerator } from '../../shared';
 
 @Injectable()
 export class OrgService {
     constructor(
-        protected filterService: AdminFilterService,
+        protected filterService: BranchFilterService,
+        private nav: AdminNavService,
         private authService: AuthService,
         private httpSG: HttpServiceGenerator
     ) {
@@ -21,11 +22,17 @@ export class OrgService {
 
     private onInit() {
         this.BranchService = new BranchService(
+            this.nav,
             this.httpSG.make(this.Link.Branch),
-            this.filterService, this.authService);
+            this.filterService,
+            this.authService
+        );
+
         this.UserService = new UserService(
+            this.nav,
             this.httpSG.make(this.Link.User),
-            this.filterService);
+            this.filterService
+        );
     }
 
     BranchService: BranchService;

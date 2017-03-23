@@ -9,6 +9,8 @@ const reportServiceProvider = [
     AggregateService,
 ]
 
+export { Paging } from './paging.service';
+
 export {
     reportServiceProvider
 }

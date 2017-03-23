@@ -12,6 +12,6 @@ export class MonitorFilterComponent {
     constructor(private navService: MonitorNavService) { }
 
     refresh() {
-        this.navService.SyncFilter();
+        this.navService.Refresh$.Next();
     }
 }

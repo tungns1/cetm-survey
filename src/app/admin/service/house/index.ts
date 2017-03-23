@@ -1,48 +1,26 @@
 import { Injectable } from '@angular/core';
-import { AdminFilterService } from '../shared';
-import { CounterService } from './counter';
-import { KioskService } from './kiosk';
-import { ScreenService } from './screen';
-import { SFlowService } from './sflow';
-import { HttpServiceGenerator } from '../../shared';
+import {
+    BranchFilterService, AdminNavService, BranchCrudApiServiceGenerator,
+    ICounter, IKiosk, IScreen, ISFlow
+} from '../shared';
 
 @Injectable()
 export class HouseService {
     constructor(
-        protected filterService: AdminFilterService,
-        private httpSG: HttpServiceGenerator
+        protected bcsg: BranchCrudApiServiceGenerator
     ) {
-        this.onInit();
+
     }
 
-    private onInit() {
-        this.CounterService = new CounterService(
-            this.httpSG.make(this.Link.Counter),
-            this.filterService
-        );
-        this.KioskService = new KioskService(
-            this.httpSG.make(this.Link.Kiosk),
-            this.filterService
-        );
-        this.ScreenService = new ScreenService(
-            this.httpSG.make(this.Link.Screen),
-            this.filterService
-        );
-        this.SFlowService = new SFlowService(
-            this.httpSG.make(this.Link.SFlow),
-            this.filterService
-        );
-    }
-
-    CounterService: CounterService;
-    KioskService: KioskService;
-    ScreenService: ScreenService;
-    SFlowService: SFlowService;
-
-    Link = {
+    private Link = {
         Counter: '/api/admin/house/counter',
         Kiosk: '/api/admin/house/kiosk',
         Screen: '/api/admin/house/screen',
         SFlow: '/api/admin/house/sflow'
     }
+
+    CounterService = this.bcsg.make<ICounter>(this.Link.Counter);
+    KioskService = this.bcsg.make<IKiosk>(this.Link.Kiosk);
+    ScreenService = this.bcsg.make<IScreen>(this.Link.Screen);
+    SFlowService = this.bcsg.make<ISFlow>(this.Link.SFlow);
 }

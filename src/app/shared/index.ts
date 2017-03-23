@@ -1,10 +1,8 @@
 export * from './auth';
+export * from './branch';
+
 export { SharedModule } from './shared.module';
-export { I18nService, TranslateService } from './service/i18n';
-export {
-    BranchModule, BranchFilterService,
-    BranchFilter
-} from './branch';
+export { TranslateService } from './service/i18n';
 
 export { Const, LOCALES } from '../../const';
 export { AppStorage } from '../../store';
@@ -14,5 +12,7 @@ export {
     AppSocketGenerator,
     HttpServiceGenerator, HttpApi
 } from './service';
+
+export { SmallStorage, RouterQueryStorageStrategy } from './shared';
 
 import "./rx";

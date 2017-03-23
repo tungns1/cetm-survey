@@ -1,38 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AbstractState, AbstractStateService } from '../../shared';
+import { SmallStorage, RouterQueryStorageStrategy } from '../../shared';
 
-export class ReportView extends AbstractState {
-    private tab: string;
-
-    FromQuery(p: Params) {
-        this.tab = p['tab'] || 'general';
-    }
-
-    ToQuery() {
-        return { tab: this.tab };
-    }
-
-    SetTab(tab: string) {
-        this.tab = tab;
-    }
-
-    GetTab() {
-        return this.tab;
-    }
+interface IReportView {
+    tab: string;
 }
 
 @Injectable()
-export class ReportViewService extends AbstractStateService<ReportView> {
+export class ReportViewService extends SmallStorage<IReportView> {
     constructor(
-        route: ActivatedRoute
+        storageStrategy: RouterQueryStorageStrategy
     ) {
-        super(route);
-        this.onInit(new ReportView);
+        super("report_view", storageStrategy);
+        this.SetTab();
     }
 
-    SetTab(tab: string) {
-        this.state.SetTab(tab);
-        this.triggerChange();
+    SetTab(tab: string = 'general') {
+        this.data.tab = tab;
+        this.SaveData();
     }
+
+    Tab$ = this.Data$.map(d => d.tab).share();
 }
