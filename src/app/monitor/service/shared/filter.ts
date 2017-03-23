@@ -16,11 +16,12 @@ export class MonitorFilterService extends SmallStorage<IMonitorFilder> {
         private branchFilterService: BranchFilterService
     ) {
         super("monitor", storageStrategy);
+        this.SetFocus();
     }
 
-    SetFocus(branch_id: string) {
+    SetFocus(branch_id: string = '') {
         this.data.focus = branch_id;
-        this.emitChange();
+        this.SaveData();
     }
 
     GetStores() {
@@ -28,7 +29,7 @@ export class MonitorFilterService extends SmallStorage<IMonitorFilder> {
     }
 
     ToQuery() {
-        const branches = this.branchFilterService.getByLevel(0);
+        const branches = this.GetStores();
         return Object.assign(
             { branch_id: branches.join(',') },
             { focus: this.data.focus }

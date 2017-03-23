@@ -143,7 +143,6 @@ export class FocusComponent {
 
     private goBackBranchList() {
         this.filterService.SetFocus('');
-        this.navService.SyncLink();
     }
 
     private closeModal() {

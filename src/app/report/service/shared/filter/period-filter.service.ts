@@ -72,7 +72,7 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
             end = new Date();
         }
         this.data.end = this.formatDate(startOf.floor(end));
-        this.SetData();
+        this.SaveData();
     }
 
 

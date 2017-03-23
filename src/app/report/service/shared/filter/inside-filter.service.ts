@@ -58,7 +58,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     }
 
     Update(user_id: string[] = [], service_id: string[] = [], counter_id: string[] = []) {
-        super.SetData({ user_id, service_id, counter_id });
+        super.SaveData({ user_id, service_id, counter_id });
     }
 
 

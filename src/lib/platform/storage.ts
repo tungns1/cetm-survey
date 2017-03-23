@@ -81,7 +81,7 @@ export class SmallStorage<T> {
         return this._data$.value;
     }
 
-    protected SetData(data?: T) {
+    protected SaveData(data?: T) {
         this._data$.next(data || this.data);
     }
 
@@ -121,7 +121,4 @@ export class SmallStorage<T> {
         this.io.saveRaw(this.key, value);
     }
 
-    protected emitChange() {
-        this._data$.next(this.data);
-    }
 }

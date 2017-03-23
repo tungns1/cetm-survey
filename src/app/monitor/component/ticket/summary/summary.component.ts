@@ -31,7 +31,6 @@ export class SummaryComponent {
 
     focus(selectedBranch) {
         this.filterService.SetFocus(selectedBranch.branch_id);
-        this.navService.SyncLink();
     }
 
     message = '';
