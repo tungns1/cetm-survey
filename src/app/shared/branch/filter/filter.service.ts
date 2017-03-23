@@ -19,19 +19,25 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         super("branches", storageStrategy);
         this.levels = [];
         this.max = BranchLevels.length - 1;
-        let branches = this.data.branches || [];
+        let branches = this.data.branches;
         for (let i = 0; i <= this.max; i++) {
             this.levels.push(i);
-            if (!branches[i]) {
-                branches[i] = [];
-            }
+            branches[i] = branches[i] || [];
         }
-        this.data.branches = branches;
         this.SetData();
     }
 
     get branches() {
         return this.data.branches || [];
+    }
+
+    Setbranches(ids: string[][]) {
+        let branches = this.branches || [];
+        for (let i = 0; i <= this.max; i++) {
+            branches[i] = ids[i] || [];
+        }
+        this.data.branches = branches;
+        this.SetData();
     }
 
     getLowestLevel() {

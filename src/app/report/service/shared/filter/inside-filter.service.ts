@@ -56,6 +56,10 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
         //     })
     }
 
+    Update(user_id: string[], service_id: string[], counter_id: string[]) {
+        super.SetData({user_id, service_id, counter_id});
+    }
+
 
     private updateService(services: IService[] = []) {
         services.sort((a, b) => a.name < b.name ? -1 : 1);

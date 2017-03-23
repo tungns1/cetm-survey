@@ -42,9 +42,9 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             const branch_id = this.filterService.branches;
             // delay the value change until the ui is ready
-            this.form.setValue(branch_id, { emitEvent: false });
-            this.form.valueChanges.debounceTime(250).subscribe(v => {
-                this.filterService.SetData(v);
+            this.form.setValue(branch_id, { emitEvent: true });
+            this.form.valueChanges.subscribe(v => {
+                this.filterService.Setbranches(v);
             });
         }, 100);
     }
@@ -68,9 +68,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
                     return parent_id.indexOf(branch.parent) !== -1;
                 });
                 if (updateValue.length < value.length) {
-                    setTimeout(_ => {
-                        activeForm.setValue(updateValue)
-                    });
+                    activeForm.setValue(updateValue)
                 }
                 // children: only show if parent is on
                 return branches.filter(b =>

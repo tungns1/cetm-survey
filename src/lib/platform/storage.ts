@@ -81,7 +81,7 @@ export class SmallStorage<T> {
         return this._data$.value;
     }
 
-    SetData(data?: T) {
+    protected SetData(data?: T) {
         this._data$.next(data || this.data);
     }
 

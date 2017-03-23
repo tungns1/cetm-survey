@@ -68,6 +68,12 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         }
     }
 
+    Update(start: Date, end: Date, period: string) {
+        this.startDate = start;
+        this.endDate = end;
+        this.period = period;
+    }
+
     private toDate(d: string | Date) {
         if (d instanceof Date) {
             return d;
@@ -87,9 +93,9 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         }
     }
 
-    private startDate: Date;
-    private endDate: Date;
-    private period: string;
+    startDate: Date;
+    endDate: Date;
+    period: string;
     private formatDate = timeFormat("%Y-%m-%d");
     private parseDate = timeParse("%Y-%m-%d");
 

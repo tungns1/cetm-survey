@@ -28,7 +28,11 @@ export class InsideFilterComponent implements OnInit {
                 service_id: value.service_id
             });
             this.form.valueChanges.subscribe(v => {
-                this.insideFilterService.SetData(v);
+                this.insideFilterService.Update(
+                    v.user_id,
+                    v.service_id,
+                    v.counter_id
+                )
             })
         });
     }
