@@ -12,7 +12,7 @@ export class ReportFilterService {
         private insideFilterService: InsideBranchFilterService,
         private periodFilterService: PeriodFilterService
     ) {
-
+        
     }
 
     ToBackendQuery() {

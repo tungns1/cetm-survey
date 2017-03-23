@@ -15,15 +15,10 @@ export class EnvironmentSettingComponent implements OnInit {
 
   ngOnInit() {
     this.PlatformForm.valueChanges.subscribe(data => {
-      this.env.Platform.SetData({
-        host: data.host
-      });
+      this.env.Platform.Update(data.host);
     });
     this.DebugForm.valueChanges.subscribe(data => {
-      this.env.Debug.SetData({
-        layout: data.layout,
-        socket: data.socket
-      });
+      this.env.Debug.Update(data.layout, data.socket);
     });
   }
 

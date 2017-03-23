@@ -70,7 +70,7 @@ export class SmallStorage<T> {
         this.key = getKey(key);
         this.io = this.io || new LocalStorageStrategy;
         this.serializer = this.serializer || new JsonSerializeStrategy<T>();
-        this.onInit();
+        this._onInit();
     }
 
 
@@ -85,7 +85,7 @@ export class SmallStorage<T> {
         this._data$.next(data || this.data);
     }
 
-    protected onInit() {
+    private _onInit() {
         this._data$ = new BehaviorSubject<T>(this.read());
         this._data$.skip(1).subscribe(data => {
             this.save(data);

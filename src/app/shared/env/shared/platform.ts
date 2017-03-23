@@ -15,6 +15,12 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         return this.data.host || location.host;
     }
 
+    Update(host: string) {
+        this.SetData({
+            host: host
+        });
+    }
+
     get Http() {
         return `${this.protocol}//${this.actualHost}`;
     }

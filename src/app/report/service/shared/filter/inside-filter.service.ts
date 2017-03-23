@@ -42,18 +42,18 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     }
 
     protected onInit() {
-        // CacheService.RxListView.subscribe(data => this.updateService(data));
-        // this.branchFilter.Data$.map(b => b.branches[0])
-        //     .switchMap(branch_id => {
-        //         if (branch_id.length < 1) {
-        //             return of({});
-        //         }
-        //         return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
-        //     }).subscribe((d: any) => {
-        //         this.updateService(d.services || []);
-        //         this.updateCounters(d.counters || []);
-        //         this.updateUsers(d.users || []);
-        //     })
+        CacheService.RxListView.subscribe(data => this.updateService(data));
+        this.branchFilter.Data$.map(b => b.branches[0])
+            .switchMap(branch_id => {
+                if (branch_id.length < 1) {
+                    return of({});
+                }
+                return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
+            }).subscribe((d: any) => {
+                this.updateService(d.services || []);
+                this.updateCounters(d.counters || []);
+                this.updateUsers(d.users || []);
+            })
     }
 
     Update(user_id: string[], service_id: string[], counter_id: string[]) {
@@ -64,20 +64,20 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     private updateService(services: IService[] = []) {
         services.sort((a, b) => a.name < b.name ? -1 : 1);
         services.forEach(AddServiceName);
-        this.services$.next(services);
+        // this.services$.next(services);
     }
 
     private updateUsers(users: IUser[] = []) {
         const role = USER_ROLES.STAFF;
         const staff = users.filter(u => u.role.indexOf(role) !== -1)
             .sort((a, b) => a.fullname < b.fullname ? -1 : 1);
-        this.users$.next(staff);
+        // this.users$.next(staff);
         CacheUsers.Refresh(staff);
     }
 
     private updateCounters(counters: ICounter[] = []) {
         counters.sort((a, b) => a.name < b.name ? -1 : 1);
-        this.counters$.next(counters);
+        // this.counters$.next(counters);
         CacheCounter.Refresh(counters);
     }
 
