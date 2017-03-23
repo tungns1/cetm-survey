@@ -15,10 +15,8 @@ export class AdminFilterComponent {
         private route: ActivatedRoute,
         private navService: AdminNavService
     ) { }
-
     hidden = true;
-    
     refresh() {
-        this.navService.Refresh$.next(null);
+        this.navService.Refresh();
     }
 }

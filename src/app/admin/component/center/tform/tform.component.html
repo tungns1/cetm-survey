@@ -1,4 +1,4 @@
-<editor #edit i18n-name name="Ticket Format" [makeForm]="makeForm" [service]="tformService">
+<editor #edit i18n-name name="Ticket Format" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Code</span>:
         <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">

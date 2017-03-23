@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { CounterService, ServiceService, ICounter } from '../../../service/';
+import { CenterService, HouseService, ICounter } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,11 +10,12 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class CounterComponent {
 
     constructor(
-        private serviceService: ServiceService,
-        private service: CounterService
+        private center: CenterService,
+        private house: HouseService
     ) { }
 
-    services = this.serviceService.RxListView;
+    service = this.house.CounterService;
+    services = this.center.ServiceService.RxListView;
     makeForm(b?: ICounter) {
         b = b || <any>{};
         return (new FormBuilder).group({

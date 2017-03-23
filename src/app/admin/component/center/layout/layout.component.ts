@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { LayoutService, ILayout } from '../../../service/';
+import { CenterService, ILayout } from '../../../service/';
 
 @Component({
     selector: 'center-layout',
@@ -11,7 +11,7 @@ import { LayoutService, ILayout } from '../../../service/';
 export class LayoutComponent {
 
     constructor(
-        private layoutService: LayoutService,
+        private center: CenterService,
         private route: ActivatedRoute
     ) {
         route.queryParams.forEach(v => {
@@ -31,5 +31,7 @@ export class LayoutComponent {
             style: [b.style],
         });
     }
+
+    service = this.center.LayoutService;
 }
 

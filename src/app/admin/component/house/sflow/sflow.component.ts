@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-    ISFlow, ServiceService, TFormService, SFlowService
+    ISFlow, HouseService, CenterService
 } from '../../../service/';
 
 import { FormBuilder, Validators } from '@angular/forms';
@@ -12,15 +12,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class SFlowComponent {
 
     constructor(
-        private serviceService: ServiceService,
-        private tformService: TFormService,
-        private sflowService: SFlowService,
+        private center: CenterService,
+        private house: HouseService,
     ) { }
 
-    service = this.sflowService;
+    service = this.house.SFlowService;
 
-    services = this.serviceService.RxListView;
-    tforms = this.tformService.RxListView;
+    services = this.center.ServiceService.RxListView;
+    tforms = this.center.TFormService.RxListView;
     tformVips = this.tforms;
 
     makeForm(b?: ISFlow) {

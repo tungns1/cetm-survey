@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BranchService, UserService, IUser, AllRoles } from '../../shared/';
+import { OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,8 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class UserComponent {
   constructor(
-    private userService: UserService,
-    private branchService: BranchService
+    private org: OrgService
   ) { }
 
   makeForm(u?: IUser) {
@@ -26,7 +25,8 @@ export class UserComponent {
     });
   }
 
+  service = this.org.UserService;
   private roles = AllRoles;
-  private branches = this.branchService.RxListView;
+  private branches = this.org.BranchService.RxListView;
 }
 

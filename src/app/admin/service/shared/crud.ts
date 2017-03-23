@@ -7,10 +7,14 @@ import { AdminNavService } from './nav';
 
 export class CrudApiService<T> {
     constructor(
-        private nav: AdminNavService,
+        protected nav: AdminNavService,
         protected api: HttpApi<T>
     ) {
 
+    }
+
+    protected filter() {
+        return Observable.of<T[]>();
     }
 
     Create(v: T) {
@@ -25,12 +29,8 @@ export class CrudApiService<T> {
         return this.api.MarkDelete(id).do(this.onChange);
     }
 
-    protected filter(): Observable<T[]> {
-        return Observable.of([]);
-    }
-
     private onChange = () => {
-        this.nav.Refresh$.next(null);
+        this.nav.Refresh();
     }
 
     get RxListView() {
@@ -38,6 +38,7 @@ export class CrudApiService<T> {
     }
 }
 
+@Injectable()
 export class BranchCrudApiService<T> extends CrudApiService<T> {
     constructor(
         nav: AdminNavService,
@@ -47,12 +48,48 @@ export class BranchCrudApiService<T> extends CrudApiService<T> {
         super(nav, api);
     }
 
-    GetByBranch(branch_id: string[]) {
-        return this.api.Search({ branch_id: branch_id.join(',') });
-    }
-
     protected filter() {
         let branches = this.branchFilter.getLowestBranches();
         return this.GetByBranch(branches).do(data => CacheBranch.Join(data));
+    }
+
+    GetByBranch(branch_id: string[]) {
+        return this.api.Search({ branch_id: branch_id.join(',') });
+    }
+}
+
+@Injectable()
+export class BranchCrudApiServiceGenerator {
+    constructor(
+        private nav: AdminNavService,
+        private hsg: HttpServiceGenerator,
+        protected branchFilter: BranchFilterService
+    ) {
+
+    }
+
+    make<T>(uri: string) {
+        return new BranchCrudApiService<T>(
+            this.nav,
+            this.hsg.make<T>(uri),
+            this.branchFilter
+        );
+    }
+}
+
+@Injectable()
+export class CrudApiServiceGenerator {
+    constructor(
+        private nav: AdminNavService,
+        private hsg: HttpServiceGenerator
+    ) {
+
+    }
+
+    make<T>(uri: string) {
+        return new CrudApiService<T>(
+            this.nav,
+            this.hsg.make<T>(uri)
+        );
     }
 }

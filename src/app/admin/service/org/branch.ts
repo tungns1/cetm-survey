@@ -1,22 +1,20 @@
 
 import { Injectable } from '@angular/core';
-import { AuthService, HttpServiceGenerator, BranchFilterService } from '../../shared/';
+import { AuthService, HttpApi } from '../../shared/';
 import { 
-    CrudApiService, IBranch, CacheBranch 
-} from '../shared';
+    CrudApiService, IBranch, CacheBranch, AdminNavService,
+    BranchFilterService
+ } from '../shared';
 
 @Injectable()
 export class BranchService extends CrudApiService<IBranch> {
     constructor(
-        hsg: HttpServiceGenerator,
-        filterService: BranchFilterService,
+        nav: AdminNavService,
+        api: HttpApi<IBranch>,
+        private branchFilter: BranchFilterService,
         private authService: AuthService
     ) {
-        super("/api/admin/org/branch", hsg, filterService);
-    }
-
-    GetByBranch(branch_id: string[]) {
-        return this.api.Search({ branch_id: branch_id.join(',') });
+        super(nav, api);
     }
 
     GetListViewByLevel(level: number) {
@@ -36,7 +34,7 @@ export class BranchService extends CrudApiService<IBranch> {
     }
 
     protected filter() {
-        const parents = this.filterService.getByLevel(this.level + 1);
+        const parents = this.branchFilter.getByLevel(this.level + 1);
         return this.authService.RefreshMySettings().switchMap(() => {
             return this.GetListViewByLevelAndParents(parents, this.level);
         });

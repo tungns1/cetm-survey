@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BranchConfigService, BranchService, IBranchConfig } from '../../../service/';
+import { MetaService, OrgService, IBranchConfig } from '../../../service/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -8,9 +8,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class BranchConfigComponent {
   constructor(
-    private branchService: BranchService,
-    private service: BranchConfigService
+    private meta: MetaService,
+    private org: OrgService
   ) { }
+
+  service = this.meta.BranchConfigService;
 
   makeForm(u?: IBranchConfig) {
     u = u || <any>{};
@@ -21,6 +23,6 @@ export class BranchConfigComponent {
     });
   }
 
-  private branches = this.branchService.RxListView;
+  private branches = this.org.BranchService.RxListView;
 }
 
