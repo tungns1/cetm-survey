@@ -6,7 +6,6 @@ import { IBranch, CacheBranch } from '../../model';
 import { BranchFilterService } from './filter.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/take';
 
 @Component({
     selector: 'branch-filter',
@@ -43,7 +42,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
             const branch_id = this.filterService.branches;
             // delay the value change until the ui is ready
             this.form.setValue(branch_id, { emitEvent: true });
-            this.form.valueChanges.subscribe(v => {
+            this.form.valueChanges.debounceTime(50).subscribe(v => {
                 this.filterService.Setbranches(v);
             });
         }, 100);
