@@ -19,21 +19,19 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         super("branches", storageStrategy);
         this.levels = [];
         this.max = BranchLevels.length - 1;
+        let branches = this.data.branches || [];
         for (let i = 0; i <= this.max; i++) {
             this.levels.push(i);
+            if (!branches[i]) {
+                branches[i] = [];
+            }
         }
-    }
-
-    get Levels() {
-        return this.Levels;
-    }
-
-    get Max() {
-        return this.max;
+        this.data.branches = branches;
+        this.SetData();
     }
 
     get branches() {
-        return this.data.branches;
+        return this.data.branches || [];
     }
 
     getLowestLevel() {
@@ -48,16 +46,11 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     }
 
     getLowestBranches() {
-        return this.branches[this.getLowestLevel()];
+        return this.getByLevel(this.getLowestLevel());
     }
 
     getByLevel(i: number) {
-        return this.branches[i];
-    }
-
-    setByLevel(i: number, s: string[]) {
-        this.branches[i] = s;
-        this.emitChange();
+        return this.branches[i] || [];
     }
 
     getAllID() {
@@ -65,15 +58,16 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     }
 
     triggerChange() {
-        this.emitChange();
+        // this.emitChange();
     }
 
-    private levels: number[] = [];
-    private max: number;
+    levels: number[] = [];
+    max: number;
 
     private checkTheRoot() {
         const maxLevel = this.max;
         const branchAtRoot = CacheBranch.GetByLevel(maxLevel);
-        this.setByLevel(maxLevel, branchAtRoot.map(b => b.id));
+        this.branches[maxLevel] = branchAtRoot.map(b => b.id);
+        this.SetData();
     }
 }

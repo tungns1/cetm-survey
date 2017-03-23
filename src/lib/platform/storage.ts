@@ -81,8 +81,8 @@ export class SmallStorage<T> {
         return this._data$.value;
     }
 
-    SetData(data: T) {
-        this._data$.next(data);
+    SetData(data?: T) {
+        this._data$.next(data || this.data);
     }
 
     protected onInit() {
@@ -90,7 +90,7 @@ export class SmallStorage<T> {
         this._data$.skip(1).subscribe(data => {
             this.save(data);
         });
-        this.Data$ = this._data$.debounceTime(250);
+        this.Data$ = this._data$.debounceTime(20);
     }
 
     protected serialize(data: T) {
