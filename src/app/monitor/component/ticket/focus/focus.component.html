@@ -156,8 +156,8 @@
 <modal #edit id="modal_monitor_detailTicket">
     <h3 class="modal-header" i18n>Ticket detail</h3>
     <div *ngIf="selectedTicket" class="modalContent">
-        <!--<div fxLayout="row" fxLayoutGap="20px">
-            <div fxFlex>-->
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex>
                 <table>
                     <tr>
                         <th i18n>Ticket number</th>
@@ -194,8 +194,8 @@
                         <th *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </th>
                     </tr>
                 </table>
-            <!--</div>
-            <div fxFlex>-->
+            </div>
+            <div fxFlex>
                 <table>
                     <tr>
                         <th i18n>Branch</th>
@@ -222,9 +222,9 @@
                         <th>testing</th>
                     </tr>
                 </table>
-            <!--</div>
-        </div>-->
-        <table *ngIf="customer">
+            </div>
+        </div>
+        <table *ngIf="customer" class="cusDetail">
             <tr>
                 <th i18n>Name Counter</th>
                 <th> {{customer.full_name }}</th>
@@ -242,6 +242,82 @@
                 <th> {{customer.segment }}</th>
             </tr>
         </table>
+
+        <!--<div fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex i18n>Ticket number</div>
+            <div fxFlex>{{selectedTicket.cnum}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div i18n>State</div>
+            <div>{{selectedTicket.state}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div i18n>Service</div>
+            <div>
+                <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
+                <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div i18n>Time of ticket printed</div>
+            <div>{{selectedTicket.ctime | localDayTime}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div i18n>Waiting time</div>
+            <div>
+                <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
+                <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="isServed">
+            <div i18n>Serving time</div>
+            <div *ngIf="selectedTicket.state === 'serving'">
+                <timer [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
+            </div>
+            <div *ngIf="selectedTicket.state != 'serving'"> {{selectedTicket.stime | timeDuration}} </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div i18n>Branch</div>
+            <div i18n>{{selectedTicket.branch_id | branchName}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div i18n>Store</div>
+            <div i18n>{{selectedTicket.branch_id | branchName}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
+            <div i18n>Tellers</div>
+            <div>{{selectedTicket.serving.user_id | userFullName}}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
+            <div i18n>Counter</div>
+            <div>{{selectedTicket.serving.counter_id | counterName }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
+            <div i18n>Manager</div>
+            <div>testing</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
+            <div i18n>Administrator</div>
+            <div>testing</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="customer">
+            <div i18n>Name Counter</div>
+            <div> {{customer.full_name }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="customer">
+            <div i18n>Code ID</div>
+            <div> {{customer.code }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="customer">
+            <div i18n>Number Phone</div>
+            <div> {{customer.phone_number }}</div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" *ngIf="customer">
+            <div i18n>Segment</div>
+            <div> {{customer.segment }}</div>
+        </div>-->
 
         <button class="btnFill uppercase" (click)="closeModal()" i18n>Close</button>
     </div>

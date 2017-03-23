@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { MonitorTicketComponent } from './ticket.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
