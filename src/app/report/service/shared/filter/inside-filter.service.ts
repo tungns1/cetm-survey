@@ -6,9 +6,9 @@ import {
     IDList
 } from '../../../../shared/model';
 
-import { 
-    HttpServiceGenerator, 
-    BranchFilterService, 
+import {
+    HttpServiceGenerator,
+    BranchFilterService,
     SmallStorage,
     RouterQueryStorageStrategy
 } from '../../../shared';
@@ -42,6 +42,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     }
 
     protected onInit() {
+        this.Update(this.data.user_id, this.data.service_id, this.data.service_id);
         CacheService.RxListView.subscribe(data => this.updateService(data));
         this.branchFilter.Data$.map(b => b.branches[0])
             .switchMap(branch_id => {
@@ -56,28 +57,28 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
             })
     }
 
-    Update(user_id: string[], service_id: string[], counter_id: string[]) {
-        super.SetData({user_id, service_id, counter_id});
+    Update(user_id: string[] = [], service_id: string[] = [], counter_id: string[] = []) {
+        super.SetData({ user_id, service_id, counter_id });
     }
 
 
     private updateService(services: IService[] = []) {
         services.sort((a, b) => a.name < b.name ? -1 : 1);
         services.forEach(AddServiceName);
-        // this.services$.next(services);
+        this.services$.next(services);
     }
 
     private updateUsers(users: IUser[] = []) {
         const role = USER_ROLES.STAFF;
         const staff = users.filter(u => u.role.indexOf(role) !== -1)
             .sort((a, b) => a.fullname < b.fullname ? -1 : 1);
-        // this.users$.next(staff);
+        this.users$.next(staff);
         CacheUsers.Refresh(staff);
     }
 
     private updateCounters(counters: ICounter[] = []) {
         counters.sort((a, b) => a.name < b.name ? -1 : 1);
-        // this.counters$.next(counters);
+        this.counters$.next(counters);
         CacheCounter.Refresh(counters);
     }
 
