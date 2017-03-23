@@ -13,17 +13,10 @@ export class ReportTabComponent {
     private navService: ReportNavService
   ) { }
 
-  ngOnInit() {
-    this.active = this.viewService.Current.GetTab();
-    if (!this.active) {
-      this.setActive('gerenal');
-    }
-  }
-
-  setActive(name: string ) {
+  setActive(name: string) {
     this.active = name;
     this.viewService.SetTab(name);
   }
 
-  private active: string;
+  private active = this.viewService.data.tab;
 }

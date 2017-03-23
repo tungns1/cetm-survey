@@ -28,7 +28,7 @@ export class ReportOverViewComponent {
         });
     }
     data: Customer;
-    tab$ = this.viewService.ValueChanges.map(v => v.GetTab()).share();
+    tab$ = this.viewService.Tab$;
     store$ = this.tab$.map(tab => tab === MAIN_TABS.STORE.name);
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
     service$ = this.tab$.map(tab => tab === MAIN_TABS.SERVICE.name);

@@ -17,8 +17,8 @@ export class ReportChartComponent {
     ) { }
 
     ngOnInit() {
-        this.viewService.ValueChanges.subscribe(v => {
-            this.setTab(v.GetTab());
+        this.viewService.Data$.subscribe(v => {
+            this.setTab(v.tab);
         })
     }
     tab = '';
