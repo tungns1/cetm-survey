@@ -17,6 +17,6 @@ export class AdminFilterComponent {
     ) { }
     hidden = true;
     refresh() {
-        this.navService.SyncFilter();
+        this.navService.Refresh();
     }
 }

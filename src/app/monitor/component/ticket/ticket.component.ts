@@ -25,8 +25,8 @@ export class MonitorTicketComponent implements OnInit {
         this.ticketService.onDestroy();
     }
 
-    isFocus$ = this.filterService.ValueChanges.map(filter => {
-        return filter.GetFocus().length > 0;
+    isFocus$ = this.filterService.Data$.map(filter => {
+        return filter.focus.length > 0;
     });
 
 }

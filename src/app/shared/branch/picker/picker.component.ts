@@ -35,11 +35,11 @@ export class BranchPickerComponent implements ControlValueAccessor {
         private branchFilterService: BranchFilterService
     ) { }
 
-    private branches = this.branchFilterService.ValueChanges.switchMap(filter => {
-        const ids = filter.GetArrayBranchID();
+    private branches = this.branchFilterService.Data$.switchMap(filter => {
+        const ids = this.branchFilterService.getAllID();
         return CacheBranch.RxListView.map(branches => {
             return branches.filter(b => ids.indexOf(b.id) !== -1);
-        })
+        });
     });
 
     private selected = '';

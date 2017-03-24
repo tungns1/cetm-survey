@@ -3,8 +3,8 @@
     <div class="headerAndNav">
         <h2 class="header uppercase" i18n>Transaction history</h2>
         <div class="nav">
-            <button class="btnClear btnMargin uppercase" (click)="nav('/report/dashboard')" i18n>Gerenal</button>
-            <button class="btnClear btnMargin uppercase" (click)="nav('/report/customer')" i18n>Customer</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>Gerenal</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
         </div>
     </div>
     <div class="filterHistory">

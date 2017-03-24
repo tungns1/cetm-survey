@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITransactionView } from '../../../model';
-import { ReportFilterService, ReportFilter } from '../../../service/';
-import { Paging } from '../../../shared/paging.service';
+import { ReportFilterService, Paging } from '../../../service/';
 import { CustomerAPI, paging } from '../service/customer.service';
 
 
@@ -32,7 +31,7 @@ export class HistoryComponent {
 
 
     excel() {
-        this.customerAPI.ExportHistory(this.filterService.Current);
+        this.customerAPI.ExportHistory();
     } 
 
 }

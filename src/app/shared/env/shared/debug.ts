@@ -16,4 +16,8 @@ export class DebugEnvStorage extends SmallStorage<IDebugEnv> {
         return this.data.socket;
     }
 
+    Update(layout: boolean, socket: boolean) {
+        this.SaveData({layout, socket});
+    }
+
 }

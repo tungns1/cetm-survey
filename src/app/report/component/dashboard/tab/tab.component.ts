@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Output, EventEmitter } from '@angular/core';
-import { ReportViewService, NavService } from '../../shared';
+import { ReportViewService, ReportNavService } from '../../shared';
 import { MAIN_TABS } from '../shared';
 
 @Component({
@@ -10,21 +10,13 @@ import { MAIN_TABS } from '../shared';
 export class ReportTabComponent {
   constructor(
     private viewService: ReportViewService,
-    private navService: NavService
+    private navService: ReportNavService
   ) { }
 
-  ngOnInit() {
-    this.active = this.viewService.Current.GetTab();
-    if (!this.active) {
-      this.setActive('gerenal');
-    }
-  }
-
-  setActive(name: string ) {
+  setActive(name: string) {
     this.active = name;
     this.viewService.SetTab(name);
-    this.navService.SyncView();
   }
 
-  private active: string;
+  private active = this.viewService.data.tab;
 }

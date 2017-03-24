@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { IBranch, CacheBranch } from '../../model';
 import { BranchFilterService } from './filter.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
     selector: 'branch-filter',
@@ -24,7 +25,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
     data: Observable<IBranch[]>[] = [];
 
     ngOnInit() {
-        this.levels = this.filterService.Levels;
+        this.levels = this.filterService.levels;
         this.form = new FormArray(
             this.levels.map(i => new FormControl([]))
         );
@@ -38,19 +39,20 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            const branch_id = this.filterService.GetBranchID();
+            const branch_id = this.filterService.branches;
             // delay the value change until the ui is ready
             this.form.setValue(branch_id, { emitEvent: true });
-            this.form.valueChanges.subscribe(v => {
-                this.filterService.SetBranchID(v);
+            this.form.valueChanges.debounceTime(50).subscribe(v => {
+                this.filterService.Setbranches(v);
             });
-        });
+        }, 100);
     }
 
 
     private makeData(i: number) {
         const parentForm = this.form.at(i + 1);
         const activeForm = this.form.at(i);
+
         const byLevel = CacheBranch.RxByLevel(i);
         if (!parentForm) {
             return byLevel;
@@ -64,7 +66,9 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
                     const branch = CacheBranch.GetByID(id);
                     return parent_id.indexOf(branch.parent) !== -1;
                 });
-                setTimeout(_ => activeForm.setValue(updateValue));
+                if (updateValue.length < value.length) {
+                    activeForm.setValue(updateValue)
+                }
                 // children: only show if parent is on
                 return branches.filter(b =>
                     parent_id.indexOf(b.parent) !== -1

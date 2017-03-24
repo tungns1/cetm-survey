@@ -17,6 +17,7 @@ export class LayoutComponent {
         route.queryParams.forEach(v => {
             this.tag = v['tag'] || 'kiosk,screen';
         })
+        
     }
 
     tag: string;

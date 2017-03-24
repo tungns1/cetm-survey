@@ -45,8 +45,8 @@ export class MonitorTicketService {
 
     private subs: ISubscription[] = [];
     private initialSummary$ = this.socket.Connected$.switchMap(_ => {
-        return this.filterService.ValueChanges.switchMap(filter => {
-            const branches = filter.Branch.GetBranchIDByLevel(0);
+        return this.filterService.Data$.switchMap(filter => {
+            const branches = this.filterService.GetStores();
             return this.socket.Send<ISummary[]>("/summary", {
                 branches
             }).map(data => (data || []).map(d => new Summary(d)));
@@ -66,8 +66,8 @@ export class MonitorTicketService {
     }).share();
 
     private initialFocus$ = this.socket.Connected$.switchMap(_ => {
-        return this.filterService.ValueChanges.switchMap(filter => {
-            const branch_id = filter.GetFocus();
+        return this.filterService.Data$.switchMap(filter => {
+            const branch_id = filter.focus;
             return this.socket.Send<IFocusReply>("/focus", {
                 branch_id
             }).do(data => {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AdminFilterService } from '../shared';
+import { AdminNavService } from '../shared';
 import { TFormService } from './tform';
 import { ServiceService } from './service';
 import { LayoutService } from './layout';
@@ -9,7 +9,7 @@ import { TicketLayoutService } from './ticket_layout';
 @Injectable()
 export class CenterService {
     constructor(
-        protected filterService: AdminFilterService,
+        protected nav: AdminNavService,
         private httpSG: HttpServiceGenerator
     ) {
         this.onInit();
@@ -17,20 +17,20 @@ export class CenterService {
 
     private onInit() {
         this.TFormService = new TFormService(
-            this.httpSG.make(this.Link.TForm),
-            this.filterService
+            this.nav,
+            this.httpSG.make(this.Link.TForm)
         );
         this.TicketLayoutService = new TicketLayoutService(
             this.httpSG.make(this.Link.TicketLayout),
             this.filterService
         );
         this.ServiceService = new ServiceService(
-            this.httpSG.make(this.Link.Service),
-            this.filterService
+            this.nav,
+            this.httpSG.make(this.Link.Service)
         );
         this.LayoutService = new LayoutService(
-            this.httpSG.make(this.Link.Layout),
-            this.filterService
+            this.nav,
+            this.httpSG.make(this.Link.Layout)
         );
     }
 

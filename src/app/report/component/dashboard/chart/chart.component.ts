@@ -25,5 +25,5 @@ export class ReportChartComponent {
     data = this.chartService.RxAggregateByTime;
     period = this.chartService.RxPeriod;
     pieData = this.chartService.RxSummaryView;
-    tab$ = this.viewService.ValueChanges.map(v => v.GetTab());
+    tab$ = this.viewService.Tab$;
 }

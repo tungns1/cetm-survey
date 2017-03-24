@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { ModalComponent, Toast } from '../../../shared/';
-import { CrudApiService, IField } from '../../shared';
+import { CrudApiService } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
@@ -129,7 +129,7 @@ export class EditorComponent<T> {
     private err = '';
 
     private listView$: Observable<T[]>;
-    private listFields: IField[];
+    private listFields: EditorFieldComponent[];
 }
 
 

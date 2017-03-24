@@ -1,20 +1,20 @@
 
 import { Injectable } from '@angular/core';
 import { AuthService, HttpApi } from '../../shared/';
-import { CrudApiService, AdminFilter, AdminFilterService, IBranch, CacheBranch } from '../shared';
+import { 
+    CrudApiService, IBranch, CacheBranch, AdminNavService,
+    BranchFilterService
+ } from '../shared';
 
 @Injectable()
 export class BranchService extends CrudApiService<IBranch> {
     constructor(
-        api: HttpApi<IBranch> ,
-        filterService: AdminFilterService,
+        nav: AdminNavService,
+        api: HttpApi<IBranch>,
+        private branchFilter: BranchFilterService,
         private authService: AuthService
     ) {
-        super(api, filterService);
-    }
-
-    GetByBranch(branch_id: string[]) {
-        return this.api.Search({ branch_id: branch_id.join(',') });
+        super(nav, api);
     }
 
     GetListViewByLevel(level: number) {
@@ -33,8 +33,8 @@ export class BranchService extends CrudApiService<IBranch> {
         });
     }
 
-    protected filter(d: AdminFilter) {
-        const parents = d.Branch.GetBranchIDByLevel(this.level + 1);
+    protected filter() {
+        const parents = this.branchFilter.getByLevel(this.level + 1);
         return this.authService.RefreshMySettings().switchMap(() => {
             return this.GetListViewByLevelAndParents(parents, this.level);
         });
@@ -43,14 +43,6 @@ export class BranchService extends CrudApiService<IBranch> {
     SetLevel(level: number) {
         this.level = level;
     }
-
-    ListFields = [
-        { title: "Parent address", name: "parent_name" },
-        { title: "Address", name: "name" },
-        { title: "Code", name: "code" }
-    ]
-
-    Name = "User";
 
     private level = 2;
 }

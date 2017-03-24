@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminFilterService, OrgService, IUser, AllRoles } from '../../shared/';
+import { OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({

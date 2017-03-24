@@ -25,7 +25,7 @@ export class BranchComponent {
       this.level = +params['level'] || 0;
       this.service.SetLevel(this.level);
       this.parents = this.service.GetListViewByLevel(this.level + 1);
-      this.navService.SyncFilter();
+      this.navService.Refresh();
     });
   }
 

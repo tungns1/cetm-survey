@@ -5,3 +5,4 @@ export {
     AbstractState, AbstractStateService
 } from '../../shared/model';
 export { ModalComponent, TimerComopnent } from '../../x/ng';
+export { ExclusiveEventEmitter } from '../../../lib/rx';

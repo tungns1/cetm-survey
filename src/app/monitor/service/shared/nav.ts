@@ -1,37 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
-import { Router } from '@angular/router';
-import { MonitorFilterService } from './filter';
+import { ExclusiveEventEmitter } from '../../shared';
 
 @Injectable()
 export class MonitorNavService {
-    constructor(
-        private router: Router,
-        private filterService: MonitorFilterService
-    ) {
-
-    }
-
-    isShowDetail = false;
-
-    SyncFilter() {
-        this.filterService.triggerChange();
-        this.SyncLink();
-    }
-
-    SyncLink() {
-        this.router.navigate([], {
-            queryParams: this.ToQuery()
-        });
-    }
-
-    private ToQuery() {
-        return Object.assign(
-            {},
-            this.filterService.Current.ToQuery()
-        )
-    }
-
-
+    Refresh$ = new ExclusiveEventEmitter();
 }

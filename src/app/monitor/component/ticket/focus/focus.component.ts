@@ -41,8 +41,8 @@ export class FocusComponent {
 
     }
 
-    focus$ = this.filterService.ValueChanges.switchMap(filter => {
-        const branch_id = filter.GetFocus()
+    focus$ = this.filterService.Data$.switchMap(filter => {
+        const branch_id = filter.focus;
         return this.ticketService.summary$.map(data => {
             return data.filter(d => d.branch_id === branch_id);
         })
@@ -165,7 +165,6 @@ export class FocusComponent {
 
     private goBackBranchList() {
         this.filterService.SetFocus('');
-        this.navService.SyncLink();
     }
 
     private closeModal() {

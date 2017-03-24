@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CrudApiService, AdminFilter, ITForm } from '../shared';
+import { CrudApiService, ITForm } from '../shared';
 
 @Injectable()
 export class TFormService extends CrudApiService<ITForm> {
-    protected filter(d: AdminFilter) {
+    protected filter() {
         return this.api.Search({});
     }
-
-    ListFields = [
-        { title: 'Code', name: 'code' }
-    ]
-
-    Name = "Number ticket";
 }
