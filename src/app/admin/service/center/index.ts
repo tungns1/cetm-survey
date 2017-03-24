@@ -21,8 +21,8 @@ export class CenterService {
             this.httpSG.make(this.Link.TForm)
         );
         this.TicketLayoutService = new TicketLayoutService(
-            this.httpSG.make(this.Link.TicketLayout),
-            this.filterService
+            this.nav,
+            this.httpSG.make(this.Link.TicketLayout)
         );
         this.ServiceService = new ServiceService(
             this.nav,

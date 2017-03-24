@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CrudApiService, AdminFilter, ITicketLayout } from '../shared';
+import { CrudApiService, ITicketLayout } from '../shared';
 
 @Injectable()
 export class TicketLayoutService extends CrudApiService<ITicketLayout> {
      GetAll() {
         return this.api.Search({ });
     }
-    protected filter(d: AdminFilter) {
+    protected filter() {
         return this.GetAll();
     }
 }
