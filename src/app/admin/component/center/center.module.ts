@@ -6,6 +6,7 @@ import { RichEditorModule } from '../../../x/ng/rich-editor/rich-editor.module';
 import { ServiceComponent } from './service/service.component';
 import { TFormComponent } from './tform/tform.component';
 import { LayoutComponent } from './layout/layout.component';
+import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { CenterComponent } from './center.component'
 import { VoiceComponent } from './voice/voice.component';
 
@@ -18,7 +19,7 @@ import { VoiceComponent } from './voice/voice.component';
         routing
     ],
     declarations: [
-        CenterComponent, 
+        CenterComponent, TicketLayoutComponent,
         LayoutComponent, ServiceComponent, 
         TFormComponent, VoiceComponent
     ]
