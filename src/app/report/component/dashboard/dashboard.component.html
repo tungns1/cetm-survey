@@ -7,8 +7,10 @@
         </div>
     </div>
     <report-sum class="summaryReport"></report-sum>
-    <div class="divider"></div>
-    <report-tab (select)="setActive($event) "></report-tab>
-    <report-chart></report-chart>
-    <report-overview></report-overview>
+    <div class="divider margin-30-0"></div>
+    <div class="border">
+        <report-tab (select)="setActive($event) "></report-tab>
+        <report-chart></report-chart>
+        <report-overview></report-overview>
+    </div>
 </div>

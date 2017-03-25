@@ -7,18 +7,20 @@
             <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction history</button>
         </div>
     </div>
-    <div class="searchNSummary" fxLayout="row">
+    <div class="searchNSummary border padding-25" fxLayout="row">
         <div fxFlex="60%">
             <customer-filter></customer-filter>
             <report-info [id]="customer_id"></report-info>
         </div>
-        <div fxFlex class="totalTrans">
+        <div fxFlex class="margin-l-25">
             <report-sum></report-sum>
         </div>
     </div>
-    <div class="divider"></div>
-    <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
-    <customer-chart></customer-chart>
-    <report-overview></report-overview>
-    <history [id]="customer_id"></history>
+    <div class="divider margin-30-0"></div>
+    <div class="border">
+        <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
+        <customer-chart></customer-chart>
+        <report-overview></report-overview>
+        <history [id]="customer_id"></history>
+    </div>
 </div>

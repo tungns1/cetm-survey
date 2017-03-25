@@ -1,23 +1,18 @@
-.cem-box {
-    border: 1px solid #b0b1b5;
-    margin: 20px 0px 0px 0px;
-    background-color: #fff;
-}
+@import '../../../styles/design/variables';
 #report{
-    $primary-color: #0b8fdb;
-    
     .paginNExport{
-        margin: 20px 0px 30px 0px;
+        line-height: 30px;
+        margin: 30px;
         .pagin{
             display: inline-block;
             button{
                 margin-right: 3px;
                 border: none;
                 background-color: transparent;
-                color: $primary-color;
+                color: $key-color;
             }
             .active{
-                font-weight: bold;
+                font-weight: $font-weight-default + 200;
             }
         }
         .export{

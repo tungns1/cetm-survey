@@ -1,30 +1,29 @@
+@import 'variables';
 
 /***************** Global *********************/
-$primary-color: #0b8fdb;
 
 
 // Buttons
 .btnClear{
     padding: 5px 10px;
-    border: solid;
-    border-width: 1px;
-    border-color: $primary-color;
+    border: $border;
+    border-color: $key-color;
     border-radius: 3px;
     width: 190px;
     background-color: transparent;
-    color: $primary-color;
-    font-weight: 500;
+    color: $key-color;
+    font-weight: $font-weight-default;
     cursor: pointer;
+    outline: none;
 }
 .btnFill{
     @extend .btnClear;
-    background-color: $primary-color;
+    background-color: $key-color;
     color: #fff;
 }
 // End of buttons
 // Accodion
 .accordionTitle{
-    font-size: 11px;
     padding: 0 5px;
     cursor: pointer;
     text-transform: uppercase;
@@ -34,17 +33,11 @@ $primary-color: #0b8fdb;
 .divider{
     width: 100%;
     height: 1px;
-    background-color: #a7a9ac;
-    margin: 30px 0;
-}
-.footer{
-    margin: 30px 0;
+    background-color: $border-color;
 }
 .leftFilter{
     padding-top: 50px;
-    border-right: solid;
-    border-width: 1px;
-    border-color: #a7a9ac;
+    border-right: $border;
     .filter{
         height: 78vh;
         .content{
@@ -65,8 +58,8 @@ $primary-color: #0b8fdb;
     padding: 0 35px;
     .header{
         display: inline-block;
-        font-size: 23px;
-        font-weight: 100;
+        font-size: $font-size-default * 2;
+        font-weight: $font-weight-default;
     }
     .nav{
         float: right;
@@ -75,13 +68,14 @@ $primary-color: #0b8fdb;
             margin-left: 12px;
         }
     }
-    .ctrlInput{
+    .border{
         border-radius: 3px;
-        border: 1px solid #a7a9ac;
+        border: $border;
+        background-color: #fff;
     }
     .tableCtrl{
         margin-top: 20px;
-        border: 1px solid #a7a9ac;
+        border: 1px solid $border-color;
         border-spacing: 0;
         border-radius: 3px;
         width: 100%;
@@ -89,7 +83,7 @@ $primary-color: #0b8fdb;
             text-align: left;
             th{
                 padding: 10px;
-                background-color: #dee0e0;
+                background-color: $background-color-title;
             }
         }
         tbody{
@@ -106,11 +100,11 @@ $primary-color: #0b8fdb;
 //End of UI elements
 // Modal
 .modal-header{
-    font-size: 14px;
-    font-weight: 600;
+    font-size: $font-size-default + 2;
+    font-weight: $font-weight-default + 200;
     text-align: center;
     padding: 10px;
-    background-color: #dee0e0;
+    background-color: $background-color-title;
     margin: 0px;
     text-transform: uppercase;
 }

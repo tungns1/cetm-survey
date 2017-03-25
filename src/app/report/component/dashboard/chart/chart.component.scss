@@ -1,6 +1,7 @@
+@import '../../../../../styles/design/variables';
 #chartReport {
-    border: 1px solid #a7a9ac;
-    height: 35vw;
+    border-top: $border;
+    height: 30vw;
     background-color: #fff;
     width: 100%;
     .chartType {
@@ -11,14 +12,12 @@
         margin: 20px 50px 0px 0px;
     }
     .chartOptions {
-        margin: 30px 40px;
         width: 80%;
         .option {
             float: left;
             margin: 10px;
             .checkBox {
                 float: left;
-                margin: 0 5px;
             }
         }
     }

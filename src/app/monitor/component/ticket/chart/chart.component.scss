@@ -1,9 +1,10 @@
 #monitorChart{
-    background-color: #fff;
-    border: 1px solid #a7a9ac;
-    border-radius: 3px;
-    height: 32vw;
+    height: 30vw;
     .chartHeader{
         text-align: center;
+    }
+    .legend{
+        position: relative;
+        top: 30px;
     }
 }

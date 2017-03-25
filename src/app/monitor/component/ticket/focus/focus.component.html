@@ -4,7 +4,7 @@
         <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
     </div>
 
-    <div class="overview" fxLayout="row" fxLayoutGap="30px">
+    <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Branch:</span>:
@@ -67,9 +67,11 @@
         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider margin-30-0"></div>
 
-    <monitor-chart [data]="data"></monitor-chart>
+    <div class="border">
+        <monitor-chart [data]="data"></monitor-chart>
+    </div>
 
     <h3 i18n>Customers are not served</h3>
 

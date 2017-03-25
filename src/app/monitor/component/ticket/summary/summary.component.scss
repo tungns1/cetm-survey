@@ -1,16 +1,17 @@
+@import '../../../../../styles/design/variables';
 #summaryComponent{
-    .tableCtrl{
-        margin: 0px;
+    // .tableCtrl{
+    //     margin: 0px;
         .branchSummary{
             cursor: pointer;
             &:hover{
-                background-color: #f4f4f4;
+                background-color: $background-color;
             }
         }
-    }
+    // }
     .warning {
         background-color: #ff5858;
         color: #fff;
-        font-weight: 600;
+        font-weight: $font-weight-default;
     }
 }

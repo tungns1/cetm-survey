@@ -1,3 +1,8 @@
+// @import 'design/palette';
+@import 'design/main';
+@import 'element/main';
+
+
 @import 'dialog';
 @import 'icon';
 @import 'toastr';
@@ -11,7 +16,7 @@
 body {
     font-family: sans-serif;
     margin: 0px;
-    color: #414042;
-    font-size: 11px;
-    background-color: #f4f4f4;
+    color: $text-color;
+    font-size: $font-size-default;
+    background-color: $background-color;
 }

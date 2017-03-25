@@ -1,17 +1,14 @@
+@import '../../../../../styles/design/variables';
 #cusHistory{
-    border: 1px solid #a7a9ac;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-top: none;
     width: 100%;
     table{
         border-spacing: 0px;
         width: 100%;
         th, td{
             padding: 10px;
-            border-bottom: 1px solid #a7a9ac;
+            border-top: $border;
             i{
-                color: #0b8fdb;
+                color: $key-color;
             }
         }
     }

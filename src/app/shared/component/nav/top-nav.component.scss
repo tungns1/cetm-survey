@@ -26,6 +26,7 @@
             position: relative;
             float: left;
             cursor: pointer;
+            outline: none;
             &:hover {
                 background: #a7a9ac;
                 >.secondLv {
@@ -49,6 +50,7 @@
                     border-bottom-color: #a7a9ac;
                     border-bottom-width: 1px;
                     cursor: pointer;
+                    outline: none;
                     &:hover {
                         background: #a7a9ac;
                     }

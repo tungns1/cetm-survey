@@ -1,31 +1,23 @@
+@import '../../../../styles/design/variables';
 #historyReport{
-    $primary-color: #0b8fdb;
-    $font-size: 11px;
     .filterHistory{
         .inputFilter{
             width: 2.5vw;
-            display: inline-block;
             margin-left: 1vw;
-            font-size: $font-size;
+            font-size: $font-size-default;
             text-indent: 5px;
         }
         form{
             width: 100%;
         }
         .feedback{
-            strong{
-                display: inline-block;
-            }
             select{
-                display: inline-block;
-                margin-left: 15px;
-                font-size: $font-size;
+                font-size: $font-size-default;
                 text-indent: 5px;
             }
         }
         .note{
-            font-size: $font-size - 1px;
-            margin-left: 5px;
+            font-size: $font-size-default - 1px;
         }
     }
 }

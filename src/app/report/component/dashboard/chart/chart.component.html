@@ -4,8 +4,8 @@
     <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
 
     <div class="hl-chart" *ngIf="isPie">
-        <div style="width:33%;height:300px;float:left;" *ngFor="let g of pieConfig.groups$ | async">
-            <div style="width:100%;height:300px;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
+        <div style="width:33%;height:22vw;float:left;" *ngFor="let g of pieConfig.groups$ | async">
+            <div style="width:100%;height:22vw;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
         </div>
     </div>
 
@@ -17,10 +17,10 @@
         <option value="pie" i18n>Pie Chart</option>
     </select>
 
-    <div class="chartOptions" *ngIf="!isPie">
+    <div class="chartOptions margin-30-40" *ngIf="!isPie">
         <div *ngFor=" let item of config.items$ | async " class="option">
             <div style="float:left;">
-                <div class="checkBox" [style.background-color]="item.active? item.color : ''">
+                <div class="checkBox margin-0-5" [style.background-color]="item.active? item.color : ''">
                     <input type="checkbox" [ngModel]="item.active " (ngModelChange)="config.Toggle(item) ">
                 </div>
                 <span style="font-size: 10px; "> {{item.title}}</span>
@@ -28,11 +28,11 @@
         </div>
     </div>
 
-    <div class="chartOptions" *ngIf="isPie">
+    <div class="chartOptions margin-30-40" *ngIf="isPie">
         <div *ngFor="let g of pieConfig.groups$ | async">
             <div *ngFor="let t of g.items" class="option">
                 <div style="float:left;">
-                    <div class="checkBox" [style.background-color]="t.active? t.color : ''">
+                    <div class="checkBox margin-0-5" [style.background-color]="t.active? t.color : ''">
                         <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
                     </div>
                     <span style="font-size: 10px;"> {{t.title}}</span>

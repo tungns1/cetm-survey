@@ -2,6 +2,10 @@
     display: none;
 }
 
+.inline{
+    display: inline-block;
+}
+
 .pointer {
     cursor: pointer;
     &:hover {
