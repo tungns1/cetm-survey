@@ -36,7 +36,6 @@ export class EditorComponent<T> {
     @Input() name: string;
     @Input() set service(s: CrudApiService<T>) {
         this.api = s;
-
         this.listView$ = this.api.RxListView;
     };
     @Input() makeForm: (u?: T) => FormGroup;

@@ -3,6 +3,7 @@ import { ServiceComponent } from './service/service.component';
 import { TFormComponent } from './tform/tform.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CenterComponent } from './center.component';
+import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 
 const children: Routes = [
   {
@@ -21,6 +22,10 @@ const children: Routes = [
   {
     path: 'layout',
     component: LayoutComponent
+  },
+   {
+    path: 'ticketlayout',
+    component: TicketLayoutComponent
   }
 ]
 

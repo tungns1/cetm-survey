@@ -8,6 +8,7 @@ export interface IKiosk {
     vcodes: string;
     services: IService[];
     layout_id: string;
+    tlayout_id: string;
     inheritable: boolean;
     parent_id: string;
 }

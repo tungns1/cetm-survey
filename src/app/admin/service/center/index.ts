@@ -4,6 +4,7 @@ import { TFormService } from './tform';
 import { ServiceService } from './service';
 import { LayoutService } from './layout';
 import { HttpServiceGenerator } from '../../shared';
+import { TicketLayoutService } from './ticket_layout';
 
 @Injectable()
 export class CenterService {
@@ -19,6 +20,10 @@ export class CenterService {
             this.nav,
             this.httpSG.make(this.Link.TForm)
         );
+        this.TicketLayoutService = new TicketLayoutService(
+            this.nav,
+            this.httpSG.make(this.Link.TicketLayout)
+        );
         this.ServiceService = new ServiceService(
             this.nav,
             this.httpSG.make(this.Link.Service)
@@ -31,10 +36,12 @@ export class CenterService {
 
     TFormService: TFormService;
     ServiceService: ServiceService;
+    TicketLayoutService: TicketLayoutService;
     LayoutService: LayoutService;
 
     Link = {
         TForm: '/api/admin/center/tform',
+        TicketLayout: '/api/admin/center/ticketlayout',
         Service: '/api/admin/center/service',
         Layout: '/api/admin/center/layout'
     }

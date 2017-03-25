@@ -63,7 +63,7 @@ export class MonitorTicketService {
             return AddToSet(initial, new Summary(s));
         }
         return this.summaryUpdate$.map(add);
-    });
+    }).share();
 
     private initialFocus$ = this.socket.Connected$.switchMap(_ => {
         return this.filterService.Data$.switchMap(filter => {

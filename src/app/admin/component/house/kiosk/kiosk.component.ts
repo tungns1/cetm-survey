@@ -18,6 +18,8 @@ export class KioskComponent {
     kiosks = this.service.RxListView.map(values => values.filter(v => v.inheritable));
     services = this.center.ServiceService.RxListView;
     layouts = this.center.LayoutService.GetByType('kiosk');
+    ticketlayouts = this.center.TicketLayoutService.GetAll();
+
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
@@ -29,6 +31,7 @@ export class KioskComponent {
             branch_id: [b.branch_id, Validators.required],
             vcodes: [b.vcodes],
             layout_id: [b.layout_id],
+            tlayout_id: [b.tlayout_id],
             parent_id: [b.parent_id],
             inheritable: [b.inheritable]
         });
