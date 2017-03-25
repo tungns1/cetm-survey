@@ -35,6 +35,11 @@
     height: 1px;
     background-color: $border-color;
 }
+.border{
+    border-radius: 3px;
+    border: $border;
+    background-color: #fff;
+}
 .leftFilter{
     padding-top: 50px;
     border-right: $border;
@@ -67,11 +72,6 @@
         .btnMargin{
             margin-left: 12px;
         }
-    }
-    .border{
-        border-radius: 3px;
-        border: $border;
-        background-color: #fff;
     }
     .tableCtrl{
         margin-top: 20px;

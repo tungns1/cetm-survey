@@ -1,7 +1,9 @@
-<div class="componentBorder emptyAndServing">
-    <div class="componentHeader">{{ticket.service_id | serviceName}}</div>
+<div class="border emptyAndServing">
+    <div class="componentHeader">
+        <span>{{ticket.service_id | serviceName}}</span>
+    </div>
 
-    <div fxLayout="row">
+    <div fxLayout="row" class="wrap">
         <div fxFlex="50%" class="leftBox">
             <div i18n>Serving ticket</div>
             <div class="content">

@@ -1,9 +1,12 @@
-<div *ngIf="!(busy$ | async)" class="componentBorder emptyAndServing">
-    <div class="componentHeader uppercase" i18n>Service name</div>
+<div *ngIf="!(busy$ | async)" class="border emptyAndServing">
+    <div class="componentHeader">
+        <span i18n>Service name</span>
+    </div>
 
-    <div fxLayout="row">
+    <div fxLayout="row" class="wrap">
         <div fxFlex="50%" class="leftBox" i18n>Serving ticket</div>
 
         <div fxFlex="50%" class="rightBox" i18n>Serving time</div>
     </div>
+    <!--<h1>aaaaaaaaaaaaaaa</h1>-->
 </div>

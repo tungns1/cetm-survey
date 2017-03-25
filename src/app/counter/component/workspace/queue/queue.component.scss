@@ -1,14 +1,16 @@
-.componentBorder{
+@import '../../../../../styles/design/variables';
+.border{
+    height: 100%;
     .totalCount{
-        color: #0b8fba;
+        color: $key-color;
     }
     .headerTable{
-        background-color: #f4f4f4;
-        border-bottom: 1px solid #a7a9ac;
-        font-weight: 600;
+        background-color: $background-color;
+        border-bottom: $border;
+        font-weight: $font-weight-default;
     }
     .row{
-        border-bottom: 1px solid #a7a9ac;
+        border-bottom: $border;
     }
     .cell{
         text-align: center;
@@ -16,7 +18,7 @@
         .icon{
             width: 15px;
             float: left;
-            margin: 0 10px 0 40px;
+            margin: 0 10px;
         }
         .ticketNum{
             float: left;
@@ -25,7 +27,7 @@
     .inputSearch{
         float: right;
         height: 25px;
-        border: 1px solid #a7a9ac;
+        border: $border;
         border-radius: 3px;
     }
     .iconSearch{
@@ -36,6 +38,6 @@
     }
 }
 .queue{
-    height: 33.7vh;
+    // height: 33.7vh;
     overflow: auto;
 }

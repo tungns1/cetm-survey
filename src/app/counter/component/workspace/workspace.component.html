@@ -1,12 +1,19 @@
-<div fxLayout="row" class="full" id="workSpace">
-    <div fxFlex="75%" id="leftWorkSpace">
-        <serving></serving>
-        <info-customer></info-customer>
-        <div fxLayout="row" fxLayoutGap="10px">
-            <waiting fxFlex></waiting>
-            <missed fxFlex></missed>
+<div id="workSpace" fxLayout="column">
+    <div fxFlex fxLayout="row" fxShow="false" fxShow.gt-md="true">
+        <div fxFlex="75%" id="leftWorkSpace" class="padding-20">
+            <serving></serving>
+            <info-customer></info-customer>
+            <div fxLayout="row" fxLayoutGap="10px" style="height: 47%">
+                <waiting fxFlex></waiting>
+                <missed fxFlex></missed>
+            </div>
         </div>
-        <div class="footer">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</div>
+        <sta fxFlex="25%" class="padding-20"></sta>
     </div>
-    <sta fxFlex="25%" id="rightWorkSpace"></sta>
+    <div fxFlex="5%" fxLayout="row" fxShow="false" fxShow.gt-md="true" class="footer">
+        <span fxFlex="75%" class="center">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</span>
+        <div fxFlex="25%"></div>
+    </div>
+    
+    <serving fxShow="true" fxShow.gt-md="false"></serving>
 </div>

@@ -1,35 +1,32 @@
+@import '../../../../../styles/design/variables';
 #sta{
-    height: 50vh;
+    height: 55%;
     overflow: auto;
     .tabs{
-        background-color: #f4f4f4;
         .tabCtrl{
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 5px;
+            background-color: $background-color;
         }
         .active{
-            color: #0190f0;
-            border-bottom: 3px solid #0190f0;
+            color: $key-color;
+            border-bottom: 3px solid $key-color;
         }
     }
 }
 #bar{
-    margin: 10px 15px;
     .label{
-        font-size: 10px;
+        font-size: $font-size-default - 1;
         margin: 10px 0px 5px;
     }
     .barBackground{
         width: 100%;
         height: 12px;
-        background-color: #dee0df;
+        background-color: $background-color-title;
         border-radius: 12px;
         .barGrap{
             height: 12px;
             text-align: right;
             border-radius: 12px;
-            background: linear-gradient(to right, #008eef, #03c2df);
+            background: linear-gradient(to right, $key-color, $key-color + 50);
             p{
                 color: #fff;
                 margin-right: 5px;
@@ -38,13 +35,13 @@
     }
 }
 #search{
-    margin-top: 15px;
-    height: 27.1vh;
-    padding: 15px;
+    margin-top: 3%;
+    height: 40%;
+    padding: 3%;
     overflow: auto;
     input{
         width: 100%;
-        border: 1px solid #a7a9ac;
+        border: $border;
         border-radius: 3px;
         height: 25px;
         font-size: 12px;
@@ -55,9 +52,6 @@
         width: 20px;
         position: relative;
         top: -25px;
-    }
-    .marginY{
-        margin: 10px 0;
     }
     .searchResult{
         .label{

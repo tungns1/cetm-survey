@@ -1,10 +1,11 @@
+@import '../../../../../styles/design/variables';
 #cusInfo{
-    min-height: 5vh;
+    height: 8%;
     span{
         margin: 10px;
-        font-size: 14px;
+        font-size: $font-size-default + 1;
     }
     .cusName{
-        color: #0b8fba;
+        color: $key-color;
     }
 }

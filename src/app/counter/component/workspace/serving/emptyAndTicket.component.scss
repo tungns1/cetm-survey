@@ -1,22 +1,32 @@
+@import '../../../../../styles/design/variables';
 .emptyAndServing{
-    .leftBox, .rightBox{
-        padding: 20px;
-        height: 22vh;
-        text-align: center;
-        font-size: 14px;
-    }
-    .rightBox{
-        border-left: 1px solid #a7a9ac;
-    }
-    .content{
-        margin-top: 12px;
-        .icon{
-            width: 40px;
-            margin: 0 10px;
+    height: 35%;
+    .wrap{
+        height: 85%;
+        .leftBox, .rightBox{
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: $font-size-default + 3;
         }
-        .number{
-            font-size: 70px;
-            color: #0190f0;
+        .rightBox{
+            border-left: $border;
+        }
+        .content{
+            margin-top: 12px;
+            .icon{
+                width: 40px;
+                margin: 0 10px;
+            }
+            .number{
+                font-size: $font-size-default * 7;
+                color: $key-color;
+            }
+            @media only screen and (max-width: 1200px) {
+                .number{
+                    font-size: $font-size-default * 4;
+                }
+            }
         }
     }
 }

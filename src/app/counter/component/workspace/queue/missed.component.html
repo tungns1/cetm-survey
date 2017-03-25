@@ -1,6 +1,6 @@
-<div class="componentBorder">
+<div class="border">
     <div class="componentHeader">
-        <span i18n>Missed Calls list</span> &nbsp;(<span class="total">{{count | async}}</span>)
+        <span i18n>Missed Calls list (</span><span class="total">{{count | async}}</span><span>)</span>
         <input #ticket [class.hidden]="!show" (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number" class="inputSearch">
         <img src="./assets/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" class="iconSearch">
     </div>

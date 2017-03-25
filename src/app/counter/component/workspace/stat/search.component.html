@@ -1,33 +1,33 @@
-<div id="search" class="componentBorder">
+<div id="search" class="border">
     <input type="text" class="" #tm i18n-placeholder="Search Ticket" (keyup.enter)="searchTicket(tm.value)">
     <img src="./assets/img/icon/search.png" (click)="searchTicket(tm.value)" alt="Search" class="iconSearch">
-    <div class="marginY">
+    <div class="margin-10-0">
         <span i18n>{{message}} </span>
         <span>{{cnum$ | async}}</span>
     </div>
     <div class="searchResult" *ngFor="let ticket of tickets$ | async">
         <div fxLayout="row">
-            <span class="marginY label" fxFlex i18n>Time of ticket printed</span>
-            <span class="marginY detail" fxFlex>{{ticket.ctime | localDayTime}}</span>
+            <span class="margin-10-0 label" fxFlex i18n>Time of ticket printed</span>
+            <span class="margin-10-0 detail" fxFlex>{{ticket.ctime | localDayTime}}</span>
         </div>
         <div fxLayout="row" [class.hidden]="!serving">
-            <span class="marginY label" fxFlex i18n>Time of ticket called</span>
-            <span class="marginY detail" fxFlex>{{ticket.mtime | localDayTime}}</span>
+            <span class="margin-10-0 label" fxFlex i18n>Time of ticket called</span>
+            <span class="margin-10-0 detail" fxFlex>{{ticket.mtime | localDayTime}}</span>
         </div>
         <div fxLayout="row">
-            <span class="marginY label" fxFlex i18n>Ticket status</span >
-            <span class="marginY detail" fxFlex i18n>{{ticket | ticketState}}</span>
+            <span class="margin-10-0 label" fxFlex i18n>Ticket status</span >
+            <span class="margin-10-0 detail" fxFlex i18n>{{ticket | ticketState}}</span>
         </div>
-        <h3 class="marginY" i18n>History</h3>
+        <h3 class="margin-10-0" i18n>History</h3>
         <div fxLayout="row" fxLayoutGap="10px">
-            <span fxFlex="20%" class="marginY" i18n>Time</span>
-            <span fxFlex class="marginY" i18n>Status</span>
-            <span fxFlex class="marginY" i18n>Service</span>
+            <span fxFlex="20%" class="margin-10-0" i18n>Time</span>
+            <span fxFlex class="margin-10-0" i18n>Status</span>
+            <span fxFlex class="margin-10-0" i18n>Service</span>
         </div>
         <div fxLayout="row" fxLayoutGap="10px" *ngFor="let t of ticket.tracks">
-            <span fxFlex="20%" class="marginY"> {{t.mtime | localDayTime}} </span>
-            <span fxFlex class="marginY" i18n> {{t | ticketState}} </span>
-            <span fxFlex class="marginY" title="t | ticketServiceName"> {{t | ticketServiceName}} </span>
+            <span fxFlex="20%" class="margin-10-0"> {{t.mtime | localDayTime}} </span>
+            <span fxFlex class="margin-10-0" i18n> {{t | ticketState}} </span>
+            <span fxFlex class="margin-10-0" title="t | ticketServiceName"> {{t | ticketServiceName}} </span>
         </div>
     </div>
 </div>

@@ -1,14 +1,14 @@
-<div id="sta" class="componentBorder">
+<div id="sta" class="border">
     <div class="componentHeader">
         <span i18n>Transaction summary</span>
     </div>
     <div fxLayout="row" class="tabs">
-        <div fxFlex class="tabCtrl" [class.active]="showFinished$ | async" (click)="showFinished()">
+        <div fxFlex class="tabCtrl center padding-5" [class.active]="showFinished$ | async" (click)="showFinished()">
             &nbsp;<span i18n>Finished transaction</span>
             <!-- <span class="hl-count">{{fc | async}}</span>) &nbsp;-->
             <span>&nbsp; ({{fcount$ | async}}) &nbsp; </span>
         </div>
-        <div fxFlex class="tabCtrl" [class.active]="showCancelled$ | async" (click)="showCancelled()">
+        <div fxFlex class="tabCtrl center padding-5" [class.active]="showCancelled$ | async" (click)="showCancelled()">
             <span i18n>Cancelled transactions</span>
             <!--<span class="hl-count">&nbsp;({{cc | async}}) &nbsp;</span>-->
             <span>&nbsp;({{ccount$ | async}}) &nbsp;</span>
