@@ -12,14 +12,14 @@ app-counter {
         height: 92.5vh;
         #leftWorkSpace {
             border-right: $border;
-            .btnRed {
-                background-color: #f53e30;
-                border: 1px solid #f53e30;
-            }
-            .btnGreen {
-                background-color: #01947a;
-                border: 1px solid #01947a;
-            }
+        }
+        .btnRed {
+            background-color: #f53e30;
+            border: 1px solid #f53e30;
+        }
+        .btnGreen {
+            background-color: #01947a;
+            border: 1px solid #01947a;
         }
         .componentHeader {
             border-bottom: $border;

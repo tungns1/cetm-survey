@@ -26,6 +26,7 @@
     "@angular/router": "^4.0.0-rc.2",
     "@swimlane/ngx-charts": "^4.2.1",
     "angular-io-slimscroll": "^1.2.0",
+    "angular2-csv": "^0.2.1",
     "core-js": "^2.4.1",
     "d3": "^4.7.0",
     "ng2-quill-editor": "^1.1.1",
