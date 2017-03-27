@@ -7,7 +7,7 @@
     </div>
     <div class="searchResult" *ngFor="let ticket of tickets$ | async">
         <div fxLayout="row">
-            <span class="margin-10-0 label" fxFlex i18n>Time of ticket printed</span>
+            <span class="margin-10-0 label" fxFlex i18n>Print time</span>
             <span class="margin-10-0 detail" fxFlex>{{ticket.ctime | localDayTime}}</span>
         </div>
         <div fxLayout="row" [class.hidden]="!serving">

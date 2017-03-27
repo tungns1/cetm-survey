@@ -26,13 +26,13 @@ export const MainItems: ChartItem[] = [{
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    key_title: 'Time Wait',
+    key_title: 'Wait time',
     axis: 'left'
 }, {
     field: 's_st_h',
     tab: 'time',
     color: 'green',
-    key_title: 'Time Serving'
+    key_title: 'Serving time'
 }, {
     field: 'c_r_a',
     tab: 'customer',
@@ -89,13 +89,13 @@ export const PieItems: ChartItem[][] = [[{
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    key_title: 'Time wait',
+    key_title: 'Wait time',
     axis: 'left'
 }, {
     field: 's_st_h',
     tab: 'time',
     color: 'green',
-    key_title: 'Time serving'
+    key_title: 'Serving time'
 }], [{
     field: 'c_r',
     color: '#99b3ff',
