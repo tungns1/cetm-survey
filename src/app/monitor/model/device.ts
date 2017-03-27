@@ -8,9 +8,6 @@ export interface IDevice {
     data: Object;
     mtime: number;
 }
-export interface IDevices {
-    [index: string]: IDevice;
-}
 
 
 
