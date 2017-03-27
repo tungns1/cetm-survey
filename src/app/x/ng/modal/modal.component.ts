@@ -14,8 +14,7 @@ export class ModalFooterComponent {}
 
 @Component({
     selector: 'modal',
-    templateUrl: 'modal.component.html',
-    styleUrls: ['modal.component.scss']
+    templateUrl: 'modal.component.html'
 })
 export class ModalComponent {
     opened = false;
