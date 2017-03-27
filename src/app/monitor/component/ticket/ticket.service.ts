@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ISubscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IExtendedTicket, ITickets, ISummary, Summary, IDevice } from '../../model';
+import { IExtendedTicket, ITickets, ISummary, Summary, IDevice ,IDevices} from '../../model';
 
 
 import {
@@ -19,7 +19,7 @@ interface IFocusReply {
     counters: ICounter[];
     users: IUser[];
     tickets: ITickets;
-    counter_state: IDevice[];
+    counter_state: IDevices;
 }
 
 const MonitorSocketLink = "/room/monitor/join";
@@ -98,15 +98,18 @@ export class MonitorTicketService {
 
 
     counter$ = this.initialFocus$
-        .map(data => data ? data.counter_state : [])
+        .map(data => data ? data.counter_state : {})
         .switchMap(counters => {
             return this.counterUpdate$.map(t => {
                 if (t) {
-                    counters[t.id] = t;
+                    counters[t.device_id] = t;
                 }
                 return counters;
             });
+        }).map(counters => {
+            return Object.keys(counters).map(id => counters[id]);
         });
+
 
 
     Unfocus() {
