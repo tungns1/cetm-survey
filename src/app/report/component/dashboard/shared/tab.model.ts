@@ -7,7 +7,7 @@ export const MAIN_TABS = {
     },
     TIME: {
         name: 'time',
-        title: 'Time Transaction'
+        title: 'Transaction Time'
     },
     CUSTOMER: {
         name: 'customer',

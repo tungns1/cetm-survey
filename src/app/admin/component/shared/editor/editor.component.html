@@ -1,5 +1,5 @@
 <div class="hl-title-edittor">
-    <div i18n>List of {{name}}</div>
+    <div i18n class="uppercase">List Of {{name}}</div>
     <button class="hl-add-editor uppercase btpointer" (click)="onAdd()">
         <span i18n>Add {{name}}</span>
     </button>
@@ -9,7 +9,7 @@
     <thead class="hl-thr-editor">
         <td class="col-header"> <span i18n="Ordered number in table">No.</span> </td>
         <td class="col-header" *ngFor="let fi of listFields">{{fi.title}}</td>
-        <td class="col-header" i18n>Delete</td>
+        <td class="col-header" i18n>Edit/Delete</td>
     </thead>
     <tr *ngFor="let da of listView$ | async; let i = index">
         <td class="col-center">{{i+1}}</td>
@@ -43,7 +43,7 @@
 
 <modal #remove class="modal-answer">
     <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
-        <span i18n="Confirm delete">Do you want to delete this?</span>
+        <span i18n="Confirm delete">Do you want to delete the selected item?</span>
     </div>
     <div style="float: right;margin-right: 40px">
         <button class="hl-yes-editor btpointer" (click)="Delete()">  <span i18n="Confirm yes">Yes</span></button>

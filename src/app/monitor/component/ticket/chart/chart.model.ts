@@ -19,7 +19,7 @@ export const PieItems: ChartItem[][] =
         {
             field: 'cancelled',
             color: '#6f6f6f',
-            key_title: 'Cancel transaction'
+            key_title: 'Cancelled transaction'
         }, 
         {
             field: 'waiting',
@@ -42,12 +42,12 @@ export const PieItems: ChartItem[][] =
             header: 'Exceeded waiting time transaction',
             field: 'waiting',
             color: '#65c553',
-            key_title: 'Finish transaction'
+            key_title: 'Finished transaction'
         }, 
         {
             field: 'wait_long',
             color: '#fcff47',
-            key_title: 'Cancel transaction'
+            key_title: 'Cancelled transaction'
         }
     ],
     [
@@ -55,11 +55,11 @@ export const PieItems: ChartItem[][] =
             header: 'Ticket serve lessv 2 minute\'',
             field: 'finished',
             color: '#65c553',
-            key_title: 'Finish transaction'
+            key_title: 'Finished transaction'
         }, {
             field: 'serve_short',
             color: '#fcff47',
-            key_title: 'Cancel transaction'
+            key_title: 'Cancelled transaction'
         }
     ]
 ];
