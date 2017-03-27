@@ -1,43 +1,45 @@
 @import '../../../../../styles/design/variables';
-.border{
+.border {
     height: 100%;
-    .totalCount{
+    .totalCount {
         color: $key-color;
     }
-    .headerTable{
+    .headerTable {
         background-color: $background-color;
         border-bottom: $border;
         font-weight: $font-weight-default;
     }
-    .row{
+    .row {
         border-bottom: $border;
     }
-    .cell{
+    .cell {
         text-align: center;
         margin: 7px;
-        .icon{
+        .icon {
             width: 15px;
             float: left;
             margin: 0 10px;
         }
-        .ticketNum{
+        .ticketNum {
             float: left;
         }
     }
-    .inputSearch{
+    .inputSearch {
         float: right;
         height: 25px;
         border: $border;
         border-radius: 3px;
     }
-    .iconSearch{
+    .iconSearch {
         cursor: pointer;
         width: 20px;
         float: right;
         margin: 7px;
     }
 }
-.queue{
+
+.queue {
     // height: 33.7vh;
     overflow: auto;
+    height: 85%;
 }
