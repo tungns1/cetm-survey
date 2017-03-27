@@ -20,6 +20,7 @@ export class StoreChartComponent {
     showLegend = true;
     showXAxisLabel = true;
     showYAxisLabel = true;
+    padding = 8;
 
 
     colorScheme = {
@@ -29,6 +30,25 @@ export class StoreChartComponent {
     constructor(private chartService: ChartService) {
         this.chartService.RxStore.subscribe(v=>{
             this.single=v;
+            switch (this.single.length){
+                case 1:
+                this.padding = 3000;
+                break;
+                case 2:
+                this.padding = 500;
+                break;
+                case 3:
+                this.padding = 200;
+                break;
+                case 4:
+                this.padding = 100;
+                break;
+                case 5:
+                this.padding = 50;
+                break;
+                default:
+                this.padding = 8;
+            }
         })
     }
 
