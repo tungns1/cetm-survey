@@ -20,14 +20,12 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
   SetTicket(t: ITicket) {
-    this.isModal = true;
     this.ticket = t;
     this.checkedCounters = [];
     this.checkedServices = [];
     this.isServing = t.state === TicketStates.Serving;
     this.isWaiting = t.state === TicketStates.Waiting;
     this.isMissed = t.state === TicketStates.Missed;
-
   }
   private ticket: ITicket = <any>{};
   close = new EventEmitter();
@@ -96,7 +94,7 @@ export class TicketDetailDialog {
     this.isRemove = false;
   }
   Close() {
-    this.isModal = false;
+    this.ticket = null;
   }
 
   Delete() {

@@ -1,66 +1,78 @@
-<div class="modal" *ngIf="isModal">
-    <div class="dialog" style="padding: 25px 25px 0px 25px;width: 300px; position:absolute;">
-        <div class="hl-tl-ticket" i18n>Ticket detail</div>
-        <div style="margin-top: 50px;">
-            <div class="hl-info-ticket"><span i18n>Ticket number</span> <span style="font-size:18px;">{{ticket.cnum}}</span></div>
-            <div class="hl-info-ticket hidden" i18n> Priority:{{ticket.priority}}</div>
-            <div class="hl-info-ticket"><span i18n>Time of ticket printed</span> {{ticket.ctime | localDayTime}}</div>
-            <hr>
+<div class="modal" *ngIf="ticket && !(isRemove || isAlert)">
+    <div id="ticketDetail" class="modal-dialog">
+        <div class="modal-header" i18n>Ticket detail</div>
+        <div class="modal-body padding-10-20">
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Ticket number:</label>
+                <span fxFlex>{{ticket.cnum}}</span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Priority:</label>
+                <span fxFlex>{{ticket.priority}}</span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Time of ticket printed:</label>
+                <span fxFlex>{{ticket.ctime | localDayTime}}</span>
+            </div>
+            <div class="divider margin-10-0"></div>
 
-            <div *ngIf="isServing" style="margin-bottom:10px;">
-                <div><span i18n>Start serving</span> {{ticket.mtime | localDayTime}}</div>
-                <br> <span i18n>Transfer service</span>
-                <div class="hl-dichvu-ticket">
-                    <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name">
-                    </select-check>
+            <div *ngIf="isServing">
+                <div fxLayout="row" class="margin-10-0">
+                    <label fxFlex i18n>Start serving:</label>
+                    <span fxFlex>{{ticket.mtime | localDayTime}}</span>
+                </div>
+                <label class="margin-t-10" i18n>Transfer service:</label>
+                <select-check class="margin-t-10" [(ngModel)]="checkedServices" 
+                    [data]="services | async" textField="name"></select-check>
+            </div>
+
+            <div *ngIf="isMissed">
+                <div fxLayout="row" class="margin-t-10">
+                    <label fxFlex i18n>Missing time:</label>
+                    <span fxFlex>{{ticket.mtime | localDayTime}}</span>
                 </div>
             </div>
+            <label class="margin-t-10" i18n>Transfer Counter</label>
+            <select-check class="margin-t-10" [(ngModel)]="checkedCounters" 
+                    [data]="counters | async" textField="name"></select-check>
 
-            <div *ngIf="isMissed" style="margin-bottom:10px;">
-                <span i18n>Missing time</span> {{ticket.mtime | localDayTime}}
+            <div *ngIf="isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
+                <button fxFlex class="btnFill" (click)="Close()" i18n>Close</button>
+
+                <button fxFlex class="btnFill btnGreen" (click)="Move()" i18n>Move</button>
+
+                <button fxFlex class="btnFill" (click)="Recall()" i18n>Recall</button>
+
+                <button fxFlex class="btnFill btnRed" (click)="OpenRemove()" i18n>Delete</button>
             </div>
-            <span i18n>Transfer Counter</span>
-            <div class="hl-dichvu-ticket">
-                <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name">
-                </select-check>
-            </div>
+            <div *ngIf="!isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
+                <button fxFlex class="btnFill" (click)="Close()" i18n>Close</button>
 
-            <div style="margin: 30px 0px 20px 0px;" *ngIf="isMissed">
-                <button class="hl-close-ticket hl-miss-ticket button-ticket" (click)="Close()" i18n>Close</button>
+                <button fxFlex class="btnFill btnGreen" (click)="Move()" i18n>Move</button>
 
-                <button class="hl-move-ticket hl-big-ticket button-ticket" (click)="Move()" i18n>Move</button>
-
-                <button class="hl-recall-ticket hl-big-ticket button-ticket" (click)="Recall()" i18n>Recall</button>
-
-                <button class="hl-delete-ticket hl-miss-ticket button-ticket" (click)="OpenRemove()" i18n>Delete</button>
-            </div>
-            <div style="margin: 30px 0px 20px 0px;" *ngIf="!isMissed">
-                <button class="hl-close-ticket hl-nomiss-ticket button-ticket" (click)="Close()" i18n>Close</button>
-
-                <button class="hl-move-ticket hl-nomiss-ticket button-ticket" (click)="Move()" i18n>Move</button>
-
-                <button class="hl-delete-ticket hl-nomiss-ticket button-ticket" (click)="OpenRemove()" i18n>Delete</button>
+                <button fxFlex class="btnFill btnRed" (click)="OpenRemove()" i18n>Delete</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal" *ngIf="isRemove">
-        <div class="dialog">
-            <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
-                <span i18n>Do you want to delete?</span>
-            </div>
-            <div style="float: right;margin-right: 40px">
-                <button class="hl-yes-editor btpointer" (click)="Delete()">  <span i18n>Yes</span></button>
-                <button class="hl-no-editor btpointer" (click)="CloseRmove()"> <span i18n>No</span></button>
+<div class="modal" *ngIf="isRemove || isAlert">
+    <div class="modal-dialog">
+        <div class="modal-header" i18n>Alert</div>
+        <div *ngIf="isRemove" class="modal-body padding-10-20">
+            <span class="center margin-t-10" i18n>Do you want to delete?</span>
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-10">
+                <button fxFlex class="btnFill btnRed" (click)="Delete()" i18n>Yes</button>
+                <button fxFlex class="btnFill" (click)="CloseRmove()" i18n>No</button>
             </div>
         </div>
-    </div>
-
-    <div class="modal" *ngIf="isAlert">
-        <div class="dialog">
-            <div style="text-align: center;color: red;font-size:18px;font-weight:700;" i18n>{{title}}</div>
-            <p style="text-align: center;font-size:13px;" i18n>{{message}}</p>
-            <button class="hl-close-ticket button-ticket" (click)="CloseAlert()" style="float:right; height:25px;" i18n>Yes</button>
+        <div *ngIf="isAlert" class="modal-body padding-10-20">
+            <h3 class="center margin-t-10" i18n>{{title}}</h3>
+            <p class="center margin-t-10" i18n>{{message}}</p>
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-10">
+                <div fxFlex></div>
+                <button fxFlex class="btnFill" (click)="CloseAlert()" i18n>Yes</button>
+            </div>
         </div>
     </div>
 </div>
