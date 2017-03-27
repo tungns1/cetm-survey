@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ISubscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IExtendedTicket, ITickets, ISummary, Summary } from '../../model';
+import { IExtendedTicket, ITickets, ISummary, Summary, IDevice ,IDevices} from '../../model';
+
 
 import {
     MonitorFilterService,
@@ -18,6 +19,7 @@ interface IFocusReply {
     counters: ICounter[];
     users: IUser[];
     tickets: ITickets;
+    counter_state: IDevices;
 }
 
 const MonitorSocketLink = "/room/monitor/join";
@@ -78,6 +80,8 @@ export class MonitorTicketService {
     }).share();
 
     private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
+    private counterUpdate$ = this.socket.RxEvent<IDevice>("/counter_track/update").startWith(null);
+
 
     tickets$ = this.initialFocus$
         .map(data => data ? data.tickets : {})
@@ -91,6 +95,22 @@ export class MonitorTicketService {
         }).map(tickets => {
             return Object.keys(tickets).map(id => tickets[id]);
         });
+
+
+    counter$ = this.initialFocus$
+        .map(data => data ? data.counter_state : {})
+        .switchMap(counters => {
+            return this.counterUpdate$.map(t => {
+                if (t) {
+                    counters[t.device_id] = t;
+                }
+                return counters;
+            });
+        }).map(counters => {
+            return Object.keys(counters).map(id => counters[id]);
+        });
+
+
 
     Unfocus() {
         this.socket.Send("/focus", {}).subscribe();

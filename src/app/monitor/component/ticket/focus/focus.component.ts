@@ -29,12 +29,11 @@ export class FocusComponent {
     isServed: boolean = true;
     data: Summary;
     customer: ICustomer;
-    // waitingCount = 0;
 
 
     ngOnInit() {
         this.focus$.subscribe(d => this.data = d[0]);
-        // this.waiting$.subscribe(data => this.waitingCount = data.length);
+
     }
 
     ngOnDestroy() {
@@ -48,8 +47,28 @@ export class FocusComponent {
         })
     })
 
+    numberCounter$ = this.ticketService.counter$.map(v => {
+        return v.length;
+    });
+
+    numberCounterOff$ = this.ticketService.counter$.map(v => v.filter(v => {
+        if (v.state === "Off") {
+            return v;
+        }
+    })).map(v => {
+        return v.length;
+    });
+    numberCounterOn$ = this.ticketService.counter$.map(v => v.filter(v => {
+        if(v.state ==="On"){
+             return v;
+        }
+    })).map(v => {
+        return v.length;
+    });
+
     waiting$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => {
+            console.log(t);
             if (t.state === TicketStates.Waiting) {
                 for (let i = 0; i < t.tracks.length; i++) {
                     if (t.tracks[i].state === 'waiting') {
