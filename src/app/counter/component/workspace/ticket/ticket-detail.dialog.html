@@ -17,7 +17,7 @@
             <div class="divider margin-10-0"></div>
 
             <div *ngIf="isServing">
-                <div fxLayout="row" class="margin-t-10">
+                <div fxLayout="row" class="margin-10-0">
                     <label fxFlex i18n>Start serving:</label>
                     <span fxFlex>{{ticket.mtime | localDayTime}}</span>
                 </div>
@@ -32,7 +32,7 @@
                     <span fxFlex>{{ticket.mtime | localDayTime}}</span>
                 </div>
             </div>
-            <span class="margin-t-10" i18n>Transfer Counter</span>
+            <label class="margin-t-10" i18n>Transfer Counter</label>
             <select-check class="margin-t-10" [(ngModel)]="checkedCounters" 
                     [data]="counters | async" textField="name"></select-check>
 
