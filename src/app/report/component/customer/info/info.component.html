@@ -1,7 +1,7 @@
 <div class="margin-t-10">
     <div fxLayout="row" class="padding-10-0">
         <span class="padding-r-10" i18n fxFlex="25%">Customer Name</span>
-        <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.full_name}}</b>
+        <b fxFlex="25%" *ngIf="data && customer; let c">{{c.full_name}}</b>
         <div fxFlex="25%" *ngIf="!(data && customer)"></div>
         <span class="padding-r-10" i18n fxFlex="28%">Most Used Service</span>
         <b *ngIf="data && service" fxFlex="22%">{{service.name}}&nbsp;{{service.value}}/{{data.c_t}}</b>
@@ -9,7 +9,7 @@
     </div>
     <div fxLayout="row" class="padding-10-0">
         <span class="padding-r-10" i18n fxFlex="25%">Code/ID</span>
-        <b fxFlex="25%" *ngIf="customer | async; let c">{{c.code}}</b>
+        <b fxFlex="25%" *ngIf="customer; let c">{{c.code}}</b>
         <div fxFlex="25%" *ngIf="!(data && customer)"></div>
         <span class="padding-r-10" i18n fxFlex="28%">Most frequent store</span>
         <b *ngIf="data && store" fxFlex="22%">{{store.name}}&nbsp;{{store.value}}/{{data.c_t}}</b>
@@ -17,11 +17,11 @@
     </div>
     <div fxLayout="row" class="padding-10-0">
         <span class="padding-r-10" i18n fxFlex="25%">Phone number</span>
-        <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.phone_number}}</b>
+        <b fxFlex="25%" *ngIf="data && customer; let c">{{c.phone_number}}</b>
     </div>
     <div fxLayout="row" class="padding-10-0">
         <span class="padding-r-10" i18n fxFlex="25%">Segment</span>
-        <b fxFlex="25%" *ngIf="data && customer | async; let c">{{c.segment}}</b>
+        <b fxFlex="25%" *ngIf="data && customer; let c">{{c.segment}}</b>
 
     </div>
 </div>

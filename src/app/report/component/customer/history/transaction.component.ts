@@ -39,7 +39,6 @@ export class TransactionComponent implements OnInit {
         this.state=d.state.charAt(0).toUpperCase() + d.state.slice(1);
         this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
             this.customer = v;
-            console.log(this.customer);
         });
     }
 

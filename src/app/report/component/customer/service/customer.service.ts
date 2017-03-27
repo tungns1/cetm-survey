@@ -60,16 +60,10 @@ export class CustomerAPI {
         });
     }
     GetInfoCustomerByCode(code: string) {
-        RxInfoCustomer.next(null);
-        return this.apiCustomer.Get<ICustomer>("get_customer_by_code", { code: code }).subscribe(v => {
-            RxInfoCustomer.next(v);
-        });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_code", { code: code });
     }
     GetInfoCustomerById(id: string) {
-        RxInfoCustomer.next(null);
-        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: id }).subscribe(v => {
-            RxInfoCustomer.next(v);
-        });
+        return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: id });
     }
 
 

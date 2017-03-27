@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomerAPI } from './service/customer.service';
+import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
 
 @Component({
     selector: 'customer',
@@ -13,15 +13,17 @@ export class CustomerComponent {
         private route: ActivatedRoute
     ) { }
 
-    customer_id :string;
-    
+    customer_id: string;
     ngOnInit() {
+        RxInfoCustomer.next(null);
         let id = this.route.snapshot.params['id'];
         if (id) {
             this.customer_id = id;
-            this.customerApi.Search('',this.customer_id);
-            this.customerApi.GetInfoCustomerById(this.customer_id);
+            this.customerApi.Search('', this.customer_id);
+            this.customerApi.GetInfoCustomerById(this.customer_id).subscribe(v => {
+                RxInfoCustomer.next(v);
+            });
         }
     }
-    
+
 }
