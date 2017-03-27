@@ -3,7 +3,7 @@
         <div class="modal-header" i18n>Ticket detail</div>
         <div class="modal-body padding-10-20">
             <div fxLayout="row" class="margin-t-10">
-                <label fxFlex i18n>Ticket number:</label>
+                <label fxFlex i18n>Ticket:</label>
                 <span fxFlex>{{ticket.cnum}}</span>
             </div>
             <div fxLayout="row" class="margin-t-10">
@@ -22,8 +22,7 @@
                     <span fxFlex>{{ticket.mtime | localDayTime}}</span>
                 </div>
                 <label class="margin-t-10" i18n>Transfer service:</label>
-                <select-check class="margin-t-10" [(ngModel)]="checkedServices" 
-                    [data]="services | async" textField="name"></select-check>
+                <select-check class="margin-t-10" [(ngModel)]="checkedServices" [data]="services | async" textField="name"></select-check>
             </div>
 
             <div *ngIf="isMissed">
@@ -33,8 +32,7 @@
                 </div>
             </div>
             <label class="margin-t-10" i18n>Transfer Counter</label>
-            <select-check class="margin-t-10" [(ngModel)]="checkedCounters" 
-                    [data]="counters | async" textField="name"></select-check>
+            <select-check class="margin-t-10" [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
 
             <div *ngIf="isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
                 <button fxFlex class="btnFill" (click)="Close()" i18n>Close</button>
