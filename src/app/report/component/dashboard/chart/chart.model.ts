@@ -21,7 +21,7 @@ export const MainItems: ChartItem[] = [{
     field: 'c_ct',
     color: '#969c9c',
     tab: 'general',
-    key_title: 'Cancel Transaction'
+    key_title: 'Cancelled Transaction'
 }, {
     field: 's_wt_h',
     tab: 'time',
@@ -64,7 +64,7 @@ export const PieItems: ChartItem[][] = [[{
     field: 'c_ct',
     color: '#969c9c',
     tab: 'general',
-    key_title: 'Cancel Transaction'
+    key_title: 'Cancelled Transaction'
 }], [{
     field: 'c_bwt',
     color: '#339933',
@@ -105,7 +105,7 @@ export const PieItems: ChartItem[][] = [[{
     field: 'c_r_o',
     color: '#969c9c',
     tab: 'customer',
-    key_title: 'Transaction No Feedback'
+    key_title: 'Transaction without feedback'
 }], [{
     field: 'c_r_a',
     tab: 'customer',
