@@ -8,9 +8,8 @@
         <div *ngFor="let item of itemGroup">
             <div *ngFor="let t of item">
                 <div style="float:left;" class="margin-7-20">
-                    <div style="float:left; margin: 0 10px;" [style.background-color]="t._hidden? '':t.color ">
-                        <input type="checkbox" [ngModel]="!t._hidden " (ngModelChange)="TogglePie(t)">
-                    </div>
+                    <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" 
+                    [style.background-color]="t._hidden? '':t.color "></div>
                     <span style="font-size: 12px;"> {{t.title}}</span>
                 </div>
             </div>

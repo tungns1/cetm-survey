@@ -19,25 +19,25 @@
                 <span>Nguyễn Sỹ Trung</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Sum counter:</span>
+                <span i18n>Total counter:</span>
                 <span> {{numberCounter$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Sum counter is on:</span>
+                <span i18n>Total counter on:</span>
                 <span> {{numberCounterOn$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Sum counter off:</span>
+                <span>Total counter off:</span>
                 <span>{{numberCounterOff$ | async}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Printed ticket:</span>
+                <span i18n>Print ticket:</span>
                 <span>{{data.printed}}</span>
             </div>
         </div>
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of tickets waiting:</span>
+                <span i18n>Number of waiting tickets:</span>
                 <span>{{data.waiting}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -57,11 +57,11 @@
                 <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving over 15':</span>
+                <span i18n>Waiting over 15':</span>
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving under 2':</span>
+                <span i18n>Serving over 15':</span>
                 <span>{{data.serve_short}}</span>
             </div>
         </div>
@@ -73,7 +73,7 @@
         <monitor-chart [data]="data"></monitor-chart>
     </div>
 
-    <h3 i18n>Customers are not served</h3>
+    <h3 i18n>Services incomplete</h3>
 
     <table class="tableCtrl">
         <thead>
@@ -81,7 +81,7 @@
             <th i18n>Service name</th>
             <th i18n>Ticket number</th>
             <th i18n>Customer</th>
-            <th i18n>Time of ticket printed</th>
+            <th i18n>Print time</th>
             <th i18n>Waiting time</th>
             <th i18n>Detail</th>
         </thead>
@@ -106,7 +106,7 @@
         </tbody>
     </table>
 
-    <h3 i18n>Customers have been served</h3>
+    <h3 i18n>Services completed</h3>
 
     <table class="tableCtrl">
         <thead>
@@ -116,7 +116,7 @@
             <th i18n>Tellers</th>
             <th i18n>Ticket number</th>
             <th i18n>Customer</th>
-            <th i18n>Time of ticket printed</th>
+            <th i18n>Print time</th>
             <th i18n>Waiting time</th>
             <th i18n>Serving time</th>
             <th i18n>Detail</th>
@@ -174,7 +174,7 @@
                 </th>-->
             </tr>
             <tr>
-                <th i18n>Time of ticket printed</th>
+                <th i18n>Print time</th>
                 <th>{{selectedTicket.ctime | localDayTime}}</th>
             </tr>
             <tr>
@@ -225,15 +225,15 @@
         </div>-->
         <table *ngIf="customer">
             <tr>
-                <th i18n>Name counter</th>
+                <th i18n>Counter name</th>
                 <th> {{customer.full_name }}</th>
             </tr>
             <tr>
-                <th i18n>Code ID</th>
+                <th i18n>Code/ID</th>
                 <th> {{customer.code }}</th>
             </tr>
             <tr>
-                <th i18n>Number phone</th>
+                <th i18n>Phone number</th>
                 <th> {{customer.phone_number }}</th>
             </tr>
             <tr>

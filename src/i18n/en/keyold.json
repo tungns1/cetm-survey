@@ -181,7 +181,7 @@
         "FROM_NUMBER": "From number",
         "TO_NUMBER": "To number",
         "DETAIL": "Detail",
-        "TICKET_PRINTED_TIME": "Ticket printed time",
+        "TICKET_PRINTED_TIME": "Ticket print time",
         "NUMERICAL_ORDER": "Number",
         "TICKET_DETAIL": "Ticket detail"
     },

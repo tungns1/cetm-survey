@@ -2,8 +2,8 @@
 
     <table *ngIf="store$ | async">
         <thead>
-            <th i18n>Name store</th>
-            <th i18n>Number transaction </th>
+            <th i18n>Store name</th>
+            <th i18n>Number of transaction </th>
         </thead>
         <tbody>
             <tr *ngFor="let s of stores">
@@ -48,7 +48,7 @@
     <table *ngIf="service$ | async">
         <thead>
             <th i18n>Service name</th>
-            <th i18n>Number transaction</th>
+            <th i18n>Number of transaction</th>
         </thead>
         <tbody>
 
@@ -63,7 +63,7 @@
     <table *ngIf="frequency$ | async">
         <thead>
             <th i18n>Month</th>
-            <th i18n>Number transaction</th>
+            <th i18n>Number of transaction</th>
         </thead>
         <tbody>
             <tr *ngFor="let s of fres">
