@@ -24,9 +24,9 @@ export class HistoryComponent {
     }
     pagin(page: number) {
         this.customerAPI.RxSummaryView.subscribe(v => {
-            this.id = v.customer_id;
+             this.customerAPI.pagin(page,'', v.customer_id);
         });
-        this.customerAPI.pagin(page,'', this.id);
+       
     }
 
 

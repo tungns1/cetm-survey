@@ -20,15 +20,15 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Sum counter:</span>
-                <span>4</span>
+                <span> {{numberCounter$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Sum counter is on:</span>
-                <span>2</span>
+                <span> {{numberCounterOn$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span>Sum counter off:</span>
-                <span>2</span>
+                <span>{{numberCounterOff$ | async}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Printed ticket:</span>
