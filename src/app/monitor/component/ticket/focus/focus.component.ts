@@ -68,7 +68,6 @@ export class FocusComponent {
 
     waiting$ = this.ticketService.tickets$
         .map(tickets => tickets.filter(t => {
-            console.log(t);
             if (t.state === TicketStates.Waiting) {
                 for (let i = 0; i < t.tracks.length; i++) {
                     if (t.tracks[i].state === 'waiting') {
@@ -192,7 +191,6 @@ export class FocusComponent {
     }
 
     private detail(ticket) {
-        console.log("ok");
         this.customer = null;
         if (ticket.customer) {
             this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
@@ -203,7 +201,6 @@ export class FocusComponent {
             this.isServed = true;
         } else this.isServed = false;
         this.selectedTicket = ticket;
-        console.log(this.selectedTicket);
         this.editorRef.Open();
     }
 }
