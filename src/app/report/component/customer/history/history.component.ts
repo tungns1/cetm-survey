@@ -32,6 +32,7 @@ export class HistoryComponent {
 
     excel() {
         this.customerAPI.ExportHistory();
+        // return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');
     } 
 
 }
