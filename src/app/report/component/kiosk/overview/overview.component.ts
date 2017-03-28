@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReportViewService } from '../../shared';
 import { MAIN_TABS } from '../shared';
 import { KioskAPI} from '../service/kiosk.service';
-import { IKioskEff} from '../../shared/';
+import { IKioskTrack} from '../../shared/';
 @Component({
     selector: 'report-overview',
     templateUrl: 'overview.component.html',

@@ -1,4 +1,4 @@
-import { IKioskEff, InfoKioskEff } from '../../shared';
+import { IKioskTrack, InfoKioskTrack } from '../../shared';
 import { HttpServiceGenerator } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -14,14 +14,14 @@ export class KioskAPI {
     ) { }
 
     Search() {
-        this.api.Get<IKioskEff[]>("effect", this.filterService.ToBackendQuery()).subscribe(v => {
+        this.api.Get<IKioskTrack[]>("effect", this.filterService.ToBackendQuery()).subscribe(v => {
             console.log(v);
             this.RxKioskEff.next(v);
         });
     }
-    RxKioskEff = new BehaviorSubject<IKioskEff[]>([]);
+    RxKioskEff = new BehaviorSubject<IKioskTrack[]>([]);
     get RxSummaryView() {
-        return this.RxKioskEff.map(InfoKioskEff.Make);
+        return this.RxKioskEff.map(InfoKioskTrack.Make);
     };
 
 
