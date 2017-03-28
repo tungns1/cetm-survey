@@ -57,7 +57,7 @@
 <div class="modal" *ngIf="isRemove || isAlert">
     <div class="modal-dialog">
         <div *ngIf="isRemove" class="modal-body padding-10-20">
-            <p class="center margin-20" i18n>Do you want to delete?</p>
+            <p class="center margin-20" i18n>Do you want to delete the selected item?</p>
             <div fxLayout="row" fxLayoutGap="20px" class="margin-t-10">
                 <button fxFlex class="btnClear" (click)="Delete()" i18n>Yes</button>
                 <button fxFlex class="btnFill" (click)="CloseRmove()" i18n>No</button>
