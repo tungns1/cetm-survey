@@ -12,7 +12,6 @@
 </div>-->
 
 
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" 
-[gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" 
-[showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [barPadding]="padding" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+    (select)="onSelect($event)">
 </ngx-charts-bar-vertical>

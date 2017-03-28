@@ -5,10 +5,10 @@ import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
-    selector: 'fres-chart',
-    templateUrl: 'fres.component.html'
+    selector: 'time-chart',
+    templateUrl: 'time.component.html'
 })
-export class FresChartComponent {
+export class TimeChartComponent {
 
     multi: any[];
 
@@ -28,7 +28,7 @@ export class FresChartComponent {
     autoScale = true;
 
     constructor(private chartService: ChartService) {
-        this.chartService.RxFres.subscribe(v => {
+        this.chartService.RxTime.subscribe(v => {
             this.multi = v;
             console.log(this.multi);
         })
