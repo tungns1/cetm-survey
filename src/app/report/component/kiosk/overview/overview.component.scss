@@ -1,0 +1,21 @@
+#overview{
+    background-color: #fff;
+    border: 1px solid #a7a9ac;
+    width: 98%;
+    padding: 1%;
+    table{
+        width: 100%;
+        border-spacing: 0px;
+        th, td{
+            text-align: left;
+            padding: 10px;
+            background-color: #fff;
+        }
+        th{
+            font-weight: 100;
+        }
+        td{
+            font-weight: 600;
+        }
+    }
+}

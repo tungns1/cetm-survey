@@ -1,0 +1,22 @@
+<div *ngIf="infoKiosk">
+    <div>
+        <span>Total kiosk:</span>
+        <span> {{infoKiosk.total_kiosk}}</span>
+        <span>Longest activity kiosk:</span>
+        <span> {{infoKiosk.longest_activity_kiosk | branchName}}</span>
+        <span>Shortest activity kiosk:</span>
+        <span> {{infoKiosk.shortest_activity_kiosk | branchName}}</span>
+        <span>Average kiosk effectiveness:</span>
+        <span> {{infoKiosk.total_kiosk}}</span>
+    </div>
+    <div>
+        <span>Total activity:</span>
+        <span> {{infoKiosk.total_activity}}</span>
+        <span>Longest activity time:</span>
+        <span> {{infoKiosk.longest_activity_time}}</span>
+        <span>Shortest activity time:</span>
+        <span> {{infoKiosk.shortest_activity_time}}</span>
+        <span>Average activity time:</span>
+        <span> {{infoKiosk.average_activity_time}}</span>
+    </div>
+</div>

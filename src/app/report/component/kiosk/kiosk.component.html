@@ -1,0 +1,21 @@
+<app-env-sub-module i18n-title title="Kiosk Effectiveness"></app-env-sub-module>
+<div id="customerReport">
+    <div class="headerAndNav">
+        <h2 class="header uppercase" i18n>Kiosk Effectiveness</h2>
+        <div class="nav">
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction history</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
+        </div>
+    </div>
+    <div class="searchNSummary" fxLayout="row">
+        <div fxFlex="60%">
+            <report-info></report-info>
+        </div>
+        <div fxFlex class="totalTrans">
+            <report-sum></report-sum>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <report-overview></report-overview>
+</div>

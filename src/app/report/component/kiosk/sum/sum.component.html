@@ -1,0 +1,56 @@
+<!--<div style="padding: 0px 10px;">
+    <div class="hl-tl-sum">
+        <span i18n>Total transaction</span>: {{data.c_t}}
+    </div>
+    <div>
+        <div class="hl-ct-sum">
+            <span i18n>Standard waiting time transaction</span>
+            <span class="hl-giaodich" *ngIf="data.c_t>0">{{data.c_bwt}}&nbsp; ({{data.c_bwt/data.c_t*100 | number : '1.2-2'}}%)</span>
+        </div>
+        <div class="hl-max-sum">
+            <div *ngIf="data.c_t>0">
+                <div class="hl-gd-sum" [style.width]="''+data.c_bwt/data.c_t*100+'%'">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="hl-ct-sum">
+            <span i18n>Exceeded waiting time transaction</span>
+            <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_wt}}&nbsp; ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%)</span>
+        </div>
+        <div class="hl-max-sum">
+            <div *ngIf="data.c_t>0">
+                <div class="hl-gd-sum" [style.width]="''+(data.s_wt)/data.c_t*100+'%'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="hl-ct-sum">
+            <span i18n>Standard serving time transaction</span>
+            <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%)</span>
+        </div>
+        <div class="hl-max-sum">
+            <div *ngIf="data.c_t>0">
+                <div class="hl-gd-sum" [style.width]="''+data.c_bst/data.c_t*100+'%'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="hl-ct-sum">
+            <span i18n>Exceeded serving time transaction</span>
+            <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_st}}&nbsp; ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%)</span>
+        </div>
+        <div class="hl-max-sum">
+            <div *ngIf="data.c_t>0">
+                <div class="hl-gd-sum" [style.width]="''+(data.s_st)/data.c_t*100+'%'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
