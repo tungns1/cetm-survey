@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReportViewService } from '../../shared';
 import { MAIN_TABS } from '../shared';
 import { KioskAPI} from '../service/kiosk.service';
-import { IKioskTrack} from '../../shared/';
+import { InfoKioskTrack, IKioskTrack,ITicketSum,ITimeSum } from '../../shared';
 @Component({
     selector: 'report-overview',
     templateUrl: 'overview.component.html',
@@ -15,10 +15,16 @@ export class ReportOverViewComponent {
         private viewService: ReportViewService,
         private kioskAPI: KioskAPI
     ) { }
-
+    timeKiosk$:ITimeSum[]=[];
+    ticketKisok$:ITicketSum[]=[];
 
     ngOnInit() {
-    
+       this.kioskAPI.RxSummaryView.subscribe(v=>{
+           if(v!=null){
+               this.timeKiosk$=v.time_sum;
+               this.ticketKisok$=v.ticket_sum;
+           }
+       })
     }
 
     tab$ = this.viewService.Tab$;

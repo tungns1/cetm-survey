@@ -1,5 +1,4 @@
 <div id="cusChart">
-    <time-chart class="padding-20" *ngIf="tab=='time'"></time-chart>
-    <ticket-chartt class="padding-20" *ngIf="tab=='store'"></ticket-chart>
-
+    <time-chart class="padding-20" *ngIf="time$ | async"></time-chart>
+    <ticket-chart class="padding-20" *ngIf="ticket$ | async"></ticket-chart>
 </div>

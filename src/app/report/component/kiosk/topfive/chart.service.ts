@@ -1,5 +1,5 @@
 import { timeParse } from 'd3-time-format';
-import { Customer } from '../../shared';
+import { InfoKioskTrack } from '../../shared';
 
 const timeDay = timeParse("%Y-%m-%d");
 const timeWeek = timeParse("W%Y-%W");
@@ -23,19 +23,18 @@ export class ChartService {
         private kioskAPI: KioskAPI
     ) { }
 
-    private RxCustomer = this.kioskAPI.RxCustomer;
+    private RxKioskEff = this.kioskAPI.RxKioskEff;
   
-    RxStore = this.RxSummaryView.map(v => {
-        var stores = v.stores;
-        return stores;
+    RxTime = this.RxSummaryView.map(v => {
+        var time = v.time.sort((a,b)=>a.value-b.value).slice(0,5);
+        return time;
     })
-    RxService = this.RxSummaryView.map(v => {
-        var services = v.services;
-        return services;
+    RxTicket = this.RxSummaryView.map(v => {
+        var ticket = v.ticket.sort((a,b)=>a.value-b.value).slice(0,5);
+        return ticket;
     })
     get RxSummaryView() {
-        return this.RxCustomer.map(Customer.Make);
+        return this.RxKioskEff.map(InfoKioskTrack.Make);
     };
 
-    RxPeriod = this.customerAPI.period$;
 }

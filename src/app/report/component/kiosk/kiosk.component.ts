@@ -13,6 +13,7 @@ export class KioskComponent {
     ) { }
 
     ngOnInit() {
+        
        this.nav.Refresh$.ExclusiveSubscribe(_ => {
            this.kioskAPI.Search();
         });

@@ -19,3 +19,12 @@ export class BranchNamePipe implements PipeTransform {
         return CacheBranch.GetNameForID(id);
     }
 }
+
+@Pipe({
+    name: 'branchKioskName'
+})
+export class BranchNameKioskPipe implements PipeTransform {
+    transform(id: string) {
+        return CacheBranch.GetNameKioskForID(id);
+    }
+}

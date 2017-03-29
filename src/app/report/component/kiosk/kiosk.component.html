@@ -13,6 +13,11 @@
             <report-info></report-info>
         </div>
     </div>
-    <div class="divider"></div>
-    <report-overview></report-overview>
+    <div class="divider">
+        <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
+        <kiosk-chart></kiosk-chart>
+        <topfive-chart></topfive-chart>
+        <report-overview></report-overview>
+    </div>
+
 </div>
