@@ -1,5 +1,5 @@
 <div id="overView">
-    <table class="tableOverView" *ngIf="general$ | async">
+    <table id="tableEl" class="tableOverView" *ngIf="general$ | async">
         <thead>
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>

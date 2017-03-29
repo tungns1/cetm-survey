@@ -56,19 +56,19 @@
 
 <div class="modal" *ngIf="isRemove || isAlert">
     <div class="modal-dialog">
-        <div *ngIf="isRemove" class="modal-body padding-10-20">
-            <p class="center margin-20" i18n>Do you want to delete?</p>
-            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-10">
-                <button fxFlex class="btnClear" (click)="Delete()" i18n>Yes</button>
-                <button fxFlex class="btnFill" (click)="CloseRmove()" i18n>No</button>
+        <div *ngIf="isRemove" id="confirm" class="modal-body padding-10-20">
+            <p class="center" i18n>Do you want to delete?</p>
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-10">
+                <button fxFlex="20%" class="uppercase btnClear" (click)="Delete()" i18n>Yes</button>
+                <button fxFlex="20%" class="uppercase btnFill" (click)="CloseRmove()" i18n>No</button>
             </div>
         </div>
-        <div *ngIf="isAlert" class="modal-body padding-10-20">
-            <h3 class="center margin-t-10" i18n>{{title}}</h3>
+        <div *ngIf="isAlert" id="alert" class="modal-body padding-10-20">
+            <h4 class="center margin-t-10" i18n>{{title}}</h4>
             <p class="center margin-10" i18n>{{message}}</p>
-            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-10">
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-0-35 margin-t-10">
                 <div fxFlex></div>
-                <button fxFlex class="btnClear" (click)="CloseAlert()" i18n>Yes</button>
+                <button fxFlex="30%" class="btnFill uppercase" (click)="CloseAlert()" i18n>Yes</button>
             </div>
         </div>
     </div>
