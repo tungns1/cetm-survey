@@ -1,4 +1,4 @@
-import { groupBy, sumBy, minBy, maxBy, meanBy } from "lodash";
+import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy } from "lodash";
 export interface IKioskTrack {
     id?: string
     branch_id: string;
@@ -41,16 +41,16 @@ export interface ITimeSum {
 export interface ITicketSum {
     name: string;
     total: number;
-    longest: number;
-    shortest: number;
+    highest: number;
+    lowest: number;
     average: number;
 }
 
 
 
 export class InfoKioskTrack {
-
-    data: IKioskTrack[] = null;
+    
+    data: IKioskTrack[] = [];
     ticket: ITicket[] = [];
     time: ITime[] = [];
     ticket_day: ITicketDay[] = [];
@@ -79,45 +79,48 @@ export class InfoKioskTrack {
 
     Add(s: IKioskTrack[]) {
 
-        this.total_activity = sumBy(s, 'total_on_time')
-        this.total_kiosk = groupBy(s, 'device_id').value.length;
-        this.total_ticket = groupBy(s, 'object').value.length;
-        var data_by_branh = groupBy(s, 'branch_id').value;
+        if (s.length > 0) {
+            this.total_activity = sumBy(s, 'total_on_time')
+            this.total_kiosk = groupBy(s, 'device_id').value.length;
+            this.total_ticket = groupBy(s, 'object').value.length;
+            var data_by_branh = groupBy(s, 'branch_id').value;
 
-        var data_by_date = groupBy(s, 'date').value;
-        for (var i = 0; i < data_by_branh.length; i++) {
-            this.ticket.push({
-                name: data_by_branh[i].branch_id,
-                value: sumBy(data_by_branh, 'object')
-            })
-            this.time.push({
-                name: data_by_branh[i].branch_id,
-                value: sumBy(data_by_branh, 'total_on_time')
-            })
-            this.ticket_sum.push({
-                name: data_by_branh[i].branch_id,
-                total: sumBy(data_by_branh, 'object'),
-                longest: maxBy(data_by_branh, 'object').object,
-                shortest: minBy(data_by_branh, 'object').object,
-                average: meanBy(data_by_branh, <any>'object'),
-            })
-            this.time_sum.push({
-                name: data_by_branh[i].branch_id,
-                total: sumBy(data_by_branh, 'total_on_time'),
-                longest: maxBy(data_by_branh, 'total_on_time').total_on_time,
-                shortest: minBy(data_by_branh, 'total_on_time').total_on_time,
-                average: meanBy(data_by_branh, <any>'total_on_time'),
-            })
-        }
-        for (var i = 0; i < data_by_date.length; i++) {
-            this.ticket.push({
-                name: data_by_date[i].date,
-                value: sumBy(data_by_date, 'object')
-            })
-            this.time.push({
-                name: data_by_date[i].date,
-                value: sumBy(data_by_date, 'total_on_time')
-            })
+            var data_by_date = groupBy(s, 'date').value;
+            for (var i = 0; i < data_by_branh.length; i++) {
+                this.ticket.push({
+                    name: data_by_branh[i].branch_id,
+                    value: sumBy(data_by_branh, 'object')
+                })
+                this.time.push({
+                    name: data_by_branh[i].branch_id,
+                    value: sumBy(data_by_branh, 'total_on_time')
+                })
+                this.ticket_sum.push({
+                    name: data_by_branh[i].branch_id,
+                    total: sumBy(data_by_branh, 'object'),
+                    highest: maxBy(data_by_branh, 'object').object,
+                    lowest: minBy(data_by_branh, 'object').object,
+                    average: meanBy(data_by_branh, <any>'object'),
+                })
+                this.time_sum.push({
+                    name: data_by_branh[i].branch_id,
+                    total: sumBy(data_by_branh, 'total_on_time'),
+                    longest: maxBy(data_by_branh, 'total_on_time').total_on_time,
+                    shortest: minBy(data_by_branh, 'total_on_time').total_on_time,
+                    average: meanBy(data_by_branh, <any>'total_on_time'),
+                })
+            }
+            for (var i = 0; i < data_by_date.length; i++) {
+                this.ticket.push({
+                    name: data_by_date[i].date,
+                    value: sumBy(data_by_date, 'object')
+                })
+                this.time.push({
+                    name: data_by_date[i].date,
+                    value: sumBy(data_by_date, 'total_on_time')
+                })
+            }
+            this.data = s;
         }
 
     }
@@ -137,7 +140,6 @@ export class InfoKioskTrack {
             this.lowest_ticket_from = minBy(this.ticket, 'name').name;
             this.average_printed_ticket = meanBy(this.ticket, <any>'name');
         }
-
 
     }
 

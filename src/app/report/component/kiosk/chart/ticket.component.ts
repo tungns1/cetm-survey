@@ -30,7 +30,6 @@ export class TicketChartComponent {
     constructor(private chartService: ChartService) {
         this.chartService.RxTicket.subscribe(v => {
             this.multi = v;
-            console.log(this.multi);
         })
 
     }

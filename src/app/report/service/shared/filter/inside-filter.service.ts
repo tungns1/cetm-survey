@@ -46,7 +46,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
         CacheService.RxListView.subscribe(data => this.updateService(data));
         this.branchFilter.Data$.map(b => b.branches[0])
             .switchMap(branch_id => {
-                if (branch_id.length < 1) {
+                if (branch_id.length !== 1) {
                     return of({});
                 }
                 return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
@@ -54,10 +54,12 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
                 this.updateService(d.services || []);
                 this.updateCounters(d.counters || []);
                 this.updateUsers(d.users || []);
-            })
+                this.Update();
+            });
     }
 
     Update(user_id: string[] = [], service_id: string[] = [], counter_id: string[] = []) {
+        console.log(counter_id);
         super.SaveData({ user_id, service_id, counter_id });
     }
 
