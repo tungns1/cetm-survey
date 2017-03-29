@@ -25,7 +25,7 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
             branches[i] = branches[i] || [];
         }
         this.data.branches = branches;
-        this.SaveData();
+        this.checkTheRoot();
     }
 
     get branches() {

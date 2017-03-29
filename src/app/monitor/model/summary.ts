@@ -5,6 +5,7 @@ export interface ISummary {
 	missed: number;
 	cancelled: number;
 	finished: number;
+	wait_standard: number;
 	wait_long: number;
 	wl_percent: number;
 	serve_short: number;
@@ -21,6 +22,7 @@ export class Summary {
 		this.missed = +data.missed || 0;
 		this.cancelled = +data.cancelled || 0;
 		this.finished = +data.finished || 0;
+		this.wait_standard = + data.wait_standard || 0;
 		this.wait_long = +data.wait_long || 0;
 		this.wl_percent = +data.wl_percent || 0;
 		this.serve_short = +data.serve_short || 0;
@@ -41,6 +43,7 @@ export class Summary {
 	missed: number;
 	cancelled: number;
 	finished: number;
+	wait_standard: number;
 	wait_long: number;
 	wl_percent: number;
 	serve_short: number;
@@ -65,6 +68,20 @@ export class Summary {
 			else s.wl_percent = 0
 		})
 		return s;
+	}
+
+	static getChartData(data: ISummary[]){
+		const result = new Summary();
+		data.forEach(d => {
+			result.waiting += d.waiting;
+			result.serving += d.serving;
+			result.missed += d.missed;
+			result.cancelled += d.cancelled;
+			result.finished += d.finished;
+			result.wait_long += d.wait_long;
+			result['wait_standard'] = d.waiting - d.wait_long;
+		})
+		return result;
 	}
 
 }

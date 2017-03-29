@@ -28,6 +28,7 @@ export class InsideFilterComponent implements OnInit {
                 service_id: value.service_id
             });
             this.form.valueChanges.subscribe(v => {
+                console.log(v);
                 this.insideFilterService.Update(
                     v.user_id,
                     v.service_id,
@@ -37,7 +38,7 @@ export class InsideFilterComponent implements OnInit {
         });
     }
 
-    users$ = this.insideFilterService.users$;
-    counters$ = this.insideFilterService.counters$;
-    services$ = this.insideFilterService.services$;
+    users$ = this.insideFilterService.users$.asObservable();
+    counters$ = this.insideFilterService.counters$.asObservable();
+    services$ = this.insideFilterService.services$.asObservable();
 }
