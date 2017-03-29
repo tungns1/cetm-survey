@@ -37,7 +37,7 @@ export class InsideFilterComponent implements OnInit {
         });
     }
 
-    users$ = this.insideFilterService.users$;
-    counters$ = this.insideFilterService.counters$;
-    services$ = this.insideFilterService.services$;
+    users$ = this.insideFilterService.users$.asObservable();
+    counters$ = this.insideFilterService.counters$.asObservable();
+    services$ = this.insideFilterService.services$.asObservable();
 }
