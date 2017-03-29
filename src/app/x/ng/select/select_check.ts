@@ -65,7 +65,7 @@ export class SelectCheckComponent implements ControlValueAccessor, OnChanges {
 
     protected onChangeCallback = (v: string[]) => { };
     private all$ = this.view$.map(view => {
-        console.log("all", view);
+        // console.log("all", view);
         return view.some(v => !v.checked);
     }).map(notAll => {
         return !notAll;
