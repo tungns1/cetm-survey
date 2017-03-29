@@ -11,6 +11,7 @@ import { i18nServiceProvider } from './service/i18n';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
 import { TranslateModule } from '../x/i18n';
+import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 
@@ -33,6 +34,7 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 EnvironmentModule.Providers(),
+                ExportExcelService,
                 authProviders, i18nServiceProvider,
                 LogService, RouterQueryStorageStrategy,
                 AppSocketGenerator, HttpServiceGenerator

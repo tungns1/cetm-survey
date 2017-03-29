@@ -16,7 +16,10 @@
             font-weight: $font-weight-default;
         }
     }
-        .widthCtrl{
-            max-width: 140px;
-        }
+    .widthCtrl{
+        max-width: 140px;
+    }
+    .btnExport{
+        float: right;
+    }
 }

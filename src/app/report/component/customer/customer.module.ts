@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { CustomerAPI } from './service/customer.service';
 import { TransactionHistoryApi } from '../history/history.service';
 
