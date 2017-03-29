@@ -1,0 +1,36 @@
+<style>
+    .scroll-filter {
+        height: 90px;
+        overflow: auto;
+    }
+    
+    .hlft-div-checkbox {
+        padding: 0px 0px 3px 15px;
+        color: #555;
+    }
+    
+    .hlft-div-checkbox:hover {
+        color: #6CA6CD;
+    }
+</style>
+
+
+<div class="scroll-filter">
+    <div *ngIf="hasAll$ | async">
+        <label *ngIf="!(all$ | async)" class="hlft-div-checkbox pointer" (click)="SetAll(true)">
+            <input type="checkbox"> 
+            <ng-container i18n>Select All</ng-container>
+        </label>
+        <label *ngIf="all$ | async" class="hlft-div-checkbox pointer" (click)="SetAll(false)">
+            <input type="checkbox" checked>
+            <ng-container i18n>Unselect All</ng-container>
+        </label>
+        <br>
+    </div>
+    <label *ngFor="let v of view$ | async" class="hlft-div-checkbox pointer">
+            <input type="checkbox"  [ngModel]="v.checked" 
+            (ngModelChange)="changeValue(v.id, $event)">
+            {{v.text}}
+        <br>
+    </label>
+</div>
