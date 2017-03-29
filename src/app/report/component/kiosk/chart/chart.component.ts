@@ -3,7 +3,7 @@ import { MakeIndexBy, ReportViewService } from '../../shared';
 import { AggregateService, TranslateService } from '../../shared';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { MAIN_TABS } from '../shared';
 @Component({
     selector: 'kiosk-chart',
     templateUrl: 'chart.component.html',
@@ -17,14 +17,9 @@ export class ReportChartComponent {
     ) { }
 
     ngOnInit() {
-        this.viewService.Data$.subscribe(v => {
-            this.setTab(v.tab);
-        })
     }
-    tab = '';
-
-    private setTab(tab: string) {
-        this.tab = tab;
-    }
+    tab$ = this.viewService.Tab$;
+    time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
+    ticket$ = this.tab$.map(tab => tab === MAIN_TABS.TICKET.name);
 
 }

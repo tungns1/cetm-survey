@@ -13,6 +13,8 @@ import {
     RouterQueryStorageStrategy
 } from '../../../shared';
 
+import 'rxjs/add/operator/distinctUntilChanged';
+
 const GROUP_BYS = {
     BRANCH_ID: 'branch_id',
     COUNTER_ID: 'counter_id',
@@ -45,6 +47,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
         this.Update(this.data.user_id, this.data.service_id, this.data.service_id);
         CacheService.RxListView.subscribe(data => this.updateService(data));
         this.branchFilter.Data$.map(b => b.branches[0])
+            .distinctUntilChanged((a, b) => a.join(",") === b.join(","))
             .switchMap(branch_id => {
                 if (branch_id.length !== 1) {
                     return of({});
@@ -59,7 +62,6 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     }
 
     Update(user_id: string[] = [], service_id: string[] = [], counter_id: string[] = []) {
-        console.log(counter_id);
         super.SaveData({ user_id, service_id, counter_id });
     }
 
