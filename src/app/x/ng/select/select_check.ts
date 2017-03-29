@@ -1,10 +1,10 @@
 import { Component, Input, forwardRef, ExistingProvider, Attribute, OnChanges } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
 import { AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { ISubscription } from 'rxjs/Subscription';
 
 const SELECT_CHECK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -26,7 +26,7 @@ interface IView {
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
-export class SelectCheckComponent implements ControlValueAccessor, OnChanges {
+export class SelectCheckComponent implements ControlValueAccessor, OnInit, OnDestroy {
     constructor(
         @Attribute('idField') private idField,
         @Attribute('textField') private textField) {
@@ -57,11 +57,7 @@ export class SelectCheckComponent implements ControlValueAccessor, OnChanges {
                     checked: selected[o.id]
                 }
             });
-        }).debounceTime(100).share();
-
-    ngOnChanges(changes) {
-
-    }
+        }).debounceTime(50).share();
 
     protected onChangeCallback = (v: string[]) => { };
     private all$ = this.view$.map(view => {
@@ -79,11 +75,19 @@ export class SelectCheckComponent implements ControlValueAccessor, OnChanges {
         this.selected$.next(value);
     }
 
+    private subscription: ISubscription;
+
     ngOnInit() {
-        this.view$.subscribe(view => {
+        this.subscription = this.view$.subscribe(view => {
             let selected = view.filter(v => v.checked);
             this.onChangeCallback(selected.map(s => s.id));
-        })
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 
     writeValue(valueArray: any[]) {
