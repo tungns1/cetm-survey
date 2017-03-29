@@ -39,30 +39,29 @@ export const PieItems: ChartItem[][] =
     ],
     [
         {
-            header: 'Exceeded waiting time transaction',
+            header: 'Standard waiting time transaction',
             field: 'wait_standard',
             color: '#ff4d4d',
-            key_title: 'Finished transaction'
+            key_title: 'Standard waiting time transaction'
         }, 
         {
             field: 'wait_long',
             color: '#3eca83',
-            key_title: 'Cancelled transaction'
+            key_title: 'Exceeded waiting time transaction'
+        }
+    ],
+    [
+        {
+            header: 'Exceeded serving time transaction',
+            field: 'serve_standard',
+            color: '#ff974d',
+            key_title: 'Standard serving time transaction'
+        }, {
+            field: 's_l',
+            color: '#a44adc',
+            key_title: 'Exceeded serving time transaction'
         }
     ]
-    // ,
-    // [
-    //     {
-    //         header: 'Ticket serve lessv 2 minute\'',
-    //         field: 'finished',
-    //         color: '#ff974d',
-    //         key_title: 'Finished transaction'
-    //     }, {
-    //         field: 'serve_short',
-    //         color: '#a44adc',
-    //         key_title: 'Cancelled transaction'
-    //     }
-    // ]
 ];
 
 

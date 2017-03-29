@@ -25,10 +25,12 @@
                 <td i18n> {{s.finished}}</td>
                 <td i18n> {{s.missed}}</td>
                 <td i18n> {{s.cancelled}}</td>
-                <td i18n [ngClass]="{'warning': (s.wait_long/s.waiting)*100 > 40}">
-                    <span>{{s.wait_long}} ({{s.wl_percent.toFixed(2)}})%</span>
+                <td i18n [ngClass]="{'warning': s.wl_percent.toFixed(2) > 40}">
+                    <span>{{s.wait_long}} ({{s.wl_percent.toFixed(2)}}%)</span>
                 </td>
-                <td i18n> {{s.serve_short}}</td>
+                <td i18n [ngClass]="{'warning': s.s_l_percent.toFixed(2) > 10}"> 
+                    <span>{{s.s_l}} ({{s.s_l_percent.toFixed(2)}}%)</span>
+                </td>
             </tr>
             <tr>
                 <td i18n>Summary</td>
@@ -38,10 +40,12 @@
                 <td i18n> {{total.finished}}</td>
                 <td i18n> {{total.missed}}</td>
                 <td i18n> {{total.cancelled}}</td>
-                <td i18n [ngClass]="{'warning': (total.wait_long/total.waiting)*100 > 40}">
-                    <span>{{total.wait_long}} ({{total.wl_percent.toFixed(2)}})%</span>
+                <td i18n [ngClass]="{'warning': total.wl_percent.toFixed(2) > 40}">
+                    <span>{{total.wait_long}} ({{total.wl_percent.toFixed(2)}}%)</span>
                 </td>
-                <td i18n> {{total.serve_short}}</td>
+                <td i18n [ngClass]="{'warning': total.s_l_percent.toFixed(2) > 10}"> 
+                    <span>{{total.s_l}} ({{total.s_l_percent.toFixed(2)}}%)</span>
+                </td>
             </tr>
         </tbody>
     </table>
