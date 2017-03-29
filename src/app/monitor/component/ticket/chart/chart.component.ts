@@ -22,12 +22,10 @@ export class MonitorChartComponent {
 
     ngOnInit() {
         this.setTitle();
-        console.log(this.data);
     }
 
     ngAfterContentInit() {
         this.view.groups$.subscribe(groups => {
-            console.log(groups);
             setTimeout(_ => {
                 this.groups$.next(groups);
             }, 1000)

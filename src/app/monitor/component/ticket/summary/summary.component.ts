@@ -22,7 +22,8 @@ export class SummaryComponent {
                 this.message = "Please,choose store";
             }
         });
-        this.totalSummary$.subscribe(data => this.total = data);
+        this.totalSummary$.subscribe(data => this.total = data );
+        this.chartData$.subscribe(data => this.chartData = data )
     }
 
     ngOnDestroy() {
@@ -35,8 +36,12 @@ export class SummaryComponent {
 
     message = '';
     total = new Summary();
+    chartData;
     summary$ = this.ticketService.summary$;
     totalSummary$ = this.summary$.map(data =>{
         return Summary.Aggregate(data);
     });
+    chartData$ = this.summary$.map( data => {
+        return Summary.getChartData(data);
+    })
 }
