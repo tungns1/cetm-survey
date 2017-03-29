@@ -11,9 +11,9 @@
         <span>Total printed ticket</span>
         <span> {{infoKiosk.total_ticket}}</span>
         <span>Highest ticket printed from</span>
-        <span> {{infoKiosk.highest_ticket_from}}</span>
+        <span> {{infoKiosk.highest_ticket_from | branchKioskName}}</span>
         <span>Lowest ticket printed from</span>
-        <span> {{infoKiosk.lowest_ticket_from}}</span>
+        <span> {{infoKiosk.lowest_ticket_from | branchKioskName}}</span>
     </div>
     <div>
         <span>Total activity:</span>

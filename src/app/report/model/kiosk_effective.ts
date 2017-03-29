@@ -1,4 +1,5 @@
-import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy } from "lodash";
+import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray } from "lodash";
+import { CacheBranch } from '../../shared/model';
 export interface IKioskTrack {
     id?: string
     branch_id: string;
@@ -8,7 +9,7 @@ export interface IKioskTrack {
     state: string;
     on_at: number;
     off_at: number;
-    total_on_time: number;
+    total_on: number;
     date: string;
 
 }
@@ -49,7 +50,7 @@ export interface ITicketSum {
 
 
 export class InfoKioskTrack {
-    
+
     data: IKioskTrack[] = [];
     ticket: ITicket[] = [];
     time: ITime[] = [];
@@ -80,65 +81,76 @@ export class InfoKioskTrack {
     Add(s: IKioskTrack[]) {
 
         if (s.length > 0) {
-            this.total_activity = sumBy(s, 'total_on_time')
-            this.total_kiosk = groupBy(s, 'device_id').value.length;
-            this.total_ticket = groupBy(s, 'object').value.length;
-            var data_by_branh = groupBy(s, 'branch_id').value;
+            this.total_activity = sumBy(s, 'total_on')
+            this.total_kiosk = size(groupBy(s, 'device_id'));
+            this.total_ticket = size(groupBy(s, 'object'));
+            var data_by_branh = toArray(groupBy(s, 'branch_id'));
 
-            var data_by_date = groupBy(s, 'date').value;
-            for (var i = 0; i < data_by_branh.length; i++) {
+
+            var data_by_date = toArray(groupBy(s, 'date'));
+            var len_by_date = size(data_by_date);
+            var len_by_branch = size(data_by_branh);
+
+
+            for (var i = 0; i < len_by_branch; i++) {
+                var highest = 0,lowest=0;
+                if (data_by_branh[i].filter(v => v.object !== null).length > 0) {
+                    highest = maxBy(data_by_branh[i].filter(v => v.object !== null), 'object').object;
+                }
+                if(data_by_branh[i].filter(v => v.object !== null).length>0){
+                    minBy(data_by_branh[i].filter(v => v.object !== null), 'object').object;
+                }
                 this.ticket.push({
-                    name: data_by_branh[i].branch_id,
-                    value: sumBy(data_by_branh, 'object')
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    value: sumBy(data_by_branh[i], 'object') || 0
                 })
                 this.time.push({
-                    name: data_by_branh[i].branch_id,
-                    value: sumBy(data_by_branh, 'total_on_time')
+                    name:  CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    value: sumBy(data_by_branh[i], 'total_on')
                 })
                 this.ticket_sum.push({
-                    name: data_by_branh[i].branch_id,
-                    total: sumBy(data_by_branh, 'object'),
-                    highest: maxBy(data_by_branh, 'object').object,
-                    lowest: minBy(data_by_branh, 'object').object,
-                    average: meanBy(data_by_branh, <any>'object'),
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    total: sumBy(data_by_branh[i], 'object') || 0,
+                    highest: highest,
+                    lowest: lowest,
+                    average: meanBy(data_by_branh[i], <any>'object') || 0,
                 })
                 this.time_sum.push({
-                    name: data_by_branh[i].branch_id,
-                    total: sumBy(data_by_branh, 'total_on_time'),
-                    longest: maxBy(data_by_branh, 'total_on_time').total_on_time,
-                    shortest: minBy(data_by_branh, 'total_on_time').total_on_time,
-                    average: meanBy(data_by_branh, <any>'total_on_time'),
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    total: sumBy(data_by_branh[i], 'total_on') || 0,
+                    longest: maxBy(data_by_branh[i], 'total_on').total_on,
+                    shortest: minBy(data_by_branh[i], 'total_on').total_on,
+                    average: meanBy(data_by_branh[i], <any>'total_on'),
                 })
             }
-            for (var i = 0; i < data_by_date.length; i++) {
-                this.ticket.push({
-                    name: data_by_date[i].date,
-                    value: sumBy(data_by_date, 'object')
+            for (var i = 0; i < len_by_date; i++) {
+                this.ticket_day.push({
+                    name: data_by_date[i][0].date,
+                    value: sumBy(data_by_date[i], 'object') || 0
                 })
-                this.time.push({
-                    name: data_by_date[i].date,
-                    value: sumBy(data_by_date, 'total_on_time')
+                this.time_day.push({
+                    name: data_by_date[i][0].date,
+                    value: sumBy(data_by_date[i], 'total_on')
                 })
             }
-            this.data = s;
         }
 
     }
 
 
-    Finalize() {
-        if (this.data.length > 0) {
+    Finalize(s: IKioskTrack[]) {
+        if (s.length > 0) {
             this.longest_activity_time = maxBy(this.time, 'name').value;
             this.longest_activity_kiosk = maxBy(this.time, 'name').name;
             this.shortest_activity_time = minBy(this.time, 'name').value;
             this.shortest_activity_kiosk = minBy(this.time, 'name').name;
-            this.average_activity_time = meanBy(this.time, <any>'name');
+            this.average_activity_time = meanBy(this.time, <any>'value');
 
             this.highest_ticket_quantity = maxBy(this.ticket, 'name').value;
             this.highest_ticket_from = maxBy(this.ticket, 'name').name;
             this.lowest_ticket_quantity = minBy(this.ticket, 'name').value;
             this.lowest_ticket_from = minBy(this.ticket, 'name').name;
-            this.average_printed_ticket = meanBy(this.ticket, <any>'name');
+            this.average_printed_ticket = meanBy(this.ticket, <any>'value');
         }
 
     }
@@ -151,7 +163,7 @@ export class InfoKioskTrack {
 
         res.Add(records);
 
-        res.Finalize();
+        res.Finalize(records);
         return res;
     }
 

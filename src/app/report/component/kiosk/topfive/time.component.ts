@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class TimeChartComponent {
     single: any[];
 
-    view: any[] = [900, 400];
+    view: any[] = [900, 300];
 
     // options
     showXAxis = true;
