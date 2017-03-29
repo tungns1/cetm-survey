@@ -1,5 +1,5 @@
 <div id="overView">
-    <table class="tableOverView" *ngIf="general$ | async">
+    <table id="tableEl" class="tableOverView" *ngIf="general$ | async">
         <thead>
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
@@ -45,11 +45,11 @@
     </table>
 
     <!-- Time View -->
-    <table class="tableOverView" *ngIf="time$ | async">
+    <table id="tableEl" class="tableOverView" *ngIf="time$ | async">
         <thead>
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
-            <th i18n>Total Transaction Time</th>
+            <th i18n>Total transaction time</th>
             <th i18n>Total serving time</th>
             <th i18n>Total waiting time</th>
             <th i18n>Serving time avarage</th>
@@ -77,7 +77,7 @@
     </table>
 
     <!-- Feedback -->
-    <table class="tableOverView" *ngIf="customer$ | async">
+    <table id="tableEl" class="tableOverView" *ngIf="customer$ | async">
         <thead>
             <th i18n>No.</th>
             <th i18n> {{groupBy$ | async | groupByTitle}} </th>
@@ -119,4 +119,9 @@
             </tr>
         </tbody>
     </table>
+    <div class="divider"></div>
+    <div fxLayout="row">
+        <div fxFlex="80%"></div>
+        <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()">Export Excel</button>
+    </div>
 </div>
