@@ -1,14 +1,11 @@
-import { IKioskEff } from '../../shared';
-import {
-    ICustomer, HttpServiceGenerator, Paging
-} from '../../shared/';
+import { IKioskTrack, InfoKioskTrack } from '../../shared';
+import { HttpServiceGenerator } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { IAggregate, Aggregate } from '../../../model';
 
 
-export const RxKioskEff = new BehaviorSubject<IKioskEff[]>([]);
 @Injectable()
 export class KioskAPI {
     constructor(
@@ -17,11 +14,16 @@ export class KioskAPI {
     ) { }
 
     Search() {
-        this.api.Get<IKioskEff[]>("effect", this.filterService.ToBackendQuery()).subscribe(v => {
+        this.api.Get<IKioskTrack[]>("effect", this.filterService.ToBackendQuery()).subscribe(v => {
             console.log(v);
-            RxKioskEff.next(v);
+            this.RxKioskEff.next(v);
         });
     }
+    RxKioskEff = new BehaviorSubject<IKioskTrack[]>([]);
+    get RxSummaryView() {
+        return this.RxKioskEff.map(InfoKioskTrack.Make);
+    };
+
 
     api = this.httpServiceGenerator.make<any>("/api/report/kiosk_effect");
 

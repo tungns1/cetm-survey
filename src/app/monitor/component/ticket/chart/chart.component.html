@@ -8,8 +8,7 @@
         <div *ngFor="let item of itemGroup">
             <div *ngFor="let t of item">
                 <div style="float:left;" class="margin-7-20">
-                    <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" 
-                    [style.background-color]="t._hidden? '':t.color "></div>
+                    <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
                     <span style="font-size: 12px;"> {{t.title}}</span>
                 </div>
             </div>
@@ -26,11 +25,11 @@
         <chart-item field="serving" color="#ff4dfa" title="Serving transaction"></chart-item>
     </chart-item-group>
     <chart-item-group title="Exceeded waiting time transaction">
-        <chart-item field="waiting" color="#ff4d4d" title="Finished transaction"></chart-item>
-        <chart-item field="wait_long" color="#3eca83" title="Cancelled transaction"></chart-item>
+        <chart-item field="waiting" color="#ff4d4d" title="Standard waiting time transaction"></chart-item>
+        <chart-item field="wait_long" color="#3eca83" title="Exceeded waiting time transactio"></chart-item>
     </chart-item-group>
     <chart-item-group title="Exceeded serving time transaction">
-        <chart-item field="finished" color="#ff974d" title="Finished transaction"></chart-item>
-        <chart-item field="serve_short" color="#a44adc" title="Cancelled transaction"></chart-item>
+        <chart-item field="finished" color="#ff974d" title="Standard serving time transaction"></chart-item>
+        <chart-item field="serve_short" color="#a44adc" title="Exceeded serving time transaction"></chart-item>
     </chart-item-group>
 </chart-item-group-view>

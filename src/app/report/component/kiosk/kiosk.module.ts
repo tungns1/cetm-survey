@@ -16,14 +16,13 @@ const routing = RouterModule.forChild([
     }
 ]);
 
-import { ReportSumModule } from './sum/sum.module';
 import { ReportOverviewModule } from './overview/overview.module';
 import { ReportInfoModule } from './info/info.module'
 import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
-        routing, ReportSumModule, ReportOverviewModule,
+        routing, ReportOverviewModule,
         ReportInfoModule,
         SharedModule
     ],

@@ -43,12 +43,7 @@ export class SelectCheckComponent implements ControlValueAccessor, OnChanges {
 
     @Input() data = [];
     ngOnInit() {
-        if (this.data!=undefined && this.data.length>0) {
-            this.isAll = true;
-        }else{
-            this.isAll=false;
-        }
-
+        this.isAll = false;
     }
     ngOnChanges(changes) {
         if (changes.data) {

@@ -19,7 +19,7 @@ export class SummaryComponent {
         this.filterService.Data$.subscribe(filter => {
             let branches: string[] = [];
             if (branches.length < 1) {
-                this.message = "Please,Choose Store";
+                this.message = "Please,choose store";
             }
         });
         this.totalSummary$.subscribe(data => this.total = data);

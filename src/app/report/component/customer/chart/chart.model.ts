@@ -27,12 +27,3 @@ export const TimeItems: ChartItem[][] = [
         key_title: 'Exceeded serving time transaction'
     }]
 ];
-
-
-export const FresItems: ChartItem[] = [
-    {
-        field: 'count',
-        color: '#339933',
-        key_title: 'Frequency'
-    }
-];

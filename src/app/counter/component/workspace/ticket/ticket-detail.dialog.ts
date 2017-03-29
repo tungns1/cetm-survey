@@ -20,6 +20,7 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
   SetTicket(t: ITicket) {
+    this.isModal=true;
     this.ticket = t;
     this.checkedCounters = [];
     this.checkedServices = [];

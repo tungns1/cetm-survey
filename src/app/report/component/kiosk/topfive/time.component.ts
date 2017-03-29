@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { MakeIndexBy } from '../../shared';
-import { AggregateService } from '../../shared';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
-    selector: 'service-chart',
-    templateUrl: 'service.component.html'
+    selector: 'time-chart',
+    templateUrl: 'time.component.html'
 })
-export class ServiceChartComponent {
+export class TimeChartComponent {
     single: any[];
 
     view: any[] = [900, 400];
