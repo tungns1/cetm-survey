@@ -24,7 +24,7 @@
         <select class="hl-select" formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
         </select>
-        <button class="add uppercase btpointer" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'screen'}"> 
+        <button class="btnClear" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'screen'}"> 
              <span i18n>Edit layout</span> 
         </button>
 

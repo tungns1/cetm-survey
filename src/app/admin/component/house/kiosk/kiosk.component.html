@@ -23,12 +23,12 @@
         <select class="hl-select" formControlName="tlayout_id">
             <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
         </select>
-        <button class="add uppercase btpointer" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'kiosk'}"> 
+        <button class="btnClear" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'kiosk'}"> 
              <span i18n>Edit layout</span> 
         </button>
 
         <br><span i18n>Services</span>:
-        <div class="dichvu">
+        <div class="">
             <service-list formControlName="services" [services]="services | async">
             </service-list>
         </div>
