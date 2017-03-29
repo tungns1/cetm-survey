@@ -30,7 +30,6 @@ export class TimeChartComponent {
     constructor(private chartService: ChartService) {
         this.chartService.RxTime.subscribe(v => {
             this.multi = v;
-            console.log(this.multi);
         })
 
     }

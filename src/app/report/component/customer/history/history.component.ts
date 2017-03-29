@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ITransactionView } from '../../../model';
 import { ReportFilterService, Paging } from '../../../service/';
 import { CustomerAPI, paging } from '../service/customer.service';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 
 
 @Component({
@@ -21,55 +20,17 @@ export class HistoryComponent {
 
 
     ngOnInit() {
-        this.customerAPI.pagin(1,'', this.id);
+        this.customerAPI.pagin(1, '', this.id);
     }
     pagin(page: number) {
         this.customerAPI.RxSummaryView.subscribe(v => {
-             this.customerAPI.pagin(page,'', v.customer_id);
+            this.customerAPI.pagin(page, '', v.customer_id);
         });
-       
+
     }
 
-
-    excel() {
+    excel(data) {
         this.customerAPI.ExportHistory();
-        // return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');
-    } 
+    }
 
 }
-
-// var data = [
-//   {
-//     name: "Test 1",
-//     age: 13,
-//     average: 8.2,
-//     approved: true,
-//     description: "using 'Content here, content here' "
-//   },
-//   {
-//     name: 'Test 2',
-//     age: 11,
-//     average: 8.2,
-//     approved: true,
-//     description: "using 'Content here, content here' "
-//   },
-//   {
-//     name: 'Test 4',
-//     age: 10,
-//     average: 8.2,
-//     approved: true,
-//     description: "using 'Content here, content here' "
-//   },
-// ];
-
-// new Angular2Csv(data, 'My Report');
-
-// var options = { 
-//     fieldSeparator: ',',
-//     quoteStrings: '"',
-//     decimalseparator: '.',
-//     showLabels: true, 
-//     showTitle: true 
-//   };
-
-//   this.Angular2Csv(data, 'filename', options);

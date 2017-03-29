@@ -5,7 +5,7 @@ import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
-    selector: 'customer-chart',
+    selector: 'kiosk-chart',
     templateUrl: 'chart.component.html',
     styleUrls: ['chart.component.scss']
 })

@@ -16,7 +16,10 @@ export class KioskAPI {
     Search() {
         this.api.Get<IKioskTrack[]>("effect", this.filterService.ToBackendQuery()).subscribe(v => {
             console.log(v);
-            this.RxKioskEff.next(v);
+            if (v.length > 0) {
+                this.RxKioskEff.next(v);
+            }
+
         });
     }
     RxKioskEff = new BehaviorSubject<IKioskTrack[]>([]);
