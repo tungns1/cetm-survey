@@ -67,7 +67,7 @@ export class FilePickerComponent implements ControlValueAccessor {
     }
 
     choose(node: FileNode) {
-        this.value = node.path;
+        this.value = node.Path;
         this.OnChange();
     }
 

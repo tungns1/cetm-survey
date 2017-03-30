@@ -1,10 +1,10 @@
-<div id="monitorChart" class="hl-chart">
+<div *ngIf="data" id="monitorChart" class="hl-chart">
     <div style="width:33%; height:22vw; float:left;" *ngFor="let g of config.groups$ | async">
         <p *ngIf="data" class="chartHeader">{{g.title}}</p>
         <div style="width:100%; height:22vw;" pie-chart [data]="data" [items]="g.activeItems"></div>
     </div>
 
-    <div class="legend margin-t-20" fxLayout="row" fxLayoutAlign="space-around">
+    <div class="legend margin-t-20" fxLayout="row">
         <div *ngFor="let item of itemGroup" fxFlex fxLayot="column">
             <div *ngFor="let t of item" fxFlex class="margin-7-0 item">
                 <!--<div style="float:left;" class="margin-7-20">-->

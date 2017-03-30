@@ -88,6 +88,10 @@ export class FileNode {
     return this.GetUploadURL();
   }
 
+  get Path() {
+    return this.path;
+  }
+
   private expanded = false;
 
   private GetUploadURL() {
