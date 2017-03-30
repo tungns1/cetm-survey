@@ -1,4 +1,4 @@
-<div id="focusComponent" *ngIf="data">
+<div id="focusComponent" *ngIf="focus$ | async; let data">
     <h2 class="header uppercase"> {{data.branch_id | branchName}} </h2>
     <div class="nav">
         <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
@@ -61,10 +61,8 @@
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <<<<<<< HEAD <span i18n>Serving over 15'</span>:
-                    <span>{{data.serve_short}}</span> =======
-                    <span i18n>Serving over 15':</span>
-                    <span>{{data.s_l}}</span> >>>>>>> e59dcc8dc3f7d842d54c5d56ba89bb2af58f8a06
+                <span i18n>Serving over 15'</span>:
+                <span>{{data.serve_short}}</span>
             </div>
         </div>
     </div>

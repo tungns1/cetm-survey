@@ -4,7 +4,7 @@ import { MonitorFilterService } from '../shared';
 import { SummaryComponent } from './summary/summary.component';
 import { FocusComponent } from './focus/focus.component';
 import { MonitorNavService } from '../../service/shared/nav';
-import { MonitorTicketSocket } from './shared';
+import { MonitorTicketSocket, MonitorSummaryService } from './shared';
 
 @Component({
     selector: 'monitor-ticket',
@@ -14,6 +14,7 @@ export class MonitorTicketComponent implements OnInit {
     constructor(
         private navService: MonitorNavService,
         private filterService: MonitorFilterService,
+        private summaryService: MonitorSummaryService,
         private socket: MonitorTicketSocket
     ) { }
 

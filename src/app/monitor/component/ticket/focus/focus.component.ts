@@ -6,7 +6,10 @@ import {
     MonitorFilterService, ModalComponent, TimerComopnent
 } from '../../shared';
 import { MonitorNavService } from '../../../service/shared/nav';
-import { MonitorFocusService, MonitorCustomerService } from '../shared';
+import {
+    MonitorSummaryService,
+    MonitorFocusService, MonitorCustomerService
+} from '../shared';
 
 @Component({
     selector: 'focus-on-branch',
@@ -23,6 +26,7 @@ export class FocusComponent {
         private route: ActivatedRoute,
         private filterService: MonitorFilterService,
         private customerService: MonitorCustomerService,
+        private summaryService: MonitorSummaryService,
         private focusService: MonitorFocusService
     ) { }
 
@@ -32,6 +36,9 @@ export class FocusComponent {
 
 
     ngOnInit() {
+        this.route.params.subscribe(p => {
+            this.focusService.Branch$.next(p["branch_id"]);
+        });
         this.navService.Refresh$.ExclusiveSubscribe(_ => {
             const branch_id = this.route.snapshot.params["branch_id"];
             this.focusService.Branch$.next(branch_id);
@@ -42,12 +49,11 @@ export class FocusComponent {
 
     }
 
-    // focus$ = this.filterService.Data$.switchMap(filter => {
-    //     const branch_id = filter.focus;
-    //     return this.ticketService.summary$.map(data => {
-    //         return data.filter(d => d.branch_id === branch_id);
-    //     })
-    // })
+    focus$ = this.route.params.switchMap(p => {
+        return this.summaryService.summary$.map(summaries => {
+            return summaries.find(s => s.branch_id === p['branch_id'])
+        });
+    });
 
     numberCounter$ = this.focusService.counter$.map(v => {
         return v.length;
