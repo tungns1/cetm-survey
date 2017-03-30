@@ -1,25 +1,3 @@
-<div style="border: 1px solid #b0b1b5; background-color: #fff;">
-    <monitor-tab [tabs]="tabs" #tab (select)="setActive($event)"></monitor-tab>
-    <div>
-        <table>
-            <thead>
-                <th i18n>No.</th>
-                <th i18n>Area</th>
-                <th i18n>Branch</th>
-                <th i18n> Transaction Room </th>
-                <th *ngIf="tag!='branch'" i18n> {{tab.active?.titleTable}} </th>
-                <th i18n>Time Disconnect</th>
-            </thead>
-            <tbody class=".hl-table-row-missed">
-                <tr *ngFor="let item of rxData | async; let i = index">
-                    <td> {{i+1}} </td>
-                    <td> {{item.branches[2]}} </td>
-                    <td> {{item.branches[1]}} </td>
-                    <td> {{item.branches[0]}} </td>
-                    <td *ngIf="tag!='branch'"> {{item.name}} </td>
-                    <td> {{item.off_at | ctimeDate}} </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<app-env-sub-module i18n-title title="Ticket"></app-env-sub-module>
+<device-summary [hidden]="isFocus$ | async"></device-summary>
+<focus-on-branch [hidden]="!(isFocus$ | async)"></focus-on-branch>

@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from "@angular/router"
 import { AuthGuard } from "./shared/";
-import { MonitorComponent, MonitorTicketModule } from "./component";
+import { MonitorComponent, MonitorTicketModule, MonitorDeviceModule } from "./component";
+
 
 export function loadMonitorTicketModule() {
     return MonitorTicketModule
@@ -8,7 +9,8 @@ export function loadMonitorTicketModule() {
 
 export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "ticket" },
-    { path: "ticket", loadChildren: loadMonitorTicketModule }
+    { path: "ticket", loadChildren: loadMonitorTicketModule },
+    { path: "device", loadChildren: () => MonitorDeviceModule }
 ];
 
 export const routing = RouterModule.forChild([
