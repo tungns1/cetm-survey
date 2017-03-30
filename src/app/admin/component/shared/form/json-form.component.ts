@@ -14,7 +14,7 @@ const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 import { Toast } from '../../../shared';
 
 @Component({
-    selector: 'json-form',
+    selector: 'json-text-form',
     template: `
         <input class="hl-input" [(ngModel)]="text" (change)="OnChange()" />
     `,
