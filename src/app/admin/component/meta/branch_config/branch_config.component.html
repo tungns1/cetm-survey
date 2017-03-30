@@ -5,7 +5,7 @@
         <select class="hl-select" formControlName="branch_id">
             <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
         </select>
-        <hr> <span i18n>Feedback device</span>:
+        <hr> <span i18n>Feedback Device</span>:
         <feedback-config formControlName="feedback"></feedback-config>
     </form>
     <editor-field name="branch" i18n-title title="Location"></editor-field>

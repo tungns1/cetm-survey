@@ -7,12 +7,12 @@
     <table class="tableCtrl">
         <thead class="">
             <th i18n>Store</th>
-            <th i18n>Print ticket</th>
-            <th i18n>Waiting ticket</th>
-            <th i18n>Serving ticket</th>
-            <th i18n>Served ticket </th>
-            <th i18n>Missed ticket</th>
-            <th i18n>Cancelled ticket</th>
+            <th i18n>Print Ticket</th>
+            <th i18n>Waiting Ticket</th>
+            <th i18n>Serving Ticket</th>
+            <th i18n>Served Ticket</th>
+            <th i18n>Missed Ticket</th>
+            <th i18n>Cancelled Ticket</th>
             <th i18n>Exceeded waiting time transaction</th>
             <th i18n>Exceeded serving time transaction</th>
         </thead>
@@ -32,7 +32,7 @@
                     <span>{{s.s_l}} ({{s.s_l_percent.toFixed(2)}}%)</span>
                 </td>
             </tr>
-            <tr>
+            <tr *ngIf="totalSummary$ | async; let total">
                 <td i18n>Summary</td>
                 <td> {{total.printed}}</td>
                 <td i18n> {{total.waiting}}</td>
@@ -51,6 +51,6 @@
     </table>
     <div class="divider margin-20-0"></div>
     <div class="border">
-        <monitor-chart [data]="chartData"></monitor-chart>
+        <!--<monitor-chart [data]="totalSummary$ | async"></monitor-chart>-->
     </div>
 </div>

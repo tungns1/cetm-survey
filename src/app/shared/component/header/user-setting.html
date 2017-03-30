@@ -4,7 +4,7 @@
         <hr class="user-hr-css">
     </div>
     <div>
-        <span class="user-text-language" i18n>Language: </span>
+        <span class="user-text-language" i18n>Language</span>
         <select class="hl-user-select" [ngModel]="locale" (ngModelChange)="SetLocale($event)">
             <option *ngFor="let item of items" [value]="item.key">{{ item.value }}</option>
         </select>

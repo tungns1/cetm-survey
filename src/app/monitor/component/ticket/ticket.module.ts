@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-// import { FlexLayoutModule } from "@angular/flex-layout";
 import { MonitorTicketComponent } from './ticket.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
@@ -11,21 +10,26 @@ import { D3Module } from '../../../x/ng/d3/d3.module';
 const routing = RouterModule.forChild([
     {
         path: '',
-        component: MonitorTicketComponent
+        component: MonitorTicketComponent,
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'summary' },
+            { path: 'summary', component: SummaryComponent },
+            { path: 'focus/:branch_id', component: FocusComponent }
+        ]
     }
 ]);
 
-import { MonitorTicketService } from './ticket.service';
+import { monitorServiceProviders } from './shared';
 
 @NgModule({
     imports: [
         routing, SharedModule, D3Module
     ],
     providers: [
-        MonitorTicketService
+        monitorServiceProviders
     ],
     declarations: [
-        MonitorTicketComponent, FocusComponent, 
+        MonitorTicketComponent, FocusComponent,
         SummaryComponent, MonitorChartComponent]
 })
 export class MonitorTicketModule { }

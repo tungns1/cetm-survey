@@ -11,10 +11,10 @@ export const PieItems: ChartItem[][] =
 [
     [
         {
-            header: 'Ticket detail',
+            header: 'Ticket Detail',
             field: 'finished',
             color: '#fcff4d',
-            key_title: 'Finished transaction'
+            key_title: 'Finished Transaction'
         }, 
         {
             field: 'cancelled',

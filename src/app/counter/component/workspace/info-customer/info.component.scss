@@ -1,11 +1,11 @@
-@import '../../../../../styles/design/variables';
-#cusInfo{
+@import '../../../../shared/style.scss';
+#cusInfo {
     height: 8%;
-    span{
+    span {
         margin: 10px;
         font-size: $font-size-default + 1;
     }
-    .cusName{
+    .cusName {
         color: $key-color;
     }
 }

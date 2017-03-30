@@ -5,8 +5,8 @@ import {
     ICustomer, ITicketTrack, ITicket,
     MonitorFilterService, ModalComponent, TimerComopnent
 } from '../../shared';
-import { MonitorTicketService } from '../ticket.service';
 import { MonitorNavService } from '../../../service/shared/nav';
+import { MonitorFocusService, MonitorCustomerService } from '../shared';
 
 @Component({
     selector: 'focus-on-branch',
@@ -22,51 +22,53 @@ export class FocusComponent {
         private navService: MonitorNavService,
         private route: ActivatedRoute,
         private filterService: MonitorFilterService,
-        private ticketService: MonitorTicketService
+        private customerService: MonitorCustomerService,
+        private focusService: MonitorFocusService
     ) { }
 
     selectedTicket: Object;
     isServed: boolean = true;
-    data: Summary;
     customer: ICustomer;
 
 
     ngOnInit() {
-        this.focus$.subscribe(d => this.data = d[0]);
-
+        this.navService.Refresh$.ExclusiveSubscribe(_ => {
+            const branch_id = this.route.snapshot.params["branch_id"];
+            this.focusService.Branch$.next(branch_id);
+        });
     }
 
     ngOnDestroy() {
 
     }
 
-    focus$ = this.filterService.Data$.switchMap(filter => {
-        const branch_id = filter.focus;
-        return this.ticketService.summary$.map(data => {
-            return data.filter(d => d.branch_id === branch_id);
-        })
-    })
+    // focus$ = this.filterService.Data$.switchMap(filter => {
+    //     const branch_id = filter.focus;
+    //     return this.ticketService.summary$.map(data => {
+    //         return data.filter(d => d.branch_id === branch_id);
+    //     })
+    // })
 
-    numberCounter$ = this.ticketService.counter$.map(v => {
+    numberCounter$ = this.focusService.counter$.map(v => {
         return v.length;
     });
 
-    numberCounterOff$ = this.ticketService.counter$.map(v => v.filter(v => {
+    numberCounterOff$ = this.focusService.counter$.map(v => v.filter(v => {
         if (v.state === "Off") {
             return v;
         }
     })).map(v => {
         return v.length;
     });
-    numberCounterOn$ = this.ticketService.counter$.map(v => v.filter(v => {
-        if(v.state ==="On"){
-             return v;
+    numberCounterOn$ = this.focusService.counter$.map(v => v.filter(v => {
+        if (v.state === "On") {
+            return v;
         }
     })).map(v => {
         return v.length;
     });
 
-    waiting$ = this.ticketService.tickets$
+    waiting$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
             if (t.state === TicketStates.Waiting) {
                 for (let i = 0; i < t.tracks.length; i++) {
@@ -81,7 +83,7 @@ export class FocusComponent {
             return a.mtime < b.mtime ? -1 : 1;
         }));
 
-    missed$ = this.ticketService.tickets$
+    missed$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
             if (t.state === TicketStates.Missed) {
                 for (let i = 0; i < t.tracks.length; i++) {
@@ -104,7 +106,7 @@ export class FocusComponent {
         return [].concat(waiting).concat(missed);
     })
 
-    serving$ = this.ticketService.tickets$
+    serving$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
             if (t.state === TicketStates.Serving) {
                 this.addServingTrack(t);
@@ -112,7 +114,7 @@ export class FocusComponent {
             }
         }));
 
-    served$ = this.ticketService.tickets$
+    served$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
             if (t.state === TicketStates.Missed || t.state === TicketStates.Serving) {
                 return false;
@@ -193,7 +195,7 @@ export class FocusComponent {
     private detail(ticket) {
         this.customer = null;
         if (ticket.customer) {
-            this.ticketService.GetInfoCustomer(ticket.customer.id).subscribe(v => {
+            this.customerService.GetCustomerByID(ticket.customer.id).subscribe(v => {
                 this.customer = v;
             });
         }
