@@ -1,6 +1,9 @@
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
+import { 
+    Component, Input, forwardRef, ExistingProvider,
+    ChangeDetectionStrategy
+ } from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -10,15 +13,15 @@ const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     multi: true
 }
 
-
-import { Toast } from '../../../shared';
-
 @Component({
     selector: 'json-text-form',
     template: `
-        <input class="hl-input" [(ngModel)]="text" (change)="OnChange()" />
+        <div *ngIf="invalid" style="color:red"> 
+            Text input is not a valid json string
+        </div>
+        <textarea class="hl-input" [ngModel]="text" (ngModelChange)="onChange($event)">
+        </textarea>
     `,
-
     providers: [JSON_CONTROL_VALUE_ACCESSOR]
 })
 export class JSONFormComponent implements ControlValueAccessor {
@@ -27,6 +30,7 @@ export class JSONFormComponent implements ControlValueAccessor {
 
     writeValue(v: any) {
         this.text = JSON.stringify(v);
+        this.invalid = false;
     }
 
     registerOnChange(fn: any) {
@@ -37,15 +41,16 @@ export class JSONFormComponent implements ControlValueAccessor {
 
     }
 
-    OnChange() {
+    onChange(text: string) {
         try {
-            let val = JSON.parse(this.text);
+            let val = JSON.parse(text);
             this.onChangeCallback(val);
         } catch (e) {
-            const toast = new Toast();
-            toast.Error("Dữ liệu không đúng dạng JSON").Show();
+            this.invalid = true;
         }
     }
+
+    invalid = false;
 
 }
 
