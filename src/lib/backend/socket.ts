@@ -77,8 +77,8 @@ export class Socket {
   }
 
   Terminate() {
-    this.rxConnected.complete();
-    this.rxServerEvent.complete();
+    // this.rxConnected.complete();
+    // this.rxServerEvent.complete();
     this.alivePoll.Disable();
     this.forceClose = true;
     this.socket.close();

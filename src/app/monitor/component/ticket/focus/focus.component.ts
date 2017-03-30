@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
     ISummary, Summary, IExtendedTicket, TicketStates,
     ICustomer, ITicketTrack, ITicket,
@@ -24,6 +24,7 @@ export class FocusComponent {
     constructor(
         private navService: MonitorNavService,
         private route: ActivatedRoute,
+        private router: Router,
         private filterService: MonitorFilterService,
         private customerService: MonitorCustomerService,
         private summaryService: MonitorSummaryService,
@@ -177,7 +178,6 @@ export class FocusComponent {
         return [].concat(serving).concat(served);
     })
 
-
     addServingTrack(a: ITicket) {
         const t = <IExtendedTicket>a;
         for (let i = t.tracks.length - 1; i >= 0; i--) {
@@ -198,7 +198,10 @@ export class FocusComponent {
     }
 
     private goBackBranchList() {
-        this.filterService.SetFocus('');
+        this.router.navigate(["../../summary"], {
+            relativeTo: this.route,
+            queryParamsHandling: "preserve"
+        })
     }
 
     private closeModal() {

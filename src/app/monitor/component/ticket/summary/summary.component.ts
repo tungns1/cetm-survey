@@ -31,7 +31,8 @@ export class SummaryComponent {
 
     focus(s: ISummary) {
         this.router.navigate(['../focus', s.branch_id], {
-            relativeTo: this.route
+            relativeTo: this.route,
+            queryParamsHandling: "merge"
         });
     }
 
