@@ -23,30 +23,33 @@
     </tr>
 </table>
 
-<modal #edit>
-    <div *ngIf="form">
-        <div class="hl-header-editor">
-            <div class="uppercase btpointer" *ngIf="current"> <span i18n="Edit Name">Edit {{name}} </span></div>
-            <div class="uppercase btpointer" *ngIf="!current"> <span i18n="Add Name">Add {{name}}</span> </div>
+<modal #edit id="editor-editDialog">
+    <div *ngIf="form" class="modal-dialog">
+        <div *ngIf="current" class="modal-header" i18n="Edit Name">Edit {{name}} </div>
+        <div *ngIf="!current" class="modal-header" i18n="Add Name">Add {{name}} </div>
+        <div class="modal-body padding-20">
+
+            <span class="err">{{err}}</span>
+
+            <ng-content></ng-content>
+
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-20">
+                <button class="uppercase btnClear" (click)="CloseEditor()"  i18n>Cancel</button>
+                <button *ngIf="!current" class="uppercase btnFill" (click)="Create()" [disabled]="!form.valid" i18n>Add</button>
+                <button *ngIf="current" class="uppercase btnFill" (click)="Update()" [disabled]="!form.valid" i18n>Save</button>
+            </div>
         </div>
-
-        <span class="err">{{err}}</span>
-
-        <ng-content></ng-content>
-        <modal-footer class="mod-ft-editor">
-            <button class="hl-huy-editor btpointer" (click)="CloseEditor()" style="width: 45%"><span i18n>Cancel</span>&nbsp; </button>
-            <button *ngIf="!current" class="hl-them-editor" (click)="Create()" [disabled]="!form.valid" style="width: 45%;float: right;"><span i18n>Add</span>&nbsp; </button>
-            <button *ngIf="current" class="hl-them-editor" (click)="Update()" [disabled]="!form.valid" style="width: 45%;float: right;"><span i18n>Save</span>&nbsp; </button>
-        </modal-footer>
     </div>
 </modal>
 
-<modal #remove class="modal-answer">
-    <div style="text-align: center;margin-bottom: 25px;font-size: 25px;">
-        <span i18n="Confirm delete">Do you want to delete the selected item?</span>
-    </div>
-    <div style="float: right;margin-right: 40px">
-        <button class="hl-yes-editor btpointer" (click)="Delete()">  <span i18n="Confirm yes">Yes</span></button>
-        <button class="hl-no-editor btpointer" (click)="CloseRemove()"> <span i18n="Cancel">No</span></button>
+<modal #remove id="editor-confirmDialog">
+    <div class="modal-dialog">
+        <div class="modal-confirm modal-body">
+            <p class="center" i18n="Confirm delete">Do you want to delete the selected item?</p>
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-20">
+                <button fxFlex="20%" class="uppercase btnClear" (click)="Delete()" i18n="Confirm yes">Yes</button>
+                <button fxFlex="20%" class="uppercase btnFill" (click)="CloseRemove()" i18n="Cancel">No</button>
+            </div>
+        </div>
     </div>
 </modal>

@@ -19,13 +19,22 @@ import { FormArray, FormControl } from '@angular/forms';
     template: `
         <input class="hlm-input hl-input-filemulti inputs" [(ngModel)]="value" (change)="setValue($event)" /> 
         <button class="hlm-button" (click)="modal.Open()">Chọn</button>
-        <modal #modal>
-            <div class="file-browser">
-            <button class="btn-hlm btn-close" (click)="modal.Close()">Close</button>
-            <file-browser (select)="choose($event)"></file-browser>
+        <modal #modal id="modalUpload">
+            <div class="modal-dialog">
+                <div class="modal-body padding-20">
+                    <div class="file-browser">
+                        <file-browser (select)="choose($event)"></file-browser>
+                    </div>
+                    <button class="btn-hlm btn-close" (click)="modal.Close()">Close</button>
+                </div>
             </div>
         </modal>
     `,
+    styles: [`
+        .modal-dialog{
+            width: 35vw;
+        }
+    `],
    
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
