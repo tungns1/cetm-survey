@@ -3,66 +3,65 @@
     <div class="nav">
         <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
     </div>
-
     <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Branch</span>:
+                <span i18n>Branch</span>
                 <span>{{data.parent_id | branchName}}</span>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Admin</span>:
-                <span></span>
+            <div *ngIf="admin" fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Admin</span>
+                <span *ngIf="admin[0]">{{admin[0].fullname}}</span>
+            </div>
+            <div *ngIf="manager" fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Manager</span>
+                <span *ngIf="manager[0]">{{manager[0].fullname}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Manager</span>:
-                <span></span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total counter</span>:
+                <span i18n>Total counter</span>
                 <span> {{numberCounter$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total counter on:</span>
+                <span i18n>Total counter on</span>
                 <span> {{numberCounterOn$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Total counter off</span>:
+                <span>Total counter off</span>
                 <span>{{numberCounterOff$ | async}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Print Ticket</span>:
+                <span i18n>Print Ticket</span>
                 <span>{{data.printed}}</span>
             </div>
         </div>
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of waiting tickets</span>:
+                <span i18n>Number of waiting tickets</span>
                 <span>{{data.waiting}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of tickets being served</span>:
+                <span i18n>Number of tickets being served</span>
                 <span>{{data.serving}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of tickets already served</span>:
+                <span i18n>Number of tickets already served</span>
                 <span>{{data.finished}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of reserved tickets</span>:
+                <span i18n>Number of reserved tickets</span>
                 <span>{{data.missed}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of cancelled tickets</span>:
+                <span i18n>Number of cancelled tickets</span>
                 <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Waiting over 15'</span>:
+                <span i18n>Waiting over 15'</span>
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving over 15'</span>:
-                <span>{{data.serve_short}}</span>
+                <span i18n>Serving over 15'</span>
+                <span>{{data.s_l}}</span>
             </div>
         </div>
     </div>

@@ -33,6 +33,8 @@ export class FocusComponent {
     selectedTicket: Object;
     isServed: boolean = true;
     customer: ICustomer;
+    admin: ICustomer;
+    manager: ICustomer;
 
 
     ngOnInit() {
@@ -42,6 +44,12 @@ export class FocusComponent {
         this.navService.Refresh$.ExclusiveSubscribe(_ => {
             const branch_id = this.route.snapshot.params["branch_id"];
             this.focusService.Branch$.next(branch_id);
+            this.customerService.GetUserByRoleNBranch(branch_id, 'admin').subscribe(v => {
+                this.admin = v;
+            });
+            this.customerService.GetUserByRoleNBranch(branch_id, 'manager').subscribe(v => {
+                this.manager = v;
+            });
         });
     }
 
