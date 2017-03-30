@@ -61,8 +61,10 @@
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving over 15'</span>:
-                <span>{{data.serve_short}}</span>
+                <<<<<<< HEAD <span i18n>Serving over 15'</span>:
+                    <span>{{data.serve_short}}</span> =======
+                    <span i18n>Serving over 15':</span>
+                    <span>{{data.s_l}}</span> >>>>>>> e59dcc8dc3f7d842d54c5d56ba89bb2af58f8a06
             </div>
         </div>
     </div>
@@ -134,18 +136,30 @@
             <td> {{t.ctime | localDayTime}}</td>
             <td> {{t.mtime - t.ctime | timeDuration}} </td>
 
-            <td *ngIf="t.state === 'serving'">
+            <<<<<<< HEAD <td *ngIf="t.state === 'serving'">
                 <timer [start]="t.mtime" [timeWarning]="1"></timer>
-            </td>
-            <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
-            <td>
-                <span (click)="detail(t)">
+                </td>
+                <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
+                <td>
+                    <span (click)="detail(t)">
                         <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
-                <span>
+                    <span>
                         <img class="iconDetail" src="./assets/img/icon/volume.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
+=======
+                <td *ngIf="t.state === 'serving'">
+                    <timer [start]="t.mtime" [timeWarning]="1"></timer>
+                </td>
+                <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
+                <td>
+                    <span (click)="detail(t)">
+                        <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                     </span>
-            </td>
+                    <span>
+                        <img class="iconDetail" src="./assets/img/icon/volume.png" alt="Search" style="cursor: pointer">
+>>>>>>> e59dcc8dc3f7d842d54c5d56ba89bb2af58f8a06
+                    </span>
+                </td>
         </tr>
     </tbody>
 </table>
