@@ -1,9 +1,19 @@
-import { SetUploadURL, FilePickerModule, MultiFilePickerModule } from '../../x/ng/upload/';
-const UploadFolder = "http://mqserver:3000";
+import { FactoryProvider } from '@angular/core';
+import { RuntimeEnvironment } from '../../shared';
+import {
+    UploadURLToken
+} from '../../x/ng/upload/';
 
-SetUploadURL(UploadFolder);
+export function __uploadUrlTokenFactory(env: RuntimeEnvironment) {
+    return env.Platform.Http;
+}
+
+export const provideUploadURLToken: FactoryProvider = {
+    deps: [RuntimeEnvironment],
+    provide: UploadURLToken,
+    useFactory: __uploadUrlTokenFactory
+}
 
 export {
-    FilePickerModule,
     MultiFilePickerModule
-}
+} from '../../x/ng/upload/';
