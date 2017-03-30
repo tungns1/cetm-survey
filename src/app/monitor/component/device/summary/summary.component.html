@@ -1,8 +1,8 @@
 <div id="summaryComponent">
     <h2 class="header uppercase" i18n>Overview</h2>
     <div class="nav">
-        <button class="btnFill btnMargin uppercase" appSafeNav="/monitor/ticket" i18n>Transaction</button>
-        <button class="btnClear btnMargin uppercase" appSafeNav="/monitor/device" i18n>Device</button>
+        <button class="btnFill btnMargin uppercase" i18n>Transaction</button>
+        <button class="btnClear btnMargin uppercase" i18n>Device</button>
     </div>
     <table class="tableCtrl">
         <thead class="">
@@ -50,7 +50,4 @@
         </tbody>
     </table>
     <div class="divider margin-20-0"></div>
-    <div class="border">
-        <monitor-chart [data]="chartData"></monitor-chart>
-    </div>
 </div>

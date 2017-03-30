@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { MonitorDeviceComponent } from './device.component';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CTimeDatePipe } from './time.pipe';
-import { SharedModule } from '../shared';
+import { SharedModule } from '../../shared';
+import { FocusComponent } from './focus/focus.component';
+import { SummaryComponent } from './summary/summary.component';
+import { D3Module } from '../../../x/ng/d3/d3.module';
 
 const routing = RouterModule.forChild([
     {
@@ -12,8 +14,17 @@ const routing = RouterModule.forChild([
     }
 ]);
 
+import { MonitorDeviceService } from './device.service';
+
 @NgModule({
-    imports: [routing, CommonModule, SharedModule],
-    declarations: [MonitorDeviceComponent, CTimeDatePipe]
+    imports: [
+        routing, SharedModule, D3Module
+    ],
+    providers: [
+        MonitorDeviceService
+    ],
+    declarations: [
+        MonitorDeviceComponent, FocusComponent, 
+        SummaryComponent]
 })
 export class MonitorDeviceModule { }
