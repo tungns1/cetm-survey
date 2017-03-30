@@ -10,7 +10,7 @@
             <i *ngIf="!hidden" class="hl-dishead-filter fa fa-angle-double-right  " aria-hidden="true" (click)="hidden=!hidden" i18n-title="Show filter" i18n> Filters</i>
             <i *ngIf="hidden" class="hl-dishead-filter fa fa-angle-double-left  " aria-hidden="true" (click)="hidden=!hidden" i18n-title="Hidden filter" i18n> Filters</i>
         </div>-->
-        <admin-filter *ngIf="hidden" style="padding-top: 50px;"></admin-filter>
+        <admin-filter *ngIf="hidden"  class="leftFilter"></admin-filter>
     </div>
     <div class="main">
         <router-outlet></router-outlet>

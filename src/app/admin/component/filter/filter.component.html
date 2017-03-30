@@ -1,4 +1,9 @@
-<div class="hl-scroll-filter">
-    <branch-filter></branch-filter>
-    <button class="button active" type="submit" (click)="refresh()" i18n>View</button>
+<div class="filter" fxLayout="column">
+    <div fxFlex class="content">
+        <branch-filter></branch-filter>
+    </div>
+    <!--<button class="btnFill" type="submit" (click)="refresh()" i18n>View</button>-->
+    <div fxFlex="7vh" class="action">
+        <button class="btnFill uppercase" (click)="refresh()" i18n>View</button>
+    </div>
 </div>

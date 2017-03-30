@@ -8,6 +8,7 @@ export interface ISummary {
 	wait_standard: number;
 	wait_long: number;
 	wl_percent: number;
+	s_standard: number;
 	s_l: number;
 	s_l_percent: number;
 	// serve_short: number;
@@ -28,6 +29,7 @@ export class Summary {
 		this.wait_long = +data.wait_long || 0;
 		this.wl_percent = +data.wl_percent || 0;
 		// this.serve_short = +data.serve_short || 0;
+		this.s_standard = +data.s_standard || 0;
 		this.s_l = +data.s_l || 0;
 		if(this.wait_long >= 0 && this.waiting > 0)
 			this.wl_percent = this.wait_long / this.waiting * 100;
@@ -53,6 +55,7 @@ export class Summary {
 	wait_standard: number;
 	wait_long: number;
 	wl_percent: number;
+	s_standard: number;
 	s_l: number;
 	s_l_percent: number;
 	// serve_short: number;
@@ -94,8 +97,8 @@ export class Summary {
 			result.finished += d.finished;
 			result.wait_long += d.wait_long;
 			result.s_l += d.s_l;
-			result['wait_standard'] = d.waiting - d.wait_long;
-			result['serve_standard'] = d.serving - d.s_l;
+			result.wait_standard = d.waiting - d.wait_long;
+			result.s_standard = d.serving - d.s_l;
 		})
 		console.log(result);
 		return result;
