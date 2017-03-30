@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/';
-import { EditorModule, AdminFormModule } from '../shared/';
+import { EditorModule, AdminFormModule, ResourceModule } from '../shared/';
 import { routing } from './center.routing';
 import { RichEditorModule } from '../../../x/ng/rich-editor/rich-editor.module';
 import { ServiceComponent } from './service/service.component';
@@ -15,12 +15,13 @@ import { VoiceComponent } from './voice/voice.component';
         SharedModule,
         EditorModule,
         AdminFormModule,
+        ResourceModule,
         RichEditorModule,
         routing
     ],
     declarations: [
         CenterComponent, TicketLayoutComponent,
-        LayoutComponent, ServiceComponent, 
+        LayoutComponent, ServiceComponent,
         TFormComponent, VoiceComponent
     ]
 })

@@ -11,11 +11,13 @@ import { SFlowComponent } from './sflow/sflow.component';
 
 import { routing } from './house.routing';
 
+import { ResourceModule } from '../shared';
+
 @NgModule({
     imports: [
         SharedModule, BranchModule,
         EditorModule, AdminFormModule, ServiceListModule,
-        MultiFilePickerModule,
+        MultiFilePickerModule, ResourceModule,
         routing
     ],
     declarations: [

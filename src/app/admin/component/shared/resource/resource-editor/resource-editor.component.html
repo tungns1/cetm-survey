@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <th width="10%">Name</th>
+        <th width="10%">Type</th>
+        <th width="50%">Data</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of records">
+            <td>
+                {{r.name}}
+                <a href="javascript:void(0);" (click)="form.Edit(r)">Edit</a>
+            </td>
+            <td>{{r.type}}</td>
+            <td>{{r.data | json}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<app-generic-form #form (save)="Save($event)">
+</app-generic-form>

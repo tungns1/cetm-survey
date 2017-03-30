@@ -30,6 +30,7 @@ export class LayoutComponent {
             type: [b.type, Validators.required],
             ui: [b.ui || {}],
             style: [b.style],
+            resources: [b.ui.resources || {}]
         });
     }
 
