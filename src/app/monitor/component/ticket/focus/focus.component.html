@@ -62,7 +62,7 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Serving over 15':</span>
-                <span>{{data.serve_short}}</span>
+                <span>{{data.s_l}}</span>
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
                 <td *ngIf="t.state === 'missed'"> {{t.mtime - t.ctime | timeDuration}}</td>
                 <td>
                     <span (click)="detail(t)">
-                        <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
+                        <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                     </span>
                 </td>
             </tr>
@@ -139,10 +139,10 @@
                 <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
                 <td>
                     <span (click)="detail(t)">
-                        <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
+                        <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                     </span>
                     <span>
-                        <img class="iconDetail" src="./assets/img/icon/volume.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
+                        <img class="iconDetail" src="./assets/img/icon/volume.png" alt="Search" style="cursor: pointer">
                     </span>
                 </td>
             </tr>

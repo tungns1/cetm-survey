@@ -100,7 +100,6 @@ export class Summary {
 			result.wait_standard = d.waiting - d.wait_long;
 			result.s_standard = d.serving - d.s_l;
 		})
-		console.log(result);
 		return result;
 	}
 
