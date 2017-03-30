@@ -72,83 +72,83 @@
     <div class="border">
         <monitor-chart [data]="data"></monitor-chart>
     </div>
+</div>
 
-    <h3 i18n>Services incomplete</h3>
+<h3 i18n>Services incomplete</h3>
 
-    <table class="tableCtrl">
-        <thead>
-            <th i18n>No.</th>
-            <th i18n>Service name</th>
-            <th i18n>Ticket number</th>
-            <th i18n>Customer</th>
-            <th i18n>Print time</th>
-            <th i18n>Waiting time</th>
-            <th i18n>Detail</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
-                <td> {{i + 1}} </td>
-                <td> {{t.services | multipleServiceName}}</td>
-                <td> {{t.cnum}}</td>
-                <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
-                <td *ngIf="!t.customer"> </td>
-                <td> {{t.ctime | localDayTime}}</td>
-                <td *ngIf="t.state === 'waiting'">
-                    <timer [start]="t.mtime" [timeWarning]="15"></timer>
-                </td>
-                <td *ngIf="t.state === 'missed'"> {{t.mtime - t.ctime | timeDuration}}</td>
-                <td>
-                    <span (click)="detail(t)">
+<table class="tableCtrl">
+    <thead>
+        <th i18n>No.</th>
+        <th i18n>Service name</th>
+        <th i18n>Ticket number</th>
+        <th i18n>Customer</th>
+        <th i18n>Print time</th>
+        <th i18n>Waiting time</th>
+        <th i18n>Detail</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
+            <td> {{i + 1}} </td>
+            <td> {{t.services | multipleServiceName}}</td>
+            <td> {{t.cnum}}</td>
+            <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
+            <td *ngIf="!t.customer"> </td>
+            <td> {{t.ctime | localDayTime}}</td>
+            <td *ngIf="t.state === 'waiting'">
+                <timer [start]="t.mtime" [timeWarning]="15"></timer>
+            </td>
+            <td *ngIf="t.state === 'missed'"> {{t.mtime - t.ctime | timeDuration}}</td>
+            <td>
+                <span (click)="detail(t)">
                         <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    <h3 i18n>Services completed</h3>
+<h3 i18n>Services completed</h3>
 
-    <table class="tableCtrl">
-        <thead>
-            <th i18n>No.</th>
-            <th i18n>Service</th>
-            <th i18n>Counter</th>
-            <th i18n>Tellers</th>
-            <th i18n>Ticket number</th>
-            <th i18n>Customer</th>
-            <th i18n>Print time</th>
-            <th i18n>Waiting time</th>
-            <th i18n>Serving time</th>
-            <th i18n>Detail</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished' || t.state === 'waiting'}">
-                <td> {{i + 1}} </td>
-                <td> {{t.service_id | serviceName}} </td>
-                <td> {{t.counter_id | counterName}}</td>
-                <td> {{t.user_id | userFullName}}</td>
-                <td> {{t.cnum}} </td>
-                <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
-                <td *ngIf="!t.customer"> </td>
-                <td> {{t.ctime | localDayTime}}</td>
-                <td> {{t.mtime - t.ctime | timeDuration}} </td>
+<table class="tableCtrl">
+    <thead>
+        <th i18n>No.</th>
+        <th i18n>Service</th>
+        <th i18n>Counter</th>
+        <th i18n>Tellers</th>
+        <th i18n>Ticket number</th>
+        <th i18n>Customer</th>
+        <th i18n>Print time</th>
+        <th i18n>Waiting time</th>
+        <th i18n>Serving time</th>
+        <th i18n>Detail</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished' || t.state === 'waiting'}">
+            <td> {{i + 1}} </td>
+            <td> {{t.service_id | serviceName}} </td>
+            <td> {{t.counter_id | counterName}}</td>
+            <td> {{t.user_id | userFullName}}</td>
+            <td> {{t.cnum}} </td>
+            <td *ngIf="t.customer"> {{t.customer.full_name }} </td>
+            <td *ngIf="!t.customer"> </td>
+            <td> {{t.ctime | localDayTime}}</td>
+            <td> {{t.mtime - t.ctime | timeDuration}} </td>
 
-                <td *ngIf="t.state === 'serving'">
-                    <timer [start]="t.mtime" [timeWarning]="1"></timer>
-                </td>
-                <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
-                <td>
-                    <span (click)="detail(t)">
+            <td *ngIf="t.state === 'serving'">
+                <timer [start]="t.mtime" [timeWarning]="1"></timer>
+            </td>
+            <td *ngIf="t.state != 'serving'"> {{t.stime | timeDuration}} </td>
+            <td>
+                <span (click)="detail(t)">
                         <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
-                    <span>
+                <span>
                         <img class="iconDetail" src="./assets/img/icon/volume.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search" style="cursor: pointer">
                     </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <modal #edit id="modal_monitor_detailTicket">
     <h3 class="modal-header" i18n>Ticket detail</h3>
