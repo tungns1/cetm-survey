@@ -1,0 +1,17 @@
+@import '../../../../../styles/design/variables';
+#summaryComponent{
+    // .tableCtrl{
+    //     margin: 0px;
+        .branchSummary{
+            cursor: pointer;
+            &:hover{
+                background-color: $background-color;
+            }
+        }
+    // }
+    .warning {
+        background-color: #ff5858;
+        color: #fff;
+        font-weight: $font-weight-default;
+    }
+}

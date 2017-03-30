@@ -1,6 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ISummary, Summary, MonitorNavService, MonitorFilterService } from '../../shared';
-import { MonitorTicketService } from '../ticket.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import {
+    ISummary, Summary,
+    MonitorNavService, MonitorFilterService
+} from '../../shared';
+import { MonitorSummaryService } from '../shared';
 
 @Component({
     selector: 'ticket-summary',
@@ -10,38 +14,29 @@ import { MonitorTicketService } from '../ticket.service';
 })
 export class SummaryComponent {
     constructor(
+        private router: Router,
+        private route: ActivatedRoute,
         private navService: MonitorNavService,
         private filterService: MonitorFilterService,
-        private ticketService: MonitorTicketService
+        private summaryService: MonitorSummaryService
     ) { }
 
     ngOnInit() {
-        this.filterService.Data$.subscribe(filter => {
-            let branches: string[] = [];
-            if (branches.length < 1) {
-                this.message = "Please,choose store";
-            }
+        this.navService.Refresh$.ExclusiveSubscribe(_ => {
+            this.summaryService.Branches$.next(
+                this.filterService.GetStores()
+            );
         });
-        this.totalSummary$.subscribe(data => this.total = data );
-        this.chartData$.subscribe(data => this.chartData = data )
     }
 
-    ngOnDestroy() {
-
+    focus(s: ISummary) {
+        this.router.navigate(['../focus', s.branch_id], {
+            relativeTo: this.route
+        });
     }
 
-    focus(selectedBranch) {
-        this.filterService.SetFocus(selectedBranch.branch_id);
-    }
-
-    message = '';
-    total = new Summary();
-    chartData;
-    summary$ = this.ticketService.summary$;
-    totalSummary$ = this.summary$.map(data =>{
+    summary$ = this.summaryService.summary$;
+    totalSummary$ = this.summary$.map(data => {
         return Summary.Aggregate(data);
     });
-    chartData$ = this.summary$.map( data => {
-        return Summary.getChartData(data);
-    })
 }

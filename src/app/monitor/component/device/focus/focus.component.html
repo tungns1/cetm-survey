@@ -1,0 +1,11 @@
+<div id="focusComponent" *ngIf="data">
+    <h2 class="header uppercase"> {{data.branch_id | branchName}} </h2>
+    <div class="nav">
+        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
+    </div>
+
+    <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
+
+    </div>
+
+</div>

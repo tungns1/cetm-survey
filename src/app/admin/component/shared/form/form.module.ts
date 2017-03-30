@@ -38,20 +38,9 @@ export class JSONFormModule {
 
 }
 
-import { UIFormComponent } from './ui-form.component';
-
-@NgModule({
-    imports: [FormsModule, CommonModule],
-    declarations: [UIFormComponent],
-    exports: [UIFormComponent]
-})
-export class UIFormModule {
-
-}
-
 @NgModule({
     exports: [
-        ArrayFormModule, JSONFormModule, UIFormModule,
+        ArrayFormModule, JSONFormModule,
         CultureModule
     ]
 })

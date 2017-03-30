@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BranchCrudApiService, AdminFilter, ICounter } from '../shared';
+import { BranchCrudApiService, ICounter } from '../shared';
 
 @Injectable()
 export class CounterService extends BranchCrudApiService<ICounter> {

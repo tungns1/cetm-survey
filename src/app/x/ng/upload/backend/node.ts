@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { GetUploadURL } from './config';
 
 interface IFileNode {
   path: string;
@@ -10,19 +9,20 @@ interface IFileNode {
 
 export class FileNode {
 
-  constructor(path: string, name: string) {
+  constructor(
+    private base: string,
+    private path: string,
+    private name: string) {
     this.path = path;
     this.name = name;
     this.is_dir = path.endsWith("/");
   }
 
   addChildren(nodes: IFileNode[]) {
-    let children = nodes.map(n => new FileNode(this.path + n.path, n.name));
+    let children = nodes.map(n => new FileNode(this.base, this.path + n.path, n.name));
     this.rxChildren.next(children);
   }
 
-  path: string;
-  name: string;
   is_dir?: boolean;
   rxChildren = new BehaviorSubject<FileNode[]>([]);
 
@@ -46,7 +46,7 @@ export class FileNode {
         observer.complete();
       }
 
-      xhr.open("GET", GetUploadURL(this.path));
+      xhr.open("GET", this.GetUploadURL());
       xhr.send();
     })
   }
@@ -66,7 +66,7 @@ export class FileNode {
         setTimeout(() => this.Refresh(), 1000);
       });
       xhr.upload.onload = e => observer.error(e);
-      xhr.open("POST", GetUploadURL(this.path));
+      xhr.open("POST", this.GetUploadURL());
       form.append("name", name);
       form.append("file", file);
       xhr.send(form);
@@ -85,12 +85,17 @@ export class FileNode {
   }
 
   get URL() {
-    return GetUploadURL(this.path);
+    return this.GetUploadURL();
   }
 
   private expanded = false;
+
+  private GetUploadURL() {
+    return this.base + this.path;
+  }
 }
 
+// Golang file listing 
 function HtmlToFiles(html: string) {
   var el = document.createElement('div');
   el.innerHTML = html;

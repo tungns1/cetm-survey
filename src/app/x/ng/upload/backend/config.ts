@@ -1,11 +1,2 @@
-
-
-let uploadURL = "http://localhost:3000";
-
-export function SetUploadURL(url: string) {
-  uploadURL = url;
-}
-
-export function GetUploadURL(uri: string) {
-    return uploadURL + uri;
-}
+import { Injectable, InjectionToken } from '@angular/core';
+export const UploadURLToken = new InjectionToken("uploda url");

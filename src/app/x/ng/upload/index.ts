@@ -1,7 +1,4 @@
-import { SetUploadURL } from './backend/';
-
-export * from './file-picker/file-picker.module';
-
+export { UploadURLToken } from './backend/';
 export {
-    SetUploadURL
-}
+    MultiFilePickerModule, FilePickerModule
+} from './file-picker/file-picker.module';

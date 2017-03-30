@@ -81,7 +81,7 @@ export class InfoKioskTrack {
     Add(s: IKioskTrack[]) {
 
         if (s.length > 0) {
-            this.total_activity = sumBy(s, 'total_on')
+            this.total_activity = this.SecondToHour(sumBy(s, 'total_on'))
             this.total_kiosk = size(groupBy(s, 'device_id'));
             this.total_ticket = size(groupBy(s, 'object'));
             var data_by_branh = toArray(groupBy(s, 'branch_id'));
@@ -106,7 +106,7 @@ export class InfoKioskTrack {
                 })
                 this.time.push({
                     name:  CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
-                    value: sumBy(data_by_branh[i], 'total_on')
+                    value: this.SecondToHour(sumBy(data_by_branh[i], 'total_on'))
                 })
                 this.ticket_sum.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
@@ -117,10 +117,10 @@ export class InfoKioskTrack {
                 })
                 this.time_sum.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
-                    total: sumBy(data_by_branh[i], 'total_on') || 0,
-                    longest: maxBy(data_by_branh[i], 'total_on').total_on,
-                    shortest: minBy(data_by_branh[i], 'total_on').total_on,
-                    average: meanBy(data_by_branh[i], <any>'total_on'),
+                    total: this.SecondToHour(sumBy(data_by_branh[i], 'total_on') || 0),
+                    longest: this.SecondToHour(maxBy(data_by_branh[i], 'total_on').total_on),
+                    shortest: this.SecondToHour(minBy(data_by_branh[i], 'total_on').total_on),
+                    average: this.SecondToHour(meanBy(data_by_branh[i], <any>'total_on')),
                 })
             }
             for (var i = 0; i < len_by_date; i++) {
@@ -130,21 +130,25 @@ export class InfoKioskTrack {
                 })
                 this.time_day.push({
                     name: data_by_date[i][0].date,
-                    value: sumBy(data_by_date[i], 'total_on')
+                    value: this.SecondToHour(sumBy(data_by_date[i], 'total_on'))
                 })
             }
         }
+
+    }
+    SecondToHour(s:number){
+        return +(s/3600).toFixed(2);
 
     }
 
 
     Finalize(s: IKioskTrack[]) {
         if (s.length > 0) {
-            this.longest_activity_time = maxBy(this.time, 'name').value;
+            this.longest_activity_time = this.SecondToHour(maxBy(this.time, 'name').value);
             this.longest_activity_kiosk = maxBy(this.time, 'name').name;
-            this.shortest_activity_time = minBy(this.time, 'name').value;
+            this.shortest_activity_time = this.SecondToHour(minBy(this.time, 'name').value);
             this.shortest_activity_kiosk = minBy(this.time, 'name').name;
-            this.average_activity_time = meanBy(this.time, <any>'value');
+            this.average_activity_time = this.SecondToHour(meanBy(this.time, <any>'value'));
 
             this.highest_ticket_quantity = maxBy(this.ticket, 'name').value;
             this.highest_ticket_from = maxBy(this.ticket, 'name').name;

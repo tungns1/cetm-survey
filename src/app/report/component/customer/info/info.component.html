@@ -3,7 +3,7 @@
         <span class="padding-r-10" i18n fxFlex="25%">Customer name</span>
         <b fxFlex="25%" *ngIf="data && customer; let c">{{c.full_name}}</b>
         <div fxFlex="25%" *ngIf="!(data && customer)"></div>
-        <span class="padding-r-10" i18n fxFlex="28%">Most ssed service</span>
+        <span class="padding-r-10" i18n fxFlex="28%">Most used service</span>
         <b *ngIf="data && service" fxFlex="22%">{{service.name}}&nbsp;{{service.value}}/{{data.c_t}}</b>
         <div fxFlex="22%" *ngIf="!(data && customer)"></div>
     </div>
@@ -16,7 +16,7 @@
         <div fxFlex="22%" *ngIf="!(data && customer)"></div>
     </div>
     <div fxLayout="row" class="padding-10-0">
-        <span class="padding-r-10" i18n fxFlex="25%">Phone number</span>
+        <span class="padding-r-10" i18n fxFlex="25%">Phone Number</span>
         <b fxFlex="25%" *ngIf="data && customer; let c">{{c.phone_number}}</b>
     </div>
     <div fxLayout="row" class="padding-10-0">

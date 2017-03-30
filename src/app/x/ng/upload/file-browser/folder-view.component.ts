@@ -6,11 +6,7 @@ import { FileNode } from '../backend/';
 @Component({
     selector: 'folder-view',
     templateUrl: 'folder-view.component.html',
- styleUrls: ["folder-view.component.scss"]
-    // styles: [
-    //     `
-    //     `
-    // ]
+    styleUrls: ["folder-view.component.scss"]
 })
 export class FolderViewComponent {
     node: FileNode;

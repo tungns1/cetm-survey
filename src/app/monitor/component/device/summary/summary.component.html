@@ -1,0 +1,53 @@
+<div id="summaryComponent">
+    <h2 class="header uppercase" i18n>Overview</h2>
+    <div class="nav">
+        <button class="btnFill btnMargin uppercase" i18n>Transaction</button>
+        <button class="btnClear btnMargin uppercase" i18n>Device</button>
+    </div>
+    <table class="tableCtrl">
+        <thead class="">
+            <th i18n>Store</th>
+            <th i18n>Print ticket</th>
+            <th i18n>Waiting ticket</th>
+            <th i18n>Serving ticket</th>
+            <th i18n>Served ticket </th>
+            <th i18n>Missed ticket</th>
+            <th i18n>Cancelled ticket</th>
+            <th i18n>Exceeded waiting time transaction</th>
+            <th i18n>Exceeded serving time transaction</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of summary$ | async" (click)="focus(s)" class="branchSummary">
+                <td> {{s.branch_id | branchName}} </td>
+                <td> {{s.printed}}</td>
+                <td i18n> {{s.waiting}}</td>
+                <td i18n> {{s.serving}}</td>
+                <td i18n> {{s.finished}}</td>
+                <td i18n> {{s.missed}}</td>
+                <td i18n> {{s.cancelled}}</td>
+                <td i18n [ngClass]="{'warning': s.wl_percent.toFixed(2) > 40}">
+                    <span>{{s.wait_long}} ({{s.wl_percent.toFixed(2)}}%)</span>
+                </td>
+                <td i18n [ngClass]="{'warning': s.s_l_percent.toFixed(2) > 10}">
+                    <span>{{s.s_l}} ({{s.s_l_percent.toFixed(2)}}%)</span>
+                </td>
+            </tr>
+            <tr>
+                <td i18n>Summary</td>
+                <td> {{total.printed}}</td>
+                <td i18n> {{total.waiting}}</td>
+                <td i18n> {{total.serving}}</td>
+                <td i18n> {{total.finished}}</td>
+                <td i18n> {{total.missed}}</td>
+                <td i18n> {{total.cancelled}}</td>
+                <td i18n [ngClass]="{'warning': total.wl_percent.toFixed(2) > 40}">
+                    <span>{{total.wait_long}} ({{total.wl_percent.toFixed(2)}}%)</span>
+                </td>
+                <td i18n [ngClass]="{'warning': total.s_l_percent.toFixed(2) > 10}">
+                    <span>{{total.s_l}} ({{total.s_l_percent.toFixed(2)}}%)</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="divider margin-20-0"></div>
+</div>

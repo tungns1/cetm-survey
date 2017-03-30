@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MonitorFilterService } from '../shared';
-import { MonitorTicketService } from './ticket.service';
 import { SummaryComponent } from './summary/summary.component';
 import { FocusComponent } from './focus/focus.component';
 import { MonitorNavService } from '../../service/shared/nav';
+import { MonitorTicketSocket, MonitorSummaryService } from './shared';
 
 @Component({
     selector: 'monitor-ticket',
     templateUrl: 'ticket.component.html'
 })
 export class MonitorTicketComponent implements OnInit {
-    constructor(        
+    constructor(
         private navService: MonitorNavService,
         private filterService: MonitorFilterService,
-        private ticketService: MonitorTicketService
+        private summaryService: MonitorSummaryService,
+        private socket: MonitorTicketSocket
     ) { }
 
     ngOnInit() {
-        this.ticketService.onInit();
+        this.socket.onInit();
     }
 
     ngOnDestroy() {
-        this.ticketService.onDestroy();
+        this.socket.onDestroy();
     }
 
     isFocus$ = this.filterService.Data$.map(filter => {
