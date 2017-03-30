@@ -1,10 +1,14 @@
 #monitorChart{
-    height: 30vw;
+    height: 33vw;
     .chartHeader{
         text-align: center;
     }
     .legend{
         position: relative;
         top: 30px;
+        clear: both;
+        .item{
+            margin-left: 23%;
+        }
     }
 }

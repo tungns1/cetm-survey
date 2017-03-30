@@ -1,12 +1,13 @@
 <div class="border">
     <div class="componentHeader">
-        <span i18n>Waiting tickets list (</span><span class="totalCount">{{count$ | async}}</span><span>)</span>
+        <span i18n>Waiting Tickets List </span> (
+        <span class="totalCount">{{count$ | async}}</span> )
     </div>
     <div class="queue">
         <div fxLayout="row" class="headerTable">
             <span fxFlex class="cell" i18n>No.</span>
-            <span fxFlex="50%" class="cell" i18n>Service name</span>
-            <span fxFlex class="cell" i18n>Waiting time</span>
+            <span fxFlex="50%" class="cell" i18n>Service Name</span>
+            <span fxFlex class="cell" i18n>Waiting Time</span>
         </div>
         <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
             <div fxFlex class="cell">

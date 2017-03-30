@@ -1,25 +1,25 @@
-@import '../../../styles/design/variables';
-#report{
-    .paginNExport{
+@import '../../shared/style.scss';
+#report {
+    .paginNExport {
         line-height: 30px;
         margin: 30px;
-        .pagin{
+        .pagin {
             display: inline-block;
-            button{
+            button {
                 margin-right: 3px;
                 border: none;
                 background-color: transparent;
                 color: $key-color;
             }
-            .active{
+            .active {
                 font-weight: $font-weight-default + 200;
             }
         }
-        .export{
+        .export {
             display: inline-block;
             float: right;
             width: 250px;
-            i{
+            i {
                 margin: 0 10px;
             }
         }

@@ -15,5 +15,6 @@ export {
 
 export { SmallStorage, RouterQueryStorageStrategy } from './shared';
 export { ExportExcelService } from '../x/ng';
-
+export { LogService } from '../../lib/platform';
+export { AppSocket } from '../../lib/backend';
 import "./rx";
