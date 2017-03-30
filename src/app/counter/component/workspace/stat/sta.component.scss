@@ -1,45 +1,47 @@
-@import '../../../../../styles/design/variables';
-#sta{
+@import '../../../../shared/style.scss';
+#sta {
     height: 55%;
     overflow: auto;
-    .tabs{
-        .tabCtrl{
+    .tabs {
+        .tabCtrl {
             background-color: $background-color;
         }
-        .active{
+        .active {
             color: $key-color;
             border-bottom: 3px solid $key-color;
         }
     }
 }
-#bar{
-    .label{
+
+#bar {
+    .label {
         font-size: $font-size-default - 1;
         margin: 10px 0px 5px;
     }
-    .barBackground{
+    .barBackground {
         width: 100%;
         height: 12px;
         background-color: $background-color-title;
         border-radius: 12px;
-        .barGrap{
+        .barGrap {
             height: 12px;
             text-align: right;
             border-radius: 12px;
             background: linear-gradient(to right, $key-color, $key-color + 50);
-            p{
+            p {
                 color: #fff;
                 margin-right: 5px;
             }
         }
     }
 }
-#search{
+
+#search {
     margin-top: 3%;
     height: 40%;
     padding: 3%;
     overflow: auto;
-    input{
+    input {
         width: 100%;
         border: $border;
         border-radius: 3px;
@@ -47,20 +49,20 @@
         font-size: 12px;
         text-indent: 10px;
     }
-    .iconSearch{
+    .iconSearch {
         float: right;
         width: 20px;
         position: relative;
         top: -25px;
     }
-    .searchResult{
-        .label{
+    .searchResult {
+        .label {
             text-align: left;
         }
-        .detail{
+        .detail {
             text-align: right;
         }
-        h3{
+        h3 {
             text-align: center;
         }
     }

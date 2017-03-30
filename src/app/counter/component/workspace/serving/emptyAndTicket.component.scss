@@ -1,29 +1,30 @@
-@import '../../../../../styles/design/variables';
-.emptyAndServing{
+@import '../../../../shared/style.scss';
+.emptyAndServing {
     height: 35%;
-    .wrap{
+    .wrap {
         height: 85%;
-        .leftBox, .rightBox{
+        .leftBox,
+        .rightBox {
             height: 100%;
             padding: 20px;
             text-align: center;
             font-size: $font-size-default + 3;
         }
-        .rightBox{
+        .rightBox {
             border-left: $border;
         }
-        .content{
+        .content {
             margin-top: 12px;
-            .icon{
+            .icon {
                 width: 40px;
                 margin: 0 10px;
             }
-            .number{
+            .number {
                 font-size: $font-size-default * 7;
                 color: $key-color;
             }
             @media only screen and (max-width: 1200px) {
-                .number{
+                .number {
                     font-size: $font-size-default * 4;
                 }
             }

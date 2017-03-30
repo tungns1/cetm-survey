@@ -11,7 +11,7 @@
     <div class="filterHistory">
         <form (ngSubmit)="onSubmit()" #filterHistory="ngForm" fxLayout="row">
             <div fxFlex="28%">
-                <strong class="uppercase inline" i18n>Waiting time</strong><label class="note margin-l-5" i18n>(minute)</label>
+                <strong class="uppercase inline" i18n>Waiting Time</strong><label class="note margin-l-5" i18n>(minute)</label>
                 <input class="inputFilter inline border" type="number" i18n-placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0" (ngModelChange)="sync(); onSubmit()">
                 <input class="inputFilter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}" (ngModelChange)="onSubmit()">
             </div>
@@ -43,7 +43,7 @@
             <th i18n>Teller</th>
             <th i18n>Ticket</th>
             <th i18n>Print time</th>
-            <th i18n>Waiting time</th>
+            <th i18n>Waiting Time</th>
             <th i18n>Serving time </th>
             <th i18n>Feedback</th>
             <th i18n>Detail</th>

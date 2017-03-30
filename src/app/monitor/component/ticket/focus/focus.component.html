@@ -7,19 +7,19 @@
     <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Branch:</span>:
+                <span i18n>Branch</span>:
                 <span>{{data.parent_id | branchName}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Admin:</span>
-                <span>Nguyễn Trường Minh</span>
+                <span i18n>Admin</span>:
+                <span></span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Manager:</span>
-                <span>Nguyễn Sỹ Trung</span>
+                <span i18n>Manager</span>:
+                <span></span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total counter:</span>
+                <span i18n>Total counter</span>:
                 <span> {{numberCounter$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -27,41 +27,41 @@
                 <span> {{numberCounterOn$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Total counter off:</span>
+                <span>Total counter off</span>:
                 <span>{{numberCounterOff$ | async}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Print ticket:</span>
+                <span i18n>Print Ticket</span>:
                 <span>{{data.printed}}</span>
             </div>
         </div>
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of waiting tickets:</span>
+                <span i18n>Number of waiting tickets</span>:
                 <span>{{data.waiting}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of tickets being served:</span>
+                <span i18n>Number of tickets being served</span>:
                 <span>{{data.serving}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of tickets already served:</span>
+                <span i18n>Number of tickets already served</span>:
                 <span>{{data.finished}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of reserved tickets:</span>
+                <span i18n>Number of reserved tickets</span>:
                 <span>{{data.missed}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Number of cancelled tickets:</span>
+                <span i18n>Number of cancelled tickets</span>:
                 <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Waiting over 15':</span>
+                <span i18n>Waiting over 15'</span>:
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving over 15':</span>
+                <span i18n>Serving over 15'</span>:
                 <span>{{data.serve_short}}</span>
             </div>
         </div>
@@ -79,11 +79,11 @@
 <table class="tableCtrl">
     <thead>
         <th i18n>No.</th>
-        <th i18n>Service name</th>
+        <th i18n>Service Name</th>
         <th i18n>Ticket number</th>
         <th i18n>Customer</th>
         <th i18n>Print time</th>
-        <th i18n>Waiting time</th>
+        <th i18n>Waiting Time</th>
         <th i18n>Detail</th>
     </thead>
     <tbody>
@@ -118,7 +118,7 @@
         <th i18n>Ticket number</th>
         <th i18n>Customer</th>
         <th i18n>Print time</th>
-        <th i18n>Waiting time</th>
+        <th i18n>Waiting Time</th>
         <th i18n>Serving time</th>
         <th i18n>Detail</th>
     </thead>
@@ -151,7 +151,7 @@
 </table>
 
 <modal #edit id="modal_monitor_detailTicket">
-    <h3 class="modal-header" i18n>Ticket detail</h3>
+    <h3 class="modal-header" i18n>Ticket Detail</h3>
     <div *ngIf="selectedTicket" class="modalContent padding-10-20">
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
@@ -174,7 +174,7 @@
             <div fxFlex>{{selectedTicket.ctime | localDayTime}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
-            <div fxFlex i18n>Waiting time</div>
+            <div fxFlex i18n>Waiting Time</div>
             <div fxFlex>
                 <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
                 <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
