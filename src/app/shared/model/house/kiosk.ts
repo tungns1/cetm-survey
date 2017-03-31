@@ -11,4 +11,5 @@ export interface IKiosk {
     tlayout_id: string;
     inheritable: boolean;
     parent_id: string;
+    layout_resources: any;
 }

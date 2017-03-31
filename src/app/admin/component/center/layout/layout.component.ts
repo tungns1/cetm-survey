@@ -31,7 +31,7 @@ export class LayoutComponent {
             type: [b.type, Validators.required],
             ui: [b.ui || {}],
             style: [b.style],
-            resources: [extend(b.resources, b.ui.resources)]
+            resources: [extend(b.ui.resources, b.resources)]
         });
     }
 

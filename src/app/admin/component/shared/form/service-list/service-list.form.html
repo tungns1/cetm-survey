@@ -9,13 +9,12 @@
 </div>
 <modal #m>
     <div *ngIf="active">
-        <h2> <span i18n>Repair service kiosk</span> </h2>
-        <select class="select" [(ngModel)]="active.id" (ngModelChange)="setActive()">
+        <h2> <span i18n>Edit service name on this kiosk</span> </h2>
+        <select [(ngModel)]="active.id" (ngModelChange)="setActive()">
             <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
         </select>
-        <input class="inputs" [(ngModel)]="active.code" i18n-placeholder="Display code">
         <l10n-form [(ngModel)]="active.l10n"></l10n-form>
-        <hr>
+        <hr> Code: <input class="inputs" [(ngModel)]="active.code" i18n-placeholder="Display code">
         <button (click)="Close()"> <i class="fa fa-close"></i> <span i18n>Cancel</span> </button>
         <button (click)="Save()"> <i class="fa fa-save"></i> <span i18n>Save</span> </button>
         <button (click)="Remove()"> <i class="fa fa-trash"></i><span i18n>Delete</span>  </button>

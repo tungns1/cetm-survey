@@ -33,7 +33,8 @@ export class KioskComponent {
             layout_id: [b.layout_id],
             tlayout_id: [b.tlayout_id],
             parent_id: [b.parent_id],
-            inheritable: [b.inheritable]
+            inheritable: [b.inheritable],
+            layout_resources: [b.layout_resources]
         });
     }
 }
