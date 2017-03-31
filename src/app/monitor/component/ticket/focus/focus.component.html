@@ -163,8 +163,9 @@
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Service</div>
             <div fxFlex>
-                <span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
-                <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>
+                <!--<span *ngIf="!isServed">{{selectedTicket.services[0] | serviceName}}</span>
+                <span *ngIf="isServed">{{selectedTicket.serving.service_id | serviceName}}</span>-->
+                <span>{{selectedTicket.service_id | serviceName}}</span>
             </div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
@@ -174,9 +175,11 @@
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Waiting time</div>
             <div fxFlex>
-                <span *ngIf="!isServed && selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
-                <span *ngIf="!isServed && selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
-                <span *ngIf="isServed">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                <span *ngIf="selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
+                <span *ngIf="selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                <!--<span *ngIf="selectedTicket.state === 'finished'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>-->
+                <timer *ngIf="selectedTicket.state == 'serving'" [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
+                <span *ngIf="selectedTicket.state == 'cancelled' || selectedTicket.state === 'finished'"> {{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
             </div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="isServed">
@@ -196,11 +199,13 @@
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
             <div fxFlex i18n>Tellers</div>
-            <div fxFlex>{{selectedTicket.serving.user_id | userFullName}}</div>
+            <div *ngIf="selectedTicket.state != 'cancelled'" fxFlex>{{selectedTicket.serving.user_id | userFullName}}</div>
+            <div *ngIf="selectedTicket.state == 'cancelled'" fxFlex>{{selectedTicket.user_id | userFullName}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
             <div fxFlex i18n>Counter</div>
-            <div fxFlex>{{selectedTicket.serving.counter_id | counterName }}</div>
+            <div *ngIf="selectedTicket.state != 'cancelled'" fxFlex>{{selectedTicket.serving.counter_id | counterName }}</div>
+            <div *ngIf="selectedTicket.state == 'cancelled'" fxFlex>{{selectedTicket.counter_id | counterName }}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="selectedTicket.serving">
             <div fxFlex i18n>Manager</div>

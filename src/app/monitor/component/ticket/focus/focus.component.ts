@@ -221,7 +221,9 @@ export class FocusComponent {
     }
 
     private detail(ticket) {
+        // console.log(ticket);
         this.customer = null;
+        /////////////////// MARK /////////////////////
         if (ticket.customer) {
             this.customerService.GetCustomerByID(ticket.customer.id).subscribe(v => {
                 this.customer = v;
