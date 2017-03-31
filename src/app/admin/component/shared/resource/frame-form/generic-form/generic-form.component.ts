@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { 
+import {
   ModalComponent, IResourceForm
 } from '../../shared';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-generic-form',
@@ -14,7 +15,7 @@ export class GenericFormComponent implements OnInit {
   }
 
   Edit(record: IResourceForm) {
-    this.record = record;
+    this.record = cloneDeep(record);
     this.type = record.type;
     this.modal.Open();
   }
@@ -29,6 +30,7 @@ export class GenericFormComponent implements OnInit {
       return;
     }
     this.save.next(this.record);
+    this.Close();
   }
 
   record: IResourceForm;

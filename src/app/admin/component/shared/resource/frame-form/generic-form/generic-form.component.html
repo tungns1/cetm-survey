@@ -1,7 +1,7 @@
 <modal #main>
-    Edit Resource
-    <button (click)="Close()">Close</button>
-    <button (click)="Save()">Save</button>
+    <h1>Edit Resource</h1>
+    <button (click)="Close()">Cancel</button>
+    <button (click)="Save()">Ok</button>
     <br>
     <div *ngIf="record" [ngSwitch]="record?.type">
         <div *ngSwitchCase="'text'">

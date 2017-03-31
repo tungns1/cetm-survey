@@ -1,6 +1,4 @@
 import { Component, OnInit, forwardRef, ExistingProvider } from '@angular/core';
-import { TestLayout } from './test_resource';
-
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const RESORCE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -30,6 +28,12 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   Save(r: IResourceForm) {
     this.value[r.name] = r;
+    this.refresh();
+    this.onChangeCallback(this.value);
+  }
+
+  Reset(r: IResourceForm) {
+    this.value[r.name].data = null;
     this.refresh();
     this.onChangeCallback(this.value);
   }

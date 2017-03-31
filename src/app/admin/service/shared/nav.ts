@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ExclusiveEventEmitter } from '../../shared';
 
 @Injectable()
 export class AdminNavService {
@@ -9,7 +10,7 @@ export class AdminNavService {
         return this._refresh$.asObservable();
     }
 
-    private _refresh$ = new ReplaySubject<any>(1);
+    private _refresh$ = new ExclusiveEventEmitter();
     Refresh() {
         this._refresh$.next(null);
     }

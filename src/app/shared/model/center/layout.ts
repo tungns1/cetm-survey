@@ -14,5 +14,6 @@ export interface ILayout {
     tag: string;
     name: string;
     ui: UI;
+    resources: any;
     style: string;
 }

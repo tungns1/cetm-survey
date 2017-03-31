@@ -2,13 +2,14 @@
     <thead>
         <th width="10%">Name</th>
         <th width="10%">Type</th>
-        <th width="50%">Data</th>
+        <th width="40%">Data</th>
     </thead>
     <tbody>
         <tr *ngFor="let r of records">
             <td>
                 {{r.name}}
                 <a href="javascript:void(0);" (click)="form.Edit(r)">Edit</a>
+                <a href="javascript:void(0);" (click)="Reset(r)">Reset</a>
             </td>
             <td>{{r.type}}</td>
             <td>{{r.data | json}}</td>
