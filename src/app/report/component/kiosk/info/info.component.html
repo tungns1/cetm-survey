@@ -1,34 +1,63 @@
-<div>
-    <div>
-        <span i18n>Total kiosk:</span>
-        <span> {{infoKiosk.total_kiosk}}</span>
-        <span i18n>Longest activity kiosk:</span>
-        <span> {{infoKiosk.longest_activity_kiosk}}</span>
-        <span i18n>Shortest activity kiosk:</span>
-        <span> {{infoKiosk.shortest_activity_kiosk}}</span>
-        <span i18n>Average kiosk effectiveness:</span>
-        <span> {{infoKiosk.total_kiosk}}</span>
-        <span i18n>Total printed ticket</span>
-        <span> {{infoKiosk.total_ticket}}</span>
-        <span i18n>Highest ticket printed from</span>
-        <span> {{infoKiosk.highest_ticket_from }}</span>
-        <span i18n>Lowest ticket printed from</span>
-        <span> {{infoKiosk.lowest_ticket_from }}</span>
+<div id="kiosk-info" fxLayout="row" fxLayoutGap="30px">
+    <div fxFlex>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Total kiosk:</span>
+            <p fxFlex> {{infoKiosk.total_kiosk}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Longest activity kiosk:</span>
+            <p fxFlex> {{infoKiosk.longest_activity_kiosk}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Shortest activity kiosk:</span>
+            <p fxFlex> {{infoKiosk.shortest_activity_kiosk}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Average kiosk effectiveness:</span>
+            <p fxFlex> {{infoKiosk.total_kiosk}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Total printed ticket</span>
+            <p fxFlex> {{infoKiosk.total_ticket}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Highest ticket printed from</span>
+            <p fxFlex> {{infoKiosk.highest_ticket_from }}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Lowest ticket printed from</span>
+            <p fxFlex> {{infoKiosk.lowest_ticket_from }}</p>
+        </div>
     </div>
-    <div>
-        <span i18n>Total activity:</span>
-        <span> {{infoKiosk.total_activity}}</span>
-        <span i18n>Longest activity time:</span>
-        <span> {{infoKiosk.longest_activity_time}}</span>
-        <span i18n>Shortest activity time:</span>
-        <span> {{infoKiosk.shortest_activity_time}}</span>
-        <span i18n>Average activity time:</span>
-        <span> {{infoKiosk.average_activity_time}}</span>
-        <span i18n>Average printed ticket</span>
-        <span> {{infoKiosk.average_printed_ticket}}</span>
-        <span i18n>Highest ticket printed quantity</span>
-        <span> {{infoKiosk.highest_ticket_quantity}}</span>
-        <span i18n>Lowest ticket printed quantity</span>
-        <span> {{infoKiosk.lowest_ticket_quantity}}</span>
+    <div fxFlex>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Total activity:</span>
+            <p fxFlex> {{infoKiosk.total_activity}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Longest activity time:</span>
+            <p fxFlex> {{infoKiosk.longest_activity_time}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Shortest activity time:</span>
+            <p fxFlex> {{infoKiosk.shortest_activity_time}}</p>
+
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Average activity time:</span>
+            <p fxFlex> {{infoKiosk.average_activity_time}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Average printed ticket</span>
+            <p fxFlex> {{infoKiosk.average_printed_ticket}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Highest ticket printed quantity</span>
+            <p fxFlex> {{infoKiosk.highest_ticket_quantity}}</p>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <span fxFlex i18n>Lowest ticket printed quantity</span>
+            <p fxFlex> {{infoKiosk.lowest_ticket_quantity}}</p>
+        </div>
     </div>
 </div>

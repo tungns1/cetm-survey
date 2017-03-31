@@ -25,6 +25,7 @@ export class LayoutComponent {
 
     makeForm(b?: ILayout) {
         b = b || <any>{};
+        b.ui = b.ui || <any>{};
         return (new FormBuilder).group({
             id: [b.id],
             name: [b.name, Validators.required],
