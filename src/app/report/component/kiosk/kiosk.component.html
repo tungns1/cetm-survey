@@ -1,5 +1,5 @@
 <app-env-sub-module i18n-title title="Kiosk Effectiveness"></app-env-sub-module>
-<div id="customerReport">
+<div id="kioskEffective">
     <div class="headerAndNav">
         <h2 class="header uppercase" i18n>Kiosk Effectiveness</h2>
         <div class="nav">
@@ -8,16 +8,16 @@
             <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
         </div>
     </div>
-    <div class="searchNSummary" fxLayout="row">
-        <div fxFlex="60%">
-            <report-info></report-info>
-        </div>
+    
+    <div class="border padding-20">
+        <report-info></report-info>
     </div>
-    <div class="divider">
+
+    <div class="divider margin-20-0"></div>
+    <div class="border">
         <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
         <kiosk-chart></kiosk-chart>
         <topfive-chart></topfive-chart>
         <report-overview></report-overview>
     </div>
-
 </div>

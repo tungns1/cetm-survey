@@ -86,7 +86,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let t of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
-                <td> {{t + 1}} </td>
+                <td> {{i + 1}} </td>
                 <td> {{t.services | multipleServiceName}}</td>
                 <td> {{t.cnum}}</td>
                 <td> {{t.customer?.full_name }} </td>
@@ -121,7 +121,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let t of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished' || t.state === 'waiting'}">
-                <td> {{t.state}} </td>
+                <td> {{i + 1}} </td>
                 <td> {{t.service_id | serviceName}} </td>
                 <td> {{t.counter_id | counterName}}</td>
                 <td> {{t.user_id | userFullName}}</td>
