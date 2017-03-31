@@ -11,22 +11,22 @@ export const MainItems: ChartItem[] = [{
     field: 'c_t',
     color: '#9933ff',
     tab: 'general',
-    key_title: 'Total Transaction'
+    key_title: 'Total transaction'
 }, {
     field: 'c_ft',
     color: '#99b3ff',
     tab: 'general',
-    key_title: 'Finished Transaction'
+    key_title: 'Finished transaction'
 }, {
     field: 'c_ct',
     color: '#969c9c',
     tab: 'general',
-    key_title: 'Cancelled Transaction'
+    key_title: 'Cancelled transaction'
 }, {
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    key_title: 'Waiting Time',
+    key_title: 'Waiting time',
     axis: 'left'
 }, {
     field: 's_st_h',
@@ -37,34 +37,34 @@ export const MainItems: ChartItem[] = [{
     field: 'c_r_a',
     tab: 'customer',
     color: '#0088cc',
-    key_title: 'Very Good Feedback'
+    key_title: 'Very Good feedback'
 }, {
     field: 'c_r_b',
     tab: 'customer',
     color: '#73e600',
-    key_title: 'Good Feedback'
+    key_title: 'Good feedback'
 }, {
     field: 'c_r_c',
     tab: 'customer',
     color: '#ffcc00',
-    key_title: 'Average Feedback'
+    key_title: 'Average feedback'
 }, {
     field: 'c_r_d',
     tab: 'customer',
     color: '#ff3333',
-    key_title: 'Poor Feedback'
+    key_title: 'Poor feedback'
 }];
 
 export const PieItems: ChartItem[][] = [[{
     field: 'c_ft',
     color: '#99b3ff',
     tab: 'general',
-    key_title: 'Finished Transaction'
+    key_title: 'Finished transaction'
 }, {
     field: 'c_ct',
     color: '#969c9c',
     tab: 'general',
-    key_title: 'Cancelled Transaction'
+    key_title: 'Cancelled transaction'
 }], [{
     field: 'c_bwt',
     color: '#339933',
@@ -89,7 +89,7 @@ export const PieItems: ChartItem[][] = [[{
     field: 's_wt_h',
     tab: 'time',
     color: 'steelblue',
-    key_title: 'Waiting Time',
+    key_title: 'Waiting time',
     axis: 'left'
 }, {
     field: 's_st_h',
@@ -100,7 +100,7 @@ export const PieItems: ChartItem[][] = [[{
     field: 'c_r',
     color: '#99b3ff',
     tab: 'customer',
-    key_title: 'Transaction Feedback'
+    key_title: 'Transaction feedback'
 }, {
     field: 'c_r_o',
     color: '#969c9c',
@@ -110,22 +110,22 @@ export const PieItems: ChartItem[][] = [[{
     field: 'c_r_a',
     tab: 'customer',
     color: '#0088cc',
-    key_title: 'Very Good Feedback'
+    key_title: 'Very Good feedback'
 }, {
     field: 'c_r_b',
     tab: 'customer',
     color: '#73e600',
-    key_title: 'Good Feedback'
+    key_title: 'Good feedback'
 }, {
     field: 'c_r_c',
     tab: 'customer',
     color: '#ffcc00',
-    key_title: 'Average Feedback'
+    key_title: 'Average feedback'
 }, {
     field: 'c_r_d',
     tab: 'customer',
     color: '#ff3333',
-    key_title: 'Poor Feedback'
+    key_title: 'Poor feedback'
 }]];
 
 
