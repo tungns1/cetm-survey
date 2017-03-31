@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import {
     IDevice,
     MonitorFilterService, ModalComponent, TimerComopnent
@@ -16,7 +16,8 @@ export class FocusComponent {
 
     constructor(
         private navService: MonitorNavService,
-        private route: ActivatedRoute,
+            private route: ActivatedRoute,
+        private router: Router,
         private filterService: MonitorFilterService,
         private deviceService: MonitorFocusService
     ) { }
@@ -50,7 +51,10 @@ export class FocusComponent {
 
 
     private goBackBranchList() {
-        this.filterService.SetFocus('');
+        this.router.navigate(["../../summary_device"], {
+            relativeTo: this.route,
+            queryParamsHandling: "preserve"
+        })
     }
 
 
