@@ -1,8 +1,8 @@
 <modal *ngIf="data" class="report_history_modal">
-    <div class="modal-header"><span i18n>Ticket Detail</span></div>
+    <div class="modal-header"><span i18n>Ticket detail</span></div>
     <accordion>
         <accordion-title class="accordionTitle">
-            <span i18n>Ticket Detail</span>
+            <span i18n>Ticket detail</span>
         </accordion-title>
         <table class="detailTicket">
             <tr>
@@ -26,11 +26,11 @@
                 <td i18n>{{data.cnum}}</td>
             </tr>
             <tr>
-                <td class="ctrlLable"> <b i18n>Service Name</b>:</td>
+                <td class="ctrlLable"> <b i18n>Service name</b>:</td>
                 <td i18n>{{data.service}}</td>
             </tr>
             <tr>
-                <td class="ctrlLable"><b i18n>Ticket Status</b>:</td>
+                <td class="ctrlLable"><b i18n>Ticket status</b>:</td>
                 <td>{{state}}</td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                 <td>{{data.ctime}}</td>
             </tr>
             <tr>
-                <td class="ctrlLable"><b i18n>Waiting Time</b>:</td>
+                <td class="ctrlLable"><b i18n>Waiting time</b>:</td>
                 <td>{{data.wtime}}</td>
             </tr>
             <tr>
@@ -57,15 +57,15 @@
             <span fxFlex i18n>{{customer.full_name}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="ctrlLable" i18n>Phone Number:</b>
+            <b fxFlex class="ctrlLable" i18n>Phone number:</b>
             <span fxFlex i18n>{{customer.phone_number}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="ctrlLable" i18n>Customer Code:</b>
+            <b fxFlex class="ctrlLable" i18n>Customer code:</b>
             <span fxFlex i18n>{{customer.code}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="ctrlLable" i18n>Customer Segment:</b>
+            <b fxFlex class="ctrlLable" i18n>Customer segment:</b>
             <span fxFlex i18n>{{customer.segment}}</span>
         </div>
         <div class="cusDetail">
