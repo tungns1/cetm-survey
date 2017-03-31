@@ -176,10 +176,10 @@
             <div fxFlex i18n>Waiting time</div>
             <div fxFlex>
                 <span *ngIf="selectedTicket.state === 'waiting'"><timer [start]="selectedTicket.mtime" [timeWarning]="15"></timer></span>
-                <span *ngIf="selectedTicket.state === 'missed'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                <span *ngIf="selectedTicket.state != 'waiting'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
                 <!--<span *ngIf="selectedTicket.state === 'finished'">{{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>-->
-                <timer *ngIf="selectedTicket.state == 'serving'" [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
-                <span *ngIf="selectedTicket.state == 'cancelled' || selectedTicket.state === 'finished'"> {{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>
+                <!--<timer *ngIf="selectedTicket.state == 'serving'" [start]="selectedTicket.mtime" [timeWarning]="1"></timer>
+                <span *ngIf="selectedTicket.state == 'cancelled' || selectedTicket.state === 'finished'"> {{selectedTicket.mtime - selectedTicket.ctime | timeDuration}}</span>-->
             </div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="isServed">
