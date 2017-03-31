@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { ReportViewService, ReportNavService } from '../../shared';
-import { MAIN_TABS } from '../shared';
 
 @Component({
   selector: 'report-tab',

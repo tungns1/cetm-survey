@@ -2,7 +2,7 @@
     <table id="tableEl" class="tableOverView" *ngIf="general$ | async">
         <thead>
             <th i18n>No.</th>
-            <th i18n> {{groupBy$ | async | groupByTitle}} </th>
+            <th [groupByTitle]="groupBy$ | async"></th>
             <th i18n>Total transaction</th>
             <th i18n>Finished Transaction</th>
             <th i18n>Canceled transaction</th>
@@ -48,7 +48,7 @@
     <table id="tableEl" class="tableOverView" *ngIf="time$ | async">
         <thead>
             <th i18n>No.</th>
-            <th i18n> {{groupBy$ | async | groupByTitle}} </th>
+            <th [groupByTitle]="groupBy$ | async"></th>
             <th i18n>Total transaction time</th>
             <th i18n>Total serving time</th>
             <th i18n>Total waiting time</th>
@@ -80,7 +80,7 @@
     <table id="tableEl" class="tableOverView" *ngIf="customer$ | async">
         <thead>
             <th i18n>No.</th>
-            <th i18n> {{groupBy$ | async | groupByTitle}} </th>
+            <th [groupByTitle]="groupBy$ | async"></th>
             <th i18n>Transaction feedback</th>
             <th i18n>Transaction without feedback</th>
             <th i18n>Very good feedback</th>
@@ -91,7 +91,7 @@
         <tbody>
             <tr *ngFor="let d of data$ | async; let i = index">
                 <td> {{i + 1}} </td>
-                <td style="text-align: left;">{{d.name}} </td>
+                <td style="text-align: left;">{{groupBy$ | async | groupByTitle:d}} </td>
                 <td>
                     <div class="hl-numrp-align">{{d.c_r}}</div>
                     <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0"> (0.00%)</span></div>
