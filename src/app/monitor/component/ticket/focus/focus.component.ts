@@ -127,55 +127,66 @@ export class FocusComponent {
                 this.addServingTrack(t);
                 return true;
             }
+        }))
+        .map(tickets => tickets.sort((a, b) => {
+            return a.mtime < b.mtime ? -1 : 1;
         }));
 
     served$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
-            if (t.state === TicketStates.Missed || t.state === TicketStates.Serving) {
-                return false;
-            }
-            if (t.state === TicketStates.Waiting) {
-                let flag = 0;
-                for (let i = 0; i < t.tracks.length; i++) {
-                    if (t.tracks[i].state === 'finished') {
-                        t.counter_id = t.tracks[i - 1].counter_id;
-                        t.mtime = t.tracks[i].mtime;
-                        t.service_id = t.tracks[i - 1].service_id;
-                        t.counter_id = t.tracks[i - 1].counter_id;
-                        t.user_id = t.tracks[i - 1].user_id;
-                        t.stime = t.mtime - t.tracks[i - 1].mtime;
-                        flag++;
+            if (t.state === TicketStates.Finished || t.state === TicketStates.Waiting) {
+                if (t.state === TicketStates.Waiting) {
+                    let flag = 0;
+                    for (let i = 0; i < t.tracks.length; i++) {
+                        if (t.tracks[i].state === 'finished') {
+                            t.counter_id = t.tracks[i - 1].counter_id;
+                            t.mtime = t.tracks[i].mtime;
+                            t.service_id = t.tracks[i - 1].service_id;
+                            t.counter_id = t.tracks[i - 1].counter_id;
+                            t.user_id = t.tracks[i - 1].user_id;
+                            t.stime = t.mtime - t.tracks[i - 1].mtime;
+                            flag++;
+                        }
                     }
-                }
-                if (flag == 0) return false;
-                else {
-                    return true;
-                }
-            }
-            if (t.state === TicketStates.Cancelled) {
-                for (let i = 0; i < t.tracks.length; i++) {
-                    if (t.tracks[i].state === 'serving') {
-                        t.stime = t.tracks[i + 1].mtime - t.tracks[i].mtime;
-                        this.addServingTrack(t);
+                    if (flag == 0) return false;
+                    else {
                         return true;
                     }
                 }
+                if (t.state === TicketStates.Finished) {
+                    t.stime = t.tracks[t.tracks.length - 1].mtime - t.tracks[t.tracks.length - 2].mtime;
+                }
+                this.addServingTrack(t);
+                return true;
+            }
+            return false;
+        }))
+        .map(tickets => tickets.sort((a, b) => {
+            return a.mtime < b.mtime ? -1 : 1;
+        }));
+
+    cancelled$ = this.focusService.tickets$
+        .map(tickets => tickets.filter(t => {
+            if (t.state === TicketStates.Cancelled) {
+                // for (let i = 0; i < t.tracks.length; i++) {
+                //     if (t.tracks[i].state === 'serving') {
+                //         t.stime = t.tracks[i + 1].mtime - t.tracks[i].mtime;
+                //         this.addServingTrack(t);
+                //         return true;
+                //     }
+                // }
                 t.stime = 0;
                 this.addServingTrack(t);
                 return true;
             }
-            if (t.state === TicketStates.Finished) {
-                t.stime = t.tracks[t.tracks.length - 1].mtime - t.tracks[t.tracks.length - 2].mtime;
-            }
-            this.addServingTrack(t);
-            return true;
+            return false;
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.state < b.state ? 1 : -1;
+            return a.mtime < b.mtime ? -1 : 1;
         }));
 
-    servingNServed$ = this.serving$.combineLatest(this.served$, (serving, served) => {
-        return [].concat(serving).concat(served);
+    servingNServed$ = this.serving$.combineLatest(this.served$, this.cancelled$, (serving, served, cancelled) => {
+        return [].concat(serving).concat(served).concat(cancelled);
     })
 
     addServingTrack(a: ITicket) {
