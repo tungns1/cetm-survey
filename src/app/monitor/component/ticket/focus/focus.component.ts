@@ -220,6 +220,8 @@ export class FocusComponent {
             this.isServed = true;
         } else this.isServed = false;
         this.selectedTicket = ticket;
+        this.selectedTicket['admin'] = this.admin[0];
+        this.selectedTicket['manager'] = this.manager[0];
         this.editorRef.Open();
     }
 }

@@ -53,7 +53,7 @@ export const PieItems: ChartItem[][] =
     [
         {
             header: 'Exceeded serving time transaction',
-            field: 's_standard',
+            field: 'serve_standard',
             color: '#ff974d',
             key_title: 'Standard serving time transaction'
         }, {
