@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
-    ISummary, Summary, IExtendedTicket, TicketStates,
-    ICustomer, ITicketTrack, ITicket,
+    IDevice,
     MonitorFilterService, ModalComponent, TimerComopnent
 } from '../../shared';
-import { MonitorDeviceService } from '../device.service';
+import { MonitorFocusService } from '../shared';
 import { MonitorNavService } from '../../../service/shared/nav';
 
 @Component({
@@ -19,30 +18,34 @@ export class FocusComponent {
         private navService: MonitorNavService,
         private route: ActivatedRoute,
         private filterService: MonitorFilterService,
-        private deviceService: MonitorDeviceService
+        private deviceService: MonitorFocusService
     ) { }
 
     selectedTicket: Object;
     isServed: boolean = true;
-    data: Summary;
-    customer: ICustomer;
 
 
     ngOnInit() {
-        this.focus$.subscribe(d => this.data = d[0]);
+        this.route.params.subscribe(p => {
+            this.deviceService.Branch$.next(p["branch_id"]);
+        });
+         this.navService.Refresh$.ExclusiveSubscribe(_ => {
+            const branch_id = this.route.snapshot.params["branch_id"];
+            this.deviceService.Branch$.next(branch_id);
+        });
 
     }
 
     ngOnDestroy() {
 
     }
-
-    focus$ = this.filterService.Data$.switchMap(filter => {
-        const branch_id = filter.focus;
-        return this.deviceService.summary$.map(data => {
-            // return data.filter(d => d.branch_id === branch_id);
-        })
+    counter$ = this.deviceService.counter$.map(v => {
+        return v;
     })
+    kisok$ = this.deviceService.kisok$.map(v => {
+        return v;
+    })
+
 
 
 
