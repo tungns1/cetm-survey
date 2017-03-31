@@ -4,7 +4,7 @@
             <th i18n>No.</th>
             <th [groupByTitle]="groupBy$ | async"></th>
             <th i18n>Total transaction</th>
-            <th i18n>Finished Transaction</th>
+            <th i18n>Finished transaction</th>
             <th i18n>Canceled transaction</th>
             <th i18n>Standard waiting time transaction</th>
             <th class="widthCtrl" i18n>Exceeded waiting time transaction</th>
@@ -55,9 +55,9 @@
             <th i18n>Serving time avarage</th>
             <th i18n>Serving time min</th>
             <th i18n>Serving time max</th>
-            <th i18n>Waiting Time avarage</th>
-            <th i18n>Waiting Time min</th>
-            <th i18n>Waiting Time max</th>
+            <th i18n>Waiting time avarage</th>
+            <th i18n>Waiting time min</th>
+            <th i18n>Waiting time max</th>
         </thead>
         <tbody>
             <tr *ngFor="let d of data$ | async; let i = index">
