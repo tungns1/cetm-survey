@@ -8,8 +8,8 @@
         <div *ngFor="let item of itemGroup" fxFlex fxLayot="column">
             <div *ngFor="let t of item" fxFlex class="margin-7-0 item">
                 <!--<div style="float:left;" class="margin-7-20">-->
-                    <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
-                    <span style="font-size: 11px;"> {{t.title}}</span>
+                <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
+                <span style="font-size: 11px;"> {{t.title}}</span>
                 <!--</div>-->
             </div>
         </div>
@@ -17,8 +17,8 @@
 </div>
 
 <chart-item-group-view #config>
-    <chart-item-group title="Ticket Detail">
-        <chart-item field="finished" color="#fcff4d" title="Finished Transaction"></chart-item>
+    <chart-item-group title="Ticket detail">
+        <chart-item field="finished" color="#fcff4d" title="Finished transaction"></chart-item>
         <chart-item field="cancelled" color="#8dbb00" title="Cancelled transaction"></chart-item>
         <chart-item field="waiting" color="#4df7ff" title="Waiting transaction"></chart-item>
         <chart-item field="missed" color="#584dff" title="Missed transaction"></chart-item>
