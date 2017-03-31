@@ -87,10 +87,10 @@ export class SmallStorage<T> {
 
     private _onInit() {
         this._data$ = new BehaviorSubject<T>(this.read());
-        this._data$.skip(1).subscribe(data => {
+        this._data$.skip(1).debounceTime(50).subscribe(data => {
             this.save(data);
         });
-        this.Data$ = this._data$.debounceTime(20);
+        this.Data$ = this._data$.debounceTime(200);
     }
 
     protected serialize(data: T) {
