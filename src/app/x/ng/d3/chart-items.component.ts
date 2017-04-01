@@ -57,6 +57,7 @@ export class ChartItemGroup {
 export class ChartItemGroupView {
     @Input() set active(group: string) {
         this.view = group;
+        console.error(group);
         this.refresh();
     }
 

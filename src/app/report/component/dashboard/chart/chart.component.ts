@@ -14,7 +14,9 @@ export class ReportChartComponent {
         private chartService: ChartService,
         private translateService: TranslateService,
         private viewService: ReportViewService
-    ) { }
+    ) {
+
+    }
 
     type: string = 'pie';
 
