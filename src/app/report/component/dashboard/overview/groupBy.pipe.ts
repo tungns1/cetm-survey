@@ -14,6 +14,7 @@ export class GroupByTitlePipe implements PipeTransform {
 
     transform(groupBy: string, record: IAggregate) {
         const id = record[groupBy];
+        console.log(record);
         switch (groupBy) {
             case 'service_id':
                 return ServiceName(id);

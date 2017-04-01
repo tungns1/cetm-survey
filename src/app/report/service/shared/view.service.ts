@@ -12,12 +12,15 @@ export class ReportViewService extends SmallStorage<IReportView> {
         storageStrategy: RouterQueryStorageStrategy
     ) {
         super("report_view", storageStrategy);
-        this.SetTab();
+        setTimeout(_ => {
+            this.SetTab();
+        });
     }
 
     SetTab(tab: string = 'general') {
         this.data.tab = tab;
         this.SaveData();
+        this.EmitEvent();
     }
 
     Tab$ = this.Data$.map(d => d.tab).share();

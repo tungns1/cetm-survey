@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/debounceTime';
@@ -76,6 +76,7 @@ const handler = {
     },
 };
 
+import { cloneDeep } from 'lodash';
 
 @Injectable()
 export class SmallStorage<T> {
@@ -90,26 +91,28 @@ export class SmallStorage<T> {
         this._onInit();
     }
 
+    protected data: T;
+    Data$ = new ReplaySubject<T>(1);
 
-    Data$: Observable<T>;
-    private _data$: BehaviorSubject<T>;
-
-    get data() {
-        return this._data$.value;
+    get Data() {
+        return cloneDeep(this.data);
     }
 
     protected SaveData(data?: T) {
-        this.save(data || this.data);
+        if (data) {
+            this.data = data;
+        }
+        this.save(this.data);
     }
 
     protected EmitEvent() {
-        this._data$.next(this.data);
+        this.Data$.next(this.data);
     }
 
     private _onInit() {
         let data = this.read();
-        this._data$ = new BehaviorSubject<T>(data);
-        this.Data$ = this._data$.debounceTime(200);
+        this.data = data;
+        this.EmitEvent();
     }
 
     protected serialize(data: T) {

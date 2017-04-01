@@ -10,12 +10,14 @@ export class ReportTabComponent {
   constructor(
     private viewService: ReportViewService,
     private navService: ReportNavService
-  ) { }
+  ) { 
+    
+  }
 
   setActive(name: string) {
     this.active = name;
     this.viewService.SetTab(name);
   }
 
-  private active = this.viewService.data.tab;
+  private active = this.viewService.Data.tab;
 }

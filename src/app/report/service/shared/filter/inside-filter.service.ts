@@ -47,7 +47,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
 
     protected onInit() {
         this.Update(this.data.user_id, this.data.service_id, this.data.counter_id);
-
+        
         this.branchFilter.level0$.filter(b => b.length !== 1).subscribe(_ => {
             this.updateService(CacheService.RxListView.value);
             this.updateCounters([]);

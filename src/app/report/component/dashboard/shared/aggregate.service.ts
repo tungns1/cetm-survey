@@ -21,7 +21,7 @@ export class AggregateService {
         this.backend.Get<IAggregate[]>("aggregate", this.filterService.ToBackendQuery()).subscribe(data => {
             this.RxAggregate.next(data);
         });
-        this.period$.next(this.periodService.data.period);
+        this.period$.next(this.periodService.Data.period);
         this.groupBy$.next(this.insideService.GetGroupBy());
     }
 
@@ -50,6 +50,7 @@ export class AggregateService {
 
             ids.forEach(id => {
                 let v = new Aggregate();
+                v[group_by] = id;
                 views.push(v);
             });
 
