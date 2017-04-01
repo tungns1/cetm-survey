@@ -16,12 +16,6 @@ export class MonitorFilterService extends SmallStorage<IMonitorFilder> {
         private branchFilterService: BranchFilterService
     ) {
         super("monitor", storageStrategy);
-        this.SetFocus();
-    }
-
-    SetFocus(branch_id: string = '') {
-        this.data.focus = branch_id;
-        this.SaveData();
     }
 
     GetStores() {

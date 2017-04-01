@@ -99,15 +99,16 @@ export class SmallStorage<T> {
     }
 
     protected SaveData(data?: T) {
-        this._data$.next(data || this.data);
+        this.save(data || this.data);
+    }
+
+    protected EmitEvent() {
+        this._data$.next(this.data);
     }
 
     private _onInit() {
         let data = this.read();
         this._data$ = new BehaviorSubject<T>(data);
-        this._data$.skip(1).debounceTime(50).subscribe(data => {
-            this.save(data);
-        });
         this.Data$ = this._data$.debounceTime(200);
     }
 

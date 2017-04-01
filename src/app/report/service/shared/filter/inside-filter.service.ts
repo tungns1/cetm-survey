@@ -54,6 +54,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
             this.updateUsers([]);
             // clear selection
             this.Update([], this.data.service_id, []);
+            this.EmitEvent();
         });
         this.branchFilter.level0$.filter(b => b.length === 1).switchMap(branch_id => {
             return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
@@ -63,6 +64,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
             this.updateUsers(d.users || []);
             // clear selection
             this.Update([], this.data.service_id, []);
+            this.EmitEvent();
         });
     }
 

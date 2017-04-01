@@ -39,6 +39,7 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         }
         this.data.branches = branches;
         this.SaveData();
+        this.EmitEvent();
     }
 
     private getLowestLevel() {
