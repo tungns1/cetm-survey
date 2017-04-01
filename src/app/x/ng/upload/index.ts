@@ -1,4 +1,4 @@
 export { UploadURLToken } from './backend/';
 export {
-    MultiFilePickerModule, FilePickerModule
+    MultiFilePickerModule
 } from './file-picker/file-picker.module';

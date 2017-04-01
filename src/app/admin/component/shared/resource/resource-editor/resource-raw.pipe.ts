@@ -7,6 +7,9 @@ export class RawResourcePipe implements PipeTransform {
 
     transform(value: Object) {
         let lines: string[] = [];
+        if (!value) {
+            return 'n/a';
+        }
         if (typeof value === 'string') {
             lines = [value];
         }
