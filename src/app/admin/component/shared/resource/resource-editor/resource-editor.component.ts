@@ -41,12 +41,14 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   refresh() {
     this.records = Object.keys(this.value).map(k => {
       const r = this.value[k];
+      const editable = this.editables.indexOf(r.type) !== -1;
       return {
         name: k,
+        editable: editable,
         type: r.type,
         data: r.data
       };
-    });
+    }).sort((a, b) => a.name < b.name ? -1 : 1);
   }
 
   private onChangeCallback = (data: ILayoutResources) => { }
@@ -70,5 +72,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any) {
 
   }
+
+  private editables = ["text", "image", "videos"];
 
 }
