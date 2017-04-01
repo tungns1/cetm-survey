@@ -1,0 +1,6 @@
+<p>Image</p>
+<div *ngIf="value" (change)="onChange($event)">
+    <label><b>Images</b></label>
+    <multi-file-picker [(ngModel)]="value.srcs"></multi-file-picker>
+    <br>
+</div>

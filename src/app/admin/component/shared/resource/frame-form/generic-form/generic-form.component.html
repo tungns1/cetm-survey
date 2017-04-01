@@ -1,15 +1,23 @@
 <modal #main>
-    <h1>Edit Resource</h1>
-    <button (click)="Close()">Cancel</button>
-    <button (click)="Save()">Ok</button>
-    <br>
-    <div *ngIf="record" [ngSwitch]="record?.type">
-        <div *ngSwitchCase="'text'">
-            <app-text-form [(ngModel)]="record.data"></app-text-form>
-        </div>
-        <div *ngSwitchDefault>
-            <json-text-form [(ngModel)]="record.data"></json-text-form>
+    <div *ngIf="record">
+        <h1><span>Edit Resource</span>
+            <{{record.name}}>
+        </h1>
+        <div [ngSwitch]="record.type">
+            <div *ngSwitchCase="'text'">
+                <app-text-form [(ngModel)]="record.data"></app-text-form>
+            </div>
+            <div *ngSwitchCase="'image'">
+                <app-image-form [(ngModel)]="record.data"></app-image-form>
+            </div>
+            <div *ngSwitchCase="'videos'">
+                <app-video-form [(ngModel)]="record.data"></app-video-form>
+            </div>
+            <div *ngSwitchDefault>
+                <json-text-form [(ngModel)]="record.data"></json-text-form>
+            </div>
         </div>
     </div>
-
+    <button (click)="Close()">Cancel</button>
+    <button (click)="Save()">Ok</button>
 </modal>
