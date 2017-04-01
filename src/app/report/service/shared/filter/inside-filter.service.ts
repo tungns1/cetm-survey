@@ -48,7 +48,6 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
         this.Update(this.data.user_id, this.data.service_id, this.data.counter_id);
         CacheService.RxListView.subscribe(data => this.updateService(data));
         this.branchFilter.Data$.map(b => b.branches[0])
-            .distinctUntilChanged((a, b) => a.join(",") === b.join(","))
             .switchMap(branch_id => {
                 if (branch_id.length !== 1) {
                     return of({});
