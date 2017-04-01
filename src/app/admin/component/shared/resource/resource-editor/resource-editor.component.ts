@@ -33,7 +33,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   Reset(r: IResourceForm) {
-    this.value[r.name].data = null;
+    delete this.value[r.name];
     this.refresh();
     this.onChangeCallback(this.value);
   }

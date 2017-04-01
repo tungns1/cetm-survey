@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CenterService, ILayout } from '../../../service/';
-import { extend } from 'lodash';
+import { cloneDeep } from 'lodash';
 
 @Component({
     selector: 'center-layout',
@@ -18,7 +18,6 @@ export class LayoutComponent {
         route.queryParams.forEach(v => {
             this.tag = v['tag'] || 'kiosk,screen';
         })
-
     }
 
     tag: string;
@@ -26,13 +25,14 @@ export class LayoutComponent {
     makeForm(b?: ILayout) {
         b = b || <any>{};
         b.ui = b.ui || <any>{};
+        const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
         return (new FormBuilder).group({
             id: [b.id],
             name: [b.name, Validators.required],
             type: [b.type, Validators.required],
             ui: [b.ui || {}],
             style: [b.style],
-            resources: [extend(b.ui.resources, b.resources)]
+            resources: [resources]
         });
     }
 

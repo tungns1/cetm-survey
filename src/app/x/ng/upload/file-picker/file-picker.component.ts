@@ -1,4 +1,7 @@
-import { Component, Input, forwardRef, ExistingProvider, Attribute } from '@angular/core';
+import { 
+    Component, Input, forwardRef, ExistingProvider, HostListener,
+    Output, EventEmitter 
+} from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,7 +20,7 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'file-picker',
     template: `
-        <input class="hlm-input hl-input-filemulti inputs" [(ngModel)]="value" (change)="setValue($event)" /> 
+        <input class="hlm-input hl-input-filemulti inputs" [(ngModel)]="value"/> 
         <button class="hlm-button" (click)="modal.Open()">Chọn</button>
         <modal #modal id="modalUpload">
             <div class="modal-dialog">
@@ -55,20 +58,16 @@ export class FilePickerComponent implements ControlValueAccessor {
 
     }
 
-    OnChange() {
-        setTimeout(_ => this.onChangeCallback(this.value));
-    }
-
-    setValue(e: Event) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.value = e.target['value'];
-        this.OnChange();
-    }
-
     choose(node: FileNode) {
         this.value = node.Path;
-        this.OnChange();
+        this.onChange();
+        this.change.next();
     }
+
+    @HostListener("change") onChange() {
+        this.onChangeCallback(this.value);
+    } 
+
+    @Output() change = new EventEmitter();
 
 }

@@ -1,4 +1,7 @@
-import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
+import { 
+    Component, Input, forwardRef, ExistingProvider,
+    Output, EventEmitter 
+} from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,8 +20,8 @@ import { FormArray, FormControl } from '@angular/forms';
     selector: 'multi-file-picker',
     template: `
         <span (click)="add()"><i class="fa fa-plus"></i></span>
-        <div *ngFor="let src of srcs; let i = index;" >
-            <file-picker [(ngModel)]="srcs[i]" (ngModelChange)="OnChange()"></file-picker>
+        <div *ngFor="let src of srcs; let i = index;">
+            <file-picker (change)="onChange($event)" [(ngModel)]="srcs[i]"></file-picker>
             <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,
@@ -44,9 +47,6 @@ export class MultiFilePickerComponent implements ControlValueAccessor {
 
     }
 
-    OnChange() {
-        setTimeout(_ => this.onChangeCallback(this.srcs));
-    }
 
     add() {
         this.srcs.push('');
@@ -54,6 +54,17 @@ export class MultiFilePickerComponent implements ControlValueAccessor {
 
     remove(i) {
         this.srcs.splice(i, 1);
-        this.OnChange();
+        this.onChange(null);
     }
+
+    onChange(e: Event) {
+        if (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+        this.onChangeCallback(this.srcs);
+        this.change.next();
+    }
+
+    @Output() change = new EventEmitter();
 }

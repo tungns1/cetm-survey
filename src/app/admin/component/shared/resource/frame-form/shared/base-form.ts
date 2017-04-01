@@ -35,8 +35,11 @@ export class BaseFormComponent<T> implements ControlValueAccessor {
   }
 
   onChange(event: Event) {
-    event.preventDefault();
-    event.stopImmediatePropagation();
+    if (event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+    console.log(this.value);
     this.onChangeCallback(this.value);
   }
 }
