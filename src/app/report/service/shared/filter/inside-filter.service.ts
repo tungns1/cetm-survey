@@ -27,6 +27,7 @@ export interface IInsideBranchFilter {
     user_id: string[];
     counter_id: string[];
     service_id: string[];
+    expand: 'none' | 'user_id' | 'counter_id' | 'service_id';
 }
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -44,7 +45,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     }
 
     protected onInit() {
-        this.Update(this.data.user_id, this.data.service_id, this.data.service_id);
+        this.Update(this.data.user_id, this.data.service_id, this.data.counter_id);
         CacheService.RxListView.subscribe(data => this.updateService(data));
         this.branchFilter.Data$.map(b => b.branches[0])
             .distinctUntilChanged((a, b) => a.join(",") === b.join(","))
@@ -57,14 +58,25 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
                 this.updateService(d.services || []);
                 this.updateCounters(d.counters || []);
                 this.updateUsers(d.users || []);
+                // clear selection
                 this.Update();
             });
     }
 
     Update(user_id: string[] = [], service_id: string[] = [], counter_id: string[] = []) {
-        super.SaveData({ user_id, service_id, counter_id });
+        this.data.user_id = user_id;
+        this.data.counter_id = counter_id;
+        this.data.service_id = service_id;
+        this.SaveData();
     }
 
+    Expand(tab: 'user_id' | 'counter_id' | 'service_id') {
+        if (this.data.expand === tab) {
+            return;
+        }
+        this.data.expand = tab || 'none';
+        this.SaveData();
+    }
 
     private updateService(services: IService[] = []) {
         services.sort((a, b) => a.name < b.name ? -1 : 1);
