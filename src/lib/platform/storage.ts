@@ -60,6 +60,23 @@ function getKey(key: string) {
     return `${_prefix}_${key}`;
 }
 
+
+const handler = {
+    get: function (target, name) {
+        return target[name];
+    },
+    set: function (obj, prop, value) {
+        console.log("set ---", prop, value.length);
+        obj[prop] = value;
+        return true;
+    },
+    deleteProperty: function (oTarget, sKey) {
+        console.error(sKey);
+        return true;
+    },
+};
+
+
 @Injectable()
 export class SmallStorage<T> {
     constructor(
@@ -86,7 +103,8 @@ export class SmallStorage<T> {
     }
 
     private _onInit() {
-        this._data$ = new BehaviorSubject<T>(this.read());
+        let data = this.read();
+        this._data$ = new BehaviorSubject<T>(data);
         this._data$.skip(1).debounceTime(50).subscribe(data => {
             this.save(data);
         });

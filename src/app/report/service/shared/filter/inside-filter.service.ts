@@ -53,7 +53,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
             this.updateCounters([]);
             this.updateUsers([]);
             // clear selection
-            // this.Update([], this.data.service_id, []);
+            this.Update([], this.data.service_id, []);
         });
         this.branchFilter.level0$.filter(b => b.length === 1).switchMap(branch_id => {
             return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
@@ -107,7 +107,6 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     services$ = new ReplaySubject<IService[]>(1);
 
     ToQuery() {
-        console.log(this.data);
         return {
             service_id: this.data.service_id.join(','),
             counter_id: this.data.counter_id.join(','),
