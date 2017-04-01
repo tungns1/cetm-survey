@@ -69,6 +69,9 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     }
 
     levels: number[] = [];
+
+    level0$ = this.Data$.map(d => d.branches[0]);
+    
     private max: number;
 
     private checkTheRoot() {

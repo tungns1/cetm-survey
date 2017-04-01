@@ -53,7 +53,6 @@ export class AggregateService {
 
             views.forEach(v => {
                 const id = v[group_by];
-                v.name = this.GetName(id, group_by);
                 v.Finalize();
                 const i = ids.indexOf(id);
                 // remove from ids 
@@ -64,26 +63,11 @@ export class AggregateService {
 
             ids.forEach(id => {
                 let v = new Aggregate();
-                v.name = this.GetName(id, group_by);
                 views.push(v);
             });
 
             return views;
         });
-    }
-
-    GetName(id: string, model: string) {
-        switch (model) {
-            case 'service_id':
-                return ServiceName(id);
-            case 'branch_id':
-                return CacheBranch.GetNameForID(id);
-            case 'user_id':
-                return CacheUsers.GetName(id, 'fullname');
-            case 'counter_id':
-                return CacheCounter.GetName(id, 'name');
-        }
-        return CacheCounter.NotApplicable;
     }
 
     groupBy$ = new BehaviorSubject<string>('branch_id');

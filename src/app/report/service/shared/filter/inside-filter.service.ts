@@ -33,6 +33,7 @@ export interface IInsideBranchFilter {
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { of } from 'rxjs/observable/of';
 
+
 @Injectable()
 export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter> {
     constructor(
@@ -46,20 +47,23 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
 
     protected onInit() {
         this.Update(this.data.user_id, this.data.service_id, this.data.counter_id);
-        CacheService.RxListView.subscribe(data => this.updateService(data));
-        this.branchFilter.Data$.map(b => b.branches[0])
-            .switchMap(branch_id => {
-                if (branch_id.length !== 1) {
-                    return of({});
-                }
-                return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
-            }).subscribe((d: any) => {
-                this.updateService(d.services || []);
-                this.updateCounters(d.counters || []);
-                this.updateUsers(d.users || []);
-                // clear selection
-                this.Update();
-            });
+
+        this.branchFilter.level0$.filter(b => b.length !== 1).subscribe(_ => {
+            this.updateService(CacheService.RxListView.value);
+            this.updateCounters([]);
+            this.updateUsers([]);
+            // clear selection
+            // this.Update([], this.data.service_id, []);
+        });
+        this.branchFilter.level0$.filter(b => b.length === 1).switchMap(branch_id => {
+            return this.api.Get<any>("details", { branch_id: branch_id.join(',') });
+        }).subscribe((d: any) => {
+            this.updateService(d.services || []);
+            this.updateCounters(d.counters || []);
+            this.updateUsers(d.users || []);
+            // clear selection
+            this.Update([], this.data.service_id, []);
+        });
     }
 
     Update(user_id: string[] = [], service_id: string[] = [], counter_id: string[] = []) {
@@ -103,6 +107,7 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
     services$ = new ReplaySubject<IService[]>(1);
 
     ToQuery() {
+        console.log(this.data);
         return {
             service_id: this.data.service_id.join(','),
             counter_id: this.data.counter_id.join(','),
