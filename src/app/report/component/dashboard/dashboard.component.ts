@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AggregateService, ReportNavService } from '../../service/';
+import { ReportNavService } from '../../service/';
+import { AggregateService } from './shared';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({

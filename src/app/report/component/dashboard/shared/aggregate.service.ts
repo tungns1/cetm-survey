@@ -1,24 +1,11 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IAggregate, Aggregate } from '../model';
+import { IAggregate, Aggregate, MakeIndexBy } from '../../../model';
 
-export function MakeIndexBy(records: IAggregate[], field: string) {
-    let res: { [index: string]: Aggregate } = {};
-    records.forEach(v => {
-        let fieldValue = v[field];
-        if (res[fieldValue] == null) {
-            res[fieldValue] = new Aggregate();
-        }
-        res[fieldValue].Add(v);
-    })
-    let values = Object.keys(res).map(k => res[k]);
-    return values;
-}
-
-import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from './shared';
+import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../shared';
 
 import {
     HttpServiceGenerator, ServiceName, CacheBranch, CacheCounter, CacheUsers
-} from '../shared';
+} from '../../../shared';
 import { Injectable } from '@angular/core';
 
 @Injectable()

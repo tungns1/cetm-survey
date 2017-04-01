@@ -97,8 +97,8 @@ export class InsideBranchFilterService extends SmallStorage<IInsideBranchFilter>
 
     private updateCounters(counters: ICounter[] = []) {
         counters.sort((a, b) => a.name < b.name ? -1 : 1);
-        this.counters$.next(counters);
         CacheCounter.Refresh(counters);
+        this.counters$.next(counters);
     }
 
     private api = this.httpServiceGenerator.make("/api/auth");

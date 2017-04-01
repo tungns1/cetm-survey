@@ -1,7 +1,7 @@
 import { ChartItem, MainItems, PieItems } from './chart.model';
 
 import { timeParse } from 'd3-time-format';
-import { MakeIndexBy, Aggregate } from '../../shared';
+import { Aggregate } from '../../shared';
 
 const timeDay = timeParse("%Y-%m-%d");
 const timeWeek = timeParse("W%Y-%W");
@@ -15,7 +15,7 @@ const TimeParse = {
     year: timeYear
 }
 
-import { AggregateService } from '../../shared';
+import { AggregateService, MakeIndexBy } from '../shared';
 
 import { Injectable } from '@angular/core';
 

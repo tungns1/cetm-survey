@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AggregateService, ReportViewService, ExportExcelService } from '../../shared';
+import { AggregateService } from '../shared';
+import { ReportViewService, ExportExcelService } from '../../shared';
 import { MAIN_TABS } from '../shared';
 
 @Component({
@@ -25,15 +26,15 @@ export class ReportOverViewComponent {
     general$ = this.tab$.map(tab => tab === MAIN_TABS.GENERAL.name);
     time$ = this.tab$.map(tab => tab === MAIN_TABS.TIME.name);
     customer$ = this.tab$.map(tab => tab === MAIN_TABS.CUSTOMER.name);
-    
+
     data$ = this.aggregateService.ActiveAggregate$;
     groupBy$ = this.aggregateService.groupBy$;
 
-    
+
 
     excel() {
         this.getExcel.exportExcel('tableEl', 'miraway', 'xlsx');
     }
 
-    
+
 }

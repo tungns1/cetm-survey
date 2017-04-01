@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Aggregate, AggregateService } from '../../shared/';
+import { Aggregate } from '../../shared/';
+import { AggregateService } from '../shared';
 
 @Component({
     selector: 'report-sum',

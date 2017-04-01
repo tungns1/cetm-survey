@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AggregateService, TranslateService } from '../../shared';
-import { MakeIndexBy } from '../../shared';
+import { TranslateService } from '../../shared';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
