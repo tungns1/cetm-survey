@@ -14,18 +14,22 @@ const routing = RouterModule.forChild([
 
 
 import { ReportSumModule } from './sum/sum.module';
-import { ReportOverviewModule } from './overview/overview.module';
+import { AggregateService } from './shared';
+import { TransactionTimeComponent } from './transaction-time/transaction-time.component';
+import { CustomerFeedbackComponent } from './customer-feedback/customer-feedback.component';
+import { GeneralViewComponent } from './general-view/general-view.component';
+import { DashboardSharedModule } from './shared';
 import { ReportChartModule } from './chart/chart.module';
-import { ReportTabComponent } from './tab/tab.component';
 
 @NgModule({
     imports: [
-        CommonModule, SharedModule, routing,
-        ReportSumModule, ReportOverviewModule, ReportChartModule
+        CommonModule, SharedModule, routing, DashboardSharedModule,
+        ReportSumModule, ReportChartModule
     ],
     declarations: [
-        DashboardComponent, ReportTabComponent
-    ]
+        DashboardComponent, TransactionTimeComponent, CustomerFeedbackComponent, GeneralViewComponent
+    ],
+    providers: [AggregateService]
 })
 export class ReportDashboardModule {
 }

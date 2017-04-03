@@ -17,8 +17,8 @@ export class ReportViewService extends SmallStorage<IReportView> {
 
     SetTab(tab: string = 'general') {
         this.data.tab = tab;
-        this.SaveData();
+        this.SaveData(true);
     }
 
-    Tab$ = this.Data$.map(d => d.tab).share();
+    Tab$ = this.Data$.map(d => d.tab);
 }

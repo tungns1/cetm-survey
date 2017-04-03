@@ -187,3 +187,15 @@ export class Aggregate {
     }
 }
 
+export function MakeIndexBy(records: IAggregate[], field: string) {
+    let res: { [index: string]: Aggregate } = {};
+    records.forEach(v => {
+        let fieldValue = v[field];
+        if (res[fieldValue] == null) {
+            res[fieldValue] = new Aggregate();
+        }
+        res[fieldValue].Add(v);
+    })
+    let values = Object.keys(res).map(k => res[k]);
+    return values;
+}

@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { InsideBranchFilterService } from './inside-filter.service';
 import { PeriodFilterService } from './period-filter.service';
 import { AppStorage, BranchFilterService } from '../../../shared';
+import { cloneDeep } from 'lodash';
 
 @Injectable()
 export class ReportFilterService {
@@ -12,7 +13,7 @@ export class ReportFilterService {
         private insideFilterService: InsideBranchFilterService,
         private periodFilterService: PeriodFilterService
     ) {
-        
+
     }
 
     ToBackendQuery() {
@@ -32,7 +33,8 @@ export class ReportFilterService {
     }
 
     GetActiveID() {
-        return this.insideFilterService.GetActiveID() || this.branchFilterService.getByLevel(0);
+        const res = this.insideFilterService.GetActiveID() || this.branchFilterService.getByLevel(0);
+        return cloneDeep(res);
     }
 
 }

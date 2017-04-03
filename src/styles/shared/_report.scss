@@ -366,25 +366,26 @@ date-picker {}
     line-height: 20px;
     padding: 3px;
 }
-.report_history_modal{
-    .detailTicket{
+
+.report_history_modal {
+    .detailTicket {
         width: 100%;
         border-spacing: 0px;
-        .ctrlLable{
+        .ctrlLable {
             padding-left: 20px;
             width: 50%;
         }
-        td{
+        td {
             padding: 5px 0;
         }
     }
-    .customer{
+    .customer {
         border-top: 1px solid #d6d6d6;
-        .cusDetail{
+        .cusDetail {
             padding: 5px 20px;
         }
     }
-    .ctrlBtn{
+    .ctrlBtn {
         margin: 20px;
     }
 }

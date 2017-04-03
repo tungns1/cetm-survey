@@ -1,7 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { MakeIndexBy, ReportViewService } from '../../shared';
-import { AggregateService, TranslateService } from '../../shared';
-import { ChartItem, MainItems, PieItems } from './chart.model';
+import { Component, Input, ViewChild, ContentChild } from '@angular/core';
+import { ReportViewService, ChartItemGroupView } from '../../shared';
+import { TranslateService } from '../../shared';
 import { ChartService } from './chart.service';
 
 @Component({
@@ -14,7 +13,9 @@ export class ReportChartComponent {
         private chartService: ChartService,
         private translateService: TranslateService,
         private viewService: ReportViewService
-    ) { }
+    ) {
+
+    }
 
     type: string = 'pie';
 
@@ -25,5 +26,8 @@ export class ReportChartComponent {
     data = this.chartService.RxAggregateByTime;
     period = this.chartService.RxPeriod;
     pieData = this.chartService.RxSummaryView;
-    tab$ = this.viewService.Tab$;
+    // @ContentChild(ChartItemGroupView) config: ChartItemGroupView;
+    @ContentChild("pieConfig") pieConfig: ChartItemGroupView;
+    @ContentChild("otherConfig") otherConfig: ChartItemGroupView;
+    @Input() active: string;
 }

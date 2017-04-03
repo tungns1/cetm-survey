@@ -35,7 +35,7 @@ export class MonitorChartComponent {
     private setTitle() {
         let pieItems: ChartItem[][] = [];
         PieItems.forEach(v => {
-            v.forEach(f => f.title = this.translateService.instant(f.key_title));
+            // v.forEach(f => f.title = this.translateService.instant(f.key_title));
             if (v.length > 0) {
                 this.itemGroup.push(v);
             }

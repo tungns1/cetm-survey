@@ -21,13 +21,16 @@ export class EnvironmentSettingComponent implements OnInit {
       this.env.Debug.Update(data.layout, data.socket);
     });
   }
+  
+  debug = this.env.Debug.Data;
+  platform = this.env.Platform.Data;
 
   DebugForm = new FormGroup({
-    layout: new FormControl(this.env.Debug.data.layout)
+    layout: new FormControl(this.debug.layout)
   });
 
   PlatformForm = new FormGroup({
-    host: new FormControl(this.env.Platform.data.host)
+    host: new FormControl(this.platform.host)
   });
 
 }

@@ -5,23 +5,28 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
 import { SummaryComponent } from './summary/summary.component';
-import { D3Module } from '../../../x/ng/d3/d3.module';
 
 const routing = RouterModule.forChild([
     {
         path: '',
-        component: MonitorDeviceComponent
+        component: MonitorDeviceComponent,
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'summary_device' },
+            { path: 'summary_device', component: SummaryComponent },
+            { path: 'focus/:branch_id', component: FocusComponent }
+        ]
     }
 ]);
 
-import { MonitorDeviceService } from './device.service';
+
+import { monitorServiceProviders } from './shared';
 
 @NgModule({
     imports: [
-        routing, SharedModule, D3Module
+        routing, SharedModule
     ],
     providers: [
-        MonitorDeviceService
+        monitorServiceProviders
     ],
     declarations: [
         MonitorDeviceComponent, FocusComponent, 

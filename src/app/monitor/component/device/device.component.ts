@@ -1,32 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MonitorFilterService } from '../shared';
-import { MonitorDeviceService } from './device.service';
 import { SummaryComponent } from './summary/summary.component';
 import { FocusComponent } from './focus/focus.component';
 import { MonitorNavService } from '../../service/shared/nav';
+import { MonitorDeviceSocket, MonitorSummaryService } from './shared';
 
 @Component({
     selector: 'monitor-device',
     templateUrl: 'device.component.html'
 })
 export class MonitorDeviceComponent implements OnInit {
-    constructor(        
+       constructor(
         private navService: MonitorNavService,
         private filterService: MonitorFilterService,
-        private deviceService: MonitorDeviceService
+        private summaryService: MonitorSummaryService,
+        private socket: MonitorDeviceSocket
     ) { }
 
     ngOnInit() {
-        this.deviceService.onInit();
+        this.socket.onInit();
     }
 
     ngOnDestroy() {
-        this.deviceService.onDestroy();
+        this.socket.onDestroy();
     }
 
     isFocus$ = this.filterService.Data$.map(filter => {
         return filter.focus.length > 0;
     });
+
 
 }

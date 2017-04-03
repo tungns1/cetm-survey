@@ -17,19 +17,19 @@
 </div>
 
 <chart-item-group-view #config>
-    <chart-item-group title="Ticket detail">
-        <chart-item field="finished" color="#fcff4d" title="Finished transaction"></chart-item>
-        <chart-item field="cancelled" color="#8dbb00" title="Cancelled transaction"></chart-item>
-        <chart-item field="waiting" color="#4df7ff" title="Waiting transaction"></chart-item>
-        <chart-item field="missed" color="#584dff" title="Missed transaction"></chart-item>
-        <chart-item field="serving" color="#ff4dfa" title="Serving transaction"></chart-item>
+    <chart-item-group i18n-title title="Ticket Detail">
+        <chart-item field="finished" color="#fcff4d" i18n-title title="Finished Transaction"></chart-item>
+        <chart-item field="cancelled" color="#8dbb00" i18n-title title="Cancelled Transaction"></chart-item>
+        <chart-item field="Waiting" color="#4df7ff" i18n-title title="Waiting Transaction"></chart-item>
+        <chart-item field="missed" color="#584dff" i18n-title title="Missed Transaction"></chart-item>
+        <chart-item field="Serving" color="#ff4dfa" i18n-title title="Serving Transaction"></chart-item>
     </chart-item-group>
-    <chart-item-group title="Exceeded waiting time transaction">
-        <chart-item field="wait_standard" color="#ff4d4d" title="Standard waiting time transaction"></chart-item>
-        <chart-item field="wait_long" color="#3eca83" title="Exceeded waiting time transaction"></chart-item>
+    <chart-item-group i18n-title title="Exceeded Waiting Time Transaction">
+        <chart-item field="wait_standard" color="#ff4d4d" i18n-title title="Standard Waiting Time Transaction"></chart-item>
+        <chart-item field="wait_long" color="#3eca83" i18n-title title="Exceeded Waiting Time Transaction"></chart-item>
     </chart-item-group>
-    <chart-item-group title="Exceeded serving time transaction">
-        <chart-item field="serve_standard" color="#ff974d" title="Standard serving time transaction"></chart-item>
-        <chart-item field="s_l" color="#a44adc" title="Exceeded serving time transaction"></chart-item>
+    <chart-item-group i18n-title title="Exceeded Serving Time Transaction">
+        <chart-item field="serve_standard" color="#ff974d" i18n-title title="Standard Serving Time Transaction"></chart-item>
+        <chart-item field="s_l" color="#a44adc" i18n-title title="Exceeded Serving Time Transaction"></chart-item>
     </chart-item-group>
 </chart-item-group-view>

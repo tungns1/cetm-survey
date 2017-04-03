@@ -11,6 +11,13 @@ import { RawTranslateLoader, TranslateLoader, TranslateModule } from './shared/s
 import { BranchModule } from './shared/branch';
 import { SharedModule } from './shared/shared.module';
 
+import {
+  MaterialModule,
+  OverlayContainer,
+  FullscreenOverlayContainer,
+  MdSelectionModule
+} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -26,7 +33,11 @@ import { SharedModule } from './shared/shared.module';
     }),
     BranchModule.forRoot(),
     SharedModule.forRoot(),
+    MaterialModule.forRoot(),
     AppRoutingModule
+  ],
+  providers: [
+    {provide: OverlayContainer, useValue: FullscreenOverlayContainer}
   ],
   bootstrap: [AppComponent]
 })

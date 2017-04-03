@@ -1,18 +1,28 @@
+<style>
+    a {
+        text-decoration: underline;
+        color: blue;
+        cursor: pointer;
+    }
+</style>
+
 <table>
     <thead>
-        <th width="10%">Name</th>
+        <th width="20%">Name</th>
         <th width="10%">Type</th>
-        <th width="40%">Data</th>
+        <th width="60%">Data</th>
     </thead>
     <tbody>
         <tr *ngFor="let r of records">
             <td>
                 {{r.name}}
-                <a href="javascript:void(0);" (click)="form.Edit(r)">Edit</a>
-                <a href="javascript:void(0);" (click)="Reset(r)">Reset</a>
+                <a [class.hide]="!r.editable" (click)="form.Edit(r)">Edit</a>
+                <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
             </td>
             <td>{{r.type}}</td>
-            <td>{{r.data | json}}</td>
+            <td>
+                <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
+            </td>
         </tr>
     </tbody>
 </table>

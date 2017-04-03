@@ -1,7 +1,7 @@
 
-import { Item } from '../../../../x/ng/d3/';
+import { ChartItem } from '../../../../x/ng/d3/';
 
-export interface ChartItem extends Item {
+export interface ChartItem extends ChartItem {
     header?: string;
     title?: string;
     key_title: string;

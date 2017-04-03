@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { MonitorNavService, MonitorFilterService, IDevice } from '../../shared';
-import { MonitorDeviceService } from '../device.service';
-import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray } from "lodash";
+import { MonitorNavService, MonitorFilterService, IDevice ,DeviceCount} from '../../shared';
+import { MonitorSummaryService } from '../shared';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'device-summary',
@@ -13,31 +13,27 @@ export class SummaryComponent {
     constructor(
         private navService: MonitorNavService,
         private filterService: MonitorFilterService,
-        private deviceService: MonitorDeviceService
+        private router: Router,
+        private route: ActivatedRoute,
+        private deviceService: MonitorSummaryService
     ) { }
 
     ngOnInit() {
-        this.filterService.Data$.subscribe(filter => {
-            let branches: string[] = [];
-            if (branches.length < 1) {
-                this.message = "Please,choose store";
-            }
+        this.navService.Refresh$.ExclusiveSubscribe(_ => {
+            this.deviceService.Branches$.next(
+                this.filterService.GetStores()
+            );
         });
-        this.deviceService.summary$.subscribe(v => {
-        
-        })
     }
 
-    ngOnDestroy() {
-
+    focus(s: DeviceCount) {
+        console.log(s);
+        this.router.navigate(['../focus', s.branch_id], {
+            relativeTo: this.route,
+            queryParamsHandling: "merge"
+        });
     }
-    summary$: IDevice[];
-   
 
-    focus(selectedBranch) {
-        this.filterService.SetFocus(selectedBranch.branch_id);
-    }
-    message = '';
-
+    summary$ = this.deviceService.summary$;
 
 }

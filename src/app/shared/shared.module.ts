@@ -15,13 +15,16 @@ import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 // import { TicketDetailModule } from './ticketDetail/ticketDetail.module';
+import { MaterialModule } from '@angular/material';
 
 @NgModule({
     imports: [
 
     ],
     exports: [
-        CommonModule, DirectiveModule,
+        CommonModule,
+        MaterialModule,
+        DirectiveModule,
         EnvironmentModule,
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,

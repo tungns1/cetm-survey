@@ -1,11 +1,10 @@
-<div id="chartReport">
-    <div class="hl-chart" bar-chart *ngIf="type === 'bar' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
-    <div class="hl-chart" stack-chart *ngIf="type === 'stack'" [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
-    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="config.activeItems$ | async"></div>
+<div id="chartReport" *ngIf="pieConfig">
+    <div class="hl-chart" bar-chart *ngIf="type === 'bar' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
+    <div class="hl-chart" stack-chart *ngIf="type === 'stack'" [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
+    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
 
-    <div class="hl-chart" *ngIf="isPie">
-        <div style="width:33%;height:22vw;float:left;" *ngFor="let g of pieConfig.groups$ | async">
-            <div style="width:100%;height:22vw;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
+    <div class="hl-chart" *ngIf="isPie" fxLayout="row">
+        <div fxFlex style="height:22vw;float:left;" *ngFor="let g of pieConfig.groups$ | async" pie-chart [data]="pieData | async" [items]="g.activeItems">
         </div>
     </div>
 
@@ -18,7 +17,7 @@
     </select>
 
     <div class="chartOptions margin-30-40" *ngIf="!isPie">
-        <div *ngFor=" let item of config.items$ | async " class="option">
+        <div *ngFor=" let item of otherConfig.items$ | async " class="option">
             <div style="float:left;">
                 <div class="checkBox margin-0-5" [style.background-color]="item.active? item.color : ''">
                     <input type="checkbox" [ngModel]="item.active " (ngModelChange)="config.Toggle(item) ">
@@ -40,51 +39,4 @@
             </div>
         </div>
     </div>
-
-    <chart-item-group-view [active]="tab$ | async" #config>
-        <chart-item-group group="general">
-            <chart-item field="c_t" color="#9933ff" title="Total transaction"></chart-item>
-            <chart-item field="c_ft" color="#99b3ff" title="Finished transaction"></chart-item>
-            <chart-item field="c_ct" color="#969c9c" title="Cancelled transaction"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="time">
-            <chart-item field="s_wt_h" color="steelblue" title="Waiting time"></chart-item>
-            <chart-item field="s_st_h" color="green" title="Serving time"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="customer">
-            <chart-item field="c_r_a" color="#0088cc" title="Very good feedback"></chart-item>
-            <chart-item field="c_r_b" color="#73e600" title="Good feedback"></chart-item>
-            <chart-item field="c_r_c" color="#ffcc00" title="Average feedback"></chart-item>
-            <chart-item field="c_r_d" color="#ff3333" title="Poor feedback"></chart-item>
-        </chart-item-group>
-    </chart-item-group-view>
-
-    <chart-item-group-view [active]="tab$ | async" #pieConfig>
-        <chart-item-group group="general">
-            <chart-item field="c_ft" color="#99b3ff" title="Finished Transaction"></chart-item>
-            <chart-item field="c_ct" color="#969c9c" title="Cancelled transaction"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="general">
-            <chart-item field="c_bwt" color="#339933" title="Standard waiting time transaction"></chart-item>
-            <chart-item field="c_awt" color="#b4e4b4" title="Exceeded waiting time transaction"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="general">
-            <chart-item field="c_bst" color="#339966" title="Standard serving time transaction"></chart-item>
-            <chart-item field="c_ast" color="#9fdfbf" title="Exceeded serving time transaction"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="time">
-            <chart-item field="s_wt_h" color="steelblue" title="Waiting Time"></chart-item>
-            <chart-item field="s_st_h" color="green" title="Serving time"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="customer">
-            <chart-item field="c_r" color="#99b3ff" title="Transaction feedback"></chart-item>
-            <chart-item field="c_r_o" color="#969c9c" title="Transaction without feedback"></chart-item>
-        </chart-item-group>
-        <chart-item-group group="customer">
-            <chart-item field="c_r_a" color="#0088cc" title="Very good feedback"></chart-item>
-            <chart-item field="c_r_b" color="#73e600" title="Good feedback"></chart-item>
-            <chart-item field="c_r_c" color="#ffcc00" title="Average feedback"></chart-item>
-            <chart-item field="c_r_d" color="#ff3333" title="Poor feedback"></chart-item>
-        </chart-item-group>
-    </chart-item-group-view>
 </div>

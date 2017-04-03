@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/debounceTime';
@@ -60,6 +60,24 @@ function getKey(key: string) {
     return `${_prefix}_${key}`;
 }
 
+
+const handler = {
+    get: function (target, name) {
+        return target[name];
+    },
+    set: function (obj, prop, value) {
+        console.log("set ---", prop, value.length);
+        obj[prop] = value;
+        return true;
+    },
+    deleteProperty: function (oTarget, sKey) {
+        console.error(sKey);
+        return true;
+    },
+};
+
+import { cloneDeep } from 'lodash';
+
 @Injectable()
 export class SmallStorage<T> {
     constructor(
@@ -73,24 +91,28 @@ export class SmallStorage<T> {
         this._onInit();
     }
 
+    protected data: T;
+    Data$ = new ReplaySubject<T>(1);
 
-    Data$: Observable<T>;
-    private _data$: BehaviorSubject<T>;
-
-    get data() {
-        return this._data$.value;
+    get Data() {
+        return cloneDeep(this.data);
     }
 
-    protected SaveData(data?: T) {
-        this._data$.next(data || this.data);
+    protected SaveData(emitEvent = false) {
+        this.save(this.data);
+        if (emitEvent) {
+            this.EmitEvent();
+        }
+    }
+
+    protected EmitEvent() {
+        this.Data$.next(this.data);
     }
 
     private _onInit() {
-        this._data$ = new BehaviorSubject<T>(this.read());
-        this._data$.skip(1).debounceTime(50).subscribe(data => {
-            this.save(data);
-        });
-        this.Data$ = this._data$.debounceTime(200);
+        let data = this.read();
+        this.data = data;
+        this.EmitEvent();
     }
 
     protected serialize(data: T) {

@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { MakeIndexBy } from '../../shared';
-import { AggregateService } from '../../shared';
 import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 

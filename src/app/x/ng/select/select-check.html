@@ -12,24 +12,25 @@
     .hlft-div-checkbox:hover {
         color: #6CA6CD;
     }
+    
+    .select-active {
+        border-bottom: 1px solid blue;
+    }
 </style>
 
 
-<div class="scroll-filter">
-    <div *ngIf="hasAll$ | async">
-        <label *ngIf="!(all$ | async)" class="hlft-div-checkbox pointer" (click)="SetAll(true)">
-            <input type="checkbox"> 
+<div class="scroll-filter" (change)="onChange()">
+    <div [class.hide]="views.length < 2">
+        <label [class.select-active]="all" class="hlft-div-checkbox pointer" (click)="SetAll(true)">
             <ng-container i18n>Select All</ng-container>
         </label>
-        <label *ngIf="all$ | async" class="hlft-div-checkbox pointer" (click)="SetAll(false)">
-            <input type="checkbox" checked>
+        <label [class.select-active]="none" class="hlft-div-checkbox pointer" (click)="SetAll(false)">
             <ng-container i18n>Unselect All</ng-container>
         </label>
         <br>
     </div>
-    <label *ngFor="let v of view$ | async" class="hlft-div-checkbox pointer">
-            <input type="checkbox"  [ngModel]="v.checked" 
-            (ngModelChange)="changeValue(v.id, $event)">
+    <label *ngFor="let v of views" class="hlft-div-checkbox pointer">
+            <input type="checkbox"  [(ngModel)]="selected[v.id]"> 
             {{v.text}}
         <br>
     </label>

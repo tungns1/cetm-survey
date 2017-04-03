@@ -23,10 +23,9 @@ interface IView {
 @Component({
     selector: 'select-check',
     templateUrl: 'select-check.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
-export class SelectCheckComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class SelectCheckComponent implements ControlValueAccessor {
     constructor(
         @Attribute('idField') private idField,
         @Attribute('textField') private textField) {
@@ -35,68 +34,33 @@ export class SelectCheckComponent implements ControlValueAccessor, OnInit, OnDes
     }
 
     @Input() set data(arr: any[]) {
-        const newView = (arr || []).map(a => {
+        this.views = (arr || []).map(a => {
             return {
                 id: a[this.idField],
-                text: a[this.textField],
-                checked: false
+                text: a[this.textField]
             }
         });
-        this.options$.next(newView);
+        this.all = this.isAll();
+        this.none = this.isNone();
     }
 
-    private options$ = new BehaviorSubject<IView[]>([]);
-    private selected$ = new BehaviorSubject<{ [index: string]: boolean }>({});
-    private hasAll$ = this.options$.map(view => view.length > 1);
-    private view$ = combineLatest(this.options$, this.selected$)
-        .map(([options, selected]) => {
-            return options.map(o => {
-                return <IView>{
-                    id: o.id,
-                    text: o.text,
-                    checked: selected[o.id]
-                }
-            });
-        }).debounceTime(50).share();
+    private views: IView[] = [];
+    private selected: { [index: string]: boolean } = {};
+    private all = false;
+    private none = true;
 
     protected onChangeCallback = (v: string[]) => { };
-    private all$ = this.view$.map(view => {
-        // console.log("all", view);
-        return view.some(v => !v.checked);
-    }).map(notAll => {
-        return !notAll;
-    }).share();
 
     SetAll(b: boolean) {
-        const value = {};
-        this.options$.value.forEach(v => {
-            value[v.id] = b;
+        this.views.forEach(v => {
+            this.selected[v.id] = b;
         });
-        this.selected$.next(value);
+        this.onChange();
     }
 
-    private subscription: ISubscription;
-
-    ngOnInit() {
-        this.subscription = this.view$.subscribe(view => {
-            let selected = view.filter(v => v.checked);
-            this.onChangeCallback(selected.map(s => s.id));
-        });
-    }
-
-    ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
-    }
-
-    writeValue(valueArray: any[]) {
-        if (!Array.isArray(valueArray)) {
-            valueArray = [];
-        }
-        const value = {};
-        valueArray.forEach(d => value[d] = true);
-        this.selected$.next(value);
+    writeValue(arr: any[]) {
+        this.selected = {};
+        (arr || []).forEach(d => this.selected[d] = true);
     }
 
     registerOnChange(fn: any) {
@@ -107,10 +71,22 @@ export class SelectCheckComponent implements ControlValueAccessor, OnInit, OnDes
 
     }
 
-    changeValue(id: string, b: boolean) {
-        const value = this.selected$.value;
-        value[id] = b;
-        this.selected$.next(value);
+    onChange() {
+        this.all = this.isAll();
+        this.none = this.isNone();
+        const arr = this.views
+            .filter(v => this.selected[v.id])
+            .map(v => v.id);
+        this.onChangeCallback(arr);
     }
+
+    private isAll() {
+        return !this.views.some(v => !this.selected[v.id]);
+    }
+
+    private isNone() {
+        return !this.views.some(v => this.selected[v.id]);
+    }
+
 
 }

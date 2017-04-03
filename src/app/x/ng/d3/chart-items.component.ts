@@ -29,7 +29,7 @@ export class ChartItemGroup {
     @Input() title: string;
 
     @ContentChildren(ChartItemComponent) private fields: QueryList<ChartItemComponent>;
-    
+
 
     Toggle(item: ChartItemComponent) {
         this.fields.forEach(f => {
@@ -62,13 +62,11 @@ export class ChartItemGroupView {
 
     @ContentChildren(ChartItemGroup) groups: QueryList<ChartItemGroup>;
     ngAfterContentInit() {
-        setTimeout(_ => {
-            this.refresh();
-        }, 500);
+        this.refresh();
     }
 
     groups$ = new ReplaySubject<ChartItemGroup[]>(1);
-    
+
     items$ = this.groups$.map(groups => {
         return groups.reduce<ChartItemComponent[]>((res, g) => res.concat(g.items), []);
     });
@@ -91,6 +89,10 @@ export class ChartItemGroupView {
     Toggle(item: ChartItemComponent) {
         this.groups.forEach(g => g.Toggle(item));
         this.refresh();
+    }
+
+    GetGroup(group: string) {
+        return this.groups.filter(g => g.group === group);
     }
 
     private view: string;
