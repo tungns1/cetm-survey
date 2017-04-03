@@ -3,9 +3,8 @@
     <div class="hl-chart" stack-chart *ngIf="type === 'stack'" [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
     <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
 
-    <div class="hl-chart" *ngIf="isPie">
-        <div style="width:33%;height:22vw;float:left;" *ngFor="let g of pieConfig.groups$ | async">
-            <div style="width:22vw;height:22vw;" pie-chart [data]="pieData | async" [items]="g.activeItems"></div>
+    <div class="hl-chart" *ngIf="isPie" fxLayout="row">
+        <div fxFlex style="height:22vw;float:left;" *ngFor="let g of pieConfig.groups$ | async" pie-chart [data]="pieData | async" [items]="g.activeItems">
         </div>
     </div>
 
