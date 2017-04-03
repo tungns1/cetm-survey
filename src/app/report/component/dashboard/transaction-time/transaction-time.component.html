@@ -1,0 +1,45 @@
+<report-chart>
+    <chart-item-group-view #pieConfig>
+        <chart-item-group group="pie">
+            <chart-item field="s_wt_h" color="steelblue" title="Waiting Time"></chart-item>
+            <chart-item field="s_st_h" color="green" title="Serving time"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
+    <chart-item-group-view #otherConfig>
+        <chart-item-group group="other">
+            <chart-item field="s_wt_h" color="steelblue" title="Waiting time"></chart-item>
+            <chart-item field="s_st_h" color="green" title="Serving time"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
+</report-chart>
+<!-- Time View -->
+<table id="tableEl" class="tableOverView">
+    <thead>
+        <th i18n>No.</th>
+        <th [groupByTitle]="field"></th>
+        <th i18n>Total transaction time</th>
+        <th i18n>Total serving time</th>
+        <th i18n>Total waiting time</th>
+        <th i18n>Serving time avarage</th>
+        <th i18n>Serving time min</th>
+        <th i18n>Serving time max</th>
+        <th i18n>Waiting time avarage</th>
+        <th i18n>Waiting time min</th>
+        <th i18n>Waiting time max</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data; let i = index">
+            <td> {{i + 1}} </td>
+            <td style="text-align: left;">{{field | groupByTitle:d}} </td>
+            <td> {{d.s_tt | timeDuration}} </td>
+            <td> {{d.s_st | timeDuration}}&nbsp;<span *ngIf="d.s_tt>0"> ({{d.s_st/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0"> (0.00%)</span></td>
+            <td> {{d.s_wt | timeDuration}}&nbsp;<span *ngIf="d.s_tt>0"> ({{d.s_wt/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0"> (0.00%)</span> </td>
+            <td> {{d.a_st | timeDuration}} </td>
+            <td> {{d.min_st | timeDuration}} </td>
+            <td> {{d.max_st | timeDuration}} </td>
+            <td> {{d.a_wt | timeDuration}} </td>
+            <td> {{d.min_wt | timeDuration}} </td>
+            <td> {{d.max_wt | timeDuration}} </td>
+        </tr>
+    </tbody>
+</table>

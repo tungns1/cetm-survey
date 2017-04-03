@@ -1,5 +1,5 @@
 
-import { AbstractChart, Item } from './chart';
+import { AbstractChart, ChartItem } from './chart';
 
 import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale';
 import { line, stack } from 'd3-shape';
