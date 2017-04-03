@@ -1,0 +1,85 @@
+<modal #edit id="modal_monitor_detailTicket">
+    <h3 class="modal-header" i18n>Ticket detail</h3>
+    <div *ngIf="ticket" class="modalContent padding-10-20">
+
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>Ticket number</div>
+            <div fxFlex>{{ticket.cnum}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>State</div>
+            <div fxFlex>{{ticket.state}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>Service</div>
+            <div fxFlex>
+                <span>{{ticket.service_id | serviceName}}</span>
+            </div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>Time of ticket printed</div>
+            <div fxFlex>{{ticket.ctime | localDayTime}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>Waiting time</div>
+            <div fxFlex>
+                <span *ngIf="ticket.state === 'waiting'"><timer [start]="ticket.mtime" [timeWarning]="15"></timer></span>
+                <span *ngIf="ticket.state != 'waiting'">{{ticket.mtime - ticket.ctime | timeDuration}}</span>
+            </div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" 
+            *ngIf="ticket.state ==='serving' || ticket.state ==='finished' || ticket.state ==='cancelled'">
+            <div fxFlex i18n>Serving time</div>
+            <div fxFlex>
+                <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
+                <div *ngIf="ticket.state === 'finished'"> {{ticket.stime | timeDuration}} </div>
+                <div *ngIf="ticket.state === 'cancelled'"> 00:00:00 </div>
+            </div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>Branch</div>
+            <div fxFlex i18n>{{ticket.branch_id | branchName}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex i18n>Store</div>
+            <div fxFlex i18n>{{ticket.branch_id | branchName}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+            <div fxFlex i18n>Tellers</div>
+            <div *ngIf="ticket.state != 'cancelled'" fxFlex>{{ticket.serving.user_id | userFullName}}</div>
+            <div *ngIf="ticket.state == 'cancelled'" fxFlex>{{ticket.user_id | userFullName}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+            <div fxFlex i18n>Counter</div>
+            <div *ngIf="ticket.state != 'cancelled'" fxFlex>{{ticket.serving.counter_id | counterName }}</div>
+            <div *ngIf="ticket.state == 'cancelled'" fxFlex>{{ticket.counter_id | counterName }}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+            <div fxFlex i18n>Manager</div>
+            <div fxFlex>{{ticket.manager.fullname}}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+            <div fxFlex i18n>Administrator</div>
+            <div fxFlex>{{ticket.admin.fullname}}</div>
+        </div>
+
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+            <div fxFlex i18n>Customer name</div>
+            <div fxFlex> {{customer.full_name }}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+            <div fxFlex i18n>Code ID</div>
+            <div fxFlex> {{customer.code }}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+            <div fxFlex i18n>Number phone</div>
+            <div fxFlex> {{customer.phone_number }}</div>
+        </div>
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+            <div fxFlex i18n>Segment</div>
+            <div fxFlex> {{customer.segment }}</div>
+        </div>
+
+        <button class="btnFill uppercase" (click)="closeModal()" i18n>Close</button>
+    </div>
+</modal>

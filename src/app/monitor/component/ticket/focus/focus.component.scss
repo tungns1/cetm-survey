@@ -25,26 +25,3 @@
         color: #ff5858;
     }
 }
-
-#modal_monitor_detailTicket {
-    .modalContent {
-        table {
-            width: 100%;
-            border-spacing: 0px;
-            th {
-                font-weight: 100;
-                padding: 5px 10px;
-                text-align: left;
-            }
-        }
-        .cusDetail {
-            width: 50%;
-            margin: auto;
-            margin-top: 10px;
-        }
-        button {
-            margin: 20px 0;
-            float: right;
-        }
-    }
-}

@@ -18,7 +18,6 @@ import {
 })
 export class FocusComponent {
 
-    @ViewChild("edit") editorRef: ModalComponent;
     @ViewChild(TimerComopnent) wait_long: TimerComopnent;
 
     constructor(
@@ -95,7 +94,7 @@ export class FocusComponent {
             }
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime ? -1 : 1;
+            return a.ctime < b.ctime ? -1 : 1;
         }));
 
     missed$ = this.focusService.tickets$
@@ -114,7 +113,7 @@ export class FocusComponent {
             }
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime ? -1 : 1;
+            return a.ctime < b.ctime ? -1 : 1;
         }));
 
     waitingAndMissed$ = this.waiting$.combineLatest(this.missed$, (waiting, missed) => {
@@ -129,7 +128,7 @@ export class FocusComponent {
             }
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime ? -1 : 1;
+            return a.ctime < b.ctime ? -1 : 1;
         }));
 
     served$ = this.focusService.tickets$
@@ -162,7 +161,7 @@ export class FocusComponent {
             return false;
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime ? -1 : 1;
+            return a.ctime < b.ctime ? -1 : 1;
         }));
 
     cancelled$ = this.focusService.tickets$
@@ -175,14 +174,14 @@ export class FocusComponent {
                 //         return true;
                 //     }
                 // }
-                t.stime = 0;
+                // t.stime = 0;
                 this.addServingTrack(t);
                 return true;
             }
             return false;
         }))
         .map(tickets => tickets.sort((a, b) => {
-            return a.mtime < b.mtime ? -1 : 1;
+            return a.ctime < b.ctime ? -1 : 1;
         }));
 
     servingNServed$ = this.serving$.combineLatest(this.served$, this.cancelled$, (serving, served, cancelled) => {
@@ -213,28 +212,5 @@ export class FocusComponent {
             relativeTo: this.route,
             queryParamsHandling: "preserve"
         })
-    }
-
-    private closeModal() {
-        this.selectedTicket = null;
-        this.editorRef.Close();
-    }
-
-    private detail(ticket) {
-        // console.log(ticket);
-        this.customer = null;
-        /////////////////// MARK /////////////////////
-        if (ticket.customer) {
-            this.customerService.GetCustomerByID(ticket.customer.id).subscribe(v => {
-                this.customer = v;
-            });
-        }
-        if (ticket.serving) {
-            this.isServed = true;
-        } else this.isServed = false;
-        this.selectedTicket = ticket;
-        this.selectedTicket['admin'] = this.admin[0];
-        this.selectedTicket['manager'] = this.manager[0];
-        this.editorRef.Open();
     }
 }

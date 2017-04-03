@@ -14,6 +14,7 @@ import { TranslateModule } from '../x/i18n';
 import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
+// import { TicketDetailModule } from './ticketDetail/ticketDetail.module';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { AppSocketGenerator, HttpServiceGenerator } from './service';
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
         TranslateModule, UtilPipeModule, SelectCheckModule,
-        ModalModule
+        ModalModule, 
+        // TicketDetailModule
     ]
 })
 export class SharedModule {
