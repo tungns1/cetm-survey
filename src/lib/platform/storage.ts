@@ -98,11 +98,11 @@ export class SmallStorage<T> {
         return cloneDeep(this.data);
     }
 
-    protected SaveData(data?: T) {
-        if (data) {
-            this.data = data;
-        }
+    protected SaveData(emitEvent = false) {
         this.save(this.data);
+        if (emitEvent) {
+            this.EmitEvent();
+        }
     }
 
     protected EmitEvent() {

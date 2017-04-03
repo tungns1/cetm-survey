@@ -16,9 +16,8 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
     }
 
     Update(host: string) {
-        this.SaveData({
-            host: host
-        });
+        this.data.host = host;
+        this.SaveData();
     }
 
     get Http() {

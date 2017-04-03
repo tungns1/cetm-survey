@@ -31,7 +31,7 @@ export class ApplicationStore extends SmallStorage<IApplication> {
 
     set Token(token: string) {
         this.data.token = token;
-        this.SaveData();
+        this.SaveData(true);
     }
 
 }
