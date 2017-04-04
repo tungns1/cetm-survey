@@ -32,6 +32,7 @@ export class QueueService {
         return this.initialQueue$.switchMap(initial => {
             const data: ITickets = initial[state];
             return of(data).merge(this.addTicket$.filter(t => t.state === state).do(t => {
+                t.priority = this.getPriority(t);
                 data[t.id] = t;
             })).merge(this.removeTicket$.filter(v => v[0] === state).do(v => {
                 delete data[v[1]];
@@ -41,6 +42,20 @@ export class QueueService {
                     .map(id => data[id]).sort(SortTicket);
             });
         });
+    }
+    private getPriority(t: ITicket) {
+        var priority = 0;
+        if (t.ticket_priority.customer_vip != "") {
+            priority += parseInt(t.ticket_priority.customer_vip);
+        } else if (t.ticket_priority.service_priority != "") {
+            priority += parseInt(t.ticket_priority.service_priority);
+        } else if (t.ticket_priority.ticket_online != "") {
+            priority += parseInt(t.ticket_priority.ticket_online);
+        } else if (t.ticket_priority.vip_card != "") {
+            priority += parseInt(t.ticket_priority.vip_card);
+        }
+        return priority;
+
     }
 
     waiting$ = new ReplaySubject<ITicket[]>(1);
