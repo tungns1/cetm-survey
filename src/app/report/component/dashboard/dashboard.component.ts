@@ -30,6 +30,7 @@ export class DashboardComponent {
 
     data$ = this.aggregateService.RxAggregate;
     groupBy$ = this.aggregateService.groupBy$;
+    summary$ = this.aggregateService.RxSummaryView;
     
     tabChange(e) {
         console.log("tab", e);

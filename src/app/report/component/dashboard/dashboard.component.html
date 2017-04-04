@@ -6,7 +6,7 @@
             <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction history</button>
         </div>
     </div>
-    <report-sum class="summaryReport"></report-sum>
+    <report-sum class="summaryReport" [data]="summary$ | async"></report-sum>
     <div class="divider margin-30-0"></div>
     <div class="border">
         <md-tab-group dynamicHeight>

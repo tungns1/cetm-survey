@@ -18,8 +18,6 @@ export class TransactionTimeComponent implements OnInit {
 
   @Input() data: Aggregate[] = [];
   @Input() field = 'branch_id';
-
-
   
   excel() {
     this.exportService.exportExcel('tableEl', 'miraway', 'xlsx');
