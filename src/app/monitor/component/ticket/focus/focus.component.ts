@@ -68,14 +68,14 @@ export class FocusComponent {
     });
 
     numberCounterOff$ = this.focusService.counter$.map(v => v.filter(v => {
-        if (v.state === "Off") {
+        if (v.state === "off") {
             return v;
         }
     })).map(v => {
         return v.length;
     });
     numberCounterOn$ = this.focusService.counter$.map(v => v.filter(v => {
-        if (v.state === "On") {
+        if (v.state === "on") {
             return v;
         }
     })).map(v => {
