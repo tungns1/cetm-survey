@@ -8,9 +8,12 @@
         <div [fxFlex]="hideFilter? '60px':'250px'" class="leftFilter">
             <report-filter *ngIf="hidden" [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%"></report-filter>
         </div>
-        <div fxFlex style="overflow: auto;" class="mainContent">
-            <router-outlet></router-outlet>
-            <p class="margin-30-0">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+
+        <div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
+            <div class="main_miraway">
+                <router-outlet></router-outlet>
+            </div>
+            <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
         </div>
     </div>
 </div>
