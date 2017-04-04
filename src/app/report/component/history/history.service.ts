@@ -11,6 +11,14 @@ export interface IHistory {
     total: number;
 }
 
+export interface IHistoryFilter {
+    wtimemin: number;
+    wtimemax: number;
+    stimemin: number;
+    stimemax: number;
+    rating: string;
+}
+
 @Injectable()
 export class TransactionHistoryApi {
     constructor(
@@ -18,7 +26,7 @@ export class TransactionHistoryApi {
         private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
-    GetHistory(skip: number, limit: number, filterHistory: object) {
+    GetHistory(skip: number, limit: number, filterHistory: IHistoryFilter) {
         const query = Object.assign({
             skip: skip,
             limit: limit

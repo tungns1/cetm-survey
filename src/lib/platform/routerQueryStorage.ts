@@ -21,10 +21,14 @@ export class RouterQueryStorageStrategy extends AbstractStorageStrategy {
     saveRaw(key: string, value: string) {
         const change = {};
         change[key] = value;
-        this.router.navigate([], {
-            queryParams: change,
-            queryParamsHandling: 'merge'
-        })
+        // setTimeout to allow the router run later
+        // otherwise, no route navigation will happen 
+        setTimeout(_ => {
+            this.router.navigate(["."], {
+                queryParams: change,
+                queryParamsHandling: 'merge'
+            });
+        });
     }
 
     static Provider() {

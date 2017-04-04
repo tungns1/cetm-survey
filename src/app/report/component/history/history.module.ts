@@ -7,6 +7,7 @@ import { SharedModule } from '../../shared';
 import { ModalModule } from '../../../x/ng/modal';
 import { TransactionHistoryApi } from './history.service';
 import { TransactionComponent } from './transaction.component';
+import { HistoryFilterComponent } from './history-filter.component';
 import { AccordionModule } from '../../../x/ui/accordion/accordion';
 
 const routing = RouterModule.forChild([
@@ -18,9 +19,12 @@ const routing = RouterModule.forChild([
 
 @NgModule({
     imports: [routing, SharedModule, AccordionModule],
-    declarations: [HistoryComponent, TransactionComponent],
+    declarations: [
+        HistoryComponent,
+        HistoryFilterComponent,
+        TransactionComponent
+    ],
     providers: [TransactionHistoryApi],
-    exports: [AccordionModule]
 })
 export class ReportHistoryModule {
 
