@@ -24,7 +24,7 @@ export class RouterQueryStorageStrategy extends AbstractStorageStrategy {
         // setTimeout to allow the router run later
         // otherwise, no route navigation will happen 
         setTimeout(_ => {
-            this.router.navigate(["."], {
+            this.router.navigate([], {
                 queryParams: change,
                 queryParamsHandling: 'merge'
             });
