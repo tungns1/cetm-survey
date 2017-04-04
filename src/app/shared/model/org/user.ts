@@ -2,7 +2,7 @@
 import { ID, MemCache } from '../../shared/';
 
 export interface IUser extends ID {
-    branch_id?: string;
+    branch_id: string;
     mtime?: number;
     username: string;
     fullname: string;
