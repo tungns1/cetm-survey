@@ -7,6 +7,7 @@ export class ExportExcelService {
 
   constructor() { }
   
+//   template = 
 
   exportExcel(id: string, fileName: string, fileType: 'xlsx'){
         let tableEl = document.getElementById(id);
@@ -61,7 +62,8 @@ export class ExportExcelService {
         }
 
         /* the saveAs call downloads a file on the local machine */
-        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), fileName);
+        console.log(workbook)
+        // saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), fileName);
     }
 
     getCell(val){

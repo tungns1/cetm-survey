@@ -3,6 +3,7 @@ import { MonitorTicketComponent } from './ticket.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
+import { TicketDetailComponent } from './focus/ticketDetail.component';
 import { SummaryComponent } from './summary/summary.component';
 import { MonitorChartComponent } from './chart/chart.component';
 import { D3Module } from '../../../x/ng/d3/d3.module';
@@ -30,6 +31,8 @@ import { monitorServiceProviders } from './shared';
     ],
     declarations: [
         MonitorTicketComponent, FocusComponent,
-        SummaryComponent, MonitorChartComponent]
+        TicketDetailComponent,
+        SummaryComponent, MonitorChartComponent
+        ]
 })
 export class MonitorTicketModule { }

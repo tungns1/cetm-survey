@@ -20,7 +20,8 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
   SetTicket(t: ITicket) {
-    this.isModal=true;
+    this.isVip=this.isPriority(t);
+    this.isModal = true;
     this.ticket = t;
     this.checkedCounters = [];
     this.checkedServices = [];
@@ -33,10 +34,24 @@ export class TicketDetailDialog {
 
   private isServing = false;
   private isWaiting = false;
+  private isVip = false;
   private isMissed = false;
   private isModal = false;
   private isRemove = false;
   private isAlert = false;
+  private isPriority(t: ITicket) {
+    if (t.ticket_priority.customer_vip != "") {
+      return true;
+    } else if (t.ticket_priority.service_priority != "") {
+      return true;
+    } else if (t.ticket_priority.ticket_online != "") {
+      return true;
+    } else if (t.ticket_priority.vip_card != "") {
+      return true;
+    } else {
+      return false
+    }
+  }
 
 
   private checkedCounters = [];

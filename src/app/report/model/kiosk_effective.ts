@@ -1,17 +1,21 @@
-import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray } from "lodash";
+import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum } from "lodash";
 import { CacheBranch } from '../../shared/model';
 export interface IKioskTrack {
     id?: string
     branch_id: string;
     device_id: string;
     device_type: string;
-    object: number;
+    object: IKioskTrackData;
     state: string;
     on_at: number;
     off_at: number;
     total_on: number;
     date: string;
 
+}
+
+export interface IKioskTrackData {
+    printed: number;
 }
 
 
@@ -83,7 +87,9 @@ export class InfoKioskTrack {
         if (s.length > 0) {
             this.total_activity = this.SecondToHour(sumBy(s, 'total_on'))
             this.total_kiosk = size(groupBy(s, 'device_id'));
-            this.total_ticket = size(groupBy(s, 'object'));
+            s.forEach(v => {
+                this.total_ticket += v.object.printed || 0;
+            })
             var data_by_branh = toArray(groupBy(s, 'branch_id'));
 
 
@@ -93,27 +99,31 @@ export class InfoKioskTrack {
 
 
             for (var i = 0; i < len_by_branch; i++) {
-                var highest = 0,lowest=0;
-                if (data_by_branh[i].filter(v => v.object !== null).length > 0) {
-                    highest = maxBy(data_by_branh[i].filter(v => v.object !== null), 'object').object;
-                }
-                if(data_by_branh[i].filter(v => v.object !== null).length>0){
-                    minBy(data_by_branh[i].filter(v => v.object !== null), 'object').object;
-                }
+                var min = 0, max = 0, total = 0;
+                data_by_branh[i].forEach(v => {
+                    if (v.object.printed < min) {
+                        min = +v.object.printed || 0;
+                    }
+                    if (v.object.printed > max) {
+                        max = +v.object.printed || 0;
+                    }
+                    total += +v.object.printed || 0;
+                })
+
                 this.ticket.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
-                    value: sumBy(data_by_branh[i], 'object') || 0
+                    value: total
                 })
                 this.time.push({
-                    name:  CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
                     value: this.SecondToHour(sumBy(data_by_branh[i], 'total_on'))
                 })
                 this.ticket_sum.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
-                    total: sumBy(data_by_branh[i], 'object') || 0,
-                    highest: highest,
-                    lowest: lowest,
-                    average: meanBy(data_by_branh[i], <any>'object') || 0,
+                    total: total,
+                    highest: max,
+                    lowest: min,
+                    average: total / (data_by_branh[i].length),
                 })
                 this.time_sum.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
@@ -126,7 +136,7 @@ export class InfoKioskTrack {
             for (var i = 0; i < len_by_date; i++) {
                 this.ticket_day.push({
                     name: data_by_date[i][0].date,
-                    value: sumBy(data_by_date[i], 'object') || 0
+                    value: sumBy(data_by_date[i], a => +a.object.printed || 0)
                 })
                 this.time_day.push({
                     name: data_by_date[i][0].date,
@@ -136,8 +146,8 @@ export class InfoKioskTrack {
         }
 
     }
-    SecondToHour(s:number){
-        return +(s/3600).toFixed(2);
+    SecondToHour(s: number) {
+        return +(s / 3600).toFixed(2);
 
     }
 

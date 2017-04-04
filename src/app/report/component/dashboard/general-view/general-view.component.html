@@ -1,0 +1,74 @@
+<report-chart>
+    <chart-item-group-view #pieConfig>
+        <chart-item-group group="pie">
+            <chart-item field="c_ft" color="#99b3ff" title="Finished Transaction"></chart-item>
+            <chart-item field="c_ct" color="#969c9c" title="Cancelled transaction"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="pie">
+            <chart-item field="c_bwt" color="#339933" title="Standard waiting time transaction"></chart-item>
+            <chart-item field="c_awt" color="#b4e4b4" title="Exceeded waiting time transaction"></chart-item>
+        </chart-item-group>
+        <chart-item-group group="pie">
+            <chart-item field="c_bst" color="#339966" title="Standard serving time transaction"></chart-item>
+            <chart-item field="c_ast" color="#9fdfbf" title="Exceeded serving time transaction"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
+    <chart-item-group-view #otherConfig>
+        <chart-item-group group="other">
+            <chart-item field="c_t" color="#9933ff" title="Total transaction"></chart-item>
+            <chart-item field="c_ft" color="#99b3ff" title="Finished transaction"></chart-item>
+            <chart-item field="c_ct" color="#969c9c" title="Cancelled transaction"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
+</report-chart>
+
+<table id="tableEl" class="tableOverView">
+    <thead>
+        <th i18n>No.</th>
+        <th [groupByTitle]="field"></th>
+        <th i18n>Total transaction</th>
+        <th i18n>Finished transaction</th>
+        <th i18n>Canceled transaction</th>
+        <th i18n>Standard waiting time transaction</th>
+        <th class="widthCtrl" i18n>Exceeded waiting time transaction</th>
+        <th class="widthCtrl" i18n>Standard serving time transaction</th>
+        <th class="widthCtrl" i18n>Exceeded serving time transaction</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data; let i = index">
+            <td> {{i + 1}} </td>
+            <td style="text-align: center;">{{field | groupByTitle:d}}</td>
+            <td> {{d.c_t}} </td>
+            <td>
+                <div class="hl-numrp-align">{{d.c_ft}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ft/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align">{{d.c_t - d.c_ft}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{(1 - d.c_ft/d.c_t)*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span> </div>
+            </td>
+            <td>
+                <div class="hl-numrp-align">{{d.c_bwt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align">{{d.c_t-d.c_bwt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bwt)/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align">{{d.c_bst}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align">{{d.c_t-d.c_bst}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bst)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="divider"></div>
+<div fxLayout="row">
+    <div fxFlex="80%"></div>
+    <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()">Export Excel</button>
+</div>

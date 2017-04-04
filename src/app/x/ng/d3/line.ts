@@ -7,8 +7,6 @@ import { line, curveLinear } from 'd3-shape';
 import { max, extent } from 'd3-array';
 import { axisBottom, axisLeft, axisRight } from 'd3-axis';
 
-import { Item } from './chart';
-
 const lineCurve = curveLinear;
 
 import { mouse, Selection } from 'd3-selection';

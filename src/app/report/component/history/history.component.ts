@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ITransactionView } from '../../model';
-import { Paging, ReportNavService  } from '../../service/';
-import { TransactionHistoryApi } from './history.service';
+import { Paging, ReportNavService } from '../../service/';
+import { TransactionHistoryApi, IHistoryFilter } from './history.service';
 
 @Component({
     selector: 'history',
@@ -15,33 +15,15 @@ export class HistoryComponent {
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
-    
-    onSubmit() {
-        const skip = this.paging.SkipForPage(1);
-        const limit = this.paging.Limit;
-        this.transactionHistoryApi.GetHistory(skip, limit, this.filter)
-        .subscribe(v => {
-            this.paging.SetPage(1);
-            this.paging.Reset(v.data, v.total);
-        });
+
+    onFilterChange(filter: IHistoryFilter) {
+        this.filter = filter;
+        this.pagin(1);
     }
 
-    filter = {
-        wtimemin: 0,
-        wtimemax: 0,
-        stimemin: 0,
-        stimemax: 0,
-        rating: ''
-    };
-
-    sync(){
-        if(this.filter.wtimemin > this.filter.wtimemax)
-            this.filter.wtimemax = this.filter.wtimemin;
-        if(this.filter.stimemin > this.filter.stimemax)
-            this.filter.stimemax = this.filter.stimemin;
-    }
 
     paging = new Paging<ITransactionView>();
+    filter: IHistoryFilter;
 
     ngOnInit() {
         this.nav.Refresh$.ExclusiveSubscribe(_ => {
@@ -49,11 +31,10 @@ export class HistoryComponent {
         });
     }
 
-    pagin(page: number) {
+    pagin(page: number = 1) {
         const skip = this.paging.SkipForPage(page);
         const limit = this.paging.Limit;
-        const filter = {};
-        this.transactionHistoryApi.GetHistory(skip, limit, filter)
+        this.transactionHistoryApi.GetHistory(skip, limit, this.filter)
             .subscribe(v => {
                 this.paging.SetPage(page);
                 this.paging.Reset(v.data, v.total);
@@ -63,5 +44,5 @@ export class HistoryComponent {
     excel() {
         this.transactionHistoryApi.ExportHistory();
     }
-    
+
 }

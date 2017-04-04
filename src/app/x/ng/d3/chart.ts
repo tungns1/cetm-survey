@@ -1,5 +1,5 @@
 
-export interface Item {
+export interface ChartItem {
     field: string;
     axis?: 'left' | 'right';
     color?: string;
@@ -58,7 +58,7 @@ export class AbstractChart {
         return this;
     }
 
-    items(i: Item[]) {
+    items(i: ChartItem[]) {
         this._items = i;
         return this;
     }
@@ -114,7 +114,7 @@ export class AbstractChart {
 
     }
 
-    toggle(item: Item) {
+    toggle(item: ChartItem) {
         item._hidden = !item._hidden;
         this.render();
     }
@@ -158,11 +158,10 @@ export class AbstractChart {
     } = {};
     protected _data: any[] = [];
     protected _extents: [Date, Date] = [new Date, new Date];
-    protected _items: Item[] = [];
+    protected _items: ChartItem[] = [];
     protected _svg: Selection<any, any, any, any>;
     protected tooltip: Tooltip;
 }
-
 
 
 import { Component, ElementRef, Input } from '@angular/core';
@@ -176,27 +175,68 @@ export class ChartComponent<T extends AbstractChart> {
 
     make: (el: HTMLElement) => T;
 
-    set data(d: any[]) {
-        this.getChart().data(d).render();
+    data: any[];
+    items: ChartItem[];
+    period: string;
+
+    ngOnInit() {
+        this.checker = setInterval(_ => {
+            if (this.checkSize()) {
+                this.render();
+            }
+        }, 1000);
     }
 
-    set items(d: Item[]) {
-        this.getChart().items(d).render();
+    ngOnChanges() {
+        this.render();
     }
 
-    set period(p: string) {
-        this.getChart().SetPeriod(p).render();
+    ngOnDestroy() {
+        if (this.checker) {
+            clearInterval(this.checker);
+        }
+    }
+
+    render() {
+        const chart = this.getChart();
+        if (chart) {
+            chart.data(this.data).items(this.items)
+                .SetPeriod(this.period).render();
+        }
     }
 
     getChart() {
-        if (!this.chart) {
-            const el: HTMLElement = this.el.nativeElement;
+        const el: HTMLElement = this.el.nativeElement;
+        const width = el.clientWidth;
+        const height = el.clientHeight;
+        if (!this.chart && width > 0 && height > 0) {
+            this.checkSize();
             this.chart = this.make(el);
             this.chart.width(el.offsetWidth).height(el.offsetHeight).margin(20, 50, 20, 60);
         }
         return this.chart;
     }
 
+    private checker = null;
+    private width = 0;
+    private height = 0;
+    private checkSize() {
+        const el: HTMLElement = this.el.nativeElement;
+        const width = el.clientWidth;
+        const height = el.clientHeight;
+        if (width < 10 || height < 10) {
+            return false;
+        }
+        const wChange = Math.abs(width - this.width) > 10;
+        const hChange = Math.abs(height - this.height) > 10;
+        if (wChange) {
+            this.width = width;
+        }
+        if (hChange) {
+            this.height = height;
+        }
+        return wChange && hChange;
+    }
 
     static inputs = ['data', 'items', 'period'];
 }
