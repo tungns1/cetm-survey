@@ -66,8 +66,7 @@ export class InfoKioskTrack {
     longest_activity_kiosk = '';
     shortest_activity_kiosk = '';
     // average_kiosk_eff = 0;
-    total_activity = 0;
-    total_activity_day = 0;
+    total_activity_time = 0;
     longest_activity_time = 0;
     shortest_activity_time = 0;
     average_activity_time = 0;
@@ -99,7 +98,7 @@ export class InfoKioskTrack {
     Add(s: IKioskTrack[]) {
 
         if (s.length > 0) {
-            this.total_activity = this.SecondToHour(sumBy(s, 'total_on'))
+            this.total_activity_time = this.SecondToHour(sumBy(s, 'total_on'))
             this.total_kiosk = size(groupBy(s, 'device_id'));
             s.forEach(v => {
                 this.total_ticket += v.object.printed || 0;
@@ -171,15 +170,14 @@ export class InfoKioskTrack {
         var ticket = this.ticketchart;
         this.timechart[0].series = this.time_day;
         this.ticketchart[0].series = this.ticket_day;
-        this.ticket=this.ticket.sort((a,b)=>a.value-b.value).slice(0,5);
-        this.time=this.time.sort((a,b)=>a.value-b.value).slice(0,5);
-        
+
+
         if (s.length > 0) {
-            this.longest_activity_time = this.SecondToHour(maxBy(this.time, 'name').value);
+            this.longest_activity_time = maxBy(this.time, 'name').value;
             this.longest_activity_kiosk = maxBy(this.time, 'name').name;
-            this.shortest_activity_time = this.SecondToHour(minBy(this.time, 'name').value);
+            this.shortest_activity_time = minBy(this.time, 'name').value;
             this.shortest_activity_kiosk = minBy(this.time, 'name').name;
-            this.average_activity_time = this.SecondToHour(meanBy(this.time, <any>'value'));
+            this.average_activity_time = meanBy(this.time, <any>'value');
 
             this.highest_ticket_quantity = maxBy(this.ticket, 'name').value;
             this.highest_ticket_from = maxBy(this.ticket, 'name').name;
@@ -187,6 +185,8 @@ export class InfoKioskTrack {
             this.lowest_ticket_from = minBy(this.ticket, 'name').name;
             this.average_printed_ticket = meanBy(this.ticket, <any>'value');
         }
+        this.ticket = this.ticket.sort((a, b) => a.value - b.value).slice(0, 5);
+        this.time = this.time.sort((a, b) => a.value - b.value).slice(0, 5);
 
     }
 
