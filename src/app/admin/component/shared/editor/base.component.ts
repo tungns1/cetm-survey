@@ -5,12 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { CrudApiService } from '../../shared';
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
+import 'rxjs/add/operator/publishReplay';
 
 export abstract class BaseAdminComponent<T> {
     constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private service: CrudApiService<T>
+        protected router: Router,
+        protected route: ActivatedRoute,
+        protected service: CrudApiService<T>
     ) { }
 
 
@@ -25,18 +26,23 @@ export abstract class BaseAdminComponent<T> {
         return this.GetByID(id);
     });
 
-    form$ = this.id$.switchMap(id => {
+    form$: Observable<AbstractControl> = this.id$.switchMap(id => {
         if (this.isList(id)) {
-            return of(<T>null);
+            return of(null);
         }
         if (this.isNew(id)) {
-            const form = this.makeForm(null);
-            return convertToObservable<T>(form);
+            return convertToObservable(this.makeForm(null));
         }
         return this.GetByID(id).switchMap(v => {
-            return convertToObservable<T>(this.makeForm(v));
+            return convertToObservable(this.makeForm(v));
         });
-    });
+    }).share();
+
+    formValue$: Observable<T> = this.form$
+        .filter(form => form != null)
+        .switchMap(form => {
+            return form.valueChanges.startWith(form.value);
+        }).publishReplay(1).refCount();
 
 
     private onActionRequest(e: ITableAction) {
@@ -71,6 +77,7 @@ export abstract class BaseAdminComponent<T> {
     protected NavigateTo(view = 'list') {
         console.log('navigate to', view);
         this.router.navigate(['..', view], {
+            queryParamsHandling: 'preserve',
             relativeTo: this.route
         });
     }

@@ -8,6 +8,6 @@ export interface IScreen {
     news: string[];
     
     layout_id: string;
-    inheritable: boolean;
+    layout_resources: any;
     parent_id: string;
 }

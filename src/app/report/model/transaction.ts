@@ -75,6 +75,13 @@ export class Customer {
     service_id: string;
     ctime: string;
     date: Date;
+    freschart = [
+        {
+            "name": "Frequency",
+            "series": [
+            ]
+        }
+    ];
 
     c_t = 0; // count transaction
     c_bwt = 0; // count bellow waiting time
@@ -191,6 +198,8 @@ export class Customer {
     }
 
     Finalize() {
+        var fres = this.freschart;
+        this.freschart[0].series = this.fres;
         if (this.data != null) {
             this.c_t = this.data.length;
             this.count = this.data.length;

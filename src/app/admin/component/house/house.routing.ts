@@ -16,10 +16,20 @@ const children: Routes = [
   },
   {
     path: 'kiosk',
+    pathMatch: 'full',
+    redirectTo: 'kiosk/list'
+  },
+  {
+    path: 'kiosk/:id',
     component: KioskComponent
   },
   {
     path: 'screen',
+    pathMatch: 'full',
+    redirectTo: 'screen/list'
+  },
+  {
+    path: 'screen/:id',
     component: ScreenComponent
   },
   {

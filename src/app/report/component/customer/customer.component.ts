@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
+import { MdTabGroup } from '@angular/material';
 
 @Component({
     selector: 'customer',
@@ -25,5 +26,6 @@ export class CustomerComponent {
             });
         }
     }
+    data$=this.customerApi.RxSummaryView;
 
 }

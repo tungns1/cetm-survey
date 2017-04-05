@@ -1,21 +1,26 @@
 import { Component, ViewChild } from '@angular/core';
 import { CenterService, HouseService, IKiosk, CacheBranch } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { BaseAdminComponent } from '../../shared';
 
 @Component({
     selector: 'house-kiosk',
     templateUrl: 'kiosk.component.html',
     styleUrls: ['kiosk.component.css']
 })
-export class KioskComponent {
+export class KioskComponent extends BaseAdminComponent<IKiosk> {
 
     constructor(
+        router: Router,
+        route: ActivatedRoute,
         private center: CenterService,
         private house: HouseService
-    ) { }
+    ) {
+        super(router, route, house.KioskService);
+    }
 
-    service = this.house.KioskService;
-    kiosks = this.service.RxUpperList;
+    kiosks = this.house.KioskService.RxUpperList;
     services = this.center.ServiceService.RxListView;
     layouts = this.center.LayoutService.GetByType('kiosk');
     ticketlayouts = this.center.TicketLayoutService.GetAll();

@@ -1,0 +1,17 @@
+<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.freschart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
+    (select)="onSelect($event)">
+</ngx-charts-line-chart>
+<!-- Time View -->
+
+<table>
+    <thead>
+        <th i18n>Month</th>
+        <th i18n>Number of transaction</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of data.fres">
+            <td>{{s.name}}</td>
+            <td>{{s.value}}</td>
+        </tr>
+    </tbody>
+</table>
