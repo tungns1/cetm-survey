@@ -17,6 +17,7 @@ import { AppSocketGenerator, HttpServiceGenerator } from './service';
 // import { TicketDetailModule } from './ticketDetail/ticketDetail.module';
 import { MaterialModule } from '@angular/material';
 
+
 @NgModule({
     imports: [
 
