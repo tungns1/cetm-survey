@@ -8,7 +8,7 @@
     </div>
     <report-sum class="summaryReport" [data]="summary$ | async"></report-sum>
     <div class="divider margin-30-0"></div>
-    <div class="border">
+    <div id="overView" class="border">
         <md-tab-group dynamicHeight>
             <md-tab label="Overview">
                 <app-general-view [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>

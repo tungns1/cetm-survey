@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerAPI } from './service/customer.service';
 import { TransactionHistoryApi } from '../history/history.service';
-
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {
     CustomerComponent
 } from './customer.component';
@@ -16,23 +16,28 @@ const routing = RouterModule.forChild([
     }
 ]);
 
+import { ServiceComponent } from './service-tab/service.component';
+import { StoreComponent } from './store-tab/store.component';
+import { FresComponent } from './fres-tab/fres.component';
+import { TransactionTimeComponent } from './transaction-time/transaction-time.component';
+
+
 import { ReportFilterModule } from './filter/filter.module';
 import { ReportSumModule } from './sum/sum.module';
-import { ReportOverviewModule } from './overview/overview.module';
-import { ReportChartModule } from './chart/chart.module';
-import { ReportTabComponent } from './tab/tab.component';
+import { D3Module } from '../../../x/ng/d3/d3.module';
+import { ReportChartComponent } from './chart/chart.component';
 import { ReportInfoModule } from './info/info.module'
 import { ReportHistoryModule } from './history/history.module'
 import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
-        routing, ReportSumModule, ReportOverviewModule, ReportChartModule,
+        routing, ReportSumModule,
         ReportInfoModule, ReportFilterModule, ReportHistoryModule,
-        SharedModule
+        SharedModule,NgxChartsModule,D3Module
     ],
     declarations: [
-        CustomerComponent, ReportTabComponent
+        CustomerComponent,ServiceComponent,StoreComponent,FresComponent,TransactionTimeComponent,ReportChartComponent
     ],
     providers: [CustomerAPI, TransactionHistoryApi]
 })
