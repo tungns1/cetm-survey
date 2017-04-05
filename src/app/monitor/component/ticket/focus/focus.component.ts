@@ -41,6 +41,8 @@ export class FocusComponent {
         this.route.params.subscribe(p => {
             this.focusService.Branch$.next(p["branch_id"]);
         });
+        this.focusService.tickets$.subscribe();
+        this.focus$.subscribe(data => console.log(data));
         this.navService.Refresh$.ExclusiveSubscribe(_ => {
             const branch_id = this.route.snapshot.params["branch_id"];
             this.focusService.Branch$.next(branch_id);
@@ -57,11 +59,7 @@ export class FocusComponent {
 
     }
 
-    focus$ = this.route.params.switchMap(p => {
-        return this.summaryService.summary$.map(summaries => {
-            return summaries.find(s => s.branch_id === p['branch_id'])
-        });
-    });
+    focus$ = this.focusService.FocusSummary$;
 
     numberCounter$ = this.focusService.counter$.map(v => {
         return v.length;

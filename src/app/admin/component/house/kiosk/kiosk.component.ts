@@ -3,6 +3,7 @@ import { CenterService, HouseService, IKiosk, CacheBranch } from '../../../servi
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent } from '../../shared';
+import { extend } from 'lodash';
 
 @Component({
     selector: 'house-kiosk',
@@ -32,18 +33,21 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
-        return (new FormBuilder).group({
-            id: [b.id],
-            code: [b.code, Validators.required],
-            name: [b.name, Validators.required],
-            services: [b.services],
-            branch_id: [b.branch_id, Validators.required],
-            vcodes: [b.vcodes],
-            layout_id: [b.layout_id],
-            tlayout_id: [b.tlayout_id],
-            parent_id: [b.parent_id],
-            inheritable: [b.inheritable],
-            layout_resources: [b.layout_resources]
+        return this.center.LayoutService.GetByID(b.layout_id).map(layout => {
+            b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+            return (new FormBuilder).group({
+                id: [b.id],
+                code: [b.code, Validators.required],
+                name: [b.name, Validators.required],
+                services: [b.services],
+                branch_id: [b.branch_id, Validators.required],
+                vcodes: [b.vcodes],
+                layout_id: [b.layout_id],
+                tlayout_id: [b.tlayout_id],
+                parent_id: [b.parent_id],
+                inheritable: [b.inheritable],
+                layout_resources: [b.layout_resources]
+            });
         });
     }
 }

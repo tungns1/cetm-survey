@@ -25,6 +25,8 @@
         <select class="hl-select" formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
         </select>
+        <br><span i18n>Resources</span>
+        <app-resource-editor formControlName="layout_resources"></app-resource-editor>
         <br> <span i18n>Ticket layout</span>
         <select class="hl-select" formControlName="tlayout_id">
             <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
