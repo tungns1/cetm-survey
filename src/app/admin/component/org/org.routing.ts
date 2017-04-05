@@ -10,6 +10,11 @@ const children: Routes = [
   },
   {
     path: 'user',
+    pathMatch: 'full',
+    redirectTo: 'user/list'
+  },
+  {
+    path: 'user/:id',
     component: UserComponent
   },
   {

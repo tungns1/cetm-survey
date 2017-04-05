@@ -1,0 +1,39 @@
+import {
+    Component, OnInit,  Output, EventEmitter, Input
+} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+    selector: 'app-editor-view',
+    templateUrl: 'editor-view.component.html'
+})
+export class EditorViewComponent implements OnInit {
+
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute
+    ) { }
+
+    ngOnInit() {
+
+    }
+
+    @Output() action = new EventEmitter<string>();
+
+    onAction(action: string) {
+        this.action.next(action);
+    }
+
+    private GoBack() {
+        if (window.history.length > 0) {
+            window.history.back();
+        } else {
+            this.router.navigate(['..', 'list'], {
+                relativeTo: this.route
+            });
+        }
+    }
+
+    @Input() isNew = true;
+
+}

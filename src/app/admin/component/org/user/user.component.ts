@@ -2,15 +2,23 @@ import { Component } from '@angular/core';
 import { OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { Router, ActivatedRoute } from '@angular/router';
+import { BaseAdminComponent } from '../../shared';
+
 @Component({
   selector: 'admin-user',
   templateUrl: 'user.component.html',
   styleUrls: ['user.component.css']
 })
-export class UserComponent {
+export class UserComponent extends BaseAdminComponent<IUser> {
   constructor(
+    router: Router,
+    route: ActivatedRoute,
     private org: OrgService
-  ) { }
+  ) { 
+    super(router, route, org.UserService);
+  }
+
   makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({
@@ -24,7 +32,6 @@ export class UserComponent {
     });
   }
 
-  service = this.org.UserService;
   private roles = AllRoles;
   private branches = this.org.BranchService.RxListView;
 }
