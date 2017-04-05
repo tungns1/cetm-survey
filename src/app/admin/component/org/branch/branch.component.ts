@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IBranch, CacheBranch, OrgService, AdminNavService, AuthService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -12,14 +12,13 @@ import { BaseAdminComponent, BranchFilterService } from '../../shared';
 })
 export class BranchComponent extends BaseAdminComponent<IBranch> {
   constructor(
-    router: Router,
-    route: ActivatedRoute,
+    injector: Injector,
     private org: OrgService,
     private authService: AuthService,
     private branchFilter: BranchFilterService,
     private navService: AdminNavService
   ) {
-    super(router, route, org.BranchService);
+    super(injector, org.BranchService);
   }
 
   level$ = this.route.params.map(p => +p['level'] || 0);

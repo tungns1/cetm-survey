@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -12,11 +12,10 @@ import { BaseAdminComponent } from '../../shared';
 })
 export class UserComponent extends BaseAdminComponent<IUser> {
   constructor(
-    router: Router,
-    route: ActivatedRoute,
+    injector: Injector,
     private org: OrgService
   ) { 
-    super(router, route, org.UserService);
+    super(injector, org.UserService);
   }
 
   makeForm(u?: IUser) {
