@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { extend } from 'lodash';
@@ -15,12 +15,11 @@ import { BaseAdminComponent } from '../../shared';
 export class ScreenComponent extends BaseAdminComponent<IScreen> {
 
     constructor(
-        router: Router,
-        route: ActivatedRoute,
+        injector: Injector,
         private center: CenterService,
         private house: HouseService
     ) {
-        super(router, route, house.ScreenService);
+        super(injector, house.ScreenService);
         this.counters$.subscribe(console.log.bind(console));
     }
 

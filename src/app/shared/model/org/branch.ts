@@ -42,7 +42,7 @@ class BranchCache extends MemCache<IBranch> {
         return b ? b.name : this.NotApplicable;
     }
 
-     GetNameKioskForID(id: string) {
+    GetNameKioskForID(id: string) {
         const b = this.GetByID(id);
         return b ? b.name : '';
     }

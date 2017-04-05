@@ -6,7 +6,7 @@ const children: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'branch/0'
+    redirectTo: 'branch/0/list'
   },
   {
     path: 'user',
@@ -18,7 +18,7 @@ const children: Routes = [
     component: UserComponent
   },
   {
-    path: 'branch/:level',
+    path: 'branch/:level/:id',
     component: BranchComponent
   }
 ]

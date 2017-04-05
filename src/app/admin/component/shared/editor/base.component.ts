@@ -5,15 +5,19 @@ import { Observable } from 'rxjs/Observable';
 import { CrudApiService } from '../../shared';
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
+import { Injector } from '@angular/core';
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import 'rxjs/add/operator/publishReplay';
 
 export abstract class BaseAdminComponent<T> {
     constructor(
-        protected router: Router,
-        protected route: ActivatedRoute,
+        protected injector: Injector,
         protected service: CrudApiService<T>
     ) { }
 
+    protected router = this.injector.get(Router);
+    protected route = this.injector.get(ActivatedRoute);
+    private mdSnackBar = this.injector.get(MdSnackBar);
 
     id$ = this.route.params.map(p => p['id']);
     showList$ = this.id$.map(id => this.isList(id));
@@ -70,6 +74,10 @@ export abstract class BaseAdminComponent<T> {
 
     protected HandleNew(value: T) {
         this.service.Create(value).subscribe(_ => {
+            const ref = this.mdSnackBar.open("The data was created successfully", "CLOSE", {
+                duration: 2000,
+                extraClasses: ["success"]
+            });
             this.NavigateTo();
         })
     }
@@ -85,6 +93,13 @@ export abstract class BaseAdminComponent<T> {
     protected HandleUpdate(value: T) {
         const id = value['id'];
         this.UpdateByID(id, value).first().subscribe(_ => {
+            const ref = this.mdSnackBar.open("The data was saved successfully", "UNDO", {
+                duration: 2000,
+                extraClasses: ["success"]
+            });
+            ref.onAction().subscribe(_ => {
+                console.log("UNDO");
+            });
             this.NavigateTo();
         });
     }
@@ -92,6 +107,13 @@ export abstract class BaseAdminComponent<T> {
     protected HandleMarkDelete(value: T) {
         const id = value['id'];
         this.MarkDeleteByID(id).first().subscribe(_ => {
+            const ref = this.mdSnackBar.open("The data was deleted", "UNDO", {
+                duration: 6000,
+                extraClasses: ["success"]
+            });
+            ref.onAction().subscribe(_ => {
+                console.log("UNDO");
+            });
             this.NavigateTo();
         });
     }

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Injector } from '@angular/core';
 import { CenterService, HouseService, IKiosk, CacheBranch } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,12 +13,11 @@ import { extend } from 'lodash';
 export class KioskComponent extends BaseAdminComponent<IKiosk> {
 
     constructor(
-        router: Router,
-        route: ActivatedRoute,
+        injector: Injector,
         private center: CenterService,
         private house: HouseService
     ) {
-        super(router, route, house.KioskService);
+        super(injector, house.KioskService);
     }
 
     kiosks = this.house.KioskService.RxUpperList;
