@@ -37,7 +37,7 @@ export class StoreComponent {
     console.log(event);
   }
   excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx');
+    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
   }
 
 }

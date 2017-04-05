@@ -77,6 +77,20 @@ export class InfoKioskTrack {
     average_printed_ticket = 0;
     highest_ticket_quantity = 0;
     lowest_ticket_quantity = 0;
+    timechart = [
+        {
+            "name": "Active Time",
+            "series": [
+            ]
+        }
+    ];
+    ticketchart = [
+        {
+            "name": "Ticket Quantity",
+            "series": [
+            ]
+        }
+    ];
 
 
 
@@ -153,6 +167,13 @@ export class InfoKioskTrack {
 
 
     Finalize(s: IKioskTrack[]) {
+        var time = this.timechart;
+        var ticket = this.ticketchart;
+        this.timechart[0].series = this.time_day;
+        this.ticketchart[0].series = this.ticket_day;
+        this.ticket=this.ticket.sort((a,b)=>a.value-b.value).slice(0,5);
+        this.time=this.time.sort((a,b)=>a.value-b.value).slice(0,5);
+        
         if (s.length > 0) {
             this.longest_activity_time = this.SecondToHour(maxBy(this.time, 'name').value);
             this.longest_activity_kiosk = maxBy(this.time, 'name').name;

@@ -1,0 +1,28 @@
+<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.timechart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
+    (select)="onSelect($event)">
+</ngx-charts-line-chart>
+
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.time" [barPadding]="padding" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+    (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+<!-- Time View -->
+<table>
+    <thead>
+        <th i18n>No</th>
+        <th i18n>Store</th>
+        <th i18n>Total activity time(hour)</th>
+        <th i18n>Longest period(hour per day)</th>
+        <th i18n>Shortest period(hour per day)</th>
+        <th i18n>Average period(hour per day)</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data.time_sum; let i = index">
+            <td>{{(i+1)}}</td>
+            <td> {{d.name}} </td>
+            <td> {{d.total}} </td>
+            <td> {{d.longest}} </td>
+            <td> {{d.shortest}} </td>
+            <td> {{d.average}} </td>
+        </tr>
+    </tbody>
+</table>
