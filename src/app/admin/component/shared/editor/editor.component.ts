@@ -18,11 +18,13 @@ import { ActivatedRoute } from '@angular/router';
 export class EditorTitleComponent { }
 
 
+import { ITableField, ITableAction } from './model';
+
 @Component({
     selector: "editor-field",
     template: `<ng-content></ng-content>`
 })
-export class EditorFieldComponent {
+export class EditorFieldComponent implements ITableField {
     @Input() name: string;
     @Input() title: string;
 }
@@ -73,22 +75,21 @@ export class EditorComponent<T> {
         this.editorRef.Open();
     }
 
-    private onAdd() {
-        this.createForm();
-        this.editorRef.Open();
-    }
-
-    private onEdit(u: T) {
-        this.api.GetByID(u['id']).first()
-            .subscribe(u => {
-                this.createForm(u);
-                this.editorRef.Open();
-            });
-    }
-
-    private onRemove(u: T) {
-        this.removeRef.Open();
-        this.form = this.makeForm(u);
+    private onAction(e: ITableAction) {
+        if (e.action === 'add') {
+            this.createForm();
+            this.editorRef.Open();
+        } else if (e.action === 'remove') {
+            this.removeRef.Open();
+            this.form = this.makeForm(e.value);
+        } else if (e.action === 'edit') {
+            const id = e.value['id'];
+            this.api.GetByID(id).first()
+                .subscribe(u => {
+                    this.createForm(u);
+                    this.editorRef.Open();
+                });
+        }
     }
 
     private CloseEditor() {
