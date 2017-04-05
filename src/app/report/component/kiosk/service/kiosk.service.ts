@@ -3,7 +3,6 @@ import { HttpServiceGenerator } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { IAggregate, Aggregate } from '../../../model';
 
 
 @Injectable()

@@ -1,7 +1,6 @@
 import { Component, Input ,ContentChild} from '@angular/core';
 import { ReportViewService } from '../../shared';
 import { TranslateService ,ChartItemGroupView} from '../../shared';
-import { ChartService } from './chart.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CustomerAPI} from '../service/customer.service';
 

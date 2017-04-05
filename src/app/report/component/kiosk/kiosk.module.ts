@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { KioskAPI } from './service/kiosk.service';
-import { ReportTabComponent } from './tab/tab.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import {
     KioskComponent
@@ -16,21 +16,19 @@ const routing = RouterModule.forChild([
         component: KioskComponent
     }
 ]);
-
-import { ReportOverviewModule } from './overview/overview.module';
+import { TicketComponent } from './ticket-tab/ticket.component';
+import { TimeComponent } from './time-tab/time.component';
 import { ReportInfoModule } from './info/info.module'
-import { ReportChartModule } from './chart/chart.module';
-import { TopFiveChartModule } from './topfive/chart.module';
 import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
-        routing, ReportOverviewModule,
-        ReportInfoModule,ReportChartModule,TopFiveChartModule,
+        routing,NgxChartsModule,
+        ReportInfoModule,
         SharedModule
     ],
     declarations: [
-        KioskComponent,ReportTabComponent
+        KioskComponent,TicketComponent,TimeComponent
     ],
     providers: [KioskAPI]
 })

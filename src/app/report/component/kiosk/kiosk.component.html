@@ -8,16 +8,26 @@
             <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
         </div>
     </div>
-    
+
     <div class="border padding-20">
         <report-info></report-info>
     </div>
 
     <div class="divider margin-20-0"></div>
     <div class="border">
-        <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
+        <!--<report-tab class="uppercase" (select)="setActive($event) "></report-tab>
         <kiosk-chart></kiosk-chart>
         <topfive-chart></topfive-chart>
-        <report-overview></report-overview>
+        <report-overview></report-overview>-->
+    </div>
+    <div class="border">
+        <md-tab-group dynamicHeight>
+            <md-tab label="ACTIVE TIME">
+                <time-tab [data]="data$ | async"></time-tab>
+            </md-tab>
+            <md-tab label="TICKET QUANTITY">
+                <ticket-tab [data]="data$ | async"></ticket-tab>
+            </md-tab>
+        </md-tab-group>
     </div>
 </div>

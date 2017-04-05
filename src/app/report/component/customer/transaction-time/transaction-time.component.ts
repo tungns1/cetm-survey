@@ -20,7 +20,7 @@ export class TransactionTimeComponent implements OnInit {
   @Input() data: Customer;
 
   excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx');
+    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
   }
 
 }

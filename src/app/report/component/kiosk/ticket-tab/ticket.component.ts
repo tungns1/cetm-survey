@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExportExcelService, Customer } from '../../shared';
+// import { Aggregate } from '../shared';
+import { ExportExcelService, InfoKioskTrack } from '../../shared';
 
 @Component({
-  selector: 'service-tab',
-  templateUrl: './service.component.html',
-  styleUrls: ['./service.component.scss']
+  selector: 'ticket-tab',
+  templateUrl: './ticket.component.html',
+  styleUrls: ['./ticket.component.scss']
 })
-export class ServiceComponent {
-  @Input() data: Customer;
+export class TicketComponent {
+  @Input() data: InfoKioskTrack;
   single: any[];
 
   view: any[] = [900, 400];
@@ -19,7 +20,7 @@ export class ServiceComponent {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  padding = 8;
+  padding = 20;
 
 
   colorScheme = {
@@ -28,16 +29,13 @@ export class ServiceComponent {
 
 
   constructor(private exportService: ExportExcelService) {
+
   }
-
-
-
 
 
   onSelect(event) {
     console.log(event);
   }
-
   excel() {
     this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
   }

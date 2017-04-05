@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { ReportNavService  } from '../../service/';
 import { KioskAPI } from './service/kiosk.service';
+import { MdTabGroup } from '@angular/material';
 @Component({
     selector: 'kiosk',
     templateUrl: 'kiosk.component.html',
@@ -18,5 +19,6 @@ export class KioskComponent {
            this.kioskAPI.Search();
         });
     }
+    data$=this.kioskAPI.RxSummaryView;
     
 }
