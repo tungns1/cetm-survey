@@ -19,7 +19,15 @@ export class CustomerFeedbackComponent implements OnInit {
   @Input() data: Aggregate[] = [];
   @Input() field = 'branch_id';
   
+  info = {
+    reportName: 'Overview Report',
+    period: {
+      start: '31/10/91',
+      end: '12/3/93'
+    }
+  }
+
   excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx');
+    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
   }
 }
