@@ -39,7 +39,7 @@ export class AuthService {
     Login(form) {
         const values = Object.assign(this.options, form);
         values['scope'] = this.scope;
-        return this.authBackend.Post("login", values).map(v => {
+        return this.authBackend.Post("login", {}, values).map(v => {
             let session: ISession = v.session;
             this.sessionService.Activate(session);
             return session;

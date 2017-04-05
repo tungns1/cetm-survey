@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpApi, HttpServiceGenerator } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
 import { AdminNavService } from './nav';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 export class CrudApiService<T> {
     constructor(
@@ -18,15 +19,23 @@ export class CrudApiService<T> {
     }
 
     Create(v: T) {
-        return this.api.Create(v).do(this.onChange);
+        return this.api.Post("create", {}, v).do(this.onChange);
     }
 
     Update(v: T) {
-        return this.api.Update(v).do(this.onChange);
+        return this.api.Post("update", {id: v['id']}, v).do(this.onChange);
+    }
+
+    GetByID(id: string) {
+        return this.api.Get<T>("get", { id: id });
     }
 
     MarkDelete(id: string) {
-        return this.api.MarkDelete(id).do(this.onChange);
+        return this.api.Post("mark_delete", {id: id}).do(this.onChange);
+    }
+    
+    Search(o) {
+        return this.api.Get<T[]>('search', o);
     }
 
     private onChange = () => {
@@ -38,8 +47,12 @@ export class CrudApiService<T> {
     }
 }
 
+interface IBranchModel {
+    branch_id: string;
+}
+
 @Injectable()
-export class BranchCrudApiService<T> extends CrudApiService<T> {
+export class BranchCrudApiService<T extends IBranchModel> extends CrudApiService<T> {
     constructor(
         nav: AdminNavService,
         api: HttpApi<T>,
@@ -49,13 +62,21 @@ export class BranchCrudApiService<T> extends CrudApiService<T> {
     }
 
     protected filter() {
-        let branches = this.branchFilter.getLowestBranches();
-        return this.GetByBranch(branches).do(data => CacheBranch.Join(data));
+        let branches = this.branchFilter.getAllID();
+        return this.GetByBranch(branches).map(data => {
+            CacheBranch.Join(data);
+            const ids = this.branchFilter.getLowestBranches();
+            const upper = data.filter(d => ids.indexOf(d['branch_id']) === -1);
+            this.RxUpperList.next(upper);
+            return data.filter(d => ids.indexOf(d['branch_id']) !== -1);
+        });
     }
 
     GetByBranch(branch_id: string[]) {
-        return this.api.Search({ branch_id: branch_id.join(',') });
+        return this.Search({ branch_id: branch_id.join(',') });
     }
+
+    RxUpperList = new ReplaySubject<T[]>(1);
 }
 
 @Injectable()
@@ -68,7 +89,7 @@ export class BranchCrudApiServiceGenerator {
 
     }
 
-    make<T>(uri: string) {
+    make<T extends IBranchModel>(uri: string) {
         return new BranchCrudApiService<T>(
             this.nav,
             this.hsg.make<T>(uri),

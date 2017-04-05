@@ -1,10 +1,12 @@
 
 import { Injectable } from '@angular/core';
 import { AuthService, HttpApi } from '../../shared/';
-import { 
+import {
     CrudApiService, IBranch, CacheBranch, AdminNavService,
     BranchFilterService
- } from '../shared';
+} from '../shared';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 @Injectable()
 export class BranchService extends CrudApiService<IBranch> {
@@ -17,32 +19,37 @@ export class BranchService extends CrudApiService<IBranch> {
         super(nav, api);
     }
 
-    GetListViewByLevel(level: number) {
-        return CacheBranch.RxByLevel(level);
-    }
-
-    GetListViewByLevelAndParents(parents: string[], level: number) {
-        return this.GetListViewByLevel(this.level).map(data => {
-            if (!parents) {
-                return data;
-            }
-            data.forEach(d => {
-                d.parent_name = CacheBranch.GetNameForID(d.parent);
-            })
-            return data.filter(d => parents.indexOf(d.parent) !== -1);
+    Create(v: IBranch) {
+        return this.Level$.switchMap(level => {
+            v.level = level;
+            return super.Create(v);
         });
     }
 
     protected filter() {
-        const parents = this.branchFilter.getByLevel(this.level + 1);
         return this.authService.RefreshMySettings().switchMap(() => {
-            return this.GetListViewByLevelAndParents(parents, this.level);
+            return this.Level$.switchMap(level => {
+                const parents = this.branchFilter.getByLevel(level + 1);
+                return CacheBranch.RxByLevel(level).map(branches => {
+                    branches.forEach(b => {
+                        b.parent_name = CacheBranch.GetNameForID(b.parent)
+                    })
+                    return branches.filter(b => parents.indexOf(b.parent) !== -1);
+                });
+            })
         });
     }
 
     SetLevel(level: number) {
-        this.level = level;
+        this.Level$.next(level);
     }
 
-    private level = 2;
+
+    Level$ = new ReplaySubject<number>(1);
+    RxUpplerList = this.Level$.switchMap(level => {
+        const ids = this.branchFilter.getAllID();
+        return CacheBranch.RxByLevel(level + 1).map(branches => {
+            return branches.filter(b => ids.indexOf(b.id) !== -1);
+        });
+    });
 }

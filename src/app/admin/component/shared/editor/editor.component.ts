@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { ModalComponent, Toast } from '../../../shared/';
 import { CrudApiService } from '../../shared';
 import { ISubscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: "editor-title",
@@ -32,6 +33,10 @@ export class EditorFieldComponent {
     styleUrls: ['editor.component.scss']
 })
 export class EditorComponent<T> {
+
+    constructor(
+        private route: ActivatedRoute
+    ) { }
 
     @Input() name: string;
     @Input() set service(s: CrudApiService<T>) {
@@ -74,8 +79,11 @@ export class EditorComponent<T> {
     }
 
     private onEdit(u: T) {
-        this.createForm(u);
-        this.editorRef.Open();
+        this.api.GetByID(u['id']).first()
+            .subscribe(u => {
+                this.createForm(u);
+                this.editorRef.Open();
+            });
     }
 
     private onRemove(u: T) {

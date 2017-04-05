@@ -17,8 +17,7 @@ export class ScreenComponent {
     ) { }
 
     service = this.house.ScreenService;
-    screens = this.house.ScreenService.RxListView
-        .map(values => values.filter(v => v.inheritable));
+    screens = this.service.RxUpperList;
     layouts = this.center.LayoutService.GetByType('screen');
     private focusBranchID$ = new ReplaySubject<string>(1);
 
@@ -43,8 +42,7 @@ export class ScreenComponent {
             news: [b.news],
             branch_id: [b.branch_id, Validators.required],
             layout_id: [b.layout_id],
-            parent_id: [b.parent_id],
-            inheritable: [b.inheritable]
+            parent_id: [b.parent_id]
         });
     }
 

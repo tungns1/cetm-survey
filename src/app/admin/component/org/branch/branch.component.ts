@@ -17,14 +17,12 @@ export class BranchComponent {
     private navService: AdminNavService
   ) { }
 
-  parents: Observable<IBranch[]>;
   private level: number;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.level = +params['level'] || 0;
       this.service.SetLevel(this.level);
-      this.parents = this.service.GetListViewByLevel(this.level + 1);
       this.navService.Refresh();
     });
   }
@@ -45,5 +43,7 @@ export class BranchComponent {
   }
 
   service = this.org.BranchService;
+  parents = this.service.RxUpplerList;
+
 
 }
