@@ -16,6 +16,7 @@ interface IFocusReply {
   users: IUser[];
   tickets: ITickets;
   counter_state: IDevice[];
+  summary: ISummary;
 }
 
 @Injectable()
@@ -28,6 +29,7 @@ export class MonitorFocusService {
 
   private initialFocus$ = this.socket.Connected$.switchMap(_ => {
     return this.Branch$.switchMap(branch_id => {
+      // console.log(branch_id);
       return this.socket.Send<IFocusReply>("/focus", {
         branch_id
       }).do(data => {
@@ -39,6 +41,9 @@ export class MonitorFocusService {
 
   private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
   private counterUpdate$ = this.socket.RxEvent<IDevice>("/counter_track/update").startWith(null);
+  Branch$ = new ReplaySubject<string>(1);
+
+  FocusSummary$ = this.initialFocus$.map(data => data.summary);
 
 
   tickets$ = this.initialFocus$
@@ -75,5 +80,4 @@ export class MonitorFocusService {
     this.socket.Send("/focus", {}).subscribe();
   }
 
-  Branch$ = new ReplaySubject<string>(1);
 }

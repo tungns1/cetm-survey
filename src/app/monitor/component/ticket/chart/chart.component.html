@@ -1,16 +1,15 @@
-<div *ngIf="data" id="monitorChart" class="hl-chart">
+<div  id="monitorChart" class="hl-chart">
+    <!--{{config.groups$ | async | json}}-->
     <div style="width:33%; height:22vw; float:left;" *ngFor="let g of config.groups$ | async">
-        <p *ngIf="data" class="chartHeader">{{g.title}}</p>
+        <p  class="chartHeader">{{g.title}}</p>
         <div style="width:100%; height:22vw;" pie-chart [data]="data" [items]="g.activeItems"></div>
     </div>
 
     <div class="legend margin-t-20" fxLayout="row">
-        <div *ngFor="let item of itemGroup" fxFlex fxLayot="column">
-            <div *ngFor="let t of item" fxFlex class="margin-7-0 item">
-                <!--<div style="float:left;" class="margin-7-20">-->
+        <div *ngFor="let item of config.groups$ | async" fxFlex fxLayot="column">
+            <div *ngFor="let t of item.items" fxFlex class="margin-7-0 item">
                 <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
                 <span style="font-size: 11px;"> {{t.title}}</span>
-                <!--</div>-->
             </div>
         </div>
     </div>
@@ -20,9 +19,9 @@
     <chart-item-group i18n-title title="Ticket Detail">
         <chart-item field="finished" color="#fcff4d" i18n-title title="Finished Transaction"></chart-item>
         <chart-item field="cancelled" color="#8dbb00" i18n-title title="Cancelled Transaction"></chart-item>
-        <chart-item field="Waiting" color="#4df7ff" i18n-title title="Waiting Transaction"></chart-item>
+        <chart-item field="waiting" color="#4df7ff" i18n-title title="Waiting Transaction"></chart-item>
         <chart-item field="missed" color="#584dff" i18n-title title="Missed Transaction"></chart-item>
-        <chart-item field="Serving" color="#ff4dfa" i18n-title title="Serving Transaction"></chart-item>
+        <chart-item field="serving" color="#ff4dfa" i18n-title title="Serving Transaction"></chart-item>
     </chart-item-group>
     <chart-item-group i18n-title title="Exceeded Waiting Time Transaction">
         <chart-item field="wait_standard" color="#ff4d4d" i18n-title title="Standard Waiting Time Transaction"></chart-item>

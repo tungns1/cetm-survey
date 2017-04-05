@@ -27,6 +27,8 @@ export class SummaryComponent {
                 this.filterService.GetStores()
             );
         });
+            // if(this.filterService.GetStores()[0]) this.isShowChart = true;
+            // else this.isShowChart = false;
     }
 
     focus(s: ISummary) {
@@ -37,6 +39,7 @@ export class SummaryComponent {
     }
     
     wl_percent: Summary;
+    isShowChart: boolean = true;
 
     summary$ = this.summaryService.summary$;
     totalSummary$ = this.summary$.map(data => {
