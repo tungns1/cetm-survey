@@ -1,1 +1,1 @@
-export { ExportExcelService } from './export-excel.service';
+export { ExportExcelService, excelInfo } from './export-excel.service';

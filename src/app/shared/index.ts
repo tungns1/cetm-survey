@@ -14,6 +14,7 @@ export {
 } from './service';
 
 export { SmallStorage, RouterQueryStorageStrategy } from './shared';
+export { Ng2BasicModule } from '../../lib/ng2';
 export { ExportExcelService } from '../x/ng';
 export { LogService } from '../../lib/platform';
 export { AppSocket } from '../../lib/backend';

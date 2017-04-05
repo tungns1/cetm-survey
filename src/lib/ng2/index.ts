@@ -1,0 +1,1 @@
+export { Ng2BasicModule } from './ng2.module';

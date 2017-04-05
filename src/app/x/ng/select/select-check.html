@@ -19,7 +19,7 @@
 </style>
 
 
-<div class="scroll-filter" (change)="onChange()">
+<div slimScroll width="auto" height="90px" size="10px" class="scroll-filter" (change)="onChange()">
     <div [class.hide]="views.length < 2">
         <label [class.select-active]="all" class="hlft-div-checkbox pointer" (click)="SetAll(true)">
             <ng-container i18n>Select All</ng-container>

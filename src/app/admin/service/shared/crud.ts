@@ -26,6 +26,10 @@ export class CrudApiService<T> {
         return this.api.Post("update", {id: v['id']}, v).do(this.onChange);
     }
 
+    UpdateByID(id: string, v: T) {
+        return this.api.Post("update", {id: id}, v).do(this.onChange);
+    }
+
     GetByID(id: string) {
         return this.api.Get<T>("get", { id: id });
     }
