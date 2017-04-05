@@ -2,9 +2,8 @@
 
 /***************** Global *********************/
 
-
 // Buttons
-.btnClear{
+.btnClear {
     padding: 5px 10px;
     border: $border;
     border-color: $key-color;
@@ -16,86 +15,103 @@
     cursor: pointer;
     outline: none;
 }
-.btnFill{
+
+.btnFill {
     @extend .btnClear;
     background-color: $key-color;
     color: #fff;
 }
+
 // End of buttons
 // Accodion
-.accordionTitle{
+.accordionTitle {
     padding: 0 5px;
     cursor: pointer;
     text-transform: uppercase;
 }
+
 // End of accordion
 // Some UI Elements
-.divider{
+.divider {
     width: 100%;
     height: 1px;
     background-color: $border-color;
 }
-.border{
+
+.border {
     border-radius: 3px;
     border: $border;
     background-color: #fff;
 }
-.leftFilter{
+
+.leftFilter {
     padding-top: 50px;
     border-right: $border;
-    .filter{
+    .filter {
         height: 78vh;
-        .content{
+        .content {
             overflow: auto;
-            .inputCtrl{
+            .inputCtrl {
                 margin: 10px 20px;
             }
         }
-        .action{
+        .action {
             text-align: center;
-            button{
+            button {
                 margin: 15px 0px;
             }
         }
     }
 }
-.mainContent{
+
+.mainContent {
     padding: 0 35px;
-    .header{
+    .header {
         display: inline-block;
         font-size: $font-size-default * 2;
         font-weight: $font-weight-default;
     }
-    .nav{
+    .nav {
         float: right;
         margin: 20px 0px;
-        .btnMargin{
+        .btnMargin {
             margin-left: 12px;
         }
     }
-    .tableCtrl{
+    .tableCtrl {
         margin-top: 20px;
         border: 1px solid $border-color;
         border-spacing: 0;
         border-radius: 3px;
         width: 100%;
-        thead{
+        thead {
             text-align: left;
-            th{
+            th {
                 padding: 10px;
                 background-color: $background-color-title;
             }
         }
-        tbody{
+        tbody {
             text-align: left;
-            td{
+            td {
                 padding: 10px;
             }
-            .iconDetail{
+            .iconDetail {
                 width: 13px;
             }
         }
     }
+    .main_miraway {
+        min-height: 85%;
+        position: relative;
+        padding-bottom: 50px;
+    }
+    .mainContent_miraway {
+        height: 100%;
+        position: relative;
+    }
 }
+
 //End of UI elements
+
 /******************** End of global ***********************/

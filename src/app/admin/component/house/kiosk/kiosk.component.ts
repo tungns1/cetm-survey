@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { CenterService, HouseService, IKiosk } from '../../../service/';
+import { CenterService, HouseService, IKiosk, CacheBranch } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -15,10 +15,14 @@ export class KioskComponent {
     ) { }
 
     service = this.house.KioskService;
-    kiosks = this.service.RxListView.map(values => values.filter(v => v.inheritable));
+    kiosks = this.service.RxUpperList;
     services = this.center.ServiceService.RxListView;
     layouts = this.center.LayoutService.GetByType('kiosk');
     ticketlayouts = this.center.TicketLayoutService.GetAll();
+
+    getLayout(id: string) {
+        return this.layouts.map(layouts => layouts.find(l => l.id === id));
+    }
 
 
     makeForm(b?: IKiosk) {

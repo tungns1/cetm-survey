@@ -1,7 +1,14 @@
 <app-env-sub-module i18n-title title="User"></app-env-sub-module>
+<div *ngIf="showList$ | async">
+    <app-datatable name="User" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="username" i18n-title title="Username"></app-table-field>
+        <app-table-field name="fullname" i18n-title title="Full Name"></app-table-field>
+        <app-table-field name="branch" i18n-title title="Location"></app-table-field>
+    </app-datatable>
+</div>
 
-<editor #edit i18n-name name="User" i18n-name [service]="service" [makeForm]="makeForm">
-    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form class="hl-form" [formGroup]="form">
         <span i18n>Username</span>:
         <input class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;"><br>
         <span i18n>Full Name</span>:
@@ -16,7 +23,4 @@
         <span i18n>Location</span>:
         <branch-picker formControlName="branch_id"></branch-picker>
     </form>
-    <editor-field name="username" i18n-title title="Username"></editor-field>
-    <editor-field name="fullname" i18n-title title="Full Name"></editor-field>
-    <editor-field name="branch" i18n-title title="Location"></editor-field>
-</editor>
+</app-editor-view>

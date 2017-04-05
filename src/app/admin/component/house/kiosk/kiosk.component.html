@@ -7,9 +7,6 @@
         <span i18n>Name</span>:<input class="hl-input" type="text" formControlName="name" i18n-placeholder="Name"><br>
         <span i18n="Default Kiosk Vip Codes">Fixed Vip Codes</span>: <input class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
 
-        <span i18n>Inheritable</span>
-        <input class="hl-input" class="check" type="checkbox" formControlName="inheritable">
-
         <br> <span i18n="Inherit kiosk attributes">Inherit from</span>:
         <select class="hl-select" formControlName="parent_id">           
             <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 

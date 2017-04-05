@@ -4,7 +4,7 @@ import { CrudApiService, ITicketLayout } from '../shared';
 @Injectable()
 export class TicketLayoutService extends CrudApiService<ITicketLayout> {
      GetAll() {
-        return this.api.Search({ });
+        return this.Search({ });
     }
     protected filter() {
         return this.GetAll();

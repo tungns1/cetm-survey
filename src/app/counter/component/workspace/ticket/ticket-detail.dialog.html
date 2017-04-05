@@ -45,6 +45,8 @@
             <div *ngIf="!isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
                 <button fxFlex class="btnClear" (click)="Close()" i18n>Close</button>
 
+                <button *ngIf="isVip" fxFlex class="btnFill" (click)="Recall()" i18n>Call</button>
+
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
 
                 <button fxFlex class="btnFill btnRed" (click)="OpenRemove()" i18n>Delete</button>

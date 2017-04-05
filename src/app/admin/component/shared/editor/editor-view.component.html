@@ -1,0 +1,9 @@
+<button (click)="GoBack()">
+    <span>Back</span>
+</button>
+
+<ng-content></ng-content>
+<div></div>
+<button class="uppercase btnFill" [class.hide]="!isNew" (click)="onAction('add')" i18n>Add</button>
+<button class="uppercase btnFill" [class.hide]="isNew" (click)="onAction('edit')" i18n>Save</button>
+<button class="uppercase btnFill" [class.hide]="isNew" (click)="onAction('remove')" i18n>Delete</button>

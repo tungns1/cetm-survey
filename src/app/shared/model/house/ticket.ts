@@ -18,6 +18,14 @@ export interface ITicket {
     stime: number;
     tracks: ITicketTrack[];
     customer:ICustomer;
+    ticket_priority:ITicketPriority;
+}
+
+export interface ITicketPriority{
+    service_priority:string;
+    vip_card:string;
+    customer_vip:string;
+    ticket_online:string;
 }
 
 

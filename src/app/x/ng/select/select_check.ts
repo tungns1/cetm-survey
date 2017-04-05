@@ -33,6 +33,7 @@ export class SelectCheckComponent implements ControlValueAccessor {
         this.textField = this.textField || 'text';
     }
 
+    
     @Input() set data(arr: any[]) {
         this.views = (arr || []).map(a => {
             return {
@@ -68,7 +69,7 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
 
     registerOnTouched(fn: any) {
-
+    
     }
 
     onChange() {

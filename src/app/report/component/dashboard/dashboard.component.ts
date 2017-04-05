@@ -28,7 +28,7 @@ export class DashboardComponent {
         });
     }
 
-    data$ = this.aggregateService.RxAggregate;
+    data$ = this.aggregateService.ActiveAggregate$;
     groupBy$ = this.aggregateService.groupBy$;
     summary$ = this.aggregateService.RxSummaryView;
     

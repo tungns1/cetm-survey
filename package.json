@@ -50,6 +50,7 @@
     "@types/node": "~6.0.60",
     "@types/quill": "0.0.29",
     "@types/xlsx": "0.0.33",
+    "angular2-perfect-scrollbar": "^2.0.6",
     "babel-cli": "^6.23.0",
     "babel-preset-es2016": "^6.22.0",
     "codelyzer": "~2.0.0",

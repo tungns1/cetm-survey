@@ -11,5 +11,7 @@
         "**/.DS_Store": true
     },
     "typescript.tsdk": "node_modules/typescript/lib",
-    "vsicons.presets.angular": true
+    "vsicons.presets.angular": true,
+    "angulardoc.repoId": "ebe476cb-26a0-4fef-8663-256ed3e82095",
+    "angulardoc.lastSync": 0
 }

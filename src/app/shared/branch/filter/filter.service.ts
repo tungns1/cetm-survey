@@ -64,10 +64,6 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         return this.branches.reduce((res, ids) => res.concat(ids), []);
     }
 
-    triggerChange() {
-        // this.emitChange();
-    }
-
     levels: number[] = [];
 
     level0$ = this.Data$.map(d => d.branches[0]);
@@ -78,6 +74,6 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         const maxLevel = this.max;
         const branchAtRoot = CacheBranch.GetByLevel(maxLevel);
         this.branches[maxLevel] = branchAtRoot.map(b => b.id);
-        this.SaveData(true);
+        // this.SaveData(true);
     }
 }
