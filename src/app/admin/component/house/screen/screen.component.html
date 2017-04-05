@@ -1,38 +1,40 @@
 <app-env-sub-module i18n-title title="Screen"></app-env-sub-module>
-<editor #edit i18n-name name="Screen" (edit)="onEdit($event)" [makeForm]="makeForm" [service]="service">
-    <form *ngIf="edit.form" class=" hl-form form" [formGroup]="edit.form">
+<div *ngIf="showList$ | async">
+    <app-datatable name="Screen" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+        <app-table-field name="branch" i18n-title title="Location"></app-table-field>
+    </app-datatable>
+</div>
+
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form class=" hl-form form" [formGroup]="form">
         <span i18n>Code</span>:
         <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code" style="width: 95%;">
         <br> <span i18n>Name</span>:
         <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name" style="width: 95%;">
 
-        <br> Videos:
-        <multi-file-picker formControlName="videos"></multi-file-picker>
-
-        <br> <span i18n>News</span>:
-        <arr-form formControlName="news"></arr-form>
+        <br><span i18n>Location</span>:
+        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+        <br> <span i18n>Counters</span>:
+        <div class="dichvu">
+            <select-check formControlName="counters" [data]="counters$ | async" textField="name">
+            </select-check>
+        </div>
 
         <br><span i18n>Inherit from</span>:
         <select class="hl-select" formControlName="parent_id">
             <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
         </select>
 
+        <br><span i18n>Resources</span>
+        <app-resource-editor formControlName="layout_resources"></app-resource-editor>
+
         <br><span i18n>Layout</span>:
+        <a routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'screen'}"> 
+             Edit
+        </a>
         <select class="hl-select" formControlName="layout_id">
             <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
         </select>
-        <button class="btnClear" routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'screen'}"> 
-             <span i18n>Edit layout</span> 
-        </button>
-
-        <br><span i18n>Location</span>:
-        <branch-picker level="0" formControlName="branch_id"></branch-picker>
-        <br> <span i18n>Counters</span>:
-        <div class="dichvu">
-            <select-check formControlName="counters" [data]="counters | async" textField="name">
-            </select-check>
-        </div>
     </form>
-    <editor-field name="name" i18n-title title="Name"></editor-field>
-    <editor-field name="branch" i18n-title title="Location"></editor-field>
-</editor>
+</app-editor-view>
