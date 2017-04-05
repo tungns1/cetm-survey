@@ -1,5 +1,5 @@
 import {
-    Component, OnInit,  Output, EventEmitter, Input
+    Component, OnInit, Output, EventEmitter, Input
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -25,13 +25,10 @@ export class EditorViewComponent implements OnInit {
     }
 
     private GoBack() {
-        if (window.history.length > 0) {
-            window.history.back();
-        } else {
-            this.router.navigate(['..', 'list'], {
-                relativeTo: this.route
-            });
-        }
+        this.router.navigate(['..', 'list'], {
+            relativeTo: this.route,
+            queryParamsHandling: 'preserve'
+        });
     }
 
     @Input() isNew = true;

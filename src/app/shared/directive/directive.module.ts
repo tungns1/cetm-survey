@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReloadDirective } from './reload.directive';
 import { SafeNavDirective } from './safe-nav.directive';
 import { ThrottleDirective } from './throttle.directive';
-import { SlimScroll } from 'angular-io-slimscroll';
+import { SlimScroll } from './slim-scroll.directive';
 
 @NgModule({
   imports: [
