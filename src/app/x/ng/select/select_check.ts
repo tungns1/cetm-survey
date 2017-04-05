@@ -5,7 +5,6 @@ import { AbstractControl } from '@angular/forms';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ISubscription } from 'rxjs/Subscription';
-import {SlimScroll} from 'angular2-slimscroll';
 
 const SELECT_CHECK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
