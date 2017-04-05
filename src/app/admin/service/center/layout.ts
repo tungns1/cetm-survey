@@ -5,7 +5,7 @@ import { ILayout } from '../shared';
 @Injectable()
 export class LayoutService extends CrudApiService<ILayout> {
     GetByType(type: string) {
-        return this.api.Search({ type: type });
+        return this.Search({ type: type });
     }
 
     protected filter() {

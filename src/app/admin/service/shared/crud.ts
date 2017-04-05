@@ -19,15 +19,23 @@ export class CrudApiService<T> {
     }
 
     Create(v: T) {
-        return this.api.Create(v).do(this.onChange);
+        return this.api.Post("create", {}, v).do(this.onChange);
     }
 
     Update(v: T) {
-        return this.api.Update(v).do(this.onChange);
+        return this.api.Post("update", {id: v['id']}, v).do(this.onChange);
+    }
+
+    GetByID(id: string) {
+        return this.api.Get<T>("get", { id: id });
     }
 
     MarkDelete(id: string) {
-        return this.api.MarkDelete(id).do(this.onChange);
+        return this.api.Post("mark_delete", {id: id}).do(this.onChange);
+    }
+    
+    Search(o) {
+        return this.api.Get<T[]>('search', o);
     }
 
     private onChange = () => {
@@ -65,7 +73,7 @@ export class BranchCrudApiService<T extends IBranchModel> extends CrudApiService
     }
 
     GetByBranch(branch_id: string[]) {
-        return this.api.Search({ branch_id: branch_id.join(',') });
+        return this.Search({ branch_id: branch_id.join(',') });
     }
 
     RxUpperList = new ReplaySubject<T[]>(1);

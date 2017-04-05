@@ -4,6 +4,6 @@ import { CrudApiService, ITForm } from '../shared';
 @Injectable()
 export class TFormService extends CrudApiService<ITForm> {
     protected filter() {
-        return this.api.Search({});
+        return this.Search({});
     }
 }
