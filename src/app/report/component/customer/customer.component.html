@@ -14,14 +14,27 @@
             <report-info></report-info>
         </div>
         <div fxFlex class="margin-l-25">
-            <report-sum></report-sum>
+            <report-sum [data]="data$ | async"></report-sum>
         </div>
     </div>
     <div class="divider margin-30-0"></div>
     <div class="border">
-        <report-tab class="uppercase" (select)="setActive($event) "></report-tab>
-        <customer-chart></customer-chart>
-        <report-overview></report-overview>
+        <md-tab-group dynamicHeight>
+            <md-tab label="TRANSACTION TIME">
+                <app-transaction-time [data]="data$ | async"></app-transaction-time>
+            </md-tab>
+            <md-tab label="FREQUENCY">
+                <fres-tab [data]="data$ | async"></fres-tab>
+            </md-tab>
+            <md-tab label="SERVICE">
+                <service-tab [data]="data$ | async"></service-tab>
+            </md-tab>
+            <md-tab label="STORE">
+                <store-tab [data]="data$ | async"></store-tab>
+            </md-tab>
+        </md-tab-group>
+    </div>
+    <div class="border">
         <history [id]="customer_id"></history>
     </div>
 </div>

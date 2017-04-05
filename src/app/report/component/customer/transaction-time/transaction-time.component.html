@@ -1,0 +1,43 @@
+<customer-chart>
+    <chart-item-group-view #pieConfig>
+        <chart-item-group>
+            <chart-item field="c_bwt" color="#99b3ff" i18n-title title="Standard waiting time transaction"></chart-item>
+            <chart-item field="s_wt" color="#969c9c" i18n-title title="Exceeded waiting time transaction"></chart-item>
+        </chart-item-group>
+        <chart-item-group>
+            <chart-item field="c_bst" color="#339933" i18n-title title="Standard serving time transaction"></chart-item>
+            <chart-item field="s_st" color="#b4e4b4" i18n-title title="Exceeded serving time transaction"></chart-item>
+        </chart-item-group>
+    </chart-item-group-view>
+</customer-chart>
+<!-- Time View -->
+<table>
+    <thead>
+        <th i18n>Total transaction</th>
+        <th i18n>Standard waiting time transaction</th>
+        <th i18n>Exceeded waiting time transaction</th>
+        <th i18n>Standard serving time transaction</th>
+        <th i18n>Exceeded serving time transaction</th>
+    </thead>
+    <tbody>
+        <tr *ngIf="data">
+            <td> {{data.c_t}} </td>
+            <td>
+                <div class="hl-numrp-align"> {{data.c_bwt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="data.c_t>0"> ({{data.c_bwt/data.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="data.c_t===0">0.00%</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align"> {{data.s_wt}}</div>
+                <div class="hl-text-cen">&nbsp;<span *ngIf="data.c_t>0"> ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align"> {{data.c_bst}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="data.c_t>0"> ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
+            </td>
+            <td>
+                <div class="hl-numrp-align"> {{data.s_st}}</div>
+                <div class="hl-text-cen"> &nbsp;<span *ngIf="data.c_t>0"> ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
