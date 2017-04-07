@@ -1,4 +1,4 @@
-<app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
+<!--<app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
 <editor #edit i18n-name name="Layout" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Name</span>
@@ -12,4 +12,27 @@
         <app-resource-editor formControlName="resources"></app-resource-editor>
     </form>
     <editor-field name="name" i18n-title title="Name"></editor-field>
-</editor>
+</editor>-->
+
+
+<app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
+<div *ngIf="showList$ | async">
+    <app-datatable name="Layout" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+    </app-datatable>
+</div>
+
+
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form class="hl-form" [formGroup]="form">
+        <span i18n>Name</span>:
+        <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;"><br>
+        <span i18n>Layout Type</span>:
+        <select class="h1-select" formControlName="type">
+            <option value="kiosk"> Kiosk </option>
+            <option value="screen"> Screen </option>
+        </select><br>
+        <json-text-form formControlName="ui"></json-text-form>
+        <app-resource-editor formControlName="resources"></app-resource-editor>
+    </form>
+</app-editor-view>

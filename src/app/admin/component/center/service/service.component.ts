@@ -1,19 +1,60 @@
-import { Component } from '@angular/core';
-import { CenterService, IService } from '../../../service/';
+// import { Component } from '@angular/core';
+// import { CenterService, IService } from '../../../service/';
+// import { FormBuilder, Validators } from '@angular/forms';
+
+// @Component({
+//     selector: 'admin-service',
+//     templateUrl: 'service.component.html',
+//     styleUrls: ['service.component.css']
+// })
+// export class ServiceComponent {
+//     constructor(
+//         private center: CenterService
+//     ) { }
+//     service = this.center.ServiceService;
+
+//     makeForm(b?: IService) {
+//         b = b || <any>{};
+//         return (new FormBuilder).group({
+//             id: [b.id],
+//             tform_normal: [b.tform_normal, Validators.required],
+//             tform_vip: [b.tform_vip],
+//             image: [b.image],
+//             code: [b.code],
+//             l10n: [b.l10n],
+//             priority: [b.priority]
+//         });
+//     }
+
+//     tforms = this.center.TFormService.RxListView;
+//     tformVips = this.center.TFormService.RxListView;
+
+//     fields = [
+//         { title: 'LABEL_NAME_SERVICE', name: 'name' },
+//     ]
+// }
+
+import { Component, Injector } from '@angular/core';
+import { CenterService, IService, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { Router, ActivatedRoute } from '@angular/router';
+import { BaseAdminComponent } from '../../shared';
 
 @Component({
     selector: 'admin-service',
     templateUrl: 'service.component.html',
     styleUrls: ['service.component.css']
 })
-export class ServiceComponent {
-    constructor(
-        private center: CenterService
-    ) { }
-    service = this.center.ServiceService;
+export class ServiceComponent extends BaseAdminComponent<IService> {
+  constructor(
+    injector: Injector,
+    private org: CenterService
+  ) { 
+    super(injector, org.ServiceService);
+  }
 
-    makeForm(b?: IService) {
+   makeForm(b?: IService) {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],
@@ -26,8 +67,9 @@ export class ServiceComponent {
         });
     }
 
-    tforms = this.center.TFormService.RxListView;
-    tformVips = this.center.TFormService.RxListView;
+    tforms = this.org.TFormService.RxListView;
+    tformVips = this.org.TFormService.RxListView;
+    private roles = AllRoles;
 
     fields = [
         { title: 'LABEL_NAME_SERVICE', name: 'name' },
