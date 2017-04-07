@@ -59,7 +59,11 @@ export class FocusComponent {
 
     }
 
+    // chartData: Summary
     focus$ = this.focusService.FocusSummary$;
+    chartData$ = this.focus$.map(d => {
+
+    });
 
     numberCounter$ = this.focusService.counter$.map(v => {
         return v.length;

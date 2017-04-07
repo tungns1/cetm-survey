@@ -43,7 +43,10 @@ export class MonitorFocusService {
   private counterUpdate$ = this.socket.RxEvent<IDevice>("/counter_track/update").startWith(null);
   Branch$ = new ReplaySubject<string>(1);
 
-  FocusSummary$ = this.initialFocus$.map(data => data.summary);
+  FocusSummary$ = this.initialFocus$.map(data => data.summary)
+                  .map(d => {
+                    return new Summary(d);
+                  });
 
 
   tickets$ = this.initialFocus$
