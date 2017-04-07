@@ -14,7 +14,7 @@ export class KioskAPI {
 
     Search() {
         this.api.Get<IKioskTrack[]>("effect", this.filterService.ToBackendQuery()).subscribe(v => {
-            console.log(v);
+            // console.log(v);
             if (v.length > 0) {
                 this.RxKioskEff.next(v);
             }

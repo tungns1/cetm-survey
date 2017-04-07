@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
 import { ReportNavService  } from '../../service/';
 import { KioskAPI } from './service/kiosk.service';
 import { MdTabGroup } from '@angular/material';
 @Component({
     selector: 'kiosk',
     templateUrl: 'kiosk.component.html',
-    styleUrls: ['kiosk.component.scss']
+    styleUrls: ['kiosk.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class KioskComponent {
     constructor(
