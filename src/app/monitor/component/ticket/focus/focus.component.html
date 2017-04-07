@@ -67,89 +67,89 @@
     </div>
 
     <div class="divider margin-30-0"></div>
-
+    
     <div class="border">
         <monitor-chart [data]="data"></monitor-chart>
     </div>
 
-</div>
-<h3 i18n>Services incomplete</h3>
+    <h3 i18n>Services incomplete</h3>
 
-<table class="tableCtrl">
-    <thead>
-        <th i18n>No.</th>
-        <th i18n>Service name</th>
-        <th i18n>Ticket number</th>
-        <th i18n>Customer</th>
-        <th i18n>Print time</th>
-        <th i18n>Waiting Time</th>
-        <th i18n>Detail</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let ticket of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': ticket.state === 'missed', 'waiting': ticket.state === 'waiting'}">
-            <td> {{i + 1}} </td>
-            <td> {{ticket.services | multipleServiceName}}</td>
-            <td> {{ticket.cnum}}</td>
-            <td> {{ticket.customer?.full_name }} </td>
-            <td> {{ticket.ctime | localDayTime}}</td>
-            <td>
-                <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="15"></timer>
-                <span *ngIf="ticket.state === 'missed'"> {{ticket.mtime - ticket.ctime | timeDuration}}</span>
-            </td>
-            <td>
-                <span (click)="detail.setData(ticket, admin[0], manager[0])">
-                         <!--(click)="detail.setData(ticket, admin[0], manager[0])"-->
-                        <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
-                    </span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<h3 i18n>Services completed</h3>
-
-<table class="tableCtrl">
-    <thead>
-        <th i18n>No.</th>
-        <th i18n>Service</th>
-        <th i18n>Counter</th>
-        <th i18n>Tellers</th>
-        <th i18n>Ticket number</th>
-        <th i18n>Customer</th>
-        <th i18n>Print time</th>
-        <th i18n>Waiting time</th>
-        <th i18n>Serving time</th>
-        <th i18n>Detail</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let ticket of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': ticket.state === 'cancelled', 'serving': ticket.state === 'serving', 'serveDone': ticket.state === 'finished' || ticket.state === 'waiting'}">
-            <td> {{i + 1}} </td>
-            <td> {{ticket.service_id | serviceName}} </td>
-            <td> {{ticket.counter_id | counterName}}</td>
-            <td> {{ticket.user_id | userFullName}}</td>
-            <td> {{ticket.cnum}} </td>
-            <td>
-                <span *ngIf="ticket.customer">{{ticket.customer.full_name }}</span>
-                <span *ngIf="!ticket.customer"></span>
-            </td>
-            <td> {{ticket.ctime | localDayTime}}</td>
-            <td> {{ticket.mtime - ticket.ctime | timeDuration}} </td>
-            <td>
-                <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
-                <span *ngIf="ticket.state === 'finished'"> {{ticket.stime | timeDuration}}</span>
-                <span *ngIf="ticket.state === 'cancelled'"> 00:00:00 </span>
-            </td>
-            <td>
-                <span (click)="detail.setData(ticket, admin[0], manager[0])">
-                         <!--(click)="detail.setData(ticket, admin[0], manager[0])"-->
+    <table class="tableCtrl">
+        <thead>
+            <th i18n>No.</th>
+            <th i18n>Service name</th>
+            <th i18n>Ticket number</th>
+            <th i18n>Customer</th>
+            <th i18n>Print time</th>
+            <th i18n>Waiting Time</th>
+            <th i18n>Detail</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ticket of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': ticket.state === 'missed', 'waiting': ticket.state === 'waiting'}">
+                <td> {{i + 1}} </td>
+                <td> {{ticket.services | multipleServiceName}}</td>
+                <td> {{ticket.cnum}}</td>
+                <td> {{ticket.customer?.full_name }} </td>
+                <td> {{ticket.ctime | localDayTime}}</td>
+                <td>
+                    <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="15"></timer>
+                    <span *ngIf="ticket.state === 'missed'"> {{ticket.mtime - ticket.ctime | timeDuration}}</span>
+                </td>
+                <td>
+                    <span (click)="detail.setData(ticket, admin[0], manager[0])">
+                            <!--(click)="detail.setData(ticket, admin[0], manager[0])"-->
                             <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                         </span>
-                <span>
-                        <img class="iconDetail" src="./assets/img/icon/volume.png" alt="Search" style="cursor: pointer">
-                    </span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 i18n>Services completed</h3>
+
+    <table class="tableCtrl">
+        <thead>
+            <th i18n>No.</th>
+            <th i18n>Service</th>
+            <th i18n>Counter</th>
+            <th i18n>Tellers</th>
+            <th i18n>Ticket number</th>
+            <th i18n>Customer</th>
+            <th i18n>Print time</th>
+            <th i18n>Waiting time</th>
+            <th i18n>Serving time</th>
+            <th i18n>Detail</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ticket of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': ticket.state === 'cancelled', 'serving': ticket.state === 'serving', 'serveDone': ticket.state === 'finished' || ticket.state === 'waiting'}">
+                <td> {{i + 1}} </td>
+                <td> {{ticket.service_id | serviceName}} </td>
+                <td> {{ticket.counter_id | counterName}}</td>
+                <td> {{ticket.user_id | userFullName}}</td>
+                <td> {{ticket.cnum}} </td>
+                <td>
+                    <span *ngIf="ticket.customer">{{ticket.customer.full_name }}</span>
+                    <span *ngIf="!ticket.customer"></span>
+                </td>
+                <td> {{ticket.ctime | localDayTime}}</td>
+                <td> {{ticket.mtime - ticket.ctime | timeDuration}} </td>
+                <td>
+                    <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
+                    <span *ngIf="ticket.state === 'finished'"> {{ticket.stime | timeDuration}}</span>
+                    <span *ngIf="ticket.state === 'cancelled'"> 00:00:00 </span>
+                </td>
+                <td>
+                    <span (click)="detail.setData(ticket, admin[0], manager[0])">
+                            <!--(click)="detail.setData(ticket, admin[0], manager[0])"-->
+                                <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
+                            </span>
+                    <span>
+                            <img class="iconDetail" src="./assets/img/icon/volume.png" alt="Search" style="cursor: pointer">
+                        </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <ticket-detail #detail></ticket-detail>
