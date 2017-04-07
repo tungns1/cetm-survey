@@ -1,22 +1,27 @@
 @import '../../../shared/style.scss';
-.inputFilter {
-    width: 2.5vw;
-    margin-left: 1vw;
-    font-size: $font-size-default;
-    text-indent: 5px;
-}
-
-form {
-    width: 100%;
-}
-
-.feedback {
-    select {
+#historyFilter{
+    .inputFilter {
+        width: 2.5vw;
+        margin-left: 1vw;
         font-size: $font-size-default;
         text-indent: 5px;
     }
-}
 
-.note {
-    font-size: $font-size-default - 1px;
+    form {
+        width: 100%;
+    }
+
+    .feedback {
+        select {
+            font-size: $font-size-default;
+            text-indent: 5px;
+        }
+    }
+
+    .note {
+        font-size: $font-size-default - 1px;
+    }
+    .btnCtrl{
+        padding: 0px;
+    }
 }

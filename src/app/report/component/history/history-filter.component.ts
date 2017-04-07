@@ -29,6 +29,9 @@ export class HistoryFilterComponent implements OnInit {
             this.filter.wtimemax = this.filter.wtimemin;
         if (this.filter.stimemin > this.filter.stimemax)
             this.filter.stimemax = this.filter.stimemin;
+    }
+
+    query(){
         this.filterChange.emit(this.filter);
     }
 
