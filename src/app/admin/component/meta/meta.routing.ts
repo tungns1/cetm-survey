@@ -15,6 +15,10 @@ export const children: Routes = [
   {
     path: 'branch_config',
     loadChildren: loadBranchConfigModule
+  },
+  {
+    path: 'branch_config/:id',
+    loadChildren: loadBranchConfigModule
   }
 ]
 
