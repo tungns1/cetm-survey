@@ -45,16 +45,18 @@ export class QueueService {
     }
     private getPriority(t: ITicket) {
         var priority = 0;
-        if (t.ticket_priority.customer_vip != "") {
-            priority += parseInt(t.ticket_priority.customer_vip);
-        } else if (t.ticket_priority.service_priority != "") {
-            priority += parseInt(t.ticket_priority.service_priority);
-        } else if (t.ticket_priority.ticket_online != "") {
-            priority += parseInt(t.ticket_priority.ticket_online);
-        } else if (t.ticket_priority.vip_card != "") {
-            priority += parseInt(t.ticket_priority.vip_card);
+        if (t.ticket_priority != undefined) {
+            if (t.ticket_priority.customer_vip != "") {
+                priority += parseInt(t.ticket_priority.customer_vip);
+            } else if (t.ticket_priority.service_priority != "") {
+                priority += parseInt(t.ticket_priority.service_priority);
+            } else if (t.ticket_priority.ticket_online != "") {
+                priority += parseInt(t.ticket_priority.ticket_online);
+            } else if (t.ticket_priority.vip_card != "") {
+                priority += parseInt(t.ticket_priority.vip_card);
+            }
+            return priority;
         }
-        return priority;
 
     }
 
