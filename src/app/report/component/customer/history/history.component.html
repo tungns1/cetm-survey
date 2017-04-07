@@ -1,5 +1,5 @@
 <div id="cusHistory">
-    <table>
+    <table class="tableCtrl">
         <thead class="">
             <th i18n>No.</th>
             <th i18n>Date</th>
@@ -35,13 +35,12 @@
             </tr>
         </tbody>
     </table>
-</div>
-<div class="divider"></div>
-<div class="paginNExport">
-    <div class="pagin">
-        <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
+    <div class="paginNExport">
+        <div class="pagin">
+            <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
+        </div>
+        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export to excel</button>
     </div>
-    <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export to excel</button>
 </div>
 
 <transaction #detail></transaction>

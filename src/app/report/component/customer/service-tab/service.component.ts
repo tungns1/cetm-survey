@@ -8,6 +8,7 @@ import { ExportExcelService, Customer } from '../../shared';
 })
 export class ServiceComponent {
   @Input() data: Customer;
+  @Input() padding: number;
   single: any[];
 
   view: any[] = [900, 400];
@@ -19,7 +20,7 @@ export class ServiceComponent {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  padding = 8;
+  // padding = 8;
 
 
   colorScheme = {
@@ -36,6 +37,7 @@ export class ServiceComponent {
 
   onSelect(event) {
     console.log(event);
+    console.log(this.padding);
   }
 
   excel() {

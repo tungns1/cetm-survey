@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
 import { MdTabGroup } from '@angular/material';
@@ -6,7 +6,8 @@ import { MdTabGroup } from '@angular/material';
 @Component({
     selector: 'customer',
     templateUrl: 'customer.component.html',
-    styleUrls: ['customer.component.scss']
+    styleUrls: ['customer.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CustomerComponent {
     constructor(
@@ -28,4 +29,33 @@ export class CustomerComponent {
     }
     data$=this.customerApi.RxSummaryView;
 
+    paddingStore = this.data$.map(data => {
+        switch (data.stores.length){
+        case 1:
+            return 2000;
+        case 2:
+            return 800;
+        case 3:
+            return 200;
+        case 4:
+            return 50;
+        default:
+            return 10;
+        }
+    });
+
+    paddingService = this.data$.map(data => {
+        switch (data.services.length){
+        case 1:
+            return 2000;
+        case 2:
+            return 800;
+        case 3:
+            return 200;
+        case 4:
+            return 50;
+        default:
+            return 10;
+        }
+    });
 }

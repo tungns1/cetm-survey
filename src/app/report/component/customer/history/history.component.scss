@@ -1,15 +1,9 @@
 @import '../../../../shared/style.scss';
 #cusHistory{
-    width: 100%;
-    table{
-        border-spacing: 0px;
-        width: 100%;
-        th, td{
-            padding: 10px;
-            border-top: $border;
-            i{
-                color: $key-color;
-            }
+    td{
+        border-top: $border;
+        i{
+            color: $key-color;
         }
     }
 }

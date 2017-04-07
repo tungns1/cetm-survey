@@ -9,6 +9,7 @@ import { ExportExcelService, Customer } from '../../shared';
 })
 export class StoreComponent {
   @Input() data: Customer;
+  @Input() padding: number;
   single: any[];
 
   view: any[] = [900, 400];
@@ -20,7 +21,7 @@ export class StoreComponent {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  padding = 20;
+  // padding = 20;
 
 
   colorScheme = {
@@ -32,6 +33,26 @@ export class StoreComponent {
 
   }
 
+  // OnInit(){
+  //   console.log('im in');
+  //   switch (this.data.stores.length){
+  //     case 1:
+  //       this.padding = 500;
+  //       break;
+  //     case 2:
+  //       this.padding = 300;
+  //       break;
+  //     case 3:
+  //       this.padding = 100;
+  //       break;
+  //     case 4:
+  //       this.padding = 50;
+  //       break;
+  //     case 5:
+  //       this.padding = 30;
+  //       break;
+  //   }
+  // }
 
   onSelect(event) {
     console.log(event);

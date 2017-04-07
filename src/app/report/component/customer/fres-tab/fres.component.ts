@@ -14,7 +14,7 @@ export class FresComponent {
     private exportService: ExportExcelService,
     private customerAPI: CustomerAPI
   ) { }
- @Input() data: Customer;
+  @Input() data: Customer;
   // ngOnInit() {
   //   this.customerAPI.RxSummaryView.subscribe(v => {
   //     this.fres = v.fres;
