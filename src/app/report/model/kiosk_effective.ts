@@ -73,7 +73,7 @@ export class InfoKioskTrack {
     total_ticket = 0;
     highest_ticket_from = '';
     lowest_ticket_from = '';
-    average_t_p_ticket = 0;
+    average_printed_ticket = 0;
     highest_ticket_quantity = 0;
     lowest_ticket_quantity = 0;
     timechart = [
@@ -183,7 +183,7 @@ export class InfoKioskTrack {
             this.highest_ticket_from = maxBy(this.ticket, 'name').name;
             this.lowest_ticket_quantity = minBy(this.ticket, 'name').value;
             this.lowest_ticket_from = minBy(this.ticket, 'name').name;
-            this.average_t_p_ticket = meanBy(this.ticket, <any>'value');
+            this.average_printed_ticket = meanBy(this.ticket, <any>'value');
         }
         this.ticket = this.ticket.sort((a, b) => a.value - b.value).slice(0, 5);
         this.time = this.time.sort((a, b) => a.value - b.value).slice(0, 5);
