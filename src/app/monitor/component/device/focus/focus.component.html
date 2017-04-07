@@ -12,7 +12,7 @@
                 <th i18n>State</th>
                 <th i18n>Counter on</th>
                 <th i18n>Counter off</th>
-                <th i18n>Total time on</th>
+                <th i18n>Total time on(hour)</th>
             </thead>
             <tbody>
                 <tr *ngFor="let s of counter$ | async" class="branchSummary">
@@ -36,7 +36,7 @@
                     <th i18n>State</th>
                     <th i18n>Kiosk on</th>
                     <th i18n>Kiosk off</th>
-                    <th i18n>Total time on</th>
+                    <th i18n>Total time on(hour)</th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let s of kisok$ | async" class="branchSummary">

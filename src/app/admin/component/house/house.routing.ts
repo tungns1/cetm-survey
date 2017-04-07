@@ -12,6 +12,11 @@ const children: Routes = [
   },
   {
     path: 'counter',
+    pathMatch: 'full',
+    redirectTo: 'counter/list'
+  },
+  {
+    path: 'counter/:id',
     component: CounterComponent
   },
   {
@@ -34,6 +39,11 @@ const children: Routes = [
   },
   {
     path: 'sflow',
+    pathMatch: 'full',
+    redirectTo: 'sflow/list'
+  },
+  {
+    path: 'sflow/:id',
     component: SFlowComponent
   }
 ]

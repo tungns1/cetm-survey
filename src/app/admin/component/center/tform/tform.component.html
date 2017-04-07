@@ -1,4 +1,4 @@
-<app-env-sub-module i18n-title title="Ticket Format"></app-env-sub-module>
+<!--<app-env-sub-module i18n-title title="Ticket Format"></app-env-sub-module>
 <editor #edit i18n-name name="Ticket Format" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Code</span>:
@@ -16,4 +16,29 @@
     <editor-field name="format" i18n-title title="Number Format"></editor-field>
     <editor-field name="minnum" i18n-title title="Minimum Value"></editor-field>
     <editor-field name="maxnum" i18n-title title="Maximum value"></editor-field>
-</editor>
+</editor>-->
+
+<app-env-sub-module i18n-title title="Ticket Format"></app-env-sub-module>
+<div *ngIf="showList$ | async">
+    <app-datatable name="Ticket Format" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="code" i18n-title title="Code"></app-table-field>
+        <app-table-field name="format" i18n-title title="Number Format"></app-table-field>
+        <app-table-field name="minnum" i18n-title title="Minimum value"></app-table-field>
+        <app-table-field name="maxnum" i18n-title title="Maximum value"></app-table-field>
+    </app-datatable>
+</div>
+
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form class="hl-form" [formGroup]="form">
+        <span i18n>Code</span>:
+        <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code"><br>
+        <span i18n>Number format</span>:
+        <input class="hl-input" type="text" formControlName="format" i18n-placeholder placeholder="Number Format"><br>
+        <span i18n>Minimum value</span>:
+        <input class="hl-input" type="number" formControlName="minnum" i18n-placeholder placeholder="Minimum value"><br>
+        <span i18n>Maximum value</span>:
+        <input class="hl-input" type="number" formControlName="maxnum" i18n-placeholder placeholder="Maximum value"><br>
+        <span i18n>Printing template</span>:
+        <app-quill-editor formControlName="template" rows="8" cols="40"></app-quill-editor>
+    </form>
+</app-editor-view>

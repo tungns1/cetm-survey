@@ -1,4 +1,4 @@
-<app-env-sub-module i18n-title title="Service"></app-env-sub-module>
+<!--<app-env-sub-module i18n-title title="Service"></app-env-sub-module>
 <editor #edit i18n-name name="Service" [makeForm]="makeForm" [service]="service">
     <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
         <span i18n>Code</span>:
@@ -17,4 +17,30 @@
         </select>
     </form>
     <editor-field name="name" i18n-title title="Name"></editor-field>
-</editor>
+</editor>-->
+
+<app-env-sub-module i18n-title title="Service"></app-env-sub-module>
+<div *ngIf="showList$ | async">
+    <app-datatable name="Service" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="code" i18n-title title="Code"></app-table-field>
+    </app-datatable>
+</div>
+
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form class="hl-form" [formGroup]="form">
+        <span i18n>Code</span>:
+        <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code"><br>
+        <span i18n="Mức ưu tiên dịch vụ">Priority</span>:
+        <input class="hl-input" type="number" formControlName="priority" i18n-placeholder placeholder="Priority">
+        <l10n-form formControlName="l10n"></l10n-form>
+        <span i18n="Định dạng số vé">Ticket number format</span>:
+        <select class="hl-select" formControlName="tform_normal">
+            <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
+        </select>
+
+        <br> <span i18n="Định dạng số vé vip">VIP Ticket number format</span>:
+        <select class="hl-select" formControlName="tform_vip">
+            <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
+        </select>
+    </form>
+</app-editor-view>

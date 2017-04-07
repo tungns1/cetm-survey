@@ -13,18 +13,38 @@ const children: Routes = [
   },
   {
     path: 'service',
+    pathMatch: 'full',
+    redirectTo: 'service/list'
+  },
+  {
+    path: 'service/:id',
     component: ServiceComponent
   },
   {
     path: 'tform',
+    pathMatch: 'full',
+    redirectTo: 'tform/list'
+  },
+  {
+    path: 'tform/:id',
     component: TFormComponent
+  },
+  {
+    path: 'layout',
+    pathMatch: 'full',
+    redirectTo: 'layout/list'
   },
   {
     path: 'layout',
     component: LayoutComponent
   },
-   {
+  {
     path: 'ticketlayout',
+    pathMatch: 'full',
+    redirectTo: 'ticketlayout/list'
+  },
+  {
+    path: 'ticketlayout/:id',
     component: TicketLayoutComponent
   }
 ]
