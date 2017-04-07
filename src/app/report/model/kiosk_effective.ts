@@ -15,7 +15,7 @@ export interface IKioskTrack {
 }
 
 export interface IKioskTrackData {
-    printed: number;
+    t_p: number;
 }
 
 
@@ -73,7 +73,7 @@ export class InfoKioskTrack {
     total_ticket = 0;
     highest_ticket_from = '';
     lowest_ticket_from = '';
-    average_printed_ticket = 0;
+    average_t_p_ticket = 0;
     highest_ticket_quantity = 0;
     lowest_ticket_quantity = 0;
     timechart = [
@@ -101,7 +101,7 @@ export class InfoKioskTrack {
             this.total_activity_time = this.SecondToHour(sumBy(s, 'total_on'))
             this.total_kiosk = size(groupBy(s, 'device_id'));
             s.forEach(v => {
-                this.total_ticket += v.object.printed || 0;
+                this.total_ticket += v.object.t_p || 0;
             })
             var data_by_branh = toArray(groupBy(s, 'branch_id'));
 
@@ -114,13 +114,13 @@ export class InfoKioskTrack {
             for (var i = 0; i < len_by_branch; i++) {
                 var min = 0, max = 0, total = 0;
                 data_by_branh[i].forEach(v => {
-                    if (v.object.printed < min) {
-                        min = +v.object.printed || 0;
+                    if (v.object.t_p < min) {
+                        min = +v.object.t_p || 0;
                     }
-                    if (v.object.printed > max) {
-                        max = +v.object.printed || 0;
+                    if (v.object.t_p > max) {
+                        max = +v.object.t_p || 0;
                     }
-                    total += +v.object.printed || 0;
+                    total += +v.object.t_p || 0;
                 })
 
                 this.ticket.push({
@@ -149,7 +149,7 @@ export class InfoKioskTrack {
             for (var i = 0; i < len_by_date; i++) {
                 this.ticket_day.push({
                     name: data_by_date[i][0].date,
-                    value: sumBy(data_by_date[i], a => +a.object.printed || 0)
+                    value: sumBy(data_by_date[i], a => +a.object.t_p || 0)
                 })
                 this.time_day.push({
                     name: data_by_date[i][0].date,
@@ -183,7 +183,7 @@ export class InfoKioskTrack {
             this.highest_ticket_from = maxBy(this.ticket, 'name').name;
             this.lowest_ticket_quantity = minBy(this.ticket, 'name').value;
             this.lowest_ticket_from = minBy(this.ticket, 'name').name;
-            this.average_printed_ticket = meanBy(this.ticket, <any>'value');
+            this.average_t_p_ticket = meanBy(this.ticket, <any>'value');
         }
         this.ticket = this.ticket.sort((a, b) => a.value - b.value).slice(0, 5);
         this.time = this.time.sort((a, b) => a.value - b.value).slice(0, 5);

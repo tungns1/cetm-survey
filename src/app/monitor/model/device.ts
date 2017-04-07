@@ -33,8 +33,8 @@ export class DeviceCount {
         this.branch_id = data.branch_id;
         this.kiosk_on = data.kiosk_count.on;
         this.kiosk_off = data.kiosk_count.off;
-        this.counter_on = data.kiosk_count.on;
-        this.counter_off = data.kiosk_count.off;
+        this.counter_on = data.counter_count.on;
+        this.counter_off = data.counter_count.off;
 
         const branch = CacheBranch.GetByID(this.branch_id);
 
