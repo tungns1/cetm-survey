@@ -1,6 +1,6 @@
 <app-env-sub-module i18n-title title="Ticket Layout"></app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Ticket Format" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Ticket Layout" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
     </app-datatable>
 </div>

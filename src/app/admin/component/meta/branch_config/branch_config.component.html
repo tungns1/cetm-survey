@@ -1,19 +1,7 @@
-<!--<app-env-sub-module i18n-title title="Branch Config"></app-env-sub-module>
-<editor #edit i18n-name name="Branch Config" [makeForm]="makeForm" [service]="service" (refresh)="Refresh()">
-    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <hr><span i18n>Location</span>
-        <select class="hl-select" formControlName="branch_id">
-            <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
-        </select>
-        <hr> <span i18n>Feedback Device</span>:
-        <feedback-config formControlName="feedback"></feedback-config>
-    </form>
-    <editor-field name="branch" i18n-title title="Location"></editor-field>
-</editor>-->
-
-<app-env-sub-module i18n-title title="Branch Config"></app-env-sub-module>
+<app-env-sub-module i18n-title title="Branch Config">
+</app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Branch Config" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Branch Config" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
     </app-datatable>
 </div>

@@ -8,6 +8,11 @@ import { EditorModule, AdminFormModule } from '../../shared';
 export const routing = RouterModule.forChild([
     {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'list'
+    },
+    {
+        path: ':id',
         component: BranchConfigComponent
     }
 ]);

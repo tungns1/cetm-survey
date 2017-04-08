@@ -1,20 +1,3 @@
-<!--<app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
-<editor #edit i18n-name name="Layout" [makeForm]="makeForm" [service]="service">
-    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span i18n>Name</span>
-        <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name"><br>
-        <span i18n>Layout Type</span>
-        <select class="hl-select" formControlName="type">
-            <option value="kiosk"> Kiosk </option>
-            <option value="screen"> Screen </option>
-        </select><br>
-        <json-text-form formControlName="ui"></json-text-form>
-        <app-resource-editor formControlName="resources"></app-resource-editor>
-    </form>
-    <editor-field name="name" i18n-title title="Name"></editor-field>
-</editor>-->
-
-
 <app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
 <div *ngIf="showList$ | async">
     <app-datatable name="Layout" [data]="data$ | async" (action)="onActionRequest($event)">

@@ -1,35 +1,7 @@
-<!--<app-env-sub-module i18n-title title="Counter"></app-env-sub-module>
-<editor #edit i18n-name name="Counter" [makeForm]="makeForm" [service]="service">
-    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span i18n>Code</span>
-        <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code"><br>
-        <span i18n>Number</span>:
-        <input class="hl-input" type="text" formControlName="cnum" i18n-placeholder placeholder="Number"><br>
-        <span i18n>Name</span>:
-        <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name"><br>
-        <span i18n>Led Address</span> :
-        <input class="hl-input" type="number" formControlName="dev_addr" i18n-placeholder placeholder="Led Address">
-        <hr> <span i18n>Normal services</span>:
-        <div class="dichvu">
-            <select-check formControlName="services" [data]="services | async" textField="name">
-            </select-check>
-        </div>
-        <hr> <span i18n>Vip services</span>:
-        <div class="dichvu">
-            <select-check formControlName="vservices" [data]="services | async" textField="name">
-            </select-check>
-        </div>
-        <hr> <span i18n>Branch</span>:
-        <branch-picker level="0" formControlName="branch_id"></branch-picker>
-    </form>
-    <editor-field i18n-name name="branch" i18n-title title="Location"></editor-field>
-    <editor-field i18n-name name="name" i18n-title title="Name"></editor-field>
-</editor>-->
-
-
-<app-env-sub-module i18n-title title="Counter"></app-env-sub-module>
+<app-env-sub-module i18n-title title="Counter">
+</app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Counter" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Counter" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
     </app-datatable>
