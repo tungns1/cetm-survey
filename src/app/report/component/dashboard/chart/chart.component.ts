@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild, ContentChild } from '@angular/core';
 import { ReportViewService, ChartItemGroupView } from '../../shared';
-import { TranslateService } from '../../shared';
 import { ChartService } from './chart.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { ChartService } from './chart.service';
 export class ReportChartComponent {
     constructor(
         private chartService: ChartService,
-        private translateService: TranslateService,
         private viewService: ReportViewService
     ) {
 

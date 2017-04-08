@@ -1,7 +1,7 @@
 
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService, LOCALES, AppStorage } from '../../shared';
+import { LOCALES, AppStorage } from '../../shared';
 
 @Component({
     selector: 'user-setting',
@@ -9,7 +9,6 @@ import { TranslateService, LOCALES, AppStorage } from '../../shared';
     styleUrls: ['user-setting.scss']
 })
 export class UserSettingComponent {
-    constructor(private translate: TranslateService) { }
 
     @Output() close = new EventEmitter();
 

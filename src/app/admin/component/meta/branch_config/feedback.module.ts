@@ -48,10 +48,9 @@ export class FeedbackConfigComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '../../shared';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, TranslateModule],
+    imports: [FormsModule, CommonModule],
     declarations: [FeedbackConfigComponent],
     exports: [FeedbackConfigComponent]
 })

@@ -4,10 +4,9 @@ import { RouterModule } from '@angular/router';
 import { AddClassDirective } from './add-class';
 import { TopNavComponent } from './top-nav.component';
 import { SideBarComponent } from './side-bar.component';
-import { TranslateModule } from '../../shared';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, TranslateModule],
+    imports: [CommonModule, RouterModule],
     exports: [TopNavComponent, SideBarComponent],
     declarations: [AddClassDirective, TopNavComponent, SideBarComponent]
 })

@@ -2,7 +2,6 @@ export * from './auth';
 export * from './branch';
 
 export { SharedModule } from './shared.module';
-export { TranslateService } from './service/i18n';
 
 export { Const, LOCALES } from '../../const';
 export { AppStorage } from '../../store';

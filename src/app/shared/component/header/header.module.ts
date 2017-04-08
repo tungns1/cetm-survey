@@ -6,12 +6,11 @@ import { HeaderComponent } from './header.component';
 import { LogoComponent } from './logo.component';
 import { UserComponent } from './user.component';
 import { UserSettingComponent } from './user-setting';
-import { TranslateModule } from '../../shared';
 import { ModalModule } from '../../../x/ng/';
 
 @NgModule({
     imports: [
-        CommonModule, TranslateModule, RouterModule,
+        CommonModule, RouterModule,
         ModalModule, FormsModule
     ],
     declarations: [HeaderComponent, LogoComponent, UserComponent, UserSettingComponent],

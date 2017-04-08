@@ -7,14 +7,11 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
 import { authProviders } from './auth';
-import { i18nServiceProvider } from './service/i18n';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
-import { TranslateModule } from '../x/i18n';
 import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
-// import { TicketDetailModule } from './ticketDetail/ticketDetail.module';
 import { MaterialModule } from '@angular/material';
 
 
@@ -29,9 +26,8 @@ import { MaterialModule } from '@angular/material';
         EnvironmentModule,
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
-        TranslateModule, UtilPipeModule, SelectCheckModule,
-        ModalModule, 
-        // TicketDetailModule
+        UtilPipeModule, SelectCheckModule,
+        ModalModule
     ]
 })
 export class SharedModule {
@@ -41,7 +37,7 @@ export class SharedModule {
             providers: [
                 EnvironmentModule.Providers(),
                 ExportExcelService,
-                authProviders, i18nServiceProvider,
+                authProviders,
                 LogService, RouterQueryStorageStrategy,
                 AppSocketGenerator, HttpServiceGenerator
             ]
