@@ -1,15 +1,3 @@
-<!--<app-env-sub-module i18n-title title="Ticket Layout"></app-env-sub-module>
-<editor #edit i18n-name name="Ticket Layout" [makeForm]="makeForm" [service]="tlayout">
-    <form class="hl-form" *ngIf="edit.form" [formGroup]="edit.form">
-        <span i18n>Name</span>:
-        <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name"><br>
-        <l10n-ticket formControlName="l10n"></l10n-ticket>
-        <span i18n>Logo Url</span>:
-        <input class="hl-input" formControlName="url_logo" i18n-placeholder placeholder="LogoUrl"><br>
-    </form>
-    <editor-field name="name" i18n-title title="Name"></editor-field>
-</editor>-->
-
 <app-env-sub-module i18n-title title="Ticket Layout"></app-env-sub-module>
 <div *ngIf="showList$ | async">
     <app-datatable name="Ticket Format" [data]="data$ | async" (action)="onActionRequest($event)">
@@ -22,8 +10,8 @@
         <span i18n>Name</span>:
         <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name"><br>
         <l10n-ticket formControlName="l10n"></l10n-ticket>
-        <span i18n>Logo Url</span>:
-        <input class="hl-input" formControlName="url_logo" i18n-placeholder placeholder="LogoUrl"><br>
+        <!--<span i18n>Logo Url</span>:
+        <input class="hl-input" formControlName="url_logo" i18n-placeholder placeholder="LogoUrl"><br>-->
     </form>
     <editor-field name="name" i18n-title title="Name"></editor-field>
 </app-editor-view>
