@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs/Observable';
 import { HttpServiceGenerator } from '../service';
-import { HttpError } from '../../x/backend/';
 
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -39,7 +38,7 @@ export class AuthService {
     Login(form) {
         const values = Object.assign(this.options, form);
         values['scope'] = this.scope;
-        return this.authBackend.Post("login", {}, values).map(v => {
+        return this.authBackend.Post<any>("login", {}, values).map(v => {
             let session: ISession = v.session;
             this.sessionService.Activate(session);
             return session;
@@ -48,7 +47,7 @@ export class AuthService {
 
     Logout() {
         this.sessionService.Destroy();
-        this.router.navigate(["/login"], {
+        this.router.navigate(["/auth/login"], {
             queryParams: this.route.snapshot.queryParams
         });
     }
@@ -64,16 +63,10 @@ export class AuthService {
     }
 
     Refresh() {
-        return this.RefreshMySettings().catch(e => {
-            console.log(e);
-            try {
-                if ((<HttpError>e).IsUnAuthorized()) {
-                    this.Logout();
-                }
-            } catch (v) {
+        return this.RefreshMySettings().catch((e: string) => {
+            if (e.toLowerCase().indexOf("unauthorized") !== -1) {
                 this.Logout();
             }
-
             return of(false);
         });
     }

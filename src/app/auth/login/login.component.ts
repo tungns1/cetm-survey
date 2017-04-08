@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpError } from '../../x/backend';
 import { CurrentUser } from '../../x/platform';
 import { AuthService } from '../../shared/auth';
-import { I18nHttpError } from './errors';
 
 interface ILoginModel {
   username: string;
@@ -46,9 +44,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.Login(this.loginForm.value).subscribe((v) => {
       this.authService.OnLoginDone();
-    }, (e: HttpError) => {
-      console.log(e);
-      this.message = I18nHttpError(e);
+    }, (e: string) => {
+      this.message = e
     });
   }
   logout() {
