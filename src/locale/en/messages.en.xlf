@@ -301,14 +301,6 @@
         <source>Ticket Layout</source>
         <target/>
       </trans-unit>
-      <trans-unit id="cc464aa05ac79b60a868949655f4a688968967ff" datatype="html">
-        <source>Logo Url</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="e5d88bd65fcc5fb1a7ee9723b26fc06219bf9f4b" datatype="html">
-        <source>LogoUrl</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="76cabd0a9d49f3a3abad9cfcfdfacae4e8b4948c" datatype="html">
         <source>List number ticket</source>
         <target/>
@@ -607,60 +599,8 @@
         <source>Exceeded serving time transaction</source>
         <target/>
       </trans-unit>
-      <trans-unit id="209d995a54911cd99333c1559adac7b7c58cf200" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="03889cab7446b37283b8f574a8e1888029920018" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="9291b71a499ebfdeafd25b094eaaf1cb9c55f257" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="9230c113d99d2b8a0989621e9e3ef260bf42af0b" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="b99eff372c7db14aae95d8292c521062a44fecfd" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
       <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
         <source>Summary</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="05cc0241112a23cd93de04c3bb7f7a89d2c1d46f" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="fe6b9fafcfc5afd76eb6a3c7d899bf7aa767c0d4" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="5a59b7f716e1e9ab65ec84b6217bf43e4826ec77" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="d4a02c68a8c9f9748c633eb78d2e3efd05d96bc6" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="9e268b25a237403033b0288270c3cddd4e38bbfb" datatype="html">
-        <source> <x id="INTERPOLATION"/></source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="e59837b25266e0f4ca16c7ec510cddab50d428f6" datatype="html">
-        <source>
-                    <x id="START_TAG_SPAN" ctype="x-span"/><x id="INTERPOLATION"/> (<x id="INTERPOLATION_1"/>%)<x id="CLOSE_TAG_SPAN" ctype="x-span"/>
-                </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="61908fc8f4e21c7efa80bc73dd92d199c4290b2f" datatype="html">
-        <source>
-                    <x id="START_TAG_SPAN" ctype="x-span"/><x id="INTERPOLATION"/> (<x id="INTERPOLATION_1"/>%)<x id="CLOSE_TAG_SPAN" ctype="x-span"/>
-                </source>
         <target/>
       </trans-unit>
       <trans-unit id="cc7cc6d3ab8dfa39501aa59c4b3412ef25818d5d" datatype="html">
@@ -941,30 +881,6 @@
       </trans-unit>
       <trans-unit id="a22cbb32d31567b839c7d1418d189d9202dc96af" datatype="html">
         <source>Poor</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="4d3c4e9e11e53315bbb97307fb68fb5854374b83" datatype="html">
-        <source>
-                Service
-            </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="8dcc8d35f6a56f2dcd6e2d44070ab34142ab7e42" datatype="html">
-        <source>
-                Teller
-            </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="46ff79183384eedbca00d98442af8209f903e39c" datatype="html">
-        <source>
-                Counter
-            </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="74d0db858bb194e86ac137743da1d442a305b6ef" datatype="html">
-        <source>
-                Store
-            </source>
         <target/>
       </trans-unit>
       <trans-unit id="f65253954b66e929a8b4d5ecaf61f9129f8cec64" datatype="html">
