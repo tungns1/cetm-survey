@@ -4,8 +4,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { LogService } from '../platform';
 
-import 'rxjs/add/operator/skip';
 import { BaseWebsocket, IBaseMessage, AbstractMessageHandler } from './web_socket';
+import { interval } from 'rxjs/observable/interval';
+import 'rxjs/add/operator/timeout';
 
 class PrefixMessageHandler extends AbstractMessageHandler<IBaseMessage> {
     deserialize(payload: string) {
@@ -73,6 +74,15 @@ export class AppSocket extends BaseWebsocket {
         const res = new ReplaySubject<T>(replay);
         this.filter(uri).subscribe(res);
         return res;
+    }
+
+    KeepAlive(time = 10000) {
+        return interval(time).switchMap(() => {
+            return this.Send("/echo", null).timeout(time - 1000)
+        }).subscribe(null, e => {
+            console.log(e);
+            this.close(true);
+        });
     }
 
     private makeOnce() {

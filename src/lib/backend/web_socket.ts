@@ -79,8 +79,8 @@ export class BaseWebsocket {
         this.pushQueue();
     }
 
-    protected close() {
-        this.reconnectable = false;
+    protected close(reconnectable = false) {
+        this.reconnectable = reconnectable;
         this.socket$.complete();
     }
 
