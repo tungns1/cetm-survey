@@ -1,4 +1,4 @@
-import { L10nText, Localize } from '../../util/i18n';
+import { L10nText } from '../../util/i18n';
 
 
 
