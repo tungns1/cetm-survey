@@ -8,3 +8,4 @@ export { AppStorage } from '../../../store';
 export { AppSocket, RawHttp } from '../../../lib/backend';
 export { LogService } from '../../../lib/platform';
 export { RouterQueryStorageStrategy } from '../../../lib/platform';
+export { Ng2BasicModule } from '../../../lib/ng2';

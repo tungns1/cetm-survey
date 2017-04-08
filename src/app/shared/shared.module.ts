@@ -12,7 +12,7 @@ import { ModalModule, SelectCheckModule } from '../x/ng';
 import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
-import { MaterialModule } from '@angular/material';
+import { Ng2BasicModule } from './shared';
 
 
 @NgModule({
@@ -21,9 +21,9 @@ import { MaterialModule } from '@angular/material';
     ],
     exports: [
         CommonModule,
-        MaterialModule,
         DirectiveModule,
         EnvironmentModule,
+        Ng2BasicModule,
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
         UtilPipeModule, SelectCheckModule,
