@@ -7,6 +7,7 @@ import { LogService } from '../platform';
 import { BaseWebsocket, IBaseMessage, AbstractMessageHandler } from './web_socket';
 import { interval } from 'rxjs/observable/interval';
 import 'rxjs/add/operator/timeout';
+import { ISubscription } from 'rxjs/Subscription';
 
 class PrefixMessageHandler extends AbstractMessageHandler<IBaseMessage> {
     deserialize(payload: string) {
@@ -67,7 +68,8 @@ export class AppSocket extends BaseWebsocket {
     }
 
     Terminate() {
-        super.close();
+        this.disableCheckAlive();
+        super.close(false);
     }
 
     RxEvent<T>(uri: string, replay = 1) {
@@ -77,16 +79,27 @@ export class AppSocket extends BaseWebsocket {
     }
 
     KeepAlive(time = 10000) {
-        return interval(time).switchMap(() => {
+        if (this.subscription) {
+            return;
+        }
+        this.subscription = interval(time).switchMap(() => {
             return this.Send("/echo", null).timeout(time - 1000)
         }).subscribe(null, e => {
-            console.log(e);
+            console.log("[app_socket] echo timeout");
             this.close(true);
         });
+    }
+
+    DisableKeepAlive() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 
     private makeOnce() {
         return Math.random().toString(36).substring(7);
     }
+
+    private subscription: ISubscription;
 
 }
