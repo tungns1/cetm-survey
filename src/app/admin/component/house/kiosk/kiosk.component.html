@@ -15,6 +15,7 @@
 
         <br> <span i18n="Inherit kiosk attributes">Inherit from</span>:
         <select class="hl-select" formControlName="parent_id">           
+            <option value="">--None--</option>
             <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
         </select>
 
