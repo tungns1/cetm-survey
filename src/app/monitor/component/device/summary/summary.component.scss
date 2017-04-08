@@ -1,13 +1,13 @@
-@import '../../../../../styles/design/variables';
-#summaryComponent{
+@import '../../../../shared/style.scss';
+#summaryComponent {
     // .tableCtrl{
     //     margin: 0px;
-        .branchSummary{
-            cursor: pointer;
-            &:hover{
-                background-color: $background-color;
-            }
+    .branchSummary {
+        cursor: pointer;
+        &:hover {
+            background-color: $background-color;
         }
+    }
     // }
     .warning {
         background-color: #ff5858;

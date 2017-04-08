@@ -1,20 +1,22 @@
 @import '../../../shared/style.scss';
-#kioskEffective{
-    .tabCtrl{
-        table{
+#kioskEffective {
+    .tabCtrl {
+        table {
             width: 100%;
             margin-top: 20px;
             border-top: $border;
             border-spacing: 0;
-            thead, tbody {
+            thead,
+            tbody {
                 text-align: center;
-                th, td{
+                th,
+                td {
                     padding: 10px;
                 }
-                th{
+                th {
                     font-weight: $font-weight-default + 200;
                 }
-                td{
+                td {
                     border-top: $border;
                 }
             }
