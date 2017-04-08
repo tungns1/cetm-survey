@@ -21,7 +21,7 @@
 
 <app-env-sub-module i18n-title title="Service"></app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Service" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Service" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="code" i18n-title title="Code"></app-table-field>
     </app-datatable>
 </div>
