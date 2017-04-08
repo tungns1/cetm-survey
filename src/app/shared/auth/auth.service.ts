@@ -3,7 +3,7 @@ import { HttpServiceGenerator } from '../service';
 
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
@@ -47,9 +47,7 @@ export class AuthService {
 
     Logout() {
         this.sessionService.Destroy();
-        this.router.navigate(["/auth/login"], {
-            queryParams: this.route.snapshot.queryParams
-        });
+        location.reload();
     }
 
     RefreshMySettings() {
@@ -98,4 +96,16 @@ export class AuthService {
     private rxMySetting = new ReplaySubject<IMySettings>(1);
     autoLogin = false;
     redirect = '/';
+
+    SetRedirect(route: ActivatedRouteSnapshot, url?: string) {
+        this.redirect = url || route.queryParamMap.get("redirect") || '';
+        if (this.redirect.startsWith("/counter")) {
+            this.scope = "staff";
+            this.autoLogin = true;
+        } else {
+            this.scope = "admin";
+            this.autoLogin = false;
+        }
+        this.options["branch_code"] = route.queryParamMap.get("branch_code");
+    }
 }

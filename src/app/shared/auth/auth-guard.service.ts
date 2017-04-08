@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 
 import 'rxjs/add/operator/toPromise';
 
-const loginUrl = "/login";
+const loginUrl = "/auth/login";
 
 
 @Injectable()
@@ -17,9 +17,12 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
-    if (state.url === loginUrl) {
+    if (state.url.startsWith(loginUrl)) {
+      this.authService.SetRedirect(route);
       return true;
     }
+
+    this.authService.SetRedirect(route, state.url);
 
     if (!this.authService.IsAuth()) {
       return this.loginPage(route, state);
@@ -34,10 +37,9 @@ export class AuthGuard implements CanActivate {
   }
 
   loginPage(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    this.authService.redirect = state.url;
-    console.log("login redirect", this.authService.redirect);
+    const q = Object.assign({ redirect: state.url }, route.queryParams);
     this.router.navigate(['/auth/login'], {
-      queryParams: route.queryParams
+      queryParams: q
     });
     return false
   }

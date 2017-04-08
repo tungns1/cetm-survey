@@ -1,7 +1,7 @@
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-
+import { AuthGuard } from '../shared';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -12,6 +12,7 @@ const routes: Routes = [
 export const routing = RouterModule.forChild([
     {
         path: '', component: AuthComponent,
-        children: routes
+        children: routes,
+        canActivate: [AuthGuard]
     }
 ])
