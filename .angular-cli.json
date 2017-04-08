@@ -20,7 +20,8 @@
         "prefix": "app",
         "styles": [
             "styles.scss",
-            "assets/vendor/font-awesome/css/font-awesome.css"
+            "assets/vendor/font-awesome/css/font-awesome.css",
+            "assets/vendor/animate.css/animate.css"
         ],
         "scripts": [{
             "input": "assets/vendor/flatpickr/flatpickr.min.js"

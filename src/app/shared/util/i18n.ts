@@ -8,6 +8,5 @@ const defaultCulture = LOCALES.DEFAULT;
 const culture = AppStorage.Culture;
 
 export function Localize(l: L10nText) {
-    console.log(l[culture]);
     return l[culture] || l[defaultCulture];
 }
