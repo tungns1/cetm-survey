@@ -23,15 +23,7 @@ export abstract class AbstractMessageHandler<T> {
 
 export class BaseWebsocket {
     constructor(private messageHandler: AbstractMessageHandler<IBaseMessage>) {
-        this.Status$.subscribe(_ => {
-            if (this.isOpen) {
-                this.pushQueue();
-            } else {
-                setTimeout(_ => {
-                    this.reconnect();
-                }, 2000);
-            }
-        })
+        
     }
 
     private config: WebSocketSubjectConfig;
