@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QueueService } from '../service';
-import { TimerComopnent } from '../../../../x/ng/time/timer.component';
+import { QueueService } from '../shared';
+import { TimerComopnent } from '../shared';
 
 @Component({
     selector: 'waiting',

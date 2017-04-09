@@ -1,11 +1,11 @@
 import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ITicket, TicketStates, ModalComponent } from '../../shared';
+import { ITicket, TicketStates, ModalComponent } from '../shared';
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-import { TicketService, QueueService, WorkspaceService } from '../service';
+import { TicketService, QueueService, WorkspaceService } from '../shared';
 
 @Component({
   selector: 'ticket-detail-dialog',

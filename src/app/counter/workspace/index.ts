@@ -1,3 +1,1 @@
-import {WorkspaceModule} from './workspace.module';
-
-export default WorkspaceModule;
+export { WorkspaceModule } from './workspace.module';

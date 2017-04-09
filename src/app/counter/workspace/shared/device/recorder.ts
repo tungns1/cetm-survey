@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { ITicket } from '../model';
+import { ITicket } from './shared';
 
 let onServing = (tickets: ITicket[]) => { }
 

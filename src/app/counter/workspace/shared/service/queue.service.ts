@@ -1,12 +1,12 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
 import {
-    SortTicket,
-    ITicket, TicketState, TicketStates, ITicketQueue, ITickets
-} from '../../shared';
+    ITicket, TicketState, TicketStates
+} from '../shared';
+import { SortTicket, ITicketQueue, ITickets } from '../model';
 import { WorkspaceService } from './workspace.service';
 import { of } from 'rxjs/observable/of';
-import { SendToRecorder } from '../../../device';
+import { SendToRecorder } from '../device';
 
 @Injectable()
 export class QueueService {

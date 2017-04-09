@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedbackService, TicketService } from '../service';
-import { ITicket, Toast } from '../../shared';
+import { FeedbackService, TicketService } from '../shared';
+import { ITicket } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -28,8 +28,7 @@ export class FeedbackSkipDialog {
             if (v) {
                 this.feedbackService.SkipFeedback(t);
             } else {
-                var toast = new Toast();
-                toast.Title('Lỗi').Error('Tài khoản hoặc mật khẩu sai.').Show();
+                console.error('Tài khoản hoặc mật khẩu sai.');
             }
         }).subscribe(_ => {
             this.pass = '';

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { QueueService } from '../service';
-import { ICustomer } from '../../shared/';
+import { QueueService, ICustomer } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 const c = new BehaviorSubject<ICustomer>(null);
 
@@ -11,7 +10,7 @@ const c = new BehaviorSubject<ICustomer>(null);
 })
 export class InfoComponent {
     constructor(private queueService: QueueService) { }
-    customer=c;
+    customer = c;
     ngOnInit() {
         this.queueService.serving$.map(v => v[0]).subscribe(v => {
             if (v != null) {

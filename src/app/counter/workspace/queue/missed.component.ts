@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { QueueService } from '../service';
-import { ITicket } from '../../shared/';
+import { QueueService, ITicket } from '../shared';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 const search = new BehaviorSubject<string>('');
@@ -24,7 +23,7 @@ export class MissedComponent {
     tickets = combineLatest<ITicket[], string>(this.missed$, search).map(([tickets, text]) => {
         return tickets.filter(v => v.cnum.indexOf(text) !== -1);
     });
-    
+
     onSearch(ticket: string) {
         search.next(ticket);
     }

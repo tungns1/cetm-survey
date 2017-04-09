@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import {
-    ICounter, ITicketQueue, ITicket,
-    TicketState, IStatMap,
-    CounterStateService, AuthService,
+    AuthService,
     CacheService, AppSocketGenerator
-} from '../../shared';
+} from './shared';
+
+import {
+    ICounter, ITicket,
+    TicketState
+} from '../shared';
+
+import { IStatMap } from '../model';
 
 const SOCKET_LINK = "/room/counter/join";
 const SOCKET_PARAMS = ['branch_code', 'counter_code']
@@ -13,7 +18,6 @@ const SOCKET_PARAMS = ['branch_code', 'counter_code']
 @Injectable()
 export class WorkspaceService {
     constructor(
-        private stateService: CounterStateService,
         private authService: AuthService,
         private appSocketGenerator: AppSocketGenerator
     ) { }
@@ -24,8 +28,8 @@ export class WorkspaceService {
         return this.socket;
     }
 
-    onInit(data) {
-        this.socket.Connect(data);
+    onInit(branch_code: string, counter_code: string) {
+        this.socket.Connect({ branch_code, counter_code });
         this.socket.disableCheckAlive();
         this.setUser();
     }

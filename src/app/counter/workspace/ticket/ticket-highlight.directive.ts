@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { ITicket } from '../../shared';
+import { ITicket } from '../shared';
 
 
 const VipColor = 'cyan';

@@ -4,20 +4,20 @@ import { SharedModule } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
-import { CounterComponent } from './workspace.component';
-import { workspaceServiceProvider } from './service';
+import { WorkspaceComponent } from './workspace/workspace.component';
+import { workspaceServiceProvider } from './shared';
 import { InfoCustomerModule } from './info-customer/info.module';
 
 const routing = RouterModule.forChild([
     {
         path: '',
-        component: CounterComponent
+        component: WorkspaceComponent
     }
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, QueueModule, ServingModule, StatModule,InfoCustomerModule],
-    declarations: [CounterComponent],
+    imports: [routing, SharedModule, QueueModule, ServingModule, StatModule, InfoCustomerModule],
+    declarations: [WorkspaceComponent],
     providers: [workspaceServiceProvider]
 })
 export class WorkspaceModule { }

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TicketDetailDialog } from '../ticket/ticket-detail.dialog';
-import { ModalComponent } from '../../shared';
+import { TicketDetailDialog } from '../ticket';
+import { ModalComponent } from '../shared';
 
 import {
     WorkspaceService, QueueService,
     LedService, TicketService
-} from '../service';
+} from '../shared';
 
 @Component({
     selector: 'action',

@@ -1,5 +1,5 @@
 import { Component, OnChanges } from '@angular/core';
-import { QueueService } from '../service';
+import { QueueService } from '../shared';
 
 @Component({
     selector: 'empty',

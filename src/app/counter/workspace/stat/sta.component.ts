@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { IStat } from '../../shared';
-import { WorkspaceService } from '../service';
+import { IStat } from '../shared';
+import { WorkspaceService } from '../shared';
 
 
 const TABS = {

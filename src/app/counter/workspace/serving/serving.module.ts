@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { TicketModule } from '../ticket/ticket.module';
+import { TicketModule } from '../ticket';
 import { ServingComponent } from './serving.component';
 import { EmptyComponent } from './empty.component';
 import { ActionComponent } from './action.component';
 import { TicketComponent } from './ticket.component';
-import { ModalModule } from '../../shared';
-import { DirectiveModule } from '../../../../shared/directive/directive.module';
-
+import { ModalModule } from '../shared';
 
 @NgModule({
-    imports: [TicketModule, ModalModule,DirectiveModule],
+    imports: [TicketModule],
     declarations: [ServingComponent, EmptyComponent, ActionComponent, TicketComponent],
     exports: [ServingComponent]
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QueueService } from '../service';
+import { QueueService } from '../shared';
 
 @Component({
 

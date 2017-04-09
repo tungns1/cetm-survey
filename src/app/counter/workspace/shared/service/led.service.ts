@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ITicket, TicketState, TicketStates } from '../../shared';
+import { ITicket, TicketState, TicketStates } from '../shared';
 import { WorkspaceService } from './workspace.service';
 import { QueueService } from './queue.service';
 import { TicketService } from './ticket.service';
-import { NewLedController, LedController } from '../../../device/led';
+import { NewLedController, LedController } from '../device';
 
 const STATUS = {
     WELCOME: "welcome",

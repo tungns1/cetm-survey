@@ -1,25 +1,22 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WorkspaceService } from './service/';
-import { CounterStateService } from '../shared';
+import { WorkspaceService } from '../shared';
 
 @Component({
     selector: 'workspace',
     templateUrl: 'workspace.component.html',
     styleUrls: ['workspace.component.scss']
 })
-export class CounterComponent {
+export class WorkspaceComponent {
     constructor(
         private route: ActivatedRoute,
-        private stateService: CounterStateService,
         private workspaceService: WorkspaceService
     ) {
 
     }
 
     ngOnInit() {
-        const p = this.stateService.Current;
-        this.workspaceService.onInit(p.GetBranchAndCounter());
+        this.workspaceService.onInit("pgd-vinh-phuc", "quay_1");
     }
 
     ngOnDestroy() {

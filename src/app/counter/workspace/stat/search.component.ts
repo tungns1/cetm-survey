@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ITicket } from '../../shared';
-import { TicketService } from '../service';
+import { ITicket, TicketService } from '../shared';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 

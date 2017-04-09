@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, Input } from '@angular/core';
-import { TimerComopnent } from '../../../../x/ng/time/timer.component';
+import { TimerComopnent } from '../shared';
 
 @Component({
     selector: 'ticket',

@@ -1,15 +1,6 @@
 import {
     ITicket
-} from '../../shared/model';
-
-export {
-    ITicket,
-    TicketState,
-    TicketStates,
-    ICounter,
-    ServiceName,
-    ICustomer
-} from '../../shared/model';
+} from '../shared';
 
 export * from './stat';
 

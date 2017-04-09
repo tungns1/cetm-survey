@@ -1,5 +1,4 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
-import { CounterStateService, CounterNavService } from './shared';
 import { AuthService } from '../shared';
 
 @Component({
@@ -10,15 +9,13 @@ import { AuthService } from '../shared';
 })
 export class CounterComponent {
     constructor(
-        private stateService: CounterStateService,
-        private authService: AuthService,
-        private navService: CounterNavService
+        private authService: AuthService
     ) {
 
     }
 
     ngOnInit() {
-        this.authService.redirect = "/workspace";
+        
     }
 
     ngOnDestroy() {

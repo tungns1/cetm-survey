@@ -58,16 +58,16 @@
         <source>Store</source>
         <target/>
       </trans-unit>
-      <trans-unit id="d3cec012a105a844d722e81d5fbeec9bd1d20c1e" datatype="html">
-        <source>Ticker format</source>
+      <trans-unit id="8ed11c80d1e7f8135c3075d57a240858e272cea3" datatype="html">
+        <source>Ticker Number Format</source>
         <target/>
       </trans-unit>
       <trans-unit id="d473e0f684a60db45d6f31e993f693f74290e056" datatype="html">
         <source>Service</source>
         <target/>
       </trans-unit>
-      <trans-unit id="77a40fcdcb24a797945fb96de79d7ff02fc7e068" datatype="html">
-        <source>Branch config</source>
+      <trans-unit id="dd4720f14288ba841d69f8a80e910786fe299e0b" datatype="html">
+        <source>Branch Config</source>
         <target/>
       </trans-unit>
       <trans-unit id="0b5589fb1bad3fb17913168625f58b1502034042" datatype="html">
@@ -265,8 +265,8 @@
         <target/>
         <note priority="1" from="description">Định dạng số vé vip</note>
       </trans-unit>
-      <trans-unit id="88ff44636e701d6140175ad3532cafc9d784531b" datatype="html">
-        <source>Ticket Format</source>
+      <trans-unit id="6a67688bf8fcb5a6aa95d507dfa95c8039d89d06" datatype="html">
+        <source>Ticket Number Format</source>
         <target/>
       </trans-unit>
       <trans-unit id="17f89aaf700f3dbdae17936f52eb0be8e4bc2cd9" datatype="html">
@@ -381,10 +381,6 @@
       </trans-unit>
       <trans-unit id="04c177911000dc74289a4e2f9445bff119b5ce21" datatype="html">
         <source>Ticket format Vip</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="dd4720f14288ba841d69f8a80e910786fe299e0b" datatype="html">
-        <source>Branch Config</source>
         <target/>
       </trans-unit>
       <trans-unit id="158902c46d9250aea022aeaa41b004d4d9e6b47f" datatype="html">
