@@ -1,3 +1,2 @@
-import { AuthModule } from './auth.module';
-
-export default AuthModule;
+export { AuthModule } from './auth.module';
+export { AuthProvider, AuthService } from './auth-provider';

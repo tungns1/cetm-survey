@@ -1,5 +1,5 @@
 
-export { AuthService } from '../../../shared';
+export { AuthService, RuntimeEnvironment } from '../../../shared';
 
 export {
     ITicket,

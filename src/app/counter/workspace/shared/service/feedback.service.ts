@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
-import { ITicket, AuthService } from '../shared';
+import { ITicket, RuntimeEnvironment } from '../shared';
 import { IsFeedbackDeviceAvailable } from '../device';
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -13,14 +13,14 @@ export class FeedbackService {
 
     constructor(
         private workspaceService: WorkspaceService,
-        private authService: AuthService
+        private env: RuntimeEnvironment
     ) {
         this.onInit();
     }
 
     private onInit() {
-        this.authService.RxMySetting.subscribe(s => {
-            // this.required = s.config.feedback.required;
+        this.env.Auth.Data$.subscribe(d => {
+            // this.required = d.config.feedback.required;
         })
     }
 

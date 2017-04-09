@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { CounterSettingService } from '../shared';
 
 @Component({
   selector: 'app-setting',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private counterSetting: CounterSettingService
+  ) { }
 
   ngOnInit() {
+    this.form.valueChanges.subscribe(v => {
+      this.counterSetting.Update(v.branch_code, v.counter_code);
+    });
   }
+
+  value = this.counterSetting.Data;
+
+  form = new FormGroup({
+    branch_code: new FormControl(this.value.branch_code),
+    counter_code: new FormControl(this.value.counter_code)
+  });
 
 }

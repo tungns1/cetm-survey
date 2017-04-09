@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from "@angular/router"
-import { AuthGuard } from "./shared/";
 import { ReportComponent } from "./component";
 
 import { ReportHistoryModule } from './component/history';
@@ -35,7 +34,6 @@ export const children: Routes = [
 export const routing = RouterModule.forChild([
     {
         path: "",
-        canActivate: [AuthGuard],
         children: children,
         component: ReportComponent
     }

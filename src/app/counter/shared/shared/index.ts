@@ -1,0 +1,1 @@
+export { SmallStorage, RuntimeEnvironment } from '../../../shared';

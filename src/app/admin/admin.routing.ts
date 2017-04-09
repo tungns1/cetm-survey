@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from "./shared/";
 import { AdminComponent } from "./component";
 import { OrgModule } from './component/org';
 import { CenterModule } from './component/center';
@@ -33,7 +32,6 @@ export const children: Routes = [
 export const routing = RouterModule.forChild([
   {
     path: "",
-    canActivate: [AuthGuard],
     component: AdminComponent,
     children: children
   }

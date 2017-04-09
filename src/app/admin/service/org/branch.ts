@@ -20,8 +20,10 @@ export class BranchService extends CrudApiService<IBranch> {
     }
 
     protected filter() {
-        return this.authService.RefreshMySettings().switchMap(_ => {
-            return CacheBranch.RxListView;
-        });
+        return CacheBranch.RxListView;
+        // TODO: refresh env
+        // return this.authService.RefreshMySettings().switchMap(_ => {
+            // return CacheBranch.RxListView;
+        // });
     }
 }

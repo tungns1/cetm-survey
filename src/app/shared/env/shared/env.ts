@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class RuntimeEnvironment {
     constructor(
+        public Auth: AuthEnvStorage,
         private storageStrategy: RouterQueryStorageStrategy
     ) {
 
@@ -16,5 +17,4 @@ export class RuntimeEnvironment {
 
     Debug = new DebugEnvStorage();
     Platform = new PlatformEnvStorage();
-    Auth = new AuthEnvStorage();
 }

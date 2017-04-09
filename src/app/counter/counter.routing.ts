@@ -1,7 +1,9 @@
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from "./shared/";
 import { WorkspaceModule } from './workspace';
 import { CounterComponent } from './counter/counter.component';
+import { SettingComponent } from './setting/setting.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { CounterWelcomeGuard } from './shared';
 
 export function loadWorkspace() {
   return WorkspaceModule;
@@ -12,8 +14,21 @@ const children: Routes = [
     path: "workspace",
     loadChildren: loadWorkspace,
     canActivate: [
-      AuthGuard
+      CounterWelcomeGuard
     ]
+  },
+  {
+    path: "setting",
+    component: SettingComponent
+  },
+  {
+    path: "",
+    pathMatch: "full",
+    redirectTo: "welcome"
+  },
+  {
+    path: "welcome",
+    component: WelcomeComponent
   }
 ];
 

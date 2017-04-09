@@ -1,4 +1,3 @@
-export * from './auth';
 export * from './branch';
 
 export { SharedModule } from './shared.module';

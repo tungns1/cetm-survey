@@ -1,7 +1,7 @@
 
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth';
+import { RuntimeEnvironment } from '../../env';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -11,23 +11,21 @@ import { Observable } from 'rxjs/Observable';
 })
 export class UserComponent {
     constructor(
-        private authService: AuthService,
+        private env: RuntimeEnvironment,
         private router: Router
     ) { }
 
-    ngOnInit() {
-        this.username = this.authService.RxMySetting.map(d => d.me.fullname);
-    }
 
-    username = this.authService.RxMySetting.map(d => d.me.fullname)
+    username = this.env.Auth.Data$.map(d => d.me.fullname)
 
     Logout() {
-        this.authService.Logout();
+        
     }
-    onBLur() {
 
+    onBLur() {
         document.getElementById("myMenudrop").style.visibility = "hidden"
     }
+    
     hidden = true;
 
     Refresh() {

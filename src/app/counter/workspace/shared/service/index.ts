@@ -9,11 +9,13 @@ import { TicketService } from './ticket.service';
 import { QueueService } from './queue.service';
 import { LedService } from './led.service';
 import { FeedbackService } from './feedback.service';
+import { WorkspaceSocket } from './workspace.socket';
 
 export const workspaceServiceProvider = [
     WorkspaceService,
     TicketService,
     QueueService,
     LedService,
-    FeedbackService
+    FeedbackService,
+    WorkspaceSocket
 ]

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import {
     AuthService,
-    CacheService, AppSocketGenerator
+    RuntimeEnvironment,
+    CacheService
 } from './shared';
 
 import {
@@ -13,29 +14,27 @@ import {
 import { IStatMap } from '../model';
 
 const SOCKET_LINK = "/room/counter/join";
-const SOCKET_PARAMS = ['branch_code', 'counter_code']
+import { WorkspaceSocket } from './workspace.socket';
 
 @Injectable()
 export class WorkspaceService {
     constructor(
         private authService: AuthService,
-        private appSocketGenerator: AppSocketGenerator
+        private socket: WorkspaceSocket,
+        private env: RuntimeEnvironment
     ) { }
-
-    private socket = this.appSocketGenerator.make(SOCKET_LINK);
 
     get Socket() {
         return this.socket;
     }
 
-    onInit(branch_code: string, counter_code: string) {
-        this.socket.Connect({ branch_code, counter_code });
-        this.socket.disableCheckAlive();
+    onInit() {
+        this.socket.onInit();
         this.setUser();
     }
 
     onDestroy() {
-        this.socket.Terminate();
+        this.socket.onDestroy();
     }
 
     currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
@@ -46,8 +45,8 @@ export class WorkspaceService {
 
     private setUser() {
         this.socket.Connected$.switchMap(() => {
-            return this.authService.RxMySetting.switchMap(my => {
-                return this.socket.Send("/set_user", { user_id: my.me.id });
+            return this.env.Auth.Data$.switchMap(data => {
+                return this.socket.Send("/set_user", { user_id: data.me.id });
             })
         }).subscribe();
     }

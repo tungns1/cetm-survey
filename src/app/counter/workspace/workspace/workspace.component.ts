@@ -16,7 +16,7 @@ export class WorkspaceComponent {
     }
 
     ngOnInit() {
-        this.workspaceService.onInit("pgd-vinh-phuc", "quay_1");
+        this.workspaceService.onInit();
     }
 
     ngOnDestroy() {

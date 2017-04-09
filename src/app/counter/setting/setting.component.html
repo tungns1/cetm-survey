@@ -1,3 +1,14 @@
-<p>
-  setting works!
-</p>
+<p>Counter Setting</p>
+
+<form [formGroup]="form">
+    <md-input-container>
+        <input mdInput formControlName="branch_code" placeholder="Branch Code">
+    </md-input-container>
+    <md-input-container>
+        <input mdInput formControlName="counter_code" placeholder="Counter Code">
+    </md-input-container>
+</form>
+
+<div>
+    <a routerLink="../workspace">Go</a>
+</div>
