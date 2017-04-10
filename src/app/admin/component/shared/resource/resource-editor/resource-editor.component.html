@@ -16,10 +16,12 @@
         <tr *ngFor="let r of records">
             <td>
                 {{r.name}}
-                <a [class.hide]="!r.editable" (click)="form.Edit(r)">Edit</a>
-                <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
+                <div class="edit-reset-button">
+                    <a [class.hide]="!r.editable" (click)="form.Edit(r)">Edit</a>
+                    <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
+                </div>
             </td>
-            <td>{{r.type}}</td>
+            <td class="body-resource-editor">{{r.type}}</td>
             <td>
                 <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
             </td>

@@ -1,6 +1,6 @@
-<modal #main>
+<modal #main id="generic-form" class="report_history_modal">
     <div *ngIf="record">
-        <h1><span>Edit Resource</span>
+        <h1 class="modal-header"><span>Edit Resource</span>
             <{{record.name}}>
         </h1>
         <div [ngSwitch]="record.type">
@@ -18,6 +18,8 @@
             </div>
         </div>
     </div>
-    <button (click)="Close()">Cancel</button>
-    <button (click)="Save()">Ok</button>
+    <div style="width: 100%">
+        <button class="btnFill ok-cancel margin-right button-margin margin-top margin-bot" (click)="Close()">Cancel</button>
+        <button class="btnFill ok-cancel  margin-bot margin-top" (click)="Save()">Ok</button>
+    </div>
 </modal>
