@@ -20,6 +20,10 @@ export class WelcomeComponent implements OnInit {
     const ok = this.counterService.Check();
     if (ok) {
       setTimeout(_ => this.Workspace(), this.waitingTime);
+    } else {
+      this.router.navigate(["../setting"], {
+        relativeTo: this.route
+      });
     }
   }
 
