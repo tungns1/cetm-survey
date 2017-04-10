@@ -26,6 +26,7 @@ export class QmsService {
 
 @Injectable()
 export class XWinService {
+    Broadcast(event: string, data: any) {}
     readonly isBrowser = true;
 }
 

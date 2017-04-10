@@ -8,9 +8,9 @@
 <div id="kiosk-resources">
     <table class="tableCtrl">
         <thead>
-            <th width="25%">Name</th>
-            <th width="15%">Type</th>
-            <th width="60%">Data</th>
+            <th class="text-center" width="25%">Name</th>
+            <th class="text-center" width="15%">Type</th>
+            <th class="text-center" width="60%">Data</th>
         </thead>
         <tbody>
             <tr *ngFor="let r of records">
@@ -21,7 +21,7 @@
                         <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
                     </div>
                 </td>
-                <td class="body-resource-editor">{{r.type}}</td>
+                <td class="body-resource-editor text-center">{{r.type}}</td>
                 <td>
                     <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
                 </td>
