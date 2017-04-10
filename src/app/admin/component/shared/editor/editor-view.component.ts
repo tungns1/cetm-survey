@@ -15,7 +15,7 @@ export class EditorViewComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
+        
     }
 
     @Output() action = new EventEmitter<string>();

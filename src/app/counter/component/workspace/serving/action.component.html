@@ -2,7 +2,7 @@
     <button class="uppercase btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}">
         <ng-container>Next</ng-container>
     </button>
-    <button class="uppercase btnFill btnRed" fxFlex (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}">
+    <button class="uppercase btnRed" fxFlex (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}">
         <ng-container>Auto Next</ng-container>
     </button>
     <button class="uppercase btnFill" fxFlex (click)="Recall()"> 
@@ -11,10 +11,10 @@
     <button class="uppercase btnFill" fxFlex (click)="Move()"> 
         <ng-container>Move</ng-container>
     </button>
-    <button class="uppercase btnFill btnRed" fxFlex (click)="Miss()">
+    <button class="uppercase btnRed" fxFlex (click)="Miss()">
         <ng-container>Miss</ng-container>
     </button>
-    <button class="uppercase btnFill btnGreen" fxFlex (throttle)="Finish()" throttle>
+    <button class="uppercase btnGreen" fxFlex (throttle)="Finish()" throttle>
         <ng-container>Finish</ng-container>
     </button>
 </div>

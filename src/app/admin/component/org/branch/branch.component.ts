@@ -8,7 +8,7 @@ import { BaseAdminComponent, BranchFilterService } from '../../shared';
 @Component({
   selector: 'admin-branch',
   templateUrl: 'branch.component.html',
-  styleUrls: ['branch.component.css']
+  styleUrls: ['branch.component.scss']
 })
 export class BranchComponent extends BaseAdminComponent<IBranch> {
   constructor(
