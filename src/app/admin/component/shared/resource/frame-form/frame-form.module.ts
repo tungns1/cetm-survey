@@ -5,7 +5,7 @@ import { GenericFormComponent } from './generic-form/generic-form.component';
 import { TextFormModule } from './text-form/text-form.module';
 import { ImageFormModule } from './image-form/image-form.module';
 import { VideoFormModule } from './video-form/video-form.module';
-import { ModalModule, AdminFormModule } from '../shared';
+import { ModalModule, AdminFormModule, FlexLayoutModule } from '../shared';
 import { provideUploadURLToken } from './shared';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { provideUploadURLToken } from './shared';
     CommonModule, FormsModule,
     ModalModule,
     AdminFormModule,
-    TextFormModule, ImageFormModule, VideoFormModule
+    TextFormModule, ImageFormModule, VideoFormModule,
+    FlexLayoutModule
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],
