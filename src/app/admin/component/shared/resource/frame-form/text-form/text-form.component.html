@@ -1,19 +1,29 @@
-<p>Edit Text</p>
-<div *ngIf="value" (change)="onChange($event)">
-    <label>Align</label>
-    <select [(ngModel)]="value.align">
+<div class="modal-header-title">
+    <p class="margin-left">Edit Text</p>
+</div>
+<div class="customer">
+    <div *ngIf="value" (change)="onChange($event)">
+        <div class="margin-top margin-left">
+            <label>Align</label>
+            <select [(ngModel)]="value.align">
         <option value="left">Left</option>
         <option value="center">Center</option>
         <option value="right">Right</option>
     </select>
-    <br>
-    <label><b>Content</b></label>
-    <l10n-form [(ngModel)]="value.i18n"></l10n-form>
-    <br>
-    <label>Scroll</label>
-    <select [(ngModel)]="value.scroll">
+        </div>
+        <div class="margin-top margin-left">
+            <label><b>Content</b></label>
+            <div class="margin-top">
+                <l10n-form [(ngModel)]="value.i18n"></l10n-form>
+            </div>
+        </div>
+        <div class="margin-left">
+            <label>Scroll</label>
+            <select [(ngModel)]="value.scroll">
         <option value="none">--None--</option>
         <option value="rtl">Right To Left</option>
         <option value="ltr">Left To Right</option>
     </select>
+        </div>
+    </div>
 </div>

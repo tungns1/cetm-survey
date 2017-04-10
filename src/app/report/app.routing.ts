@@ -1,11 +1,12 @@
 import { Routes, RouterModule } from "@angular/router"
-import { AuthGuard } from "./shared/";
 import { ReportComponent } from "./component";
 
 import { ReportHistoryModule } from './component/history';
 import { ReportDashboardModule } from './component/dashboard';
 import { ReportCustomerModule } from './component/customer';
 import { ReportKioskModule } from './component/kiosk';
+import { SessionValidationGuard } from './shared';
+
 export function loadReportHistoryModule() {
     return ReportHistoryModule;
 }
@@ -35,8 +36,8 @@ export const children: Routes = [
 export const routing = RouterModule.forChild([
     {
         path: "",
-        canActivate: [AuthGuard],
         children: children,
-        component: ReportComponent
+        component: ReportComponent,
+        canActivate: [SessionValidationGuard]
     }
 ]);

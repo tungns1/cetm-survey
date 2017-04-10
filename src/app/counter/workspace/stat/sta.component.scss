@@ -1,0 +1,69 @@
+@import '../shared/style.scss';
+#sta {
+    height: 55%;
+    overflow: auto;
+    .tabs {
+        .tabCtrl {
+            background-color: $background-color;
+        }
+        .active {
+            color: $key-color;
+            border-bottom: 3px solid $key-color;
+        }
+    }
+}
+
+#bar {
+    .label {
+        font-size: $font-size-default - 1;
+        margin: 10px 0px 5px;
+    }
+    .barBackground {
+        width: 100%;
+        height: 12px;
+        background-color: $background-color-title;
+        border-radius: 12px;
+        .barGrap {
+            height: 12px;
+            text-align: right;
+            border-radius: 12px;
+            background: linear-gradient(to right, $key-color, $key-color + 50);
+            p {
+                color: #fff;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+#search {
+    margin-top: 3%;
+    height: 40%;
+    padding: 3%;
+    overflow: auto;
+    input {
+        width: 100%;
+        border: $border;
+        border-radius: 3px;
+        height: 25px;
+        font-size: 12px;
+        text-indent: 10px;
+    }
+    .iconSearch {
+        float: right;
+        width: 20px;
+        position: relative;
+        top: -25px;
+    }
+    .searchResult {
+        .label {
+            text-align: left;
+        }
+        .detail {
+            text-align: right;
+        }
+        h3 {
+            text-align: center;
+        }
+    }
+}

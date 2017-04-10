@@ -1,7 +1,6 @@
 @import 'variables';
-
 // Modal
-.modal-header{
+.modal-header {
     font-size: $font-size-default + 2;
     font-weight: $font-weight-default + 200;
     text-align: center;
@@ -10,6 +9,7 @@
     margin: 0px;
     text-transform: uppercase;
 }
+
 //
 // Modal
 // ----------------------
@@ -45,9 +45,9 @@
             max-height: 90vh;
             background-color: #fff;
         }
-        .modal-confirm{
+        .modal-confirm {
             padding: 10px 20px;
-            p{
+            p {
                 font-size: 17px;
                 margin: 0px;
                 margin-top: 10px;
@@ -55,10 +55,6 @@
         }
     }
 }
-
-
-
-
 
 // .modal-header,
 // .modal-footer {

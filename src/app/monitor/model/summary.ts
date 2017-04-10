@@ -44,7 +44,7 @@ export class Summary {
 		return this.waiting + this.serving + this.cancelled + this.finished + this.missed;
 	}
 
-	static Aggregate(data: ISummary[]) {
+	static Aggregate(data: Summary[]) {
 		const s = new Summary();
 		data.forEach(d => {
 			s.waiting += d.waiting;

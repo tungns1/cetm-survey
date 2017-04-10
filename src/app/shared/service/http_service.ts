@@ -3,6 +3,23 @@ import { Http, Request, Response, RequestOptions, RequestMethod, URLSearchParams
 import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
 
+export class HttpError {
+    constructor(
+        private status: number,
+        private statusText: string,
+        private message: string) {
+        this.statusText = this.statusText.trim().toUpperCase();
+    }
+
+    IsUnauthorized() {
+        return this.statusText === "UNAUTHORIZED";
+    }
+
+    Message() {
+        return this.message;
+    }
+}
+
 export class HttpApi<T> {
 
     constructor(
@@ -63,12 +80,12 @@ export class HttpApi<T> {
         if (error instanceof Response) {
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+            errMsg = `${err}`;
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return _throw(errMsg);
+        return _throw(new HttpError(error.status, error.statusText, errMsg));
     }
 
 }

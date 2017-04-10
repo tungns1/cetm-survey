@@ -38,11 +38,10 @@ export class FocusComponent {
 
 
     ngOnInit() {
-        this.route.params.subscribe(p => {
-            this.focusService.Branch$.next(p["branch_id"]);
-        });
-        this.focusService.tickets$.subscribe();
-        this.focus$.subscribe(data => console.log(data));
+        // this.route.params.subscribe(p => {
+        //     this.focusService.Branch$.next(p["branch_id"]);
+        // });
+        this.focusService.enable();
         this.navService.Refresh$.ExclusiveSubscribe(_ => {
             const branch_id = this.route.snapshot.params["branch_id"];
             this.focusService.Branch$.next(branch_id);
@@ -56,33 +55,17 @@ export class FocusComponent {
     }
 
     ngOnDestroy() {
-
+        this.focusService.disable();
     }
 
     // chartData: Summary
     focus$ = this.focusService.FocusSummary$;
-    chartData$ = this.focus$.map(d => {
-
-    });
-
-    numberCounter$ = this.focusService.counter$.map(v => {
-        return v.length;
-    });
-
-    numberCounterOff$ = this.focusService.counter$.map(v => v.filter(v => {
-        if (v.state === "off") {
-            return v;
-        }
-    })).map(v => {
-        return v.length;
-    });
-    numberCounterOn$ = this.focusService.counter$.map(v => v.filter(v => {
-        if (v.state === "on") {
-            return v;
-        }
-    })).map(v => {
-        return v.length;
-    });
+    counterState$ = this.focusService.counterState$.share();
+    numberCounter$ = this.counterState$.map(v => v.length);
+    numberCounterOff$ = this.counterState$
+        .map(v => v.filter(v => v.state === 'on').length);
+    numberCounterOn$ = this.counterState$
+        .map(v => v.filter(v => v.state === 'off').length);
 
     waiting$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {

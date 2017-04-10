@@ -1,10 +1,10 @@
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from "./shared/";
 import { AdminComponent } from "./component";
 import { OrgModule } from './component/org';
 import { CenterModule } from './component/center';
 import { HouseModule } from './component/house';
 import { MetaModule } from './component/meta';
+import { SessionValidationGuard } from './shared';
 
 export function loadMetaModule() {
   return MetaModule;
@@ -33,8 +33,8 @@ export const children: Routes = [
 export const routing = RouterModule.forChild([
   {
     path: "",
-    canActivate: [AuthGuard],
     component: AdminComponent,
+    canActivate: [SessionValidationGuard],
     children: children
   }
 ]);

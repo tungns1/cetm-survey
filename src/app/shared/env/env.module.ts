@@ -5,7 +5,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { RuntimeEnvironment } from './shared';
+import { RuntimeEnvironment, AuthEnvStorage } from './shared';
 import { AbstractStorageStrategy } from '../shared';
 import { AppEnvModuleComponent, AppEnvSubModuleComponent } from './env-set/env-set.component';
 
@@ -16,6 +16,6 @@ import { AppEnvModuleComponent, AppEnvSubModuleComponent } from './env-set/env-s
 })
 export class EnvironmentModule {
     static Providers() {
-        return [RuntimeEnvironment]
+        return [RuntimeEnvironment, AuthEnvStorage]
     }
 }

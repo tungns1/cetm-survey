@@ -25,6 +25,6 @@ export class BranchNamePipe implements PipeTransform {
 })
 export class BranchNameKioskPipe implements PipeTransform {
     transform(id: string) {
-        return CacheBranch.GetNameKioskForID(id);
+        return CacheBranch.GetNameForID(id);
     }
 }

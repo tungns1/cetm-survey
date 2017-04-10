@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from "@angular/router";
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
     { path: "admin", loadChildren: "./admin/index" },
@@ -7,7 +7,7 @@ export const routes: Routes = [
     { path: "report", loadChildren: "./report/index" },
     { path: "counter", loadChildren: "./counter/index" },
     { path: "setting", loadChildren: "./setting/index" },
-    { path: "auth", loadChildren: "./auth/index" },
+    { path: "auth", loadChildren: "./auth/index#AuthModule" },
     { path: "setup", loadChildren: "./setup/index" },
     { path: "", pathMatch: "full", redirectTo: "report" }
 ];
@@ -19,5 +19,5 @@ export const appRouting = RouterModule.forRoot(routes, { useHash: true });
     exports: [RouterModule]
 })
 export class AppRoutingModule {
-    
+
 }
