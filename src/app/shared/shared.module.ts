@@ -13,7 +13,6 @@ import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 import { Ng2BasicModule } from './shared';
 
-
 @NgModule({
     imports: [
 

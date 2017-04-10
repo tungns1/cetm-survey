@@ -35,6 +35,7 @@ export class AuthEnvStorage {
     ) { }
 
     Data$ = new ReplaySubject<IAuthEnv>(1);
+    User$ = this.Data$.map(d => d.me).filter(u => !!u).share();
     private data: IAuthEnv = <any>{};
 
     emitChange() {

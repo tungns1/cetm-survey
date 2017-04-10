@@ -16,7 +16,7 @@ export class UserComponent {
     ) { }
 
 
-    username = this.env.Auth.Data$.map(d => d.me.fullname)
+    username = this.env.Auth.User$.map(u => u.fullname)
 
     Logout() {
         
