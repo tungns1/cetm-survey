@@ -17,15 +17,16 @@ const noop = function () {
 @Component({
     selector: 'branch-picker',
     template: `
-        <select class="hl-select-picker" [(ngModel)]="selected" (ngModelChange)="onChangeCallback($event)" > // value is a string or number
+        <select [(ngModel)]="selected" (ngModelChange)="onChangeCallback($event)" > // value is a string or number
             <option *ngFor="let opt of branches | async" [value]="opt.id">{{opt.name}}</option>
         </select>
     ` ,
     styles: [`
     select{
-        width:150px;
-        border-radius:3px;
-        height:30px;
+        width: 100%;
+        border-radius: 3px;
+        height: 25px;
+        margin-bottom: 10px;
 
     }`],
     providers: [BRANCH_PICKER_CONTROL_VALUE_ACCESSOR]

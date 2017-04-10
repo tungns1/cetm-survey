@@ -20,8 +20,9 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'file-picker',
     template: `
-        <input class="hlm-input hl-input-filemulti inputs" [(ngModel)]="value"/> 
-        <button class="hlm-button" (click)="modal.Open()">Chọn</button>
+        <input class="edit-image margin-top" [(ngModel)]="value"/> 
+        <br>
+        <button class="hlm-button margin-top" (click)="modal.Open()">Chọn</button>
         <modal #modal id="modalUpload">
             <div class="modal-dialog">
                 <div class="modal-body padding-20">

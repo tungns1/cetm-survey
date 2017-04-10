@@ -19,7 +19,7 @@ const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
         <div *ngIf="invalid" style="color:red"> 
             Text input is not a valid json string
         </div>
-        <textarea class="hl-input" [ngModel]="text" (ngModelChange)="onChange($event)">
+        <textarea class="format-textarea" [ngModel]="text" (ngModelChange)="onChange($event)">
         </textarea>
     `,
     providers: [JSON_CONTROL_VALUE_ACCESSOR]

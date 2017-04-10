@@ -8,7 +8,7 @@ import { extend } from 'lodash';
 @Component({
     selector: 'house-kiosk',
     templateUrl: 'kiosk.component.html',
-    styleUrls: ['kiosk.component.css']
+    styleUrls: ['kiosk.component.scss']
 })
 export class KioskComponent extends BaseAdminComponent<IKiosk> {
 

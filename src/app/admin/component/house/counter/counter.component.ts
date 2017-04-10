@@ -9,7 +9,7 @@ import { BaseAdminComponent } from '../../shared';
 @Component({
     selector: 'house-counter',
     templateUrl: 'counter.component.html',
-    styleUrls: ['counter.component.css']
+    styleUrls: ['counter.component.scss']
 })
 export class CounterComponent extends BaseAdminComponent<ICounter> {
     constructor(

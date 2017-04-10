@@ -7,18 +7,18 @@
     </app-datatable>
 </div>
 
-<app-editor-view id="editBranch" class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form [formGroup]="form">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex i18n>Name</span>
+            <span fxFlex="15%" i18n>Name</span>
             <input fxFlex class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name">
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex i18n>Code</span>
+            <span fxFlex="15%" i18n>Code</span>
             <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex>{{parentLevel$ | async | branchLevelName}}</span>
+            <span fxFlex="15%">{{parentLevel$ | async | branchLevelName}}</span>
             <select fxFlex class="hl-select" formControlName="parent">
                 <option *ngFor="let br of parents$ | async" [value]="br.id">{{br.name}}</option>
             </select>

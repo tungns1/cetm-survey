@@ -8,7 +8,7 @@ import { BaseAdminComponent } from '../../shared';
 @Component({
   selector: 'admin-user',
   templateUrl: 'user.component.html',
-  styleUrls: ['user.component.css']
+  styleUrls: ['user.component.scss']
 })
 export class UserComponent extends BaseAdminComponent<IUser> {
   constructor(

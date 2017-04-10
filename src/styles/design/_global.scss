@@ -21,16 +21,19 @@
     background-color: $key-color;
     color: #fff;
 }
+
 .btnRed {
     @extend .btnFill;
     background-color: #f53e30;
     border: 1px solid #f53e30;
 }
+
 .btnGreen {
     @extend .btnFill;
     background-color: #01947a;
     border: 1px solid #01947a;
 }
+
 .btnGrey {
     @extend .btnClear;
     background-color: #dee0df;
@@ -125,60 +128,6 @@
         height: 100%;
         position: relative;
     }
-}
-
-#generic-form {
-    .title {
-        text-align: center;
-    }
-    .edittext {
-        margin-top: 10px;
-    }
-    .ok-cancel {
-        float: right;
-        width: 30%;
-    }
-}
-
-.body-generic-form {
-    margin-left: 5px;
-}
-
-.edit-reset-button {
-    float: right;
-    margin-right: 4px;
-}
-
-.body-resource-editor {
-    text-align: center;
-}
-
-.margin-left {
-    margin-left: 5px;
-}
-
-.margin-top {
-    margin-top: 10px;
-}
-
-.margin-right {
-    margin-right: 5px;
-}
-
-.margin-bot {
-    margin-bottom: 5px;
-}
-
-.modal-header-title {
-    font-size: $font-size-default;
-    padding: 1px;
-    background-color: #f2efef;
-    margin: 0px;
-    text-transform: uppercase;
-}
-
-.button-margin {
-    margin-left: 2px;
 }
 
 //End of UI elements
