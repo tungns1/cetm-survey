@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
 import { ITicket, RuntimeEnvironment } from '../shared';
-import { IsFeedbackDeviceAvailable } from '../device';
+import { FeedbackDevice } from '../device';
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -13,6 +13,7 @@ export class FeedbackService {
 
     constructor(
         private workspaceService: WorkspaceService,
+        private feedbackDevice: FeedbackDevice,
         private env: RuntimeEnvironment
     ) {
         this.onInit();
@@ -47,7 +48,7 @@ export class FeedbackService {
         if (!t || t.length < 1) {
             return of(<ITicket[]>[]);
         }
-        if (!this.required || !IsFeedbackDeviceAvailable()) {
+        if (!this.required || !this.feedbackDevice.Available) {
             return of(t);
         }
         const id = t.map(a => a.id);

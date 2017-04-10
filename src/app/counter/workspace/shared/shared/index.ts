@@ -9,3 +9,5 @@ export {
     ServiceName,
     ICustomer
 } from '../../../../shared/model';
+
+export { QmsService } from '../../../../../native/qms';
