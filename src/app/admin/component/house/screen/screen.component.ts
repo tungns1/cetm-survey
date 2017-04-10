@@ -10,7 +10,7 @@ import { BaseAdminComponent } from '../../shared';
 @Component({
     selector: 'house-screen',
     templateUrl: 'screen.component.html',
-    styleUrls: ['screen.component.css']
+    styleUrls: ['screen.component.scss']
 })
 export class ScreenComponent extends BaseAdminComponent<IScreen> {
 

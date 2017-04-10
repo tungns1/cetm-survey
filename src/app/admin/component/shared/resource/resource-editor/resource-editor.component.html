@@ -5,29 +5,30 @@
         cursor: pointer;
     }
 </style>
+<div id="kiosk-resources">
+    <table class="tableCtrl">
+        <thead>
+            <th width="25%">Name</th>
+            <th width="15%">Type</th>
+            <th width="60%">Data</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of records">
+                <td>
+                    {{r.name}}
+                    <div class="edit-reset-button">
+                        <a [class.hide]="!r.editable" (click)="form.Edit(r)">Edit</a>
+                        <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
+                    </div>
+                </td>
+                <td class="body-resource-editor">{{r.type}}</td>
+                <td>
+                    <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<table>
-    <thead>
-        <th width="20%">Name</th>
-        <th width="10%">Type</th>
-        <th width="60%">Data</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let r of records">
-            <td>
-                {{r.name}}
-                <div class="edit-reset-button">
-                    <a [class.hide]="!r.editable" (click)="form.Edit(r)">Edit</a>
-                    <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
-                </div>
-            </td>
-            <td class="body-resource-editor">{{r.type}}</td>
-            <td>
-                <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<app-generic-form #form (save)="Save($event)">
-</app-generic-form>
+    <app-generic-form #form (save)="Save($event)">
+    </app-generic-form>
+</div>

@@ -7,7 +7,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" 
+        [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Code</span>
@@ -31,7 +32,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Branch</span>
-            <branch-picker level="0" formControlName="branch_id"></branch-picker>
+            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
             <div fxFlex="15%"></div>
             <div fxFlex></div>
         </div>

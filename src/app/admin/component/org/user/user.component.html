@@ -1,5 +1,5 @@
 <app-env-sub-module i18n-title title="User"></app-env-sub-module>
-<div *ngIf="showList$ | async">
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
     <app-datatable name="User" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="username" i18n-title title="Username"></app-table-field>
         <app-table-field name="fullname" i18n-title title="Full Name"></app-table-field>
@@ -7,7 +7,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
+        (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Username</span>

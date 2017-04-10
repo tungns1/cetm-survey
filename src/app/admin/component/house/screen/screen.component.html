@@ -1,41 +1,44 @@
 <app-env-sub-module i18n-title title="Screen"></app-env-sub-module>
-<div *ngIf="showList$ | async">
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
     <app-datatable i18n-name name="Screen" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form class=" hl-form form" [formGroup]="form">
-        <span i18n>Code</span>:
-        <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code" style="width: 95%;">
-        <br> <span i18n>Name</span>:
-        <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name" style="width: 95%;">
-
-        <br><span i18n>Location</span>:
-        <branch-picker level="0" formControlName="branch_id"></branch-picker>
-        <br> <span i18n>Counters</span>:
-        <div class="dichvu">
-            <select-check formControlName="counters" [data]="counters$ | async" textField="name">
-            </select-check>
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
+        (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form" fxFlex="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Code</span>
+            <input fxFlex class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
+            <span fxFlex="15%" i18n>Name</span>
+            <input fxFlex class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
         </div>
-
-        <br><span i18n>Inherit from</span>:
-        <select class="hl-select" formControlName="parent_id">
-            <option value="">--None--</option>
-            <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
-        </select>
-
-        <br><span i18n>Resources</span>
-        <app-resource-editor formControlName="layout_resources"></app-resource-editor>
-
-        <br><span i18n>Layout</span>:
-        <a routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'screen'}"> 
-             Edit
-        </a>
-        <select class="hl-select" formControlName="layout_id">
-            <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
-        </select>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Location</span>
+            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
+            <span fxFlex="15%" i18n>Counters</span>
+            <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff"
+                [data]="counters$ | async" textField="name"></select-check>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Inherit from</span>
+            <select fxFlex class="hl-select" formControlName="parent_id">
+                <option value="">--None--</option>
+                <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
+            </select>
+            <span fxFlex="15%" i18n>Layout
+            <a routerLink="/admin/center/layout" queryParamsHandling="merge" 
+                [queryParams]="{tag: 'screen'}">Edit</a>
+            </span>
+            <select fxFlex class="hl-select" formControlName="layout_id">
+                <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
+            </select>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Resources</span>
+            <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+        </div>
     </form>
 </app-editor-view>
