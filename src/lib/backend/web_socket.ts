@@ -23,7 +23,7 @@ export abstract class AbstractMessageHandler<T> {
 
 export class BaseWebsocket {
     constructor(private messageHandler: AbstractMessageHandler<IBaseMessage>) {
-        
+
     }
 
     private config: WebSocketSubjectConfig;
@@ -56,6 +56,7 @@ export class BaseWebsocket {
                 }
             }
         }
+        this.reconnectable = true;
         this.reconnect();
     }
 
@@ -69,6 +70,7 @@ export class BaseWebsocket {
                 });
             } else {
                 // try again
+                console.log("socket already open");
                 this.reconnect(1000);
             }
         }

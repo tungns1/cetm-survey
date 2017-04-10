@@ -50,8 +50,8 @@
             </tr>
         </tbody>
     </table>
-    <div *ngIf="isShowChart" class="divider margin-20-0"></div>
-    <div *ngIf="isShowChart" class="border">
-        <monitor-chart [data]="totalSummary$ | async"></monitor-chart>
+    <div class="divider margin-20-0"></div>
+    <div *ngIf="totalSummary$ | async; let data" class="border">
+        <monitor-chart [data]="data"></monitor-chart>
     </div>
 </div>

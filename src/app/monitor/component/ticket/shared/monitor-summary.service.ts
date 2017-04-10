@@ -12,51 +12,40 @@ export class MonitorSummaryService {
 
   constructor(
     private socket: MonitorTicketSocket
-  ) { }
+  ) {
+    this.onInit();
+  }
 
-  private initialSummary$ = this.socket.Connected$.switchMap(_ => {
-    return this.Branches$.switchMap(branches => {
-      return this.socket.Send<ISummary[]>("/summary", {
-        branches
-      }).map(data => (data || []).map(d => new Summary(d)));
+  onInit() {
+    this.Branches$.switchMap(branches => {
+      return this.socket.Connected$.switchMap(_ => {
+        return this.orderSummary(branches);
+      });
+    }).subscribe(data => {
+      const map = new Map<string, Summary>();
+      data.forEach(d => map.set(d.branch_id, new Summary(d)));
+      this.initialSummary$.next(map);
     });
-  }).share();
+  }
+
+  private orderSummary(branches: string[]) {
+    return this.socket.Send<ISummary[]>("/summary", {
+      branches
+    })
+  }
+
+  private initialSummary$ = new ReplaySubject<Map<string, Summary>>(1);
 
   private summaryUpdate$ = this.socket.RxEvent<ISummary>("/summary/update").startWith(null);
 
   summary$ = this.initialSummary$.switchMap(initial => {
-    const add = (s: ISummary) => {
-      if (!s) {
-        return initial;
+    return this.summaryUpdate$.map((s: ISummary) => {
+      if (s) {
+        initial.set(s.branch_id, new Summary(s));
       }
-      return AddToSet(initial, new Summary(s));
-    }
-    return this.summaryUpdate$.map(add);
+      return Array.from(initial.values());
+    });
   }).share();
 
   Branches$ = new ReplaySubject<string[]>(1);
-
-}
-
-function AddToSet(arr: Summary[] = [], a: Summary) {
-  var v = arr;
-  var add = true;
-  if (arr.length > 0) {
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i].branch_id === a.branch_id) {
-        v.splice(i, 1);
-        v.push(a);
-        add = false;
-        break;
-      } else {
-        continue;
-      }
-    }
-  } else {
-    if (add) {
-      arr.push(a);
-    }
-
-  }
-  return v;
 }
