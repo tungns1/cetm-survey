@@ -22,7 +22,7 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
 
   Check() {
     this.checked = true;
-    return this.checked;
+    return this.data.branch_code && this.data.counter_code;
   }
 
   get IsChecked() {
