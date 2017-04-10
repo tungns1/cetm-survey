@@ -2,6 +2,7 @@ import {
     Component, OnInit, Output, EventEmitter, Input
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+// import { BaseAdminComponent } from './base.component'
 
 @Component({
     selector: 'app-editor-view',
@@ -16,8 +17,10 @@ export class EditorViewComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        
+
     }
+
+    @Input() title = 'title';
 
     @Output() action = new EventEmitter<string>();
 

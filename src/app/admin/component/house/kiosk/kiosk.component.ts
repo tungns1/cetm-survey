@@ -20,6 +20,8 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         super(injector, house.KioskService);
     }
 
+    title = 'edit kiosk';
+
     kiosks = this.house.KioskService.RxUpperList;
     services = this.center.ServiceService.RxListView;
     layouts = this.center.LayoutService.GetByType('kiosk');
