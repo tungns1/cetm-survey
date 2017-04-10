@@ -29,6 +29,7 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
       template: [b.template]
     });
   }
+
 }
 
 

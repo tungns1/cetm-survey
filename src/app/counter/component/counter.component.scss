@@ -1,0 +1,36 @@
+@import '../../shared/style.scss';
+#counter,
+app-counter {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: $background-color;
+}
+
+#counter {
+    #workSpace {
+        width: 100%;
+        height: 92.5vh;
+        #leftWorkSpace {
+            border-right: $border;
+        }
+        .componentHeader {
+            border-bottom: $border;
+            text-align: center;
+            background-color: $background-color-title;
+            height: 15%;
+            max-height: 40px;
+            min-height: 30px;
+            text-transform: uppercase;
+            span {
+                position: relative;
+                top: 30%;
+            }
+        }
+        .footer {
+            span {
+                border-right: $border;
+            }
+        }
+    }
+}
