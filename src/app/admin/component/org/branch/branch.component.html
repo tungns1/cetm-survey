@@ -7,16 +7,19 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form class="hl-form" [formGroup]="form">
-        <span i18n>Name</span>:
-        <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name"><br>
-        <span i18n>Code</span>:
-        <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
-
-        <div>
-            <label style="margin-right: 14px;">{{parentLevel$ | async | branchLevelName}}</label>
-            <select class="hl-select" formControlName="parent">
+<app-editor-view id="editBranch" class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex i18n>Name</span>
+            <input fxFlex class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name">
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex i18n>Code</span>
+            <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex>{{parentLevel$ | async | branchLevelName}}</span>
+            <select fxFlex class="hl-select" formControlName="parent">
                 <option *ngFor="let br of parents$ | async" [value]="br.id">{{br.name}}</option>
             </select>
         </div>

@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IBranch, CacheBranch, OrgService, AdminNavService, AuthService } from '../../shared/';
+import { IBranch, CacheBranch, OrgService, AdminNavService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/observable';
 import { BaseAdminComponent, BranchFilterService } from '../../shared';
@@ -8,13 +8,12 @@ import { BaseAdminComponent, BranchFilterService } from '../../shared';
 @Component({
   selector: 'admin-branch',
   templateUrl: 'branch.component.html',
-  styleUrls: ['branch.component.css']
+  styleUrls: ['branch.component.scss']
 })
 export class BranchComponent extends BaseAdminComponent<IBranch> {
   constructor(
     injector: Injector,
     private org: OrgService,
-    private authService: AuthService,
     private branchFilter: BranchFilterService,
     private navService: AdminNavService
   ) {

@@ -9,6 +9,7 @@ import {
   ICounter, IUser, ICustomer
 } from '../../../model';
 
+import { ISubscription } from 'rxjs/Subscription';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 interface IFocusReply {
@@ -25,28 +26,37 @@ export class MonitorFocusService {
   constructor(
     private socket: MonitorTicketSocket,
     private navService: MonitorNavService
-  ) { }
+  ) {
 
-  private initialFocus$ = this.socket.Connected$.switchMap(_ => {
-    return this.Branch$.switchMap(branch_id => {
-      // console.log(branch_id);
-      return this.socket.Send<IFocusReply>("/focus", {
-        branch_id
-      }).do(data => {
-        CacheCounter.Refresh(data ? data.counters : []);
-        CacheUsers.Refresh(data ? data.users : []);
+  }
+
+  enable() {
+    this.subscription = this.Branch$.switchMap(branch_id => {
+      return this.socket.Connected$.switchMap(_ => {
+        return this.Focus(branch_id);
       });
-    });
-  }).share();
+    }).do(data => {
+      CacheCounter.Refresh(data ? data.counters : []);
+      CacheUsers.Refresh(data ? data.users : []);
+    }).subscribe(data => this.initialFocus$.next(data))
+  }
+
+  disable() {
+    this.subscription.unsubscribe();
+  }
+
+  private subscription: ISubscription;
+
+  private initialFocus$ = new ReplaySubject<IFocusReply>();
 
   private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
   private counterUpdate$ = this.socket.RxEvent<IDevice>("/counter_track/update").startWith(null);
   Branch$ = new ReplaySubject<string>(1);
 
   FocusSummary$ = this.initialFocus$.map(data => data.summary)
-                  .map(d => {
-                    return new Summary(d);
-                  });
+    .map(d => {
+      return new Summary(d);
+    });
 
 
   tickets$ = this.initialFocus$
@@ -62,25 +72,22 @@ export class MonitorFocusService {
       return Object.keys(tickets).map(id => tickets[id]);
     }).share();
 
-
-  counter$ = this.initialFocus$
-    .map(data => data ? data.counter_state : [])
-    .switchMap(counters => {
+  counterState$ = this.initialFocus$
+    .switchMap(data => {
+      const states = data.counter_state;
+      const map: { [index: string]: IDevice } = {};
+      states.forEach(s => map[s.device_id] = s);
       return this.counterUpdate$.map(d => {
-        if (d && counters.length > 0) {
-          for (var i = 0; i < counters.length; i++) {
-            if (counters[i].device_id === d.device_id) {
-              counters[i] = d;
-              break;
-            }
-          }
+        if (d) {
+          states[d.device_id] = d;
         }
-        return counters;
+        return Object.keys(map).map(v => map[v]);
       });
     }).share();
 
-  Unfocus() {
-    this.socket.Send("/focus", {}).subscribe();
+  private Focus(branch_id: string) {
+    return this.socket.Send<IFocusReply>("/focus", {
+      branch_id
+    });
   }
-
 }

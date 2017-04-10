@@ -19,7 +19,7 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Total counter</span>
-                <span> {{numberCounter$ | async}} </span>
+                <span> {{numberCounter$ | async | json}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Total counter on</span>
@@ -67,10 +67,13 @@
     </div>
 
     <div class="divider margin-30-0"></div>
-    
+
+    <!-- Chart -->
     <div class="border">
-        <monitor-chart [data]="data"></monitor-chart>
+        <monitor-chart [data]="focus$ | async"></monitor-chart>
     </div>
+
+    <!-- More -->
 
     <h3 i18n>Services incomplete</h3>
 

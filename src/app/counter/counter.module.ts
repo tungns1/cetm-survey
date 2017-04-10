@@ -1,20 +1,21 @@
 import { NgModule } from "@angular/core";
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { SharedModule } from "./shared/";
-import { AppComponent } from "./counter.component";
+import { CounterComponent } from "./counter/counter.component";
 import { routing } from "./counter.routing";
-import { CounterComponent } from "./component";
-import { counterServiceProvider } from "./service";
+import { SettingComponent } from './setting/setting.component';
+import { CounterSettingService, CounterWelcomeGuard } from './shared';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
     imports: [
         SharedModule, routing
     ],
-    declarations: [AppComponent, CounterComponent],
-    providers: [counterServiceProvider],
-    bootstrap: [AppComponent]
+    declarations: [CounterComponent, SettingComponent, WelcomeComponent],
+    providers: [
+        CounterSettingService, CounterWelcomeGuard
+    ]
 })
-export class AppModule {
+export class CounterModule {
 
 }
 

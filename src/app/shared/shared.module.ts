@@ -6,14 +6,12 @@ import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
-import { authProviders } from './auth';
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
 import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 import { Ng2BasicModule } from './shared';
-
 
 @NgModule({
     imports: [
@@ -37,7 +35,6 @@ export class SharedModule {
             providers: [
                 EnvironmentModule.Providers(),
                 ExportExcelService,
-                authProviders,
                 LogService, RouterQueryStorageStrategy,
                 AppSocketGenerator, HttpServiceGenerator
             ]

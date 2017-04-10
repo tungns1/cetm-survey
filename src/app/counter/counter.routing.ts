@@ -1,12 +1,9 @@
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from "./shared/";
-
-import { CounterComponent, WorkspaceModule, LegacyModule } from "./component/";
-import { WorkspaceGuard } from './service';
-
-export function loadLegacyModule() {
-  return LegacyModule;
-}
+import { WorkspaceModule } from './workspace';
+import { CounterComponent } from './counter/counter.component';
+import { SettingComponent } from './setting/setting.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { CounterWelcomeGuard } from './shared';
 
 export function loadWorkspace() {
   return WorkspaceModule;
@@ -14,23 +11,29 @@ export function loadWorkspace() {
 
 const children: Routes = [
   {
-    path: ":branch_code/:counter_code",
-    loadChildren: loadLegacyModule
-  },
-  {
     path: "workspace",
     loadChildren: loadWorkspace,
     canActivate: [
-      WorkspaceGuard,
-      AuthGuard
+      CounterWelcomeGuard
     ]
+  },
+  {
+    path: "setting",
+    component: SettingComponent
+  },
+  {
+    path: "",
+    pathMatch: "full",
+    redirectTo: "welcome"
+  },
+  {
+    path: "welcome",
+    component: WelcomeComponent
   }
 ];
 
-export const routing = RouterModule.forChild([
-  {
-    path: "",
-    component: CounterComponent,
-    children: children
-  }
-]);
+export const routing = RouterModule.forChild([{
+  path: '',
+  component: CounterComponent,
+  children: children
+}]);

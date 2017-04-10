@@ -1,0 +1,22 @@
+<div id="actions" fxLayout="row" fxLayoutGap="2vw">
+    <button class="uppercase btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}">
+        <ng-container>Next</ng-container>
+    </button>
+    <button class="uppercase btnRed" fxFlex (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}">
+        <ng-container>Auto Next</ng-container>
+    </button>
+    <button class="uppercase btnFill" fxFlex (click)="Recall()"> 
+        <ng-container>Recall</ng-container>
+    </button>
+    <button class="uppercase btnFill" fxFlex (click)="Move()"> 
+        <ng-container>Move</ng-container>
+    </button>
+    <button class="uppercase btnRed" fxFlex (click)="Miss()">
+        <ng-container>Miss</ng-container>
+    </button>
+    <button class="uppercase btnGreen" fxFlex (throttle)="Finish()" throttle>
+        <ng-container>Finish</ng-container>
+    </button>
+</div>
+<ticket-detail-dialog #dialog [class.hidden]="!moveDialog"></ticket-detail-dialog>
+<feedback-skip></feedback-skip>

@@ -1,4 +1,5 @@
 export * from '../../shared/';
+export * from '../../auth';
 
 export {
     AbstractState, AbstractStateService,

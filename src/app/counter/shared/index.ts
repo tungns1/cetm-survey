@@ -1,2 +1,4 @@
 export * from '../../shared/';
-export * from '../../shared/model';
+export { CounterSettingService } from './counter-setting.service';
+export { CounterWelcomeGuard } from './counter-welcome.guard';
+export { AuthService } from '../../auth';

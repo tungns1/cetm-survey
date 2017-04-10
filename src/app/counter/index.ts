@@ -1,5 +1,5 @@
-import {AppModule} from "./counter.module";
+import { CounterModule } from "./counter.module";
 
-export default AppModule;
+export default CounterModule;
 
 
