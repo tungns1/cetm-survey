@@ -5,7 +5,6 @@ import { routing } from "./counter.routing";
 import { SettingComponent } from './setting/setting.component';
 import { CounterSettingService, CounterWelcomeGuard } from './shared';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { AuthProvider } from '../auth';
 
 @NgModule({
     imports: [
@@ -13,8 +12,7 @@ import { AuthProvider } from '../auth';
     ],
     declarations: [CounterComponent, SettingComponent, WelcomeComponent],
     providers: [
-        CounterSettingService, CounterWelcomeGuard,
-        AuthProvider
+        CounterSettingService, CounterWelcomeGuard
     ]
 })
 export class CounterModule {

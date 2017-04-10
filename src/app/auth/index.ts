@@ -1,2 +1,2 @@
 export { AuthModule } from './auth.module';
-export { AuthProvider, AuthService } from './auth-provider';
+export { AuthProvider, AuthService, SessionValidationGuard } from './auth-provider';

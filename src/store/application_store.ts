@@ -34,6 +34,14 @@ export class ApplicationStore extends SmallStorage<IApplication> {
         this.SaveData(true);
     }
 
+    HasToken() {
+        return this.Token.length > 2;
+    }
+
+    ClearToken() {
+        this.Token = "";
+    }
+
 }
 
 

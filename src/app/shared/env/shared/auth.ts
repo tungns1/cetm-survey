@@ -19,21 +19,8 @@ interface IAuthEnv {
     config: IBranchConfig;
 }
 
-interface ILoginPageData {
-    scope: string;
-    branch_code?: string;
-    auto_login?: boolean;
-    redirect: string;
-}
-
-const LOGIN_URL = "/auth/login";
-
 @Injectable()
 export class AuthEnvStorage {
-    constructor(
-        private router: Router
-    ) { }
-
     Data$ = new ReplaySubject<IAuthEnv>(1);
     User$ = this.Data$.map(d => d.me).filter(u => !!u).share();
     private data: IAuthEnv = <any>{};
@@ -50,17 +37,6 @@ export class AuthEnvStorage {
     set SubModule(m: string) {
         this.data.sub_module = m;
         this.emitChange();
-    }
-
-    get HasToken() {
-        return !!AppStorage.Token;
-    }
-
-    ShowLogin(data: ILoginPageData) {
-        this.router.navigate([LOGIN_URL], {
-            queryParams: data,
-            queryParamsHandling: "merge"
-        });
     }
 
     Update(me: IUser, branches: IBranch[], services: IService[], config: IBranchConfig) {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CurrentUser } from '../../x/platform';
-import { AuthService } from '../shared';
+import { AuthService, HttpError } from '../shared';
 
 interface ILoginModel {
   username: string;
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
     this.authService.Login(data).subscribe((v) => {
       const redirect = query.get("redirect") || "/";
       this.router.navigateByUrl(redirect);
-    }, (e: string) => {
-      this.message = e
+    }, (e: HttpError) => {
+      this.message = e.Message();
     });
   }
 }

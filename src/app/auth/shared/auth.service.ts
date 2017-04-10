@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpServiceGenerator, AppStorage, RuntimeEnvironment } from './shared';
+import {
+  HttpServiceGenerator, AppStorage, RuntimeEnvironment,
+  HttpError
+} from './shared';
+import { Observable } from 'rxjs/Observable';
 
 interface IAuthOption {
   scope: string;
@@ -35,6 +39,7 @@ export class AuthService {
   ) { }
 
   Login(option: IAuthOption) {
+    option.scope = option.scope || 'admin';
     return this.authApi.Post<ILoginReply>("login", {}, option)
       .do(data => {
         AppStorage.Token = data.session.id;
@@ -49,11 +54,21 @@ export class AuthService {
     return this.authApi.Get<IMySettings>(
       "my_settings",
       { scope: scope || 'admin', token: token || AppStorage.Token }
-    ).do(data => {
+    ).map(data => {
       this.env.Auth.Update(
         data.me, data.branches, data.services, data.config
       );
-    });
+      return true;
+    }).catch((e: HttpError) => {
+      try {
+        if (e.IsUnauthorized()) {
+          AppStorage.ClearToken();
+        }
+      } catch (e) {
+        console.log(e);
+      }
+      return Observable.of(false);
+    })
   }
 
   private authApi = this.hsg.make("/api/auth");

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SmallStorage } from './shared';
+import { SmallStorage, XWinStorageStrategy } from './shared';
 
 export interface ICounterSetting {
   branch_code: string;
@@ -8,8 +8,10 @@ export interface ICounterSetting {
 
 @Injectable()
 export class CounterSettingService extends SmallStorage<ICounterSetting> {
-  constructor() {
-    super("counter");
+  constructor(
+    private xwinStorage: XWinStorageStrategy
+  ) {
+    super("counter", xwinStorage);
   }
 
   Update(branch_code: string, counter_code: string) {

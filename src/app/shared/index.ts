@@ -6,10 +6,7 @@ export { Const, LOCALES } from '../../const';
 export { AppStorage } from '../../store';
 export { RuntimeEnvironment } from './env';
 
-export {
-    AppSocketGenerator,
-    HttpServiceGenerator, HttpApi
-} from './service';
+export * from './service';
 
 export { SmallStorage, RouterQueryStorageStrategy } from './shared';
 export { ExportExcelService } from '../x/ng';

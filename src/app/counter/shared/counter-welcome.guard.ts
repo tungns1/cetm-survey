@@ -5,39 +5,38 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { CounterSettingService } from './counter-setting.service';
-import { RuntimeEnvironment } from './shared';
+import { RuntimeEnvironment, SessionValidationGuard, AuthService } from './shared';
 
 /**
  * Check setting before redirect
  */
 @Injectable()
-export class CounterWelcomeGuard implements CanActivate {
+export class CounterWelcomeGuard extends SessionValidationGuard {
   constructor(
-    private router: Router,
+    router: Router,
+    authService: AuthService,
     private route: ActivatedRoute,
     private counterService: CounterSettingService,
     private env: RuntimeEnvironment
-  ) { }
+  ) { 
+    super(router, authService);
+  }
+
+  protected GetAuthExtra() {
+    return {
+      branch_code: this.counterService.Data.branch_code,
+      auto_login: true
+    }
+  }
+
+  protected GetScope() {
+    return "staff";
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.env.Auth.HasToken) {
-      this.env.Auth.ShowLogin({
-        scope: "staff",
-        branch_code: this.counterService.Data.branch_code,
-        redirect: state.url
-      });
-    }
-    if (!this.counterService.IsChecked) {
-      this.Welcome();
-      return false;
-    }
-    return true;
-  }
-
-  Welcome() {
-    this.router.navigate(["/counter/welcome"]);
+    state: RouterStateSnapshot): Observable<boolean> {
+    return super.canActivate(next, state);
   }
 
 }

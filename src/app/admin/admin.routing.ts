@@ -4,6 +4,7 @@ import { OrgModule } from './component/org';
 import { CenterModule } from './component/center';
 import { HouseModule } from './component/house';
 import { MetaModule } from './component/meta';
+import { SessionValidationGuard } from './shared';
 
 export function loadMetaModule() {
   return MetaModule;
@@ -33,6 +34,7 @@ export const routing = RouterModule.forChild([
   {
     path: "",
     component: AdminComponent,
+    canActivate: [SessionValidationGuard],
     children: children
   }
 ]);
