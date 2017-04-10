@@ -18,8 +18,8 @@
             </div>
         </div>
     </div>
-    <div style="width: 100%">
-        <button class="btnFill ok-cancel margin-right button-margin margin-top margin-bot" (click)="Close()">Cancel</button>
-        <button class="btnFill ok-cancel  margin-bot margin-top" (click)="Save()">Ok</button>
+    <div fxLayout="row" fxLayoutGap="10px">
+        <button fxFlex class="btnFill margin-top margin-bot margin-left" (click)="Close()">Cancel</button>
+        <button fxFlex class="btnFill margin-top margin-bot margin-right" (click)="Save()">Ok</button>
     </div>
 </modal>

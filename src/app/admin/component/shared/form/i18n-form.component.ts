@@ -26,7 +26,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     template: `
     <div *ngFor="let code of codes">
         <label i18n>{{names[code]}}</label>
-        <input class="hl-input" [(ngModel)]="values[code]" (change)="OnChange()" />
+        <input class="hl-input margin-top-edittext" [(ngModel)]="values[code]" (change)="OnChange()" />
     </div>
     `,
 

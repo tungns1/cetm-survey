@@ -21,16 +21,19 @@
     background-color: $key-color;
     color: #fff;
 }
+
 .btnRed {
     @extend .btnFill;
     background-color: #f53e30;
     border: 1px solid #f53e30;
 }
+
 .btnGreen {
     @extend .btnFill;
     background-color: #01947a;
     border: 1px solid #01947a;
 }
+
 .btnGrey {
     @extend .btnClear;
     background-color: #dee0df;
@@ -154,19 +157,27 @@
 }
 
 .margin-left {
-    margin-left: 5px;
+    margin-left: 20px;
 }
 
 .margin-top {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .margin-right {
-    margin-right: 5px;
+    margin-right: 20px;
 }
 
 .margin-bot {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.content-margin-right {
+    margin-right: 10px
+}
+
+.margin-top-edittext {
+    margin-top: 5px;
 }
 
 .modal-header-title {
@@ -179,6 +190,25 @@
 
 .button-margin {
     margin-left: 2px;
+}
+
+.select-form {
+    height: 27px;
+    width: 94%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aeb0af;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+
+.edit-image {
+    height: 27px;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aeb0af;
+    border-radius: 3px;
 }
 
 //End of UI elements
