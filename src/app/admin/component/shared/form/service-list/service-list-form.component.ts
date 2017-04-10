@@ -20,7 +20,7 @@ type IServiceList = IService[];
 @Component({
     selector: 'service-list',
     templateUrl: 'service-list.form.html',
-    styleUrls: ['service-list.form.css'],
+    styleUrls: ['service-list.form.scss'],
     providers: [SERVICE_LIST_CONTROL_VALUE_ACCESSOR]
 })
 export class ServiceListComponent implements ControlValueAccessor {

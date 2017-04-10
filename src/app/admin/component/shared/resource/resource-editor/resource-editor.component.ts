@@ -11,8 +11,8 @@ import { ILayoutResources, IResourceForm } from '../shared';
 
 @Component({
   selector: 'app-resource-editor',
-  templateUrl: './resource-editor.component.html',
-  styleUrls: ['./resource-editor.component.scss'],
+  templateUrl: 'resource-editor.component.html',
+  styleUrls: ['resource-editor.component.scss'],
   providers: [RESORCE_CONTROL_VALUE_ACCESSOR]
 })
 export class ResourceEditorComponent implements OnInit, ControlValueAccessor {

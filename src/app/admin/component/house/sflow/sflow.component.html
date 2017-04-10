@@ -1,28 +1,33 @@
 <app-env-sub-module i18n-title title="Service Flow">
 </app-env-sub-module>
-<div *ngIf="showList$ | async">
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
     <app-datatable i18n-name name="Service Flow" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name=location i18n-title title="Location"></app-table-field>
         <app-table-field name="service_id" i18n-title title="Service ID"></app-table-field>
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form class="hl-form" [formGroup]="form">
-        <hr> <span i18n>Location</span>:
-        <branch-picker level="0" formControlName="branch_id"></branch-picker>
-        <hr> <span i18n>Service ID</span>:
-        <select class="hl-select" formControlName="service_id">
-            <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>
-        </select>
-        <hr> <span i18n>Ticket format</span>:
-        <select class="hl-select" formControlName="tform_normal">
-            <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
-        </select>
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" 
+        [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Location</span>
+            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
+            <span fxFlex="15%" i18n>Service ID</span>
+            <select fxFlex class="hl-select" formControlName="service_id">
+                <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>
+            </select>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Ticket format</span>
+            <select fxFlex class="hl-select" formControlName="tform_normal">
+                <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
+            </select>
 
-        <br> <span i18n>Ticket format Vip</span>:
-        <select class="hl-select" formControlName="tform_vip">
-            <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
-        </select>
+            <span fxFlex="15%" i18n>Ticket format Vip</span>
+            <select fxFlex class="hl-select" formControlName="tform_vip">
+                <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
+            </select>
+        </div>
     </form>
 </app-editor-view>

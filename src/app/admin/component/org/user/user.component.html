@@ -1,5 +1,5 @@
 <app-env-sub-module i18n-title title="User"></app-env-sub-module>
-<div *ngIf="showList$ | async">
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
     <app-datatable name="User" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="username" i18n-title title="Username"></app-table-field>
         <app-table-field name="fullname" i18n-title title="Full Name"></app-table-field>
@@ -7,20 +7,29 @@
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form class="hl-form" [formGroup]="form">
-        <span i18n>Username</span>:
-        <input class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;"><br>
-        <span i18n>Full Name</span>:
-        <input class="hl-input" type="text" formControlName="fullname" i18n-placeholder placeholder="Full Name" style="width: 100%;"><br>
-        <span i18n>Password</span>:
-        <input class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
-        <br>
-        <span i18n>Role</span>:
-        <select class="hl-select" formControlName="role">
-            <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
-        </select><br>
-        <span i18n>Location</span>:
-        <branch-picker formControlName="branch_id"></branch-picker>
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
+        (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Username</span>
+            <input fxFlex class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width 100%;">
+            <span fxFlex="15%" i18n>Full Name</span>
+            <input fxFlex class="hl-input" type="text" formControlName="fullname" i18n-placeholder placeholder="Full Name" style="width 100%;">
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Password</span>
+            <input fxFlex class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width 100%;">
+            
+            <span fxFlex="15%" i18n>Role</span>
+            <select fxFlex class="hl-select" formControlName="role">
+                <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
+            </select>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Location</span>
+            <branch-picker fxFlex formControlName="branch_id"></branch-picker>
+            <div fxFlex="15%"></div>
+            <div fxFlex></div>
+        </div>
     </form>
 </app-editor-view>

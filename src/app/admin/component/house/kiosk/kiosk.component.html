@@ -1,45 +1,52 @@
 <app-env-sub-module i18n-title title="Kiosk"></app-env-sub-module>
-<div *ngIf="showList$ | async">
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
     <app-datatable name="Kiosk" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form class="hl-form form" [formGroup]="form">
-        <span i18n>Code</span>
-        <input class="hl-input" type="text" formControlName="code" i18n-placeholder="Code"><br>
-        <span i18n>Name</span>:<input class="hl-input" type="text" formControlName="name" i18n-placeholder="Name"><br>
-        <span i18n="Default Kiosk Vip Codes">Fixed Vip Codes</span>: <input class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
-
-        <br> <span i18n="Inherit kiosk attributes">Inherit from</span>:
-        <select class="hl-select" formControlName="parent_id">           
-            <option value="">--None--</option>
-            <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
-        </select>
-
-        <br> <span i18n>Layout</span>
-        <a routerLink="/admin/center/layout" queryParamsHandling="merge" [queryParams]="{tag: 'kiosk'}"> 
-             Edit
-        </a>
-        <select class="hl-select" formControlName="layout_id">
-            <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
-        </select>
-        <br><span i18n>Resources</span>
-        <app-resource-editor formControlName="layout_resources"></app-resource-editor>
-        <br> <span i18n>Ticket layout</span>
-        <select class="hl-select" formControlName="tlayout_id">
-            <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
-        </select>
-
-        <br><span i18n>Services</span>:
-        <div class="">
-            <service-list formControlName="services" [services]="services | async">
-            </service-list>
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
+        (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Code</span>
+            <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder="Code">
+            <span fxFlex="15%" i18n>Name</span>
+            <input fxFlex class="hl-input" type="text" formControlName="name" i18n-placeholder="Name">
         </div>
-
-        <hr> <span i18n>Location</span>
-        <branch-picker level="0" formControlName="branch_id"></branch-picker>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n="Default Kiosk Vip Codes">Fixed Vip Codes</span>
+            <input fxFlex class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
+            <span fxFlex="15%" i18n="Inherit kiosk attributes">Inherit from</span>
+            <select fxFlex class="hl-select" formControlName="parent_id">           
+                <option value="">--None--</option>
+                <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
+            </select>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Layout
+                <a routerLink="/admin/center/layout" queryParamsHandling="merge" 
+                    [queryParams]="{tag: 'kiosk'}">Edit</a>
+            </span>
+            <select fxFlex class="hl-select" formControlName="layout_id">
+                <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
+            </select>
+            <span fxFlex="15%" i18n>Ticket layout</span>
+            <select fxFlex class="hl-select" formControlName="tlayout_id">
+                <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
+            </select>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Location</span>
+            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
+            <span fxFlex="15%" i18n>Services</span>
+            <service-list fxFlex class="border" formControlName="services" 
+                [services]="services | async"></service-list>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="15%" i18n>Resources</span>
+            <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+        </div>
     </form>
 </app-editor-view>
