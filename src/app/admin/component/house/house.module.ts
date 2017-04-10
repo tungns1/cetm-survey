@@ -8,6 +8,7 @@ import { CounterComponent } from './counter/counter.component';
 import { KioskComponent } from './kiosk/kiosk.component';
 import { ScreenComponent } from './screen/screen.component';
 import { SFlowComponent } from './sflow/sflow.component';
+import { AccordionModule } from '../../../x/ui/accordion/accordion';
 
 import { routing } from './house.routing';
 
@@ -18,7 +19,7 @@ import { ResourceModule } from '../shared';
         SharedModule, BranchModule,
         EditorModule, AdminFormModule, ServiceListModule,
         MultiFilePickerModule, ResourceModule,
-        routing
+        routing, AccordionModule
     ],
     declarations: [
         HouseComponent, CounterComponent, KioskComponent,
