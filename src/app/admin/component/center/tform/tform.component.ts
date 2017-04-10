@@ -46,7 +46,6 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
   ) { 
     super(injector, org.TFormService);
   }
-service = this.org.TFormService;
     makeForm(b?: ITForm) {
         b = b || <any>{};
         return (new FormBuilder).group({
