@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule, OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
 import { AppConfirmDialog, ConfirmDirective } from './confirm.directive';
+import { MaterialModule } from '@angular/material';
+import { OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
 
 @NgModule({
     imports: [

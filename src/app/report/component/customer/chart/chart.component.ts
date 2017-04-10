@@ -1,8 +1,8 @@
-import { Component, Input ,ContentChild} from '@angular/core';
+import { Component, Input, ContentChild } from '@angular/core';
 import { ReportViewService } from '../../shared';
-import { TranslateService ,ChartItemGroupView} from '../../shared';
+import { ChartItemGroupView } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { CustomerAPI} from '../service/customer.service';
+import { CustomerAPI } from '../service/customer.service';
 
 @Component({
     selector: 'customer-chart',
@@ -10,11 +10,11 @@ import { CustomerAPI} from '../service/customer.service';
     styleUrls: ['chart.component.scss']
 })
 export class ReportChartComponent {
-    constructor(private customerApi:CustomerAPI) { }
+    constructor(private customerApi: CustomerAPI) { }
 
     ngOnInit() {
 
     }
     @ContentChild("pieConfig") pieConfig: ChartItemGroupView;
-     data$=this.customerApi.RxSummaryView;
+    data$ = this.customerApi.RxSummaryView;
 }

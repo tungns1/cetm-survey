@@ -21,11 +21,11 @@
             <tr *ngFor="let s of summary$ | async" (click)="focus(s)" class="branchSummary">
                 <td> {{s.branch_id | branchName}} </td>
                 <td> {{s.printed}}</td>
-                <td i18n> {{s.waiting}}</td>
-                <td i18n> {{s.serving}}</td>
-                <td i18n> {{s.finished}}</td>
-                <td i18n> {{s.missed}}</td>
-                <td i18n> {{s.cancelled}}</td>
+                <td> {{s.waiting}}</td>
+                <td> {{s.serving}}</td>
+                <td> {{s.finished}}</td>
+                <td> {{s.missed}}</td>
+                <td> {{s.cancelled}}</td>
                 <td [ngClass]="{'warning': s.wl_percent.toFixed(2) > 40}">
                     <span>{{s.wait_long}} ({{s.wl_percent.toFixed(2)}}%)</span>
                 </td>
@@ -36,15 +36,15 @@
             <tr *ngIf="totalSummary$ | async; let total">
                 <td i18n>Summary</td>
                 <td> {{total.printed}}</td>
-                <td i18n> {{total.waiting}}</td>
-                <td i18n> {{total.serving}}</td>
-                <td i18n> {{total.finished}}</td>
-                <td i18n> {{total.missed}}</td>
-                <td i18n> {{total.cancelled}}</td>
-                <td i18n [ngClass]="{'warning': total.wl_percent.toFixed(2) > 40}">
+                <td> {{total.waiting}}</td>
+                <td> {{total.serving}}</td>
+                <td> {{total.finished}}</td>
+                <td> {{total.missed}}</td>
+                <td> {{total.cancelled}}</td>
+                <td [ngClass]="{'warning': total.wl_percent.toFixed(2) > 40}">
                     <span>{{total.wait_long}} ({{total.wl_percent.toFixed(2)}}%)</span>
                 </td>
-                <td i18n [ngClass]="{'warning': total.s_l_percent.toFixed(2) > 10}">
+                <td [ngClass]="{'warning': total.s_l_percent.toFixed(2) > 10}">
                     <span>{{total.s_l}} ({{total.s_l_percent.toFixed(2)}}%)</span>
                 </td>
             </tr>

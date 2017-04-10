@@ -1,13 +1,12 @@
-@import '../../../../../styles/design/variables';
-#focusComponent{
-    .overview{
+@import '../../../../shared/style.scss';
+#focusComponent {
+    .overview {
         width: 100%;
-        span{
+        span {
             margin-bottom: 10px;
         }
     }
-    .waiting {
-    }
+    .waiting {}
     .missed {
         // background-color: #0b8fda;
         color: #156a9a;
@@ -24,24 +23,25 @@
         color: #ff5858;
     }
 }
-#modal_monitor_detailTicket{
-    .modalContent{
+
+#modal_monitor_detailTicket {
+    .modalContent {
         padding: 20px;
-        table{
+        table {
             width: 100%;
             border-spacing: 0px;
-            th{
+            th {
                 font-weight: 100;
                 padding: 5px 10px;
                 text-align: left;
             }
         }
-        .cusDetail{
+        .cusDetail {
             width: 50%;
             margin: auto;
             margin-top: 10px;
         }
-        button{
+        button {
             margin: 20px 0;
             float: right;
         }

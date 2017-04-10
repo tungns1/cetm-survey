@@ -1,6 +1,6 @@
 <app-env-sub-module i18n-title title="Screen"></app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Screen" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Screen" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
     </app-datatable>
@@ -23,6 +23,7 @@
 
         <br><span i18n>Inherit from</span>:
         <select class="hl-select" formControlName="parent_id">
+            <option value="">--None--</option>
             <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
         </select>
 

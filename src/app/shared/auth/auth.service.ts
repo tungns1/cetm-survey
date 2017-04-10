@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs/Observable';
 import { HttpServiceGenerator } from '../service';
-import { HttpError } from '../../x/backend/';
 
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Injectable } from '@angular/core';
 import { ISession, RxCurrentToken, SessionService } from './session.service';
@@ -39,7 +38,7 @@ export class AuthService {
     Login(form) {
         const values = Object.assign(this.options, form);
         values['scope'] = this.scope;
-        return this.authBackend.Post("login", {}, values).map(v => {
+        return this.authBackend.Post<any>("login", {}, values).map(v => {
             let session: ISession = v.session;
             this.sessionService.Activate(session);
             return session;
@@ -48,9 +47,7 @@ export class AuthService {
 
     Logout() {
         this.sessionService.Destroy();
-        this.router.navigate(["/login"], {
-            queryParams: this.route.snapshot.queryParams
-        });
+        location.reload();
     }
 
     RefreshMySettings() {
@@ -64,16 +61,10 @@ export class AuthService {
     }
 
     Refresh() {
-        return this.RefreshMySettings().catch(e => {
-            console.log(e);
-            try {
-                if ((<HttpError>e).IsUnAuthorized()) {
-                    this.Logout();
-                }
-            } catch (v) {
+        return this.RefreshMySettings().catch((e: string) => {
+            if (e.toLowerCase().indexOf("unauthorized") !== -1) {
                 this.Logout();
             }
-
             return of(false);
         });
     }
@@ -105,4 +96,16 @@ export class AuthService {
     private rxMySetting = new ReplaySubject<IMySettings>(1);
     autoLogin = false;
     redirect = '/';
+
+    SetRedirect(route: ActivatedRouteSnapshot, url?: string) {
+        this.redirect = url || route.queryParamMap.get("redirect") || '';
+        if (this.redirect.startsWith("/counter")) {
+            this.scope = "staff";
+            this.autoLogin = true;
+        } else {
+            this.scope = "admin";
+            this.autoLogin = false;
+        }
+        this.options["branch_code"] = route.queryParamMap.get("branch_code");
+    }
 }

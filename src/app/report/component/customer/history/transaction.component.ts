@@ -17,6 +17,9 @@ export class TransactionComponent implements OnInit {
         private env: RuntimeEnvironment
     ) { }
     customer: ICustomer;
+    data = {};
+    link: string;
+    state: string;
 
     ngOnInit() {
 
@@ -27,7 +30,7 @@ export class TransactionComponent implements OnInit {
     SetData(d: ITransactionView) {
         this.link = '';
         this.data = d;
-        console.log(d);
+        // console.log(d);
         if (d.audio) {
             this.link=this.env.Platform.Http+'/api/report/record/'+d.audio;
             // this.link = this.appService.MakeLink(`/api/report/record/${d.audio}`);
@@ -46,8 +49,4 @@ export class TransactionComponent implements OnInit {
         this.customer = null;
         this.modal.Close();
     }
-
-    data = {};
-    link: string;
-    state: string;
 }
