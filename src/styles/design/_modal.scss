@@ -70,10 +70,6 @@
     .body-generic-form {
         margin-left: 5px;
     }
-    .edit-reset-button {
-        float: right;
-        margin-right: 4px;
-    }
     .body-resource-editor {
         text-align: center;
     }
@@ -132,6 +128,16 @@
         border-width: 1px;
         border-color: #aeb0af;
         border-radius: 3px;
+    }
+}
+
+#kiosk-resources {
+    .edit-reset-button {
+        float: right;
+        margin-right: 4px;
+    }
+    .text-center {
+        text-align: center;
     }
 }
 
