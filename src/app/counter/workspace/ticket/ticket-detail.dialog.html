@@ -30,7 +30,7 @@
                 <span fxFlex>{{ticket.mtime | localDayTime}}</span>
             </div>
 
-            <p class="margin-10-0" i18n>Transfer Counter</p>
+            <p class="margin-10-0" i18n>Transfer counter</p>
             <select-check class="margin-t-10" [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
 
             <div *ngIf="isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
