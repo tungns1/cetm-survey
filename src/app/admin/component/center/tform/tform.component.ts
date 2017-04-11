@@ -18,6 +18,8 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
     super(injector, org.TFormService);
   }
 
+  title = 'ticket number format'
+
   makeForm(b?: ITForm) {
     b = b || <any>{};
     return (new FormBuilder).group({

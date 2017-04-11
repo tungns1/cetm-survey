@@ -20,6 +20,8 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
         super(injector, house.CounterService);
     }
 
+    title = 'counter';
+
     services = this.org.ServiceService.RxListView;
     makeForm(b?: ICounter) {
         b = b || <any>{};

@@ -1,6 +1,7 @@
 <div id="editor">
     <div class="headerAndNav">
-        <h2 class="header uppercase">{{title}}</h2>
+        <h2 *ngIf="isNew" class="header uppercase">add new {{title}}</h2>
+        <h2 *ngIf="!isNew" class="header uppercase">edit {{title}}</h2>
         <div class="nav">
             <button class="btnClear btnMargin uppercase" (click)="GoBack()">
                 <span>Back</span>

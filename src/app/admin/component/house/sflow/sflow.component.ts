@@ -19,6 +19,7 @@ export class SFlowComponent extends BaseAdminComponent<ISFlow> {
         super(injector, house.SFlowService);
     }
 
+    title = 'service flow';
 
     services = this.org.ServiceService.RxListView;
     tforms = this.org.TFormService.RxListView;
