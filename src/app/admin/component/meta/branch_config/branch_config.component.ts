@@ -18,6 +18,8 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     super(injector, meta.BranchConfigService);
   }
 
+  title = 'branch config';
+
   makeForm(u?: IBranchConfig) {
     u = u || <any>{};
     return (new FormBuilder).group({

@@ -23,6 +23,8 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         this.counters$.subscribe(console.log.bind(console));
     }
 
+    title = 'screen';
+
     screens = this.house.ScreenService.RxUpperList;
     layouts = this.center.LayoutService.GetByType('screen');
 

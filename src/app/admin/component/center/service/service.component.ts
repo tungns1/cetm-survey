@@ -18,6 +18,8 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
         super(injector, org.ServiceService);
     }
 
+    title = 'service';
+
     makeForm(b?: IService) {
         b = b || <any>{};
         return (new FormBuilder).group({

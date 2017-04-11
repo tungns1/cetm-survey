@@ -18,6 +18,8 @@ export class UserComponent extends BaseAdminComponent<IUser> {
     super(injector, org.UserService);
   }
 
+  title = 'user';
+
   makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({
