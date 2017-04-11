@@ -11,10 +11,10 @@
 
     <ng-content></ng-content>
 
-    <div fxLayout="row" fxLayoutGap="30%" class="action">
-        <div fxFlex [class.hide]="!isNew"></div>
-        <button fxFlex class="uppercase btnFill" [class.hide]="!isNew" (click)="onAction('add')" i18n>Add</button>
-        <button fxFlex class="uppercase btnFill" [class.hide]="isNew" (click)="onAction('edit')" i18n>Save</button>
-        <button fxFlex class="uppercase btnRed" [class.hide]="isNew" appConfirm="Do you want to delete this?" (confirm)="onAction('remove')" i18n>Delete</button>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+        <!--<div fxFlex [class.hide]="!isNew"></div>-->
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" (click)="onAction('add')" i18n>Add</button>
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" (click)="onAction('edit')" i18n>Save</button>
+        <button fxFlex="15%" class="uppercase btnRed" [class.hide]="isNew" appConfirm="Do you want to delete this?" (confirm)="onAction('remove')" i18n>Delete</button>
     </div>
 </div>
