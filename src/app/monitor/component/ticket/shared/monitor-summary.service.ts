@@ -23,8 +23,10 @@ export class MonitorSummaryService {
       });
     }).subscribe(data => {
       const map = new Map<string, Summary>();
-      data.forEach(d => map.set(d.branch_id, new Summary(d)));
-      this.initialSummary$.next(map);
+      if(data) {
+        data.forEach(d => map.set(d.branch_id, new Summary(d)));
+        this.initialSummary$.next(map);
+      }
     });
   }
 
