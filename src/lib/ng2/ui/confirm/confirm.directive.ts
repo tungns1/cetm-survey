@@ -31,12 +31,12 @@ export class ConfirmDirective {
 
 @Component({
   selector: 'app-confirm-dialog',
+  // <h1 md-dialog-title></h1>
   template: `
-  <h1 md-dialog-title></h1>
-  <div md-dialog-content>{{message}}</div>
-  <div md-dialog-actions>
-    <button md-button (click)="dialogRef.close(true)">Yes</button>
-    <button md-button (click)="dialogRef.close(false)">No</button>
+  <div md-dialog-content class="center">{{message}}</div>
+  <div md-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-20">
+    <button fxFlex="20%" class="uppercase btnClear" (click)="dialogRef.close(true)">Yes</button>
+    <button fxFlex="20%" class="uppercase btnFill" (click)="dialogRef.close(false)">No</button>
   </div>
   `
 })
