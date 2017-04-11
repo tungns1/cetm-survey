@@ -3,7 +3,8 @@ import { ITicket, TicketState, TicketStates } from '../shared';
 import { WorkspaceService } from './workspace.service';
 import { QueueService } from './queue.service';
 import { TicketService } from './ticket.service';
-import { NewLedController, LedController } from '../device';
+import { LedDevice } from '../device';
+import { WorkspaceSocket } from './workspace.socket';
 
 const STATUS = {
     WELCOME: "welcome",
@@ -22,18 +23,15 @@ export class LedService {
     constructor(
         private queueService: QueueService,
         private ticketService: TicketService,
-        private workspaceService: WorkspaceService
+        private ledDevice: LedDevice,
+        private workspaceService: WorkspaceService,
+        private socket: WorkspaceSocket
     ) {
-        this.onInit();
+
     }
 
-    ledDevice: LedController;
-
-
-    private socket = this.workspaceService.Socket;
-    private onInit() {
+    enable() {
         this.workspaceService.currentCounter$.switchMap(c => {
-            this.ledDevice = NewLedController(c.dev_addr);
             return this.ticketService.autoNext$.switchMap(auto => {
                 return this.queueService.serving$.debounceTime(250).map(t => {
                     const s = <LedStatus>{};
@@ -50,6 +48,10 @@ export class LedService {
         }).subscribe(status => {
             this.SendStatus(status);
         });
+    }
+
+    disable() {
+        
     }
 
     private SendStatus(status: LedStatus) {

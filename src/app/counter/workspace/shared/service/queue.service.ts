@@ -6,7 +6,6 @@ import {
 import { SortTicket, ITicketQueue, ITickets } from '../model';
 import { WorkspaceService } from './workspace.service';
 import { of } from 'rxjs/observable/of';
-import { SendToRecorder } from '../device';
 
 @Injectable()
 export class QueueService {
@@ -20,7 +19,6 @@ export class QueueService {
         this.getByState(TicketStates.Waiting).subscribe(this.waiting$);
         this.getByState(TicketStates.Serving).subscribe(this.serving$);
         this.getByState(TicketStates.Missed).subscribe(this.missed$);
-        this.serving$.subscribe(SendToRecorder);
     }
 
     private socket = this.workspaceService.Socket;
