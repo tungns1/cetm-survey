@@ -1,0 +1,23 @@
+<span>Set priority for ticket:</span><br>
+<div>
+    <form class="hl-form" [formGroup]="form">
+        <div>
+            <strong class="uppercase inline" i18n>Priority for service</strong><label class="note margin-l-5" i18n>(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="service_priority">
+        </div>
+        <div>
+            <strong class="uppercase inline" i18n>Priority for vip card </strong><label class="note margin-l-5">(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="vip_card">
+        </div>
+        <div>
+            <strong class="uppercase inline" i18n>Priority for customer vip</strong><label class="note margin-l-5">(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="customer_vip">
+        </div>
+        <div>
+            <strong class="uppercase inline" i18n>Priority for ticket online</strong><label class="note margin-l-5">(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="ticket_online">
+        </div>
+
+        <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
+    </form>
+</div>
