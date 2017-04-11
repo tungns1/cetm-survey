@@ -1,0 +1,19 @@
+<span>Set time for ticket:</span><br>
+<div>
+    <form class="hl-form" [formGroup]="form">
+        <div>
+            <strong class="uppercase inline" i18n>Waiting time transaction</strong><label class="note margin-l-5" i18n>(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="max_waiting">
+        </div>
+        <div>
+            <strong class="uppercase inline" i18n> Serving time transaction</strong><label class="note margin-l-5">(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="max_serving">
+        </div>
+        <div>
+            <strong class="uppercase inline" i18n>Auto finish time</strong><label class="note margin-l-5">(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="auto_finish">
+        </div>
+
+        <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
+    </form>
+</div>
