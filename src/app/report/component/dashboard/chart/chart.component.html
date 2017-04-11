@@ -1,12 +1,4 @@
 <div id="chartReport" *ngIf="pieConfig">
-    <div class="hl-chart" bar-chart *ngIf="type === 'bar' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
-    <div class="hl-chart" stack-chart *ngIf="type === 'stack'" [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
-    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
-
-    <div class="hl-chart" *ngIf="isPie" fxLayout="row">
-        <div fxFlex style="height:22vw;float:left;" *ngFor="let g of pieConfig.groups$ | async" pie-chart [data]="pieData | async" [items]="g.activeItems">
-        </div>
-    </div>
 
     <select class="chartType" [(ngModel)]="type">
         <option disabled selected value i18n>-- Select the chart --</option>
@@ -15,8 +7,19 @@
         <option value="stack" i18n>Stacked Chart</option>
         <option value="pie" i18n>Pie Chart</option>
     </select>
+    <!--CHART-->
+    <div class="hl-chart" bar-chart *ngIf="type === 'bar' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
+    <div class="hl-chart" stack-chart *ngIf="type === 'stack'" [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
+    <div class="hl-chart" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
 
-    <div class="chartOptions margin-30-40" *ngIf="!isPie">
+    <div class="hl-chart" *ngIf="isPie" fxLayout="row">
+        <div fxFlex style="width: 33%; height:22vw;float:left;" 
+            *ngFor="let g of pieConfig.groups$ | async" pie-chart [data]="pieData | async" 
+            [items]="g.activeItems">
+        </div>
+    </div>
+    <!--LEGEND-->
+    <div class="chartOptions margin-50-50" *ngIf="!isPie">
         <div *ngFor=" let item of otherConfig.items$ | async " class="option">
             <div style="float:left;">
                 <div class="checkBox margin-0-5" [style.background-color]="item.active? item.color : ''">
@@ -27,16 +30,15 @@
         </div>
     </div>
 
-    <div class="chartOptions margin-30-40" *ngIf="isPie">
-        <div *ngFor="let g of pieConfig.groups$ | async">
-            <div *ngFor="let t of g.items" class="option">
-                <div style="float:left;">
-                    <div class="checkBox margin-0-5" [style.background-color]="t.active? t.color : ''">
-                        <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
-                    </div>
-                    <span style="font-size: 10px;"> {{t.title}}</span>
+    <div class="legend" fxLayout="row" *ngIf="isPie">
+        <div *ngFor="let item of pieConfig.groups$ | async" fxFlex fxLayot="column">
+            <div *ngFor="let t of item.items" fxFlex class="margin-7-0 item">
+                <div class="checkBox margin-0-5" [style.background-color]="t.active? t.color : ''">
+                    <input type="checkbox" [ngModel]="t.active " (ngModelChange)="pieConfig.Toggle(t)">
                 </div>
+                <span style="font-size: 11px;"> {{t.title}}</span>
             </div>
         </div>
     </div>
+
 </div>
