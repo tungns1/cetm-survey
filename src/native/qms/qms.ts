@@ -15,7 +15,7 @@ export class QmsService {
         return null;
     }
     
-    __x: XWinService;
+    __x = new XWinService();
 
     listen(event: string, cb: (event: string, args: any) => any) {
 
@@ -26,7 +26,8 @@ export class QmsService {
 
 @Injectable()
 export class XWinService {
-    Broadcast(event: string, data: any) {}
+    Broadcast(event: string, data?: any) {}
+    Send(event: string, data?: any) {}
     readonly isBrowser = true;
 }
 

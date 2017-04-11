@@ -2,6 +2,15 @@
 import { Injectable } from '@angular/core';
 import { QmsService } from '../shared';
 
+
+class NoopLedDevice {
+    Welcome() { }
+    Stop() { }
+    Show(cnum: string) { }
+    Ping() { }
+}
+
+
 @Injectable()
 export class CounterDevice {
     constructor(
@@ -13,6 +22,7 @@ export class CounterDevice {
     onInit() {
         try {
             this.native = this.qmsService.device("counter/index");
+            this.led = this.native.GetLed();
             console.log("device is supported");
         } catch (e) {
             console.log("Fail to determine native", e);
@@ -20,15 +30,5 @@ export class CounterDevice {
     }
 
     private native: any;
-
-    GetFeedbackWindow() {
-        const link = "http://localhost:4201/#/feedback";
-        if (this.native) {
-            this.native.GetFeedbackWindow(link, this.qmsService.__x);
-        }
-    }
-
-    GetLed() {
-        return this.native.GetLed();
-    }
+    private led = new NoopLedDevice();
 }
