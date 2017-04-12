@@ -1,6 +1,7 @@
 // Language default is based by partner
-declare var CETM;
-const LanguageDefault = CETM.Language.default || 'en';
+// declare var CETM;
+// const LanguageDefault = CETM.Language.default || 'en';
+const LanguageDefault ='en';
 
 const Languages = {
     en: 'English',
