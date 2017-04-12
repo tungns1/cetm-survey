@@ -1,6 +1,6 @@
 
 import { Component, Injector } from '@angular/core';
-import { CenterService, HouseService, ICounter, AllRoles } from '../../shared/';
+import { CenterService, HouseService, ICounter, AllRoles, CacheBranch } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -36,6 +36,8 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
             branch_id: [b.branch_id, Validators.required]
         });
     }
+
+    // level0$ = CacheBranch.RxByLevel(0);
 
 }
 
