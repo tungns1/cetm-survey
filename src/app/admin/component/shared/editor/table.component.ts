@@ -1,8 +1,7 @@
 import {
-    Component, OnInit, Input,
-    ContentChildren, QueryList
+    Component, OnInit, Input, Output, EventEmitter,
+    ContentChildren, QueryList, ChangeDetectorRef
 } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
 import { ITableField, ITableAction } from './model';
 
 @Component({
@@ -20,10 +19,12 @@ export class AppTableFieldComponent implements ITableField {
 })
 export class AppDataTableComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        // private ref: ChangeDetectorRef
+    ) { }
 
     ngOnInit() {
-
+        // this.ref.markForCheck();
     }
 
     @Input() fields: ITableField[] = [];
