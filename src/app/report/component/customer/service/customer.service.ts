@@ -1,21 +1,18 @@
 import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from '../../shared';
-import { 
+import {
     ICustomer, HttpServiceGenerator, Paging
- } from '../../shared/';
+} from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { IAggregate, Aggregate } from '../../../model';
+import { Toast } from '../../../../x/ui/noti/toastr';
 
 export interface IHistory {
     data: ITransactionView[];
     total: number;
 }
 
-
-
-export const max_service = new BehaviorSubject<IService>(null);
-export const max_store = new BehaviorSubject<IStore>(null);
 export const paging = new Paging<ITransactionView>();
 export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
 
@@ -26,7 +23,7 @@ export class CustomerAPI {
         private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
-
+    toast = new Toast;
     GetHistory(skip: number, limit: number, code: string, id: string) {
         const query = Object.assign({
             skip: skip,
@@ -54,7 +51,7 @@ export class CustomerAPI {
                 this.RxCustomer.next(v.data);
             } else {
                 this.RxCustomer.next(v.data);
-                alert('Not Customer Data');
+                this.toast.Title('Info').Info("Not Customer Data").Show();
             }
 
         });

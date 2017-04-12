@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+// import { Aggregate } from '../shared';
 import { ExportExcelService, Customer } from '../../shared';
 
 @Component({
@@ -20,7 +21,7 @@ export class ServiceComponent {
   showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
-  // padding = 8;
+  // padding = 20;
 
 
   colorScheme = {
@@ -29,17 +30,13 @@ export class ServiceComponent {
 
 
   constructor(private exportService: ExportExcelService) {
+
   }
-
-
-
 
 
   onSelect(event) {
     console.log(event);
-    console.log(this.padding);
   }
-
   excel() {
     this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
   }

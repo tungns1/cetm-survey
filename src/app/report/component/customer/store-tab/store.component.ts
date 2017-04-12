@@ -33,26 +33,6 @@ export class StoreComponent {
 
   }
 
-  // OnInit(){
-  //   console.log('im in');
-  //   switch (this.data.stores.length){
-  //     case 1:
-  //       this.padding = 500;
-  //       break;
-  //     case 2:
-  //       this.padding = 300;
-  //       break;
-  //     case 3:
-  //       this.padding = 100;
-  //       break;
-  //     case 4:
-  //       this.padding = 50;
-  //       break;
-  //     case 5:
-  //       this.padding = 30;
-  //       break;
-  //   }
-  // }
 
   onSelect(event) {
     console.log(event);

@@ -2,14 +2,12 @@
     (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->
-
 <table>
     <thead>
         <th i18n>Service Name</th>
         <th i18n>Number of transaction</th>
     </thead>
     <tbody>
-
         <tr *ngFor="let s of data.services">
             <td>{{s.name}}</td>
             <td>{{s.value}}</td>
