@@ -1,2 +1,2 @@
 export * from '../../shared';
-export { CounterSettingService } from '../../../../shared';
+import { CounterSettingService } from '../../../../shared';
