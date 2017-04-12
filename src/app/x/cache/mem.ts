@@ -9,11 +9,14 @@ export class MemCache<T extends ID> {
     RxListView = new BehaviorSubject<T[]>([]);
 
     Refresh(arr: T[] = []) {
-        arr.forEach(t => {
-            this.beforeAdd(t);
-            this.mapView.set(t.id, t);
-        });
-        this.RxListView.next(arr);
+        if (arr !=null && arr.length>0) {
+            arr.forEach(t => {
+                this.beforeAdd(t);
+                this.mapView.set(t.id, t);
+            });
+            this.RxListView.next(arr);
+        }
+
     }
 
     beforeAdd = (t: T) => { }
@@ -32,7 +35,7 @@ export class MemCache<T extends ID> {
 
     GetName(id: string, field: string) {
         const o = this.GetByID(id);
-        return o? (o[field] || this.NotApplicable) : this.NotApplicable;
+        return o ? (o[field] || this.NotApplicable) : this.NotApplicable;
     }
 
     NotApplicable = "n/a";
