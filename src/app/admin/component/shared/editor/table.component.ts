@@ -39,9 +39,26 @@ export class AppDataTableComponent implements OnInit {
     }
 
     onAction(action: string, value: any) {
-        this.action.emit({
-            action, value
-        });
+        // if(action === 'remove'){
+        //     this.removeRef.Open();
+        //     this.form = this.makeForm(value);
+        // } else
+        // console.log('aaa');
+        this.action.emit({action, value});
+        // if (e.action === 'add') {
+        //     this.createForm();
+        //     this.editorRef.Open();
+        // } else if (e.action === 'remove') {
+        //     this.removeRef.Open();
+        //     this.form = this.makeForm(e.value);
+        // } else if (e.action === 'edit') {
+        //     const id = e.value['id'];
+        //     this.api.GetByID(id).first()
+        //         .subscribe(u => {
+        //             this.createForm(u);
+        //             this.editorRef.Open();
+        //         });
+        // }
     }
 
     @ContentChildren(AppTableFieldComponent) children: QueryList<AppTableFieldComponent>;
