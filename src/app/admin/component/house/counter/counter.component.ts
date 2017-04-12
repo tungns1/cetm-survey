@@ -1,5 +1,4 @@
-
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { CenterService, HouseService, ICounter, AllRoles, CacheBranch } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -21,6 +20,11 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
     }
 
     title = 'counter';
+    storeLevel0$ = CacheBranch.RxByLevel(0);
+
+    OnInit(){
+        // this.makeForm();
+    }
 
     services = this.org.ServiceService.RxListView;
     makeForm(b?: ICounter) {
@@ -36,9 +40,6 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
             branch_id: [b.branch_id, Validators.required]
         });
     }
-
-    // level0$ = CacheBranch.RxByLevel(0);
-
 }
 
 
