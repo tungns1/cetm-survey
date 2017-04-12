@@ -31,7 +31,8 @@ export class ReportFilterComponent {
         this.customerApi.pagin(1, this.code, '');
         this.customerApi.GetInfoCustomerByCode(this.code).subscribe(v => {
             RxInfoCustomer.next(v);
-        });;
+        });
+         RxInfoCustomer.next(null);
     }
 
 
