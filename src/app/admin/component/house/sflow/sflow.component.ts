@@ -1,6 +1,5 @@
-
 import { Component, Injector } from '@angular/core';
-import { HouseService, ISFlow, CenterService } from '../../shared/';
+import { HouseService, ISFlow, CenterService, CacheBranch } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -20,6 +19,7 @@ export class SFlowComponent extends BaseAdminComponent<ISFlow> {
     }
 
     title = 'service flow';
+    storeLevel0$ = CacheBranch.RxByLevel(0);
 
     services = this.org.ServiceService.RxListView;
     tforms = this.org.TFormService.RxListView;

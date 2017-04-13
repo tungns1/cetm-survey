@@ -1,5 +1,7 @@
 // Language default is based by partner
-const LanguageDefault = 'en';
+// declare var CETM;
+// const LanguageDefault = CETM.Language.default || 'en';
+const LanguageDefault ='en';
 
 const Languages = {
     en: 'English',
@@ -7,10 +9,12 @@ const Languages = {
     vi: 'Tiếng Việt',
 }
 
+
 const Cultures = Object.assign({}, Languages, {
     // vi_b: "Tiếng Việt - Miền bắc",
     // vi_n: "Tiếng Việt - Miền Nam",
 });
+
 
 export const LOCALES = {
     DEFAULT: LanguageDefault,

@@ -1,7 +1,8 @@
 @import '../../../../shared/style.scss';
 #chartReport {
     border-top: $border;
-    height: 30vw;
+    height: 33vw;
+    min-height: 400px;
     background-color: #fff;
     width: 100%;
     .chartType {
@@ -11,14 +12,20 @@
         border-radius: 3px;
         margin: 20px 50px 0px 0px;
     }
-    .chartOptions {
-        width: 80%;
-        .option {
-            float: left;
-            margin: 10px;
-            .checkBox {
-                float: left;
-            }
+    .legend{
+        position: relative;
+        top: 0px;
+        clear: both;
+        .item{
+            margin-left: 23%;
         }
+        .checkBox {
+            float: left;
+        }
+    }
+}
+@media only screen and (max-width: 1368px) {
+    #chartReport {
+        height: 35vw;
     }
 }

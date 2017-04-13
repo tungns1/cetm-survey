@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SetupComponent } from './setup/setup.component';
+import { SetupComponent } from "./setup.component";
 import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
+import { SetupGlobalModule } from "./setup-global/setup-global.module";
+import { routing } from "./setup.routing";
+import { ServiceModule } from "./service/service.module";
+import { TicketModule } from "./ticket/ticket.module";
 
-
-const routing = RouterModule.forChild([
-  { path: '', component: SetupComponent }
-]);
 
 @NgModule({
-  imports: [routing,ReactiveFormsModule ,FormsModule,
+  imports: [routing,ReactiveFormsModule ,FormsModule,SetupGlobalModule,ServiceModule,TicketModule,
     CommonModule
   ],
   declarations: [SetupComponent]

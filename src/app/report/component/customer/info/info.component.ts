@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { Customer, IService, IStore, ICustomer } from '../../shared/';
-import { CustomerAPI, max_service, max_store, RxInfoCustomer } from '../service/customer.service';
+import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
 
 @Component({
     selector: 'report-info',
@@ -11,29 +11,22 @@ export class ReportInfoComponent {
     constructor(
         private customerAPI: CustomerAPI
     ) { }
-    customer: ICustomer = null;
     data: Customer;
     service: IService;
     store: IStore;
 
     ngOnInit() {
-      RxInfoCustomer.subscribe(v=>{
-          if(v!=null){
-              this.customer=v;
-          }
-      })
-        max_service.subscribe(v => {
-            this.service = v;
-        });
-        max_store.subscribe(v => {
-            this.store = v;
-        })
         this.customerAPI.RxSummaryView.subscribe(v => {
             this.data = v;
+            this.store = v.stores.sort((a, b) => b.value - a.value)[0]
+            this.service = v.services.sort((a, b) => b.value - a.value)[0]
         })
     }
+    customer = RxInfoCustomer.map(v => {
+        if (v != null) {
+            return v;
+        }
+        return null;
+    })
 
-    ngOnDestroy() {
-
-    }
 }

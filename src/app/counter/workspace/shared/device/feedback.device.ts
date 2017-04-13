@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { QmsService } from '../shared';
 import { Injectable } from '@angular/core';
 import { CounterDevice } from './counter.device';
-import { CounterSettingService } from './shared';
+import { CounterSettingService } from '../../../shared';
 
 @Injectable()
 export class FeedbackDevice {

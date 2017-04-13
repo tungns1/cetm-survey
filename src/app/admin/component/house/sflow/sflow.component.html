@@ -11,8 +11,11 @@
         [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Location</span>
-            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
+            <span fxFlex="15%" i18n>Store</span>
+            <select fxFlex class="hl-select" formControlName="branch_id" *ngIf="storeLevel0$ | async; let stores" required>
+                <option value="" class="uppercase" selected>Choose store</option>
+                <option [value]="store.id" *ngFor="let store of stores">{{store.name}}</option>
+            </select>
             <span fxFlex="15%" i18n>Service ID</span>
             <select fxFlex class="hl-select" formControlName="service_id">
                 <option *ngFor="let s of services | async" [value]="s.id">{{s.name}}</option>

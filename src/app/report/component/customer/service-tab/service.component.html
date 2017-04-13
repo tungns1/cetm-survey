@@ -1,15 +1,14 @@
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.services" [barPadding]="padding" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-    (select)="onSelect($event)">
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.services" 
+    [barPadding]="padding" [xAxis]="true" [yAxis]="true" [legend]="true" 
+    [showXAxisLabel]="true" [showYAxisLabel]="true" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->
-
 <table>
     <thead>
         <th i18n>Service Name</th>
         <th i18n>Number of transaction</th>
     </thead>
     <tbody>
-
         <tr *ngFor="let s of data.services">
             <td>{{s.name}}</td>
             <td>{{s.value}}</td>

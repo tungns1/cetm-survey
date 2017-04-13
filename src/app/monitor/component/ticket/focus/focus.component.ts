@@ -60,12 +60,12 @@ export class FocusComponent {
 
     // chartData: Summary
     focus$ = this.focusService.FocusSummary$;
-    counterState$ = this.focusService.counterState$.share();
+    counterState$ = this.focusService.counterState$;
     numberCounter$ = this.counterState$.map(v => v.length);
     numberCounterOff$ = this.counterState$
-        .map(v => v.filter(v => v.state === 'on').length);
-    numberCounterOn$ = this.counterState$
         .map(v => v.filter(v => v.state === 'off').length);
+    numberCounterOn$ = this.counterState$
+        .map(v => v.filter(v => v.state === 'on').length);
 
     waiting$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {

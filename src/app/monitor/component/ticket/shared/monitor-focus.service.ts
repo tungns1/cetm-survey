@@ -30,6 +30,15 @@ export class MonitorFocusService {
 
   }
 
+  private subscription: ISubscription;
+
+  private initialFocus$ = new ReplaySubject<IFocusReply>(1);
+
+  private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
+  private summaryUpdate$ = this.socket.RxEvent<Summary>("/summary/update").startWith(null);
+  private counterUpdate$ = this.socket.RxEvent<IDevice>("/counter_track/update").startWith(null);
+
+
   enable() {
     this.subscription = this.Branch$.switchMap(branch_id => {
       return this.socket.Connected$.switchMap(_ => {
@@ -45,15 +54,20 @@ export class MonitorFocusService {
     this.subscription.unsubscribe();
   }
 
-  private subscription: ISubscription;
-
-  private initialFocus$ = new ReplaySubject<IFocusReply>();
-
-  private ticketUpdate$ = this.socket.RxEvent<IExtendedTicket>("/ticket/update").startWith(null);
-  private counterUpdate$ = this.socket.RxEvent<IDevice>("/counter_track/update").startWith(null);
   Branch$ = new ReplaySubject<string>(1);
 
-  FocusSummary$ = this.initialFocus$.map(data => data.summary)
+  FocusSummary$ = this.initialFocus$
+    .map(data => {
+      // console.log(data);`
+      return data.summary;})
+    .switchMap(summary => {
+      return this.summaryUpdate$.map(t => {
+        if (t) {
+          summary = t;
+        }
+        return summary;
+      });
+    })
     .map(d => {
       return new Summary(d);
     });
@@ -68,9 +82,10 @@ export class MonitorFocusService {
         }
         return tickets;
       });
-    }).map(tickets => {
+    })
+    .map(tickets => {
       return Object.keys(tickets).map(id => tickets[id]);
-    }).share();
+    });
 
   counterState$ = this.initialFocus$
     .switchMap(data => {
@@ -83,7 +98,7 @@ export class MonitorFocusService {
         }
         return Object.keys(map).map(v => map[v]);
       });
-    }).share();
+    });
 
   private Focus(branch_id: string) {
     return this.socket.Send<IFocusReply>("/focus", {

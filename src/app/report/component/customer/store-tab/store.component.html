@@ -1,5 +1,6 @@
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.stores" [barPadding]="padding" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-    (select)="onSelect($event)">
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.stores" 
+    [barPadding]="padding" [xAxis]="true" [yAxis]="true" [legend]="true" 
+    [showXAxisLabel]="true" [showYAxisLabel]="true" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->
 <table>
