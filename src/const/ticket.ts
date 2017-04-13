@@ -5,7 +5,7 @@ var Config = {
     TicketPriority: Ticket,
 }
 
-const Configs = merge(Config, ['CETM']);
+const Configs = merge(Config, window['CETM']);
 
 
 export const LOCALES_TICKET = {
