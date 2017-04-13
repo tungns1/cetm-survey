@@ -2,14 +2,16 @@
 import { merge } from "lodash";
 declare var CETM;
 
-var Config = {
-    TimeService: Service
-}
 var Service = {
     max_serving: '10',
     max_waiting: '10',
     auto_finish: '10',
 }
+
+var Config = {
+    TimeService: Service
+}
+
 
 const Configs = merge(Config, window['CETM']) || Config;
 

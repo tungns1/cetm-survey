@@ -2,13 +2,15 @@
 import { merge } from "lodash";
 declare var CETM;
 
-var Config={
-    Language:Language,
-}
 var Language = {
     default: 'en',
     support: 'es',
 }
+
+var Config={
+    Language:Language,
+}
+
 
 const Configs=merge(Config,window['CETM']) || Config;
 
