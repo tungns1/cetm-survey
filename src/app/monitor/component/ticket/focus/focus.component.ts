@@ -181,6 +181,7 @@ export class FocusComponent {
                 t.counter_id = t.tracks[i].counter_id;
                 t.user_id = t.tracks[i].user_id;
                 t.serving = t.tracks[i];
+                t.state='serving';
                 return t;
             }
         }
