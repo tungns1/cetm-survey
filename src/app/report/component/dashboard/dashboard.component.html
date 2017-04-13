@@ -10,13 +10,13 @@
     <div class="divider margin-30-0"></div>
     <div id="overView" class="border">
         <md-tab-group dynamicHeight>
-            <md-tab label="Overview">
+            <md-tab label="OVERVIEW">
                 <app-general-view [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>
             </md-tab>
-            <md-tab label="Transaction Time">
+            <md-tab label="TRANSACTION TIME">
                 <app-transaction-time [field]="groupBy$ | async" [data]="data$ | async"></app-transaction-time>
             </md-tab>
-            <md-tab label="Customer Feedback">
+            <md-tab label="CUSTOMER FEEDBACK">
                 <app-customer-feedback [field]="groupBy$ | async" [data]="data$ | async"></app-customer-feedback>
             </md-tab>
         </md-tab-group>
