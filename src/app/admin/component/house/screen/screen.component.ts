@@ -21,7 +21,8 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         private house: HouseService
     ) {
         super(injector, house.ScreenService);
-        this.counters$.subscribe(console.log.bind(console));
+        this.counters$.subscribe();
+        this.layoutEditLink$.subscribe(c => console.log(c));
     }
 
     title = 'screen';
@@ -38,6 +39,10 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
     layoutEditLink$ = this.formValue$.map(s => {
         return `/admin/center/layout/${s.layout_id}`;
     });
+    
+    parentEdit$ = this.formValue$.map(s => {
+        return `/admin/house/screen/${s.parent_id}`;
+    })
 
     getLayout(layout_id?: string) {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
