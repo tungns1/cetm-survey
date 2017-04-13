@@ -5,6 +5,14 @@ var Config = {
     TicketPriority: Ticket,
 }
 
+var Ticket = {
+    service_priority: '0',
+    vip_card: '0',
+    customer_vip: '0',
+    ticket_online: '0',
+
+}
+
 const Configs = merge(Config, window['CETM']) || Config;
 
 
@@ -16,11 +24,3 @@ export const LOCALES_TICKET = {
 }
 
 
-
-var Ticket = {
-    service_priority: '0',
-    vip_card: '0',
-    customer_vip: '0',
-    ticket_online: '0',
-
-}

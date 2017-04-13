@@ -5,6 +5,11 @@ declare var CETM;
 var Config = {
     TimeService: Service
 }
+var Service = {
+    max_serving: '10',
+    max_waiting: '10',
+    auto_finish: '10',
+}
 
 const Configs = merge(Config, window['CETM']) || Config;
 
@@ -15,8 +20,4 @@ export const LOCALES_SERVICE= {
 }
 
 
-var Service = {
-    max_serving: '10',
-    max_waiting: '10',
-    auto_finish: '10',
-}
+

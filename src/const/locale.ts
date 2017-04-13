@@ -5,6 +5,10 @@ declare var CETM;
 var Config={
     Language:Language,
 }
+var Language = {
+    default: 'en',
+    support: 'es',
+}
 
 const Configs=merge(Config,window['CETM']) || Config;
 
@@ -29,7 +33,3 @@ export const LOCALES = {
 }
 
 
-var Language = {
-    default: 'en',
-    support: 'es',
-}
