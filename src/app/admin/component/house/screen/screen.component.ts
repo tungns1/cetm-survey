@@ -6,6 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CenterService, HouseService, IScreen } from '../../../service/';
 import { BaseAdminComponent } from '../../shared';
+import { of } from 'rxjs/observable/of';
 
 @Component({
     selector: 'house-screen',
@@ -34,10 +35,20 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
             return this.house.CounterService.GetByBranch([branch_id]);
         });
 
+    layoutEditLink$ = this.formValue$.map(s => {
+        return `/admin/center/layout/${s.layout_id}`;
+    });
+
+    getLayout(layout_id?: string) {
+        return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
+    }
+
     makeForm(b?: IScreen) {
         b = b || <any>{};
-        return this.center.LayoutService.GetByID(b.layout_id).map(layout => {
-            b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+        return this.getLayout(b.layout_id).map(layout => {
+            if (layout) {
+                b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+            }
             return (new FormBuilder).group({
                 id: [b.id],
                 code: [b.code, Validators.required],

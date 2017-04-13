@@ -13,8 +13,9 @@ const STATUS = {
 }
 
 interface LedStatus {
+    addr: number;
     type: string;
-    data: any;
+    data?: any;
 }
 
 
@@ -34,7 +35,10 @@ export class LedService {
         this.workspaceService.currentCounter$.switchMap(c => {
             return this.ticketService.autoNext$.switchMap(auto => {
                 return this.queueService.serving$.debounceTime(250).map(t => {
-                    const s = <LedStatus>{};
+                    const s: LedStatus = {
+                        addr: c.dev_addr,
+                        type: STATUS.WELCOME,
+                    };
                     const first = t[0];
                     if (first) {
                         s.type = STATUS.SHOW;
@@ -51,19 +55,19 @@ export class LedService {
     }
 
     disable() {
-        
+
     }
 
     private SendStatus(status: LedStatus) {
         switch (status.type) {
             case STATUS.WELCOME:
-                this.ledDevice.Welcome();
+                this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
-                this.ledDevice.Stop();
+                this.ledDevice.Off(status.addr);
                 break;
             case STATUS.SHOW:
-                this.ledDevice.Show(status.data);
+                this.ledDevice.Show(status.addr, status.data);
                 break;
         }
     }
