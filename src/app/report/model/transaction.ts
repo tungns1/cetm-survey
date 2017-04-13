@@ -1,4 +1,4 @@
-
+import { CacheBranch } from '../../shared/model';
 export interface ITransaction {
     id: string;
     ticket_id: string;
@@ -125,7 +125,7 @@ export class Customer {
         }
         if (this.stores.length > 0) {
             for (var i = 0; i < this.stores.length; i++) {
-                if (s.counter === this.stores[i].name) {
+                if (CacheBranch.GetNameForID(s.branch_id) === this.stores[i].name) {
                     this.stores[i].value++;
                     addstore = true;
                     break;
@@ -135,13 +135,13 @@ export class Customer {
             }
             if (!addstore) {
                 this.stores.push({
-                    name: s.counter,
+                    name: CacheBranch.GetNameForID(s.branch_id),
                     value: 1
                 })
             }
         } else {
             this.stores.push({
-                name: s.counter,
+                name: CacheBranch.GetNameForID(s.branch_id),
                 value: 1
             })
         }

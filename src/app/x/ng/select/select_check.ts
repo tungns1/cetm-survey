@@ -60,7 +60,6 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
 
     writeValue(arr: any[]) {
-        console.log(arr);
         this.selected = {};
         if (arr != null && arr.length > 0) {
             (arr || []).forEach(d => this.selected[d] = true);
