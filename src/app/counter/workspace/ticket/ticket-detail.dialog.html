@@ -3,30 +3,30 @@
         <div class="modal-header" i18n>Ticket detail</div>
         <div class="modal-body padding-10-20">
             <div fxLayout="row" class="margin-t-10">
-                <label fxFlex i18n>Ticket</label>:
+                <label fxFlex i18n>Ticket</label>
                 <span fxFlex>{{ticket.cnum}}</span>
             </div>
             <div fxLayout="row" class="margin-t-10">
-                <label fxFlex i18n>Priority</label>:
+                <label fxFlex i18n>Priority</label>
                 <span fxFlex>{{ticket.priority}}</span>
             </div>
             <div fxLayout="row" class="margin-t-10">
-                <label fxFlex i18n>Print time</label>:
+                <label fxFlex i18n>Print time</label>
                 <span fxFlex>{{ticket.ctime | localDayTime}}</span>
             </div>
             <div class="divider margin-t-10"></div>
 
             <div *ngIf="isServing">
                 <div fxLayout="row" class="margin-10-0">
-                    <label fxFlex i18n>Start serving</label>:
+                    <label fxFlex i18n>Start serving</label>
                     <span fxFlex>{{ticket.mtime | localDayTime}}</span>
                 </div>
-                <p class="margin-t-10" i18n>Transfer service</p>:
+                <p class="margin-t-10" i18n>Transfer service</p>
                 <select-check class="margin-t-10" [(ngModel)]="checkedServices" [data]="services | async" textField="name"></select-check>
             </div>
 
             <div *ngIf="isMissed" fxLayout="row" class="margin-t-10">
-                <label fxFlex i18n>Missing time</label>:
+                <label fxFlex i18n>Missing time</label>
                 <span fxFlex>{{ticket.mtime | localDayTime}}</span>
             </div>
 
