@@ -2,7 +2,11 @@
 import { merge } from "lodash";
 declare var CETM;
 
-const Configs = merge(Config, CETM);
+var Config = {
+    TimeService: Service
+}
+
+const Configs = merge(Config, window['CETM']);
 
 export const LOCALES_SERVICE= {
     MAX_SERVING: Configs.TimeService.max_serving,
@@ -10,9 +14,6 @@ export const LOCALES_SERVICE= {
     AUTO_FINISH: Configs.TimeService.auto_finish,
 }
 
-var Config = {
-    TimeService: Service
-}
 
 var Service = {
     max_serving: '10',

@@ -1,8 +1,11 @@
 
 import { merge } from "lodash";
 declare var CETM;
+var Config = {
+    TicketPriority: Ticket,
+}
 
-const Configs = merge(Config, CETM);
+const Configs = merge(Config, ['CETM']);
 
 
 export const LOCALES_TICKET = {
@@ -12,9 +15,6 @@ export const LOCALES_TICKET = {
     TICKET_ONLINE: Configs.TicketPriority.ticket_online,
 }
 
-var Config = {
-    TicketPriority: Ticket,
-}
 
 
 var Ticket = {

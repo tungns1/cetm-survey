@@ -2,7 +2,11 @@
 import { merge } from "lodash";
 declare var CETM;
 
-const Configs=merge(Config,CETM);
+var Config={
+    Language:Language,
+}
+
+const Configs=merge(Config,['CETM']);
 
 const Languages = {
     en: 'English',
@@ -24,9 +28,6 @@ export const LOCALES = {
     CULTURES: Cultures
 }
 
-var Config={
-    Language:Language,
-}
 
 var Language = {
     default: 'en',
