@@ -20,8 +20,8 @@ const Cultures = Object.assign({}, Languages, {
 export const LOCALES = {
     DEFAULT: Configs.Language.default,
     SUPPORT: Configs.Language.support,
-    LANGUAGES: Configs.Language.support,
-    CULTURES: Configs.Language.support
+    LANGUAGES: Languages,
+    CULTURES: Cultures
 }
 
 var Config={
