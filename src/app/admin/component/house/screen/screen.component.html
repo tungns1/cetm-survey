@@ -21,15 +21,20 @@
             <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff" [data]="counters$ | async" textField="name"></select-check>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Inherit from</span>
+            <span fxFlex="15%">
+                <ng-container i18n>Inherit From</ng-container>
+                <a [routerLink]="parentEdit$ | async" queryParamsHandling="merge">Edit</a>
+            </span>
             <select fxFlex class="hl-select" formControlName="parent_id">
                 <option value="">--None--</option>
                 <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
             </select>
-            <span fxFlex="15%" i18n>Layout
-            <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">Edit</a>
+            <span fxFlex="15%">
+                <ng-container i18n> Layout</ng-container>
+                <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">Edit</a>
             </span>
             <select fxFlex class="hl-select" formControlName="layout_id">
+                <option value="">--None--</option>
                 <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
             </select>
         </div>

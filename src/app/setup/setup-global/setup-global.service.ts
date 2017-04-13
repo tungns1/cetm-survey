@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 export interface IConfigLanguage {
     default: string,
-    support: string
+    support: string[]
 }
 export interface IConfig {
     id?: string;
