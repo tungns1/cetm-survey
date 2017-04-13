@@ -35,7 +35,7 @@ const children: Routes = [
     redirectTo: 'layout/list'
   },
   {
-    path: 'layout',
+    path: 'layout/:id',
     component: LayoutComponent
   },
   {

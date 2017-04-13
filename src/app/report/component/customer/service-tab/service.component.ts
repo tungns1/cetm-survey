@@ -10,19 +10,8 @@ import { ExportExcelService, Customer } from '../../shared';
 export class ServiceComponent {
   @Input() data: Customer;
   @Input() padding: number;
-  single: any[];
 
   view: any[] = [900, 400];
-
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  showYAxisLabel = true;
-  // padding = 20;
-
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#ff0000', '#3333ff', '#6600cc', '#00ff00', '#800000', '#999966', '#660066', '#ff00ff']
@@ -32,7 +21,10 @@ export class ServiceComponent {
   constructor(private exportService: ExportExcelService) {
 
   }
-
+  
+  OnInit(){
+    console.log('service');
+  }
 
   onSelect(event) {
     console.log(event);

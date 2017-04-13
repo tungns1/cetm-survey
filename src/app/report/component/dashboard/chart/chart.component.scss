@@ -1,7 +1,7 @@
 @import '../../../../shared/style.scss';
 #chartReport {
     border-top: $border;
-    height: 30vw;
+    height: 33vw;
     min-height: 400px;
     background-color: #fff;
     width: 100%;
@@ -22,5 +22,10 @@
         .checkBox {
             float: left;
         }
+    }
+}
+@media only screen and (max-width: 1368px) {
+    #chartReport {
+        height: 35vw;
     }
 }
