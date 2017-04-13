@@ -5,8 +5,12 @@
       <option *ngFor="let d of languages" [value]="d.code">{{d.name}}</option>
     </select><br>
     <span>Language Support:</span><br>
-    <select formControlName="support">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <select-check class="border" fxFlex formControlName="support" [data]="languages" textField="name" idField="code" style="background-color: #fff"></select-check>
+    </div>
+
+    <!--<select formControlName="support">
         <option *ngFor="let d of languages" [value]="d.code">{{d.name}}</option>
-     </select>
+     </select>-->
     <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
 </form>
