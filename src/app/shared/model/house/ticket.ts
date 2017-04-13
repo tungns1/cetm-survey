@@ -22,6 +22,7 @@ export interface ITicket {
 }
 
 export interface ITicketPriority{
+    ticket_serving_move:string;
     service_priority:string;
     vip_card:string;
     customer_vip:string;

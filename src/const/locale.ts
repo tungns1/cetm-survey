@@ -6,7 +6,7 @@ var Config={
     Language:Language,
 }
 
-const Configs=merge(Config,window['CETM']);
+const Configs=merge(Config,window['CETM']) || Config;
 
 const Languages = {
     en: 'English',

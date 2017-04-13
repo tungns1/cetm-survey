@@ -6,7 +6,7 @@ var Config = {
     TimeService: Service
 }
 
-const Configs = merge(Config, window['CETM']);
+const Configs = merge(Config, window['CETM']) || Config;
 
 export const LOCALES_SERVICE= {
     MAX_SERVING: Configs.TimeService.max_serving,
