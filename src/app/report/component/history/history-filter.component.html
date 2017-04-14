@@ -1,23 +1,23 @@
 <div id="historyFilter">
-    <form (change)="onChange()" #filterHistory="ngForm" fxLayout="row">
+    <form #filterHistory="ngForm" fxLayout="row">
         <div fxFlex="28%">
             <strong class="uppercase inline" i18n>Waiting time</strong><label class="note margin-l-5" i18n>(minute)</label>
             <input class="inputFilter inline border" type="number" i18n-placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0">
-            <input class="inputFilter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="{{filter.wtimemin}}">
+            <input class="inputFilter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="0">
         </div>
         <div fxFlex="28%">
             <strong class="uppercase inline" i18n>Serving time</strong><label class="note margin-l-5">(minute)</label>
             <input class="inputFilter inline border" type="number" i18n-placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0">
-            <input class="inputFilter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="{{filter.stimemin}}">
+            <input class="inputFilter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="0">
         </div>
         <div fxFlex="32%" class="feedback">
             <strong class="uppercase inline" i18n>Customer feedback</strong>
-            <select class="inline margin-l-15" [(ngModel)]="filter.rating" name="rating" #rating="ngModel">
-                <option value="" i18n>Feedback filter</option>
-                <option value="veryGood" i18n>Very good</option>
-                <option value="good" i18n>Good</option>
-                <option value="average" i18n>Average</option>
-                <option value="poor" i18n>Poor</option>
+            <select class="inline margin-l-15" [(ngModel)]="filter.rmin" name="rmin" #rmin="ngModel">
+                <option value=0 i18n>Feedback filter</option>
+                <option value=10 i18n>Very good</option>
+                <option value=8 i18n>Good</option>
+                <option value=6 i18n>Average</option>
+                <option value=4 i18n>Poor</option>
             </select>
         </div>
 

@@ -17,9 +17,11 @@ export class TicketDetailComponent {
 
     ticket: ITicket;
     customer: ICustomer;
+    private isWaiting=false;
 
-    setData(ticket: ITicket, admin: string, manager: string) {
-        // console.log(ticket);
+    setData(ticket: ITicket, admin: string, manager: string,waitting:boolean) {
+        console.log(ticket);
+        this.isWaiting=waitting;
         this.ticket = ticket;
         this.ticket['admin'] = admin;
         this.ticket['manager'] = manager;

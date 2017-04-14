@@ -14,7 +14,7 @@ export class StoreComponent {
   view: any[] = [900, 400];
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA', '#ff0000', '#3333ff', '#6600cc', '#00ff00', '#800000', '#999966', '#660066', '#ff00ff']
+    domain: ['#FFEAB5', '#F6CFFF', '#A1CCBD', '#6FB29B', '#FFCDB1', '#9A97FF', '#86CC75', '#5DB248', '#FFE4E3', '#C9E7FF', '#CACC9D', '#B0B26B']
   };
   
   constructor(private exportService: ExportExcelService) {
@@ -26,7 +26,7 @@ export class StoreComponent {
   }
   
   onSelect(event) {
-    console.log(event);
+    console.log(this.data);
   }
 
   excel() {

@@ -8,8 +8,8 @@
     </div>
 
     <div class="pieLegend" fxLayout="row">
-        <div *ngFor="let item of pieConfig.groups$ | async" fxFlex fxLayot="column">
-            <div *ngFor="let t of item.items" fxFlex class="margin-7-0 item">
+        <div *ngFor="let item of pieConfig.groups$ | async" fxFlex>
+            <div *ngFor="let t of item.items" class="margin-7-0 item">
                 <div style="max-width: 30vw; margin: auto;">
                     <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" 
                         [style.background-color]="t.active? t.color : ''"></div>
@@ -21,12 +21,12 @@
 
     <chart-item-group-view #pieConfig>
         <chart-item-group>
-            <chart-item field="c_bwt" color="#99b3ff" i18n-title title="Standard waiting time transaction"></chart-item>
-            <chart-item field="s_wt" color="#969c9c" i18n-title title="Exceeded waiting time transaction"></chart-item>
+            <chart-item field="c_bwt" color="#ff4d4d" i18n-title title="Standard waiting time transaction"></chart-item>
+            <chart-item field="s_wt" color="#3eca83" i18n-title title="Exceeded waiting time transaction"></chart-item>
         </chart-item-group>
         <chart-item-group>
-            <chart-item field="c_bst" color="#339933" i18n-title title="Standard serving time transaction"></chart-item>
-            <chart-item field="s_st" color="#b4e4b4" i18n-title title="Exceeded serving time transaction"></chart-item>
+            <chart-item field="c_bst" color="#ff974d" i18n-title title="Standard serving time transaction"></chart-item>
+            <chart-item field="s_st" color="#a44adc" i18n-title title="Exceeded serving time transaction"></chart-item>
         </chart-item-group>
     </chart-item-group-view>
 </div>

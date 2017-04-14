@@ -17,7 +17,7 @@ export class EditorViewComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
+        
     }
 
     @Input() title = 'title';
@@ -37,5 +37,12 @@ export class EditorViewComponent implements OnInit {
     }
 
     @Input() isNew = true;
+
+    @Input() isValidService = true;
+    @Input() isValidBrand = true;
+    @Input() isValidLayout = true;
+    @Input() isValidTform = true;
+    @Input() isValidCounter = true;
+    @Input() isValidKiosk = true;
 
 }

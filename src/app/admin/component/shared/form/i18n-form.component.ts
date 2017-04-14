@@ -26,7 +26,10 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     template: `
     <div *ngFor="let code of codes" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <span fxFlex="15%" i18n>{{names[code]}}</span>
-        <input fxFlex class="hl-input" [(ngModel)]="values[code]" (change)="OnChange()" />
+        <div fxFlex>
+            <span>&nbsp;</span>
+            <input  class="hl-input" [(ngModel)]="values[code]" (change)="OnChange()" />
+        </div>
     </div>
     `,
 
