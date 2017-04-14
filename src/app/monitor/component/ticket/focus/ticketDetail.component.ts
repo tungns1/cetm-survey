@@ -19,7 +19,7 @@ export class TicketDetailComponent {
     customer: ICustomer;
 
     setData(ticket: ITicket, admin: string, manager: string) {
-        // console.log(ticket);
+        console.log(ticket);
         this.ticket = ticket;
         this.ticket['admin'] = admin;
         this.ticket['manager'] = manager;

@@ -140,6 +140,7 @@
                     <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
                     <span *ngIf="ticket.state === 'finished'"> {{ticket.stime | timeDuration}}</span>
                     <span *ngIf="ticket.state === 'cancelled'"> 00:00:00 </span>
+                    <span *ngIf="ticket.state === 'waiting'"> {{ticket.stime | timeDuration}} </span>
                 </td>
                 <td>
                     <span (click)="detail.setData(ticket, admin[0], manager[0])">
