@@ -1,8 +1,12 @@
-<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.timechart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
+<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.timechart" 
+    [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" 
+    [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
     (select)="onSelect($event)">
 </ngx-charts-line-chart>
 
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.time" [barPadding]="padding" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.time" 
+    [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis" 
+    [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
     (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->

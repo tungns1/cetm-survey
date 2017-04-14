@@ -22,12 +22,12 @@
         <report-overview></report-overview>
     </div>-->
     <div class="border tabCtrl">
-        <md-tab-group dynamicHeight>
+        <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
             <md-tab label="ACTIVE TIME">
-                <time-tab [data]="data$ | async"></time-tab>
+                <time-tab *ngIf="selectedTab === 0" [data]="data$ | async" [padding]="paddingTime | async"></time-tab>
             </md-tab>
             <md-tab label="TICKET QUANTITY">
-                <ticket-tab [data]="data$ | async"></ticket-tab>
+                <ticket-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingTicket | async"></ticket-tab>
             </md-tab>
         </md-tab-group>
     </div>

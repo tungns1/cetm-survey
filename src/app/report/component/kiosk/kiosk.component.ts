@@ -14,12 +14,46 @@ export class KioskComponent {
            private kioskAPI:KioskAPI
     ) { }
 
+    data$=this.kioskAPI.RxSummaryView;
+    paddingTime = this.data$.map(data => {
+        switch (data.time.length){
+        case 1:
+            return 2000;
+        case 2:
+            return 500;
+        case 3:
+            return 200;
+        case 4:
+            return 50;
+        default:
+            return 10;
+        }
+    });
+    paddingTicket = this.data$.map(data => {
+        switch (data.ticket.length){
+        case 1:
+            return 2000;
+        case 2:
+            return 500;
+        case 3:
+            return 200;
+        case 4:
+            return 50;
+        default:
+            return 10;
+        }
+    });
+    selectedTab: number;
+
     ngOnInit() {
         
        this.nav.Refresh$.ExclusiveSubscribe(_ => {
            this.kioskAPI.Search();
         });
     }
-    data$=this.kioskAPI.RxSummaryView;
+
+    onTabChange(e){
+        this.selectedTab = e.index;
+    }
     
 }
