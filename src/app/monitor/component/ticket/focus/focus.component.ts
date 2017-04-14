@@ -152,14 +152,6 @@ export class FocusComponent {
     cancelled$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
             if (t.state === TicketStates.Cancelled) {
-                // for (let i = 0; i < t.tracks.length; i++) {
-                //     if (t.tracks[i].state === 'serving') {
-                //         t.stime = t.tracks[i + 1].mtime - t.tracks[i].mtime;
-                //         this.addServingTrack(t);
-                //         return true;
-                //     }
-                // }
-                // t.stime = 0;
                 this.addServingTrack(t);
                 return true;
             }
@@ -177,12 +169,21 @@ export class FocusComponent {
         const t = <IExtendedTicket>a;
         for (let i = t.tracks.length - 1; i >= 0; i--) {
             if (t.tracks[i].state === 'serving') {
-                t.service_id = t.tracks[i].service_id;
-                t.counter_id = t.tracks[i].counter_id;
-                t.user_id = t.tracks[i].user_id;
-                t.serving = t.tracks[i];
-                t.state='serving';
-                return t;
+                if (t.state === TicketStates.Serving) {
+                    t.service_id = t.tracks[i].service_id;
+                    t.counter_id = t.tracks[i].counter_id;
+                    t.user_id = t.tracks[i].user_id;
+                    t.serving = t.tracks[i];
+                    t.state = 'serving';
+                    return t;
+                } else {
+                    t.service_id = t.tracks[i].service_id;
+                    t.counter_id = t.tracks[i].counter_id;
+                    t.user_id = t.tracks[i].user_id;
+                    t.serving = t.tracks[i];
+                    return t;
+                }
+
             }
         }
 
