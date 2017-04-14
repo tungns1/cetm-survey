@@ -50,9 +50,7 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         let end = this.parseDate(this.data.end);
         let startOf = GetStartOf[this.data.period];
         let start = this.parseDate(this.data.start);
-        if (startOf.count(start, end) < 1) {
-            end = startOf.offset(start, 1);
-        }
+        end = startOf.offset(end, 1);
 
         return {
             start: this.formatDate(start),
