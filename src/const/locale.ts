@@ -1,7 +1,18 @@
 // Language default is based by partner
-// declare var CETM;
-// const LanguageDefault = CETM.Language.default || 'en';
-const LanguageDefault ='en';
+import { merge } from "lodash";
+declare var CETM;
+
+var Language = {
+    default: 'en',
+    support: 'es',
+}
+
+var Config={
+    Language:Language,
+}
+
+
+const Configs=merge(Config,window['CETM']) || Config;
 
 const Languages = {
     en: 'English',
@@ -17,7 +28,10 @@ const Cultures = Object.assign({}, Languages, {
 
 
 export const LOCALES = {
-    DEFAULT: LanguageDefault,
+    DEFAULT: Configs.Language.default,
+    SUPPORT: Configs.Language.support,
     LANGUAGES: Languages,
     CULTURES: Cultures
 }
+
+

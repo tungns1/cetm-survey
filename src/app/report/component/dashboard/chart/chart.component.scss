@@ -1,26 +1,37 @@
-@import '../../../../shared/style.scss';
-#chartReport {
-    border-top: $border;
-    height: 30vw;
-    min-height: 400px;
-    background-color: #fff;
-    width: 100%;
-    .chartType {
-        float: right;
-        width: 150px;
-        height: 30px;
-        border-radius: 3px;
-        margin: 20px 50px 0px 0px;
-    }
-    .legend{
-        position: relative;
-        top: 0px;
-        clear: both;
-        .item{
-            margin-left: 23%;
-        }
-        .checkBox {
-            float: left;
-        }
-    }
-}
+// @import '../../../../shared/style.scss';
+// .chartGroup {
+//     border-top: $border;
+//     height: 33vw;
+//     min-height: 400px;
+//     background-color: #fff;
+//     width: 100%;
+//     .chartDimension{
+//         width: 100%;
+//         height: 23vw;
+//     }
+//     .chartType {
+//         float: right;
+//         width: 150px;
+//         height: 30px;
+//         border-radius: 3px;
+//         margin: 20px 50px 0px 0px;
+//     }
+//     .pieLegend{
+//         position: relative;
+//         top: 0px;
+//         clear: both;
+//         .item{
+//             margin-left: 23%;
+//         }
+//     }
+//     .otherLegend{
+//         position: relative;
+//         top: 70px;
+//         left: 50px;
+//     }
+// }
+// @media only screen and (max-width: 1368px) {
+//     .chartGroup {
+//         height: 35vw;
+//     }
+// }

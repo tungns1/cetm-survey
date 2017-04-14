@@ -52,6 +52,8 @@ export class QueueService {
                 priority += parseInt(t.ticket_priority.ticket_online);
             } else if (t.ticket_priority.vip_card != "") {
                 priority += parseInt(t.ticket_priority.vip_card);
+            }else if(t.ticket_priority.ticket_serving_move!=""){
+                priority += parseInt(t.ticket_priority.ticket_serving_move);
             }
             return priority;
         }

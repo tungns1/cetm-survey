@@ -5,6 +5,7 @@ import { SetupGlobalComponent } from './setup-global.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LanguageComponent } from "./language/language.component";
 import { SetupAPI } from "./setup-global.service";
+import { SharedModule } from "../../shared/";
 
 
 const routing = RouterModule.forChild([
@@ -15,7 +16,7 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, ReactiveFormsModule, FormsModule,
+    imports: [routing, ReactiveFormsModule, FormsModule,SharedModule,
         CommonModule
     ],
     declarations: [SetupGlobalComponent,LanguageComponent],

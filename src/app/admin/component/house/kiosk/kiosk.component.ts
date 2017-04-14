@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent } from '../../shared';
 import { extend } from 'lodash';
+import { of } from 'rxjs/observable/of';
 
 @Component({
     selector: 'house-kiosk',
@@ -18,6 +19,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         private house: HouseService
     ) {
         super(injector, house.KioskService);
+        this.layoutEditLink$.subscribe();
     }
 
     title = 'kiosk';
@@ -27,15 +29,20 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
     layouts = this.center.LayoutService.GetByType('kiosk');
     ticketlayouts = this.center.TicketLayoutService.GetAll();
 
-    getLayout(id: string) {
-        return this.layouts.map(layouts => layouts.find(l => l.id === id));
-    }
+    layoutEditLink$ = this.formValue$.map(kiosk => {
+        return `/admin/center/layout/${kiosk.layout_id}`;
+    });
 
+    getLayout(layout_id?: string) {
+        return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
+    }
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
-        return this.center.LayoutService.GetByID(b.layout_id).map(layout => {
-            b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+        return this.getLayout(b.layout_id).map(layout => {
+            if (layout) {
+                b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+            }
             return (new FormBuilder).group({
                 id: [b.id],
                 code: [b.code, Validators.required],

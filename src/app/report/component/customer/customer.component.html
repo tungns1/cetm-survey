@@ -17,11 +17,11 @@
             <report-sum [data]="data$ | async"></report-sum>
         </div>
     </div>
-    
+
     <div class="divider margin-30-0"></div>
 
     <div class="border tabCtrl">
-        <md-tab-group dynamicHeight>
+        <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
             <md-tab label="TRANSACTION TIME">
                 <app-transaction-time [data]="data$ | async"></app-transaction-time>
             </md-tab>
@@ -29,10 +29,10 @@
                 <fres-tab [data]="data$ | async"></fres-tab>
             </md-tab>
             <md-tab label="SERVICE">
-                <service-tab [data]="data$ | async" [padding]="paddingService | async"></service-tab>
+                <service-tab *ngIf="selectedTab === 2" [data]="data$ | async" [padding]="paddingService | async"></service-tab>
             </md-tab>
             <md-tab label="STORE">
-                <store-tab [data]="data$ | async" [padding]="paddingStore | async"></store-tab>
+                <store-tab *ngIf="selectedTab === 3" [data]="data$ | async" [padding]="paddingStore | async"></store-tab>
             </md-tab>
         </md-tab-group>
     </div>

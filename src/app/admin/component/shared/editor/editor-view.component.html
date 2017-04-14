@@ -1,10 +1,10 @@
 <div id="editor">
     <div class="headerAndNav">
-        <h2 *ngIf="isNew" class="header uppercase">add new {{title}}</h2>
-        <h2 *ngIf="!isNew" class="header uppercase">edit {{title}}</h2>
+        <h2 *ngIf="isNew" class="header uppercase" i18n>Add New {{title}}</h2>
+        <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit {{title}}</h2>
         <div class="nav">
             <button class="btnClear btnMargin uppercase" (click)="GoBack()">
-                <span>Back</span>
+                <span i18n>Back To List Of {{title}}</span>
             </button>
         </div>
     </div>

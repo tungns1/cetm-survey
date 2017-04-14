@@ -2,7 +2,7 @@
     <h2 class="header uppercase" i18n>List Of {{name}}</h2>
     <div class="nav">
         <button class="btnClear btnMargin uppercase" (click)="onAction('add')">
-            <span i18n>Add {{name}}</span>
+            <span i18n>Add New {{name}}</span>
         </button>
     </div>
 </div>
@@ -20,7 +20,7 @@
             <!--<i class="fa fa-edit edit" (click)="onEdit(da)"></i>-->
             <!--<i class="fa fa-trash trash" (click)="onRemove(da)"></i>-->
             <img src="./assets/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onAction('edit',da)">
-            <img src="./assets/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" appConfirm="Do you want to delete the selected item?" (confirm)="onAction('edit',da)">
+            <img src="./assets/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" appConfirm="Do you want to delete the selected item?" (confirm)="onAction('edit', da)">
         </td>
     </tr>
 </table>

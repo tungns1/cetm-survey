@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CounterDevice } from './counter.device';
 import { QmsService } from './shared';
 
 @Injectable()
@@ -8,19 +7,30 @@ export class LedDevice {
         private qmsService: QmsService
     ) { }
 
-    Welcome() {
-        this.qmsService.__x.Send("/led/welcome", null);
+    Setup(addr: number) {
+        this.qmsService.__x.Broadcast("/led/com", addr);
     }
 
-    Stop() {
-        this.qmsService.__x.Send("/led/stop");
+    private Command(name: string, addr: number) {
+        this.qmsService.__x.Broadcast(
+            "/led/command",
+            `${name} ${addr}`
+        );
     }
 
-    Show(cnum: string) {
-        this.qmsService.__x.Send("/led/show", { text: cnum });
+    On(addr: number) {
+        this.Command("on", addr);
     }
 
-    Ping() { 
-        this.qmsService.__x.Send("/led/ping");
+    Off(addr: number) {
+        this.Command("off", addr);
+    }
+
+    Show(addr: number, text: string) {
+        this.Command(`on ${text}`, addr);
+    }
+
+    Ping(addr: number) {
+        this.Command("ping", addr);
     }
 }

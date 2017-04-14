@@ -16,7 +16,7 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
   constructor(
     injector: Injector,
     private org: CenterService
-  ) { 
+  ) {
     super(injector, org.LayoutService);
   }
 
@@ -24,12 +24,12 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     b = b || <any>{};
     const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
     return (new FormBuilder).group({
-       id: [b.id],
-            name: [b.name, Validators.required],
-            type: [b.type, Validators.required],
-            ui: [b.ui || {}],
-            style: [b.style],
-            resources: [b.ui.resources || b.resources]
+      id: [b.id],
+      name: [b.name, Validators.required],
+      type: [b.type, Validators.required],
+      ui: [b.ui || {}],
+      style: [b.style],
+      resources: [b.ui.resources || b.resources]
     });
   }
 

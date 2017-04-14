@@ -20,6 +20,9 @@ export class OrgService {
         this.onInit();
     }
 
+    BranchService: BranchService;
+    UserService: UserService;
+
     private onInit() {
         this.BranchService = new BranchService(
             this.nav,
@@ -34,9 +37,6 @@ export class OrgService {
             this.filterService
         );
     }
-
-    BranchService: BranchService;
-    UserService: UserService;
 
     Link = {
         Branch: '/api/admin/org/branch',

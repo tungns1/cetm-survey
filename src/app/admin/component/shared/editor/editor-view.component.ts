@@ -25,6 +25,7 @@ export class EditorViewComponent implements OnInit {
     @Output() action = new EventEmitter<string>();
 
     onAction(action: string) {
+        // console.log('aa');
         this.action.next(action);
     }
 

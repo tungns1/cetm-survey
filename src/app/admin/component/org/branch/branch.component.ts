@@ -18,6 +18,7 @@ export class BranchComponent extends BaseAdminComponent<IBranch> {
     private navService: AdminNavService
   ) {
     super(injector, org.BranchService);
+    this.org.BranchService.RxListView.subscribe();
   }
 
   level$ = this.route.params.map(p => +p['level'] || 0);
