@@ -13,7 +13,7 @@
 
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
         <button fxFlex="15%" class="uppercase btnRed" [class.hide]="isNew" appConfirm="Do you want to delete the selected item?" (confirm)="onAction('remove')" i18n>Delete</button>
-        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" (click)="onAction('add')" i18n>Add</button>
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" [disabled]="isValid" (click)="onAction('add')" i18n>Add</button>
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" (click)="onAction('edit')" i18n>Save</button>
     </div>
 </div>
