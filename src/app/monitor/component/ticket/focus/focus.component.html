@@ -99,7 +99,7 @@
                     <span *ngIf="ticket.state === 'missed'"> {{ticket.mtime - ticket.ctime | timeDuration}}</span>
                 </td>
                 <td>
-                    <span (click)="detail.setData(ticket, admin[0], manager[0])">
+                    <span (click)="detail.setData(ticket, admin[0], manager[0],true)">
                             <!--(click)="detail.setData(ticket, admin[0], manager[0])"-->
                             <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                         </span>
@@ -143,7 +143,7 @@
                     <span *ngIf="ticket.state === 'waiting'"> {{ticket.stime | timeDuration}} </span>
                 </td>
                 <td>
-                    <span (click)="detail.setData(ticket, admin[0], manager[0])">
+                    <span (click)="detail.setData(ticket, admin[0], manager[0],false)">
                             <!--(click)="detail.setData(ticket, admin[0], manager[0])"-->
                                 <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                             </span>

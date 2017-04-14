@@ -21,17 +21,20 @@ export class HistoryFilterComponent implements OnInit {
         wtimemax: 0,
         stimemin: 0,
         stimemax: 0,
-        rating: ''
+        rmin: 0,
+        rmax: 0
     };
 
-    onChange() {
-        if (this.filter.wtimemin > this.filter.wtimemax)
-            this.filter.wtimemax = this.filter.wtimemin;
-        if (this.filter.stimemin > this.filter.stimemax)
-            this.filter.stimemax = this.filter.stimemin;
-    }
+    // onChange() {
+    //     if (this.filter.wtimemin > this.filter.wtimemax)
+    //         this.filter.wtimemax = this.filter.wtimemin;
+    //     if (this.filter.stimemin > this.filter.stimemax)
+    //         this.filter.stimemax = this.filter.stimemin;
+    // }
 
     query(){
+        this.filter.rmax = this.filter.rmin;
+        console.log(this.filter);
         this.filterChange.emit(this.filter);
     }
 

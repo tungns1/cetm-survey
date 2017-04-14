@@ -9,7 +9,6 @@ export interface IConfigPriority {
     vip_card: string;
     customer_vip: string;
     ticket_online: string;
-    ticket_serving_move:string;
 }
 export interface IConfig {
     id?: string;

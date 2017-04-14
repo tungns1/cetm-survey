@@ -177,13 +177,13 @@ export class InfoKioskTrack {
             this.longest_activity_kiosk = maxBy(this.time, 'name').name;
             this.shortest_activity_time = minBy(this.time, 'name').value;
             this.shortest_activity_kiosk = minBy(this.time, 'name').name;
-            this.average_activity_time = meanBy(this.time, <any>'value');
+            this.average_activity_time = +meanBy(this.time, <any>'value').toFixed(2);
 
             this.highest_ticket_quantity = maxBy(this.ticket, 'name').value;
             this.highest_ticket_from = maxBy(this.ticket, 'name').name;
             this.lowest_ticket_quantity = minBy(this.ticket, 'name').value;
             this.lowest_ticket_from = minBy(this.ticket, 'name').name;
-            this.average_printed_ticket = meanBy(this.ticket, <any>'value');
+            this.average_printed_ticket = +meanBy(this.ticket, <any>'value').toFixed(2);
         }
         this.ticket = this.ticket.sort((a, b) => a.value - b.value).slice(0, 5);
         this.time = this.time.sort((a, b) => a.value - b.value).slice(0, 5);
