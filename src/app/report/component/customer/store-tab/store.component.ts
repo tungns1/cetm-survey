@@ -26,7 +26,7 @@ export class StoreComponent {
   }
   
   onSelect(event) {
-    console.log(event);
+    console.log(this.data);
   }
 
   excel() {
