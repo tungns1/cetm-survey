@@ -7,7 +7,7 @@
 </div>
 
 <app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
-    <form [formGroup]="form" fxFlex="column">
+    <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Code</span>
             <input fxFlex class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
