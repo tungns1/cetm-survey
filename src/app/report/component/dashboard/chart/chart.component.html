@@ -29,8 +29,8 @@
     </div>
 
     <div class="pieLegend" fxLayout="row" *ngIf="isPie">
-        <div *ngFor="let item of pieConfig.groups$ | async" fxFlex fxLayout="column">
-            <div *ngFor="let t of item.items" fxFlex class="margin-7-0 item">
+        <div *ngFor="let item of pieConfig.groups$ | async" fxFlex>
+            <div *ngFor="let t of item.items" class="margin-7-0 item">
                 <div style="max-width: 30vw; margin: auto;">
                     <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
                     <span style="font-size: 11px;"> {{t.title}}</span>
