@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
+const SOCKET_RECONNECT_DELAY = 3000;
 
 const SocketStatus = {
     Open: "open",
@@ -52,7 +53,7 @@ export class BaseWebsocket {
             closeObserver: {
                 next: (data) => {
                     this.status$.next(SocketStatus.Closed);
-                    this.reconnect(2000);
+                    this.reconnect();
                 }
             }
         }
@@ -60,20 +61,23 @@ export class BaseWebsocket {
         this.reconnect();
     }
 
-    private reconnect(delay: number = 10) {
-        if (this.reconnectable) {
-            if (!this.isOpen) {
-                this.socket$ = new WebSocketSubject(this.config);
-                this.socket$.subscribe(raw => {
-                    const data = this.messageHandler.deserialize(raw);
-                    this.message$.next(data);
-                });
-            } else {
-                // try again
-                console.log("socket already open");
-                this.reconnect(1000);
+    private reconnect(delay: number = SOCKET_RECONNECT_DELAY) {
+        setTimeout(() => {
+            if (this.reconnectable) {
+                if (!this.isOpen) {
+                    this.socket$ = new WebSocketSubject(this.config);
+                    this.socket$.subscribe(raw => {
+                        const data = this.messageHandler.deserialize(raw);
+                        this.message$.next(data);
+                    });
+                } else {
+                    // try again
+                    console.log("socket already open");
+                    this.reconnect();
+                }
             }
-        }
+
+        }, delay);
     }
 
     protected send(uri: string, data: any) {

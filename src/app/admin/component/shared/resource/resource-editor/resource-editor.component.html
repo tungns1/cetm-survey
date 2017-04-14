@@ -18,7 +18,7 @@
                     {{r.name}}
                     <div class="edit-reset-button">
                         <a [class.hide]="!r.editable" (click)="form.Edit(r)">Edit</a>
-                        <a [class.hide]="!r.editable" (click)="Reset(r)">Reset</a>
+                        <a (click)="Reset(r)">Reset</a>
                     </div>
                 </td>
                 <td class="body-resource-editor text-center">{{r.type}}</td>
