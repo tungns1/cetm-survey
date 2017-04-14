@@ -38,6 +38,11 @@ export class EditorViewComponent implements OnInit {
 
     @Input() isNew = true;
 
-    @Input() isValid = true;
+    @Input() isValidService = true;
+    @Input() isValidBrand = true;
+    @Input() isValidLayout = true;
+    @Input() isValidTform = true;
+    @Input() isValidCounter = true;
+    @Input() isValidKiosk = true;
 
 }

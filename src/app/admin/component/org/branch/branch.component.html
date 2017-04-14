@@ -7,22 +7,32 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [title]="level$ | async | branchLevelName"
-        [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValidBrand]="form.valid" [title]="level$ | async | branchLevelName" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Name</span>
-            <input fxFlex class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name">
+            <div fxFlex>
+                <span class="error" *ngIf="form.get('name').hasError('required')">*</span>
+                <span class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
+                <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name">
+            </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Code</span>
-            <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
+            <div fxFlex>
+                <span class="error" *ngIf="form.get('code').hasError('required')">*</span>
+                <span class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
+                <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
+            </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%">{{parentLevel$ | async | branchLevelName}}</span>
-            <select fxFlex class="hl-select" formControlName="parent">
+            <div>
+                <span class="error">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="parent">
                 <option *ngFor="let br of parents$ | async" [value]="br.id">{{br.name}}</option>
             </select>
+            </div>
         </div>
     </form>
 </app-editor-view>
