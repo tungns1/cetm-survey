@@ -22,7 +22,7 @@ export class CustomerComponent {
         case 1:
             return 2000;
         case 2:
-            return 800;
+            return 500;
         case 3:
             return 200;
         case 4:
@@ -36,7 +36,7 @@ export class CustomerComponent {
         case 1:
             return 2000;
         case 2:
-            return 800;
+            return 500;
         case 3:
             return 200;
         case 4:
