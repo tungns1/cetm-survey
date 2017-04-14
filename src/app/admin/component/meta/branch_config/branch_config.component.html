@@ -6,14 +6,17 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [title]="title"
-        [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" [isValidBrandConfig]="form.valid" *ngIf="form$ | async; let form" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Location</span>
-            <select fxFlex class="hl-select" formControlName="branch_id">
-                <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
-            </select>
+            <div fxFlex>
+                <span class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
+                <span class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
+                <select class="hl-select" formControlName="branch_id">
+                    <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
+                </select>
+            </div>
             <span fxFlex="15%" i18n>Feedback Device: </span>
             <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
         </div>

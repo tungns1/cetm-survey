@@ -36,13 +36,16 @@ export class EditorViewComponent implements OnInit {
         });
     }
 
-    @Input() isNew = true;
+    @Input() isNew              = true;
 
-    @Input() isValidService = true;
-    @Input() isValidBrand = true;
-    @Input() isValidLayout = true;
-    @Input() isValidTform = true;
-    @Input() isValidCounter = true;
-    @Input() isValidKiosk = true;
-
+    @Input() isValidService     = true;
+    @Input() isValidBrand       = true;
+    @Input() isValidLayout      = true;
+    @Input() isValidTform       = true;
+    @Input() isValidCounter     = true;
+    @Input() isValidKiosk       = true;
+    @Input() isValidScreen      = true;
+    @Input() isValidSflow       = true;
+    @Input() isValidUser        = true;
+    @Input() isValidBrandConfig = true;
 }
