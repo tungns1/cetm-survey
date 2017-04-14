@@ -29,8 +29,8 @@ function getPriority(t: ITicket) {
             priority += parseInt(t.ticket_priority.ticket_online);
         } else if (t.ticket_priority.vip_card != "") {
             priority += parseInt(t.ticket_priority.vip_card);
-        } else if (t.ticket_priority.ticket_serving_move != "") {
-            priority += parseInt(t.ticket_priority.ticket_serving_move);
+        } else if (t.ticket_priority.ticket_serving_move != null) {
+            priority += t.ticket_priority.ticket_serving_move;
         }
         return priority;
     }
