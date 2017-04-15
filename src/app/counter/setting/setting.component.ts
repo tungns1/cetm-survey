@@ -15,7 +15,10 @@ export class SettingComponent implements OnInit {
 
   ngOnInit() {
     this.form.valueChanges.subscribe(v => {
-      this.counterSetting.Update(v.branch_code, v.counter_code);
+      this.counterSetting.Update(
+        v.branch_code, v.counter_code,
+        v.enable_recording
+      );
     });
   }
 
@@ -23,7 +26,8 @@ export class SettingComponent implements OnInit {
 
   form = new FormGroup({
     branch_code: new FormControl(this.value.branch_code),
-    counter_code: new FormControl(this.value.counter_code)
+    counter_code: new FormControl(this.value.counter_code),
+    enable_recording: new FormControl(this.value.enable_recording)
   });
 
 }

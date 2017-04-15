@@ -16,13 +16,15 @@ export class FeedbackService {
         private feedbackDevice: FeedbackDevice,
         private env: RuntimeEnvironment
     ) {
-        this.onInit();
+        
     }
 
-    private onInit() {
+    enable() {
+        this.feedbackDevice.enable();
         this.env.Auth.Data$.subscribe(d => {
             // this.required = d.config.feedback.required;
-        })
+        });
+        return true;
     }
 
     private socket = this.workspaceService.Socket;

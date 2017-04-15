@@ -13,9 +13,9 @@ export {
 
 export * from './service';
 export * from './model';
-export * from './device';
+export { workspaceDeviceProvider } from './device';
 
 export {
-    ModalComponent, ModalModule, 
+    ModalComponent, ModalModule,
     TimerComopnent, TimeModule
 } from '../../../x/ng';
