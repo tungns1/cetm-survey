@@ -3,6 +3,8 @@ import { Http, Request, Response, RequestOptions, RequestMethod, URLSearchParams
 import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
 
+const NETWORK_ERROR_TYPE = 3;
+
 export class HttpError {
     constructor(
         private status: number,
@@ -77,14 +79,22 @@ export class HttpApi<T> {
     private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
+        console.log(error);
+        try {
+            if (error instanceof Response) {
+                if (error.type == NETWORK_ERROR_TYPE) {
+                    errMsg = "CONNECTION ERROR";
+                } else {
+                    const body = error.json() || '';
+                    const err = body.error || JSON.stringify(body);
+                    errMsg = `${err}`;
+                }
+            } else {
+                errMsg = error.message ? error.message : error.toString();
+            }
+        } catch (e) {
+            errMsg = "INVALID RESPONSE FORMAT";
         }
-        console.error(errMsg);
         return _throw(new HttpError(error.status, error.statusText, errMsg));
     }
 
