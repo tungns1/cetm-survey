@@ -6,34 +6,34 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValidScreen]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Code</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
-                <span *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
-                <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
+                <span fxFlex="1%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
             <span fxFlex="15%" i18n>Name</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
-                <span *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
-                <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
+                <span fxFlex="1%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Location</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
-                <span *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-                <branch-picker level="0" formControlName="branch_id"></branch-picker>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
+                <span fxFlex="1%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
+                <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
             </div>
             <span fxFlex="15%" i18n>Counters</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('counters').hasError('required')">*</span>
-                <span *ngIf="!form.get('counters').hasError('required')">&nbsp;</span>
-                <select-check formControlName="counters" class="border" style="background-color: #fff" [data]="counters$ | async" textField="name"></select-check>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('counters').hasError('required')">*</span>
+                <span fxFlex="1%" *ngIf="!form.get('counters').hasError('required')">&nbsp;</span>
+                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff" [data]="counters$ | async" textField="name"></select-check>
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
@@ -41,9 +41,9 @@
                 <ng-container i18n>Inherit From</ng-container>
                 <a [routerLink]="parentEdit$ | async" queryParamsHandling="merge">Edit</a>
             </span>
-            <div fxFlex>
-                <span>&nbsp;</span>
-                <select class="hl-select" formControlName="parent_id">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="parent_id">
                     <option value="">--None--</option>
                     <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
                 </select>
@@ -52,9 +52,9 @@
                 <ng-container i18n> Layout</ng-container>
                 <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">Edit</a>
             </span>
-            <div fxFlex>
-                <span>&nbsp;</span>
-                <select class="hl-select" formControlName="layout_id">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="layout_id">
                     <option value="">--None--</option>
                     <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
                 </select>
@@ -62,7 +62,10 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Resources</span>
-            <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+            <div fxFlex fxLayout="row">
+                <span fxFlex="1%">&nbsp;</span>
+                <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+            </div>
         </div>
     </form>
 </app-editor-view>

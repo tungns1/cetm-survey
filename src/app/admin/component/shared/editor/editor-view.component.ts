@@ -17,7 +17,7 @@ export class EditorViewComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        
+        console.log(this.isValid);
     }
 
     @Input() title = 'title';
@@ -36,16 +36,10 @@ export class EditorViewComponent implements OnInit {
         });
     }
 
-    @Input() isNew              = true;
+    private getStyle() {
+        if(!this.isValid) return 0.3;
+    }
 
-    @Input() isValidService     = true;
-    @Input() isValidBrand       = true;
-    @Input() isValidLayout      = true;
-    @Input() isValidTform       = true;
-    @Input() isValidCounter     = true;
-    @Input() isValidKiosk       = true;
-    @Input() isValidScreen      = true;
-    @Input() isValidSflow       = true;
-    @Input() isValidUser        = true;
-    @Input() isValidBrandConfig = true;
+    @Input() isNew   = true;
+    @Input() isValid = true;
 }

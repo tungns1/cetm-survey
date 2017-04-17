@@ -116,38 +116,48 @@ export class FocusComponent {
             return a.ctime < b.ctime ? -1 : 1;
         }));
 
-    served$ = this.focusService.tickets$
-        .map(tickets => tickets.filter(t => {
-            if (t.state === TicketStates.Finished || t.state === TicketStates.Waiting) {
-                if (t.state === TicketStates.Waiting) {
-                    let flag = 0;
-                    for (let i = 0; i < t.tracks.length; i++) {
-                        if (t.tracks[i].state === 'finished') {
-                            t.counter_id = t.tracks[i - 1].counter_id;
-                            t.mtime = t.tracks[i].mtime;
-                            t.service_id = t.tracks[i - 1].service_id;
-                            t.counter_id = t.tracks[i - 1].counter_id;
-                            t.user_id = t.tracks[i - 1].user_id;
-                            t.stime = t.mtime - t.tracks[i - 1].mtime;
-                            flag++;
+    move$ = this.focusService.tickets$
+        .map(tickets => {
+            let ts: ITicket[] = [];
+
+            tickets.forEach(t => {
+                if (t.state === TicketStates.Finished || t.state === TicketStates.Waiting) {
+                        for (let i = 0; i < t.tracks.length; i++) {
+                            if (t.tracks[i].state === 'finished') {
+                                let ticket: ITicket = {
+                                    branch_id: t.branch_id,
+                                    cnum: t.cnum,
+                                    ccount: t.ccount,
+                                    customer: t.customer,
+                                    priority: t.priority,
+                                    ticket_priority: t.ticket_priority,
+                                    counter_id: t.tracks[i - 1].counter_id,
+                                    mtime: t.tracks[i-1].mtime,
+                                    service_id: t.tracks[i - 1].service_id,
+                                    user_id: t.tracks[i - 1].user_id,
+                                    stime: t.mtime - t.tracks[i - 1].mtime,
+                                    id: t.id,                     
+                                    services: t.services,
+                                    counters: t.counters,                                 
+                                    vcode: t.vcode,                             
+                                    state: t.state,                                
+                                    ctime: t.ctime,                               
+                                    tracks: t.tracks,                 
+                                }
+
+                                ts.push(ticket);
+                            }
                         }
+
                     }
-                    if (flag == 0) return false;
-                    else {
-                        return true;
-                    }
-                }
-                if (t.state === TicketStates.Finished) {
-                    t.stime = t.tracks[t.tracks.length - 1].mtime - t.tracks[t.tracks.length - 2].mtime;
-                }
-                this.addServingTrack(t);
-                return true;
-            }
-            return false;
-        }))
-        .map(tickets => tickets.sort((a, b) => {
+            })
+            return ts;
+        }).map(tickets => tickets.sort((a, b) => {
             return a.ctime < b.ctime ? -1 : 1;
         }));
+
+
+
 
     cancelled$ = this.focusService.tickets$
         .map(tickets => tickets.filter(t => {
@@ -161,8 +171,8 @@ export class FocusComponent {
             return a.ctime < b.ctime ? -1 : 1;
         }));
 
-    servingNServed$ = this.serving$.combineLatest(this.served$, this.cancelled$, (serving, served, cancelled) => {
-        return [].concat(serving).concat(served).concat(cancelled);
+    servingNServed$ = this.serving$.combineLatest(this.move$, this.cancelled$, (serving, move, cancelled) => {
+        return [].concat(serving).concat(move).concat(cancelled);
     })
 
     addServingTrack(a: ITicket) {
