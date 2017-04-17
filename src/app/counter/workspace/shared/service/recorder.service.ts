@@ -20,7 +20,9 @@ export class RecorderService {
         this.subscription = this.queueService.serving$.subscribe(s => {
             let t = s[0];
             if (t) {
-                this.recorderDevice.AppendToFile(`${t.branch_id}_${t.id}`);
+                const date = new Date(t.mtime * 1000);
+                const dateString = `${date.getFullYear()}_${date.getMonth() + 1}_${date.getDate()}`;
+                this.recorderDevice.AppendToFile(`${dateString}.${t.branch_id}.${t.transaction_id}`);
             } else {
                 this.recorderDevice.SkipSaveToFile();
             }
