@@ -22,18 +22,14 @@
     </div>
     <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="isWaiting">
       <div fxFlex i18n>Waiting time</div>
-      <div fxFlex>
-        <span><timer [start]="ticket.mtime" [timeWarning]="15"></timer></span>
-      </div>
+        <timer fxFlex [start]="ticket.mtime" [timeWarning]="15"></timer>
     </div>
 
 
     <div class="margin-t-10" fxLayoutGap="20px" *ngIf="!isWaiting">
       <div fxLayout="row">
         <div fxFlex i18n>Waiting time</div>
-        <div fxFlex>
-          <span>{{ticket.mtime - ticket.ctime | timeDuration}}</span>
-        </div>
+        <span fxFlex>{{ticket.mtime - ticket.ctime | timeDuration}}</span>
       </div>
 
       <div fxLayout="row">

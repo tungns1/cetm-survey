@@ -52,6 +52,7 @@ export class LedService {
         }).subscribe(status => {
             this.SendStatus(status);
         });
+        return true;
     }
 
     disable() {

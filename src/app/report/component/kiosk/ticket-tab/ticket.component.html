@@ -1,9 +1,12 @@
-<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.ticketchart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
-    (select)="onSelect($event)">
+<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.ticketchart" 
+    [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" 
+    [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" 
+    [autoScale]="autoScale" (select)="onSelect($event)">
 </ngx-charts-line-chart>
 
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.ticket" [barPadding]="padding" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-    (select)="onSelect($event)">
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.ticket" 
+    [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" 
+    [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->
 <table>

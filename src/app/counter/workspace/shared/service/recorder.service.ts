@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ISubscription} from 'rxjs/Subscription';
+import { ISubscription } from 'rxjs/Subscription';
 import { RecorderDevice } from '../device';
 import { QueueService } from './queue.service';
 
@@ -11,20 +11,23 @@ export class RecorderService {
     ) { }
 
     enable() {
+        this.recorderDevice.Start();
         this.subscription = this.queueService.serving$.subscribe(s => {
             let t = s[0];
             if (t) {
-                this.recorderDevice.AppendToFile(t.id);
+                this.recorderDevice.AppendToFile(`${t.branch_id}_${t.id}`);
             } else {
-                this.recorderDevice.Stop();
+                this.recorderDevice.SkipSaveToFile();
             }
-        })
+        });
+        return true;
     }
 
     disable() {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
+        this.recorderDevice.Stop();
     }
 
     private subscription: ISubscription;

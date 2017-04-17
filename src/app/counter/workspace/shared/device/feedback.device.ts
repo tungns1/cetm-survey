@@ -9,10 +9,10 @@ export class FeedbackDevice {
         private qmsService: QmsService,
         private counterSetting: CounterSettingService
     ) {
-        this.onInit();
+
     }
 
-    onInit() {
+    enable() {
         this.UpdateConfig();
         this.qmsService.listen("/feedback/ready", (event: string, arg: any) => {
             this.UpdateConfig();

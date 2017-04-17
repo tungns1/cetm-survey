@@ -129,6 +129,20 @@
         position: relative;
     }
 }
+// overide material 2 - tab
+.mat-tab-header{
+    background-color: $background-color-title;
+    color: $text-color;
+    border-bottom: $border;
+    .mat-tab-label-active{
+        // border-color: $key-color;
+        color: $key-color;
+        font-weight: $font-weight-default + 400;
+    }
+    .mat-ink-bar{
+        background-color: $key-color;
+    }
+}
 
 //End of UI elements
 
