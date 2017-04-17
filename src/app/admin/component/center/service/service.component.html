@@ -11,13 +11,13 @@
 <app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Code</span>
+            <span fxFlex="20%" i18n>Code</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
-            <span fxFlex="15%" i18n="Mức ưu tiên dịch vụ">Priority</span>
+            <span fxFlex="20%" i18n="Mức ưu tiên dịch vụ">Priority</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('priority').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('priority').hasError('required')">&nbsp;</span>
@@ -28,7 +28,7 @@
         <l10n-form formControlName="l10n"></l10n-form>
 
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n="Định dạng số vé">Ticket number format</span>
+            <span fxFlex="20%" i18n="Định dạng số vé">Ticket number format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_normal').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('tform_normal').hasError('required')">&nbsp;</span>
@@ -38,7 +38,7 @@
             </div>
 
 
-            <span fxFlex="15%" i18n="Định dạng số vé vip">VIP Ticket number format</span>
+            <span fxFlex="20%" i18n="Định dạng số vé vip">VIP Ticket number format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>

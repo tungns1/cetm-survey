@@ -10,13 +10,13 @@
 <app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Username</span>
+            <span fxFlex="20%" i18n>Username</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('username').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('username').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
             </div>
-            <span fxFlex="15%" i18n>Full Name</span>
+            <span fxFlex="20%" i18n>Full Name</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('fullname').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('fullname').hasError('required')">&nbsp;</span>
@@ -24,13 +24,13 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Password</span>
+            <span fxFlex="20%" i18n>Password</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('password').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('password').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
             </div>
-            <span fxFlex="15%" i18n>Role</span>
+            <span fxFlex="20%" i18n>Role</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('role').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('role').hasError('required')">&nbsp;</span>
@@ -40,13 +40,13 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Location</span>
+            <span fxFlex="20%" i18n>Location</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
                 <branch-picker fxFlex formControlName="branch_id"></branch-picker>
             </div>
-            <div fxFlex="15%"></div>
+            <div fxFlex="20%"></div>
             <div fxFlex></div>
         </div>
     </form>

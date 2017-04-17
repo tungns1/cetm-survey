@@ -12,13 +12,13 @@
 <app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Code</span>
+            <span fxFlex="20%" i18n>Code</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
-            <span fxFlex="15%" i18n>Number format</span>
+            <span fxFlex="20%" i18n>Number format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('format').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('format').hasError('required')">&nbsp;</span>
@@ -26,14 +26,14 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Minimum value</span>
+            <span fxFlex="20%" i18n>Minimum value</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('minnum').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('minnum').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="number" formControlName="minnum" i18n-placeholder placeholder="Minimum value">
             </div>
-            <span fxFlex="15%" i18n>Maximum value</span>
-            <div fxFlex fxLayoutGap="5px" class="rowCtrl">
+            <span fxFlex="20%" i18n>Maximum value</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('maxnum').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('maxnum').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="number" formControlName="maxnum" i18n-placeholder placeholder="Maximum value">
