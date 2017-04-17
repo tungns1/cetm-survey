@@ -6,7 +6,7 @@
 </div>
 
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [isValidLayout]="form.valid" (action)="onActionConfirm($event, form.value)">
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [isValid]="form.valid" (action)="onActionConfirm($event, form.value)">
     <form class="hl-form" [formGroup]="form">
         <span i18n>Name</span>:
         <div>
