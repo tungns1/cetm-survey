@@ -7,10 +7,12 @@ import { ServingModule } from './serving/serving.module';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { workspaceServiceProvider, workspaceDeviceProvider } from './shared';
 import { InfoCustomerModule } from './info-customer/info.module';
+import { WorkspaceGuard } from './shared';
 
 const routing = RouterModule.forChild([
     {
         path: '',
+        canActivate: [WorkspaceGuard],
         component: WorkspaceComponent
     }
 ]);
