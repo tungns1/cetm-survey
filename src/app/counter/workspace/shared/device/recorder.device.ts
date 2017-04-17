@@ -1,23 +1,34 @@
 import { Injectable } from '@angular/core';
 import { ITicket, QmsService } from './shared';
 
+
+
+interface IRecordConfig {
+    format: 'mp3';
+    upload_url: string;
+}
+
 @Injectable()
-export class RecorderDevice { 
+export class RecorderDevice {
     constructor(
         private qmsService: QmsService
-    ) {}
+    ) { }
 
-    Start(format = 'mp3') {
-        this.qmsService.__x.Send("/recorder/start", format);
+    enable(config: IRecordConfig) {
+        this.qmsService.listen("/recorder/ready", () => {
+            this.sendCommand("/start", config);
+        });
+        this.qmsService.__x.Broadcast("/recorder/enable", config);
+        this.sendCommand("/query-ready", "");
     }
 
-    Stop() {
-        this.qmsService.__x.Send("/recorder/stop");
+    disable() {
+        this.qmsService.__x.Broadcast("/recorder/disable");
     }
 
-    private sendCommand(command: string, data: any) {
-        this.qmsService.__x.Send('/recorder/command', {
-            command, data
+    private sendCommand(uri: string, data: any) {
+        this.qmsService.__x.Broadcast('/recorder/command', {
+            uri, data
         });
     }
 
@@ -26,12 +37,12 @@ export class RecorderDevice {
      *  If filename is not present, the data is skipped
      * @param filename the file name for the data
      */
-    
+
     AppendToFile(filename: string) {
-        this.sendCommand("append", filename);
+        this.sendCommand("/append", filename);
     }
 
     SkipSaveToFile() {
-        this.sendCommand("skip", "");
+        this.sendCommand("/skip", "");
     }
 }
