@@ -119,7 +119,6 @@ export class FocusComponent {
     move$ = this.focusService.tickets$
         .map(tickets => {
             let ts: ITicket[] = [];
-
             tickets.forEach(t => {
                 if (t.state === TicketStates.Finished || t.state === TicketStates.Waiting) {
                         for (let i = 0; i < t.tracks.length; i++) {
