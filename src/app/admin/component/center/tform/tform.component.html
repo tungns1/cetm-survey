@@ -13,30 +13,30 @@
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Code</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
             <span fxFlex="15%" i18n>Number format</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('format').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('format').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="text" formControlName="format" i18n-placeholder placeholder="Number Format">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('format').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('format').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="text" formControlName="format" i18n-placeholder placeholder="Number Format">
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Minimum value</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('minnum').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('minnum').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="number" formControlName="minnum" i18n-placeholder placeholder="Minimum value">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('minnum').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('minnum').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="number" formControlName="minnum" i18n-placeholder placeholder="Minimum value">
             </div>
             <span fxFlex="15%" i18n>Maximum value</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('maxnum').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('maxnum').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="number" formControlName="maxnum" i18n-placeholder placeholder="Maximum value">
+            <div fxFlex fxLayoutGap="5px" class="rowCtrl">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('maxnum').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('maxnum').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="number" formControlName="maxnum" i18n-placeholder placeholder="Maximum value">
             </div>
         </div>
     </form>

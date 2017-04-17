@@ -11,29 +11,29 @@
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Username</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('username').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('username').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('username').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('username').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
             </div>
             <span fxFlex="15%" i18n>Full Name</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('fullname').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('fullname').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="text" formControlName="fullname" i18n-placeholder placeholder="Full Name" style="width: 100%;">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('fullname').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('fullname').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="text" formControlName="fullname" i18n-placeholder placeholder="Full Name" style="width: 100%;">
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Password</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('password').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('password').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('password').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('password').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
             </div>
             <span fxFlex="15%" i18n>Role</span>
-            <div>
-                <span class="valid-color" *ngIf="form.get('role').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('role').hasError('required')">&nbsp;</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('role').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('role').hasError('required')">&nbsp;</span>
                 <select fxFlex class="hl-select" formControlName="role">
                     <option *ngFor="let ro of roles" [value]="ro.code">{{ro.name}}</option>
                 </select>
@@ -41,9 +41,9 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Location</span>
-            <div>
-                <span class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
                 <branch-picker fxFlex formControlName="branch_id"></branch-picker>
             </div>
             <div fxFlex="15%"></div>
