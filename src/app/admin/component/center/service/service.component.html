@@ -12,16 +12,16 @@
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Code</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
-                <input class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
             <span fxFlex="15%" i18n="Mức ưu tiên dịch vụ">Priority</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('priority').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('priority').hasError('required')">&nbsp;</span>
-                <input class="hl-input" type="number" formControlName="priority" i18n-placeholder placeholder="Priority">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('priority').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('priority').hasError('required')">&nbsp;</span>
+                <input fxFlex class="hl-input" type="number" formControlName="priority" i18n-placeholder placeholder="Priority">
             </div>
         </div>
 
@@ -29,20 +29,20 @@
 
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n="Định dạng số vé">Ticket number format</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('tform_normal').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('tform_normal').hasError('required')">&nbsp;</span>
-                <select class="hl-select" formControlName="tform_normal">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_normal').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('tform_normal').hasError('required')">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="tform_normal">
                     <option *ngFor="let t of tforms | async" [value]="t.id">{{t.code}}</option>
                 </select>
             </div>
 
 
             <span fxFlex="15%" i18n="Định dạng số vé vip">VIP Ticket number format</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
-                <span class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>
-                <select class="hl-select" formControlName="tform_vip">
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="tform_vip">
                     <option *ngFor="let t of tformVips | async" [value]="t.id">{{t.code}}</option>
                 </select>
             </div>
