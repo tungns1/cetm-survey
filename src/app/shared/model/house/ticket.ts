@@ -19,7 +19,7 @@ export interface ITicket {
     tracks: ITicketTrack[];
     customer: ICustomer;
     ticket_priority: ITicketPriority;
-    transaction_id: string;
+    transaction_id?: string;
 }
 
 export interface ITicketPriority {
