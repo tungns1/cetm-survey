@@ -87,7 +87,9 @@ export class BaseWebsocket {
 
     protected close(reconnectable = false) {
         this.reconnectable = reconnectable;
-        this.socket$.complete();
+        if (this.socket$) {
+            this.socket$.complete();
+        }
     }
 
     get isOpen() {

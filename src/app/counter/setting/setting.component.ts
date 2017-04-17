@@ -15,10 +15,7 @@ export class SettingComponent implements OnInit {
 
   ngOnInit() {
     this.form.valueChanges.subscribe(v => {
-      this.counterSetting.Update(
-        v.branch_code, v.counter_code,
-        v.enable_recording
-      );
+      this.counterSetting.Update(v);
     });
   }
 

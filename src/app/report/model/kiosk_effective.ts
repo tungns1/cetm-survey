@@ -136,7 +136,7 @@ export class InfoKioskTrack {
                     total: total,
                     highest: max,
                     lowest: min,
-                    average: total / (data_by_branh[i].length),
+                    average: +(total / (data_by_branh[i].length)).toFixed(2),
                 })
                 this.time_sum.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),

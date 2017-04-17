@@ -3,7 +3,7 @@ export * from './ticket.service';
 export * from './queue.service';
 export * from './led.service';
 export * from './feedback.service';
-export * from './'
+export * from './workspace.guard';
 
 import { WorkspaceService } from './workspace.service';
 import { TicketService } from './ticket.service';
@@ -12,6 +12,7 @@ import { LedService } from './led.service';
 import { FeedbackService } from './feedback.service';
 import { RecorderService } from './recorder.service';
 import { WorkspaceSocket } from './workspace.socket';
+import { WorkspaceGuard } from './workspace.guard';
 
 export const workspaceServiceProvider = [
     WorkspaceService,
@@ -20,5 +21,6 @@ export const workspaceServiceProvider = [
     LedService,
     FeedbackService,
     RecorderService,
-    WorkspaceSocket
+    WorkspaceSocket,
+    WorkspaceGuard
 ]

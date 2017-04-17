@@ -1,8 +1,8 @@
-import {ICustomer} from '../org/customer'
+import { ICustomer } from '../org/customer'
 export interface ITicket {
     id: string;
     cnum: string;
-    branch_id:string;
+    branch_id: string;
     service_id: string;
     counter_id: string;
     services: string[];
@@ -17,16 +17,17 @@ export interface ITicket {
     mtime: number;
     stime: number;
     tracks: ITicketTrack[];
-    customer:ICustomer;
-    ticket_priority:ITicketPriority;
+    customer: ICustomer;
+    ticket_priority: ITicketPriority;
+    transaction_id?: string;
 }
 
-export interface ITicketPriority{
-    ticket_serving_move:number;
-    service_priority:string;
-    vip_card:string;
-    customer_vip:string;
-    ticket_online:string;
+export interface ITicketPriority {
+    ticket_serving_move: number;
+    service_priority: string;
+    vip_card: string;
+    customer_vip: string;
+    ticket_online: string;
 }
 
 

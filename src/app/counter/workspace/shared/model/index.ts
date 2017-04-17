@@ -17,8 +17,8 @@ export function SortTicket(a: ITicket, b: ITicket) {
     }
     return a.mtime < b.mtime ? -1 : 1;
 }
+
 function getPriority(t: ITicket) {
-    console.log(t)
     var priority = 0;
     if (t.ticket_priority != undefined) {
         if (t.ticket_priority.customer_vip != "") {
