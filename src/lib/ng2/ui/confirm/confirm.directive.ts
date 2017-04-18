@@ -35,8 +35,8 @@ export class ConfirmDirective {
   template: `
   <div md-dialog-content class="center">{{message}}</div>
   <div md-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-20">
-    <button fxFlex="20%" class="uppercase btnClear" (click)="dialogRef.close(true)">Yes</button>
-    <button fxFlex="20%" class="uppercase btnFill" (click)="dialogRef.close(false)">No</button>
+    <button fxFlex="20%" class="uppercase btnClear" (click)="dialogRef.close(true)" i18n="Confirm Yes">Yes</button>
+    <button fxFlex="20%" class="uppercase btnFill" (click)="dialogRef.close(false)" i18n="Confirm No">No</button>
   </div>
   `
 })
