@@ -1,8 +1,10 @@
-<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.freschart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
-    (select)="onSelect($event)">
-</ngx-charts-line-chart>
+<!--<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.fres" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
+</ngx-charts-bar-vertical>-->
 <!-- Time View -->
 
+<ngx-charts-bar-vertical [view]="view" [barPadding]="padding" [scheme]="colorScheme" [results]="data.fres" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+    (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
 <table>
     <thead>
         <th i18n>Month</th>

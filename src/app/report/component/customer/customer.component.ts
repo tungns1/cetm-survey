@@ -31,6 +31,20 @@ export class CustomerComponent {
             return 10;
         }
     });
+       paddingFres = this.data$.map(data => {
+        switch (data.fres.length){
+        case 1:
+            return 2000;
+        case 2:
+            return 500;
+        case 3:
+            return 200;
+        case 4:
+            return 50;
+        default:
+            return 10;
+        }
+    });
     paddingService = this.data$.map(data => {
         switch (data.services.length){
         case 1:

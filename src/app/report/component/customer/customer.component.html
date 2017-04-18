@@ -26,7 +26,7 @@
                 <app-transaction-time [data]="data$ | async"></app-transaction-time>
             </md-tab>
             <md-tab label="FREQUENCY">
-                <fres-tab [data]="data$ | async"></fres-tab>
+                <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async"></fres-tab>
             </md-tab>
             <md-tab label="SERVICE">
                 <service-tab *ngIf="selectedTab === 2" [data]="data$ | async" [padding]="paddingService | async"></service-tab>
