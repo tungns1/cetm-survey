@@ -1,7 +1,7 @@
 <div id="topNav">
     <ul class="firstLv">
         <li class="li_firstLv">
-            <div class="paddingFirst" routerLink="/admin" queryParamsHandling="preserve" routerLinkActive="current-menu-item">
+            <div class="paddingFirst" routerLink="/admin" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin')">
                 <i class="fa fa-home"> </i>
                 <span i18n>Admin</span>
             </div>
@@ -36,7 +36,7 @@
             </ul>
         </li>
         <li class="li_firstLv">
-            <div class="paddingFirst" routerLink="/report" queryParamsHandling="preserve" routerLinkActive="current-menu-item">
+            <div class="paddingFirst" routerLink="/report" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/report')">
                 <i class="fa fa-line-chart"> </i>
                 <span i18n>Report &amp; Analysis</span>
             </div>
@@ -56,13 +56,13 @@
             </ul>
         </li>
         <li class="li_firstLv">
-            <div class="paddingFirst" routerLink="/monitor" queryParamsHandling="preserve" routerLinkActive="current-menu-item">
+            <div class="paddingFirst" routerLink="/monitor" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/monitor')">
                 <i class="fa fa-bell"> </i>
                 <span i18n>Monitor</span>
             </div>
         </li>
         <li class="li_firstLv">
-            <div class="paddingFirst" routerLink="/admin/house/kiosk" queryParamsHandling="preserve" routerLinkActive="current-menu-item">
+            <div class="paddingFirst" routerLink="/admin/house/kiosk" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/kiosk')">
                 <i class="fa fa-ticket"> </i>
                 <span i18n>Kiosk</span>
             </div>
@@ -73,13 +73,13 @@
             </ul>
         </li>
         <li class="li_firstLv">
-            <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" routerLinkActive="current-menu-item">
+            <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/screen')">
                 <i class="fa fa-desktop"> </i>
                 <span i18n>Screen</span>
             </div>
         </li>
         <li class="li_firstLv">
-            <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" routerLinkActive="current-menu-item">
+            <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/screen')">
                 <i class="fa fa-commenting"> </i>
                 <span i18n>Feedback</span>
             </div>

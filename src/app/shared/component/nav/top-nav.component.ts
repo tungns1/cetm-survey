@@ -8,24 +8,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TopNavComponent {
     constructor(
-        private Route: ActivatedRoute,
-        private Rou: Router
+        private router: Router
     ) {
         
     }
 
     ngOnInit() {
-        this.Route.url.subscribe(url => {
-            console.log(url)
-        })
+        console.log(this.router.url);
     }
 
-
-    private IsActive() {
-        this.url = this.router.url;
-        console.log(this.url);
-        return this.url;
+    private isActive(route: string) {
+        if(this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('kiosk') > -1) return true;
+        if(this.router.url.indexOf(route) > -1) {
+            if(this.router.url.startsWith('/admin')) {
+                if(this.router.url.indexOf('kiosk') > -1 && route.indexOf('kiosk') <= -1) return false;
+                if(this.router.url.indexOf('screen') > - 1 && route.indexOf('screen') <= -1) return false;
+                if(this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('admin') > -1) return false; 
+                return true;                    
+            }
+            else return true;
+        } 
+        else return false;
     }
-    url: string;
-    router: Router;
 }
