@@ -1,19 +1,24 @@
 <div *ngIf="node" class="list-file-upload" id="folderUpload">
-    <h1 i18n>List File {{node.name}} </h1>
+    <h1>Folder: {{node.name}} </h1>
     <div class="div-scroll">
         <table>
             <tr>
-                <th i18n>Name File</th>
+                <th>File</th>
                 <th></th>
             </tr>
 
             <tr *ngFor="let d of node.rxChildren | async">
-                <td> <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
-            {{ d.name }}</a></td>
-                <td> <button class="btn-hlm btn-view" (click)="view(d)">
-                <i class="fa fa-data"></i>
-                <span i18n>View</span>          
-        </button></td>
+                <td>
+                    <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
+                    {{ d.name }}
+                    </a>
+                </td>
+                <td>
+                    <button class="btn-hlm btn-view" (click)="view(d)">
+                        <i class="fa fa-data"></i>
+                        <span>View</span>          
+                </button>
+                </td>
             </tr>
 
         </table>
@@ -30,6 +35,6 @@
                 </li>
                 </ul>-->
 
-    <button class="btn-hlm btn-upload" (click)="upload.open(node)" i18n>Upload</button>
+    <button class="btn-hlm btn-upload" (click)="upload.open(node)">Upload</button>
     <file-upload #upload style="bottom:0;right:0;"></file-upload>
 </div>
