@@ -1,48 +1,48 @@
 <modal *ngIf="data" class="report_history_modal">
-    <div class="modal-header"><span i18n>Ticket detail</span></div>
+    <div class="modal-header"><span i18n>Ticket Detail</span></div>
     <accordion>
         <accordion-title class="accordionTitle">
-            <span i18n>Ticket detail</span>
+            <span i18n>Ticket Detail</span>
         </accordion-title>
         <table class="detailTicket">
             <tr>
                 <td class="labelCtrl"><b i18n>Branch</b></td>
-                <td i18n>{{data.parent}}</td>
+                <td>{{data.parent}}</td>
             </tr>
             <tr>
                 <td class="labelCtrl"><b i18n>Store</b></td>
-                <td i18n>{{data.branch}}</td>
+                <td>{{data.branch}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"><b i18n>Counter no</b></td>
-                <td i18n>{{data.counter}}</td>
+                <td class="labelCtrl"><b i18n>Counter No</b></td>
+                <td>{{data.counter}}</td>
             </tr>
             <tr>
                 <td class="labelCtrl"><b i18n>Teller</b></td>
-                <td i18n>{{data.user}}</td>
+                <td>{{data.user}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"><b i18n>Ticket number</b></td>
-                <td i18n>{{data.cnum}}</td>
+                <td class="labelCtrl"><b i18n>Ticket Number</b></td>
+                <td>{{data.cnum}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"> <b i18n>Service name</b></td>
-                <td i18n>{{data.service}}</td>
+                <td class="labelCtrl"> <b i18n>Service Name</b></td>
+                <td>{{data.service}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"><b i18n>Ticket status</b></td>
+                <td class="labelCtrl"><b i18n>Ticket Status</b></td>
                 <td>{{state}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"><b i18n>Print time</b></td>
+                <td class="labelCtrl"><b i18n>Print Time</b></td>
                 <td>{{data.ctime}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"><b i18n>Waiting time</b></td>
+                <td class="labelCtrl"><b i18n>Waiting Time</b></td>
                 <td>{{data.wtime}}</td>
             </tr>
             <tr>
-                <td class="labelCtrl"><b i18n>Serving time</b></td>
+                <td class="labelCtrl"><b i18n>Serving Time</b></td>
                 <td>{{data.stime}}</td>
             </tr>
             <tr>
@@ -54,19 +54,19 @@
     <div *ngIf="customer" class="customer">
         <div class="cusDetail" fxLayout="row">
             <b fxFlex class="labelCtrl" i18n>Customer</b>
-            <span fxFlex i18n>{{customer.full_name}}</span>
+            <span fxFlex>{{customer.full_name}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Phone number</b>
-            <span fxFlex i18n>{{customer.phone_number}}</span>
+            <b fxFlex class="labelCtrl" i18n>Phone Number</b>
+            <span fxFlex>{{customer.phone_number}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer code</b>
-            <span fxFlex i18n>{{customer.code}}</span>
+            <b fxFlex class="labelCtrl" i18n>Customer Code</b>
+            <span fxFlex>{{customer.code}}</span>
         </div>
         <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer segment</b>
-            <span fxFlex i18n>{{customer.segment}}</span>
+            <b fxFlex class="labelCtrl" i18n>Customer Segment</b>
+            <span fxFlex>{{customer.segment}}</span>
         </div>
         <div class="cusDetail">
             <audio [class.hidden]="!link" controls [src]="link"></audio>

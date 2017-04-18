@@ -25,7 +25,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'l10n-ticket',
     template: `
     <div *ngFor="let code of codes">
-        <label i18n>{{names[code]}}</label>
+        <label>{{names[code]}}</label>
         <app-quill-editor [(ngModel)]="values[code]" (change)="OnChange()" rows="8" cols="40"></app-quill-editor>
     </div>
     `,

@@ -17,7 +17,7 @@
                     <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
                 </select>
             </div>
-            <span fxFlex="20%" i18n>Feedback Device: </span>
+            <span fxFlex="20%" i18n>Feedback Device</span>:
             <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
         </div>
     </form>
