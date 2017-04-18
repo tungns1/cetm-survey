@@ -4,8 +4,8 @@
     <app-datatable i18n-name name="Ticket Number Format" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="code" i18n-title title="Code"></app-table-field>
         <app-table-field name="format" i18n-title title="Number Format"></app-table-field>
-        <app-table-field name="minnum" i18n-title title="Minimum value"></app-table-field>
-        <app-table-field name="maxnum" i18n-title title="Maximum value"></app-table-field>
+        <app-table-field name="minnum" i18n-title title="Minimum Value"></app-table-field>
+        <app-table-field name="maxnum" i18n-title title="Maximum Value"></app-table-field>
     </app-datatable>
 </div>
 
@@ -18,7 +18,7 @@
                 <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
-            <span fxFlex="20%" i18n>Number format</span>
+            <span fxFlex="20%" i18n>Number Format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('format').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('format').hasError('required')">&nbsp;</span>
@@ -26,17 +26,17 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Minimum value</span>
+            <span fxFlex="20%" i18n>Minimum Value</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('minnum').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('minnum').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="number" formControlName="minnum" i18n-placeholder placeholder="Minimum value">
+                <input fxFlex class="hl-input" type="number" formControlName="minnum" i18n-placeholder placeholder="Minimum Value">
             </div>
-            <span fxFlex="20%" i18n>Maximum value</span>
+            <span fxFlex="20%" i18n>Maximum Value</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('maxnum').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('maxnum').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="number" formControlName="maxnum" i18n-placeholder placeholder="Maximum value">
+                <input fxFlex class="hl-input" type="number" formControlName="maxnum" i18n-placeholder placeholder="Maximum Value">
             </div>
         </div>
     </form>

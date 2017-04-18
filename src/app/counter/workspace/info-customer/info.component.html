@@ -1,7 +1,7 @@
 <div id="cusInfo" fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxFlex="60" style="width: 100%">
         <div fxFlex="50%">
-            <label i18n>Customer name</label>
+            <label i18n>Customer Name</label>
             <span *ngIf="customer | async; let c" class="cusName uppercase">{{c.full_name}}</span>
         </div>
         <div fxFlex>

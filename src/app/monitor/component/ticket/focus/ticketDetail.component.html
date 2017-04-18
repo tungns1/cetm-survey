@@ -1,9 +1,9 @@
 <modal #edit id="modal_monitor_detailTicket">
-    <h3 class="modal-header" i18n>Ticket detail</h3>
+    <h3 class="modal-header" i18n>Ticket Detail</h3>
     <div *ngIf="ticket" class="modalContent padding-10-20">
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
-            <div fxFlex i18n>Ticket number</div>
+            <div fxFlex i18n>Ticket Number</div>
             <div fxFlex>{{ticket.cnum}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
@@ -21,17 +21,17 @@
             <div fxFlex>{{ticket.ctime | localDayTime}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="isWaiting">
-            <div fxFlex i18n>Waiting time</div>
+            <div fxFlex i18n>Waiting Time</div>
             <timer fxFlex [start]="ticket.mtime" [timeWarning]="15"></timer>
         </div>
 
         <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="!isWaiting">
-            <div fxFlex i18n>Waiting time</div>
+            <div fxFlex i18n>Waiting Time</div>
             <span fxFlex>{{ticket.mtime - ticket.ctime | timeDuration}}</span>
         </div>
 
         <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="!isWaiting">
-            <div fxFlex i18n>Serving time</div>
+            <div fxFlex i18n>Serving Time</div>
             <div fxFlex>
                 <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
                 <div *ngIf="ticket.state === 'finished' || ticket.state === 'waiting'"> {{ticket.stime | timeDuration}} </div>
@@ -41,11 +41,11 @@
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Branch</div>
-            <div fxFlex i18n>{{ticket.branch_id | branchName}}</div>
+            <div fxFlex>{{ticket.branch_id | branchName}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Store</div>
-            <div fxFlex i18n>{{ticket.branch_id | branchName}}</div>
+            <div fxFlex>{{ticket.branch_id | branchName}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
             <div fxFlex i18n>Tellers</div>
@@ -67,7 +67,7 @@
         </div>
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
-            <div fxFlex i18n>Customer name</div>
+            <div fxFlex i18n>Customer Name</div>
             <div fxFlex> {{customer.full_name }}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
@@ -75,7 +75,7 @@
             <div fxFlex> {{customer.code }}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
-            <div fxFlex i18n>Number phone</div>
+            <div fxFlex i18n>Phone Number</div>
             <div fxFlex> {{customer.phone_number }}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">

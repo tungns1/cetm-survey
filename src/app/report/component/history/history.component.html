@@ -1,11 +1,11 @@
 <app-env-sub-module i18n-title title="History"></app-env-sub-module>
 <div id="historyReport">
     <div class="headerAndNav">
-        <h2 class="header uppercase" i18n>Transaction history</h2>
+        <h2 class="header uppercase" i18n>Transaction History</h2>
         <div class="nav">
             <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>Gerenal</button>
             <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
-            <button class="btnClear btnMargin uppercase" appSafeNav="/report/kiosk" i18n>Kiosk effectiveness</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/kiosk" i18n>Kiosk Effectiveness</button>
         </div>
     </div>
 
@@ -21,9 +21,9 @@
             <th i18n>Counter</th>
             <th i18n>Teller</th>
             <th i18n>Ticket</th>
-            <th i18n>Print time</th>
-            <th i18n>Waiting time</th>
-            <th i18n>Serving time </th>
+            <th i18n>Print Time</th>
+            <th i18n>Waiting Time</th>
+            <th i18n>Serving Time </th>
             <th i18n>Feedback</th>
             <th i18n>Detail</th>
         </thead>
@@ -53,6 +53,6 @@
         <div class="pagin">
             <button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
-        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export to excel</button>
+        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export To Excel</button>
     </div>
 </div>

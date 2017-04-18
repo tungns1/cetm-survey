@@ -1,21 +1,21 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
     <button class="uppercase btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}">
-        <ng-container>Next</ng-container>
+        <ng-container i18n="Counter Button: Next">Next</ng-container>
     </button>
     <button class="uppercase btnRed" fxFlex (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}">
-        <ng-container>Auto Next</ng-container>
+        <ng-container i18n="Counter Button: Auto Next">Auto Next</ng-container>
     </button>
     <button class="uppercase btnFill" fxFlex (click)="Recall()"> 
-        <ng-container>Recall</ng-container>
+        <ng-container i18n="Counter Button: Recall Ticket">Recall</ng-container>
     </button>
     <button class="uppercase btnFill" fxFlex (click)="Move()"> 
-        <ng-container>Move</ng-container>
+        <ng-container i18n="Counter Button: Move Ticket">Move</ng-container>
     </button>
     <button class="uppercase btnRed" fxFlex (click)="Miss()">
-        <ng-container>Miss</ng-container>
+        <ng-container i18n="Counter Button: Miss Ticket">Miss</ng-container>
     </button>
     <button class="uppercase btnGreen" fxFlex (throttle)="Finish()" throttle>
-        <ng-container>Finish</ng-container>
+        <ng-container i18n="Counter Button: Finish Ticket">Finish</ng-container>
     </button>
 </div>
 <ticket-detail-dialog #dialog [class.hidden]="!moveDialog"></ticket-detail-dialog>

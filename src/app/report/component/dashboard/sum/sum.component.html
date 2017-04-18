@@ -2,11 +2,11 @@
     <div class="hl-column-sum">
         <div style="padding: 0px 10px;">
             <div class="hl-tl-sum">
-                <span i18n>Total transaction</span>: {{data.c_t}}
+                <span i18n>Total Transaction</span>: {{data.c_t}}
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span i18n>Finished transaction</span>
+                    <span i18n>Finished Transaction</span>
                     <span *ngIf="data.c_t>0" class="giaodich">{{data.c_ft}}&nbsp; ({{data.c_ft/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
@@ -18,7 +18,7 @@
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span i18n>Cancelled transaction</span>
+                    <span i18n>Cancelled Transaction</span>
                     <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_t-data.c_ft}}&nbsp; ({{(data.c_t-data.c_ft)/data.c_t*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">
@@ -179,11 +179,11 @@
     <div class="hl-column-sum">
         <div style="padding: 0px 10px;">
             <div class="hl-tl-sum">
-                <span i18n>Customer feedback</span>
+                <span i18n>Customer Feedback</span>
             </div>
             <div>
                 <div class="hl-ct-sum">
-                    <span i18n>Transaction feedback</span>
+                    <span i18n>Transaction Feedback</span>
                     <span *ngIf="data.c_ft>0" class="hl-phanhoi">{{data.c_r}}&nbsp; ({{data.c_r/data.c_ft*100 | number : '1.2-2'}}%)</span>
                 </div>
                 <div class="hl-max-sum">

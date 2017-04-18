@@ -8,11 +8,11 @@
             <th i18n>Service</th>
             <th i18n>Counter</th>
             <th i18n>Teller</th>
-            <th i18n>Ticket number</th>
-            <th i18n>Print time</th>
-            <th i18n>Waiting time</th>
-            <th i18n>Serving time </th>
-            <th i18n>Feedback result</th>
+            <th i18n>Ticket Number</th>
+            <th i18n>Print Time</th>
+            <th i18n>Waiting Time</th>
+            <th i18n>Serving Time </th>
+            <th i18n>Feedback Result</th>
             <th i18n>Detail</th>
         </thead>
         <tbody>
@@ -39,7 +39,10 @@
         <div class="pagin">
             <button md-button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
-        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export to excel</button>
+        <button class="btnClear export uppercase" (click)="excel()">
+            <i class="fa fa-file-excel-o fa-lg"></i>
+            <span i18n>Export to excel</span>
+        </button>
     </div>
 </div>
 

@@ -4,12 +4,12 @@
     </div>
     <div fxLayout="row" class="tabs">
         <div fxFlex class="tabCtrl center padding-5" [class.active]="showFinished$ | async" (click)="showFinished()">
-            &nbsp;<span i18n>Finished transaction</span>
+            &nbsp;<span i18n>Finished Transaction</span>
             <!-- <span class="hl-count">{{fc | async}}</span>) &nbsp;-->
             <span>&nbsp; ({{fcount$ | async}}) &nbsp; </span>
         </div>
         <div fxFlex class="tabCtrl center padding-5" [class.active]="showCancelled$ | async" (click)="showCancelled()">
-            <span i18n>Cancelled transaction</span>
+            <span i18n>Cancelled Transaction</span>
             <!--<span class="hl-count">&nbsp;({{cc | async}}) &nbsp;</span>-->
             <span>&nbsp;({{ccount$ | async}}) &nbsp;</span>
         </div>

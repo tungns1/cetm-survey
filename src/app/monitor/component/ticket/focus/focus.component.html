@@ -18,19 +18,19 @@
                 <span *ngIf="manager[0]">{{manager[0].fullname}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total counter</span>
+                <span i18n>Total Counter</span>
                 <span> {{numberCounter$ | async | json}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total counter on</span>
+                <span i18n>Total Counter On</span>
                 <span> {{numberCounterOn$ | async}} </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Total counter off</span>
+                <span>Total Counter Off</span>
                 <span>{{numberCounterOff$ | async}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Print ticket</span>
+                <span i18n>Print Ticket</span>
                 <span>{{data.printed}}</span>
             </div>
         </div>
@@ -56,11 +56,11 @@
                 <span>{{data.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Waiting over 15'</span>
+                <span i18n>Waiting Over 15'</span>
                 <span>{{data.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving over 15'</span>
+                <span i18n>Serving Over 15'</span>
                 <span>{{data.s_l}}</span>
             </div>
         </div>
@@ -80,10 +80,10 @@
     <table class="tableCtrl">
         <thead>
             <th i18n>No.</th>
-            <th i18n>Service name</th>
-            <th i18n>Ticket number</th>
+            <th i18n>Service Name</th>
+            <th i18n>Ticket Number</th>
             <th i18n>Customer</th>
-            <th i18n>Print time</th>
+            <th i18n>Print Time</th>
             <th i18n>Waiting Time</th>
             <th i18n>Detail</th>
         </thead>
@@ -108,7 +108,7 @@
         </tbody>
     </table>
 
-    <h3 i18n>Services completed</h3>
+    <h3 i18n>Services Completed</h3>
 
     <table class="tableCtrl">
         <thead>
@@ -116,11 +116,11 @@
             <th i18n>Service</th>
             <th i18n>Counter</th>
             <th i18n>Tellers</th>
-            <th i18n>Ticket number</th>
+            <th i18n>Ticket Number</th>
             <th i18n>Customer</th>
-            <th i18n>Print time</th>
-            <th i18n>Waiting time</th>
-            <th i18n>Serving time</th>
+            <th i18n>Print Time</th>
+            <th i18n>Waiting Time</th>
+            <th i18n>Serving Time</th>
             <th i18n>Detail</th>
         </thead>
         <tbody>
