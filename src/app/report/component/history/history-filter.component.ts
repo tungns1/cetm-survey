@@ -21,8 +21,7 @@ export class HistoryFilterComponent implements OnInit {
         wtimemax: 0,
         stimemin: 0,
         stimemax: 0,
-        rmin: 0,
-        rmax: 0
+        rating: 0,
     };
 
     // onChange() {
@@ -32,8 +31,7 @@ export class HistoryFilterComponent implements OnInit {
     //         this.filter.stimemax = this.filter.stimemin;
     // }
 
-    query(){
-        this.filter.rmax = this.filter.rmin;
+    query() {
         console.log(this.filter);
         this.filterChange.emit(this.filter);
     }
