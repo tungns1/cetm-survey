@@ -15,6 +15,12 @@ export class FresComponent {
     private customerAPI: CustomerAPI
   ) { }
   @Input() data: Customer;
+  @Input() padding: number;
+  ngOnInit() {
+    console.log("fres");
+    console.log(this.data.fres);
+    console.log(this.data.freschart);
+  }
   // ngOnInit() {
   //   this.customerAPI.RxSummaryView.subscribe(v => {
   //     this.fres = v.fres;

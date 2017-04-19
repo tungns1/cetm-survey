@@ -22,8 +22,9 @@ export class ServiceComponent {
 
   }
   
-  OnInit(){
+  ngOnInit(){
     console.log('service');
+    console.log(this.data);
   }
 
   onSelect(event) {

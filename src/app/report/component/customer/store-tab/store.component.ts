@@ -21,8 +21,9 @@ export class StoreComponent {
 
   }
 
-  OnInit(){
+  ngOnInit(){
     console.log('im store');
+    console.log(this.data.stores);
   }
   
   onSelect(event) {
