@@ -120,7 +120,7 @@ export class FocusComponent {
         .map(tickets => {
             let ts: ITicket[] = [];
             tickets.forEach(t => {
-                if (t.state === TicketStates.Finished || t.state === TicketStates.Waiting) {
+                if (t.state === TicketStates.Finished || t.state === TicketStates.Waiting || t.state === TicketStates.Serving) {
                         for (let i = 0; i < t.tracks.length; i++) {
                             if (t.tracks[i].state === 'finished') {
                                 let ticket: ITicket = {
