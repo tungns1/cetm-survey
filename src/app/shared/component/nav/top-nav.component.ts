@@ -9,12 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TopNavComponent {
     constructor(
         private router: Router
-    ) {
-        
-    }
+    ) {}
+    @Input() role:string;
 
     ngOnInit() {
-        console.log(this.router.url);
+        console.log(this.role);
     }
 
     private isActive(route: string) {

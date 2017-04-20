@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { RuntimeEnvironment } from '../../shared/env';
 
 @Component({
     selector: 'app-root',
@@ -7,5 +8,14 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class ReportComponent {
-    hidden = true;
+    constructor(
+        private env: RuntimeEnvironment
+    ) { }
+    role = '';
+
+    ngOnInit() {
+        this.env.Auth.User$.subscribe(u => {
+            this.role = u.role;
+        })
+    }
 }
