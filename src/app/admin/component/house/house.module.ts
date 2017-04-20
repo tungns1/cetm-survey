@@ -9,6 +9,7 @@ import { KioskComponent } from './kiosk/kiosk.component';
 import { ScreenComponent } from './screen/screen.component';
 import { SFlowComponent } from './sflow/sflow.component';
 import { AccordionModule } from '../../../x/ui/accordion/accordion';
+import { AdminFilterModule } from "../filter/filter.module";
 
 import { routing } from './house.routing';
 
@@ -19,7 +20,7 @@ import { ResourceModule } from '../shared';
         SharedModule, BranchModule,
         EditorModule, AdminFormModule, ServiceListModule,
         MultiFilePickerModule, ResourceModule,
-        routing, AccordionModule
+        routing, AccordionModule,AdminFilterModule
     ],
     declarations: [
         HouseComponent, CounterComponent, KioskComponent,

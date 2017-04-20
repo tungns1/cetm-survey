@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'admin-center',
-  template: `<router-outlet></router-outlet>`
+  templateUrl: 'center.component.html'
 })
 export class CenterComponent {
   

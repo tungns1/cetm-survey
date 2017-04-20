@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'admin-meta',
-  template: `<router-outlet></router-outlet>`
+    templateUrl: 'meta.component.html'
 })
 export class MetaComponent {
   

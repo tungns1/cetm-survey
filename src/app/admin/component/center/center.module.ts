@@ -9,6 +9,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { CenterComponent } from './center.component'
 import { VoiceComponent } from './voice/voice.component';
+import { AdminFilterModule } from "../filter/filter.module";
 
 @NgModule({
     imports: [
@@ -17,7 +18,7 @@ import { VoiceComponent } from './voice/voice.component';
         AdminFormModule,
         ResourceModule,
         RichEditorModule,
-        routing
+        routing,AdminFilterModule
     ],
     declarations: [
         CenterComponent, TicketLayoutComponent,
