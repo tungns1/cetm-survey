@@ -11,4 +11,4 @@ import { CustomerAPI } from '../service/customer.service';
     providers: [CustomerAPI],
     exports: [ReportFilterComponent],
 })
-export class ReportFilterModule { }
+export class CustomerFilterModule { }

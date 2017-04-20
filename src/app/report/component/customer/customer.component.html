@@ -1,43 +1,53 @@
-<app-env-sub-module i18n-title title="Customer"></app-env-sub-module>
-<div id="customerReport">
-    <div class="headerAndNav">
+<div [fxFlex]="'250px'" class="leftFilter">
+  <report-filter [inside]="''" style="padding-top: 50px; height: 100%"></report-filter>
+</div>
+
+<div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
+  <div class="main_miraway">
+    <app-env-sub-module i18n-title title="Customer"></app-env-sub-module>
+    <div id="customerReport">
+      <div class="headerAndNav">
         <h2 class="header uppercase" i18n>Customer</h2>
         <div class="nav">
-            <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
-            <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
-            <button class="btnClear btnMargin uppercase" appSafeNav="/report/kiosk" i18n>Kiosk Effectiveness</button>
+          <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
+          <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+          <button class="btnClear btnMargin uppercase" appSafeNav="/report/kiosk" i18n>Kiosk Effectiveness</button>
         </div>
-    </div>
-    <div class="searchNSummary border padding-25" fxLayout="row">
+      </div>
+      <div class="searchNSummary border padding-25" fxLayout="row">
         <div fxFlex="60%">
-            <customer-filter></customer-filter>
-            <report-info></report-info>
+          <customer-filter></customer-filter>
+          <report-info></report-info>
         </div>
         <div fxFlex class="margin-l-25">
-            <report-sum [data]="data$ | async"></report-sum>
+          <report-sum [data]="data$ | async"></report-sum>
         </div>
-    </div>
+      </div>
 
-    <div class="divider margin-30-0"></div>
+      <div class="divider margin-30-0"></div>
 
-    <div class="border tabCtrl">
+      <div class="border tabCtrl">
         <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
-            <md-tab label="TRANSACTION TIME">
-                <app-transaction-time [data]="data$ | async"></app-transaction-time>
-            </md-tab>
-            <md-tab label="FREQUENCY">
-                <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async"></fres-tab>
-            </md-tab>
-            <md-tab label="SERVICE">
-                <service-tab *ngIf="selectedTab === 2" [data]="data$ | async" [padding]="paddingService | async"></service-tab>
-            </md-tab>
-            <md-tab label="STORE">
-                <store-tab *ngIf="selectedTab === 3" [data]="data$ | async" [padding]="paddingStore | async"></store-tab>
-            </md-tab>
+          <md-tab label="TRANSACTION TIME">
+            <app-transaction-time [data]="data$ | async"></app-transaction-time>
+          </md-tab>
+          <md-tab label="FREQUENCY">
+            <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async"></fres-tab>
+          </md-tab>
+          <md-tab label="SERVICE">
+            <service-tab *ngIf="selectedTab === 2" [data]="data$ | async" [padding]="paddingService | async"></service-tab>
+          </md-tab>
+          <md-tab label="STORE">
+            <store-tab *ngIf="selectedTab === 3" [data]="data$ | async" [padding]="paddingStore | async"></store-tab>
+          </md-tab>
         </md-tab-group>
+      </div>
+
+      <div class="divider margin-30-0"></div>
+
+      <history [id]="customer_id"></history>
     </div>
 
-    <div class="divider margin-30-0"></div>
-
-    <history [id]="customer_id"></history>
+  </div>
+  <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
 </div>

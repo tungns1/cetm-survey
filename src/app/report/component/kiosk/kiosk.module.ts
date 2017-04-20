@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { KioskAPI } from './service/kiosk.service';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { ReportFilterModule } from "../filter/filter.module";
 
 import {
     KioskComponent
@@ -25,7 +26,7 @@ import { SharedModule } from '../shared';
     imports: [
         routing,NgxChartsModule,
         ReportInfoModule,
-        SharedModule
+        SharedModule,ReportFilterModule
     ],
     declarations: [
         KioskComponent,TicketComponent,TimeComponent

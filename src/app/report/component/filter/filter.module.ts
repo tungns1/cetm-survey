@@ -1,6 +1,7 @@
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { SharedModule, BranchModule } from '../../shared/';
+import { CommonModule } from "@angular/common";
 import { DatePickerModule } from './date/';
 import { ReportFilterComponent } from './filter.component';
 
