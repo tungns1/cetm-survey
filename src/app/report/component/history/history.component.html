@@ -1,72 +1,74 @@
-<div [fxFlex]="'250px'" class="leftFilter">
-  <report-filter [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
-</div>
+<div fxLayout="row">
+  <div [fxFlex]="'250px'" class="leftFilter">
+    <report-filter [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+  </div>
 
-<div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
-  <div class="main_miraway">
-    <app-env-sub-module i18n-title title="History"></app-env-sub-module>
-    <div id="historyReport">
-      <div class="headerAndNav">
-        <h2 class="header uppercase" i18n>Transaction History</h2>
-        <div class="nav">
-          <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>Gerenal</button>
-          <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
-          <button class="btnClear btnMargin uppercase" appSafeNav="/report/kiosk" i18n>Kiosk Effectiveness</button>
+  <div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
+    <div class="main_miraway">
+      <app-env-sub-module i18n-title title="History"></app-env-sub-module>
+      <div id="historyReport">
+        <div class="headerAndNav">
+          <h2 class="header uppercase" i18n>Transaction History</h2>
+          <div class="nav">
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>Gerenal</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/kiosk" i18n>Kiosk Effectiveness</button>
+          </div>
         </div>
-      </div>
 
-      <history-filter (filterChange)="onFilterChange($event)"></history-filter>
+        <history-filter (filterChange)="onFilterChange($event)"></history-filter>
 
-      <table class="tableCtrl">
-        <thead class="">
-          <th i18n>No.</th>
-          <th i18n>Date</th>
-          <th i18n>Branch</th>
-          <th i18n>Store</th>
-          <th i18n>Service</th>
-          <th i18n>Counter</th>
-          <th i18n>Teller</th>
-          <th i18n>Ticket</th>
-          <th i18n>Print Time</th>
-          <th i18n>Waiting Time</th>
-          <th i18n>Serving Time </th>
-          <th i18n>Feedback</th>
-          <th i18n>Detail</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let d of paging.data$ | async; let i = index">
-            <td>{{(i+1)+(paging.Skip)}}</td>
-            <td> {{d.cdate}} </td>
-            <td> {{d.parent}} </td>
-            <td> {{d.branch}} </td>
-            <td> {{d.service}} </td>
-            <td> {{d.counter}} </td>
-            <td> {{d.user}} </td>
-            <td> {{d.cnum}} </td>
-            <td> {{d.ctime}} </td>
-            <td> {{d.wtime}} </td>
-            <td> {{d.stime}} </td>
-            <td>{{d.rating}}</td>
-            <td>
-              <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search"
-                style="cursor: pointer">
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="tableCtrl">
+          <thead class="">
+            <th i18n>No.</th>
+            <th i18n>Date</th>
+            <th i18n>Branch</th>
+            <th i18n>Store</th>
+            <th i18n>Service</th>
+            <th i18n>Counter</th>
+            <th i18n>Teller</th>
+            <th i18n>Ticket</th>
+            <th i18n>Print Time</th>
+            <th i18n>Waiting Time</th>
+            <th i18n>Serving Time </th>
+            <th i18n>Feedback</th>
+            <th i18n>Detail</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of paging.data$ | async; let i = index">
+              <td>{{(i+1)+(paging.Skip)}}</td>
+              <td> {{d.cdate}} </td>
+              <td> {{d.parent}} </td>
+              <td> {{d.branch}} </td>
+              <td> {{d.service}} </td>
+              <td> {{d.counter}} </td>
+              <td> {{d.user}} </td>
+              <td> {{d.cnum}} </td>
+              <td> {{d.ctime}} </td>
+              <td> {{d.wtime}} </td>
+              <td> {{d.stime}} </td>
+              <td>{{d.rating}}</td>
+              <td>
+                <img class="iconDetail" src="./assets/img/icon/play.png" (click)="detail.SetData(d);detail.GetInfoCustomer(d)" alt="Search"
+                  style="cursor: pointer">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <transaction #detail></transaction>
-      <div class="paginNExport">
-        <div class="pagin">
-          <button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
-        </div>
-        <button class="btnClear export uppercase" (click)="excel()">
+        <transaction #detail></transaction>
+        <div class="paginNExport">
+          <div class="pagin">
+            <button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
+          </div>
+          <button class="btnClear export uppercase" (click)="excel()">
             <i class="fa fa-file-excel-o fa-lg"></i>
             <span i18n>Export To Excel</span>
         </button>
+        </div>
       </div>
-    </div>
 
+    </div>
+    <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
   </div>
-  <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
 </div>

@@ -1,36 +1,38 @@
-<div [fxFlex]="'250px'" class="leftFilter">
-  <report-filter [inside]="''" style="padding-top: 50px; height: 100%"></report-filter>
-</div>
+<div fxLayout="row">
+  <div [fxFlex]="'250px'" class="leftFilter">
+    <report-filter [inside]="''" style="padding-top: 50px; height: 100%"></report-filter>
+  </div>
 
-<div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
-  <div class="main_miraway">
-    <app-env-sub-module i18n-title title="Kiosk Effectiveness"></app-env-sub-module>
-    <div id="kioskEffective">
-      <div class="headerAndNav">
-        <h2 class="header uppercase" i18n>Kiosk Effectiveness</h2>
-        <div class="nav">
-          <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
-          <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
-          <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
+  <div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
+    <div class="main_miraway">
+      <app-env-sub-module i18n-title title="Kiosk Effectiveness"></app-env-sub-module>
+      <div id="kioskEffective">
+        <div class="headerAndNav">
+          <h2 class="header uppercase" i18n>Kiosk Effectiveness</h2>
+          <div class="nav">
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
+          </div>
+        </div>
+
+        <div class="border padding-20">
+          <report-info></report-info>
+        </div>
+
+        <div class="divider margin-20-0"></div>
+        <div class="border tabCtrl">
+          <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
+            <md-tab label="ACTIVE TIME">
+              <time-tab *ngIf="selectedTab === 0" [data]="data$ | async" [padding]="paddingTime | async"></time-tab>
+            </md-tab>
+            <md-tab label="TICKET QUANTITY">
+              <ticket-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingTicket | async"></ticket-tab>
+            </md-tab>
+          </md-tab-group>
         </div>
       </div>
-
-      <div class="border padding-20">
-        <report-info></report-info>
-      </div>
-
-      <div class="divider margin-20-0"></div>
-      <div class="border tabCtrl">
-        <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
-          <md-tab label="ACTIVE TIME">
-            <time-tab *ngIf="selectedTab === 0" [data]="data$ | async" [padding]="paddingTime | async"></time-tab>
-          </md-tab>
-          <md-tab label="TICKET QUANTITY">
-            <ticket-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingTicket | async"></ticket-tab>
-          </md-tab>
-        </md-tab-group>
-      </div>
     </div>
+    <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
   </div>
-  <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
 </div>
