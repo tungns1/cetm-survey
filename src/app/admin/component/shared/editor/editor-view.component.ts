@@ -39,6 +39,10 @@ export class EditorViewComponent implements OnInit {
     private getStyle() {
         if(!this.isValid) return 0.3;
     }
+    private getValid() {
+        if(!this.isValid) return true;
+        else return false;
+    }
 
     @Input() isNew   = true;
     @Input() isValid = true;
