@@ -53,6 +53,9 @@
         <div class="pagin">
             <button *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
         </div>
-        <button class="btnClear export uppercase" (click)="excel()" i18n><i class="fa fa-file-excel-o fa-lg"></i>Export To Excel</button>
+        <button class="btnClear export uppercase" (click)="excel()">
+            <i class="fa fa-file-excel-o fa-lg"></i>
+            <span i18n>Export To Excel</span>
+        </button>
     </div>
 </div>
