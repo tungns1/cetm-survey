@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../../shared';
+import { ReportFilterModule } from "../filter/filter.module";
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -24,7 +25,7 @@ import { ReportChartModule } from './chart/chart.module';
 @NgModule({
     imports: [
         CommonModule, SharedModule, routing, DashboardSharedModule,
-        ReportSumModule, ReportChartModule
+        ReportSumModule, ReportChartModule,ReportFilterModule
     ],
     declarations: [
         DashboardComponent, TransactionTimeComponent, CustomerFeedbackComponent, GeneralViewComponent

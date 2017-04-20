@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CustomerAPI } from './service/customer.service';
 import { TransactionHistoryApi } from '../history/history.service';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { ReportFilterModule } from "../filter/filter.module";
 import {
     CustomerComponent
 } from './customer.component';
@@ -22,7 +23,7 @@ import { FresComponent } from './fres-tab/fres.component';
 import { TransactionTimeComponent } from './transaction-time/transaction-time.component';
 
 
-import { ReportFilterModule } from './filter/filter.module';
+import { CustomerFilterModule } from './filter/filter.module';
 import { ReportSumModule } from './sum/sum.module';
 import { D3Module } from '../../../x/ng/d3/d3.module';
 import { ReportChartComponent } from './chart/chart.component';
@@ -33,8 +34,8 @@ import { SharedModule } from '../shared';
 @NgModule({
     imports: [
         routing, ReportSumModule,
-        ReportInfoModule, ReportFilterModule, ReportHistoryModule,
-        SharedModule,NgxChartsModule,D3Module
+        ReportInfoModule, CustomerFilterModule, ReportHistoryModule,
+        SharedModule,NgxChartsModule,D3Module,ReportFilterModule
     ],
     declarations: [
         CustomerComponent,ServiceComponent,StoreComponent,FresComponent,TransactionTimeComponent,ReportChartComponent

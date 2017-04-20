@@ -9,6 +9,7 @@ import { TransactionHistoryApi } from './history.service';
 import { TransactionComponent } from './transaction.component';
 import { HistoryFilterComponent } from './history-filter.component';
 import { AccordionModule } from '../../../x/ui/accordion/accordion';
+import { ReportFilterModule } from "../filter/filter.module";
 
 const routing = RouterModule.forChild([
     {
@@ -18,7 +19,7 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, AccordionModule],
+    imports: [routing, SharedModule, AccordionModule,ReportFilterModule],
     declarations: [
         HistoryComponent,
         HistoryFilterComponent,

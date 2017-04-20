@@ -6,11 +6,12 @@ import { routing } from './org.routing';
 import { BranchComponent } from './branch/branch.component';
 import { UserComponent } from './user/user.component';
 import { OrgComponent } from './org.component';
+import { AdminFilterModule } from "../filter/filter.module";
 
 
 @NgModule({
     imports: [
-        SharedModule, EditorModule, BranchModule, routing
+        SharedModule, EditorModule, BranchModule, routing,AdminFilterModule
     ],
     declarations: [
         OrgComponent, BranchComponent, UserComponent
