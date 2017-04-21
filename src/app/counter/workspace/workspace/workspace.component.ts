@@ -1,5 +1,6 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ObservableMedia } from '@angular/flex-layout';
 import { WorkspaceService } from '../shared';
 
 @Component({
@@ -10,7 +11,8 @@ import { WorkspaceService } from '../shared';
 export class WorkspaceComponent {
     constructor(
         private route: ActivatedRoute,
-        private workspaceService: WorkspaceService
+        private workspaceService: WorkspaceService,
+        private media: ObservableMedia
     ) {
 
     }
@@ -23,5 +25,9 @@ export class WorkspaceComponent {
         this.workspaceService.onDestroy();
     }
 
+    miniMode$ = this.media.asObservable().map(change => {
+        console.log(change);
+        return false;
+    });
     counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
 } 

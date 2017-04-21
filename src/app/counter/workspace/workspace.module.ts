@@ -8,6 +8,8 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { workspaceServiceProvider, workspaceDeviceProvider } from './shared';
 import { InfoCustomerModule } from './info-customer/info.module';
 import { WorkspaceGuard } from './shared';
+import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
+import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
 
 const routing = RouterModule.forChild([
     {
@@ -18,8 +20,12 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, QueueModule, ServingModule, StatModule, InfoCustomerModule],
-    declarations: [WorkspaceComponent],
+    imports: [
+        routing, SharedModule, QueueModule, ServingModule, StatModule, InfoCustomerModule
+    ],
+    declarations: [
+        WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent
+    ],
     providers: [workspaceServiceProvider, workspaceDeviceProvider]
 })
 export class WorkspaceModule { }
