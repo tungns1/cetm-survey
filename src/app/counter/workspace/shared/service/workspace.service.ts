@@ -28,12 +28,12 @@ export class WorkspaceService {
         return this.socket;
     }
 
-    onInit() {
+    enable() {
         this.socket.onInit();
         this.setUser();
     }
 
-    onDestroy() {
+    disable() {
         this.socket.onDestroy();
     }
 

@@ -5,16 +5,14 @@ import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { WorkspaceComponent } from './workspace/workspace.component';
-import { workspaceServiceProvider, workspaceDeviceProvider } from './shared';
 import { InfoCustomerModule } from './info-customer/info.module';
-import { WorkspaceGuard } from './shared';
 import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
 import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
+import { workspaceServiceProvider } from './shared/workspace.provider';
 
 const routing = RouterModule.forChild([
     {
         path: '',
-        canActivate: [WorkspaceGuard],
         component: WorkspaceComponent
     }
 ]);
@@ -26,6 +24,6 @@ const routing = RouterModule.forChild([
     declarations: [
         WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent
     ],
-    providers: [workspaceServiceProvider, workspaceDeviceProvider]
+    providers: [workspaceServiceProvider]
 })
 export class WorkspaceModule { }

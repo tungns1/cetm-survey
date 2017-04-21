@@ -24,10 +24,18 @@ export class QmsService {
     readonly isBrowser = true;
 }
 
+export interface XWinRectangle {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
+
 @Injectable()
 export class XWinService {
     Broadcast(event: string, data?: any) {}
     Send(event: string, data?: any) {}
+    SetMiniMode(ratio: XWinRectangle) {}
     readonly isBrowser = true;
 }
 
