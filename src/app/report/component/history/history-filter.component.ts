@@ -17,11 +17,11 @@ export class HistoryFilterComponent implements OnInit {
     }
 
     filter = {
-        wtimemin: 0,
-        wtimemax: 0,
-        stimemin: 0,
-        stimemax: 0,
-        rating: 0,
+        wtimemin: '',
+        wtimemax: '',
+        stimemin: '',
+        stimemax: '',
+        rating: '',
     };
 
     // onChange() {
