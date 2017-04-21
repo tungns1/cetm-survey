@@ -9,7 +9,7 @@ export class LauncherService {
   ) { }
 
   SetMiniMode(ratio: XWinRectangle) {
-    this.qmsService.__x.SetMiniMode(ratio);
+    this.qmsService.__x.SetMiniMode(ratio, true);
   }
 
 }
