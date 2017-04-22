@@ -24,10 +24,18 @@ export class QmsService {
     readonly isBrowser = true;
 }
 
+export interface XWinRectangle {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
+
 @Injectable()
 export class XWinService {
     Broadcast(event: string, data?: any) {}
     Send(event: string, data?: any) {}
+    SetMiniMode(ratio: XWinRectangle, mini?: boolean) {}
     readonly isBrowser = true;
 }
 
@@ -53,7 +61,7 @@ export class XWinStorageStrategy extends AbstractStorageStrategy {
     }
 }
 
-export function __newQmsService() {
+export function __newQmsService(): QmsService {
     return window['__QMS'] || new QmsService();
 }
 
