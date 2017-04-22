@@ -25,6 +25,7 @@ export class PriorityComponent {
     b = b || <any>{};
     return this.fb.group({
       service_priority: [b.service_priority],
+       customer_priority: [b.customer_priority],
       vip_card: [b.vip_card],
       customer_vip: [b.customer_vip],
       ticket_online: [b.ticket_online],

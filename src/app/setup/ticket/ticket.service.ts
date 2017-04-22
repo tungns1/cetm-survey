@@ -5,6 +5,7 @@ import { Toast } from '../../x/ui/noti/toastr';
 import { Injectable } from '@angular/core';
 
 export interface IConfigPriority {
+    customer_priority:string;
     service_priority: string;
     vip_card: string;
     customer_vip: string;

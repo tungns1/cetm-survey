@@ -25,6 +25,8 @@ function getPriority(t: ITicket) {
             priority += parseInt(t.ticket_priority.customer_vip);
         } else if (t.ticket_priority.service_priority != "") {
             priority += parseInt(t.ticket_priority.service_priority);
+        } else if (t.ticket_priority.customer_priority != "") {
+            priority += parseInt(t.ticket_priority.customer_priority);
         } else if (t.ticket_priority.ticket_online != "") {
             priority += parseInt(t.ticket_priority.ticket_online);
         } else if (t.ticket_priority.vip_card != "") {
