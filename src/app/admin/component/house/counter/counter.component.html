@@ -10,13 +10,13 @@
 <app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Code</span>
+            <span fxFlex="15%" i18n>Code</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
                 <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
             </div>
-            <span fxFlex="20%" i18n>Number</span>
+            <span fxFlex="15%" i18n>Number</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('cnum').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('cnum').hasError('required')">&nbsp;</span>
@@ -54,15 +54,15 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="15%" i18n>Store</span>
-            <div fxFlex>
-                <span class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
-                <span *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-                <select formControlName="branch_id" *ngIf="storeLevel0$ | async; let stores" required>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
+                <span fxFlex="1%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="branch_id" *ngIf="storeLevel0$ | async; let stores" required>
                     <option value="" class="uppercase" selected>Choose store</option>
                     <option [value]="store.id" *ngFor="let store of stores">{{store.name}}</option>
                 </select>
             </div>
-            <div fxFlex="15%"></div>
+            <span fxFlex="15%"></span>
             <div fxFlex></div>
         </div>
     </form>

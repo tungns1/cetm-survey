@@ -27,6 +27,8 @@ export class EditorViewComponent implements OnInit {
     onAction(action: string) {
         // console.log('aa');
         this.action.next(action);
+        console.log("onAction in editor", this.action.next(action));
+        console.log("action in editor", this.action);
     }
 
     private GoBack() {

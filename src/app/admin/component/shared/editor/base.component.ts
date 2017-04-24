@@ -53,10 +53,12 @@ export abstract class BaseAdminComponent<T> {
         console.log('request', e);
         if (e.action === 'add') {
             this.NavigateTo("new");
-        } else if (e.action === 'remove') {
+        } else if (e.action === 'remove-confirm') {
             const id = e.value['id'];
-            this.NavigateTo(id);
-        } else if (e.action === 'edit') {
+            //const value = this.NavigateTo(id);
+            this.HandleMarkDelete(e.value);
+            //console.log(".........",value);
+        }  else if (e.action === 'edit') {
             const id = e.value['id'];
             this.NavigateTo(id);
         }
