@@ -17,11 +17,14 @@ export class RecorderService {
             format: 'mp3',
             upload_url: this.counterSetting.UploadUrl
         });
+        const twoDigit = (d) => (d < 10 ? '0' : '') + d;
         this.subscription = this.queueService.serving$.subscribe(s => {
             let t = s[0];
             if (t) {
                 const date = new Date(t.mtime * 1000);
-                const dateString = `${date.getFullYear()}_${date.getMonth() + 1}_${date.getDate()}`;
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const dateString = `${date.getFullYear()}-${twoDigit(month)}-${twoDigit(day)}`;
                 this.recorderDevice.AppendToFile(`${dateString}.${t.branch_id}.${t.transaction_id}`);
             } else {
                 this.recorderDevice.SkipSaveToFile();

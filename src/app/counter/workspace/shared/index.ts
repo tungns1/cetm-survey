@@ -13,7 +13,6 @@ export {
 
 export * from './service';
 export * from './model';
-export { workspaceDeviceProvider } from './device';
 
 export {
     ModalComponent, ModalModule,

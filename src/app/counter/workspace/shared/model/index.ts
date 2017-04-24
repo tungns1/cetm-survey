@@ -1,6 +1,7 @@
 import {
     ITicket
 } from '../shared';
+import { LOCALES_TICKET } from "../../../../../const/ticket";
 
 export * from './stat';
 
@@ -22,13 +23,15 @@ function getPriority(t: ITicket) {
     var priority = 0;
     if (t.ticket_priority != undefined) {
         if (t.ticket_priority.customer_vip != "") {
-            priority += parseInt(t.ticket_priority.customer_vip);
+            priority += parseInt(LOCALES_TICKET.CUSTOMER_PRIORITY);
         } else if (t.ticket_priority.service_priority != "") {
-            priority += parseInt(t.ticket_priority.service_priority);
+            priority += parseInt(LOCALES_TICKET.SERVICE_PRIORITY);
+        } else if (t.ticket_priority.customer_priority != "") {
+            priority += parseInt(LOCALES_TICKET.CUSTOMER_PRIORITY);
         } else if (t.ticket_priority.ticket_online != "") {
-            priority += parseInt(t.ticket_priority.ticket_online);
+            priority += parseInt(LOCALES_TICKET.TICKET_ONLINE);
         } else if (t.ticket_priority.vip_card != "") {
-            priority += parseInt(t.ticket_priority.vip_card);
+            priority += parseInt(LOCALES_TICKET.VIP_CARD);
         } else if (t.ticket_priority.ticket_serving_move != null) {
             priority += t.ticket_priority.ticket_serving_move;
         }

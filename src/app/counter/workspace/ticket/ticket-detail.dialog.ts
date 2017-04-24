@@ -45,7 +45,9 @@ export class TicketDetailDialog {
         return true;
       } else if (t.ticket_priority.service_priority != "") {
         return true;
-      } else if (t.ticket_priority.ticket_online != "") {
+      }  else if (t.ticket_priority.customer_priority != "") {
+        return true;
+      }else if (t.ticket_priority.ticket_online != "") {
         return true;
       } else if (t.ticket_priority.vip_card != "") {
         return true;

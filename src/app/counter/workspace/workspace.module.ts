@@ -5,21 +5,25 @@ import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { WorkspaceComponent } from './workspace/workspace.component';
-import { workspaceServiceProvider, workspaceDeviceProvider } from './shared';
 import { InfoCustomerModule } from './info-customer/info.module';
-import { WorkspaceGuard } from './shared';
+import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
+import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
+import { workspaceServiceProvider } from './shared/workspace.provider';
 
 const routing = RouterModule.forChild([
     {
         path: '',
-        canActivate: [WorkspaceGuard],
         component: WorkspaceComponent
     }
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, QueueModule, ServingModule, StatModule, InfoCustomerModule],
-    declarations: [WorkspaceComponent],
-    providers: [workspaceServiceProvider, workspaceDeviceProvider]
+    imports: [
+        routing, SharedModule, QueueModule, ServingModule, StatModule, InfoCustomerModule
+    ],
+    declarations: [
+        WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent
+    ],
+    providers: [workspaceServiceProvider]
 })
 export class WorkspaceModule { }

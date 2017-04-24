@@ -43,7 +43,7 @@ export class KioskComponent {
             return 10;
         }
     });
-    selectedTab: number;
+    selectedTab=0;
 
     ngOnInit() {
         

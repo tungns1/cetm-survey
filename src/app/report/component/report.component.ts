@@ -8,14 +8,4 @@ import { RuntimeEnvironment } from '../../shared/env';
     encapsulation: ViewEncapsulation.None
 })
 export class ReportComponent {
-    constructor(
-        private env: RuntimeEnvironment
-    ) { }
-    role = '';
-
-    ngOnInit() {
-        this.env.Auth.User$.subscribe(u => {
-            this.role = u.role;
-        })
-    }
 }

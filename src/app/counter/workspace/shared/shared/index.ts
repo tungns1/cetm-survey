@@ -10,4 +10,4 @@ export {
     ICustomer
 } from '../../../../shared/model';
 
-export { QmsService } from '../../../../../native/qms';
+export { QmsService, XWinRectangle } from '../../../../../native/qms';
