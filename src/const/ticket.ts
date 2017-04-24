@@ -3,11 +3,11 @@ import { merge } from "lodash";
 declare var CETM;
 
 var Ticket = {
-    service_priority: '0',
-    customer_priority: '0',
-    vip_card: '0',
-    customer_vip: '0',
-    ticket_online: '0',
+    service_priority: 0,
+    customer_priority: 0,
+    vip_card: 0,
+    customer_vip: 0,
+    ticket_online: 0,
 }
 
 var Config = {

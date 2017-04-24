@@ -23,7 +23,7 @@ function getPriority(t: ITicket) {
     var priority = 0;
     if (t.ticket_priority != undefined) {
         if (t.ticket_priority.customer_vip != "") {
-            priority += parseInt(LOCALES_TICKET.CUSTOMER_PRIORITY);
+            priority += parseInt(LOCALES_TICKET.CUSTOMER_VIP);
         } else if (t.ticket_priority.service_priority != "") {
             priority += parseInt(LOCALES_TICKET.SERVICE_PRIORITY);
         } else if (t.ticket_priority.customer_priority != "") {
