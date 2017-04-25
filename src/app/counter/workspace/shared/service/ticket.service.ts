@@ -147,11 +147,7 @@ export class TicketService {
     }
 
     GetService(t: ITicket) {
-        let s: IService;
-        this.api.Get<IService>("get", { id: t.service_id }).subscribe(v=>{
-            s=v;
-        });
-        return s;
+       return this.api.Get<IService>("get", { id: t.service_id });
     }
 
     private onInit() {
