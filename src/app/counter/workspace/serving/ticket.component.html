@@ -7,7 +7,9 @@
         <div fxFlex="50%" class="leftBox">
             <div i18n>Serving Ticket</div>
             <div class="content">
-                <img class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
+                <img *ngIf="!ticket.ticket_priority.customer_priority && !ticket.ticket_priority.customer_vip" class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
+                <img *ngIf="ticket.ticket_priority.customer_priority" class="icon" src="./assets/img/icon/wheelchair.png" alt="Number Ticket">
+                <img *ngIf="ticket.ticket_priority.customer_vip" class="icon" src="./assets/img/icon/star.png" alt="Number Ticket">
                 <span class="number">{{ticket.cnum}}</span>
             </div>
         </div>
