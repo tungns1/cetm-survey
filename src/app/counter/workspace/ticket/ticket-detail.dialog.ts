@@ -1,9 +1,6 @@
 import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ITicket, TicketStates, ModalComponent, } from '../shared';
-import {
-  IService,
-} from '../../../shared/model';
+import { ITicket, TicketStates, ModalComponent } from '../shared';
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -23,10 +20,9 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
   SetTicket(t: ITicket) {
-    this.ticketService.GetService(t).subscribe(v => {
-      this.s = v;
+    this.ticketService.GetService(t.service_id).subscribe(v => {
+       this.isVip = this.isPriority(t,v.call_for_vip);
     });
-    this.isVip = this.isPriority(t);
     this.isModal = true;
     this.ticket = t;
     this.checkedCounters = [];
@@ -37,7 +33,7 @@ export class TicketDetailDialog {
   }
   private ticket: ITicket = <any>{};
   close = new EventEmitter();
-  s: IService = null;
+
   private isServing = false;
   private isWaiting = false;
   private isVip = false;
@@ -45,9 +41,9 @@ export class TicketDetailDialog {
   private isModal = false;
   private isRemove = false;
   private isAlert = false;
-  private isPriority(t: ITicket) {
-    if (t.ticket_priority != undefined && this.s != null) {
-      if (this.s.call_for_vip) {
+  private isPriority(t: ITicket, s: boolean) {
+    if (t.ticket_priority != undefined) {
+      if (s) {
         if (t.ticket_priority.customer_vip != "") {
           return true;
         } else if (t.ticket_priority.service_priority != "") {

@@ -146,8 +146,8 @@ export class TicketService {
         this.autoNext$.next(b);
     }
 
-    GetService(t: ITicket) {
-       return this.api.Get<IService>("get", { id: t.service_id });
+    GetService(id: string) {
+       return this.api.Get<IService>("get", { id: id});
     }
 
     private onInit() {
