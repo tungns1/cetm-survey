@@ -2,19 +2,20 @@ import { FormBuilder, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
-import { CrudApiService } from '../../shared';
+import { CrudApiService,HttpError } from '../../shared';
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
 import { Injector } from '@angular/core';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import 'rxjs/add/operator/publishReplay';
+import { Toast } from '../../../../x/ui/noti/toastr';
 
 export abstract class BaseAdminComponent<T> {
     constructor(
         protected injector: Injector,
         protected service: CrudApiService<T>
     ) { }
-
+     toast = new Toast;
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
     private mdSnackBar = this.injector.get(MdSnackBar);
@@ -81,7 +82,9 @@ export abstract class BaseAdminComponent<T> {
                 extraClasses: ["success"]
             });
             this.NavigateTo();
-        })
+        },(e:HttpError)=>{
+                this.toast.Title('Info').Info(e.Message()).Show();
+        });
     }
 
     protected NavigateTo(view = 'list') {
@@ -103,6 +106,8 @@ export abstract class BaseAdminComponent<T> {
                 console.log("UNDO");
             });
             this.NavigateTo();
+        },(e:HttpError)=>{
+                this.toast.Title('Info').Info(e.Message()).Show();
         });
     }
 
@@ -117,6 +122,8 @@ export abstract class BaseAdminComponent<T> {
                 console.log("UNDO");
             });
             this.NavigateTo();
+        },(e:HttpError)=>{
+                this.toast.Title('Info').Info(e.Message()).Show();
         });
     }
 

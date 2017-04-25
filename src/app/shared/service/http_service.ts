@@ -2,7 +2,6 @@ import { AppStorage } from '../shared';
 import { Http, Request, Response, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
-import { Toast } from '../../x/ui/noti/toastr';
 
 const NETWORK_ERROR_TYPE = 3;
 
@@ -30,7 +29,6 @@ export class HttpApi<T> {
         private http: Http
     ) {
     }
-    toast = new Toast;
     get token() {
         return AppStorage.Token;
     }
@@ -89,7 +87,6 @@ export class HttpApi<T> {
                     const body = error.json() || '';
                     const err = body.error || JSON.stringify(body);
                     errMsg = `${err}`;
-                    this.toast.Title('Info').Info(errMsg).Show();
                 }
             } else {
                 errMsg = error.message ? error.message : error.toString();
