@@ -29,7 +29,8 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
             image: [b.image],
             code: [b.code, Validators.required],
             l10n: [b.l10n],
-            priority: [b.priority, Validators.required]
+            priority: [b.priority, Validators.required],
+            call_for_vip: [b.call_for_vip]
         });
     }
 
