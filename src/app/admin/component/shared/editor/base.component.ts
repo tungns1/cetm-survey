@@ -2,7 +2,7 @@ import { FormBuilder, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
-import { CrudApiService } from '../../shared';
+import { CrudApiService, HttpError } from '../../shared';
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
 import { Injector } from '@angular/core';
@@ -103,6 +103,8 @@ export abstract class BaseAdminComponent<T> {
                 console.log("UNDO");
             });
             this.NavigateTo();
+        }, (e: HttpError) => {
+            console.log(e.Message());
         });
     }
 
