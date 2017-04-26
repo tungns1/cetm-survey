@@ -10,6 +10,7 @@ export interface IConfigPriority {
     vip_card: string;
     customer_vip: string;
     ticket_online: string;
+    min_priority_for_call:string;
 }
 export interface IConfig {
     id?: string;

@@ -61,7 +61,7 @@
                 <span i18n>Monitor</span>
             </div>
         </li>
-        <li class="li_firstLv">
+        <li class="li_firstLv" *ngIf="role!='manager'">
             <div class="paddingFirst" routerLink="/admin/house/kiosk" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/kiosk')">
                 <i class="fa fa-ticket"> </i>
                 <span i18n>Kiosk</span>
@@ -72,13 +72,13 @@
                 </li>
             </ul>
         </li>
-        <li class="li_firstLv">
+        <li class="li_firstLv" *ngIf="role!='manager'">
             <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/screen')">
                 <i class="fa fa-desktop"> </i>
                 <span i18n>Screen</span>
             </div>
         </li>
-        <li class="li_firstLv">
+        <li class="li_firstLv" *ngIf="role!='manager'">
             <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/screen')">
                 <i class="fa fa-commenting"> </i>
                 <span i18n>Feedback</span>
