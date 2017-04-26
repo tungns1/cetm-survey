@@ -51,22 +51,24 @@
             </tr>
         </table>
     </accordion>
-    <div *ngIf="customer" class="customer">
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer</b>
-            <span fxFlex>{{customer.full_name}}</span>
-        </div>
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Phone Number</b>
-            <span fxFlex>{{customer.phone_number}}</span>
-        </div>
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer Code</b>
-            <span fxFlex (click)="goToCustomer(data.customer_id)" style="text-decoration: underline; color: blue;" i18n-title="Go to customer detail">{{customer.code}}</span>
-        </div>
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer Segment</b>
-            <span fxFlex>{{customer.segment}}</span>
+    <div class="customer">
+        <div *ngIf="customer">
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Customer</b>
+                <span fxFlex>{{customer.full_name}}</span>
+            </div>
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Phone Number</b>
+                <span fxFlex>{{customer.phone_number}}</span>
+            </div>
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Customer Code</b>
+                <span fxFlex (click)="goToCustomer(data.customer_id)" style="text-decoration: underline; color: blue;" i18n-title="Go to customer detail">{{customer.code}}</span>
+            </div>
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Customer Segment</b>
+                <span fxFlex>{{customer.segment}}</span>
+            </div>
         </div>
         <div class="cusDetail">
             <audio [class.hidden]="!link" controls [src]="link"></audio>
