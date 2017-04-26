@@ -14,7 +14,7 @@ export class ServiceNamePipe {
     name: 'multipleServiceName'
 })
 export class MultipleServiceNamePipe {
-    transform(services: string[]) {
+    transform(services: string[] = []) {
         return services.map(ServiceName);
     }
 }

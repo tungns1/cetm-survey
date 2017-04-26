@@ -1,7 +1,7 @@
 import {
     ITicket
 } from '../shared';
-import { LOCALES_TICKET } from "../../../../../const/ticket";
+import { TICKET_PRIORITY } from "../../../../../const/ticket";
 
 export * from './stat';
 
@@ -23,19 +23,19 @@ function getPriority(t: ITicket) {
     var priority = 0;
     if (t.ticket_priority != undefined) {
         if (t.ticket_priority.customer_vip != "") {
-            priority += parseInt(LOCALES_TICKET.CUSTOMER_VIP);
+            priority += parseInt(TICKET_PRIORITY.CUSTOMER_VIP);
         } else if (t.ticket_priority.service_priority != "") {
-            priority += parseInt(LOCALES_TICKET.SERVICE_PRIORITY);
+            priority += parseInt(TICKET_PRIORITY.SERVICE_PRIORITY);
         } else if (t.ticket_priority.customer_priority != "") {
-            priority += parseInt(LOCALES_TICKET.CUSTOMER_PRIORITY);
+            priority += parseInt(TICKET_PRIORITY.CUSTOMER_PRIORITY);
         } else if (t.ticket_priority.ticket_online != "") {
-            priority += parseInt(LOCALES_TICKET.TICKET_ONLINE);
+            priority += parseInt(TICKET_PRIORITY.TICKET_ONLINE);
         } else if (t.ticket_priority.vip_card != "") {
-            priority += parseInt(LOCALES_TICKET.VIP_CARD);
-        } else if (t.ticket_priority.ticket_serving_move != null) {
+            priority += parseInt(TICKET_PRIORITY.VIP_CARD);
+        }
+        if (t.ticket_priority.ticket_serving_move != null) {
             priority += t.ticket_priority.ticket_serving_move;
         }
-        t.priority = priority;
         return priority;
     }
 }

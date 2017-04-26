@@ -21,6 +21,10 @@
             <strong class="uppercase inline" i18n>Priority for ticket online</strong>
             <input class="inline border" type="number" min="0" formControlName="ticket_online">
         </div>
+           <div>
+            <strong class="uppercase inline" i18n>Min priority for button call</strong>
+            <input class="inline border" type="number" min="0" formControlName="min_priority_for_call">
+        </div>
 
         <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
     </form>

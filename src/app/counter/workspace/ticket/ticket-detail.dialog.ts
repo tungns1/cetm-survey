@@ -4,7 +4,7 @@ import { ITicket, TicketStates, ModalComponent } from '../shared';
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-
+import { TICKET_PRIORITY } from "../../../../const/ticket";
 import { TicketService, QueueService, WorkspaceService } from '../shared';
 
 @Component({
@@ -42,22 +42,31 @@ export class TicketDetailDialog {
   private isRemove = false;
   private isAlert = false;
   private isPriority(t: ITicket) {
-    console.log(t);
-    if (t.ticket_priority != undefined && t.priority===0) {
-     
-        if (t.ticket_priority.customer_vip != "") {
+    if (t.ticket_priority != undefined) {
+
+      if (t.ticket_priority.customer_vip != "") {
+        if (parseInt(TICKET_PRIORITY.CUSTOMER_VIP) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
           return true;
-        } else if (t.ticket_priority.service_priority != "") {
-          return true;
-        } else if (t.ticket_priority.customer_priority != "") {
-          return true;
-        } else if (t.ticket_priority.ticket_online != "") {
-          return true;
-        } else if (t.ticket_priority.vip_card != "") {
-          return true;
-        } else {
-          return false
         }
+      } else if (t.ticket_priority.service_priority != "") {
+        if (parseInt(TICKET_PRIORITY.SERVICE_PRIORITY) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
+          return true;
+        }
+      } else if (t.ticket_priority.customer_priority != "") {
+        if (parseInt(TICKET_PRIORITY.CUSTOMER_PRIORITY) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
+          return true;
+        }
+      } else if (t.ticket_priority.ticket_online != "") {
+        if (parseInt(TICKET_PRIORITY.TICKET_ONLINE) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
+          return true;
+        }
+      } else if (t.ticket_priority.vip_card != "") {
+        if (parseInt(TICKET_PRIORITY.VIP_CARD) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
+          return true;
+        }
+      } else {
+        return false
+      }
     }
   }
 
