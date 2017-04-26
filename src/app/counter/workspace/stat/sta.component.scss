@@ -1,6 +1,6 @@
 @import '../shared/style.scss';
 #sta {
-    height: 55%;
+    height: 43.5%;
     overflow: auto;
     .tabs {
         .tabCtrl {
@@ -36,9 +36,22 @@
     }
 }
 
+#avgTime{
+    margin-top: 3%;
+    height: 8%;
+    .title{
+        font-size: $font-size-default;
+    }
+    .time{
+        font-size: $font-size-default * 4;
+        font-weight: $font-weight-default + 200;
+        color: $key-color;
+    }
+}
+
 #search {
     margin-top: 3%;
-    height: 40%;
+    height: 42.5%;
     padding: 3%;
     overflow: auto;
     input {

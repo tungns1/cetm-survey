@@ -139,7 +139,7 @@ export class FocusComponent {
                                     services: t.services,
                                     counters: t.counters,                                 
                                     vcode: t.vcode,                             
-                                    state: t.state,                                
+                                    state: 'finished',                                
                                     ctime: t.ctime,                               
                                     tracks: t.tracks,                 
                                 }

@@ -9,7 +9,7 @@ export interface IService extends ID {
     priority?: number;
     l10n: L10nText;
     _checked?: boolean;
-
+    // call_for_vip?:boolean;
     name?: string; // on client side
 }
 

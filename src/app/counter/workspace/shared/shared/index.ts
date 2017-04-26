@@ -1,5 +1,5 @@
 
-export { AuthService, RuntimeEnvironment } from '../../../shared';
+export { AuthService, RuntimeEnvironment,HttpServiceGenerator } from '../../../shared';
 
 export {
     ITicket,
@@ -7,7 +7,8 @@ export {
     TicketStates,
     ICounter,
     ServiceName,
-    ICustomer
+    ICustomer,
+    IService,
 } from '../../../../shared/model';
 
 export { QmsService, XWinRectangle } from '../../../../../native/qms';
