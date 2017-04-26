@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 export class BarComponent {
     @Input() set data(v: IStat[]) {
         this._data = v || [] ;
-        const count = Math.max.apply(null, this._data.map(d => d.count));
+        const count = Math.max.apply(null, this._data.map(d => d.value.count));
         this.max = count;
     }
     private _data: IStat[] = [];

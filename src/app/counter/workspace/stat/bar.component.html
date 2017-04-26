@@ -2,7 +2,7 @@
     <p class="label">{{d.service_id | serviceName}}</p>
     <div class="barBackground">
         <div class="barGrap" [style.width]="''+d.count/max*100+'%'">
-            <p>{{d.count}}</p>
+            <p>{{d.value.count}}</p>
         </div>
     </div>
 </div>
