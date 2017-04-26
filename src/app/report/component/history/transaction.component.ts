@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment } from '../shared';
+import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment
+ } from '../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TransactionHistoryApi } from './history.service';
+import { ReportCustomerService } from '../../service';
 
 @Component({
     selector: 'transaction',
@@ -13,16 +15,28 @@ export class TransactionComponent implements OnInit {
     constructor(
         private router: Router,
         private transactionHistoryApi: TransactionHistoryApi,
-        private env: RuntimeEnvironment
+        private env: RuntimeEnvironment,
+        private reportCustomerService: ReportCustomerService,
     ) { }
     customer: ICustomer;
+    admin: ICustomer;
+    manager: ICustomer;
+
+    @ViewChild(ModalComponent) modal: ModalComponent;
+    
     ngOnInit() {
 
     }
 
-    @ViewChild(ModalComponent) modal: ModalComponent;
-
     SetData(d: ITransactionView) {
+        if(d.branch_id){
+            this.reportCustomerService.GetUserByRoleNBranch(d.branch_id, 'admin').subscribe(v => {
+                this.admin = v;
+            });
+            this.reportCustomerService.GetUserByRoleNBranch(d.branch_id, 'manager').subscribe(v => {
+                this.manager = v;
+            });
+        }
         this.link = '';
         this.data = d;
         if (d.audio) {

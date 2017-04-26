@@ -21,6 +21,14 @@
                 <td class="labelCtrl"><b i18n>Teller</b></td>
                 <td>{{data.user}}</td>
             </tr>
+            <tr *ngIf="manager">
+                <td class="labelCtrl"><b i18n>Manager</b></td>
+                <td *ngIf="manager[0]">{{manager[0].fullname}}</td>
+            </tr>
+            <tr *ngIf="admin">
+                <td class="labelCtrl"><b i18n>Administrator</b></td>
+                <td *ngIf="admin[0]">{{admin[0].fullname}}</td>
+            </tr>
             <tr>
                 <td class="labelCtrl"><b i18n>Ticket Number</b></td>
                 <td>{{data.cnum}}</td>
