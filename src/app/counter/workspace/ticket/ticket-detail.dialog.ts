@@ -20,9 +20,9 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
   SetTicket(t: ITicket) {
-    this.ticketService.GetService(t.service_id).subscribe(v => {
-       this.isVip = this.isPriority(t,v.call_for_vip);
-    });
+
+    this.isVip = this.isPriority(t);
+
     this.isModal = true;
     this.ticket = t;
     this.checkedCounters = [];
@@ -41,9 +41,10 @@ export class TicketDetailDialog {
   private isModal = false;
   private isRemove = false;
   private isAlert = false;
-  private isPriority(t: ITicket, s: boolean) {
-    if (t.ticket_priority != undefined) {
-      if (s) {
+  private isPriority(t: ITicket) {
+    console.log(t);
+    if (t.ticket_priority != undefined && t.priority===0) {
+     
         if (t.ticket_priority.customer_vip != "") {
           return true;
         } else if (t.ticket_priority.service_priority != "") {
@@ -57,14 +58,6 @@ export class TicketDetailDialog {
         } else {
           return false
         }
-      } else {
-        if (t.ticket_priority.customer_priority != "") {
-          return true;
-        } else {
-          return false
-        }
-      }
-
     }
   }
 

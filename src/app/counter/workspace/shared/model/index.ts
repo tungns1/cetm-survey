@@ -35,6 +35,7 @@ function getPriority(t: ITicket) {
         } else if (t.ticket_priority.ticket_serving_move != null) {
             priority += t.ticket_priority.ticket_serving_move;
         }
+        t.priority = priority;
         return priority;
     }
 }

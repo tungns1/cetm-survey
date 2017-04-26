@@ -15,7 +15,7 @@ interface ITicketAction {
     counters?: string[];
 }
 
-import { ITicket, IService, HttpServiceGenerator } from '../shared';
+import { ITicket, IService } from '../shared';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
@@ -28,8 +28,7 @@ export class TicketService {
     constructor(
         private workspaceService: WorkspaceService,
         private feedbackService: FeedbackService,
-        private queueService: QueueService,
-        private httpServiceGenerator: HttpServiceGenerator
+        private queueService: QueueService
     ) {
         this.onInit();
     }
@@ -146,10 +145,6 @@ export class TicketService {
         this.autoNext$.next(b);
     }
 
-    GetService(id: string) {
-       return this.api.Get<IService>("get", { id: id});
-    }
-
     private onInit() {
         // if auto next
         this.autoNext$.throttleTime(100).switchMap(auto => {
@@ -166,5 +161,4 @@ export class TicketService {
             });
         }).subscribe();
     }
-    api = this.httpServiceGenerator.make<any>("/api/admin/center/service");
 }
