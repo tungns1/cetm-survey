@@ -32,7 +32,8 @@ function getPriority(t: ITicket) {
             priority += parseInt(TICKET_PRIORITY.TICKET_ONLINE);
         } else if (t.ticket_priority.vip_card != "") {
             priority += parseInt(TICKET_PRIORITY.VIP_CARD);
-        } else if (t.ticket_priority.ticket_serving_move != null) {
+        }
+        if (t.ticket_priority.ticket_serving_move != null) {
             priority += t.ticket_priority.ticket_serving_move;
         }
         return priority;
