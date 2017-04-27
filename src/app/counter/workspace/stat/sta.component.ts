@@ -77,5 +77,10 @@ export function AverageTime(finish: IStat[], cancel: IStat[]) {
         s += a.value.count;
         t += a.value.stime;
     });
-    return (t/s).toFixed(2);
+    if (s > 0) {
+        return (t / s).toFixed(2)
+    } else {
+        return 0
+    }
+
 }
