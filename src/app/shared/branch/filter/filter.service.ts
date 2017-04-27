@@ -18,7 +18,7 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     ) {
         super("branches", storageStrategy);
         this.levels = [];
-        this.max = BranchLevels.length - 1;
+        this.max =CacheBranch.MaxLevel();
         let branches = this.data.branches || [];
         for (let i = 0; i <= this.max; i++) {
             this.levels.push(i);

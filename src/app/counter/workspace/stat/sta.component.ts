@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { IStat } from '../shared';
+import { IStat, IValues } from '../shared';
 import { WorkspaceService } from '../shared';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 
 const TABS = {
@@ -30,6 +31,10 @@ export class StaComponent {
     cancelled$ = new ReplaySubject<IStat[]>(1);
     fcount$ = this.finished$.map(SumStat);
     ccount$ = this.cancelled$.map(SumStat);
+    stime$ = combineLatest<IStat[], IStat[]>(this.finished$, this.cancelled$).map(([finish, cancel]) => {
+        return AverageTime(finish, cancel);
+    });
+
     tab$ = new ReplaySubject<string>(1);
     data$ = this.tab$.switchMap(tab => {
         return tab === TABS.FINISHED ? this.finished$ : this.cancelled$;
@@ -46,10 +51,10 @@ export class StaComponent {
         this.tab$.next(TABS.CANCELLED);
     }
 
-    toArray(o: { [index: string]: number }) {
+    toArray(o: { [index: string]: IValues }) {
         return Object.keys(o).map(id => <IStat>{
             service_id: id,
-            count: o[id]
+            value: o[id]
         });
     }
 
@@ -57,6 +62,25 @@ export class StaComponent {
 
 export function SumStat(stats: IStat[]) {
     let s = 0;
-    stats.forEach(a => s += a.count);
+    stats.forEach(a => s += a.value.count);
     return s;
+}
+
+export function AverageTime(finish: IStat[], cancel: IStat[]) {
+    let s = 0;
+    let t = 0;
+    finish.forEach(a => {
+        s += a.value.count;
+        t += a.value.stime;
+    });
+    cancel.forEach(a => {
+        s += a.value.count;
+        t += a.value.stime;
+    });
+    if (s > 0) {
+        return (t / s).toFixed(2)
+    } else {
+        return 0
+    }
+
 }

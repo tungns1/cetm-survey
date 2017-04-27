@@ -12,4 +12,5 @@ export class AvgTimeComponent {
     constructor(
         private ticketService: TicketService
     ) { }
+    @Input() stime:number;
 }

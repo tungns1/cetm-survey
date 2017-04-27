@@ -47,21 +47,19 @@
             <div fxFlex i18n>Store</div>
             <div fxFlex>{{ticket.branch_id | branchName}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
             <div fxFlex i18n>Tellers</div>
-            <div *ngIf="ticket.state != 'cancelled'" fxFlex>{{ticket.serving.user_id | userFullName}}</div>
-            <div *ngIf="ticket.state == 'cancelled'" fxFlex>{{ticket.user_id | userFullName}}</div>
+            <div fxFlex>{{ticket.user_id | userFullName}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
             <div fxFlex i18n>Counter</div>
-            <div *ngIf="ticket.state != 'cancelled'" fxFlex>{{ticket.serving.counter_id | counterName }}</div>
-            <div *ngIf="ticket.state == 'cancelled'" fxFlex>{{ticket.counter_id | counterName }}</div>
+            <div fxFlex>{{ticket.counter_id | counterName }}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Manager</div>
             <div fxFlex>{{ticket.manager.fullname}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.serving">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Administrator</div>
             <div fxFlex>{{ticket.admin.fullname}}</div>
         </div>
