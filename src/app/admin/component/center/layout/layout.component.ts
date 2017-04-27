@@ -22,14 +22,23 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
 
   makeForm(b?: ILayout) {
     b = b || <any>{};
-    const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
+    let resources: any;
+    if (b) {
+      if (b.ui) {
+        resources = b.ui.resources
+      } else {
+        resources = b.resources;
+      }
+
+    }
+    // const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
     return (new FormBuilder).group({
       id: [b.id],
       name: [b.name, Validators.required],
       type: [b.type, Validators.required],
       ui: [b.ui || {}],
       style: [b.style],
-      resources: [b.ui.resources || b.resources]
+      resources: [resources]
     });
   }
 
