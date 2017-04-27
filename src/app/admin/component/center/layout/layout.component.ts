@@ -22,16 +22,9 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
 
   makeForm(b?: ILayout) {
     b = b || <any>{};
-    let resources: any;
-    if (b) {
-      if (b.ui) {
-        resources = b.ui.resources
-      } else {
-        resources = b.resources;
-      }
-
-    }
-    // const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
+    b.ui = b.ui || <any>{};
+    b.ui.resources = b.ui.resources || {};
+    const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
     return (new FormBuilder).group({
       id: [b.id],
       name: [b.name, Validators.required],
