@@ -26,6 +26,16 @@ class BranchCache extends MemCache<IBranch> {
             branches.filter(b => b.level === level)
         );
     }
+    MaxLevel() {
+        var max=0;
+        var branches=this.RxListView.getValue();
+        for(var i=0;i<branches.length;i++){
+            if(max<branches[i].level){
+                max=branches[i].level;
+            }
+        }
+        return max;
+    }
 
     GetByLevel(level: number) {
         return this.RxListView.value.filter(b => b.level === level);
