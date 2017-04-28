@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TimeModule } from '../../x/ng/time/';
 import { ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe } from './serviceName';
-import { TicketStatePipe } from './ticketState';
+import { TicketStatePipe,TicketStateFinishPipe } from './ticketState';
 import { CounterNamePipe } from './counterName';
 import { UserFullNamePipe } from './userName';
 import { UppercaseFirstState } from './uppercaseState';
@@ -10,7 +10,7 @@ import { TimeToHourPipe ,TimeToHourDeviceTrackPipe} from './time.pipe';
 import { TimeToDate } from './timeToDate.pipe';
 
 const exportComponents = [
-    ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe,
+    ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe,TicketStateFinishPipe,
     TicketStatePipe, CounterNamePipe, UserFullNamePipe,BranchNameKioskPipe,
     BranchLevelNamePipe, BranchNamePipe,UppercaseFirstState,TimeToHourPipe,TimeToDate,TimeToHourDeviceTrackPipe
 ]
