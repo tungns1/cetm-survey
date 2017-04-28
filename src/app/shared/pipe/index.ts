@@ -6,11 +6,11 @@ import { CounterNamePipe } from './counterName';
 import { UserFullNamePipe } from './userName';
 import { UppercaseFirstState } from './uppercaseState';
 import { BranchLevelNamePipe, BranchNamePipe,BranchNameKioskPipe } from './branch.pipe';
-import { TimeToHourPipe ,TimeToHourDeviceTrackPipe} from './time.pipe';
+import { TimeToHourPipe ,TimeToHourDeviceTrackPipe,TimePipe} from './time.pipe';
 import { TimeToDate } from './timeToDate.pipe';
 
 const exportComponents = [
-    ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe,TicketStateFinishPipe,
+    ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe,TicketStateFinishPipe,TimePipe,
     TicketStatePipe, CounterNamePipe, UserFullNamePipe,BranchNameKioskPipe,
     BranchLevelNamePipe, BranchNamePipe,UppercaseFirstState,TimeToHourPipe,TimeToDate,TimeToHourDeviceTrackPipe
 ]
