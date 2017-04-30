@@ -6,6 +6,8 @@ import {
 
 import { MonitorTicketSocket } from './monitor-ticket.socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { merge } from 'rxjs/observable/merge';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class MonitorSummaryService {
@@ -13,10 +15,10 @@ export class MonitorSummaryService {
   constructor(
     private socket: MonitorTicketSocket
   ) {
-    
+
   }
 
-  
+
 
   private initialSummary$ = this.socket.Connected$.switchMap(_ => {
     return this.Branches$.switchMap(branches => {
@@ -26,15 +28,15 @@ export class MonitorSummaryService {
     });
   }).share();
 
-  private summaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/ticket/summary/update").startWith(null);
+  private summaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/ticket/summary/update");
 
   summaries$ = this.initialSummary$.switchMap(initial => {
     const summaries = new GlobalTicketSummary();
     summaries.Refresh(initial);
-    return this.summaryUpdate$.startWith(null).map(s => {
+    const summaryUpdate = this.summaryUpdate$.startWith(null).map(s => {
       summaries.Replace(s);
-      return summaries;
     });
+    return merge(of(null), summaryUpdate).map(_ => summaries);
   }).share();
 
   Branches$ = new ReplaySubject<string[]>(1);

@@ -8,6 +8,8 @@ import {
 } from '../../../model';
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { merge } from 'rxjs/observable/merge';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class MonitorFocusService {
@@ -29,10 +31,10 @@ export class MonitorFocusService {
 
   Box$ = this.initialFocus$.switchMap(initial => {
     const box = new BoxActivity(initial);
-    return this.activityUpdate$.startWith(null).map(a => {
+    const activityUpdate = this.activityUpdate$.startWith(null).map(a => {
       box.UpdateActivity(a);
-      return box;
     });
+    return merge(of(null), activityUpdate).map(_ => box);
   }).share();
 
   Unfocus() {

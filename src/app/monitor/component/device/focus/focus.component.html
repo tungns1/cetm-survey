@@ -3,6 +3,11 @@
     <div class="nav">
         <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
     </div>
-    <app-category name="Counter" [data]="counters$ | async"></app-category>
-    <app-category name="Kiosk" [data]="kiosks$ | async"></app-category>
+    <ng-template #loading>
+        <md-spinner></md-spinner>
+    </ng-template>
+    <div *ngIf="box$ | async; else loading">
+        <app-category name="Counter" [data]="counters$ | async"></app-category>
+        <app-category name="Kiosk" [data]="kiosks$ | async"></app-category>
+    </div>
 </div>

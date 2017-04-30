@@ -34,6 +34,7 @@ export class SummaryComponent {
         });
     }
 
-    summary$ = this.deviceService.summary$;
+    box$ = this.deviceService.Box$;
+    records$ = this.box$.map(b => b.ToArray());
 
 }

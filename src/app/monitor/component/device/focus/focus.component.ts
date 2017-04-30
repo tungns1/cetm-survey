@@ -37,6 +37,7 @@ export class FocusComponent {
 
     }
 
+    box$ = this.deviceService.Box$;
     counters$ = this.deviceService.Box$.map(b => b.counters.ToArray());
     kiosks$ = this.deviceService.Box$.map(b => b.kiosks.ToArray());
 

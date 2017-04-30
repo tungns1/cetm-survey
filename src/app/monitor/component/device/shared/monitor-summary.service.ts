@@ -7,6 +7,8 @@ import {
 
 import { MonitorDeviceSocket } from './monitor-device.socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { merge } from 'rxjs/observable/merge';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class MonitorSummaryService {
@@ -23,15 +25,15 @@ export class MonitorSummaryService {
     });
   }).share();
 
-  private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update").startWith(null);
+  private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update");
 
-  summary$ = this.initialSummary$.switchMap(initial => {
+  Box$ = this.initialSummary$.switchMap(initial => {
     var gb = new GlobalActivitySummary();
     gb.Refresh(initial);
-    return this.activitySummaryUpdate$.map(v => {
+    const summaryUpdate = this.activitySummaryUpdate$.map(v => {
       gb.UpdateActivity(v);
-      return gb.ToArray();
     });
+    return merge(of(null), summaryUpdate).map(_ => gb);
   }).share();
 
   Branches$ = new ReplaySubject<string[]>(1);

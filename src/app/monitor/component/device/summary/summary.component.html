@@ -4,7 +4,10 @@
         <button class="btnClear btnMargin uppercase" appSafeNav="/monitor/ticket" i18n>Transaction</button>
         <button class="btnFill btnMargin uppercase" appSafeNav="/monitor/device" i18n>Device</button>
     </div>
-    <table class="tableCtrl">
+    <ng-template #loading>
+        <md-spinner></md-spinner>
+    </ng-template>
+    <table class="tableCtrl" *ngIf="records$ | async; else loading; let records">
         <thead class="">
             <th i18n>Store</th>
             <th i18n>Counter</th>
@@ -15,7 +18,7 @@
             <th i18n>Kiosk Off</th>
         </thead>
         <tbody>
-            <tr *ngFor="let s of summary$ | async" (click)="focus(s)" class="branchSummary">
+            <tr *ngFor="let s of records" (click)="focus(s)" class="branchSummary">
                 <td> {{s.branch_id | branchName}} </td>
                 <td> {{s.counter.total}}</td>
                 <td> {{s.counter.on}} </td>
