@@ -49,6 +49,7 @@ export class FocusComponent {
 
     // chartData: Summary
     box$ = this.focusService.Box$;
+
     tickets$ = this.focusService.Box$.map(b => b.tickets).filter(t => !!t);
     waiting$ = this.tickets$.switchMap(tickets => tickets.Waiting$);
     serving$ = this.tickets$.switchMap(tickets => tickets.Serving$);

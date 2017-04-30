@@ -26,7 +26,7 @@ export class MonitorSummaryService {
     });
   }).share();
 
-  private summaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/summary/update").startWith(null);
+  private summaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/ticket/summary/update").startWith(null);
 
   summaries$ = this.initialSummary$.switchMap(initial => {
     const summaries = new GlobalTicketSummary();

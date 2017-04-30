@@ -4,11 +4,12 @@ import { MonitorTicketSocket } from './monitor-ticket.socket';
 import { MonitorFilterService, MonitorNavService } from '../../shared';
 
 import {
-  IActivitySummary, IBoxTicket, BoxTicket
+  IActivitySummary, IBoxTicketSummary, IBoxTicket, BoxTicket
 } from '../../../model';
 
 import { ISubscription } from 'rxjs/Subscription';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class MonitorFocusService {
@@ -32,15 +33,20 @@ export class MonitorFocusService {
     });
   }).share();
 
-  private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update").startWith(null);
+  private ticketSummaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/ticket/summary/update");
+  private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update");
 
   Box$ = this.initialFocus$.switchMap(initial => {
     const box = new BoxTicket(initial);
-    return this.activitySummaryUpdate$.startWith(null).map(a => {
+    const activityUpdate = this.activitySummaryUpdate$.map(a => {
       box.UpdateActivitySummary(a);
-      return box;
     });
-  }).share();
+    const summaryUpdate = this.ticketSummaryUpdate$.map(s => {
+      box.UpdateTicketSummary(s);
+    });
+    return of(null).merge(activityUpdate, summaryUpdate)
+      .map(_ => box);
+  }).share().do(b => console.log(b));
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

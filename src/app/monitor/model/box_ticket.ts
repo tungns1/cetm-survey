@@ -21,8 +21,8 @@ export interface IBoxTicket {
 
 export class BoxTicket {
     constructor(private _b: IBoxTicket) { }
-    branch_id = this._b.branch_id;
     branch = this._b.branch;
+    branch_id = this.branch.id;
     parent = this._b.parent;
     counter = new ActivitySummary(this._b.counter_activity);
     users = new UserGroup(this._b.users);
@@ -35,6 +35,14 @@ export class BoxTicket {
         const _s = new ActivitySummary(s);
         if (_s.category == this.counter.category) {
             this.counter = _s;
+        }
+    }
+
+    UpdateTicketSummary(s: IBoxTicketSummary) {
+        if (!s) return;
+        const _s = new BoxTicketSummary(s);
+        if (_s.branch_id == this.branch_id) {
+            this.summary = _s;
         }
     }
 

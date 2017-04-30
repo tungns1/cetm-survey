@@ -1,4 +1,8 @@
-<div id="focusComponent" *ngIf="box$ | async; let box">
+<ng-template #loading>
+    <md-spinner></md-spinner>
+</ng-template>
+
+<div id="focusComponent" *ngIf="box$ | async; else loading; let box; ">
     <h2 class="header uppercase"> {{box.branch?.name}} </h2>
     <div class="nav">
         <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">Go Back</button>
