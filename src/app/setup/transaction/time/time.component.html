@@ -1,0 +1,14 @@
+<span>Set time serving for transaction:</span><br>
+<div>
+    <form class="hl-form" [formGroup]="form">
+        <div>
+            <strong class="uppercase inline" i18n>Time Serving</strong><label class="note margin-l-5" i18n>(minute)</label>
+            <input class="inline border" type="number" min="0" formControlName="serving_time">
+        </div>
+        <div>
+            <strong class="uppercase inline" i18n>Attended</strong>
+            <input class="inline border" type="checkbox" formControlName="attended">
+        </div>
+        <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
+    </form>
+</div>
