@@ -20,6 +20,7 @@ const routing = RouterModule.forChild([
 
 
 import { monitorServiceProviders } from './shared';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,6 @@ import { monitorServiceProviders } from './shared';
     ],
     declarations: [
         MonitorDeviceComponent, FocusComponent, 
-        SummaryComponent]
+        SummaryComponent, CategoryComponent]
 })
 export class MonitorDeviceModule { }

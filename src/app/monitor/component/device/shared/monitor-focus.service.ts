@@ -4,15 +4,10 @@ import { MonitorDeviceSocket } from './monitor-device.socket';
 import { MonitorFilterService, MonitorNavService } from '../../shared';
 
 import {
- IDevice
+  IActivity, IBoxEvent, BoxEvent
 } from '../../../model';
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-
-interface IFocusReply {
-  counter_state: IDevice[];
-  kiosk_state: IDevice[];
-}
 
 @Injectable()
 export class MonitorFocusService {
@@ -24,51 +19,23 @@ export class MonitorFocusService {
 
   private initialFocus$ = this.socket.Connected$.switchMap(_ => {
     return this.Branch$.switchMap(branch_id => {
-      return this.socket.Send<IFocusReply>("/focus", {
+      return this.socket.Send<IBoxEvent>("/focus", {
         branch_id
       })
     });
   }).share();
 
-  private kioskUpdate$ = this.socket.RxEvent<IDevice>("kiosk_track/update").startWith(null);
-  private counterUpdate$ = this.socket.RxEvent<IDevice>("counter_track/update").startWith(null);
+  private activityUpdate$ = this.socket.RxEvent<IActivity>("/activity/update");
 
-
-  counter$ = this.initialFocus$
-    .map(data => data ? data.counter_state : [])
-    .switchMap(counters => {
-      return this.counterUpdate$.map(d => {
-        if (d && counters.length > 0) {
-          for (var i = 0; i < counters.length; i++) {
-            if (counters[i].device_id === d.device_id) {
-              counters[i] = d;
-              break;
-            }
-          }
-        }
-        return counters;
-      });
-    }).share();
-
-
-  kisok$ = this.initialFocus$
-    .map(data => data ? data.kiosk_state : [])
-    .switchMap(kiosks => {
-      return this.kioskUpdate$.map(d => {
-        if (d && kiosks.length > 0) {
-          for (var i = 0; i < kiosks.length; i++) {
-            if (kiosks[i].device_id === d.device_id) {
-              kiosks[i] = d;
-              break;
-            }
-          }
-        }
-        return kiosks;
-      });
-    }).share();
-
-
-
+  Box$ = this.initialFocus$.switchMap(initial => {
+    const box = new BoxEvent(initial.branch_id);
+    box.Refresh(initial);
+    console.log(initial);
+    return this.activityUpdate$.startWith(null).map(a => {
+      box.UpdateActivity(a);
+      return box;
+    });
+  }).share();
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

@@ -7,6 +7,7 @@ import { MonitorDeviceSocket } from './monitor-device.socket';
 import { MonitorSummaryService } from './monitor-summary.service';
 import { MonitorFocusService } from './monitor-focus.service';
 
+export * from '../../../model';
 
 export const monitorServiceProviders = [
     MonitorDeviceSocket,
