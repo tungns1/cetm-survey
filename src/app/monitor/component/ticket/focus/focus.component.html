@@ -1,67 +1,71 @@
-<div id="focusComponent" *ngIf="focus$ | async; let data">
-    <h2 class="header uppercase"> {{data.branch_id | branchName}} </h2>
+<div id="focusComponent" *ngIf="box$ | async; let box">
+    <h2 class="header uppercase"> {{box.branch?.name}} </h2>
     <div class="nav">
-        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">go back</button>
+        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">Go Back</button>
     </div>
     <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
+        <!-- General Information -->
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Branch</span>
-                <span>{{data.parent_id | branchName}}</span>
+                <span>{{box.parent?.name}}</span>
             </div>
-            <div *ngIf="admin" fxLayout="row" fxLayoutAlign="space-between none">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Admin</span>
-                <span *ngIf="admin[0]">{{admin[0].fullname}}</span>
+                <span>{{box.users.admin?.fullname}}</span>
             </div>
-            <div *ngIf="manager" fxLayout="row" fxLayoutAlign="space-between none">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Manager</span>
-                <span *ngIf="manager[0]">{{manager[0].fullname}}</span>
+                <span>{{box.users.manager?.fullname}}</span>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total Counter</span>
-                <span> {{numberCounter$ | async | json}} </span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Total Counter On</span>
-                <span> {{numberCounterOn$ | async}} </span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span>Total Counter Off</span>
-                <span>{{numberCounterOff$ | async}}</span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Print Ticket</span>
-                <span>{{data.printed}}</span>
+            <div *ngIf="box.counter; let c">
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <span i18n>Total Counter</span>
+                    <span>{{c.total}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <span i18n>Online</span>
+                    <span>{{c.on}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <span>Offline</span>
+                    <span>{{c.off}}</span>
+                </div>
             </div>
         </div>
-        <div fxLayout="column" fxFlex class="padding_monitor">
+        <!-- Ticket -->
+        <div *ngIf="box.summary; let s" fxLayout="column" fxFlex class="padding_monitor">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Printed Ticket</span>
+                <span>{{s.printed}}</span>
+            </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of waiting tickets</span>
-                <span>{{data.waiting}}</span>
+                <span>{{s.waiting}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of tickets being served</span>
-                <span>{{data.serving}}</span>
+                <span>{{s.serving}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of tickets already served</span>
-                <span>{{data.finished}}</span>
+                <span>{{s.finished}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of reserved tickets</span>
-                <span>{{data.missed}}</span>
+                <span>{{s.missed}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of cancelled tickets</span>
-                <span>{{data.cancelled}}</span>
+                <span>{{s.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Waiting Over 15'</span>
-                <span>{{data.wait_long}}</span>
+                <span i18n>Waiting Long</span>
+                <span>{{s.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Serving Over 15'</span>
-                <span>{{data.s_l}}</span>
+                <span i18n>Serving Long</span>
+                <span>{{s.serve_long}}</span>
             </div>
         </div>
     </div>
@@ -70,88 +74,10 @@
 
     <!-- Chart -->
     <div class="border">
-        <monitor-chart [data]="focus$ | async"></monitor-chart>
+        <monitor-chart [data]="box.summary"></monitor-chart>
     </div>
 
     <!-- More -->
-
-    <h3 i18n>Services incomplete</h3>
-
-    <table class="tableCtrl">
-        <thead>
-            <th i18n>No.</th>
-            <th i18n>Service Name</th>
-            <th i18n>Ticket Number</th>
-            <th i18n>Customer</th>
-            <th i18n>Print Time</th>
-            <th i18n>Waiting Time</th>
-            <th i18n>Detail</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let ticket of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': ticket.state === 'missed', 'waiting': ticket.state === 'waiting'}">
-                <td> {{i + 1}} </td>
-                <td> {{ticket.services | multipleServiceName}}</td>
-                <td> {{ticket.cnum}}</td>
-                <td> {{ticket.customer?.full_name }} </td>
-                <td> {{ticket.ctime | localDayTime}}</td>
-                <td>
-                    <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="15"></timer>
-                    <span *ngIf="ticket.state === 'missed'"> {{ticket.mtime - ticket.ctime | timeDuration}}</span>
-                </td>
-                <td>
-                    <span (click)="detail.setData(ticket, admin[0], manager[0],true)">
-                            <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
-                        </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3 i18n>Services Completed</h3>
-
-    <table class="tableCtrl">
-        <thead>
-            <th i18n>No.</th>
-            <th i18n>Service</th>
-            <th i18n>Counter</th>
-            <th i18n>Tellers</th>
-            <th i18n>Ticket Number</th>
-            <th i18n>Customer</th>
-            <th i18n>Print Time</th>
-            <th i18n>Waiting Time</th>
-            <th i18n>Serving Time</th>
-            <th i18n>Detail</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let ticket of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': ticket.state === 'cancelled', 'serving': ticket.state === 'serving', 'serveDone': ticket.state === 'finished' || ticket.state === 'waiting'}">
-                <td> {{i + 1}} </td>
-                <td> {{ticket.service_id | serviceName}} </td>
-                <td> {{ticket.counter_id | counterName}}</td>
-                <td> {{ticket.user_id | userFullName}}</td>
-                <td> {{ticket.cnum}} </td>
-                <td>
-                    <span *ngIf="ticket.customer">{{ticket.customer.full_name }}</span>
-                    <span *ngIf="!ticket.customer"></span>
-                </td>
-                <td> {{ticket.ctime | localDayTime}}</td>
-                <td> {{ticket.mtime - ticket.ctime | timeDuration}} </td>
-                <td>
-                    <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
-                    <span *ngIf="ticket.state === 'finished'"> {{ticket.stime | timeDuration}}</span>
-                    <span *ngIf="ticket.state === 'cancelled'"> 00:00:00 </span>
-                    <span *ngIf="ticket.state === 'waiting'"> {{ticket.stime | timeDuration}} </span>
-                </td>
-                <td>
-                    <span (click)="detail.setData(ticket, admin[0], manager[0],false)">
-                        <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
-                    </span>
-                    <!--<span>
-                        <img class="iconDetail" src="./assets/img/icon/volume.png" alt="Search" style="cursor: pointer">
-                    </span>-->
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>
 
 <ticket-detail #detail></ticket-detail>

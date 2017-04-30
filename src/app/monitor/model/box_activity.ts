@@ -9,14 +9,19 @@ export interface IBoxActivity {
 }
 
 export class BoxActivity {
-    constructor(public branch_id: string) { }
-    kiosks = new ActivityCategory(this.branch_id, ActivityCategory.Categories.Kiosk);
-    counters = new ActivityCategory(this.branch_id, ActivityCategory.Categories.Counter);
-    Refresh(b: IBoxActivity) {
-        if (!b) return;
-        this.kiosks.Refresh(b.kiosks);
-        this.counters.Refresh(b.counters);
-    }
+    constructor(private _b: IBoxActivity) { }
+    branch_id = this._b.branch_id;
+    kiosks = new ActivityCategory(
+        this.branch_id,
+        ActivityCategory.Categories.Kiosk,
+        this._b.kiosks
+    );
+    counters = new ActivityCategory(
+        this.branch_id,
+        ActivityCategory.Categories.Counter,
+        this._b.counters
+    );
+    
     UpdateActivity(s: IActivity) {
         if (!s) return;
         switch (s.cat) {

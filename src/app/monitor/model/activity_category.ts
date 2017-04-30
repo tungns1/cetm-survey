@@ -4,8 +4,11 @@ import { IActivity, Activity, IMapActivity } from './activity';
 export class ActivityCategory<T extends Activity> {
     constructor(
         public branch_id: string,
-        public category: string
-    ) { }
+        public category: string,
+        private _data: IMapActivity
+    ) {
+        this.Refresh(_data);
+    }
     protected cache = new Map<string, T>();
     protected make(a: IActivity): T {
         const _a = new Activity(a);
@@ -20,7 +23,7 @@ export class ActivityCategory<T extends Activity> {
         this.Activity$.next(_a);
     }
 
-    Refresh(data: IMapActivity) {
+    protected Refresh(data: IMapActivity) {
         if (!data) return;
         this.cache = new Map<string, T>();
         Object.keys(data).forEach(id => this.Replace(data[id]));

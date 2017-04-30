@@ -28,9 +28,7 @@ export class MonitorFocusService {
   private activityUpdate$ = this.socket.RxEvent<IActivity>("/activity/update");
 
   Box$ = this.initialFocus$.switchMap(initial => {
-    const box = new BoxActivity(initial.branch_id);
-    box.Refresh(initial);
-    console.log(initial);
+    const box = new BoxActivity(initial);
     return this.activityUpdate$.startWith(null).map(a => {
       box.UpdateActivity(a);
       return box;
