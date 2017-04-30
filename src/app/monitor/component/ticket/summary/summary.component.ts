@@ -35,7 +35,8 @@ export class SummaryComponent {
             queryParamsHandling: "merge"
         });
     }
-    
-    records$ = this.summaryService.summaries$.map(s => s.ToArray()); 
+
+    loading$ = this.summaryService.summaries$.filter(s => !s);
+    records$ = this.summaryService.summaries$.map(s => s.ToArray()).share();
     total$ = this.summaryService.summaries$.switchMap(s => s.Total$);
 }

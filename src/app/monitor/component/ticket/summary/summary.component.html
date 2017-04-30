@@ -3,8 +3,8 @@
     <div class="nav">
         <button class="btnFill btnMargin uppercase" appSafeNav="/monitor/ticket" i18n>Transaction</button>
         <button class="btnClear btnMargin uppercase" appSafeNav="/monitor/device" i18n>Device</button>
-
     </div>
+
     <table class="tableCtrl">
         <thead class="">
             <th i18n>Store</th>
@@ -51,7 +51,10 @@
         </tbody>
     </table>
     <div class="divider margin-20-0"></div>
-    <div *ngIf="total$ | async; let data" class="border">
-        <monitor-chart [data]="data"></monitor-chart>
+    <div *ngIf="total$ | async; else loading; let total" class="border">
+        <monitor-chart [data]="total"></monitor-chart>
     </div>
+    <ng-template #loading>
+        <md-spinner></md-spinner>
+    </ng-template>
 </div>
