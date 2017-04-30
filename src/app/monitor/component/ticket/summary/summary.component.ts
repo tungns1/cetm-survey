@@ -36,7 +36,6 @@ export class SummaryComponent {
         });
     }
 
-    loading$ = this.summaryService.summaries$.filter(s => !s);
     records$ = this.summaryService.summaries$.map(s => s.ToArray()).share();
     total$ = this.summaryService.summaries$.switchMap(s => s.Total$);
 }
