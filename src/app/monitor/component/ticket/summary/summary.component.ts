@@ -36,13 +36,6 @@ export class SummaryComponent {
         });
     }
     
-    wl_percent: Summary;
-
-    summary$ = this.summaryService.summary$;
-    totalSummary$ = this.summary$.map(data => {
-        this.wl_percent = new Summary();
-        return Summary.Aggregate(data);
-    });
-
-    
+    records$ = this.summaryService.summaries$.map(s => s.ToArray()); 
+    total$ = this.summaryService.summaries$.switchMap(s => s.Total$);
 }

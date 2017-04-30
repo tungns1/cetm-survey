@@ -4,7 +4,7 @@ import { MonitorDeviceSocket } from './monitor-device.socket';
 import { MonitorFilterService, MonitorNavService } from '../../shared';
 
 import {
-  IActivity, IBoxEvent, BoxEvent
+  IActivity, IBoxActivity, BoxActivity
 } from '../../../model';
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -19,7 +19,7 @@ export class MonitorFocusService {
 
   private initialFocus$ = this.socket.Connected$.switchMap(_ => {
     return this.Branch$.switchMap(branch_id => {
-      return this.socket.Send<IBoxEvent>("/focus", {
+      return this.socket.Send<IBoxActivity>("/focus", {
         branch_id
       })
     });
@@ -28,7 +28,7 @@ export class MonitorFocusService {
   private activityUpdate$ = this.socket.RxEvent<IActivity>("/activity/update");
 
   Box$ = this.initialFocus$.switchMap(initial => {
-    const box = new BoxEvent(initial.branch_id);
+    const box = new BoxActivity(initial.branch_id);
     box.Refresh(initial);
     console.log(initial);
     return this.activityUpdate$.startWith(null).map(a => {

@@ -16,14 +16,14 @@ export class ActivitySummary {
     total = this.on + this.off;
 }
 
-export interface IBoxSummary {
+export interface IBoxActivitySummary {
     branch_id: string;
     counter: IActivitySummary;
     kiosk: IActivitySummary;
 }
 
-export class BoxSummary {
-    constructor(private _b: IBoxSummary) { }
+export class BoxActivitySummary {
+    constructor(private _b: IBoxActivitySummary) { }
     branch_id = this._b.branch_id;
     kiosk = new ActivitySummary(this._b.kiosk);
     counter = new ActivitySummary(this._b.counter);
@@ -38,17 +38,17 @@ export class BoxSummary {
     }
 }
 
-export class GlobalBoxSummary {
-    private boxes = new Map<string, BoxSummary>();
+export class GlobalActivitySummary {
+    private boxes = new Map<string, BoxActivitySummary>();
     
-    Refresh(box: IBoxSummary[]) {
+    Refresh(box: IBoxActivitySummary[]) {
         if (!box) return;
         box.forEach(b => this.Replace(b));
     }
 
-    Replace(box: IBoxSummary) {
+    Replace(box: IBoxActivitySummary) {
         if (!box) return;
-        const b = new BoxSummary(box);
+        const b = new BoxActivitySummary(box);
         this.boxes.set(b.branch_id, b);
     }
     UpdateActivity(s: IActivitySummary) {

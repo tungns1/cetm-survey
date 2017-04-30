@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   IDevice, ICountState, DeviceCount,
-  IBoxSummary, GlobalBoxSummary,
+  IBoxActivitySummary, GlobalActivitySummary,
   IActivitySummary, ActivitySummary
 } from '../../shared';
 
@@ -17,7 +17,7 @@ export class MonitorSummaryService {
 
   private initialSummary$ = this.socket.Connected$.switchMap(_ => {
     return this.Branches$.switchMap(branches => {
-      return this.socket.Send<IBoxSummary[]>("/summary", {
+      return this.socket.Send<IBoxActivitySummary[]>("/summary", {
         branches
       });
     });
@@ -26,7 +26,7 @@ export class MonitorSummaryService {
   private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update").startWith(null);
 
   summary$ = this.initialSummary$.switchMap(initial => {
-    var gb = new GlobalBoxSummary();
+    var gb = new GlobalActivitySummary();
     gb.Refresh(initial);
     return this.activitySummaryUpdate$.map(v => {
       gb.UpdateActivity(v);
