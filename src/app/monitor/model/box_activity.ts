@@ -1,4 +1,4 @@
-import { ActivityCategory } from './activity_category';
+import { ActivityCategory } from './shared';
 import { IMapActivity, IActivity } from './shared';
 
 

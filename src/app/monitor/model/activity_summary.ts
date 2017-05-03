@@ -1,4 +1,4 @@
-import { ActivityCategory } from './activity_category';
+import { ActivityCategory } from './shared';
 
 export interface IActivitySummary {
     bid: string;
