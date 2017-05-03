@@ -1,5 +1,5 @@
 import { ActivityCategory } from './activity_category';
-import { IMapActivity, IActivity } from './activity';
+import { IMapActivity, IActivity } from './shared';
 
 
 export interface IBoxActivity {

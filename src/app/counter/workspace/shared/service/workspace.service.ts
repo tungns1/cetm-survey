@@ -64,17 +64,3 @@ export class WorkspaceService {
             return services.sort((a, b) => a.name > b.name ? 1 : -1);
         });
 }
-
-function AddToSet<T>(arr: T[] = [], a: T, checker: (old: T) => boolean) {
-    if (!a) {
-        return arr;
-    }
-    const i = arr.findIndex(checker);
-    const v: T[] = [].concat(arr);
-    if (i < 0) {
-        v.push(a);
-    } else {
-        v[i] = a;
-    }
-    return v;
-}

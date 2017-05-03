@@ -8,3 +8,4 @@ export const Const = {
 }
 
 export { LOCALES } from './locale';
+export { ProjectConfig } from './config';

@@ -10,8 +10,6 @@ export interface ICounter extends ID {
     services: string[];
     vservices: string[];
     settings?: Object;
-
-    _checked?: boolean;
 }
 
 export const CacheCounter = new MemCache<ICounter>();

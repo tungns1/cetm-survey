@@ -1,4 +1,4 @@
-import { ActivityCategory } from './activity_category';
+import { ActivityCategory } from './shared';
 import { IActivitySummary, ActivitySummary } from './activity_summary';
 import {
     ICounter, IBranch, IService, IUser,
