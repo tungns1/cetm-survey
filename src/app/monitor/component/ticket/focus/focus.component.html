@@ -1,0 +1,87 @@
+<ng-template #loading>
+    <md-spinner></md-spinner>
+</ng-template>
+
+<div id="focusComponent" *ngIf="box$ | async; else loading; let box; ">
+    <h2 class="header uppercase"> {{box.branch?.name}} </h2>
+    <div class="nav">
+        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">Go Back</button>
+    </div>
+    <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
+        <!-- General Information -->
+        <div fxLayout="column" fxFlex class="padding_monitor">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Branch</span>
+                <span>{{box.parent?.name}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Admin</span>
+                <span>{{box.users.admin?.fullname}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Manager</span>
+                <span>{{box.users.manager?.fullname}}</span>
+            </div>
+            <div *ngIf="box.counter; let c">
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <span i18n>Total Counter</span>
+                    <span>{{c.total}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <span i18n>Online</span>
+                    <span>{{c.on}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between none">
+                    <span>Offline</span>
+                    <span>{{c.off}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- Ticket -->
+        <div *ngIf="box.summary; let s" fxLayout="column" fxFlex class="padding_monitor">
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Printed Ticket</span>
+                <span>{{s.printed}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Number of waiting tickets</span>
+                <span>{{s.waiting}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Number of tickets being served</span>
+                <span>{{s.serving}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Number of tickets already served</span>
+                <span>{{s.finished}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Number of reserved tickets</span>
+                <span>{{s.missed}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Number of cancelled tickets</span>
+                <span>{{s.cancelled}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Waiting Long</span>
+                <span>{{s.wait_long}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <span i18n>Serving Long</span>
+                <span>{{s.serve_long}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider margin-30-0"></div>
+
+    <!-- Chart -->
+    <div class="border">
+        <monitor-chart [data]="box.summary"></monitor-chart>
+    </div>
+
+    <!-- More -->
+</div>
+
+<ticket-detail #detail></ticket-detail>
