@@ -24,6 +24,7 @@ export class CompletedTicketComponent {
             t.service_id = prevTrack.service_id;
             t.counter_id = prevTrack.counter_id;
             t.user_id = prevTrack.user_id;
+            t['__stime'] = t.mtime - prevTrack.mtime;
             return;
         }
 
