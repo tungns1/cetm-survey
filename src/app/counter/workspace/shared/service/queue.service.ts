@@ -1,11 +1,40 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
 import {
-    ITicket, TicketState, TicketStates
+    ITicket, TicketState, TicketStates, IMapTicket
 } from '../shared';
 import { SortTicket, ITicketQueue, ITickets } from '../model';
 import { WorkspaceService } from './workspace.service';
 import { of } from 'rxjs/observable/of';
+import { merge } from 'rxjs/observable/merge';
+
+
+class TicketQueue {
+    constructor(private state: TicketState) { }
+    private data = new Map<string, ITicket>();
+
+    Refresh(tickets: IMapTicket) {
+        if (!tickets) return;
+        this.data = new Map<string, ITicket>();
+        Object.keys(tickets).forEach(id => {
+            this.Add(tickets[id]);
+        });
+    }
+
+    Add(t: ITicket) {
+        if (!t) return;
+        this.data.set(t.id, t);
+    }
+
+    Remove(state: TicketState, id: string) {
+        if (state !== this.state) return;
+        this.data.delete(id);
+    }
+
+    ToArray() {
+        return Array.from(this.data.values()).sort(SortTicket);
+    }
+}
 
 @Injectable()
 export class QueueService {
@@ -28,16 +57,16 @@ export class QueueService {
 
     private getByState(state: TicketState) {
         return this.initialQueue$.switchMap(initial => {
-            
-            const data: ITickets = initial[state];
-            return of(data).merge(this.addTicket$.filter(t => t.state === state).do(t => {
-                data[t.id] = t;
-            })).merge(this.removeTicket$.filter(v => v[0] === state).do(v => {
-                delete data[v[1]];
-            })).map(_ => {
-                // console.log("====", state, "===", data);
-                return Object.keys(data)
-                    .map(id => data[id]).sort(SortTicket);
+            const queue = new TicketQueue(state);
+            queue.Refresh(initial[state]);
+            const addTicket = this.addTicket$.filter(t => t.state === state).do(t => {
+                queue.Add(t);
+            });
+            const removeTicket = this.removeTicket$.filter(v => v[0] === state).do(v => {
+                queue.Remove(v[0], v[1]);
+            });
+            return merge(of(null), addTicket, removeTicket).map(_ => {
+                return queue.ToArray();
             });
         });
     }
