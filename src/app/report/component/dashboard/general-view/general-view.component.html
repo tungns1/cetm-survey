@@ -39,29 +39,17 @@
             <td style="text-align: center;"> {{i + 1}} </td>
             <td style="text-align: center;">{{field | groupByTitle:d}}</td>
             <td style="text-align: center"> {{d.c_t}} </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_ft}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ft/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            <td>{{d.c_ft}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_ft/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span>
             </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_t - d.c_ft}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{(1 - d.c_ft/d.c_t)*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span> </div>
+            <td>{{d.c_t - d.c_ft}}&nbsp;<span *ngIf="d.c_t>0"> ({{(1 - d.c_ft/d.c_t)*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span> 
             </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_bwt}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            <td>{{d.c_bwt}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bwt/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span>
             </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_t-d.c_bwt}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bwt)/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            <td>{{d.c_t-d.c_bwt}}&nbsp;<span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bwt)/d.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_t===0"> (0.00%)</span>
             </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_bst}}</div>
-                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            <td>{{d.c_bst}}&nbsp;<span *ngIf="d.c_t>0"> ({{d.c_bst/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0"> (0.00%)</span>
             </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_t-d.c_bst}}</div>
-                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bst)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0"> (0.00%)</span></div>
+            <td>{{d.c_t-d.c_bst}}&nbsp;<span *ngIf="d.c_t>0"> ({{(d.c_t-d.c_bst)/d.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="d.c_t===0"> (0.00%)</span>
             </td>
         </tr>
     </tbody>
@@ -72,3 +60,4 @@
     <div fxFlex="80%"></div>
     <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()">Export to Excel</button>
 </div>
+

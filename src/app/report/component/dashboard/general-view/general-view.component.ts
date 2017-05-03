@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Aggregate } from '../shared';
 import { ExportExcelService } from '../../shared';
+import { PeriodFilterService } from '../../shared';
+import { timeFormat, timeParse } from 'd3-time-format';
 
 @Component({
   selector: 'app-general-view',
@@ -10,25 +12,46 @@ import { ExportExcelService } from '../../shared';
 export class GeneralViewComponent implements OnInit {
 
   constructor(
-    private exportService: ExportExcelService
+    private exportService: ExportExcelService,
+    private filterService: PeriodFilterService
   ) { }
 
   ngOnInit() {
   }
-
+  private formatDate = timeFormat("%Y-%m-%d");
   @Input() data: Aggregate[] = [];
   @Input() field = 'branch_id';
 
   info = {
+    fieldBy:this.FilterBy(this.field),
     reportName: 'Overview Report',
+    image:'',
     period: {
-      start: '31/10/91',
-      end: '12/3/93'
+      start: this.formatDate(this.filterService.startDate),
+      end: this.formatDate(this.filterService.endDate)
     }
   }
 
   excel() {
     this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
+  }
+  FilterBy(field) {
+    let field_by = '';
+    switch (field) {
+      case 'service_id':
+        field_by = 'Service';
+        break;
+      case 'user_id':
+        field_by = 'Teller';
+        break;
+      case 'counter_id':
+        field_by = 'Counter';
+        break;
+      case 'branch_id':
+        field_by = 'Store';
+        break;
+    }
+    return field_by;
   }
 
 }

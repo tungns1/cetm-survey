@@ -136,7 +136,7 @@ export class ExportExcelService {
       let templateString = `
       <table>
           <tr>
-              <td colspan="2">IMAGE</td>
+              <td colspan="2">`+info.image+`</td>
               <td colspan="7">
                   <p>Report name: ` + info.reportName + ` - Issued update: ` + ddmmyy + `</p>
                   <p>Period: ` + info.period.start + ` - ` + info.period.end + `</p>
@@ -154,7 +154,7 @@ export class ExportExcelService {
               <td></td>
           </tr>
           <tr>
-              <td colspan="9"> Overview Report by Store </td>
+              <td colspan="9"> Overview Report by `+info.fieldBy+`</td>
           </tr>
       </table>
       `;
