@@ -15,7 +15,7 @@ interface ITicketAction {
     counters?: string[];
 }
 
-import { ITicket, IService } from '../shared';
+import { ITicket, Ticket, IService } from '../shared';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
@@ -39,7 +39,7 @@ export class TicketService {
         return this.socket.Send("/ticket", body).share();
     }
 
-    Remind(t: ITicket) {
+    Remind(t: Ticket) {
         return this.socket.Send('/reminder', {
             ticket_id: t.id
         }).share();
@@ -95,14 +95,14 @@ export class TicketService {
         return this.updateServing(ActionMiss);
     }
 
-    CallFromMissed(t: ITicket) {
+    CallFromMissed(t: Ticket) {
         return this.sendAction({
             action: ActionCallMissed,
             ticket_id: t.id
         });
     }
 
-    Cancel(t: ITicket) {
+    Cancel(t: Ticket) {
         return this.sendAction({
             action: ActionCancel,
             ticket_id: t.id
@@ -110,14 +110,14 @@ export class TicketService {
     }
 
 
-    CallFromWaiting(t: ITicket) {
+    CallFromWaiting(t: Ticket) {
         return this.sendAction({
             action: ActionCallWaiting,
             ticket_id: t.id
         });
     }
 
-    Move(t: ITicket, services: string[], counters: string[]) {
+    Move(t: Ticket, services: string[], counters: string[]) {
         return this.socket.Send('/move_ticket', {
             ticket_id: t.id,
             counters: counters,

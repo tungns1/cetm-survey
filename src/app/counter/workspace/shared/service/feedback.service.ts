@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
-import { ITicket, RuntimeEnvironment } from '../shared';
+import { ITicket, Ticket, RuntimeEnvironment } from '../shared';
 import { FeedbackDevice } from '../device';
 import { of } from 'rxjs/observable/of';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -30,10 +30,10 @@ export class FeedbackService {
     private socket = this.workspaceService.Socket;
     private feedbackDone$ = this.socket.RxEvent<ITicket>("/feedback_done").map(t => t.id);
     private skipFeedback$ = new Subject<string>();
-    promptForSkip$ = new BehaviorSubject<ITicket[]>([]);
+    promptForSkip$ = new BehaviorSubject<Ticket[]>([]);
     private required = false;
 
-    SkipFeedback(t: ITicket) {
+    SkipFeedback(t: Ticket) {
         this.promptForSkip$.next([]);
         this.skipFeedback$.next(t.id);
     }
@@ -46,9 +46,9 @@ export class FeedbackService {
     // CheckFeedback:
     // return [] if can next
     // return null if not
-    CheckFeedback(t: ITicket[]) {
+    CheckFeedback(t: Ticket[]) {
         if (!t || t.length < 1) {
-            return of(<ITicket[]>[]);
+            return of(<Ticket[]>[]);
         }
         if (!this.required || !this.feedbackDevice.Available) {
             return of(t);

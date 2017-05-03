@@ -1,6 +1,9 @@
 import { ICustomer } from '../../org';
 import { TicketState, TicketStates } from './ticket_state';
-import { getPriority, ITicketPriority } from './ticket_priority';
+import {
+    getPriority, sortTicket, priorityCode,
+    ITicketPriority
+} from './ticket_priority';
 import { IFeedback } from './ticket_feedback';
 
 export interface ITicketTrack {
@@ -24,7 +27,6 @@ export interface ITicket {
     counters: string[];
     ccount: number;
     vcode: string;
-    priority: number;
     user_id: string;
     state: TicketState;
     lang?: string;
@@ -87,4 +89,7 @@ export class Ticket {
     transaction_id?= this._t.transaction_id;
     service_name = getServiceName(this._t);
     priority = getPriority(this._t);
+    priority_code = priorityCode(this._t.ticket_priority);
+
+    static sort = sortTicket;
 }

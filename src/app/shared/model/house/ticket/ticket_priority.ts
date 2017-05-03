@@ -4,7 +4,7 @@ const TICKET_PRIORITY = ProjectConfig.TICKET_PRIORITY;
 
 export function getPriority(t: ITicket) {
     var priority = 0;
-    const data = t.priority || {};
+    const data = t.ticket_priority || {};
     Object.keys(data).forEach(name => {
         if (data[name]) {
             priority += +(TICKET_PRIORITY[name]) || 0;
@@ -29,4 +29,14 @@ export function sortTicket(a: Ticket, b: Ticket) {
         return 1;
     }
     return a.mtime < b.mtime ? -1 : 1;
+}
+
+export function priorityCode(p: ITicketPriority) {
+    if (p.customer_priority) {
+        return "customer";
+    } 
+    if (p.customer_vip) {
+        return "vip";
+    } 
+    return "normal";
 }

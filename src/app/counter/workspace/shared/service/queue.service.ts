@@ -1,7 +1,8 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Injectable } from '@angular/core';
 import {
-    ITicket, TicketState, TicketStates, IMapTicket
+    ITicket, Ticket,
+    TicketState, TicketStates, IMapTicket
 } from '../shared';
 import { SortTicket, ITicketQueue, ITickets } from '../model';
 import { WorkspaceService } from './workspace.service';
@@ -11,11 +12,11 @@ import { merge } from 'rxjs/observable/merge';
 
 class TicketQueue {
     constructor(private state: TicketState) { }
-    private data = new Map<string, ITicket>();
+    private data = new Map<string, Ticket>();
 
     Refresh(tickets: IMapTicket) {
         if (!tickets) return;
-        this.data = new Map<string, ITicket>();
+        this.data = new Map<string, Ticket>();
         Object.keys(tickets).forEach(id => {
             this.Add(tickets[id]);
         });
@@ -23,7 +24,8 @@ class TicketQueue {
 
     Add(t: ITicket) {
         if (!t) return;
-        this.data.set(t.id, t);
+        const _t = new Ticket(t);
+        this.data.set(t.id, _t);
     }
 
     Remove(state: TicketState, id: string) {
@@ -32,7 +34,8 @@ class TicketQueue {
     }
 
     ToArray() {
-        return Array.from(this.data.values()).sort(SortTicket);
+        return Array.from(this.data.values())
+            .sort(Ticket.sort);
     }
 }
 
@@ -70,9 +73,9 @@ export class QueueService {
             });
         });
     }
-    waiting$ = new ReplaySubject<ITicket[]>(1);
-    serving$ = new ReplaySubject<ITicket[]>(1);
-    missed$ = new ReplaySubject<ITicket[]>(1);
+    waiting$ = new ReplaySubject<Ticket[]>(1);
+    serving$ = new ReplaySubject<Ticket[]>(1);
+    missed$ = new ReplaySubject<Ticket[]>(1);
     busy$ = this.serving$.map(s => s.length > 0);
     canNext$ = this.waiting$.map(data => data.length > 0)
         .combineLatest(this.busy$, (a, b) => a && !b);

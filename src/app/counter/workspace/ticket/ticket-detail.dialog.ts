@@ -1,6 +1,6 @@
 import { Component, ViewChild, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ITicket, TicketStates, ModalComponent } from '../shared';
+import { Ticket, TicketStates, ModalComponent } from '../shared';
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -19,7 +19,7 @@ export class TicketDetailDialog {
     private queueService: QueueService,
     private workspaceService: WorkspaceService
   ) { }
-  SetTicket(t: ITicket) {
+  SetTicket(t: Ticket) {
 
     this.isVip = this.isPriority(t);
 
@@ -31,7 +31,7 @@ export class TicketDetailDialog {
     this.isWaiting = t.state === TicketStates.Waiting;
     this.isMissed = t.state === TicketStates.Missed;
   }
-  private ticket: ITicket = <any>{};
+  private ticket: Ticket = <any>{};
   close = new EventEmitter();
 
   private isServing = false;
@@ -41,7 +41,7 @@ export class TicketDetailDialog {
   private isModal = false;
   private isRemove = false;
   private isAlert = false;
-  private isPriority(t: ITicket) {
+  private isPriority(t: Ticket) {
     if (t.ticket_priority != undefined) {
 
       if (t.ticket_priority.customer_vip != "") {

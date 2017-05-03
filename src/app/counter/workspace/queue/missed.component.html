@@ -15,12 +15,10 @@
         </div>
         <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
             <div fxFlex class="cell">
-                <img *ngIf="!t.ticket_priority.customer_priority && !t.ticket_priority.customer_vip" class="icon" src="./assets/img/icon/person.png" alt="Number Ticket">
-                <img *ngIf="t.ticket_priority.customer_priority" class="icon" src="./assets/img/icon/wheelchair.png" alt="Number Ticket">
-                <img *ngIf="t.ticket_priority.customer_vip" class="icon" src="./assets/img/icon/star.png" alt="Number Ticket">
+                <ticket-icon [ticket]="t"></ticket-icon>
                 <span class="ticketNum">{{t.cnum}}</span>
             </div>
-            <span fxFlex="50%" class="cell">{{t.services | multipleServiceName}}</span>
+            <span fxFlex="50%" class="cell">{{t.service_name}}</span>
             <span fxFlex class="cell">{{t.mtime | localDayTime}}</span>
         </div>
     </div>
