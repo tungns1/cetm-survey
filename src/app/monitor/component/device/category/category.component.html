@@ -1,0 +1,21 @@
+<h2>{{name}}</h2>
+<table class="tableCtrl">
+    <thead class="">
+        <th i18n>Store</th>
+        <th i18n>Name</th>
+        <th i18n>State</th>
+        <th i18n>Online At</th>
+        <th i18n>Off At</th>
+        <th i18n>Active Time (hour)</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of data" class="branchSummary">
+            <td> {{s.branch_id | branchName}} </td>
+            <td> {{s.entity_name}}</td>
+            <td> {{s.is_active}} </td>
+            <td> {{s.start_at}} </td>
+            <td> {{s.end_at}} </td>
+            <td> {{s.active_duration}} </td>
+        </tr>
+    </tbody>
+</table>

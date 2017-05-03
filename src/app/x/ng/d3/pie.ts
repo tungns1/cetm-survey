@@ -54,7 +54,7 @@ export class PieChart extends AbstractChart {
 
         this.svg().datum(items);
 
-        var pies = pie().sort(null).value(i => data[i['field']]);
+        var pies = pie().sort(null).value(i => data[i['field']] || 0);
         var paths = this.svg().selectAll("path").data(pies);
         const that = this;
 

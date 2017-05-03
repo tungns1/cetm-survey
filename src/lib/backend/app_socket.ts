@@ -26,7 +26,11 @@ class PrefixMessageHandler extends AbstractMessageHandler<IBaseMessage> {
     }
 
     serialize(message: IBaseMessage) {
-        return `${message.uri} ${JSON.stringify(message.data)}`;
+        var data = message.data;
+        if (typeof data !== 'string') {
+            data = JSON.stringify(data)
+        }
+        return `${message.uri} ${data}`;
     }
 }
 

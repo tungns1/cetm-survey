@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
-  ISummary, Summary, IBranch,
+  IBranch, IBoxTicketSummary, BoxTicketSummary, GlobalTicketSummary,
   MonitorNavService, MonitorFilterService
 } from '../../shared';
 
 import { MonitorTicketSocket } from './monitor-ticket.socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { merge } from 'rxjs/observable/merge';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class MonitorSummaryService {
@@ -13,40 +15,28 @@ export class MonitorSummaryService {
   constructor(
     private socket: MonitorTicketSocket
   ) {
-    this.onInit();
+
   }
 
-  onInit() {
-    this.Branches$.switchMap(branches => {
-      return this.socket.Connected$.switchMap(_ => {
-        return this.orderSummary(branches);
+
+
+  private initialSummary$ = this.socket.Connected$.switchMap(_ => {
+    return this.Branches$.switchMap(branches => {
+      return this.socket.Send<IBoxTicketSummary[]>("/summary", {
+        branches
       });
-    }).subscribe(data => {
-      const map = new Map<string, Summary>();
-      if(data) {
-        data.forEach(d => map.set(d.branch_id, new Summary(d)));
-        this.initialSummary$.next(map);
-      }
     });
-  }
+  }).share();
 
-  private orderSummary(branches: string[]) {
-    return this.socket.Send<ISummary[]>("/summary", {
-      branches
-    })
-  }
+  private summaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/ticket/summary/update");
 
-  private initialSummary$ = new ReplaySubject<Map<string, Summary>>(1);
-
-  private summaryUpdate$ = this.socket.RxEvent<ISummary>("/summary/update").startWith(null);
-
-  summary$ = this.initialSummary$.switchMap(initial => {
-    return this.summaryUpdate$.map((s: ISummary) => {
-      if (s) {
-        initial.set(s.branch_id, new Summary(s));
-      }
-      return Array.from(initial.values());
+  summaries$ = this.initialSummary$.switchMap(initial => {
+    const summaries = new GlobalTicketSummary();
+    summaries.Refresh(initial);
+    const summaryUpdate = this.summaryUpdate$.startWith(null).map(s => {
+      summaries.Replace(s);
     });
+    return merge(of(null), summaryUpdate).map(_ => summaries);
   }).share();
 
   Branches$ = new ReplaySubject<string[]>(1);

@@ -31,7 +31,9 @@ export interface ITicketPriority {
     ticket_online: string;
 }
 
-
+export interface IMapTicket {
+    [index: string]: ITicket;
+}
 
 export type TicketState = "waiting" | "serving" | "missed" | "cancelled" | "finished" | "unknown";
 
