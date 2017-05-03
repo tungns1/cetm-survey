@@ -11,18 +11,18 @@
         <th i18n>Detail</th>
     </thead>
     <tbody>
-        <tr *ngFor="let t of waitingAndMissed$ | async ; let i = index" [ngClass]="{'missed': ticket.state === 'missed', 'waiting': ticket.state === 'waiting'}">
+        <tr *ngFor="let t of data ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
             <td> {{i + 1}} </td>
             <td> {{t.services | multipleServiceName}}</td>
             <td> {{t.cnum}}</td>
             <td> {{t.customer?.full_name }} </td>
             <td> {{t.ctime | localDayTime}}</td>
             <td>
-                <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="15"></timer>
-                <span *ngIf="ticket.state === 'missed'"> {{ticket.mtime - ticket.ctime | timeDuration}}</span>
+                <timer *ngIf="t.state === 'waiting'" [start]="t.mtime" [timeWarning]="15"></timer>
+                <span *ngIf="t.state === 'missed'"> {{t.mtime - ticket.t | timeDuration}}</span>
             </td>
             <td>
-                <span (click)="detail.setData(ticket, admin[0], manager[0],true)">
+                <span (click)="detail.setData(t, admin[0], manager[0],true)">
                     <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                 </span>
             </td>

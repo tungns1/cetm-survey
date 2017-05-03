@@ -7,6 +7,8 @@ import { TicketDetailComponent } from './focus/ticketDetail.component';
 import { SummaryComponent } from './summary/summary.component';
 import { MonitorChartComponent } from './chart/chart.component';
 import { D3Module } from '../../../x/ng/d3/d3.module';
+import { IncompleteTicketComponent } from './focus/incomplete.component';
+import { CompletedTicketComponent } from './focus/completed.component';
 
 const routing = RouterModule.forChild([
     {
@@ -32,7 +34,11 @@ import { monitorServiceProviders } from './shared';
     declarations: [
         MonitorTicketComponent, FocusComponent,
         TicketDetailComponent,
-        SummaryComponent, MonitorChartComponent
-        ]
+        SummaryComponent, MonitorChartComponent,
+        IncompleteTicketComponent, CompletedTicketComponent
+    ],
+    entryComponents: [
+        TicketDetailComponent
+    ]
 })
 export class MonitorTicketModule { }

@@ -91,5 +91,13 @@ export class Ticket {
     priority = getPriority(this._t);
     priority_code = priorityCode(this._t.ticket_priority);
 
+    getPrevTrack() {
+        return this.tracks[this.tracks.length - 2];
+    }
+
+    getLastTrack() {
+        return this.tracks[this.tracks.length - 1];
+    }
+
     static sort = sortTicket;
 }

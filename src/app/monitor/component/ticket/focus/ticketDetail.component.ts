@@ -17,30 +17,30 @@ export class TicketDetailComponent {
 
     ticket: ITicket;
     customer: ICustomer;
-    private isWaiting=false;
+    private isWaiting = false;
 
-    setData(ticket: ITicket, admin: string, manager: string,waitting:boolean) {
+    setData(ticket: ITicket, admin: string, manager: string, waitting: boolean) {
         console.log(ticket);
-        this.isWaiting=waitting;
+        this.isWaiting = waitting;
         this.ticket = ticket;
         this.ticket['admin'] = admin;
         this.ticket['manager'] = manager;
-        if(ticket.customer){
+        if (ticket.customer) {
             this.getCusInfo(ticket.customer.id);
         }
         this.modal.Open();
     }
 
-    closeModal(){
+    closeModal() {
         this.ticket = null;
         this.modal.Close();
     }
 
-    getCusInfo(id: string){
+    getCusInfo(id: string) {
         this.customerService.GetCustomerByID(id).subscribe(v => {
             this.customer = v;
         });
     }
 
-   
+
 }

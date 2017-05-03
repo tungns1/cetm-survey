@@ -2,7 +2,7 @@ import { ActivityCategory } from './shared';
 import { IActivitySummary, ActivitySummary } from './activity_summary';
 import {
     ICounter, IBranch, IService, IUser,
-    IMapTicket, ITicket, TicketStates
+    IMapTicket, ITicket, TicketStates,
 } from '../shared';
 import { IBoxTicketSummary, BoxTicketSummary } from './ticket_summary';
 import { TicketGroup, UserGroup } from './shared';
@@ -24,7 +24,7 @@ export class BoxTicket {
     branch = this._b.branch;
     branch_id = this.branch.id;
     parent = this._b.parent;
-    counter = new ActivitySummary(this._b.counter_activity);
+    counter_activity = new ActivitySummary(this._b.counter_activity);
     users = new UserGroup(this._b.users);
     tickets = new TicketGroup(this._b.tickets);
     services = this._b.services;
@@ -33,8 +33,8 @@ export class BoxTicket {
     UpdateActivitySummary(s: IActivitySummary) {
         if (!s) return;
         const _s = new ActivitySummary(s);
-        if (_s.category == this.counter.category) {
-            this.counter = _s;
+        if (_s.category == this.counter_activity.category) {
+            this.counter_activity = _s;
         }
     }
 

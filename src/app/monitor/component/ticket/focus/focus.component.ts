@@ -11,6 +11,8 @@ import {
     MonitorFocusService, MonitorCustomerService
 } from '../shared';
 
+import { combineLatest } from 'rxjs/observable/combineLatest';
+
 @Component({
     selector: 'focus-on-branch',
     templateUrl: 'focus.component.html',
@@ -44,17 +46,26 @@ export class FocusComponent {
     }
 
     ngOnDestroy() {
-        
+
     }
 
     // chartData: Summary
     box$ = this.focusService.Box$;
 
     tickets$ = this.focusService.Box$.map(b => b.tickets).filter(t => !!t);
-    waiting$ = this.tickets$.switchMap(tickets => tickets.Waiting$);
     serving$ = this.tickets$.switchMap(tickets => tickets.Serving$);
-    missed$ = this.tickets$.switchMap(tickets => tickets.Missed$);
-    
+    incomplete$ = this.tickets$.switchMap(tickets => {
+        return combineLatest(tickets.Waiting$, tickets.Missed$)
+            .map(([waiting, missed]) => [].concat(waiting).concat(missed));
+    });
+
+    completed$ = this.tickets$.switchMap(tickets => {
+        return combineLatest(tickets.Serving$, tickets.Finished$, tickets.Cancelled$)
+            .map((queues) => {
+                return Array.prototype.concat.apply([], queues);
+            });
+    })
+
     private goBackBranchList() {
         this.router.navigate(["../../summary"], {
             relativeTo: this.route,

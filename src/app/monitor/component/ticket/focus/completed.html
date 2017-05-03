@@ -2,7 +2,7 @@
 
 <table class="tableCtrl">
     <thead>
-        <th i18n>No.</th>
+        <th i18n="Ordinal Number">No.</th>
         <th i18n>Service</th>
         <th i18n>Counter</th>
         <th i18n>Tellers</th>
@@ -14,27 +14,24 @@
         <th i18n>Detail</th>
     </thead>
     <tbody>
-        <tr *ngFor="let t of servingNServed$ | async; let i = index" [ngClass]="{'cancelled': ticket.state === 'cancelled', 'serving': ticket.state === 'serving', 'serveDone': ticket.state === 'finished' || ticket.state === 'waiting'}">
+        <tr *ngFor="let t of data; let i = index" [ngClass]="{'cancelled': t.state === 'cancelled', 'serving': t.state === 'serving', 'serveDone': t.state === 'finished'}">
             <td> {{i + 1}} </td>
             <td> {{t.service_id | serviceName}} </td>
             <td> {{t.counter_id | counterName}}</td>
             <td> {{t.user_id | userFullName}}</td>
             <td> {{t.cnum}} </td>
-            <td>
-                <span>{{t.customer?.full_name }}</span>
-            </td>
+            <td> {{t.customer?.full_name }} </td>
             <td> {{t.ctime | localDayTime}}</td>
             <td> {{t.mtime - t.ctime | timeDuration}} </td>
             <td>
-                <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
-                <span *ngIf="ticket.state === 'finished'"> {{ticket.stime | timeDuration}}</span>
-                <span *ngIf="ticket.state === 'cancelled'"> 00:00:00 </span>
-                <span *ngIf="ticket.state === 'waiting'"> {{ticket.stime | timeDuration}} </span>
+                <timer *ngIf="t.state === 'serving'" [start]="t.mtime" [timeWarning]="1"></timer>
+                <span *ngIf="t.state === 'finished'"> {{t.stime | timeDuration}}</span>
+                <span *ngIf="t.state === 'cancelled'"> 00:00:00 </span>
             </td>
             <td>
                 <span (click)="detail.setData(ticket, admin[0], manager[0],false)">
-                        <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
-                    </span>
+                    <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
+                </span>
             </td>
         </tr>
     </tbody>

@@ -22,7 +22,7 @@
                 <span i18n>Manager</span>
                 <span>{{box.users.manager?.fullname}}</span>
             </div>
-            <div *ngIf="box.counter; let c">
+            <div *ngIf="box.counter_activity; let c">
                 <div fxLayout="row" fxLayoutAlign="space-between none">
                     <span i18n>Total Counter</span>
                     <span>{{c.total}}</span>
@@ -83,5 +83,9 @@
 
     <!-- More -->
 </div>
+
+
+<app-incomplete-ticket [data]="incomplete$ | async"></app-incomplete-ticket>
+<app-completed-ticket [data]="completed$ | async"></app-completed-ticket>
 
 <ticket-detail #detail></ticket-detail>

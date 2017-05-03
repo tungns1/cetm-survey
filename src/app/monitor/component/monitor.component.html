@@ -6,7 +6,7 @@
 
     <div fxLayout="row" fxFlex="90%">
         <div [fxFlex]="hideFilter? '60px':'250px'" class="leftFilter">
-            <monitor-filter *ngIf="hidden" [class.hidden]="hideFilter" style="padding-top: 50px; height: 100%" (filter)="setAsideFilter($event)"></monitor-filter>
+            <monitor-filter style="padding-top: 50px; height: 100%"></monitor-filter>
         </div>
 
         <div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">

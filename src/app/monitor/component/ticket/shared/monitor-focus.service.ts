@@ -4,7 +4,8 @@ import { MonitorTicketSocket } from './monitor-ticket.socket';
 import { MonitorFilterService, MonitorNavService } from '../../shared';
 
 import {
-  IActivitySummary, IBoxTicketSummary, IBoxTicket, BoxTicket
+  IActivitySummary, IBoxTicketSummary, IBoxTicket, BoxTicket,
+  CacheService, CacheCounter, CacheUsers
 } from '../../../model';
 
 import { ISubscription } from 'rxjs/Subscription';
@@ -38,6 +39,8 @@ export class MonitorFocusService {
 
   Box$ = this.initialFocus$.switchMap(initial => {
     const box = new BoxTicket(initial);
+    CacheCounter.Refresh(initial.counters);
+    CacheUsers.Refresh(initial.users);
     const activityUpdate = this.activitySummaryUpdate$.map(a => {
       box.UpdateActivitySummary(a);
     });

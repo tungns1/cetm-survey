@@ -1,5 +1,5 @@
-export * from './ticket_group';
 export * from './user_group';
 export {
-    IActivity, IMapActivity, Activity, ActivityCategory
+    IActivity, IMapActivity, Activity, ActivityCategory,
+    TicketGroup
 } from '../../../shared/model';
