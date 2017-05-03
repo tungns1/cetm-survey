@@ -49,7 +49,7 @@ export class MonitorFocusService {
     });
     return of(null).merge(activityUpdate, summaryUpdate)
       .map(_ => box);
-  }).share().do(b => console.log(b));
+  }).share().publishReplay(1).refCount();
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

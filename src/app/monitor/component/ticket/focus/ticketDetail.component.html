@@ -1,7 +1,6 @@
-<modal #edit id="modal_monitor_detailTicket">
+<div id="modal_monitor_detailTicket">
     <h3 class="modal-header" i18n>Ticket Detail</h3>
-    <div *ngIf="ticket" class="modalContent padding-10-20">
-
+    <div class="padding-10-20" *ngIf="box$ | async; let box">
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Ticket Number</div>
             <div fxFlex>{{ticket.cnum}}</div>
@@ -20,32 +19,32 @@
             <div fxFlex i18n>Time of ticket printed</div>
             <div fxFlex>{{ticket.ctime | localDayTime}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="isWaiting">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="showWaiting">
             <div fxFlex i18n>Waiting Time</div>
             <timer fxFlex [start]="ticket.mtime" [timeWarning]="15"></timer>
         </div>
 
-        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="!isWaiting">
+        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="!showWaiting">
             <div fxFlex i18n>Waiting Time</div>
             <span fxFlex>{{ticket.mtime - ticket.ctime | timeDuration}}</span>
         </div>
 
-        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="!isWaiting">
+        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="showServing">
             <div fxFlex i18n>Serving Time</div>
             <div fxFlex>
                 <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
-                <div *ngIf="ticket.state === 'finished' || ticket.state === 'waiting'"> {{ticket.stime | timeDuration}} </div>
+                <div *ngIf="ticket.state === 'finished'"> {{ticket.__stime | timeDuration}} </div>
                 <div *ngIf="ticket.state === 'cancelled'"> 00:00:00 </div>
             </div>
         </div>
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Branch</div>
-            <div fxFlex>{{ticket.branch_id | branchName}}</div>
+            <div fxFlex *ngIf="box.parent; let p">{{p.name}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Store</div>
-            <div fxFlex>{{ticket.branch_id | branchName}}</div>
+            <div fxFlex *ngIf="box.branch; let b">{{b.name}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
             <div fxFlex i18n>Tellers</div>
@@ -57,11 +56,11 @@
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Manager</div>
-            <div fxFlex>{{ticket.manager.fullname}}</div>
+            <div fxFlex *ngIf="box.users.manager; let u">{{u.fullname}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Administrator</div>
-            <div fxFlex>{{ticket.admin.fullname}}</div>
+            <div fxFlex *ngIf="box.users.admin; let u">{{u.fullname}}</div>
         </div>
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
@@ -81,6 +80,6 @@
             <div fxFlex> {{customer.segment }}</div>
         </div>
 
-        <button class="btnFill uppercase" (click)="closeModal()" i18n>Close</button>
+        <button class="btnFill uppercase" (click)="close()" i18n>Close</button>
     </div>
-</modal>
+</div>

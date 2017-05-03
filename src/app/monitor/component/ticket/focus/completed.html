@@ -29,7 +29,7 @@
                 <span *ngIf="t.state === 'cancelled'"> 00:00:00 </span>
             </td>
             <td>
-                <span (click)="detail.setData(ticket, admin[0], manager[0],false)">
+                <span (click)="showDetails(t)">
                     <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                 </span>
             </td>

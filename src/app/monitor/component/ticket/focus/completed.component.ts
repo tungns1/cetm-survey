@@ -1,11 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { Ticket, TicketStates } from '../../shared';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { TicketDetailComponent } from './ticketDetail.component';
 
 @Component({
     selector: "app-completed-ticket",
     templateUrl: "completed.html"
 })
 export class CompletedTicketComponent {
+    constructor(
+        private mdDialog: MdDialog
+    ) { }
+
     @Input("data") set _data(v: Ticket[]) {
         this.data = v || [];
         this.data.forEach(t => this.addHelperField(t));
@@ -38,4 +44,11 @@ export class CompletedTicketComponent {
             }
         }
     }
+
+    showDetails(t: Ticket) {
+        this.dialog = this.mdDialog.open(TicketDetailComponent);
+        this.dialog.componentInstance.SetTicket(t);
+    }
+
+    private dialog: MdDialogRef<TicketDetailComponent>;
 }

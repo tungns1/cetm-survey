@@ -12,4 +12,4 @@ import "rxjs/add/operator/startWith";
 import "rxjs/add/operator/catch";
 
 import "rxjs/add/operator/timeout";
-
+import 'rxjs/add/operator/publishReplay';

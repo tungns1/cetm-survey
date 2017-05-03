@@ -13,7 +13,7 @@
     <tbody>
         <tr *ngFor="let t of data ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
             <td> {{i + 1}} </td>
-            <td> {{t.services | multipleServiceName}}</td>
+            <td> {{t.service_id | serviceName}}</td>
             <td> {{t.cnum}}</td>
             <td> {{t.customer?.full_name }} </td>
             <td> {{t.ctime | localDayTime}}</td>
@@ -22,7 +22,7 @@
                 <span *ngIf="t.state === 'missed'"> {{t.mtime - ticket.t | timeDuration}}</span>
             </td>
             <td>
-                <span (click)="detail.setData(t, admin[0], manager[0],true)">
+                <span (click)="showDetails(t)">
                     <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
                 </span>
             </td>
