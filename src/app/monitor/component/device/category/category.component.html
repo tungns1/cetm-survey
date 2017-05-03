@@ -13,9 +13,9 @@
             <td> {{s.branch_id | branchName}} </td>
             <td> {{s.entity_name}}</td>
             <td> {{s.is_active}} </td>
-            <td> {{s.start_at}} </td>
-            <td> {{s.end_at}} </td>
-            <td> {{s.active_duration}} </td>
+            <td> {{s.start_at | localDayTime}} </td>
+            <td> {{s.end_at | localDayTime}} </td>
+            <td> {{s.active_duration | timeDuration}} </td>
         </tr>
     </tbody>
 </table>
