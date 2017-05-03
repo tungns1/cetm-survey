@@ -4,13 +4,18 @@ import { Ticket } from '../shared';
 @Component({
     selector: 'ticket-icon',
     template: `
-    <span *ngIf="ticket">
-        <img *ngIf="ticket.priority_code == 'normal'" src="./assets/img/icon/person.png" alt="Number Ticket">
-        <img *ngIf="ticket.priority_code == 'customer'" src="./assets/img/icon/wheelchair.png" alt="Number Ticket">
-        <img *ngIf="ticket.priority_code == 'vip'" src="./assets/img/icon/star.png" alt="Number Ticket">
-    </span>
+        <img [style.width]="width" class="icon" *ngIf="src" [src]="src">
     `
 })
 export class TicketIconComponent {
-    @Input() ticket: Ticket;
+    @Input() width = "15px";
+    @Input() set ticket(t: Ticket) {
+        this.src = t ? this.srcs[t.priority_code] : "";
+    }
+    srcs = {
+        normal: "./assets/img/icon/person.png",
+        customer: "./assets/img/icon/wheelchair.png",
+        vip: "./assets/img/icon/star.png"
+    }
+    src = "";
 }

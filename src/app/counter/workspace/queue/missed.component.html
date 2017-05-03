@@ -16,7 +16,7 @@
         <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
             <div fxFlex class="cell">
                 <ticket-icon [ticket]="t"></ticket-icon>
-                <span class="ticketNum">{{t.cnum}}</span>
+                <span>{{t.cnum}}</span>
             </div>
             <span fxFlex="50%" class="cell">{{t.service_name}}</span>
             <span fxFlex class="cell">{{t.mtime | localDayTime}}</span>

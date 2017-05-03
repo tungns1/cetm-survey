@@ -14,7 +14,7 @@
         <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
             <div fxFlex class="cell">
                 <ticket-icon [ticket]="t"></ticket-icon>
-                <span class="ticketNum">{{t.cnum}}</span>
+                <span>{{t.cnum}}</span>
             </div>
             <span fxFlex="50%" class="cell">{{t.service_name}}</span>
             <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="15"></timer>
