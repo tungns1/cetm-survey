@@ -25,10 +25,11 @@ export class EditorViewComponent implements OnInit {
     @Output() action = new EventEmitter<string>();
 
     onAction(action: string) {
-        // console.log('aa');
+    
+        // console.log(action);
         this.action.next(action);
-        console.log("onAction in editor", this.action.next(action));
-        console.log("action in editor", this.action);
+        // console.log("onAction in editor", this.action.next(action));
+        // console.log("action in editor", this.action);
     }
 
     private GoBack() {
