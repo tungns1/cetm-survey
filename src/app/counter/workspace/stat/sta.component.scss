@@ -43,9 +43,12 @@
         font-size: $font-size-default;
     }
     .time{
-        font-size: $font-size-default * 4;
+        font-size: $font-size-default * 3;
         font-weight: $font-weight-default + 200;
         color: $key-color;
+    }
+    .warning{
+        color: #f53e30;
     }
     @media only screen and (max-width: 1300px) {
         .time{
@@ -63,7 +66,7 @@
 
 #search {
     margin-top: 3%;
-    height: 42.5%;
+    height: 43%;
     padding: 3%;
     overflow: auto;
     input {
