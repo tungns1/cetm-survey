@@ -45,4 +45,9 @@ export class RecorderDevice {
     SkipSaveToFile() {
         this.sendCommand("/skip", "");
     }
+
+    SendFileMiss() {
+        this.sendCommand("/miss", "");
+    }
+
 }
