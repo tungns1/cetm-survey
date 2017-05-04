@@ -14,7 +14,7 @@ export class IncompleteTicketComponent {
 
     showDetails(t: Ticket) {
         this.dialog = this.mdDialog.open(TicketDetailComponent);
-        this.dialog.componentInstance.SetTicket(t);
+        if(t) this.dialog.componentInstance.SetTicket(t);
     }
 
     @Input("data") set _data(v: Ticket[]) {

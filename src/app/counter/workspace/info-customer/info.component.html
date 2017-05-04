@@ -1,22 +1,22 @@
-<div id="cusInfo" fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayoutAlign="space-between center" *ngIf="customer$| async; let c">
+<div id="cusInfo" fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxFlex="60" style="width: 100%">
         <div fxFlex="50%">
             <label i18n>Customer Name</label>
-            <span class="cusName uppercase">{{c.full_name}}</span>
+            <span *ngIf="customer$| async; let c" class="cusName uppercase">{{c.full_name}}</span>
         </div>
         <div fxFlex>
             <label i18n>Customer ID</label>
-            <span class="uppercase">{{c.code}}</span>
+            <span *ngIf="customer$| async; let c" class="uppercase">{{c.code}}</span>
         </div>
     </div>
     <div fxLayout="row" fxFlex="40" style="width: 100%">
         <div fxFlex>
             <label i18n>Phone Number</label>
-            <span class="uppercase">{{c.phone_number}}</span>
+            <span *ngIf="customer$| async; let c" class="uppercase">{{c.phone_number}}</span>
         </div>
         <div fxFlex="50%">
             <label i18n>Segment</label>
-            <span class="uppercase">{{c.segment}}</span>
+            <span *ngIf="customer$| async; let c" class="uppercase">{{c.segment}}</span>
         </div>
     </div>
 </div>
