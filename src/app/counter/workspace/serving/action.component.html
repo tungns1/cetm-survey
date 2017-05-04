@@ -8,10 +8,10 @@
     <button class="uppercase btnFill" fxFlex (click)="Recall()"> 
         <ng-container i18n="Counter Button: Recall Ticket">Recall</ng-container>
     </button>
-    <button class="uppercase btnFill" fxFlex (click)="Move()"> 
+    <button class="uppercase btnFill" fxFlex (click)="Move()" fxShow.xs="false"> 
         <ng-container i18n="Counter Button: Move Ticket">Move</ng-container>
     </button>
-    <button class="uppercase btnRed" fxFlex (click)="Miss()">
+    <button class="uppercase btnRed" fxFlex (click)="Miss()" fxShow.xs="false">
         <ng-container i18n="Counter Button: Miss Ticket">Miss</ng-container>
     </button>
     <button class="uppercase btnGreen" fxFlex (throttle)="Finish()" throttle>

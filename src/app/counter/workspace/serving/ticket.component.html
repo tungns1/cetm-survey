@@ -1,4 +1,4 @@
-<div class="border emptyAndServing">
+<div fxShow.xs="false" class="border emptyAndServing">
     <div class="componentHeader">
         <span>{{ticket.service_name}}</span>
     </div>
@@ -19,5 +19,20 @@
                 <timer class="number" [start]="ticket.mtime" [timeWarning]="1"></timer>
             </div>
         </div>
+    </div>
+</div>
+
+<div fxShow.gt-xs="false" class="emptyAndServing" fxLayout="row">
+    <div fxFlex="75%">
+        <div i18n>Ticket</div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <ticket-icon fxFlex width="20px" [ticket]="ticket"></ticket-icon>
+            <span fxFlex class="">{{ticket.cnum}}</span>
+            <span fxFlex="60%">{{ticket.customer.full_name}}</span>
+        </div>
+    </div>
+    <div fxFlex class="servingTimeContainer">
+        <div i18n>Tiempo</div>
+        <timer class="servingTime" [start]="ticket.mtime" [timeWarning]="1"></timer>
     </div>
 </div>

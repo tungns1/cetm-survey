@@ -31,3 +31,22 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .emptyAndServing{
+        text-align: center;
+        span{
+            font-weight: $font-weight-default + 200;
+        }
+        .holder{
+            width: 100%;
+            height: 22px;
+        }
+        .servingTimeContainer{
+            border-left: $border;
+            .servingTime{
+                line-height: 20px;
+            }
+        }
+    }
+}
