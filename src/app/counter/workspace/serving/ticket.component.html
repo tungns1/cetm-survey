@@ -25,10 +25,12 @@
 <div fxShow.gt-xs="false" class="emptyAndServing" fxLayout="row">
     <div fxFlex="75%">
         <div i18n>Ticket</div>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="center center">
             <ticket-icon fxFlex width="20px" [ticket]="ticket"></ticket-icon>
-            <span fxFlex class="">{{ticket.cnum}}</span>
-            <span fxFlex="60%">{{ticket.customer.full_name}}</span>
+            <span fxFlex>{{ticket.cnum}}</span>
+            <span fxFlex="5%"> - </span>
+            <span fxFlex="60%" *ngIf="ticket.customer.full_name">{{ticket.customer.full_name}}</span>
+            <span fxFlex="60%" *ngIf="!ticket.customer.full_name" i18n>Client</span>
         </div>
     </div>
     <div fxFlex class="servingTimeContainer">
