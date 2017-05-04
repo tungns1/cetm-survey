@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MdDialog } from '@angular/material';
 import { ITransactionView } from '../../model';
 import { Paging, ReportNavService } from '../../service/';
 import { TransactionHistoryApi, IHistoryFilter } from './history.service';
+import { TransactionComponent } from './transaction.component';
 
 @Component({
     selector: 'history',
@@ -11,6 +12,7 @@ import { TransactionHistoryApi, IHistoryFilter } from './history.service';
 })
 export class HistoryComponent {
     constructor(
+        private mdDialog: MdDialog,
         private nav: ReportNavService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
@@ -43,6 +45,12 @@ export class HistoryComponent {
 
     excel() {
         this.transactionHistoryApi.ExportHistory();
+    }
+
+
+    showDetails(tr: ITransactionView) {
+        const dialog = this.mdDialog.open(TransactionComponent);
+        dialog.componentInstance.SetData(tr);
     }
 
 }

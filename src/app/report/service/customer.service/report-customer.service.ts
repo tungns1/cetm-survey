@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpServiceGenerator
+  HttpServiceGenerator, IUser
 } from '../../shared';
 
 import { ICustomer } from '../../model';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class ReportCustomerService {
@@ -17,9 +18,18 @@ export class ReportCustomerService {
   }
 
   GetUserByRoleNBranch(branch_id: string, role: string) {
-    return this.apiReport.Get<ICustomer>("get_user_by_branch_id", { branch_id, role });
+    const key = `${branch_id}_${role}`;
+    const v = this.cacheUser.get(key);
+    if (v) {
+      return of(v);
+    }
+    return this.apiReport.Get<IUser[]>("get_user_by_branch_id", { branch_id, role })
+      .do(v => {
+        this.cacheUser.set(key, v);
+      });
   }
 
   private api = this.httpSG.make("/api/monitor");
   private apiReport = this.httpSG.make("/api/report/user");
+  private cacheUser = new Map<string, IUser[]>();
 }
