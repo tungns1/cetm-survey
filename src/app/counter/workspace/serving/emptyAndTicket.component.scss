@@ -37,6 +37,9 @@
         text-align: center;
         span{
             font-weight: $font-weight-default + 200;
+            position: relative;
+            top: -5px;
+            left: 5px;
         }
         .holder{
             width: 100%;
