@@ -3,7 +3,8 @@ export * from '../../auth';
 
 export {
     AbstractState, AbstractStateService,
-    ICounter, IUser, CacheBranch, CacheCounter, CacheUsers,
+    ICounter, IUser, USER_ROLES,
+    CacheBranch, CacheCounter, CacheUsers,
     ServiceName
 } from '../../shared/model';
 

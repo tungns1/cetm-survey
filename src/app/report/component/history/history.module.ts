@@ -19,13 +19,13 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, AccordionModule,ReportFilterModule],
+    imports: [routing, SharedModule, AccordionModule, ReportFilterModule],
     declarations: [
-        HistoryComponent,
-        HistoryFilterComponent,
+        HistoryComponent, HistoryFilterComponent,
         TransactionComponent
     ],
     providers: [TransactionHistoryApi],
+    entryComponents: [TransactionComponent]
 })
 export class ReportHistoryModule {
 

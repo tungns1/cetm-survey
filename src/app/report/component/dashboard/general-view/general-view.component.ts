@@ -17,27 +17,30 @@ export class GeneralViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.FilterBy()
   }
   private formatDate = timeFormat("%Y-%m-%d");
   @Input() data: Aggregate[] = [];
   @Input() field = 'branch_id';
-
+  field_by: string;
   info = {
-    fieldBy:this.FilterBy(this.field),
-    reportName: 'Overview Report',
-    image:'',
     period: {
       start: this.formatDate(this.filterService.startDate),
       end: this.formatDate(this.filterService.endDate)
     }
   }
-
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
+  ngOnChanges(changes) {
+    if (changes.field) {
+      this.field_by=this.FilterBy();
+    }
   }
-  FilterBy(field) {
+
+  excel(e) {
+    this.ExportExcel(e);
+  }
+  FilterBy() {
     let field_by = '';
-    switch (field) {
+    switch (this.field) {
       case 'service_id':
         field_by = 'Service';
         break;
@@ -52,6 +55,19 @@ export class GeneralViewComponent implements OnInit {
         break;
     }
     return field_by;
+  }
+  ExportExcel(e) {
+    e.preventDefault();
+    let now = new Date;
+    let ddmmyy: string = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
+    //getting data from our table
+    var data_type = 'data:application/vnd.ms-excel';
+    var table_div = document.getElementById('tableEl');
+    var table_html = table_div.outerHTML.replace(/ /g, '%20');
+    var a = document.createElement('a');
+    a.href = data_type + ', ' + table_html;
+    a.download = 'general_table_' + ddmmyy + '.xls';
+    a.click();
   }
 
 }
