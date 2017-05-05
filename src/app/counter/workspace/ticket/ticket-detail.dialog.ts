@@ -114,7 +114,7 @@ export class TicketDetailDialog {
         this.ShowMessage("Unsuccess", "Recall Miss");
         return;
       }
-      this.ticketService.CallFromMissed(this.ticket).subscribe(v => {
+      this.ticketService.CallTicket(this.ticket).subscribe(v => {
         this.ticketService.SetAutoNext(false);
         this.isModal = false;
       });

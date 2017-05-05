@@ -1,20 +1,21 @@
 
-const ActionCallWaiting = "call_from_waiting"
-const ActionCallMissed = "call_from_missed"
-const ActionCancel = "cancel"
+const ActionCall = "call"
 const ActionMiss = "miss"
+const ActionCancel = "cancel"
 const ActionRecall = "recall"
 const ActionFinish = "finish"
 const ActionMove = "move"
 
-interface ITicketAction {
+interface ITicketAction<T> {
     action: string;
     ticket_id: string;
     service_id?: string;
     state?: string;
     services?: string[];
     counters?: string[];
+    extra?: T;
 }
+
 
 import { ITicket, Ticket, IService } from '../shared';
 import { QueueService } from './queue.service';
@@ -23,6 +24,27 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { FeedbackService } from './feedback.service';
+
+
+class TicketAction {
+    constructor(
+        private action: string,
+        ticket: Ticket
+    ) {
+        this.setTicket(ticket);
+    }
+
+    private setTicket(t: Ticket) {
+        this.state = t.state;
+        this.ticket_id = t.id;
+        this.service_id = t.service_id || t.services[0];
+    }
+
+    state: string;
+    ticket_id: string;
+    service_id: string;
+    extra: any;
+}
 
 @Injectable()
 export class TicketService {
@@ -36,7 +58,7 @@ export class TicketService {
 
     private socket = this.workspaceService.Socket;
 
-    private sendAction(body: ITicketAction) {
+    private sendAction(body: TicketAction) {
         return this.socket.Send("/ticket", body).share();
     }
 
@@ -64,10 +86,9 @@ export class TicketService {
             if (!t || !t[0]) {
                 return of(null);
             }
-            return this.sendAction({
-                action: action,
-                ticket_id: t[0].id
-            })
+            return this.sendAction(
+                new TicketAction(action, t[0])
+            )
         })
     }
 
@@ -83,10 +104,9 @@ export class TicketService {
                 return of(false);
             }
             if (t[0]) {
-                return this.sendAction({
-                    action: ActionFinish,
-                    ticket_id: t[0].id
-                }).map(_ => true);
+                return this.sendAction(
+                    new TicketAction(ActionFinish, t[0])
+                ).map(_ => true);
             }
             return of(true);
         });
@@ -96,38 +116,22 @@ export class TicketService {
         return this.updateServing(ActionMiss);
     }
 
-    CallFromMissed(t: Ticket) {
-        return this.sendAction({
-            action: ActionCallMissed,
-            service_id: t.services[0],
-            ticket_id: t.id
-        });
+    CallTicket(t: Ticket) {
+        return this.sendAction(
+            new TicketAction(ActionCall, t)
+        );
     }
 
     Cancel(t: Ticket) {
-        return this.sendAction({
-            action: ActionCancel,
-            ticket_id: t.id,
-            service_id: t.service_id || t.services[0]
-        });
-    }
-
-
-    CallFromWaiting(t: Ticket) {
-        return this.sendAction({
-            action: ActionCallWaiting,
-            service_id: t.services[0],
-            ticket_id: t.id
-        });
+        return this.sendAction(
+            new TicketAction(ActionCancel, t)
+        );
     }
 
     Move(t: Ticket, services: string[], counters: string[]) {
-        return this.socket.Send('/move_ticket', {
-            ticket_id: t.id,
-            state: t.state,
-            counters: counters,
-            services: services
-        }).share();
+        const a = new TicketAction(ActionMove, t);
+        a.extra = { services, counters };
+        return this.sendAction(a);
     }
 
     Search(cnum: string) {
@@ -161,7 +165,7 @@ export class TicketService {
                 // the first ticket
                 return this.queueService.waiting$.filter(t => t.length > 0).map(t => t[0]).first().throttleTime(250).switchMap(t => {
                     // call the first ticket
-                    return this.CallFromWaiting(t);
+                    return this.CallTicket(t);
                 }).do(_ => this.SetAutoNext(false));
             });
         }).subscribe();
