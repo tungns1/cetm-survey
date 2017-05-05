@@ -2,20 +2,22 @@ import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum } from
 import { CacheBranch } from '../../shared/model';
 export interface IKioskTrack {
     id?: string
-    branch_id: string;
-    device_id: string;
-    device_type: string;
-    object: IKioskTrackData;
+    bid: string;
+    eid: string;
+    cat: string;
+    data: IKioskTrackData;
     state: string;
-    on_at: number;
-    off_at: number;
-    total_on: number;
+    s_at: number;
+    e_at: number;
+    a_d: number;
     date: string;
 
 }
 
 export interface IKioskTrackData {
-    t_p: number;
+    pc: number;
+    ps:string;
+    ps_a:number;
 }
 
 
@@ -98,12 +100,12 @@ export class InfoKioskTrack {
     Add(s: IKioskTrack[]) {
 
         if (s.length > 0) {
-            this.total_activity_time = this.SecondToHour(sumBy(s, 'total_on'))
+            this.total_activity_time = this.SecondToHour(sumBy(s, 'a_d'))
             this.total_kiosk = size(groupBy(s, 'device_id'));
             s.forEach(v => {
-                this.total_ticket += v.object.t_p || 0;
+                this.total_ticket += v.data.pc || 0;
             })
-            var data_by_branh = toArray(groupBy(s, 'branch_id'));
+            var data_by_branh = toArray(groupBy(s, 'bid'));
 
 
             var data_by_date = toArray(groupBy(s, 'date'));
@@ -114,46 +116,46 @@ export class InfoKioskTrack {
             for (var i = 0; i < len_by_branch; i++) {
                 var min = 0, max = 0, total = 0;
                 data_by_branh[i].forEach(v => {
-                    if (v.object.t_p < min) {
-                        min = +v.object.t_p || 0;
+                    if (v.data.pc < min) {
+                        min = +v.data.pc || 0;
                     }
-                    if (v.object.t_p > max) {
-                        max = +v.object.t_p || 0;
+                    if (v.data.pc > max) {
+                        max = +v.data.pc || 0;
                     }
-                    total += +v.object.t_p || 0;
+                    total += +v.data.pc || 0;
                 })
 
                 this.ticket.push({
-                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
                     value: total
                 })
                 this.time.push({
-                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
-                    value: this.SecondToHour(sumBy(data_by_branh[i], 'total_on'))
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
+                    value: this.SecondToHour(sumBy(data_by_branh[i], 'a_d'))
                 })
                 this.ticket_sum.push({
-                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
                     total: total,
                     highest: max,
                     lowest: min,
                     average: +(total / (data_by_branh[i].length)).toFixed(2),
                 })
                 this.time_sum.push({
-                    name: CacheBranch.GetNameForID(data_by_branh[i][0].branch_id),
-                    total: this.SecondToHour(sumBy(data_by_branh[i], 'total_on') || 0),
-                    longest: this.SecondToHour(maxBy(data_by_branh[i], 'total_on').total_on),
-                    shortest: this.SecondToHour(minBy(data_by_branh[i], 'total_on').total_on),
-                    average: this.SecondToHour(meanBy(data_by_branh[i], <any>'total_on')),
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
+                    total: this.SecondToHour(sumBy(data_by_branh[i], 'a_d') || 0),
+                    longest: this.SecondToHour(maxBy(data_by_branh[i], 'a_d').a_d),
+                    shortest: this.SecondToHour(minBy(data_by_branh[i], 'a_d').a_d),
+                    average: this.SecondToHour(meanBy(data_by_branh[i], <any>'a_d')),
                 })
             }
             for (var i = 0; i < len_by_date; i++) {
                 this.ticket_day.push({
                     name: data_by_date[i][0].date,
-                    value: sumBy(data_by_date[i], a => +a.object.t_p || 0)
+                    value: sumBy(data_by_date[i], a => +a.data.pc || 0)
                 })
                 this.time_day.push({
                     name: data_by_date[i][0].date,
-                    value: this.SecondToHour(sumBy(data_by_date[i], 'total_on'))
+                    value: this.SecondToHour(sumBy(data_by_date[i], 'a_d'))
                 })
             }
         }

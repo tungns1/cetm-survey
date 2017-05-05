@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input } from '@angular/core';
 import { Aggregate } from '../shared';
 import { ExportExcelService } from '../../shared';
@@ -19,24 +20,27 @@ export class GeneralViewComponent implements OnInit {
   ngOnInit() {
     this.FilterBy()
   }
+  ngOnChanges(changes) {
+    if (changes.field) {
+      this.info.fieldBy=this.FilterBy();
+    }
+  }
   private formatDate = timeFormat("%Y-%m-%d");
   @Input() data: Aggregate[] = [];
   @Input() field = 'branch_id';
-  field_by: string;
+
   info = {
+    fieldBy:'',
+    reportName: 'Overview Report',
+    image:'',
     period: {
       start: this.formatDate(this.filterService.startDate),
       end: this.formatDate(this.filterService.endDate)
     }
   }
-  ngOnChanges(changes) {
-    if (changes.field) {
-      this.field_by=this.FilterBy();
-    }
-  }
 
-  excel(e) {
-    this.ExportExcel(e);
+  excel() {
+    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
   }
   FilterBy() {
     let field_by = '';
@@ -55,19 +59,6 @@ export class GeneralViewComponent implements OnInit {
         break;
     }
     return field_by;
-  }
-  ExportExcel(e) {
-    e.preventDefault();
-    let now = new Date;
-    let ddmmyy: string = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //getting data from our table
-    var data_type = 'data:application/vnd.ms-excel';
-    var table_div = document.getElementById('tableEl');
-    var table_html = table_div.outerHTML.replace(/ /g, '%20');
-    var a = document.createElement('a');
-    a.href = data_type + ', ' + table_html;
-    a.download = 'general_table_' + ddmmyy + '.xls';
-    a.click();
   }
 
 }
