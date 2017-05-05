@@ -5,7 +5,8 @@ import { TicketDetailComponent } from './ticketDetail.component';
 
 @Component({
     selector: "app-completed-ticket",
-    templateUrl: "completed.html"
+    templateUrl: "completed.html",
+    styleUrls: ['completed.scss']
 })
 export class CompletedTicketComponent {
     constructor(

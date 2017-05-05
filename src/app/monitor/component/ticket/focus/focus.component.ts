@@ -43,6 +43,7 @@ export class FocusComponent {
             const branch_id = this.route.snapshot.params["branch_id"];
             this.focusService.Branch$.next(branch_id);
         });
+        // this.box$.subscribe(b => console.log(b));
     }
 
     ngOnDestroy() {

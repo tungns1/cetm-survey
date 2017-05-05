@@ -5,7 +5,8 @@ import { Ticket } from '../../shared';
 
 @Component({
     selector: "app-incomplete-ticket",
-    templateUrl: "incomplete.html"
+    templateUrl: "incomplete.html",
+    styleUrls: ['incomplete.scss']
 })
 export class IncompleteTicketComponent {
     constructor(
@@ -20,6 +21,7 @@ export class IncompleteTicketComponent {
     @Input("data") set _data(v: Ticket[]) {
         this.data = v || [];
         this.data.forEach(t => this.addHelperField(t));
+        console.table(this.data);
     };
 
     data: Ticket[] = [];
