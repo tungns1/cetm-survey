@@ -10,7 +10,8 @@ const ActionMove = "move"
 interface ITicketAction {
     action: string;
     ticket_id: string;
-    counter_id?: string;
+    service_id?: string;
+    state?: string;
     services?: string[];
     counters?: string[];
 }
@@ -98,6 +99,7 @@ export class TicketService {
     CallFromMissed(t: Ticket) {
         return this.sendAction({
             action: ActionCallMissed,
+            service_id: t.services[0],
             ticket_id: t.id
         });
     }
@@ -105,7 +107,8 @@ export class TicketService {
     Cancel(t: Ticket) {
         return this.sendAction({
             action: ActionCancel,
-            ticket_id: t.id
+            ticket_id: t.id,
+            service_id: t.service_id || t.services[0]
         });
     }
 
@@ -113,6 +116,7 @@ export class TicketService {
     CallFromWaiting(t: Ticket) {
         return this.sendAction({
             action: ActionCallWaiting,
+            service_id: t.services[0],
             ticket_id: t.id
         });
     }
@@ -120,6 +124,7 @@ export class TicketService {
     Move(t: Ticket, services: string[], counters: string[]) {
         return this.socket.Send('/move_ticket', {
             ticket_id: t.id,
+            state: t.state,
             counters: counters,
             services: services
         }).share();
