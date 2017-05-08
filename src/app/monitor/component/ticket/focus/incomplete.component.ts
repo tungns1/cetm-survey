@@ -14,10 +14,10 @@ export class IncompleteTicketComponent {
     ) { }
 
     showDetails(t: Ticket) {
-        console.log(t);
+        // console.log(t);
         const config = new MdDialogConfig();
         config.width = '350px';
-        config.height = '400px';
+        config.height = '425px';
         config.data = t;
         const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }
@@ -25,7 +25,6 @@ export class IncompleteTicketComponent {
     @Input("data") set _data(v: Ticket[]) {
         this.data = v || [];
         this.data.forEach(t => this.addHelperField(t));
-        // console.log(this.data);
     };
 
     data: Ticket[] = [];

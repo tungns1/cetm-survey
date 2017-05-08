@@ -23,17 +23,13 @@
             <div fxFlex i18n>Time of ticket printed</div>
             <div fxFlex>{{ticket.ctime | localDayTime}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state === 'waiting'">
-            <div fxFlex i18n>Waiting Time</div>
-            <div fxFlex>
-                <timer [start]="ticket.mtime" [timeWarning]="15"></timer>
-            </div>
-        </div>
 
-        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="ticket.state === 'missed'">
+        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex i18n>Waiting Time</div>
             <div fxFlex>
-                <span>{{ticket.waiting_time | timeDuration}}</span>
+                <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="15"></timer>
+                <span *ngIf="ticket.state === 'missed'">{{ticket.waiting_time | timeDuration}}</span>
+                <span *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">{{ticket.mtime - ticket.ctime | timeDuration}}</span>
             </div>
         </div>
 
@@ -64,11 +60,11 @@
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Manager</div>
-            <div fxFlex *ngIf="box.users.manager; let u">{{u.fullname}}</div>
+            <div fxFlex *ngIf="box.users.manager[0]; let u">{{u.fullname}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Administrator</div>
-            <div fxFlex *ngIf="box.users.admin; let u">{{u.fullname}}</div>
+            <div fxFlex *ngIf="box.users.admin[0]; let u">{{u.fullname}}</div>
         </div>
 
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.customer.full_name">

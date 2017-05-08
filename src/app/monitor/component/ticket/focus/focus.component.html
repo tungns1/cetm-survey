@@ -14,15 +14,15 @@
         <div fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Branch</span>
-                <span>{{box.branch?.parent}}</span>
+                <span>{{box.parent?.name}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Admin</span>
-                <span>{{box.users.admin?.fullname}}</span>
+                <span>{{box.users.admin[0]?.fullname}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Manager</span>
-                <span>{{box.users.manager?.fullname}}</span>
+                <span>{{box.users.manager[0]?.fullname}}</span>
             </div>
             <div *ngIf="box.counter_activity; let c">
                 <div fxLayout="row" fxLayoutAlign="space-between none">
