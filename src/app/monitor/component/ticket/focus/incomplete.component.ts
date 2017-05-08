@@ -17,7 +17,7 @@ export class IncompleteTicketComponent {
         console.log(t);
         const config = new MdDialogConfig();
         config.width = '350px';
-        config.height = '60%';
+        config.height = '400px';
         config.data = t;
         const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }

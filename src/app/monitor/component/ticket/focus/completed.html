@@ -20,7 +20,10 @@
                 <td> {{t.service_id | serviceName}} </td>
                 <td> {{t.counter_id | counterName}}</td>
                 <td> {{t.user_id | userFullName}}</td>
-                <td> {{t.cnum}} </td>
+                <td>
+                    <ticket-icon [ticket]="t"></ticket-icon>
+                    <span>{{t.cnum}} </span>
+                </td>
                 <td> {{t.customer?.full_name }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td> {{t.mtime - t.ctime | timeDuration}} </td>
