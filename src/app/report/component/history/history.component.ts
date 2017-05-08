@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { ITransactionView } from '../../model';
 import { Paging, ReportNavService } from '../../service/';
 import { TransactionHistoryApi, IHistoryFilter } from './history.service';
@@ -49,7 +49,9 @@ export class HistoryComponent {
 
 
     showDetails(tr: ITransactionView) {
-        const dialog = this.mdDialog.open(TransactionComponent);
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        const dialog = this.mdDialog.open(TransactionComponent, config); 
         dialog.componentInstance.SetData(tr);
     }
 

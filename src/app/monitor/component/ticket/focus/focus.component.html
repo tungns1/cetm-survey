@@ -38,13 +38,13 @@
                     <span>{{c.off}}</span>
                 </div>
             </div>
-        </div>
-        <!-- Ticket -->
-        <div *ngIf="box.summary; let s" fxLayout="column" fxFlex class="padding_monitor">
-            <div fxLayout="row" fxLayoutAlign="space-between none">
+            <div *ngIf="box.summary; let s" fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Printed Ticket</span>
                 <span>{{s.printed}}</span>
             </div>
+        </div>
+        <!-- Ticket -->
+        <div *ngIf="box.summary; let s" fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of waiting tickets</span>
                 <span>{{s.waiting}}</span>

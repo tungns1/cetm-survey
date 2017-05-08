@@ -13,48 +13,58 @@
 //
 // Modal
 // ----------------------
-.modal {
-    // This is modal bg
-    &:before {
-        content: "";
-        display: block;
-        background: rgba(0, 0, 0, .6);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-    }
-    display: flex;
-    justify-content: center;
-    // Modal Dialog
-    // ----------------------
-    .modal-dialog {
-        width: 350px;
-        border: $border;
-        border-radius: 3px;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 3;
-        transition: transform 0.3s ease-out;
-        .modal-body {
-            overflow: auto;
-            max-height: 90vh;
-            background-color: #fff;
-        }
-        .modal-confirm {
-            padding: 10px 20px;
-            p {
-                font-size: 17px;
-                margin: 0px;
-                margin-top: 10px;
-            }
-        }
-    }
+// .modal {
+//     // This is modal bg
+//     &:before {
+//         content: "";
+//         display: block;
+//         background: rgba(0, 0, 0, .6);
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         z-index: 1;
+//     }
+//     display: flex;
+//     justify-content: center;
+//     // Modal Dialog
+//     // ----------------------
+//     .modal-dialog {
+//         width: 350px;
+//         border: $border;
+//         border-radius: 3px;
+//         position: fixed;
+//         left: 50%;
+//         top: 50%;
+//         transform: translate(-50%, -50%);
+//         z-index: 3;
+//         transition: transform 0.3s ease-out;
+//         .modal-body {
+//             overflow: auto;
+//             max-height: 90vh;
+//             background-color: #fff;
+//         }
+//         .modal-confirm {
+//             padding: 10px 20px;
+//             p {
+//                 font-size: 17px;
+//                 margin: 0px;
+//                 margin-top: 10px;
+//             }
+//         }
+//     }
+// }
+
+.modal-content{
+    padding: 0 20px;
 }
+
+/*********** Override mddialog ***********/
+.mat-dialog-container{
+    padding: 0px !important;
+}
+/****************************************/
 
 #generic-form {
     .title {
@@ -145,13 +155,6 @@
     color: red;
 }
 
-// .modal-header,
-// .modal-footer {
-//     padding: $space/4 $space/2;
-//     background-color: #dee0e0;
-//     font-weight: 600;
-//     text-align: center;
-// }
 // End of modal
 .font-style-bold {
     font-weight: bold;

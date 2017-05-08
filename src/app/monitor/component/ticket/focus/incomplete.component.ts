@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { Ticket } from '../../shared';
 
@@ -14,14 +14,18 @@ export class IncompleteTicketComponent {
     ) { }
 
     showDetails(t: Ticket) {
-        this.dialog = this.mdDialog.open(TicketDetailComponent);
-        if(t) this.dialog.componentInstance.SetTicket(t);
+        console.log(t);
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        config.height = '60%';
+        config.data = t;
+        const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }
 
     @Input("data") set _data(v: Ticket[]) {
         this.data = v || [];
         this.data.forEach(t => this.addHelperField(t));
-        console.table(this.data);
+        // console.log(this.data);
     };
 
     data: Ticket[] = [];

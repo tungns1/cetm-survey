@@ -38,7 +38,7 @@ export class MonitorFocusService {
   private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update");
 
   Box$ = this.initialFocus$.switchMap(initial => {
-    console.log(initial);
+    // console.log(initial);
     const box = new BoxTicket(initial);
     CacheCounter.Refresh(initial.counters);
     CacheUsers.Refresh(initial.users);

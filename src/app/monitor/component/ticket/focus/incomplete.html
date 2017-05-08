@@ -20,7 +20,7 @@
                 <td> {{t.ctime | localDayTime}}</td>
                 <td>
                     <timer *ngIf="t.state === 'waiting'" [start]="t.mtime" [timeWarning]="15"></timer>
-                    <!--<span *ngIf="t.state === 'missed'"> {{t.mtime - ticket.t | timeDuration}}</span>-->
+                    <span *ngIf="t.state === 'missed'"> {{t.waiting_time | timeDuration}}</span>
                 </td>
                 <td>
                     <span (click)="showDetails(t)">

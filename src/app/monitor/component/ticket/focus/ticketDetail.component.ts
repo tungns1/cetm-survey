@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Optional, Inject } from '@angular/core';
 import { ICustomer, Ticket, TicketStates } from '../../shared';
 import { MonitorCustomerService } from '../shared';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { MonitorFocusService } from '../shared';
 
 @Component({
@@ -12,24 +12,11 @@ import { MonitorFocusService } from '../shared';
 export class TicketDetailComponent {
 
     constructor(
+        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
         private dialogRef: MdDialogRef<TicketDetailComponent>,
         private customerService: MonitorCustomerService,
         private monitorFocus: MonitorFocusService
     ) { }
-
-    SetTicket(t: Ticket) {
-        this.ticket = t;
-        if (t.state === TicketStates.Waiting) {
-            this.showWaiting = true;
-            this.showServing = false;
-        } else if (t.state == TicketStates.Missed) {
-            this.showWaiting = true;
-            this.showServing = false;
-        } else {
-            this.showWaiting = false;
-            this.showServing = true;
-        }
-    }
 
     private ticket: Ticket;
     private customer: ICustomer;
@@ -44,7 +31,17 @@ export class TicketDetailComponent {
         });
     }
 
-    private close() {
-        this.dialogRef.close();
+    ngOnInit() {
+        this.ticket = this.dialogData;
+        // if (this.ticket.state === TicketStates.Waiting) {
+        //     this.showWaiting = true;
+        //     this.showServing = false;
+        // } else if (this.ticket.state == TicketStates.Missed) {
+        //     this.showWaiting = true;
+        //     this.showServing = false;
+        // } else {
+        //     this.showWaiting = false;
+        //     this.showServing = true;
+        // }
     }
 }

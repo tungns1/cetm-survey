@@ -56,10 +56,6 @@ export class TransactionComponent implements OnInit {
             .subscribe(users => this.manager = users[0]);
     }
 
-    close() {
-        this.mdDialogRef.close();
-    }
-
     goToCustomer(customer_id: string) {
         this.router.navigate(['/report/customer', customer_id]);
     }

@@ -1,9 +1,13 @@
-<div id="modal_monitor_detailTicket">
+<div id="modal_monitor_detailTicket" *ngIf="ticket">
     <h3 class="modal-header" i18n>Ticket Detail</h3>
-    <div class="padding-10-20" *ngIf="box$ | async; let box">
+
+    <div class="modal-content" *ngIf="box$ | async; let box">
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>Ticket Number</div>
-            <div fxFlex>{{ticket.cnum}}</div>
+            <div fxFlex>
+                <ticket-icon [ticket]="ticket"></ticket-icon>
+                <span>{{ticket.cnum}}</span>
+            </div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
             <div fxFlex i18n>State</div>
@@ -19,17 +23,21 @@
             <div fxFlex i18n>Time of ticket printed</div>
             <div fxFlex>{{ticket.ctime | localDayTime}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="showWaiting">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state === 'waiting'">
             <div fxFlex i18n>Waiting Time</div>
-            <timer fxFlex [start]="ticket.mtime" [timeWarning]="15"></timer>
+            <div fxFlex>
+                <timer [start]="ticket.mtime" [timeWarning]="15"></timer>
+            </div>
         </div>
 
-        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="!showWaiting">
+        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="ticket.state === 'missed'">
             <div fxFlex i18n>Waiting Time</div>
-            <span fxFlex>{{ticket.mtime - ticket.ctime | timeDuration}}</span>
+            <div fxFlex>
+                <span>{{ticket.waiting_time | timeDuration}}</span>
+            </div>
         </div>
 
-        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="showServing">
+        <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
             <div fxFlex i18n>Serving Time</div>
             <div fxFlex>
                 <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
@@ -63,23 +71,25 @@
             <div fxFlex *ngIf="box.users.admin; let u">{{u.fullname}}</div>
         </div>
 
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.customer.full_name">
             <div fxFlex i18n>Customer Name</div>
-            <div fxFlex> {{customer.full_name }}</div>
+            <div fxFlex> {{ticket.customer.full_name}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.customer.code">
             <div fxFlex i18n>Code ID</div>
-            <div fxFlex> {{customer.code }}</div>
+            <div fxFlex> {{ticket.customer.code}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.customer.phone_number">
             <div fxFlex i18n>Phone Number</div>
-            <div fxFlex> {{customer.phone_number }}</div>
+            <div fxFlex> {{ticket.customer.phone_number}}</div>
         </div>
-        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="customer">
+        <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.customer.segment">
             <div fxFlex i18n>Segment</div>
-            <div fxFlex> {{customer.segment }}</div>
+            <div fxFlex> {{ticket.customer.segment}}</div>
         </div>
-
-        <button class="btnFill uppercase" (click)="close()" i18n>Close</button>
+        <div md-dialog-actions fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+            <div fxFlex></div>
+            <button fxFlex md-dialog-close class="btnFill uppercase" i18n>Close</button>
+        </div>
     </div>
 </div>

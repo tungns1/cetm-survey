@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Ticket, TicketStates } from '../../shared';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 
 @Component({
@@ -47,9 +47,10 @@ export class CompletedTicketComponent {
     }
 
     showDetails(t: Ticket) {
-        this.dialog = this.mdDialog.open(TicketDetailComponent);
-        this.dialog.componentInstance.SetTicket(t);
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        config.height = '60%';
+        config.data = t;
+        const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }
-
-    private dialog: MdDialogRef<TicketDetailComponent>;
 }
