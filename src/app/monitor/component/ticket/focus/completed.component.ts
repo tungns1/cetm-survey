@@ -49,7 +49,7 @@ export class CompletedTicketComponent {
     showDetails(t: Ticket) {
         const config = new MdDialogConfig();
         config.width = '350px';
-        config.height = '60%';
+        config.height = '425px';
         config.data = t;
         const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }

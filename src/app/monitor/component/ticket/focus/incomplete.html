@@ -15,7 +15,10 @@
             <tr *ngFor="let t of data ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
                 <td> {{i + 1}} </td>
                 <td> {{t.service_id | serviceName}}</td>
-                <td> {{t.cnum}}</td>
+                <td>
+                    <ticket-icon [ticket]="t"></ticket-icon>
+                    <span>{{t.cnum}}</span>
+                </td>
                 <td> {{t.customer?.full_name }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td>

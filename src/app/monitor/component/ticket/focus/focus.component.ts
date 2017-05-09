@@ -58,8 +58,8 @@ export class FocusComponent {
     incomplete$ = this.tickets$.switchMap(tickets => {
         return combineLatest(tickets.Waiting$, tickets.Missed$)
             .map(([waiting, missed]) => {
-                // console.log(missed);
                 missed.forEach(t => {
+
                     for(let i = 0; i < t.tracks.length; i++){
                         if(t.tracks[i].state === 'serving' && t.tracks[i - 1].state === 'waiting'){
                             t['waiting_time'] = t.tracks[i].mtime - t.tracks[i - 1].mtime;
@@ -73,8 +73,8 @@ export class FocusComponent {
 
     completed$ = this.tickets$.switchMap(tickets => {
         return combineLatest(tickets.Serving$, tickets.Finished$, tickets.Cancelled$)
-            .map((queues) => {
-                return Array.prototype.concat.apply([], queues);
+            .map(([serving, finished, cancelled]) => {
+                return [].concat(serving).concat(finished).concat(cancelled);
             });
     })
 

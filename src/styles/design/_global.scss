@@ -129,20 +129,22 @@
         position: relative;
     }
 }
+
 // overide material 2 - tab
-.mat-tab-header{
+.mat-tab-header {
     background-color: $background-color-title;
     color: $text-color;
     border-bottom: $border;
-    .mat-tab-label-active{
+    .mat-tab-label-active {
         // border-color: $key-color;
         color: $key-color;
         font-weight: $font-weight-default + 400;
     }
-    .mat-ink-bar{
+    .mat-ink-bar {
         background-color: $key-color;
     }
 }
+
 // .spinner{
 //     width: 100%;
 //     height: 100%;
@@ -151,14 +153,71 @@
 //     left: 0px;
 //     z-index: 999;
 //     background-color: rgba(0, 0, 0, 0.6);
-    .mat-spinner{
-        position: absolute;
-        top: 45%;
-        left: 45%;
-        z-index: 9999;
-    }
-// }
+.mat-spinner {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 9999;
+}
 
+.hl-input-setup {
+    margin-bottom: 15px;
+    border-radius: 3px;
+    height: 25px;
+    padding-left: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aeb0af;
+    width: 30%;
+    margin-top: 10px;
+}
+
+.title-setup {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.form-setup {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.font-bold-setup {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.hl-select-one-setup {
+    width: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 25px;
+    border-radius: 3px;
+}
+
+.hl-select-setup {
+    width: 30%;
+    height: 90px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding-left: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aeb0af;
+    background-color: #fff;
+}
+
+.submit-setup {
+    margin-top: 10px;
+    width: 30%;
+}
+
+.container-setup {
+    margin-top: 20px;
+}
+
+// }
 //End of UI elements
 
 /******************** End of global ***********************/

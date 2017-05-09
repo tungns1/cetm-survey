@@ -33,15 +33,5 @@ export class TicketDetailComponent {
 
     ngOnInit() {
         this.ticket = this.dialogData;
-        // if (this.ticket.state === TicketStates.Waiting) {
-        //     this.showWaiting = true;
-        //     this.showServing = false;
-        // } else if (this.ticket.state == TicketStates.Missed) {
-        //     this.showWaiting = true;
-        //     this.showServing = false;
-        // } else {
-        //     this.showWaiting = false;
-        //     this.showServing = true;
-        // }
     }
 }

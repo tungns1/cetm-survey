@@ -1,4 +1,4 @@
-<span>Select Language:</span><br>
+<!--<span>Select Language:</span><br>
 <form class="hl-form" [formGroup]="form">
     <span>Language Default:</span><br>
     <select formControlName="default">
@@ -7,10 +7,24 @@
     <span>Language Support:</span><br>
     <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <select-check class="border" fxFlex formControlName="support" [data]="languages" textField="name" idField="code" style="background-color: #fff"></select-check>
-    </div>
+    </div>-->
 
-    <!--<select formControlName="support">
+<!--<select formControlName="support">
         <option *ngFor="let d of languages" [value]="d.code">{{d.name}}</option>
      </select>-->
-    <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
-</form>
+<!--<button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
+</form>-->
+<div class="container-setup">
+    <span class="title-setup">Select Language:</span>
+    <form [formGroup]="form" class="form-setup">
+        <span class="font-bold-setup">Language Default:</span><br>
+        <select class="hl-select-one-setup" formControlName="default">
+      <option *ngFor="let d of languages" [value]="d.code">{{d.name}}</option>
+    </select><br>
+        <span class="font-bold-setup">Language Support:</span><br>
+        <div class="hl-select-setup">
+            <select-check formControlName="support" [data]="languages" textField="name" idField="code"></select-check>
+        </div>
+        <button class="btnFill submit-setup " (click)="Submit()">Submit</button>
+    </form>
+</div>

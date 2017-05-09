@@ -1,31 +1,34 @@
-<span>Set priority for ticket:</span><br>
-<div>
-    <form class="hl-form" [formGroup]="form">
-        <div>
-            <strong class="uppercase inline" i18n>Priority for service</strong>
-            <input class="inline border" type="number" min="0" formControlName="service_priority">
-        </div>
-        <div>
-            <strong class="uppercase inline" i18n>Priority for customer priority</strong>
-            <input class="inline border" type="number" min="0" formControlName="customer_priority">
-        </div>
-        <div>
-            <strong class="uppercase inline" i18n>Priority for vip card </strong>
-            <input class="inline border" type="number" min="0" formControlName="vip_card">
-        </div>
-        <div>
-            <strong class="uppercase inline" i18n>Priority for customer vip</strong>
-            <input class="inline border" type="number" min="0" formControlName="customer_vip">
-        </div>
-        <div>
-            <strong class="uppercase inline" i18n>Priority for ticket online</strong>
-            <input class="inline border" type="number" min="0" formControlName="ticket_online">
-        </div>
-           <div>
-            <strong class="uppercase inline" i18n>Min priority for button call</strong>
-            <input class="inline border" type="number" min="0" formControlName="min_priority_for_call">
-        </div>
-
-        <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
-    </form>
+<div class="container-setup">
+    <span class="title-setup">Set priority for ticket:</span><br>
+    <div>
+        <form class="form-setup" [formGroup]="form">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Priority for service</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="service_priority">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Priority for customer priority</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="customer_priority">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Priority for vip card</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="vip_card">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Priority for customer vip</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="customer_vip">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Priority for ticket online</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="ticket_online">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Min priority for button call</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="min_priority_for_call">
+            <div>
+                <button class="btnFill submit-setup" (click)="Submit()">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
