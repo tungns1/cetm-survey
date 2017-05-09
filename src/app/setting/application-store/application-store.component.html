@@ -1,9 +1,9 @@
-<p i18n>General Application Setting</p>
+<p i18n class="margin-left-setting">General Application Setting</p>
 
-<form [formGroup]="storeForm">
-    <select formControlName="locale">
-    <option value="vi"> Tiếng Việt </option>
-    <option value="en"> English </option>
-    <option value="es"> Espanol </option>
-  </select>
+<form [formGroup]="storeForm" class="form-setup">
+    <select class="hl-select-one-seting" formControlName="locale">
+      <option value="vi"> Tiếng Việt </option>
+      <option value="en"> English </option>
+      <option value="es"> Espanol </option>
+    </select>
 </form>
