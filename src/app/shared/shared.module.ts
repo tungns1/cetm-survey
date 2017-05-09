@@ -8,7 +8,7 @@ import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
-import { ExportExcelService } from '../x/ng';
+import { ExportExcelService,ExportService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 import { Ng2BasicModule } from './shared';
@@ -35,6 +35,7 @@ export class SharedModule {
             providers: [
                 EnvironmentModule.Providers(),
                 ExportExcelService,
+                ExportService,
                 LogService, RouterQueryStorageStrategy,
                 AppSocketGenerator, HttpServiceGenerator
             ]
