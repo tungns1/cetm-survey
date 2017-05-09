@@ -9,7 +9,7 @@ export class StatusDevicePipe {
     transform(s: IActivity) {
         console.log(s)
         if (s) {
-            if (s.ref = 0) {
+            if (s.ref === 0) {
                 return "off"
             } else {
                 if (s.cat = ActivityCategory.Categories.Counter) {
