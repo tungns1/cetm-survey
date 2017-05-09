@@ -346,6 +346,10 @@
         <source>Summary</source>
         <target>Thống kê</target>
       </trans-unit>
+      <trans-unit id="ca2283fc765b9f44b69f0175d685dc2443da6011">
+        <source>Administrator</source>
+        <target>Quản trị</target>
+      </trans-unit>
       <trans-unit id="cc7cc6d3ab8dfa39501aa59c4b3412ef25818d5d">
         <source>Manager</source>
         <target>Quản lý</target>
@@ -389,10 +393,6 @@
       <trans-unit id="fc0dff2c024eceb762ea532ad616e9580771b81d">
         <source>Time of ticket printed</source>
         <target>Thời điểm lấy vé</target>
-      </trans-unit>
-      <trans-unit id="ca2283fc765b9f44b69f0175d685dc2443da6011">
-        <source>Administrator</source>
-        <target>Admin</target>
       </trans-unit>
       <trans-unit id="1c68a390d82bd4de0df9148716e6403dc2e82332">
         <source>Code ID</source>
@@ -484,7 +484,19 @@
       </trans-unit>
       <trans-unit id="f65253954b66e929a8b4d5ecaf61f9129f8cec64">
         <source>Dashboard</source>
-        <target>Biểu đồ</target>
+        <target>Tổng Quan</target>
+      </trans-unit>
+      <trans-unit id="baa66f238fc445d7c285a9576ee1000756e1c667">
+        <source>Transaction Time</source>
+        <target>Thời Gian Giao Dịch</target>
+      </trans-unit>
+      <trans-unit id="a507c06d9cbc346d9bb3c644c960230e1e0ebdc1" datatype="html">
+        <source>Frequency</source>
+        <target>Tần Suất</target>
+      </trans-unit>
+      <trans-unit id="5484b4bdb2e74eebc8c840caf1c8555339ed7b83" datatype="html">
+        <source>Sevice</source>
+        <target>Dịch Vụ</target>
       </trans-unit>
       <trans-unit id="71b3171eebeca5e9ab16420f8d1f4eddd308786f">
         <source>Total transaction time</source>
@@ -632,7 +644,7 @@
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01">
         <source>Admin</source>
-        <target>Quản trị viên</target>
+        <target>Quản lý</target>
       </trans-unit>
       <trans-unit id="d5f4d7abe93d192366c0290168b7421ce33b816d">
         <source>Area</source>
@@ -656,7 +668,7 @@
       </trans-unit>
       <trans-unit id="dd4720f14288ba841d69f8a80e910786fe299e0b">
         <source>Branch Config</source>
-        <target>Cấu hình chi nhánh\n</target>
+        <target>Cấu hình chi nhánh</target>
       </trans-unit>
       <trans-unit id="88537ede496ea8408e7e5327884cd6aee50528c6">
         <source>Service Flow</source>
@@ -1051,6 +1063,26 @@
       <trans-unit id="a53ecbeb226ca6e079367d7f1ca8fbb1f570a47a">
         <source>Priority for ticket online</source>
         <target>Ưu tiên cho vé online</target>
+      </trans-unit>
+      <trans-unit id="f96ccbb54a3cdb84da625e10074258a29ee6b19c">
+        <source>Online</source>
+        <target>Quầy bật</target>
+      </trans-unit>
+      <trans-unit id="2b34680062c4aed90c4d846eab42d6e99501b783">
+        <source>Offline</source>
+        <target>Quầy tắt</target>
+      </trans-unit>
+      <trans-unit id="7f3579e018f5c6f2059f05e3482ed80082beec92">
+        <source>Printed Ticket</source>
+        <target>SL vé đã in</target>
+      </trans-unit>
+      <trans-unit id="37120891f29a2d3484cca21ca12bde9fa15cef13" datatype="html">
+        <source>Waiting Long</source>
+        <target>Giao dịch đợi vượt chuẩn</target>
+      </trans-unit>
+      <trans-unit id="88eabb815439a6a8e8ce8ae11016d8be5df2889d" datatype="html">
+        <source>Serving Long</source>
+        <target>Giao dịch phục vụ vượt chuẩn</target>
       </trans-unit>
     </body>
   </file>

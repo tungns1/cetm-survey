@@ -18,13 +18,16 @@
         <div class="divider margin-30-0"></div>
         <div id="overView" class="border">
           <md-tab-group dynamicHeight>
-            <md-tab label="OVERVIEW">
+            <md-tab>
+              <template md-tab-label><span class="uppercase" i18n>Overview</span></template>
               <app-general-view [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>
             </md-tab>
-            <md-tab label="TRANSACTION TIME">
+            <md-tab>
+              <template md-tab-label><span class="uppercase" i18n>Transaction Time</span></template>
               <app-transaction-time [field]="groupBy$ | async" [data]="data$ | async"></app-transaction-time>
             </md-tab>
-            <md-tab label="CUSTOMER FEEDBACK">
+            <md-tab>
+              <template md-tab-label><span class="uppercase" i18n>Customer Feedback</span></template>
               <app-customer-feedback [field]="groupBy$ | async" [data]="data$ | async"></app-customer-feedback>
             </md-tab>
           </md-tab-group>
