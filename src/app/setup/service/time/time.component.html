@@ -1,4 +1,4 @@
-<span>Set Time For Ticket:</span><br>
+<!--<span>Set Time For Ticket:</span><br>
 <div>
     <form class="hl-form" [formGroup]="form">
         <div>
@@ -16,4 +16,42 @@
 
         <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
     </form>
-</div>
+</div>-->
+<form [formGroup]="form" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
+            <span fxFlex="30%" class="uppercase inline" i18n><strong>Waiting Time Transaction</strong></span>
+            <span fxFlex class="note margin-l-5" i18n>(minute)</span>
+        </div>
+
+        <input fxFlex class="hl-input" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="Code">
+
+        <span fxFlex="20%" i18n></span>
+        <div fxFlex>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
+            <span fxFlex="30%" class="uppercase inline" i18n><strong>Serving Time Transaction</strong></span>
+            <span fxFlex class="note margin-l-5" i18n>(minute)</span>
+        </div>
+
+        <input fxFlex class="hl-input" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="Code">
+
+        <span fxFlex="20%" i18n></span>
+        <div fxFlex>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
+            <span fxFlex="30%" class="uppercase inline" i18n>Auto Finish Time</span>
+            <span fxFlex class="note margin-l-5" i18n>(minute)</span>
+        </div>
+
+        <input fxFlex class="hl-input" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="Code">
+        <span fxFlex="20%" i18n></span>
+        <div fxFlex>
+        </div>
+    </div>
+    <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
+</form>
