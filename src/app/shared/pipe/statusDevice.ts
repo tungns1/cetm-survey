@@ -7,6 +7,7 @@ import { IActivity, ActivityCategory } from '../model/';
 })
 export class StatusDevicePipe {
     transform(s: IActivity) {
+        console.log(s)
         if (s) {
             if (s.ref = 0) {
                 return "off"
