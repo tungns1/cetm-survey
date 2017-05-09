@@ -3,11 +3,11 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 export class UserGroup {
     constructor(
-        private data: IUser[]
+        private data: IUser[] = []
     ) { }
 
     private refresh(data: IUser[]) {
-
+        
     }
 
     private filterByRole(role: string) {

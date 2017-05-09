@@ -43,6 +43,7 @@ export class FocusComponent {
             const branch_id = this.route.snapshot.params["branch_id"];
             this.focusService.Branch$.next(branch_id);
         });
+        // this.box$.subscribe(b => console.log(b));
     }
 
     ngOnDestroy() {
@@ -56,13 +57,24 @@ export class FocusComponent {
     serving$ = this.tickets$.switchMap(tickets => tickets.Serving$);
     incomplete$ = this.tickets$.switchMap(tickets => {
         return combineLatest(tickets.Waiting$, tickets.Missed$)
-            .map(([waiting, missed]) => [].concat(waiting).concat(missed));
+            .map(([waiting, missed]) => {
+                missed.forEach(t => {
+
+                    for(let i = 0; i < t.tracks.length; i++){
+                        if(t.tracks[i].state === 'serving' && t.tracks[i - 1].state === 'waiting'){
+                            t['waiting_time'] = t.tracks[i].mtime - t.tracks[i - 1].mtime;
+                            i = t.tracks.length;
+                        }
+                    }
+                });
+                return [].concat(waiting).concat(missed);
+            });
     });
 
     completed$ = this.tickets$.switchMap(tickets => {
         return combineLatest(tickets.Serving$, tickets.Finished$, tickets.Cancelled$)
-            .map((queues) => {
-                return Array.prototype.concat.apply([], queues);
+            .map(([serving, finished, cancelled]) => {
+                return [].concat(serving).concat(finished).concat(cancelled);
             });
     })
 

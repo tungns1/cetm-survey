@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Ticket } from '../shared';
+import { Ticket } from '../model/house/ticket/ticket';
 
 @Component({
     selector: 'ticket-icon',

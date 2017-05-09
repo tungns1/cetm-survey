@@ -1,2 +1,12 @@
 @import '../../../shared/style.scss';
-#historyReport {}
+#modal-history{
+    .detailTicket{
+        width: 100%;
+        td{
+            padding: 5px 0;
+        }
+    }
+    .cusDetail{
+        padding: 5px 3px;
+    }
+}

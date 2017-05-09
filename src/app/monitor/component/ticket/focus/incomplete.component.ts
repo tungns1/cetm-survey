@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { Ticket } from '../../shared';
 
 @Component({
     selector: "app-incomplete-ticket",
-    templateUrl: "incomplete.html"
+    templateUrl: "incomplete.html",
+    styleUrls: ['incomplete.scss']
 })
 export class IncompleteTicketComponent {
     constructor(
@@ -13,8 +14,12 @@ export class IncompleteTicketComponent {
     ) { }
 
     showDetails(t: Ticket) {
-        this.dialog = this.mdDialog.open(TicketDetailComponent);
-        if(t) this.dialog.componentInstance.SetTicket(t);
+        // console.log(t);
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        config.height = '425px';
+        config.data = t;
+        const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }
 
     @Input("data") set _data(v: Ticket[]) {

@@ -12,6 +12,7 @@ import { ExportExcelService } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 import { Ng2BasicModule } from './shared';
+import { BusinessModule } from './businessQapp/business.module';
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import { Ng2BasicModule } from './shared';
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
         UtilPipeModule, SelectCheckModule,
-        ModalModule
+        ModalModule, BusinessModule
     ]
 })
 export class SharedModule {

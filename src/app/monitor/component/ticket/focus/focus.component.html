@@ -1,5 +1,7 @@
 <ng-template #loading>
+    <!--<div class="spinner">-->
     <md-spinner></md-spinner>
+    <!--</div>-->
 </ng-template>
 
 <div id="focusComponent" *ngIf="box$ | async; else loading; let box; ">
@@ -16,11 +18,11 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Admin</span>
-                <span>{{box.users.admin?.fullname}}</span>
+                <span>{{box.users.admin[0]?.fullname}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Manager</span>
-                <span>{{box.users.manager?.fullname}}</span>
+                <span>{{box.users.manager[0]?.fullname}}</span>
             </div>
             <div *ngIf="box.counter_activity; let c">
                 <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -36,13 +38,13 @@
                     <span>{{c.off}}</span>
                 </div>
             </div>
-        </div>
-        <!-- Ticket -->
-        <div *ngIf="box.summary; let s" fxLayout="column" fxFlex class="padding_monitor">
-            <div fxLayout="row" fxLayoutAlign="space-between none">
+            <div *ngIf="box.summary; let s" fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Printed Ticket</span>
                 <span>{{s.printed}}</span>
             </div>
+        </div>
+        <!-- Ticket -->
+        <div *ngIf="box.summary; let s" fxLayout="column" fxFlex class="padding_monitor">
             <div fxLayout="row" fxLayoutAlign="space-between none">
                 <span i18n>Number of waiting tickets</span>
                 <span>{{s.waiting}}</span>
@@ -82,8 +84,8 @@
     </div>
 
     <!-- More -->
+
+
+    <app-incomplete-ticket [data]="incomplete$ | async"></app-incomplete-ticket>
+    <app-completed-ticket [data]="completed$ | async"></app-completed-ticket>
 </div>
-
-
-<app-incomplete-ticket [data]="incomplete$ | async"></app-incomplete-ticket>
-<app-completed-ticket [data]="completed$ | async"></app-completed-ticket>

@@ -3,88 +3,93 @@
 </div>
 
 <!-- Ticket -->
-<table class="detailTicket">
-    <tr>
-        <td class="labelCtrl"><b i18n>Branch</b></td>
-        <td>{{data.parent}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Store</b></td>
-        <td>{{data.branch}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Counter Number</b></td>
-        <td>{{data.counter}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Teller</b></td>
-        <td>{{data.user}}</td>
-    </tr>
-    <tr *ngIf="manager; let u">
-        <td class="labelCtrl"><b i18n>Manager</b></td>
-        <td>{{u.fullname}}</td>
-    </tr>
-    <tr *ngIf="admin; let u">
-        <td class="labelCtrl"><b i18n>Administrator</b></td>
-        <td>{{u.fullname}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Ticket Number</b></td>
-        <td>{{data.cnum}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"> <b i18n>Service Name</b></td>
-        <td>{{data.service}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Ticket Status</b></td>
-        <td><span class="uppercase">{{data.state}}</span></td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Print Time</b></td>
-        <td>{{data.ctime}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Waiting Duration</b></td>
-        <td>{{data.wtime}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Serving Duration</b></td>
-        <td>{{data.stime}}</td>
-    </tr>
-    <tr>
-        <td class="labelCtrl"><b i18n>Date</b></td>
-        <td>{{data.cdate}}</td>
-    </tr>
-</table>
+<div id="modal-history" class="modal-content">
+    <table class="detailTicket">
+        <tr>
+            <td class="labelCtrl"><b i18n>Branch</b></td>
+            <td>{{data.parent}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Store</b></td>
+            <td>{{data.branch}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Counter Number</b></td>
+            <td>{{data.counter}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Teller</b></td>
+            <td>{{data.user}}</td>
+        </tr>
+        <tr *ngIf="manager; let u">
+            <td class="labelCtrl"><b i18n>Manager</b></td>
+            <td>{{u.fullname}}</td>
+        </tr>
+        <tr *ngIf="admin; let u">
+            <td class="labelCtrl"><b i18n>Administrator</b></td>
+            <td>{{u.fullname}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Ticket Number</b></td>
+            <td>{{data.cnum}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"> <b i18n>Service Name</b></td>
+            <td>{{data.service}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Ticket Status</b></td>
+            <td><span class="uppercase">{{data.state}}</span></td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Print Time</b></td>
+            <td>{{data.ctime}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Waiting Duration</b></td>
+            <td>{{data.wtime}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Serving Duration</b></td>
+            <td>{{data.stime}}</td>
+        </tr>
+        <tr>
+            <td class="labelCtrl"><b i18n>Date</b></td>
+            <td>{{data.cdate}}</td>
+        </tr>
+    </table>
 
-<div class="cusDetail">
-    <audio [class.hidden]="!audio_url" controls [src]="audio_url"></audio>
-</div>
+    <div class="cusDetail">
+        <audio [class.hidden]="!audio_url" controls [src]="audio_url"></audio>
+    </div>
 
-<!-- Customer Data -->
-<div class="customer">
-    <div *ngIf="customer">
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer</b>
-            <span fxFlex>{{customer.full_name}}</span>
-        </div>
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Phone Number</b>
-            <span fxFlex>{{customer.phone_number}}</span>
-        </div>
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer Code</b>
-            <span fxFlex (click)="goToCustomer(data.customer_id)" style="text-decoration: underline; color: blue;" i18n-title="Go to customer detail">{{customer.code}}</span>
-        </div>
-        <div class="cusDetail" fxLayout="row">
-            <b fxFlex class="labelCtrl" i18n>Customer Segment</b>
-            <span fxFlex>{{customer.segment}}</span>
-        </div>
+    <!-- Customer Data -->
+    <div *ngIf="customer" class="customer">
+        <!--<div>-->
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Customer</b>
+                <span fxFlex>{{customer.full_name}}</span>
+            </div>
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Phone Number</b>
+                <span fxFlex>{{customer.phone_number}}</span>
+            </div>
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Customer Code</b>
+                <span fxFlex (click)="goToCustomer(data.customer_id)" 
+                style="text-decoration: underline; color: blue;" i18n-title="Go to customer detail">{{customer.code}}</span>
+            </div>
+            <div class="cusDetail" fxLayout="row">
+                <b fxFlex class="labelCtrl" i18n>Customer Segment</b>
+                <span fxFlex>{{customer.segment}}</span>
+            </div>
+        <!--</div>-->
     </div>
 </div>
 
-<div fxLayout="row">
+<div md-dialog-actions fxLayout="row">
+    <div fxFlex="7%"></div>
     <div fxFlex></div>
-    <button fxFlex class="btnFill ctrlBtn" (click)="close()" i18n>Close</button>
+    <button fxFlex class="btnFill ctrlBtn" md-dialog-close i18n>Close</button>
+    <div fxFlex="7%"></div>
 </div>

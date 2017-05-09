@@ -1,7 +1,7 @@
 import { ActivityCategory } from './shared';
 import { IActivitySummary, ActivitySummary } from './activity_summary';
 import {
-    ICounter, IBranch, IService, IUser,
+    ICounter, IBranch, IService, IUser, CacheBranch,
     IMapTicket, ITicket, TicketStates,
 } from '../shared';
 import { IBoxTicketSummary, BoxTicketSummary } from './ticket_summary';

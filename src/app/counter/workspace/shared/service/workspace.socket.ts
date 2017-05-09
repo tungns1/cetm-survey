@@ -8,11 +8,16 @@ export class WorkspaceSocket extends AppSocket {
         private counterSetting: CounterSettingService,
         logService: LogService,
     ) {
-        super(`${env.Platform.WebSocket}/room/counter/join`, env.Debug.socket, logService);
+        super(`${env.Platform.WebSocket}/room/actor/join`, env.Debug.socket, logService);
     }
 
     onInit() {
-        super.Connect(this.counterSetting.Data);
+        var setting = this.counterSetting.Data;
+        super.Connect({
+            branch_code: setting.branch_code,
+            actor_type: "counter",
+            counter_code: setting.counter_code
+        });
     }
 
     onDestroy() {

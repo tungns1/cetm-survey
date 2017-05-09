@@ -28,7 +28,7 @@ export function sortTicket(a: Ticket, b: Ticket) {
     } else if (a.priority < b.priority) {
         return 1;
     }
-    return a.mtime < b.mtime ? -1 : 1;
+    return a.ctime < b.ctime ? -1 : 1;
 }
 
 export function priorityCode(p: ITicketPriority) {
