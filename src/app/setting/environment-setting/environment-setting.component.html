@@ -1,11 +1,16 @@
-<h1> Environment Setting </h1>
-<h2> Platform </h2>
-<form [formGroup]="PlatformForm">
-    Host: <input type="text" formControlName="host">
-</form>
-<hr>
-<hr>
-<h2> Debug </h2>
-<form [formGroup]="DebugForm">
-    Layout: <input type="checkbox" formControlName="layout">
-</form>
+<div>
+    <h1 class="margin-left-setting"> Environment Setting </h1>
+    <h2 class="margin-left-setting"> Platform </h2>
+    <form [formGroup]="PlatformForm" class="form-setup">
+        <span>Host:</span>
+        <div>
+            <input class="hl-input-seting" type="text" formControlName="host">
+        </div>
+    </form>
+    <hr>
+    <hr>
+    <h2 class="margin-left-setting"> Debug </h2>
+    <form [formGroup]="DebugForm" class="form-setup">
+        Layout: <input type="checkbox" formControlName="layout">
+    </form>
+</div>

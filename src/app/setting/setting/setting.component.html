@@ -1,10 +1,11 @@
-<p i18n>CETM Application Setting</p>
+<div class="container-setup">
+    <p class="title-setup" i18n>CETM Application Setting</p>
+    <div>
+        <button class="button-setting" routerLink="/" queryParamsHandling="preserve" appReload="1" i18n>Home</button>
+    </div>
 
-<div>
-    <button routerLink="/" queryParamsHandling="preserve" appReload="1" i18n>Home</button>
-</div>
-
-<div>
-    <app-application-store></app-application-store>
-    <app-environment-setting></app-environment-setting>
+    <div>
+        <app-application-store></app-application-store>
+        <app-environment-setting></app-environment-setting>
+    </div>
 </div>

@@ -1,14 +1,17 @@
-<span>Set time serving for transaction:</span><br>
-<div>
-    <form class="hl-form" [formGroup]="form">
-        <div>
-            <strong class="uppercase inline" i18n>Time Serving</strong><label class="note margin-l-5" i18n>(minute)</label>
-            <input class="inline border" type="number" min="0" formControlName="serving_time">
-        </div>
-        <div>
-            <strong class="uppercase inline" i18n>Attended</strong>
-            <input class="inline border" type="checkbox" formControlName="attended">
-        </div>
-        <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
-    </form>
+<div class="container-setup">
+    <span class="title-setup">Set time serving for transaction:</span><br>
+    <div>
+        <form class="form-setup" [formGroup]="form">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Time Serving</span> <label class="note margin-l-5" i18n>(minute)</label>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="serving_time">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Attended</span>
+                <input class="inline border" type="checkbox" formControlName="attended">
+            </div>
+
+            <button class="btnFill submit-setup" (click)="Submit()">Submit</button>
+        </form>
+    </div>
 </div>
