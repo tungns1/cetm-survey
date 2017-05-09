@@ -1,46 +1,29 @@
-<!--<span>Set Time For Ticket:</span><br>
-<div>
-    <form class="hl-form" [formGroup]="form">
+<div class="container-setup">
+    <span class="title-setup">Set Time For Ticket:</span>
+    <form [formGroup]="form" class="form-setup">
         <div>
-            <strong class="uppercase inline" i18n>Waiting Time Transaction</strong><label class="note margin-l-5" i18n>(minute)</label>
-            <input class="inline border" type="number" min="0" formControlName="max_waiting">
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Waiting Time Transaction</span>
+                <span class="note margin-l-5" i18n>(minute)</span>
+            </div>
+            <input class="hl-input-setup" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="Code">
         </div>
         <div>
-            <strong class="uppercase inline" i18n> Serving Time Transaction</strong><label class="note margin-l-5">(minute)</label>
-            <input class="inline border" type="number" min="0" formControlName="max_serving">
-        </div>
-        <div>
-            <strong class="uppercase inline" i18n>Auto Finish Time</strong><label class="note margin-l-5">(minute)</label>
-            <input class="inline border" type="number" min="0" formControlName="auto_finish">
-        </div>
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Serving Time Transaction</span>
+                <span class="note margin-l-5" i18n>(minute)</span>
+            </div>
 
-        <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
+            <input class="hl-input-setup" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="Code">
+        </div>
+        <div>
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Auto Finish Time</span>
+                <span class="note margin-l-5" i18n>(minute)</span>
+            </div>
+
+            <input class="hl-input-setup" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="Code">
+        </div>
+        <button class="btnFill submit-setup" (click)="Submit()">Submit</button>
     </form>
-</div>-->
-<span class="title-setup"><strong>Set Time For Ticket:</strong></span>
-<form [formGroup]="form" class="form-setup" fxLayout="column">
-    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
-            <span fxFlex="30%" class="uppercase inline" i18n><strong>Waiting Time Transaction</strong></span>
-            <span fxFlex class="note margin-l-5" i18n>(minute)</span>
-        </div>
-        <input fxFlex class="hl-input-setup" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="Code">
-    </div>
-    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
-            <span fxFlex="30%" class="uppercase inline" i18n><strong>Serving Time Transaction</strong></span>
-            <span fxFlex class="note margin-l-5" i18n>(minute)</span>
-        </div>
-
-        <input fxFlex class="hl-input-setup" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="Code">
-    </div>
-    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
-            <span fxFlex="30%" class="uppercase inline" i18n>Auto Finish Time</span>
-            <span fxFlex class="note margin-l-5" i18n>(minute)</span>
-        </div>
-
-        <input fxFlex class="hl-input-setup" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="Code">
-    </div>
-    <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
-</form>
+</div>
