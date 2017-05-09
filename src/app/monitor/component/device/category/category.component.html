@@ -12,7 +12,7 @@
         <tr *ngFor="let s of data" class="branchSummary">
             <td> {{s.branch_id | branchName}} </td>
             <td> {{s.entity_name}}</td>
-            <td> {{s.is_active}} </td>
+            <td> {{s | statusDevice}} </td>
             <td> {{s.start_at | localDayTime}} </td>
             <td> {{s.end_at | localDayTime}} </td>
             <td> {{s.active_duration | timeDuration}} </td>
