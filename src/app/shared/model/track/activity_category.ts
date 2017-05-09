@@ -33,8 +33,5 @@ export class ActivityCategory<T extends Activity> {
         return Array.from(this.cache.values());
     }
 
-    static Categories = {
-        Kiosk: "kiosk",
-        Counter: "counter"
-    }
+    static Categories = Activity.Categories
 }
