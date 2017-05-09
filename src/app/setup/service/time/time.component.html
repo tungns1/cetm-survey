@@ -17,18 +17,14 @@
         <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
     </form>
 </div>-->
-<form [formGroup]="form" fxLayout="column">
+<span class="title-setup"><strong>Set Time For Ticket:</strong></span>
+<form [formGroup]="form" class="form-setup" fxLayout="column">
     <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="30%" class="uppercase inline" i18n><strong>Waiting Time Transaction</strong></span>
             <span fxFlex class="note margin-l-5" i18n>(minute)</span>
         </div>
-
-        <input fxFlex class="hl-input" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="Code">
-
-        <span fxFlex="20%" i18n></span>
-        <div fxFlex>
-        </div>
+        <input fxFlex class="hl-input-setup" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="Code">
     </div>
     <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
@@ -36,11 +32,7 @@
             <span fxFlex class="note margin-l-5" i18n>(minute)</span>
         </div>
 
-        <input fxFlex class="hl-input" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="Code">
-
-        <span fxFlex="20%" i18n></span>
-        <div fxFlex>
-        </div>
+        <input fxFlex class="hl-input-setup" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="Code">
     </div>
     <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <div fxFlex="20%" fxLayout="row" fxLayoutGap="5px">
@@ -48,10 +40,7 @@
             <span fxFlex class="note margin-l-5" i18n>(minute)</span>
         </div>
 
-        <input fxFlex class="hl-input" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="Code">
-        <span fxFlex="20%" i18n></span>
-        <div fxFlex>
-        </div>
+        <input fxFlex class="hl-input-setup" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="Code">
     </div>
     <button class="btnFill btnCtrl" (click)="Submit()">Submit</button>
 </form>
