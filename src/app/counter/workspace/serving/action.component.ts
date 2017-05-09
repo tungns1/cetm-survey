@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { ModalComponent } from '../shared';
 
@@ -17,29 +18,25 @@ export class ActionComponent {
         private workspaceService: WorkspaceService,
         private queueService: QueueService,
         private ticketService: TicketService,
-        private ledService: LedService
+        private ledService: LedService,
+        private mdDialog: MdDialog
     ) { }
 
     auto = this.ticketService.autoNext$;
-    moveDialog = false;
 
     canNext$ = this.queueService.canNext$;
 
     @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
     @ViewChild(ModalComponent) needFeedback: ModalComponent;
-  
-
-    ngAfterViewInit() {
-        this.dialog.close.subscribe(() => {
-            this.moveDialog = false;
-        })
-    }
 
     Move() {
         this.ticketService.CheckFeedbackDone().subscribe(t => {
             if (t && t.length > 0) {
-                this.moveDialog = true;
-                this.dialog.SetTicket(t[0]);
+                const config = new MdDialogConfig();
+                config.width = '350px';
+                config.height = '425px';
+                config.data = t[0];
+                const dialog = this.mdDialog.open(TicketDetailDialog, config);
             }
         });
     }
