@@ -207,15 +207,15 @@
         <target>Giao dịch đợi chuẩn</target>
       </trans-unit>
       <trans-unit id="7469e1eea39803b70c0a7d638a987a929792323d">
-        <source>Exceeded waiting time transaction</source>
+        <source>Exceeded Waiting Time Transaction</source>
         <target>Giao dịch đợi vượt chuẩn</target>
       </trans-unit>
       <trans-unit id="96dac6b75ace7b7422b16579526e4419a1dc42f7">
-        <source>Standard serving time transaction</source>
+        <source>Standard Serving Time Transaction</source>
         <target>Giao dịch phục vụ chuẩn</target>
       </trans-unit>
       <trans-unit id="a0014e6f0bb970ebf5f6cbbd2e5a65bcdb9d4687">
-        <source>Exceeded serving time transaction</source>
+        <source>Exceeded Serving Time Transaction</source>
         <target>Giao dịch phục vụ vượt chuẩn</target>
       </trans-unit>
       <trans-unit id="5bb4a09a669f55893c9a37a8480c8fa3f7ce5702">
@@ -628,7 +628,7 @@
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d">
         <source>Logout</source>
-        <target>Đăng xuất\n</target>
+        <target>Đăng xuất</target>
       </trans-unit>
       <trans-unit id="5f559944294214b9f7bf5d268583d5dc045b741f">
         <source>User Setting</source>
@@ -1076,13 +1076,49 @@
         <source>Printed Ticket</source>
         <target>SL vé đã in</target>
       </trans-unit>
-      <trans-unit id="37120891f29a2d3484cca21ca12bde9fa15cef13" datatype="html">
+      <trans-unit id="37120891f29a2d3484cca21ca12bde9fa15cef13">
         <source>Waiting Long</source>
         <target>Giao dịch đợi vượt chuẩn</target>
       </trans-unit>
-      <trans-unit id="88eabb815439a6a8e8ce8ae11016d8be5df2889d" datatype="html">
+      <trans-unit id="88eabb815439a6a8e8ce8ae11016d8be5df2889d">
         <source>Serving Long</source>
         <target>Giao dịch phục vụ vượt chuẩn</target>
+      </trans-unit>
+      <trans-unit id="3e6937fdbde4da7f8c6866d56182945437e2629e">
+        <source>Go Back</source>
+        <target>Quay Lại</target>
+      </trans-unit>
+      <trans-unit id="134e3b57a3088d4d322bff07299d60825f25b62c">
+        <source>Online At</source>
+        <target>Thời điểm bật</target>
+      </trans-unit>
+      <trans-unit id="40690bd0cb6d7a7a717646c0b5d2f423f66d906d">
+        <source>Offline At</source>
+        <target>Thời điểm tắt</target>
+      </trans-unit>
+      <trans-unit id="276a4c6d933d702222d97354bfa94c2ae44ffcc4">
+        <source>Active Time (hour)</source>
+        <target>Thời gian hoạt động (giờ)</target>
+      </trans-unit>
+      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
+        <source>Type</source>
+        <target>Loại</target>
+      </trans-unit>
+      <trans-unit id="5ad4eecbd0fe09c34678fefce317a052af39dc96" datatype="html">
+        <source>Data</source>
+        <target>Dữ Liệu</target>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>Sửa</target>
+      </trans-unit>
+      <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
+        <source>Reset</source>
+        <target>Đặt Lại</target>
+      </trans-unit>
+      <trans-unit id="74596ceb73daf381f3b54fd8b6c17783dcd98808" datatype="html">
+        <source>Average Time</source>
+        <target>Thời Gian Trung Bình</target>
       </trans-unit>
     </body>
   </file>

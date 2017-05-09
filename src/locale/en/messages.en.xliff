@@ -163,8 +163,8 @@
         <source>Edit <x id="INTERPOLATION"/></source>
         <target/>
       </trans-unit>
-      <trans-unit id="2433ddbdc06ee62cfc93058f0edd67c0c9ced89a" datatype="html">
-        <source>Back To List Of <x id="INTERPOLATION"/></source>
+      <trans-unit id="3e6937fdbde4da7f8c6866d56182945437e2629e" datatype="html">
+        <source>Go Back</source>
         <target/>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
@@ -189,6 +189,22 @@
       </trans-unit>
       <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
         <source>Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
+        <source>Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5ad4eecbd0fe09c34678fefce317a052af39dc96" datatype="html">
+        <source>Data</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
+        <source>Reset</source>
         <target/>
       </trans-unit>
       <trans-unit id="7faaaa08f56427999f3be41df1093ce4089bbd75" datatype="html">
@@ -433,6 +449,10 @@
         <source>Status</source>
         <target/>
       </trans-unit>
+      <trans-unit id="74596ceb73daf381f3b54fd8b6c17783dcd98808" datatype="html">
+        <source>Average Time</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="fdf205e24baeba087126db32cbd87e701e1a9f86" datatype="html">
         <source>Serving Ticket</source>
         <target/>
@@ -517,7 +537,7 @@
         <source>Cancelled Ticket</source>
         <target/>
       </trans-unit>
-      <trans-unit id="9eb25ba7bd506ba93d2d95ff14051ee29255410f" datatype="html">
+      <trans-unit id="b50f33982f4f5ef2b964f269a6885d8d72b02b14" datatype="html">
         <source>Exceeded Waiting Time Transaction</source>
         <target/>
       </trans-unit>
@@ -573,8 +593,8 @@
         <source>Number of cancelled tickets</source>
         <target/>
       </trans-unit>
-      <trans-unit id="7469e1eea39803b70c0a7d638a987a929792323d" datatype="html">
-        <source>Exceeded waiting time transaction</source>
+      <trans-unit id="88eabb815439a6a8e8ce8ae11016d8be5df2889d" datatype="html">
+        <source>Serving Long</source>
         <target/>
       </trans-unit>
       <trans-unit id="d172c692d2e6b0e900268078fb26ca5b980d09f3" datatype="html">
@@ -613,10 +633,6 @@
         <source>Standard Waiting Time Transaction</source>
         <target/>
       </trans-unit>
-      <trans-unit id="b50f33982f4f5ef2b964f269a6885d8d72b02b14" datatype="html">
-        <source>Exceeded Waiting Time Transaction</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="b1a467e62f15c7cc99afc5f5a5ea7dc4e9a1e2ff" datatype="html">
         <source>Standard Serving Time Transaction</source>
         <target/>
@@ -653,8 +669,8 @@
         <source>Online At</source>
         <target/>
       </trans-unit>
-      <trans-unit id="2eaa63ed0614ee696af07ffb67e99b8f38611b21" datatype="html">
-        <source>Off At</source>
+      <trans-unit id="40690bd0cb6d7a7a717646c0b5d2f423f66d906d" datatype="html">
+        <source>Offline At</source>
         <target/>
       </trans-unit>
       <trans-unit id="276a4c6d933d702222d97354bfa94c2ae44ffcc4" datatype="html">
@@ -791,6 +807,10 @@
       </trans-unit>
       <trans-unit id="bdfb3b56ce7e2de49372fd9ff112939701d3d0f1" datatype="html">
         <source>Total Transaction</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e7b9417374517cf3d83c302c3b396825c1ec73b4" datatype="html">
+        <source>Standard waiting time transaction</source>
         <target/>
       </trans-unit>
       <trans-unit id="71b3171eebeca5e9ab16420f8d1f4eddd308786f" datatype="html">

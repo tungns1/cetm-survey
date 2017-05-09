@@ -16,7 +16,7 @@
     </div>
     <div>
         <div class="hl-ct-sum">
-            <span i18n>Exceeded waiting time transaction</span>
+            <span i18n>Exceeded Waiting Time Transaction</span>
             <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_wt}}&nbsp; ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%)</span>
         </div>
         <div class="hl-max-sum">
@@ -29,7 +29,7 @@
     </div>
     <div>
         <div class="hl-ct-sum">
-            <span i18n>Standard serving time transaction</span>
+            <span i18n>Standard Serving Time Transaction</span>
             <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.c_bst}}&nbsp; ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%)</span>
         </div>
         <div class="hl-max-sum">
@@ -42,7 +42,7 @@
     </div>
     <div>
         <div class="hl-ct-sum">
-            <span i18n>Exceeded serving time transaction</span>
+            <span i18n>Exceeded Serving Time Transaction</span>
             <span *ngIf="data.c_t>0" class="hl-giaodich">{{data.s_st}}&nbsp; ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%)</span>
         </div>
         <div class="hl-max-sum">
