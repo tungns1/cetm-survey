@@ -80,14 +80,14 @@ export class InfoKioskTrack {
     lowest_ticket_quantity = 0;
     timechart = [
         {
-            "name": "Active Time",
+            "name": "",
             "series": [
             ]
         }
     ];
     ticketchart = [
         {
-            "name": "Ticket Quantity",
+            "name": "",
             "series": [
             ]
         }

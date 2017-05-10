@@ -24,10 +24,10 @@
         <div class="border tabCtrl">
           <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
             <md-tab label="ACTIVE TIME">
-              <time-tab *ngIf="selectedTab === 0" [data]="data$ | async" [padding]="paddingTime | async"></time-tab>
+              <time-tab *ngIf="selectedTab === 0" [data]="data$ | async" [padding]="paddingTime | async" i18n-title title="Active Time"></time-tab>
             </md-tab>
             <md-tab label="TICKET QUANTITY">
-              <ticket-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingTicket | async"></ticket-tab>
+              <ticket-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingTicket | async" i18n-title title="Ticket Quantity"></ticket-tab>
             </md-tab>
           </md-tab-group>
         </div>
