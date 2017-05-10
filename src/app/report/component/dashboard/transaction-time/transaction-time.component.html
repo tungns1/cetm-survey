@@ -1,14 +1,14 @@
 <report-chart>
     <chart-item-group-view #pieConfig>
         <chart-item-group group="pie">
-            <chart-item field="s_wt_h" color="#FFD2C7" title="Waiting Time"></chart-item>
-            <chart-item field="s_st_h" color="#FF866A" title="Serving Time"></chart-item>
+            <chart-item field="s_wt_h" color="#ffb07b" i18n-title title="Waiting Time"></chart-item>
+            <chart-item field="s_st_h" color="#f56300" i18n-title title="Serving Time"></chart-item>
         </chart-item-group>
     </chart-item-group-view>
     <chart-item-group-view #otherConfig>
         <chart-item-group group="other">
-            <chart-item field="s_wt_h" color="#6AB7FF" title="Waiting Time"></chart-item>
-            <chart-item field="s_st_h" color="#C7E4FF" title="Serving Time"></chart-item>
+            <chart-item field="s_wt_h" color="#8fff9b" i18n-title title="Waiting Time"></chart-item>
+            <chart-item field="s_st_h" color="#0d9624" i18n-title title="Serving Time"></chart-item>
         </chart-item-group>
     </chart-item-group-view>
 </report-chart>
@@ -47,5 +47,5 @@
 <div class="divider"></div>
 <div fxLayout="row">
     <div fxFlex="80%"></div>
-    <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()">Export to Excel</button>
+    <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()" i18n>Export to excel</button>
 </div>

@@ -27,7 +27,6 @@ export class SummaryComponent {
     }
 
     focus(s: DeviceCount) {
-        console.log(s);
         this.router.navigate(['../focus', s.branch_id], {
             relativeTo: this.route,
             queryParamsHandling: "merge"

@@ -5,14 +5,14 @@
         <th i18n>Name</th>
         <th i18n>State</th>
         <th i18n>Online At</th>
-        <th i18n>Off At</th>
+        <th i18n>Offline At</th>
         <th i18n>Active Time (hour)</th>
     </thead>
     <tbody>
         <tr *ngFor="let s of data" class="branchSummary">
             <td> {{s.branch_id | branchName}} </td>
             <td> {{s.entity_name}}</td>
-            <td> {{s | statusDevice}} </td>
+            <td> {{s.status}} </td>
             <td> {{s.start_at | localDayTime}} </td>
             <td> {{s.end_at | localDayTime}} </td>
             <td> {{s.active_duration | timeDuration}} </td>

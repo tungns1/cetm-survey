@@ -15,6 +15,12 @@ export interface IMapActivity {
     [index: string]: IActivity;
 }
 
+export interface IKioskTrack {
+    pc: number;
+    ps: string;
+    ps_a: number;
+}
+
 export class Activity {
     constructor(private _a: IActivity) {
         _a = _a || <any>{};
@@ -33,4 +39,26 @@ export class Activity {
 
     //
     is_active = this.ref > 0;
+    get status() {
+        if (this.ref === 0) {
+            return "off"
+        } else {
+            if (this.category = Activity.Categories.Kiosk) {
+                var k: IKioskTrack = this.data;
+                if (k.ps != "") {
+                    return "on"
+                } else {
+                    return "printer error"
+                }
+
+            } else {
+                return "on";
+            }
+        }
+
+    }
+    static Categories = {
+        Kiosk: "kiosk",
+        Counter: "counter"
+    }
 }

@@ -13,7 +13,6 @@ export class TicketDetailComponent {
 
     constructor(
         @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-        private dialogRef: MdDialogRef<TicketDetailComponent>,
         private customerService: MonitorCustomerService,
         private monitorFocus: MonitorFocusService
     ) { }
