@@ -1,23 +1,23 @@
 <report-chart>
   <chart-item-group-view #pieConfig>
     <chart-item-group group="pie">
-      <chart-item field="c_ft" color="#FF866A" i18n-title title="Finished Transaction"></chart-item>
-      <chart-item field="c_ct" color="#FFD2C7" i18n-title title="Cancelled Transaction"></chart-item>
+      <chart-item field="c_ft" color="#ffb07b" i18n-title title="Finished Transaction"></chart-item>
+      <chart-item field="c_ct" color="#f56300" i18n-title title="Cancelled Transaction"></chart-item>
     </chart-item-group>
     <chart-item-group group="pie">
-      <chart-item field="c_bwt" color="#ff974d" i18n-title title="Standard waiting time transaction"></chart-item>
-      <chart-item field="c_awt" color="#C7FFD1" i18n-title title="Exceeded Waiting Time Transaction"></chart-item>
+      <chart-item field="c_bwt" color="#8fff9b" i18n-title title="Standard waiting time transaction"></chart-item>
+      <chart-item field="c_awt" color="#0d9624" i18n-title title="Exceeded Waiting Time Transaction"></chart-item>
     </chart-item-group>
     <chart-item-group group="pie">
-      <chart-item field="c_bst" color="#7BDEFF" i18n-title title="Standard Serving Time Transaction"></chart-item>
-      <chart-item field="c_ast" color="#C7F1FF" i18n-title title="Exceeded Serving Time Transaction"></chart-item>
+      <chart-item field="c_bst" color="#93bbff" i18n-title title="Standard Serving Time Transaction"></chart-item>
+      <chart-item field="c_ast" color="#3266cc" i18n-title title="Exceeded Serving Time Transaction"></chart-item>
     </chart-item-group>
   </chart-item-group-view>
   <chart-item-group-view #otherConfig>
     <chart-item-group group="other">
-      <chart-item field="c_t" color="#FFE8B4" i18n-title title="Total Transaction"></chart-item>
-      <chart-item field="c_ft" color="#F3CEFF" i18n-title title="Finished Transaction"></chart-item>
-      <chart-item field="c_ct" color="#66CCA3" i18n-title title="Cancelled Transaction"></chart-item>
+      <chart-item field="c_t" color="#ff9a00" i18n-title title="Total Transaction"></chart-item>
+      <chart-item field="c_ft" color="#3266cc" i18n-title title="Finished Transaction"></chart-item>
+      <chart-item field="c_ct" color="#990099" i18n-title title="Cancelled Transaction"></chart-item>
     </chart-item-group>
   </chart-item-group-view>
 </report-chart>
@@ -66,5 +66,5 @@
 <div class="divider"></div>
 <div fxLayout="row">
   <div fxFlex="80%"></div>
-  <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel($event)">Export to Excel</button>
+  <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel($event)" i18n>Export to excel</button>
 </div>

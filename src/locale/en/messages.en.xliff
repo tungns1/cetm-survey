@@ -961,6 +961,14 @@
         <source>Feedback Result</source>
         <target/>
       </trans-unit>
+      <trans-unit id="8ccbbf713df5a6603478c7d902bb14abb2545754" datatype="html">
+        <source>Active Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e382fe163b07e271bef2d07d29e87e4eb1b710d8" datatype="html">
+        <source>Ticket Quantity</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="042087e0a33a841b098f4cdca26ba260867924da" datatype="html">
         <source>Total printed ticket</source>
         <target/>
@@ -1061,8 +1069,8 @@
         <source>Waiting Time Transaction</source>
         <target/>
       </trans-unit>
-      <trans-unit id="e3fc3a30ebd3b9ec0933e52ab66907761055bc5e" datatype="html">
-        <source> Serving Time Transaction</source>
+      <trans-unit id="eb2eb45e4f1b8d7027abf571e0050d7e7fd2f374" datatype="html">
+        <source>Serving Time Transaction</source>
         <target/>
       </trans-unit>
       <trans-unit id="57408663c2c864aa11c9fca9ff618bb2b604bd8a" datatype="html">
@@ -1077,8 +1085,8 @@
         <source>Priority for customer priority</source>
         <target/>
       </trans-unit>
-      <trans-unit id="7fca9e5339b86390d6fa7540d73bd766e148e5de" datatype="html">
-        <source>Priority for vip card </source>
+      <trans-unit id="6152850b1d726b54bcf406a31280066e914c4f71" datatype="html">
+        <source>Priority for vip card</source>
         <target/>
       </trans-unit>
       <trans-unit id="68212a2ad3f0559bf3f8620be34f6ac30aba0d0e" datatype="html">
