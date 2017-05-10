@@ -7,7 +7,7 @@
 <div id="focusComponent" *ngIf="box$ | async; else loading; let box; ">
     <h2 class="header uppercase"> {{box.branch?.name}} </h2>
     <div class="nav">
-        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()">Go Back</button>
+        <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()" i18n>Go Back</button>
     </div>
     <div class="overview border padding-20" fxLayout="row" fxLayoutGap="30px">
         <!-- General Information -->
@@ -17,7 +17,7 @@
                 <span>{{box.parent?.name}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Admin</span>
+                <span i18n>Administrator</span>
                 <span>{{box.users.admin[0]?.fullname}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
@@ -34,7 +34,7 @@
                     <span>{{c.on}}</span>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between none">
-                    <span>Offline</span>
+                    <span i18n>Offline</span>
                     <span>{{c.off}}</span>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <span>{{s.cancelled}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <span i18n>Waiting Long</span>
+                <span i18n>Exceeded Waiting Time Transaction</span>
                 <span>{{s.wait_long}}</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between none">

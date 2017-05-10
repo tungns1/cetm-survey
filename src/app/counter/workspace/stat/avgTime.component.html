@@ -1,6 +1,6 @@
 <div id="avgTime" class="border" fxLayout="row" fxLayoutAlign="space-around center">
     <div fxFlex="10"></div>
-    <label fxFlex="25" class="title">Average Time</label>
+    <label fxFlex="25" class="title" i18n>Average Time</label>
     <span fxFlex class="time" [ngClass]="{'warning': stime > 60}">{{stime | timeDuration}}</span>
     <div fxFlex="10"></div>
 </div>

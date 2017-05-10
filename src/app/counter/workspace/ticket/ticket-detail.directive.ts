@@ -1,5 +1,8 @@
-import { Directive, ViewContainerRef } from '@angular/core';
-import { Input, ComponentFactoryResolver, ComponentFactory, ComponentRef } from '@angular/core';
+import {
+  Input, ComponentFactoryResolver, ComponentFactory,
+  ComponentRef, Directive, ViewContainerRef
+} from '@angular/core';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from './ticket-detail.dialog';
 
 @Directive({
@@ -14,7 +17,9 @@ export class TicketDetailDirective {
 
   constructor(
     private viewContainer: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver) { }
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private mdDialog: MdDialog
+  ) { }
 
   open() {
 
@@ -22,18 +27,21 @@ export class TicketDetailDirective {
       console.log("Missing ticket for detail");
       return;
     }
-
-    this.createDialog();
-    this.dialogRef.instance.SetTicket(this.ticket);
+    
+    const config = new MdDialogConfig();
+    config.width = '350px';
+    config.height = '400px';
+    config.data = this.ticket;
+    const dialog = this.mdDialog.open(TicketDetailDialog, config);
   }
 
-  createDialog() {
-    this.viewContainer.clear();
-    let dialogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(TicketDetailDialog);
-    this.dialogRef = this.viewContainer.createComponent(dialogComponentFactory);
-    this.dialogRef.instance.close.subscribe(() => {
-      this.dialogRef.destroy();
-    });
-    return this.dialogRef;
-  }
+  // createDialog() {
+  //   this.viewContainer.clear();
+  //   let dialogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(TicketDetailDialog);
+  //   this.dialogRef = this.viewContainer.createComponent(dialogComponentFactory);
+  //   this.dialogRef.instance.close.subscribe(() => {
+  //     this.dialogRef.destroy();
+  //   });
+  //   return this.dialogRef;
+  // }
 }

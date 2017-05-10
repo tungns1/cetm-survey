@@ -39,7 +39,7 @@
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%">
                 <ng-container i18n>Inherit From</ng-container>
-                <a [routerLink]="parentEdit$ | async" queryParamsHandling="merge">Edit</a>
+                <a [routerLink]="parentEdit$ | async" queryParamsHandling="merge" i18n>Edit</a>
             </span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%">&nbsp;</span>
@@ -50,7 +50,7 @@
             </div>
             <span fxFlex="20%">
                 <ng-container>Layout</ng-container>
-                <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">Edit</a>
+                <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge" i18n>Edit</a>
             </span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%">&nbsp;</span>

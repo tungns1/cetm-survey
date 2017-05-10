@@ -1,4 +1,4 @@
-<div class="modal" *ngIf="ticket && isModal && !(isRemove || isAlert)">
+<div *ngIf="ticket">
     <div id="ticketDetail" class="modal-dialog">
         <div class="modal-header" i18n>Ticket Detail</div>
         <div class="modal-body padding-10-20">
@@ -16,7 +16,7 @@
             </div>
             <div class="divider margin-t-10"></div>
 
-            <div *ngIf="isServing">
+            <div *ngIf="ticket.state === 'serving'">
                 <div fxLayout="row" class="margin-10-0">
                     <label fxFlex i18n>Start Serving</label>
                     <span fxFlex>{{ticket.mtime | localDayTime}}</span>
@@ -25,7 +25,7 @@
                 <select-check class="margin-t-10" [(ngModel)]="checkedServices" [data]="services | async" textField="name"></select-check>
             </div>
 
-            <div *ngIf="isMissed" fxLayout="row" class="margin-t-10">
+            <div *ngIf="ticket.state === 'missed'" fxLayout="row" class="margin-t-10">
                 <label fxFlex i18n>Missing Time</label>
                 <span fxFlex>{{ticket.mtime | localDayTime}}</span>
             </div>
@@ -33,29 +33,29 @@
             <p class="margin-10-0" i18n>Transfer Counter</p>
             <select-check class="margin-t-10" [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
 
-            <div *ngIf="isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
-                <button fxFlex class="btnClear" (click)="Close()" i18n>Close</button>
+            <div *ngIf="ticket.state === 'missed'" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
+                <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
 
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
 
                 <button fxFlex class="btnFill" (click)="Recall()" i18n>Recall</button>
 
-                <button fxFlex class="btnRed" (click)="OpenRemove()" i18n>Delete</button>
+                <button fxFlex class="btnRed" (click)="confirmRemove()" i18n>Delete</button>
             </div>
-            <div *ngIf="!isMissed" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
-                <button fxFlex class="btnClear" (click)="Close()" i18n>Close</button>
+            <div *ngIf="ticket.state !== 'missed'" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
+                <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
 
                 <button *ngIf="isVip && isWaiting" fxFlex class="btnFill" (click)="Recall()" i18n>Call</button>
 
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
 
-                <button fxFlex class="btnRed" (click)="OpenRemove()" i18n>Delete</button>
+                <button fxFlex class="btnRed" (click)="confirmRemove()" i18n>Delete</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal" *ngIf="isRemove || isAlert">
+<!--<div class="modal" *ngIf="isRemove || isAlert">
     <div class="modal-dialog">
         <div *ngIf="isRemove" class="modal-confirm modal-body">
             <p class="center" i18n="Confirm Delete">Do you want to delete the selected item?</p>
@@ -66,11 +66,18 @@
         </div>
         <div *ngIf="isAlert" id="alert" class="modal-body padding-10-20">
             <h4 class="center margin-t-10">{{title}}</h4>
-            <p class="center margin-10">{{message}}</p>
+            <p class="center margin-10">
+                <div [ngSwich]="x">
+                    <div *ngSwitchCase="m1">
+                        Pleáe select counter
+                    </div>
+                    {{message}}
+                </div>
+            </p>
             <div fxLayout="row" fxLayoutGap="20px" class="margin-0-35 margin-t-20">
                 <div fxFlex></div>
                 <button fxFlex="30%" class="btnFill uppercase" (click)="CloseAlert()" i18n>Yes</button>
             </div>
         </div>
     </div>
-</div>
+</div>-->
