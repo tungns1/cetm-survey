@@ -28,7 +28,6 @@ export class Customers {
     vip_code=this.v.vip_code;
     segment=this.v.segment;
     get full_name(){
-        console.log(this.v.full_name)
         if(this.v.full_name!=undefined){
             return this.v.full_name
         }else{
