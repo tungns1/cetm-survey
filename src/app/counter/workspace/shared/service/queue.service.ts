@@ -11,7 +11,7 @@ export class QueueService {
     constructor(
         private workspaceService: WorkspaceService
     ) {
-
+        
     }
 
     _waiting$ = this.workspaceService.Workspace$.map(w => w.Waiting)

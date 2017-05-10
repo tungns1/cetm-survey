@@ -44,6 +44,7 @@ export class Workspace {
         if (t.state == TicketStates.Waiting || t.state == TicketStates.Missed) {
             return this.canServe(t.services);
         }
+        return true;
     }
 
     Waiting = new TicketQueue(TicketStates.Waiting);

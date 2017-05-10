@@ -54,7 +54,7 @@ export class WorkspaceService {
                 w.Update(action);
             });
         return merge(of(null), ticketUpdate).map(_ => w);
-    }).share();
+    }).share().publishReplay(1).refCount();
 
     private setUser() {
         this.socket.Connected$.switchMap(() => {
@@ -64,7 +64,7 @@ export class WorkspaceService {
         }).subscribe();
     }
 
-    currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
+    currentCounter$ = this.Workspace$.map(w => w.current_counter) ;
     counters$ = this.Workspace$.map(w => w.counters);
     services$ = this.counters$.combineLatest(
         CacheService.RxListView,
