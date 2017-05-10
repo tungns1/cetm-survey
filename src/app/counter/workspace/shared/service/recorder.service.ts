@@ -30,10 +30,10 @@ export class RecorderService {
                 this.recorderDevice.SkipSaveToFile();
             }
         });
-        this.queueService.missed$.subscribe(s => {
-            let t = s[0];
-            if(t) this.recorderDevice.SendFileMiss();
-        })
+        // this.queueService.missed$.subscribe(s => {
+        //     let t = s[0];
+        //     if(t) this.recorderDevice.SendFileMiss();
+        // })
         return true;
     }
 
