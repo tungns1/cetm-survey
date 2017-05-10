@@ -25,6 +25,7 @@ import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { FeedbackService } from './feedback.service';
 
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 class TicketAction {
     constructor(
@@ -69,12 +70,7 @@ export class TicketService {
     }
 
     RecallAll() {
-        return this.serving$.switchMap(t => {
-            if (!t || !t[0]) {
-                return of(null)
-            }
-            return this.socket.Send('/recall', t[0].id)
-        });
+        return this.updateServing(ActionRecall);
     }
 
     get serving$() {
@@ -83,6 +79,7 @@ export class TicketService {
 
     private updateServing(action: string) {
         return this.serving$.switchMap(t => {
+            console.log(t);
             if (!t || !t[0]) {
                 return of(null);
             }
@@ -93,7 +90,9 @@ export class TicketService {
     }
 
     CheckFeedbackDone() {
+        console.log("feedback")
         return this.serving$.switchMap(t => {
+            console.log("ticket");
             return this.feedbackService.CheckFeedback(t);
         });
     }
@@ -156,18 +155,13 @@ export class TicketService {
 
     private onInit() {
         // if auto next
-        this.autoNext$.throttleTime(100).switchMap(auto => {
-            if (!auto) {
-                return of();
-            }
-            // wait until not busy
-            return this.queueService.busy$.filter(b => !b).first().switchMap(_ => {
-                // the first ticket
-                return this.queueService.waiting$.filter(t => t.length > 0).map(t => t[0]).first().throttleTime(250).switchMap(t => {
-                    // call the first ticket
-                    return this.CallTicket(t);
-                }).do(_ => this.SetAutoNext(false));
+        combineLatest(this.autoNext$, this.workspaceService.Workspace$)
+            .subscribe(([autoNext, w]) => {
+                if (autoNext && w.Serving.is_empty && !w.Waiting.is_empty) {
+                    this.CallTicket(w.Waiting.GetFirstTicket()).subscribe(_ => {
+                        this.SetAutoNext(false);
+                    })
+                }
             });
-        }).subscribe();
     }
 }

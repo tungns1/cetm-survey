@@ -11,7 +11,13 @@ import {
     TicketState
 } from '../shared';
 
-import { IStatMap } from '../model';
+import {
+    IStatMap, ITicketAction,
+    Workspace, IWorkspaceInitialState
+} from '../model';
+
+import { of } from 'rxjs/observable/of';
+import { merge } from 'rxjs/observable/merge';
 
 const SOCKET_LINK = "/room/counter/join";
 import { WorkspaceSocket } from './workspace.socket';
@@ -37,11 +43,18 @@ export class WorkspaceService {
         this.socket.onDestroy();
     }
 
-    currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
-    counters$ = this.socket.RxEvent<ICounter[]>("/counters");
-
 
     stat$ = this.socket.RxEvent<IStatMap>("/stat").share();
+    private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
+
+    Workspace$ = this.initialState$.switchMap(s => {
+        const w = new Workspace(s);
+        const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
+            .map(action => {
+                w.Update(action);
+            });
+        return merge(of(null), ticketUpdate).map(_ => w);
+    }).share();
 
     private setUser() {
         this.socket.Connected$.switchMap(() => {
@@ -51,6 +64,8 @@ export class WorkspaceService {
         }).subscribe();
     }
 
+    currentCounter$ = this.socket.RxEvent<ICounter>("/counter");
+    counters$ = this.Workspace$.map(w => w.counters);
     services$ = this.counters$.combineLatest(
         CacheService.RxListView,
         (counters, allServices) => {
