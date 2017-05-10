@@ -3,7 +3,7 @@ import {
   Output, EventEmitter
 } from '@angular/core';
 
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
 @Directive({
   selector: '[appConfirm]'
@@ -19,7 +19,9 @@ export class ConfirmDirective {
   @HostListener("click", ["$event"])
   onClick(e: Event) {
     e.preventDefault();
-    const dialog = this.mdDialog.open(AppConfirmDialog)
+    const config = new MdDialogConfig();
+    config.width = '450px';
+    const dialog = this.mdDialog.open(AppConfirmDialog, config)
     dialog.componentInstance.message = this.appConfirm || "Are you sure?";
     dialog.afterClosed().subscribe(result => {
       if (result) {
@@ -33,8 +35,8 @@ export class ConfirmDirective {
   selector: 'app-confirm-dialog',
   // <h1 md-dialog-title></h1>
   template: `
-  <div md-dialog-content class="center">{{message}}</div>
-  <div md-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-20">
+  <div class="center margin-20-0" style="font-size: 13px">{{message}}</div>
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-20-0">
     <button fxFlex="20%" class="uppercase btnClear" (click)="dialogRef.close(true)" i18n="Confirm Yes">Yes</button>
     <button fxFlex="20%" class="uppercase btnFill" (click)="dialogRef.close(false)" i18n="Confirm No">No</button>
   </div>

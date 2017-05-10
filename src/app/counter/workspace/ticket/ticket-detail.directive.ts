@@ -30,7 +30,6 @@ export class TicketDetailDirective {
     
     const config = new MdDialogConfig();
     config.width = '350px';
-    config.height = '400px';
     config.data = this.ticket;
     const dialog = this.mdDialog.open(TicketDetailDialog, config);
   }

@@ -51,7 +51,7 @@ export class TicketDetailDialog {
   );
 
 
-  // private services = this.workspaceService.services$;
+  private services = this.workspaceService.services$;
 
   ngOnInit() {
     this.ticket = this.dialogData;
@@ -120,7 +120,6 @@ export class TicketDetailDialog {
   confirmRemove() {
     const config = new MdDialogConfig();
     config.width = '450px';
-    config.height = '100px';
     config.data = this.ticket;
     const dialog = this.dialog.open(ConfirmDialog, config);
   }
@@ -128,7 +127,6 @@ export class TicketDetailDialog {
   protected ShowMessage(title: string, message: string) {
     const config = new MdDialogConfig();
     config.width = '450px';
-    config.height = '100px';
     config.data = { title, message };
     const dialog = this.dialog.open(Alert, config);
   }
@@ -138,8 +136,8 @@ export class TicketDetailDialog {
 @Component({
   selector: 'confirm-dialog',
   template: `
-        <p class="center" i18n="Confirm Delete">Do you want to delete the selected item?</p>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-t-20">
+        <p class="center" style="font-size: 13px" i18n="Confirm Delete">Do you want to delete the selected item?</p>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-20-0">
             <button fxFlex="20%" class="uppercase btnClear" (click)="Delete()" i18n>Yes</button>
             <button fxFlex="20%" class="uppercase btnFill" md-dialog-close i18n>No</button>
         </div>
@@ -167,11 +165,11 @@ export class ConfirmDialog {
 @Component({
   selector: 'alert',
   template: `
-        <h4 class="center margin-t-10">{{title}}</h4>
-        <p class="center margin-10">
+        <h4 class="center margin-t-10" style="font-size: 14px; color: red;">{{title}}</h4>
+        <p class="center margin-10" style="font-size: 13px">
             {{message}}
         </p>
-        <div fxLayout="row" fxLayoutGap="20px" class="margin-0-35 margin-t-20">
+        <div fxLayout="row" fxLayoutGap="20px" class="margin-20-35">
             <div fxFlex></div>
             <button fxFlex="30%" class="btnFill uppercase" md-dialog-close i18n>Yes</button>
         </div>
