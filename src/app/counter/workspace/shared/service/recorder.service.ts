@@ -27,14 +27,13 @@ export class RecorderService {
                 const dateString = `${date.getFullYear()}-${twoDigit(month)}-${twoDigit(day)}`;
                 this.recorderDevice.AppendToFile(`${dateString}.${t.branch_id}.${t.transaction_id}`);
             } else {
-                this.queueService.missed$.subscribe(m => {
-                    let tm = m[0];
-                    if(tm) this.recorderDevice.SkipSaveToFile();
-                    else this.recorderDevice.SendFileMiss();
-                })
-                
+                this.recorderDevice.SkipSaveToFile();
             }
         });
+        this.queueService.missed$.subscribe(s => {
+            let t = s[0];
+            if(t) this.recorderDevice.SendFileMiss();
+        })
         return true;
     }
 
