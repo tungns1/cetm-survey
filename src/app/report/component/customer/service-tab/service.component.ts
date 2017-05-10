@@ -14,7 +14,7 @@ export class ServiceComponent {
   view: any[] = [900, 400];
 
   colorScheme = {
-    domain: ['#FFEAB5', '#F6CFFF', '#A1CCBD', '#6FB29B', '#FFCDB1', '#9A97FF', '#86CC75', '#5DB248', '#FFE4E3', '#C9E7FF', '#CACC9D', '#B0B26B']
+    domain: ['#ff9a00', '#3266cc', '#990099', '#dc3812', '#109619', '#03718d']
   };
 
 

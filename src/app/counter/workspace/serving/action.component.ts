@@ -34,7 +34,6 @@ export class ActionComponent {
             if (t && t.length > 0) {
                 const config = new MdDialogConfig();
                 config.width = '350px';
-                config.height = '425px';
                 config.data = t[0];
                 const dialog = this.mdDialog.open(TicketDetailDialog, config);
             }

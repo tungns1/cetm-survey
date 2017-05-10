@@ -1,22 +1,22 @@
 <report-chart>
     <chart-item-group-view #pieConfig>
         <chart-item-group group="pie">
-            <chart-item field="c_r" color="#8EE7FF" i18n-title title="Transaction feedback"></chart-item>
-            <chart-item field="c_r_o" color="#DAF7FF" i18n-title title="Transaction without feedback"></chart-item>
+            <chart-item field="c_r" color="#ffb07b" i18n-title title="Transaction feedback"></chart-item>
+            <chart-item field="c_r_o" color="#f56300" i18n-title title="Transaction without feedback"></chart-item>
         </chart-item-group>
         <chart-item-group group="pie">
-            <chart-item field="c_r_a" color="#C0CAFF" i18n-title title="Very good feedback"></chart-item>
-            <chart-item field="c_r_b" color="#CDFFA7" i18n-title title="Good feedback"></chart-item>
-            <chart-item field="c_r_c" color="#CCC2BF" i18n-title title="Average feedback"></chart-item>
-            <chart-item field="c_r_d" color="#FFC6B2" i18n-title title="Poor feedback"></chart-item>
+            <chart-item field="c_r_a" color="#ff9a00" i18n-title title="Very good feedback"></chart-item>
+            <chart-item field="c_r_b" color="#3266cc" i18n-title title="Good feedback"></chart-item>
+            <chart-item field="c_r_c" color="#990099" i18n-title title="Average feedback"></chart-item>
+            <chart-item field="c_r_d" color="#dc3812" i18n-title title="Poor feedback"></chart-item>
         </chart-item-group>
     </chart-item-group-view>
     <chart-item-group-view #otherConfig>
         <chart-item-group group="other">
-            <chart-item field="c_r_a" color="#C0CAFF" i18n-title title="Very good feedback"></chart-item>
-            <chart-item field="c_r_b" color="#CDFFA7" i18n-title title="Good feedback"></chart-item>
-            <chart-item field="c_r_c" color="#CCC2BF" i18n-title title="Average feedback"></chart-item>
-            <chart-item field="c_r_d" color="#FFC6B2" i18n-title title="Poor feedback"></chart-item>
+            <chart-item field="c_r_a" color="#ff9a00" i18n-title title="Very good feedback"></chart-item>
+            <chart-item field="c_r_b" color="#3266cc" i18n-title title="Good feedback"></chart-item>
+            <chart-item field="c_r_c" color="#990099" i18n-title title="Average feedback"></chart-item>
+            <chart-item field="c_r_d" color="#dc3812" i18n-title title="Poor feedback"></chart-item>
         </chart-item-group>
     </chart-item-group-view>
 </report-chart>
@@ -67,5 +67,5 @@
 <div class="divider"></div>
 <div fxLayout="row">
     <div fxFlex="80%"></div>
-    <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()">Export to Excel</button>
+    <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()" i18n>Export to excel</button>
 </div>
