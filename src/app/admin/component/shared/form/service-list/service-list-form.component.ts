@@ -46,7 +46,8 @@ export class ServiceListComponent implements ControlValueAccessor {
         config.width = '450px';
         config.data = {
             data: <any>{},
-            services: this.services
+            services: this.services,
+            value: this.value
         };
         const dialog = this.dialog.open(ServiceListModal, config);
     }
@@ -58,7 +59,8 @@ export class ServiceListComponent implements ControlValueAccessor {
         config.width = '350px';
         config.data = {
             data: d,
-            services: this.services
+            services: this.services,
+            value: this.value
         };
         const dialog = this.dialog.open(ServiceListModal, config);
     }
@@ -102,7 +104,8 @@ export class ServiceListComponent implements ControlValueAccessor {
 
 interface IServiceListModalData {
     data: IService,
-    services: IServiceList
+    services: IServiceList,
+    value: IServiceList;
 }
 
 @Component({
@@ -119,8 +122,8 @@ export class ServiceListModal {
 
     private active = this.dialogData.data;
     private services = this.dialogData.services;
+    protected value = this.dialogData.value;
     protected onChangeCallback = (v) => { };
-    protected value: IServiceList = [];
 
 
     setActive() {
