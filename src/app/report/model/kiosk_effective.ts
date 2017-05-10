@@ -155,7 +155,7 @@ export class InfoKioskTrack {
             }
             for (var i = 0; i < len_by_date; i++) {
                 var total = 0;
-                data_by_branh[i].forEach(v => {
+                data_by_date[i].forEach(v => {
                     if (v.data != null) {
                         total += +v.data.pc || 0;
                     }
