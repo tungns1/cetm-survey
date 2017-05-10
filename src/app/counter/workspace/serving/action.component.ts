@@ -41,6 +41,7 @@ export class ActionComponent {
     }
 
     Next() {
+        console.log("next");
         this.ticketService.CheckFeedbackAndFinishAll().subscribe(done => {
             this.ticketService.SetAutoNext(done);
         });
