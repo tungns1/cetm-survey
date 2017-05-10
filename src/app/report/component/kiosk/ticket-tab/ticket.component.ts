@@ -10,6 +10,7 @@ import { ExportExcelService, InfoKioskTrack } from '../../shared';
 export class TicketComponent {
   @Input() data: InfoKioskTrack;
   @Input() padding: number;
+  @Input() title: string;
 
   view: any[] = [900, 400];
 
@@ -28,15 +29,19 @@ export class TicketComponent {
 
 
   constructor(private exportService: ExportExcelService) {
-
+    
   }
 
-
+  ngOnChanges(changes) {
+    if (changes.title) {
+      this.data.ticketchart[0].name = this.title;
+    }
+  }
   onSelect(event) {
     console.log(event);
   }
   excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
+    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', "");
   }
 
 }

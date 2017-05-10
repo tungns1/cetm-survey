@@ -1120,6 +1120,14 @@
         <source>Average Time</source>
         <target>Thời Gian Trung Bình</target>
       </trans-unit>
+       <trans-unit id="e382fe163b07e271bef2d07d29e87e4eb1b710d8" datatype="html">
+        <source>Ticket Quantity</source>
+        <target>Số lượng vé</target>
+      </trans-unit>
+      <trans-unit id="8ccbbf713df5a6603478c7d902bb14abb2545754" datatype="html">
+        <source>Active Time</source>
+        <target>Thời gian hoạt động</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
