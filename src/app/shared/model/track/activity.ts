@@ -40,10 +40,10 @@ export class Activity {
     //
     is_active = this.ref > 0;
     get status() {
-        if (this._a.ref === 0) {
+        if (this.ref === 0) {
             return "off"
         } else {
-            if (this._a.cat = Activity.Categories.Kiosk) {
+            if (this.category = Activity.Categories.Kiosk) {
                 var k: IKioskTrack = this.data;
                 if (k.ps != "") {
                     return "on"

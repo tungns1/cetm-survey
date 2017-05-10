@@ -16,8 +16,8 @@ export interface IKioskTrack {
 
 export interface IKioskTrackData {
     pc: number;
-    ps:string;
-    ps_a:number;
+    ps: string;
+    ps_a: number;
 }
 
 
@@ -116,13 +116,15 @@ export class InfoKioskTrack {
             for (var i = 0; i < len_by_branch; i++) {
                 var min = 0, max = 0, total = 0;
                 data_by_branh[i].forEach(v => {
-                    if (v.data.pc < min) {
-                        min = +v.data.pc || 0;
+                    if (v.data != null) {
+                        if (v.data.pc < min) {
+                            min = +v.data.pc || 0;
+                        }
+                        if (v.data.pc > max) {
+                            max = +v.data.pc || 0;
+                        }
+                        total += +v.data.pc || 0;
                     }
-                    if (v.data.pc > max) {
-                        max = +v.data.pc || 0;
-                    }
-                    total += +v.data.pc || 0;
                 })
 
                 this.ticket.push({
@@ -149,9 +151,15 @@ export class InfoKioskTrack {
                 })
             }
             for (var i = 0; i < len_by_date; i++) {
+                var total = 0;
+                data_by_branh[i].forEach(v => {
+                    if (v.data != null) {
+                        total += +v.data.pc || 0;
+                    }
+                })
                 this.ticket_day.push({
                     name: data_by_date[i][0].date,
-                    value: sumBy(data_by_date[i], a => +a.data.pc || 0)
+                    value: total
                 })
                 this.time_day.push({
                     name: data_by_date[i][0].date,
