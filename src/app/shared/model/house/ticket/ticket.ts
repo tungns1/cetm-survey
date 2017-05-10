@@ -1,4 +1,4 @@
-import { ICustomer } from '../../org';
+import { ICustomer,Customer } from '../../org';
 import { TicketState, TicketStates } from './ticket_state';
 import {
     getPriority, sortTicket, priorityCode,
@@ -84,7 +84,7 @@ export class Ticket {
     ctime = this._t.ctime;
     mtime = this._t.mtime;
     tracks = this._t.tracks;
-    customer = this._t.customer;
+    customer = new Customer(this._t.customer);
     ticket_priority = this._t.ticket_priority;
     transaction_id?= this._t.transaction_id;
     service_name = getServiceName(this._t);

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
-    ITransactionView, ICustomer, IUser, USER_ROLES,
+    ITransactionView, ICustomer, IUser, USER_ROLES, Customers,
     RuntimeEnvironment
 } from '../shared';
 import { Router } from '@angular/router';
@@ -43,7 +43,10 @@ export class TransactionComponent implements OnInit {
         if (!customer_id) return;
         this.customer = null;
         this.transactionHistoryApi.GetInfoCustomer(customer_id)
-            .subscribe(v => this.customer = v);
+            .subscribe(v => {
+                this.customer = new Customers(v)
+               console.log(v);
+            });
     }
 
     private getBranchUsers(branch_id: string) {
