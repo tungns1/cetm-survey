@@ -3,7 +3,7 @@ import {
     ITicket, IMapTicket, Ticket,
     TicketState, TicketStates
 } from './shared';
-import { TicketQueue } from './queue';
+import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue } from './queue';
 import { ITicketAction, TicketAction } from './ticket_action';
 import { IStat, CounterStatistics } from './stat';
 
@@ -39,23 +39,9 @@ export class Workspace {
         c.vservices.forEach(s => this.vip_services.add(s));
     }
 
-    private canServe(services: string[] = []) {
-        return services.some(s => this.services.has(s));
-    }
-
-    private canAdd(t: Ticket) {
-        if (t.state == TicketStates.Serving) {
-            return t.counter_id == this.current_counter.id;
-        }
-        if (t.state == TicketStates.Waiting || t.state == TicketStates.Missed) {
-            return this.canServe(t.services);
-        }
-        return true;
-    }
-
-    Waiting = new TicketQueue(TicketStates.Waiting);
-    Serving = new TicketQueue(TicketStates.Serving);
-    Missed = new TicketQueue(TicketStates.Missed);
+    Waiting = new WaitingQueue(this.services, this.vip_services);
+    Serving = new ServingQueue(this.current_counter.id);
+    Missed = new MissedQueue(this.services, this.vip_services);
 
     private queues: TicketQueue[] = [
         this.Waiting, this.Serving, this.Missed
@@ -69,9 +55,8 @@ export class Workspace {
         if (!a) return;
         const action = new TicketAction(a);
         const t = action.ticket;
-        if (this.canAdd(t)) {
-            this.queues.forEach(q => q.Replace(t));
-        }
+        this.queues.forEach(q => q.Replace(t));
+
         this.stat.OnTicketAction(action);
     }
 

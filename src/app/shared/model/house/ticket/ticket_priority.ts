@@ -40,3 +40,7 @@ export function priorityCode(p: ITicketPriority) {
     } 
     return "normal";
 }
+
+export function isRestricted(priority: number) {
+    return false;
+}

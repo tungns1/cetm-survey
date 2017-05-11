@@ -1,8 +1,8 @@
-import { ICustomer,Customer } from '../../org';
+import { ICustomer, Customer } from '../../org';
 import { TicketState, TicketStates } from './ticket_state';
 import {
     getPriority, sortTicket, priorityCode,
-    ITicketPriority
+    ITicketPriority, isRestricted
 } from './ticket_priority';
 import { IFeedback } from './ticket_feedback';
 
@@ -125,6 +125,10 @@ export class Ticket {
 
     isDone() {
         return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled;
+    }
+
+    IsRestricted() {
+        return isRestricted(this.priority);
     }
 
     __stime = 0; // serving time

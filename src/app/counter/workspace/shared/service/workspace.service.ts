@@ -52,13 +52,11 @@ export class WorkspaceService {
                 w.Update(action);
             });
         return merge(of(null), ticketUpdate).map(_ => w);
-    }).do(w => console.log(w))
-        .share().publishReplay(1).refCount();
+    }).share().publishReplay(1).refCount();
 
     currentCounter$ = this.Workspace$.map(w => w.current_counter);
     counters$ = this.Workspace$.map(w => w.counters);
     stat$ = this.Workspace$.map(w => w.stat)
-        .do(s => console.log(s))
         .share().publishReplay(1).refCount();
 
     services$ = this.counters$.combineLatest(
