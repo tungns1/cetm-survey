@@ -45,7 +45,6 @@ export class TransactionComponent implements OnInit {
         this.transactionHistoryApi.GetInfoCustomer(customer_id)
             .subscribe(v => {
                 this.customer = new Customers(v)
-               console.log(v);
             });
     }
 
