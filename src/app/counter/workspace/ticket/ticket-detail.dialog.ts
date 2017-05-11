@@ -1,7 +1,10 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { Ticket, TicketStates, ModalComponent } from '../shared';
+import {
+  Ticket
+  // TicketStates, ModalComponent
+} from '../shared';
 
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -28,7 +31,7 @@ export class TicketDetailDialog {
 
   private isServing = false;
   // private isWaiting = false;
-  // private isVip = false;
+  private isVip = false;
   // private isMissed = false;
   // private isModal = false;
   // private isRemove = false;
@@ -55,6 +58,7 @@ export class TicketDetailDialog {
 
   ngOnInit() {
     this.ticket = this.dialogData;
+    this.isVip = this.isPriority(this.ticket);
   }
 
   private isPriority(t: Ticket) {

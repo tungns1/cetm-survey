@@ -18,6 +18,7 @@ import { provideUploadURLToken } from './shared';
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],
-  exports: [GenericFormComponent]
+  exports: [GenericFormComponent],
+  entryComponents: [GenericFormComponent]
 })
 export class FrameFormModule { }

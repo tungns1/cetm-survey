@@ -45,7 +45,7 @@
             <div *ngIf="ticket.state !== 'missed'" fxLayout="row" fxLayoutGap="20px" class="margin-20-0">
                 <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
 
-                <button *ngIf="isVip && isWaiting" fxFlex class="btnFill" (click)="Recall()" i18n>Call</button>
+                <button *ngIf="isVip && ticket.state === 'watting'" fxFlex class="btnFill" (click)="Recall()" i18n>Call</button>
 
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
 
