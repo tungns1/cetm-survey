@@ -1,4 +1,4 @@
-import { ITicket } from './shared';
+import { ITicket, Ticket } from './shared';
 
 
 export interface ITicketAction {
@@ -30,5 +30,8 @@ export class TicketAction {
     service_id = this._a.service_id;
     extra = this._a.extra;
     action = this._a.action;
+    ticket = new Ticket(this._a.ticket);
+
+    
 
 }

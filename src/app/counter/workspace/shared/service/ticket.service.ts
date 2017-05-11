@@ -154,7 +154,6 @@ export class TicketService {
         // if auto next
         combineLatest(this.autoNext$, this.workspaceService.Workspace$)
             .subscribe(([autoNext, w]) => {
-                console.log(autoNext, w);
                 if (autoNext && w.Serving.is_empty && !w.Waiting.is_empty) {
                     this.CallTicket(w.Waiting.GetFirstTicket()).subscribe(_ => {
                         this.SetAutoNext(false);

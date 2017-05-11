@@ -13,10 +13,12 @@ export class WorkspaceSocket extends AppSocket {
 
     onInit() {
         var setting = this.counterSetting.Data;
+        var user = this.env.Auth.Me();
         super.Connect({
             branch_code: setting.branch_code,
             actor_type: "counter",
-            counter_code: setting.counter_code
+            counter_code: setting.counter_code,
+            user_id: user.id
         });
     }
 

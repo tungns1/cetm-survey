@@ -8,15 +8,14 @@ export class TicketQueue {
         if (!tickets) return;
         this.data = new Map<string, Ticket>();
         Object.keys(tickets).forEach(id => {
-            this.Replace(tickets[id]);
+            this.Replace(new Ticket(tickets[id]));
         });
     }
 
-    Replace(t: ITicket) {
+    Replace(t: Ticket) {
         if (!t) return;
-        const _t = new Ticket(t);
         if (t.state == this.state) {
-            this.data.set(t.id, _t);
+            this.data.set(t.id, t);
         } else {
             this.data.delete(t.id);
         }

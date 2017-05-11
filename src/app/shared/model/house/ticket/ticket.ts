@@ -99,5 +99,35 @@ export class Ticket {
         return this.tracks[this.tracks.length - 1];
     }
 
+    addHelperFields() {
+        if (this.state == TicketStates.Serving) return;
+        const prevTrack = this.getPrevTrack();
+        if (!prevTrack) return;
+
+        if (this.state == TicketStates.Finished) {
+            this.service_id = prevTrack.service_id;
+            this.counter_id = prevTrack.counter_id;
+            this.user_id = prevTrack.user_id;
+            this.__stime = this.mtime - prevTrack.mtime;
+            return;
+        }
+
+        for (let i = this.tracks.length - 1; i >= 0; i--) {
+            const track = this.tracks[i];
+            this.counter_id = this.counter_id || track.counter_id;
+            this.user_id = this.user_id || track.counter_id;
+            this.service_id = track.service_id;
+            if (this.service_id) {
+                break;
+            }
+        }
+    }
+
+    isDone() {
+        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled;
+    }
+
+    __stime = 0; // serving time
+
     static sort = sortTicket;
 }

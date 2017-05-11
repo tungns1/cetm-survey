@@ -12,7 +12,7 @@ import {
 } from '../shared';
 
 import {
-    IStatMap, ITicketAction,
+    ITicketAction,
     Workspace, IWorkspaceInitialState
 } from '../model';
 
@@ -36,7 +36,6 @@ export class WorkspaceService {
 
     enable() {
         this.socket.onInit();
-        this.setUser();
     }
 
     disable() {
@@ -44,7 +43,6 @@ export class WorkspaceService {
     }
 
 
-    stat$ = this.socket.RxEvent<IStatMap>("/stat").share();
     private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
 
     Workspace$ = this.initialState$.switchMap(s => {
@@ -54,18 +52,15 @@ export class WorkspaceService {
                 w.Update(action);
             });
         return merge(of(null), ticketUpdate).map(_ => w);
-    }).share().publishReplay(1).refCount();
+    }).do(w => console.log(w))
+        .share().publishReplay(1).refCount();
 
-    private setUser() {
-        this.socket.Connected$.switchMap(() => {
-            return this.env.Auth.Data$.switchMap(data => {
-                return this.socket.Send("/set_user", { user_id: data.me.id });
-            })
-        }).subscribe();
-    }
-
-    currentCounter$ = this.Workspace$.map(w => w.current_counter) ;
+    currentCounter$ = this.Workspace$.map(w => w.current_counter);
     counters$ = this.Workspace$.map(w => w.counters);
+    stat$ = this.Workspace$.map(w => w.stat)
+        .do(s => console.log(s))
+        .share().publishReplay(1).refCount();
+
     services$ = this.counters$.combineLatest(
         CacheService.RxListView,
         (counters, allServices) => {
