@@ -2,9 +2,9 @@ import { ProjectConfig } from '../../shared';
 import { ITicket, Ticket } from './ticket';
 const TICKET_PRIORITY = ProjectConfig.TICKET_PRIORITY;
 
-export function getPriority(t: ITicket) {
+function getPriority(data: ITicketPriority) {
+    if (!data) return 0;
     var priority = 0;
-    const data = t.ticket_priority || {};
     Object.keys(data).forEach(name => {
         if (data[name]) {
             priority += +(TICKET_PRIORITY[name]) || 0;
@@ -22,25 +22,24 @@ export interface ITicketPriority {
     ticket_online: string;
 }
 
-export function sortTicket(a: Ticket, b: Ticket) {
-    if (a.priority > b.priority) {
-        return -1;
-    } else if (a.priority < b.priority) {
-        return 1;
-    }
-    return a.ctime < b.ctime ? -1 : 1;
-}
 
-export function priorityCode(p: ITicketPriority) {
-    if (p.customer_priority) {
-        return "customer";
-    } 
-    if (p.customer_vip) {
-        return "vip";
-    } 
+function priorityCode(p: ITicketPriority) {
+    if (p) {
+        if (p.customer_priority) {
+            return "customer";
+        }
+        if (p.customer_vip) {
+            return "vip";
+        }
+    }
     return "normal";
 }
 
-export function isRestricted(priority: number) {
-    return false;
+export class TicketPriority {
+    constructor(private _t: ITicketPriority) { }
+    value = getPriority(this._t);
+    code = priorityCode(this._t);
+    isRestricted() {
+        return false;
+    }
 }

@@ -39,9 +39,9 @@ export class Workspace {
         c.vservices.forEach(s => this.vip_services.add(s));
     }
 
-    Waiting = new WaitingQueue(this.services, this.vip_services);
+    Waiting = new WaitingQueue(this.current_counter.id, this.services, this.vip_services);
     Serving = new ServingQueue(this.current_counter.id);
-    Missed = new MissedQueue(this.services, this.vip_services);
+    Missed = new MissedQueue(this.current_counter.id, this.services, this.vip_services);
 
     private queues: TicketQueue[] = [
         this.Waiting, this.Serving, this.Missed

@@ -49,6 +49,7 @@ export class TicketQueue {
 class RestrcitedQueue extends TicketQueue {
     constructor(
         state: TicketState,
+        protected counter_id: string,
         protected services: Set<string>,
         protected restricted_services: Set<string>
     ) {
@@ -56,10 +57,13 @@ class RestrcitedQueue extends TicketQueue {
     }
 
     private serviceSet(t: Ticket) {
-        return t.IsRestricted() ? this.restricted_services : this.services;
+        return t.priority.isRestricted() ? this.restricted_services : this.services;
     }
 
     canAdd(t: Ticket) {
+        if (t.counters && t.counters.length > 0) {
+            return t.counters.some(c => c == this.counter_id);
+        }
         const serviceSet = this.serviceSet(t);
         return t.services.some(s => serviceSet.has(s));
     }
@@ -67,20 +71,22 @@ class RestrcitedQueue extends TicketQueue {
 
 export class WaitingQueue extends RestrcitedQueue {
     constructor(
+        counter_id: string,
         services: Set<string>,
         restricted_services: Set<string>
     ) {
-        super(TicketStates.Waiting, services, restricted_services);
+        super(TicketStates.Waiting, counter_id, services, restricted_services);
     }
 }
 
 
 export class MissedQueue extends RestrcitedQueue {
     constructor(
+        counter_id: string,
         services: Set<string>,
         restricted_services: Set<string>
     ) {
-        super(TicketStates.Missed, services, restricted_services);
+        super(TicketStates.Missed, counter_id, services, restricted_services);
     }
 }
 
