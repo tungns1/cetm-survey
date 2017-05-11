@@ -13,6 +13,7 @@ export interface ICustomer {
     segment: string;
 }
 export class Customer {
+
     constructor(private v: ICustomer) { }
     id = this.v.id;
     email = this.v.email;
@@ -26,4 +27,5 @@ export class Customer {
     segment = this.v.segment;
     full_name = this.v.full_name || this.first_name + ' ' + this.last_name;
     short_name = this.v.short_name;
+
 }
