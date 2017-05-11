@@ -10,7 +10,7 @@ import { Ticket } from '../model/house/ticket/ticket';
 export class TicketIconComponent {
     @Input() width = "15px";
     @Input() set ticket(t: Ticket) {
-        this.src = t ? this.srcs[t.priority_code] : "";
+        this.src = t ? this.srcs[t.priority.code] : "";
     }
     srcs = {
         normal: "./assets/img/icon/person.png",
