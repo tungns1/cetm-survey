@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment } from '../../shared';
+import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment,Customers } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RxInfoCustomer } from '../service/customer.service';
 import { TransactionHistoryApi } from '../../history/history.service';
@@ -41,7 +41,7 @@ export class TransactionComponent implements OnInit {
     GetInfoCustomer(d: ITransactionView) {
         this.state=d.state.charAt(0).toUpperCase() + d.state.slice(1);
         this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
-            this.customer = v;
+            this.customer = new Customers(v);
         });
     }
 
