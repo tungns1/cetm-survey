@@ -52,7 +52,7 @@ export class TicketPriority {
     value = getPriority(this._t);
     code = priorityCode(this._t);
     isRestricted() {
-        return this.value >= PriorityConfig.min_priority_restrited;
+        return this.value >= PriorityConfig.min_priority_restricted;
     }
     
     canMakeUnorderedCall() {

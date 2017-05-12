@@ -43,7 +43,7 @@ class PriorityConfig {
     booked_ticket = +this._c.booked_ticket || 1;
     moved_ticket = +this._c.moved_ticket || 1;
     min_priority_unordered_call = +this._c.min_priority_unordered_call || 1;
-    min_priority_restrited = +this._c.min_priority_restrited || 2 ^ 16; // disable
+    min_priority_restricted = +this._c.min_priority_restrited || (1 << 16); // disable
 }
 
 interface IGlobalConfig {
@@ -53,7 +53,7 @@ interface IGlobalConfig {
 }
 
 export class GlobalConfig {
-    constructor(private _c: IGlobalConfig = {}) {};
+    constructor(private _c: IGlobalConfig = {}) { };
     general = new GeneralConfig(this._c.general);
     priority = new PriorityConfig(this._c.priority);
     service = new ServiceConfig(this._c.service);

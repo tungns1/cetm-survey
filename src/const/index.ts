@@ -5,4 +5,6 @@ export const Const = {
     LOCAL_SETTING_KEYS
 }
 
-export const ProjectConfig = new GlobalConfig();
+export const ProjectConfig = new GlobalConfig(window["__CETM"]);
+
+window["__config"] = ProjectConfig
