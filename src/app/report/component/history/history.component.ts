@@ -51,8 +51,9 @@ export class HistoryComponent {
     showDetails(tr: ITransactionView) {
         const config = new MdDialogConfig();
         config.width = '350px';
+        config.data = tr;
         const dialog = this.mdDialog.open(TransactionComponent, config); 
-        dialog.componentInstance.SetData(tr);
+        // dialog.componentInstance.SetData(tr);
     }
 
 }
