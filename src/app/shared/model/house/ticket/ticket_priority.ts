@@ -1,15 +1,28 @@
 import { ProjectConfig } from '../../shared';
 import { ITicket, Ticket } from './ticket';
-const TICKET_PRIORITY = ProjectConfig.TICKET_PRIORITY;
+const PriorityConfig = ProjectConfig.priority;
 
 function getPriority(data: ITicketPriority) {
     if (!data) return 0;
     var priority = 0;
-    Object.keys(data).forEach(name => {
-        if (data[name]) {
-            priority += +(TICKET_PRIORITY[name]) || 0;
-        }
-    });
+    if (data.vip_card) {
+        priority += PriorityConfig.internal_vip_card;
+    }
+    if (data.customer_vip) {
+        priority += PriorityConfig.customer_vip_card;
+    }
+    if (data.customer_priority) {
+        priority += PriorityConfig.privileged_customer;
+    }
+    if (data.service_priority) {
+        priority += +data.service_priority || 0;
+    }
+    if (data.ticket_online) {
+        priority += PriorityConfig.booked_ticket;
+    }
+    if (data.ticket_serving_move) {
+        priority += PriorityConfig.moved_ticket;
+    }
     return priority;
 }
 
@@ -21,7 +34,6 @@ export interface ITicketPriority {
     customer_vip: string;
     ticket_online: string;
 }
-
 
 function priorityCode(p: ITicketPriority) {
     if (p) {
@@ -40,6 +52,10 @@ export class TicketPriority {
     value = getPriority(this._t);
     code = priorityCode(this._t);
     isRestricted() {
-        return false;
+        return this.value >= PriorityConfig.min_priority_restrited;
+    }
+    
+    canMakeUnorderedCall() {
+        return this.value >= PriorityConfig.min_priority_unordered_call;
     }
 }

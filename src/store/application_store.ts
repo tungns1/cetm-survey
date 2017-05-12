@@ -1,5 +1,5 @@
 import { AbstractSerializable, SmallStorage } from '../lib/platform';
-import { Const, LOCALES } from '../const/';
+import { Const, ProjectConfig } from '../const/';
 
 interface IApplication {
     locale: string;
@@ -13,7 +13,7 @@ export class ApplicationStore extends SmallStorage<IApplication> {
     }
 
     get Locale() {
-        return this.data.locale || LOCALES.DEFAULT;
+        return this.data.locale || ProjectConfig.general.default_language;
     }
 
     set Locale(locale: string) {

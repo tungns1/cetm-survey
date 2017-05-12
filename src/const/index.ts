@@ -1,11 +1,8 @@
 import { LOCAL_SETTING_KEYS } from './local';
-
-const STORAGE_PREFIX = "cem";
+import { GlobalConfig } from './project';
 
 export const Const = {
-    LOCAL_SETTING_KEYS,
-    STORAGE_PREFIX
+    LOCAL_SETTING_KEYS
 }
 
-export { LOCALES } from './locale';
-export { ProjectConfig } from './config';
+export const ProjectConfig = new GlobalConfig();
