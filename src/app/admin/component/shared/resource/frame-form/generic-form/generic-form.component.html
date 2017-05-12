@@ -13,6 +13,9 @@
             <div *ngSwitchCase="'videos'">
                 <app-video-form [(ngModel)]="record.data"></app-video-form>
             </div>
+            <div *ngSwitchCase="'repeater'">
+                <app-repeater-form [(ngModel)]="record.data"></app-repeater-form>
+            </div>
             <div *ngSwitchDefault>
                 <json-text-form [(ngModel)]="record.data"></json-text-form>
             </div>

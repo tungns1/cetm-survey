@@ -7,6 +7,7 @@ import { ImageFormModule } from './image-form/image-form.module';
 import { VideoFormModule } from './video-form/video-form.module';
 import { ModalModule, AdminFormModule, FlexLayoutModule } from '../shared';
 import { provideUploadURLToken } from './shared';
+import { RepeaterFormModule } from './repeater-form/repeater-form.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { provideUploadURLToken } from './shared';
     ModalModule,
     AdminFormModule,
     TextFormModule, ImageFormModule, VideoFormModule,
-    FlexLayoutModule
+    FlexLayoutModule, RepeaterFormModule
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],
