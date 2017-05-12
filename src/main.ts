@@ -1,7 +1,7 @@
 /********************************************** */
 import { Const } from './const';
 import { SetStoragePrefix } from './lib/platform';
-SetStoragePrefix(Const.STORAGE_PREFIX);
+SetStoragePrefix(Const.LOCAL_SETTING_KEYS.STORAGE_PREFIX);
 /********************************************** */
 
 import { enableProdMode } from '@angular/core';

@@ -1,12 +1,14 @@
 import { TRANSLATIONS, TRANSLATIONS_FORMAT, LOCALE_ID } from '@angular/core';
 import { RawHttp } from '../lib/backend';
 import { AppStorage } from '../store';
-import { LOCALES } from '../const';
+import { ProjectConfig } from '../const';
+
+const default_language = ProjectConfig.general.default_language;
 
 function getLocale() {
   // Get the locale id from the global
   const locale = document['locale'] as string;
-  return locale || AppStorage.Locale || LOCALES.DEFAULT;
+  return locale || AppStorage.Locale || default_language;
 }
 
 export function getTranslationProviders(): Promise<Object[]> {
@@ -14,7 +16,7 @@ export function getTranslationProviders(): Promise<Object[]> {
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];
   // No locale or U.S. English: no translation providers
-  if (!locale || locale === LOCALES.DEFAULT) {
+  if (!locale || locale === default_language) {
     return Promise.resolve(noProviders);
   }
   // Ex: 'locale/messages.fr.xlf`

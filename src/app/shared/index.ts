@@ -2,7 +2,7 @@ export * from './branch';
 
 export { SharedModule } from './shared.module';
 
-export { Const, LOCALES } from '../../const';
+export { Const, ProjectConfig } from '../../const';
 export { AppStorage } from '../../store';
 export { RuntimeEnvironment } from './env';
 

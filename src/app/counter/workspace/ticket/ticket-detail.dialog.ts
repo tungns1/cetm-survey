@@ -1,14 +1,6 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import {
-  Ticket
-  // TicketStates, ModalComponent
-} from '../shared';
-
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { TICKET_PRIORITY } from "../../../../const/ticket";
+import { Ticket, TicketStates } from '../shared';
 import { TicketService, QueueService, WorkspaceService } from '../shared';
 
 @Component({
@@ -27,16 +19,9 @@ export class TicketDetailDialog {
   ) { }
 
   private ticket: Ticket = <any>{};
-  // close = new EventEmitter();
 
   private isServing = false;
-  // private isWaiting = false;
-  // private isVip = false;
-  // private isMissed = false;
-  // private isModal = false;
-  // private isRemove = false;
-  // private isAlert = false;
-
+  private canCall = false;
 
   private checkedCounters = [];
   private checkedServices = [];
@@ -58,35 +43,7 @@ export class TicketDetailDialog {
 
   ngOnInit() {
     this.ticket = this.dialogData;
-  }
-
-  private isPriority(t: Ticket) {
-    if (t.ticket_priority != undefined) {
-
-      if (t.ticket_priority.customer_vip != "") {
-        if (parseInt(TICKET_PRIORITY.CUSTOMER_VIP) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
-          return true;
-        }
-      } else if (t.ticket_priority.service_priority != "") {
-        if (parseInt(TICKET_PRIORITY.SERVICE_PRIORITY) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
-          return true;
-        }
-      } else if (t.ticket_priority.customer_priority != "") {
-        if (parseInt(TICKET_PRIORITY.CUSTOMER_PRIORITY) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
-          return true;
-        }
-      } else if (t.ticket_priority.ticket_online != "") {
-        if (parseInt(TICKET_PRIORITY.TICKET_ONLINE) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
-          return true;
-        }
-      } else if (t.ticket_priority.vip_card != "") {
-        if (parseInt(TICKET_PRIORITY.VIP_CARD) < TICKET_PRIORITY.MIN_PRIORITY_FOR_CALL) {
-          return true;
-        }
-      } else {
-        return false
-      }
-    }
+    this.canCall = this.ticket.priority.canMakeUnorderedCall() && this.ticket.state === "waiting";
   }
 
   Move() {
