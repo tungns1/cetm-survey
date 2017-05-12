@@ -33,10 +33,12 @@ interface IPriorityConfig {
     booked_ticket?: number; // booked
     min_priority_restrited?: number;
     min_priority_unordered_call?: number;
+    priority_step?: number;
 }
 
 class PriorityConfig {
     constructor(private _c: IPriorityConfig = {}) { }
+    priority_step = +this._c.priority_step || 1;
     internal_vip_card = +this._c.internal_vip_card || 1;
     customer_vip_card = +this._c.customer_vip_card || 1;
     privileged_customer = +this._c.privileged_customer || 1;

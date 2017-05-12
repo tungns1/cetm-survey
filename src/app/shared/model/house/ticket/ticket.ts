@@ -128,9 +128,10 @@ export class Ticket {
     __stime = 0; // serving time
 
     static sort(a: Ticket, b: Ticket) {
-        if (a.priority.value > b.priority.value) {
+        var step = a.priority.compare(b.priority);
+        if (step > 0) {
             return -1;
-        } else if (a.priority.value < b.priority.value) {
+        } else if (step < 0) {
             return 1;
         }
         return a.ctime < b.ctime ? -1 : 1;

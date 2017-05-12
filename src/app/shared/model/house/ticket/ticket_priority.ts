@@ -58,4 +58,9 @@ export class TicketPriority {
     canMakeUnorderedCall() {
         return this.value >= PriorityConfig.min_priority_unordered_call;
     }
+
+    compare(b: TicketPriority) {
+        const step = Math.abs(this.value - b.value) 
+        return step - PriorityConfig.priority_step;
+    }
 }
