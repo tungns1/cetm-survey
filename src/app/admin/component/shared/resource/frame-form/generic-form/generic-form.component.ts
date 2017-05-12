@@ -32,10 +32,6 @@ export class GenericFormComponent implements OnInit {
     this.type = this.dialogData.type;
   }
 
-  // Edit(record: IResourceForm) {
-  //   this.modal.Open();
-  // }
-
   Save() {
     if (!this.record) {
       return;

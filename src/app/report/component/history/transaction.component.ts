@@ -4,7 +4,7 @@ import {
     RuntimeEnvironment
 } from '../shared';
 import { Router } from '@angular/router';
-import { MdDialogRef } from '@angular/material';
+import { MdDialogRef, MdDialog } from '@angular/material';
 import { TransactionHistoryApi } from './history.service';
 import { ReportCustomerService } from '../../service';
 
@@ -18,6 +18,7 @@ export class TransactionComponent implements OnInit {
     constructor(
         private router: Router,
         private mdDialogRef: MdDialogRef<TransactionComponent>,
+        private dialog: MdDialog,
         private transactionHistoryApi: TransactionHistoryApi,
         private env: RuntimeEnvironment,
         private reportCustomerService: ReportCustomerService,
@@ -60,6 +61,10 @@ export class TransactionComponent implements OnInit {
 
     goToCustomer(customer_id: string) {
         this.router.navigate(['/report/customer', customer_id]);
+    }
+
+    close() {
+        this.dialog.closeAll();
     }
 
     private data: ITransactionView;

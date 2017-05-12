@@ -1,0 +1,31 @@
+<div class="modal-header-title">
+  <p class="margin-left">Edit Repeater</p>
+</div>
+
+<div *ngIf="value" class="padding-t-20" (change)="onChange($event)">
+
+  <div *ngIf="value.repeat">
+    <div fxLayout="row" fxLayoutGap="10%">
+      <div fxFlex fxLayout="column">
+        <label fxFlex for="">Column</label>
+        <input fxFlex type="number" [value]="value.column" min="1">
+      </div>
+      <div fxFlex fxLayout="column">
+        <label fxFlex for="">Row</label>
+        <input fxFlex type="number" [value]="value.row" min="1">
+      </div>
+    </div>
+    <div *ngFor="let el of value.repeat; let i = index" fxLayout="column">
+      <!--<div flex>{{el | json}} {{keyRepeatArr | json}}</div>-->
+      <div *ngFor="let key of keyRepeatArr" fxLayout="row">
+        <span>{{key}}</span>
+        <input type="text" [value]="el.key">
+      </div>
+    </div>
+  </div>
+  <input type="button" (click)="test()" value="test">
+
+  <div *ngIf="!value.repeat">
+    <textarea rows="7" cols="30">{{value | json}}</textarea>
+  </div>
+</div>

@@ -31,7 +31,7 @@ export class TicketDetailDialog {
 
   private isServing = false;
   // private isWaiting = false;
-  private isVip = false;
+  // private isVip = false;
   // private isMissed = false;
   // private isModal = false;
   // private isRemove = false;
@@ -58,7 +58,6 @@ export class TicketDetailDialog {
 
   ngOnInit() {
     this.ticket = this.dialogData;
-    this.isVip = this.isPriority(this.ticket);
   }
 
   private isPriority(t: Ticket) {
