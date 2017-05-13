@@ -25,10 +25,10 @@ export class UserSettingComponent {
         };
     });
 
-    locale = AppStorage.Locale;
+    culture = AppStorage.Locale;
 
-    SetLocale(locale: string) {
-        AppStorage.Locale = locale;
+    SetCulture(culture: string) {
+        AppStorage.Locale = culture;
         window.location.reload();
     }
 }
