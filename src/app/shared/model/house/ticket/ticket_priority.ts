@@ -60,7 +60,12 @@ export class TicketPriority {
     }
 
     compare(b: TicketPriority) {
-        const step = Math.abs(this.value - b.value) 
-        return step - PriorityConfig.priority_step;
+        const step = this.value - b.value;
+        if (step < -PriorityConfig.priority_step) {
+            return -1;
+        } else if (step > PriorityConfig.priority_step) {
+            return 1;
+        };
+        return 0;
     }
 }

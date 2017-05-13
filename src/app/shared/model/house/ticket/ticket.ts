@@ -128,12 +128,8 @@ export class Ticket {
     __stime = 0; // serving time
 
     static sort(a: Ticket, b: Ticket) {
+        // -1, 0, 1
         var step = a.priority.compare(b.priority);
-        if (step > 0) {
-            return -1;
-        } else if (step < 0) {
-            return 1;
-        }
-        return a.ctime < b.ctime ? -1 : 1;
+        return step == 0 ? (a.ctime < b.ctime ? -1 : 1) : step;
     }
 }
