@@ -9,6 +9,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 export class InfoComponent {
     constructor(private queueService: QueueService) { }
-    customer$ = this.queueService.serving$
-        .filter(v => !!v[0]).map(v => v[0].customer);
+    customer$ = this.queueService.serving$.map(v => {
+        if (v && v[0]) {
+            return v[0].customer;
+        }
+        return null;
+    });
 }  
