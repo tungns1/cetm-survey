@@ -3,11 +3,10 @@ import { RawHttp } from '../lib/backend';
 import { AppStorage } from '../store';
 import { ProjectConfig } from '../const';
 
-const default_language = ProjectConfig.general.default_language;
-
 function getLocale() {
   // Get the locale id from the global
   const locale = document['locale'] as string;
+  const default_language = ProjectConfig.general.default_language;
   return locale || AppStorage.Locale || default_language;
 }
 
@@ -16,6 +15,7 @@ export function getTranslationProviders(): Promise<Object[]> {
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];
   // No locale or U.S. English: no translation providers
+  const default_language = ProjectConfig.general.default_language;
   if (!locale || locale === default_language) {
     return Promise.resolve(noProviders);
   }

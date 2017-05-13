@@ -2,12 +2,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ProjectConfig } from '../../../shared';
 import { L10nText } from '../../../../shared/util';
 
-const supported_cultures = ProjectConfig.general.supported_cultures;
-
 export function NewL10nForm(data: L10nText) {
     data = data || {};
     const forms = {};
-    supported_cultures.forEach(code => forms[code] = new FormControl(data[code] || ''));
+    ProjectConfig.general.supported_cultures.forEach(code => forms[code] = new FormControl(data[code] || ''));
     return new FormGroup(forms);
 }
 
@@ -35,8 +33,8 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 export class L10nTicketComponent implements ControlValueAccessor {
-    codes = supported_cultures;
-    names = supported_cultures;
+    codes = ProjectConfig.general.supported_cultures;
+    names = this.codes;
     private values: L10nText = {};
     private onChangeCallback = (v) => { };
 

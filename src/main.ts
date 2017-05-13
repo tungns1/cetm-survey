@@ -1,20 +1,12 @@
-/********************************************** */
-import { Const } from './const';
-import { SetStoragePrefix } from './lib/platform';
-SetStoragePrefix(Const.LOCAL_SETTING_KEYS.STORAGE_PREFIX);
-/********************************************** */
 
-import { enableProdMode } from '@angular/core';
+/********************************************** */
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { getTranslationProviders } from './app/i18n-providers';
-
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
-if (environment.production) {
-  enableProdMode();
-}
+import { getTranslationProviders, LoadConfig } from './init';
 
-getTranslationProviders().then(providers => {
-  const options = { providers };
-  platformBrowserDynamic().bootstrapModule(AppModule, options);
-});
+LoadConfig()
+  .then(_ => getTranslationProviders())
+  .then(providers => {
+    const options = { providers };
+    platformBrowserDynamic().bootstrapModule(AppModule, options);
+  });
