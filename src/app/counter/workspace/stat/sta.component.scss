@@ -5,6 +5,7 @@
     .tabs {
         .tabCtrl {
             background-color: $background-color;
+            cursor: pointer;
         }
         .active {
             color: $key-color;
@@ -36,27 +37,27 @@
     }
 }
 
-#avgTime{
+#avgTime {
     margin-top: 3%;
     height: 8%;
-    .title{
+    .title {
         font-size: $font-size-default;
     }
-    .time{
+    .time {
         font-size: $font-size-default * 3;
         font-weight: $font-weight-default + 200;
         color: $key-color;
     }
-    .warning{
+    .warning {
         color: #f53e30;
     }
     @media only screen and (max-width: 1300px) {
-        .time{
+        .time {
             font-size: $font-size-default * 3;
         }
     }
     @media only screen and (max-width: 1024px) {
-        .time{
+        .time {
             font-size: $font-size-default * 2;
         }
     }

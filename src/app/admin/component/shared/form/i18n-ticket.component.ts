@@ -1,11 +1,11 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { LOCALES } from '../../../shared';
+import { ProjectConfig } from '../../../shared';
 import { L10nText } from '../../../../shared/util';
 
 export function NewL10nForm(data: L10nText) {
     data = data || {};
     const forms = {};
-    Object.keys(LOCALES.CULTURES).forEach(code => forms[code] = new FormControl(data[code] || ''));
+    ProjectConfig.general.supported_cultures.forEach(code => forms[code] = new FormControl(data[code] || ''));
     return new FormGroup(forms);
 }
 
@@ -25,7 +25,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'l10n-ticket',
     template: `
     <div *ngFor="let code of codes">
-        <label>{{names[code]}}</label>
+        <label>{{code | languageName}}</label>
         <app-quill-editor [(ngModel)]="values[code]" (change)="OnChange()" rows="8" cols="40"></app-quill-editor>
     </div>
     `,
@@ -33,8 +33,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 export class L10nTicketComponent implements ControlValueAccessor {
-    codes = Object.keys(LOCALES.CULTURES);
-    names = LOCALES.CULTURES;
+    codes = ProjectConfig.general.supported_cultures;
     private values: L10nText = {};
     private onChangeCallback = (v) => { };
 

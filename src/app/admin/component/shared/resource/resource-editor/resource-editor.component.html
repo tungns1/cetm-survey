@@ -17,18 +17,15 @@
                 <td>
                     {{r.name}}
                     <div class="edit-reset-button">
-                        <a [class.hide]="!r.editable" (click)="form.Edit(r)" i18n>Edit</a>
+                        <a [class.hide]="!r.editable" (click)="edit(r)" i18n>Edit</a>
                         <a (click)="Reset(r)" i18n>Reset</a>
                     </div>
                 </td>
                 <td class="body-resource-editor text-center">{{r.type}}</td>
                 <td>
-                    <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
+                    <div (click)="edit(r)" [innerHTML]="r.data | rawResource"></div>
                 </td>
             </tr>
         </tbody>
     </table>
-
-    <app-generic-form #form (save)="Save($event)">
-    </app-generic-form>
 </div>

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IStat } from '../shared';
+import { StatMap, IStat } from '../shared';
 import { Observable } from 'rxjs/Observable';
-
 
 @Component({
     selector: 'bar',
@@ -9,11 +8,15 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['sta.component.scss']
 })
 export class BarComponent {
-    @Input() set data(v: IStat[]) {
-        this._data = v || [] ;
-        const count = Math.max.apply(null, this._data.map(d => d.value.count));
-        this.max = count;
+    @Input("data") set setData(v: StatMap) {
+        if (!v) return;
+        console.log("set data", v);
+        this.data$ = v.ToArray().map(data => {
+            return data.sort((a, b) => a.count > b.count ? -1 : 1);
+        });
+        this.max$ = v.map(_ => v.max_count);
     }
-    private _data: IStat[] = [];
-    private max: number = 0;
+
+    data$: Observable<IStat[]>;
+    max$: Observable<number>;
 }

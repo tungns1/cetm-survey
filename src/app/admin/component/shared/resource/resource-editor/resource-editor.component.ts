@@ -1,13 +1,14 @@
 import { Component, OnInit, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { GenericFormComponent } from '../frame-form/generic-form/generic-form.component';
+import { ILayoutResources, IResourceForm } from '../shared';
 
 const RESORCE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ResourceEditorComponent),
   multi: true
 }
-
-import { ILayoutResources, IResourceForm } from '../shared';
 
 @Component({
   selector: 'app-resource-editor',
@@ -17,14 +18,20 @@ import { ILayoutResources, IResourceForm } from '../shared';
 })
 export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
-  constructor() { }
+  constructor(
+    private mdDialog: MdDialog
+  ) { }
+
+  private onChangeCallback = (data: ILayoutResources) => { }
+
+  value: ILayoutResources = {};
+  records: IResourceForm[];
+
+  private editables = ["text", "image", "videos", 'repeater'];
 
   ngOnInit() {
     this.refresh();
   }
-
-  value: ILayoutResources = {};
-  records: IResourceForm[];
 
   Save(r: IResourceForm) {
     this.value[r.name] = r;
@@ -51,8 +58,6 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
     }).sort((a, b) => a.name < b.name ? -1 : 1);
   }
 
-  private onChangeCallback = (data: ILayoutResources) => { }
-
   /**
      * Write a new value to the element.
      */
@@ -73,6 +78,11 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   }
 
-  private editables = ["text", "image", "videos"];
+  edit(record: IResourceForm) {
+    const config = new MdDialogConfig();
+    config.width = '350px';
+    config.data = record;
+    const dialog = this.mdDialog.open(GenericFormComponent, config);
+  }
 
 }

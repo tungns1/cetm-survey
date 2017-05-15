@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Optional, Inject } from '@angular/core';
 import {
     ITransactionView, ICustomer, IUser, USER_ROLES, Customers,
     RuntimeEnvironment
 } from '../shared';
 import { Router } from '@angular/router';
-import { MdDialogRef } from '@angular/material';
+import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
 import { TransactionHistoryApi } from './history.service';
 import { ReportCustomerService } from '../../service';
 
@@ -17,21 +17,24 @@ export class TransactionComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private mdDialogRef: MdDialogRef<TransactionComponent>,
+        private dialog: MdDialog,
+        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
         private transactionHistoryApi: TransactionHistoryApi,
         private env: RuntimeEnvironment,
         private reportCustomerService: ReportCustomerService,
     ) { }
 
+    private data: ITransactionView;
+    private audio_url: string; // link to audio 
+    customer: ICustomer;
+    admin: IUser;
+    manager: IUser;
+
     ngOnInit() {
-
-    }
-
-    SetData(d: ITransactionView) {
-        this.data = d;
-        this.audio_url = this.getAudioLink(d.audio);
-        this.getBranchUsers(d.branch_id);
-        this.getCustomer(d.customer_id);
+        this.data = this.dialogData;
+        this.audio_url = this.getAudioLink(this.dialogData.audio);
+        this.getBranchUsers(this.dialogData.branch_id);
+        this.getCustomer(this.dialogData.customer_id);
     }
 
     private getAudioLink(uri: string) {
@@ -45,7 +48,6 @@ export class TransactionComponent implements OnInit {
         this.transactionHistoryApi.GetInfoCustomer(customer_id)
             .subscribe(v => {
                 this.customer = new Customers(v)
-               console.log(v);
             });
     }
 
@@ -63,9 +65,7 @@ export class TransactionComponent implements OnInit {
         this.router.navigate(['/report/customer', customer_id]);
     }
 
-    private data: ITransactionView;
-    private audio_url: string; // link to audio 
-    customer: ICustomer;
-    admin: IUser;
-    manager: IUser;
+    close() {
+        this.dialog.closeAll();
+    }
 }

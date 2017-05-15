@@ -1,11 +1,12 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { LOCALES } from '../../../shared';
+import { ProjectConfig } from '../../../shared';
 import { L10nText } from '../../../../shared/util';
 
 export function NewL10nForm(data: L10nText) {
     data = data || {};
     const forms = {};
-    Object.keys(LOCALES.CULTURES).forEach(code => forms[code] = new FormControl(data[code] || ''));
+    const supported_cultures = ProjectConfig.general.supported_cultures;
+    supported_cultures.forEach(code => forms[code] = new FormControl(data[code] || ''));
     return new FormGroup(forms);
 }
 
@@ -25,7 +26,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'l10n-form',
     template: `
     <div *ngFor="let code of codes" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <span fxFlex="20%">{{names[code]}}</span>
+        <span fxFlex="20%">{{code | languageName}}</span>
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span>&nbsp;</span>
             <input fxFlex class="hl-input" [(ngModel)]="values[code]" (change)="OnChange()" />
@@ -36,8 +37,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 export class L10nFormComponent implements ControlValueAccessor {
-    codes = Object.keys(LOCALES.CULTURES);
-    names = LOCALES.CULTURES;
+    codes = ProjectConfig.general.supported_cultures;
     private values: L10nText = {};
     private onChangeCallback = (v) => { };
 

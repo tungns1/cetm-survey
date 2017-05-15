@@ -7,11 +7,13 @@ import { LogoComponent } from './logo.component';
 import { UserComponent } from './user.component';
 import { UserSettingComponent } from './user-setting';
 import { ModalModule } from '../../../x/ng/';
+import { Ng2BasicModule } from '../../../../lib/ng2';
 
 @NgModule({
     imports: [
         CommonModule, RouterModule,
-        ModalModule, FormsModule
+        ModalModule, FormsModule,
+        Ng2BasicModule
     ],
     declarations: [HeaderComponent, LogoComponent, UserComponent, UserSettingComponent],
     exports: [HeaderComponent]

@@ -4,7 +4,9 @@ import { cloneDeep } from 'lodash';
 export class BaseFormComponent<T> implements ControlValueAccessor {
   protected value: T;
 
-  protected onChangeCallback = (data: T) => { }
+  protected onChangeCallback = (data: T) => { };
+  // protected keyRepeatArr: string[] = [];
+  
 
   /**
      * Write a new value to the element.

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ArrayFormComponent } from './array-form.component';
+import { Ng2BasicModule } from '../../../shared';
 
 @NgModule({
     imports: [FormsModule, CommonModule, FlexLayoutModule],
@@ -19,9 +20,9 @@ import { L10nTicketComponent } from './i18n-ticket.component';
 import { RichEditorModule } from '../../../../x/ng/rich-editor/rich-editor.module';
 
 @NgModule({
-    imports: [FormsModule, CommonModule,RichEditorModule, FlexLayoutModule],
-    declarations: [L10nFormComponent,L10nTicketComponent],
-    exports: [L10nFormComponent,L10nTicketComponent]
+    imports: [FormsModule, CommonModule, RichEditorModule, FlexLayoutModule, Ng2BasicModule],
+    declarations: [L10nFormComponent, L10nTicketComponent],
+    exports: [L10nFormComponent, L10nTicketComponent]
 })
 export class CultureModule {
 

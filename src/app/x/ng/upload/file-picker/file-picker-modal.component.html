@@ -1,0 +1,10 @@
+<div #modal id="modalUpload">
+    <div class="modal-dialog">
+        <div class="modal-body padding-20">
+            <div class="file-browser">
+                <file-browser (select)="choose($event)"></file-browser>
+            </div>
+            <button class="btn-hlm btn-close" (click)="close()">Close</button>
+        </div>
+    </div>
+</div>

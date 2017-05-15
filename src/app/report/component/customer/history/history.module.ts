@@ -14,7 +14,8 @@ import { AccordionModule } from '../../../../x/ui/accordion/accordion';
         ModalModule, AccordionModule, FlexLayoutModule
     ],
     declarations: [HistoryComponent, TransactionComponent],
-    exports: [HistoryComponent, AccordionModule, FlexLayoutModule]
+    exports: [HistoryComponent, AccordionModule, FlexLayoutModule],
+    entryComponents: [TransactionComponent]
 })
 export class ReportHistoryModule {
 

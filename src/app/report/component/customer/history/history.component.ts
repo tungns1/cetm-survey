@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { ITransactionView } from '../../../model';
-import { ReportFilterService, Paging } from '../../../service/';
+import { Paging } from '../../../service/';
 import { CustomerAPI, paging } from '../service/customer.service';
+import { TransactionComponent } from './transaction.component'
 
 
 @Component({
@@ -12,7 +14,7 @@ import { CustomerAPI, paging } from '../service/customer.service';
 
 export class HistoryComponent {
     constructor(
-        private filterService: ReportFilterService,
+        private mdDialog: MdDialog,
         private customerAPI: CustomerAPI
     ) { }
     @Input() id: string;
@@ -27,6 +29,13 @@ export class HistoryComponent {
             this.customerAPI.pagin(page, '', v.customer_id);
         });
 
+    }
+
+    openDialog(ticket: ITransactionView) {
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        config.data = ticket;
+        const dialog = this.mdDialog.open(TransactionComponent, config);
     }
 
     excel(data) {

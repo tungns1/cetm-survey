@@ -50,4 +50,8 @@ export class AuthEnvStorage {
         data.branch = branch ? branch.name : "";
         this.emitChange();
     }
+
+    Me() {
+        return this.data.me;
+    }
 }

@@ -30,7 +30,7 @@
                 <td> {{d.stime}} </td>
                 <td>{{d.rating}}</td>
                 <td>
-                    <i class="fa fa-eye pointer fa-lg" (click)="detail.SetData(d); detail.GetInfoCustomer(d)"></i> &nbsp;
+                    <i class="fa fa-eye pointer fa-lg" (click)="openDialog(d)"></i> &nbsp;
                 </td>
             </tr>
         </tbody>
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<transaction #detail></transaction>
+<!--<transaction #detail></transaction>-->

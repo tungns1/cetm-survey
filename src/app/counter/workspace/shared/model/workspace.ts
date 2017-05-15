@@ -1,14 +1,18 @@
 import {
-    ICounter, ITicket, IMapTicket, Ticket,
+    ICounter, IUser,
+    ITicket, IMapTicket, Ticket,
     TicketState, TicketStates
 } from './shared';
-import { TicketQueue } from './queue';
-import { ITicketAction } from './ticket_action';
+import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue } from './queue';
+import { ITicketAction, TicketAction } from './ticket_action';
+import { IStat, CounterStatistics } from './stat';
 
 export interface IWorkspaceInitialState {
+    user: IUser;
     current_counter: ICounter;
     counters: ICounter[];
     tickets: IMapTicket;
+    stat: IStat[];
 }
 
 export class Workspace {
@@ -21,6 +25,8 @@ export class Workspace {
 
     public current_counter = this._instate.current_counter;
     public counters = this._instate.counters;
+    public user = this._instate.user;
+    public stat = new CounterStatistics(this.user.id, this._instate.stat);
 
     private services = new Set<string>();
     private vip_services = new Set<string>();
@@ -33,23 +39,9 @@ export class Workspace {
         c.vservices.forEach(s => this.vip_services.add(s));
     }
 
-    private canServe(services: string[] = []) {
-        return services.some(s => this.services.has(s));
-    }
-
-    private canAdd(t: ITicket) {
-        if (t.state == TicketStates.Serving) {
-            return t.counter_id == this.current_counter.id;
-        }
-        if (t.state == TicketStates.Waiting || t.state == TicketStates.Missed) {
-            return this.canServe(t.services);
-        }
-        return true;
-    }
-
-    Waiting = new TicketQueue(TicketStates.Waiting);
-    Serving = new TicketQueue(TicketStates.Serving);
-    Missed = new TicketQueue(TicketStates.Missed);
+    Waiting = new WaitingQueue(this.current_counter.id, this.services, this.vip_services);
+    Serving = new ServingQueue(this.current_counter.id);
+    Missed = new MissedQueue(this.current_counter.id, this.services, this.vip_services);
 
     private queues: TicketQueue[] = [
         this.Waiting, this.Serving, this.Missed
@@ -59,11 +51,13 @@ export class Workspace {
         this.queues.forEach(q => q.Refresh(tickets));
     }
 
-    Update(action: ITicketAction) {
+    Update(a: ITicketAction) {
+        if (!a) return;
+        const action = new TicketAction(a);
         const t = action.ticket;
-        if (this.canAdd(t)) {
-            this.queues.forEach(q => q.Replace(t));
-        }
+        this.queues.forEach(q => q.Replace(t));
+
+        this.stat.OnTicketAction(action);
     }
 
     GetServicable(services: string[]) {

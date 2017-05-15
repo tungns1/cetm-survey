@@ -5,8 +5,8 @@
     </div>
     <div>
         <span class="user-text-language" i18n>Language</span>
-        <select class="hl-user-select" [ngModel]="locale" (ngModelChange)="SetLocale($event)">
-            <option *ngFor="let item of items" [value]="item.key">{{ item.value }}</option>
+        <select class="hl-user-select" [ngModel]="culture" (ngModelChange)="SetCulture($event)">
+            <option *ngFor="let item of items" [value]="item.key">{{ item.value | cultureName }}</option>
         </select>
         <br>
         <button class="hl-button-user btn-footer-user" (click)="Close()"> <span i18n>Close</span> </button>

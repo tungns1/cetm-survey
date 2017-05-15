@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Optional, Inject } from '@angular/core';
+import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import {
   ModalComponent, IResourceForm
 } from '../../shared';
@@ -11,18 +12,24 @@ import { cloneDeep } from 'lodash';
 })
 export class GenericFormComponent implements OnInit {
 
+  constructor(
+    @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
+    private dialog: MdDialog,
+  ) { }
+
+  record: IResourceForm;
+  type: string;
+
+  @Output() save = new EventEmitter();
+
+  // @ViewChild("main") modal: ModalComponent;
+
   ngOnInit() {
-  }
-
-  Edit(record: IResourceForm) {
-    this.record = cloneDeep(record);
-    this.type = record.type;
-    this.modal.Open();
-  }
-
-  Close() {
-    this.record = null;
-    this.modal.Close();
+    // console.log('aaaaaaaaaaaaa');
+    // console.log(this.dialogData);
+    this.record = this.dialogData;
+    this.record = cloneDeep(this.dialogData);
+    this.type = this.dialogData.type;
   }
 
   Save() {
@@ -30,14 +37,11 @@ export class GenericFormComponent implements OnInit {
       return;
     }
     this.save.next(this.record);
-    this.Close();
+    this.dialog.closeAll();
   }
 
-  record: IResourceForm;
-  type: string;
-
-  @Output() save = new EventEmitter();
-
-  @ViewChild("main") modal: ModalComponent;
+  close(){
+    this.dialog.closeAll();
+  }
 
 }
