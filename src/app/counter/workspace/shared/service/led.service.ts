@@ -44,6 +44,7 @@ export class LedService {
                         type: STATUS.WELCOME,
                     };
                     const first = t[0];
+                    console.log("first..............",first);
                     if (first) {
                         s.type = STATUS.SHOW;
                         s.data = first.cnum;
@@ -54,6 +55,7 @@ export class LedService {
                 })
             })
         }).subscribe(status => {
+            console.log("status.............");
             this.SendStatus(status);
         });
         return true;
