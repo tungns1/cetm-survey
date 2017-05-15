@@ -7,6 +7,10 @@ export class LedDevice {
         private qmsService: QmsService
     ) { }
 
+    LedStart() {
+        this.qmsService.__x.Broadcast("/led/start", "true");
+    }
+
     Setup(addr: number) {
         this.qmsService.__x.Broadcast("/led/com", addr);
     }

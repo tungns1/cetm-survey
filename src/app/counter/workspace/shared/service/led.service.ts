@@ -35,6 +35,7 @@ export class LedService {
         this.workspaceService.currentCounter$.switchMap(c => {
             return this.ticketService.autoNext$.switchMap(auto => {
                 return this.queueService.serving$.debounceTime(250).map(t => {
+                    console.log("........c.dev_addr", c.dev_addr);
                     const s: LedStatus = {
                         addr: c.dev_addr,
                         type: STATUS.WELCOME,
@@ -62,12 +63,16 @@ export class LedService {
     private SendStatus(status: LedStatus) {
         switch (status.type) {
             case STATUS.WELCOME:
+            console.log(".....................status.welcome");
                 this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
+            console.log(".....................status.stop");
                 this.ledDevice.Off(status.addr);
                 break;
             case STATUS.SHOW:
+            console.log(".....................status.show");
+        this.ledDevice.Setup(status.addr);
                 this.ledDevice.Show(status.addr, status.data);
                 break;
         }
