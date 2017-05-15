@@ -27,7 +27,7 @@
         <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px">
             <div fxFlex i18n>Waiting Time</div>
             <div fxFlex>
-                <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="15"></timer>
+                <timer *ngIf="ticket.state === 'waiting'" [start]="ticket.mtime" [timeWarning]="maxWaitingMinute"></timer>
                 <span *ngIf="ticket.state === 'missed'">{{ticket.waiting_time | timeDuration}}</span>
                 <span *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">{{ticket.mtime - ticket.ctime | timeDuration}}</span>
             </div>
@@ -36,7 +36,7 @@
         <div class="margin-t-10" fxLayout="row" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
             <div fxFlex i18n>Serving Time</div>
             <div fxFlex>
-                <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="1"></timer>
+                <timer *ngIf="ticket.state === 'serving'" [start]="ticket.mtime" [timeWarning]="maxServingMinute"></timer>
                 <div *ngIf="ticket.state === 'finished'"> {{ticket.__stime | timeDuration}} </div>
                 <div *ngIf="ticket.state === 'cancelled'"> 00:00:00 </div>
             </div>

@@ -4,7 +4,9 @@ import { MonitorTicketSocket } from './monitor-ticket.socket';
 import { MonitorFilterService, MonitorNavService } from '../../shared';
 
 import {
-  IActivitySummary, IBoxTicketSummary, IBoxTicket, BoxTicket,
+  IActivitySummary,
+  IBoxTicketSummary,
+  ITicket, IBoxTicket, BoxTicket,
   CacheService, CacheCounter, CacheUsers
 } from '../../../model';
 
@@ -36,6 +38,7 @@ export class MonitorFocusService {
 
   private ticketSummaryUpdate$ = this.socket.RxEvent<IBoxTicketSummary>("/ticket/summary/update");
   private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update");
+  private ticketChange$ = this.socket.RxEvent<ITicket>("/ticket/update");
 
   Box$ = this.initialFocus$.switchMap(initial => {
     // console.log(initial);
@@ -48,7 +51,10 @@ export class MonitorFocusService {
     const summaryUpdate = this.ticketSummaryUpdate$.map(s => {
       box.UpdateTicketSummary(s);
     });
-    return of(null).merge(activityUpdate, summaryUpdate)
+    const ticketUpdate = this.ticketChange$.map(t => {
+      box.UpdateTicket(t);
+    });
+    return of(null).merge(activityUpdate, summaryUpdate, ticketUpdate)
       .map(_ => box);
   }).share().publishReplay(1).refCount();
 

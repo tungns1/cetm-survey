@@ -14,7 +14,7 @@ export class TicketIconComponent {
     }
     srcs = {
         normal: "./assets/img/icon/person.png",
-        customer: "./assets/img/icon/wheelchair.png",
+        privileged: "./assets/img/icon/wheelchair.png",
         vip: "./assets/img/icon/star.png"
     }
     src = "";

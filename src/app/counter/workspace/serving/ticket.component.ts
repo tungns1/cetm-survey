@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, Input } from '@angular/core';
-import { TimerComopnent } from '../shared';
+import { TimerComopnent, ProjectConfig } from '../shared';
 
 @Component({
     selector: 'ticket',
@@ -8,5 +8,6 @@ import { TimerComopnent } from '../shared';
 })
 export class TicketComponent {
     @Input() ticket = null;
+    maxServingMinute = ProjectConfig.service.max_serving_minute;
 }
 

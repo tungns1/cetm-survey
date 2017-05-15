@@ -3,6 +3,7 @@ import { ICustomer, Ticket, TicketStates } from '../../shared';
 import { MonitorCustomerService } from '../shared';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { MonitorFocusService } from '../shared';
+import {ProjectConfig} from '../shared';
 
 @Component({
     selector: 'ticket-detail',
@@ -29,6 +30,9 @@ export class TicketDetailComponent {
             this.customer = v;
         });
     }
+
+    maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
+    maxServingMinute = ProjectConfig.service.max_serving_minute;
 
     ngOnInit() {
         this.ticket = this.dialogData;

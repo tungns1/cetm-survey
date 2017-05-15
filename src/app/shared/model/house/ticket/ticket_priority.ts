@@ -38,7 +38,7 @@ export interface ITicketPriority {
 function priorityCode(p: ITicketPriority) {
     if (p) {
         if (p.customer_priority) {
-            return "customer";
+            return "privileged";
         }
         if (p.customer_vip) {
             return "vip";
@@ -62,9 +62,9 @@ export class TicketPriority {
     compare(b: TicketPriority) {
         const step = this.value - b.value;
         if (step < -PriorityConfig.priority_step) {
-            return -1;
-        } else if (step > PriorityConfig.priority_step) {
             return 1;
+        } else if (step > PriorityConfig.priority_step) {
+            return -1;
         };
         return 0;
     }

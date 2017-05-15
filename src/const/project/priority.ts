@@ -12,7 +12,7 @@ export interface IPriorityConfig {
 export class PriorityConfig {
     constructor(private _c: IPriorityConfig = {}) { }
     get priority_step() {
-        return +this._c.priority_step || 1;
+        return +this._c.priority_step || 0;
     }
 
     get internal_vip_card() {
