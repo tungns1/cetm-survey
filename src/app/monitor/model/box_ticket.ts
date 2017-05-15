@@ -46,4 +46,8 @@ export class BoxTicket {
         }
     }
 
+    UpdateTicket(t: ITicket) {
+        this.tickets.Replace(t);
+    }
+
 }
