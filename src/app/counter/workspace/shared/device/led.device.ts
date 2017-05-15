@@ -31,7 +31,7 @@ export class LedDevice {
     }
 
     Show(addr: number, text: string) {
-        this.Command(`on ${text}`, addr);
+        this.Command(`led show ${text}`, addr);
     }
 
     Ping(addr: number) {
