@@ -75,7 +75,6 @@ export class LedService {
                 break;
             case STATUS.SHOW:
             console.log(".....................status.show");
-        this.ledDevice.Setup(status.addr);
                 this.ledDevice.Show(status.addr, status.data);
                 break;
         }
