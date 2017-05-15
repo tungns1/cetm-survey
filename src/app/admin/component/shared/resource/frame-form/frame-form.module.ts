@@ -18,7 +18,7 @@ import { RepeaterFormModule } from './repeater-form/repeater-form.module';
     FlexLayoutModule, RepeaterFormModule
   ],
   declarations: [GenericFormComponent],
-  providers: [provideUploadURLToken],
+  providers: [provideUploadURLToken, GenericFormComponent],
   exports: [GenericFormComponent],
   entryComponents: [GenericFormComponent]
 })

@@ -8,10 +8,6 @@ const REPEATER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   multi: true
 }
 
-interface I18n {
-  [index: string]: string;
-}
-
 interface IRepeaterForm {
   row: number;
   column: number;
@@ -39,12 +35,12 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
       
   }
 
-  writeValue(v: IRepeaterForm) {  
+  writeValue(v: IRepeaterForm) {
     super.writeValue(v);
     if (this.value) {
       for (var key in this.value.repeat[0]) {
         if (this.value.repeat[0].hasOwnProperty(key)) {
-          console.log(key + " -> " + this.value.repeat[0][key]);
+          // console.log(key + " -> " + this.value.repeat[0][key]);
           this.keyRepeatArr.push(key);
         }
       }
@@ -52,19 +48,12 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
   }
 
   test(){
-    console.table(this.keyRepeatArr);
+    console.table(REPEATER_CONTROL_VALUE_ACCESSOR);
   }
 
-  // protected clone(obj: any): IRepeaterForm {
-  //   if (typeof obj === 'string') {
-  //     return {
-  //       align: "center",
-  //       i18n: {
-  //         en: obj
-  //       }
-  //     }
-  //   }
-  //   return super.clone(obj);
-  // }
+  protected clone(obj: any): IRepeaterForm {
+    // console.log(obj);
+    return super.clone(obj);
+  }
 
 }

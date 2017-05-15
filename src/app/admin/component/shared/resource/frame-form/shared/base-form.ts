@@ -5,8 +5,6 @@ export class BaseFormComponent<T> implements ControlValueAccessor {
   protected value: T;
 
   protected onChangeCallback = (data: T) => { };
-  // protected keyRepeatArr: string[] = [];
-  
 
   /**
      * Write a new value to the element.
@@ -41,7 +39,6 @@ export class BaseFormComponent<T> implements ControlValueAccessor {
       event.preventDefault();
       event.stopImmediatePropagation();
     }
-    console.log(this.value);
     this.onChangeCallback(this.value);
   }
 }

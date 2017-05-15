@@ -3,6 +3,7 @@ import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/
 import {
   ModalComponent, IResourceForm
 } from '../../shared';
+import { BaseFormComponent } from '../shared';
 import { cloneDeep } from 'lodash';
 
 @Component({
@@ -15,6 +16,7 @@ export class GenericFormComponent implements OnInit {
   constructor(
     @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
     private dialog: MdDialog,
+    // private baseForm: BaseFormComponent<any>
   ) { }
 
   record: IResourceForm;
@@ -27,16 +29,18 @@ export class GenericFormComponent implements OnInit {
   ngOnInit() {
     // console.log('aaaaaaaaaaaaa');
     // console.log(this.dialogData);
-    this.record = this.dialogData;
     this.record = cloneDeep(this.dialogData);
     this.type = this.dialogData.type;
   }
 
   Save() {
+    ///////////////////////
+    // console.log(this.)
     if (!this.record) {
       return;
     }
     this.save.next(this.record);
+    console.log(this.record);
     this.dialog.closeAll();
   }
 
