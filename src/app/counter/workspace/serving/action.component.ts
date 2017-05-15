@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { ModalComponent } from '../shared';
+import { RecorderDevice } from '../shared/device/recorder.device';
 
 import {
     WorkspaceService, QueueService,
@@ -19,7 +20,8 @@ export class ActionComponent {
         private queueService: QueueService,
         private ticketService: TicketService,
         private ledService: LedService,
-        private mdDialog: MdDialog
+        private mdDialog: MdDialog,
+        private recorderDevice:  RecorderDevice
     ) { }
 
     auto = this.ticketService.autoNext$;
@@ -61,7 +63,10 @@ export class ActionComponent {
     }
 
     Miss() {
-        this.ticketService.MissAll().subscribe(v => console.log(v));
+        this.ticketService.MissAll().subscribe(v => {
+            console.log(v);
+            this.recorderDevice.SendFileMiss();
+        });
     }
 
 }
