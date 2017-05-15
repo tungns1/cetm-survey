@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QueueService } from '../shared';
 import { TimerComopnent } from '../shared';
+import { ProjectConfig } from '../shared';
 
 @Component({
     selector: 'waiting',
@@ -14,4 +15,5 @@ export class WaitingComponent {
 
     waiting$ = this.queueService.waiting$;
     count$ = this.waiting$.map(data => data.length);
+    maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
 }

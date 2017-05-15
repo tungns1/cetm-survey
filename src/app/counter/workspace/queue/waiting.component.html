@@ -17,7 +17,7 @@
                 <span>{{t.cnum}}</span>
             </div>
             <span fxFlex="50%" class="cell">{{t.service_name}}</span>
-            <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="15"></timer>
+            <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="maxWaitingMinute"></timer>
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@ const oneSecond = interval(1000).share();
 
 export class TimerComopnent {
 
-    @Input() timeWarning: number;
+    @Input() timeWarning: number = 1;
 
     constructor(private ref: ElementRef) {
 
@@ -35,11 +35,11 @@ export class TimerComopnent {
 
     private view(duration: number) {
         let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
-        (this.ref.nativeElement).innerHTML = view;
+        this.native.innerHTML = view;
         if(((duration % 3600) / 60 > this.timeWarning) || (duration / 3600) > 1){
-            (this.ref.nativeElement).style.backgroundColor = '#ff4d4d';
-            (this.ref.nativeElement).style.color = '#ffffff';
-            (this.ref.nativeElement).style.fontWeight = '600';
+            this.native.style.backgroundColor = '#ff4d4d';
+            this.native.style.color = '#ffffff';
+            this.native.style.fontWeight = '600';
         }
     }
 
@@ -60,4 +60,6 @@ export class TimerComopnent {
     ngOnDestroy() {
         this.clear();
     }
+
+    private native: HTMLElement = this.ref.nativeElement;
 }

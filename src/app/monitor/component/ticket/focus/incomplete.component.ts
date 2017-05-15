@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
-import { Ticket } from '../../shared';
+import { Ticket, ProjectConfig } from '../../shared';
 
 @Component({
     selector: "app-incomplete-ticket",
@@ -28,6 +28,7 @@ export class IncompleteTicketComponent {
     };
 
     data: Ticket[] = [];
+    maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
 
     // add user_id, service_id and counter_id 
     // for finished and cancelled ticket
