@@ -40,7 +40,6 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
     if (this.value) {
       for (var key in this.value.repeat[0]) {
         if (this.value.repeat[0].hasOwnProperty(key)) {
-          // console.log(key + " -> " + this.value.repeat[0][key]);
           this.keyRepeatArr.push(key);
         }
       }
@@ -48,8 +47,19 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
   }
 
   protected clone(obj: any): IRepeaterForm {
-    // console.log(obj);
     return super.clone(obj);
+  }
+
+  add(){
+    var newobj: object = {}
+    this.keyRepeatArr.forEach(key => {
+      newobj[key] = '';
+    });
+    this.value.repeat.push(newobj)
+  }
+
+  deleteItem(index: number){
+    this.value.repeat.splice(index, 1);
   }
 
 }

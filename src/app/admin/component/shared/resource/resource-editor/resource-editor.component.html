@@ -23,7 +23,7 @@
                 </td>
                 <td class="body-resource-editor text-center">{{r.type}}</td>
                 <td>
-                    <div (click)="edit(r)" [innerHTML]="r.data | rawResource"></div>
+                    <div [innerHTML]="r.data | rawResource"></div>
                 </td>
             </tr>
         </tbody>

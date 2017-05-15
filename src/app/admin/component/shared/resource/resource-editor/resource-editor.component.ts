@@ -80,7 +80,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   edit(record: IResourceForm) {
     const config = new MdDialogConfig();
-    config.width = '350px';
+    config.width = '450px';
     config.data = record;
     const dialog = this.mdDialog.open(GenericFormComponent, config);
     dialog.afterClosed().subscribe(d => {

@@ -29,7 +29,6 @@ export class GenericFormComponent {
   constructor(
     @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
     private dialog: MdDialogRef<GenericFormComponent>,
-    // private baseForm: BaseFormComponent<any>
   ) {
     this.record = cloneDeep(this.dialogData);
     this.type = this.record.type;

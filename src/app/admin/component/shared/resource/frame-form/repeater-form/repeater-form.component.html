@@ -18,13 +18,18 @@
       </div>
     </div>
 
-    <div *ngFor="let el of value.repeat" fxLayout="column">
-      <div *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="10%">
-        <span fxFlex="10%">{{key}}</span>
-        <input fxFlex="80%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+    <div *ngFor="let el of value.repeat; let i = index" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="5%">
+        <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="10%">
+          <span fxFlex="10%">{{key}}</span>
+          <input fxFlex="80%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+        </div>
+        <i fxFlex="5%" class="fa fa-trash hl-pointer-sv margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
       </div>
       <div class="divider margin-b-15"></div>
     </div>
+
+    <i class="fa fa-plus hl-pointer-sv margin-t-5" (click)="add()"><span i18n>Add</span></i>
 
   </div>
 
