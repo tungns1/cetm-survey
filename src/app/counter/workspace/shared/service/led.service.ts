@@ -32,9 +32,12 @@ export class LedService {
     }
 
     enable() {
+        console.log("led enable start...................");
         this.workspaceService.currentCounter$.switchMap(c => {
+            console.log("c in led...............",c);
             return this.ticketService.autoNext$.switchMap(auto => {
                 return this.queueService.serving$.debounceTime(250).map(t => {
+                    console.log("t in led..........",t);
                     console.log("........c.dev_addr", c.dev_addr);
                     const s: LedStatus = {
                         addr: c.dev_addr,
@@ -79,6 +82,7 @@ export class LedService {
     }
 
     private sendToServerVersion1(status: LedStatus) {
+        console.log("send to server led..........");
         const type = status.type === STATUS.SHOW ? status.data : status.type;
         return this.socket.Send("/status", {
             status: type
