@@ -47,10 +47,6 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
     }
   }
 
-  test(){
-    console.table(REPEATER_CONTROL_VALUE_ACCESSOR);
-  }
-
   protected clone(obj: any): IRepeaterForm {
     // console.log(obj);
     return super.clone(obj);

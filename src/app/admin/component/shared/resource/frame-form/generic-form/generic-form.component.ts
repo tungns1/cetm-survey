@@ -1,51 +1,54 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Optional, Inject } from '@angular/core';
-import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import {
-  ModalComponent, IResourceForm
-} from '../../shared';
-import { BaseFormComponent } from '../shared';
+  Component, OnInit, ViewChild,
+  Output, EventEmitter, Optional,
+  Inject, forwardRef, ExistingProvider
+} from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { IResourceForm } from '../../shared';
 import { cloneDeep } from 'lodash';
+import { BaseFormComponent } from '../shared';
+
+const GENERIC_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => GenericFormComponent),
+  multi: true
+}
 
 @Component({
   selector: 'app-generic-form',
   templateUrl: './generic-form.component.html',
   styleUrls: ['./generic-form.component.scss']
 })
-export class GenericFormComponent implements OnInit {
 
+export class GenericFormComponent {
+  /**
+   * Safely clone the obj
+   * @param obj the given object
+   */
   constructor(
     @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-    private dialog: MdDialog,
+    private dialog: MdDialogRef<GenericFormComponent>,
     // private baseForm: BaseFormComponent<any>
-  ) { }
+  ) {
+    this.record = cloneDeep(this.dialogData);
+    this.type = this.record.type;
+  }
 
   record: IResourceForm;
   type: string;
 
-  @Output() save = new EventEmitter();
-
-  // @ViewChild("main") modal: ModalComponent;
-
-  ngOnInit() {
-    // console.log('aaaaaaaaaaaaa');
-    // console.log(this.dialogData);
-    this.record = cloneDeep(this.dialogData);
-    this.type = this.dialogData.type;
-  }
-
   Save() {
-    ///////////////////////
     // console.log(this.)
     if (!this.record) {
       return;
     }
-    this.save.next(this.record);
     console.log(this.record);
-    this.dialog.closeAll();
+    this.dialog.close(this.record);
   }
 
-  close(){
-    this.dialog.closeAll();
+  close() {
+    this.dialog.close(null)
   }
 
 }

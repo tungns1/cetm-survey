@@ -21,13 +21,12 @@
     <div *ngFor="let el of value.repeat" fxLayout="column">
       <div *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="10%">
         <span fxFlex="10%">{{key}}</span>
-        <input fxFlex="80%" class="hl-input" type="text" [value]="el[key]">
+        <input fxFlex="80%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
       </div>
       <div class="divider margin-b-15"></div>
     </div>
 
   </div>
-  <input type="button" (click)="test()" value="test">
 
   <div *ngIf="!value.repeat">
     <textarea rows="7" cols="30">{{value | json}}</textarea>

@@ -19,8 +19,7 @@ const RESORCE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   constructor(
-    private mdDialog: MdDialog,
-    private generic: GenericFormComponent,
+    private mdDialog: MdDialog
   ) { }
 
   private onChangeCallback = (data: ILayoutResources) => { }
@@ -32,10 +31,6 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.refresh();
-    this.generic.save.subscribe(d => {
-      this.value[d.name] = d;
-      this.refresh();
-    })
   }
 
   Save(r: IResourceForm) {
@@ -63,9 +58,6 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
     }).sort((a, b) => a.name < b.name ? -1 : 1);
   }
   
-test(){
-  console.log(this.value);
-}
   /**
      * Write a new value to the element.
      */
@@ -91,6 +83,11 @@ test(){
     config.width = '350px';
     config.data = record;
     const dialog = this.mdDialog.open(GenericFormComponent, config);
+    dialog.afterClosed().subscribe(d => {
+      if(d){
+        this.Save(d);
+      }
+    })
   }
 
 }
