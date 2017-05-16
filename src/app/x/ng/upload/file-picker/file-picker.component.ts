@@ -1,6 +1,6 @@
 import {
     Component, Input, forwardRef, ExistingProvider,
-    Output, EventEmitter
+    Output, EventEmitter, HostListener
 } from '@angular/core';
 import {
     FormsModule, ControlValueAccessor,
@@ -32,10 +32,9 @@ export class FilePickerComponent implements ControlValueAccessor {
         private mdDialog: MdDialog
     ) { }
 
-    // @HostListener("change") onChange() {
-    //     this.onChangeCallback(this.value);
-    // }
-    @Output() change = new EventEmitter();
+    @HostListener("change") onChange() {
+        this.onChangeCallback(this.value);
+    }
 
     protected value = '';
     protected onChangeCallback = (v) => { };
@@ -56,9 +55,14 @@ export class FilePickerComponent implements ControlValueAccessor {
         const config = new MdDialogConfig();
         config.width = '450px';
         config.data = {
-            value: this.value,
-            change: this.change
+            value: this.value
         };
         const dialog = this.mdDialog.open(FilePickerModalComponent, config);
+        dialog.afterClosed().subscribe(v => {
+            if (v) {
+                this.value = v;
+                this.onChangeCallback(this.value);
+            }
+        })
     }
 }
