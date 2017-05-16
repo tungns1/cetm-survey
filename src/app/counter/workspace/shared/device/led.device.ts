@@ -22,6 +22,7 @@ export class LedDevice {
         );
     }
 
+
     On(addr: number) {
         this.Command("on", addr);
     }
@@ -36,5 +37,9 @@ export class LedDevice {
 
     Ping(addr: number) {
         this.Command("ping", addr);
+    }
+
+    Stop(addr: number) {
+        this.Command("stop", addr);
     }
 }
