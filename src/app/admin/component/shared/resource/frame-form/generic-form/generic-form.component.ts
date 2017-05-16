@@ -42,7 +42,8 @@ export class GenericFormComponent {
     if (!this.record) {
       return;
     }
-    console.log(this.record);
+    // console.log(this.record);
+    // this.record.data.repeat = [{"hour":"10:00 AM - 5:00 PM","store":"LUNES - VIERNES"},{"hour":"09:30 AM - 4:30 PM","store":"SÁBADO - DOMINGO"}];
     this.dialog.close(this.record);
   }
 
