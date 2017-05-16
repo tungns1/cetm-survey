@@ -36,6 +36,7 @@ export class LedService {
         this.workspaceService.currentCounter$.switchMap(c => {
             console.log("c in led...............",c);
             return this.ticketService.autoNext$.switchMap(auto => {
+                console.log("..........autoNext",auto);
                 return this.queueService.serving$.debounceTime(250).map(t => {
                     console.log("t in led..........",t);
                     console.log("........c.dev_addr", c.dev_addr);
