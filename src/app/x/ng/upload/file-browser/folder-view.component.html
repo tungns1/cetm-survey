@@ -9,7 +9,7 @@
 
             <tr *ngFor="let d of node.rxChildren | async">
                 <td>
-                    <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
+                    <a md-line class="pointer" (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
                     {{ d.name }}
                     </a>
                 </td>
