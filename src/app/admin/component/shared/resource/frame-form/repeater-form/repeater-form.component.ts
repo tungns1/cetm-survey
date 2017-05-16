@@ -56,10 +56,12 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
       newobj[key] = '';
     });
     this.value.repeat.push(newobj)
+    this.onChangeCallback(this.value);
   }
 
   deleteItem(index: number){
     this.value.repeat.splice(index, 1);
+    this.onChangeCallback(this.value);
   }
 
 }
