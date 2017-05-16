@@ -17,14 +17,18 @@ export class SettingComponent implements OnInit {
     this.form.valueChanges.subscribe(v => {
       this.counterSetting.Update(v);
     });
+    this.default = 1;
   }
+
+  default: number;
 
   value = this.counterSetting.Data;
 
   form = new FormGroup({
     branch_code: new FormControl(this.value.branch_code),
     counter_code: new FormControl(this.value.counter_code),
-    enable_recording: new FormControl(this.value.enable_recording)
+    enable_recording: new FormControl(this.value.enable_recording),
+    addr_led: new FormControl(this.value.addr_led)
   });
 
 }

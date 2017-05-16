@@ -16,13 +16,15 @@ export class EditorViewComponent implements OnInit {
         private route: ActivatedRoute
     ) { }
 
-    ngOnInit() {
-        console.log(this.isValid);
-    }
-
+    @Input() isNew   = true;
+    @Input() isValid = true;
     @Input() title = 'title';
 
     @Output() action = new EventEmitter<string>();
+
+    ngOnInit() {
+
+    }
 
     onAction(action: string) {
     
@@ -46,7 +48,4 @@ export class EditorViewComponent implements OnInit {
         if(!this.isValid) return true;
         else return false;
     }
-
-    @Input() isNew   = true;
-    @Input() isValid = true;
 }
