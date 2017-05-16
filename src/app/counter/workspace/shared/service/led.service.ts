@@ -80,15 +80,15 @@ export class LedService {
     private SendStatus(status: LedStatus) {
         switch (status.type) {
             case STATUS.WELCOME:
-            console.log(".....................status.welcome");
+                console.log(".....................status.welcome",status.addr);
                 this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
-            console.log(".....................status.stop");
+            console.log(".....................status.stop",status.addr);
                 this.ledDevice.Off(status.addr);
                 break;
             case STATUS.SHOW:
-            console.log(".....................status.show");
+            console.log(".....................status.show",status.addr);
                 this.ledDevice.Show(status.addr, status.data);
                 break;
         }
