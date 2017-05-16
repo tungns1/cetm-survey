@@ -33,23 +33,23 @@ export class LedService {
 
     enable() {
         console.log("led enable start...................");
+        this.ledDevice.Setup(1);
         this.workspaceService.currentCounter$.switchMap(c => {
-            console.log("c in led...............",c);
-            this.ledDevice.Setup(c.dev_addr);
+            console.log("c in led...............", c);
             return this.queueService.serving$.map(t => {
                 const first = t[0];
                 const s: LedStatus = {
                     addr: c.dev_addr,
                     type: STATUS.WELCOME,
                 };
-                if(first) {
-                     s.type = STATUS.SHOW;
-                     s.data = first.cnum;
+                if (first) {
+                    s.type = STATUS.SHOW;
+                    s.data = first.cnum;
                 }
                 else {
                     this.queueService.waiting$.map(w => {
                         const frst = w[0];
-                        if(frst) {
+                        if (frst) {
                             s.type = STATUS.WELCOME
                         }
                         else {
@@ -92,15 +92,15 @@ export class LedService {
     private SendStatus(status: LedStatus) {
         switch (status.type) {
             case STATUS.WELCOME:
-                console.log(".....................status.welcome",status.addr);
+                console.log(".....................status.welcome", status.addr);
                 this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
-            console.log(".....................status.stop",status.addr);
+                console.log(".....................status.stop", status.addr);
                 this.ledDevice.Stop(status.addr);
                 break;
             case STATUS.SHOW:
-            console.log(".....................status.show",status.addr);
+                console.log(".....................status.show", status.addr);
                 this.ledDevice.Show(status.addr, status.data);
                 break;
         }
