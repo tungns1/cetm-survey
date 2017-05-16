@@ -33,32 +33,34 @@ export class LedService {
 
     enable() {
         console.log("led enable start...................");
-        this.workspaceService.currentCounter$.switchMap(c => {
-            console.log("c in led...............",c);
-            return this.ticketService.autoNext$.switchMap(auto => {
-                console.log("..........autoNext",auto);
-                return this.queueService.serving$.debounceTime(250).map(t => {
-                    console.log("t in led..........",t);
-                    console.log("........c.dev_addr", c.dev_addr);
-                    const s: LedStatus = {
-                        addr: c.dev_addr,
-                        type: STATUS.WELCOME,
-                    };
-                    const first = t[0];
-                    console.log("first..............",first);
-                    if (first) {
-                        s.type = STATUS.SHOW;
-                        s.data = first.cnum;
-                    } else {
-                        s.type = auto ? STATUS.WELCOME : STATUS.STOP;
-                    }
-                    return s;
-                })
-            })
-        }).subscribe(status => {
-            console.log("status.............");
-            this.SendStatus(status);
-        });
+        // this.workspaceService.currentCounter$.switchMap(c => {
+        //     console.log("c in led...............",c);
+        //     return this.ticketService.autoNext$.switchMap(auto => {
+        //         console.log("..........autoNext",auto);
+        //         return this.queueService.serving$.debounceTime(250).map(t => {
+        //             console.log("t in led..........",t);
+        //             console.log("........c.dev_addr", c.dev_addr);
+        //             const s: LedStatus = {
+        //                 addr: c.dev_addr,
+        //                 type: STATUS.WELCOME,
+        //             };
+        //             const first = t[0];
+        //             console.log("first..............",first);
+        //             if (first) {
+        //                 s.type = STATUS.SHOW;
+        //                 s.data = first.cnum;
+        //             } else {
+        //                 s.type = auto ? STATUS.WELCOME : STATUS.STOP;
+        //             }
+        //             return s;
+        //         })
+        //     })
+        // }).subscribe(status => {
+        //     console.log("status.............");
+        //     this.SendStatus(status);
+        // });
+        let s: LedStatus = { addr: 1, type: STATUS.SHOW, data: "kaka"};
+        this.SendStatus(s);
         return true;
     }
 
