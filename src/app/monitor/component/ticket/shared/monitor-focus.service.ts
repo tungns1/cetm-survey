@@ -41,7 +41,6 @@ export class MonitorFocusService {
   private ticketChange$ = this.socket.RxEvent<ITicket>("/ticket/update");
 
   Box$ = this.initialFocus$.switchMap(initial => {
-    // console.log(initial);
     const box = new BoxTicket(initial);
     CacheCounter.Refresh(initial.counters);
     CacheUsers.Refresh(initial.users);
