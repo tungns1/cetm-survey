@@ -5,6 +5,7 @@ import { QueueService } from './queue.service';
 import { TicketService } from './ticket.service';
 import { LedDevice } from '../device';
 import { WorkspaceSocket } from './workspace.socket';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 const STATUS = {
     WELCOME: "welcome",
@@ -34,55 +35,23 @@ export class LedService {
     enable() {
         console.log("led enable start...................");
         this.ledDevice.Setup(1);
-        this.workspaceService.currentCounter$.switchMap(c => {
-            console.log("c in led...............", c);
-            return this.queueService.serving$.map(t => {
-                const first = t[0];
+        combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
+            .map(([w, auto]) => {
                 const s: LedStatus = {
-                    addr: c.dev_addr,
+                    addr: 1,
                     type: STATUS.WELCOME,
                 };
-                if (first) {
+                if (w.Serving.is_empty) {
+                    s.type = auto ? STATUS.WELCOME : STATUS.STOP;
+                } else {
                     s.type = STATUS.SHOW;
-                    s.data = first.cnum;
-                }
-                else {
-                    this.queueService.waiting$.map(w => {
-                        const frst = w[0];
-                        if (frst) {
-                            s.type = STATUS.WELCOME
-                        }
-                        else {
-                            s.type = STATUS.STOP
-                        }
-                    });
+                    s.data = w.Serving.GetFirstTicket().cnum;
                 }
                 return s;
-            })
-            // return this.ticketService.autoNext$.switchMap(auto => {
-            //     console.log("..........autoNext",auto);
-            //     return this.queueService.serving$.debounceTime(250).map(t => {
-            //         console.log("t in led..........",t);
-            //         console.log("........c.dev_addr", c.dev_addr);
-            //         const s: LedStatus = {
-            //             addr: c.dev_addr,
-            //             type: STATUS.WELCOME,
-            //         };
-            //         const first = t[0];
-            //         console.log("first..............",first);
-            //         if (first) {
-            //             s.type = STATUS.SHOW;
-            //             s.data = first.cnum;
-            //         } else {
-            //             s.type = auto ? STATUS.WELCOME : STATUS.STOP;
-            //         }
-            //         return s;
-            //     })
-            // })
-        }).subscribe(status => {
-            console.log("status.............");
-            this.SendStatus(status);
-        });
+            }).subscribe(status => {
+                console.log("status.............");
+                this.SendStatus(status);
+            });
     }
 
     disable() {
