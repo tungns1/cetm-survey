@@ -35,31 +35,43 @@ export class LedService {
         console.log("led enable start...................");
         this.workspaceService.currentCounter$.switchMap(c => {
             console.log("c in led...............",c);
-            return this.ticketService.autoNext$.switchMap(auto => {
-                console.log("..........autoNext",auto);
-                return this.queueService.serving$.debounceTime(250).map(t => {
-                    console.log("t in led..........",t);
-                    console.log("........c.dev_addr", c.dev_addr);
-                    const s: LedStatus = {
+            this.ledDevice.Setup(c.dev_addr);
+            return this.queueService.serving$.map(t => {
+                const first = t[0];
+                  const s: LedStatus = {
                         addr: c.dev_addr,
                         type: STATUS.WELCOME,
                     };
-                    const first = t[0];
-                    console.log("first..............",first);
-                    if (first) {
-                        s.type = STATUS.SHOW;
-                        s.data = first.cnum;
-                    } else {
-                        s.type = auto ? STATUS.WELCOME : STATUS.STOP;
-                    }
-                    return s;
-                })
+                if(first) {
+                     s.type = STATUS.SHOW;
+                     s.data = first.cnum;
+                }
+                return s;
             })
+            // return this.ticketService.autoNext$.switchMap(auto => {
+            //     console.log("..........autoNext",auto);
+            //     return this.queueService.serving$.debounceTime(250).map(t => {
+            //         console.log("t in led..........",t);
+            //         console.log("........c.dev_addr", c.dev_addr);
+            //         const s: LedStatus = {
+            //             addr: c.dev_addr,
+            //             type: STATUS.WELCOME,
+            //         };
+            //         const first = t[0];
+            //         console.log("first..............",first);
+            //         if (first) {
+            //             s.type = STATUS.SHOW;
+            //             s.data = first.cnum;
+            //         } else {
+            //             s.type = auto ? STATUS.WELCOME : STATUS.STOP;
+            //         }
+            //         return s;
+            //     })
+            // })
         }).subscribe(status => {
             console.log("status.............");
             this.SendStatus(status);
         });
-        return true;
     }
 
     disable() {
@@ -69,15 +81,15 @@ export class LedService {
     private SendStatus(status: LedStatus) {
         switch (status.type) {
             case STATUS.WELCOME:
-            console.log(".....................status.welcome");
+                console.log(".....................status.welcome",status.addr);
                 this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
-            console.log(".....................status.stop");
+            console.log(".....................status.stop",status.addr);
                 this.ledDevice.Off(status.addr);
                 break;
             case STATUS.SHOW:
-            console.log(".....................status.show");
+            console.log(".....................status.show",status.addr);
                 this.ledDevice.Show(status.addr, status.data);
                 break;
         }
