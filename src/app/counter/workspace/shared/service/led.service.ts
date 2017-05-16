@@ -33,9 +33,9 @@ export class LedService {
     }
 
     enable() {
-        console.log("led enable start...................");
         this.ledDevice.Setup(1);
         combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
+            .debounceTime(250)
             .map(([w, auto]) => {
                 const s: LedStatus = {
                     addr: 1,
@@ -49,7 +49,6 @@ export class LedService {
                 }
                 return s;
             }).subscribe(status => {
-                console.log("status.............");
                 this.SendStatus(status);
             });
     }
@@ -61,15 +60,12 @@ export class LedService {
     private SendStatus(status: LedStatus) {
         switch (status.type) {
             case STATUS.WELCOME:
-                console.log(".....................status.welcome", status.addr);
                 this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
-                console.log(".....................status.stop", status.addr);
                 this.ledDevice.Stop(status.addr);
                 break;
             case STATUS.SHOW:
-                console.log(".....................status.show", status.addr);
                 this.ledDevice.Show(status.addr, status.data);
                 break;
         }
