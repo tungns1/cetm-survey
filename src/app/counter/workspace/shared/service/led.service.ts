@@ -35,6 +35,7 @@ export class LedService {
         console.log("led enable start...................");
         this.workspaceService.currentCounter$.switchMap(c => {
             console.log("c in led...............",c);
+            this.ledDevice.Setup(c.dev_addr);
             return this.queueService.serving$.map(t => {
                 const first = t[0];
                   const s: LedStatus = {
