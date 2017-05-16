@@ -38,13 +38,24 @@ export class LedService {
             this.ledDevice.Setup(c.dev_addr);
             return this.queueService.serving$.map(t => {
                 const first = t[0];
-                  const s: LedStatus = {
-                        addr: c.dev_addr,
-                        type: STATUS.WELCOME,
-                    };
+                const s: LedStatus = {
+                    addr: c.dev_addr,
+                    type: STATUS.WELCOME,
+                };
                 if(first) {
                      s.type = STATUS.SHOW;
                      s.data = first.cnum;
+                }
+                else {
+                    this.queueService.waiting$.map(w => {
+                        const frst = w[0];
+                        if(frst) {
+                            s.type = STATUS.WELCOME
+                        }
+                        else {
+                            s.type = STATUS.STOP
+                        }
+                    });
                 }
                 return s;
             })
@@ -86,7 +97,7 @@ export class LedService {
                 break;
             case STATUS.STOP:
             console.log(".....................status.stop",status.addr);
-                this.ledDevice.Off(status.addr);
+                this.ledDevice.Stop(status.addr);
                 break;
             case STATUS.SHOW:
             console.log(".....................status.show",status.addr);
