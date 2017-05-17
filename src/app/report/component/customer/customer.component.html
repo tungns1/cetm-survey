@@ -1,6 +1,6 @@
 <div fxLayout="row">
   <div [fxFlex]="'250px'" class="leftFilter">
-    <report-filter [inside]="''" style="padding-top: 50px; height: 100%"></report-filter>
+    <report-filter [inside]="'customer'" style="padding-top: 50px; height: 100%"></report-filter>
   </div>
 
   <div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
@@ -35,7 +35,7 @@
             </md-tab>
             <md-tab>
               <template md-tab-label><span class="uppercase" i18n>Frequency</span></template>
-              <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async"></fres-tab>
+              <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async" i18n-title title="Frequency"></fres-tab>
             </md-tab>
             <md-tab>
               <template md-tab-label><span class="uppercase" i18n>Sevice</span></template>

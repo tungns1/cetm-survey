@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy,Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PeriodFilterService } from '../../shared';
 
@@ -13,7 +13,7 @@ export class PeriodFilterComponent implements OnInit {
     constructor(
         private periodFilterService: PeriodFilterService
     ) { }
-
+    @Input() inside:string;
     form = (new FormBuilder).group({
         start: [],
         end: [],

@@ -1,36 +1,39 @@
 <accordion id="period">
-    <accordion-title class="accordionTitle">
-        <span i18n>Period of Time</span>
-    </accordion-title>
-    <form [formGroup]="form">
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-            <div fxFlex class="radioCtrl">
-                <input type="radio" formControlName="period" value="day">
-                <span i18n>Date</span>
-            </div>
-            <div fxFlex class="radioCtrl">
-                <input type="radio" formControlName="period" value="week" checked>
-                <span i18n>Week</span>
-            </div>
+  <accordion-title class="accordionTitle">
+    <span i18n>Period of Time</span>
+  </accordion-title>
+  <form [formGroup]="form">
+    <div *ngIf="inside!='counter'">
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxFlex class="radioCtrl">
+          <input type="radio" formControlName="period" value="day">
+          <span i18n>Date</span>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-            <div fxFlex class="radioCtrl">
-                <input type="radio" formControlName="period" value="month">
-                <span i18n>Month</span>
-            </div>
-            <div fxFlex class="radioCtrl">
-                <input type="radio" formControlName="period" value="year">
-                <span i18n>Year</span>
-            </div>
+        <div fxFlex class="radioCtrl">
+          <input type="radio" formControlName="period" value="week" checked>
+          <span i18n>Week</span>
         </div>
-        <hr>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-            <label fxFlex i18n>From Day</label>
-            <label fxFlex i18n>To Day</label>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxFlex class="radioCtrl">
+          <input type="radio" formControlName="period" value="month">
+          <span i18n>Month</span>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center">
-            <date-picker fxFlex formControlName="start" timestamp="true"></date-picker>
-            <date-picker fxFlex formControlName="end" timestamp="true"></date-picker>
+        <div fxFlex class="radioCtrl">
+          <input type="radio" formControlName="period" value="year">
+          <span i18n>Year</span>
         </div>
-    </form>
+      </div>
+      <hr>
+    </div>
+    
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <label fxFlex i18n>From Day</label>
+      <label fxFlex i18n>To Day</label>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <date-picker fxFlex formControlName="start" timestamp="true"></date-picker>
+      <date-picker fxFlex formControlName="end" timestamp="true"></date-picker>
+    </div>
+  </form>
 </accordion>
