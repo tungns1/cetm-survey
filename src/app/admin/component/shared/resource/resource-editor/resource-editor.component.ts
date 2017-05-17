@@ -57,11 +57,11 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
       return this.value[k].show && this.editables.indexOf(this.value[k].type) !== -1;
     }).map(k => {
       const r = this.value[k];
-      console.log(r);
       return {
         name: k,
         type: r.type,
         data: r.data,
+        show: true,
         enabled: r.enabled
       };
     }).sort((a, b) => a.name < b.name ? -1 : 1);
