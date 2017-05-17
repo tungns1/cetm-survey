@@ -929,10 +929,6 @@
         <source>Frequency</source>
         <target/>
       </trans-unit>
-      <trans-unit id="5484b4bdb2e74eebc8c840caf1c8555339ed7b83" datatype="html">
-        <source>Sevice</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="f6a02ca0b8cc36730766f5dd2040ee15c999aacb" datatype="html">
         <source>Number Of Transaction</source>
         <target/>

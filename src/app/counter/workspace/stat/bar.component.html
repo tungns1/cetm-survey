@@ -1,8 +1,10 @@
-<div *ngFor="let d of _data" id="bar" class="margin-10-15">
-    <p class="label">{{d.service_id | serviceName}}</p>
-    <div class="barBackground">
-        <div class="barGrap" [style.width]="''+d.count/max*100+'%'">
-            <p>{{d.value.count}}</p>
+<div *ngIf="max$ | async; let max">
+    <div *ngFor="let d of data$ | async" id="bar" class="margin-10-15">
+        <p class="label">{{d.service_id | serviceName}}</p>
+        <div class="barBackground">
+            <div class="barGrap" [style.width]="''+d.count/max*100+'%'">
+                <p>{{d.count}}</p>
+            </div>
         </div>
     </div>
 </div>

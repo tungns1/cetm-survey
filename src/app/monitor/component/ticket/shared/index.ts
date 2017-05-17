@@ -14,3 +14,5 @@ export const monitorServiceProviders = [
     MonitorSummaryService,
     MonitorCustomerService
 ]
+
+export { ProjectConfig } from '../../shared';

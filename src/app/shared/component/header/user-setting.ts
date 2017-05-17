@@ -1,7 +1,7 @@
 
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { LOCALES, AppStorage } from '../../shared';
+import { ProjectConfig, AppStorage } from '../../shared';
 
 @Component({
     selector: 'user-setting',
@@ -16,20 +16,19 @@ export class UserSettingComponent {
         this.close.next();
     }
 
+    languages = ProjectConfig.general.supported_languages;
 
-    items = Object.keys(LOCALES.LANGUAGES).map(l => {
+    items = this.languages.map(l => {
         return {
             key: l,
-            value: LOCALES.LANGUAGES[l]
+            value: l
         };
     });
 
-    locale = AppStorage.Locale;
+    culture = AppStorage.Locale;
 
-    SetLocale(locale: string) {
-        AppStorage.Locale = locale;
+    SetCulture(culture: string) {
+        AppStorage.Locale = culture;
         window.location.reload();
     }
-
-
 }

@@ -494,10 +494,6 @@
         <source>Frequency</source>
         <target>Tần Suất</target>
       </trans-unit>
-      <trans-unit id="5484b4bdb2e74eebc8c840caf1c8555339ed7b83" datatype="html">
-        <source>Sevice</source>
-        <target>Dịch Vụ</target>
-      </trans-unit>
       <trans-unit id="71b3171eebeca5e9ab16420f8d1f4eddd308786f">
         <source>Total transaction time</source>
         <target>Tổng thời gian giao dịch</target>

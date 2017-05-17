@@ -6,76 +6,59 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async"
+    [title]="title" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
-                <span fxFlex="1%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder="Code">
-            </div>
+            <span fxFlex="2%" class="valid-color" *ngIf="form.get('code').hasError('required')">*&nbsp;</span>
+            <span fxFlex="2%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
+            <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder="Code">
             <span fxFlex="20%" i18n>Name</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
-                <span fxFlex="1%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="text" formControlName="name" i18n-placeholder="Name">
-            </div>
+            <span fxFlex="2%" class="valid-color" *ngIf="form.get('name').hasError('required')">*&nbsp;</span>
+            <span fxFlex="2%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
+            <input fxFlex class="hl-input" type="text" formControlName="name" i18n-placeholder="Name">
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n="Default Kiosk Vip Codes">Fixed Vip Codes</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%">&nbsp;</span>
-                <input fxFlex class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
-            </div>
+            <span fxFlex="2%">&nbsp;</span>
+            <input fxFlex class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
             <span fxFlex="20%" i18n="Inherit kiosk attributes">Inherit From</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%">&nbsp;</span>
-                <select fxFlex class="hl-select" formControlName="parent_id">           
+            <span fxFlex="2%">&nbsp;</span>
+            <select fxFlex class="hl-select" formControlName="parent_id">           
                     <option value="">--None--</option>
                     <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
                 </select>
-            </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%">
                 Layout
                 <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">Edit</a>
             </span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%">&nbsp;</span>
-                <select fxFlex class="hl-select" formControlName="layout_id">
+            <span fxFlex="2%">&nbsp;</span>
+            <select fxFlex class="hl-select" formControlName="layout_id">
                     <option value="">--None--</option>
                     <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
                 </select>
-            </div>
             <span fxFlex="20%" i18n>Ticket Layout</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%">&nbsp;</span>
-                <select fxFlex class="hl-select" formControlName="tlayout_id">
+            <span fxFlex="2%">&nbsp;</span>
+            <select fxFlex class="hl-select" formControlName="tlayout_id">
                     <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
                 </select>
-            </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Location</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
-                <span fxFlex="1%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-                <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
-            </div>
+            <span fxFlex="2%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*&nbsp;</span>
+            <span fxFlex="2%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
+            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
             <span fxFlex="20%" i18n>Services</span>
-            <div fxFlex fxLayoutGap="5px">
-                <span fxFlex="1%">&nbsp;</span>
-                <service-list fxFlex class="border" formControlName="services" [services]="services | async"></service-list>
-            </div>
+            <span fxFlex="2%">&nbsp;</span>
+            <service-list fxFlex class="border" formControlName="services" [services]="services | async"></service-list>
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Resources</span>
-            <div fxFlex fxLayout="row">
-                <span fxFlex="1%">&nbsp;</span>
-                <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
-            </div>
+            <span fxFlex="2%">&nbsp;</span>
+            <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
         </div>
     </form>
 </app-editor-view>

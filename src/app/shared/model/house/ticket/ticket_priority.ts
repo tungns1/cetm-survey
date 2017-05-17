@@ -1,15 +1,28 @@
 import { ProjectConfig } from '../../shared';
 import { ITicket, Ticket } from './ticket';
-const TICKET_PRIORITY = ProjectConfig.TICKET_PRIORITY;
+const PriorityConfig = ProjectConfig.priority;
 
-export function getPriority(t: ITicket) {
+function getPriority(data: ITicketPriority) {
+    if (!data) return 0;
     var priority = 0;
-    const data = t.ticket_priority || {};
-    Object.keys(data).forEach(name => {
-        if (data[name]) {
-            priority += +(TICKET_PRIORITY[name]) || 0;
-        }
-    });
+    if (data.vip_card) {
+        priority += PriorityConfig.internal_vip_card;
+    }
+    if (data.customer_vip) {
+        priority += PriorityConfig.customer_vip_card;
+    }
+    if (data.customer_priority) {
+        priority += PriorityConfig.privileged_customer;
+    }
+    if (data.service_priority) {
+        priority += +data.service_priority || 0;
+    }
+    if (data.ticket_online) {
+        priority += PriorityConfig.booked_ticket;
+    }
+    if (data.ticket_serving_move) {
+        priority += PriorityConfig.moved_ticket;
+    }
     return priority;
 }
 
@@ -22,21 +35,37 @@ export interface ITicketPriority {
     ticket_online: string;
 }
 
-export function sortTicket(a: Ticket, b: Ticket) {
-    if (a.priority > b.priority) {
-        return -1;
-    } else if (a.priority < b.priority) {
-        return 1;
+function priorityCode(p: ITicketPriority) {
+    if (p) {
+        if (p.customer_priority) {
+            return "privileged";
+        }
+        if (p.customer_vip) {
+            return "vip";
+        }
     }
-    return a.ctime < b.ctime ? -1 : 1;
+    return "normal";
 }
 
-export function priorityCode(p: ITicketPriority) {
-    if (p.customer_priority) {
-        return "customer";
-    } 
-    if (p.customer_vip) {
-        return "vip";
-    } 
-    return "normal";
+export class TicketPriority {
+    constructor(private _t: ITicketPriority) { }
+    value = getPriority(this._t);
+    code = priorityCode(this._t);
+    isRestricted() {
+        return this.value >= PriorityConfig.min_priority_restricted;
+    }
+    
+    canMakeUnorderedCall() {
+        return this.value >= PriorityConfig.min_priority_unordered_call;
+    }
+
+    compare(b: TicketPriority) {
+        const step = this.value - b.value;
+        if (step < -PriorityConfig.priority_step) {
+            return 1;
+        } else if (step > PriorityConfig.priority_step) {
+            return -1;
+        };
+        return 0;
+    }
 }

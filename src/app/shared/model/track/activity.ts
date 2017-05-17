@@ -16,9 +16,16 @@ export interface IMapActivity {
 }
 
 export interface IKioskTrack {
-    pc: number;
-    ps: string;
-    ps_a: number;
+    pc: number; // printed count
+    ps: string; // printer status
+    ps_a: number; // printer status at
+}
+
+class KioskTrack {
+    constructor(private _t: IKioskTrack) { }
+    PrintedCount = this._t.pc;
+    PrinterStatus = this._t.ps || "on";
+    PrinterStatusAt = this._t.ps_a;
 }
 
 export class Activity {
@@ -39,24 +46,21 @@ export class Activity {
 
     //
     is_active = this.ref > 0;
-    get status() {
+    status = this.getStatus();
+
+    private getStatus() {
         if (this.ref === 0) {
             return "off"
-        } else {
-            if (this.category = Activity.Categories.Kiosk) {
-                var k: IKioskTrack = this.data;
-                if (k.ps != "") {
-                    return "on"
-                } else {
-                    return "printer error"
-                }
-
-            } else {
-                return "on";
-            }
         }
-
+        switch (this.category) {
+            case Activity.Categories.Kiosk:
+                const k = new KioskTrack(this.data);
+                return k.PrinterStatus;
+            default:
+                return "on"
+        }
     }
+
     static Categories = {
         Kiosk: "kiosk",
         Counter: "counter"

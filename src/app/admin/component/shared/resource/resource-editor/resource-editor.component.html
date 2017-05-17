@@ -8,27 +8,28 @@
 <div id="kiosk-resources">
     <table class="tableCtrl">
         <thead>
-            <th class="text-center" width="25%" i18n>Name</th>
-            <th class="text-center" width="15%" i18n>Type</th>
+            <th class="text-center" width="10%" i18n>Enable</th>
+            <th class="text-center" width="20%" i18n>Name</th>
+            <th class="text-center" width="10%" i18n>Type</th>
             <th class="text-center" width="60%" i18n>Data</th>
         </thead>
         <tbody>
             <tr *ngFor="let r of records">
                 <td>
+                    <input type="checkbox" [(ngModel)]="r.enabled" (ngModelChange)="enable(r)">
+                </td>
+                <td>
                     {{r.name}}
                     <div class="edit-reset-button">
-                        <a [class.hide]="!r.editable" (click)="form.Edit(r)" i18n>Edit</a>
+                        <a (click)="edit(r)" i18n>Edit</a>
                         <a (click)="Reset(r)" i18n>Reset</a>
                     </div>
                 </td>
                 <td class="body-resource-editor text-center">{{r.type}}</td>
                 <td>
-                    <div (click)="form.Edit(r)" [innerHTML]="r.data | rawResource"></div>
+                    <div [innerHTML]="r.data | rawResource"></div>
                 </td>
             </tr>
         </tbody>
     </table>
-
-    <app-generic-form #form (save)="Save($event)">
-    </app-generic-form>
 </div>

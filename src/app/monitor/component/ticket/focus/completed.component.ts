@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Ticket, TicketStates } from '../../shared';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
+import { ProjectConfig } from '../shared';
 
 @Component({
     selector: "app-completed-ticket",
@@ -19,6 +20,7 @@ export class CompletedTicketComponent {
     };
 
     data: Ticket[] = [];
+    maxServingMinute = ProjectConfig.service.max_serving_minute;
 
     // add user_id, service_id and counter_id 
     // for finished and cancelled ticket
@@ -49,7 +51,6 @@ export class CompletedTicketComponent {
     showDetails(t: Ticket) {
         const config = new MdDialogConfig();
         config.width = '350px';
-        config.height = '425px';
         config.data = t;
         const dialog = this.mdDialog.open(TicketDetailComponent, config);
     }

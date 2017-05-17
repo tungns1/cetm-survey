@@ -7,6 +7,10 @@ export class LedDevice {
         private qmsService: QmsService
     ) { }
 
+    LedStart() {
+        this.qmsService.__x.Broadcast("/led/start", "true");
+    }
+
     Setup(addr: number) {
         this.qmsService.__x.Broadcast("/led/com", addr);
     }
@@ -18,6 +22,7 @@ export class LedDevice {
         );
     }
 
+
     On(addr: number) {
         this.Command("on", addr);
     }
@@ -27,10 +32,14 @@ export class LedDevice {
     }
 
     Show(addr: number, text: string) {
-        this.Command(`on ${text}`, addr);
+        this.Command(`show ${text}`, addr);
     }
 
     Ping(addr: number) {
         this.Command("ping", addr);
+    }
+
+    Stop(addr: number) {
+        this.Command("stop", addr);
     }
 }

@@ -13,7 +13,7 @@ import { TicketDetailDialog } from './ticket-detail.dialog';
 })
 export class TicketDetailDirective {
   @Input('ticket-detail') ticket: any;
-  private dialogRef: ComponentRef<TicketDetailDialog>;
+  // private dialogRef: ComponentRef<TicketDetailDialog>;
 
   constructor(
     private viewContainer: ViewContainerRef,

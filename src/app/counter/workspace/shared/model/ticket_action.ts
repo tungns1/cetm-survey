@@ -1,4 +1,4 @@
-import { ITicket } from './shared';
+import { ITicket, Ticket } from './shared';
 
 
 export interface ITicketAction {
@@ -17,6 +17,7 @@ const ActionCall = "call";
 const ActionRecall = "recall";
 const ActionFinish = "finish";
 const ActionMove = "move";
+const ActionCreate = "create";
 
 export class TicketAction {
     constructor(
@@ -30,5 +31,17 @@ export class TicketAction {
     service_id = this._a.service_id;
     extra = this._a.extra;
     action = this._a.action;
+    ticket = new Ticket(this._a.ticket);
 
+    IsCreate() {
+        return this.action == ActionCreate;
+    }
+
+    IsMissed() {
+        return this.action == ActionMiss;
+    }
+
+    IsServing() {
+        return this.action == ActionCall || this.state == ActionRecall;
+    }    
 }

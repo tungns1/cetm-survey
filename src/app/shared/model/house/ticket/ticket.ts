@@ -1,9 +1,8 @@
-import { ICustomer,Customer } from '../../org';
+import { ICustomer, Customer } from '../../org';
+import { IService } from '../../center';
+import { ICounter } from '../counter';
 import { TicketState, TicketStates } from './ticket_state';
-import {
-    getPriority, sortTicket, priorityCode,
-    ITicketPriority
-} from './ticket_priority';
+import { ITicketPriority, TicketPriority } from './ticket_priority';
 import { IFeedback } from './ticket_feedback';
 
 export interface ITicketTrack {
@@ -75,8 +74,8 @@ export class Ticket {
     branch_id = this._t.branch_id;
     service_id = this._t.service_id;
     counter_id = this._t.counter_id;
-    services = this._t.services || [];
-    counters = this._t.counter_id || [];
+    services: string[] = this._t.services || [];
+    counters: string[] = this._t.counters || [];
     ccount = this._t.ccount || 0;
     user_id = this._t.user_id;
     state = this._t.state;
@@ -88,8 +87,7 @@ export class Ticket {
     ticket_priority = this._t.ticket_priority;
     transaction_id?= this._t.transaction_id;
     service_name = getServiceName(this._t);
-    priority = getPriority(this._t);
-    priority_code = priorityCode(this._t.ticket_priority);
+    priority = new TicketPriority(this._t.ticket_priority);
 
     getPrevTrack() {
         return this.tracks[this.tracks.length - 2];
@@ -99,5 +97,39 @@ export class Ticket {
         return this.tracks[this.tracks.length - 1];
     }
 
-    static sort = sortTicket;
+    addHelperFields() {
+        if (this.state == TicketStates.Serving) return;
+        const prevTrack = this.getPrevTrack();
+        if (!prevTrack) return;
+
+        if (this.state == TicketStates.Finished) {
+            this.service_id = prevTrack.service_id;
+            this.counter_id = prevTrack.counter_id;
+            this.user_id = prevTrack.user_id;
+            this.__stime = this.mtime - prevTrack.mtime;
+            return;
+        }
+
+        for (let i = this.tracks.length - 1; i >= 0; i--) {
+            const track = this.tracks[i];
+            this.counter_id = this.counter_id || track.counter_id;
+            this.user_id = this.user_id || track.counter_id;
+            this.service_id = track.service_id;
+            if (this.service_id) {
+                break;
+            }
+        }
+    }
+
+    isDone() {
+        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled;
+    }
+
+    __stime = 0; // serving time
+
+    static sort(a: Ticket, b: Ticket) {
+        // -1, 0, 1
+        var step = a.priority.compare(b.priority);
+        return step == 0 ? (a.ctime < b.ctime ? -1 : 1) : step;
+    }
 }

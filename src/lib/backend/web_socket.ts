@@ -34,7 +34,7 @@ export class BaseWebsocket {
     Message$ = this.message$.asObservable();
 
     filter(uri: string) {
-        return this.Message$.filter(m => m.uri === uri).map(m => m.data);
+        return this.Message$.filter(m => m && m.uri === uri).map(m => m.data);
     }
 
     private status$ = new BehaviorSubject<string>(SocketStatus.Init);

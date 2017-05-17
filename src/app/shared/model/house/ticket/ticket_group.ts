@@ -1,7 +1,6 @@
 import { ITicket, IMapTicket } from './ticket';
 import { TicketStates } from './ticket_state';
 import { Ticket } from './ticket';
-import { sortTicket } from './ticket_priority';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -46,7 +45,7 @@ export class TicketGroup {
     private getByState(state: string) {
         return Array.from(this.cache.values())
             .filter(t => t.state === state)
-            .sort(sortTicket);
+            .sort(Ticket.sort);
     }
 
     private cache = new Map<string, Ticket>();

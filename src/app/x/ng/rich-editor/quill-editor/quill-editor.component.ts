@@ -20,7 +20,25 @@ export class QuillEditorComponent implements OnInit {
     private el: ElementRef
   ) { }
 
+  private toolbarOptions: Quill.QuillOptionsStatic = [
+    [{ 'font': [] }],
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    ['bold', 'italic', 'underline'], // toggled buttons
 
+    [{ 'color': [] }, { 'background': [] }], // dropdown with defaults from theme
+
+    // [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'indent': '-1' }, { 'indent': '+1' }, { 'align': [] }], // outdent/indent
+
+    [{ 'direction': 'rtl' }, 'link', 'image'],
+
+    ['clean'] // remove formatting button
+  ];
+
+  private editor: Quill.Quill;
+  private content: string;
+  private onChangeCallBack: Function = () => { };
+  private onTouchCallback: Function = () => { };
 
   ngOnInit() {
 
@@ -53,25 +71,6 @@ export class QuillEditorComponent implements OnInit {
     });
   }
 
-  private toolbarOptions: Quill.QuillOptionsStatic = [
-    [{ 'font': [] }],
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    ['bold', 'italic', 'underline'], // toggled buttons
-
-    [{ 'color': [] }, { 'background': [] }], // dropdown with defaults from theme
-
-    // [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'indent': '-1' }, { 'indent': '+1' }, { 'align': [] }], // outdent/indent
-
-    [{ 'direction': 'rtl' }, 'link', 'image'],
-
-    ['clean'] // remove formatting button
-  ];
-
-  private editor: Quill.Quill;
-
-  private content: string;
-
   writeValue(currentValue: any) {
     try {
       this.content = currentValue;
@@ -80,9 +79,6 @@ export class QuillEditorComponent implements OnInit {
     }
     this.updateEditor();
   }
-
-  private onChangeCallBack: Function = () => { };
-  private onTouchCallback: Function = () => { };
 
   registerOnChange(fn: (value: string) => any): void {
     this.onChangeCallBack = fn;

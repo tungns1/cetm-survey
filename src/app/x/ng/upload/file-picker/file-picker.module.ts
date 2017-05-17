@@ -7,11 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { FileBrowserModule } from '../file-browser/file-browser.module';
 import { ModalModule } from '../../modal/';
 import { FilePickerComponent } from './file-picker.component';
+import { FilePickerModalComponent } from './file-picker-modal.component';
 
 @NgModule({
     imports: [FormsModule, CommonModule, FileBrowserModule, ModalModule],
-    declarations: [FilePickerComponent],
-    exports: [FilePickerComponent]
+    declarations: [FilePickerComponent, FilePickerModalComponent],
+    exports: [FilePickerComponent, FilePickerModalComponent],
+    entryComponents: [FilePickerModalComponent]
 })
 export class FilePickerModule {
 
@@ -26,6 +28,6 @@ import { UploadURLToken } from '../backend';
     exports: [FilePickerModule, MultiFilePickerComponent]
 })
 export class MultiFilePickerModule {
-    
+
 }
 

@@ -7,7 +7,7 @@ import { RawResourcePipe } from './resource-editor/resource-raw.pipe';
 
 @NgModule({
   imports: [
-    CommonModule, FrameFormModule
+    CommonModule, FrameFormModule, FormsModule
   ],
   declarations: [ResourceEditorComponent, RawResourcePipe],
   exports: [ResourceEditorComponent]

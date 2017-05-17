@@ -6,5 +6,5 @@ export const ResourceToken = new InjectionToken("Resource");
 
 export interface IResourceForm extends IResource<any> {
   name: string;
-  editable: boolean;
+  enabled: boolean;
 }

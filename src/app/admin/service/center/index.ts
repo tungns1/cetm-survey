@@ -3,12 +3,13 @@ import { AdminNavService } from '../shared';
 import { TFormService } from './tform';
 import { ServiceService } from './service';
 import { LayoutService } from './layout';
-import { HttpServiceGenerator } from '../../shared';
 import { TicketLayoutService } from './ticket_layout';
+import { AuthService, HttpServiceGenerator } from '../../shared';
 
 @Injectable()
 export class CenterService {
     constructor(
+        private authService: AuthService,
         protected nav: AdminNavService,
         private httpSG: HttpServiceGenerator
     ) {
@@ -26,7 +27,8 @@ export class CenterService {
         );
         this.ServiceService = new ServiceService(
             this.nav,
-            this.httpSG.make(this.Link.Service)
+            this.httpSG.make(this.Link.Service),
+            this.authService
         );
         this.LayoutService = new LayoutService(
             this.nav,

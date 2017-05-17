@@ -30,7 +30,7 @@
         <div class="border tabCtrl">
           <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
             <md-tab>
-              <template md-tab-label><span class="uppercase" i18n>Transaction Time</span></template>
+              <ng-template md-tab-label><span class="uppercase" i18n>Transaction Time</span></ng-template>
               <app-transaction-time [data]="data$ | async"></app-transaction-time>
             </md-tab>
             <md-tab>
@@ -38,11 +38,11 @@
               <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async" i18n-title title="Frequency"></fres-tab>
             </md-tab>
             <md-tab>
-              <template md-tab-label><span class="uppercase" i18n>Sevice</span></template>
+              <ng-template md-tab-label><span class="uppercase" i18n>Service</span></ng-template>
               <service-tab *ngIf="selectedTab === 2" [data]="data$ | async" [padding]="paddingService | async"></service-tab>
             </md-tab>
             <md-tab>
-              <template md-tab-label><span class="uppercase" i18n>Store</span></template>
+              <ng-template md-tab-label><span class="uppercase" i18n>Store</span></ng-template>
               <store-tab *ngIf="selectedTab === 3" [data]="data$ | async" [padding]="paddingStore | async"></store-tab>
             </md-tab>
           </md-tab-group>

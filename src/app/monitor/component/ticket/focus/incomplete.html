@@ -22,7 +22,7 @@
                 <td> {{t.customer?.full_name }} </td>
                 <td> {{t.ctime | localDayTime}}</td>
                 <td>
-                    <timer *ngIf="t.state === 'waiting'" [start]="t.mtime" [timeWarning]="15"></timer>
+                    <timer *ngIf="t.state === 'waiting'" [start]="t.mtime" [timeWarning]="maxWaitingMinute"></timer>
                     <span *ngIf="t.state === 'missed'"> {{t.waiting_time | timeDuration}}</span>
                 </td>
                 <td>

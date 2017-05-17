@@ -16,7 +16,7 @@
             <div i18n>Serving Time</div>
             <div class="content">
                 <img class="icon" src="./assets/img/icon/time.png" alt="Time">
-                <timer class="number" [start]="ticket.mtime" [timeWarning]="1"></timer>
+                <timer class="number" [start]="ticket.mtime" [timeWarning]="maxServingMinute"></timer>
             </div>
         </div>
     </div>
@@ -28,12 +28,12 @@
         <div>
             <ticket-icon width="20px" [ticket]="ticket"></ticket-icon>
             <span>{{ticket.cnum}} - </span>
-            <span *ngIf="ticket.customer.full_name">{{ticket.customer.full_name}}</span>
+            <span *ngIf="ticket.customer.full_name">{{ticket.customer.first_name}}</span>
             <span *ngIf="!ticket.customer.full_name" i18n>Client</span>
         </div>
     </div>
     <div fxFlex class="servingTimeContainer">
         <div i18n>Tiempo</div>
-        <timer class="servingTime" [start]="ticket.mtime" [timeWarning]="1"></timer>
+        <timer class="servingTime" [start]="ticket.mtime" [timeWarning]="maxServingMinute"></timer>
     </div>
 </div>

@@ -19,10 +19,18 @@ class PrefixMessageHandler extends AbstractMessageHandler<IBaseMessage> {
         }
         const index = payload.indexOf(" ");
         const uri = payload.substr(0, index);
-        const data = JSON.parse(payload.substring(index + 1));
-        const status = isError ? 'error' : 'success';
-        const res: IBaseMessage = { uri, data, status };
-        return res;
+        try {
+            const buffer = payload.substring(index + 1);
+            if (!buffer || buffer.length < 1) {
+                return null;
+            }
+            const data = JSON.parse(buffer);
+            const status = isError ? 'error' : 'success';
+            const res: IBaseMessage = { uri, data, status };
+            return res;
+        } catch (e) {
+            console.log("[socket]", payload, e);
+        }
     }
 
     serialize(message: IBaseMessage) {

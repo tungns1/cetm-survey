@@ -1,24 +1,26 @@
 <div *ngIf="active">
-    <h2 style="text-align: center; margin-bottom: 30px;"> <span i18n>Edit service name on this kiosk</span> </h2>
-    <div style="height: 25px; margin-bottom: 30px; margin-left: 45%; margin-right: 7%;">
-        <select class="hl-input" [(ngModel)]="active.id" (ngModelChange)="setActive()">
+    <h2 class="modal-header" i18n>Edit service name on this kiosk</h2>
+    <div class="modal-content">
+        <div fxLayout="row" fxLayoutGap="20px" class="margin-t-15">
+            <span fxFlex="20%" i18n>Select Service</span>
+            <select fxFlex class="hl-input" [(ngModel)]="active.id" (ngModelChange)="setActive()">
                 <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
             </select>
-    </div>
-    <l10n-form [(ngModel)]="active.l10n"></l10n-form>
-    <div style="margin-left: 28%;">
-        <hr>Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="margin-bottom: 15px;
-                    border-radius: 3px;
-                    height: 20px;
-                    padding-left: 5px;
-                    border-style: solid;
-                    border-width: 1px;
-                    width: 64%;
-                    border-color: #aeb0af;" [(ngModel)]="active.code" i18n-placeholder="Display code">
-    </div>
-    <div fxLayout="row" fxLayoutGap="20px" class="margin-0-35">
-        <button fxFlex (click)="close()" class="btnClear"> <i class="fa fa-close"></i> <span i18n>Cancel</span> </button>
-        <button fxFlex (click)="Save()" class="btnFill"> <i class="fa fa-save"></i> <span i18n>Save</span> </button>
-        <button fxFlex (click)="Remove()" class="btnRed"> <i class="fa fa-trash"></i><span i18n>Delete</span>  </button>
+        </div>
+
+        <l10n-form [(ngModel)]="active.l10n"></l10n-form>
+
+        <div class="divider margin-b-15"></div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <span fxFlex="20%"></span>
+            <input fxFlex class="hl-input" [(ngModel)]="active.code" i18n-placeholder="Display code">
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px" class="margin-b-15">
+            <button fxFlex (click)="close()" class="btnClear"> <i class="fa fa-close"></i> <span i18n>Cancel</span> </button>
+            <button fxFlex (click)="Save()" class="btnFill"> <i class="fa fa-save"></i> <span i18n>Save</span> </button>
+            <button fxFlex (click)="Remove()" class="btnRed"> <i class="fa fa-trash"></i><span i18n>Delete</span>  </button>
+        </div>
     </div>
 </div>

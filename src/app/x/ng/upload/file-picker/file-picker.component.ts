@@ -1,13 +1,14 @@
-import { 
-    Component, Input, forwardRef, ExistingProvider, HostListener,
-    Output, EventEmitter 
+import {
+    Component, Input, forwardRef, ExistingProvider,
+    Output, EventEmitter, HostListener
 } from '@angular/core';
-
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { AbstractControl } from '@angular/forms';
-
-import { FileNode } from '../backend/';
+import {
+    FormsModule, ControlValueAccessor,
+    NG_VALUE_ACCESSOR, AbstractControl,
+    FormArray, FormControl
+} from '@angular/forms';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { FilePickerModalComponent } from './file-picker-modal.component';
 
 const FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -15,34 +16,25 @@ const FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     multi: true
 }
 
-import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'file-picker',
     template: `
         <input class="edit-image margin-top" [(ngModel)]="value"/> 
         <br>
-        <button class="hlm-button margin-top" (click)="modal.Open()">Chọn</button>
-        <modal #modal id="modalUpload">
-            <div class="modal-dialog">
-                <div class="modal-body padding-20">
-                    <div class="file-browser">
-                        <file-browser (select)="choose($event)"></file-browser>
-                    </div>
-                    <button class="btn-hlm btn-close" (click)="modal.Close()">Close</button>
-                </div>
-            </div>
-        </modal>
+        <button class="hlm-button margin-top" (click)="openModal()">Chọn</button>
     `,
-    styles: [`
-        .modal-dialog{
-            width: 35vw;
-        }
-    `],
-   
+
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class FilePickerComponent implements ControlValueAccessor {
+    constructor(
+        private mdDialog: MdDialog
+    ) { }
+
+    @HostListener("change") onChange() {
+        this.onChangeCallback(this.value);
+    }
 
     protected value = '';
     protected onChangeCallback = (v) => { };
@@ -59,16 +51,18 @@ export class FilePickerComponent implements ControlValueAccessor {
 
     }
 
-    choose(node: FileNode) {
-        this.value = node.Path;
-        this.onChange();
-        this.change.next();
+    openModal() {
+        const config = new MdDialogConfig();
+        config.width = '450px';
+        config.data = {
+            value: this.value
+        };
+        const dialog = this.mdDialog.open(FilePickerModalComponent, config);
+        dialog.afterClosed().subscribe(v => {
+            if (v) {
+                this.value = v;
+                this.onChangeCallback(this.value);
+            }
+        })
     }
-
-    @HostListener("change") onChange() {
-        this.onChangeCallback(this.value);
-    } 
-
-    @Output() change = new EventEmitter();
-
 }
