@@ -41,6 +41,11 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
     this.onChangeCallback(this.value);
   }
 
+  enable(r: IResourceForm) {
+    this.value[r.name] = r;
+    this.onChangeCallback(this.value);
+  }
+
   Reset(r: IResourceForm) {
     delete this.value[r.name];
     this.refresh();
@@ -52,10 +57,12 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
       return this.value[k].show && this.editables.indexOf(this.value[k].type) !== -1;
     }).map(k => {
       const r = this.value[k];
+      console.log(r);
       return {
         name: k,
         type: r.type,
-        data: r.data
+        data: r.data,
+        enabled: r.enabled
       };
     }).sort((a, b) => a.name < b.name ? -1 : 1);
   }
@@ -91,5 +98,4 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
       }
     })
   }
-
 }
