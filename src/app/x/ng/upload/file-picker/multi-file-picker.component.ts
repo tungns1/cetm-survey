@@ -1,6 +1,6 @@
 import {
     Component, Input, forwardRef, ExistingProvider,
-    ChangeDetectorRef, Output, EventEmitter
+    Output, EventEmitter
 } from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -29,10 +29,6 @@ import { FormArray, FormControl } from '@angular/forms';
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class MultiFilePickerComponent implements ControlValueAccessor {
-    constructor(
-        private cdf: ChangeDetectorRef
-    ) { }
-
     protected srcs = [];
     protected onChangeCallback = (v) => { };
 
@@ -65,7 +61,6 @@ export class MultiFilePickerComponent implements ControlValueAccessor {
         setTimeout(_ => {
             this.srcs[i] = src;
             this.onChangeCallback(this.srcs);
-            // this.cdf.detectChanges();
         });
     }
 }

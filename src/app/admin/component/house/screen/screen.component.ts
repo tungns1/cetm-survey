@@ -53,12 +53,16 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         return this.getLayout(b.layout_id).map(layout => {
             if (layout) {
                 b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+                Object.keys(b.layout_resources).forEach(name => {
+                    const show = !!layout.ui.resources[name];
+                    b.layout_resources[name].show = show;
+                });
             }
             return (new FormBuilder).group({
                 id: [b.id],
                 code: [b.code, Validators.required],
                 name: [b.name, Validators.required],
-                counters: [b.counters, Validators.required],
+                counters: [b.counters],
                 branch_id: [b.branch_id, Validators.required],
                 layout_id: [b.layout_id],
                 parent_id: [b.parent_id],

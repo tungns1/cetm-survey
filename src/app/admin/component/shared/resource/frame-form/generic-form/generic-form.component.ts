@@ -38,13 +38,10 @@ export class GenericFormComponent {
   type: string;
 
   Save() {
-    if (!this.record) {
-      return;
-    }
     this.dialog.close(this.record);
   }
 
-  close() {
+  Cancel() {
     this.dialog.close(null)
   }
 

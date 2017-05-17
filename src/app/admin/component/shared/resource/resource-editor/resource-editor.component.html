@@ -17,7 +17,7 @@
                 <td>
                     {{r.name}}
                     <div class="edit-reset-button">
-                        <a [class.hide]="!r.editable" (click)="edit(r)" i18n>Edit</a>
+                        <a (click)="edit(r)" i18n>Edit</a>
                         <a (click)="Reset(r)" i18n>Reset</a>
                     </div>
                 </td>
