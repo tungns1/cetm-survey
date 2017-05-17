@@ -1,6 +1,6 @@
-import { 
+import {
     Component, Input, forwardRef, ExistingProvider,
-    Output, EventEmitter 
+    ChangeDetectorRef, Output, EventEmitter
 } from '@angular/core';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -19,9 +19,9 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'multi-file-picker',
     template: `
-        <span (click)="add()"><i class="fa fa-plus"></i></span>
+        <span (click)="add()"><i class="fa fa-plus"></i>Add</span>
         <div *ngFor="let src of srcs; let i = index;">
-            <file-picker (change)="onChange($event)" [(ngModel)]="srcs[i]"></file-picker>
+            <file-picker [ngModel]="src" (ngModelChange)="onChange(i, $event)" ></file-picker>
             <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,
@@ -29,6 +29,10 @@ import { FormArray, FormControl } from '@angular/forms';
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class MultiFilePickerComponent implements ControlValueAccessor {
+    constructor(
+        private cdf: ChangeDetectorRef
+    ) { }
+
     protected srcs = [];
     protected onChangeCallback = (v) => { };
 
@@ -36,7 +40,7 @@ export class MultiFilePickerComponent implements ControlValueAccessor {
         if (!Array.isArray(data)) {
             data = [];
         }
-        this.srcs = data;
+        this.srcs = [].concat(data);
     }
 
     registerOnChange(fn: any) {
@@ -54,17 +58,14 @@ export class MultiFilePickerComponent implements ControlValueAccessor {
 
     remove(i) {
         this.srcs.splice(i, 1);
-        this.onChange(null);
-    }
-
-    onChange(e: Event) {
-        if (e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-        }
         this.onChangeCallback(this.srcs);
-        this.change.next();
     }
 
-    @Output() change = new EventEmitter();
+    onChange(i: number, src: string) {
+        setTimeout(_ => {
+            this.srcs[i] = src;
+            this.onChangeCallback(this.srcs);
+            // this.cdf.detectChanges();
+        });
+    }
 }
