@@ -8,6 +8,8 @@ export interface ICounterSetting {
   enable_recording: boolean;
   upload_url: string;
   addr_led: number;
+  mini_hight: number;
+  mini_width: number;
 }
 
 @Injectable()
@@ -25,12 +27,22 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
     this.data.enable_recording = data.enable_recording;
     this.data.upload_url = data.upload_url;
     this.data.addr_led = data.addr_led;
+    this.data.mini_hight = data.mini_hight;
+    this.data.mini_width = data.mini_width;
     this.SaveData();
   }
 
   Check() {
     this.checked = true;
     return this.data.branch_code && this.data.counter_code;
+  }
+
+  get MiniHight() {
+    return this.data.mini_hight;
+  }
+
+  get MiniWidth() {
+    return this.data.mini_width;
   }
 
   get AddrLed() {
