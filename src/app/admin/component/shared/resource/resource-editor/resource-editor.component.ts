@@ -27,7 +27,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   value: ILayoutResources = {};
   records: IResourceForm[];
 
-  private editables = ["text", "videos", "repeater"];
+  private editables = ["text", "image", "videos", "repeater"];
 
   // private editables = ["text", "image", "videos", 'repeater'];
 
