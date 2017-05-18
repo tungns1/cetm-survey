@@ -1,4 +1,4 @@
-import { ICounterTrack, InfoCounterTrack, ICounterPerformance, IPerformance, InfoPerformanceTrack } from '../../shared';
+import { ICounterTrack, IPerformance, InfoPerformanceTrack } from '../../shared';
 import { HttpServiceGenerator ,Paging} from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

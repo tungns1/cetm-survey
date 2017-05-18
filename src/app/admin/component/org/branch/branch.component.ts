@@ -45,8 +45,8 @@ export class BranchComponent extends BaseAdminComponent<IBranch> {
   });
 
   data$ = this.level$.switchMap(level => {
-    const parents = this.branchFilter.getByLevel(level + 1);
     return CacheBranch.RxByLevel(level).map(branches => {
+      const parents = this.branchFilter.getByLevel(level + 1);
       branches.forEach(b => {
         b.parent_name = CacheBranch.GetNameForID(b.parent)
       });
