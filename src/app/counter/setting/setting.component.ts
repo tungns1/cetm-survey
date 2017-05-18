@@ -19,10 +19,12 @@ export class SettingComponent implements OnInit {
     });
     this.default = 1;
     this.default2 = 0.2;
+    this.default3 = 0.2;
   }
 
   default: number;
   default2: number;
+  default3: number;
 
   value = this.counterSetting.Data;
 
