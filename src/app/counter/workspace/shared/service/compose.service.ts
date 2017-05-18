@@ -26,7 +26,13 @@ export class ComposeService {
       this.recorderService.enable();
     }
     this.workspaceService.enable();
-    this.launcherService.SetMiniMode(MinimizeRatio);
+    let hight = this.counterSetting.MiniHight;
+    let width = this.counterSetting.MiniWidth;
+    if(hight > 0.01 && hight < 1 && width > 0.01 && width < 1) {
+        MinimizeRatio.height = hight;
+        MinimizeRatio.width = width;  
+        this.launcherService.SetMiniMode(MinimizeRatio);
+    } 
   }
 
   disable() {
