@@ -40,27 +40,25 @@ export class ServiceListComponent implements ControlValueAccessor {
     private active: IService = null;
 
     Add() {
-        // this.active = <any>{};
-        // this.modal.Open();
         const config = new MdDialogConfig();
         config.width = '450px';
         config.data = {
             data: <any>{},
             services: this.services,
-            value: this.value
+            value: this.value,
+            parent: this
         };
         const dialog = this.dialog.open(ServiceListModal, config);
     }
 
     Edit(d: IService) {
-        // this.active = d;
-        // this.modal.Open();
         const config = new MdDialogConfig();
-        config.width = '350px';
+        config.width = '450px';
         config.data = {
             data: d,
             services: this.services,
-            value: this.value
+            value: this.value,
+            parent: this
         };
         const dialog = this.dialog.open(ServiceListModal, config);
     }
@@ -106,6 +104,7 @@ interface IServiceListModalData {
     data: IService,
     services: IServiceList,
     value: IServiceList;
+    parent: ServiceListComponent;
 }
 
 @Component({
@@ -123,7 +122,7 @@ export class ServiceListModal {
     private active = this.dialogData.data;
     private services = this.dialogData.services;
     protected value = this.dialogData.value;
-    protected onChangeCallback = (v) => { };
+    private parent = this.dialogData.parent;
 
 
     setActive() {
@@ -138,7 +137,7 @@ export class ServiceListModal {
         if (this.value.indexOf(this.active) < 0) {
             this.value.push(this.active);
         }
-        this.OnChange();
+        this.parent.OnChange()
         this.dialog.closeAll();
     }
 
@@ -147,15 +146,11 @@ export class ServiceListModal {
         if (i > -1) {
             this.value.splice(i, 1);
         }
-        this.OnChange();
+        this.parent.OnChange()
         this.dialog.closeAll();
     }
 
     close(){
         this.dialog.closeAll();
-    }
-
-    OnChange() {
-        setTimeout(_ => this.onChangeCallback(this.value));
     }
 }

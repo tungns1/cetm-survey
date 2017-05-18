@@ -13,7 +13,7 @@ import { ModalModule, SharedModule } from '../../../../shared';
         ModalModule, SharedModule
     ],
     declarations: [ServiceListComponent, ServiceListModal],
-    exports: [ServiceListComponent, ServiceListModal],
+    exports: [ServiceListComponent],
     entryComponents: [ServiceListModal]
 })
 export class ServiceListModule {

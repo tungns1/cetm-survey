@@ -26,9 +26,9 @@
             <span fxFlex="20%" i18n="Inherit kiosk attributes">Inherit From</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="parent_id">           
-                    <option value="">--None--</option>
-                    <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
-                </select>
+                <option value="">--None--</option>
+                <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
+            </select>
         </div>
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%">
