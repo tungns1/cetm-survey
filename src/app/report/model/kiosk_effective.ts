@@ -1,5 +1,10 @@
 import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum } from "lodash";
 import { CacheBranch } from '../../shared/model';
+export interface IKioskEffective {
+    activity: IKioskTrack[];
+    ticket: ITicketKiosk[];
+}
+
 export interface IKioskTrack {
     id?: string
     bid: string;
@@ -12,6 +17,12 @@ export interface IKioskTrack {
     a_d: number;
     date: string;
 
+}
+
+export interface ITicketKiosk {
+    date: string;
+    branch_id: string;
+    kiosk_id: string;
 }
 
 export interface IKioskTrackData {
@@ -97,54 +108,58 @@ export class InfoKioskTrack {
 
 
 
-    Add(s: IKioskTrack[]) {
+    Add(s: IKioskEffective) {
 
-        if (s.length > 0) {
-            this.total_activity_time = this.SecondToHour(sumBy(s, 'a_d'))
-            this.total_kiosk = size(groupBy(s, 'device_id'));
-            s.forEach(v => {
-                if (v.data != null) {
-                    this.total_ticket += v.data.pc || 0;
-                }
-
-            })
-            var data_by_branh = toArray(groupBy(s, 'bid'));
+        if (s !=null) {
+            this.total_activity_time = this.SecondToHour(sumBy(s.activity, 'a_d'))
+            this.total_kiosk = size(groupBy(s.activity, 'device_id'));
+            this.total_ticket = s.ticket.length;
+            var data_by_branh = toArray(groupBy(s.activity, 'bid'));
 
 
-            var data_by_date = toArray(groupBy(s, 'date'));
+            var data_by_date = toArray(groupBy(s.activity, 'date'));
             var len_by_date = size(data_by_date);
             var len_by_branch = size(data_by_branh);
 
+            var data_by_branh_t = toArray(groupBy(s.ticket, 'bid'));
 
-            for (var i = 0; i < len_by_branch; i++) {
-                var min = 0, max = 0, total = 0;
-                data_by_branh[i].forEach(v => {
-                    if (v.data != null) {
-                        if (v.data.pc < min) {
-                            min = +v.data.pc || 0;
-                        }
-                        if (v.data.pc > max) {
-                            max = +v.data.pc || 0;
-                        }
-                        total += +v.data.pc || 0;
+
+            var data_by_date_t = toArray(groupBy(s.ticket, 'date'));
+            var len_by_date_t = size(data_by_date_t);
+            var len_by_branch_t = size(data_by_branh_t);
+
+
+            for (var i = 0; i < len_by_branch_t; i++) {
+                var min = 0, max = 0;
+                var by_date = toArray(groupBy(data_by_branh_t[i], 'date'));
+                var len_date = size(by_date);
+                for (var i2 = 0; i2 < len_date; i2++) {
+                    if (min > by_date[i2].length) {
+                        min = by_date[i2].length;
                     }
-                })
+                    if (max < by_date[i2].length) {
+                        max = by_date[i2].length;
+                    }
+                }
 
                 this.ticket.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
-                    value: total
+                    value: data_by_branh_t[i].length
                 })
+                this.ticket_sum.push({
+                    name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
+                    total: data_by_branh_t[i].length,
+                    highest: max,
+                    lowest: min,
+                    average: +(data_by_branh_t[i].length / len_by_date_t).toFixed(2),
+                })
+            }
+            for (var i = 0; i < len_by_branch; i++) {
                 this.time.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
                     value: this.SecondToHour(sumBy(data_by_branh[i], 'a_d'))
                 })
-                this.ticket_sum.push({
-                    name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
-                    total: total,
-                    highest: max,
-                    lowest: min,
-                    average: +(total / (data_by_branh[i].length)).toFixed(2),
-                })
+
                 this.time_sum.push({
                     name: CacheBranch.GetNameForID(data_by_branh[i][0].bid),
                     total: this.SecondToHour(sumBy(data_by_branh[i], 'a_d') || 0),
@@ -153,17 +168,13 @@ export class InfoKioskTrack {
                     average: this.SecondToHour(meanBy(data_by_branh[i], <any>'a_d')),
                 })
             }
-            for (var i = 0; i < len_by_date; i++) {
-                var total = 0;
-                data_by_date[i].forEach(v => {
-                    if (v.data != null) {
-                        total += +v.data.pc || 0;
-                    }
-                })
+            for (var i = 0; i < len_by_date_t; i++) {
                 this.ticket_day.push({
-                    name: data_by_date[i][0].date,
-                    value: total
+                    name: data_by_date_t[i][0].date,
+                    value: data_by_date_t[i].length
                 })
+            }
+            for (var i = 0; i < len_by_date; i++) {
                 this.time_day.push({
                     name: data_by_date[i][0].date,
                     value: this.SecondToHour(sumBy(data_by_date[i], 'a_d'))
@@ -178,14 +189,14 @@ export class InfoKioskTrack {
     }
 
 
-    Finalize(s: IKioskTrack[]) {
+    Finalize(s: IKioskEffective) {
         var time = this.timechart;
         var ticket = this.ticketchart;
         this.timechart[0].series = this.time_day;
         this.ticketchart[0].series = this.ticket_day;
 
 
-        if (s.length > 0) {
+        if (s!=null) {
             this.longest_activity_time = maxBy(this.time, 'name').value;
             this.longest_activity_kiosk = maxBy(this.time, 'name').name;
             this.shortest_activity_time = minBy(this.time, 'name').value;
@@ -205,7 +216,7 @@ export class InfoKioskTrack {
 
 
 
-    static Make(records: IKioskTrack[]) {
+    static Make(records: IKioskEffective) {
 
         let res = new InfoKioskTrack();
 
