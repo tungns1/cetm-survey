@@ -26,7 +26,7 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     template: `
     <div *ngFor="let code of codes">
         <label>{{code | languageName}}</label>
-        <app-quill-editor [(ngModel)]="values[code]" (change)="OnChange()" rows="8" cols="40"></app-quill-editor>
+        <app-quill-editor [(ngModel)]="values[code]" (ngModelChange)="OnChange()" rows="8" cols="40"></app-quill-editor>
     </div>
     `,
 
