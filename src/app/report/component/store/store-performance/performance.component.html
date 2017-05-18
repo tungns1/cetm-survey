@@ -1,0 +1,32 @@
+<table class="tableCtrl">
+  <thead>
+    <th i18n="Numerical Order">No.</th>
+    <th i18n>Branch Code</th>
+    <th i18n>Branch Name</th>
+    <th i18n>Store Code</th>
+    <th i18n>Store Name </th>
+    <th i18n>Average Serving Time</th>
+    <th i18n>Ticket issued</th>
+    <th i18n>Attended</th>
+    <th i18n>Abandoned</th>
+    <th i18n>%Teap</th>
+    <th i18n>%Dap</th>
+    <th i18n>%Occupied</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of data.data; let i = index">
+      <td>{{(i+1)}}</td>
+      <td> {{d.branch_id | parentCode}} </td>
+      <td> {{d.branch_id | parentName}} </td>
+      <td> {{d.branch_id | branchCode}} </td>
+      <td> {{d.branch_id | branchName}} </td>
+      <td>{{d.avg_time}}</td>
+      <td> {{d.total_ticket}} </td>
+      <td> {{d.attended }} </td>
+      <td> {{d.abandoned}} </td>
+      <td>{{(d.teap)}}</td>
+      <td> {{d.dap}} </td>
+      <td> {{d.occupied}} </td>
+    </tr>
+  </tbody>
+</table>
