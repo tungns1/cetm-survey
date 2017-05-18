@@ -6,6 +6,7 @@ import { TicketService } from './ticket.service';
 import { LedDevice } from '../device';
 import { WorkspaceSocket } from './workspace.socket';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { CounterSettingService } from '../../../shared/counter-setting.service';
 
 const STATUS = {
     WELCOME: "welcome",
@@ -27,18 +28,21 @@ export class LedService {
         private ticketService: TicketService,
         private ledDevice: LedDevice,
         private workspaceService: WorkspaceService,
-        private socket: WorkspaceSocket
+        private socket: WorkspaceSocket,
+        private counterSettingService: CounterSettingService,
     ) {
 
     }
 
     enable() {
-        this.ledDevice.Setup(1);
+        let addr_service: number = this.counterSettingService.AddrLed;
+        console.log("...................",addr_service);
+        this.ledDevice.Setup(addr_service);
         combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
             .debounceTime(250)
             .map(([w, auto]) => {
                 const s: LedStatus = {
-                    addr: 1,
+                    addr: addr_service,
                     type: STATUS.WELCOME,
                 };
                 if (w.Serving.is_empty) {

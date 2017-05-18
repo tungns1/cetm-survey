@@ -5,7 +5,7 @@
         <div>
             <label><b>Files</b></label>
         </div>
-        <multi-file-picker (change)="onChange($event)" [(ngModel)]="value.srcs"></multi-file-picker>
+        <multi-file-picker (ngModelChange)="onChange()" [(ngModel)]="value.srcs"></multi-file-picker>
         <br>
     </div>
 </div>

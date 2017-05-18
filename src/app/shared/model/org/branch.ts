@@ -51,6 +51,13 @@ class BranchCache extends MemCache<IBranch> {
         const b = this.GetByID(id);
         return b ? b.name : this.NotApplicable;
     }
+    GetForID(id: string) {
+        return this.GetByID(id);
+    }
+    GetCodeForID(id: string) {
+        const b = this.GetByID(id);
+        return b ? b.code : this.NotApplicable;
+    }
 
     Join(arr: any[]) {
         return super.Join(arr, 'name', { from: 'branch_id', to: 'branch' });

@@ -27,7 +27,9 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   value: ILayoutResources = {};
   records: IResourceForm[];
 
-  private editables = ["text", "image", "videos", 'repeater'];
+  private editables = ["text", "image", "videos", "repeater"];
+
+  // private editables = ["text", "image", "videos", 'repeater'];
 
   ngOnInit() {
     this.refresh();
@@ -39,6 +41,11 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
     this.onChangeCallback(this.value);
   }
 
+  enable(r: IResourceForm) {
+    this.value[r.name] = r;
+    this.onChangeCallback(this.value);
+  }
+
   Reset(r: IResourceForm) {
     delete this.value[r.name];
     this.refresh();
@@ -46,18 +53,20 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   refresh() {
-    this.records = Object.keys(this.value).map(k => {
+    this.records = Object.keys(this.value).filter(k => {
+      return this.value[k].show && this.editables.indexOf(this.value[k].type) !== -1;
+    }).map(k => {
       const r = this.value[k];
-      const editable = this.editables.indexOf(r.type) !== -1;
       return {
         name: k,
-        editable: editable,
         type: r.type,
-        data: r.data
+        data: r.data,
+        show: true,
+        enabled: r.enabled
       };
     }).sort((a, b) => a.name < b.name ? -1 : 1);
   }
-  
+
   /**
      * Write a new value to the element.
      */
@@ -84,10 +93,9 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
     config.data = record;
     const dialog = this.mdDialog.open(GenericFormComponent, config);
     dialog.afterClosed().subscribe(d => {
-      if(d){
+      if (d) {
         this.Save(d);
       }
     })
   }
-
 }

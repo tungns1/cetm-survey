@@ -11,6 +11,7 @@ export class BranchLevelNamePipe implements PipeTransform {
     }
 }
 
+
 @Pipe({
     name: 'branchName'
 })
@@ -19,6 +20,33 @@ export class BranchNamePipe implements PipeTransform {
         return CacheBranch.GetNameForID(id);
     }
 }
+@Pipe({
+    name: 'parentName'
+})
+export class ParentNamePipe implements PipeTransform {
+    transform(id: string) {
+        let b= CacheBranch.GetForID(id);
+        return CacheBranch.GetNameForID(b.parent);
+    }
+}
+@Pipe({
+    name: 'parentCode'
+})
+export class ParentCodePipe implements PipeTransform {
+    transform(id: string) {
+        let b= CacheBranch.GetForID(id);
+        return CacheBranch.GetCodeForID(b.parent);
+    }
+}
+@Pipe({
+    name: 'branchCode'
+})
+export class BranchCodePipe implements PipeTransform {
+    transform(id: string) {
+        return CacheBranch.GetCodeForID(id);
+    }
+}
+
 
 @Pipe({
     name: 'branchKioskName'

@@ -16,6 +16,7 @@ export class FresComponent {
   ) { }
   @Input() data: Customer;
   @Input() padding: number;
+  @Input() title: string;
   ngOnInit() {
     console.log("fres");
     console.log(this.data.fres);
@@ -60,12 +61,16 @@ export class FresComponent {
   autoScale = true;
 
 
-
+  ngOnChanges(changes) {
+    if (changes.title) {
+      this.data.freschart[0].name = this.title;
+    }
+  }
   onSelect(event) {
     console.log(event);
   }
   excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
+    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', "");
   }
 
 }
