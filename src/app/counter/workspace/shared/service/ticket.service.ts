@@ -60,7 +60,7 @@ export class TicketService {
     private socket = this.workspaceService.Socket;
 
     private sendAction(body: TicketAction) {
-        return this.socket.Send("/ticket", body).share();
+        return this.socket.Send<ITicket>("/ticket", body).share();
     }
 
     Remind(t: Ticket) {
@@ -152,13 +152,22 @@ export class TicketService {
 
     private onInit() {
         // if auto next
-        combineLatest(this.autoNext$, this.workspaceService.Workspace$)
-            .subscribe(([autoNext, w]) => {
-                if (autoNext && w.Serving.is_empty && !w.Waiting.is_empty) {
-                    this.CallTicket(w.Waiting.GetFirstTicket()).subscribe(_ => {
-                        this.SetAutoNext(false);
-                    })
+        this.autoNext$.switchMap(auto => {
+            if (!auto) {
+                return of(null);
+            }
+            return this.workspaceService.Workspace$.debounceTime(100).map(w => {
+                if (w.Serving.is_empty) {
+                    const t = w.Waiting.GetFirstTicket();
+                    if (t) {
+                        this.CallTicket(t).subscribe(_ => {
+
+                        })
+                    }
+                } else {
+                    this.SetAutoNext(false);
                 }
-            });
+            })
+        }).subscribe();
     }
 }
