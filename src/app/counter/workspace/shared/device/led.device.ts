@@ -16,6 +16,7 @@ export class LedDevice {
     }
 
     private Command(name: string, addr: number) {
+        console.log("led ", name, addr);
         this.qmsService.__x.Broadcast(
             "/led/command",
             `${name} ${addr}`

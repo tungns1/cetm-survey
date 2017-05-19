@@ -7,6 +7,8 @@ import { LedDevice } from '../device';
 import { WorkspaceSocket } from './workspace.socket';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { CounterSettingService } from '../../../shared/counter-setting.service';
+import 'rxjs/add/operator/distinctUntilChanged';
+import { interval } from 'rxjs/observable/interval';
 
 const STATUS = {
     WELCOME: "welcome",
@@ -33,16 +35,15 @@ export class LedService {
     ) {
 
     }
+    
 
     enable() {
-        let addr_service: number = this.counterSettingService.AddrLed;
-        console.log("...................",addr_service);
-        this.ledDevice.Setup(addr_service);
+        this.ledDevice.Setup(this.led_address);
         combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
             .debounceTime(250)
             .map(([w, auto]) => {
                 const s: LedStatus = {
-                    addr: addr_service,
+                    addr: this.led_address,
                     type: STATUS.WELCOME,
                 };
                 if (w.Serving.is_empty) {
@@ -52,9 +53,12 @@ export class LedService {
                     s.data = w.Serving.GetFirstTicket().cnum;
                 }
                 return s;
-            }).subscribe(status => {
+            }).distinctUntilChanged((a, b) => a.type === b.type && a.data == b.data).subscribe(status => {
                 this.SendStatus(status);
             });
+        interval(60 * 1000).subscribe(_ => {
+            this.Ping();
+        });
     }
 
     disable() {
@@ -75,6 +79,10 @@ export class LedService {
         }
     }
 
+    private Ping() {
+        this.ledDevice.Ping(this.led_address);
+    }
+
     private sendToServerVersion1(status: LedStatus) {
         console.log("send to server led..........");
         const type = status.type === STATUS.SHOW ? status.data : status.type;
@@ -82,4 +90,6 @@ export class LedService {
             status: type
         })
     }
+
+    private led_address = this.counterSettingService.AddrLed;
 }
