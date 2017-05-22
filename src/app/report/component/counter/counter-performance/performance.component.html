@@ -16,11 +16,11 @@
     <th i18n>User name</th>
     <th i18n>Counter</th>
     <th i18n>Date</th>
-    <th i18n>T_c_t</th>
-    <th i18n>T_p_t</th>
-    <th i18n>T_i_t</th>
-    <th i18n>T_a</th>
-    <th i18n>T_t</th>
+    <th i18n>Time connection</th>
+    <th i18n>Time productivity</th>
+    <th i18n>Time idle</th>
+    <th i18n>Ticket attended</th>
+    <th i18n>Ticket cancelled</th>
     <!--<th i18n>% occupied</th>
     <th i18n>Survey score</th>-->
   </thead>
@@ -35,9 +35,9 @@
       <td> {{d.user_name}} </td>
       <td> {{d.counter_name }} </td>
       <td> {{d.date}} </td>
-      <td>{{(d.total_connection_time)}}</td>
-      <td> {{d.total_productivity_time}} </td>
-      <td> {{d.total_idle_time}} </td>
+      <td>{{d.total_connection_time | timeDuration}}</td>
+      <td> {{d.total_productivity_time | timeDuration}} </td>
+      <td> {{d.total_idle_time | timeDuration}} </td>
       <td> {{d.ticket_attended}} </td>
       <td> {{d.ticket_transferred}} </td>
       <!--<td> </td>

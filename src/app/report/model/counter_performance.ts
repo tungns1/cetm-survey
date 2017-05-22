@@ -55,9 +55,9 @@ export class InfoPerformanceTrack {
                     user_name: t_s[i].user_name,
                     counter_name: t_s[i].counter_name,
                     date: t_s[i].date,
-                    total_connection_time: this.SecondToHour(a_v[index].a_d),
-                    total_productivity_time: this.SecondToHour(t_s[i].stime),
-                    total_idle_time: this.SecondToHour(t_s[i].wtime),
+                    total_connection_time: a_v[index].a_d,
+                    total_productivity_time: t_s[i].stime,
+                    total_idle_time: t_s[i].wtime,
                     ticket_attended: t_s[i].c_ft,
                     ticket_transferred: t_s[i].c_t - t_s[i].c_ft,
                 }

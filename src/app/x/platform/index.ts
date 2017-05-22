@@ -3,7 +3,7 @@ declare var nodeRequire: any;
 declare var process: any;
 
 function GetUser2() {
-    var who: string = nodeRequire('child_process').execSync("whoami", { encoding: 'utf8', timeout: 1000 });
+    var who: string = window['__QMS'].require('child_process').execSync("whoami", { encoding: 'utf8', timeout: 1000 });
     var parts = who.split("\\");
     var username = parts[parts.length - 1];
     console.log("username", username);
@@ -11,7 +11,7 @@ function GetUser2() {
 }
 
 function GetUser1() {
-    var process = nodeRequire('process');
+    var process = window['__QMS'].require('process');
     console.log("env", process.env);
     return process.env['USERNAME'];
 }

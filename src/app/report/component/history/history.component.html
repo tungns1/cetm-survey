@@ -56,7 +56,7 @@
                 </table>
 
                 <div class="paginNExport">
-                    <div class="pagin">
+                    <div class="pagin" *ngIf="isShowPagin">
                         <button class="pointer" *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
                     </div>
                     <button class="btnClear export uppercase" (click)="excel()">

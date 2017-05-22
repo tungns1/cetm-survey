@@ -26,10 +26,15 @@ export class HistoryComponent {
 
     paging = new Paging<ITransactionView>();
     filter: IHistoryFilter;
+    isShowPagin: boolean = true;
 
     ngOnInit() {
         this.nav.Refresh$.ExclusiveSubscribe(_ => {
             this.pagin(1);
+        });
+        this.paging.pages$.subscribe(d => {
+            if(d.length < 2) this.isShowPagin = false;
+            else this.isShowPagin = true;
         });
     }
 

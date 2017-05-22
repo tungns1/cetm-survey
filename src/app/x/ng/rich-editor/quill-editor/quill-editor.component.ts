@@ -73,9 +73,9 @@ export class QuillEditorComponent implements OnInit {
 
   writeValue(currentValue: any) {
     try {
-      this.content = currentValue;
+      this.content = currentValue || '{}';
     } catch (e) {
-      console.log(e);
+      this.content = '{}';
     }
     this.updateEditor();
   }
