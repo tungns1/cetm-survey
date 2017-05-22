@@ -24,8 +24,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { FeedbackService } from './feedback.service';
-
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { RecorderService } from './recorder.service';
 
 class TicketAction {
     constructor(
@@ -51,6 +51,7 @@ class TicketAction {
 export class TicketService {
     constructor(
         private workspaceService: WorkspaceService,
+        private recorderService: RecorderService,
         private feedbackService: FeedbackService,
         private queueService: QueueService
     ) {
@@ -102,7 +103,10 @@ export class TicketService {
             if (t[0]) {
                 return this.sendAction(
                     new TicketAction(ActionFinish, t[0])
-                ).map(_ => true);
+                ).map(_ => {
+                    this.recorderService.uploadAll();
+                    return true;
+                });
             }
             return of(true);
         });

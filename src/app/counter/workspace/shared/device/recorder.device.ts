@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITicket, QmsService } from './shared';
 
-
-
 interface IRecordConfig {
     format: 'mp3';
     upload_url: string;
@@ -46,8 +44,11 @@ export class RecorderDevice {
         this.sendCommand("/skip", "");
     }
 
-    SendFileMiss() {
-        this.sendCommand("/miss", "");
+    RemoveFiles(ids: string[]) {
+        this.sendCommand("/remove", ids);
     }
-
+    
+    UploadAll() {
+        this.sendCommand("/upload", "");
+    }
 }
