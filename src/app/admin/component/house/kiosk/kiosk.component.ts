@@ -37,6 +37,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
     }
 
+    pattern_code: any ="^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
     makeForm(b?: IKiosk) {
         b = b || <any>{};
         return this.getLayout(b.layout_id).map(layout => {
@@ -45,7 +46,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
             }
             return (new FormBuilder).group({
                 id: [b.id],
-                code: [b.code, Validators.required],
+                code: [b.code, Validators.compose([Validators.required, Validators.pattern(this.pattern_code)])],
                 name: [b.name, Validators.required],
                 services: [b.services],
                 branch_id: [b.branch_id, Validators.required],

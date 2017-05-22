@@ -19,7 +19,7 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
     }
 
     title = 'service';
-
+    pattern_code: any ="^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
     makeForm(b?: IService) {
         b = b || <any>{};
         return (new FormBuilder).group({
@@ -27,7 +27,7 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
             tform_normal: [b.tform_normal, Validators.required],
             tform_vip: [b.tform_vip, Validators.required],
             image: [b.image],
-            code: [b.code, Validators.required],
+            code: [b.code, Validators.compose([Validators.required, Validators.pattern(this.pattern_code)])],
             l10n: [b.l10n],
             priority: [b.priority, Validators.required],
             // call_for_vip: [b.call_for_vip]
