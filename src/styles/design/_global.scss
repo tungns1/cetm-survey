@@ -255,4 +255,31 @@
 // }
 //End of UI elements
 
+// override qill editor
+app-quill-editor{
+    .ql-snow .ql-editor {
+        h1{
+            font-size: 75px !important;
+        }
+        h2{
+            font-size: 65px !important;
+        }
+        h3{
+            font-size: 55px !important;
+        }
+        h4{
+            font-size: 45px !important;
+        }
+        h5{
+            font-size: 35px !important;
+        }
+        h6{
+            font-size: 25px !important;
+        }
+        p{
+            font-size: 45px !important;
+        }
+    }
+}
+
 /******************** End of global ***********************/
