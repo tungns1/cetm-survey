@@ -24,7 +24,7 @@ interface LedStatus {
 
 
 @Injectable()
-export class LedService {
+export class LedService{
     constructor(
         private queueService: QueueService,
         private ticketService: TicketService,
@@ -36,10 +36,9 @@ export class LedService {
 
     }
     
-
     enable() {
-        this.ledDevice.Setup(this.led_address);
         this.ledDevice.Command_com(this.led_com);
+        this.ledDevice.Setup(this.led_address);
         combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
             .debounceTime(250)
             .map(([w, auto]) => {

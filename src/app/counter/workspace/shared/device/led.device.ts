@@ -12,7 +12,7 @@ export class LedDevice {
     }
 
     Setup(addr: number) {
-        this.qmsService.__x.Broadcast("/led/com", addr);
+        this.qmsService.__x.Broadcast("/led/addr", addr);
     }
 
     private Command(name: string, addr: number) {
