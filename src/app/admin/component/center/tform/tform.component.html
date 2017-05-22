@@ -16,13 +16,23 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
+                <div fxFlex fxLayout="column" fxLayoutGap="2px">
+                    <input fxFlex="100%" class="hl-input" type="text" formControlName="code" i18n-placeholder placeholder="Code">
+                    <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 6 to 20 characters; Include number, character and _</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
+                </div>
             </div>
             <span fxFlex="20%" i18n>Number Format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('format').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('format').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="text" formControlName="format" i18n-placeholder placeholder="Number Format">
+                <div fxFlex fxLayout="column" fxLayoutGap="2px">
+                    <input fxFlex="100%" class="hl-input" type="text" formControlName="format" i18n-placeholder placeholder="Number Format">
+                    <div fxFlex class="valid-color" *ngIf="form.get('format').hasError('pattern')">Format: First character(upper)%, then one number, last d character(upper). Eg: A%03dA</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('format').hasError('pattern')">&nbsp;</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('format').hasError('pattern')">&nbsp;</div>
+                </div>
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
