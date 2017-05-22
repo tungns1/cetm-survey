@@ -6,7 +6,7 @@
                 <span class="uppercase inline font-bold-setup" i18n>Waiting Time Transaction</span>
                 <span class="note margin-l-5" i18n>(minute)</span>
             </div>
-            <input class="hl-input-setup" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="Code">
+            <input class="hl-input-setup" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="max waiting">
         </div>
         <div>
             <div>
@@ -14,7 +14,7 @@
                 <span class="note margin-l-5" i18n>(minute)</span>
             </div>
 
-            <input class="hl-input-setup" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="Code">
+            <input class="hl-input-setup" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="max serving">
         </div>
         <div>
             <div>
@@ -22,7 +22,23 @@
                 <span class="note margin-l-5" i18n>(minute)</span>
             </div>
 
-            <input class="hl-input-setup" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="Code">
+            <input class="hl-input-setup" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="auto finish">
+        </div>
+        <div>
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Waiting Time Transaction rate</span>
+                <span class="note margin-l-5" i18n>(%)</span>
+            </div>
+
+            <input class="hl-input-setup" type="number" min="0" formControlName="waiting_rate" i18n-placeholder placeholder="waiting rate">
+        </div>
+        <div>
+            <div>
+                <span class="uppercase inline font-bold-setup" i18n>Serving Time Transaction rate</span>
+                <span class="note margin-l-5" i18n>(%)</span>
+            </div>
+
+            <input class="hl-input-setup" type="number" min="0" formControlName="serving_rate" i18n-placeholder placeholder="serving rate">
         </div>
         <button class="btnFill submit-setup" (click)="Submit()">Submit</button>
     </form>

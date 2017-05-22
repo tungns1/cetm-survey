@@ -14,7 +14,12 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('username').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('username').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
+
+                <div fxFlex fxLayout="column" fxLayoutGap="2px">
+                    <input fxFlex="100%" class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
+                    <div fxFlex class="valid-color" *ngIf="form.get('username').hasError('pattern')">From 6 to 20 characters; Include number, character and _</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('username').hasError('pattern')">&nbsp;</div>
+                </div>
             </div>
             <span fxFlex="20%" i18n>Full Name</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
@@ -28,7 +33,13 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('password').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('password').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
+
+                <div fxFlex fxLayout="column" fxLayoutGap="2px">
+                    <input fxFlex="100%" class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
+                    <div fxFlex class="valid-color" *ngIf="form.get('password').hasError('pattern')">From 6 to 20 characters; Include number, character and ? ! @ # $ *</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('password').hasError('pattern')">&nbsp;</div>
+                </div>
+
             </div>
             <span fxFlex="20%" i18n>Role</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">

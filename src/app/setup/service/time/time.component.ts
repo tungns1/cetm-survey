@@ -27,6 +27,8 @@ export class TimeComponent {
       max_serving: [b.max_serving],
       max_waiting: [b.max_waiting],
       auto_finish: [b.auto_finish],
+      waiting_rate: [b.waiting_rate],
+      serving_rate: [b.serving_rate]
     });
   }
 
