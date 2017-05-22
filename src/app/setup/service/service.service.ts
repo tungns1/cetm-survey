@@ -8,6 +8,8 @@ export interface IConfigTime {
     max_serving: string;
     max_waiting: string;
     auto_finish: string;
+    waiting_rate: string;
+    serving_rate: string;
 }
 export interface IConfig {
     id?: string;
