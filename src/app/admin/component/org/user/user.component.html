@@ -14,7 +14,9 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('username').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('username').hasError('required')">&nbsp;</span>
+
                 <input fxFlex class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
+
             </div>
             <span fxFlex="20%" i18n>Full Name</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
@@ -28,7 +30,10 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('password').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('password').hasError('required')">&nbsp;</span>
+
                 <input fxFlex class="hl-input" type="password" formControlName="password" i18n-placeholder placeholder="Password" style="width: 100%;">
+
+
             </div>
             <span fxFlex="20%" i18n>Role</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
@@ -48,6 +53,14 @@
             </div>
             <div fxFlex="20%"></div>
             <div fxFlex></div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="20%" i18n></span>
+            <span class="valid-color" *ngIf="form.get('username').hasError('pattern')">Username: From 6 to 20 characters; Include number, character and _</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="20%" i18n></span>
+            <span class="valid-color" *ngIf="form.get('password').hasError('pattern')">Password: From 6 to 20 characters; Include number, character and ? ! @ # $ *</span>
         </div>
     </form>
 </app-editor-view>

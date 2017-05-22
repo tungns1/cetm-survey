@@ -1044,6 +1044,14 @@
         <source>Auto Finish Time</source>
         <target>TG tự động kết thúc</target>
       </trans-unit>
+      <trans-unit id="68f9b177869ae86be9c4b65de4b9095272f5c1b9">
+        <source>Waiting Time Transaction rate</source>
+        <target>Tỉ lệ thời gian đợi</target>
+      </trans-unit>
+      <trans-unit id="9e5ddfeb133a7405b7e85f76243e3fcc830b5f3c">
+        <source>Serving Time Transaction rate</source>
+        <target>Tỉ lệ thời gian phục vụ</target>
+      </trans-unit>
       <trans-unit id="ac5c5b8537609ef20766182fff0bf7660cec577b">
         <source>Priority for service</source>
         <target>Dịch vụ ưu tiên</target>
