@@ -56,11 +56,11 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n></span>
-            <span class="valid-color" *ngIf="form.get('username').hasError('pattern')">Username: Atleast 6 characters; Include number, character and _</span>
+            <span class="valid-color" *ngIf="form.get('username').hasError('pattern')">Username: From 6 to 20 characters; Include number, character and _</span>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n></span>
-            <span class="valid-color" *ngIf="form.get('password').hasError('pattern')">Password: Atleast 6 characters; Include number, character and ? ! @ # $ *</span>
+            <span class="valid-color" *ngIf="form.get('password').hasError('pattern')">Password: From 6 to 20 characters; Include number, character and ? ! @ # $ *</span>
         </div>
     </form>
 </app-editor-view>
