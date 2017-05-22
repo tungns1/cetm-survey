@@ -17,14 +17,8 @@ export class SettingComponent implements OnInit {
     this.form.valueChanges.subscribe(v => {
       this.counterSetting.Update(v);
     });
-    this.default = 1;
-    this.default2 = 0.2;
-    this.default3 = 0.2;
   }
 
-  default: number;
-  default2: number;
-  default3: number;
 
   value = this.counterSetting.Data;
 
@@ -34,7 +28,8 @@ export class SettingComponent implements OnInit {
     enable_recording: new FormControl(this.value.enable_recording),
     addr_led: new FormControl(this.value.addr_led),
     mini_hight: new FormControl(this.value.mini_hight),
-    mini_width: new FormControl(this.value.mini_width)
+    mini_width: new FormControl(this.value.mini_width),
+    com_led: new FormControl(this.value.com_led)
   });
 
 }

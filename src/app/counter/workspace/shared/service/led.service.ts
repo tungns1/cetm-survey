@@ -39,6 +39,7 @@ export class LedService {
 
     enable() {
         this.ledDevice.Setup(this.led_address);
+        this.ledDevice.Command_com(this.led_com);
         combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
             .debounceTime(250)
             .map(([w, auto]) => {
@@ -92,4 +93,5 @@ export class LedService {
     }
 
     private led_address = this.counterSettingService.AddrLed;
+    private led_com = this.counterSettingService.ComLed;
 }

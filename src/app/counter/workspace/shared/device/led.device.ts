@@ -23,6 +23,13 @@ export class LedDevice {
         );
     }
 
+    Command_com(com: string) {
+        this.qmsService.__x.Broadcast(
+            "/led/com",
+            `${com}`
+        );
+    }
+
 
     On(addr: number) {
         this.Command("on", addr);

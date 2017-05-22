@@ -10,6 +10,7 @@ export interface ICounterSetting {
   addr_led: number;
   mini_hight: number;
   mini_width: number;
+  com_led: string;
 }
 
 @Injectable()
@@ -29,6 +30,7 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
     this.data.addr_led = data.addr_led;
     this.data.mini_hight = data.mini_hight;
     this.data.mini_width = data.mini_width;
+    this.data.com_led = data.com_led;
     this.SaveData();
   }
 
@@ -47,6 +49,10 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
 
   get AddrLed() {
     return this.data.addr_led;
+  }
+
+  get ComLed() {
+    return this.data.com_led;
   }
 
   get UploadUrl() {
