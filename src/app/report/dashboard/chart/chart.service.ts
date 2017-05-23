@@ -1,7 +1,7 @@
 // import { ChartItem, MainItems, PieItems } from './chart.model';
 
 import { timeParse } from 'd3-time-format';
-import { Aggregate } from '../shared';
+import { TransactionAggregate } from '../shared';
 
 const timeDay = timeParse("%Y-%m-%d");
 const timeWeek = timeParse("W%Y-%W");
@@ -39,7 +39,7 @@ export class ChartService {
     });
  
     get RxSummaryView() {
-        return this.RxAggregate.map(Aggregate.Make);
+        return this.RxAggregate.map(TransactionAggregate.Make);
     };
 
     RxPeriod = this.aggregateService.period$;

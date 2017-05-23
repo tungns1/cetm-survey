@@ -2,14 +2,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {
     ServiceName, CacheBranch, CacheCounter, CacheUsers
 } from '../../shared';
-import { IAggregate } from './aggregate';
+import { TransactionAggregate } from './aggregate';
 
 @Pipe({
     name: 'groupByTitle'
 })
 export class GroupByTitlePipe implements PipeTransform {
 
-    transform(groupBy: string, record: IAggregate) {
+    transform(groupBy: string, record: TransactionAggregate) {
         const id = record[groupBy];
         // console.log(record);
         switch (groupBy) {

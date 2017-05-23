@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IAggregate, Aggregate, MakeIndexBy } from './aggregate';
+import { ITransactionCount, TransactionAggregate, MakeIndexBy } from './aggregate';
 
 import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../service';
 
@@ -18,17 +18,17 @@ export class AggregateService {
     ) { }
 
     Refresh() {
-        this.backend.Get<IAggregate[]>("aggregate", this.filterService.ToBackendQuery()).subscribe(data => {
+        this.backend.Get<ITransactionCount[]>("aggregate", this.filterService.ToBackendQuery()).subscribe(data => {
             this.RxAggregate.next(data);
         });
         this.period$.next(this.periodService.Data.period);
         this.groupBy$.next(this.insideService.GetGroupBy());
     }
 
-    RxAggregate = new BehaviorSubject<IAggregate[]>([]);
+    RxAggregate = new BehaviorSubject<ITransactionCount[]>([]);
 
     get RxSummaryView() {
-        return this.RxAggregate.map(Aggregate.Make);
+        return this.RxAggregate.map(TransactionAggregate.Make);
     };
 
     get ActiveAggregate$() {
@@ -49,7 +49,7 @@ export class AggregateService {
             });
 
             ids.forEach(id => {
-                let v = new Aggregate();
+                let v = new TransactionAggregate();
                 v[group_by] = id;
                 views.push(v);
             });

@@ -1,40 +1,27 @@
-export interface IAggregate {
-    branch_id?: string;
-    user_id?: string;
-    counter_id?: string;
-    service_id?: string;
-
-    ctime?: string;
-
-    s_r?: number; // sum rating
-    c_t?: number; // count transaction
-    c_ft?: number; // count finished transaction
-    c_bwt?: number; // count bellow waiting time
-    c_bst?: number; // count bellow serving time
-    s_wt?: number; // sum waiting time
-    s_st?: number; // sum serving time
-
-    // min
-    min_st?: number;
-    min_wt?: number;
-
-    // max
-    max_st?: number;
-    max_wt?: number;
-
+export interface ITransactionCount {
+    branch_id: string; user_id: string;
+    counter_id: string; service_id: string;
+    ctime: string;
+    s_r: number; // sum rating
+    c_t: number; // count transaction
+    c_ft: number; // count finished transaction
+    c_bwt: number; // count bellow waiting time
+    c_bst: number; // count bellow serving time
+    s_wt: number; // sum waiting time
+    s_st: number; // sum serving time
+    min_st: number; min_wt: number;
+    max_st: number; max_wt: number;
     // rating
-    c_r_gt0?: number;
-    c_r_gt4?: number;
-    c_r_gt6?: number;
-    c_r_gt8?: number;
+    c_r_gt0: number; c_r_gt4: number;
+    c_r_gt6: number; c_r_gt8: number;
 }
 
 function Round2Decimal(v: number) {
     return Math.floor(v * 100) / 100;
 }
 
-export class Aggregate {
-    data: IAggregate[] = null;
+export class TransactionAggregate {
+    data: ITransactionCount[] = null;
     count: number = 0;
 
     name: string;
@@ -71,7 +58,7 @@ export class Aggregate {
 
 
 
-    Add(s: IAggregate) {
+    Add(s: ITransactionCount) {
         if (s == null) {
             return;
         }
@@ -125,6 +112,7 @@ export class Aggregate {
         if (this.c_r_o > 0) {
             this.a_r = Round2Decimal(this.s_r / this.c_r_gt0);
         }
+        return this;
     }
 
     // count 
@@ -179,23 +167,24 @@ export class Aggregate {
         return Round2Decimal(this.s_tt / 3600);
     }
 
-    static Make(records: IAggregate[]) {
-        let res = new Aggregate();
+    static Make(records: ITransactionCount[]) {
+        let res = new TransactionAggregate();
         records.forEach(v => res.Add(v));
-        res.Finalize();
-        return res;
+        return res.Finalize();
     }
 }
 
-export function MakeIndexBy(records: IAggregate[], field: string) {
-    let res: { [index: string]: Aggregate } = {};
+export function MakeIndexBy(records: ITransactionCount[], field: string) {
+    let res: { [index: string]: TransactionAggregate } = {};
     records.forEach(v => {
         let fieldValue = v[field];
         if (res[fieldValue] == null) {
-            res[fieldValue] = new Aggregate();
+            res[fieldValue] = new TransactionAggregate();
         }
         res[fieldValue].Add(v);
     })
-    let values = Object.keys(res).map(k => res[k]);
+    let values = Object.keys(res).map(k => {
+        return res[k].Finalize();
+    });
     return values;
 }

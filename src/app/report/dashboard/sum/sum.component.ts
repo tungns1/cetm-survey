@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Aggregate, AggregateService } from '../shared';
+import { TransactionAggregate, AggregateService } from '../shared';
 
 @Component({
     selector: 'report-sum',
@@ -8,7 +8,7 @@ import { Aggregate, AggregateService } from '../shared';
 })
 export class ReportSumComponent {
    
-    @Input() data = new Aggregate();
+    @Input() data = new TransactionAggregate();
 
     ngOnInit() {
         

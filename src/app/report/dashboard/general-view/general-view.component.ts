@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { Aggregate } from '../shared';
+import { TransactionAggregate } from '../shared';
 import { ExportExcelService } from '../../shared';
 import { PeriodFilterService } from '../../service';
 import { timeFormat, timeParse } from 'd3-time-format';
@@ -26,7 +26,7 @@ export class GeneralViewComponent implements OnInit {
     }
   }
   private formatDate = timeFormat("%Y-%m-%d");
-  @Input() data: Aggregate[] = [];
+  @Input() data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
 
   info = {
