@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { CounterAPI } from './service/counter.service';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import { ReportFilterModule } from "../filter/filter.module";
+import { ReportFilterModule } from "../../filter/filter.module";
 
 import {
 CounterComponent    

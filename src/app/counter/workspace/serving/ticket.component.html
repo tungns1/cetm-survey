@@ -28,8 +28,8 @@
         <div>
             <ticket-icon width="20px" [ticket]="ticket"></ticket-icon>
             <span>{{ticket.cnum}} - </span>
-            <span *ngIf="ticket.customer.full_name">{{ticket.customer.first_name}}</span>
-            <span *ngIf="!ticket.customer.full_name" i18n>Client</span>
+            <span *ngIf="ticket.customer.first_name && ticket.customer.first_name !== ' '">{{ticket.customer.first_name}}</span>
+            <span *ngIf="!ticket.customer.first_name || ticket.customer.first_name === ' '" i18n>Client</span>
         </div>
     </div>
     <div fxFlex class="servingTimeContainer">

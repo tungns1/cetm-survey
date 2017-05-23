@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { Aggregate } from '../shared';
 import { ExportExcelService, Customer, IFre } from '../../shared';
 import { CustomerAPI } from '../service/customer.service';
 

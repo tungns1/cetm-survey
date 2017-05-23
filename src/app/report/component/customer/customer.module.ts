@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CustomerAPI } from './service/customer.service';
 import { TransactionHistoryApi } from '../history/history.service';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import { ReportFilterModule } from "../filter/filter.module";
+import { ReportFilterModule } from "../../filter/filter.module";
 import {
     CustomerComponent
 } from './customer.component';

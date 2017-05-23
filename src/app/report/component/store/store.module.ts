@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { StoreAPI } from './service/store.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ReportFilterModule } from "../filter/filter.module";
+import { ReportFilterModule } from "../../filter/filter.module";
 import { HourComponent } from './store-hour/hour.component';
 import { PerformanceComponent } from './store-performance/performance.component';
 import { SharedModule } from '../shared';

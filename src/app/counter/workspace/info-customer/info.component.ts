@@ -11,6 +11,8 @@ export class InfoComponent {
     constructor(private queueService: QueueService) { }
     customer$ = this.queueService.serving$.map(v => {
         if (v && v[0]) {
+            if(!v[0].customer.full_name || v[0].customer.full_name === ' ') 
+                v[0].customer.full_name = 'Cliente';
             return v[0].customer;
         }
         return null;

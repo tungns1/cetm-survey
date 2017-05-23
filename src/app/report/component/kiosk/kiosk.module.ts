@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { KioskAPI } from './service/kiosk.service';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
-import { ReportFilterModule } from "../filter/filter.module";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ReportFilterModule } from "../../filter/filter.module";
 
 import {
     KioskComponent
@@ -24,12 +24,12 @@ import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
-        routing,NgxChartsModule,
+        routing, NgxChartsModule,
         ReportInfoModule,
-        SharedModule,ReportFilterModule
+        SharedModule, ReportFilterModule
     ],
     declarations: [
-        KioskComponent,TicketComponent,TimeComponent
+        KioskComponent, TicketComponent, TimeComponent
     ],
     providers: [KioskAPI]
 })
