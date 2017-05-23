@@ -16,6 +16,10 @@ export interface IService extends ID {
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 class cacheService extends MemCache<IService> {
+    ServiceName(id: string) {
+        return super.GetName(id, "name");
+    }
+
     protected ToListView(arr: IService[]) {
         return arr.sort((a, b) => a.name < b.name ? -1 : 1);
     }

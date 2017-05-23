@@ -3,7 +3,7 @@
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
     <app-datatable i18n-name name="Service Flow" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
-        <app-table-field name="service_id" i18n-title title="Service ID"></app-table-field>
+        <app-table-field name="service" i18n-title title="Service"></app-table-field>
     </app-datatable>
 </div>
 

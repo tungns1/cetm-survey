@@ -4,4 +4,6 @@ export interface ISFlow {
     service_id: string;
     tform_normal: string;
     tform_vip: string;
+
+    service?: string;
 }
