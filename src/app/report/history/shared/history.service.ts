@@ -1,8 +1,9 @@
-import { ITransaction, ITransactionView, ICustomer } from '../shared';
+import { ICustomer } from '../../shared';
 import {
-    ReportFilterService, 
-    HttpServiceGenerator, Paging
-} from '../shared';
+    ReportFilterService, Paging
+} from '../../service';
+import { ITransaction, ITransactionView } from './transaction_view';
+import { HttpServiceGenerator } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 

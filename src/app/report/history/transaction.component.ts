@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, Optional, Inject } from '@angular/core';
 import {
-    ITransactionView, ICustomer, IUser, USER_ROLES, Customers,
-    RuntimeEnvironment
+    ICustomer, IUser, USER_ROLES, Customer, RuntimeEnvironment
 } from '../shared';
+import { ITransactionView, TransactionHistoryApi } from './shared';
 import { Router } from '@angular/router';
 import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
-import { TransactionHistoryApi } from './history.service';
-import { ReportCustomerService } from '../../service';
+import { ReportCustomerService } from '../service';
 
 @Component({
     selector: 'transaction',
@@ -47,7 +46,7 @@ export class TransactionComponent implements OnInit {
         this.customer = null;
         this.transactionHistoryApi.GetInfoCustomer(customer_id)
             .subscribe(v => {
-                this.customer = new Customers(v)
+                this.customer = new Customer(v)
             });
     }
 

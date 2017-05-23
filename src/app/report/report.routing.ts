@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from "@angular/router"
 import { ReportComponent } from './report/report.component';
 
-import { ReportHistoryModule } from './component/history';
+import { ReportHistoryModule } from './history';
 import { ReportDashboardModule } from './dashboard';
 import { ReportCustomerModule } from './component/customer';
 import { ReportKioskModule } from './component/kiosk';

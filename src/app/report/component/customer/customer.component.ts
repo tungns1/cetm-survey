@@ -2,9 +2,8 @@ import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
 import { MdTabGroup } from '@angular/material';
-import {
-    Customers
-} from '../shared/';
+import { CustomerView } from './shared/';
+import { Customer } from '../../shared';
 
 @Component({
     selector: 'customer',
@@ -19,47 +18,47 @@ export class CustomerComponent {
     ) { }
 
     customer_id: string;
-    data$=this.customerApi.RxSummaryView;
+    data$ = this.customerApi.RxSummaryView;
     paddingStore = this.data$.map(data => {
-        switch (data.stores.length){
-        case 1:
-            return 2000;
-        case 2:
-            return 500;
-        case 3:
-            return 200;
-        case 4:
-            return 50;
-        default:
-            return 10;
+        switch (data.stores.length) {
+            case 1:
+                return 2000;
+            case 2:
+                return 500;
+            case 3:
+                return 200;
+            case 4:
+                return 50;
+            default:
+                return 10;
         }
     });
-       paddingFres = this.data$.map(data => {
-        switch (data.fres.length){
-        case 1:
-            return 2000;
-        case 2:
-            return 500;
-        case 3:
-            return 200;
-        case 4:
-            return 50;
-        default:
-            return 10;
+    paddingFres = this.data$.map(data => {
+        switch (data.fres.length) {
+            case 1:
+                return 2000;
+            case 2:
+                return 500;
+            case 3:
+                return 200;
+            case 4:
+                return 50;
+            default:
+                return 10;
         }
     });
     paddingService = this.data$.map(data => {
-        switch (data.services.length){
-        case 1:
-            return 2000;
-        case 2:
-            return 500;
-        case 3:
-            return 200;
-        case 4:
-            return 50;
-        default:
-            return 10;
+        switch (data.services.length) {
+            case 1:
+                return 2000;
+            case 2:
+                return 500;
+            case 3:
+                return 200;
+            case 4:
+                return 50;
+            default:
+                return 10;
         }
     });
     selectedTab: number;
@@ -71,12 +70,12 @@ export class CustomerComponent {
             this.customer_id = id;
             this.customerApi.Search('', this.customer_id);
             this.customerApi.GetInfoCustomerById(this.customer_id).subscribe(v => {
-                RxInfoCustomer.next(new Customers(v));
+                RxInfoCustomer.next(new Customer(v));
             });
         }
     }
 
-    onTabChange(e){
+    onTabChange(e) {
         this.selectedTab = e.index;
     }
 }

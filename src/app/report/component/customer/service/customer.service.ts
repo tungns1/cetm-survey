@@ -1,19 +1,20 @@
-import { ITransaction, ITransactionView, Customer, IService, IStore, IFre } from '../../shared';
+import { ITransaction } from '../../shared';
 import {
-    ICustomer, HttpServiceGenerator, Paging
+    ICustomer, Customer, HttpServiceGenerator, Paging
 } from '../../shared/';
 import { ReportFilterService } from '../../shared';
+import { CustomerView, IService, IStore, IFre } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Toast } from '../../../../x/ui/noti/toastr';
 
 export interface IHistory {
-    data: ITransactionView[];
+    data: ITransaction[];
     total: number;
 }
 
-export const paging = new Paging<ITransactionView>();
-export const RxInfoCustomer = new BehaviorSubject<ICustomer>(null);
+export const paging = new Paging<ITransaction>();
+export const RxInfoCustomer = new BehaviorSubject<Customer>(null);
 
 @Injectable()
 export class CustomerAPI {
@@ -34,6 +35,7 @@ export class CustomerAPI {
 
         return this.api.Get<IHistory>("customer_history", query);
     }
+    
     pagin(page: number, code: string, id: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
@@ -62,8 +64,6 @@ export class CustomerAPI {
         return this.apiCustomer.Get<ICustomer>("get_customer_by_id", { id: id });
     }
 
-
-
     private makeQuery(code: string, id: string) {
         return Object.assign({
             code: code,
@@ -71,17 +71,10 @@ export class CustomerAPI {
         }, this.filterService.ToBackendQuery());
     }
 
-    private toTransactionView(t: ITransaction) {
-        var res = <ITransactionView>t;
-
-        return res;
-    }
-
-
     RxCustomer = new BehaviorSubject<ITransaction[]>([]);
 
     get RxSummaryView() {
-        return this.RxCustomer.map(Customer.Make);
+        return this.RxCustomer.map(CustomerView.Make);
     };
 
     groupBy$ = new BehaviorSubject<string>('branch_id');

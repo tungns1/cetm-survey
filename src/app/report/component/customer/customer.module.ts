@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerAPI } from './service/customer.service';
-import { TransactionHistoryApi } from '../history/history.service';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
+// import { TransactionHistoryApi } from '../history/history.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReportFilterModule } from "../../filter/filter.module";
 import {
     CustomerComponent
@@ -35,12 +35,12 @@ import { SharedModule } from '../shared';
     imports: [
         routing, ReportSumModule,
         ReportInfoModule, CustomerFilterModule, ReportHistoryModule,
-        SharedModule,NgxChartsModule,D3Module,ReportFilterModule
+        SharedModule, NgxChartsModule, D3Module, ReportFilterModule
     ],
     declarations: [
-        CustomerComponent,ServiceComponent,StoreComponent,FresComponent,TransactionTimeComponent,ReportChartComponent
+        CustomerComponent, ServiceComponent, StoreComponent, FresComponent, TransactionTimeComponent, ReportChartComponent
     ],
-    providers: [CustomerAPI, TransactionHistoryApi]
+    providers: [CustomerAPI]
 })
 export class ReportCustomerModule {
 

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { ITransactionView } from '../../model';
-import { Paging, ReportNavService } from '../../service/';
-import { TransactionHistoryApi, IHistoryFilter } from './history.service';
+import { Paging, ReportNavService } from '../service';
+import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
 
 @Component({
@@ -33,7 +32,7 @@ export class HistoryComponent {
             this.pagin(1);
         });
         this.paging.pages$.subscribe(d => {
-            if(d.length < 2) this.isShowPagin = false;
+            if (d.length < 2) this.isShowPagin = false;
             else this.isShowPagin = true;
         });
     }
@@ -57,7 +56,7 @@ export class HistoryComponent {
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = tr;
-        const dialog = this.mdDialog.open(TransactionComponent, config); 
+        const dialog = this.mdDialog.open(TransactionComponent, config);
         // dialog.componentInstance.SetData(tr);
     }
 

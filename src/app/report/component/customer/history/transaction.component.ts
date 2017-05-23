@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild, Optional, Inject } from '@angular/core';
 import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
-import { ITransactionView, ModalComponent, ICustomer, RuntimeEnvironment, Customers } from '../../shared';
+import { ModalComponent, ICustomer, RuntimeEnvironment, Customer } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RxInfoCustomer } from '../service/customer.service';
-import { TransactionHistoryApi } from '../../history/history.service';
-
+import { ITransaction } from '../../../model';
 
 @Component({
     selector: 'transaction',
@@ -14,7 +13,6 @@ export class TransactionComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private transactionHistoryApi: TransactionHistoryApi,
         private env: RuntimeEnvironment,
         private dialog: MdDialog,
         @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
@@ -23,7 +21,7 @@ export class TransactionComponent implements OnInit {
     data = {};
     link: string;
     state: string;
-    
+
     @ViewChild(ModalComponent) modal: ModalComponent;
 
     ngOnInit() {
@@ -35,11 +33,11 @@ export class TransactionComponent implements OnInit {
         }
     }
 
-    private GetInfoCustomer(d: ITransactionView) {
+    private GetInfoCustomer(d: ITransaction) {
         this.state = d.state.charAt(0).toUpperCase() + d.state.slice(1);
-        this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
-            this.customer = new Customers(v);
-        });
+        // this.transactionHistoryApi.GetInfoCustomer(d.customer_id).subscribe(v => {
+        //     this.customer = new Customer(v);
+        // });
     }
 
     Close() {
