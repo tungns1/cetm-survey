@@ -1,7 +1,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
-import { ExportExcelService, PeriodFilterService } from '../../shared';
+import { PeriodFilterService } from '../../shared';
 import { timeFormat, timeParse } from 'd3-time-format';
 
 @Component({
@@ -12,7 +12,6 @@ import { timeFormat, timeParse } from 'd3-time-format';
 export class GeneralViewComponent implements OnInit {
 
   constructor(
-    private exportService: ExportExcelService,
     private filterService: PeriodFilterService
   ) { }
 
@@ -38,9 +37,6 @@ export class GeneralViewComponent implements OnInit {
     }
   }
 
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
-  }
   FilterBy() {
     let field_by = '';
     switch (this.field) {

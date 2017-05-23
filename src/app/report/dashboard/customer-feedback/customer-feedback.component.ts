@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
-import { ExportExcelService } from '../../shared';
 
 @Component({
   selector: 'app-customer-feedback',
@@ -8,10 +7,6 @@ import { ExportExcelService } from '../../shared';
   styleUrls: ['./customer-feedback.component.scss']
 })
 export class CustomerFeedbackComponent implements OnInit {
-
-  constructor(
-    private exportService: ExportExcelService
-  ) { }
 
   ngOnInit() {
   }
@@ -27,7 +22,4 @@ export class CustomerFeedbackComponent implements OnInit {
     }
   }
 
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
-  }
 }

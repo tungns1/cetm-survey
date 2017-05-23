@@ -7,9 +7,7 @@ import { ReportFilterComponent } from './filter.component';
 
 import { InsideFilterComponent } from './inside/inside.component';
 import { PeriodFilterComponent } from './period/period.component';
-
 import { filterServiceProvider, AccordionModule } from './shared';
-
 
 @NgModule({
     imports: [
@@ -21,17 +19,14 @@ import { filterServiceProvider, AccordionModule } from './shared';
         PeriodFilterComponent,
         ReportFilterComponent
     ],
-    exports: [ReportFilterComponent,
+    exports: [
+        ReportFilterComponent,
         AccordionModule
     ],
+    providers: [
+        filterServiceProvider
+    ]
 })
 export class ReportFilterModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: ReportFilterModule,
-            providers: [
-                filterServiceProvider
-            ]
-        }
-    }
+    
 }

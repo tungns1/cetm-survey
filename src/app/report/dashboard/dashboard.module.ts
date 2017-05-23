@@ -23,7 +23,7 @@ import { DashboardChartModule } from './chart/chart.module';
 @NgModule({
     imports: [
         CommonModule, SharedModule, routing, DashboardSharedModule,
-        ReportSumModule, DashboardChartModule,ReportFilterModule
+        ReportSumModule, DashboardChartModule, ReportFilterModule
     ],
     declarations: [
         DashboardComponent, TransactionTimeComponent, CustomerFeedbackComponent, GeneralViewComponent

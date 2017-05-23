@@ -6,7 +6,6 @@ import { ReportNavService } from '../shared';
 import { AggregateService } from './shared';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { MdTabGroup } from '@angular/material';
 
 @Component({
     selector: 'dashboard',

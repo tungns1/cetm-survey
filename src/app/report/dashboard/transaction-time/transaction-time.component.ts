@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
-import { ExportExcelService } from '../../shared';
 
 @Component({
   selector: 'app-transaction-time',
@@ -8,10 +7,6 @@ import { ExportExcelService } from '../../shared';
   styleUrls: ['./transaction-time.component.scss']
 })
 export class TransactionTimeComponent implements OnInit {
-
-  constructor(
-    private exportService: ExportExcelService
-  ) { }
 
   ngOnInit() {
   }
@@ -25,10 +20,6 @@ export class TransactionTimeComponent implements OnInit {
       start: '31/10/91',
       end: '12/3/93'
     }
-  }
-
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', this.info);
   }
 
 }
