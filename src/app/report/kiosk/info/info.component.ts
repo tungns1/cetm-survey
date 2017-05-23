@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { KioskAPI } from '../service/kiosk.service';
-import { InfoKioskTrack, IKioskTrack } from '../../shared';
+import { InfoKioskTrack } from '../../shared';
 
 @Component({
     selector: 'report-info',

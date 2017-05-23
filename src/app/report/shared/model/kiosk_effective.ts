@@ -1,23 +1,13 @@
 import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum } from "lodash";
-import { CacheBranch } from '../shared';
+import { CacheBranch, IActivity } from '../shared';
 
 export interface IKioskEffective {
-    activity: IKioskTrack[];
+    activity: IKioskActivity[];
     ticket: ITicketKiosk[];
 }
 
-export interface IKioskTrack {
-    id?: string
-    bid: string;
-    eid: string;
-    cat: string;
-    data: IKioskTrackData;
-    state: string;
-    s_at: number;
-    e_at: number;
-    a_d: number;
-    date: string;
-
+export interface IKioskActivity extends IActivity {
+    data: IKioskActivityData;
 }
 
 export interface ITicketKiosk {
@@ -26,19 +16,17 @@ export interface ITicketKiosk {
     kiosk_id: string;
 }
 
-export interface IKioskTrackData {
+export interface IKioskActivityData {
     pc: number;
     ps: string;
     ps_a: number;
 }
 
-
-
 export interface ITime {
     name: string;
     value: number;
 }
-export interface ITicket {
+export interface IKioskTicketCount {
     name: string;
     value: number;
 }
@@ -69,8 +57,8 @@ export interface ITicketSum {
 
 export class InfoKioskTrack {
 
-    data: IKioskTrack[] = [];
-    ticket: ITicket[] = [];
+    data: IKioskActivity[] = [];
+    ticket: IKioskTicketCount[] = [];
     time: ITime[] = [];
     ticket_day: ITicketDay[] = [];
     time_day: ITimeDay[] = [];

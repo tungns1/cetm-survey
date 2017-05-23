@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
-import { ReportNavService  } from '../../service/';
+import { ReportNavService  } from '../shared';
 import { KioskAPI } from './service/kiosk.service';
 import { MdTabGroup } from '@angular/material';
+
 @Component({
     selector: 'kiosk',
     templateUrl: 'kiosk.component.html',

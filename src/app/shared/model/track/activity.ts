@@ -3,12 +3,13 @@ export interface IActivity {
     name: string;
     bid: string; // branch id
     eid: string; // entity id
+    data: any;
     ref: number;
     s_at: number; // start at
     e_at: number; // end at
     cat: string; // category
     a_d: number; // active duration
-    data: any;
+    date: string;
 }
 
 export interface IMapActivity {

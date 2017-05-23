@@ -1,5 +1,5 @@
 import { ICounterTrack, IPerformance, InfoPerformanceTrack } from '../../shared';
-import { HttpServiceGenerator ,Paging} from '../../shared/';
+import { HttpServiceGenerator, Paging } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
@@ -34,13 +34,13 @@ export class CounterAPI {
     }
     Search() {
         this.api.Get<IPerformance>("performance", this.filterService.ToBackendQuery()).subscribe(v => {
-            if (v!=null) {
+            if (v != null) {
                 this.RxCounterFerformance.next(v);
             }
 
         });
     }
-      private makeQuery(code: string, id: string) {
+    private makeQuery(code: string, id: string) {
         return Object.assign({
             code: code,
             id: id,

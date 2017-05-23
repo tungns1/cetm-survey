@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { Aggregate } from '../shared';
-import { ExportExcelService, InfoStore } from '../../shared';
+import { InfoStore } from '../../shared';
 import { StoreAPI } from '../service/store.service';
+
 @Component({
   selector: 'performance-tab',
   templateUrl: './performance.component.html',

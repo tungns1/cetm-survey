@@ -1,9 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { ExportExcelService } from '../../shared';
-
 import { CounterAPI, paging } from '../service/counter.service';
-
 
 @Component({
   selector: 'activity-tab',

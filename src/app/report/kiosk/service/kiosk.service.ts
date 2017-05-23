@@ -1,4 +1,4 @@
-import { IKioskTrack, InfoKioskTrack, IKioskEffective } from '../../shared';
+import { InfoKioskTrack, IKioskEffective } from '../../shared';
 import { HttpServiceGenerator } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

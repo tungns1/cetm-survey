@@ -1,5 +1,5 @@
-import { IStoreReport,InfoStore } from '../../shared';
-import { HttpServiceGenerator ,Paging} from '../../shared/';
+import { IStoreReport, InfoStore } from '../../shared';
+import { HttpServiceGenerator, Paging } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
@@ -11,10 +11,10 @@ export class StoreAPI {
         private filterService: ReportFilterService,
         private httpServiceGenerator: HttpServiceGenerator
     ) { }
-   
+
     Search() {
         this.api.Get<IStoreReport>("read", this.filterService.ToBackendQuery()).subscribe(v => {
-            if (v!=null) {
+            if (v != null) {
                 this.RxStoreReport.next(v);
             }
         });

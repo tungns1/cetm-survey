@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { Aggregate } from '../shared';
-import { ExportExcelService, InfoKioskTrack } from '../../shared';
+import { InfoKioskTrack } from '../../shared';
 
 @Component({
   selector: 'time-tab',
@@ -25,23 +24,14 @@ export class TimeComponent {
     domain: ['#ff9a00', '#3266cc', '#990099', '#dc3812', '#109619', '#03718d']
   };
 
-
-  constructor(private exportService: ExportExcelService) {
-
-  }
   ngOnChanges(changes) {
     if (changes.title) {
       this.data.timechart[0].name = this.title;
     }
   }
 
-
-
   onSelect(event) {
     console.log(event);
-  }
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', "");
   }
 
 }
