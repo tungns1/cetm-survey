@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExportExcelService, Customer, IFre } from '../../shared';
+import { IFre, CustomerView } from '../shared';
+import { Customer } from '../../shared';
 import { CustomerAPI } from '../service/customer.service';
 
 @Component({
@@ -10,10 +11,9 @@ import { CustomerAPI } from '../service/customer.service';
 export class FresComponent {
 
   constructor(
-    private exportService: ExportExcelService,
     private customerAPI: CustomerAPI
   ) { }
-  @Input() data: Customer;
+  @Input() data: CustomerView;
   @Input() padding: number;
   @Input() title: string;
   ngOnInit() {
@@ -67,9 +67,6 @@ export class FresComponent {
   }
   onSelect(event) {
     console.log(event);
-  }
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx', "");
   }
 
 }

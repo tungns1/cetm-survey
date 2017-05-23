@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExportExcelService, Customer } from '../../shared';
+import { Customer } from '../../shared';
 
 @Component({
   selector: 'service-tab',
@@ -16,11 +16,6 @@ export class ServiceComponent {
     domain: ['#ff9a00', '#3266cc', '#990099', '#dc3812', '#109619', '#03718d']
   };
 
-
-  constructor(private exportService: ExportExcelService) {
-
-  }
-  
   ngOnInit(){
     console.log('service');
     console.log(this.data);
@@ -29,8 +24,5 @@ export class ServiceComponent {
   onSelect(event) {
     console.log(event);
   }
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
-  }
-
+  
 }

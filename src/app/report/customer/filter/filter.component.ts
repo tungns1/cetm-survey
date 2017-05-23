@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportFilterService } from '../../../service/';
+import { ReportFilterService, Customer } from '../../shared';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
-
 
 @Component({
     selector: 'customer-filter',
@@ -29,7 +28,8 @@ export class ReportFilterComponent {
         this.customerApi.Search(this.code, '');
         this.customerApi.pagin(1, this.code, '');
         this.customerApi.GetInfoCustomerByCode(this.code).subscribe(v => {
-            RxInfoCustomer.next(v);
+            const c = new Customer(v);
+            RxInfoCustomer.next(c);
         });
          RxInfoCustomer.next(null);
     }

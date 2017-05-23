@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CustomerAPI } from './service/customer.service';
 // import { TransactionHistoryApi } from '../history/history.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ReportFilterModule } from "../../filter/filter.module";
 import {
     CustomerComponent
 } from './customer.component';
 
 import { Routes, RouterModule } from '@angular/router'
+import { ReportFilterModule } from '../shared';
 
 const routing = RouterModule.forChild([
     {
@@ -25,7 +25,6 @@ import { TransactionTimeComponent } from './transaction-time/transaction-time.co
 
 import { CustomerFilterModule } from './filter/filter.module';
 import { ReportSumModule } from './sum/sum.module';
-import { D3Module } from '../../../x/ng/d3/d3.module';
 import { ReportChartComponent } from './chart/chart.component';
 import { ReportInfoModule } from './info/info.module'
 import { ReportHistoryModule } from './history/history.module'
@@ -35,7 +34,8 @@ import { SharedModule } from '../shared';
     imports: [
         routing, ReportSumModule,
         ReportInfoModule, CustomerFilterModule, ReportHistoryModule,
-        SharedModule, NgxChartsModule, D3Module, ReportFilterModule
+        SharedModule, NgxChartsModule,
+        ReportFilterModule
     ],
     declarations: [
         CustomerComponent, ServiceComponent, StoreComponent, FresComponent, TransactionTimeComponent, ReportChartComponent

@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { ExportExcelService } from '../../shared';
 import { Customer } from '../../shared';
 
 @Component({
@@ -10,17 +8,9 @@ import { Customer } from '../../shared';
 })
 export class TransactionTimeComponent implements OnInit {
 
-  constructor(
-    private exportService: ExportExcelService
-  ) { }
-
   ngOnInit() {
   }
 
   @Input() data: Customer;
-
-  excel() {
-    this.exportService.exportExcel('tableEl', 'miraway', 'xlsx',"");
-  }
 
 }

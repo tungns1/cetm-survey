@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HistoryComponent } from './history.component';
 import { Routes, RouterModule } from '@angular/router'
-import { ModalModule } from '../../../../x/ng/modal';
+import { ModalModule, AccordionModule } from '../../shared';
 import { TransactionComponent } from './transaction.component';
-import { AccordionModule } from '../../../../x/ui/accordion/accordion';
 
 
 @NgModule({

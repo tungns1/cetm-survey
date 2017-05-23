@@ -3,7 +3,7 @@ import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
 import { ModalComponent, ICustomer, RuntimeEnvironment, Customer } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RxInfoCustomer } from '../service/customer.service';
-import { ITransaction } from '../../../model';
+import { ITransaction } from '../../shared';
 
 @Component({
     selector: 'transaction',

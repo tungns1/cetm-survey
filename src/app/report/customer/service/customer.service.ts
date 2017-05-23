@@ -1,12 +1,11 @@
 import { ITransaction } from '../../shared';
 import {
-    ICustomer, Customer, HttpServiceGenerator, Paging
-} from '../../shared/';
-import { ReportFilterService } from '../../shared';
+    ICustomer, Customer, HttpServiceGenerator, Paging,
+    ReportFilterService, Toast
+} from '../../shared';
 import { CustomerView, IService, IStore, IFre } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Toast } from '../../../../x/ui/noti/toastr';
 
 export interface IHistory {
     data: ITransaction[];
@@ -35,7 +34,7 @@ export class CustomerAPI {
 
         return this.api.Get<IHistory>("customer_history", query);
     }
-    
+
     pagin(page: number, code: string, id: string) {
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
 import { MdTabGroup } from '@angular/material';
 import { CustomerView } from './shared/';
-import { Customer } from '../../shared';
+import { Customer } from '../shared';
 
 @Component({
     selector: 'customer',

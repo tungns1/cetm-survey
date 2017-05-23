@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { ITransactionView } from '../../../model';
-import { Paging } from '../../../service/';
+import { ITransaction, Paging } from '../../shared';
 import { CustomerAPI, paging } from '../service/customer.service';
 import { TransactionComponent } from './transaction.component'
 
@@ -31,7 +30,7 @@ export class HistoryComponent {
 
     }
 
-    openDialog(ticket: ITransactionView) {
+    openDialog(ticket: ITransaction) {
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = ticket;

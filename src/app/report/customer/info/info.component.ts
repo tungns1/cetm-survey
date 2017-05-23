@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
-import { Customer, IService, IStore, ICustomer } from '../../shared/';
+import { IStore, IService, CustomerView } from '../shared';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class ReportInfoComponent {
     constructor(
         private customerAPI: CustomerAPI
     ) { }
-    data: Customer;
+    data: CustomerView;
     service: IService;
     store: IStore;
 

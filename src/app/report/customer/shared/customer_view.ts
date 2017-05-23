@@ -1,5 +1,4 @@
-import { ITransaction } from '../../../model';
-import { CacheBranch } from '../../../shared';
+import { CacheBranch, ITransaction } from '../../shared';
 
 export interface IService {
     name: string;
