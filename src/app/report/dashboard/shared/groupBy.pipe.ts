@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
     ServiceName, CacheBranch, CacheCounter, CacheUsers
-} from '../../../shared';
+} from '../../shared';
 import { IAggregate } from './aggregate';
 
 @Pipe({

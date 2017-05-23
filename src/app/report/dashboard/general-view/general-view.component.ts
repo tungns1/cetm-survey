@@ -2,7 +2,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Aggregate } from '../shared';
 import { ExportExcelService } from '../../shared';
-import { PeriodFilterService } from '../../shared';
+import { PeriodFilterService } from '../../service';
 import { timeFormat, timeParse } from 'd3-time-format';
 
 @Component({

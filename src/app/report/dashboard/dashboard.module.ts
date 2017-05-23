@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
-import { SharedModule } from '../../shared';
-import { ReportFilterModule } from "../../filter/filter.module";
+import { SharedModule } from '../shared';
+import { ReportFilterModule } from "../filter/filter.module";
 
 import { Routes, RouterModule } from '@angular/router'
 
@@ -20,12 +20,12 @@ import { TransactionTimeComponent } from './transaction-time/transaction-time.co
 import { CustomerFeedbackComponent } from './customer-feedback/customer-feedback.component';
 import { GeneralViewComponent } from './general-view/general-view.component';
 import { DashboardSharedModule } from './shared';
-import { ReportChartModule } from './chart/chart.module';
+import { DashboardChartModule } from './chart/chart.module';
 
 @NgModule({
     imports: [
         CommonModule, SharedModule, routing, DashboardSharedModule,
-        ReportSumModule, ReportChartModule,ReportFilterModule
+        ReportSumModule, DashboardChartModule,ReportFilterModule
     ],
     declarations: [
         DashboardComponent, TransactionTimeComponent, CustomerFeedbackComponent, GeneralViewComponent

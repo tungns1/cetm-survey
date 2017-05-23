@@ -1,11 +1,11 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IAggregate, Aggregate, MakeIndexBy } from './aggregate';
 
-import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../shared';
+import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../service';
 
 import {
     HttpServiceGenerator, ServiceName, CacheBranch, CacheCounter, CacheUsers
-} from '../../../shared';
+} from '../../shared';
 import { Injectable } from '@angular/core';
 
 @Injectable()

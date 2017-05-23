@@ -9,3 +9,6 @@ export {
 } from '../../shared/model';
 
 export { ExclusiveEventEmitter } from '../../../lib/rx';
+export { ModalComponent, TimeModule, ExportService } from '../../x/ng';
+
+export { D3Module } from '../../x/ng/d3';

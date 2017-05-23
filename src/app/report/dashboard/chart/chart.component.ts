@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ContentChild } from '@angular/core';
-import { ReportViewService, ChartItemGroupView } from '../../shared';
+import { ReportViewService, ChartItemGroupView } from '../shared';
 import { ChartService } from './chart.service';
 
 @Component({

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { D3Module } from '../../../../x/ng/d3/d3.module';
 import { ReportChartComponent } from './chart.component';
 import { ChartService } from './chart.service';
-import { SharedModule } from '../../shared';
+import { SharedModule, D3Module } from '../../shared';
 
 @NgModule({
     imports: [SharedModule, D3Module],
@@ -14,4 +13,4 @@ import { SharedModule } from '../../shared';
         ReportChartComponent
     ],
 })
-export class ReportChartModule { }
+export class DashboardChartModule { }
