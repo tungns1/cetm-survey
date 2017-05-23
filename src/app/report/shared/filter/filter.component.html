@@ -1,0 +1,10 @@
+<div class="filter" fxLayout="column">
+    <div fxFlex class="content">
+        <period-filter [inside]="inside"></period-filter>
+        <branch-filter *ngIf="inside!='customer'"></branch-filter>
+        <inside-filter *ngIf="inside==='yes'"></inside-filter>
+    </div>
+    <div fxFlex="7vh" class="action">
+        <button class="btnFill uppercase" (click)="Refresh()" i18n>View</button>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+@import '../../shared/style.scss';
+#searchCus {
+    .searchInput {
+        height: 25px;
+        width: 50%;
+        text-indent: 5px;
+    }
+    .btnSearch {
+        color: $key-color;
+        position: relative;
+        left: -30px;
+    }
+}

@@ -1,0 +1,32 @@
+import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
+import { IStore, IService, CustomerView } from '../shared';
+import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
+
+@Component({
+    selector: 'report-info',
+    templateUrl: 'info.component.html',
+    styleUrls: ['info.component.scss']
+})
+export class ReportInfoComponent {
+    constructor(
+        private customerAPI: CustomerAPI
+    ) { }
+    data: CustomerView;
+    service: IService;
+    store: IStore;
+
+    ngOnInit() {
+        this.customerAPI.RxSummaryView.subscribe(v => {
+            this.data = v;
+            this.store = v.stores.sort((a, b) => b.value - a.value)[0]
+            this.service = v.services.sort((a, b) => b.value - a.value)[0]
+        })
+    }
+    customer = RxInfoCustomer.map(v => {
+        if (v != null) {
+            return v;
+        }
+        return null;
+    })
+
+}

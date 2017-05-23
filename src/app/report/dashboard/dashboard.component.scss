@@ -1,0 +1,28 @@
+@import '../shared/style.scss';
+#overView {
+    .tableOverView {
+        width: 100%;
+        border-spacing: 0px;
+        border-top: $border;
+        font-family: sans-serif;
+        th {
+            background-color: #dee0e0;
+            padding: 7px;
+            font-weight: $font-weight-default;
+            font-weight: bold;
+            color: #414042;
+        }
+        td {
+            border-top: $border;
+            padding: 7px;
+            text-align: center;
+            font-weight: $font-weight-default;
+        }
+    }
+    .widthCtrl {
+        max-width: 140px;
+    }
+    .btnExport {
+        float: right;
+    }
+}

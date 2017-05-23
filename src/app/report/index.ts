@@ -1,3 +1,3 @@
-import {AppModule} from "./app.module";
+import {ReportModule} from './report.module';
 
-export default AppModule;
+export default ReportModule;

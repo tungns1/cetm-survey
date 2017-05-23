@@ -7,8 +7,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
 import { EnvironmentModule } from './env';
-import { ModalModule, SelectCheckModule } from '../x/ng';
-import { ExportExcelService,ExportService } from '../x/ng';
+import { ModalModule, SelectCheckModule, ExportModule } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 import { Ng2BasicModule } from './shared';
@@ -26,8 +25,9 @@ import { BusinessModule } from './businessQapp/business.module';
         FormsModule, ReactiveFormsModule,
         FlexLayoutModule, NavModule, HeaderModule,
         UtilPipeModule, SelectCheckModule,
-        ModalModule, BusinessModule
-    ]
+        ModalModule, BusinessModule,
+        ExportModule
+    ],
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders {
@@ -35,8 +35,6 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 EnvironmentModule.Providers(),
-                ExportExcelService,
-                ExportService,
                 LogService, RouterQueryStorageStrategy,
                 AppSocketGenerator, HttpServiceGenerator
             ]

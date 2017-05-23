@@ -1093,24 +1093,80 @@
         <source>Total connection time</source>
         <target/>
       </trans-unit>
-      <trans-unit id="be7efbd8bdf2a2d0064516ab7c6801a5763c0da1" datatype="html">
-        <source>T_c_t</source>
+      <trans-unit id="d2c32b1d830519263945169688985a4ccd820742" datatype="html">
+        <source>Time connection</source>
         <target/>
       </trans-unit>
-      <trans-unit id="5cc7cdfc22535b73e80cd03a045adee89ada693c" datatype="html">
-        <source>T_p_t</source>
+      <trans-unit id="8009edfb88a2a59d0f109c5d4e9057070427277b" datatype="html">
+        <source>Time productivity</source>
         <target/>
       </trans-unit>
-      <trans-unit id="107a463879ca2f6bff917b9c40a0b7c7ff93f3af" datatype="html">
-        <source>T_i_t</source>
+      <trans-unit id="c18922b6a79790020489c8400efbaf229c748c3b" datatype="html">
+        <source>Time idle</source>
         <target/>
       </trans-unit>
-      <trans-unit id="c0443b5a5a191d9854f703dc478342f7683623c9" datatype="html">
-        <source>T_a</source>
+      <trans-unit id="4793d5e582ce27caefc58f677f0d7ed6fda8688b" datatype="html">
+        <source>Ticket attended</source>
         <target/>
       </trans-unit>
-      <trans-unit id="c12baedb390bc59951205dd3d9eb8f1014b66f64" datatype="html">
-        <source>T_t</source>
+      <trans-unit id="99302f62f542f95a716b0f75db2d84c11dc25f9a" datatype="html">
+        <source>Ticket cancelled</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a02ea1d4e7424ca989929da5e598f379940fdbf2" datatype="html">
+        <source>Duration</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7af07c124bab583fd7bfcadcd110dd4bcba4fc11" datatype="html">
+        <source>Printed ticket</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a7c328c4773db932ff14a1954e15e43dca58e7b7" datatype="html">
+        <source>Completed</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6fcc59c08a8cf6dad5ae688413d40d3edab7fdeb" datatype="html">
+        <source>Attended</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7a66c1851343c2b83c9bdd754905bddaa6da3a02" datatype="html">
+        <source>Exceeded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="16f7a74fe2af3c1d518e9f118bedf578fa373945" datatype="html">
+        <source>Substandard</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4d589b093da58dfb8ac9299aa7a82b5b6ccb87f2" datatype="html">
+        <source>Cancelled</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c5738e3748a22b939325136b91d2f0e4b1a76b30" datatype="html">
+        <source>Discarded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="73a40cd84f61dc910f72dea9bb30a96bd71c0e81" datatype="html">
+        <source>%Discarded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e9b135789b88b1cf0d89e024a26b292dbc5d9705" datatype="html">
+        <source>%Exceeded</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4e5173772abef22ca13df1a7f5aca460de6635fb" datatype="html">
+        <source>%Teap</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="02d928f94f75bc38df2af616243a469d6a5973c4" datatype="html">
+        <source>%Dap</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ad20377559b1cd37ba53189f55ed7d0d18faf3c5" datatype="html">
+        <source>Attended on time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="dc599e07374695638aab6aeb6e639c20d248a597" datatype="html">
+        <source>Attended over time</source>
         <target/>
       </trans-unit>
       <trans-unit id="d0050cd9ce8209314b683651c93a67c39fe786e0" datatype="html">
@@ -1121,20 +1177,8 @@
         <source>Ticket issued</source>
         <target/>
       </trans-unit>
-      <trans-unit id="6fcc59c08a8cf6dad5ae688413d40d3edab7fdeb" datatype="html">
-        <source>Attended</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="31e7a3aeeccb0180bde1279c510adfa49e7d333c" datatype="html">
         <source>Abandoned</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="4e5173772abef22ca13df1a7f5aca460de6635fb" datatype="html">
-        <source>%Teap</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="02d928f94f75bc38df2af616243a469d6a5973c4" datatype="html">
-        <source>%Dap</source>
         <target/>
       </trans-unit>
       <trans-unit id="c291d234baec010d07ea4f2c0486124b7d355c8a" datatype="html">
