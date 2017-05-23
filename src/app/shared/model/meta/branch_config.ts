@@ -1,4 +1,5 @@
 interface IServiceConfig {
+    basket: string[];
     max_waiting_minute: number;
     max_serving_minute: number;
 }

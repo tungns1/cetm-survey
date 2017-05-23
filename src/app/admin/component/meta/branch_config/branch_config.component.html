@@ -7,18 +7,25 @@
 </div>
 
 <app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form [formGroup]="form" fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Location</span>
-            <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
-                <span fxFlex="1%" class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-                <select fxFlex class="hl-select" formControlName="branch_id">
-                    <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
-                </select>
-            </div>
-            <span fxFlex="20%" i18n>Feedback Device</span>:
-            <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
+    <form [formGroup]="form">
+        <div>
+            <span i18n>Location</span>
+            <span class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
+            <span class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
+            <select class="hl-select" formControlName="branch_id">
+                <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
+            </select>
+            <br>
         </div>
+        <md-tab-group dynamicHeight>
+            <md-tab>
+                <ng-template md-tab-label><span class="uppercase" i18n>Service</span></ng-template>
+                <service-config fxFlex formControlName="service"></service-config>
+            </md-tab>
+            <md-tab>
+                <ng-template md-tab-label><span class="uppercase" i18n>Feedback</span></ng-template>
+                <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
+            </md-tab>
+        </md-tab-group>
     </form>
 </app-editor-view>
