@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
-import { Customer } from '../../shared/';
+import { CustomerView } from '../shared';
 import { CustomerAPI } from '../service/customer.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class ReportSumComponent {
      
     ) { }
 
-    @Input() data: Customer;
+    @Input() data: CustomerView;
 
 
 }

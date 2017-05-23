@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
-import { ReportNavService  } from '../shared';
 import { KioskAPI } from './service/kiosk.service';
 import { MdTabGroup } from '@angular/material';
 
@@ -11,7 +10,6 @@ import { MdTabGroup } from '@angular/material';
 })
 export class KioskComponent {
     constructor(
-           private nav: ReportNavService,
            private kioskAPI:KioskAPI
     ) { }
 
@@ -44,13 +42,11 @@ export class KioskComponent {
             return 10;
         }
     });
+
     selectedTab=0;
 
-    ngOnInit() {
-        
-       this.nav.Refresh$.ExclusiveSubscribe(_ => {
-           this.kioskAPI.Search();
-        });
+    refresh() {
+        this.kioskAPI.Search();
     }
 
     onTabChange(e){

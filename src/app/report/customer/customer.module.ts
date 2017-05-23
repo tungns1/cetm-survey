@@ -28,13 +28,14 @@ import { ReportSumModule } from './sum/sum.module';
 import { ReportChartComponent } from './chart/chart.component';
 import { ReportInfoModule } from './info/info.module'
 import { ReportHistoryModule } from './history/history.module'
-import { SharedModule } from '../shared';
+import { SharedModule, D3Module } from '../shared';
 
 @NgModule({
     imports: [
-        routing, ReportSumModule,
-        ReportInfoModule, CustomerFilterModule, ReportHistoryModule,
+        routing, D3Module,
         SharedModule, NgxChartsModule,
+        ReportSumModule,
+        ReportInfoModule, CustomerFilterModule, ReportHistoryModule,
         ReportFilterModule
     ],
     declarations: [

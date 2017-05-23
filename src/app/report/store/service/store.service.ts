@@ -4,7 +4,6 @@ import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 
-
 @Injectable()
 export class StoreAPI {
     constructor(

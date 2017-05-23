@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { Paging, ReportNavService } from '../shared';
+import { Paging } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
 
@@ -12,7 +12,6 @@ import { TransactionComponent } from './transaction.component';
 export class HistoryComponent {
     constructor(
         private mdDialog: MdDialog,
-        private nav: ReportNavService,
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
@@ -28,13 +27,14 @@ export class HistoryComponent {
     isShowPagin: boolean = true;
 
     ngOnInit() {
-        this.nav.Refresh$.ExclusiveSubscribe(_ => {
-            this.pagin(1);
-        });
         this.paging.pages$.subscribe(d => {
             if (d.length < 2) this.isShowPagin = false;
             else this.isShowPagin = true;
         });
+    }
+
+    refresh() {
+        this.pagin(1);
     }
 
     pagin(page: number = 1) {

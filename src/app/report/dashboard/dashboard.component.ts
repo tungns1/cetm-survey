@@ -2,9 +2,7 @@ import {
     Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReportNavService } from '../shared';
 import { AggregateService } from './shared';
-
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -16,15 +14,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DashboardComponent {
     constructor(
         private aggregateService: AggregateService,
-        private nav: ReportNavService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
 
-    ngOnInit() {
-        this.nav.Refresh$.ExclusiveSubscribe(_ => {
-            this.aggregateService.Refresh()
-        });
+    refresh() {
+        this.aggregateService.Refresh();
     }
 
     data$ = this.aggregateService.ActiveAggregate$;

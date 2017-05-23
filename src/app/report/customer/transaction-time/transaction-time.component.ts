@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../../shared';
+import { CustomerView } from '../shared';
 
 @Component({
   selector: 'app-transaction-time',
@@ -11,6 +12,6 @@ export class TransactionTimeComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Input() data: Customer;
+  @Input() data: CustomerView;
 
 }

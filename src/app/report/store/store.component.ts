@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
-import { ReportNavService  } from '../shared';
-
 import { StoreAPI } from './service/store.service';
 import { MdTabGroup } from '@angular/material';
+
 @Component({
     selector: 'store',
     templateUrl: 'store.component.html',
@@ -11,21 +10,18 @@ import { MdTabGroup } from '@angular/material';
 })
 export class StoreComponent {
     constructor(
-           private nav: ReportNavService,
-           private storeAPI:StoreAPI
+        private storeAPI: StoreAPI
     ) { }
-    data$=this.storeAPI.RxStoreView;
-    selectedTab=0;
 
-    ngOnInit() {
-        
-       this.nav.Refresh$.ExclusiveSubscribe(_ => {
-            this.storeAPI.Search();
-        });
+    data$ = this.storeAPI.RxStoreView;
+    selectedTab = 0;
+
+    refresh() {
+        this.storeAPI.Search();
     }
 
-    onTabChange(e){
+    onTabChange(e) {
         this.selectedTab = e.index;
     }
-    
+
 }

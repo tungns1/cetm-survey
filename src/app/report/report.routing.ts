@@ -13,7 +13,6 @@ export function loadReportHistoryModule() {
     return ReportHistoryModule;
 }
 
-
 export function loadReportDashboardModule() {
     return ReportDashboardModule;
 }

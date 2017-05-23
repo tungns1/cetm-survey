@@ -1,5 +1,4 @@
 import { Component, Input, ContentChild } from '@angular/core';
-import { ReportViewService } from '../../shared';
 import { ChartItemGroupView } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CustomerAPI } from '../service/customer.service';

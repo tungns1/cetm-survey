@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Customer } from '../../shared';
+import {CustomerView} from '../shared';
 
 @Component({
   selector: 'service-tab',
@@ -7,8 +7,8 @@ import { Customer } from '../../shared';
   styleUrls: ['./service.component.scss']
 })
 export class ServiceComponent {
-  @Input() data: Customer;
   @Input() padding: number;
+  @Input() data: CustomerView;
 
   view: any[] = [900, 400];
 

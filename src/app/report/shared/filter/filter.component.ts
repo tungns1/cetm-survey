@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { ReportNavService } from '../service';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Component({
@@ -10,11 +9,14 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 })
 export class ReportFilterComponent {
     @Input() inside:string;
-    constructor(
-        private navService: ReportNavService
-    ) { }
-
-    refresh() {
-        this.navService.Refresh$.Next();
+   
+    ngOnInit() {
+        this.Refresh();
     }
+
+    Refresh() {
+        this.refresh.next(null);
+    }
+
+    @Output() refresh = new EventEmitter();
 }
