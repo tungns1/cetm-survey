@@ -12,9 +12,7 @@
             <span i18n>Location</span>
             <span class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*</span>
             <span class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-            <select class="hl-select" formControlName="branch_id">
-                <option *ngFor="let br of branches | async" [value]="br.id">{{br.name}}</option>
-            </select>
+            <branch-picker fxFlex formControlName="branch_id"></branch-picker>
             <br>
         </div>
         <md-tab-group dynamicHeight>
