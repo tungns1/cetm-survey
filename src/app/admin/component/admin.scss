@@ -1,6 +1,6 @@
 #editor {
     form {
-        width: 90%;
+        width: 100%;
         margin: auto;
         .rowCtrl {
             margin-left: 80px;
@@ -11,6 +11,11 @@
                 text-align: right;
                 padding-top: 6px;
             }
+        }
+        .quillEditor{
+            width: 40%;
+            margin: auto;
+            background-color: #fff;
         }
     }
     .action {
