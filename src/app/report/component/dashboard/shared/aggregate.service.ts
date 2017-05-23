@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IAggregate, Aggregate, MakeIndexBy } from '../../../model';
+import { IAggregate, Aggregate, MakeIndexBy } from './aggregate';
 
 import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../shared';
 

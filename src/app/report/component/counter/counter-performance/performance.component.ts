@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { Aggregate } from '../shared';
 import { ExportExcelService, InfoPerformanceTrack } from '../../shared';
 import { CounterAPI } from '../service/counter.service';
 @Component({

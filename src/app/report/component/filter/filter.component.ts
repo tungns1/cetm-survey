@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 import { ReportNavService } from '../shared';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
-export const filter = new BehaviorSubject<boolean>(false);
-
 @Component({
     selector: 'report-filter',
     templateUrl: 'filter.component.html',

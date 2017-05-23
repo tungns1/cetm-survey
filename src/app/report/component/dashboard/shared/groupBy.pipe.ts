@@ -1,11 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
-    ServiceName,
-    CacheBranch,
-    CacheCounter,
-    CacheUsers
-} from '../../../../shared';
-import { IAggregate } from '../../../../model';
+    ServiceName, CacheBranch, CacheCounter, CacheUsers
+} from '../../../shared';
+import { IAggregate } from './aggregate';
 
 @Pipe({
     name: 'groupByTitle'

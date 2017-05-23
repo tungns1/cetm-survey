@@ -3,8 +3,8 @@ import { CommonModule } from "@angular/common";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { SharedModule } from "./shared/";
 import { routing } from "./app.routing";
-import { AppComponent } from "./app.component";
-import { ReportComponent, ReportFilterModule } from "./component/";
+import { ReportComponent } from './report/report.component';
+import { ReportFilterModule } from "./component/";
 import { reportServiceProvider } from "./service";
 
 @NgModule({
@@ -12,9 +12,8 @@ import { reportServiceProvider } from "./service";
     SharedModule, routing,
     ReportFilterModule
   ],
-  declarations: [AppComponent, ReportComponent],
+  declarations: [ReportComponent],
   providers: [reportServiceProvider],
-  bootstrap: [AppComponent]
 })
 export class AppModule {
 

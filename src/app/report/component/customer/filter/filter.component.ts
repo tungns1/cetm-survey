@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Aggregate } from '../../shared/';
 import { ReportFilterService } from '../../../service/';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
 

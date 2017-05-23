@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Aggregate } from '../../shared/';
-import { AggregateService } from '../shared';
+import { Aggregate, AggregateService } from '../shared';
 
 @Component({
     selector: 'report-sum',

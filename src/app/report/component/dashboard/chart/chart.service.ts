@@ -1,7 +1,7 @@
 // import { ChartItem, MainItems, PieItems } from './chart.model';
 
 import { timeParse } from 'd3-time-format';
-import { Aggregate } from '../../shared';
+import { Aggregate } from '../shared';
 
 const timeDay = timeParse("%Y-%m-%d");
 const timeWeek = timeParse("W%Y-%W");

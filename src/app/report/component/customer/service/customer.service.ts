@@ -5,7 +5,6 @@ import {
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { IAggregate, Aggregate } from '../../../model';
 import { Toast } from '../../../../x/ui/noti/toastr';
 
 export interface IHistory {
