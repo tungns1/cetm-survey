@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter,Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
-import { ReportNavService } from '../shared';
+import { ReportNavService } from '../service';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Component({

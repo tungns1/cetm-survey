@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../../shared';
-import { ReportFilterModule } from "../filter/filter.module";
+import { ReportFilterModule } from "../../filter/filter.module";
 
 import { Routes, RouterModule } from '@angular/router'
 

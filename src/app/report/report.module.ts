@@ -2,9 +2,9 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { SharedModule } from "./shared/";
-import { routing } from "./app.routing";
+import { routing } from "./report.routing";
 import { ReportComponent } from './report/report.component';
-import { ReportFilterModule } from "./component/";
+import { ReportFilterModule } from "./filter/filter.module";
 import { reportServiceProvider } from "./service";
 
 @NgModule({
@@ -15,6 +15,6 @@ import { reportServiceProvider } from "./service";
   declarations: [ReportComponent],
   providers: [reportServiceProvider],
 })
-export class AppModule {
+export class ReportModule {
 
 }

@@ -9,7 +9,7 @@ import { TransactionHistoryApi } from './history.service';
 import { TransactionComponent } from './transaction.component';
 import { HistoryFilterComponent } from './history-filter.component';
 import { AccordionModule } from '../../../x/ui/accordion/accordion';
-import { ReportFilterModule } from "../filter/filter.module";
+import { ReportFilterModule } from "../../filter/filter.module";
 
 const routing = RouterModule.forChild([
     {
