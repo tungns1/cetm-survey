@@ -8,7 +8,7 @@ import { TransactionHistoryApi } from './shared';
 import { TransactionComponent } from './transaction.component';
 import { HistoryFilterComponent } from './history-filter.component';
 import { AccordionModule } from '../shared';
-import { ReportFilterModule } from "../filter/filter.module";
+import { ReportFilterModule } from "../shared";
 
 const routing = RouterModule.forChild([
     {

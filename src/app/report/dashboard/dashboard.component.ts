@@ -2,7 +2,7 @@ import {
     Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReportNavService } from '../service';
+import { ReportNavService } from '../shared';
 import { AggregateService } from './shared';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

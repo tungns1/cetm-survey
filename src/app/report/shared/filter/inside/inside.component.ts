@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { InsideBranchFilterService } from '../../service';
+import { InsideBranchFilterService } from '../shared';
 
 @Component({
     selector: 'inside-filter',

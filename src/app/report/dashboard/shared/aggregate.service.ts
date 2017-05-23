@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ITransactionCount, TransactionAggregate, MakeIndexBy } from './aggregate';
 
-import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../service';
+import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../shared';
 
 import {
     HttpServiceGenerator, ServiceName, CacheBranch, CacheCounter, CacheUsers

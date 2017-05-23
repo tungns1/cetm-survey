@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { InsideBranchFilterService } from './inside-filter.service';
 import { PeriodFilterService } from './period-filter.service';
-import { AppStorage, BranchFilterService } from '../../../shared';
+import { AppStorage, BranchFilterService } from '../../shared';
 import { cloneDeep } from 'lodash';
 
 @Injectable()

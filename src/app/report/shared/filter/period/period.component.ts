@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy,Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PeriodFilterService } from '../../service';
+import { PeriodFilterService } from '../shared';
 
 @Component({
     selector: 'period-filter',

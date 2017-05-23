@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
-import { SharedModule } from '../shared';
-import { ReportFilterModule } from "../filter/filter.module";
-
+import { SharedModule, ReportFilterModule } from "../shared";
 import { Routes, RouterModule } from '@angular/router'
 
 const routing = RouterModule.forChild([

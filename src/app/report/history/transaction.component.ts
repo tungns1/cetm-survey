@@ -5,7 +5,7 @@ import {
 import { ITransactionView, TransactionHistoryApi } from './shared';
 import { Router } from '@angular/router';
 import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
-import { ReportCustomerService } from '../service';
+import { ReportCustomerService } from '../shared';
 
 @Component({
     selector: 'transaction',

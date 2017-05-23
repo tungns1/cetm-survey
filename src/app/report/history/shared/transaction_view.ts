@@ -1,8 +1,5 @@
-import { CacheBranch } from '../../shared';
-import { ITransaction } from '../../model';
-
-
-export { ITransaction } from '../../model';
+import { CacheBranch, ITransaction } from '../../shared';
+export { ITransaction, } from '../../shared';
 
 export interface ITransactionView extends ITransaction {
     branch: string;

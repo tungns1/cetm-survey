@@ -1,8 +1,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
-import { ExportExcelService } from '../../shared';
-import { PeriodFilterService } from '../../service';
+import { ExportExcelService, PeriodFilterService } from '../../shared';
 import { timeFormat, timeParse } from 'd3-time-format';
 
 @Component({
@@ -22,7 +21,7 @@ export class GeneralViewComponent implements OnInit {
   }
   ngOnChanges(changes) {
     if (changes.field) {
-      this.info.fieldBy=this.FilterBy();
+      this.info.fieldBy = this.FilterBy();
     }
   }
   private formatDate = timeFormat("%Y-%m-%d");
@@ -30,9 +29,9 @@ export class GeneralViewComponent implements OnInit {
   @Input() field = 'branch_id';
 
   info = {
-    fieldBy:'',
+    fieldBy: '',
     reportName: 'Overview Report',
-    image:'',
+    image: '',
     period: {
       start: this.formatDate(this.filterService.startDate),
       end: this.formatDate(this.filterService.endDate)

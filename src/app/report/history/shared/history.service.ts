@@ -1,7 +1,7 @@
 import { ICustomer } from '../../shared';
 import {
     ReportFilterService, Paging
-} from '../../service';
+} from '../../shared';
 import { ITransaction, ITransactionView } from './transaction_view';
 import { HttpServiceGenerator } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

@@ -4,8 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { SharedModule } from "./shared/";
 import { routing } from "./report.routing";
 import { ReportComponent } from './report/report.component';
-import { ReportFilterModule } from "./filter/filter.module";
-import { reportServiceProvider } from "./service";
+import { ReportFilterModule, reportServiceProvider } from "./shared";
 
 @NgModule({
   imports: [

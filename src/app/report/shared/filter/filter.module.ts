@@ -8,8 +8,7 @@ import { ReportFilterComponent } from './filter.component';
 import { InsideFilterComponent } from './inside/inside.component';
 import { PeriodFilterComponent } from './period/period.component';
 
-import { filterServiceProvider } from '../service';
-import { AccordionModule } from '../../x/ui/accordion/accordion';
+import { filterServiceProvider, AccordionModule } from './shared';
 
 
 @NgModule({

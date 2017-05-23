@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { Paging, ReportNavService } from '../service';
+import { Paging, ReportNavService } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
 

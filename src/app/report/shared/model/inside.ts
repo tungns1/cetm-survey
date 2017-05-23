@@ -1,4 +1,4 @@
-import { IService, ICounter, IUser} from '../../shared/model';
+import { IService, ICounter, IUser} from '../shared';
 
 export interface IInsideBranch {
     services?: IService[];

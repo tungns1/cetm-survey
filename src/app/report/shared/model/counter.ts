@@ -1,5 +1,5 @@
 import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum } from "lodash";
-import { CacheBranch } from '../../shared/model';
+import { CacheBranch } from '../shared';
 export interface ICounterTrack {
     id?: string
     bid: string;

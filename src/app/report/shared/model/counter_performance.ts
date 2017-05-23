@@ -1,4 +1,4 @@
-import { CacheBranch } from '../../shared/model';
+import { CacheBranch } from '../shared';
 import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum, filter, findIndex } from "lodash";
 import { ICounterTrack } from './counter';
 export interface IPerformance {

@@ -11,3 +11,5 @@ export const filterServiceProvider = [
     PeriodFilterService,
     ReportFilterService
 ]
+
+export { AccordionModule } from '../../../../x/ui/accordion/accordion';

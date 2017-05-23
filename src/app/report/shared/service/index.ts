@@ -1,15 +1,19 @@
-export * from './shared';
-export * from './customer.service/report-customer.service';
 
-import { sharedServiceProvider } from './shared';
-import { ReportCustomerService } from './customer.service/report-customer.service';
+
+import { ReportCustomerService } from './report-customer.service';
+import { ReportNavService } from './nav.service';
+import { ReportViewService } from './view.service'
 
 const reportServiceProvider = [
-    sharedServiceProvider,
+    ReportNavService,
+    ReportViewService,
     ReportCustomerService
 ]
 
 export { Paging } from './paging.service';
+export * from './report-customer.service';
+export * from './view.service';
+export { ReportNavService } from './nav.service';
 
 export {
     reportServiceProvider

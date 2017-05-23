@@ -3,15 +3,12 @@ import {
     ICounter, IService, IUser,
     AddServiceName, USER_ROLES,
     CacheCounter, CacheService, CacheUsers,
-    IDList
-} from '../../../../shared/model';
-
-import {
+    IDList, 
     HttpServiceGenerator,
     BranchFilterService,
     SmallStorage,
     RouterQueryStorageStrategy
-} from '../../../shared';
+} from '../../shared';
 
 import 'rxjs/add/operator/distinctUntilChanged';
 

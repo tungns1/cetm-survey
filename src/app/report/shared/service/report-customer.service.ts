@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpServiceGenerator, IUser
-} from '../../shared';
-
-import { ICustomer } from '../../model';
+import { HttpServiceGenerator, IUser } from '../shared';
+import { ICustomer } from '../model';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
