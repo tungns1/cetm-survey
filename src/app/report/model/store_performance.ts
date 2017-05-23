@@ -41,13 +41,6 @@ export class InfoStore {
         var len_by_branch = size(data_by_branh);
 
         for (var i = 0; i < len_by_branch; i++) {
-            // var a=  data_by_branh[i];
-            //   for (var i2 = 0; i2 < a.length; i2++) {
-            //       if(a[i2].abandoned>0 && a[i2].attended>0){
-            //           console.log(a[i2]);
-            //       }
-            //   }
-
             var store: ISPT = {
                 branch_id: '',
                 total_ticket:0,

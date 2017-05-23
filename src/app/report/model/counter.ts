@@ -23,10 +23,3 @@ export interface ICounterTrackData {
 
 
 
-
-
-export class InfoCounterTrack {
-
-
-}
-
