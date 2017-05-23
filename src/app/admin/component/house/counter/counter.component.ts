@@ -1,5 +1,9 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { CenterService, HouseService, ICounter, AllRoles, CacheBranch } from '../../shared/';
+import {
+    CenterService, HouseService, MetaService,
+    CacheService, CacheBranch,
+    ICounter, AllRoles
+} from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent, CommonValidator } from '../../shared';
@@ -12,16 +16,35 @@ import { BaseAdminComponent, CommonValidator } from '../../shared';
 export class CounterComponent extends BaseAdminComponent<ICounter> {
     constructor(
         injector: Injector,
+        private meta: MetaService,
         private house: HouseService,
         private org: CenterService
     ) {
         super(injector, house.CounterService);
+        this.services$.subscribe();
     }
 
     title = 'counter';
     storeLevel0$ = CacheBranch.RxByLevel(0);
 
-    services = this.org.ServiceService.RxListView;
+    services$ = this.formValue$.map(form => form.branch_id)
+        .distinctUntilChanged()
+        .switchMap(branch_id => {
+            return this.meta.BranchConfigService.GetByBranch([branch_id]);
+        }).switchMap(configs => {
+            return this.formValue$.map(form => {
+                // ensure selected service is in the list
+                const selected = form.services;
+                const services = CacheService.RxListView.value;
+                const c = configs[0];
+                if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
+                const ids = [].concat(selected).concat(c.service.basket);
+                return services.filter(s => {
+                    return ids.indexOf(s.id) !== -1;
+                });
+            });
+        });
+
     makeForm(b?: ICounter) {
         b = b || <any>{};
         return (new FormBuilder).group({

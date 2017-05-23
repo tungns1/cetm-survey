@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CultureModule, JSONFormModule } from '../form.module';
 import { FormsModule } from '@angular/forms';
-import { ServiceListComponent, ServiceListModal } from './service-list-form.component';
+import { ServiceListComponent } from './service-list-form.component';
 import { ModalModule, SharedModule } from '../../../../shared';
-
+import { ServiceCustomizeModal } from './service-customer.component';
 
 @NgModule({
     imports: [
@@ -12,9 +12,9 @@ import { ModalModule, SharedModule } from '../../../../shared';
         CultureModule, JSONFormModule,
         ModalModule, SharedModule
     ],
-    declarations: [ServiceListComponent, ServiceListModal],
+    declarations: [ServiceListComponent, ServiceCustomizeModal],
     exports: [ServiceListComponent],
-    entryComponents: [ServiceListModal]
+    entryComponents: [ServiceCustomizeModal]
 })
 export class ServiceListModule {
 

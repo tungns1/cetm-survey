@@ -45,14 +45,14 @@
                 <span fxFlex="30%" i18n>Normal Services</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="5px">
                     <span fxFlex="1%">&nbsp;</span>
-                    <select-check fxFlex class="border" formControlName="services" [data]="services | async" textField="name" style="background-color: #fff"></select-check>
+                    <select-check fxFlex class="border" formControlName="services" [data]="services$ | async" textField="name" style="background-color: #fff"></select-check>
                 </div>
             </div>
             <div fxFlex fxLayout="row" fxLayoutGap="25px">
                 <span fxFlex="30%" i18n>Vip Services</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="5px">
                     <span fxFlex="1%">&nbsp;</span>
-                    <select-check fxFlex class="border" formControlName="vservices" [data]="services | async" textField="name" style="background-color: #fff"></select-check>
+                    <select-check fxFlex class="border" formControlName="vservices" [data]="services$ | async" textField="name" style="background-color: #fff"></select-check>
                 </div>
             </div>
         </div>

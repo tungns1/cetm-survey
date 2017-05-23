@@ -8,9 +8,8 @@ import {
     NG_VALUE_ACCESSOR, AbstractControl,
     FormArray, FormControl
 } from '@angular/forms';
-import { MdDialog, MdDialogConfig, MD_DIALOG_DATA } from '@angular/material';
-import { ModalComponent } from '../../../../shared';
-import { IService, ServiceName } from '../../../../../shared/model';
+import { MdDialog, MdDialogConfig, MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { IService, AddServiceName } from '../../../../../shared/model';
 
 const SERVICE_LIST_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -18,7 +17,10 @@ const SERVICE_LIST_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     multi: true
 }
 
-type IServiceList = IService[];
+import {
+    IServiceCustomizeData, ServiceCustomizeModal,
+    IServiceCustomizeResult
+} from './service-customer.component';
 
 @Component({
     selector: 'service-list',
@@ -33,45 +35,47 @@ export class ServiceListComponent implements ControlValueAccessor {
         private dialog: MdDialog
     ) { }
 
-    @Input() services: IServiceList = [];
-    protected value: IServiceList = [];
+    @Input() services: IService[] = [];
+    protected value: IService[] = [];
 
     protected onChangeCallback = (v) => { };
     private active: IService = null;
 
     Add() {
-        const config = new MdDialogConfig();
-        config.width = '450px';
-        config.data = {
-            data: <any>{},
-            services: this.services,
-            value: this.value,
-            parent: this
-        };
-        const dialog = this.dialog.open(ServiceListModal, config);
+        this.Edit(this.value.length);
     }
 
-    Edit(d: IService) {
+    Edit(index: number, d?: IService) {
         const config = new MdDialogConfig();
         config.width = '450px';
-        config.data = {
-            data: d,
-            services: this.services,
-            value: this.value,
-            parent: this
+        config.data = <IServiceCustomizeData>{
+            index: index,
+            active: d,
+            services: this.services
         };
-        const dialog = this.dialog.open(ServiceListModal, config);
+        const dialog = this.dialog.open(ServiceCustomizeModal, config);
+        dialog.afterClosed().subscribe((v: IServiceCustomizeResult) => {
+            if (v.action == 'cancel') return;
+            if (v.action == 'save') {
+                this.value[v.index] = v.active;
+                AddServiceName(v.active);
+            } else if (v.action == 'delete') {
+                this.value.splice(v.index, 1);
+            }
+            this.OnChange();
+        });
     }
 
     getName(service_id: string) {
-        return ServiceName(service_id);
+        
     }
 
-    writeValue(data: IServiceList) {
+    writeValue(data: IService[]) {
         if (!Array.isArray(data)) {
             data = [];
         }
         this.value = data;
+        this.value.forEach(AddServiceName);
     }
 
     registerOnChange(fn: any) {
@@ -97,60 +101,4 @@ export class ServiceListComponent implements ControlValueAccessor {
         this.OnChange();
     }
 
-
-}
-
-interface IServiceListModalData {
-    data: IService,
-    services: IServiceList,
-    value: IServiceList;
-    parent: ServiceListComponent;
-}
-
-@Component({
-    selector: 'service-list-modal',
-    templateUrl: 'service-list-modal.html',
-    styleUrls: ['service-list.form.scss'],
-})
-export class ServiceListModal {
-
-    constructor(
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: IServiceListModalData,
-        private dialog: MdDialog,
-    ) { }
-
-    private active = this.dialogData.data;
-    private services = this.dialogData.services;
-    protected value = this.dialogData.value;
-    private parent = this.dialogData.parent;
-
-
-    setActive() {
-        let service = this.services.find(s => s.id === this.active.id);
-        if (service) {
-            this.active.l10n = service.l10n;
-            this.active.code = service.code;
-        }
-    }
-
-    Save() {
-        if (this.value.indexOf(this.active) < 0) {
-            this.value.push(this.active);
-        }
-        this.parent.OnChange()
-        this.dialog.closeAll();
-    }
-
-    Remove() {
-        let i = this.value.indexOf(this.active);
-        if (i > -1) {
-            this.value.splice(i, 1);
-        }
-        this.parent.OnChange()
-        this.dialog.closeAll();
-    }
-
-    close(){
-        this.dialog.closeAll();
-    }
 }

@@ -2,7 +2,7 @@ import { FormBuilder, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
-import { CrudApiService,HttpError } from '../../shared';
+import { CrudApiService, HttpError } from '../../shared';
 
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
@@ -16,7 +16,8 @@ export abstract class BaseAdminComponent<T> {
         protected injector: Injector,
         protected service: CrudApiService<T>
     ) { }
-     toast = new Toast;
+    
+    toast = new Toast;
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
     private mdSnackBar = this.injector.get(MdSnackBar);
@@ -60,7 +61,7 @@ export abstract class BaseAdminComponent<T> {
             //const value = this.NavigateTo(id);
             this.HandleMarkDelete(e.value);
             //console.log(".........",value);
-        }  else if (e.action === 'edit') {
+        } else if (e.action === 'edit') {
             const id = e.value['id'];
             this.NavigateTo(id);
         }
@@ -83,8 +84,8 @@ export abstract class BaseAdminComponent<T> {
                 extraClasses: ["success"]
             });
             this.NavigateTo();
-        },(e:HttpError)=>{
-                this.toast.Title('Info').Info(e.Message()).Show();
+        }, (e: HttpError) => {
+            this.toast.Title('Info').Info(e.Message()).Show();
         });
     }
 
@@ -107,8 +108,8 @@ export abstract class BaseAdminComponent<T> {
                 console.log("UNDO");
             });
             this.NavigateTo();
-        },(e:HttpError)=>{
-                this.toast.Title('Info').Info(e.Message()).Show();
+        }, (e: HttpError) => {
+            this.toast.Title('Info').Info(e.Message()).Show();
         });
     }
 
@@ -123,8 +124,8 @@ export abstract class BaseAdminComponent<T> {
                 console.log("UNDO");
             });
             this.NavigateTo();
-        },(e:HttpError)=>{
-                this.toast.Title('Info').Info(e.Message()).Show();
+        }, (e: HttpError) => {
+            this.toast.Title('Info').Info(e.Message()).Show();
         });
     }
 
