@@ -21,7 +21,9 @@ export class HistoryComponent {
 
 
     ngOnInit() {
-        this.customerAPI.pagin(1, '', this.id);
+        if (this.id !=undefined && this.id != "") {
+            this.customerAPI.pagin(1, '', this.id);
+        }
     }
     pagin(page: number) {
         this.customerAPI.RxSummaryView.subscribe(v => {

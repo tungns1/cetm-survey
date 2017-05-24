@@ -7,11 +7,11 @@
         <table class="detailTicket">
             <tr>
                 <td class="labelCtrl"><b i18n>Branch</b></td>
-                <td>{{data.parent}}</td>
+                <td>{{data.branch_id | parentName}}</td>
             </tr>
             <tr>
                 <td class="labelCtrl"><b i18n>Store</b></td>
-                <td>{{data.branch}}</td>
+                <td>{{data.branch_id | branchName}}</td>
             </tr>
             <tr>
                 <td class="labelCtrl"><b i18n>Counter Number</b></td>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td class="labelCtrl"> <b i18n>Service Name</b></td>
-                <td>{{data.service}}</td>
+                <td>{{data.service | serviceName}}</td>
             </tr>
             <tr>
                 <td class="labelCtrl"><b i18n>Ticket Status</b></td>
