@@ -41,8 +41,9 @@ export class GlobalTicketSummary {
     Total$ = new ReplaySubject<BoxTicketSummary>(1);
 
     Refresh(box: IBoxTicketSummary[]) {
-        if (!box) return;
-        box.forEach(b => this.Replace(b));
+        if (box) {
+            box.forEach(b => this.Replace(b));
+        }
         this.Total$.next(this.aggregate());
     }
 
