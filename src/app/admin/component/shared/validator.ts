@@ -1,6 +1,6 @@
 import { Validators } from '@angular/forms';
 
-const pattern_code: any ="^[a-zA-Z0-9-_]{4,20}$";
+const pattern_code: any ="^(\\s)*?([a-zA-Z0-9-_]{4,20})(\\s)*?$";
 const pattern_name: any ="^(.{4,})$";
 const NameValidator = Validators.compose([Validators.required, Validators.pattern(pattern_name)]);
 const CodeValidator = Validators.compose([Validators.required, Validators.pattern(pattern_code)]);
