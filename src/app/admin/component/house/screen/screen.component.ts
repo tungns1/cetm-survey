@@ -48,7 +48,7 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
     }
 
-    pattern_code: any ="^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
+    pattern_code: any ="^[a-zA-Z0-9-_]{4,19}$";
     makeForm(b?: IScreen) {
         b = b || <any>{};
         return this.getLayout(b.layout_id).map(layout => {
