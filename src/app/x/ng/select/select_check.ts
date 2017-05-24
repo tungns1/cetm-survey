@@ -85,7 +85,7 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
 
     private isAll() {
-        return !this.views.some(v => !this.selected[v.id]);
+        return Array.isArray(this.views) && !this.views.some(v => !this.selected[v.id]);
     }
 
     private isNone() {

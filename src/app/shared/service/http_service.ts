@@ -81,7 +81,9 @@ export class HttpApi<T> {
         console.log(error);
         try {
             if (error instanceof Response) {
-                if (error.type == NETWORK_ERROR_TYPE) {
+                if (error.status == 404) {
+                    errMsg = "404 NOT FOUND"
+                } else if (error.type == NETWORK_ERROR_TYPE) {
                     errMsg = "CONNECTION ERROR";
                 } else {
                     const body = error.json() || '';

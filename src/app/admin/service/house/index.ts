@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import {
-    BranchFilterService, AdminNavService, BranchCrudApiServiceGenerator,
+    BranchFilterService, AdminNavService,
+    BranchCrudApiServiceGenerator,
     ICounter, IKiosk, IScreen, ISFlow
 } from '../shared';
+import { AuthService, HttpServiceGenerator } from '../../shared';
+
+import { SFlowService } from './sflow';
 
 @Injectable()
 export class HouseService {
     constructor(
+        private nav: AdminNavService,
+        private filter: BranchFilterService,
+        private hsg: HttpServiceGenerator,
         protected bcsg: BranchCrudApiServiceGenerator
     ) {
 
@@ -22,5 +29,5 @@ export class HouseService {
     CounterService = this.bcsg.make<ICounter>(this.Link.Counter);
     KioskService = this.bcsg.make<IKiosk>(this.Link.Kiosk);
     ScreenService = this.bcsg.make<IScreen>(this.Link.Screen);
-    SFlowService = this.bcsg.make<ISFlow>(this.Link.SFlow);
+    SFlowService = new SFlowService(this.nav, this.hsg.make(this.Link.SFlow), this.filter);
 }

@@ -14,12 +14,12 @@ export class MetaService {
     }
 
     private onInit() {
-        this.BranchConfigService = this.bcsg.make<IBranchConfig>(this.Link.Config);
+        this.BranchConfigService = this.bcsg.make<IBranchConfig>(this.Link.BranchConfig);
     }
 
     BranchConfigService: BranchCrudApiService<IBranchConfig>;
 
     Link = {
-        Config: '/api/admin/config'
+        BranchConfig: '/api/admin/setting/branch_config'
     }
 }

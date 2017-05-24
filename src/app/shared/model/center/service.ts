@@ -14,7 +14,18 @@ export interface IService extends ID {
 }
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-export const CacheService = new MemCache<IService>();
+
+class cacheService extends MemCache<IService> {
+    ServiceName(id: string) {
+        return super.GetName(id, "name");
+    }
+
+    protected ToListView(arr: IService[]) {
+        return arr.sort((a, b) => a.name < b.name ? -1 : 1);
+    }
+}
+
+export const CacheService = new cacheService();
 
 export function ServiceName(service_id: string): string {
     const s = CacheService.GetByID(service_id);

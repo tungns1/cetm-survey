@@ -6,15 +6,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent } from '../../shared';
 
 @Component({
-    selector: 'admin-config',
-    templateUrl: 'branch_config.component.html'
+  selector: 'admin-config',
+  templateUrl: 'branch_config.component.html'
 })
 export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
   constructor(
     injector: Injector,
     private org: OrgService,
     private meta: MetaService
-  ) { 
+  ) {
     super(injector, meta.BranchConfigService);
   }
 
@@ -25,17 +25,18 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     return (new FormBuilder).group({
       id: [u.id],
       branch_id: [u.branch_id, Validators.required],
+      service: [u.service || {}],
       feedback: [u.feedback || {}]
     });
   }
 
   protected NavigateTo(view = 'list') {
-        console.log('navigate to', view);
-        this.router.navigate(['../', view], {
-            queryParamsHandling: 'preserve',
-            relativeTo: this.route
-        });
-    }
+    console.log('navigate to', view);
+    this.router.navigate(['../', view], {
+      queryParamsHandling: 'preserve',
+      relativeTo: this.route
+    });
+  }
 
   private branches = this.org.BranchService.RxListView;
 }
