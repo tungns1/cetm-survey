@@ -50,7 +50,7 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
         return (new FormBuilder).group({
             id: [b.id],
             code: [b.code, CommonValidator.Code],
-            name: [b.name, Validators.required],
+            name: [b.name, CommonValidator.Name],
             cnum: [b.cnum, Validators.required],
             dev_addr: [b.dev_addr],
             services: [b.services, Validators.required],

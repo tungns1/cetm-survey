@@ -5,7 +5,7 @@ import { extend } from 'lodash';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CenterService, HouseService, IScreen } from '../../../service/';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 import { of } from 'rxjs/observable/of';
 
 @Component({
@@ -48,7 +48,6 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
     }
 
-    pattern_code: any ="^[a-zA-Z0-9-_]{4,20}$";
     makeForm(b?: IScreen) {
         b = b || <any>{};
         return this.getLayout(b.layout_id).map(layout => {
@@ -61,8 +60,8 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
             }
             return (new FormBuilder).group({
                 id: [b.id],
-                code: [b.code, Validators.compose([Validators.required, Validators.pattern(this.pattern_code)])],
-                name: [b.name, Validators.required],
+                code: [b.code, CommonValidator.Code],
+                name: [b.name, CommonValidator.Name],
                 counters: [b.counters],
                 branch_id: [b.branch_id, Validators.required],
                 layout_id: [b.layout_id],

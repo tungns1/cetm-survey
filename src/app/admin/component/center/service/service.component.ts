@@ -3,7 +3,7 @@ import { CenterService, IService, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 
 @Component({
     selector: 'admin-service',
@@ -19,7 +19,6 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
     }
 
     title = 'service';
-    pattern_code: any ="^[a-zA-Z0-9-_]{4,20}$";
     makeForm(b?: IService) {
         b = b || <any>{};
         return (new FormBuilder).group({
@@ -27,7 +26,7 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
             tform_normal: [b.tform_normal, Validators.required],
             tform_vip: [b.tform_vip, Validators.required],
             image: [b.image],
-            code: [b.code, Validators.compose([Validators.required, Validators.pattern(this.pattern_code)])],
+            code: [b.code, CommonValidator.Code],
             l10n: [b.l10n],
             priority: [b.priority, Validators.required],
             // call_for_vip: [b.call_for_vip]
