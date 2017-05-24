@@ -14,9 +14,12 @@ export class MemCache<T extends ID> {
                 this.beforeAdd(t);
                 this.mapView.set(t.id, t);
             });
-            this.RxListView.next(arr);
+            this.RxListView.next(this.ToListView(arr));
         }
+    }
 
+    protected ToListView(arr: T[]) {
+        return arr;
     }
 
     beforeAdd = (t: T) => { }

@@ -1,5 +1,9 @@
 import { Component, ViewChild, Injector } from '@angular/core';
-import { CenterService, HouseService, IKiosk, CacheBranch } from '../../../service/';
+import {
+    CenterService, HouseService, MetaService,
+    CacheService,
+    IKiosk, CacheBranch
+} from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent } from '../../shared';
@@ -16,7 +20,8 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
     constructor(
         injector: Injector,
         private center: CenterService,
-        private house: HouseService
+        private house: HouseService,
+        private meta: MetaService
     ) {
         super(injector, house.KioskService);
         this.layoutEditLink$.subscribe();
@@ -37,7 +42,25 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
     }
 
-    pattern_code: any ="^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
+    services$ = this.formValue$.map(form => form.branch_id)
+        .distinctUntilChanged()
+        .switchMap(branch_id => {
+            return this.meta.BranchConfigService.GetByBranch([branch_id]);
+        }).switchMap(configs => {
+            return this.formValue$.map(form => {
+                // ensure selected services in the config list
+                const selected = form.services.map(s => s.id);
+                const services = CacheService.RxListView.value;
+                const c = configs[0];
+                if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
+                const ids = [].concat(selected).concat(c.service.basket);
+                return services.filter(s => {
+                    return ids.indexOf(s.id) !== -1;
+                });
+            });
+        });
+
+    pattern_code: any = "^[a-zA-Z0-9-_]{4,20}$";
     makeForm(b?: IKiosk) {
         b = b || <any>{};
         return this.getLayout(b.layout_id).map(layout => {

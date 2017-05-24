@@ -14,7 +14,7 @@
             <span fxFlex="2%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
                 <input fxFlex="100%" class="hl-input" type="text" formControlName="code" i18n-placeholder="Code">
-                <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 6 to 20 characters; Include number, character and _</div>
+                <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
             </div>
 
@@ -57,7 +57,7 @@
             <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
             <span fxFlex="20%" i18n>Services</span>
             <span fxFlex="2%">&nbsp;</span>
-            <service-list fxFlex class="border" formControlName="services" [services]="services | async"></service-list>
+            <service-list fxFlex class="border" formControlName="services" [services]="services$ | async"></service-list>
         </div>
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Resources</span>

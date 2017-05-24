@@ -9,7 +9,7 @@ import { AdminFilterModule } from "../filter/filter.module";
     imports: [
         SharedModule,
         EditorModule, AdminFormModule,
-        routing,AdminFilterModule
+        routing, AdminFilterModule
     ],
     declarations: [MetaComponent]
 })

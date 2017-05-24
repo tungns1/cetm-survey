@@ -8,7 +8,7 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
@@ -17,7 +17,7 @@
                 <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>
                 <div fxFlex fxLayout="column" fxLayoutGap="2px">
                     <input fxFlex="100%" class="hl-input" formControlName="code" i18n-placeholder placeholder="Code">
-                    <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 6 to 20 characters; Include number, character and _</div>
+                    <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
                     <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
                 </div>
             </div>

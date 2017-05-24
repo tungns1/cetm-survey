@@ -16,6 +16,18 @@
     outline: none;
 }
 
+.hl-input-change-pass {
+    margin-bottom: 15px;
+    border-radius: 3px;
+    height: 25px;
+    padding-left: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aeb0af;
+    width: 70%;
+    margin-top: 10px;
+}
+
 .btnFill {
     @extend .btnClear;
     background-color: $key-color;
@@ -254,32 +266,42 @@
 
 // }
 //End of UI elements
-
 // override qill editor
-app-quill-editor{
+app-quill-editor {
     .ql-snow .ql-editor {
-        h1{
-            font-size: 150px !important;
+        h1 {
+            font-size: 52px;
+            font-weight: $font-weight-default;
         }
-        h2{
-            font-size: 120px !important;
+        h2 {
+            font-size: 41px;
+            font-weight: $font-weight-default;
         }
-        h3{
-            font-size: 90px !important;
+        h3 {
+            font-size: 31.5px;
+            font-weight: $font-weight-default;
         }
-        h4{
-            font-size: 70px !important;
+        h4 {
+            font-size: 24.5px;
+            font-weight: $font-weight-default;
         }
-        h5{
-            font-size: 50px !important;
+        h5 {
+            font-size: 17.5px;
+            font-weight: $font-weight-default;
         }
-        h6{
-            font-size: 30px !important;
+        h6 {
+            font-size: 10.5px;
+            font-weight: $font-weight-default;
         }
-        p{
-            font-size: 60px !important;
+        p {
+            font-size: 21px;
+            font-weight: $font-weight-default;
         }
+        // img{
+        //     width: 50pt;
+        // }
     }
 }
+
 
 /******************** End of global ***********************/

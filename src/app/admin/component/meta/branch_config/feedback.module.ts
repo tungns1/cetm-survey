@@ -10,7 +10,6 @@ const FEEDBACK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     multi: true
 }
 
-
 @Component({
     selector: 'feedback-config',
     template: `

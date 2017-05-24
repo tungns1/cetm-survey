@@ -63,6 +63,18 @@ export class QuillEditorComponent implements OnInit {
         this.content = newContent;
         this.onChangeCallBack(this.content);
       }
+      // console.log(delta);
+      let quillArr = document.getElementsByTagName('app-quill-editor');
+      for(let i = 0; i < quillArr.length; i++){
+        let imgArr = quillArr[i].getElementsByTagName('img');
+        for(let j = 0; j < imgArr.length; j++){
+          const i = imgArr[j];
+          i.onload = (d) => {
+            console.log(imgArr[j].width);
+            imgArr[j].style.width = (imgArr[j].width * 0.35).toString() + 'px';
+          }
+        }
+      }
     });
     this.editor.on('selection-change', (range) => {
       if (!range) {

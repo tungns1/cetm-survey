@@ -13,10 +13,19 @@
     <li class="hl-dropdown-item-user animate" (click)="Logout()">
         <i class="fa fa-power-off"></i> <span i18n>Logout</span>
     </li>
+    <li class="hl-dropdown-item-user animate" (click)="changePass=true">
+        <i class="fa fa-key"></i> <span i18n>ChangePass</span>s
+    </li>
 </ul>
 
 <div class="modal" *ngIf="setting">
     <div class="dialog hl-dialog-user">
         <user-setting (close)="setting=false"></user-setting>
+    </div>
+</div>
+
+<div class="modal" *ngIf="changePass">
+    <div class="dialog hl-dialog-user">
+        <change-pass (close)="changePass=false"></change-pass>
     </div>
 </div>

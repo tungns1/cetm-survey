@@ -22,6 +22,11 @@ export class SummaryComponent {
       
     ) { }
 
+    records$ = this.summaryService.summaries$.map(s => s.ToArray()).share();
+    total$ = this.summaryService.summaries$.switchMap(s => s.Total$);
+    waitLongAlertPercent: number;
+    serveLongAlertPercent: number;
+
     ngOnInit() {
         this.waitLongAlertPercent = ProjectConfig.service.wait_long_alert_percent;
         this.serveLongAlertPercent = ProjectConfig.service.serve_long_alert_percent;
@@ -32,16 +37,10 @@ export class SummaryComponent {
         });
     }
 
-    waitLongAlertPercent: number;
-    serveLongAlertPercent: number;
-
     focus(s: ISummary) {
         this.router.navigate(['../focus', s.branch_id], {
             relativeTo: this.route,
             queryParamsHandling: "merge"
         });
     }
-
-    records$ = this.summaryService.summaries$.map(s => s.ToArray()).share();
-    total$ = this.summaryService.summaries$.switchMap(s => s.Total$);
 }
