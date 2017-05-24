@@ -47,7 +47,7 @@ export class ChangePassComponent {
     ichangePass: IChangePass;
     pass_false = false;
     toast = new Toast;
-    pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{5,19}$";
+    pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
 
     Submit() {
         //this.setupApi.Update(this.form.value);

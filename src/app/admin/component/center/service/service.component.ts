@@ -19,7 +19,7 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
     }
 
     title = 'service';
-    pattern_code: any ="^[a-zA-Z0-9-_]{3,19}$";
+    pattern_code: any ="^[a-zA-Z0-9-_]{4,20}$";
     makeForm(b?: IService) {
         b = b || <any>{};
         return (new FormBuilder).group({
