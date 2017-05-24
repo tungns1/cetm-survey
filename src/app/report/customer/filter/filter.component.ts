@@ -14,9 +14,8 @@ export class ReportFilterComponent {
 
     ngOnInit() {
         RxInfoCustomer.subscribe(v => {
-            console.log(v);
             if (v != null) {
-                this.code=v.code;
+                this.code = v.code;
             }
 
         })
@@ -25,13 +24,15 @@ export class ReportFilterComponent {
 
     code: string = '';
     Filter() {
-        this.customerApi.Search(this.code, '');
-        this.customerApi.pagin(1, this.code, '');
-        this.customerApi.GetInfoCustomerByCode(this.code).subscribe(v => {
-            const c = new Customer(v);
-            RxInfoCustomer.next(c);
-        });
-         RxInfoCustomer.next(null);
+        if (this.code != "") {
+            this.customerApi.GetInfo(this.code, '');
+            this.customerApi.pagin(1, this.code, '');
+            this.customerApi.GetInfoCustomerByCode(this.code).subscribe(v => {
+                const c = new Customer(v);
+                RxInfoCustomer.next(c);
+            });
+            RxInfoCustomer.next(null);
+        }
     }
 
 

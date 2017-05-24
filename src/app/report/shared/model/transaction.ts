@@ -28,4 +28,6 @@ export interface ITransaction {
     ctime: string; // created time
     wtime: string; // waiting
     stime: string; // serving
+    wtimes: number; // waiting
+    stimes: number; // serving
 }

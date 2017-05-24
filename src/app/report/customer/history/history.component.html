@@ -19,9 +19,9 @@
             <tr *ngFor="let d of paging.data$ | async; let i = index">
                 <td>{{(i+1)+(paging.Skip)}}</td>
                 <td> {{d.cdate}} </td>
-                <td> {{d.parent}} </td>
-                <td> {{d.branch}} </td>
-                <td> {{d.service}} </td>
+                <td> {{d.branch_id | parentName}} </td>
+                <td> {{d.branch_id | branchName}} </td>
+                <td> {{d.service | serviceName}} </td>
                 <td> {{d.counter}} </td>
                 <td> {{d.user}} </td>
                 <td> {{d.cnum}} </td>
