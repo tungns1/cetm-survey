@@ -7,7 +7,7 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="level$ | async | branchLevelName" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="level$ | async | branchLevelName" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Name</span>
@@ -16,8 +16,8 @@
                 <span fxFlex="1%" class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
                 <div fxFlex fxLayout="column" fxLayoutGap="2px">
                     <input fxFlex="100%" class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
-                    <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div><br>
-                    <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div><br>
+                    <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
                 </div>
             </div>
         </div>
