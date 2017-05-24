@@ -20,6 +20,11 @@ function Round2Decimal(v: number) {
     return Math.floor(v * 100) / 100;
 }
 
+function Round2DecimalPercent(a: number, b: number) {
+    // 0.00 %
+    return Math.floor(a * 10000 / b) / 100;
+}
+
 export class TransactionAggregate {
     data: ITransactionCount[] = null;
     count: number = 0;
@@ -55,8 +60,10 @@ export class TransactionAggregate {
     c_r_gt6 = 0; // count rating normal
     c_r_gt8 = 0; // count rating bad
 
+    c_ft_p = 0; // count finish transaction percent
 
-
+    c_ct = 0; // count cancel transaction
+    c_ct_p = 0; // cancel transaction percent
 
     Add(s: ITransactionCount) {
         if (s == null) {
@@ -112,19 +119,35 @@ export class TransactionAggregate {
         if (this.c_r_o > 0) {
             this.a_r = Round2Decimal(this.s_r / this.c_r_gt0);
         }
+        this.c_ct = this.c_t - this.c_ft;
+        this.c_awt = this.c_t - this.c_bwt;
+        this.c_ast = this.c_t - this.c_bst;
+
+        if (this.c_t < 1) {
+            return this;
+        }
+
+
+        this.c_ft_p = Round2DecimalPercent(this.c_ft, this.c_t);
+        this.c_ct_p = Round2DecimalPercent(this.c_ct, this.c_t);
+        // waiting time
+        this.c_bwt_p = Round2DecimalPercent(this.c_bwt, this.c_t);
+        this.c_awt_p = Round2DecimalPercent(this.c_awt, this.c_t);
+        // serving time
+        this.c_bst_p = Round2DecimalPercent(this.c_bst, this.c_t);
+        this.c_ast_p = Round2DecimalPercent(this.c_ast, this.c_t);
+
         return this;
     }
 
-    // count 
-    get c_ct() {
-        return this.c_t - this.c_ft;
-    }
-    get c_awt() {
-        return this.c_t - this.c_bwt;
-    }
-    get c_ast() {
-        return this.c_t - this.c_bst;
-    }
+    c_bwt_p = 0;
+    c_awt = 0;
+    c_awt_p = 0;
+
+    // serving time
+    c_bst_p = 0;
+    c_ast = 0;
+    c_ast_p = 0;
 
     // sum transaction time
     get s_tt() {

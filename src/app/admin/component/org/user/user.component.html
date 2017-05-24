@@ -17,7 +17,7 @@
 
                 <div fxFlex fxLayout="column" fxLayoutGap="2px">
                     <input fxFlex="100%" class="hl-input" type="text" formControlName="username" i18n-placeholder placeholder="Username" style="width: 100%;">
-                    <div fxFlex class="valid-color" *ngIf="form.get('username').hasError('pattern')">From 6 to 20 characters; Include number, character and _</div>
+                    <div fxFlex class="valid-color" *ngIf="form.get('username').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
                     <div fxFlex class="valid-color" *ngIf="!form.get('username').hasError('pattern')">&nbsp;</div>
                 </div>
             </div>

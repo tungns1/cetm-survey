@@ -66,9 +66,10 @@ export class CustomerComponent {
     ngOnInit() {
         RxInfoCustomer.next(null);
         let id = this.route.snapshot.params['id'];
-        if (id) {
+        if (id && id!="") {
             this.customer_id = id;
-            this.customerApi.Search('', this.customer_id);
+            this.customerApi.GetInfo('', this.customer_id);
+             this.customerApi.pagin(1, '', this.customer_id);
             this.customerApi.GetInfoCustomerById(this.customer_id).subscribe(v => {
                 RxInfoCustomer.next(new Customer(v));
             });

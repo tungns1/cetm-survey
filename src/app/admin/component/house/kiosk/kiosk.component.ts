@@ -60,7 +60,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
             });
         });
 
-    pattern_code: any = "^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
+    pattern_code: any = "^[a-zA-Z0-9-_]{4,20}$";
     makeForm(b?: IKiosk) {
         b = b || <any>{};
         return this.getLayout(b.layout_id).map(layout => {

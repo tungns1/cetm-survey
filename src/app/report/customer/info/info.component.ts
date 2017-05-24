@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
-import { IStore, IService, CustomerView } from '../shared';
+import { CustomerView ,IValue} from '../shared';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
 
 @Component({
@@ -12,8 +12,8 @@ export class ReportInfoComponent {
         private customerAPI: CustomerAPI
     ) { }
     data: CustomerView;
-    service: IService;
-    store: IStore;
+    service: IValue;
+    store: IValue;
 
     ngOnInit() {
         this.customerAPI.RxSummaryView.subscribe(v => {

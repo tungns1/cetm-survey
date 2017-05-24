@@ -19,8 +19,8 @@ export class UserComponent extends BaseAdminComponent<IUser> {
   }
 
   title = 'user';
-  pattern_user: any ="^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
-  pattern_pass: any ="^[a-zA-Z][a-zA-Z0-9-_\?\!\@\#\$\*]{5,19}$";
+  pattern_user: any ="^[a-zA-Z0-9-_]{4,20}$";
+  pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
   makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({

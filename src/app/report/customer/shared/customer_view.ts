@@ -1,33 +1,30 @@
-import { CacheBranch, ITransaction } from '../../shared';
+import { CacheBranch, ITransaction, ProjectConfig } from '../../shared';
+import { ServiceName } from '../../../shared/model/center';
+export interface ICustomerView {
+    fres: IValue[],
+    service: IValue[],
+    store: IValue[],
+    time: ITime,
+}
 
-export interface IService {
+export interface IValue {
     name: string;
     value: number;
 }
-export interface IStore {
-    name: string;
-    value: number;
+export interface ITime {
+    c_bwt: number;
+    c_bst: number;
+    s_wt: number;
+    s_st: number;
 }
-export interface IFre {
-    name: string;
-    value: number;
-}
+
 
 export class CustomerView {
-    data: ITransaction[] = null;
-    count: number = 0;
-
-    name: string;
     customer_id: string;
-    services: IService[] = [];
-    stores: IStore[] = [];
-    fres: IFre[] = [];
-    branch_id: string;
-    user_id: string;
-    counter_id: string;
-    service_id: string;
-    ctime: string;
-    date: Date;
+    services: IValue[] = [];
+    stores: IValue[] = [];
+    fres: IValue[] = [];
+    times: ITime = null;
     freschart = [
         {
             "name": "Frequency",
@@ -44,128 +41,47 @@ export class CustomerView {
 
 
 
-    Add(s: ITransaction) {
-        var month = s.cdate.substring(5, 7);
-        var ps = s.stime.substring(3, 5);
-        var pw = s.wtime.substring(3, 5);
-        var hs = s.stime.substring(0, 2);
-        var hw = s.wtime.substring(0, 2);
-        this.customer_id = s.customer_id;
-        var addservice = false;
-        var addstore = false;
-        var addfres = false;
-        if (this.services.length > 0) {
-            for (var i = 0; i < this.services.length; i++) {
-                if (s.service === this.services[i].name) {
-                    this.services[i].value++;
-                    addservice = true;
-                    break;
-                } else {
-                    continue;
+    Add(s: ICustomerView) {
+        if (s != null) {
+            s.service.forEach(v => {
+                var a = {
+                    name: ServiceName(v.name),
+                    value: v.value
                 }
-            }
-            if (!addservice) {
-                this.services.push({
-                    name: s.service,
-                    value: 1,
-                })
-            }
-        } else {
-            this.services.push({
-                name: s.service,
-                value: 1
+                this.services.push(a);
             })
-        }
-        if (this.stores.length > 0) {
-            for (var i = 0; i < this.stores.length; i++) {
-                if (CacheBranch.GetNameForID(s.branch_id) === this.stores[i].name) {
-                    this.stores[i].value++;
-                    addstore = true;
-                    break;
-                } else {
-                    continue;
+            s.store.forEach(v => {
+                var a = {
+                    name:CacheBranch.GetNameForID(v.name),
+                    value: v.value
                 }
-            }
-            if (!addstore) {
-                this.stores.push({
-                    name: CacheBranch.GetNameForID(s.branch_id),
-                    value: 1
-                })
-            }
-        } else {
-            this.stores.push({
-                name: CacheBranch.GetNameForID(s.branch_id),
-                value: 1
+                this.stores.push(a);
             })
-        }
-        if (this.fres.length > 0) {
-            for (var i = 0; i < this.fres.length; i++) {
-                if (month === this.fres[i].name) {
-                    this.fres[i].value++;
-                    addfres = true;
-                    break;
-                } else {
-                    continue;
+             s.fres.forEach(v => {
+                var a = {
+                    name:this.Format(v.name),
+                    value: v.value
                 }
-            }
-            if (!addfres) {
-                this.fres.push({
-                    name: month,
-                    value: 1
-                })
-            }
-
-        } else {
-            this.fres.push({
-                name: month,
-                value: 1
+                this.fres.push(a);
             })
+            this.c_bwt = s.time.c_bwt;
+            this.c_bst = s.time.c_bst;
+            this.s_st = s.time.s_st;
+            this.s_wt = s.time.s_wt;
+            this.c_t = s.time.c_bst + s.time.s_st;
         }
-
-
-        if (s == null) {
-            return;
-        }
-        if (+hs > 0 || +ps > 10) {
-            this.s_st = this.s_st + 1;
-        }
-        if (+hw > 0 || +pw > 10) {
-            this.s_wt = this.s_wt + 1;
-        }
-        if (+hs == 0 && +ps < 10) {
-            this.c_bst = this.c_bst + 1;
-        }
-        if (+hw == 0 && +pw < 10) {
-            this.c_bwt = this.c_bwt + 1;
-        }
-
-
-
-        if (this.data === null) {
-            this.data = [];
-            this.branch_id = s.branch_id;
-            this.user_id = s.user_id;
-            this.ctime = s.ctime;
-        }
-        this.data.push(s);
     }
+    Format(month :string){
+      if(+month<10){
+          return "0"+month;
+      }
+      return month;
+    }
+
 
     Finalize() {
         var fres = this.freschart;
         this.freschart[0].series = this.fres;
-        if (this.data != null) {
-            this.c_t = this.data.length;
-            this.count = this.data.length;
-        }
-
-        if (this.stores != null) {
-
-        }
-        if (this.services != null) {
-
-        }
-
-
     }
 
     // count 
@@ -180,12 +96,12 @@ export class CustomerView {
     }
 
 
-    static Make(records: ITransaction[]) {
+    static Make(records: ICustomerView) {
 
         let res = new CustomerView();
-        records.forEach(v => {
-            res.Add(v);
-        });
+
+        res.Add(records);
+
 
         res.Finalize();
         return res;

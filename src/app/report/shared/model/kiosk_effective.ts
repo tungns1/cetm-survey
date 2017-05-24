@@ -111,7 +111,7 @@ export class InfoKioskTrack {
                 var len_by_date = size(data_by_date);
                 var len_by_branch = size(data_by_branh);
 
-                var data_by_branh_t = toArray(groupBy(s.ticket, 'bid'));
+                var data_by_branh_t = toArray(groupBy(s.ticket, 'branch_id'));
 
 
                 var data_by_date_t = toArray(groupBy(s.ticket, 'date'));
@@ -120,6 +120,7 @@ export class InfoKioskTrack {
 
 
                 for (var i = 0; i < len_by_branch_t; i++) {
+                    console.log(len_by_branch_t);
                     var min = 0, max = 0;
                     var by_date = toArray(groupBy(data_by_branh_t[i], 'date'));
                     var len_date = size(by_date);
@@ -189,10 +190,10 @@ export class InfoKioskTrack {
 
         if (s != null) {
             if (s.activity.length > 0 && s.ticket.length > 0) {
-                this.longest_activity_time = maxBy(this.time, 'name').value;
-                this.longest_activity_kiosk = maxBy(this.time, 'name').name;
-                this.shortest_activity_time = minBy(this.time, 'name').value;
-                this.shortest_activity_kiosk = minBy(this.time, 'name').name;
+                this.longest_activity_time = minBy(this.time, 'name').value;
+                this.longest_activity_kiosk = minBy(this.time, 'name').name;
+                this.shortest_activity_time = maxBy(this.time, 'name').value;
+                this.shortest_activity_kiosk = maxBy(this.time, 'name').name;
                 this.average_activity_time = +meanBy(this.time, <any>'value').toFixed(2);
 
                 this.highest_ticket_quantity = maxBy(this.ticket, 'name').value;

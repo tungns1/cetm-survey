@@ -24,7 +24,7 @@ export class BranchComponent extends BaseAdminComponent<IBranch> {
   level$ = this.route.params.map(p => +p['level'] || 0);
   parentLevel$ = this.level$.map(l => l + 1);
 
-  pattern_code: any ="^[a-zA-Z][a-zA-Z0-9-_]{5,19}$";
+  pattern_code: any ="^[a-zA-Z0-9-_]{4,20}$";
   makeForm(b?: IBranch) {
     b = b || <any>{};
     const level = +this.route.snapshot.params['level'] || 0;
