@@ -29,8 +29,6 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   private editables = ["text", "image", "videos", "repeater"];
 
-  // private editables = ["text", "image", "videos", 'repeater'];
-
   ngOnInit() {
     this.refresh();
   }

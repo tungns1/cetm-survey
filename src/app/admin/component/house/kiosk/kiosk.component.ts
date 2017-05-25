@@ -6,7 +6,7 @@ import {
 } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 import { extend } from 'lodash';
 import { of } from 'rxjs/observable/of';
 
@@ -60,7 +60,6 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
             });
         });
 
-    pattern_code: any = "^[a-zA-Z0-9-_]{4,20}$";
     makeForm(b?: IKiosk) {
         b = b || <any>{};
         return this.getLayout(b.layout_id).map(layout => {
@@ -69,8 +68,8 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
             }
             return (new FormBuilder).group({
                 id: [b.id],
-                code: [b.code, Validators.compose([Validators.required, Validators.pattern(this.pattern_code)])],
-                name: [b.name, Validators.required],
+                code: [b.code, CommonValidator.Code],
+                name: [b.name, CommonValidator.Name],
                 services: [b.services],
                 branch_id: [b.branch_id, Validators.required],
                 vcodes: [b.vcodes],
