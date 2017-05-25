@@ -191,15 +191,15 @@ export class InfoKioskTrack {
         if (s != null) {
             if (s.activity.length > 0 && s.ticket.length > 0) {
                 this.longest_activity_time = maxBy(this.time, 'value').value;
-                this.longest_activity_kiosk = maxBy(this.time, 'name').name;
+                this.longest_activity_kiosk = maxBy(this.time, 'value').name;
                 this.shortest_activity_time = minBy(this.time, 'value').value;
-                this.shortest_activity_kiosk = minBy(this.time, 'name').name;
+                this.shortest_activity_kiosk = minBy(this.time, 'value').name;
                 this.average_activity_time = +meanBy(this.time, <any>'value').toFixed(2);
 
                 this.highest_ticket_quantity = maxBy(this.ticket, 'value').value;
-                this.highest_ticket_from = maxBy(this.ticket, 'name').name;
+                this.highest_ticket_from = maxBy(this.ticket, 'value').name;
                 this.lowest_ticket_quantity = minBy(this.ticket, 'value').value;
-                this.lowest_ticket_from = minBy(this.ticket, 'name').name;
+                this.lowest_ticket_from = minBy(this.ticket, 'value').name;
                 this.average_printed_ticket = +meanBy(this.ticket, <any>'value').toFixed(2);
                 this.ticket = this.ticket.sort((a, b) => a.value - b.value).slice(0, 5);
                 this.time = this.time.sort((a, b) => a.value - b.value).slice(0, 5);
