@@ -59,6 +59,11 @@ export class TicketAction {
         this.done$.next(result);
     }
 
+    Error(e: any) {
+        console.log("error", e);
+        this.done$.error(e);
+    }
+
     afterDone() {
         return this.done$.first();
     }
@@ -81,6 +86,7 @@ export class ActionManager {
             return of(null);
         }
         ta.extra = extra;
+        console.log("action", ta);
         this.queue.push(ta);
         this.next();
         return ta.afterDone();
@@ -95,7 +101,10 @@ export class ActionManager {
         this.handler(ta).subscribe(result => {
             ta.Done(result);
             this.next();
-        }, _ => this.next());
+        }, e => {
+            ta.Error(e);
+            this.next();
+        });
     }
 
     private queue: TicketAction[] = [];

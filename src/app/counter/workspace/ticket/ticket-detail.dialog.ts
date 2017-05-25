@@ -1,6 +1,6 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
 import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { Ticket, TicketStates } from '../shared';
+import { Ticket, TicketStates, TicketActionName } from '../shared';
 import { TicketService, QueueService, WorkspaceService } from '../shared';
 import { NoticeComponent } from '../shared';
 
@@ -62,22 +62,22 @@ export class TicketDetailDialog {
   }
 
   Delete() {
-
+    this.triggerAction("cancel");
   }
 
   Call() {
-
+    this.triggerAction("call");
   }
 
   Restore() {
-
+    this.triggerAction("restore");
   }
 
-  // protected ShowMessage(title: string, message: string) {
-  //   const config = new MdDialogConfig();
-  //   config.width = '450px';
-  //   config.data = { title, message };
-  //   const dialog = this.dialog.open(Alert, config);
-  // }
-
+  private triggerAction(action: TicketActionName) {
+    this.ticketService.TriggerAction(action, this.ticket)
+    .subscribe(_ => this.dialogRef.close(), e => {
+      console.log(e);
+      this.notice.ShowMessage("handle_error");
+    });
+  }
 }
