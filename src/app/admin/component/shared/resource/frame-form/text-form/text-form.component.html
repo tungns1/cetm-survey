@@ -1,27 +1,21 @@
-<div class="modal-header-title">
-    <p class="margin-left">Edit Text</p>
-</div>
-
-<div *ngIf="value" class="padding-t-20" (change)="onChange($event)" fxLayout="column">
+<div *ngIf="value" (change)="onChange($event)" fxLayout="column">
     <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <span fxFlex="15%">Align</span>
+        <span fxFlex="5%" class="margin-t-5">Align</span>
         <select fxFlex class="hl-select" [(ngModel)]="value.align">
             <option value="left">Left</option>
             <option value="center">Center</option>
             <option value="right">Right</option>
         </select>
-    </div>
 
-    <b class="rowCtrl center">Content</b>
-
-    <l10n-form [(ngModel)]="value.i18n"></l10n-form>
-
-    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <span fxFlex="15%">Scroll</span>
+        <span fxFlex="5%" class="margin-t-5">Scroll</span>
         <select fxFlex class="hl-select" [(ngModel)]="value.scroll">
             <option value="none">--None--</option>
             <option value="rtl">Right To Left</option>
             <option value="ltr">Left To Right</option>
         </select>
     </div>
+
+    <h3 class="rowCtrl center">Content</h3>
+
+    <l10n-form [(ngModel)]="value.i18n"></l10n-form>
 </div>

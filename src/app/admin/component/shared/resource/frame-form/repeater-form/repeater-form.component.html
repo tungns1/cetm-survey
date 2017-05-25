@@ -1,43 +1,32 @@
-<div class="modal-header-title">
-  <p class="margin-left">Edit Repeater</p>
-</div>
+<div *ngIf="value" (change)="onChange($event)">
 
-<div *ngIf="value" class="padding-20" (change)="onChange($event)">
+  <div fxLayout="row" fxLayoutGap="5px">
+    <div fxFlex fxLayout="row" fxLayoutGap="5px">
+      <span fxFlex="22%" class="padding-t-5 right">Column</span>
+      <input fxFlex="68%" class="hl-input" type="number" [value]="value.column" min="1" [(ngModel)]="value.column">
+    </div>
 
-  <div *ngIf="value.repeat">
+    <div fxFlex fxLayout="row" fxLayoutGap="5px">
+      <span fxFlex="22%" class="padding-t-5 right">Row</span>
+      <input fxFlex="68%" class="hl-input" type="number" [value]="value.row" min="1" [(ngModel)]="value.row">
+    </div>
+    <div fxFlex="5%"></div>
+  </div>
 
+  <div class="divider margin-b-15"></div>
+
+  <div *ngFor="let el of value.repeat; let i = index" fxLayout="column">
     <div fxLayout="row" fxLayoutGap="5px">
-      <div fxFlex fxLayout="row" fxLayoutGap="5px">
-        <span fxFlex="22%" class="padding-t-5 right">Column</span>
-        <input fxFlex="68%" class="hl-input" type="number" [value]="value.column" min="1" [(ngModel)]="value.column">
+      <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="5px">
+        <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>
+        <input fxFlex="68%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
       </div>
-
-      <div fxFlex fxLayout="row" fxLayoutGap="5px">
-        <span fxFlex="22%" class="padding-t-5 right">Row</span>
-        <input fxFlex="68%" class="hl-input" type="number" [value]="value.row" min="1" [(ngModel)]="value.row">
-      </div>
-      <div fxFlex="5%"></div>
+      <i fxFlex="5%" class="fa fa-trash hl-pointer-sv margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
     </div>
-
-    <div class="divider margin-b-15"></div>
-
-    <div *ngFor="let el of value.repeat; let i = index" fxLayout="column">
-      <div fxLayout="row" fxLayoutGap="5px">
-        <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="5px">
-          <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>
-          <input fxFlex="68%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
-        </div>
-        <i fxFlex="5%" class="fa fa-trash hl-pointer-sv margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
-      </div>
-    </div>
-
-    <div class="divider margin-b-15"></div>
-
-    <i class="fa fa-plus hl-pointer-sv margin-t-5" (click)="add()"><span i18n>Add</span></i>
-
   </div>
 
-  <div *ngIf="!value.repeat">
-    <textarea rows="7" cols="30">{{value | json}}</textarea>
-  </div>
+  <div class="divider margin-b-15"></div>
+
+  <i class="fa fa-plus hl-pointer-sv margin-b-15" (click)="add()"><span i18n>Add</span></i>
+
 </div>

@@ -1,8 +1,13 @@
-<div #main id="generic-form" class="report_history_modal">
-    <div *ngIf="record">
-        <h1 class="modal-header"><span>Edit Resource</span>
-            <{{record.name}}>
-        </h1>
+<div #main id="generic-form" *ngIf="record" class="report_history_modal">
+    <h1 class="modal-header">
+        <span>Edit</span>
+        <span> {{record.name}}</span>
+    </h1>
+    <div class="padding-20">
+        <h2 class="center margin-t-0">
+            <span>Type</span>
+            <span>: {{record.type}}</span>
+        </h2>
         <div [ngSwitch]="record.type">
             <div *ngSwitchCase="'text'">
                 <app-text-form [(ngModel)]="record.data"></app-text-form>
@@ -20,9 +25,20 @@
                 <json-text-form [(ngModel)]="record.data"></json-text-form>
             </div>
         </div>
-    </div>
-    <div fxLayout="row" fxLayoutGap="10px">
-        <button fxFlex class="btnFill margin-top margin-bot margin-left" (click)="Cancel()">Cancel</button>
-        <button fxFlex class="btnFill margin-top margin-bot margin-right" (click)="Save()">Ok</button>
+        <div class="border margin-b-20">
+            <accordion>
+                <accordion-title class="accordionTitle margin-t-15">
+                    <span i18n>Show Code</span>
+                </accordion-title>
+                <div fxLayout="row">
+                    <textarea fxFlex rows="10" style="border: none" [disabled]="true">{{record.data | json}}</textarea>
+                </div>
+            </accordion>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+            <button fxFlex class="btnClear" (click)="Cancel()">Cancel</button>
+            <button fxFlex class="btnFill" (click)="Save()">Ok</button>
+        </div>
     </div>
 </div>

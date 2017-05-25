@@ -6,16 +6,13 @@
     }
 </style>
 <div id="kiosk-resources" fxLayout="column" class="border">
-    <div fxLayout="row" class="">
+    <div fxLayout="row" class="resourcesHeader">
         <h3 fxFlex="15%" class="center" i18n>Enable</h3>
         <h3 fxFlex class="center" i18n>Name</h3>
-        <!--<span fxFlex="30%" class="center" i18n>Type</span>
-        <span fxFlex class="center" i18n>Data</span>-->
     </div>
     <div class="divider margin-b-10"></div>
     <div fxLayout="row" *ngFor="let r of records">
-        <!--<input fxFlex="30%" class="margin-0" type="checkbox" [(ngModel)]="r.enabled" (ngModelChange)="enable(r)">-->
-        <md-checkbox fxFlex="15%" class="margin-0 center" [(ngModel)]="r.enabled" (ngModelChange)="enable(r)"></md-checkbox>
+        <md-checkbox fxFlex="15%" class="margin-0 center" color="primary" [(ngModel)]="r.enabled" (ngModelChange)="enable(r)"></md-checkbox>
         <div fxFlex fxLayout="row">
             <p fxFlex class="right">{{r.name}}</p>
             <p fxFlex class="margin-l-10">
@@ -23,7 +20,5 @@
                 <a (click)="Reset(r)" i18n>Reset</a>
             </p>
         </div>
-        <!--<div fxFlex="30%" class="body-resource-editor text-center">{{r.type}}</div>
-        <div fxFlex [innerHTML]="r.data | rawResource"></div>-->
     </div>
 </div>
