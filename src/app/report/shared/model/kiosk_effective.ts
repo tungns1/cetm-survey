@@ -67,7 +67,7 @@ export class InfoKioskTrack {
     total_kiosk = 0;
     longest_activity_kiosk = '';
     shortest_activity_kiosk = '';
-    // average_kiosk_eff = 0;
+    average_kiosk_eff = 0;
     total_activity_time = 0;
     longest_activity_time = 0;
     shortest_activity_time = 0;
@@ -195,7 +195,7 @@ export class InfoKioskTrack {
                 this.shortest_activity_time = minBy(this.time, 'value').value;
                 this.shortest_activity_kiosk = minBy(this.time, 'value').name;
                 this.average_activity_time = +meanBy(this.time, <any>'value').toFixed(2);
-
+                this.average_kiosk_eff=+(this.total_activity_time/this.total_kiosk).toFixed(2);
                 this.highest_ticket_quantity = maxBy(this.ticket, 'value').value;
                 this.highest_ticket_from = maxBy(this.ticket, 'value').name;
                 this.lowest_ticket_quantity = minBy(this.ticket, 'value').value;
