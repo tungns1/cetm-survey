@@ -47,6 +47,7 @@ export class WorkspaceService {
     private autoNext$ = new ReplaySubject<boolean>(1);
 
     SetAutoNext(auto = false) {
+        console.log(auto);
         this.autoNext$.next(auto);
     }
 
@@ -60,7 +61,7 @@ export class WorkspaceService {
             w.AutoNext = a;
         });
         return merge(of(null), ticketUpdate, autoNext).map(_ => w);
-    }).share().publishReplay(1).refCount();
+    }).debounceTime(20).share().publishReplay(1).refCount();
 
     currentCounter$ = this.Workspace$.map(w => w.current_counter);
     counters$ = this.Workspace$.map(w => w.counters);

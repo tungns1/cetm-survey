@@ -16,10 +16,11 @@ import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { AsyncSubject } from 'rxjs/AsyncSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 const TicketStateTransitions = new Map<TicketState, TicketState[]>();
 TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Serving, TicketStates.Cancelled]);
-TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled]);
+TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled]);
 TicketStateTransitions.set(TicketStates.Cancelled, [TicketStates.Waiting]);
 
 const NextStates = new Map<TicketActionName, TicketState>();
@@ -53,28 +54,35 @@ export class TicketAction {
         return TicketAction.checkTransition(current, next);
     }
 
-    done = new AsyncSubject<ITicket>();
+    Done(result: ITicket) {
+        console.log("done", this);
+        this.done$.next(result);
+    }
 
     afterDone() {
-        return this.done;
+        return this.done$.first();
     }
+
+    private done$ = new ReplaySubject<ITicket>(1);
 }
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 export class ActionManager {
     constructor(
-        private handler: (ta: TicketAction) => Observable<ITicket> 
-    ) {}
+        private handler: (ta: TicketAction) => Observable<ITicket>
+    ) { }
 
-    Work(action: TicketActionName, ticket: Ticket) {
+    Work(action: TicketActionName, ticket: Ticket, extra?: any) {
         if (!ticket) return of(null);
         const ta = new TicketAction(action, ticket);
         if (!ta.IsValid()) {
+            console.log("invalid action", ta);
             return of(null);
         }
-            this.queue.push(ta);
-            this.next();
+        ta.extra = extra;
+        this.queue.push(ta);
+        this.next();
         return ta.afterDone();
     }
 
@@ -84,7 +92,8 @@ export class ActionManager {
         if (!this.handler) {
             this.next();
         }
-        this.handler(ta).subscribe(_ => {
+        this.handler(ta).subscribe(result => {
+            ta.Done(result);
             this.next();
         }, _ => this.next());
     }
