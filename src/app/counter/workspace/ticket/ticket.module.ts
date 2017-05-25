@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { SharedModule, TimeModule } from '../shared';
-import { TicketDetailDialog, ConfirmDialog, Alert } from './ticket-detail.dialog';
+import { TicketDetailDialog } from './ticket-detail.dialog';
 import { TicketDetailDirective } from './ticket-detail.directive';
 import { TicketHighlightDirective } from './ticket-highlight.directive';
 import { FeedbackSkipDialog } from './feedback-skip.component';
@@ -12,16 +12,16 @@ import { FeedbackSkipDialog } from './feedback-skip.component';
     ],
     declarations: [
         TicketDetailDialog, TicketDetailDirective,
-        TicketHighlightDirective, ConfirmDialog,
-        FeedbackSkipDialog, Alert
+        TicketHighlightDirective,
+        FeedbackSkipDialog
     ],
     exports: [
         SharedModule,
         TicketDetailDialog, TicketDetailDirective,
-        TimeModule, ConfirmDialog,
-        FeedbackSkipDialog, Alert,
+        TimeModule,
+        FeedbackSkipDialog,
         TicketHighlightDirective
     ],
-    entryComponents: [TicketDetailDialog, ConfirmDialog, Alert, FeedbackSkipDialog]
+    entryComponents: [TicketDetailDialog, FeedbackSkipDialog]
 })
 export class TicketModule { }

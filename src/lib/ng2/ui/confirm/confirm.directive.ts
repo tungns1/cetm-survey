@@ -14,7 +14,7 @@ export class ConfirmDirective {
     private mdDialog: MdDialog
   ) { }
 
-  @Input() appConfirm : string;
+  @Input() appConfirm: string;
   @Output() confirm = new EventEmitter();
   @HostListener("click", ["$event"])
   onClick(e: Event) {
@@ -33,7 +33,6 @@ export class ConfirmDirective {
 
 @Component({
   selector: 'app-confirm-dialog',
-  // <h1 md-dialog-title></h1>
   template: `
   <div class="center margin-20-0" style="font-size: 13px">{{message}}</div>
   <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-20-0">
@@ -44,7 +43,7 @@ export class ConfirmDirective {
 })
 export class AppConfirmDialog {
   constructor(
-    private dialogRef: MdDialogRef<AppConfirmDialog>
+    protected dialogRef: MdDialogRef<AppConfirmDialog>
   ) { }
 
   @Input() message: string;

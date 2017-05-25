@@ -19,6 +19,7 @@
                 <timer class="number" [start]="ticket.mtime" [timeWarning]="maxServingMinute"></timer>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -28,14 +29,13 @@
         <div>
             <ticket-icon width="20px" [ticket]="ticket"></ticket-icon>
             <span>{{ticket.cnum}} - </span>
-            <span *ngIf="ticket.customer.first_name && ticket.customer.first_name !== ' '">{{ticket.customer.first_name}}</span>
-            <span *ngIf="!ticket.customer.first_name || ticket.customer.first_name === ' '" i18n>Client</span>
         </div>
     </div>
     <div fxFlex class="servingTimeContainer">
-        <div i18n>Tiempo</div>
+        <div i18n>Time</div>
         <timer class="servingTime" [start]="ticket.mtime" [timeWarning]="maxServingMinute"></timer>
     </div>
 </div>
 
 <ticket-action [ticket]="ticket"></ticket-action>
+<customer-info [customer]="ticket.customer"></customer-info>

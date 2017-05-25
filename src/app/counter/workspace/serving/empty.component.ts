@@ -14,8 +14,6 @@ export class EmptyComponent {
     busy$ = this.queueService.busy$;
 
     ngOnInit() {
-        // if (this.waiting) {
-        //     setTimeout(function () { alert("Hello"); }, 60000 * 1);
-        // }
+       
     }
 }

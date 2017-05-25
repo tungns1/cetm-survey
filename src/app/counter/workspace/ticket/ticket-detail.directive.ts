@@ -13,7 +13,6 @@ import { TicketDetailDialog } from './ticket-detail.dialog';
 })
 export class TicketDetailDirective {
   @Input('ticket-detail') ticket: any;
-  // private dialogRef: ComponentRef<TicketDetailDialog>;
 
   constructor(
     private viewContainer: ViewContainerRef,
@@ -22,7 +21,6 @@ export class TicketDetailDirective {
   ) { }
 
   open() {
-
     if (!this.ticket) {
       console.log("Missing ticket for detail");
       return;
@@ -33,14 +31,4 @@ export class TicketDetailDirective {
     config.data = this.ticket;
     const dialog = this.mdDialog.open(TicketDetailDialog, config);
   }
-
-  // createDialog() {
-  //   this.viewContainer.clear();
-  //   let dialogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(TicketDetailDialog);
-  //   this.dialogRef = this.viewContainer.createComponent(dialogComponentFactory);
-  //   this.dialogRef.instance.close.subscribe(() => {
-  //     this.dialogRef.destroy();
-  //   });
-  //   return this.dialogRef;
-  // }
 }

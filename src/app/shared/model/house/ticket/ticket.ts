@@ -132,4 +132,8 @@ export class Ticket {
         var step = a.priority.compare(b.priority);
         return step == 0 ? (a.ctime < b.ctime ? -1 : 1) : step;
     }
+
+    IsState(state: TicketState) {
+        return this.state == state;
+    }
 }
