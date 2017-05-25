@@ -4,7 +4,7 @@ import { CenterService, ILayout, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 import { cloneDeep } from 'lodash';
 
 @Component({
@@ -27,7 +27,7 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
     return (new FormBuilder).group({
       id: [b.id],
-      name: [b.name, Validators.required],
+      name: [b.name, CommonValidator.Name],
       type: [b.type, Validators.required],
       ui: [b.ui || {}],
       style: [b.style],

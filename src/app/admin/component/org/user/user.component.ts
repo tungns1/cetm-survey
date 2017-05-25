@@ -3,7 +3,7 @@ import { OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 
 @Component({
   selector: 'admin-user',
@@ -19,14 +19,13 @@ export class UserComponent extends BaseAdminComponent<IUser> {
   }
 
   title = 'user';
-  pattern_user: any ="^[a-zA-Z0-9-_]{4,20}$";
   pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
   makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],
       password: ['', u.id ? null : Validators.compose([ Validators.required, Validators.pattern(this.pattern_pass)])], // do not require password on update
-      username: [ u.username, Validators.compose([ Validators.required, Validators.pattern(this.pattern_user)])],
+      username: [ u.username, CommonValidator.Code],
       fullname: [u.fullname, Validators.required],
       email: [u.email],
       role: [u.role, Validators.required],
