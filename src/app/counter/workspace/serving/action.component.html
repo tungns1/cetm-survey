@@ -1,8 +1,8 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
-    <button class="uppercase btnFill" fxFlex (click)="Next()" [ngClass]="{'hidden': auto | async}">
+    <button class="uppercase btnFill" fxFlex (click)="Next()" [class.hidden]="auto_next$ | async">
         <ng-container i18n="Counter Button: Next">Next</ng-container>
     </button>
-    <button class="uppercase btnRed" fxFlex (click)="NoNext()" [ngClass]="{'hidden': !(auto | async)}">
+    <button class="uppercase btnRed" fxFlex (click)="NoNext()" [class.hidden]="!(auto_next$ | async)">
         <ng-container i18n="Counter Button: Auto Next">Auto Next</ng-container>
     </button>
     <button class="uppercase btnFill" fxFlex (click)="Recall()"> 
@@ -11,11 +11,10 @@
     <button class="uppercase btnFill" fxFlex (click)="Move()" fxShow.xs="false"> 
         <ng-container i18n="Counter Button: Move Ticket">Move</ng-container>
     </button>
-    <button class="uppercase btnRed" fxFlex (click)="Miss()" fxShow.xs="false">
-        <ng-container i18n="Counter Button: Miss Ticket">Miss</ng-container>
+    <button class="uppercase btnRed" fxFlex (click)="Delete()" fxShow.xs="false">
+        <ng-container i18n="Counter Button: Delete Ticket">Delete</ng-container>
     </button>
     <button class="uppercase btnGreen" fxFlex (throttle)="Finish()" throttle>
         <ng-container i18n="Counter Button: Finish Ticket">Finish</ng-container>
     </button>
 </div>
-<!--<feedback-skip></feedback-skip>-->

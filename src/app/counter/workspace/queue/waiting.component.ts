@@ -4,7 +4,7 @@ import { TimerComopnent } from '../shared';
 import { ProjectConfig } from '../shared';
 
 @Component({
-    selector: 'waiting',
+    selector: 'waiting-queue',
     templateUrl: 'waiting.component.html',
     styleUrls: ['queue.component.scss']
 })

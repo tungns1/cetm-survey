@@ -24,15 +24,15 @@ export class FeedbackSkipDialog {
     Submit() {
         const ticket = this.ticket$.value;
         const t = ticket[0];
-        return this.ticketService.Skip(this.username, this.pass, t.id).do(v => {
-            if (v) {
-                this.feedbackService.SkipFeedback(t);
-            } else {
-                console.error('Tài khoản hoặc mật khẩu sai.');
-            }
-        }).subscribe(_ => {
-            this.pass = '';
-        });
+        // return this.ticketService.Skip(this.username, this.pass, t.id).do(v => {
+        //     if (v) {
+        //         this.feedbackService.SkipFeedback(t);
+        //     } else {
+        //         console.error('Tài khoản hoặc mật khẩu sai.');
+        //     }
+        // }).subscribe(_ => {
+        //     this.pass = '';
+        // });
     }
 
     Cancel() {

@@ -6,6 +6,8 @@ const ActionRecall = "recall"
 const ActionFinish = "finish"
 const ActionMove = "move"
 
+export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore'
+
 interface ITicketAction<T> {
     action: string;
     ticket_id: string;
@@ -16,8 +18,8 @@ interface ITicketAction<T> {
     extra?: T;
 }
 
-
-import { ITicket, Ticket, IService } from '../shared';
+import { ITicket, Ticket, IService, TicketState, TicketStates } from '../shared';
+import { Workspace } from '../model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
@@ -26,25 +28,49 @@ import { of } from 'rxjs/observable/of';
 import { FeedbackService } from './feedback.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { RecorderService } from './recorder.service';
+import { AsyncSubject } from 'rxjs/AsyncSubject';
 
-class TicketAction {
+const TicketStateTransitions = new Map<TicketState, TicketState[]>();
+TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Serving, TicketStates.Cancelled]);
+TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled]);
+TicketStateTransitions.set(TicketStates.Cancelled, [TicketStates.Waiting]);
+
+const NextStates = new Map<TicketActionName, TicketState>();
+NextStates.set("call", TicketStates.Serving);
+NextStates.set("recall", TicketStates.Serving);
+NextStates.set("move", TicketStates.Waiting);
+NextStates.set("finish", TicketStates.Finished);
+NextStates.set("cancel", TicketStates.Cancelled);
+NextStates.set("restore", TicketStates.Waiting);
+
+export class TicketAction {
     constructor(
-        private action: string,
-        ticket: Ticket
-    ) {
-        this.setTicket(ticket);
-    }
+        public action: TicketActionName,
+        public ticket: Ticket
+    ) { }
 
-    private setTicket(t: Ticket) {
-        this.state = t.state;
-        this.ticket_id = t.id;
-        this.service_id = t.service_id || t.services[0];
-    }
-
-    state: string;
-    ticket_id: string;
-    service_id: string;
+    state = this.ticket.state;
+    ticket_id = this.ticket.id;
+    service_id = this.ticket.service_id;
     extra: any;
+
+    static checkTransition(current: TicketState, next: TicketState) {
+        const states = TicketStateTransitions.get(current)
+        if (!states) return false;
+        return states.indexOf(next) !== -1;
+    }
+
+    IsValid() {
+        const current = this.state;
+        const next = NextStates.get(this.action);
+        return TicketAction.checkTransition(current, next);
+    }
+
+    done = new AsyncSubject<ITicket>();
+
+    afterDone() {
+        return this.done;
+    }
 }
 
 @Injectable()
@@ -64,74 +90,10 @@ export class TicketService {
         return this.socket.Send<ITicket>("/ticket", body).share();
     }
 
-    Remind(t: Ticket) {
-        return this.socket.Send('/reminder', {
-            ticket_id: t.id
-        }).share();
-    }
-
-    RecallAll() {
-        return this.updateServing(ActionRecall);
-    }
-
-    get serving$() {
-        return this.queueService.serving$.first();
-    }
-
-    private updateServing(action: string) {
-        return this.serving$.switchMap(t => {
-            if (!t || !t[0]) {
-                return of(null);
-            }
-            return this.sendAction(
-                new TicketAction(action, t[0])
-            )
-        })
-    }
-
-    CheckFeedbackDone() {
-        return this.serving$.switchMap(t => {
-            return this.feedbackService.CheckFeedback(t);
-        });
-    }
-
-    CheckFeedbackAndFinishAll() {
-        return this.CheckFeedbackDone().switchMap(t => {
-            if (!t) {
-                return of(false);
-            }
-            if (t[0]) {
-                return this.sendAction(
-                    new TicketAction(ActionFinish, t[0])
-                ).map(_ => {
-                    this.recorderService.uploadAll();
-                    return true;
-                });
-            }
-            return of(true);
-        });
-    }
-
-    MissAll() {
-        return this.updateServing(ActionMiss);
-    }
-
-    CallTicket(t: Ticket) {
-        return this.sendAction(
-            new TicketAction(ActionCall, t)
-        );
-    }
-
-    Cancel(t: Ticket) {
-        return this.sendAction(
-            new TicketAction(ActionCancel, t)
-        );
-    }
-
     Move(t: Ticket, services: string[], counters: string[]) {
         const a = new TicketAction(ActionMove, t);
         a.extra = { services, counters };
-        return this.sendAction(a);
+        return this.action$.next(a);
     }
 
     Search(cnum: string) {
@@ -140,38 +102,38 @@ export class TicketService {
         });
     }
 
-    Skip(username: string, password: string, ticket_id: string) {
-        return this.socket.Send<boolean>('/skip', {
-            username: username,
-            password: password,
-            ticket_id: ticket_id
-        });
-    }
-
-    autoNext$ = new Subject<boolean>();
-
-    SetAutoNext(b = false) {
-        this.autoNext$.next(b);
-    }
-
     private onInit() {
-        // if auto next
-        this.autoNext$.switchMap(auto => {
-            if (!auto) {
-                return of(null);
+        this.workspaceService.Workspace$.subscribe(w => {
+            if (!w.AutoNext) return;
+            if (!w.Waiting.is_empty && w.Serving.is_empty) {
+                const t = w.Waiting.GetFirstTicket();
+                this.TriggerAction("call", t);
             }
-            return this.workspaceService.Workspace$.debounceTime(100).map(w => {
-                if (w.Serving.is_empty) {
-                    const t = w.Waiting.GetFirstTicket();
-                    if (t) {
-                        this.CallTicket(t).subscribe(_ => {
-
-                        })
-                    }
-                } else {
-                    this.SetAutoNext(false);
-                }
-            })
+        });
+        this.action$.switchMap(action => {
+            return this.workspaceService.Workspace$.map(w => {
+                return this.HandleAction(action, w);
+            });
         }).subscribe();
     }
+
+    TriggerAction(action: TicketActionName, ticket: Ticket) {
+        if (!ticket) return of(null);
+        const ta = new TicketAction(action, ticket);
+        this.action$.next(ta);
+        return ta.afterDone();
+    }
+
+    HandleAction(action: TicketAction, workspace: Workspace) {
+        if (action.IsValid()) {
+            console.log("action", action);
+            this.sendAction(action).subscribe(t => {
+                action.done.next(t);
+            });
+        } else {
+            console.log("invalid action", action);
+        }
+    }
+
+    private action$ = new Subject<TicketAction>();
 }

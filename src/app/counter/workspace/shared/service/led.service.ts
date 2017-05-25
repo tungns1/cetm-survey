@@ -39,15 +39,14 @@ export class LedService{
     enable() {
         this.ledDevice.Command_com(this.led_com);
         this.ledDevice.Setup(this.led_address);
-        combineLatest(this.workspaceService.Workspace$, this.ticketService.autoNext$)
-            .debounceTime(250)
-            .map(([w, auto]) => {
+        this.workspaceService.Workspace$.debounceTime(250)
+            .map(w => {
                 const s: LedStatus = {
                     addr: this.led_address,
                     type: STATUS.WELCOME,
                 };
                 if (w.Serving.is_empty) {
-                    s.type = auto ? STATUS.WELCOME : STATUS.STOP;
+                    s.type = w.AutoNext ? STATUS.WELCOME : STATUS.STOP;
                 } else {
                     s.type = STATUS.SHOW;
                     s.data = w.Serving.GetFirstTicket().cnum;

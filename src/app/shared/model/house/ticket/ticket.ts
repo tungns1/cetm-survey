@@ -63,7 +63,7 @@ function getServiceName(t: ITicket) {
         case TicketStates.Serving:
             return ServiceName(t.service_id);
         default:
-            return "";
+            return ServiceName(t.service_id);
     }
 }
 

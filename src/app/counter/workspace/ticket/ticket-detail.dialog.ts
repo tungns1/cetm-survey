@@ -59,9 +59,10 @@ export class TicketDetailDialog {
       }
     }
 
-    this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).subscribe(v => {
-      this.dialog.closeAll();
-    });
+    this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+    // .subscribe(v => {
+    //   this.dialog.closeAll();
+    // });
   }
 
   Recall() {
@@ -70,10 +71,11 @@ export class TicketDetailDialog {
         this.ShowMessage("Unsuccess", "Recall Miss");
         return;
       }
-      this.ticketService.CallTicket(this.ticket).subscribe(v => {
-        this.ticketService.SetAutoNext(false);
-        this.dialog.closeAll();
-      });
+      this.ticketService.TriggerAction("call", this.ticket)
+      // .subscribe(v => {
+      //   this.ticketService.EnableAutoNext();
+      //   this.dialog.closeAll();
+      // });
     });
   }
 
@@ -114,11 +116,12 @@ export class ConfirmDialog {
 
 
   Delete() {
-    this.ticketService.Cancel(this.dialogData).subscribe(_ => {
-      // toastr.success("Delete success counter");
-      this.dialog.closeAll();
-    }, err => {
-    });
+    this.ticketService.TriggerAction("cancel", this.dialogData)
+    // .subscribe(_ => {
+    //   toastr.success("Delete success counter");
+    //   this.dialog.closeAll();
+    // }, err => {
+    // });
   }
 }
 
