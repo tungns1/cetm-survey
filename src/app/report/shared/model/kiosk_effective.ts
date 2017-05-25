@@ -102,7 +102,7 @@ export class InfoKioskTrack {
         if (s != null) {
             if (s.activity.length > 0 && s.ticket.length > 0) {
                 this.total_activity_time = this.SecondToHour(sumBy(s.activity, 'a_d'))
-                this.total_kiosk = size(groupBy(s.activity, 'device_id'));
+                this.total_kiosk = size(groupBy(s.activity, 'eid'));
                 this.total_ticket = s.ticket.length;
                 var data_by_branh = toArray(groupBy(s.activity, 'bid'));
 
