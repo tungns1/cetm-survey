@@ -1,7 +1,6 @@
-<div *ngIf="node" class="list-file-upload" id="folderUpload">
+<div *ngIf="node" id="folderUpload">
     <h1>Folder: {{node.name}} </h1>
-    <div class="div-scroll">
-        <table>
+    <!--<table>
             <tr>
                 <th>File</th>
                 <th></th>
@@ -22,19 +21,25 @@
             </tr>
 
         </table>
-    </div>
-    <!--<ul>
-        <li *ngFor="let d of node.rxChildren | async">
-            <a md-line (click)="focus($event, d)" [ngClass]="{'active': selected == d}">
-            {{ d.name }}
-        </a>
-                <button class="btn-hlm btn-view" (click)="view(d)">
-            <i class="fa fa-data"></i>
-            Xem          
-        </button>
-                </li>
-                </ul>-->
-
     <button class="btn-hlm btn-upload" (click)="upload.open(node)">Upload</button>
-    <file-upload #upload style="bottom:0;right:0;"></file-upload>
+    <file-upload #upload style="bottom:0;right:0;"></file-upload>-->
+    <h2 class="center" i18n>Files list</h2>
+    <div fxLayout="row" class="margin-10-0">
+        <h3 fxFlex i18n>File name</h3>
+        <h3 fxFlex="10%" i18n>Detail</h3>
+    </div>
+    <div *ngFor="let d of node.rxChildren | async">
+        <div class="divider"></div>
+        <div fxLayout="row" class="margin-10-0">
+            <a fxFlex class="pointer" (click)="focus($event, d)">{{ d.name }}</a>
+            <div fxFlex="10%">
+                <img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer" (click)="view(d)">
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div fxLayout="row" class="margin-t-20">
+        <file-upload fxFlex #upload></file-upload>
+        <button fxFlex="20%" class="btnFill" (click)="upload.open(node)" style="height: 27px">Upload</button>
+    </div>
 </div>

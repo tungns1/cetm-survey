@@ -1,11 +1,10 @@
-
 import { Component, EventEmitter, ElementRef, Input, Output } from '@angular/core';
 import { FileNode } from '../backend/';
 
 @Component({
   selector: 'file-tree',
   templateUrl: 'file-tree.component.html',
-   styleUrls: ["file-tree.component.css"]
+   styleUrls: ["file-tree.component.scss"]
 })
 
 export class FileTreeComponent {

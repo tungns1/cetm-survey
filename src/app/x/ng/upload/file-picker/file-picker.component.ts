@@ -54,7 +54,7 @@ export class FilePickerComponent implements ControlValueAccessor {
 
     openModal() {
         const config = new MdDialogConfig();
-        config.width = '450px';
+        config.width = '500px';
         config.data = {
             value: this.value
         };

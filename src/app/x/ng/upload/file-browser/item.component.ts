@@ -4,30 +4,29 @@ import { Observable } from 'rxjs/Observable';
 import { FileNode, FileItem } from '../backend/';
 
 @Component({
-  selector: 'tr[upload-item]',
+  selector: 'div[upload-item]',
   template: `
-      <td>{{item.Name}} </td> 
-      <td> {{item.Size}} </td>
-      <td> {{progress | async}} % </td>
+    <div fxLayout="row">
+      <span fxFlex>{{item.Name}}</span> 
+      <span fxFlex>{{item.Size}}</span>
+      <span fxFlex>{{progress | async}} %</span>
+    </div>
   `,
   styles: [`
-      td{
-        border: 1px solid #e6e6e6;
-        text-align: left;
-        padding: 5px;
+      span{
+        padding: 5px 0;
       }
       md-progress-circle{
         width:50px;
         height:50px;
       }
-      
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent {
   private item: FileItem;
 
-  @Input() set data(value: {node: FileNode, file: File}) {
+  @Input() set data(value: { node: FileNode, file: File }) {
     this.item = new FileItem(value.file);
     this.upload(value.node);
     // this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(this.item.MakeObjectUrl());
@@ -41,7 +40,7 @@ export class ItemComponent {
   }
 
   ngOnInit() {
-    
+
   }
 
   public upload(node: FileNode) {

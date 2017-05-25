@@ -14,17 +14,6 @@
     flex: 1 1 800px;
 }
 
-.hl-input {
-    margin-bottom: 15px;
-    border-radius: 3px;
-    height: 25px;
-    padding-left: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #aeb0af;
-    width: 100%;
-}
-
 .hl-input-validate {
     border-radius: 3px;
     height: 25px;
@@ -184,14 +173,6 @@ table tbody tr:nth-child(odd) {
 
 .hl-row-sv:nth-child(odd) {
     background: #ffffff;
-}
-
-.hl-pointer-sv {
-    cursor: pointer;
-}
-
-.hl-pointer-sv:hover {
-    color: green;
 }
 
 .iput-fnews-hlm {

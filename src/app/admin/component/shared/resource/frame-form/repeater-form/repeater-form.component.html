@@ -21,12 +21,12 @@
         <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>
         <input fxFlex="68%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
       </div>
-      <i fxFlex="5%" class="fa fa-trash hl-pointer-sv margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
+      <i fxFlex="5%" class="fa fa-trash pointer margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
     </div>
   </div>
 
   <div class="divider margin-b-15"></div>
 
-  <i class="fa fa-plus hl-pointer-sv margin-b-15" (click)="add()"><span i18n>Add</span></i>
+  <i class="fa fa-plus pointer margin-b-15" (click)="add()"><span i18n>Add</span></i>
 
 </div>

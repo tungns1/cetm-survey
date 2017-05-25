@@ -1,9 +1,9 @@
 <div class="padding-10">
-    <i class="fa fa-plus hl-pointer-sv margin-t-5" (click)="Add()"><span i18n>Add</span></i>
+    <i class="fa fa-plus pointer margin-t-5" (click)="Add()"><span i18n>Add</span></i>
     <div *ngFor="let v of value; let i = index" class="hl-row-sv margin-t-10">
         {{v.name}}
-        <i class="fa fa-edit hl-pointer-sv margin-l-5" i18n-title="Edit" (click)="Edit(i, v)"></i>
-        <i class="fa fa-chevron-up hl-pointer-sv margin-l-5" i18n-title="Move up" (click)="Swap(i-1, i)" style="color: #a6a6a6;"></i>
-        <i class="fa fa-chevron-down hl-pointer-sv margin-l-5" i18n-title="Move down" (click)="Swap(i, i+1)" style="color: #a6a6a6;"></i>
+        <i class="fa fa-edit pointer margin-l-5" i18n-title="Edit" (click)="Edit(i, v)"></i>
+        <i class="fa fa-chevron-up pointer margin-l-5" i18n-title="Move up" (click)="Swap(i-1, i)" style="color: #a6a6a6;"></i>
+        <i class="fa fa-chevron-down pointer margin-l-5" i18n-title="Move down" (click)="Swap(i, i+1)" style="color: #a6a6a6;"></i>
     </div>
 </div>

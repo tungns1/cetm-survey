@@ -1,10 +1,9 @@
-<div #modal id="modalUpload">
-    <div class="modal-dialog">
-        <div class="modal-body padding-20">
-            <div class="file-browser">
-                <file-browser (select)="choose($event)"></file-browser>
-            </div>
-            <button class="btn-hlm btn-close" (click)="close()">Close</button>
-        </div>
+<div id="filePickerModal">
+    <div fxLayout="row" class="modal-header">
+        <h3 fxFlex class="margin-0 margin-t-5">Files Browser</h3>
+        <i fxFlex="5%" class="fa fa-times fa-2x pointer center" (click)="close()"> </i>
+    </div>
+    <div class="padding-20">
+        <file-browser (select)="choose($event)"></file-browser>
     </div>
 </div>
