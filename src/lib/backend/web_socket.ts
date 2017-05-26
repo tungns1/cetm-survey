@@ -1,7 +1,8 @@
-import { WebSocketSubjectConfig, WebSocketSubject } from 'rxjs/observable/dom/websocketSubject';
+import { WebSocketSubjectConfig, WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Observable } from 'rxjs/Observable';
 
 const SOCKET_RECONNECT_DELAY = 3000;
 
@@ -13,8 +14,7 @@ const SocketStatus = {
 
 export interface IBaseMessage {
     uri: string;
-    data: any;
-    status?: 'success' | 'error';
+    data?: any;
 }
 
 export abstract class AbstractMessageHandler<T> {
@@ -33,9 +33,10 @@ export class BaseWebsocket {
     private queue: IBaseMessage[] = [];
     Message$ = this.message$.asObservable();
 
-    filter(uri: string) {
+    protected filterMessage<T>(uri: string) : Observable<T> {
         return this.Message$.filter(m => m && m.uri === uri).map(m => m.data);
     }
+
 
     private status$ = new BehaviorSubject<string>(SocketStatus.Init);
     Status$ = this.status$.asObservable();

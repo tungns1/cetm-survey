@@ -46,7 +46,7 @@ export class TicketQueue {
     }
 }
 
-class RestrcitedQueue extends TicketQueue {
+class RestrictedQueue extends TicketQueue {
     constructor(
         state: TicketState,
         protected counter_id: string,
@@ -69,7 +69,7 @@ class RestrcitedQueue extends TicketQueue {
     }
 }
 
-export class WaitingQueue extends RestrcitedQueue {
+export class WaitingQueue extends RestrictedQueue {
     constructor(
         counter_id: string,
         services: Set<string>,
@@ -80,7 +80,7 @@ export class WaitingQueue extends RestrcitedQueue {
 }
 
 
-export class MissedQueue extends RestrcitedQueue {
+export class MissedQueue extends RestrictedQueue {
     constructor(
         counter_id: string,
         services: Set<string>,
@@ -99,5 +99,11 @@ export class ServingQueue extends TicketQueue {
 
     canAdd(t: Ticket) {
         return this.counter_id == t.counter_id;
+    }
+}
+
+export class CancelQueue extends TicketQueue {
+    constructor() {
+        super(TicketStates.Cancelled);
     }
 }

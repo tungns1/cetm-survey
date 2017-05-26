@@ -5,7 +5,6 @@ import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { WorkspaceComponent } from './workspace/workspace.component';
-import { InfoCustomerModule } from './info-customer/info.module';
 import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
 import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
 import { workspaceServiceProvider } from './shared/workspace.provider';
@@ -19,7 +18,8 @@ const routing = RouterModule.forChild([
 
 @NgModule({
     imports: [
-        routing, SharedModule, QueueModule, ServingModule, StatModule, InfoCustomerModule
+        routing, SharedModule, 
+        QueueModule, ServingModule, StatModule
     ],
     declarations: [
         WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent
