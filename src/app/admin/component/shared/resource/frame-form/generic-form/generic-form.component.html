@@ -31,7 +31,14 @@
                     <span i18n>Show Code</span>
                 </accordion-title>
                 <div fxLayout="row">
-                    <textarea fxFlex rows="10" style="border: none" [disabled]="true">{{record.data | json}}</textarea>
+                    <!--<textarea fxFlex rows="10" style="border: none" [disabled]="disableEditTextArea">{{record.data | json}}</textarea>-->
+                    <json-text-form [(ngModel)]="record.data" style="width: 100%;" [disabled]="disableEditTextArea"></json-text-form>
+                </div>
+                <div class="fab-container">
+                    <button md-mini-fab color="primary" class="fab-editCode" (click)="toggleEditable()">
+                        <span *ngIf="disableEditTextArea">Edit</span>
+                        <span *ngIf="!disableEditTextArea">Done</span>
+                    </button>
                 </div>
             </accordion>
         </div>

@@ -32,7 +32,7 @@ export class CultureModule {
 import { JSONFormComponent } from './json-form.component';
 
 @NgModule({
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule, CommonModule, FlexLayoutModule],
     declarations: [JSONFormComponent],
     exports: [JSONFormComponent]
 })

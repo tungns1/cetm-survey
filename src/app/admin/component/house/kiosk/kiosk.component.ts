@@ -65,6 +65,10 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         return this.getLayout(b.layout_id).map(layout => {
             if (layout) {
                 b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
+                Object.keys(b.layout_resources).forEach(name => {
+                    const show = !!layout.ui.resources[name];
+                    b.layout_resources[name].show = show;
+                });
             }
             return (new FormBuilder).group({
                 id: [b.id],

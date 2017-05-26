@@ -14,10 +14,10 @@
             <span class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
                 <input fxFlex="100%" class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
-                <!--<div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div><br>
-                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div><br>-->
+                <!--<div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div>
+                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>-->
             </div>
-            <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;"><br>
+            <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
         </div>
         <span i18n>Layout Type</span>:
         <div>
@@ -26,7 +26,7 @@
             <select class="h1-select" formControlName="type">
                 <option value="kiosk"> Kiosk </option>
                 <option value="screen"> Screen </option>
-            </select><br>
+            </select>
         </div>
         <json-text-form formControlName="ui"></json-text-form>
         <app-resource-editor formControlName="resources"></app-resource-editor>

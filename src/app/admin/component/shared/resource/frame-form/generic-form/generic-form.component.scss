@@ -1,6 +1,11 @@
-// @import '../../../../../../shared/style.scss';
-// #generic-form{
-//     .showCodeHeader{
-//         border: $border;
-//     }
-// }
+@import '../../../../../../shared/style.scss';
+#generic-form{
+    .fab-container{
+        position: relative;
+        .fab-editCode{
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+        }
+    }
+}

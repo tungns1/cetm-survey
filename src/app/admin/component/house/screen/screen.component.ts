@@ -1,5 +1,5 @@
 import { Component, ViewChild, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { extend } from 'lodash';
 import 'rxjs/add/operator/distinctUntilChanged';
