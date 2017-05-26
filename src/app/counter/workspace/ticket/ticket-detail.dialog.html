@@ -33,7 +33,7 @@
             </div>
             <div fxLayout="row" fxLayoutGap="20px">
                 <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
-                <button fxFlex class="btnFill" (click)="Restore()" i18n>Restore</button>
+                <button fxFlex class="btnFill" appConfirm="Do you want to restore this ticket?" (confirm)="Restore()" i18n>Restore</button>
             </div>
         </div>
 
