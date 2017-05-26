@@ -12,7 +12,10 @@ import { ExportAttribute, ExportTable } from './export.attribute';
   selector: 'exportable',
   template: `
     <ng-content></ng-content>
-    <button class="btnClear uppercase margin-20-10" (click)="excel($event)" i18n>Export to excel</button>
+    <div fxLayout="row">
+      <div fxFlex="80%"></div>
+      <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel($event)" i18n>Export to excel</button>
+    </div>
   `
 })
 export class ExportableComponent implements OnInit {
