@@ -47,7 +47,6 @@ export class WorkspaceService {
     private autoNext$ = new ReplaySubject<boolean>(1);
 
     SetAutoNext(auto = false) {
-        console.log(auto);
         this.autoNext$.next(auto);
     }
 

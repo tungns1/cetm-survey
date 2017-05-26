@@ -76,8 +76,7 @@ export class TicketDetailDialog {
   private triggerAction(action: TicketActionName) {
     this.ticketService.TriggerAction(action, this.ticket)
     .subscribe(_ => this.dialogRef.close(), e => {
-      console.log(e);
-      this.notice.ShowMessage("handle_error");
+      this.notice.ShowMessage("server_error");
     });
   }
 }

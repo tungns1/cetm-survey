@@ -1,18 +1,11 @@
-
 import { ITicket, Ticket, IService, TicketState, TicketStates } from '../shared';
 import { Workspace } from '../model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { of } from 'rxjs/observable/of';
 import { FeedbackService } from './feedback.service';
-import { combineLatest } from 'rxjs/observable/combineLatest';
 import { RecorderService } from './recorder.service';
-import { AsyncSubject } from 'rxjs/AsyncSubject';
-
 import { ActionManager, TicketAction, TicketActionName } from './shared';
-
 
 @Injectable()
 export class TicketService {
@@ -59,6 +52,6 @@ export class TicketService {
     }
 
     TriggerAction(action: TicketActionName, ticket: Ticket) {
-        return this.manager.Work(action, ticket)
+        return this.manager.Work(action, ticket);
     }
 }

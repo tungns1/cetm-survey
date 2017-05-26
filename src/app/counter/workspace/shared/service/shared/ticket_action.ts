@@ -39,7 +39,7 @@ export class TicketAction {
 
     state = this.ticket.state;
     ticket_id = this.ticket.id;
-    service_id = this.ticket.service_id;
+    service_id = this.ticket.service_id || this.ticket.services[0];
     extra: any;
 
     static checkTransition(current: TicketState, next: TicketState) {
@@ -55,12 +55,12 @@ export class TicketAction {
     }
 
     Done(result: ITicket) {
-        console.log("done", this);
+        console.log("done", result, this);
         this.done$.next(result);
     }
 
     Error(e: any) {
-        console.log("error", e);
+        console.log("error", e, this);
         this.done$.error(e);
     }
 
@@ -86,10 +86,14 @@ export class ActionManager {
             return of(null);
         }
         ta.extra = extra;
-        console.log("action", ta);
         this.queue.push(ta);
         this.next();
         return ta.afterDone();
+    }
+
+    private Handle(ta: TicketAction) {
+        console.log("handle action", ta);
+        return this.handler(ta);
     }
 
     private next() {
@@ -98,7 +102,7 @@ export class ActionManager {
         if (!this.handler) {
             this.next();
         }
-        this.handler(ta).subscribe(result => {
+        this.Handle(ta).subscribe(result => {
             ta.Done(result);
             this.next();
         }, e => {
