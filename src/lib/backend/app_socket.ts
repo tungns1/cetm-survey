@@ -128,8 +128,14 @@ export class AppSocket extends BaseWebsocket {
 
     public first<T>(uri: string): Observable<T> {
         return new Observable<T>(observer => {
-            this.filterMessage<T>(uri).first().subscribe(v => observer.next(v));
-            this.filterError(uri).first().subscribe(e => observer.error(e));
+            this.filterMessage<T>(uri).first().subscribe(v => {
+                observer.next(v);
+                observer.complete();
+            });
+            this.filterError(uri).first().subscribe(e => {
+                observer.error(e);
+                observer.complete();
+            });
         });
     }
 
