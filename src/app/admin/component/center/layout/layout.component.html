@@ -14,15 +14,15 @@
             <span class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
                 <input fxFlex="100%" class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
-                <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div><br>
-                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div><br>
+                <!--<div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div><br>
+                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div><br>-->
             </div>
             <input class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;"><br>
         </div>
         <span i18n>Layout Type</span>:
         <div>
-            <span class="valid-color" *ngIf="form.get('type').hasError('required')">*</span>
-            <span class="error" *ngIf="!form.get('type').hasError('required')">&nbsp;</span>
+            <!--<span class="valid-color" *ngIf="form.get('type').hasError('required')">*</span>
+            <span class="error" *ngIf="!form.get('type').hasError('required')">&nbsp;</span>-->
             <select class="h1-select" formControlName="type">
                 <option value="kiosk"> Kiosk </option>
                 <option value="screen"> Screen </option>
