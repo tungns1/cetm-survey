@@ -1,11 +1,11 @@
 import { Socket } from './socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
-
 import { LogService } from '../platform';
-
+import { Observer } from 'rxjs/Observer';
 import { BaseWebsocket, IBaseMessage, AbstractMessageHandler } from './web_socket';
 import { interval } from 'rxjs/observable/interval';
+import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/timeout';
 import { ISubscription } from 'rxjs/Subscription';
 
@@ -72,11 +72,15 @@ export class AppSocket extends BaseWebsocket {
     Send<T>(uri: string, data: any): Observable<T> {
         uri += `?once=${this.makeOnce()}`;
         super.send(uri, data);
-        return this.filter(uri).first();
-    }
-
-    Subscribe<T>(uri: string, onEvent: (v: T) => void) {
-        return this.filter(uri).subscribe(onEvent);
+        return new Observable<T>((observer) => {
+            this.filter(uri).first().subscribe((m: IBaseMessage) => {
+                if (m.status === "success") {
+                    observer.next(m.data);
+                } else if (m.status === "error") {
+                    observer.error(m.data);
+                }
+            });
+        });
     }
 
     Terminate() {
@@ -86,20 +90,27 @@ export class AppSocket extends BaseWebsocket {
 
     RxEvent<T>(uri: string, replay = 1) {
         const res = new ReplaySubject<T>(replay);
-        this.filter(uri).subscribe(res);
+        this.Subscribe<T>(uri, data => res.next(data));
         return res;
     }
 
-    KeepAlive(time = 10000) {
+    KeepAlive(time = this.minEchoInterval) {
         if (this.subscription) {
             return;
         }
-        this.subscription = interval(time).switchMap(() => {
-            return this.Send("/echo", null).timeout(time - 1000)
-        }).subscribe(null, e => {
-            console.log("[app_socket] echo timeout");
-            this.close(true);
-        });
+        time = +time || 0;
+        if (time < this.minEchoInterval) {
+            time = this.minEchoInterval;
+        }
+        this.echoInterval = time;
+        this.subscription = interval(this.echoInterval).switchMap(() => {
+            return this.Send("/echo", null)
+                .timeout(this.waitForEcho).catch(e => {
+                    console.log("[app_socket] echo timeout");
+                    this.close(true);
+                    return of(null);
+                })
+        }).subscribe();
     }
 
     DisableKeepAlive() {
@@ -108,10 +119,20 @@ export class AppSocket extends BaseWebsocket {
         }
     }
 
+    StatusMessage$ = this.Status$.map((v, i) => {
+        if (this.isOpen) {
+            return "";
+        }
+        return i === 0 ? "CONNECTING" : "CONNECTION ERROR";
+    }).share();
+
     private makeOnce() {
         return Math.random().toString(36).substring(7);
     }
 
     private subscription: ISubscription;
+    private waitForEcho = 8 * 1000;
+    private minEchoInterval = this.waitForEcho + 2000;
+    private echoInterval = this.minEchoInterval;
 
 }

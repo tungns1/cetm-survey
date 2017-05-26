@@ -1,4 +1,4 @@
-import { WebSocketSubjectConfig, WebSocketSubject } from 'rxjs/observable/dom/websocketSubject';
+import { WebSocketSubjectConfig, WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -34,7 +34,17 @@ export class BaseWebsocket {
     Message$ = this.message$.asObservable();
 
     filter(uri: string) {
-        return this.Message$.filter(m => m && m.uri === uri).map(m => m.data);
+        return this.Message$.filter(m => m && m.uri === uri);
+    }
+
+    Subscribe<T>(uri: string, onSuccess: (v: T) => void, onError?: (v: any) => void) {
+        return this.filter(uri).subscribe(m => {
+            if (m.status == "success" && onSuccess) {
+                onSuccess(m.data);
+            } else if (m.status === "error" && onError) {
+                onError(m.data);
+            }
+        });
     }
 
     private status$ = new BehaviorSubject<string>(SocketStatus.Init);
