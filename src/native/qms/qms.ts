@@ -31,11 +31,17 @@ export interface XWinRectangle {
     height: number;
 }
 
+interface MiniModeOptions {
+    no_focusable: boolean;
+    always_on_top: boolean;
+    no_resizable: boolean;
+}
+
 @Injectable()
 export class XWinService {
     Broadcast(event: string, data?: any) {}
     Send(event: string, data?: any) {}
-    SetMiniMode(ratio: XWinRectangle, mini?: boolean) {}
+    SetMiniMode(ratio: XWinRectangle, mini?: boolean, options?: MiniModeOptions) {}
     readonly isBrowser = true;
 }
 
