@@ -23,16 +23,20 @@ function getPriority(data: ITicketPriority) {
     if (data.moved_ticket) {
         priority += PriorityConfig.moved_ticket;
     }
+    if (data.restore_ticket) {
+        priority += PriorityConfig.restore_ticket;
+    }
     return priority;
 }
 
 export interface ITicketPriority {
-    moved_ticket: number;
     service_priority: string;
     privileged_customer: string;
     internal_vip_card: string;
     customer_vip_card: string;
     booked_ticket: string;
+    moved_ticket: number;
+    restore_ticket: number;
 }
 
 function priorityCode(p: ITicketPriority) {
