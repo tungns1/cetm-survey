@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
-import { ModalComponent } from '../shared';
+import { ModalComponent, Ticket } from '../shared';
 
 import {
     WorkspaceService, QueueService,
-    LedService, TicketService
+    LedService, TicketActionName,
+    TicketService
 } from '../shared';
 
 @Component({
-    selector: 'action',
+    selector: 'ticket-action',
     templateUrl: 'action.component.html',
     styleUrls: ['action.component.scss'],
 })
@@ -18,52 +19,44 @@ export class ActionComponent {
         private workspaceService: WorkspaceService,
         private queueService: QueueService,
         private ticketService: TicketService,
-        private ledService: LedService,
         private mdDialog: MdDialog
     ) { }
 
-    auto = this.ticketService.autoNext$;
+    @Input() ticket: Ticket;
 
-    canNext$ = this.queueService.canNext$;
-
-    @ViewChild(TicketDetailDialog) dialog: TicketDetailDialog;
-    @ViewChild(ModalComponent) needFeedback: ModalComponent;
+    auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
 
     Move() {
-        this.ticketService.CheckFeedbackDone().subscribe(t => {
-            if (t && t.length > 0) {
-                const config = new MdDialogConfig();
-                config.width = '350px';
-                config.data = t[0];
-                const dialog = this.mdDialog.open(TicketDetailDialog, config);
-            }
-        });
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        config.data = this.ticket;
+        const dialog = this.mdDialog.open(TicketDetailDialog, config);
     }
 
     Next() {
-        console.log("next");
-        this.ticketService.CheckFeedbackAndFinishAll().subscribe(done => {
-            this.ticketService.SetAutoNext(done);
+        this.triggerAction("finish").subscribe(() => {
+            this.workspaceService.SetAutoNext(true);
         });
     }
 
     NoNext() {
-        this.ticketService.SetAutoNext(false);
+        this.workspaceService.SetAutoNext(false);
     }
 
     Recall() {
-        this.ticketService.RecallAll().subscribe(v => console.log(v));
+        this.triggerAction('recall');
     }
 
     Finish() {
-        // can finish
-        this.ticketService.CheckFeedbackAndFinishAll().subscribe(v => console.log(v));
+        this.triggerAction('finish');
     }
 
-    Miss() {
-        this.ticketService.MissAll().subscribe(v => {
-            console.log(v);
-        });
+    Delete() {
+        this.triggerAction('cancel');
+    }
+
+    private triggerAction(action: TicketActionName) {
+        return this.ticketService.TriggerAction(action, this.ticket);
     }
 
 }

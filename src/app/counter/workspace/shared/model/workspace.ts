@@ -3,7 +3,7 @@ import {
     ITicket, IMapTicket, Ticket,
     TicketState, TicketStates
 } from './shared';
-import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue } from './queue';
+import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue, CancelQueue } from './queue';
 import { ITicketAction, TicketAction } from './ticket_action';
 import { IStat, CounterStatistics } from './stat';
 
@@ -42,9 +42,10 @@ export class Workspace {
     Waiting = new WaitingQueue(this.current_counter.id, this.services, this.vip_services);
     Serving = new ServingQueue(this.current_counter.id);
     Missed = new MissedQueue(this.current_counter.id, this.services, this.vip_services);
+    Cancel = new CancelQueue();
 
     private queues: TicketQueue[] = [
-        this.Waiting, this.Serving, this.Missed
+        this.Waiting, this.Serving, this.Missed, this.Cancel
     ]
 
     private Refresh(tickets: IMapTicket) {
@@ -67,5 +68,10 @@ export class Workspace {
             }
         }
         return null;
+    }
+
+    AutoNext = false;
+    get is_busy() {
+        return !this.Serving.is_empty;
     }
 }

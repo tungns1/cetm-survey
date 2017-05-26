@@ -5,42 +5,46 @@ const PriorityConfig = ProjectConfig.priority;
 function getPriority(data: ITicketPriority) {
     if (!data) return 0;
     var priority = 0;
-    if (data.vip_card) {
+    if (data.internal_vip_card) {
         priority += PriorityConfig.internal_vip_card;
     }
-    if (data.customer_vip) {
+    if (data.customer_vip_card) {
         priority += PriorityConfig.customer_vip_card;
     }
-    if (data.customer_priority) {
+    if (data.privileged_customer) {
         priority += PriorityConfig.privileged_customer;
     }
     if (data.service_priority) {
         priority += +data.service_priority || 0;
     }
-    if (data.ticket_online) {
+    if (data.booked_ticket) {
         priority += PriorityConfig.booked_ticket;
     }
-    if (data.ticket_serving_move) {
+    if (data.moved_ticket) {
         priority += PriorityConfig.moved_ticket;
+    }
+    if (data.restore_ticket) {
+        priority += PriorityConfig.restore_ticket;
     }
     return priority;
 }
 
 export interface ITicketPriority {
-    ticket_serving_move: number;
     service_priority: string;
-    customer_priority: string;
-    vip_card: string;
-    customer_vip: string;
-    ticket_online: string;
+    privileged_customer: string;
+    internal_vip_card: string;
+    customer_vip_card: string;
+    booked_ticket: string;
+    moved_ticket: number;
+    restore_ticket: number;
 }
 
 function priorityCode(p: ITicketPriority) {
     if (p) {
-        if (p.customer_priority) {
+        if (p.privileged_customer) {
             return "privileged";
         }
-        if (p.customer_vip) {
+        if (p.customer_vip_card) {
             return "vip";
         }
     }

@@ -11,3 +11,5 @@ export {
     ModalComponent, ModalModule,
     TimerComopnent, TimeModule
 } from '../../../x/ng';
+
+export { NoticeComponent } from '../../../../lib/ng2';

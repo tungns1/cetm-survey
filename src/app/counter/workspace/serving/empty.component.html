@@ -1,4 +1,4 @@
-<div *ngIf="!(busy$ | async)" class="border emptyAndServing" fxShow.xs="false">
+<div class="border emptyAndServing" fxShow.xs="false">
     <div class="componentHeader">
         <span i18n>Service Name</span>
     </div>
@@ -10,13 +10,15 @@
     </div>
 </div>
 
-<div *ngIf="!(busy$ | async)" fxShow.gt-xs="false" class="emptyAndServing" fxLayout="row">
+<div fxShow.gt-xs="false" class="emptyAndServing" fxLayout="row">
     <div fxFlex="75%">
         <div i18n>Ticket</div>
         <div class="holder"></div>
     </div>
     <div fxFlex class="servingTimeContainer">
-        <div i18n>Tiempo</div>
+        <div i18n>Time</div>
         <div class="holder"></div>
     </div>
 </div>
+
+<ticket-action></ticket-action>
