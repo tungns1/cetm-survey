@@ -8,7 +8,7 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view id="serviceEditor" class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
@@ -28,8 +28,6 @@
                 <input fxFlex class="hl-input" type="number" formControlName="priority" i18n-placeholder placeholder="Priority">
             </div>
         </div>
-
-        <l10n-form formControlName="l10n"></l10n-form>
 
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n="Định dạng số vé">Ticket Number Format</span>
@@ -51,10 +49,8 @@
                 </select>
             </div>
         </div>
-        <!--<div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span>Calling required for Vip</span>
-            <input type="checkbox" formControlName="call_for_vip">
-        </div>-->
+
+        <l10n-form formControlName="l10n"></l10n-form>
 
     </form>
 </app-editor-view>
