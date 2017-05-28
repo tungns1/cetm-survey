@@ -10,7 +10,7 @@
         <h3 fxFlex="15%" class="center" i18n>Enable</h3>
         <h3 fxFlex class="center" i18n>Name</h3>
     </div>
-    <div class="divider margin-b-10"></div>
+    <div class="divider margin-b-10" *ngIf="records[0]"></div>
     <div fxLayout="row" *ngFor="let r of records">
         <md-checkbox fxFlex="15%" class="margin-0 center" color="primary" [(ngModel)]="r.enabled" (ngModelChange)="enable(r)"></md-checkbox>
         <div fxFlex fxLayout="row">

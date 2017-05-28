@@ -44,8 +44,4 @@ export class GenericFormComponent {
     this.dialog.close(null)
   }
 
-  toggleEditable() {
-    this.disableEditTextArea = !this.disableEditTextArea;
-  }
-
 }
