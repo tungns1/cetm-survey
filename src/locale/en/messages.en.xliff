@@ -20,6 +20,14 @@
         <target/>
         <note priority="1" from="description">Confirm No</note>
       </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="dbac9f29c8e73cad6484af55857493d6b0cf4177" datatype="html">
+        <source>Export to excel</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="d076adbb3fab5be167493b385b0bab2e710998ed" datatype="html">
         <source>Hello</source>
         <target/>
@@ -36,6 +44,10 @@
         <source>Logout</source>
         <target/>
       </trans-unit>
+      <trans-unit id="5edf054f14aa57bc25a28cb7db01956fee53dac8" datatype="html">
+        <source>Change Password</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="5f559944294214b9f7bf5d268583d5dc045b741f" datatype="html">
         <source>User Setting</source>
         <target/>
@@ -44,8 +56,20 @@
         <source>Language</source>
         <target/>
       </trans-unit>
-      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
-        <source>Close</source>
+      <trans-unit id="4ad47fba753bd89ce442197653ce65004eff1e6d" datatype="html">
+        <source>Old Password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8c690cf303d91c65315c534f4f9afe4c8256a0b2" datatype="html">
+        <source>Pass Word</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c7014c6360e94b236286b869c3fe0ea9911c0387" datatype="html">
+        <source>New Password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7f41ea996cd96f8096dda098d181970fb60b7c4b" datatype="html">
+        <source>Retype New Password</source>
         <target/>
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
@@ -104,8 +128,8 @@
         <source>Customer</source>
         <target/>
       </trans-unit>
-      <trans-unit id="571f9ef0c9fbaf63b379de82654d78c9bd06fe52" datatype="html">
-        <source>Kiosk Effective</source>
+      <trans-unit id="dd29640ae12d9b50b2221abddab83a3877f95e4c" datatype="html">
+        <source>Kiosk Effectiveness</source>
         <target/>
       </trans-unit>
       <trans-unit id="036a7702632b485afb0e2f33a3533937ea3eeef3" datatype="html">
@@ -203,16 +227,28 @@
         <source>Progress</source>
         <target/>
       </trans-unit>
+      <trans-unit id="ad4b37a5b17d4849bd0cd2676f15aad6ea7bdae4" datatype="html">
+        <source>Files list</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b5211f829895f0898602bbcc8aed26734a4e3f25" datatype="html">
+        <source>File name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="830990bbf6302f8747f962982a123c69497218ed" datatype="html">
+        <source>Detail</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9ca82952a6bc860b5391d5975322d8af8ceddfa4" datatype="html">
+        <source>Select</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58dafe8890836c0ad935d831894e2d3539483707" datatype="html">
+        <source>Show Code</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="ac6c9212896d39b23811ed2dadab7d07336ec559" datatype="html">
         <source>Enable</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
-        <source>Type</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="5ad4eecbd0fe09c34678fefce317a052af39dc96" datatype="html">
-        <source>Data</source>
         <target/>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
@@ -255,20 +291,21 @@
         <source>Role</source>
         <target/>
       </trans-unit>
+      <trans-unit id="ade0a4962a6170e72d68d47012b688dd69684509" datatype="html">
+        <source>Service Priority</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="b74af38005e8a8914e45af2ec412e11ceafef8b6" datatype="html">
         <source>Priority</source>
         <target/>
-        <note priority="1" from="description">Mức ưu tiên dịch vụ</note>
       </trans-unit>
       <trans-unit id="6a67688bf8fcb5a6aa95d507dfa95c8039d89d06" datatype="html">
         <source>Ticket Number Format</source>
         <target/>
-        <note priority="1" from="description">Định dạng số vé</note>
       </trans-unit>
-      <trans-unit id="b74a4216aa9d9938c172dd9b4d748b9ec15863f3" datatype="html">
-        <source>VIP Ticket Number Format</source>
+      <trans-unit id="37b2b30c0fe168d36fb7816368db65915e1d6c9e" datatype="html">
+        <source>Restricted Ticket Number Format</source>
         <target/>
-        <note priority="1" from="description">Định dạng số vé vip</note>
       </trans-unit>
       <trans-unit id="17f89aaf700f3dbdae17936f52eb0be8e4bc2cd9" datatype="html">
         <source>Number Format</source>
@@ -288,6 +325,10 @@
       </trans-unit>
       <trans-unit id="50914def9b9b29a7e760e8463ec25d4adfbeb68c" datatype="html">
         <source>Layout Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ffde342dc48f0b074d3dbcbb2f665216a2dd3deb" datatype="html">
+        <source>Resource</source>
         <target/>
       </trans-unit>
       <trans-unit id="fbcb0d75afbe6aec04269381598a737f4bd19db7" datatype="html">
@@ -328,10 +369,6 @@
         <source>Counters</source>
         <target/>
       </trans-unit>
-      <trans-unit id="d2a3fc67944a5e8c6a17c546a29690d7e3b41b60" datatype="html">
-        <source>Service ID</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="88ff44636e701d6140175ad3532cafc9d784531b" datatype="html">
         <source>Ticket Format</source>
         <target/>
@@ -340,16 +377,16 @@
         <source>Ticket Format Vip</source>
         <target/>
       </trans-unit>
-      <trans-unit id="158902c46d9250aea022aeaa41b004d4d9e6b47f" datatype="html">
-        <source>Feedback Device</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="5e417d8f699f0496ee639fc3ac8f810193ba0e4f" datatype="html">
         <source>Feedback Required</source>
         <target/>
       </trans-unit>
-      <trans-unit id="37b0d6f424934e995c7d2d45fec6231257536fce" datatype="html">
-        <source>Waiting Tickets List </source>
+      <trans-unit id="750406d527ed87fdbaa4aa68476377291aa860b5" datatype="html">
+        <source>Service Basket</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b19baa6979ab9c03b1fd2a703523edebdc0388a1" datatype="html">
+        <source>Waiting-Ticket List </source>
         <target/>
       </trans-unit>
       <trans-unit id="27634638ac68edd16b5a107ea29e52e1bab80b25" datatype="html">
@@ -366,6 +403,14 @@
       </trans-unit>
       <trans-unit id="bdc761034de48c63e5b28bc22db74ca69eee1cf0" datatype="html">
         <source>Last Call</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e66d44a1e83ac11b175a1b90d837c5e3930f2586" datatype="html">
+        <source>Cancelled Tickets</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="be203fd58cd5c91889676923ce687805a8ca08b5" datatype="html">
+        <source>Cancelled At</source>
         <target/>
       </trans-unit>
       <trans-unit id="a3316259ff8ff2b9f44f1c669c30e988d63723f9" datatype="html">
@@ -388,30 +433,29 @@
         <source>Transfer Service</source>
         <target/>
       </trans-unit>
-      <trans-unit id="9a559d4aeada6549bf8f703e410b2dc42444f0a8" datatype="html">
-        <source>Missing Time</source>
+      <trans-unit id="80a961e4f6b5c98eaa610ce26bfc753771f7e124" datatype="html">
+        <source>Cancelled Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="d5cec7468241d72cafd86ad1af6d55b09a6e3ae5" datatype="html">
+        <source>Restore</source>
         <target/>
       </trans-unit>
       <trans-unit id="fa14e4f3b3485902b002b2b8c13a4cb9171f256e" datatype="html">
         <source>Transfer Counter</source>
         <target/>
       </trans-unit>
-      <trans-unit id="57cf305f9bfd681c70dc26e914108d06384ade9f" datatype="html">
-        <source>Move</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="80fffab2a71b05b6a9b969885f1dad0522617b3b" datatype="html">
-        <source>Recall</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="c9a7baacb94aa2bd97e52528a673851f90d597b2" datatype="html">
         <source>Call</source>
         <target/>
       </trans-unit>
-      <trans-unit id="9eb0dc5386b63112866c0717119bf7eed4cc8d51" datatype="html">
-        <source>Do you want to delete the selected item?</source>
+      <trans-unit id="57cf305f9bfd681c70dc26e914108d06384ade9f" datatype="html">
+        <source>Move</source>
         <target/>
-        <note priority="1" from="description">Confirm Delete</note>
+      </trans-unit>
+      <trans-unit id="e432091b33fd62b106a504cf2c116069e2515a14" datatype="html">
+        <source>Do you want to cancel this ticket?</source>
+        <target/>
       </trans-unit>
       <trans-unit id="439f52aa8ac44f507f99984a3ef9f29d72e99b32" datatype="html">
         <source>Customer No Feedback</source>
@@ -469,10 +513,6 @@
         <source>Serving Time</source>
         <target/>
       </trans-unit>
-      <trans-unit id="9c790d5bee4c4254d1fd58f05c0b43f413c6ca5a" datatype="html">
-        <source>Tiempo</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
         <source>Next</source>
         <target/>
@@ -483,6 +523,11 @@
         <target/>
         <note priority="1" from="description">Counter Button: Auto Next</note>
       </trans-unit>
+      <trans-unit id="80fffab2a71b05b6a9b969885f1dad0522617b3b" datatype="html">
+        <source>Recall</source>
+        <target/>
+        <note priority="1" from="description">Counter Button: Recall Ticket</note>
+      </trans-unit>
       <trans-unit id="adf381d9e091ea441b130ab3d5d56d6ab38440f4" datatype="html">
         <source>Miss</source>
         <target/>
@@ -492,10 +537,6 @@
         <source>Finish</source>
         <target/>
         <note priority="1" from="description">Counter Button: Finish Ticket</note>
-      </trans-unit>
-      <trans-unit id="0a0511872194dafdb11ba2c44f1f03d78cb6a820" datatype="html">
-        <source>Client</source>
-        <target/>
       </trans-unit>
       <trans-unit id="c6047cf601779775f7f91fa14b47fb8bccff538f" datatype="html">
         <source>Customer Name</source>
@@ -593,8 +634,8 @@
         <source>Number of tickets already served</source>
         <target/>
       </trans-unit>
-      <trans-unit id="ae1ccbc1bff9faa4e7129d570f1d5d04cbcaa391" datatype="html">
-        <source>Number of reserved tickets</source>
+      <trans-unit id="fb46550325157fa64e14e71fda347a310116deac" datatype="html">
+        <source>Number of missed tickets</source>
         <target/>
       </trans-unit>
       <trans-unit id="b91d9b157083a437041f5afbec7e39d8d8fd380c" datatype="html">
@@ -613,12 +654,8 @@
         <source>Time of ticket printed</source>
         <target/>
       </trans-unit>
-      <trans-unit id="997e550a138aaa5de86e5b2da8ba376e46a72799" datatype="html">
-        <source>Tellers</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="1c68a390d82bd4de0df9148716e6403dc2e82332" datatype="html">
-        <source>Code ID</source>
+      <trans-unit id="d52468c207a3650cb8fad1e75b7dc45cf5cafb31" datatype="html">
+        <source>Customer Code</source>
         <target/>
       </trans-unit>
       <trans-unit id="41dc4d44985323638e3d8ce5fba7b88133d029fb" datatype="html">
@@ -643,10 +680,6 @@
       </trans-unit>
       <trans-unit id="ef0e49a2b772a71bd772fdd5b20c2328c8be0a39" datatype="html">
         <source>Services incomplete</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="830990bbf6302f8747f962982a123c69497218ed" datatype="html">
-        <source>Detail</source>
         <target/>
       </trans-unit>
       <trans-unit id="fc64b64086f26c2eeadacdd890d56e3be535854a" datatype="html">
@@ -737,10 +770,6 @@
         <source>Serving Duration</source>
         <target/>
       </trans-unit>
-      <trans-unit id="d52468c207a3650cb8fad1e75b7dc45cf5cafb31" datatype="html">
-        <source>Customer Code</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="b8bc60c0de2c620891fc7b0f93f63f0c083f4261" datatype="html">
         <source>Customer Segment</source>
         <target/>
@@ -753,16 +782,8 @@
         <source>Gerenal</source>
         <target/>
       </trans-unit>
-      <trans-unit id="dd29640ae12d9b50b2221abddab83a3877f95e4c" datatype="html">
-        <source>Kiosk Effectiveness</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="53635f07aee69fc9940973bfd604eed26af53412" datatype="html">
         <source>Serving Time </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="dbac9f29c8e73cad6484af55857493d6b0cf4177" datatype="html">
-        <source>Export to excel</source>
         <target/>
       </trans-unit>
       <trans-unit id="2bb26a807288414fa8f92051bf3717e496605ecd" datatype="html">
@@ -901,8 +922,32 @@
         <source>Transaction feedback</source>
         <target/>
       </trans-unit>
+      <trans-unit id="85b4c82a0ced7f22dfe606ac9101acc2d8a352a6" datatype="html">
+        <source>Finished Transaction Percent</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="3ac4a57b727c3a132a3245f4c5bf03a49337492b" datatype="html">
         <source>Canceled Transaction</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8338664ea63d7f312f381900e601b8d07b0c80a1" datatype="html">
+        <source>Canceled Transaction Percent</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6c3d2788cd642dd4363e68afd494adffdae09394" datatype="html">
+        <source>Standard Waiting Time Transaction Percent</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="82cbaa5650726a3aea5d4e4108c979e91a25dd56" datatype="html">
+        <source>Exceeded Waiting Time Transaction Percent</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0915d3613a667c4cee19ed56d9fa44520410dd02" datatype="html">
+        <source>Standard Serving Time Transaction Percent</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="ceb15fd6dad2d0351002b62f77f732348f6f94d7" datatype="html">
+        <source>Exceeded Serving Time Transaction Percent</source>
         <target/>
       </trans-unit>
       <trans-unit id="88190b0877bc31e7bdc495966165dbeb257cf193" datatype="html">
@@ -937,16 +982,8 @@
         <source>Store Name</source>
         <target/>
       </trans-unit>
-      <trans-unit id="2c96ff5d6a0378ca9b4cee3f8b6ca49bb090f2b1" datatype="html">
-        <source>Number Of Transaction </source>
-        <target/>
-      </trans-unit>
       <trans-unit id="86dbb317e066f88907098d292d099b13dc784d71" datatype="html">
         <source>Most Used Service</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="3d0d53a3d2afc215138283193fbd448f6b7d421b" datatype="html">
-        <source>Code/ID</source>
         <target/>
       </trans-unit>
       <trans-unit id="4ed96b9d12999e7d329e55ef9041ee7b66aa7ee7" datatype="html">
@@ -1065,32 +1102,40 @@
         <source>Store Name </source>
         <target/>
       </trans-unit>
+      <trans-unit id="c83041a1a876b6effd8c22e816ba441eedf18b82" datatype="html">
+        <source>User Code</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4fcb6dbd1b656de4f606e061af0ed606d3fdc547" datatype="html">
+        <source>User Name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="709a92dfd609726c7273862601208568457bc09b" datatype="html">
+        <source>Date Login</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7a9b64fced391852c15c394451db05b1c44d34fa" datatype="html">
+        <source>Login Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="605b4383d96646f1aa6c351b1c2b7cf27c68a79c" datatype="html">
+        <source>Date Logout</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="dd4159d982f20e78165e2b8d85186fc2b51dc160" datatype="html">
+        <source>Logout Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3f31fdf0a1cbb78122b8ce8e839fd6a8680db5af" datatype="html">
+        <source>Total Connection Time</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="9ae6c688ef07ddba653efe0f30d569882248b43a" datatype="html">
         <source>User code</source>
         <target/>
       </trans-unit>
       <trans-unit id="024886ca34a6f309e3e51c2ed849320592c3faaa" datatype="html">
         <source>User name</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="4ae6ab4d55e1c9a1437efd8be174a48b6947046b" datatype="html">
-        <source>Date login</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="059adf377e7f867226785baefae4c1b3920bfd8d" datatype="html">
-        <source>Login time</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="b6c5bb21fb141d43c49d458e33e287864deae7c3" datatype="html">
-        <source>Date logout</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="1f9121bbeeb2066812fb45793d2fdf9484a5db65" datatype="html">
-        <source>Logout time</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="12981c5ce00a847342fed7c4d295441e9db617a5" datatype="html">
-        <source>Total connection time</source>
         <target/>
       </trans-unit>
       <trans-unit id="d2c32b1d830519263945169688985a4ccd820742" datatype="html">
@@ -1145,20 +1190,12 @@
         <source>Discarded</source>
         <target/>
       </trans-unit>
-      <trans-unit id="73a40cd84f61dc910f72dea9bb30a96bd71c0e81" datatype="html">
-        <source>%Discarded</source>
+      <trans-unit id="4c6ed6432d9966baff5d3451c6226974c5f6d069" datatype="html">
+        <source>Teap</source>
         <target/>
       </trans-unit>
-      <trans-unit id="e9b135789b88b1cf0d89e024a26b292dbc5d9705" datatype="html">
-        <source>%Exceeded</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="4e5173772abef22ca13df1a7f5aca460de6635fb" datatype="html">
-        <source>%Teap</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="02d928f94f75bc38df2af616243a469d6a5973c4" datatype="html">
-        <source>%Dap</source>
+      <trans-unit id="52ebc6e08ba314deaf561fdfdad6fa4291029ec0" datatype="html">
+        <source>Dap</source>
         <target/>
       </trans-unit>
       <trans-unit id="ad20377559b1cd37ba53189f55ed7d0d18faf3c5" datatype="html">
@@ -1181,8 +1218,8 @@
         <source>Abandoned</source>
         <target/>
       </trans-unit>
-      <trans-unit id="c291d234baec010d07ea4f2c0486124b7d355c8a" datatype="html">
-        <source>%Occupied</source>
+      <trans-unit id="ad79ee19fea3b344542a227945c72f446051e284" datatype="html">
+        <source>Occupied</source>
         <target/>
       </trans-unit>
       <trans-unit id="4352c29c2d18a9c1682c0e67030eba09a1c3ea52" datatype="html">
@@ -1195,74 +1232,6 @@
       </trans-unit>
       <trans-unit id="790e0aea6fa8e43ab0763c16ee0b43989f478b94" datatype="html">
         <source>General Application Setting</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="a1bde7f96fd2647f1a7dd5752ca21c3bd4773f73" datatype="html">
-        <source>Waiting Time Transaction</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="230cc74f31e5b7651ae66df0529cb5a57dbefb5b" datatype="html">
-        <source>max waiting</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="eb2eb45e4f1b8d7027abf571e0050d7e7fd2f374" datatype="html">
-        <source>Serving Time Transaction</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="2bcadea601eaf1fa5f9e261cae91d24f6f7d7505" datatype="html">
-        <source>max serving</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="57408663c2c864aa11c9fca9ff618bb2b604bd8a" datatype="html">
-        <source>Auto Finish Time</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="98216ccf48905d642aae8df362a5deb89073bff9" datatype="html">
-        <source>auto finish</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="68f9b177869ae86be9c4b65de4b9095272f5c1b9" datatype="html">
-        <source>Waiting Time Transaction rate</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="fb13fafd2db0d6faa7170e6fe970ac1c78d6ddb9" datatype="html">
-        <source>(%)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="a68bf241316e5d99f555821ac0a026023b854f07" datatype="html">
-        <source>waiting rate</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="9e5ddfeb133a7405b7e85f76243e3fcc830b5f3c" datatype="html">
-        <source>Serving Time Transaction rate</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="34c0609389837d72abbc653f06bce1849491677e" datatype="html">
-        <source>serving rate</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="ac5c5b8537609ef20766182fff0bf7660cec577b" datatype="html">
-        <source>Priority for service</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="65a2c55e1c706e8ae8e1c894510d43ab1be9d91b" datatype="html">
-        <source>Priority for customer priority</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="6152850b1d726b54bcf406a31280066e914c4f71" datatype="html">
-        <source>Priority for vip card</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="68212a2ad3f0559bf3f8620be34f6ac30aba0d0e" datatype="html">
-        <source>Priority for customer vip</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="a53ecbeb226ca6e079367d7f1ca8fbb1f570a47a" datatype="html">
-        <source>Priority for ticket online</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="bcde4f810b818a73de308b7b6cb4cc46f2d28e8e" datatype="html">
-        <source>Min priority for button call</source>
         <target/>
       </trans-unit>
       <trans-unit id="5646cd29797a2ebcbde46bbabaffeb1e89ba7765" datatype="html">

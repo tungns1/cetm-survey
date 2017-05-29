@@ -3,42 +3,42 @@
     <form [formGroup]="form" class="form-setup">
         <div>
             <div>
-                <span class="uppercase inline font-bold-setup" i18n>Waiting Time Transaction</span>
-                <span class="note margin-l-5" i18n>(minute)</span>
+                <span class="uppercase inline font-bold-setup">Waiting Time Transaction</span>
+                <span class="note margin-l-5">(minute)</span>
             </div>
-            <input class="hl-input-setup" type="number" min="0" formControlName="max_waiting" i18n-placeholder placeholder="max waiting">
+            <input class="hl-input-setup" type="number" min="0" formControlName="max_waiting" placeholder="Max Waiting Time">
         </div>
         <div>
             <div>
-                <span class="uppercase inline font-bold-setup" i18n>Serving Time Transaction</span>
-                <span class="note margin-l-5" i18n>(minute)</span>
+                <span class="uppercase inline font-bold-setup">Serving Time Transaction</span>
+                <span class="note margin-l-5">(minute)</span>
             </div>
 
-            <input class="hl-input-setup" type="number" min="0" formControlName="max_serving" i18n-placeholder placeholder="max serving">
+            <input class="hl-input-setup" type="number" min="0" formControlName="max_serving" placeholder="Max Serving Time">
         </div>
         <div>
             <div>
-                <span class="uppercase inline font-bold-setup" i18n>Auto Finish Time</span>
-                <span class="note margin-l-5" i18n>(minute)</span>
+                <span class="uppercase inline font-bold-setup">Auto Finish Time</span>
+                <span class="note margin-l-5">(minute)</span>
             </div>
 
-            <input class="hl-input-setup" type="number" min="0" formControlName="auto_finish" i18n-placeholder placeholder="auto finish">
+            <input class="hl-input-setup" type="number" min="0" formControlName="auto_finish" placeholder="Auto Finish Time">
         </div>
         <div>
             <div>
-                <span class="uppercase inline font-bold-setup" i18n>Waiting Time Transaction rate</span>
-                <span class="note margin-l-5" i18n>(%)</span>
+                <span class="uppercase inline font-bold-setup">Waiting Time Transaction rate</span>
+                <span class="note margin-l-5">(%)</span>
             </div>
 
-            <input class="hl-input-setup" type="number" min="0" formControlName="waiting_rate" i18n-placeholder placeholder="waiting rate">
+            <input class="hl-input-setup" type="number" min="0" formControlName="waiting_rate" placeholder="waiting rate">
         </div>
         <div>
             <div>
-                <span class="uppercase inline font-bold-setup" i18n>Serving Time Transaction rate</span>
-                <span class="note margin-l-5" i18n>(%)</span>
+                <span class="uppercase inline font-bold-setup">Serving Time Transaction rate</span>
+                <span class="note margin-l-5">(%)</span>
             </div>
 
-            <input class="hl-input-setup" type="number" min="0" formControlName="serving_rate" i18n-placeholder placeholder="serving rate">
+            <input class="hl-input-setup" type="number" min="0" formControlName="serving_rate" placeholder="serving rate">
         </div>
         <button class="btnFill submit-setup" (click)="Submit()">Submit</button>
     </form>

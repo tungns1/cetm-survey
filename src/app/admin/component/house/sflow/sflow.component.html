@@ -19,7 +19,7 @@
                     <option [value]="store.id" *ngFor="let store of stores">{{store.name}}</option>
                 </select>
             </div>
-            <span fxFlex="20%" i18n>Service ID</span>
+            <span fxFlex="20%" i18n>Service</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('service_id').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('service_id').hasError('required')">&nbsp;</span>

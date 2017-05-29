@@ -1,1026 +1,1022 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="vi">
+  <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="es">
     <header>
       <tool tool-id="poeditor.com" tool-name="POEditor"/>
     </header>
     <body>
       <trans-unit id="efac3af0b32e953279c25b6519cae256811e0fe8">
         <source>History</source>
-        <target>Lịch sử giao dịch</target>
+        <target>Histórico</target>
       </trans-unit>
       <trans-unit id="dff8d13a770e6a5d4fa1923462c6a7b974409592">
         <source>Customer</source>
-        <target>Khách hàng</target>
+        <target>Cliente</target>
       </trans-unit>
       <trans-unit id="036a7702632b485afb0e2f33a3533937ea3eeef3">
         <source>Monitor</source>
-        <target>Giám sát</target>
+        <target>Monitor</target>
       </trans-unit>
       <trans-unit id="a542432f0f03637a257aabb20a20cc6a111a7ba9">
         <source>Kiosk</source>
-        <target>Kiosk</target>
+        <target>Quiosco</target>
       </trans-unit>
       <trans-unit id="a06ab1b5e5c1e6c11e3e0d9f1598c9c6c6be882c">
         <source>Ticket Layout</source>
-        <target>Cấu hình vé</target>
+        <target>Diseño de ticket</target>
       </trans-unit>
       <trans-unit id="9ddf964b8522432df2a1b0d61389fc448f6d0712">
         <source>Screen</source>
-        <target>Màn hình trung tâm</target>
+        <target>Pantalla</target>
       </trans-unit>
       <trans-unit id="e9b20820eab2b7caad859fd12f5e211cdb4eae88">
         <source>Feedback</source>
-        <target>Phản hồi</target>
+        <target>Retroalimentación</target>
       </trans-unit>
       <trans-unit id="50d12307ecc2becd19a02a0cecac3d5835d357fe">
         <source>List Of <x id="INTERPOLATION"/></source>
-        <target>Danh sách <x id="INTERPOLATION"/></target>
+        <target>Lista de <x id="INTERPOLATION"/></target>
       </trans-unit>
       <trans-unit id="8675a724bb3952337aef7625c81b11e39a82d31b">
         <source>No.</source>
-        <target>STT</target>
+        <target>N°</target>
         <note>Ordered number in table</note>
       </trans-unit>
       <trans-unit id="1bd5e17c9582661e20763a7634ef07881e33bbd7">
         <source>Action</source>
-        <target>Sửa/Xóa</target>
+        <target>Accción</target>
       </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7">
         <source>Cancel</source>
-        <target>Hủy</target>
+        <target>Cancelar</target>
       </trans-unit>
       <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9">
         <source>Add</source>
-        <target>Thêm</target>
+        <target>Agregar</target>
+        <note>This is not to add two variables. It means to insert or create a new configuration</note>
       </trans-unit>
       <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe">
         <source>Save</source>
-        <target>Lưu</target>
+        <target>Guardar</target>
       </trans-unit>
       <trans-unit id="4f20f2d5a6882190892e58b85f6ccbedfa737952">
         <source>Yes</source>
-        <target>Có</target>
+        <target>SI</target>
         <note>Confirm yes</note>
       </trans-unit>
       <trans-unit id="3d3ae7deebc5949b0c1c78b9847886a94321d9fd">
         <source>No</source>
-        <target>Không</target>
+        <target>No</target>
         <note>Cancel</note>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7">
         <source>Delete</source>
-        <target>Xóa</target>
+        <target>Eliminar</target>
       </trans-unit>
       <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06">
         <source>View</source>
-        <target>Xem</target>
+        <target>Ver</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59">
         <source>Name</source>
-        <target>Tên</target>
+        <target>Nombre</target>
       </trans-unit>
       <trans-unit id="68572de01b84c678be4bf8a27b990ecac2f41ce9">
         <source>Code</source>
-        <target>Mã</target>
+        <target>Código</target>
       </trans-unit>
       <trans-unit id="567ae7c008e8c6298cd7f2baaabbea6ef4127393">
         <source>Parent Location</source>
-        <target>Địa chỉ cha</target>
+        <target>Ubicación principal</target>
+        <note>please explain the context</note>
       </trans-unit>
       <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48">
         <source>Username</source>
-        <target>Tên đăng nhập</target>
+        <target>Nombre de usuario</target>
       </trans-unit>
       <trans-unit id="484b0e541230d60ddb5fbd771a34a5c8d90e7a57">
         <source>Full Name</source>
-        <target>Họ và tên</target>
+        <target>Nombre completo</target>
       </trans-unit>
       <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407">
         <source>Password</source>
-        <target>Mật khẩu</target>
+        <target>Contraseña</target>
       </trans-unit>
       <trans-unit id="c36a66f2107e8da5371ebc9d15c2008dff567f46">
         <source>Role</source>
-        <target>Chức vụ</target>
+        <target>Rol</target>
       </trans-unit>
       <trans-unit id="ed31c09fd77c36238c13d83635f3fe5294c733d2">
         <source>Location</source>
-        <target>Địa điểm</target>
+        <target>Ubicación</target>
+        <note>Depemd on the context can be another word</note>
       </trans-unit>
       <trans-unit id="b74af38005e8a8914e45af2ec412e11ceafef8b6">
         <source>Priority</source>
-        <target>Ưu tiên</target>
+        <target>Prioridad</target>
         <note>Mức ưu tiên dịch vụ</note>
       </trans-unit>
       <trans-unit id="88ff44636e701d6140175ad3532cafc9d784531b">
         <source>Ticket Format</source>
-        <target>Định dạng vé</target>
+        <target>Formato de ticket</target>
       </trans-unit>
       <trans-unit id="17f89aaf700f3dbdae17936f52eb0be8e4bc2cd9">
         <source>Number Format</source>
-        <target>Định dạng số</target>
+        <target>Formato de número</target>
       </trans-unit>
       <trans-unit id="47d7c77be2ca1b5a9d3daf2f1c1ae582bec94608">
         <source>Minimum Value</source>
-        <target>Giá trị nhỏ nhất</target>
+        <target>Valor mínimo</target>
       </trans-unit>
       <trans-unit id="785fb65be4f15d2392d38d08255a18ba3688f153">
         <source>Layout</source>
-        <target>Bố cục </target>
+        <target>Diseño</target>
       </trans-unit>
       <trans-unit id="50914def9b9b29a7e760e8463ec25d4adfbeb68c">
         <source>Layout Type</source>
-        <target>Cách bố trí</target>
+        <target>Tipo de diseño</target>
       </trans-unit>
       <trans-unit id="7faaaa08f56427999f3be41df1093ce4089bbd75">
         <source>Size</source>
-        <target>Kích cỡ</target>
+        <target>Tamaño</target>
       </trans-unit>
       <trans-unit id="15793f4cbc261bedbc60f7105533dde536a3f42b">
         <source>Progress</source>
-        <target>Tiến độ</target>
+        <target>Progreso</target>
       </trans-unit>
       <trans-unit id="fbcb0d75afbe6aec04269381598a737f4bd19db7">
         <source>Number</source>
-        <target>Số</target>
+        <target>Número</target>
       </trans-unit>
       <trans-unit id="5b49b2048ba380f6e8e9d15e3cfee50389f7a7fd">
         <source>Led Address</source>
-        <target>Địa chỉ led</target>
+        <note>explain context</note>
       </trans-unit>
       <trans-unit id="419d940613972cc3fae9c8ea0a4306dbf80616e5">
         <source>Services</source>
-        <target>Dịch vụ</target>
+        <target>Servicios</target>
       </trans-unit>
       <trans-unit id="383fb610b5d24aaab08bd531f3e2bbf2727ac3bc">
         <source>Counters</source>
-        <target>Quầy</target>
+        <target>Ventanillas</target>
       </trans-unit>
       <trans-unit id="d2a3fc67944a5e8c6a17c546a29690d7e3b41b60">
         <source>Service ID</source>
-        <target>Mã dịch vụ</target>
+        <target>ID de servicios\nIdentificador de servicios</target>
       </trans-unit>
       <trans-unit id="516a265737b7ff487f27867eced84aac3fefddee">
         <source>Ticket Format Vip</source>
-        <target>Định dạng vé vip</target>
+        <target>Formato de ticket VIP</target>
       </trans-unit>
       <trans-unit id="5e417d8f699f0496ee639fc3ac8f810193ba0e4f">
         <source>Feedback Required</source>
-        <target>Bắt buộc phản hồi</target>
+        <target>Retroalimentación requerida</target>
       </trans-unit>
       <trans-unit id="56d460b30ecda6986f8e2e2f855f655bfd6758d1">
         <source>System Login</source>
-        <target>Đăng nhập hệ thống</target>
+        <target>Acceso al sistema</target>
       </trans-unit>
       <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9">
         <source>Login</source>
-        <target>Đăng nhập</target>
+        <target>Iniciar sesión</target>
       </trans-unit>
       <trans-unit id="27634638ac68edd16b5a107ea29e52e1bab80b25">
         <source>Service Name</source>
-        <target>Tên dịch vụ</target>
+        <target>Nombre del servicio</target>
       </trans-unit>
       <trans-unit id="a9a83c4bc21496a8428f634eb35ebba5d0b8eace">
         <source>Waiting Time</source>
-        <target>Thời gian đợi</target>
+        <target>Tiempo de espera</target>
       </trans-unit>
       <trans-unit id="e7b9417374517cf3d83c302c3b396825c1ec73b4">
         <source>Standard waiting time transaction</source>
-        <target>Giao dịch đợi chuẩn</target>
+        <target>Nivel de tiempo de espera para la transacción</target>
       </trans-unit>
       <trans-unit id="5bb4a09a669f55893c9a37a8480c8fa3f7ce5702">
         <source>Month</source>
-        <target>Tháng</target>
+        <target>Mes</target>
       </trans-unit>
       <trans-unit id="a3316259ff8ff2b9f44f1c669c30e988d63723f9">
         <source>Ticket Detail</source>
-        <target>Chi tiết vé</target>
+        <target>Detalle de ticket</target>
       </trans-unit>
       <trans-unit id="d513d59bd12c48e7cd1b557e62593dcf20efb0ba">
         <source>Ticket</source>
-        <target>Vé</target>
+        <target>Ticket</target>
       </trans-unit>
       <trans-unit id="2a6d6fb8311d9cec38707135c5893c1ef55ab585">
         <source>Print Time</source>
-        <target>Thời điểm in vé</target>
+        <target>Hora de impresión</target>
       </trans-unit>
       <trans-unit id="c8450cc0501131d02c1bb35e1ef6c991a5bdb132">
         <source>Start Serving</source>
-        <target>Bắt đầu phục vụ</target>
+        <target>Inicio de atención</target>
       </trans-unit>
       <trans-unit id="7bcd15684a37f55b61f52474e02d3b424afa4e0d">
         <source>Transfer Service</source>
-        <target>Chuyển dịch vụ</target>
+        <target>Transferir servicio</target>
       </trans-unit>
       <trans-unit id="fa14e4f3b3485902b002b2b8c13a4cb9171f256e">
         <source>Transfer Counter</source>
-        <target>Chuyển quầy</target>
+        <target>Transferir ventanilla</target>
       </trans-unit>
       <trans-unit id="57cf305f9bfd681c70dc26e914108d06384ade9f">
         <source>Move</source>
-        <target>Chuyển</target>
+        <target>Mover</target>
       </trans-unit>
       <trans-unit id="80fffab2a71b05b6a9b969885f1dad0522617b3b">
         <source>Recall</source>
-        <target>Gọi lại</target>
+        <target>Rellamar</target>
         <note>Counter Button: Recall Ticket</note>
       </trans-unit>
       <trans-unit id="2ff793b365031e11db405f5226bf78d18adf7b21">
         <source>Please remind customer feedback to finish transaction or management contact to finish transaction</source>
-        <target>Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch hoặc nhờ quản lý kết thúc giao dịch</target>
+        <target>Por favor recordar al cliente la retroalimentación al terminar la transacción</target>
+        <note>Please, make clear the intention for this sentence for full translating</note>
       </trans-unit>
       <trans-unit id="6fc5b79553b73666f4484aed364c53c44b92ea29">
         <source>Username Manager</source>
-        <target>Tên quản lý</target>
+        <target>Nombre de usuario de administrador</target>
       </trans-unit>
       <trans-unit id="2c5ff8fa9c9aaec93f97e37c9a0edcd797194573">
         <source>Send</source>
-        <target>Gửi</target>
+        <target>Enviar</target>
       </trans-unit>
       <trans-unit id="f6cd0d3e1420a28e2a538fda8ded1cb793dce064">
         <source>Transaction Summary</source>
-        <target>Thống kê giao dịch</target>
+        <target>Reusmen de transacciones</target>
       </trans-unit>
       <trans-unit id="047271848715195b6095dd76608fc6c02ce0752f">
         <source>Finished Transaction</source>
-        <target>Giao dịch kết thúc</target>
+        <target>Transacción finalizada</target>
       </trans-unit>
       <trans-unit id="40975cfe373fe785c3f62357a85102834faafbe6">
         <source>Cancelled Transaction</source>
-        <target>Giao dịch bị hủy</target>
+        <target>Transacción cancelada</target>
       </trans-unit>
       <trans-unit id="70a3c167bf00119466c1c46d1a7919977e11f1ba">
         <source>Time of ticket called</source>
-        <target>Thời điểm gọi vé</target>
+        <target>Hora de llamada de ticket</target>
       </trans-unit>
       <trans-unit id="e6adc5aabc68431074225f7063893cafab8311b4">
         <source>Ticket Status</source>
-        <target>Trạng thái vé</target>
+        <target>Estado de ticket</target>
       </trans-unit>
       <trans-unit id="b24f1cd32cbc1ec9537af28c4fe1b8204097714b">
         <source>Time</source>
-        <target>Thời gian</target>
+        <target>Hora</target>
       </trans-unit>
       <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1">
         <source>Status</source>
-        <target>Trạng thái</target>
+        <target>Estado</target>
       </trans-unit>
       <trans-unit id="5f4b4e1ad08c33a62b48b5de8b9bc6d29cf59c61">
         <source>Customer ID</source>
-        <target>Mã khách hàng</target>
+        <target>Documento de identidad del cliente</target>
       </trans-unit>
       <trans-unit id="db654f91d847f34e71ffb99268ff3a1807913421">
         <source>Phone Number</source>
-        <target>Số điện thoại</target>
+        <target>Número de teléfono</target>
       </trans-unit>
       <trans-unit id="8fbd80a3ad0ce1c5dbc1bb371d3bad810599c51a">
         <source>Segment</source>
-        <target>Phân khúc</target>
+        <target>Segmento</target>
       </trans-unit>
       <trans-unit id="e95ae009d0bdb45fcc656e8b65248cf7396080d5">
         <source>Overview</source>
-        <target>Tổng quan</target>
+        <target>Resumen</target>
       </trans-unit>
       <trans-unit id="b59ea65c89a5ae15b787d8318fdad9edd6fec243">
         <source>Transaction</source>
-        <target>Giao dịch</target>
+        <target>Transacción</target>
       </trans-unit>
       <trans-unit id="ea64d4177bd648e1a20c92669e6857762b811d8c">
         <source>Device</source>
-        <target>Thiết bị</target>
+        <target>Equipo</target>
       </trans-unit>
       <trans-unit id="9b0e2980987962aa45df935b28343aa27f7c7042">
         <source>Print Ticket</source>
-        <target>Thời điểm in vé</target>
+        <target>Imprimir ticket</target>
       </trans-unit>
       <trans-unit id="c201748b3de9c3097a649bd3fe2de325f4e525e7">
         <source>Waiting Ticket</source>
-        <target>Vé đang đợi</target>
+        <target>Ticket en espera</target>
       </trans-unit>
       <trans-unit id="fdf205e24baeba087126db32cbd87e701e1a9f86">
         <source>Serving Ticket</source>
-        <target>Vé đang phục vụ</target>
+        <target>Ticket de atención</target>
       </trans-unit>
       <trans-unit id="286f82f47a41e8d60f811ba6a931dbcca51291f4">
         <source>Served Ticket</source>
-        <target>Vé đã phục vụ</target>
+        <target>Ticket atendido</target>
       </trans-unit>
       <trans-unit id="658c0bd5ae55a0a232344139e0cccb9e69c18285">
         <source>Missed Ticket</source>
-        <target>Vé nhỡ</target>
+        <target>Ticket perdido</target>
       </trans-unit>
       <trans-unit id="be182a81011999859527a336e07424fc7b0a1de7">
         <source>Cancelled Ticket</source>
-        <target>Vé bị hủy</target>
+        <target>Ticket cancelado</target>
       </trans-unit>
       <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283">
         <source>Summary</source>
-        <target>Thống kê</target>
+        <target>Resumen</target>
       </trans-unit>
       <trans-unit id="cc7cc6d3ab8dfa39501aa59c4b3412ef25818d5d">
         <source>Manager</source>
-        <target>Quản lý</target>
+        <target>Administrador</target>
       </trans-unit>
       <trans-unit id="c562f485ca4769affab06a2ed9a7335f498e25e0">
         <source>Number of waiting tickets</source>
-        <target>SL vé đợi</target>
+        <target>Total de tickets en espera</target>
       </trans-unit>
       <trans-unit id="6075cc10d1399ea4a4e96b5e2742e3ee292cc1b9">
         <source>Number of tickets being served</source>
-        <target>SL vé đang phục vụ</target>
+        <target>Total de tickets siendo atendidos</target>
       </trans-unit>
       <trans-unit id="623c3963752c1f7b943b45ea702e8ebe25fbe824">
         <source>Number of tickets already served</source>
-        <target>SL vé đã phục vụ</target>
+        <target>Total de tickets atendidos</target>
       </trans-unit>
       <trans-unit id="b91d9b157083a437041f5afbec7e39d8d8fd380c">
         <source>Number of cancelled tickets</source>
-        <target>SL vé bị hủy</target>
+        <target>Total de tickets cancelados</target>
       </trans-unit>
       <trans-unit id="ef0e49a2b772a71bd772fdd5b20c2328c8be0a39">
         <source>Services incomplete</source>
-        <target>Dịch vụ chưa được phục vụ</target>
+        <target>Servicios incompletos</target>
       </trans-unit>
       <trans-unit id="830990bbf6302f8747f962982a123c69497218ed">
         <source>Detail</source>
-        <target>Chi tiết</target>
+        <target>Detalle</target>
       </trans-unit>
       <trans-unit id="873b72903b1858a9cd6c8967521030b4d7d1435b">
         <source>State</source>
-        <target>Trạng thái</target>
+        <target>Estado</target>
       </trans-unit>
       <trans-unit id="fc0dff2c024eceb762ea532ad616e9580771b81d">
         <source>Time of ticket printed</source>
-        <target>Thời điểm lấy vé</target>
+        <target>Hora de ticket impreso</target>
       </trans-unit>
       <trans-unit id="ca2283fc765b9f44b69f0175d685dc2443da6011">
         <source>Administrator</source>
-        <target>Admin</target>
+        <target>Administrador</target>
       </trans-unit>
       <trans-unit id="bcf39cd3a1e453e9e500929b754f3e6c9e977574">
         <source>Select Service</source>
-        <target>Chọn dịch vụ</target>
+        <target>Seleccionar servicio</target>
       </trans-unit>
       <trans-unit id="f637117cc91096961c28dc9ba815f8a83c1d8a32">
         <source>Select Teller</source>
-        <target>Chọn giao dịch viên</target>
+        <target>Seleccionar agente</target>
       </trans-unit>
       <trans-unit id="6c80989812560d399045d1563b71d32f4184cd3a">
         <source>Select Counter</source>
-        <target>Chọn quầy</target>
+        <target>Seleccionar ventanilla</target>
       </trans-unit>
       <trans-unit id="f492dfacc31253771cde96ca195c010f0dba43ac">
         <source>Period of Time</source>
-        <target>Khoảng thời gian</target>
+        <target>Periodo de tiempo</target>
       </trans-unit>
       <trans-unit id="2f933b826a570836cab04f683970a2d22068458c">
         <source>Date</source>
-        <target>Ngày</target>
+        <target>Fecha</target>
       </trans-unit>
       <trans-unit id="73339760fe932d2b494728d4366947755d127e00">
         <source>Week</source>
-        <target>Tuần</target>
+        <target>Semana</target>
       </trans-unit>
       <trans-unit id="f6e04edea3bb3a59d5904725bfbc2c440e793001">
         <source>Year</source>
-        <target>Năm</target>
+        <target>Año</target>
       </trans-unit>
       <trans-unit id="0c227c7d2b3813b4f61bbb2659b174f4492b8d70">
         <source>From Day</source>
-        <target>Từ ngày</target>
+        <target>Desde</target>
       </trans-unit>
       <trans-unit id="e31589e03d8a0ef01ed895bb3fe402a615a79eca">
         <source>To Day</source>
-        <target>Đến ngày</target>
+        <target>hasta</target>
       </trans-unit>
       <trans-unit id="336722cf6023ce33e65626cea741b4f92d4fce1c">
         <source>Gerenal</source>
-        <target>Tổng quan</target>
+        <target>General</target>
       </trans-unit>
       <trans-unit id="dd29640ae12d9b50b2221abddab83a3877f95e4c">
         <source>Kiosk Effectiveness</source>
-        <target>Hiệu năng kiosk</target>
+        <target>Efectividad de quiosco</target>
       </trans-unit>
       <trans-unit id="2bb26a807288414fa8f92051bf3717e496605ecd">
         <source>(minute)</source>
-        <target>(phút)</target>
+        <target>minuto</target>
       </trans-unit>
       <trans-unit id="766e5861af73748e764618748a438cc0b5a9fa67">
         <source>Customer Feedback</source>
-        <target>Phản hồi khách hàng</target>
+        <target>Retroalimentación del cliente</target>
       </trans-unit>
       <trans-unit id="7cfa79148f719c6bfb3d46821130018245cb0935">
         <source>Very Good</source>
-        <target>Tốt</target>
+        <target>Muy bueno</target>
       </trans-unit>
       <trans-unit id="7bd34bd120146afef0e0d8fa168d9bdabd594b6a">
         <source>Good</source>
-        <target>Khá</target>
+        <target>Bueno</target>
       </trans-unit>
       <trans-unit id="578f3696ab5ffb8fc85da042cb38d898c9ca894b">
         <source>Average</source>
-        <target>Trung bình</target>
+        <target>Promedio</target>
       </trans-unit>
       <trans-unit id="a22cbb32d31567b839c7d1418d189d9202dc96af">
         <source>Poor</source>
-        <target>Kém</target>
+        <target>Pobre</target>
       </trans-unit>
       <trans-unit id="1195977b9dba3295bbdf9932408a0714cbbfe4e8">
         <source>Teller</source>
-        <target>Giao dịch viên</target>
+        <target>Agent</target>
       </trans-unit>
       <trans-unit id="d172c692d2e6b0e900268078fb26ca5b980d09f3">
         <source>Ticket Number</source>
-        <target>Số vé</target>
+        <target>Número de ticket</target>
       </trans-unit>
       <trans-unit id="599c3badd3c5576cf228a935f0443911e8080227">
         <source>Waiting Duration</source>
-        <target>Thời gian đợi</target>
+        <target>Duración de espera</target>
       </trans-unit>
       <trans-unit id="65c5185f12015e4d3349efea572d20e89d2013ff">
         <source>Serving Duration</source>
-        <target>Thời gian phục vụ</target>
+        <target>Duración de atención</target>
       </trans-unit>
       <trans-unit id="f65253954b66e929a8b4d5ecaf61f9129f8cec64">
         <source>Dashboard</source>
-        <target>Tổng Quan</target>
+        <target>Panel de gráficos</target>
       </trans-unit>
       <trans-unit id="71b3171eebeca5e9ab16420f8d1f4eddd308786f">
         <source>Total transaction time</source>
-        <target>Tổng thời gian giao dịch</target>
+        <target>Tiempo total de transacciones</target>
       </trans-unit>
       <trans-unit id="f08e75d4cf67f754c9ab18cc48b337b6ee6ef0fa">
         <source>Total serving time</source>
-        <target>Tổng thời gian phục vụ</target>
+        <target>Tiempo total de atención</target>
       </trans-unit>
       <trans-unit id="271311c3522597403986c45b5c574bc07f7f9ff3">
         <source>Total waiting time</source>
-        <target>Tổng thời gian đợi</target>
+        <target>Total tiempo de espera</target>
       </trans-unit>
       <trans-unit id="dabd1759cdcf906c63e4fd0dffe87d64cc4065f2">
         <source>Average serving time</source>
-        <target>Thời gian phục vụ trung bình</target>
+        <target>Promedio de tiempo de atención</target>
       </trans-unit>
       <trans-unit id="faa6014db1f2ed86a871e57300a352932292b3bb">
         <source>Shortest serving time</source>
-        <target>Thời gian phục vụ ngắn nhất</target>
+        <target>Tiempo de servicio más corto</target>
       </trans-unit>
       <trans-unit id="4c16c79ae4e3224c2656dcbfb03ec9738779bf16">
         <source>Longest serving time</source>
-        <target>Thời gian phục vụ dài nhất</target>
+        <target>Tiempo de servicio más largo</target>
       </trans-unit>
       <trans-unit id="41352b3bec166dc27d8baac0924c4c44f4429794">
         <source>Average waiting time</source>
-        <target>Thời gian đợi trung bình</target>
+        <target>Promedio de tiempo de espera</target>
       </trans-unit>
       <trans-unit id="d2de651766880bfa2a991babc26221a45ef16e11">
         <source>Shortest waiting time</source>
-        <target>Thời gian đợi ngắn nhất</target>
+        <target>Tiempo de espera más corto</target>
       </trans-unit>
       <trans-unit id="17a98b1732884116c3ded42518ca9b3ec89319b6">
         <source>Longest waiting time</source>
-        <target>Thời gian đợi dài nhất</target>
+        <target>Tiempo de espera más largo</target>
       </trans-unit>
       <trans-unit id="7188d404ec60554bcac94e09296f818aa34c2218">
         <source>Transaction feedback</source>
-        <target>Giao dịch có phản hồi</target>
+        <target>Retroalimentación de la transacción</target>
       </trans-unit>
       <trans-unit id="dce40fcf5e5c4ca9efb124b6a4ebc188a582212b">
         <source>Transaction without feedback</source>
-        <target>Giao dịch không phản hồi</target>
+        <target>Transacción sin retroalimentación</target>
       </trans-unit>
       <trans-unit id="360f5fb26d6682308132ef17986348717062cc3a">
         <source>Very good feedback</source>
-        <target>Phản hồi tốt</target>
+        <target>Retroalimentación muy buena</target>
       </trans-unit>
       <trans-unit id="6701335f8c10688b9ec46151d56c32fcb014ebc2">
         <source>Good feedback</source>
-        <target>Phản hồi khá</target>
+        <target>Retroalimentación Buena</target>
       </trans-unit>
       <trans-unit id="bcd251bafed6cf48872adcdd728481be32954ee7">
         <source>Average feedback</source>
-        <target>Phản hồi trung bình</target>
+        <target>Promedio de retroalimentación</target>
       </trans-unit>
       <trans-unit id="366ec61be01166b3e11bce8573d7d4f9982ed24f">
         <source>Poor feedback</source>
-        <target>Phản hồi kém</target>
+        <target>Retroalimentación mal</target>
       </trans-unit>
       <trans-unit id="bd536825106b9c706806701e55ef99679ef31972">
         <source>Serving time avarage</source>
-        <target>TG phục vụ trung bình</target>
+        <target>Promedio tiempo de atención</target>
       </trans-unit>
       <trans-unit id="ec755e313d3f075b2444e797b4c8886481353c1e">
         <source>Serving time min</source>
-        <target>TG phục vụ ngắn nhất</target>
+        <target>Tiempo mínimo de atención</target>
       </trans-unit>
       <trans-unit id="a3620311b34a0ea15d817520fe8b216d09ae20fa">
         <source>Serving time max</source>
-        <target>TG phục vụ dài nhất</target>
+        <target>Tiempo máximo de atención</target>
       </trans-unit>
       <trans-unit id="88190b0877bc31e7bdc495966165dbeb257cf193">
         <source>-- Select the chart --</source>
-        <target>-- Lựa chọn biểu đồ --</target>
+        <target>Seleccione la tabla</target>
       </trans-unit>
       <trans-unit id="73a1bccd7691fda67f5024c860be5db83e61f9fe">
         <source>Line Graph</source>
-        <target>Biểu đồ đường</target>
+        <target>Gráfica lineal</target>
       </trans-unit>
       <trans-unit id="0b4d03a0e72b9109754b15a13f8191d7891c190a">
         <source>Column Chart</source>
-        <target>Biểu đồ cột</target>
+        <target>Gráfico de columnas</target>
       </trans-unit>
       <trans-unit id="5abb650d393eb496e9baae9670868c09a0db0c2f">
         <source>Stacked Chart</source>
-        <target>Biểu đồ cột chồng</target>
+        <target>Gráfico apilado</target>
       </trans-unit>
       <trans-unit id="09b4201d872e83db36a722987546b94476eda812">
         <source>Pie Chart</source>
-        <target>Biểu đồ tròn</target>
+        <target>Gráfico circular\nGráfico de pastel</target>
       </trans-unit>
       <trans-unit id="4352c29c2d18a9c1682c0e67030eba09a1c3ea52">
         <source>CETM Application Setting</source>
-        <target>Cài đặt</target>
+        <target>Configuración de aplicación CETM</target>
       </trans-unit>
       <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c">
         <source>Home</source>
-        <target>Trang chủ</target>
+        <target>Inicio</target>
       </trans-unit>
       <trans-unit id="790e0aea6fa8e43ab0763c16ee0b43989f478b94">
         <source>General Application Setting</source>
-        <target>Cài đặt chung</target>
+        <target>Configuración General de aplicación</target>
       </trans-unit>
       <trans-unit id="f8b403888712c826f65a73a5e2c8204fa95da187">
         <source>Select All</source>
-        <target>Chọn tất cả</target>
+        <target>Seleccionar todo</target>
       </trans-unit>
       <trans-unit id="b4354e75c50de35d5e3a04bc3253363337d9e177">
         <source>Unselect All</source>
-        <target>Bỏ chọn tất cả</target>
+        <target>Quitar toda la selección</target>
       </trans-unit>
       <trans-unit id="d076adbb3fab5be167493b385b0bab2e710998ed">
         <source>Hello</source>
-        <target>Xin chào</target>
+        <target>Hola</target>
       </trans-unit>
       <trans-unit id="c8d1785038d461ec66b5799db21864182b35900a">
         <source>Refresh</source>
-        <target>Làm mới</target>
+        <target>Actualizar</target>
       </trans-unit>
       <trans-unit id="eb86764ada7a05e0b5532eca14671f8ad7d13e61">
         <source>Setting</source>
-        <target>Cài đặt</target>
+        <target>Configuración</target>
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d">
         <source>Logout</source>
-        <target>Đăng xuất\n</target>
+        <target>Cerrar sesión</target>
       </trans-unit>
       <trans-unit id="5f559944294214b9f7bf5d268583d5dc045b741f">
         <source>User Setting</source>
-        <target>Cài đặt</target>
+        <target>Configuración de usuario</target>
       </trans-unit>
       <trans-unit id="fe46ccaae902ce974e2441abe752399288298619">
         <source>Language</source>
-        <target>Ngôn ngữ</target>
+        <target>Idioma</target>
       </trans-unit>
       <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8">
         <source>Close</source>
-        <target>Đóng</target>
+        <target>Cerrar</target>
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01">
         <source>Admin</source>
-        <target>Quản lý</target>
+        <target>Administrador</target>
       </trans-unit>
       <trans-unit id="d5f4d7abe93d192366c0290168b7421ce33b816d">
         <source>Area</source>
-        <target>Tỉnh/thành</target>
+        <target>Area</target>
       </trans-unit>
       <trans-unit id="3c8d7c1ae417833f3382afe4a62fbb622ec1dd4c">
         <source>Branch</source>
-        <target>Chi nhánh</target>
+        <target>Sucursal</target>
       </trans-unit>
       <trans-unit id="9dd35a9218553de2162f6a0b7189bca507939efa">
         <source>Store</source>
-        <target>Phòng giao dịch</target>
+        <target>Tienda</target>
       </trans-unit>
       <trans-unit id="8ed11c80d1e7f8135c3075d57a240858e272cea3">
         <source>Ticker Number Format</source>
-        <target>Định dạng số vé</target>
+        <target>Formato de número de ticket</target>
       </trans-unit>
       <trans-unit id="d473e0f684a60db45d6f31e993f693f74290e056">
         <source>Service</source>
-        <target>Dịch vụ</target>
+        <target>Servicio</target>
       </trans-unit>
       <trans-unit id="dd4720f14288ba841d69f8a80e910786fe299e0b">
         <source>Branch Config</source>
-        <target>Cấu hình chi nhánh</target>
+        <target>Configuración de sucursal</target>
       </trans-unit>
       <trans-unit id="88537ede496ea8408e7e5327884cd6aee50528c6">
         <source>Service Flow</source>
-        <target>Luồng dịch vụ cục bộ</target>
+        <target>Flujo de servicio</target>
       </trans-unit>
       <trans-unit id="d718ee3de035ebf939f91baf92aa1a4420a809db">
         <source>Counter</source>
-        <target>Quầy</target>
+        <target>Ventanilla</target>
       </trans-unit>
       <trans-unit id="e08a77594f3d89311cdf6da5090044270909c194">
         <source>User</source>
-        <target>Người dùng</target>
+        <target>Usuario</target>
       </trans-unit>
       <trans-unit id="f8da8a4fc733815d3c9d9b4985a24bb159dd83bb">
         <source>Report &amp; Analysis</source>
-        <target>Báo cáo &amp; phân tích</target>
+        <target>Reporte y Análisis</target>
       </trans-unit>
       <trans-unit id="3d53f64033c4b76fdc1076ba15955d913209866c">
         <source>General</source>
-        <target>Tổng quan</target>
+        <target>General</target>
       </trans-unit>
       <trans-unit id="095b4fb2f4f822f065b851319acd5f3fb799bbc8">
         <source>Add New <x id="INTERPOLATION"/></source>
-        <target>Thêm mới <x id="INTERPOLATION"/></target>
+        <target>Añadir nuevo <x id="INTERPOLATION"/></target>
         <note>Add New Model</note>
       </trans-unit>
       <trans-unit id="62eea9be4a1cd10c7c45b357d63179102681dca8">
         <source>Add New <x id="INTERPOLATION"/></source>
-        <target>Thêm mới <x id="INTERPOLATION"/></target>
+        <target>Añadir nuevo <x id="INTERPOLATION"/></target>
         <note>Add New Model</note>
       </trans-unit>
       <trans-unit id="3b49356e893b4bc6064a75d85999c29460061b9e">
-        <source>Edit  <x id="INTERPOLATION"/></source>
-        <target>Sửa <x id="INTERPOLATION"/></target>
+        <source>Edit <x id="INTERPOLATION"/></source>
+        <target>Editar <x id="INTERPOLATION"/></target>
       </trans-unit>
       <trans-unit id="f73befbdb701b5787267f5f294e4ed51745c84b5">
         <source>Edit service name on this kiosk</source>
-        <target>Sửa tên dịch vụ của kiosk</target>
+        <target>Editar nombre de servicio en este quiosco</target>
+        <note>Confirm context</note>
       </trans-unit>
       <trans-unit id="6a67688bf8fcb5a6aa95d507dfa95c8039d89d06">
         <source>Ticket Number Format</source>
-        <target>Định dạng số vé</target>
+        <target>Formato de número de ticket</target>
         <note>Định dạng số vé</note>
       </trans-unit>
       <trans-unit id="ea4a9b17709bd51f0c743a6bc31cf5babeae1b25">
         <source>Maximum Value</source>
-        <target>Giá trị tối đa</target>
+        <target>Valor máximo</target>
       </trans-unit>
       <trans-unit id="0a92ec0feac25c559cbd3aedbc2b023dd73a50bf">
         <source>Normal Services</source>
-        <target>Dịch vụ thường</target>
+        <target>Servicios normales</target>
       </trans-unit>
       <trans-unit id="3245767f7156901a5e647ee9ca9a56c6c7c155ff">
         <source>Vip Services</source>
-        <target>Dịch vụ VIP</target>
+        <target>Servicios VIP</target>
       </trans-unit>
       <trans-unit id="d2d6e3cea54309786a27d7f5c566a5a108fba0db">
         <source>Fixed Vip Codes</source>
-        <target>Sửa mã VIP</target>
+        <target>Códigos VIP predeterminados </target>
         <note>Default Kiosk Vip Codes</note>
       </trans-unit>
       <trans-unit id="7d73b81a09580e22c8c5c86c4a9507438965be44">
         <source>Inherit From</source>
-        <target>Kế thừa từ</target>
+        <target>Heredar de </target>
         <note>Inherit kiosk attributes</note>
       </trans-unit>
       <trans-unit id="452ef1b96854fe05618303ee601f8fed3b866c9f">
         <source>Resources</source>
-        <target>Nguồn</target>
+        <target>Recursos</target>
       </trans-unit>
       <trans-unit id="6603e5746534a03ac53097d5a11b561fd761a009">
         <source>Missed Call List</source>
-        <target>Danh sách đặt nhỡ</target>
+        <target>Lista de llamadas perdidas</target>
+        <note>Confirm context</note>
       </trans-unit>
       <trans-unit id="bdc761034de48c63e5b28bc22db74ca69eee1cf0">
         <source>Last Call</source>
-        <target>Lượt gọi cuối</target>
+        <target>Última llamada</target>
       </trans-unit>
       <trans-unit id="c9a7baacb94aa2bd97e52528a673851f90d597b2">
         <source>Call</source>
-        <target>Gọi</target>
+        <target>Llamada</target>
       </trans-unit>
       <trans-unit id="439f52aa8ac44f507f99984a3ef9f29d72e99b32">
         <source>Customer No Feedback</source>
-        <target>Khách hàng không phản hồi</target>
+        <target>Sin retroalimentación del cliente</target>
       </trans-unit>
       <trans-unit id="bcac7e673e7f40c8eaffe944bbb91e84462d82a8">
         <source>Serving Time</source>
-        <target>Thời gian phục vụ</target>
+        <target>Tiempo de atención</target>
       </trans-unit>
       <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982">
         <source>Next</source>
-        <target>Kế tiếp</target>
+        <target>Siguiente</target>
         <note>Counter Button: Next</note>
       </trans-unit>
       <trans-unit id="7758fed6af0f7013b00bde144730ec45f911672b">
         <source>Auto Next</source>
-        <target>Tự động gọi</target>
+        <target>Llamado automático</target>
         <note>Counter Button: Auto Next</note>
       </trans-unit>
       <trans-unit id="adf381d9e091ea441b130ab3d5d56d6ab38440f4">
         <source>Miss</source>
-        <target>Đặt nhỡ</target>
+        <target>Perdido</target>
         <note>Counter Button: Miss Ticket</note>
       </trans-unit>
       <trans-unit id="3ea51cf415feffef55e82c7b60e9486055837661">
         <source>Finish</source>
-        <target>Kết thúc</target>
+        <target>Finalizar</target>
         <note>Counter Button: Finish Ticket</note>
       </trans-unit>
       <trans-unit id="c6047cf601779775f7f91fa14b47fb8bccff538f">
         <source>Customer Name</source>
-        <target>Tên khách hàng</target>
+        <target>Nombre del cliente</target>
       </trans-unit>
       <trans-unit id="16ffb3d44de6655cc90f3d00836c2e779acf947f">
         <source>Total Counter</source>
-        <target>Tổng số quầy</target>
+        <target>Total de ventanillas</target>
       </trans-unit>
       <trans-unit id="fc64b64086f26c2eeadacdd890d56e3be535854a">
         <source>Services Completed</source>
-        <target>Dịch vụ đã được phục vụ</target>
+        <target>Servicios terminados\nServicios completados</target>
+        <note>depend on the context</note>
       </trans-unit>
       <trans-unit id="41dc4d44985323638e3d8ce5fba7b88133d029fb">
         <source>Waiting Transaction</source>
-        <target>Giao dịch đang đợi</target>
+        <target>Transacción en espera</target>
       </trans-unit>
       <trans-unit id="c793337fdf2dbe80ef3c02603fd92eac4ca8246f">
         <source>Missed Transaction</source>
-        <target>Giao dịch đặt nhỡ</target>
+        <target>Transacción perdida</target>
       </trans-unit>
       <trans-unit id="18439dfb90a6a1f5d4afd7e73c2c9ebe55d95ba4">
         <source>Serving Transaction</source>
-        <target>Giao dịch đang phục vụ</target>
+        <target>Transacción atendida\nTransacción en atención</target>
+        <note>Depend on the context</note>
       </trans-unit>
       <trans-unit id="ce555395dafd6a290e6d40a8c8b50298af38e5c1">
         <source>Standard Waiting Time Transaction</source>
-        <target>Giao dịch đợi chuẩn</target>
+        <note>Confirm context for standard for this case</note>
       </trans-unit>
       <trans-unit id="b50f33982f4f5ef2b964f269a6885d8d72b02b14">
         <source>Exceeded Waiting Time Transaction</source>
-        <target>Giao dịch đợi vượt chuẩn</target>
+        <target>Tiempo de espera excedido para la transacción</target>
+        <note>Confirm context</note>
       </trans-unit>
       <trans-unit id="b1a467e62f15c7cc99afc5f5a5ea7dc4e9a1e2ff">
         <source>Standard Serving Time Transaction</source>
-        <target>Giao dịch phục vụ chuẩn</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="822b5053c71746ee00e81d3441eb7792ac656d82">
         <source>Exceeded Serving Time Transaction</source>
-        <target>Giao dịch phục vụ vượt chuẩn</target>
+        <target>Tiempo de atención excedido para la transacción</target>
       </trans-unit>
       <trans-unit id="dbc475dfffe79dbc29f682b792be66aa75896d47">
         <source>Counter On</source>
-        <target>Quầy bật</target>
+        <target>Ventanilla encendida</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="bd2ce58aa5586bcfd983752730f93e49dd16ce0e">
         <source>Counter Off</source>
-        <target>Quầy tắt</target>
+        <target>Ventanilla apagada</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="b948613f83106acd198a97642635dfb86ffe4774">
         <source>Kiosk On</source>
-        <target>Kiosk bật</target>
+        <target>Quiosco encendido</target>
       </trans-unit>
       <trans-unit id="22bbe61cd7342497edd20eaacdcffcc9a97076f5">
         <source>Kiosk Off</source>
-        <target>Kiosk tắt</target>
+        <target>Quiosco apagado</target>
       </trans-unit>
       <trans-unit id="f72992030f134408b675152c397f9d0ec00f3b2a">
         <source>Report</source>
-        <target>Báo cáo</target>
+        <target>Reporte</target>
       </trans-unit>
       <trans-unit id="20ceaefc547a588fde25ce0f54ef18dfaad279c6">
         <source>Transaction History</source>
-        <target>Lịch sử giao dịch</target>
+        <target>Historial de transacciones</target>
       </trans-unit>
       <trans-unit id="53635f07aee69fc9940973bfd604eed26af53412">
         <source>Serving Time</source>
-        <target>Thời gian phục vụ</target>
+        <target>Tiempo de atención</target>
       </trans-unit>
       <trans-unit id="69927ae9f65571f0983a1791a9ba045dee29bdae">
         <source>Counter Number</source>
-        <target>Số quầy</target>
+        <target>Número de ventanilla</target>
       </trans-unit>
       <trans-unit id="d52468c207a3650cb8fad1e75b7dc45cf5cafb31">
         <source>Customer Code</source>
-        <target>Mã khách hàng</target>
+        <target>Código de ventanilla</target>
       </trans-unit>
       <trans-unit id="b8bc60c0de2c620891fc7b0f93f63f0c083f4261">
         <source>Customer Segment</source>
-        <target>Phân khúc</target>
+        <target>Segmento de clientes</target>
       </trans-unit>
       <trans-unit id="b21d690288de38b71319ddf05b5502f36a093508">
         <source>Feedback Filter</source>
-        <target>Bộ lọc phản hồi</target>
+        <target>Filtro de retroalimentación</target>
       </trans-unit>
       <trans-unit id="4cdbab2b34c77ff2613f9a7a6a55f376343fb864">
         <source>General Report</source>
-        <target>Báo cáo tổng quan</target>
+        <target>Reporte general</target>
       </trans-unit>
       <trans-unit id="bdfb3b56ce7e2de49372fd9ff112939701d3d0f1">
         <source>Total Transaction</source>
-        <target>Tổng số giao dịch</target>
+        <target>Total de transacciones</target>
       </trans-unit>
       <trans-unit id="a44cf626ba13e343bd5259c11f7d2c35932f5489">
         <source>Transaction Feedback</source>
-        <target>Giao dịch phản hồi</target>
+        <target>Retroalimentación de transacciones</target>
       </trans-unit>
       <trans-unit id="dc038dd77466d6e054dc03788f519003e81d0abd">
         <source>Waiting time avarage</source>
-        <target>Thời gian đợi trung bình</target>
+        <target>Promedio de tiempo de atención</target>
       </trans-unit>
       <trans-unit id="d47d8b64fa910e3146e607ea740177c77155f781">
         <source>Waiting time min</source>
-        <target>TG đợi ngắn nhất</target>
+        <target>Tiempo mínimo de atención</target>
+        <note>Min = minutes or minimun</note>
       </trans-unit>
       <trans-unit id="223edb6a8c7b0d65c03e744307516109c91e57cd">
         <source>Waiting time max</source>
-        <target>TG đợi dài nhất</target>
+        <target>Tiempo máximo de atención</target>
       </trans-unit>
       <trans-unit id="3ac4a57b727c3a132a3245f4c5bf03a49337492b">
         <source>Canceled Transaction</source>
-        <target>Giao dịch bị hủy</target>
+        <target>Transacciones canceladas</target>
       </trans-unit>
       <trans-unit id="f6a02ca0b8cc36730766f5dd2040ee15c999aacb">
         <source>Number Of Transaction</source>
-        <target>Số lượng giao dịch</target>
+        <target>Número de transacciones</target>
       </trans-unit>
       <trans-unit id="ca86c31ce878389023c5820b537bd555d0924714">
         <source>Store Name</source>
-        <target>Tên PGD</target>
+        <target>Nombre de tienda </target>
       </trans-unit>
       <trans-unit id="86dbb317e066f88907098d292d099b13dc784d71">
         <source>Most Used Service</source>
-        <target>Dịch vụ dùng nhiều nhất</target>
+        <target>Mayoría de servicios usados</target>
       </trans-unit>
       <trans-unit id="4ed96b9d12999e7d329e55ef9041ee7b66aa7ee7">
         <source>Most Frequent Store</source>
-        <target>Cửa hàng giao dịch nhiều nhất</target>
+        <target>Tienda más frecuente</target>
       </trans-unit>
       <trans-unit id="0b2cdb9ab6a4886ff8cf94bb6c791b336e0bdfad">
         <source>Feedback Result</source>
-        <target>Kết quả phản hồi</target>
+        <target>Resultado de retroalimentación</target>
       </trans-unit>
       <trans-unit id="dbac9f29c8e73cad6484af55857493d6b0cf4177">
         <source>Export to excel</source>
-        <target>Xuất ra file excel</target>
+        <target>Exportar a excel</target>
       </trans-unit>
       <trans-unit id="042087e0a33a841b098f4cdca26ba260867924da">
         <source>Total printed ticket</source>
-        <target>Tổng số vé in</target>
+        <target>Total de tickets impresos</target>
       </trans-unit>
       <trans-unit id="6f7ddc3a6bc851cbb95a83f3195a62b07310d8e7">
         <source>Longest printed ticket</source>
-        <target>SL vé in nhiều nhất</target>
+        <target>Ticket impreso más largo</target>
+        <note>Confirm the context to have the right expression</note>
       </trans-unit>
       <trans-unit id="d7cbdd500dfb2e531420cc5af1b99ee9755ca968">
         <source>Shortest printed ticket</source>
-        <target>SL vé in ít nhất</target>
+        <target>Ticket impreso más corto</target>
       </trans-unit>
       <trans-unit id="31c5fa1f0387d445407540ef6359ad157d8953a0">
         <source>Average printed ticket</source>
-        <target>SL vé in trung bình</target>
+        <target>Promedio de tickets impresos</target>
       </trans-unit>
       <trans-unit id="4f59445c711d762c35084211b1b228b76046ce4e">
         <source>Total activity time (hour)</source>
-        <target>Tổng TG hoạt động (giờ)</target>
+        <target>Tiempo total de actividad (hora)</target>
       </trans-unit>
       <trans-unit id="01468c149f250ccf4bf40b7b031c291e60cfbe95">
         <source>Longest period</source>
-        <target>Chu kì lâu nhất</target>
+        <target>Periodo más largo</target>
       </trans-unit>
       <trans-unit id="4a3e2d90af987a73d593cfc267d0352b75f6b02c">
         <source>(hour per day)</source>
-        <target>(giờ/ngày)</target>
+        <target>(Hora por dia)</target>
       </trans-unit>
       <trans-unit id="cfab7dbd43225726638e8af481542e8829ecbd96">
         <source>Shortest period</source>
-        <target>Chu kì ngắn nhất</target>
+        <target>Periodo más corto</target>
       </trans-unit>
       <trans-unit id="e45c10b82444fe74da280cdd31db87190cb44a9c">
         <source>Average period</source>
-        <target>Chu kì  trung bình</target>
+        <target>Periodo promedio</target>
       </trans-unit>
       <trans-unit id="f6fa2f049b12ecd370f5c231502c0808119e9cd7">
         <source>Total kiosk</source>
-        <target>Tổng số kiosk</target>
+        <target>Quiosco total</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="4305635a25bc920c795a9f9e9e6272ef824ae4a0">
         <source>Longest activity kiosk</source>
-        <target>Kiosk hoạt động lâu nhất</target>
+        <target>Actividad de quiosco más largo</target>
       </trans-unit>
       <trans-unit id="7bb0c41bccf78c606dc7ea6a5c34f0f7b43c6291">
         <source>Shortest activity kiosk</source>
-        <target>Kiosk hoạt động ngắn nhất</target>
+        <target>Actividad de quiosco más corta</target>
       </trans-unit>
       <trans-unit id="9f75406f7131ed96f913f603928c4fcf4cab29f2">
         <source>Average kiosk effectiveness</source>
-        <target>Hiệu năng kiosk trung bình</target>
+        <target>Promedio de efectividad del quiosco</target>
       </trans-unit>
       <trans-unit id="d32584ec78d7f90f08d2000fc4577bdac658cd48">
         <source>Highest ticket printed from</source>
-        <target>Vé được in nhiều nhất</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="483914252dd65261d5ee48251ca41e1a3a6b0412">
         <source>Lowest ticket printed from</source>
-        <target>Vé được in ít nhất</target>
+        <note>Confirm the context</note>
       </trans-unit>
       <trans-unit id="38e6519d8aaf91a6bd04446281952f5c522551d9">
         <source>Total activity time</source>
-        <target>Tổng thời gian hoạt động</target>
+        <target>Tiempo total de actividad</target>
       </trans-unit>
       <trans-unit id="0dec177a0c7c47b255cd642744d659b711623eb5">
         <source>Longest activity time</source>
-        <target>TG hoạt động lâu nhất</target>
+        <target>Tiempo de actividad más larga</target>
       </trans-unit>
       <trans-unit id="aacc9bb6ac346621c5b94e0d116eb0acbb4f9013">
         <source>Shortest activity time</source>
-        <target>TG hoạt động ngắn nhất</target>
+        <target>Tiempo de actividad más corta</target>
       </trans-unit>
       <trans-unit id="263f8adf625ce13367aef74e12c2872f54422a7d">
         <source>Average activity time</source>
-        <target>TG hoạt động trung bình</target>
+        <target>Promedio de tiempo de actividad</target>
       </trans-unit>
       <trans-unit id="3a905d34d301911a423e802086a0167fbf054716">
         <source>Highest ticket printed quantity</source>
-        <target>Lượng vé được in nhiều nhất</target>
+        <target>Cantidad más alta de tickets impresos</target>
       </trans-unit>
       <trans-unit id="ef2ed306cacf7199ff292981f370082b28e086d4">
         <source>Lowest ticket printed quantity</source>
-        <target>Lượng vé được in ít nhất</target>
+        <target>Cantidad más baja de tickets impresos</target>
       </trans-unit>
       <trans-unit id="5edf054f14aa57bc25a28cb7db01956fee53dac8">
         <source>Change Password</source>
-        <target>Đổi mật khẩu</target>
       </trans-unit>
       <trans-unit id="4ad47fba753bd89ce442197653ce65004eff1e6d">
         <source>Old Password</source>
-        <target>Mật khẩu cũ</target>
       </trans-unit>
       <trans-unit id="8c690cf303d91c65315c534f4f9afe4c8256a0b2">
         <source>Pass Word</source>
       </trans-unit>
       <trans-unit id="c7014c6360e94b236286b869c3fe0ea9911c0387">
         <source>New Password</source>
-        <target>Mật khẩu mới</target>
       </trans-unit>
       <trans-unit id="7f41ea996cd96f8096dda098d181970fb60b7c4b">
         <source>Retype New Password</source>
-        <target>Nhập lại mật khẩu mới</target>
       </trans-unit>
       <trans-unit id="3e6937fdbde4da7f8c6866d56182945437e2629e">
         <source>Go Back</source>
-        <target>Quay lại</target>
       </trans-unit>
       <trans-unit id="ad4b37a5b17d4849bd0cd2676f15aad6ea7bdae4">
         <source>Files list</source>
-        <target>Danh sách tệp</target>
       </trans-unit>
       <trans-unit id="b5211f829895f0898602bbcc8aed26734a4e3f25">
         <source>File name</source>
-        <target>Tên tệp</target>
       </trans-unit>
       <trans-unit id="9ca82952a6bc860b5391d5975322d8af8ceddfa4">
         <source>Select</source>
-        <target>Chọn</target>
       </trans-unit>
       <trans-unit id="58dafe8890836c0ad935d831894e2d3539483707">
         <source>Show Code</source>
-        <target>Xem mã </target>
       </trans-unit>
       <trans-unit id="ac6c9212896d39b23811ed2dadab7d07336ec559">
         <source>Enable</source>
-        <target>Sử dụng</target>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
-        <target>Sửa</target>
       </trans-unit>
       <trans-unit id="06c663bf1474713f57551123a46b34318543b67d">
         <source>Reset</source>
-        <target>Đặt lại</target>
       </trans-unit>
       <trans-unit id="ade0a4962a6170e72d68d47012b688dd69684509">
         <source>Service Priority</source>
-        <target>Ưu tiên dịch vụ</target>
       </trans-unit>
       <trans-unit id="37b2b30c0fe168d36fb7816368db65915e1d6c9e">
         <source>Restricted Ticket Number Format</source>
-        <target>Định dạng số vé ưu tiên</target>
       </trans-unit>
       <trans-unit id="ffde342dc48f0b074d3dbcbb2f665216a2dd3deb">
         <source>Resource</source>
-        <target>Tài nguyên</target>
       </trans-unit>
       <trans-unit id="750406d527ed87fdbaa4aa68476377291aa860b5">
         <source>Service Basket</source>
-        <target>Rổ dịch vụ</target>
       </trans-unit>
       <trans-unit id="b19baa6979ab9c03b1fd2a703523edebdc0388a1">
         <source>Waiting-Ticket List</source>
-        <target>Danh sách hàng đợi</target>
       </trans-unit>
       <trans-unit id="e66d44a1e83ac11b175a1b90d837c5e3930f2586">
         <source>Cancelled Tickets</source>
-        <target>Vé đã hủy</target>
       </trans-unit>
       <trans-unit id="be203fd58cd5c91889676923ce687805a8ca08b5">
         <source>Cancelled At</source>
-        <target>Hủy lúc</target>
       </trans-unit>
       <trans-unit id="80a961e4f6b5c98eaa610ce26bfc753771f7e124">
         <source>Cancelled Time</source>
@@ -1177,7 +1173,6 @@
       </trans-unit>
       <trans-unit id="d0050cd9ce8209314b683651c93a67c39fe786e0">
         <source>Average Serving Time</source>
-        <target>Thời gian phục vụ trung bình</target>
       </trans-unit>
       <trans-unit id="7b8c063faf9ff1570f5e44d4434cb3cba74cd808">
         <source>Ticket issued</source>
