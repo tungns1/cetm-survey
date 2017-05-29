@@ -26,7 +26,7 @@ export class ComposeService {
       this.recorderService.enable();
     }
     this.workspaceService.enable();
-    if (setting.mini_mode.enable) {
+    if (setting.mini_mode && setting.mini_mode.enable) {
       this.launcherService.SetMiniMode(setting.mini_mode);
     }
 
