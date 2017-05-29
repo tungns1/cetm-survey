@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { QueueService } from '../shared';
 import { TimerComopnent } from '../shared';
 import { ProjectConfig } from '../shared';
@@ -6,7 +6,8 @@ import { ProjectConfig } from '../shared';
 @Component({
     selector: 'waiting-queue',
     templateUrl: 'waiting.component.html',
-    styleUrls: ['queue.component.scss']
+    styleUrls: ['queue.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WaitingComponent {
     constructor(

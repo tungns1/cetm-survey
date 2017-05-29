@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { QueueService, ITicket } from '../shared';
 import { combineLatest } from 'rxjs/observable/combineLatest';
@@ -8,7 +8,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Component({
     selector: 'cancel-queue',
     templateUrl: 'cancel.component.html',
-    styleUrls: ['queue.component.scss']
+    styleUrls: ['queue.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CancelComponent {
     constructor(

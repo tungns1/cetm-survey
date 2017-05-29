@@ -1,4 +1,5 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { Ticket, TicketStates, TicketActionName } from '../shared';
 import { TicketService, QueueService, WorkspaceService } from '../shared';
@@ -7,7 +8,8 @@ import { NoticeComponent } from '../shared';
 @Component({
   selector: 'ticket-detail-dialog',
   templateUrl: 'ticket-detail.dialog.html',
-  styleUrls: ['ticket-detail.dialog.scss']
+  styleUrls: ['ticket-detail.dialog.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TicketDetailDialog {
 
