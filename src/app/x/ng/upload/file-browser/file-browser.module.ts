@@ -1,6 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MdButtonModule } from '@angular/material'
+import { FlexLayoutModule } from '@angular/flex-layout'
 import { ModalModule } from '../../modal/';
 
 import { ItemComponent } from './item.component';
@@ -10,7 +12,7 @@ import { FolderViewComponent } from './folder-view.component';
 import { FileBrowserComponent } from './file-browser.component';
 
 @NgModule({
-    imports: [CommonModule, ReactiveFormsModule, ModalModule],
+    imports: [CommonModule, ReactiveFormsModule, ModalModule, MdButtonModule, FlexLayoutModule],
     declarations: [
         ItemComponent,
         FileUploadComponent,
@@ -22,5 +24,5 @@ import { FileBrowserComponent } from './file-browser.component';
     entryComponents: [FileBrowserComponent]
 })
 export class FileBrowserModule {
-    
+
 }

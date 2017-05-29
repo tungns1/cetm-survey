@@ -1,11 +1,3 @@
-<div class="margin-left">
-    <p>Videos</p>
-    <div class="margin-right" *ngIf="value" (change)="onChange($event)">
-        <label>Proxy</label>
-        <div>
-            <label><b>Files</b></label>
-        </div>
-        <multi-file-picker (ngModelChange)="onChange()" [(ngModel)]="value.srcs"></multi-file-picker>
-        <br>
-    </div>
+<div *ngIf="value" (change)="onChange($event)" class="margin-b-15">
+    <multi-file-picker (ngModelChange)="onChange()" [(ngModel)]="value.srcs"></multi-file-picker>
 </div>

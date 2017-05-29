@@ -4,7 +4,8 @@ import { FileNode } from '../backend/';
 
 @Component({
     selector: '',
-    templateUrl: 'file-picker-modal.component.html'
+    templateUrl: 'file-picker-modal.component.html',
+    styleUrls: ['file-picker-modal.component.scss']
 })
 export class FilePickerModalComponent implements OnInit {
 

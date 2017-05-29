@@ -20,9 +20,10 @@ const FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 @Component({
     selector: 'file-picker',
     template: `
-        <input class="edit-image margin-top" [(ngModel)]="value"/> 
-        <br>
-        <button class="hlm-button margin-top" (click)="openModal()">Chọn</button>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <input fxFlex class="hl-input" [(ngModel)]="value" />
+            <button fxFlex="17%" class="btnFill hl-input" (click)="openModal()" i18n>Select</button>
+        </div>
     `,
 
     providers: [FILE_PICKER_CONTROL_VALUE_ACCESSOR]
@@ -53,7 +54,7 @@ export class FilePickerComponent implements ControlValueAccessor {
 
     openModal() {
         const config = new MdDialogConfig();
-        config.width = '450px';
+        config.width = '500px';
         config.data = {
             value: this.value
         };

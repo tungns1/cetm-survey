@@ -63,7 +63,7 @@ function getServiceName(t: ITicket) {
         case TicketStates.Serving:
             return ServiceName(t.service_id);
         default:
-            return "";
+            return ServiceName(t.service_id);
     }
 }
 
@@ -131,5 +131,9 @@ export class Ticket {
         // -1, 0, 1
         var step = a.priority.compare(b.priority);
         return step == 0 ? (a.ctime < b.ctime ? -1 : 1) : step;
+    }
+
+    IsState(state: TicketState) {
+        return this.state == state;
     }
 }

@@ -31,11 +31,10 @@ export class GenericFormComponent {
     private dialog: MdDialogRef<GenericFormComponent>,
   ) {
     this.record = cloneDeep(this.dialogData);
-    this.type = this.record.type;
   }
 
   record: IResourceForm;
-  type: string;
+  disableEditTextArea: boolean = true;
 
   Save() {
     this.dialog.close(this.record);

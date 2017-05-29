@@ -1,15 +1,10 @@
-<div class="head-ri-folder" *ngIf="node && node.is_dir">
-    <span [class.hidden]="!node.is_dir">
-        <i class="fa fa-plus add-hlm" (click)="node.Expand()" [class.hidden]="node.expanded"></i>
-        <i class="fa fa-minus remove-hlm" (click)="node.Close()" [class.hidden]="!node.expanded"></i>
-        <button (click)="choose($event)" class="btn-hlm btn-upload-list"> {{ node.name }}</button>
-    </span>
-    <!--<div class="node-name" (click)="choose($event)">
-        <button class="btn-hlm btn-upload-list"> {{ node.name }}</button>
-    </div>-->
-    <ul class="tree-view">
-        <li *ngFor="let d of node.rxChildren | async">
-            <file-tree [node]="d" (select)="select.next($event)"></file-tree>
-        </li>
-    </ul>
+<div *ngIf="node.is_dir" fxLayout="row">
+    <i fxFlex="7%" class="fa fa-plus fa-2x" (click)="node.Expand(); choose($event)" *ngIf="!node.expanded"></i>
+    <i fxFlex="7%" class="fa fa-minus fa-2x" (click)="node.Close()" *ngIf="node.expanded"></i>
+    <h3 class="margin-t-5" fxFlex> {{ node.name }}</h3>
 </div>
+<ul class="tree-view">
+    <li *ngFor="let d of node.rxChildren | async">
+        <file-tree [node]="d" (select)="select.next($event)"></file-tree>
+    </li>
+</ul>

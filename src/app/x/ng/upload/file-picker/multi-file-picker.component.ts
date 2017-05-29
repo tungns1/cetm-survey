@@ -19,11 +19,14 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
     selector: 'multi-file-picker',
     template: `
-        <span (click)="add()"><i class="fa fa-plus"></i>Add</span>
-        <div *ngFor="let src of srcs; let i = index;">
-            <file-picker [ngModel]="src" (ngModelChange)="onChange(i, $event)" ></file-picker>
-            <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
+        <div *ngFor="let src of srcs; let i = index;" fxLayout="row" fxLayoutGap="10px" class="margin-t-15">
+            <file-picker fxFlex [ngModel]="src" (ngModelChange)="onChange(i, $event)" ></file-picker>
+            <i fxFlex="5%" class="fa fa-times fa-2x pointer center" (click)="remove(i)"> </i>
         </div>
+
+        <div class="divider margin-b-15"></div>
+
+        <span class="pointer" (click)="add()"><i class="fa fa-plus"></i>Add</span>
     `,
 
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]

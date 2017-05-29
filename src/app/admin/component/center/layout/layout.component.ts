@@ -20,11 +20,18 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     super(injector, org.LayoutService);
   }
 
+  private branches = this.org.LayoutService.RxListView;
+
   makeForm(b?: ILayout) {
     b = b || <any>{};
     b.ui = b.ui || <any>{};
     b.ui.resources = b.ui.resources || {};
     const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
+    Object.keys(resources).forEach(name => {
+      const show = !!resources[name];
+      resources[name].show = show;
+    });
+
     return (new FormBuilder).group({
       id: [b.id],
       name: [b.name, CommonValidator.Name],
@@ -34,8 +41,6 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
       resources: [resources]
     });
   }
-
-  private branches = this.org.LayoutService.RxListView;
 }
 
 

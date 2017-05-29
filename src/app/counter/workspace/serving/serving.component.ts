@@ -6,8 +6,7 @@ import { QueueService } from '../shared';
     selector: 'serving',
     template: `
     <ticket *ngFor="let t of serving$ | async" [ticket]="t"></ticket>
-    <empty></empty>
-    <action></action>
+    <empty *ngIf="!(busy$ | async)"></empty>
     <div class="divider"></div>
     `,
     styles: [`
@@ -26,4 +25,5 @@ export class ServingComponent {
     ) {}
 
     serving$ = this.queueService.serving$;
+    busy$ = this.queueService.busy$;
 }

@@ -7,6 +7,7 @@ export interface IPriorityConfig {
     min_priority_restrited?: number;
     min_priority_unordered_call?: number;
     priority_step?: number;
+    restore_ticket?: number;
 }
 
 export class PriorityConfig {
@@ -41,6 +42,10 @@ export class PriorityConfig {
 
     get min_priority_restricted() {
         return +this._c.min_priority_restrited || (1 << 16); // disable
+    }
+
+    get restore_ticket() {
+        return +this._c.restore_ticket || 1;
     }
 
     __update(c: IPriorityConfig) {

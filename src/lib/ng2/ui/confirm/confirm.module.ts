@@ -5,6 +5,10 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
 
+import { 
+    NoticeComponent, NoticeMessageComonent, NoticeDialogComponent
+ } from './notice.component';
+
 @NgModule({
     imports: [
         FormsModule,
@@ -12,9 +16,17 @@ import { OverlayContainer, FullscreenOverlayContainer } from '@angular/material'
         MaterialModule,
         FlexLayoutModule
     ],
-    declarations: [AppConfirmDialog, ConfirmDirective],
-    entryComponents: [AppConfirmDialog],
-    exports: [ConfirmDirective],
+    declarations: [
+        AppConfirmDialog, ConfirmDirective,
+        NoticeComponent, NoticeMessageComonent, NoticeDialogComponent
+    ],
+    entryComponents: [
+        AppConfirmDialog, NoticeMessageComonent, NoticeDialogComponent
+    ],
+    exports: [
+        ConfirmDirective,
+        NoticeComponent, NoticeMessageComonent
+    ],
     providers: [
         { provide: OverlayContainer, useClass: FullscreenOverlayContainer }
     ]

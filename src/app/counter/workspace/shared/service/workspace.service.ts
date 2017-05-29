@@ -44,6 +44,11 @@ export class WorkspaceService {
 
 
     private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
+    private autoNext$ = new ReplaySubject<boolean>(1);
+
+    SetAutoNext(auto = false) {
+        this.autoNext$.next(auto);
+    }
 
     Workspace$ = this.initialState$.switchMap(s => {
         const w = new Workspace(s);
@@ -51,8 +56,11 @@ export class WorkspaceService {
             .map(action => {
                 w.Update(action);
             });
-        return merge(of(null), ticketUpdate).map(_ => w);
-    }).share().publishReplay(1).refCount();
+        const autoNext = this.autoNext$.map(a => {
+            w.AutoNext = a;
+        });
+        return merge(of(null), ticketUpdate, autoNext).map(_ => w);
+    }).debounceTime(20).share().publishReplay(1).refCount();
 
     currentCounter$ = this.Workspace$.map(w => w.current_counter);
     counters$ = this.Workspace$.map(w => w.counters);

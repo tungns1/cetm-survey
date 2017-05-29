@@ -1,14 +1,19 @@
-<div class="info">
-    <table>
-        <tr>
-            <th i18n>Name</th>
-            <th i18n>Size</th>
-            <th i18n>Progress</th>
-        </tr>
+<!--<table>
+    <tr>
+        <th i18n>Name</th>
+        <th i18n>Size</th>
+        <th i18n>Progress</th>
+    </tr>
 
-        <tr *ngFor="let file of files" upload-item [data]="{file: file, node: node}">
-        </tr>
+    <tr *ngFor="let file of files" upload-item [data]="{file: file, node: node}">
+    </tr>
 
-    </table>
+</table>-->
+<div fxLayout="row">
+    <h4 fxFlex class="margin-0" i18n>Name</h4>
+    <h4 fxFlex class="margin-0" i18n>Size</h4>
+    <h4 fxFlex class="margin-0" i18n>Progress</h4>
 </div>
+<div *ngIf="file" class="divider"></div>
+<div *ngFor="let file of files" upload-item [data]="{file: file, node: node}"></div>
 <input type="file" multiple (change)="onFileSelected($event)" #fileInput style="display:none">

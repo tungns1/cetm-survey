@@ -8,7 +8,7 @@ import { BaseAdminComponent, CommonValidator } from '../../shared';
 @Component({
     selector: 'admin-service',
     templateUrl: 'service.component.html',
-    styleUrls: ['service.component.css']
+    styleUrls: ['service.component.scss']
 })
 export class ServiceComponent extends BaseAdminComponent<IService> {
     constructor(

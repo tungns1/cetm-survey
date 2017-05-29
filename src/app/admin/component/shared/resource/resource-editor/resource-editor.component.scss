@@ -1,3 +1,6 @@
+@import '../../../../../shared/style.scss';
 #kiosk-resources{
-    
+    .resourcesHeader{
+        background-color: $background-color-title;
+    }
 }

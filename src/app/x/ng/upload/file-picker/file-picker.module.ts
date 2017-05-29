@@ -8,9 +8,10 @@ import { FileBrowserModule } from '../file-browser/file-browser.module';
 import { ModalModule } from '../../modal/';
 import { FilePickerComponent } from './file-picker.component';
 import { FilePickerModalComponent } from './file-picker-modal.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, FileBrowserModule, ModalModule],
+    imports: [FormsModule, CommonModule, FileBrowserModule, ModalModule, FlexLayoutModule],
     declarations: [FilePickerComponent, FilePickerModalComponent],
     exports: [FilePickerComponent, FilePickerModalComponent],
     entryComponents: [FilePickerModalComponent]
@@ -23,7 +24,7 @@ import { MultiFilePickerComponent } from './multi-file-picker.component';
 import { UploadURLToken } from '../backend';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, FilePickerModule],
+    imports: [FormsModule, CommonModule, FilePickerModule, FlexLayoutModule],
     declarations: [MultiFilePickerComponent],
     exports: [FilePickerModule, MultiFilePickerComponent]
 })
