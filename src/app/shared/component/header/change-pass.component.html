@@ -6,22 +6,22 @@
     <div>
         <form [formGroup]="form">
 
-            <span class="user-text-language" i18n>Old Pass:</span>
+            <span class="user-text-language" i18n>Old Password</span>
             <div>
                 <span fxFlex>&nbsp;</span>
-                <input class="hl-input-change-pass" type="password" formControlName="old_pass" i18n-placeholder placeholder="Pass Word">
+                <input class="hl-input-change-pass" type="password" formControlName="old_pass" i18n-placeholder placeholder="Passưord">
             </div>
-            <span class="user-text-language" i18n>New Pass:</span>
+            <span class="user-text-language" i18n>New Password</span>
             <div>
                 <span fxFlex class="valid-color" *ngIf="form.get('new_pass').hasError('pattern')">*</span>
                 <span fxFlex class="valid-color" *ngIf="!form.get('new_pass').hasError('pattern')">&nbsp;</span>
-                <input class="hl-input-change-pass" type="password" formControlName="new_pass" i18n-placeholder placeholder="Old Pass Word">
+                <input class="hl-input-change-pass" type="password" formControlName="new_pass" i18n-placeholder placeholder="New Password">
             </div>
-            <span class="user-text-language" i18n>Retype New Pass:</span>
+            <span class="user-text-language" i18n>Retype New Password</span>
             <div>
                 <span fxFlex class="valid-color" *ngIf="form.get('re_new_pass').hasError('pattern')">*</span>
                 <span fxFlex class="valid-color" *ngIf="!form.get('re_new_pass').hasError('pattern')">&nbsp;</span>
-                <input class="hl-input-change-pass" type="password" formControlName="re_new_pass" i18n-placeholder placeholder=" Retype Old Pass Word">
+                <input class="hl-input-change-pass" type="password" formControlName="re_new_pass" i18n-placeholder placeholder="Retype New Password">
             </div>
             <span fxFlex>&nbsp;</span>
             <button class="btnFill submit-setup" [disabled]="!form.valid" [style.opacity]="!form.valid?0.3:1" (click)="Submit()">Submit</button>

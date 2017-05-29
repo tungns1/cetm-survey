@@ -7,7 +7,7 @@
         <b *ngIf="data && service" fxFlex="22%">{{service.name}}&nbsp;{{service.value}}/{{data.c_t}}</b>
     </div>
     <div fxLayout="row" class="padding-10-0">
-        <span class="padding-r-10" i18n fxFlex="25%">Code/ID</span>
+        <span class="padding-r-10" i18n fxFlex="25%">Customer Code</span>
         <b fxFlex="25%" *ngIf="customer | async; let c">{{c.code}}</b>
         <div fxFlex="25%" *ngIf="!(data && customer | async)"></div>
         <span class="padding-r-10" i18n fxFlex="28%">Most Frequent Store</span>

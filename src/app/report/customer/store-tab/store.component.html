@@ -1,12 +1,10 @@
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.stores" 
-    [barPadding]="padding" [xAxis]="true" [yAxis]="true" [legend]="true" 
-    [showXAxisLabel]="true" [showYAxisLabel]="true" (select)="onSelect($event)">
+<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.stores" [barPadding]="padding" [xAxis]="true" [yAxis]="true" [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->
 <table>
     <thead>
         <th i18n>Store Name</th>
-        <th i18n>Number Of Transaction </th>
+        <th i18n>Number Of Transaction</th>
     </thead>
     <tbody>
         <tr *ngFor="let s of data.stores">
