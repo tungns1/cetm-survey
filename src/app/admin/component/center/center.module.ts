@@ -10,6 +10,8 @@ import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { CenterComponent } from './center.component'
 import { VoiceComponent } from './voice/voice.component';
 import { AdminFilterModule } from "../filter/filter.module";
+import { AccordionModule } from "../../../x/ui/accordion/accordion";
+
 
 @NgModule({
     imports: [
@@ -18,7 +20,7 @@ import { AdminFilterModule } from "../filter/filter.module";
         AdminFormModule,
         ResourceModule,
         RichEditorModule,
-        routing,AdminFilterModule
+        routing,AdminFilterModule, AccordionModule
     ],
     declarations: [
         CenterComponent, TicketLayoutComponent,

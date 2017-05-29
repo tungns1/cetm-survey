@@ -16,6 +16,7 @@
                 <input fxFlex="100%" class="hl-input" type="text" formControlName="code" i18n-placeholder="Code">
                 <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
+                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
             </div>
 
             <span fxFlex="20%" i18n>Name</span>
@@ -23,8 +24,10 @@
             <span fxFlex="2%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
                 <input fxFlex="100%" class="hl-input" type="text" formControlName="name" i18n-placeholder="Name">
-                <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div>
-                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
+                <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</div>
+                <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">&nbsp;</div>
+                <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
+                <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
             </div>
         </div>
         <div fxLayout="row" class="rowCtrl">
