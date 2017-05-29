@@ -1,11 +1,9 @@
 <div fxLayout="row">
-  <div [fxFlex]="'250px'" class="leftFilter">
-    <!--<admin-filter style="padding-top: 50px; height: 100%"></admin-filter>-->
-  </div>
-  <div fxFlex style="overflow: auto;" class="mainContent mainContent_miraway">
-    <div class="main_miraway">
+  <div fxFlex="250px" class="leftFilter"></div>
+  <div fxFlex style="overflow: auto;" class="mainContent" fxLayout="column">
+    <div fxFlex class="main_miraway">
       <router-outlet></router-outlet>
     </div>
-    <p>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
+    <p fxFlex>Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</p>
   </div>
 </div>

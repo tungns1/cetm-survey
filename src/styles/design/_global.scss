@@ -14,6 +14,7 @@
     font-weight: $font-weight-default;
     cursor: pointer;
     outline: none;
+    text-transform: uppercase;
 }
 
 .btnFill {
@@ -67,6 +68,8 @@
     border-right: $border;
     .filter {
         height: 78vh;
+    position: fixed;
+    width: 249px;
         .content {
             overflow: auto;
             .inputCtrl {
@@ -120,13 +123,10 @@
         }
     }
     .main_miraway {
-        min-height: 85%;
-        position: relative;
-        padding-bottom: 50px;
-    }
-    .mainContent_miraway {
-        height: 100%;
-        position: relative;
+        min-height: 85vh;
+        @media screen and (max-width: 1300px){
+            min-height: 80vh;
+        }
     }
 }
 

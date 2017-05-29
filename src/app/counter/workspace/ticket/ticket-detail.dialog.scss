@@ -1,6 +1,10 @@
+@import '../../shared/style.scss';
 #ticketDetail{
     span{
         text-align: right;
+    }
+    label{
+        font-weight: $font-weight-default + 200;
     }
 }
 #alert{
