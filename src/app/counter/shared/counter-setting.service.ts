@@ -19,6 +19,7 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
     private env: RuntimeEnvironment
   ) {
     super("counter", xwinStorage);
+    this.data.mini_mode = this.data.mini_mode || <any>{};
   }
 
   Update(data: ICounterSetting) {
