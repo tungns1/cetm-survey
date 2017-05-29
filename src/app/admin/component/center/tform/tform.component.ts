@@ -20,7 +20,7 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
 
   title = 'Ticket Number Format'
 
-  pattern_format: any ="^[%]0?([1-9])[d][A-Z]$";
+  pattern_format: any ="^[A-Z]?[%]0?([1-9])[d][A-Z]?$";
   makeForm(b?: ITForm) {
     b = b || <any>{};
     return (new FormBuilder).group({
