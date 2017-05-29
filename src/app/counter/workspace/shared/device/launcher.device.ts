@@ -22,5 +22,5 @@ export class LauncherService {
     } 
     return v;
   }
-
+  
 }
