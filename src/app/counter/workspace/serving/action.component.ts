@@ -55,8 +55,14 @@ export class ActionComponent {
         this.triggerAction('cancel');
     }
 
+    Miss() {
+        this.triggerAction('miss');
+    }
+
     private triggerAction(action: TicketActionName) {
         return this.ticketService.TriggerAction(action, this.ticket);
     }
+
+    hasMiss = false;
 
 }

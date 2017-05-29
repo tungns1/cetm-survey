@@ -1,4 +1,5 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { Ticket, TicketStates, TicketActionName } from '../shared';
 import { TicketService, QueueService, WorkspaceService } from '../shared';
@@ -7,7 +8,8 @@ import { NoticeComponent } from '../shared';
 @Component({
   selector: 'ticket-detail-dialog',
   templateUrl: 'ticket-detail.dialog.html',
-  styleUrls: ['ticket-detail.dialog.scss']
+  styleUrls: ['ticket-detail.dialog.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TicketDetailDialog {
 
@@ -19,8 +21,10 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
 
-  isServing = this.ticket.state == TicketStates.Serving;
+  isServing = this.ticket.IsState("serving");
   isCancelled = this.ticket.IsState("cancelled");
+  isMissed = this.ticket.IsState("missed");
+  isWaiting = this.ticket.IsState("waiting");
 
   checkedCounters = [];
   checkedServices = [];
@@ -38,7 +42,7 @@ export class TicketDetailDialog {
   );
 
   services = this.workspaceService.services$;
-  canCall = this.ticket.priority.canMakeUnorderedCall() && this.ticket.state === "waiting";
+  canCall = (this.ticket.priority.canMakeUnorderedCall() && this.isWaiting) || this.isMissed;
 
   @ViewChild(NoticeComponent) notice: NoticeComponent;
 
@@ -75,8 +79,8 @@ export class TicketDetailDialog {
 
   private triggerAction(action: TicketActionName) {
     this.ticketService.TriggerAction(action, this.ticket)
-    .subscribe(_ => this.dialogRef.close(), e => {
-      this.notice.ShowMessage("server_error");
-    });
+      .subscribe(_ => this.dialogRef.close(), e => {
+        this.notice.ShowMessage("server_error");
+      });
   }
 }

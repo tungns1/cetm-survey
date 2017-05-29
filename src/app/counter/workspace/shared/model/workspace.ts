@@ -27,6 +27,9 @@ export class Workspace {
     public counters = this._instate.counters;
     public user = this._instate.user;
     public stat = new CounterStatistics(this.user.id, this._instate.stat);
+    
+
+    public storeServicable = this.allCounterServicable();
 
     private services = new Set<string>();
     private vip_services = new Set<string>();
@@ -73,5 +76,15 @@ export class Workspace {
     AutoNext = false;
     get is_busy() {
         return !this.Serving.is_empty;
+    }
+
+    private allCounterServicable() {
+        const servicable = new Set<string>();
+        this.counters.forEach(c => {
+            c.services.forEach(id => servicable.add(id));
+            c.vservices = c.vservices || []
+            c.vservices.forEach(id => servicable.add(id));
+        });
+        return servicable;
     }
 }

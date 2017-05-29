@@ -12,4 +12,6 @@ export class NormalWorkspaceComponent implements OnInit {
   ngOnInit() {
   }
 
+  hasMiss = false;
+
 }
