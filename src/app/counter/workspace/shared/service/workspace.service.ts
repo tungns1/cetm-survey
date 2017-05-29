@@ -67,16 +67,10 @@ export class WorkspaceService {
     stat$ = this.Workspace$.map(w => w.stat)
         .share().publishReplay(1).refCount();
 
-    services$ = this.counters$.combineLatest(
-        CacheService.RxListView,
-        (counters, allServices) => {
-            const servicable = {}
-            counters.forEach(c => {
-                c.services.forEach(id => servicable[id] = true)
-                c.vservices = c.vservices || []
-                c.vservices.forEach(id => servicable[id] = true)
-            })
-            const services = allServices.filter(s => servicable[s.id]);
-            return services.sort((a, b) => a.name > b.name ? 1 : -1);
+    services$ = this.Workspace$.map(w => w.storeServicable)
+        .distinctUntilChanged()
+        .map(serviable => {
+            return CacheService.RxListView.value
+                .filter(s => serviable.has(s.id));
         });
 }
