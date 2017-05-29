@@ -6,8 +6,7 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async"
-    [title]="title" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
@@ -24,7 +23,6 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
                 <div fxFlex fxLayout="column" fxLayoutGap="2px">
                     <input fxFlex="100%" class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
                     <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">Atleast 4 characters</div>
@@ -43,8 +41,7 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('counters').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('counters').hasError('required')">&nbsp;</span>
-                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff" [data]="counters$ | async"
-                    textField="name"></select-check>
+                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff" [data]="counters$ | async" textField="name"></select-check>
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
@@ -75,7 +72,7 @@
             <span fxFlex="20%" i18n>Resources</span>
             <!--<div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%">&nbsp;</span>-->
-                <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+            <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
             <!--</div>
             <div fxFlex="20%"></div>
             <div fxFlex></div>-->
