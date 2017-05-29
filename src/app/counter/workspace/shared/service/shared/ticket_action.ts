@@ -1,4 +1,4 @@
-export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore'
+export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss';
 
 interface ITicketAction<T> {
     action: string;
@@ -20,8 +20,9 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 const TicketStateTransitions = new Map<TicketState, TicketState[]>();
 TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Serving, TicketStates.Cancelled]);
-TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled]);
+TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled, TicketStates.Missed]);
 TicketStateTransitions.set(TicketStates.Cancelled, [TicketStates.Waiting]);
+TicketStateTransitions.set(TicketStates.Missed, [TicketStates.Serving]);
 
 const NextStates = new Map<TicketActionName, TicketState>();
 NextStates.set("call", TicketStates.Serving);
@@ -30,6 +31,7 @@ NextStates.set("move", TicketStates.Waiting);
 NextStates.set("finish", TicketStates.Finished);
 NextStates.set("cancel", TicketStates.Cancelled);
 NextStates.set("restore", TicketStates.Waiting);
+NextStates.set("miss", TicketStates.Missed);
 
 export class TicketAction {
     constructor(

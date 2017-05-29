@@ -19,8 +19,10 @@ export class TicketDetailDialog {
     private workspaceService: WorkspaceService
   ) { }
 
-  isServing = this.ticket.state == TicketStates.Serving;
+  isServing = this.ticket.IsState("serving");
   isCancelled = this.ticket.IsState("cancelled");
+  isMissed = this.ticket.IsState("missed");
+  isWaiting = this.ticket.IsState("waiting");
 
   checkedCounters = [];
   checkedServices = [];
@@ -38,7 +40,7 @@ export class TicketDetailDialog {
   );
 
   services = this.workspaceService.services$;
-  canCall = this.ticket.priority.canMakeUnorderedCall() && this.ticket.state === "waiting";
+  canCall = (this.ticket.priority.canMakeUnorderedCall() && this.isWaiting) || this.isMissed;
 
   @ViewChild(NoticeComponent) notice: NoticeComponent;
 
@@ -75,8 +77,8 @@ export class TicketDetailDialog {
 
   private triggerAction(action: TicketActionName) {
     this.ticketService.TriggerAction(action, this.ticket)
-    .subscribe(_ => this.dialogRef.close(), e => {
-      this.notice.ShowMessage("server_error");
-    });
+      .subscribe(_ => this.dialogRef.close(), e => {
+        this.notice.ShowMessage("server_error");
+      });
   }
 }
