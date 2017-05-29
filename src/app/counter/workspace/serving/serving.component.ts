@@ -7,17 +7,7 @@ import { QueueService } from '../shared';
     template: `
     <ticket *ngFor="let t of serving$ | async" [ticket]="t"></ticket>
     <empty *ngIf="!(busy$ | async)"></empty>
-    <div class="divider"></div>
-    `,
-    styles: [`
-    empty {
-        height: 210px;
-        border: 0px solid;
-    }
-    .divider{
-        margin: 0px;
-    }
-    `]
+    `
 })
 export class ServingComponent {
     constructor(

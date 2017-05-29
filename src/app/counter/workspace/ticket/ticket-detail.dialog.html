@@ -9,7 +9,7 @@
             <label fxFlex i18n>Priority</label>
             <span fxFlex>
                 {{ticket.priority.value}} 
-                ({{ticket.priority.detail()}}) 
+                ({{ticket.priority.detail()}})
             </span>
         </div>
         <div fxLayout="row" class="margin-t-10">
@@ -24,8 +24,10 @@
                 <label fxFlex i18n>Start Serving</label>
                 <span fxFlex>{{ticket.mtime | localDayTime}}</span>
             </div>
-            <p class="margin-t-10" i18n>Transfer Service</p>
-            <select-check class="margin-t-10" [(ngModel)]="checkedServices" [data]="services | async" textField="name"></select-check>
+            <label class="margin-t-10" i18n>Transfer Service</label>
+            <div class="margin-t-10">
+                <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name"></select-check>
+            </div>
         </div>
 
         <!-- Action -->
@@ -34,20 +36,23 @@
                 <label fxFlex i18n>Cancelled Time</label>
                 <span fxFlex>{{ticket.mtime | localDayTime}}</span>
             </div>
-            <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
                 <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
                 <button fxFlex class="btnFill" appConfirm="Do you want to restore this ticket?" (confirm)="Restore()" i18n>Restore</button>
             </div>
         </div>
 
         <div *ngIf="!isCancelled" class="margin-20-0">
-            <p class="margin-10-0" i18n>Transfer Counter</p>
-            <select-check class="margin-t-10" [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
-            <div fxLayout="row" fxLayoutGap="20px">
+            <label class="margin-t-10" i18n>Transfer Counter</label>
+            <div class="margin-t-10">
+                <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
+            </div>
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
                 <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
                 <button *ngIf="canCall" fxFlex class="btnFill" (click)="Call()" i18n>Call</button>
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
-                <button fxFlex class="btnRed" appConfirm="Do you want to cancel this ticket?" i18n-appConfirm (confirm)="Delete()" i18n>Delete</button>
+                <button *ngIf="!isServing" fxFlex class="btnRed" appConfirm="Do you want to cancel this ticket?" i18n-appConfirm (confirm)="Delete()"
+                    i18n>Delete</button>
             </div>
         </div>
     </div>

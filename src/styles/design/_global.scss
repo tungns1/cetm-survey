@@ -14,13 +14,13 @@
     font-weight: $font-weight-default;
     cursor: pointer;
     outline: none;
+    text-transform: uppercase;
 }
 
 .btnFill {
     @extend .btnClear;
     background-color: $key-color;
     color: #fff;
-    text-transform: uppercase;
 }
 
 .btnRed {
