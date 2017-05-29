@@ -4,10 +4,14 @@
     padding: 1.5% 0;
 }
 
+button[disabled] {
+    cursor: not-allowed;
+}
+
 @media only screen and (max-width: 600px) {
     #actions {
         .btnFill,
-        .btnGreen{
+        .btnGreen {
             font-size: $font-size-default - 2px;
         }
     }

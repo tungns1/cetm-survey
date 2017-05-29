@@ -72,4 +72,9 @@ export class TicketPriority {
         };
         return 0;
     }
+    
+    detail() {
+        const obj = this._t;
+        return Object.keys(obj).filter(k => obj[k]).join(";");
+    }
 }

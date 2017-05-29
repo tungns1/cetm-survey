@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Ticket } from '../model/house/ticket/ticket';
 
 @Component({
     selector: 'ticket-icon',
     template: `
         <img [style.width]="width" class="icon" *ngIf="src" [src]="src">
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TicketIconComponent {
     @Input() width = "15px";

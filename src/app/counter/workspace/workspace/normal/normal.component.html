@@ -4,6 +4,7 @@
             <serving></serving>
             <div fxLayout="row" fxLayoutGap="10px" style="height: 47%">
                 <waiting-queue fxFlex></waiting-queue>
+                <missed-queue *ngIf="hasMiss" fxFlex></missed-queue>
                 <cancel-queue fxFlex></cancel-queue>
             </div>
         </div>
