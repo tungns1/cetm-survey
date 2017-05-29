@@ -6,10 +6,14 @@
 </div>
 
 <app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
-    <form class="hl-form" [formGroup]="form">
-        <span i18n>Name</span>:
-        <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name"><br>
+    <form [formGroup]="form" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="20%" i18n>Name:</span>
+            <input fxFlex class="hl-input" formControlName="name" i18n-placeholder placeholder="Name"><br>
+
+        </div>
         <l10n-ticket formControlName="l10n"></l10n-ticket>
+
         <!--<span i18n>Logo Url</span>:
         <input class="hl-input" formControlName="url_logo" i18n-placeholder placeholder="LogoUrl"><br>-->
     </form>
