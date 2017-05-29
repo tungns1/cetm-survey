@@ -11,7 +11,7 @@ import { RuntimeEnvironment, SessionValidationGuard, AuthService } from './share
  * Check setting before redirect
  */
 @Injectable()
-export class CounterWelcomeGuard extends SessionValidationGuard {
+export class CounterSessionValidationGuard extends SessionValidationGuard {
   constructor(
     router: Router,
     authService: AuthService,

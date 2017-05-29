@@ -37,6 +37,11 @@ interface MiniModeOptions {
     no_resizable: boolean;
 }
 
+export interface XWinMiniMode {
+    rect: XWinRectangle;
+    options: MiniModeOptions;
+}
+
 @Injectable()
 export class XWinService {
     Broadcast(event: string, data?: any) {}

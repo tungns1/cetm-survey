@@ -1,34 +1,39 @@
-<p>Counter Setting</p>
+<md-toolbar>
+    Counter Setting
+    <a routerLink="../workspace">
+        <i class="fa fa-arrow-right"></i> Go
+    </a>
+</md-toolbar>
 
 <form [formGroup]="form">
+    <h2> General Configuration</h2>
     <md-input-container>
         <input mdInput formControlName="branch_code" placeholder="Branch Code">
     </md-input-container>
     <md-input-container>
         <input mdInput formControlName="counter_code" placeholder="Counter Code">
     </md-input-container>
-    <md-input-container>
-        <input mdInput type="number" min="0" formControlName="addr_led" placeholder="Addr Led">
-    </md-input-container>
 
-    <md-input-container>
-        <input mdInput type="number" min="0" formControlName="mini_hight" placeholder="Height">
-    </md-input-container>
+    <h2> Mini Mode View</h2>
+    <mini-mode-form></mini-mode-form>
 
-    <md-input-container>
-        <input mdInput type="number" min="0" formControlName="mini_width" placeholder="Width">
-    </md-input-container>
+    <h2> Advanced Configuration </h2>
 
-    <md-input-container>
-        <input mdInput type="text" formControlName="com_led" placeholder="Com Led">
-    </md-input-container>
+    <md-tab-group>
+        <md-tab label="Led">
+            <md-input-container>
+                <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Addr Led">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput type="text" formControlName="led_com_port" placeholder="Led COM port">
+            </md-input-container>
 
-    <md-checkbox formControlName="enable_recording">
-        Enable Transaction Recording
-    </md-checkbox>
+        </md-tab>
+        <md-tab label="Recording">
+            <md-checkbox formControlName="enable_recording">
+                Enable Transaction Recording
+            </md-checkbox>
+        </md-tab>
+    </md-tab-group>
 
 </form>
-
-<div>
-    <a routerLink="../workspace">Go</a>
-</div>

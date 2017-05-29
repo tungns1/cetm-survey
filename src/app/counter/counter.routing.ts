@@ -3,7 +3,7 @@ import { WorkspaceModule } from './workspace';
 import { CounterComponent } from './counter/counter.component';
 import { SettingComponent } from './setting/setting.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { CounterWelcomeGuard } from './shared';
+import { CounterSessionValidationGuard } from './shared';
 
 export function loadWorkspace() {
   return WorkspaceModule;
@@ -14,7 +14,7 @@ const children: Routes = [
     path: "workspace",
     loadChildren: loadWorkspace,
     canActivate: [
-      CounterWelcomeGuard
+      CounterSessionValidationGuard
     ]
   },
   {

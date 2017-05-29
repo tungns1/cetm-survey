@@ -6,11 +6,11 @@ export interface ICounterSetting {
   branch_code: string;
   counter_code: string;
   enable_recording: boolean;
-  upload_url: string;
-  addr_led: number;
-  mini_hight: number;
+  record_upload_url: string;
+  mini_height: number;
   mini_width: number;
-  com_led: string;
+  led_addr: number;
+  led_com_port: string;
 }
 
 @Injectable()
@@ -26,11 +26,11 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
     this.data.branch_code = data.branch_code;
     this.data.counter_code = data.counter_code;
     this.data.enable_recording = data.enable_recording;
-    this.data.upload_url = data.upload_url;
-    this.data.addr_led = data.addr_led;
-    this.data.mini_hight = data.mini_hight;
+    this.data.record_upload_url = data.record_upload_url;
+    this.data.led_addr = data.led_addr;
+    this.data.mini_height = data.mini_height;
     this.data.mini_width = data.mini_width;
-    this.data.com_led = data.com_led;
+    this.data.led_com_port = data.led_com_port;
     this.SaveData();
   }
 
@@ -40,7 +40,7 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
   }
 
   get MiniHight() {
-    return this.data.mini_hight;
+    return this.data.mini_height;
   }
 
   get MiniWidth() {
@@ -48,15 +48,15 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
   }
 
   get AddrLed() {
-    return this.data.addr_led;
+    return this.data.led_addr;
   }
 
   get ComLed() {
-    return this.data.com_led;
+    return this.data.led_com_port;
   }
 
   get UploadUrl() {
-    return this.data.upload_url || this.baseUploadURL;
+    return this.data.record_upload_url || this.baseUploadURL;
   }
 
   get IsChecked() {

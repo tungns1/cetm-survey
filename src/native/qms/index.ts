@@ -1,7 +1,8 @@
 export {
     QmsNativeModule,
-    QmsService, 
+    QmsService,
     XWinStorageStrategy,
-    XWinService, 
+    XWinService,
     XWinRectangle,
+    XWinMiniMode,
 } from './qms';

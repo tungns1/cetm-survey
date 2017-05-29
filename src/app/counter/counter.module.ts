@@ -3,16 +3,18 @@ import { SharedModule } from "./shared/";
 import { CounterComponent } from "./counter/counter.component";
 import { routing } from "./counter.routing";
 import { SettingComponent } from './setting/setting.component';
-import { CounterSettingService, CounterWelcomeGuard } from './shared';
+import { CounterSettingService, CounterSessionValidationGuard } from './shared';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { MiniModeFormModule } from './setting/minimode-form.module';
 
 @NgModule({
     imports: [
-        SharedModule, routing
+        SharedModule, routing,
+        MiniModeFormModule
     ],
     declarations: [CounterComponent, SettingComponent, WelcomeComponent],
     providers: [
-        CounterSettingService, CounterWelcomeGuard
+        CounterSettingService, CounterSessionValidationGuard
     ]
 })
 export class CounterModule {
