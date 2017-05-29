@@ -23,20 +23,22 @@
     </div>
 </div>
 
-<div fxShow.gt-xs="false" class="emptyAndServing" fxLayout="row">
-    <div fxFlex="75%">
-        <div i18n>Ticket</div>
+<div fxShow.gt-xs="false" class="emptyAndServing" ngClass.xs="servingMini" fxLayout="row">
+    <div fxFlex="80%">
+        <p><b i18n>Ticket</b></p>
         <div>
             <ticket-icon width="20px" [ticket]="ticket"></ticket-icon>
             <span>{{ticket.cnum}} - </span>
+            <span *ngIf="ticket.customer.first_name">{{ticket.customer.first_name}}</span>
+            <span *ngIf="!ticket.customer.first_name">CLIENTE</span>
         </div>
     </div>
     <div fxFlex class="servingTimeContainer">
-        <div i18n>Time</div>
+        <p><b i18n>Time</b></p>
         <timer class="servingTime" [start]="ticket.mtime" [timeWarning]="maxServingMinute"></timer>
     </div>
 </div>
 
-<ticket-action [ticket]="ticket"></ticket-action>
+<ticket-action [ticket]="ticket" ngClass.xs="actionMini"></ticket-action>
 <div class="divider"></div>
-<customer-info [customer]="ticket.customer"></customer-info>
+<customer-info fxShow.xs="false" [customer]="ticket.customer"></customer-info>
