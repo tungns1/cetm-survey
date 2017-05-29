@@ -13,3 +13,4 @@ export {
 } from '../../../x/ng';
 
 export { NoticeComponent } from '../../../../lib/ng2';
+export { ComposeService } from './compose.service';

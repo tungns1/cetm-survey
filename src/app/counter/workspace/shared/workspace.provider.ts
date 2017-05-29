@@ -3,7 +3,6 @@ import {
     QueueService,
     WorkspaceSocket,
     LedService, FeedbackService, RecorderService,
-    ComposeService
 } from './service';
 
 import {
@@ -12,6 +11,8 @@ import {
     RecorderDevice,
     LauncherService
 } from './device';
+
+import { ComposeService } from './compose.service';
 
 export const workspaceServiceProvider = [
     LedDevice, FeedbackDevice, RecorderDevice,

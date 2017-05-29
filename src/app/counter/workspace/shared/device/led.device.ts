@@ -23,7 +23,7 @@ export class LedDevice {
         );
     }
 
-    Command_com(com: string) {
+    SetCOMPort(com: string) {
         this.qmsService.__x.Broadcast(
             "/led/com",
             `${com}`

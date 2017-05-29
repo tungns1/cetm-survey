@@ -6,7 +6,6 @@ import { TicketService } from './ticket.service';
 import { LedDevice } from '../device';
 import { WorkspaceSocket } from './workspace.socket';
 import { combineLatest } from 'rxjs/observable/combineLatest';
-import { CounterSettingService } from '../../../shared/counter-setting.service';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { interval } from 'rxjs/observable/interval';
 
@@ -30,19 +29,18 @@ export class LedService{
         private ticketService: TicketService,
         private ledDevice: LedDevice,
         private workspaceService: WorkspaceService,
-        private socket: WorkspaceSocket,
-        private counterSettingService: CounterSettingService,
+        private socket: WorkspaceSocket
     ) {
 
     }
     
-    enable() {
-        this.ledDevice.Command_com(this.led_com);
-        this.ledDevice.Setup(this.led_address);
+    enable(led_com_port: string, led_address: number) {
+        this.ledDevice.SetCOMPort(led_com_port);
+        this.ledDevice.Setup(led_address);
         this.workspaceService.Workspace$.debounceTime(250)
             .map(w => {
                 const s: LedStatus = {
-                    addr: this.led_address,
+                    addr: led_address,
                     type: STATUS.WELCOME,
                 };
                 if (w.Serving.is_empty) {
@@ -56,7 +54,7 @@ export class LedService{
                 this.SendStatus(status);
             });
         interval(60 * 1000).subscribe(_ => {
-            this.Ping();
+            this.ledDevice.Ping(led_address);
         });
     }
 
@@ -78,10 +76,6 @@ export class LedService{
         }
     }
 
-    private Ping() {
-        this.ledDevice.Ping(this.led_address);
-    }
-
     private sendToServerVersion1(status: LedStatus) {
         console.log("send to server led..........");
         const type = status.type === STATUS.SHOW ? status.data : status.type;
@@ -89,7 +83,4 @@ export class LedService{
             status: type
         })
     }
-
-    private led_address = this.counterSettingService.AddrLed;
-    private led_com = this.counterSettingService.ComLed;
 }

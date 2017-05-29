@@ -25,6 +25,8 @@ export class SettingComponent implements OnInit {
   form = new FormGroup({
     branch_code: new FormControl(this.value.branch_code),
     counter_code: new FormControl(this.value.counter_code),
+    mini_mode: new FormControl(this.value.mini_mode),
+    
     enable_recording: new FormControl(this.value.enable_recording),
     led_addr: new FormControl(this.value.led_addr),
     led_com_port: new FormControl(this.value.led_com_port)

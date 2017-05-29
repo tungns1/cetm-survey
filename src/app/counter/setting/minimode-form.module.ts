@@ -13,21 +13,22 @@ const MINI_MODE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 
 @Component({
     selector: 'mini-mode-form',
-    template: `
-        <div> Mini mode form </div>
-    `,
+    templateUrl: "minimode-form.component.html",
     providers: [MINI_MODE_CONTROL_VALUE_ACCESSOR]
 })
 export class MiniModeFormComponent implements ControlValueAccessor {
-    private text: string;
     private onChangeCallback = (v) => { };
-    invalid = false;
-
-    disableEditTextArea: boolean = true;
 
     writeValue(v: XWinMiniMode) {
-        this.text = JSON.stringify(v, null, '\t');
-        this.invalid = false;
+        v = v || <any>{};
+        v.rect = v.rect || {};
+        v.rect.width;
+        v.rect.height;
+        v.options = v.options || {};
+        if (v.enable === void 0) {
+            v.enable = true;
+        }
+        this.value = v;
     }
 
     registerOnChange(fn: any) {
@@ -38,14 +39,14 @@ export class MiniModeFormComponent implements ControlValueAccessor {
 
     }
 
-    onChange(text: string) {
-        try {
-            let val = JSON.parse(text);
-            this.onChangeCallback(val);
-            this.invalid = false;
-        } catch (e) {
-            this.invalid = true;
-        }
+    protected value: XWinMiniMode = {
+        enable: true,
+        rect: {},
+        options: {}
+    };
+
+    onChange() {
+        this.onChangeCallback(this.value);
     }
 }
 

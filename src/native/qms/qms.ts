@@ -25,19 +25,20 @@ export class QmsService {
 }
 
 export interface XWinRectangle {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+    x?: number;
+    y?: number;
+    width?: number;
+    height?: number;
 }
 
 interface MiniModeOptions {
-    no_focusable: boolean;
-    always_on_top: boolean;
-    no_resizable: boolean;
+    no_focusable?: boolean;
+    always_on_top?: boolean;
+    no_resizable?: boolean;
 }
 
 export interface XWinMiniMode {
+    enable?: boolean;
     rect: XWinRectangle;
     options: MiniModeOptions;
 }
