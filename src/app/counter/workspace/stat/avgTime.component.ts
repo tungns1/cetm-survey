@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ITicket, TicketService } from '../shared';
+import { ITicket, TicketService, ProjectConfig } from '../shared';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 
@@ -12,5 +12,13 @@ export class AvgTimeComponent {
     constructor(
         private ticketService: TicketService
     ) { }
-    @Input() stime:number;
+
+    @Input() set stime(t: number) {
+        this.duration = t;
+        this.warning = t > this.maxServingMinute * 60 * 1000;
+    }
+
+    maxServingMinute = ProjectConfig.service.max_serving_minute;
+    protected duration = 0;
+    protected warning = false;
 }

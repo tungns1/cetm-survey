@@ -9,7 +9,6 @@ export { RuntimeEnvironment } from './env';
 export * from './service';
 
 export { SmallStorage, RouterQueryStorageStrategy } from './shared';
-export { ExportExcelService,ExportService } from '../x/ng';
 export { LogService } from '../../lib/platform';
 export { AppSocket } from '../../lib/backend';
 export { ExclusiveEventEmitter } from '../../lib/rx';

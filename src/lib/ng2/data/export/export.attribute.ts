@@ -4,7 +4,7 @@ import {
     ContentChildren, QueryList
 } from '@angular/core';
 
-import { IWorkSheetCell } from 'xlsx';
+import { CellObject } from 'xlsx';
 
 @Component({
     selector: 'export-attribute',
@@ -24,7 +24,7 @@ export class ExportCell {
     private native: HTMLElement = this.el.nativeElement;
     @Input() export = "string";
     GetCell() {
-        const c: IWorkSheetCell = {
+        const c: CellObject = {
             v: this.native.innerText,
             t: this.type
         }
