@@ -37,20 +37,17 @@
 
         </div>
 
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" fxLayoutGap="20px" class="">
             <span fxFlex="20%">&nbsp;</span>
-            <div fxFlex fxLayout="row" fxLayoutGap="2.5px">
-                <span fxFlex="0.5%">&nbsp;</span>
-                <div fxFlex class="border margin-b-20">
-                    <accordion>
-                        <accordion-title class="accordionTitle margin-t-15">
-                            <span i18n>Show Code</span>
-                        </accordion-title>
-                        <div fxLayout="row">
-                            <json-text-form fxFlex formControlName="ui"></json-text-form>
-                        </div>
-                    </accordion>
-                </div>
+            <div fxFlex="54%" class="border">
+                <accordion>
+                    <accordion-title class="accordionTitle margin-t-15">
+                        <span i18n>Show Code</span>
+                    </accordion-title>
+                    <div fxLayout="row">
+                        <json-text-form fxFlex formControlName="ui"></json-text-form>
+                    </div>
+                </accordion>
             </div>
         </div>
 
