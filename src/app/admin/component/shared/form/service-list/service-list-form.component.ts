@@ -55,11 +55,11 @@ export class ServiceListComponent implements ControlValueAccessor {
         };
         const dialog = this.dialog.open(ServiceCustomizeModal, config);
         dialog.afterClosed().subscribe((v: IServiceCustomizeResult) => {
-            if (v.action == 'cancel') return;
-            if (v.action == 'save') {
+            if (!v || v.action == 'cancel') return;
+            if (!v || v.action == 'save') {
                 this.value[v.index] = v.active;
                 AddServiceName(v.active);
-            } else if (v.action == 'delete') {
+            } else if (!v || v.action == 'delete') {
                 this.value.splice(v.index, 1);
             }
             this.OnChange();

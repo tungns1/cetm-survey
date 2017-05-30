@@ -49,8 +49,9 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         }).switchMap(configs => {
             return this.formValue$.map(form => {
                 // ensure selected services in the config list
-                const selected = form.services.map(s => s.id);
+                const selected = (form.services || []).map(s => s.id);
                 const services = CacheService.RxListView.value;
+                console.log(services);
                 const c = configs[0];
                 if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
                 const ids = [].concat(selected).concat(c.service.basket);
@@ -58,7 +59,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                     return ids.indexOf(s.id) !== -1;
                 });
             });
-        });
+        }).share().publishReplay(1).refCount();
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
