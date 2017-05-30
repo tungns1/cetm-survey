@@ -1,6 +1,6 @@
 <div>
     <div>
-        <span class="user-head-text" i18n>User Setting</span>
+        <span class="user-head-text" i18n>Change PassWord</span>
         <hr class="user-hr-css">
     </div>
     <div>
@@ -24,7 +24,7 @@
                 <input class="hl-input-change-pass" type="password" formControlName="re_new_pass" i18n-placeholder placeholder=" Retype Old Pass Word">
             </div>
             <span fxFlex>&nbsp;</span>
-            <button class="btnFill submit-setup" [disabled]="!form.valid" [style.opacity]="!form.valid?0.3:1" (click)="Submit()">Submit</button>
+            <button class="btnFill submit-setup" [disabled]="!form.valid" [style.opacity]="!form.valid?0.3:1" (click)="Submit()">Save</button>
             <button class="hl-button-user btn-footer-user" (click)="Close()"> <span i18n>Close</span> </button>
         </form>
 
