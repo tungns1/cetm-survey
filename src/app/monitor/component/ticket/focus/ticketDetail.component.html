@@ -51,7 +51,7 @@
             <div fxFlex *ngIf="box.branch; let b">{{b.name}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
-            <div fxFlex i18n>Tellers</div>
+            <div fxFlex i18n>User</div>
             <div fxFlex>{{ticket.user_id | userFullName}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px" *ngIf="ticket.state !== 'waiting' && ticket.state !== 'missed'">
@@ -72,7 +72,7 @@
             <div fxFlex *ngIf="ticket.customer.full_name"> {{ticket.customer.full_name}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
-            <div fxFlex i18n>Code ID</div>
+            <div fxFlex i18n>Customer Code</div>
             <div fxFlex *ngIf="ticket.customer.code"> {{ticket.customer.code}}</div>
         </div>
         <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">

@@ -1,4 +1,4 @@
-import { IWorkSheetCell } from 'xlsx';
+import { CellObject } from 'xlsx';
 
 function getRow(el: HTMLTableRowElement) {
     let cells = el.getElementsByTagName("td");
@@ -17,7 +17,7 @@ function getCell(el: HTMLTableCellElement) {
     if (type == "none") {
         return null;
     }
-    const c: IWorkSheetCell = {
+    const c: CellObject = {
         t: types[type] || "s",
         v: el.innerText.trim(),
         s: {}

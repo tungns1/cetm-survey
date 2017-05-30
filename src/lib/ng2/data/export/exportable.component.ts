@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { TableExport } from './html2csv';
-import { WorkBook } from './excel';
+import { ExcelWorkBook } from './excel';
 import { ExportAttribute, ExportTable } from './export.attribute';
 
 @Component({
@@ -36,7 +36,7 @@ export class ExportableComponent implements OnInit {
     return a ? a.title : '';
   }
 
-  private addTable(w: WorkBook, table: ExportTable, index: number) {
+  private addTable(w: ExcelWorkBook, table: ExportTable, index: number) {
     const rows = table.GetTable();
     const sheet = table.title || `sheet_${index}`;
     w.AddSheet(sheet, rows);
@@ -44,7 +44,7 @@ export class ExportableComponent implements OnInit {
   }
 
   excel() {
-    const w = new WorkBook();
+    const w = new ExcelWorkBook();
     this.tables.forEach((table, i) => {
       this.addTable(w, table, i + 1);
     });

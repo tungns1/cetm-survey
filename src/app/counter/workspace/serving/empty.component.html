@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div fxShow.gt-xs="false" class="emptyAndServing" fxLayout="row">
+<div fxShow.gt-xs="false" class="emptyAndServing" ngClass.xs="servingMini" fxLayout="row">
     <div fxFlex="75%">
         <div i18n>Ticket</div>
         <div class="holder"></div>
@@ -21,6 +21,6 @@
     </div>
 </div>
 
-<ticket-action></ticket-action>
+<ticket-action ngClass.xs="actionMini"></ticket-action>
 <div class="divider"></div>
-<customer-info></customer-info>
+<customer-info fxShow.xs="false"></customer-info>

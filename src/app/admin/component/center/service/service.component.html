@@ -21,7 +21,7 @@
                     <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
                 </div>
             </div>
-            <span fxFlex="20%" i18n="Mức ưu tiên dịch vụ">Priority</span>
+            <span fxFlex="20%" i18n>Service Priority</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('priority').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('priority').hasError('required')">&nbsp;</span>
@@ -30,7 +30,7 @@
         </div>
 
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n="Định dạng số vé">Ticket Number Format</span>
+            <span fxFlex="20%" i18n>Ticket Number Format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_normal').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('tform_normal').hasError('required')">&nbsp;</span>
@@ -40,7 +40,7 @@
             </div>
 
 
-            <span fxFlex="20%" i18n="Định dạng số vé vip">VIP Ticket Number Format</span>
+            <span fxFlex="20%" i18n>Restricted Ticket Number Format</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>

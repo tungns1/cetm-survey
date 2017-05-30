@@ -1,10 +1,9 @@
-import { read, write, IWorkBook, IWorkSheet, IWorkSheetCell, IWritingOptions, utils, ICell } from 'xlsx';
+import { read, write, WorkBook, Sheet, CellObject, WritingOptions, utils, CellAddress } from 'xlsx';
 import { saveAs } from 'file-saver';
 
-
-function SaveAs(filename: string, workbook: IWorkBook) {
+function SaveAs(filename: string, workbook: WorkBook) {
     /* bookType can be 'xlsx' or 'xlsm' or 'xlsb' or 'ods' */
-    var wopts: IWritingOptions = {
+    var wopts: WritingOptions = {
         bookType: "xlsx",
         bookSST: true,
         type: 'binary'
@@ -23,9 +22,9 @@ function SaveAs(filename: string, workbook: IWorkBook) {
     }
 }
 
-export class WorkBook {
-    private makeSheet(rows: IWorkSheetCell[][]) {
-        const sheet: IWorkSheet = {};
+export class ExcelWorkBook {
+    private makeSheet(rows: CellObject[][]) {
+        const sheet: Sheet = {};
         let maxCol = 0;
         rows.forEach((row, i) => {
             if (maxCol < row.length) maxCol = row.length;
@@ -34,13 +33,13 @@ export class WorkBook {
                 sheet[index] = cell;
             })
         })
-        const start: ICell = { c: 0, r: 0 };
-        const end: ICell = { c: maxCol, r: rows.length };
+        const start: CellAddress = { c: 0, r: 0 };
+        const end: CellAddress = { c: maxCol, r: rows.length };
         sheet["!ref"] = utils.encode_range(start, end);
         return sheet;
     }
 
-    AddSheet(name: string, data: IWorkSheetCell[][]) {
+    AddSheet(name: string, data: CellObject[][]) {
         this.workBook.SheetNames.push(name);
         this.workBook.Sheets[name] = this.makeSheet(data);
     }
@@ -50,7 +49,7 @@ export class WorkBook {
         SaveAs(`${filename}.xlsx`, this.workBook);
     }
 
-    private workBook: IWorkBook = {
+    private workBook: WorkBook = {
         SheetNames: [],
         Sheets: {},
         Props: {}

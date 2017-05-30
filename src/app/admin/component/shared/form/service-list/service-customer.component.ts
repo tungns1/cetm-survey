@@ -1,5 +1,5 @@
 import { MdDialog, MdDialogConfig, MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
-import { Component, Optional, Inject } from '@angular/core';
+import { Component, Optional, Inject, OnInit } from '@angular/core';
 import { IService, ServiceName } from '../../../../../shared/model';
 
 export interface IServiceCustomizeData {
@@ -27,6 +27,10 @@ export class ServiceCustomizeModal {
     private active: IService = this.dialogData.active || <any>{};
     private services = this.dialogData.services;
     private index = this.dialogData.index;
+    
+    // ngOnInit(){
+    //     console.log(ServiceName);
+    // }
 
     setActive() {
         let service = this.services.find(s => s.id === this.active.id);

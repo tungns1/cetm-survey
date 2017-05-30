@@ -7,7 +7,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { DirectiveModule } from './directive/directive.module';
 import { NavModule, HeaderModule } from "./component/";
 import { EnvironmentModule } from './env';
-import { ModalModule, SelectCheckModule, ExportModule } from '../x/ng';
+import { ModalModule, SelectCheckModule } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
 import { AppSocketGenerator, HttpServiceGenerator } from './service';
 import { Ng2BasicModule } from './shared';
@@ -26,7 +26,6 @@ import { BusinessModule } from './businessQapp/business.module';
         FlexLayoutModule, NavModule, HeaderModule,
         UtilPipeModule, SelectCheckModule,
         ModalModule, BusinessModule,
-        ExportModule
     ],
 })
 export class SharedModule {
