@@ -3,12 +3,12 @@
   <div fxLayout="row" fxLayoutGap="5px">
     <div fxFlex fxLayout="row" fxLayoutGap="5px">
       <span fxFlex="22%" class="padding-t-5 right">Column</span>
-      <input fxFlex="68%" class="hl-input" type="number" [value]="value.column" min="1" [(ngModel)]="value.column">
+      <input fxFlex="68%" class="ctrlInput" type="number" [value]="value.column" min="1" [(ngModel)]="value.column">
     </div>
 
     <div fxFlex fxLayout="row" fxLayoutGap="5px">
       <span fxFlex="22%" class="padding-t-5 right">Row</span>
-      <input fxFlex="68%" class="hl-input" type="number" [value]="value.row" min="1" [(ngModel)]="value.row">
+      <input fxFlex="68%" class="ctrlInput" type="number" [value]="value.row" min="1" [(ngModel)]="value.row">
     </div>
     <div fxFlex="5%"></div>
   </div>
@@ -19,7 +19,7 @@
     <div fxLayout="row" fxLayoutGap="5px">
       <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>
-        <input fxFlex="68%" class="hl-input" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+        <input fxFlex="68%" class="ctrlInput" type="text" [value]="el[key]" [(ngModel)]="el[key]">
       </div>
       <i fxFlex="5%" class="fa fa-trash pointer margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
     </div>

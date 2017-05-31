@@ -3,7 +3,7 @@
     <div class="modal-content">
         <div fxLayout="row" fxLayoutGap="20px" class="margin-t-15">
             <span fxFlex="20%" i18n>Select Service</span>
-            <select fxFlex class="hl-input" [(ngModel)]="active.id" (ngModelChange)="setActive()">
+            <select fxFlex class="ctrlInput" [(ngModel)]="active.id" (ngModelChange)="setActive()">
                 <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
             </select>
         </div>
@@ -14,7 +14,7 @@
 
         <div fxLayout="row" fxLayoutGap="20px">
             <span fxFlex="20%"></span>
-            <input fxFlex class="hl-input" [(ngModel)]="active.code" i18n-placeholder="Display code">
+            <input fxFlex class="ctrlInput" [(ngModel)]="active.code" i18n-placeholder="Display code">
         </div>
 
         <div fxLayout="row" fxLayoutGap="20px" class="margin-b-15">

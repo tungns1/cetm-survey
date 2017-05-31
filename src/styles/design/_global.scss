@@ -63,6 +63,15 @@
     background-color: #fff;
 }
 
+.ctrlInput {
+    margin-bottom: 15px;
+    height: 25px;
+    text-indent: 5px;
+    border: $border;
+    border-radius: 3px;
+    width: 100%;
+}
+
 .leftFilter {
     padding-top: 50px;
     border-right: $border;
@@ -72,9 +81,9 @@
     width: 249px;
         .content {
             overflow: auto;
-            .inputCtrl {
-                margin: 10px 20px;
-            }
+            // .inputCtrl {
+            //     margin: 10px 20px;
+            // }
         }
         .action {
             text-align: center;
@@ -129,105 +138,36 @@
         }
     }
 }
+//End of UI elements
 
-.hl-input {
-    margin-bottom: 15px;
-    height: 25px;
-    text-indent: 5px;
-    border: $border;
-    border-radius: 3px;
-    width: 100%;
-}
-
-.hl-input-setup {
-    margin-bottom: 15px;
-    border-radius: 3px;
-    height: 25px;
-    padding-left: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #aeb0af;
-    width: 30%;
-    margin-top: 10px;
-}
-
-.hl-input-seting {
-    margin-bottom: 15px;
-    border-radius: 3px;
-    height: 25px;
-    padding-left: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #aeb0af;
-    width: 20%;
-    margin-top: 10px;
-}
-
-.title-setup {
-    font-size: 30px;
-    margin-left: 20px;
-}
-
+// style for setup - setting
 .form-setup {
     margin-left: 20px;
     margin-top: 10px;
 }
-
-.font-bold-setup {
-    font-weight: 600;
-    font-size: 12px;
-}
-
-.hl-select-one-setup {
-    width: 30%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 25px;
-    border-radius: 3px;
-}
-
-.hl-select-setup {
-    width: 30%;
-    height: 90px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 3px;
-    padding-left: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #aeb0af;
-    background-color: #fff;
-}
-
-.hl-select-one-seting {
-    width: 20%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 25px;
-    border-radius: 3px;
-}
-
-.container-setup {
+.container-setup{
     margin-top: 20px;
+    .ctrlInput-setup {
+        margin-bottom: 15px;
+        border-radius: 3px;
+        height: 25px;
+        padding-left: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #aeb0af;
+        width: 30%;
+        margin-top: 10px;
+    }
+    .font-bold-setup {
+        font-weight: 600;
+        font-size: 12px;
+    }
+    .title-setup {
+        font-size: 30px;
+        margin-left: 20px;
+    }
 }
-
-.button-setting {
-    margin-left: 20px;
-    height: 30px;
-    width: 20%;
-    border-radius: 3px;
-    padding-left: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #aeb0af;
-}
-
-.margin-left-setting {
-    margin-left: 20px;
-}
-
-// }
-//End of UI elements
+//end of style for setup - setting
 
 // override qill editor
 app-quill-editor {
@@ -270,7 +210,6 @@ app-quill-editor {
     color: $text-color;
     border-bottom: $border;
     .mat-tab-label-active {
-        // border-color: $key-color;
         color: $key-color;
         font-weight: $font-weight-default + 400;
     }

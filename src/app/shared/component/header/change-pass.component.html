@@ -6,21 +6,21 @@
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="5px">
             <span fxFlex="40%" i18n>Old Password</span>
             <span fxFlex="3%">&nbsp;</span>
-            <input fxFlex class="hl-input" type="password" formControlName="old_pass" i18n-placeholder placeholder="Passwords">
+            <input fxFlex class="ctrlInput" type="password" formControlName="old_pass" i18n-placeholder placeholder="Passwords">
         </div>
 
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="5px">
             <span fxFlex="40%" i18n>New Password</span>
             <span fxFlex="3%" class="valid-color" *ngIf="form.get('new_pass').hasError('pattern')">*</span>
             <span fxFlex="3%" class="valid-color" *ngIf="!form.get('new_pass').hasError('pattern')">&nbsp;</span>
-            <input fxFlex class="hl-input" type="password" formControlName="new_pass" i18n-placeholder placeholder="New Password">
+            <input fxFlex class="ctrlInput" type="password" formControlName="new_pass" i18n-placeholder placeholder="New Password">
         </div>
 
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="5px">
             <span fxFlex="40%" i18n>Retype New Password</span>
             <span fxFlex="3%" class="valid-color" *ngIf="form.get('re_new_pass').hasError('pattern')">*</span>
             <span fxFlex="3%" class="valid-color" *ngIf="!form.get('re_new_pass').hasError('pattern')">&nbsp;</span>
-            <input fxFlex class="hl-input" type="password" formControlName="re_new_pass" i18n-placeholder placeholder="Retype New Password">
+            <input fxFlex class="ctrlInput" type="password" formControlName="re_new_pass" i18n-placeholder placeholder="Retype New Password">
         </div>
 
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">

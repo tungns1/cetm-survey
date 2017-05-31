@@ -21,8 +21,8 @@ const FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'file-picker',
     template: `
         <div fxLayout="row" fxLayoutGap="10px">
-            <input fxFlex class="hl-input" [(ngModel)]="value" />
-            <button fxFlex="17%" class="btnFill hl-input" (click)="openModal()" i18n>Select</button>
+            <input fxFlex class="ctrlInput" [(ngModel)]="value" />
+            <button fxFlex="17%" class="btnFill ctrlInput" (click)="openModal()" i18n>Select</button>
         </div>
     `,
 

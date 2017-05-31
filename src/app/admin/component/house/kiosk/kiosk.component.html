@@ -13,7 +13,7 @@
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('code').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
-                <input fxFlex="100%" class="hl-input" type="text" formControlName="code" i18n-placeholder="Code">
+                <input fxFlex="100%" class="ctrlInput" type="text" formControlName="code" i18n-placeholder="Code">
                 <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
@@ -23,7 +23,7 @@
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('name').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
-                <input fxFlex="100%" class="hl-input" type="text" formControlName="name" i18n-placeholder="Name">
+                <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder="Name">
                 <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</div>
                 <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">&nbsp;</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
@@ -33,7 +33,7 @@
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n="Default Kiosk Vip Codes">Fixed Vip Codes</span>
             <span fxFlex="2%">&nbsp;</span>
-            <input fxFlex class="hl-input" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
+            <input fxFlex class="ctrlInput" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
             <span fxFlex="20%" i18n="Inherit kiosk attributes">Inherit From</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="parent_id">           

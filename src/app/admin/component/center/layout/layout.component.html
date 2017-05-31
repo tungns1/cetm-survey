@@ -14,7 +14,7 @@
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
                 <div fxFlex="1%" *ngIf="!form.get('name').hasError('required')"></div>
                 <div fxFlex fxLayout="column">
-                    <input fxFlex="100%" class="hl-input" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
+                    <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
                     <p fxFlex class="valid-color margin-0" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</p>
                     <p fxFlex class="margin-0" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</p>
                 </div>

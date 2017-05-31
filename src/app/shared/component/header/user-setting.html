@@ -3,7 +3,7 @@
     <div class="modal-content">
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">
             <span fxFlex="30%" i18n>Language</span>
-            <select fxFlex class="hl-input" [ngModel]="culture" (ngModelChange)="SetCulture($event)">
+            <select fxFlex class="ctrlInput" [ngModel]="culture" (ngModelChange)="SetCulture($event)">
                 <option *ngFor="let item of items" [value]="item.key">{{ item.value | cultureName }}</option>
             </select>
         </div>
