@@ -22,13 +22,15 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
     ) {
         super(injector, house.ScreenService);
         this.counters$.subscribe();
-        this.layoutEditLink$.subscribe(c => console.log(c));
+        this.layoutEditLink$.subscribe();
+        this.voiceEditLink$.subscribe();
     }
 
     title = 'screen';
 
     screens = this.house.ScreenService.RxUpperList;
     layouts = this.center.LayoutService.GetByType('screen');
+    voice_lists$ = this.center.VoiceListService.GetAll();
 
     counters$ = this.formValue$.map(form => form.branch_id)
         .distinctUntilChanged()
@@ -42,7 +44,11 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
     
     parentEdit$ = this.formValue$.map(s => {
         return `/admin/house/screen/${s.parent_id}`;
-    })
+    });
+
+    voiceEditLink$ = this.formValue$.map(s => {
+        return `/admin/center/voice/${s.voice_list_id}`;
+    });
 
     getLayout(layout_id?: string) {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
@@ -66,7 +72,8 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
                 branch_id: [b.branch_id, Validators.required],
                 layout_id: [b.layout_id],
                 parent_id: [b.parent_id],
-                layout_resources: [b.layout_resources]
+                layout_resources: [b.layout_resources],
+                voice_list_id: [b.voice_list_id]
             });
         });
     }

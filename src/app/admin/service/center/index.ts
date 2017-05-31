@@ -4,6 +4,7 @@ import { TFormService } from './tform';
 import { ServiceService } from './service';
 import { LayoutService } from './layout';
 import { TicketLayoutService } from './ticket_layout';
+import { VoiceListService } from './voice';
 import { AuthService, HttpServiceGenerator } from '../../shared';
 
 @Injectable()
@@ -17,6 +18,7 @@ export class CenterService {
     }
 
     private onInit() {
+        
         this.TFormService = new TFormService(
             this.nav,
             this.httpSG.make(this.Link.TForm)
@@ -34,17 +36,23 @@ export class CenterService {
             this.nav,
             this.httpSG.make(this.Link.Layout)
         );
+        this.VoiceListService = new VoiceListService(
+            this.nav,
+            this.httpSG.make(this.Link.Voice)
+        );
     }
 
     TFormService: TFormService;
     ServiceService: ServiceService;
     TicketLayoutService: TicketLayoutService;
     LayoutService: LayoutService;
+    VoiceListService: VoiceListService;
 
     Link = {
         TForm: '/api/admin/center/tform',
         TicketLayout: '/api/admin/center/ticketlayout',
         Service: '/api/admin/center/service',
-        Layout: '/api/admin/center/layout'
+        Layout: '/api/admin/center/layout',
+        Voice: '/api/admin/center/voice'
     }
 }

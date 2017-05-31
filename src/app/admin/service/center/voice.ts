@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CrudApiService, ITicketLayout } from '../shared';
+import { CrudApiService, IVoiceList } from '../shared';
 
 @Injectable()
-export class TicketLayoutService extends CrudApiService<ITicketLayout> {
+export class VoiceListService extends CrudApiService<IVoiceList> {
     GetAll() {
         return this.Search({});
     }
