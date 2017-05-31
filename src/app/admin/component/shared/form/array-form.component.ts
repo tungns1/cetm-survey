@@ -18,7 +18,7 @@ import { FormArray, FormControl } from '@angular/forms';
     template: `
         <i class="fa fa-plus" (click)="add()">  </i>        
         <div *ngFor="let c of values; let i = index;" >
-            <input class="iput-fnews-hlm ctrlInput" [ngModel]="values[i]" (change)="onChange($event, i)" /> 
+            <input class="ctrlInput" style="width: 95%;" [ngModel]="values[i]" (change)="onChange($event, i)" /> 
             <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
         </div>
     `,

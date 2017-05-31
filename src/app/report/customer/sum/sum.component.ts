@@ -4,7 +4,8 @@ import { CustomerAPI } from '../service/customer.service';
 
 @Component({
     selector: 'report-sum',
-    templateUrl: 'sum.component.html'
+    templateUrl: 'sum.component.html',
+    styleUrls: ['sum.component.scss']
 })
 export class ReportSumComponent {
     constructor(

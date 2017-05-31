@@ -1,5 +1,15 @@
-#editor-editDialog {
-    .modal-dialog {
-        width: 35vw;
+@import '../../../../shared/style.scss';
+#tableComponent{
+    border: $border;
+    width: 100%;
+    .hl-thr-editor {
+        background-color: #dee0df;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .col-header {
+        text-align: center;
+        font-weight: bold;
     }
 }

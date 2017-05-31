@@ -6,8 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-editor-view',
-    templateUrl: 'editor-view.component.html',
-    styleUrls: ['editor.component.scss']
+    templateUrl: 'editor-view.component.html'
 })
 export class EditorViewComponent implements OnInit {
 

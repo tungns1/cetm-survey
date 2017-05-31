@@ -7,18 +7,16 @@
     </div>
 </div>
 
-<table width="100%" style="border: 1px solid #dee0df; border-radius: 3px;">
+<table id="tableComponent">
     <thead class="hl-thr-editor">
         <td class="col-header"> <span i18n="Numerical Order">No.</span> </td>
         <td class="col-header" *ngFor="let fi of fields">{{fi.title}}</td>
         <td class="col-header" i18n>Action</td>
     </thead>
     <tr *ngFor="let da of data; let i = index">
-        <td class="col-center">{{i+1}}</td>
-        <td class="col-center" *ngFor="let fi of fields">{{da[fi.name]}}</td>
-        <td class="col-center">
-            <!--<i class="fa fa-edit edit" (click)="onEdit(da)"></i>-->
-            <!--<i class="fa fa-trash trash" (click)="onRemove(da)"></i>-->
+        <td class="center">{{i+1}}</td>
+        <td class="center" *ngFor="let fi of fields">{{da[fi.name]}}</td>
+        <td class="center">
             <img src="./assets/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onAction('edit',da)">
             <img src="./assets/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" appConfirm="Do you want to delete the selected item?" (confirm)="onAction('remove-confirm', da)">
         </td>

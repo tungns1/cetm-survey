@@ -1,0 +1,10 @@
+#serviceListID{
+    .hl-row-sv:nth-child(even) {
+        background: #f1f9fc;
+        border-top: 1px solid #f4f4f4;
+    }
+
+    .hl-row-sv:nth-child(odd) {
+        background: #ffffff;
+    }
+}

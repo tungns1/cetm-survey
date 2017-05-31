@@ -15,7 +15,8 @@ export class AppTableFieldComponent implements ITableField {
 
 @Component({
     selector: 'app-datatable',
-    templateUrl: 'table.component.html'
+    templateUrl: 'table.component.html',
+    styleUrls: ['editor.component.scss']
 })
 export class AppDataTableComponent implements OnInit {
 
