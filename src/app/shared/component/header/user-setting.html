@@ -1,14 +1,16 @@
-<div>
-    <div>
-        <span class="user-head-text" i18n>User Setting</span>
-        <hr class="user-hr-css">
-    </div>
-    <div>
-        <span class="user-text-language" i18n>Language</span>
-        <select class="hl-user-select" [ngModel]="culture" (ngModelChange)="SetCulture($event)">
-            <option *ngFor="let item of items" [value]="item.key">{{ item.value | cultureName }}</option>
-        </select>
-        <br>
-        <button class="hl-button-user btn-footer-user" (click)="Close()"> <span i18n>Close</span> </button>
+<div id="userSettingModal">
+    <h3 class="modal-header" i18n>User Setting</h3>
+    <div class="modal-content">
+        <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">
+            <span fxFlex="30%" i18n>Language</span>
+            <select fxFlex class="hl-input" [ngModel]="culture" (ngModelChange)="SetCulture($event)">
+                <option *ngFor="let item of items" [value]="item.key">{{ item.value | cultureName }}</option>
+            </select>
+        </div>
+
+        <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">
+            <div fxFlex></div>
+            <button fxFlex md-dialog-close class="btnFill" i18n>Close</button>
+        </div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
-// import { Router } from '@angular/router';
 import { MdMenuTrigger, MdDialog, MdDialogConfig } from '@angular/material';
 import { RuntimeEnvironment } from '../../env';
 import { Observable } from 'rxjs/Observable';
 import { AppStorage } from '../../shared';
 import { ChangePassComponent } from './change-pass.component'
+import { UserSettingComponent } from './user-setting'
 
 @Component({
     selector: 'user',
@@ -14,11 +14,9 @@ import { ChangePassComponent } from './change-pass.component'
 export class UserComponent {
     constructor(
         private env: RuntimeEnvironment,
-        // private router: Router,
         private mdDialog: MdDialog
     ) { }
     hidden = true;
-    // private dialog: MdDialogRef<ChangePassComponent>;
 
     @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
     username = this.env.Auth.User$.map(u => u.fullname);
@@ -37,7 +35,12 @@ export class UserComponent {
     openChangePassModal(){
         const config = new MdDialogConfig();
         config.width = '350px';
-        // config.data = t;
         const dialog = this.mdDialog.open(ChangePassComponent, config);
+    }
+
+    openSettingModal(){
+        const config = new MdDialogConfig();
+        config.width = '350px';
+        const dialog = this.mdDialog.open(UserSettingComponent, config);
     }
 } 

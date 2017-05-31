@@ -23,7 +23,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     exports: [HeaderComponent],
     providers: [AuthUserAPI],
     entryComponents: [
-        ChangePassComponent
+        UserSettingComponent, ChangePassComponent
     ]
 })
 export class HeaderModule { }

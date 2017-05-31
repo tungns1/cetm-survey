@@ -5,22 +5,11 @@
     </span>
 </div>
 
-<!--<div class="modal" *ngIf="setting">
-    <div class="dialog hl-dialog-user">
-        <user-setting (close)="setting=false"></user-setting>
-    </div>
-</div>
-
-<div class="modal" *ngIf="changePass">
-    <div class="dialog hl-dialog-user">
-        <change-pass (close)="changePass=false"></change-pass>
-    </div>
-</div>-->
 <md-menu #menu="mdMenu" id="menuSetting" overlapTrigger="true" x-position="before">
     <div class="hl-dropdown-item-user animate" md-menu-item (click)="Refresh()">
         <i class="fa fa-refresh"></i> <span i18n>Refresh</span>
     </div>
-    <div class="hl-dropdown-item-user animate" md-menu-item (click)="setting=true">
+    <div class="hl-dropdown-item-user animate" md-menu-item (click)="openSettingModal()">
         <i class="fa fa-cog"></i> <span i18n>Setting</span>
     </div>
     <div class="hl-dropdown-item-user animate" md-menu-item (click)="openChangePassModal()">

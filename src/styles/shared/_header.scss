@@ -68,24 +68,6 @@
     border-color: rgba(0, 0, 0, 0.9);
 }
 
-.hl-user-select {
-    border: 1px solid #AAA;
-    border-radius: 2px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    color: #555;
-    font-size: inherit;
-    margin: 0;
-    overflow: hidden;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.user-text-language {
-    font-family: arial, sans-serif;
-}
-
 .hl-dropdown-content-user {
     position: absolute;
     right: 0px;
