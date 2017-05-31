@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MdMenuModule, MdDialogModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './header.component';
 import { LogoComponent } from './logo.component';
 import { UserComponent } from './user.component';
@@ -13,12 +15,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
-        CommonModule, RouterModule,
-        ModalModule, FormsModule,
-        Ng2BasicModule, ReactiveFormsModule
+        CommonModule, RouterModule, MdDialogModule,
+        ModalModule, FormsModule, FlexLayoutModule,
+        Ng2BasicModule, ReactiveFormsModule, MdMenuModule
     ],
     declarations: [HeaderComponent, LogoComponent, UserComponent, UserSettingComponent, ChangePassComponent],
     exports: [HeaderComponent],
-    providers: [AuthUserAPI]
+    providers: [AuthUserAPI],
+    entryComponents: [
+        ChangePassComponent
+    ]
 })
 export class HeaderModule { }

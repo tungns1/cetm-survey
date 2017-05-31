@@ -1,32 +1,31 @@
-<div>
-    <div>
-        <span class="user-head-text" i18n>Change PassWord</span>
-        <hr class="user-hr-css">
-    </div>
-    <div>
-        <form [formGroup]="form">
+<div id="changePassWordsModal">
+    <h3 class="modal-header" i18n>Change PassWord</h3>
 
-            <span class="user-text-language" i18n>Old Password</span>
-            <div>
-                <span fxFlex>&nbsp;</span>
-                <input class="hl-input-change-pass" type="password" formControlName="old_pass" i18n-placeholder placeholder="Passưord">
-            </div>
-            <span class="user-text-language" i18n>New Password</span>
-            <div>
-                <span fxFlex class="valid-color" *ngIf="form.get('new_pass').hasError('pattern')">*</span>
-                <span fxFlex class="valid-color" *ngIf="!form.get('new_pass').hasError('pattern')">&nbsp;</span>
-                <input class="hl-input-change-pass" type="password" formControlName="new_pass" i18n-placeholder placeholder="New Password">
-            </div>
-            <span class="user-text-language" i18n>Retype New Password</span>
-            <div>
-                <span fxFlex class="valid-color" *ngIf="form.get('re_new_pass').hasError('pattern')">*</span>
-                <span fxFlex class="valid-color" *ngIf="!form.get('re_new_pass').hasError('pattern')">&nbsp;</span>
-                <input class="hl-input-change-pass" type="password" formControlName="re_new_pass" i18n-placeholder placeholder="Retype New Password">
-            </div>
-            <span fxFlex>&nbsp;</span>
-            <button class="btnFill submit-setup" [disabled]="!form.valid" [style.opacity]="!form.valid?0.3:1" (click)="Submit()">Save</button>
-            <button class="hl-button-user btn-footer-user" (click)="Close()"> <span i18n>Close</span> </button>
-        </form>
+    <form [formGroup]="form" class="modal-content">
 
-    </div>
+        <div fxLayout="row" class="margin-20-10" fxLayoutGap="5px">
+            <span fxFlex="40%" i18n>Old Password</span>
+            <span fxFlex="3%">&nbsp;</span>
+            <input fxFlex class="hl-input" type="password" formControlName="old_pass" i18n-placeholder placeholder="Passwords">
+        </div>
+
+        <div fxLayout="row" class="margin-20-10" fxLayoutGap="5px">
+            <span fxFlex="40%" i18n>New Password</span>
+            <span fxFlex="3%" class="valid-color" *ngIf="form.get('new_pass').hasError('pattern')">*</span>
+            <span fxFlex="3%" class="valid-color" *ngIf="!form.get('new_pass').hasError('pattern')">&nbsp;</span>
+            <input fxFlex class="hl-input" type="password" formControlName="new_pass" i18n-placeholder placeholder="New Password">
+        </div>
+
+        <div fxLayout="row" class="margin-20-10" fxLayoutGap="5px">
+            <span fxFlex="40%" i18n>Retype New Password</span>
+            <span fxFlex="3%" class="valid-color" *ngIf="form.get('re_new_pass').hasError('pattern')">*</span>
+            <span fxFlex="3%" class="valid-color" *ngIf="!form.get('re_new_pass').hasError('pattern')">&nbsp;</span>
+            <input fxFlex class="hl-input" type="password" formControlName="re_new_pass" i18n-placeholder placeholder="Retype New Password">
+        </div>
+
+        <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">
+            <button fxFlex class="btnFill" [disabled]="!form.valid" [style.opacity]="!form.valid?0.3:1" (click)="Submit()">Save</button>
+            <button fxFlex md-dialog-close class="btnFill" i18n>Close</button>
+        </div>
+    </form>
 </div>

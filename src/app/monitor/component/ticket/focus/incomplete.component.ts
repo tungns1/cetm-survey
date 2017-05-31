@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { Ticket, ProjectConfig } from '../../shared';
@@ -24,12 +24,7 @@ export class IncompleteTicketComponent {
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
     test = ProjectConfig;
 
-    // ngOnInit(){
-    //     console.log(this.test);
-    // }
-
     showDetails(t: Ticket) {
-        // console.log(t);
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = t;

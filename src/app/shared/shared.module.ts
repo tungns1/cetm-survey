@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { DirectiveModule } from './directive/directive.module';
-import { NavModule, HeaderModule } from "./component/";
+import { NavModule, HeaderModule, FooterModule } from "./component/";
 import { EnvironmentModule } from './env';
 import { ModalModule, SelectCheckModule } from '../x/ng';
 import { LogService, RouterQueryStorageStrategy } from './shared';
@@ -23,7 +23,7 @@ import { BusinessModule } from './businessQapp/business.module';
         EnvironmentModule,
         Ng2BasicModule,
         FormsModule, ReactiveFormsModule,
-        FlexLayoutModule, NavModule, HeaderModule,
+        FlexLayoutModule, NavModule, HeaderModule, FooterModule,
         UtilPipeModule, SelectCheckModule,
         ModalModule, BusinessModule,
     ],

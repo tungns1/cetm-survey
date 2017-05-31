@@ -1,27 +1,11 @@
-<div class="hl-droplabel-user" (click)="hidden=!hidden" (blur)="onBLur()">
-    <span i18n>Hello</span> {{ username | async}}
-    <i class="fa fa-caret-down fa-lg"></i>
+<div class="hl-droplabel-user">
+    <span [mdMenuTriggerFor]="menu">
+        <span i18n>Hello</span>{{ username | async}}
+        <i class="fa fa-caret-down fa-lg"></i>
+    </span>
 </div>
 
-<ul [class.hidden]="hidden" class="hl-dropdown-content-user " #myMenudrop>
-    <li class="hl-dropdown-item-user animate" (click)="Refresh()">
-        <i class="fa fa-refresh"></i> <span i18n>Refresh</span>
-    </li>
-    <li class="hl-dropdown-item-user animate" (click)="setting=true">
-        <i class="fa fa-cog"></i> <span i18n>Setting</span>
-    </li>
-    <li class="hl-dropdown-item-user animate" (click)="changePass=true">
-        <i class="fa fa-key"></i> <span i18n>ChangePassWord</span>
-    </li>
-    <li class="hl-dropdown-item-user animate" (click)="Logout()">
-        <i class="fa fa-power-off"></i> <span i18n>Logout</span>
-    </li>
-    <li class="hl-dropdown-item-user animate" (click)="changePass=true">
-        <i class="fa fa-key"></i> <span i18n>Change Password</span>s
-    </li>
-</ul>
-
-<div class="modal" *ngIf="setting">
+<!--<div class="modal" *ngIf="setting">
     <div class="dialog hl-dialog-user">
         <user-setting (close)="setting=false"></user-setting>
     </div>
@@ -31,4 +15,18 @@
     <div class="dialog hl-dialog-user">
         <change-pass (close)="changePass=false"></change-pass>
     </div>
-</div>
+</div>-->
+<md-menu #menu="mdMenu" id="menuSetting" overlapTrigger="true" x-position="before">
+    <div class="hl-dropdown-item-user animate" md-menu-item (click)="Refresh()">
+        <i class="fa fa-refresh"></i> <span i18n>Refresh</span>
+    </div>
+    <div class="hl-dropdown-item-user animate" md-menu-item (click)="setting=true">
+        <i class="fa fa-cog"></i> <span i18n>Setting</span>
+    </div>
+    <div class="hl-dropdown-item-user animate" md-menu-item (click)="openChangePassModal()">
+        <i class="fa fa-key"></i> <span i18n>ChangePassWord</span>
+    </div>
+    <div class="hl-dropdown-item-user animate" md-menu-item (click)="Logout()">
+        <i class="fa fa-power-off"></i> <span i18n>Logout</span>
+    </div>
+</md-menu>

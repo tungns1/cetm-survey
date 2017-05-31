@@ -25,16 +25,16 @@ export class TicketDetailComponent {
 
     private box$ = this.monitorFocus.Box$;
 
-    private getCusInfo(id: string) {
-        this.customerService.GetCustomerByID(id).subscribe(v => {
-            this.customer = v;
-        });
-    }
-
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
     maxServingMinute = ProjectConfig.service.max_serving_minute;
 
     ngOnInit() {
         this.ticket = this.dialogData;
+    }
+
+    private getCusInfo(id: string) {
+        this.customerService.GetCustomerByID(id).subscribe(v => {
+            this.customer = v;
+        });
     }
 }
