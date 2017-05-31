@@ -10,7 +10,7 @@ import { cloneDeep } from 'lodash';
 @Component({
   selector: 'center-layout',
   templateUrl: 'layout.component.html',
-  styleUrls: ['layout.component.css']
+  styleUrls: ['layout.component.scss']
 })
 export class LayoutComponent extends BaseAdminComponent<ILayout> {
   constructor(
