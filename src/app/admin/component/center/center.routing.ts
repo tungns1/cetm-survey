@@ -4,6 +4,7 @@ import { TFormComponent } from './tform/tform.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CenterComponent } from './center.component';
 import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
+import { VoiceComponent } from './voice/voice.component';
 
 const children: Routes = [
   {
@@ -46,6 +47,15 @@ const children: Routes = [
   {
     path: 'ticketlayout/:id',
     component: TicketLayoutComponent
+  },
+  {
+    path: 'voice',
+    pathMatch: 'full',
+    redirectTo: 'voice/list'
+  },
+  {
+    path: 'voice/:id',
+    component: VoiceComponent
   }
 ]
 

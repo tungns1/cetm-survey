@@ -1,0 +1,23 @@
+<app-env-sub-module i18n-title title="Voice Configuration">
+
+</app-env-sub-module>
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
+    <app-datatable i18n-name name="Voice Configuration" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+    </app-datatable>
+</div>
+
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+    <form [formGroup]="form">
+        <span i18n>Name</span>
+        <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
+        <form formGroupName="behavior">
+            <span>Sleep Second</span>
+            <input formControlName="sleep_second" type="number">
+            <span>Max Queue Length</span>
+            <input formControlName="max_queue_length" type="number">
+        </form>
+        <span> Playlist </span>
+        <json-text-form formControlName="i18n"></json-text-form>
+    </form>
+</app-editor-view>

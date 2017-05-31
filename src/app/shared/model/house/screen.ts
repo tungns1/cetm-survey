@@ -10,4 +10,5 @@ export interface IScreen {
     layout_id: string;
     layout_resources: any;
     parent_id: string;
+    voice_list_id: string;
 }

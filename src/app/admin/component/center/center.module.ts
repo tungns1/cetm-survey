@@ -12,7 +12,6 @@ import { VoiceComponent } from './voice/voice.component';
 import { AdminFilterModule } from "../filter/filter.module";
 import { AccordionModule } from "../../../x/ui/accordion/accordion";
 
-
 @NgModule({
     imports: [
         SharedModule,

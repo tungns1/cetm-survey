@@ -19,7 +19,7 @@ import { AsyncSubject } from 'rxjs/AsyncSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 const TicketStateTransitions = new Map<TicketState, TicketState[]>();
-TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Serving, TicketStates.Cancelled]);
+TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Cancelled]);
 TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled, TicketStates.Missed]);
 TicketStateTransitions.set(TicketStates.Cancelled, [TicketStates.Waiting]);
 TicketStateTransitions.set(TicketStates.Missed, [TicketStates.Serving]);

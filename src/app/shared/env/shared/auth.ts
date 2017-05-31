@@ -22,7 +22,8 @@ interface IAuthEnv {
 @Injectable()
 export class AuthEnvStorage {
     Data$ = new ReplaySubject<IAuthEnv>(1);
-    User$ = this.Data$.map(d => d.me).filter(u => !!u).share();
+    User$ = this.Data$.map(d => d.me).filter(u => !!u)
+        .share().publishReplay(1).refCount();
     private data: IAuthEnv = <any>{};
 
     emitChange() {
