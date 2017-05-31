@@ -59,6 +59,7 @@ function getServiceName(t: ITicket) {
         case TicketStates.Waiting:
         // fallthrough
         case TicketStates.Missed:
+        if(t.services)
             return t.services.map(ServiceName).join(",");
         case TicketStates.Serving:
             return ServiceName(t.service_id);

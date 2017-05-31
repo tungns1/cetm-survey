@@ -1,6 +1,6 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { Ticket, TicketStates, TicketActionName } from '../shared';
 import { TicketService, QueueService, WorkspaceService } from '../shared';
 import { NoticeComponent } from '../shared';
@@ -43,8 +43,15 @@ export class TicketDetailDialog {
 
   services = this.workspaceService.services$;
   canCall = (this.ticket.priority.canMakeUnorderedCall() && this.isWaiting) || this.isMissed;
+  isBusy: boolean;
 
   @ViewChild(NoticeComponent) notice: NoticeComponent;
+
+  ngOnInit() {
+    this.queueService.busy$.subscribe(d => {
+      this.isBusy = d;
+    })
+  }
 
   Move() {
     if (this.isServing) {
@@ -70,7 +77,11 @@ export class TicketDetailDialog {
   }
 
   Call() {
-    this.triggerAction("call");
+    this.queueService.busy$.first().subscribe(d => {
+      if (d) {
+        this.notice.ShowMessage('serving');
+      } else this.triggerAction("call");
+    })
   }
 
   Restore() {
