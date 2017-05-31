@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RuntimeEnvironment } from '../../env';
+import { USER_ROLES } from '../../model';
 
 @Component({
     selector: 'top-nav',
@@ -12,13 +13,11 @@ export class TopNavComponent {
         private router: Router,
         private env: RuntimeEnvironment,
     ) { }
-    role = '';
 
-    ngOnInit() {
-        this.env.Auth.User$.subscribe(u => {
-            this.role = u.role;
-        })
-    }
+
+    isAdmin$ = this.env.Auth.User$.map(u =>
+        u.role.indexOf(USER_ROLES.ADMIN) !== -1
+    );
 
     private isActive(route: string) {
         if (this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('kiosk') > -1) return true;
@@ -31,6 +30,6 @@ export class TopNavComponent {
             }
             else return true;
         }
-        else return false;
+        return false;
     }
 }

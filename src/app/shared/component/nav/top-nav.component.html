@@ -1,6 +1,6 @@
 <div id="topNav">
     <ul class="firstLv">
-        <li class="li_firstLv" *ngIf="role!='manager'">
+        <li class="li_firstLv" *ngIf="isAdmin$ | async">
             <div class="paddingFirst" routerLink="/admin" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin')">
                 <i class="fa fa-home"> </i>
                 <span i18n>Admin</span>
@@ -67,7 +67,7 @@
                 <span i18n>Monitor</span>
             </div>
         </li>
-        <li class="li_firstLv" *ngIf="role!='manager'">
+        <li class="li_firstLv" *ngIf="isAdmin$ | async">
             <div class="paddingFirst" routerLink="/admin/house/kiosk" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/kiosk')">
                 <i class="fa fa-ticket"> </i>
                 <span i18n>Kiosk</span>
@@ -78,13 +78,18 @@
                 </li>
             </ul>
         </li>
-        <li class="li_firstLv" *ngIf="role!='manager'">
+        <li class="li_firstLv" *ngIf="isAdmin$ | async">
             <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/screen')">
                 <i class="fa fa-desktop"> </i>
                 <span i18n>Screen</span>
             </div>
+            <ul class="secondLv">
+                <li routerLink="/admin/center/voice" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Voice Configuration</span>
+                </li>
+            </ul>
         </li>
-        <li class="li_firstLv" *ngIf="role!='manager'">
+        <li class="li_firstLv" *ngIf="isAdmin$ | async">
             <div class="paddingFirst" routerLink="/admin/house/screen" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/screen')">
                 <i class="fa fa-commenting"> </i>
                 <span i18n>Feedback</span>
