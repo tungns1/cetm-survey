@@ -1,12 +1,9 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { ProjectConfig, AppStorage } from '../../shared';
-import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
+import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthUserAPI, IChangePass } from "./chang-pass.service";
 import { RuntimeEnvironment } from '../../env';
-import { UserComponent } from './user.component';
 import { Toast } from '../../../x/ui/noti/toastr';
-
 
 @Component({
     selector: 'change-pass',
@@ -16,16 +13,19 @@ import { Toast } from '../../../x/ui/noti/toastr';
 
 export class ChangePassComponent {
 
+    constructor(
+        @Inject(MD_DIALOG_DATA) private dialogData: any,
+        private setupApi: AuthUserAPI, 
+        private fb: FormBuilder, 
+        private env: RuntimeEnvironment,
+    ) { }
 
-    @Output() close = new EventEmitter();
-
-    Close() {
-        this.close.next();
-    }
-
-    constructor(private setupApi: AuthUserAPI, private fb: FormBuilder, private userComponent: UserComponent, private env: RuntimeEnvironment) {
-
-    }
+    form: FormGroup;
+    username = '';
+    ichangePass: IChangePass;
+    pass_false = false;
+    toast = new Toast;
+    pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
 
     ngOnInit() {
         this.username = this.env.Auth.Me().username;
@@ -42,15 +42,7 @@ export class ChangePassComponent {
         });
     }
 
-    form: FormGroup;
-    username = '';
-    ichangePass: IChangePass;
-    pass_false = false;
-    toast = new Toast;
-    pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
-
     Submit() {
-        //this.setupApi.Update(this.form.value);
         this.ichangePass = this.form.value;
         try {
             if(this.ichangePass.new_pass === this.ichangePass.re_new_pass) {
@@ -62,10 +54,6 @@ export class ChangePassComponent {
             }
         }
         catch(Ex) {
-
         }
-    
     }
-     
-
 }
