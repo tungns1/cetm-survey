@@ -6,16 +6,16 @@
 </div>
 
 <md-menu #menu="mdMenu" id="menuSetting" overlapTrigger="true" x-position="before">
-    <div class="hl-dropdown-item-user animate" md-menu-item (click)="Refresh()">
+    <div class="hl-dropdown-item-user animate" (click)="Refresh()">
         <i class="fa fa-refresh"></i> <span i18n>Refresh</span>
     </div>
-    <div class="hl-dropdown-item-user animate" md-menu-item (click)="openSettingModal()">
+    <div class="hl-dropdown-item-user animate" (click)="openSettingModal()">
         <i class="fa fa-cog"></i> <span i18n>Setting</span>
     </div>
-    <div class="hl-dropdown-item-user animate" md-menu-item (click)="openChangePassModal()">
+    <div class="hl-dropdown-item-user animate" (click)="openChangePassModal()">
         <i class="fa fa-key"></i> <span i18n>ChangePassWord</span>
     </div>
-    <div class="hl-dropdown-item-user animate" md-menu-item (click)="Logout()">
+    <div class="hl-dropdown-item-user animate" (click)="Logout()">
         <i class="fa fa-power-off"></i> <span i18n>Logout</span>
     </div>
 </md-menu>
