@@ -45,13 +45,18 @@ export class ServiceListComponent implements ControlValueAccessor {
         this.Edit(this.value.length);
     }
 
+    getValue() {
+        return this.value;
+    }
+
     Edit(index: number, d?: IService) {
         const config = new MdDialogConfig();
         config.width = '450px';
         config.data = <IServiceCustomizeData>{
             index: index,
             active: d,
-            services: this.services
+            services: this.services,
+            value: this.value
         };
         const dialog = this.dialog.open(ServiceCustomizeModal, config);
         dialog.afterClosed().subscribe((v: IServiceCustomizeResult) => {
