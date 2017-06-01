@@ -22,6 +22,7 @@ interface ILoginReply {
 }
 
 import { IUser, IBranch, IService, IBranchConfig } from './shared';
+import { of } from "rxjs/observable/of";
 
 interface IMySettings {
   me: IUser;
@@ -67,7 +68,7 @@ export class AuthService {
       } catch (e) {
         console.log(e);
       }
-      return Observable.of(false);
+      return of(false);
     })
   }
 

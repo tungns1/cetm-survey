@@ -29,7 +29,7 @@ export class UserComponent {
     Refresh() {
         setTimeout(() => {
             window.location.reload();
-        }, 200);
+        }, 20);
     }
 
     openChangePassModal(){
