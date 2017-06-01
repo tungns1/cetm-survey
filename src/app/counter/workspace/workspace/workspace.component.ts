@@ -1,7 +1,7 @@
 import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ObservableMedia } from '@angular/flex-layout';
-import { ComposeService, WorkspaceService } from '../shared';
+import { ComposeService, WorkspaceService, WorkspaceSocket } from '../shared';
 
 @Component({
     selector: 'workspace',
@@ -13,7 +13,7 @@ export class WorkspaceComponent {
         private route: ActivatedRoute,
         private workspaceService: WorkspaceService,
         private composeService: ComposeService,
-        private media: ObservableMedia
+        private socket: WorkspaceSocket
     ) {
 
     }
@@ -25,6 +25,8 @@ export class WorkspaceComponent {
     ngOnDestroy() {
         this.composeService.disable();
     }
+
+    message$ = this.socket.StatusMessage$;
 
     counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
 } 
