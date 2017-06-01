@@ -20,7 +20,15 @@ export class AccordionTitleComponent {
 	<div [class.hide]="!expanded" style="background-color: #fff; border-top: 1px solid #a7a9ac;">
 		<ng-content></ng-content>
 	</div>
+	`,
+	styles:[
 	`
+	.hl-title-branch {
+		background-color: #f4f4f4;
+		padding: 8px 10px;
+		border-top: 1px solid #a7a9ac;
+	}`
+	]
 })
 export class AccordionComponent {
 	Expand() {

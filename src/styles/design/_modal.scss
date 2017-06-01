@@ -69,12 +69,28 @@
 //         border-radius: 3px;
 //     }
 // }
-
-.valid-color {
-    color: red;
+.report_history_modal {
+    .detailTicket {
+        width: 100%;
+        border-spacing: 0px;
+        .labelCtrl {
+            padding-left: 20px;
+            width: 50%;
+        }
+        td {
+            padding: 5px 0;
+        }
+    }
+    .customer {
+        border-top: 1px solid #d6d6d6;
+        .cusDetail {
+            padding: 5px 20px;
+        }
+    }
+    .ctrlBtn {
+        margin: 20px;
+    }
 }
+
 
 // End of modal
-.font-style-bold {
-    font-weight: bold;
-}
