@@ -1,5 +1,5 @@
 <div id="incomplete">
-    <h3 i18n>Services incomplete</h3>
+    <h3 i18n>Waiting Tickets</h3>
 
     <table class="tableCtrl">
         <thead>
@@ -12,7 +12,7 @@
             <th i18n>Detail</th>
         </thead>
         <tbody>
-            <tr *ngFor="let t of data ; let i = index" [ngClass]="{'missed': t.state === 'missed', 'waiting': t.state === 'waiting'}">
+            <tr *ngFor="let t of data ; let i = index">
                 <td> {{i + 1}} </td>
                 <td> {{t.service_id | serviceName}}</td>
                 <td>
@@ -23,7 +23,6 @@
                 <td> {{t.ctime | localDayTime}}</td>
                 <td>
                     <timer *ngIf="t.state === 'waiting'" [start]="t.mtime" [timeWarning]="maxWaitingMinute"></timer>
-                    <span *ngIf="t.state === 'missed'"> {{t.waiting_time | timeDuration}}</span>
                 </td>
                 <td>
                     <span (click)="showDetails(t)">

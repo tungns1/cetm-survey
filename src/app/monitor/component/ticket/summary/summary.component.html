@@ -12,7 +12,6 @@
             <th i18n>Waiting Ticket</th>
             <th i18n>Serving Ticket</th>
             <th i18n>Served Ticket</th>
-            <th i18n>Missed Ticket</th>
             <th i18n>Cancelled Ticket</th>
             <th i18n>Exceeded Waiting Time Transaction</th>
             <th i18n>Exceeded Serving Time Transaction</th>
@@ -24,7 +23,6 @@
                 <td> {{s.waiting}}</td>
                 <td> {{s.serving}}</td>
                 <td> {{s.finished}}</td>
-                <td> {{s.missed}}</td>
                 <td> {{s.cancelled}}</td>
                 <td [ngClass]="{'warning': s.w_l_percent > waitLongAlertPercent}">
                     <span>{{s.wait_long}} ({{s.w_l_percent}}%)</span>
@@ -39,7 +37,6 @@
                 <td> {{s.waiting}}</td>
                 <td> {{s.serving}}</td>
                 <td> {{s.finished}}</td>
-                <td> {{s.missed}}</td>
                 <td> {{s.cancelled}}</td>
                 <td [ngClass]="{'warning': s.w_l_percent > 40}">
                     <span>{{s.wait_long}} ({{s.w_l_percent}}%)</span>
@@ -55,8 +52,6 @@
         <monitor-chart [data]="total"></monitor-chart>
     </div>
     <ng-template #loading>
-        <!--<div class="spinner">-->
         <md-spinner></md-spinner>
-        <!--</div>-->
     </ng-template>
 </div>
