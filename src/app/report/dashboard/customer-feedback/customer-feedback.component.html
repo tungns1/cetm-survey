@@ -21,51 +21,78 @@
     </chart-item-group-view>
 </report-chart>
 <!-- Feedback -->
-<table id="tableEl" class="tableOverView" style="width: 100%;">
-    <thead>
-        <th i18n>No.</th>
-        <th [groupByTitle]="field"></th>
-        <th i18n>Transaction feedback</th>
-        <th i18n>Transaction without feedback</th>
-        <th i18n>Very good feedback</th>
-        <th i18n>Good feedback</th>
-        <th i18n>Average feedback</th>
-        <th i18n>Poor feedback</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let d of data; let i = index">
-            <td style="text-align: center;"> {{i + 1}} </td>
-            <td style="text-align: center;">{{field | groupByTitle:d}} </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_r}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0"> (0.00%)</span></div>
-            </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_r_o}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_ft>0"> ({{d.c_r_o/d.c_ft*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_ft===0"> (0.00%)</span></div>
-            </td>
-            <td>
-                <div class="hl-numrp-align"> {{d.c_r_a}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_r>0">  ({{d.c_r_a/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0"> (0.00%)</span></div>
-            </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_r_b}}</div>
-                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_b/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0"> (0.00%)</span></div>
-            </td>
-            <td>
-                <div class="hl-numrp-align"> {{d.c_r_c}}</div>
-                <div class="hl-text-cen"> &nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_c/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0"> (0.00%)</span></div>
-            </td>
-            <td>
-                <div class="hl-numrp-align">{{d.c_r_d}}</div>
-                <div class="hl-text-cen">&nbsp;<span *ngIf="d.c_r>0"> ({{d.c_r_d/d.c_r*100 | number : '1.2-2'}}%)</span><span *ngIf="d.c_r===0"> (0.00%)</span> </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<exportable>
+    <table id="tableEl" class="tableOverView" style="width: 100%;" export-table i18n-title title="General">
+        <thead export-row>
+            <th export="string" i18n>No.</th>
+            <th export="string" [groupByTitle]="field"></th>
+            <th>
+                <span export="string" i18n>Transaction feedback</span>
+                <span class="hide" export="string" i18n>Transaction feedback Percent</span>
+            </th>
+            <th>
+                <span export="string" i18n>Transaction without feedback</span>
+                <span class="hide" export="string" i18n>Transaction without feedback Percent</span>
+            </th>
+            <th>
+                <span export="string" i18n>Very good feedback</span>
+                <span class="hide" export="string" i18n>Very good feedback Percent</span>
+            </th>
+            <th>
+                <span export="string" i18n>Good feedback</span>
+                <span class="hide" export="string" i18n>Good feedback Percent</span>
+            </th>
+            <th>
+                <span export="string" i18n>Average feedback</span>
+                <span class="hide" export="string" i18n>Average feedback Percent</span>
+            </th>
+            <th>
+                <span export="string" i18n>Poor feedback</span>
+                <span class="hide" export="string" i18n>Poor feedback Percent</span>
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data; let i = index" export-row>
+                <td export="number" style="text-align: center;"> {{i + 1}} </td>
+                <td export="string" style="text-align: center;">{{field | groupByTitle:d}} </td>
+                <td>
+                    <span export="number" class="hl-numrp-align">{{d.c_r}}&nbsp;</span>
+                    <span *ngIf="d.c_ft>0">(<span export="number">{{d.c_r/d.c_ft*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.c_ft===0">(<span export="number">0.00</span>%)</span>
+                </td>
+                <td>
+                    <span export="number" class="hl-numrp-align">{{d.c_r_o}}&nbsp;</span>
+                    <span *ngIf="d.c_ft>0">(<span export="number">{{d.c_r_o/d.c_ft*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.c_ft===0">(<span export="number">0.00</span>%)</span>
+                </td>
+                <td>
+                    <span export="number" class="hl-numrp-align"> {{d.c_r_a}}&nbsp;</span>
+                    <span *ngIf="d.c_r>0">(<span export="number">{{d.c_r_a/d.c_r*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.c_r===0">(<span export="number">0.00</span>%)</span>
+                </td>
+                <td>
+                    <span export="number" class="hl-numrp-align">{{d.c_r_b}}&nbsp;</span>
+                    <span *ngIf="d.c_r>0">(<span export="number">{{d.c_r_b/d.c_r*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.c_r===0">(<span export="number">0.00</span>%)</span>
+                </td>
+                <td>
+                    <span export="number" class="hl-numrp-align"> {{d.c_r_c}}&nbsp;</span>
+                    <span *ngIf="d.c_r>0">(<span export="number" >{{d.c_r_c/d.c_r*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.c_r===0">(<span export="number" >0.00</span>%)</span>
+                </td>
+                <td>
+                    <span export="number" class="hl-numrp-align">{{d.c_r_d}}&nbsp;</span>
+                    <span *ngIf="d.c_r>0">(<span export="number">{{d.c_r_d/d.c_r*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.c_r===0">(<span export="number">0.00</span>%)</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <export-attribute name="filename" i18n-title title="General"></export-attribute>
+</exportable>
 
-<div class="divider"></div>
+<!--<div class="divider"></div>
 <div fxLayout="row">
     <div fxFlex="80%"></div>
     <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()" i18n>Export to excel</button>
-</div>
+</div>-->

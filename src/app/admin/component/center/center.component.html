@@ -1,11 +1,9 @@
 <div fxLayout="row">
-  <div fxFlex="250px" class="leftFilter"></div>
-  <div fxFlex style="overflow: auto;" class="mainContent" fxLayout="column">
-    <div fxFlex class="main_miraway">
-      <router-outlet></router-outlet>
+    <div fxFlex="250px" class="leftFilter"></div>
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+            <router-outlet></router-outlet>
+        </div>
+        <footer></footer>
     </div>
-    <div fxFlex>
-      <footer></footer>
-    </div>
-  </div>
 </div>

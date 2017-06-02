@@ -24,7 +24,7 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('cnum').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('cnum').hasError('required')">&nbsp;</span>
-                <input fxFlex class="ctrlInput" type="text" formControlName="cnum" i18n-placeholder placeholder="Number">
+                <input fxFlex class="ctrlInput" type="number" formControlName="cnum" i18n-placeholder placeholder="Number">
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
@@ -49,7 +49,8 @@
             <div fxFlex fxLayout="row" fxLayoutGap="25px">
                 <span fxFlex="30%" i18n>Normal Services</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                    <span fxFlex="1%">&nbsp;</span>
+                    <span fxFlex="1%" class="valid-color" *ngIf="form.get('services').hasError('required')">*</span>
+                    <span fxFlex="1%" *ngIf="!form.get('services').hasError('required')">&nbsp;</span>
                     <select-check fxFlex class="border" formControlName="services" [data]="services$ | async" textField="name" style="background-color: #fff"></select-check>
                 </div>
             </div>

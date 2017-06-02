@@ -13,39 +13,56 @@
     </chart-item-group-view>
 </report-chart>
 <!-- Time View -->
-<table id="tableEl" class="tableOverView" style="width: 100%">
-    <thead>
-        <th i18n>No.</th>
-        <th [groupByTitle]="field"></th>
-        <th i18n>Total transaction time</th>
-        <th i18n>Total serving time</th>
-        <th i18n>Total waiting time</th>
-        <th i18n>Serving time avarage</th>
-        <th i18n>Serving time min</th>
-        <th i18n>Serving time max</th>
-        <th i18n>Waiting time avarage</th>
-        <th i18n>Waiting time min</th>
-        <th i18n>Waiting time max</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let d of data; let i = index">
-            <td style="text-align: center;"> {{i + 1}} </td>
-            <td style="text-align: center;">{{field | groupByTitle:d}} </td>
-            <td style="text-align: center"> {{d.s_tt | timeDuration}} </td>
-            <td style="text-align: center"> {{d.s_st | timeDuration}}&nbsp;<span *ngIf="d.s_tt>0"> ({{d.s_st/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0"> (0.00%)</span></td>
-            <td style="text-align: center"> {{d.s_wt | timeDuration}}&nbsp;<span *ngIf="d.s_tt>0"> ({{d.s_wt/d.s_tt*100 | number : '1.2-2'}}%)</span><span *ngIf="d.s_tt===0"> (0.00%)</span> </td>
-            <td style="text-align: center"> {{d.a_st | timeDuration}} </td>
-            <td style="text-align: center"> {{d.min_st | timeDuration}} </td>
-            <td style="text-align: center"> {{d.max_st | timeDuration}} </td>
-            <td style="text-align: center"> {{d.a_wt | timeDuration}} </td>
-            <td style="text-align: center"> {{d.min_wt | timeDuration}} </td>
-            <td style="text-align: center"> {{d.max_wt | timeDuration}} </td>
-        </tr>
-    </tbody>
-</table>
+<exportable>
+    <table id="tableEl" class="tableOverView" style="width: 100%" export-table i18n-title title="General">
+        <thead export-row>
+            <th export="string" i18n>No.</th>
+            <th export="string" [groupByTitle]="field"></th>
+            <th export="string" i18n>Total transaction time</th>
+            <th class="widthCtrl">
+                <span export="string" i18n>Total serving time</span>
+                <span class="hide" export="string" i18n>Total serving time Percent</span>
+            </th>
+            <th class="widthCtrl">
+                <span export="string" i18n>Total waiting time</span>
+                <span class="hide" export="string" i18n>Total waiting time Percent</span>
+            </th>
+            <th export="string" i18n>Serving time avarage</th>
+            <th export="string" i18n>Serving time min</th>
+            <th export="string" i18n>Serving time max</th>
+            <th export="string" i18n>Waiting time avarage</th>
+            <th export="string" i18n>Waiting time min</th>
+            <th export="string" i18n>Waiting time max</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data; let i = index" export-row>
+                <td export="number" style="text-align: center;"> {{i + 1}} </td>
+                <td export="string" style="text-align: center;">{{field | groupByTitle:d}} </td>
+                <td export="string" style="text-align: center"> {{d.s_tt | timeDuration}} </td>
+                <td style="text-align: center">
+                    <span export="string"> {{d.s_st | timeDuration}}&nbsp;</span>
+                    <span *ngIf="d.s_tt>0">(<span  export="string">{{d.s_st/d.s_tt*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.s_tt===0">(<span export="string">0.00</span>%)</span>
+                </td>
+                <td style="text-align: center">
+                    <span export="string">{{d.s_wt | timeDuration}}&nbsp;</span>
+                    <span *ngIf="d.s_tt>0">(<span  export="string">{{d.s_wt/d.s_tt*100 | number : '1.2-2'}}</span>%)</span>
+                    <span *ngIf="d.s_tt===0">(<span  export="string">0.00</span>%)</span>
+                </td>
+                <td export="string" style="text-align: center"> {{d.a_st | timeDuration}} </td>
+                <td export="string" style="text-align: center"> {{d.min_st | timeDuration}} </td>
+                <td export="string" style="text-align: center"> {{d.max_st | timeDuration}} </td>
+                <td export="string" style="text-align: center"> {{d.a_wt | timeDuration}} </td>
+                <td export="string" style="text-align: center"> {{d.min_wt | timeDuration}} </td>
+                <td export="string" style="text-align: center"> {{d.max_wt | timeDuration}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <export-attribute name="filename" i18n-title title="General"></export-attribute>
+</exportable>
 
-<div class="divider"></div>
+<!--<div class="divider"></div>
 <div fxLayout="row">
     <div fxFlex="80%"></div>
     <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()" i18n>Export to excel</button>
-</div>
+</div>-->

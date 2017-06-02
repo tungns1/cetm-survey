@@ -5,43 +5,43 @@
 <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.time" [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>-->
 <!-- Time View -->
-<table  class="tableCtrl">
-  <thead>
-    <th i18n="Numerical Order">No.</th>
-    <th i18n>Branch Code</th>
-    <th i18n>Branch Name</th>
-    <th i18n>Store Code</th>
-    <th i18n>Store Name </th>
-    <th i18n>User code</th>
-    <th i18n>User name</th>
-    <th i18n>Counter</th>
-    <th i18n>Date</th>
-    <th i18n>Time connection</th>
-    <th i18n>Time productivity</th>
-    <th i18n>Time idle</th>
-    <th i18n>Ticket attended</th>
-    <th i18n>Ticket cancelled</th>
-    <!--<th i18n>% occupied</th>
+<table class="tableCtrl">
+    <thead>
+        <th i18n="Numerical Order">No.</th>
+        <th i18n>Branch Code</th>
+        <th i18n>Branch Name</th>
+        <th i18n>Store Code</th>
+        <th i18n>Store Name </th>
+        <th i18n>User code</th>
+        <th i18n>User name</th>
+        <th i18n>Counter</th>
+        <th i18n>Date</th>
+        <th i18n>Time connection</th>
+        <th i18n>Time productivity</th>
+        <th i18n>Time idle</th>
+        <th i18n>Ticket attended</th>
+        <th i18n>Ticket cancelled</th>
+        <!--<th i18n>% occupied</th>
     <th i18n>Survey score</th>-->
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of data.data; let i = index">
-      <td>{{(i+1)}}</td>
-      <td> {{d.branch_id | parentCode}} </td>
-      <td> {{d.branch_id | parentName}} </td>
-      <td> {{d.branch_id | branchCode}} </td>
-      <td> {{d.branch_id | branchName}} </td>
-      <td>{{d.user_code}}</td>
-      <td> {{d.user_name}} </td>
-      <td> {{d.counter_name }} </td>
-      <td> {{d.date}} </td>
-      <td>{{d.total_connection_time | timeDuration}}</td>
-      <td> {{d.total_productivity_time | timeDuration}} </td>
-      <td> {{d.total_idle_time | timeDuration}} </td>
-      <td> {{d.ticket_attended}} </td>
-      <td> {{d.ticket_transferred}} </td>
-      <!--<td> </td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data.data; let i = index">
+            <td>{{(i+1)}}</td>
+            <td> {{d.branch_id | parentCode}} </td>
+            <td> {{d.branch_id | parentName}} </td>
+            <td> {{d.branch_id | branchCode}} </td>
+            <td> {{d.branch_id | branchName}} </td>
+            <td>{{d.user_code}}</td>
+            <td> {{d.user_name}} </td>
+            <td> {{d.counter_name }} </td>
+            <td> {{d.date}} </td>
+            <td>{{d.total_connection_time | timeDuration}}</td>
+            <td> {{d.total_productivity_time | timeDuration}} </td>
+            <td> {{d.total_idle_time | timeDuration}} </td>
+            <td> {{d.ticket_attended}} </td>
+            <td> {{d.ticket_transferred}} </td>
+            <!--<td> </td>
       <td> </td>-->
-    </tr>
-  </tbody>
+        </tr>
+    </tbody>
 </table>
