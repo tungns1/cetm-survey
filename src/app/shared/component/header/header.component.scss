@@ -1,25 +1,8 @@
+@import '../../../shared/style.scss';
 #header {
     height: 38px;
-    display: block;
     width: 100%;
-    border-bottom: 1px solid #b0b1b5;
+    border-bottom: $border;
     background-color: #fff;
-    .head-logo {
-        height: 100%;
-        width: 20%;
-        float: left;
-        margin-left: 20px;
-    }
-    .head-app-title {
-        padding-top: 1vh;
-        width: 50%;
-        text-align: center;
-        float: left;
-    }
-    .head-user-profile {
-        padding-top: 1vh;
-        width: 20%;
-        text-align: right;
-        float: right;
-    }
+    padding: 0 15px;
 }

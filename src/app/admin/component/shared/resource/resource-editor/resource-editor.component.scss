@@ -3,4 +3,10 @@
     .resourcesHeader{
         background-color: $background-color-title;
     }
+    a {
+        text-decoration: underline;
+        color: blue;
+        cursor: pointer;
+        margin-right: 5px;
+    }
 }

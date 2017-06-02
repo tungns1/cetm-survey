@@ -6,7 +6,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async"
+    [title]="title" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
@@ -41,11 +42,17 @@
                 <span fxFlex="1%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
                 <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
             </div>
-            <span fxFlex="20%" i18n>Counters</span>
+            <!-- Voice -->
+            <span fxFlex="20%">
+                <ng-container>Voice List</ng-container>
+                <a [routerLink]="voiceEditLink$ | async" queryParamsHandling="merge" i18n>Edit</a>
+            </span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('counters').hasError('required')">*</span>
-                <span fxFlex="1%" *ngIf="!form.get('counters').hasError('required')">&nbsp;</span>
-                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff" [data]="counters$ | async" textField="name"></select-check>
+                <span fxFlex="1%">&nbsp;</span>
+                <select fxFlex class="hl-select" formControlName="voice_list_id">
+                    <option value="">--None--</option>
+                    <option *ngFor="let voice of voice_lists$ | async" [value]="voice.id"> {{voice.name}} </option>
+                </select>
             </div>
         </div>
         <!-- Select Parent -->
@@ -73,24 +80,23 @@
                 </select>
             </div>
 
-            <!-- Voice -->
-            <span fxFlex="20%">
-                <ng-container>Voice List</ng-container>
-                <a [routerLink]="voiceEditLink$ | async" queryParamsHandling="merge" i18n>Edit</a>
-            </span>
-            <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%">&nbsp;</span>
-                <select fxFlex class="hl-select" formControlName="voice_list_id">
-                    <option value="">--None--</option>
-                    <option *ngFor="let voice of voice_lists$ | async" [value]="voice.id"> {{voice.name}} </option>
-                </select>
-            </div>
         </div>
 
         <!-- Resource -->
-        <div fxLayout="row" fxLayoutGap="28px" class="rowCtrl">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Resources</span>
-            <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%">&nbsp;</span>
+                <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
+            </div>
+
+            <span fxFlex="20%" i18n>Counters</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('counters').hasError('required')">*</span>
+                <span fxFlex="1%" *ngIf="!form.get('counters').hasError('required')">&nbsp;</span>
+                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff; height: 90px;" 
+                    [data]="counters$ | async" textField="name"></select-check>
+            </div>
         </div>
     </form>
 </app-editor-view>

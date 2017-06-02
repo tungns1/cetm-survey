@@ -1,9 +1,5 @@
-<div id="header">
-    <logo class="head-logo"></logo>
-    <div class="head-app-title uppercase">
-        {{moduleName$ | async}} - {{subModuleName$ | async}}
-    </div>
-
-    <user class="head-user-profile"></user>
-    
+<div id="header" fxLayout="row" fxLayoutAlign="space-around center">
+    <logo fxFlex></logo>
+    <span fxFlex="60%" class="center uppercase">{{moduleName$ | async}} - {{subModuleName$ | async}}</span>
+    <user fxFlex class="right"></user>
 </div>
