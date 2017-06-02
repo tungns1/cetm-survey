@@ -1,8 +1,11 @@
 import {
     Component, OnInit, Input, Output, EventEmitter,
-    ContentChildren, QueryList, ChangeDetectorRef
+    ContentChildren, QueryList, ChangeDetectorRef, ViewChild
 } from '@angular/core';
 import { ITableField, ITableAction } from './model';
+import { CacheBranch } from '../';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { NoticeComponent } from '../../../../../lib/ng2';
 
 @Component({
     selector: "app-table-field",
@@ -21,17 +24,19 @@ export class AppTableFieldComponent implements ITableField {
 export class AppDataTableComponent implements OnInit {
 
     constructor(
-        // private ref: ChangeDetectorRef
     ) { }
 
-    ngOnInit() {
-        // this.ref.markForCheck();
-    }
-
+    @ContentChildren(AppTableFieldComponent) children: QueryList<AppTableFieldComponent>;
     @Input() fields: ITableField[] = [];
     @Input() data: any[] = [];
     @Input() name: string;
+    @Input() canEdit: boolean = true;
     @Output() action = new EventEmitter<ITableAction>();
+    @ViewChild(NoticeComponent) notice: NoticeComponent;
+    adminRoot: boolean = CacheBranch.MaxLevel() == 3;
+
+    ngOnInit() {
+    }
 
     ngAfterContentInit() {
         if (this.fields.length < 1) {
@@ -40,27 +45,11 @@ export class AppDataTableComponent implements OnInit {
     }
 
     onAction(action: string, value: any) {
-        // if(action === 'remove'){
-        //     this.removeRef.Open();
-        //     this.form = this.makeForm(value);
-        // } else
-        // console.log('aaa');
-        this.action.emit({action, value});
-        // if (e.action === 'add') {
-        //     this.createForm();
-        //     this.editorRef.Open();
-        // } else if (e.action === 'remove') {
-        //     this.removeRef.Open();
-        //     this.form = this.makeForm(e.value);
-        // } else if (e.action === 'edit') {
-        //     const id = e.value['id'];
-        //     this.api.GetByID(id).first()
-        //         .subscribe(u => {
-        //             this.createForm(u);
-        //             this.editorRef.Open();
-        //         });
-        // }
+        if (!this.canEdit && !this.adminRoot) {
+            if (action === 'add') {
+                this.notice.ShowMessage("dont_have_authorize");
+            }
+            else this.action.emit({ action, value });
+        } else this.action.emit({ action, value });
     }
-
-    @ContentChildren(AppTableFieldComponent) children: QueryList<AppTableFieldComponent>;
 }

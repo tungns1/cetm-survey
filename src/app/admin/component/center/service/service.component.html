@@ -2,7 +2,7 @@
 
 </app-env-sub-module>
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
-    <app-datatable i18n-name name="Service" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Service" [data]="data$ | async" [canEdit]="false" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="code" i18n-title title="Code"></app-table-field>
     </app-datatable>

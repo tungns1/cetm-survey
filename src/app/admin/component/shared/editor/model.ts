@@ -1,3 +1,4 @@
+// type TableActionName = "add" | "edit" | "remove"
 
 export interface ITableField {
     name: string;
