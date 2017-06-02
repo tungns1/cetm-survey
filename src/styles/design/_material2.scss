@@ -1,0 +1,26 @@
+// overide material 2
+.mat-tab-header {
+    background-color: $background-color-title;
+    color: $text-color;
+    border-bottom: $border;
+    .mat-tab-label-active {
+        color: $key-color;
+        font-weight: $font-weight-default + 400;
+    }
+    .mat-ink-bar {
+        background-color: $key-color;
+    }
+}
+
+.mat-spinner {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 9999;
+}
+
+.mat-dialog-container{
+    padding: 0px !important;
+}
+
+//end of overide material 2

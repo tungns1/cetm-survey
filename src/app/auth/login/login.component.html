@@ -1,11 +1,11 @@
-<div class="hl-divlogin">
+<div id="loginID">
     <img src="./assets/img/login/miraway-logo.png" alt="Miraway" class="hl-logo-login">
     <div class="hl-bodys-login">
         <div class="hl-title-login" i18n>System Login</div>
         <form [formGroup]="loginForm" (submit)="login()">
             <div class="margin-30 center">
                 <div class="hl-message-login"> {{message}} </div>
-                <div class="hl-info-login">
+                <div class="margin-0-30">
                     <div class="hl-divinp-login">
                         <input class="ctrlInput-login" type="text" formControlName="username" i18n-placeholder="Username">
                     </div>
@@ -16,7 +16,6 @@
                         <button class="hl-btnLogin btpointer" type="submit" i18n>Login</button>
                     </div>
                 </div>
-                <!--<a href="#" class="mk">Bạn quên mật khẩu ? Yêu cầu Admin cấp lại mật khẩu</a>-->
             </div>
         </form>
     </div>
