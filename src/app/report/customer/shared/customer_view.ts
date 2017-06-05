@@ -82,18 +82,25 @@ export class CustomerView {
     Finalize() {
         var fres = this.freschart;
         this.freschart[0].series = this.fres;
+        this.c_awt = this.c_t - this.c_bwt;
+        this.s_tt = this.s_wt + this.s_st;
+        // percent
+        if (this. c_t > 0) {
+            this.c_awt_p = this.c_awt * 100 / this.c_t;
+            this.s_wt_p = this.s_wt * 100 / this.c_t;
+            this.c_bwt_p = this.c_bwt * 100 / this.c_t;
+            this.s_st_p = this.s_st * 100 / this.c_t;
+            this.c_bst_p = this.c_bst * 100 / this.c_t;
+        }
     }
 
     // count 
-
-    get c_awt() {
-        return this.c_t - this.c_bwt;
-    }
-
-    // sum transaction time
-    get s_tt() {
-        return this.s_wt + this.s_st;
-    }
+    c_bst_p = 0;
+    s_st_p = 0;
+    s_wt_p = 0;
+    c_bwt_p = 0;
+    c_awt = 0; c_awt_p = 0;
+    s_tt = 0;
 
 
     static Make(records: ICustomerView) {
