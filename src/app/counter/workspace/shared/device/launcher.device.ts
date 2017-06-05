@@ -11,17 +11,7 @@ export class LauncherService {
   SetMiniMode(mode: XWinMiniMode) {
     if (!mode || !mode.enable) return;
     const rect = mode.rect || {};
-    rect.height = this.ratio(rect.height);
-    rect.width = this.ratio(rect.width);
     this.qmsService.__x.SetMiniMode(mode.rect, true, mode.options);
-  }
-
-  private ratio(v: number) {
-    v = +v || 0;
-    if (v < 0.01 || v >= 1) {
-      v = 0.2;
-    }
-    return v;
   }
   
 }
