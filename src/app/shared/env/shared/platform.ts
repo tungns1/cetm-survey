@@ -12,6 +12,7 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
     }
 
     private get actualHost() {
+        // should not initialize with object
         return this.data.host || location.host;
     }
 
@@ -25,8 +26,10 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
     }
 
     get WebSocket() {
-        return `ws://${this.actualHost}`;
+        return `${this.wsProtocol}//${this.actualHost}`;
     }
 
     private protocol = location.protocol;
+    private ssl = this.protocol.startsWith("https");
+    private wsProtocol = this.ssl ? "wss:" : "ws:";
 }
