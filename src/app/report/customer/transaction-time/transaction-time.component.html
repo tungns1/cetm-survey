@@ -1,34 +1,47 @@
 <div id="tab-time">
     <customer-chart></customer-chart>
     <!-- Time View -->
-    <table>
-        <thead>
-            <th i18n>Total Transaction</th>
-            <th i18n>Standard waiting time transaction</th>
-            <th i18n>Exceeded Waiting Time Transaction</th>
-            <th i18n>Standard Serving Time Transaction</th>
-            <th i18n>Exceeded Serving Time Transaction</th>
-        </thead>
-        <tbody>
-            <tr *ngIf="data">
-                <td> {{data.c_t}} </td>
-                <td>
-                    <div class="hl-numrp-align"> {{data.c_bwt}}</div>
-                    <div class="hl-text-cen">&nbsp;<span *ngIf="data.c_t>0"> ({{data.c_bwt/data.c_t*100 | number : '1.2-2'}}%)</span><span *ngIf="data.c_t===0">0.00%</span></div>
-                </td>
-                <td>
-                    <div class="hl-numrp-align"> {{data.s_wt}}</div>
-                    <div class="hl-text-cen">&nbsp;<span *ngIf="data.c_t>0"> ({{(data.s_wt)/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
-                </td>
-                <td>
-                    <div class="hl-numrp-align"> {{data.c_bst}}</div>
-                    <div class="hl-text-cen"> &nbsp;<span *ngIf="data.c_t>0"> ({{data.c_bst/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
-                </td>
-                <td>
-                    <div class="hl-numrp-align"> {{data.s_st}}</div>
-                    <div class="hl-text-cen"> &nbsp;<span *ngIf="data.c_t>0"> ({{(data.s_st)/data.c_t*100 | number : '1.2-2'}}%) </span><span *ngIf="data.c_t===0">0.00%</span></div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <exportable>
+        <table export-table>
+            <thead export-row>
+                <th export="string" i18n>Total Transaction</th>
+                <th>
+                    <span export="string" i18n>Standard waiting time transaction</span>
+                    <span class="hide" export="string" i18n>Standard waiting time transaction Percent</span>
+                </th>
+                <th>
+                    <span export="string" i18n>Exceeded Waiting Time Transaction</span>
+                    <span class="hide" export="string" i18n>Exceeded Waiting Time Transaction Percent</span>
+                </th>
+                <th>
+                    <span export="string" i18n>Standard Serving Time Transaction</span>
+                    <span class="hide" export="string" i18n>Standard Serving Time Transaction Percent</span>
+                </th>
+                <th>
+                    <span export="string" i18n>Exceeded Serving Time Transaction</span>
+                    <span class="hide" export="string" i18n>Exceeded Serving Time Transaction Percent</span>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngIf="data" export-row>
+                    <td export="number"> {{data.c_t}} </td>
+                    <td>
+                        <span export="number">{{data.c_bwt}}</span> (<span export="number">{{data.c_bwt_p | number : '1.2-2'}}</span>%)
+                    </td>
+                    <td>
+                        <span export="number">{{data.s_wt}}</span> (<span export="number">{{data.s_wt_p | number : '1.2-2'}}</span>%)
+                    </td>
+                    <td>
+                        <span export="number">{{data.c_bst}}</span> (<span export="number">{{data.c_bst_p | number : '1.2-2'}}</span>%)
+
+                    </td>
+                    <td>
+                        <span export="number">{{data.s_st}}</span> (<span export="number">{{data.s_st_p | number : '1.2-2'}}</span>%)
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <export-attribute name="filename" i18n-title title="Transaction-time"></export-attribute>
+    </exportable>
 </div>

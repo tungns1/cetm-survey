@@ -1,9 +1,7 @@
 import { Component, Injector } from '@angular/core';
-import { CenterService, IService, AllRoles } from '../../shared/';
+import { CenterService, IService, AllRoles, BaseAdminComponent, CommonValidator } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
 
 @Component({
     selector: 'admin-service',
@@ -18,6 +16,9 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
         super(injector, org.ServiceService);
     }
 
+    tforms = this.org.TFormService.RxListView;
+    tformVips = this.org.TFormService.RxListView;
+    private roles = AllRoles;
     title = 'service';
     makeForm(b?: IService) {
         b = b || <any>{};
@@ -32,9 +33,5 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
             // call_for_vip: [b.call_for_vip]
         });
     }
-
-    tforms = this.org.TFormService.RxListView;
-    tformVips = this.org.TFormService.RxListView;
-    private roles = AllRoles;
 }
 

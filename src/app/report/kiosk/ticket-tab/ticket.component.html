@@ -5,23 +5,26 @@
 <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.ticket" [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
 <!-- Time View -->
-<table>
-    <thead>
-        <th i18n="Numerical Order">No.</th>
-        <th i18n>Store</th>
-        <th i18n>Total printed ticket</th>
-        <th i18n>Longest printed ticket</th>
-        <th i18n>Shortest printed ticket</th>
-        <th i18n>Average printed ticket</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let d of  data.ticket_sum; let i = index">
-            <td>{{(i+1)}}</td>
-            <td> {{d.name}} </td>
-            <td> {{d.total}} </td>
-            <td> {{d.highest}} </td>
-            <td> {{d.lowest}} </td>
-            <td> {{d.average}} </td>
-        </tr>
-    </tbody>
-</table>
+<exportable>
+    <table export-table>
+        <thead export-row>
+            <th export="string" i18n="Numerical Order">No.</th>
+            <th export="string" i18n>Store</th>
+            <th export="string" i18n>Total printed ticket</th>
+            <th export="string" i18n>Longest printed ticket</th>
+            <th export="string" i18n>Shortest printed ticket</th>
+            <th export="string" i18n>Average printed ticket</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of  data.ticket_sum; let i = index" export-row>
+                <td export="number">{{(i+1)}}</td>
+                <td export="number"> {{d.name}} </td>
+                <td export="number"> {{d.total}} </td>
+                <td export="number"> {{d.highest}} </td>
+                <td export="number"> {{d.lowest}} </td>
+                <td export="number"> {{d.average}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <export-attribute name="filename" i18n-title title="kiosk_ticket"></export-attribute>
+</exportable>

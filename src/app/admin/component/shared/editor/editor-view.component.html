@@ -11,7 +11,7 @@
 
     <ng-content></ng-content>
 
-    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+    <div *ngIf="!hideActionBtn" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
         <button fxFlex="15%" class="uppercase btnRed" [class.hide]="isNew" appConfirm="Do you want to delete the selected item?" (confirm)="onAction('remove')" i18n>Delete</button>
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" [disabled]="getValid()" [style.opacity]="getStyle()" (click)="onAction('add')" i18n>Add</button>
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" [disabled]="getValid()" [style.opacity]="getStyle()" (click)="onAction('edit')" i18n>Save</button>

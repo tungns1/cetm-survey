@@ -15,13 +15,9 @@
                         <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
                     </div>
                 </div>
-                <div class="border padding-20" style="margin-bottom: 50px;">
-                    <performance-tab [data]="data$ | async"></performance-tab>
-                </div>
-                <div class="border padding-20">
-                    <!--<activity-tab></activity-tab>-->
-                </div>
+                <performance-tab [data]="data$ | async"></performance-tab>
+                <!--<activity-tab></activity-tab>-->
             </div>
-            <footer></footer>
         </div>
+        <footer></footer>
     </div>

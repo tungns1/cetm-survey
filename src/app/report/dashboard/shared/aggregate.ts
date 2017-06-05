@@ -64,7 +64,14 @@ export class TransactionAggregate {
 
     c_ct = 0; // count cancel transaction
     c_ct_p = 0; // cancel transaction percent
-
+    c_r_p = 0;
+    c_r_o_p = 0;
+    c_r_a_p = 0;
+    c_r_b_p = 0;
+    c_r_c_p = 0;
+    c_r_d_p = 0;
+    s_st_p = 0;
+    s_wt_p = 0;
     Add(s: ITransactionCount) {
         if (s == null) {
             return;
@@ -114,10 +121,22 @@ export class TransactionAggregate {
         if (this.c_ft > 0) {
             this.a_wt = Round2Decimal(this.s_wt / this.c_t);
             this.a_st = Round2Decimal(this.s_st / this.c_ft);
+            this.c_r_p = Round2DecimalPercent(this.c_r , this.c_ft);
+            this.c_r_o_p = Round2DecimalPercent(this.c_r_o , this.c_ft);
         }
 
         if (this.c_r_o > 0) {
             this.a_r = Round2Decimal(this.s_r / this.c_r_gt0);
+        }
+        if(this.c_r > 0) {
+            this.c_r_a_p = Round2DecimalPercent(this.c_r_a , this.c_r);
+            this.c_r_b_p = Round2DecimalPercent(this.c_r_b , this.c_r);
+            this.c_r_c_p = Round2DecimalPercent(this.c_r_c , this.c_r);
+            this.c_r_d_p = Round2DecimalPercent(this.c_r_d , this.c_r);
+        }
+        if(this.s_tt > 0) {
+            this.s_wt_p = Round2DecimalPercent(this.s_wt , this.s_tt);
+            this.s_st_p = Round2DecimalPercent(this.s_st , this.s_tt);
         }
         this.c_ct = this.c_t - this.c_ft;
         this.c_awt = this.c_t - this.c_bwt;

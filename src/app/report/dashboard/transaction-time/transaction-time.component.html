@@ -14,7 +14,7 @@
 </report-chart>
 <!-- Time View -->
 <exportable>
-    <table id="tableEl" class="tableOverView" style="width: 100%" export-table i18n-title title="General">
+    <table id="tableEl" class="tableOverView" style="width: 100%" export-table i18n-title title="Transaction">
         <thead export-row>
             <th export="string" i18n>No.</th>
             <th export="string" [groupByTitle]="field"></th>
@@ -40,14 +40,10 @@
                 <td export="string" style="text-align: center;">{{field | groupByTitle:d}} </td>
                 <td export="string" style="text-align: center"> {{d.s_tt | timeDuration}} </td>
                 <td style="text-align: center">
-                    <span export="string"> {{d.s_st | timeDuration}}&nbsp;</span>
-                    <span *ngIf="d.s_tt>0">(<span  export="string">{{d.s_st/d.s_tt*100 | number : '1.2-2'}}</span>%)</span>
-                    <span *ngIf="d.s_tt===0">(<span export="string">0.00</span>%)</span>
+                    <span export="number">{{d.s_st | timeDuration}}&nbsp;</span> (<span export="number">{{d.s_st_p}}</span>%)
                 </td>
                 <td style="text-align: center">
-                    <span export="string">{{d.s_wt | timeDuration}}&nbsp;</span>
-                    <span *ngIf="d.s_tt>0">(<span  export="string">{{d.s_wt/d.s_tt*100 | number : '1.2-2'}}</span>%)</span>
-                    <span *ngIf="d.s_tt===0">(<span  export="string">0.00</span>%)</span>
+                    <span export="number">{{d.s_wt | timeDuration}}&nbsp;</span> (<span export="number">{{d.s_wt_p}}</span>%)
                 </td>
                 <td export="string" style="text-align: center"> {{d.a_st | timeDuration}} </td>
                 <td export="string" style="text-align: center"> {{d.min_st | timeDuration}} </td>
@@ -58,7 +54,7 @@
             </tr>
         </tbody>
     </table>
-    <export-attribute name="filename" i18n-title title="General"></export-attribute>
+    <export-attribute name="filename" i18n-title title="Transaction"></export-attribute>
 </exportable>
 
 <!--<div class="divider"></div>

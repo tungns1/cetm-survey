@@ -53,7 +53,7 @@ export abstract class BaseAdminComponent<T> {
 
 
     private onActionRequest(e: ITableAction) {
-        console.log('request', e);
+        // console.log('request', e);
         if (e.action === 'add') {
             this.NavigateTo("new");
         } else if (e.action === 'remove-confirm') {
