@@ -94,7 +94,7 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('counters').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('counters').hasError('required')">&nbsp;</span>
-                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff; height: 90px;" 
+                <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff; height: 92px;" 
                     [data]="counters$ | async" textField="name"></select-check>
             </div>
         </div>
