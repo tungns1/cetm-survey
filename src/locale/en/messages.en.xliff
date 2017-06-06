@@ -329,7 +329,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="8ed11c80d1e7f8135c3075d57a240858e272cea3" datatype="html">
-        <source>Ticker Number Format</source>
+        <source>Ticket Number Format</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">E:/Coding/Repo/src/qapp/src/app/shared/component/nav/top-nav.component.ts</context>

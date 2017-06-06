@@ -604,7 +604,7 @@
         <target>Tienda</target>
       </trans-unit>
       <trans-unit id="8ed11c80d1e7f8135c3075d57a240858e272cea3">
-        <source>Ticker Number Format</source>
+        <source>Ticket Number Format</source>
         <target>Formato de número de ticket</target>
       </trans-unit>
       <trans-unit id="d473e0f684a60db45d6f31e993f693f74290e056">
