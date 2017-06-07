@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="searchNSummary border padding-25" fxLayout="row">
-          <div fxFlex="60%">
+          <div fxFlex="560px">
             <customer-filter></customer-filter>
             <report-info></report-info>
           </div>
@@ -34,7 +34,7 @@
               <app-transaction-time [data]="data$ | async"></app-transaction-time>
             </md-tab>
             <md-tab>
-              <template md-tab-label><span class="uppercase" i18n>Frequency</span></template>
+              <ng-template md-tab-label><span class="uppercase" i18n>Frequency</span></ng-template>
               <fres-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingFres | async" i18n-title title="Frequency"></fres-tab>
             </md-tab>
             <md-tab>

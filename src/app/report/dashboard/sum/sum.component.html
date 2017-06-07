@@ -11,8 +11,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+data.c_ft/data.c_t*100+'%'">
-                        </div>
+                        <div class="finised_canceled" [style.width]="''+data.c_ft/data.c_t*100+'%'"></div>
                     </div>
                 </div>
             </div>
@@ -23,8 +22,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+(data.c_t-data.c_ft)/data.c_t*100+'%'">
-                        </div>
+                        <div class="finised_canceled" [style.width]="''+(data.c_t-data.c_ft)/data.c_t*100+'%'"></div>
                     </div>
                 </div>
             </div>
@@ -35,8 +33,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+data.c_bwt/data.c_t*100+'%'">
-                        </div>
+                        <div class="waiting_santard_exceeded" [style.width]="''+data.c_bwt/data.c_t*100+'%'"></div>
                     </div>
                 </div>
             </div>
@@ -47,9 +44,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+(data.c_t-data.c_bwt)/data.c_t*100+'%'">
-
-                        </div>
+                        <div class="waiting_santard_exceeded" [style.width]="''+(data.c_t-data.c_bwt)/data.c_t*100+'%'"></div>
                     </div>
                 </div>
             </div>
@@ -60,9 +55,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+data.c_bst/data.c_t*100+'%'">
-
-                        </div>
+                        <div class="serving_santard_exceeded" [style.width]="''+data.c_bst/data.c_t*100+'%'"></div>
                     </div>
                 </div>
             </div>
@@ -73,9 +66,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_t>0">
-                        <div class="hl-gd-sum" [style.width]="''+(data.c_t-data.c_bst)/data.c_t*100+'%'">
-
-                        </div>
+                        <div class="serving_santard_exceeded" [style.width]="''+(data.c_t-data.c_bst)/data.c_t*100+'%'"></div>
                     </div>
                 </div>
             </div>
@@ -85,7 +76,9 @@
     <div class="hl-column-sum">
         <div style="padding: 0px 10px;">
             <div class="hl-tl-sum">
-                <span i18n>Total transaction time</span>: {{data.s_tt | timeDuration}}
+                <span i18n>Total transaction time</span>
+                <span>: {{data.s_tt | timeDuration}} </span>
+                <span i18n>(h:m:s)</span>
             </div>
             <div>
                 <div class="hl-ct-sum">
@@ -94,7 +87,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.s_tt>0">
-                        <div class="hl-tg-sum" [style.width]="''+data.s_st/data.s_tt*100+'%'">
+                        <div class="total_tras_time" [style.width]="''+data.s_st/data.s_tt*100+'%'">
 
                         </div>
                     </div>
@@ -107,7 +100,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.s_tt>0">
-                        <div class="hl-tg-sum" [style.width]="''+(data.s_wt)/data.s_tt*100+'%'">
+                        <div class="total_tras_time" [style.width]="''+(data.s_wt)/data.s_tt*100+'%'">
 
                         </div>
                     </div>
@@ -124,7 +117,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.a_st>0">
-                        <div class="hl-tg-sum" [style.width]="''+30+'%'">
+                        <div class="average_serving" [style.width]="''+30+'%'">
 
                         </div>
                     </div>
@@ -137,7 +130,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.a_st>0">
-                        <div class="hl-tg-sum" [style.width]="''+100+'%'">
+                        <div class="average_serving" [style.width]="''+100+'%'">
 
                         </div>
                     </div>
@@ -154,7 +147,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.a_wt>0">
-                        <div class="hl-tg-sum" [style.width]="''+30+'%'">
+                        <div class="average_waiting" [style.width]="''+30+'%'">
 
                         </div>
                     </div>
@@ -167,7 +160,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.a_wt>0">
-                        <div class="hl-tg-sum" [style.width]="''+100+'%'">
+                        <div class="average_waiting" [style.width]="''+100+'%'">
 
                         </div>
                     </div>
@@ -188,7 +181,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_ft>0">
-                        <div class="hl-ph-sum" [style.width]="''+data.c_r/data.c_ft*100+'%'">
+                        <div class="with_without_feedback" [style.width]="''+data.c_r/data.c_ft*100+'%'">
                         </div>
                     </div>
                 </div>
@@ -200,7 +193,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_ft>0">
-                        <div class="hl-ph-sum" [style.width]="''+(data.c_ft-data.c_r)/data.c_ft*100+'%'">
+                        <div class="with_without_feedback" [style.width]="''+(data.c_ft-data.c_r)/data.c_ft*100+'%'">
                         </div>
                     </div>
                 </div>
@@ -212,7 +205,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_r>0">
-                        <div class="hl-ph-sum" [style.width]="''+data.c_r_a/data.c_r*100+'%'">
+                        <div class="type_feedback" [style.width]="''+data.c_r_a/data.c_r*100+'%'">
                         </div>
                     </div>
                 </div>
@@ -224,7 +217,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_r>0">
-                        <div class="hl-ph-sum" [style.width]="''+data.c_r_b/data.c_r*100+'%'">
+                        <div class="type_feedback" [style.width]="''+data.c_r_b/data.c_r*100+'%'">
 
                         </div>
                     </div>
@@ -237,7 +230,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_r>0">
-                        <div class="hl-ph-sum" [style.width]="''+data.c_r_c/data.c_r*100+'%'">
+                        <div class="type_feedback" [style.width]="''+data.c_r_c/data.c_r*100+'%'">
 
                         </div>
                     </div>
@@ -250,7 +243,7 @@
                 </div>
                 <div class="hl-max-sum">
                     <div *ngIf="data.c_r>0">
-                        <div class="hl-ph-sum" [style.width]="''+data.c_r_d/data.c_r*100+'%'">
+                        <div class="type_feedback" [style.width]="''+data.c_r_d/data.c_r*100+'%'">
 
                         </div>
                     </div>

@@ -17,9 +17,10 @@
                 </div>
 
                 <history-filter (filterChange)="onFilterChange($event)"></history-filter>
-                <ag-grid-angular #agGrid style="height: 70vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
-                        enableColResize enableSorting>
-                    <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [cellRendererParams]="{d: data}" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
+                <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
+                    enableColResize enableSorting>
+                    <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [cellRendererParams]="{d: data}" [width]="50" cellClass="center"
+                        i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Date" field="cdate" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Branch" field="parent" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Store" field="branch" [width]="200" cellClass="center" i18n-headerName></ag-grid-column>
@@ -31,9 +32,22 @@
                     <ag-grid-column headerName="Waiting Time" field="wtime" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Serving Time" field="stime" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Feedback" field="rating" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
-                    <ag-grid-column headerName="Detail" cellClass="center" 
-                        [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Detail" cellClass="center" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
                 </ag-grid-angular>
+            </div>
+            <div fxLayout="row" fxLayoutGap="10px" class="paginNExportaaa margin-t-20">
+                <button fxFlex="60px" class="btnClear pointer">First</button>
+                <button fxFlex="30px" class="btnClear pointer"><</button>
+                <button fxFlex="30px" class="btnClear pointer">></button>
+                <button fxFlex="60px" class="btnClear pointer">Last</button>
+                <div fxFlex="10px"></div>
+                <input fxFlex="50px" type="number" placeholder="jump to page" class="">
+                <button fxFlex="50px" class="btnClear pointer">Go</button>
+                <div fxFlex></div>
+                <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">
+                    <i class="fa fa-file-excel-o fa-lg"></i>
+                    <span i18n>Export to excel</span>
+                </button>
             </div>
         </div>
         <footer></footer>

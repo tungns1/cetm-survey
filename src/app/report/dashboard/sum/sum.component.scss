@@ -1,37 +1,52 @@
-#summaryReport{
+#summaryReport {
     height: 260px;
     .hl-column-sum {
         width: 33%;
         float: left;
     }
-    .hl-gd-sum {
+    .finised_canceled {
         height: 10px;
         text-align: right;
         float: left;
         border-radius: 15px;
-        background: -webkit-linear-gradient(left, #03c2df, #008eef);
-        -webkit-background-clip: box;
+        background: -webkit-linear-gradient(left, #109619, #109619 + 50);
     }
+    .waiting_santard_exceeded {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #ff9a00, #ff9a00 + 50);
+    }
+    .serving_santard_exceeded {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #3266cc, #3266cc + 50);
+    }
+    .total_tras_time {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #dc3812, #dc3812 + 50);
+    }
+    .average_serving {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #ffd092, #ffd092 + 50);
+    }
+    .average_waiting {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #ff9803, #ff9803 + 50);
+    }
+
+
+    .with_without_feedback {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #03718d, #03718d + 50);
+    }
+    .type_feedback {
+        @extend .finised_canceled;
+        background: -webkit-linear-gradient(left, #990099, #990099 + 50);
+    }
+
     .hl-max-sum {
         width: 100%;
         height: 10px;
         background-color: #dee0e0;
         border-radius: 15px;
-    }
-    .hl-tg-sum {
-        height: 10px;
-        text-align: right;
-        float: left;
-        border-radius: 15px;
-        background: -webkit-linear-gradient(left, #2cc3ba, #139289);
-        -webkit-background-clip: box;
-    }
-    .hl-ph-sum {
-        height: 10px;
-        text-align: right;
-        border-radius: 15px;
-        background: -webkit-linear-gradient(left, #f69d41, #f05e11);
-        -webkit-background-clip: box;
     }
     .hl-tl-sum {
         font-size: 14px;

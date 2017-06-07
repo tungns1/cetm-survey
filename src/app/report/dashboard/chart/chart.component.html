@@ -13,7 +13,7 @@
     <div class="chartDimension" line-chart *ngIf="type === 'line' " [period]="period | async" [data]="data | async" [items]="otherConfig.activeItems$ | async"></div>
 
     <div class="chartDimension" *ngIf="isPie" fxLayout="row">
-        <div fxFlex style="width: 33%; height:22vw;float:left;" 
+        <div fxFlex style="width: 33%; height:22vw;display: inline-block;" 
             *ngFor="let g of pieConfig.groups$ | async" pie-chart [data]="pieData | async" 
             [items]="g.activeItems">
         </div>

@@ -1,11 +1,14 @@
 #cus-sum{
-    .hl-gd-sum {
+    .standard_exceeded_waiting {
         height: 10px;
         text-align: right;
         float: left;
         border-radius: 15px;
-        background: -webkit-linear-gradient(left, #03c2df, #008eef);
-        -webkit-background-clip: box;
+        background: -webkit-linear-gradient(left, #109619, #109619 + 50);
+    }
+    .standard_exceeded_serving{
+        @extend .standard_exceeded_waiting;
+        background: -webkit-linear-gradient(left, #ff9a00, #ff9a00 + 50);
     }
     .hl-max-sum {
         width: 100%;

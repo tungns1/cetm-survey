@@ -68,7 +68,7 @@ export class PieChart extends AbstractChart {
                 const percent = (d.endAngle - d.startAngle) * 100 / (Math.PI * 2);
                 const html = `${title}: ${value} (${Math.round(percent * 100) / 100}%)`;
                 this['style'].opacity = 1;
-                that.tooltip.Html(html).Offset(0, 0).Show();
+                that.tooltip.Html(html).Offset(window.screen.width * 10/100, 0).Show();
             })
             .on('mouseout', function () {
                 this['style'].opacity = 0.8;

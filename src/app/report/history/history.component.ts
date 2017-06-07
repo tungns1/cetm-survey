@@ -23,6 +23,7 @@ export class HistoryComponent {
     private gridOptions: GridOptions = {
         pagination: true,
         paginationAutoPageSize: true,
+        suppressPaginationPanel: true,
         onCellClicked: (e) => {
             if (e.event.target.localName === 'img')
                 this.showDetails(e.data);
@@ -45,10 +46,10 @@ export class HistoryComponent {
         return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
     }
 
-    noCellRenderer(d){
+    noCellRenderer(d) {
         return d.rowIndex + 1;
     }
-    
+
 
 
 

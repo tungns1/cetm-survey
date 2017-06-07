@@ -9,8 +9,7 @@
         </div>
         <div class="hl-max-sum">
             <div *ngIf="data.c_t>0">
-                <div class="hl-gd-sum" [style.width]="''+data.c_bwt/data.c_t*100+'%'">
-                </div>
+                <div class="standard_exceeded_waiting" [style.width]="''+data.c_bwt/data.c_t*100+'%'"></div>
             </div>
         </div>
     </div>
@@ -21,9 +20,7 @@
         </div>
         <div class="hl-max-sum">
             <div *ngIf="data.c_t>0">
-                <div class="hl-gd-sum" [style.width]="''+(data.s_wt)/data.c_t*100+'%'">
-
-                </div>
+                <div class="standard_exceeded_waiting" [style.width]="''+(data.s_wt)/data.c_t*100+'%'"></div>
             </div>
         </div>
     </div>
@@ -34,9 +31,7 @@
         </div>
         <div class="hl-max-sum">
             <div *ngIf="data.c_t>0">
-                <div class="hl-gd-sum" [style.width]="''+data.c_bst/data.c_t*100+'%'">
-
-                </div>
+                <div class="standard_exceeded_serving" [style.width]="''+data.c_bst/data.c_t*100+'%'"></div>
             </div>
         </div>
     </div>
@@ -47,9 +42,7 @@
         </div>
         <div class="hl-max-sum">
             <div *ngIf="data.c_t>0">
-                <div class="hl-gd-sum" [style.width]="''+(data.s_st)/data.c_t*100+'%'">
-
-                </div>
+                <div class="standard_exceeded_serving" [style.width]="''+(data.s_st)/data.c_t*100+'%'"></div>
             </div>
         </div>
     </div>
