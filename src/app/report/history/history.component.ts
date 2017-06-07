@@ -21,10 +21,13 @@ export class HistoryComponent {
     isShowPagin: boolean = true;
 
     private gridOptions: GridOptions = {
+        pagination: true,
+        paginationAutoPageSize: true,
         onCellClicked: (e) => {
-            if(e.event.target.localName === 'img')
+            if (e.event.target.localName === 'img')
                 this.showDetails(e.data);
-        }
+        },
+        rowSelection: 'multiple',
     };
     private data: object[];
 
@@ -35,13 +38,20 @@ export class HistoryComponent {
         });
         this.paging.data$.subscribe(d => {
             this.data = d;
-        })
+        });
     }
-    
+
     detailCellRenderer() {
         return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
     }
+
+    noCellRenderer(d){
+        return d.rowIndex + 1;
+    }
     
+
+
+
     onFilterChange(filter: IHistoryFilter) {
         this.filter = filter;
         this.pagin(1);

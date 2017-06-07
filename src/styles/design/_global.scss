@@ -97,11 +97,10 @@ table tbody tr:nth-child(odd) {
     border-right: $border;
     .filter {
         height: 78vh;
-    position: fixed;
-    width: 249px;
+        position: fixed;
+        width: 249px;
         .content {
-            overflow: auto;
-            // .inputCtrl {
+            overflow: auto; // .inputCtrl {
             //     margin: 10px 20px;
             // }
         }
@@ -146,26 +145,27 @@ table tbody tr:nth-child(odd) {
             td {
                 padding: 10px;
             }
-            .iconDetail {
-                width: 13px;
-            }
         }
+    }
+    .iconDetail {
+        width: 13px;
     }
     .main_miraway {
         min-height: 85vh;
-        @media screen and (max-width: 1300px){
+        @media screen and (max-width: 1300px) {
             min-height: 80vh;
         }
     }
 }
-//End of UI elements
 
+//End of UI elements
 // style for setup - setting
 .form-setup {
     margin-left: 20px;
     margin-top: 10px;
 }
-.container-setup{
+
+.container-setup {
     margin-top: 20px;
     .ctrlInput-setup {
         margin-bottom: 15px;
@@ -187,9 +187,20 @@ table tbody tr:nth-child(odd) {
         margin-left: 20px;
     }
 }
+
 //end of style for setup - setting
-
-
+.ag-fresh {
+    .ag-root {
+        border: none !important;
+        font-size: $font-size-default;
+        .ag-header {
+            background: $background-color-title;
+            .ag-header-cell-label {
+                font-weight: $font-weight-default + 200;
+            }
+        }
+    }
+}
 
 
 /******************** End of global ***********************/

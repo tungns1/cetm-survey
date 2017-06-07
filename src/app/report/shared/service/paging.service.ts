@@ -8,7 +8,7 @@ export interface IPage {
 export class Paging<T> {
     private count$ = new BehaviorSubject<number>(0);
     private currentPage$ = new BehaviorSubject<number>(1);
-    private pageSize$ = new BehaviorSubject<number>(20);
+    private pageSize$ = new BehaviorSubject<number>(0);
 
     data$ = new BehaviorSubject<T[]>([]);
     Reset(data: T[], count: number) {
