@@ -9,7 +9,9 @@
         "assets": [
             "assets",
             "locale",
-            "favicon.ico"
+            "favicon.ico",
+            "service-worker.js",
+            "workbox-sw.prod.js"
         ],
         "index": "index.html",
         "main": "main.ts",

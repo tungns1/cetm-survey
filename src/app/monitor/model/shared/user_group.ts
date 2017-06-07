@@ -6,12 +6,8 @@ export class UserGroup {
         private data: IUser[] = []
     ) { }
 
-    private refresh(data: IUser[]) {
-        
-    }
-
     private filterByRole(role: string) {
-        return this.data.filter(d => d.role.indexOf(role) !== -1);
+        return (this.data || []).filter(d => d && d.role && d.role.indexOf(role) !== -1);
     }
 
     admin = this.filterByRole(USER_ROLES.ADMIN);
