@@ -36,13 +36,14 @@
                 </ag-grid-angular>
             </div>
             <div fxLayout="row" fxLayoutGap="10px" class="paginNExportaaa margin-t-20">
-                <button fxFlex="60px" class="btnClear pointer">First</button>
-                <button fxFlex="30px" class="btnClear pointer"><</button>
-                <button fxFlex="30px" class="btnClear pointer">></button>
-                <button fxFlex="60px" class="btnClear pointer">Last</button>
+                <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
+                <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+                <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+                <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()">Last</button>
                 <div fxFlex="10px"></div>
-                <input fxFlex="50px" type="number" placeholder="jump to page" class="">
-                <button fxFlex="50px" class="btnClear pointer">Go</button>
+                <input fxFlex="30px" type="number" [(ngModel)]="curentPage">
+                <span>/ ({{totalPage}})</span>
+                <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)">Go</button>
                 <div fxFlex></div>
                 <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">
                     <i class="fa fa-file-excel-o fa-lg"></i>
