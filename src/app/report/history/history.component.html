@@ -17,8 +17,26 @@
                 </div>
 
                 <history-filter (filterChange)="onFilterChange($event)"></history-filter>
+                <ag-grid-angular #agGrid style="height: 300px;" [gridOptions]="gridOptions" [rowData]="data" class="ag-material tableCtrl"
+                        enableColResize enableSorting>
+                    <ag-grid-column headerName="No." field="cdate" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Date" field="cdate" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Branch" field="parent" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Store" field="branch" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Service" field="service" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Counter" field="counter" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Teller" field="user" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Ticket" field="cnum" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Print Time" field="ctime" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Waiting Time" field="wtime" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Serving Time" field="stime" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Feedback" field="rating" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Detail" cellClass="center" 
+                        [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
+                </ag-grid-angular>
+                
 
-                <table class="tableCtrl">
+                <!--<table class="tableCtrl">
                     <thead class="">
                         <th i18n>No.</th>
                         <th i18n>Date</th>
@@ -53,9 +71,9 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table>-->
 
-                <div class="paginNExport">
+                <!--<div class="paginNExport">
                     <div class="pagin" *ngIf="isShowPagin">
                         <button class="pointer" *ngFor="let p of paging.pages$ | async" [class.active]="paging.IsActive(p)" (click)="pagin(p.page)">{{p.title}}</button>
                     </div>
@@ -63,7 +81,7 @@
                         <i class="fa fa-file-excel-o fa-lg"></i>
                         <span i18n>Export to excel</span>
                     </button>
-                </div>
+                </div>-->
             </div>
         </div>
         <footer></footer>

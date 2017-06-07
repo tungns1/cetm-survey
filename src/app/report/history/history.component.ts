@@ -3,6 +3,7 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
 import { Paging } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
+import { GridOptions } from "ag-grid";
 
 @Component({
     selector: 'history',
@@ -15,22 +16,35 @@ export class HistoryComponent {
         private transactionHistoryApi: TransactionHistoryApi
     ) { }
 
-
-    onFilterChange(filter: IHistoryFilter) {
-        this.filter = filter;
-        this.pagin(1);
-    }
-
-
     paging = new Paging<ITransactionView>();
     filter: IHistoryFilter;
     isShowPagin: boolean = true;
+
+    private gridOptions: GridOptions = {
+        onCellClicked: (e) => {
+            if(e.event.target.localName === 'img')
+                this.showDetails(e.data);
+        }
+    };
+    private data: object[];
 
     ngOnInit() {
         this.paging.pages$.subscribe(d => {
             if (d.length < 2) this.isShowPagin = false;
             else this.isShowPagin = true;
         });
+        this.paging.data$.subscribe(d => {
+            this.data = d;
+        })
+    }
+    
+    detailCellRenderer() {
+        return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+    }
+    
+    onFilterChange(filter: IHistoryFilter) {
+        this.filter = filter;
+        this.pagin(1);
     }
 
     refresh() {
@@ -51,13 +65,11 @@ export class HistoryComponent {
         this.transactionHistoryApi.ExportHistory();
     }
 
-
     showDetails(tr: ITransactionView) {
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = tr;
         const dialog = this.mdDialog.open(TransactionComponent, config);
-        // dialog.componentInstance.SetData(tr);
     }
 
 }

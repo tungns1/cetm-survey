@@ -9,6 +9,7 @@ import { TransactionComponent } from './transaction.component';
 import { HistoryFilterComponent } from './history-filter.component';
 import { AccordionModule } from '../shared';
 import { ReportFilterModule } from "../shared";
+import { AgGridModule } from "ag-grid-angular/main";
 
 const routing = RouterModule.forChild([
     {
@@ -18,7 +19,9 @@ const routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-    imports: [routing, SharedModule, AccordionModule, ReportFilterModule],
+    imports: [routing, SharedModule, AccordionModule, ReportFilterModule,
+        AgGridModule.withComponents([])
+    ],
     declarations: [
         HistoryComponent, HistoryFilterComponent,
         TransactionComponent
