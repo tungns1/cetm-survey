@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { Paging } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
@@ -31,6 +31,10 @@ export class HistoryComponent {
                 this.showDetails(e.data);
         },
         rowSelection: 'multiple',
+        onRowDataChanged: () => {
+            this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
+            this.totalPage = this.gridOptions.api.paginationGetTotalPages()
+        }
     };
     private data: object[];
 
@@ -44,11 +48,6 @@ export class HistoryComponent {
         });
     }
 
-    ngAfterViewInit(){
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
-        // this.totalPage = this.gridOptions.api.paginationGetTotalPages()
-    }
-
     detailCellRenderer() {
         return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
     }
@@ -57,28 +56,29 @@ export class HistoryComponent {
         return d.rowIndex + 1;
     }
 
-    jumpToFirst(){
+    jumpToFirst() {
         this.gridOptions.api.paginationGoToFirstPage();
         this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
     }
 
-    prevPage(){
+    prevPage() {
         this.gridOptions.api.paginationGoToPreviousPage();
         this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
     }
 
-    nextPage(){
+    nextPage() {
         this.gridOptions.api.paginationGoToNextPage();
         this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
     }
 
-    jumpToLast(){
+    jumpToLast() {
         this.gridOptions.api.paginationGoToLastPage();
         this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
     }
 
-    jumpToPage(pageIndex: number){
+    jumpToPage(pageIndex: number) {
         this.gridOptions.api.paginationGoToPage(pageIndex - 1);
+        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
     }
 
 
