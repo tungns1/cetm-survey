@@ -3,7 +3,6 @@
     <img src="./assets/img/icon/search.png" (click)="searchTicket(tm.value)" alt="Search" class="iconSearch">
     <div class="margin-10-0">
         <span>{{message}} </span>
-        <span>{{cnum$ | async}}</span>
     </div>
     <div class="searchResult" *ngFor="let ticket of tickets$ | async">
         <div fxLayout="row">
@@ -20,9 +19,9 @@
         </div>
         <h3 class="margin-10-0" i18n>History</h3>
         <div fxLayout="row" fxLayoutGap="10px">
-            <span fxFlex="20%" class="margin-10-0" i18n>Time</span>
-            <span fxFlex class="margin-10-0" i18n>Status</span>
-            <span fxFlex class="margin-10-0" i18n>Service</span>
+            <span fxFlex="20%" class="margin-10-0" style="font-weight:700;" i18n>Time</span>
+            <span fxFlex class="margin-10-0" style="font-weight:700;" i18n>Status</span>
+            <span fxFlex class="margin-10-0" style="font-weight:700;" i18n>Service</span>
         </div>
         <div fxLayout="row" fxLayoutGap="10px" *ngFor="let t of ticket.tracks">
             <span fxFlex="20%" class="margin-10-0"> {{t.mtime | localDayTime}} </span>
