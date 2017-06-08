@@ -64,7 +64,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
                 const value: string[] = activeForm.value;
                 const updateValue = value.filter(id => {
                     const branch = CacheBranch.GetByID(id);
-                    return parent_id.indexOf(branch.parent) !== -1;
+                    return branch && parent_id.indexOf(branch.parent) !== -1;
                 });
                 if (updateValue.length < value.length) {
                     activeForm.setValue(updateValue)
