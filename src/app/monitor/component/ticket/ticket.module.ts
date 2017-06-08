@@ -9,6 +9,7 @@ import { MonitorChartComponent } from './chart/chart.component';
 import { D3Module } from '../../../x/ng/d3/d3.module';
 import { IncompleteTicketComponent } from './focus/incomplete.component';
 import { CompletedTicketComponent } from './focus/completed.component';
+import { AgGridModule } from "ag-grid-angular/main";
 
 const routing = RouterModule.forChild([
     {
@@ -26,7 +27,8 @@ import { monitorServiceProviders } from './shared';
 
 @NgModule({
     imports: [
-        routing, SharedModule, D3Module
+        routing, SharedModule, D3Module,
+        AgGridModule.withComponents([])
     ],
     providers: [
         monitorServiceProviders

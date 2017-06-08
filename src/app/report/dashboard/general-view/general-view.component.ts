@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
 import { PeriodFilterService } from '../../shared';

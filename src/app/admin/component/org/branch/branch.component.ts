@@ -57,4 +57,12 @@ export class BranchComponent extends BaseAdminComponent<IBranch> {
   private isAncestorOfMax(level: number) {
     return level < CacheBranch.GetMaxLevel();
   }
-}
+
+  private getName() {
+      let lv = this.route.snapshot.params['level'] || 0;
+      if(lv == 0) return "Store";
+      if(lv == 1) return "Branch";
+      else return "Area";
+  }
+
+ }

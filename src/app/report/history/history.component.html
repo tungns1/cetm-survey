@@ -17,7 +17,7 @@
                 </div>
 
                 <history-filter (filterChange)="onFilterChange($event)"></history-filter>
-                <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
+                <ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" [rowData]="paging.data$ | async" class="ag-fresh tableCtrl"
                     enableColResize enableSorting>
                     <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [cellRendererParams]="{d: data}" [width]="50" cellClass="center"
                         i18n-headerName></ag-grid-column>
@@ -34,7 +34,7 @@
                     <ag-grid-column headerName="Feedback" field="rating" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Detail" cellClass="center" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
                 </ag-grid-angular>
-                <div fxLayout="row" fxLayoutGap="10px"  fxLayoutAlign="none end" class="paginNExportaaa margin-t-20">
+                <div fxLayout="row" fxLayoutGap="10px"  fxLayoutAlign="none end" class="margin-t-20">
                     <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
                     <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
                     <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>

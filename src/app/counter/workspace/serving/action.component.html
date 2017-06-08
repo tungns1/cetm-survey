@@ -12,7 +12,7 @@
         <ng-container i18n="Counter Button: Move Ticket">Move</ng-container>
     </button>
     <button class="uppercase btnRed" [disabled]="!ticket" fxFlex appConfirm="Are you sure to delete?" (confirm)="Delete()" fxShow.xs="false">
-        <ng-container i18n="Counter Button: Delete Ticket">Delete</ng-container>
+        <ng-container i18n="Counter Button: Delete Ticket">Cancel</ng-container>
     </button>
     <button class="uppercase btnRed" *ngIf="hasMiss" [disabled]="!ticket" fxFlex (click)="Miss()" fxShow.xs="false">
         <ng-container i18n="Counter Button: Miss Ticket">Miss</ng-container>

@@ -25,7 +25,7 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
         return (new FormBuilder).group({
             id: [b.id],
             tform_normal: [b.tform_normal, Validators.required],
-            tform_vip: [b.tform_vip, Validators.required],
+            tform_vip: [b.tform_vip],
             image: [b.image],
             code: [b.code, CommonValidator.Code],
             l10n: [b.l10n],

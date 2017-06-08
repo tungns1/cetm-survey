@@ -18,13 +18,12 @@ export class HistoryComponent {
 
     paging = new Paging<ITransactionView>();
     filter: IHistoryFilter;
-    isShowPagin: boolean = true;
     curentPage: number = 1;
     totalPage: number;
 
     private gridOptions: GridOptions = {
         pagination: true,
-        paginationAutoPageSize: true,
+        paginationPageSize: 18,
         suppressPaginationPanel: true,
         onCellClicked: (e) => {
             if (e.event.target.localName === 'img')
@@ -36,17 +35,6 @@ export class HistoryComponent {
             this.totalPage = this.gridOptions.api.paginationGetTotalPages()
         }
     };
-    private data: object[];
-
-    ngOnInit() {
-        this.paging.pages$.subscribe(d => {
-            if (d.length < 2) this.isShowPagin = false;
-            else this.isShowPagin = true;
-        });
-        this.paging.data$.subscribe(d => {
-            this.data = d;
-        });
-    }
 
     detailCellRenderer() {
         return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
@@ -80,9 +68,6 @@ export class HistoryComponent {
         this.gridOptions.api.paginationGoToPage(pageIndex - 1);
         this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
     }
-
-
-
 
     onFilterChange(filter: IHistoryFilter) {
         this.filter = filter;

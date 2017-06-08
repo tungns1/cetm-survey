@@ -9,37 +9,37 @@
         text-align: right;
         float: left;
         border-radius: 15px;
-        background: -webkit-linear-gradient(left, #109619, #109619 + 50);
+        background: #dc3812;
     }
     .waiting_santard_exceeded {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #ff9a00, #ff9a00 + 50);
+        background: #dc3812 + 70;
     }
     .serving_santard_exceeded {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #3266cc, #3266cc + 50);
+        background: #dc3812 + 120;
     }
     .total_tras_time {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #dc3812, #dc3812 + 50);
+        background: #109619;
     }
     .average_serving {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #ffd092, #ffd092 + 50);
+        background: #109619 + 70;
     }
     .average_waiting {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #ff9803, #ff9803 + 50);
+        background: #109619 + 120;
     }
 
 
     .with_without_feedback {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #03718d, #03718d + 50);
+        background: #03718d;
     }
     .type_feedback {
         @extend .finised_canceled;
-        background: -webkit-linear-gradient(left, #990099, #990099 + 50);
+        background: #03718d + 70;
     }
 
     .hl-max-sum {

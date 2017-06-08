@@ -13,7 +13,7 @@ export class SearchComponent {
         private ticketService: TicketService
     ) { }
 
-    message: string;
+    message: string = "";
     cnum$ = new Subject<string>();
     tickets$ = this.cnum$.switchMap(cnum => {
         return this.ticketService.Search(cnum);
@@ -35,4 +35,10 @@ export class SearchComponent {
     stateKey(state: string) {
         return `State ${state}`;
     }
+
+    getMessage() {
+        if(this.message.length > 5) return this.message;
+        else return "Ticket number";
+    }
+    
 }
