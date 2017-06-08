@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RuntimeEnvironment } from '../../env';
-import { USER_ROLES } from '../../model';
+import { USER_ROLES, CacheBranch } from '../../model';
 
 @Component({
     selector: 'top-nav',
@@ -18,6 +18,8 @@ export class TopNavComponent {
     isAdmin$ = this.env.Auth.User$.map(u =>
         u.role.indexOf(USER_ROLES.ADMIN) !== -1
     );
+
+    adminRoot: boolean = CacheBranch.MaxLevel() == 3;
 
     private isActive(route: string) {
         if (this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('kiosk') > -1) return true;
