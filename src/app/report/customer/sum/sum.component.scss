@@ -4,11 +4,11 @@
         text-align: right;
         float: left;
         border-radius: 15px;
-        background: -webkit-linear-gradient(left, #109619, #109619 + 50);
+        background: #ff9a00 + 20;
     }
     .standard_exceeded_serving{
         @extend .standard_exceeded_waiting;
-        background: -webkit-linear-gradient(left, #ff9a00, #ff9a00 + 50);
+        background: #109619 + 20;
     }
     .hl-max-sum {
         width: 100%;

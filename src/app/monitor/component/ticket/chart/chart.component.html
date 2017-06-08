@@ -6,8 +6,8 @@
 
     <div class="legend margin-t-20" fxLayout="row">
         <div *ngFor="let item of config.groups$ | async" fxFlex>
-            <div *ngFor="let t of item.items" class="margin-7-0 item">
-                <div style="float:left; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
+            <div *ngFor="let t of item.items" class="item">
+                <div style="display: inline-block; margin: 0 10px; width: 15px; height: 15px;" [style.background-color]="t._hidden? '':t.color "></div>
                 <span style="font-size: 11px;"> {{t.title}}</span>
             </div>
         </div>

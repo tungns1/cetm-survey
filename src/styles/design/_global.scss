@@ -199,6 +199,13 @@ table tbody tr:nth-child(odd) {
                 font-weight: $font-weight-default + 200;
             }
         }
+        .ag-floating-bottom{
+            .ag-row{
+                background-color: $key-color;
+                font-weight: $font-weight-default + 200;
+                color: #fff;
+            }
+        }
     }
 }
 

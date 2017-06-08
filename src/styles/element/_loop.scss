@@ -1,42 +1,42 @@
 $i: 0;
 @while $i <= 50 {
     .padding-#{$i}{
-        padding: 1px * $i;
+        padding: 1px * $i !important;
     }
     .margin-#{$i}{
-        margin: 1px * $i;
+        margin: 1px * $i !important;
     }
     .padding-t-#{$i}{
-        padding-top: 1px * $i;
+        padding-top: 1px * $i !important;
     }
     .margin-t-#{$i}{
-        margin-top: 1px * $i;
+        margin-top: 1px * $i !important;
     }
     .padding-b-#{$i}{
-        padding-bottom: 1px * $i;
+        padding-bottom: 1px * $i !important;
     }
     .margin-b-#{$i}{
-        margin-bottom: 1px * $i;
+        margin-bottom: 1px * $i !important;
     }
     .padding-l-#{$i}{
-        padding-left: 1px * $i;
+        padding-left: 1px * $i !important;
     }
     .margin-l-#{$i}{
-        margin-left: 1px * $i;
+        margin-left: 1px * $i !important;
     }
     .padding-r-#{$i}{
-        padding-right: 1px * $i;
+        padding-right: 1px * $i !important;
     }
     .margin-r-#{$i}{
-        margin-right: 1px * $i;
+        margin-right: 1px * $i !important;
     }
     $j: 0;
     @while $j <= 50 {
         .padding-#{$i}-#{$j}{
-            padding: 1px * $i 1px * $j;
+            padding: 1px * $i 1px * $j !important;
         }
         .margin-#{$i}-#{$j}{
-            margin: 1px * $i 1px * $j;
+            margin: 1px * $i 1px * $j !important;
         }
         @if $j >= 10 {
             $j: $j + 5;
