@@ -1,7 +1,7 @@
 <div id="incomplete">
     <h3 i18n>Waiting Tickets</h3>
 
-    <table class="tableCtrl">
+    <!--<table class="tableCtrl">
         <thead>
             <th i18n>No.</th>
             <th i18n>Service Name</th>
@@ -31,5 +31,30 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table>-->
+
+
+    <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
+        enableColResize enableSorting>
+
+        <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Service Name" [cellRenderer]="serviceCellRenderer" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Ticket Number" [cellRendererFramework]="ticketIconNumber" 
+            [cellRendererParams]="{width: '15px'}"
+            [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Customer" field="customer.full_name" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Waiting Time" [cellRendererFramework]="waitingTime" 
+            [cellRendererParams]="{timeWarning: maxWaitingMinute}" [width]="200" 
+            [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Detail" [cellClass]="cellclass" [cellRenderer]="detailCellRenderer" 
+            [width]="70" i18n-headerName></ag-grid-column>
+
+    </ag-grid-angular>
 </div>
