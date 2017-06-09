@@ -218,4 +218,20 @@ table tbody tr:nth-child(odd) {
 }
 
 
+#pagination {
+    .curentPage{
+        text-align: center;
+        font-size: $font-size-default + 2;
+        height: 27px;
+        border-radius: 3px;
+        border: $border;
+    }
+    .totalPages{
+        font-size: $font-size-default + 2
+    }
+    #curentPage::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
 /******************** End of global ***********************/

@@ -24,14 +24,15 @@ export class IncompleteTicketComponent {
 
     private dialog: MdDialogRef<TicketDetailComponent>;
     data: Ticket[] = [];
+    curentPage: number = 1;
+    totalPage: number;
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
         floatingBottomRowData: [],
-        getRowStyle: (e) => {
-
-        },
+        // paginationPageSize: 18,
+        // suppressPaginationPanel: true,
         onCellClicked: (e) => {
             if (e.event.target.localName === 'img')
                 this.showDetails(e.data);
@@ -44,7 +45,12 @@ export class IncompleteTicketComponent {
                 cellRendererFramework: TimerComopnent,
                 width: 100
             }
-        ]
+        ],
+        rowSelection: 'multiple',
+        // onRowDataChanged: () => {
+        //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
+        //     this.totalPage = this.gridOptions.api.paginationGetTotalPages();
+        // }
     };
     waitingTime = TimerComopnent;
     ticketIconNumber = TicketIconComponent;
@@ -69,12 +75,31 @@ export class IncompleteTicketComponent {
         return localDayTime.transform(d.data.ctime);
     }
 
-    // ticketNumCellRenderer(d){
-    //     console.log(d.data);
-    //     let img = 
-    //     if(d.data.ticket_priority)
-    //     return d.data.cnum;
-    // }
+    jumpToFirst() {
+        this.gridOptions.api.paginationGoToFirstPage();
+        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    }
+
+    prevPage() {
+        this.gridOptions.api.paginationGoToPreviousPage();
+        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        // console.log(this.totalPage = this.gridOptions.api.paginationGetTotalPages());
+    }
+
+    nextPage() {
+        this.gridOptions.api.paginationGoToNextPage();
+        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    }
+
+    jumpToLast() {
+        this.gridOptions.api.paginationGoToLastPage();
+        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    }
+
+    jumpToPage(pageIndex: number) {
+        this.gridOptions.api.paginationGoToPage(pageIndex - 1);
+        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    }
 
     showDetails(t: Ticket) {
         const config = new MdDialogConfig();

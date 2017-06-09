@@ -41,20 +41,32 @@
 
         <ag-grid-column headerName="Service Name" [cellRenderer]="serviceCellRenderer" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Ticket Number" [cellRendererFramework]="ticketIconNumber" 
-            [cellRendererParams]="{width: '15px'}"
+        <ag-grid-column headerName="Ticket Number" [cellRendererFramework]="ticketIconNumber" [cellRendererParams]="{width: '15px'}"
             [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Customer" field="customer.full_name" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Waiting Time" [cellRendererFramework]="waitingTime" 
-            [cellRendererParams]="{timeWarning: maxWaitingMinute}" [width]="200" 
-            [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Waiting Time" [cellRendererFramework]="waitingTime" [cellRendererParams]="{timeWarning: maxWaitingMinute}"
+            [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Detail" [cellClass]="cellclass" [cellRenderer]="detailCellRenderer" 
-            [width]="70" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Detail" [cellClass]="cellclass" [cellRenderer]="detailCellRenderer" [width]="70" i18n-headerName></ag-grid-column>
 
     </ag-grid-angular>
+    <!--<div id="pagination" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center" class="margin-t-20">
+        <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
+        <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+        <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+        <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()">Last</button>
+        <div fxFlex="10px"></div>
+        <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
+        <span class="totalPages">/ ({{totalPage}} <span i18n>pages</span>)</span>
+        <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)">Go</button>
+        <div fxFlex></div>
+        <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">
+            <i class="fa fa-file-excel-o fa-lg"></i>
+            <span i18n>Export to excel</span>
+        </button>
+    </div>-->
 </div>

@@ -1,8 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { Ticket, TicketStates } from '../../shared';
+import { Ticket, TicketStates, CacheService, CacheCounter, CacheUsers } from '../../shared';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { ProjectConfig } from '../shared';
+import { GridOptions } from 'ag-grid';
+import { LocalDayTimePipe } from '../../../../x/ng/time/localDayTime'
+import { TimeDurationPipe } from '../../../../x/ng/time/timeDuration'
+import { TimerComopnent } from '../../../../x/ng/time/timer.component'
+import { TicketIconComponent } from '../../../../shared/businessQapp/ticket-icon.component';
 
 @Component({
     selector: "app-completed-ticket",
@@ -21,6 +26,35 @@ export class CompletedTicketComponent {
 
     data: Ticket[] = [];
     maxServingMinute = ProjectConfig.service.max_serving_minute;
+
+    private gridOptions: GridOptions = {
+        rowHeight: 35,
+        floatingBottomRowData: [],
+        getRowStyle: (e) => {
+            if (e.data.state === 'serving') {
+                return {
+                    color: '#414042'
+                };
+            }
+            if (e.data.state === 'finished') {
+                return {
+                    color: '#00a3ff'
+                }
+            }
+            if (e.data.state === 'cancelled') {
+                return {
+                    color: '#ff5858'
+                }
+            }
+        },
+        onCellClicked: (e) => {
+            if (e.event.target.localName === 'img')
+                this.showDetails(e.data);
+        }
+    };
+    servingTime = TimerComopnent;
+    ticketIconNumber = TicketIconComponent;
+    cellclass: string[] = ['padding-10', 'center'];
 
     // add user_id, service_id and counter_id 
     // for finished and cancelled ticket
@@ -45,6 +79,55 @@ export class CompletedTicketComponent {
             if (t.service_id) {
                 break;
             }
+        }
+    }
+
+    detailCellRenderer() {
+        return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+    }
+
+    noCellRenderer(d) {
+        return d.rowIndex + 1;
+    }
+
+    serviceCellRenderer(d) {
+        if (d.data.service_id)
+            return CacheService.ServiceName(d.data.service_id);
+        else return 'Other';
+    }
+
+    counterCellRenderer(d) {
+        if (d.data.counter_id)
+            return CacheCounter.GetByID(d.data.counter_id).name;
+        else return 'Other';
+    }
+
+    userCellRenderer(d) {
+        if (d.data.user_id)
+            return CacheUsers.GetByID(d.data.user_id).fullname;
+        else return 'Other';
+    }
+
+    printTimeCellRendered(d) {
+        let localDayTime = new LocalDayTimePipe();
+        return localDayTime.transform(d.data.ctime);
+    }
+
+    waitingTimeCellRendered(d) {
+        let timeDuration = new TimeDurationPipe();
+        return timeDuration.transform(d.data.mtime - d.data.ctime);
+    }
+
+    servingTimeCellRenderer(d) {
+        if (d.data.state === 'serving') {
+            // return TimerComopnent;
+        }
+        if (d.data.state === 'finished') {
+            let timeDuration = new TimeDurationPipe();
+            return timeDuration.transform(d.data.__stime);
+        }
+        if (d.data.state === 'cancelled') {
+            return '00:00:00';
         }
     }
 
