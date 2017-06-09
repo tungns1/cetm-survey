@@ -51,8 +51,7 @@
                 <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
                 <button *ngIf="canCall" fxFlex class="btnFill" (click)="Call()" i18n>Call</button>
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
-                <button *ngIf="!isServing" fxFlex class="btnRed" appConfirm="Do you want to cancel this ticket?" i18n-appConfirm (confirm)="Delete()"
-                    i18n>Delete</button>
+                <button *ngIf="!isServing" fxFlex class="btnRed" appConfirm="Do you want to cancel this ticket?" i18n-appConfirm (confirm)="Delete()" i18n>Cancel</button>
             </div>
         </div>
     </div>

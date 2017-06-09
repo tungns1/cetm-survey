@@ -21,11 +21,11 @@ export class VoiceComponent extends BaseAdminComponent<IVoiceList> {
         b.behavior = b.behavior || {};
         return new FormGroup({
             id: new FormControl(b.id),
-            name: new FormControl(b.name),
+            name: new FormControl(b.name, CommonValidator.Name),
             i18n: new FormControl(b.i18n),
             behavior: new FormGroup({
-                sleep_second: new FormControl(b.behavior.sleep_second),
-                max_queue_length: new FormControl(b.behavior.max_queue_length)
+                sleep_second: new FormControl(b.behavior.sleep_second, Validators.required),
+                max_queue_length: new FormControl(b.behavior.max_queue_length, Validators.required)
             })
         });
     }

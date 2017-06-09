@@ -13,8 +13,8 @@
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Service Code</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('tform_vip').hasError('required')">*</span>
-                <span fxFlex="1%" class="error" *ngIf="!form.get('tform_vip').hasError('required')">&nbsp;</span>
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
                 <div fxFlex fxLayout="column" fxLayoutGap="2px">
                     <input fxFlex="100%" class="ctrlInput" formControlName="code" i18n-placeholder placeholder="Code">
                     <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
