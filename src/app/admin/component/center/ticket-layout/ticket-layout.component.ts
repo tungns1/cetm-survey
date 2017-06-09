@@ -4,7 +4,7 @@ import { CenterService, ITicketLayout, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 
 @Component({
   selector: 'ticket-layout',
@@ -22,7 +22,7 @@ export class TicketLayoutComponent extends BaseAdminComponent<ITicketLayout> {
     b = b || <any>{};
     return (new FormBuilder).group({
       id: [b.id],
-      name: [b.name],
+      name: [b.name, CommonValidator.Name],
       l10n: [b.l10n],
       url_logo: [b.url_logo]
     });
