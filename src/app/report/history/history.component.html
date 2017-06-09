@@ -34,14 +34,14 @@
                     <ag-grid-column headerName="Feedback" field="rating" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Detail" cellClass="center" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
                 </ag-grid-angular>
-                <div fxLayout="row" fxLayoutGap="10px"  fxLayoutAlign="none end" class="margin-t-20">
+                <div fxLayout="row" fxLayoutGap="10px"  fxLayoutAlign="none center" class="margin-t-20">
                     <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
                     <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
                     <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
                     <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()">Last</button>
                     <div fxFlex="10px"></div>
                     <input fxFlex="30px" id="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
-                    <span>/ ({{totalPage}} <span i18n>pages</span>)</span>
+                    <span class="totalPages">/ ({{totalPage}} <span i18n>pages</span>)</span>
                     <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)">Go</button>
                     <div fxFlex></div>
                     <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">

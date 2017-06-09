@@ -7,6 +7,8 @@ import { TicketDetailComponent } from './focus/ticketDetail.component';
 import { SummaryComponent } from './summary/summary.component';
 import { MonitorChartComponent } from './chart/chart.component';
 import { D3Module } from '../../../x/ng/d3/d3.module';
+import { TimerComopnent } from '../../../x/ng/time/timer.component';
+import { TicketIconComponent } from '../../../shared/businessQapp/ticket-icon.component';
 import { IncompleteTicketComponent } from './focus/incomplete.component';
 import { CompletedTicketComponent } from './focus/completed.component';
 import { AgGridModule } from "ag-grid-angular/main";
@@ -28,7 +30,9 @@ import { monitorServiceProviders } from './shared';
 @NgModule({
     imports: [
         routing, SharedModule, D3Module,
-        AgGridModule.withComponents([])
+        AgGridModule.withComponents([
+            TimerComopnent,
+            TicketIconComponent])
     ],
     providers: [
         monitorServiceProviders

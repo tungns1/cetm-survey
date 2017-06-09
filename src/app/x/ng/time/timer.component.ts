@@ -1,15 +1,7 @@
-import { Component, Input, ElementRef } from '@angular/core';
+import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { interval } from 'rxjs/observable/interval';
 import 'rxjs/add/operator/share';
-
-function TwoDigit(n: number): string {
-    let v = Math.floor(n);
-    return (v > 9 ? '' : '0') + v;
-}
-
-const oneSecond = interval(1000).share();
-
 @Component({
     selector: 'timer',
     template: ``
@@ -18,13 +10,50 @@ const oneSecond = interval(1000).share();
 
 export class TimerComopnent {
 
-    @Input() timeWarning: number = 1;
-
     constructor(private ref: ElementRef) {
 
     }
 
     private subscription: Subscription;
+    private params: any;
+    private oneSecond = interval(1000).share();
+    private native: HTMLElement = this.ref.nativeElement;
+
+    @Input() timeWarning: number = 1;
+    @Input() start: number;
+
+    ngAfterViewInit() {
+        this.clear();
+        let ctime = 0;
+        if (this.start) {
+            ctime = this.getCTime(this.start, this.timeWarning);
+            this.subscription = this.oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.timeWarning));
+        } else if (this.params) {
+            ctime = this.getCTime(this.params.data.mtime, this.params.timeWarning);
+            this.subscription = this.oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.params.timeWarning));
+        }
+    }
+
+    agInit(params: any): void {
+        this.params = params;
+    }
+
+    getCTime(time: number, timeWarning: number) {
+        let ctime = 0;
+        if ((Date.now() / 1000 - time) < 0) {
+            this.view(0, timeWarning);
+            ctime = Date.now() / 1000;
+        } else {
+            this.view(0, timeWarning);
+            ctime = time;
+        }
+        return ctime;
+    }
+
+    TwoDigit(n: number): string {
+        let v = Math.floor(n);
+        return (v > 9 ? '' : '0') + v;
+    }
 
     private clear() {
         if (this.subscription) {
@@ -33,33 +62,18 @@ export class TimerComopnent {
         }
     }
 
-    private view(duration: number) {
-        let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(TwoDigit).join(":");
+    private view(duration: number, timeWarning: number) {
+        let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(this.TwoDigit).join(":");
         this.native.innerHTML = view;
-        if(((duration % 3600) / 60 > this.timeWarning) || (duration / 3600) > 1){
+        if (((duration % 3600) / 60 > timeWarning) || (duration / 3600) > 1) {
             this.native.style.backgroundColor = '#ff4d4d';
             this.native.style.color = '#ffffff';
             this.native.style.fontWeight = '600';
         }
     }
 
-    @Input() set start(s: number) {
-        // console.log(s);
-        this.clear();
-        let ctime=0;
-        if((Date.now() / 1000-s)<0){
-            this.view(0);
-            ctime=Date.now() / 1000;
-        }else{
-            this.view(0);
-            ctime=s;
-        }
-        this.subscription = oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime));
-    };
-
     ngOnDestroy() {
         this.clear();
     }
 
-    private native: HTMLElement = this.ref.nativeElement;
 }

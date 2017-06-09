@@ -199,11 +199,19 @@ table tbody tr:nth-child(odd) {
                 font-weight: $font-weight-default + 200;
             }
         }
-        .ag-floating-bottom{
-            .ag-row{
-                background-color: $key-color;
+        .ag-floating-bottom {
+            .ag-row {
+                // background-color: $key-color;
+                border-top: $border;
                 font-weight: $font-weight-default + 200;
-                color: #fff;
+                font-size: $font-size-default + 2;
+            }
+        }
+        .ag-row-odd,
+        .ag-row-even {
+            cursor: pointer;
+            &:hover {
+                background-color: $background-color - 50;
             }
         }
     }
