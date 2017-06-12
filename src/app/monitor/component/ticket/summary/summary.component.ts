@@ -49,7 +49,7 @@ export class SummaryComponent {
             );
         });
         this.total$.subscribe(t => {
-            if (!t) { return; }
+            if (!t || !this.gridOptions.api) { return; }
             this.gridOptions.api.setFloatingBottomRowData([t]);
             this.gridOptions.api.getFloatingBottomRow(0).canFlower = true;
         });
