@@ -10,11 +10,11 @@ import { TimerComopnent } from '../../../../x/ng/time/timer.component'
 import { TicketIconComponent } from '../../../../shared/businessQapp/ticket-icon.component';
 
 @Component({
-    selector: "app-completed-ticket",
-    templateUrl: "completed.component.html",
-    // styleUrls: ['completed.scss']
+    selector: "app-serving-ticket",
+    templateUrl: "serving.html",
+    styleUrls: ['serving.scss']
 })
-export class CompletedTicketComponent {
+export class ServingTicketComponent {
     constructor(
         private mdDialog: MdDialog
     ) { }
@@ -25,21 +25,14 @@ export class CompletedTicketComponent {
     };
 
     data: Ticket[] = [];
-
+    maxServingMinute = ProjectConfig.service.max_serving_minute;
     private gridOptions: GridOptions = {
         rowHeight: 35,
-        paginationPageSize: 12,
-        pagination: true,
         getRowStyle: (e) => {
-            if (e.data.state === 'finished') {
+            if (e.data.state === 'serving') {
                 return {
-                    color: '#00a3ff'
-                }
-            }
-            if (e.data.state === 'cancelled') {
-                return {
-                    color: '#ff5858'
-                }
+                    color: '#414042'
+                };
             }
         },
         onCellClicked: (e) => {
@@ -47,6 +40,7 @@ export class CompletedTicketComponent {
                 this.showDetails(e.data);
         }
     };
+    servingTime = TimerComopnent;
     ticketIconNumber = TicketIconComponent;
     cellclass: string[] = ['padding-10', 'center'];
 
@@ -110,16 +104,6 @@ export class CompletedTicketComponent {
     waitingTimeCellRendered(d) {
         let timeDuration = new TimeDurationPipe();
         return timeDuration.transform(d.data.mtime - d.data.ctime);
-    }
-
-    servingTimeCellRenderer(d) {
-        if (d.data.state === 'finished') {
-            let timeDuration = new TimeDurationPipe();
-            return timeDuration.transform(d.data.__stime);
-        }
-        if (d.data.state === 'cancelled') {
-            return '00:00:00';
-        }
     }
 
     showDetails(t: Ticket) {

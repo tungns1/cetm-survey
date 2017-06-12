@@ -10,6 +10,7 @@ import { D3Module } from '../../../x/ng/d3/d3.module';
 import { TimerComopnent } from '../../../x/ng/time/timer.component';
 import { TicketIconComponent } from '../../../shared/businessQapp/ticket-icon.component';
 import { IncompleteTicketComponent } from './focus/incomplete.component';
+import { ServingTicketComponent } from './focus/serving.component';
 import { CompletedTicketComponent } from './focus/completed.component';
 import { AgGridModule } from "ag-grid-angular/main";
 
@@ -41,7 +42,8 @@ import { monitorServiceProviders } from './shared';
         MonitorTicketComponent, FocusComponent,
         TicketDetailComponent,
         SummaryComponent, MonitorChartComponent,
-        IncompleteTicketComponent, CompletedTicketComponent
+        IncompleteTicketComponent, ServingTicketComponent,
+        CompletedTicketComponent
     ],
     entryComponents: [
         TicketDetailComponent

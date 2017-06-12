@@ -1,4 +1,4 @@
-<div id="completed">
+<div id="serving">
     <h3 i18n>Serving Tickets</h3>
 
     <!--<table class="tableCtrl">
@@ -43,7 +43,7 @@
 
 
     
-    <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
+    <ag-grid-angular #agGrid style="height: 25vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
         enableColResize enableSorting>
 
         <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
@@ -64,7 +64,7 @@
             [width]="100" 
             [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Serving Time" [cellRenderer]="servingTimeCellRenderer" 
+        <ag-grid-column headerName="Serving Time" [cellRendererFramework]="servingTime" 
             [cellRendererParams]="{timeWarning: maxServingMinute}" [width]="100" 
             [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 

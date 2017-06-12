@@ -68,9 +68,9 @@ export class FocusComponent {
     });
 
     completed$ = this.tickets$.switchMap(tickets => {
-        return combineLatest(tickets.Serving$, tickets.Finished$, tickets.Cancelled$)
-            .map(([serving, finished, cancelled]) => {
-                return [].concat(serving).concat(finished).concat(cancelled);
+        return combineLatest(tickets.Finished$, tickets.Cancelled$)
+            .map(([finished, cancelled]) => {
+                return [].concat(finished).concat(cancelled);
             });
     })
 

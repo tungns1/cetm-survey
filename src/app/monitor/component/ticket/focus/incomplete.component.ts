@@ -30,22 +30,13 @@ export class IncompleteTicketComponent {
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
-        floatingBottomRowData: [],
-        // paginationPageSize: 18,
+        paginationPageSize: 12,
+        pagination: true,
         // suppressPaginationPanel: true,
         onCellClicked: (e) => {
             if (e.event.target.localName === 'img')
                 this.showDetails(e.data);
         },
-        columnDefs: [
-            
-            {
-                headerName: "Value",
-                field: "mtime",
-                cellRendererFramework: TimerComopnent,
-                width: 100
-            }
-        ],
         rowSelection: 'multiple',
         // onRowDataChanged: () => {
         //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
@@ -70,36 +61,36 @@ export class IncompleteTicketComponent {
         else return 'Other';
     }
 
-    printTimeCellRendered(d){
+    printTimeCellRendered(d) {
         let localDayTime = new LocalDayTimePipe();
         return localDayTime.transform(d.data.ctime);
     }
 
-    jumpToFirst() {
-        this.gridOptions.api.paginationGoToFirstPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
-    }
+    // jumpToFirst() {
+    //     this.gridOptions.api.paginationGoToFirstPage();
+    //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    // }
 
-    prevPage() {
-        this.gridOptions.api.paginationGoToPreviousPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
-        // console.log(this.totalPage = this.gridOptions.api.paginationGetTotalPages());
-    }
+    // prevPage() {
+    //     this.gridOptions.api.paginationGoToPreviousPage();
+    //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    //     // console.log(this.totalPage = this.gridOptions.api.paginationGetTotalPages());
+    // }
 
-    nextPage() {
-        this.gridOptions.api.paginationGoToNextPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
-    }
+    // nextPage() {
+    //     this.gridOptions.api.paginationGoToNextPage();
+    //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    // }
 
-    jumpToLast() {
-        this.gridOptions.api.paginationGoToLastPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
-    }
+    // jumpToLast() {
+    //     this.gridOptions.api.paginationGoToLastPage();
+    //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    // }
 
-    jumpToPage(pageIndex: number) {
-        this.gridOptions.api.paginationGoToPage(pageIndex - 1);
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
-    }
+    // jumpToPage(pageIndex: number) {
+    //     this.gridOptions.api.paginationGoToPage(pageIndex - 1);
+    //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    // }
 
     showDetails(t: Ticket) {
         const config = new MdDialogConfig();
