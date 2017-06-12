@@ -40,13 +40,13 @@ export class TransactionTimeComponent implements OnInit {
     });
   };
   
-  info = {
-    reportName: 'Overview Report',
-    period: {
-      start: '31/10/91',
-      end: '12/3/93'
-    }
-  }
+  // info = {
+  //   reportName: 'Overview Report',
+  //   period: {
+  //     start: '31/10/91',
+  //     end: '12/3/93'
+  //   }
+  // }
 
   private gridOptions: GridOptions = {
     rowHeight: 35,
