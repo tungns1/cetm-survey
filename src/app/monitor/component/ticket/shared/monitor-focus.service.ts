@@ -55,7 +55,7 @@ export class MonitorFocusService {
     });
     return of(null).merge(activityUpdate, summaryUpdate, ticketUpdate)
       .map(_ => box);
-  }).share().publishReplay(1).refCount();
+  }).share().throttleTime(1000).publishReplay(1).refCount();
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

@@ -35,7 +35,7 @@ export class MonitorFocusService {
       box.UpdateActivity(a);
     });
     return merge(of(null), activityUpdate).map(_ => box);
-  }).share();
+  }).throttleTime(1000).share();
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

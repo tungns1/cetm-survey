@@ -9,6 +9,8 @@ import { MonitorDeviceSocket } from './monitor-device.socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/publishReplay';
+import 'rxjs/add/operator/throttleTime';
 
 @Injectable()
 export class MonitorSummaryService {
@@ -34,7 +36,7 @@ export class MonitorSummaryService {
       gb.UpdateActivity(v);
     });
     return merge(of(null), summaryUpdate).map(_ => gb);
-  }).share();
+  }).throttleTime(5000).share();
 
   Branches$ = new ReplaySubject<string[]>(1);
 }
