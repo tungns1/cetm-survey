@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
 import { PeriodFilterService } from '../../shared';
 import { timeFormat, timeParse } from 'd3-time-format';
+import { GridOptions } from "ag-grid";
+import { GroupByTitlePipe } from '../shared/groupBy.pipe'
 
 @Component({
   selector: 'app-general-view',
@@ -15,7 +17,7 @@ export class GeneralViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.FilterBy()
+    this.FilterBy();
   }
   ngOnChanges(changes) {
     if (changes.field) {
@@ -23,7 +25,22 @@ export class GeneralViewComponent implements OnInit {
     }
   }
   private formatDate = timeFormat("%Y-%m-%d");
-  @Input() data: TransactionAggregate[] = [];
+  protected _data: TransactionAggregate[] = [];
+  @Input() set data(v: TransactionAggregate[]) {
+    this._data = v;
+    var nameRender = new GroupByTitlePipe();
+    this._data.forEach((d, index) => {
+      d['no'] = index + 1;
+      d['name'] = nameRender.transform(this.field, d);
+      d['finished'] = d['c_ft'] + ' (' + d['c_ft_p'] + '%)';
+      d['cancelled'] = d['c_ct'] + ' (' + d['c_ct_p'] + '%)';
+      d['standardWaiting'] = d['c_bwt'] + ' (' + d['c_bwt_p'] + '%)';
+      d['exceededWaiting'] = d['c_awt'] + ' (' + d['c_awt_p'] + '%)';
+      d['standardServing'] = d['c_bst'] + ' (' + d['c_bst_p'] + '%)';
+      d['exceededServing'] = d['c_ast'] + ' (' + d['c_ast_p'] + '%)';
+    });
+  };
+
   @Input() field = 'branch_id';
 
   info = {
@@ -35,6 +52,10 @@ export class GeneralViewComponent implements OnInit {
       end: this.formatDate(this.filterService.endDate)
     }
   }
+
+  private gridOptions: GridOptions = {
+    rowHeight: 35,
+  };
 
   FilterBy() {
     let field_by = '';
@@ -53,6 +74,17 @@ export class GeneralViewComponent implements OnInit {
         break;
     }
     return field_by;
+  }
+  
+  export() {
+    var params = {
+      skipHeader: false,
+      allColumns: true,
+      suppressQuotes: false,
+      fileName: 'miraway.csv',
+    };
+
+    // console.log(typeof this.gridOptions.api.getDataAsCsv(params));
   }
 
 }

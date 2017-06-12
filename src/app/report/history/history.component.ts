@@ -22,6 +22,7 @@ export class HistoryComponent {
     totalPage: number;
 
     private gridOptions: GridOptions = {
+        rowHeight: 35,
         pagination: true,
         paginationPageSize: 18,
         suppressPaginationPanel: true,

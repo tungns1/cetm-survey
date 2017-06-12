@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule, ReportFilterModule } from "../shared";
 import { Routes, RouterModule } from '@angular/router'
+import { AgGridModule } from "ag-grid-angular/main";
 
 const routing = RouterModule.forChild([
     {
@@ -23,7 +24,8 @@ import { DashboardChartModule } from './chart/chart.module';
 @NgModule({
     imports: [
         CommonModule, SharedModule, routing, DashboardSharedModule,
-        ReportSumModule, DashboardChartModule, ReportFilterModule
+        ReportSumModule, DashboardChartModule, ReportFilterModule,
+        AgGridModule.withComponents([])
     ],
     declarations: [
         DashboardComponent, TransactionTimeComponent, CustomerFeedbackComponent, GeneralViewComponent

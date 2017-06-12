@@ -29,7 +29,7 @@
     <p style="text-align: center;font-size: 18px;font-weight: bold;">Overview Report by {{field_by}}</p>
 </div>
 
-<exportable>
+<!--<exportable>
     <table class="tableOverView" style="width: 100%" export-table i18n-title title="General">
         <thead export-row>
             <th export="string" i18n>No.</th>
@@ -87,4 +87,25 @@
         </tbody>
     </table>
     <export-attribute name="filename" i18n-title title="General"></export-attribute>
-</exportable>
+</exportable>-->
+
+
+<ag-grid-angular #agGrid id="overViewTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
+    enableColResize enableSorting export-table i18n-title title="General">
+    <ag-grid-column headerName="No." field="no" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column [headerName]="FilterBy()" field="name" [width]="200" [cellRenderer]="nameCellRenderer" [cellRendererParams]="{field: field}"
+        cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total Transaction" field="c_t" [cellRenderer]="totalCellRenderer" [width]="115" cellClass="center"
+        i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Finished Transaction" field="finished" [width]="130" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Canceled Transaction" field="cancelled" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Standard Waiting Time Transaction" field="standardWaiting" [width]="200" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Exceeded Waiting Time Transaction" field="exceededWaiting" [width]="200" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Standard Serving Time Transaction" field="standardServing" [width]="200" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Exceeded Serving Time Transaction" field="exceededServing" [width]="200" cellClass="center" i18n-headerName></ag-grid-column>
+</ag-grid-angular>
+
+<div fxLayout="row">
+    <div fxFlex="80%"></div>
+    <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to excel</button>
+</div>
