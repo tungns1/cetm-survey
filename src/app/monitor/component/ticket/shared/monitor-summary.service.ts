@@ -38,7 +38,7 @@ export class MonitorSummaryService {
       summaries.Replace(s);
     });
     return merge(of(null), summaryUpdate).map(_ => summaries);
-  }).throttleTime(6000).share();
+  }).auditTime(6000).share();
 
   Branches$ = new ReplaySubject<string[]>(1);
 }

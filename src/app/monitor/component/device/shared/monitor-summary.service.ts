@@ -36,7 +36,7 @@ export class MonitorSummaryService {
       gb.UpdateActivity(v);
     });
     return merge(of(null), summaryUpdate).map(_ => gb);
-  }).throttleTime(5000).share();
+  }).share();
 
   Branches$ = new ReplaySubject<string[]>(1);
 }
