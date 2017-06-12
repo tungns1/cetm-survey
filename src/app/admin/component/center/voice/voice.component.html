@@ -10,48 +10,50 @@
 <app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Name</span>
+            <span fxFlex="20%" i18n>Name:</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
-                <span fxFlex="1%" class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
-                <div fxFlex fxLayout="column" fxLayoutGap="2px">
-                    <input fxFlex="100%" class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
-                    <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</div>
-                    <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
+                <span fxFlex="1%" class="valid-color" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
+                <div fxFlex fxLayout="column" fxLayoutGap="3px">
+                    <input fxFlex="100%" class="ctrlInput" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
+                    <p fxFlex class="valid-color margin-0" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</p>
+                    <p fxFlex class="margin-0" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</p>
                 </div>
             </div>
             <span fxFlex="20%" i18n></span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
-
             </div>
         </div>
-
-
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Sleep Second</span>
-            <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="behavior.get('sleep_second').hasError('required')">*</span>
-                <span fxFlex="1%" class="error" *ngIf="!behavior.get('sleep_second').hasError('required')">&nbsp;</span>
-                <input fxFlex="100%" class="hl-input" formControlName="sleep_second" type="number">
-            </div>
-            <span fxFlex="20%" i18n>Max Queue Length</span>
-            <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="behavior.get('max_queue_length').hasError('required')">*</span>
-                <span fxFlex="1%" class="error" *ngIf="!behavior.get('max_queue_length').hasError('required')">&nbsp;</span>
-                <input fxFlex class="hl-input" type="number" formControlName="max_queue_length" type="number">
-            </div>
-        </div>
-
-
-        <!--<span i18n>Name</span>
-        <input class="hl-input" formControlName="name" i18n-placeholder placeholder="Name">
         <form formGroupName="behavior">
-            <span>Sleep Second</span>
+            <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+                <span fxFlex="20%" i18n>Sleep Second:</span>
+                <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                    <span fxFlex="1%" class="valid-color" *ngIf="form.get('behavior').get('sleep_second').hasError('required')">*</span>
+                    <span fxFlex="1%" class="valid-color" *ngIf="!form.get('behavior').get('sleep_second').hasError('required')">&nbsp;</span>
+                    <input fxFlex class="ctrlInput" formControlName="sleep_second" type="number">
+                </div>
+
+                <span fxFlex="20%" i18n>Max Queue Length</span>
+                <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                    <span fxFlex="1%" class="valid-color" *ngIf="form.get('behavior').get('max_queue_length').hasError('required')">*</span>
+                    <span fxFlex="1%" class="valid-color" *ngIf="!form.get('behavior').get('max_queue_length').hasError('required')">&nbsp;</span>
+                    <input fxFlex class="ctrlInput" type="number" formControlName="max_queue_length">
+                </div>
+            </div>
+
+            <!--<span>Sleep Second</span>
             <input formControlName="sleep_second" type="number">
             <span>Max Queue Length</span>
-            <input formControlName="max_queue_length" type="number">
-        </form>-->
-        <span> Playlist </span>
-        <json-text-form formControlName="i18n"></json-text-form>
+            <input formControlName="max_queue_length" type="number">-->
+        </form>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="20%"> Playlist </span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="0.5%">&nbsp;</span>
+                <div fxFlex fxLayout="column" fxLayoutGap="3px">
+                    <json-text-form fxFlex formControlName="i18n"></json-text-form>
+                </div>
+            </div>
+        </div>
     </form>
 </app-editor-view>

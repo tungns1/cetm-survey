@@ -8,6 +8,7 @@ import { MonitorTicketSocket } from './monitor-ticket.socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/publishReplay';
 
 @Injectable()
 export class MonitorSummaryService {
@@ -33,11 +34,11 @@ export class MonitorSummaryService {
   summaries$ = this.initialSummary$.switchMap(initial => {
     const summaries = new GlobalTicketSummary();
     summaries.Refresh(initial);
-    const summaryUpdate = this.summaryUpdate$.startWith(null).map(s => {
+    const summaryUpdate = this.summaryUpdate$.map(s => {
       summaries.Replace(s);
     });
     return merge(of(null), summaryUpdate).map(_ => summaries);
-  }).share();
+  }).auditTime(6000).share();
 
   Branches$ = new ReplaySubject<string[]>(1);
 }

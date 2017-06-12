@@ -11,6 +11,8 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
 
+import 'rxjs/add/operator/auditTime';
+
 @Injectable()
 export class MonitorFocusService {
 
@@ -35,7 +37,7 @@ export class MonitorFocusService {
       box.UpdateActivity(a);
     });
     return merge(of(null), activityUpdate).map(_ => box);
-  }).share();
+  }).auditTime(1000).share();
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

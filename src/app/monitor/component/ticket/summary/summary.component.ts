@@ -24,7 +24,7 @@ export class SummaryComponent {
     ) { }
 
     records$ = this.summaryService.summaries$.map(s => s.ToArray()).share();
-    total$ = this.summaryService.summaries$.switchMap(s => s.Total$);
+    total$ = this.summaryService.summaries$.map(s => s.GetTotal());
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
@@ -49,8 +49,9 @@ export class SummaryComponent {
             );
         });
         this.total$.subscribe(t => {
+            if (!t || !this.gridOptions.api) { return; }
             this.gridOptions.api.setFloatingBottomRowData([t]);
-            this.gridOptions.api.getFloatingBottomRow(0).canFlower;
+            this.gridOptions.api.getFloatingBottomRow(0).canFlower = true;
         });
     }
 

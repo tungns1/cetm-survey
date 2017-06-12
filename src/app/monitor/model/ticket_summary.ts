@@ -38,27 +38,23 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 export class GlobalTicketSummary {
     private boxes = new Map<string, BoxTicketSummary>();
 
-    Total$ = new ReplaySubject<BoxTicketSummary>(1);
-
     Refresh(box: IBoxTicketSummary[]) {
         if (box) {
             box.forEach(b => this.Replace(b));
         }
-        this.Total$.next(this.aggregate());
     }
 
     Replace(box: IBoxTicketSummary) {
         if (!box) return;
         const b = new BoxTicketSummary(box);
         this.boxes.set(b.branch_id, b);
-        this.Total$.next(this.aggregate());
     }
 
     ToArray() {
         return Array.from(this.boxes.values());
     }
 
-    private aggregate() {
+    GetTotal() {
         let waiting = 0;
         let serving = 0;
         let finished = 0;
