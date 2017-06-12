@@ -201,8 +201,8 @@ export class InfoKioskTrack {
                 this.lowest_ticket_quantity = minBy(this.ticket, 'value').value;
                 this.lowest_ticket_from = minBy(this.ticket, 'value').name;
                 this.average_printed_ticket = +meanBy(this.ticket, <any>'value').toFixed(2);
-                this.ticket = this.ticket.sort((a, b) => a.value - b.value).slice(0, 5);
-                this.time = this.time.sort((a, b) => a.value - b.value).slice(0, 5);
+                this.ticket = this.ticket.sort((a, b) => b.value - a.value).slice(0, 5);
+                this.time = this.time.sort((a, b) => b.value - a.value).slice(0, 5);
             }
         }
 
