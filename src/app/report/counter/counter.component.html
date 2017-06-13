@@ -6,29 +6,25 @@
     <div fxFlex style="overflow: auto;" class="mainContent">
         <div class="main_miraway">
             <app-env-sub-module i18n-title title="Counter"></app-env-sub-module>
-            <div id="Counter">
-                <div class="headerAndNav">
-                    <h2 class="header uppercase" i18n>Counter</h2>
-                    <div class="nav">
-                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
-                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
-                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
-                    </div>
-                </div>
-                <div class="divider margin-30-0"></div>
-                <div id="overView" class="border">
-                    <md-tab-group dynamicHeight>
-                        <md-tab>
-                            <ng-template md-tab-label><span class="uppercase" i18n>Counter performance</span></ng-template>
-                            <performance-tab [data]="data$ | async"></performance-tab>
-                        </md-tab>
-                        <md-tab>
-                            <ng-template md-tab-label><span class="uppercase" i18n>Counter activity</span></ng-template>
-                            <activity-tab></activity-tab>
-                        </md-tab>
-                    </md-tab-group>
+            <div class="headerAndNav">
+                <h2 class="header uppercase" i18n>Counter</h2>
+                <div class="nav">
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
                 </div>
             </div>
+            <!--<div class="divider margin-30-0"></div>-->
+            <md-tab-group dynamicHeight id="counterReport" class="border">
+                <md-tab>
+                    <ng-template md-tab-label><span class="uppercase" i18n>Counter performance</span></ng-template>
+                    <performance-tab [data]="data$ | async"></performance-tab>
+                </md-tab>
+                <md-tab>
+                    <ng-template md-tab-label><span class="uppercase" i18n>Counter activity</span></ng-template>
+                    <activity-tab></activity-tab>
+                </md-tab>
+            </md-tab-group>
             <footer></footer>
         </div>
     </div>

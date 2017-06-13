@@ -18,7 +18,7 @@ export class ReportFilterComponent {
                 this.code = v.code;
             }
 
-        })
+        });
     }
 
 

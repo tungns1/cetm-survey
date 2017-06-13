@@ -81,10 +81,9 @@ export class GeneralViewComponent implements OnInit {
       skipHeader: false,
       allColumns: true,
       suppressQuotes: false,
-      fileName: 'miraway.csv',
+      fileName: 'generalView.csv',
     };
-
-    // console.log(typeof this.gridOptions.api.getDataAsCsv(params));
+    console.log(typeof this.gridOptions.api.getDataAsCsv(params));
   }
 
 }

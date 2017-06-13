@@ -1,5 +1,4 @@
-<div id="cusHistory">
-    <table class="tableCtrl">
+<!--<table class="tableCtrl">
         <thead class="">
             <th i18n>No.</th>
             <th i18n>Date</th>
@@ -43,7 +42,38 @@
             <i class="fa fa-file-excel-o fa-lg"></i>
             <span i18n>Export to excel</span>
         </button>
-    </div>
-</div>
+    </div>-->
 
-<!--<transaction #detail></transaction>-->
+
+<ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" [rowData]="paging.data$ | async"
+    class="ag-fresh tableCtrl" enableColResize enableSorting>
+    <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [cellRendererParams]="{d: data}" [width]="50" [cellClass]="cellClass"
+        i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Date" field="cdate" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch" [cellRenderer]="branchCellRenderer" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store" [cellRenderer]="storeCellRenderer" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Service" [cellRenderer]="serviceCellRenderer" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Counter" field="counter" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Teller" field="user" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Ticket" field="cnum" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Print Time" field="ctime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Waiting Time" field="wtime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Serving Time" field="stime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Feedback" field="rating" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Detail" [cellClass]="cellClass" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
+</ag-grid-angular>
+<div class="paginationAndExport margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
+    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()">Last</button>
+    <div fxFlex="10px"></div>
+    <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
+    <span class="totalPages">/ ({{totalPage}} <span i18n>pages</span>)</span>
+    <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)">Go</button>
+    <div fxFlex></div>
+    <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">
+        <i class="fa fa-file-excel-o fa-lg"></i>
+        <span i18n>Export to excel</span>
+    </button>
+</div>
