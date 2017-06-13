@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CustomerView } from '../shared';
+// import { GridOptions } from "ag-grid";
 
 @Component({
   selector: 'store-tab',
@@ -16,8 +17,10 @@ export class StoreComponent {
     domain: ['#ff9a00', '#3266cc', '#990099', '#dc3812', '#109619', '#03718d']
   };
 
+  // private gridOptions: GridOptions = {
+  // };
+
   ngOnInit() {
-    console.log('im store');
     console.log(this.data.stores);
   }
 
