@@ -38,22 +38,22 @@
 
 <ag-grid-angular #agGrid id="storePerformenceTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting>
-    <ag-grid-column headerName="No." field="no" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Branch code" field="branchCode" [width]="115" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Branch name" field="branchName" [width]="125" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch code" field="branchCode" [width]="115" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch name" field="branchName" [width]="125" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Store code" field="storeCode" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Store name" field="storeName" [width]="155" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store code" field="storeCode" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store name" field="storeName" [width]="155" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Average Serving Time" field="avg_time" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Average Serving Time" field="avg_time" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Ticket issued" field="total_ticket" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Attended" field="attended" [width]="75" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Abandoned" field="abandoned" [width]="75" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Ticket issued" field="total_ticket" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Attended" field="attended" [width]="75" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Abandoned" field="abandoned" [width]="75" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Teap" field="teap" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Dap" field="dap" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Occupied" field="occupied" [width]="90" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Teap" field="teap" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Dap" field="dap" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Occupied" field="occupied" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div class="paginationAndExport margin-b-30 margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">

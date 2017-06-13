@@ -15,6 +15,7 @@ export class TransactionTimeComponent implements OnInit {
   ngOnInit() {
   }
 
+  cellClass: string[] = ['center', 'padding-10'];
   protected _data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
 
@@ -77,8 +78,8 @@ export class TransactionTimeComponent implements OnInit {
       suppressQuotes: false,
       fileName: 'transactionTime.csv',
     };
-
     console.log(this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 
 }

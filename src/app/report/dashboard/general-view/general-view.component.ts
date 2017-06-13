@@ -15,15 +15,10 @@ export class GeneralViewComponent implements OnInit {
   constructor(
     private filterService: PeriodFilterService
   ) { }
+  
+  cellClass: string[] = ['center', 'padding-10'];
 
-  ngOnInit() {
-    this.FilterBy();
-  }
-  ngOnChanges(changes) {
-    if (changes.field) {
-      this.info.fieldBy = this.FilterBy();
-    }
-  }
+  @Input() field = 'branch_id';
   private formatDate = timeFormat("%Y-%m-%d");
   protected _data: TransactionAggregate[] = [];
   @Input() set data(v: TransactionAggregate[]) {
@@ -41,7 +36,6 @@ export class GeneralViewComponent implements OnInit {
     });
   };
 
-  @Input() field = 'branch_id';
 
   info = {
     fieldBy: '',
@@ -57,6 +51,14 @@ export class GeneralViewComponent implements OnInit {
     rowHeight: 35,
   };
 
+  ngOnInit() {
+    this.FilterBy();
+  }
+  ngOnChanges(changes) {
+    if (changes.field) {
+      this.info.fieldBy = this.FilterBy();
+    }
+  }
   FilterBy() {
     let field_by = '';
     switch (this.field) {
@@ -84,6 +86,7 @@ export class GeneralViewComponent implements OnInit {
       fileName: 'generalView.csv',
     };
     console.log(typeof this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 
 }

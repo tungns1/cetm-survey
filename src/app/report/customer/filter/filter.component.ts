@@ -19,10 +19,11 @@ export class ReportFilterComponent {
             }
 
         });
+        this.Filter();
     }
 
 
-    code: string = '';
+    code: string = '43629758';
     Filter() {
         if (this.code != "") {
             this.customerApi.GetInfo(this.code, '');

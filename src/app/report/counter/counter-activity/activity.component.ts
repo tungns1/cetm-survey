@@ -17,7 +17,7 @@ export class ActivityComponent {
 
   paging = paging;
   protected _data: ICounterTrack[];
-  cellClass: string[] = ['center', 'pad']
+  cellClass: string[] = ['center', 'padding-10'];
 
 
   ngOnInit() {
@@ -88,6 +88,7 @@ export class ActivityComponent {
       fileName: 'counterActivity.csv',
     };
     console.log(this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 
   // pagin(page: number) {

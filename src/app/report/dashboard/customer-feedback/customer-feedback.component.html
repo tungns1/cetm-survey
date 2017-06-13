@@ -84,15 +84,15 @@
 
 <ag-grid-angular #agGrid id="cusFeedbackTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting export-table i18n-title title="General">
-    <ag-grid-column headerName="No." field="no" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column [headerName]="FilterBy()" field="name" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Transaction feedback" field="transFeedback" [width]="130" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Transaction without feedback" field="transWithoutFeedback" [width]="195" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Very good feedback" field="veryGood" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column [headerName]="FilterBy()" field="name" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Transaction feedback" field="transFeedback" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Transaction without feedback" field="transWithoutFeedback" [width]="195" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Very good feedback" field="veryGood" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Good feedback" field="good" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Average feedback" field="average" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Poor feedback" field="poor" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Good feedback" field="good" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Average feedback" field="average" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Poor feedback" field="poor" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div fxLayout="row">

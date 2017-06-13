@@ -31,6 +31,8 @@ export class PerformanceComponent {
       d['timeIdle'] = timeDurationPipe.transform(d.total_idle_time);
     });
   };
+  
+  cellClass: string[] = ['center', 'padding-10'];
   curentPage: number = 1;
   totalPage: number;
 
@@ -79,5 +81,6 @@ export class PerformanceComponent {
       fileName: 'counterPerformence.csv',
     };
     console.log(this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 }

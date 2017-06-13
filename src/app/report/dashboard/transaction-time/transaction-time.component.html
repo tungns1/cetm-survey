@@ -59,20 +59,20 @@
 
 <ag-grid-angular #agGrid id="transTimeTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting export-table i18n-title title="General">
-    <ag-grid-column headerName="No." field="no" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column [headerName]="FilterBy()" field="name" [width]="160"
-        cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Total serving time" field="totalTransTime" [width]="130" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Total waiting time" field="totalServingTime" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Total waiting time" field="totalWaitingTime" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
+        [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total serving time" field="totalTransTime" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total waiting time" field="totalServingTime" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total waiting time" field="totalWaitingTime" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Serving time avarage" field="servingTimeAverage" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Serving time min" field="servingTimeMin" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Serving time max" field="servingTimeMax" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Serving time avarage" field="servingTimeAverage" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Serving time min" field="servingTimeMin" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Serving time max" field="servingTimeMax" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Waiting time avarage" field="waitingTimeAverage" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Waiting time min" field="waitingTimeMin" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Waiting time max" field="waitingTimeMax" [width]="145" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Waiting time avarage" field="waitingTimeAverage" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Waiting time min" field="waitingTimeMin" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Waiting time max" field="waitingTimeMax" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div fxLayout="row">

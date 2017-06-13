@@ -14,6 +14,7 @@ export class CustomerFeedbackComponent implements OnInit {
   ngOnInit() {
   }
 
+  cellClass: string[] = ['center', 'padding-10'];
   protected _data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
   @Input() set data(v: TransactionAggregate[]) {
@@ -65,6 +66,7 @@ export class CustomerFeedbackComponent implements OnInit {
       fileName: 'customerFeedback.csv',
     };
     console.log(this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 
 

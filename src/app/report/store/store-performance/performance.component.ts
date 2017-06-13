@@ -16,7 +16,7 @@ export class PerformanceComponent {
   ) { }
 
   protected _data: ISPT[];
-
+  cellClass: string[] = ['center', 'padding-10'];
   @Input() set data(v: InfoStore) {
     this._data = v.data;
     var timeDurationPipe = new TimeDurationPipe();
@@ -43,5 +43,6 @@ export class PerformanceComponent {
       fileName: 'storePerformence.csv',
     };
     console.log(this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 }
