@@ -5,7 +5,7 @@
 <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.time" [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
 </ngx-charts-bar-vertical>-->
 <!-- Time View -->
-<exportable>
+<!--<exportable>
     <table class="tableCtrl" export-table>
         <thead export-row>
             <th export="string" i18n="Numerical Order">No.</th>
@@ -22,8 +22,6 @@
             <th export="string" i18n>Time idle</th>
             <th export="string" i18n>Ticket attended</th>
             <th export="string" i18n>Ticket cancelled</th>
-            <!--<th i18n>% occupied</th>
-    <th i18n>Survey score</th>-->
         </thead>
         <tbody>
             <tr *ngFor="let d of data.data; let i = index" export-row>
@@ -41,10 +39,48 @@
                 <td export="string"> {{d.total_idle_time | timeDuration}} </td>
                 <td export="number"> {{d.ticket_attended}} </td>
                 <td export="number"> {{d.ticket_transferred}} </td>
-                <!--<td> </td>
-      <td> </td>-->
             </tr>
         </tbody>
     </table>
     <export-attribute name="filename" i18n-title title="Performance"></export-attribute>
-</exportable>
+</exportable>-->
+
+
+
+<ag-grid-angular #agGrid id="counterPerformTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
+    enableColResize enableSorting>
+    <ag-grid-column headerName="No." field="no" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch code" field="branchCode" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch name" field="branchName" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Store code" field="storeCode" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store name" field="storeName" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="User code" field="user_code" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="User name" field="user_name" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Counter" field="counter_name" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Date" field="date" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Time connection" field="timeConection" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Time productivity" field="timeProductivity" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Time idle" field="timeIdle" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Time attended" field="ticket_attended" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Time cancelled" field="ticket_transferred" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+</ag-grid-angular>
+
+<div class="paginationAndExport margin-b-30 margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
+    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()">Last</button>
+    <div fxFlex="10px"></div>
+    <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
+    <span class="totalPages">/ ({{totalPage}} <span i18n>pages</span>)</span>
+    <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)">Go</button>
+    <div fxFlex></div>
+    <button fxFlex="250px" class="btnClear export uppercase" (click)="export()">
+        <i class="fa fa-file-excel-o fa-lg"></i>
+        <span i18n>Export to excel</span>
+    </button>
+</div>

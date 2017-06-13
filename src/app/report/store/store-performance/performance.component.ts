@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { InfoStore } from '../../shared';
+import { InfoStore, ISPT, CacheBranch } from '../../shared';
 import { StoreAPI } from '../service/store.service';
+import { GridOptions } from "ag-grid";
+import { TimeDurationPipe } from '../../../x/ng/time/timeDuration';
+import { LocalDayTimePipe } from '../../../x/ng/time/localDayTime';
 
 @Component({
   selector: 'performance-tab',
@@ -11,5 +14,34 @@ export class PerformanceComponent {
   constructor(
     private storeAPI: StoreAPI
   ) { }
-  @Input() data: InfoStore;
+
+  protected _data: ISPT[];
+
+  @Input() set data(v: InfoStore) {
+    this._data = v.data;
+    var timeDurationPipe = new TimeDurationPipe();
+    this._data.forEach((d, index) => {
+      d['no'] = index + 1;
+      d['branchCode'] = CacheBranch.GetCodeForID(CacheBranch.GetByID(d.branch_id).parent);
+      d['branchName'] = CacheBranch.GetNameForID(CacheBranch.GetByID(d.branch_id).parent);
+
+      d['storeCode'] = CacheBranch.GetCodeForID(d.branch_id);
+      d['storeName'] = CacheBranch.GetNameForID(d.branch_id);
+    });
+  };
+
+  private gridOptions: GridOptions = {
+    rowHeight: 35,
+    rowSelection: 'multiple'
+  };
+
+  export() {
+    var params = {
+      skipHeader: false,
+      allColumns: true,
+      suppressQuotes: false,
+      fileName: 'storePerformence.csv',
+    };
+    console.log(this.gridOptions.api.getDataAsCsv(params));
+  }
 }

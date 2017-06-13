@@ -22,7 +22,6 @@ export class TransactionTimeComponent implements OnInit {
     this._data = v;
     var nameRender = new GroupByTitlePipe();
     var timeDurationPipe = new TimeDurationPipe();
-    console.log(this._data);
     this._data.forEach((d, index) => {
       d['no'] = index + 1;
       d['name'] = nameRender.transform(this.field, d);
@@ -76,10 +75,10 @@ export class TransactionTimeComponent implements OnInit {
       skipHeader: false,
       allColumns: true,
       suppressQuotes: false,
-      fileName: 'miraway.csv',
+      fileName: 'transactionTime.csv',
     };
 
-    // console.log(this.gridOptions.api.getDataAsCsv(params));
+    console.log(this.gridOptions.api.getDataAsCsv(params));
   }
 
 }

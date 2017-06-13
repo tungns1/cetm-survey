@@ -1,4 +1,4 @@
-<table class="tableCtrl">
+<!--<table class="tableCtrl">
     <thead>
         <th i18n="Numerical Order">No.</th>
         <th i18n>Branch Code</th>
@@ -40,4 +40,44 @@
             <i class="fa fa-file-excel-o fa-lg"></i>
             <span i18n>Export to excel</span>
   </button>
+</div>-->
+
+
+
+<ag-grid-angular #agGrid id="counterActivityTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
+    enableColResize enableSorting>
+    <ag-grid-column headerName="No." field="no" [width]="50" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch code" field="branchCode" [width]="115" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch name" field="branchName" [width]="125" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Store code" field="storeCode" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store name" field="storeName" [width]="155" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="User code" field="data.usercode" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="User name" field="data.userfullname" [width]="160" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Counter" field="data.counternumber" [width]="75" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Date Login" field="date" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Login Time" field="loginTime" [width]="100" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Date Logout" field="date" [width]="90" cellClass="center" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Logout Time" field="logoutTime" [width]="90" cellClass="center" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total Connection Time" field="totalConnectionTime" [width]="140" cellClass="center" i18n-headerName></ag-grid-column>
+</ag-grid-angular>
+
+<div class="paginationAndExport margin-b-30 margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
+    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()">First</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()">Last</button>
+    <div fxFlex="10px"></div>
+    <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
+    <span class="totalPages">/ ({{totalPage}} <span i18n>pages</span>)</span>
+    <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)">Go</button>
+    <div fxFlex></div>
+    <button fxFlex="250px" class="btnClear export uppercase" (click)="export()">
+        <i class="fa fa-file-excel-o fa-lg"></i>
+        <span i18n>Export to excel</span>
+    </button>
 </div>
