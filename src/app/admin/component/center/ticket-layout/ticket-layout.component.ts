@@ -18,6 +18,8 @@ export class TicketLayoutComponent extends BaseAdminComponent<ITicketLayout> {
     super(injector, org.TicketLayoutService);
   }
   
+  title = 'Ticket Layout';
+
   makeForm(b?: ITicketLayout) {
     b = b || <any>{};
     return (new FormBuilder).group({
