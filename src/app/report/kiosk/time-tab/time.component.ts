@@ -11,7 +11,6 @@ export class TimeComponent {
   @Input() padding: number;
   @Input() title: string;
 
-  view: any[] = [900, 400];
 
   // options
   showXAxis = true;

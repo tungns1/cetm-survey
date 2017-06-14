@@ -11,7 +11,6 @@ export class TicketComponent {
   @Input() padding: number;
   @Input() title: string;
 
-  view: any[] = [900, 400];
 
   // options
   showXAxis = true;

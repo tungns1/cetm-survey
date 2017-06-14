@@ -1,18 +1,18 @@
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.stores" [barPadding]="padding" [xAxis]="true" [yAxis]="true" [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" (select)="onSelect($event)">
-</ngx-charts-bar-vertical>
+<div style="width: 100%; max-width: 1200px; height: 400px;">
+    <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="data.stores" [barPadding]="padding" [xAxis]="true" [yAxis]="true"
+        [legend]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+</div>
 <!-- Time View -->
-<exportable>
-    <table export-table>
-        <thead export-row>
-            <th export="string" i18n>Store Name</th>
-            <th export="string" i18n>Number Of Transaction</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let s of data.stores" export-row>
-                <td export="string">{{s.name}}</td>
-                <td export="number">{{s.value}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <export-attribute name="filename" i18n-title title="Store"></export-attribute>
-</exportable>
+<table>
+    <thead>
+        <th i18n>Store Name</th>
+        <th i18n>Number Of Transaction</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of data.stores">
+            <td>{{s.name}}</td>
+            <td>{{s.value}}</td>
+        </tr>
+    </tbody>
+</table>
