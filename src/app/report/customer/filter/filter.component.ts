@@ -29,6 +29,9 @@ export class ReportFilterComponent {
             this.customerApi.GetInfoCustomerByCode(this.code).subscribe(v => {
                 const c = new Customer(v);
                 RxInfoCustomer.next(c);
+            },
+            error=>{
+                alert("Code does not exist")
             });
             RxInfoCustomer.next(null);
         
