@@ -12,7 +12,6 @@ export class TicketComponent {
   @Input() padding: number;
   @Input() title: string;
   @Input() set data(v: InfoKioskTrack) {
-    console.log(v);
     this._data = v;
     this._data.ticket_sum.forEach((d, index) => {
       d['no'] = index + 1;

@@ -48,6 +48,7 @@ export class XWinService {
     Broadcast(event: string, data?: any) {}
     Send(event: string, data?: any) {}
     SetMiniMode(ratio: XWinRectangle, mini?: boolean, options?: MiniModeOptions) {}
+    initWindow(options?: MiniModeOptions) {}
     readonly isBrowser = true;
 }
 
