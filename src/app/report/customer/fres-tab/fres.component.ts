@@ -18,7 +18,7 @@ export class FresComponent {
   @Input() title: string;
 
   // options
-  view: any[] = [900, 400];
+  // view: any[] = [900, 400];
   showXAxis = true;
   showYAxis = true;
   gradient = false;

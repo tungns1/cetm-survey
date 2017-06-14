@@ -11,7 +11,7 @@ export class StoreComponent {
   @Input() data: CustomerView;
   @Input() padding: number;
 
-  view: any[] = [900, 400];
+  // view: any[] = [900, 400];
 
   colorScheme = {
     domain: ['#ff9a00', '#3266cc', '#990099', '#dc3812', '#109619', '#03718d']
