@@ -10,7 +10,10 @@ export class HttpError {
         private status: number,
         private statusText: string,
         private message: string) {
-        this.statusText = this.statusText.trim().toUpperCase();
+        if(this.statusText!=undefined){
+            this.statusText = this.statusText.trim().toUpperCase();
+        }
+     
     }
 
     IsUnauthorized() {
