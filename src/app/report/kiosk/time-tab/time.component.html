@@ -1,16 +1,16 @@
 <div style="width: 100%; height: 400px;">
-    <ngx-charts-line-chart [scheme]="colorScheme" [results]="data.timechart" [gradient]="gradient" [xAxis]="showXAxis"
+    <ngx-charts-line-chart [scheme]="colorScheme" [results]="_data.timechart" [gradient]="gradient" [xAxis]="showXAxis"
         [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
         (select)="onSelect($event)">
     </ngx-charts-line-chart>
 </div>
 <div style="width: 100%; height: 400px;">
-    <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="data.time" [barPadding]="padding" [xAxis]="showXAxis"
+    <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="_data.time" [barPadding]="padding" [xAxis]="showXAxis"
         [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
     </ngx-charts-bar-vertical>
 </div>
 <!-- Time View -->
-<exportable>
+<!--<exportable>
     <table export-table>
         <thead export-row>
             <th export="string" i18n="Numerical Order">No.</th>
@@ -44,4 +44,23 @@
         </tbody>
     </table>
     <export-attribute name="filename" i18n-title title="kiosk_time"></export-attribute>
-</exportable>
+</exportable>-->
+
+
+
+<ag-grid-angular #agGrid id="kioskEffectivenessActiveTable" [gridOptions]="gridOptions" [rowData]="_data.time_sum" class="ag-fresh tableCtrl"
+    enableColResize enableSorting>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store" field="name" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total activity time (hour)" field="total" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Longest period (hour per day)" field="longest" [width]="185" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Shortest period (hour per day)" field="shortest" [width]="185" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Average period (hour per day)" field="average" [width]="185" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+</ag-grid-angular>
+
+<div fxLayout="row">
+    <div fxFlex="80%"></div>
+    <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to excel</button>
+</div>

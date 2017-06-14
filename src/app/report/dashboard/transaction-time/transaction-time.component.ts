@@ -12,10 +12,8 @@ import { TimeDurationPipe } from '../../../x/ng/time/timeDuration'
 })
 export class TransactionTimeComponent implements OnInit {
 
-  ngOnInit() {
-  }
-
   cellClass: string[] = ['center', 'padding-10'];
+  headerName: string;
   protected _data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
 
@@ -27,8 +25,12 @@ export class TransactionTimeComponent implements OnInit {
       d['no'] = index + 1;
       d['name'] = nameRender.transform(this.field, d);
       d['totalTransTime'] = timeDurationPipe.transform(d['s_tt']);
-      d['totalServingTime'] = timeDurationPipe.transform(d['s_st']) + ' (' + d['s_st_p'] + '%)';
-      d['totalWaitingTime'] = timeDurationPipe.transform(d['s_wt']) + ' (' + d['s_wt_p'] + '%)';
+
+      d['totalServingTime'] = timeDurationPipe.transform(d['s_st']);
+      d['totalServingTimePercent'] = d['s_st_p'] + '%';
+
+      d['totalWaitingTime'] = timeDurationPipe.transform(d['s_wt']);
+      d['totalWaitingTimePercent'] = d['s_wt_p'] + '%';
 
       d['servingTimeAverage'] = timeDurationPipe.transform(d['a_st']);
       d['servingTimeMin'] = timeDurationPipe.transform(d['min_st']);
@@ -39,7 +41,7 @@ export class TransactionTimeComponent implements OnInit {
       d['waitingTimeMax'] = timeDurationPipe.transform(d['max_wt']);
     });
   };
-  
+
   // info = {
   //   reportName: 'Overview Report',
   //   period: {
@@ -50,7 +52,24 @@ export class TransactionTimeComponent implements OnInit {
 
   private gridOptions: GridOptions = {
     rowHeight: 35,
+    rowSelection: 'multiple'
   };
+
+  ngOnInit() {
+    this.headerName = this.FilterBy();
+  }
+
+  ngOnChanges(changes) {
+    if (changes.field && this.gridOptions.api) {
+      let newHeader: any[] = this.gridOptions.columnDefs.map(column => {
+        if (column['field'] === 'name') {
+          column['headerName'] = this.FilterBy();
+        }
+        return column;
+      });
+      this.gridOptions.api.setColumnDefs(newHeader);
+    }
+  }
 
   FilterBy() {
     let field_by = '';
@@ -70,7 +89,7 @@ export class TransactionTimeComponent implements OnInit {
     }
     return field_by;
   }
-  
+
   export() {
     var params = {
       skipHeader: false,

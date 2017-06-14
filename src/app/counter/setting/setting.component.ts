@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { CounterSettingService, AuthService, RuntimeEnvironment } from '../shared';
-import { Router } from '@angular/router'
-import { CacheBranch } from '../../shared/model';
+import { CounterSettingService } from '../shared';
+import {Router} from '@angular/router'
 import { AppStorage } from '../../shared';
 
 @Component({
@@ -15,12 +14,11 @@ export class SettingComponent implements OnInit {
   constructor(
     private counterSetting: CounterSettingService,
     private router: Router,
-    private authService: AuthService,
-    private evn: RuntimeEnvironment,
   ) { }
 
   ngOnInit() {
     this.form.valueChanges.subscribe(v => {
+      AppStorage.ClearToken();
       this.counterSetting.Update(v);
     });
   }
