@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
 import { PeriodFilterService } from '../../shared';
 import { timeFormat, timeParse } from 'd3-time-format';
+import { GridOptions } from "ag-grid";
+import { GroupByTitlePipe } from '../shared/groupBy.pipe'
 
 @Component({
   selector: 'app-general-view',
@@ -13,18 +15,27 @@ export class GeneralViewComponent implements OnInit {
   constructor(
     private filterService: PeriodFilterService
   ) { }
+  
+  cellClass: string[] = ['center', 'padding-10'];
 
-  ngOnInit() {
-    this.FilterBy()
-  }
-  ngOnChanges(changes) {
-    if (changes.field) {
-      this.info.fieldBy = this.FilterBy();
-    }
-  }
-  private formatDate = timeFormat("%Y-%m-%d");
-  @Input() data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
+  private formatDate = timeFormat("%Y-%m-%d");
+  protected _data: TransactionAggregate[] = [];
+  @Input() set data(v: TransactionAggregate[]) {
+    this._data = v;
+    var nameRender = new GroupByTitlePipe();
+    this._data.forEach((d, index) => {
+      d['no'] = index + 1;
+      d['name'] = nameRender.transform(this.field, d);
+      d['finished'] = d['c_ft'] + ' (' + d['c_ft_p'] + '%)';
+      d['cancelled'] = d['c_ct'] + ' (' + d['c_ct_p'] + '%)';
+      d['standardWaiting'] = d['c_bwt'] + ' (' + d['c_bwt_p'] + '%)';
+      d['exceededWaiting'] = d['c_awt'] + ' (' + d['c_awt_p'] + '%)';
+      d['standardServing'] = d['c_bst'] + ' (' + d['c_bst_p'] + '%)';
+      d['exceededServing'] = d['c_ast'] + ' (' + d['c_ast_p'] + '%)';
+    });
+  };
+
 
   info = {
     fieldBy: '',
@@ -36,6 +47,18 @@ export class GeneralViewComponent implements OnInit {
     }
   }
 
+  private gridOptions: GridOptions = {
+    rowHeight: 35,
+  };
+
+  ngOnInit() {
+    this.FilterBy();
+  }
+  ngOnChanges(changes) {
+    if (changes.field) {
+      this.info.fieldBy = this.FilterBy();
+    }
+  }
   FilterBy() {
     let field_by = '';
     switch (this.field) {
@@ -53,6 +76,17 @@ export class GeneralViewComponent implements OnInit {
         break;
     }
     return field_by;
+  }
+  
+  export() {
+    var params = {
+      skipHeader: false,
+      allColumns: true,
+      suppressQuotes: false,
+      fileName: 'generalView.csv',
+    };
+    console.log(typeof this.gridOptions.api.getDataAsCsv(params));
+    this.gridOptions.api.exportDataAsCsv(params);
   }
 
 }

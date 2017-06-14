@@ -24,7 +24,7 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('cnum').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('cnum').hasError('required')">&nbsp;</span>
-                <input fxFlex class="ctrlInput" type="number" formControlName="cnum" i18n-placeholder placeholder="Number">
+                <input fxFlex class="ctrlInput" type="text" formControlName="cnum" i18n-placeholder placeholder="Number">
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">

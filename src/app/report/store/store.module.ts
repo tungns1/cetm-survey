@@ -7,6 +7,7 @@ import { HourComponent } from './store-hour/hour.component';
 import { PerformanceComponent } from './store-performance/performance.component';
 import { SharedModule } from '../shared';
 import { ReportFilterModule } from "../shared";
+import { AgGridModule } from "ag-grid-angular/main";
 
 import {
     StoreComponent
@@ -24,7 +25,8 @@ const routing = RouterModule.forChild([
 @NgModule({
     imports: [
         routing, NgxChartsModule,
-        SharedModule, ReportFilterModule
+        SharedModule, ReportFilterModule,
+        AgGridModule.withComponents([])
     ],
     declarations: [
         StoreComponent, HourComponent, PerformanceComponent

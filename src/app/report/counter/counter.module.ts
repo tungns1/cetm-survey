@@ -4,6 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { CounterAPI } from './service/counter.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReportFilterModule } from "../shared";
+import { AgGridModule } from "ag-grid-angular/main";
 
 import {
     CounterComponent
@@ -24,7 +25,8 @@ import { SharedModule } from '../shared';
 @NgModule({
     imports: [
         routing, NgxChartsModule,
-        SharedModule, ReportFilterModule
+        SharedModule, ReportFilterModule,
+        AgGridModule.withComponents([])
     ],
     declarations: [
         CounterComponent, ActivityComponent, PerformanceComponent

@@ -204,7 +204,7 @@ table tbody tr:nth-child(odd) {
                 // background-color: $key-color;
                 border-top: $border;
                 font-weight: $font-weight-default + 200;
-                font-size: $font-size-default + 2;
+                font-size: $font-size-default + 1;
             }
         }
         .ag-row-odd,
@@ -218,7 +218,7 @@ table tbody tr:nth-child(odd) {
 }
 
 
-#pagination {
+.paginationAndExport {
     .curentPage{
         text-align: center;
         font-size: $font-size-default + 2;
@@ -229,7 +229,7 @@ table tbody tr:nth-child(odd) {
     .totalPages{
         font-size: $font-size-default + 2
     }
-    #curentPage::-webkit-inner-spin-button {
+    .curentPage::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
 }
