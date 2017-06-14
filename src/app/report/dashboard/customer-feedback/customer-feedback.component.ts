@@ -11,10 +11,8 @@ import { TimeDurationPipe } from '../../../x/ng/time/timeDuration'
 })
 export class CustomerFeedbackComponent implements OnInit {
 
-  ngOnInit() {
-  }
-
   cellClass: string[] = ['center', 'padding-10'];
+  headerName: string;
   protected _data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
   @Input() set data(v: TransactionAggregate[]) {
@@ -24,20 +22,39 @@ export class CustomerFeedbackComponent implements OnInit {
     this._data.forEach((d, index) => {
       d['no'] = index + 1;
       d['name'] = nameRender.transform(this.field, d);
-      d['transFeedback'] = d['c_r'] + ' (' + d['c_r_p'] + '%)';
-      d['transWithoutFeedback'] = d['c_r_o'] + ' (' + d['c_r_o_p'] + '%)';
+      
+      d['transFeedbackPercent'] = d['c_r_p'] + '%';
+      d['transWithoutFeedbackPercent'] = d['c_r_o_p'] + '%';
 
-      d['veryGood'] = d['c_r_a'] + ' (' + d['c_r_a_p'] + '%)';
-      d['good'] = d['c_r_b'] + ' (' + d['c_r_b_p'] + '%)';
-      d['average'] = d['c_r_c'] + ' (' + d['c_r_c_p'] + '%)';
-      d['poor'] = d['c_r_d'] + ' (' + d['c_r_d_p'] + '%)';
+      d['veryGoodPercent'] = d['c_r_a_p'] + '%';
+      d['goodPercent'] = d['c_r_b_p'] + '%';
+      d['averagePercent'] = d['c_r_c_p'] + '%';
+      d['poorPercent'] = d['c_r_d_p'] + '%';
       
     });
   };
 
   private gridOptions: GridOptions = {
     rowHeight: 35,
+    rowSelection: 'multiple'
   };
+
+  ngOnInit() {
+    this.headerName = this.FilterBy();
+  }
+
+  ngOnChanges(changes) {
+    if (changes.field && this.gridOptions.api) {
+      let newHeader: any[] = this.gridOptions.columnDefs.map(column => {
+        if (column['field'] === 'name') {
+          column['headerName'] = this.FilterBy();
+        }
+        return column;
+      });
+      console.log(newHeader);
+      this.gridOptions.api.setColumnDefs(newHeader);
+    }
+  }
 
   FilterBy() {
     let field_by = '';
