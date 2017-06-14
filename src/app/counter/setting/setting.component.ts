@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CounterSettingService } from '../shared';
+import { AppStorage } from '../../shared';
 
 @Component({
   selector: 'app-setting',
@@ -15,6 +16,7 @@ export class SettingComponent implements OnInit {
 
   ngOnInit() {
     this.form.valueChanges.subscribe(v => {
+      AppStorage.ClearToken();
       this.counterSetting.Update(v);
     });
   }
