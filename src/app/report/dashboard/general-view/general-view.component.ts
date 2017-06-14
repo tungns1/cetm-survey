@@ -15,7 +15,7 @@ export class GeneralViewComponent implements OnInit {
   constructor(
     private filterService: PeriodFilterService
   ) { }
-  
+
   cellClass: string[] = ['center', 'padding-10'];
 
   @Input() field = 'branch_id';
@@ -27,12 +27,12 @@ export class GeneralViewComponent implements OnInit {
     this._data.forEach((d, index) => {
       d['no'] = index + 1;
       d['name'] = nameRender.transform(this.field, d);
-      d['finished'] = d['c_ft'] + ' (' + d['c_ft_p'] + '%)';
-      d['cancelled'] = d['c_ct'] + ' (' + d['c_ct_p'] + '%)';
-      d['standardWaiting'] = d['c_bwt'] + ' (' + d['c_bwt_p'] + '%)';
-      d['exceededWaiting'] = d['c_awt'] + ' (' + d['c_awt_p'] + '%)';
-      d['standardServing'] = d['c_bst'] + ' (' + d['c_bst_p'] + '%)';
-      d['exceededServing'] = d['c_ast'] + ' (' + d['c_ast_p'] + '%)';
+      d['finishedPercent'] = d['c_ft_p'] + '%';
+      d['cancelledPercent'] = d['c_ct_p'] + '%';
+      d['standardWaitingPercent'] = d['c_bwt_p'] + '%';
+      d['exceededWaitingPercent'] = d['c_awt_p'] + '%';
+      d['standardServingPercent'] = d['c_bst_p'] + '%';
+      d['exceededServingPercent'] = d['c_ast_p'] + '%';
     });
   };
 
@@ -49,16 +49,28 @@ export class GeneralViewComponent implements OnInit {
 
   private gridOptions: GridOptions = {
     rowHeight: 35,
+    rowSelection: 'multiple'
   };
 
   ngOnInit() {
     this.FilterBy();
   }
+
   ngOnChanges(changes) {
     if (changes.field) {
       this.info.fieldBy = this.FilterBy();
+      if (this.gridOptions.api) {
+        let newHeader: any[] = this.gridOptions.columnDefs.map(column => {
+          if(column['field'] === 'name'){
+            column['headerName'] = this.info.fieldBy;
+          }
+          return column;
+        });
+        this.gridOptions.api.setColumnDefs(newHeader);
+      }
     }
   }
+
   FilterBy() {
     let field_by = '';
     switch (this.field) {
@@ -77,7 +89,7 @@ export class GeneralViewComponent implements OnInit {
     }
     return field_by;
   }
-  
+
   export() {
     var params = {
       skipHeader: false,

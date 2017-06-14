@@ -4,6 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { KioskAPI } from './service/kiosk.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReportFilterModule } from "../shared";
+import { AgGridModule } from "ag-grid-angular/main";
 
 import {
     KioskComponent
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared';
     imports: [
         routing, NgxChartsModule,
         ReportInfoModule,
-        SharedModule, ReportFilterModule
+        SharedModule, ReportFilterModule,
+        AgGridModule.withComponents([])
     ],
     declarations: [
         KioskComponent, TicketComponent, TimeComponent

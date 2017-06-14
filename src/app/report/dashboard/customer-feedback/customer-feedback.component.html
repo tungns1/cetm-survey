@@ -85,14 +85,25 @@
 <ag-grid-angular #agGrid id="cusFeedbackTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting export-table i18n-title title="General">
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column [headerName]="FilterBy()" field="name" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Transaction feedback" field="transFeedback" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Transaction without feedback" field="transWithoutFeedback" [width]="195" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Very good feedback" field="veryGood" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column [headerName]="headerName" field="name" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Good feedback" field="good" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Average feedback" field="average" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Poor feedback" field="poor" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Transaction feedback" field="c_r" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Transaction feedback percent" field="transFeedbackPercent" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Transaction without feedback" field="c_r_o" [width]="195" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Transaction without feedback percent" field="transWithoutFeedbackPercent" [width]="195" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Very good feedback" field="c_r_a" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Very good feedback percent" field="veryGoodPercent" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Good feedback" field="c_r_b" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Good feedback percent" field="goodPercent" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Average feedback" field="c_r_c" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Average feedback percent" field="averagePercent" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Poor feedback" field="c_r_d" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Poor feedback percent" field="poorPercent" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div fxLayout="row">

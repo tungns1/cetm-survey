@@ -58,13 +58,16 @@
 </exportable>-->
 
 <ag-grid-angular #agGrid id="transTimeTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
-    enableColResize enableSorting export-table i18n-title title="General">
+    enableColResize enableSorting>
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column [headerName]="FilterBy()" field="name" [width]="160"
-        [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Total serving time" field="totalTransTime" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Total waiting time" field="totalServingTime" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column [headerName]="headerName" field="name" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total transaction time" field="totalTransTime" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total serving time" field="totalServingTime" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total serving time percent" field="totalServingTimePercent" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
     <ag-grid-column headerName="Total waiting time" field="totalWaitingTime" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total waiting time percent" field="totalWaitingTimePercent" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
     <ag-grid-column headerName="Serving time avarage" field="servingTimeAverage" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Serving time min" field="servingTimeMin" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>

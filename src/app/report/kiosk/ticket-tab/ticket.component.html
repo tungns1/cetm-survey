@@ -1,15 +1,15 @@
 <div style="width: 100%; height: 400px;">
-    <ngx-charts-line-chart [scheme]="colorScheme" [results]="data.ticketchart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+    <ngx-charts-line-chart [scheme]="colorScheme" [results]="_data.ticketchart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
         [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale" (select)="onSelect($event)">
     </ngx-charts-line-chart>
 </div>
 <div style="width: 100%; height: 400px;">
-    <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="data.ticket" [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis"
+    <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="_data.ticket" [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis"
         [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
     </ngx-charts-bar-vertical>
 </div>
 <!-- Time View -->
-<exportable>
+<!--<exportable>
     <table export-table>
         <thead export-row>
             <th export="string" i18n="Numerical Order">No.</th>
@@ -31,4 +31,23 @@
         </tbody>
     </table>
     <export-attribute name="filename" i18n-title title="kiosk_ticket"></export-attribute>
-</exportable>
+</exportable>-->
+
+
+
+<ag-grid-angular #agGrid id="kioskEffectivenessTicketTable" [gridOptions]="gridOptions" [rowData]="_data.ticket_sum" class="ag-fresh tableCtrl"
+    enableColResize enableSorting>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store" field="name" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total printed ticket" field="total" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Longest printed ticket" field="highest" [width]="185" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Shortest printed ticket" field="lowest" [width]="185" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Average printed ticket" field="average" [width]="185" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+</ag-grid-angular>
+
+<div fxLayout="row">
+    <div fxFlex="80%"></div>
+    <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to excel</button>
+</div>

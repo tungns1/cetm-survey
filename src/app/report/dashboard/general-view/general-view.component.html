@@ -93,16 +93,26 @@
 <ag-grid-angular #agGrid id="overViewTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting export-table i18n-title title="General">
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column [headerName]="FilterBy()" field="name" [width]="200" [cellRenderer]="nameCellRenderer" [cellRendererParams]="{field: field}"
-        [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Total Transaction" field="c_t" [cellRenderer]="totalCellRenderer" [width]="115" [cellClass]="cellClass"
-        i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Finished Transaction" field="finished" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Canceled Transaction" field="cancelled" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Standard Waiting Time Transaction" field="standardWaiting" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Exceeded Waiting Time Transaction" field="exceededWaiting" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Standard Serving Time Transaction" field="standardServing" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Exceeded Serving Time Transaction" field="exceededServing" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column [headerName]="info.fieldBy" field="name" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total transaction" field="c_t" [width]="115" [cellClass]="cellClass"i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Finished transaction" field="c_ft" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Finished transaction percent" field="finishedPercent" [width]="175" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Canceled transaction" field="c_ct" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Canceled transaction percent" field="cancelledPercent" [width]="175" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Standard waiting time transaction" field="c_bwt" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Standard waiting time transaction percent" field="standardWaitingPercent" [width]="250" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Exceeded waiting time transaction" field="c_awt" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Exceeded waiting time transaction percent" field="exceededWaitingPercent" [width]="250" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Standard serving time transaction" field="c_bst" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Standard serving time transaction percent" field="standardServingPercent" [width]="250" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Exceeded serving time transaction" field="c_ast" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Exceeded serving time transaction percent" field="exceededServingPercent" [width]="250" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div fxLayout="row">
