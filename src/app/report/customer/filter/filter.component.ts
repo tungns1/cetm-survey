@@ -24,7 +24,6 @@ export class ReportFilterComponent {
 
     code: string = '';
     Filter() {
-        if (this.code != "") {
             this.customerApi.GetInfo(this.code, '');
             this.customerApi.pagin(1, this.code, '');
             this.customerApi.GetInfoCustomerByCode(this.code).subscribe(v => {
@@ -32,7 +31,7 @@ export class ReportFilterComponent {
                 RxInfoCustomer.next(c);
             });
             RxInfoCustomer.next(null);
-        }
+        
     }
 
 
