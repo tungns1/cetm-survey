@@ -55,6 +55,7 @@
 }
 
 .servingMini{
+    @extend .emptyAndServing;
     height: 65px;
 }
 
