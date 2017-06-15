@@ -86,11 +86,11 @@ export class CustomerView {
         this.s_tt = this.s_wt + this.s_st;
         // percent
         if (this. c_t > 0) {
-            this.c_awt_p = this.c_awt * 100 / this.c_t;
-            this.s_wt_p = this.s_wt * 100 / this.c_t;
-            this.c_bwt_p = this.c_bwt * 100 / this.c_t;
-            this.s_st_p = this.s_st * 100 / this.c_t;
-            this.c_bst_p = this.c_bst * 100 / this.c_t;
+            this.c_awt_p =+(this.c_awt * 100 / this.c_t).toFixed(2) ;
+            this.s_wt_p = +(this.s_wt * 100 / this.c_t).toFixed(2);
+            this.c_bwt_p = +(this.c_bwt * 100 / this.c_t).toFixed(2);
+            this.s_st_p = +(this.s_st * 100 / this.c_t).toFixed(2);
+            this.c_bst_p =+(this.c_bst * 100 / this.c_t).toFixed(2);
         }
     }
 

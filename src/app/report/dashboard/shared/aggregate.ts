@@ -22,7 +22,7 @@ function Round2Decimal(v: number) {
 
 function Round2DecimalPercent(a: number, b: number) {
     // 0.00 %
-    return Math.floor(a * 10000 / b) / 100;
+    return +(a * 100 / b).toFixed(2);
 }
 
 export class TransactionAggregate {
