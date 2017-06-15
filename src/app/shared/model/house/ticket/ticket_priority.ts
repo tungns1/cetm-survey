@@ -44,7 +44,7 @@ function priorityCode(p: ITicketPriority) {
         if (p.privileged_customer) {
             return "privileged";
         }
-        if (p.customer_vip_card) {
+        if (p.internal_vip_card) {
             return "vip";
         }
     }
