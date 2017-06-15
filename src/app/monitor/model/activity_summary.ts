@@ -40,17 +40,18 @@ export class BoxActivitySummary {
 
 export class GlobalActivitySummary {
     private boxes = new Map<string, BoxActivitySummary>();
-    
+
     Refresh(box: IBoxActivitySummary[]) {
         if (!box) return;
         box.forEach(b => this.Replace(b));
     }
 
     Replace(box: IBoxActivitySummary) {
-        if (!box) return;
+        if (!box || !box.counter || !box.kiosk) return;
         const b = new BoxActivitySummary(box);
         this.boxes.set(b.branch_id, b);
     }
+
     UpdateActivity(s: IActivitySummary) {
         if (!s) return;
         const _s = new ActivitySummary(s);
