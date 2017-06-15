@@ -11,8 +11,8 @@ export class LauncherService {
   SetMiniMode(mode: XWinMiniMode) {
     if (!mode || !mode.enable) return;
     const rect = mode.rect || {};
+    this.qmsService.__x.initWindow(mode.options);
     this.qmsService.__x.SetMiniMode(mode.rect, mode.enable, mode.options);
-    this.qmsService.__x.initWindow(mode.options)
   }
   
 }
