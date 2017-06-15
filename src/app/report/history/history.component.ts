@@ -18,6 +18,7 @@ export class HistoryComponent {
 
     paging = new Paging<ITransactionView>();
     filter: IHistoryFilter;
+    skipRowCount: number = 0;
     curentPage: number = 1;
     totalPage: number;
     cellClass: string[] = ['center', 'padding-10'];
@@ -30,10 +31,7 @@ export class HistoryComponent {
         suppressPaginationPanel: true,
         enableServerSideSorting: true,
         rowModelType: 'infinite',
-        cacheOverflowSize: 10,
-        maxConcurrentDatasourceRequests: 2,
-        infiniteInitialRowCount: 1,
-        maxBlocksInCache: 2,
+        maxBlocksInCache: 18,
         getRowNodeId: function (item) {
             return item.id;
         },
@@ -66,28 +64,23 @@ export class HistoryComponent {
 
     setRowData(allOfTheData) {
 
-        allOfTheData.forEach(function (data, index) {
-            data.id = 'R' + (index + 1);
-        });
+        // allOfTheData.forEach(function (data, index) {
+        //     data.id = 'R' + (index + 1);
+        // });
 
         var dataSource = {
-            rowCount: null, // behave as infinite scroll
+            rowCount: 18, // behave as infinite scroll
             getRows: function (params) {
-                console.log('asking for ' + params.startRow + ' to ' + params.endRow);
-                // At this point in your code, you would call the server, using $http if in AngularJS 1.x.
-                // To make the demo look real, wait for 500ms before returning
-                setTimeout(function () {
-                // take a slice of the total rows
-                // var dataAfterSortingAndFiltering = sortAndFilter(allOfTheData, params.sortModel, params.filterModel);
-                var rowsThisPage = allOfTheData.slice(params.startRow, params.endRow);
-                // if on or after the last page, work out the last row.
-                var lastRow = -1;
-                if (allOfTheData.length <= params.endRow) {
-                    lastRow = allOfTheData.length;
-                }
-                // call the success callback
-                params.successCallback(rowsThisPage, lastRow);
-            }, 500);
+                console.log(params);
+                    // take a slice of the total rows
+                    var rowsThisPage = allOfTheData.slice(params.startRow, params.endRow);
+                    // if on or after the last page, work out the last row.
+                    var lastRow = -1;
+                    if (allOfTheData.length <= params.endRow) {
+                        lastRow = allOfTheData.length;
+                    }
+                    // call the success callback
+                    params.successCallback(rowsThisPage, lastRow);
             }
         };
 
@@ -103,28 +96,42 @@ export class HistoryComponent {
     }
 
     jumpToFirst() {
-        this.gridOptions.api.paginationGoToFirstPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        // this.gridOptions.api.paginationGoToFirstPage();
+        // this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        this.pagin(1);
+        this.curentPage = 1;
     }
 
     prevPage() {
-        this.gridOptions.api.paginationGoToPreviousPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        // this.gridOptions.api.paginationGoToPreviousPage();
+        // this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if(this.curentPage > 1){
+            this.pagin(this.curentPage - 1);
+            this.curentPage -= 1;
+        }
     }
 
     nextPage() {
-        this.gridOptions.api.paginationGoToNextPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        // this.gridOptions.api.paginationGoToNextPage();
+        // this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if (this.curentPage < this.totalPage) {
+            this.pagin(this.curentPage + 1);
+            this.curentPage += 1;
+        }
     }
 
     jumpToLast() {
-        this.gridOptions.api.paginationGoToLastPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        // this.gridOptions.api.paginationGoToLastPage();
+        // this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        this.pagin(this.totalPage);
+        this.curentPage = this.totalPage;
     }
 
     jumpToPage(pageIndex: number) {
-        this.gridOptions.api.paginationGoToPage(pageIndex - 1);
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        // this.gridOptions.api.paginationGoToPage(pageIndex - 1);
+        // this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        this.pagin(pageIndex);
+        this.curentPage = pageIndex;
     }
 
     onFilterChange(filter: IHistoryFilter) {
@@ -136,15 +143,18 @@ export class HistoryComponent {
         this.pagin(1);
     }
 
-    pagin(page: number = 5) {
+    pagin(page: number = 1) {
         const skip = this.paging.SkipForPage(page);
+        this.skipRowCount = skip;
         const limit = this.paging.Limit;
+                console.log(skip);
         this.transactionHistoryApi.GetHistory(skip, limit, this.filter)
             .subscribe(v => {
-                console.log(v);
                 this.paging.SetPage(page);
                 this.paging.Reset(v.data, v.total);
                 this.setRowData(v.data);
+                this.gridOptions.api.setInfiniteRowCount(v.total);
+                this.totalPage = Math.ceil(v.total / 18);
             });
     }
 
