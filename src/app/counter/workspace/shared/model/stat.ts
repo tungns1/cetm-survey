@@ -82,17 +82,31 @@ export class CounterStatistics {
     OnTicketAction(a: TicketAction) {
         if (!a) return;
         const t = a.ticket;
+        console.log(t)
         t.addHelperFields();
-        if (!t.isDone() || t.user_id != this.user_id) return;
-
-        const s: IStat = {
-            service_id: t.service_id,
-            count: 1,
-            stime: t.__stime,
-            state: t.state
+        if (!t.isDone()) return;
+        var len = t.tracks.length;
+        if (len <= 1) return;
+        if (t.state === TicketStates.Waiting) {
+            const s: IStat = {
+                service_id: t.service_id,
+                count: 1,
+                stime: t.tracks[len - 2].mtime - t.tracks[len - 3].mtime,
+                state: t.tracks[len - 2].state
+            }
+            this.finished.Add(s);
+            this.cancelled.Add(s);
+        } else {
+            const s: IStat = {
+                service_id: t.service_id,
+                count: 1,
+                stime: t.__stime,
+                state: t.state
+            }
+            this.finished.Add(s);
+            this.cancelled.Add(s);
         }
-        this.finished.Add(s);
-        this.cancelled.Add(s);
+
         this.update();
     }
 
