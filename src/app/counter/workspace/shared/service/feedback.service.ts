@@ -22,7 +22,7 @@ export class FeedbackService {
     enable() {
         this.feedbackDevice.enable();
         this.env.Auth.Data$.subscribe(d => {
-            // this.required = d.config.feedback.required;
+            this.required = d.config.feedback.required;
         });
         return true;
     }
