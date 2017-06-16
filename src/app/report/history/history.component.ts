@@ -121,7 +121,7 @@ export class HistoryComponent {
     }
 
     excel() {
-        this.transactionHistoryApi.ExportHistory();
+        this.transactionHistoryApi.ExportHistory(this.filter);
     }
 
     showDetails(tr: ITransactionView) {
