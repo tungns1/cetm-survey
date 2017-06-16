@@ -44,10 +44,8 @@
         </button>
     </div>-->
 
-
-<ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" [rowData]="paging.data$ | async"
-    class="ag-fresh tableCtrl" enableColResize enableSorting>
-    <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [cellRendererParams]="{d: data}" [width]="50" [cellClass]="cellClass"
+<ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+    <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass"
         i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Date" field="cdate" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Branch" [cellRenderer]="branchCellRenderer" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>

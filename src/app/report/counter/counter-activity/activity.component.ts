@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CounterAPI, paging } from '../service/counter.service';
-import { ICounterTrack, CacheBranch } from '../../shared';
+import { ICounterTrack, CacheBranch, Paging } from '../../shared';
 import { GridOptions } from "ag-grid";
 import { TimeDurationPipe } from '../../../x/ng/time/timeDuration';
 import { LocalDayTimePipe } from '../../../x/ng/time/localDayTime';
@@ -15,18 +15,18 @@ export class ActivityComponent {
     private counterAPI: CounterAPI
   ) { }
 
-  paging = paging;
   protected _data: ICounterTrack[];
   cellClass: string[] = ['center', 'padding-10'];
+  paging = new Paging<ICounterTrack>();
 
 
   ngOnInit() {
+    this.pagin(1);
     var localDayTime = new LocalDayTimePipe;
     var timeDuration = new TimeDurationPipe;
-    this.paging.data$.subscribe(d => {
+    paging.data$.subscribe(d => {
       this._data = d;
       this._data.forEach((d, index) => {
-        d['no'] = index + 1;
         d['branchCode'] = CacheBranch.GetCodeForID(CacheBranch.GetByID(d.bid).parent);
         d['branchName'] = CacheBranch.GetNameForID(CacheBranch.GetByID(d.bid).parent);
 
@@ -52,32 +52,60 @@ export class ActivityComponent {
     onRowDataChanged: () => {
       this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
       this.totalPage = this.gridOptions.api.paginationGetTotalPages()
+    },
+    enableServerSideSorting: true,
+    rowModelType: 'infinite',
+    maxBlocksInCache: 18,
+    getRowNodeId: function (item) {
+      return item.id;
     }
+
   };
 
+  setRowData(rowData, totalRow: number = -1, skip: number) {
+    rowData.forEach((row, index) => row['order'] = index + skip + 1);
+    var dataSource = {
+      rowCount: 18,
+      getRows: function (params) {
+        params.successCallback(rowData, totalRow);
+      }
+    };
+    this.gridOptions.api.setDatasource(dataSource);
+  }
+
   jumpToFirst() {
-    this.gridOptions.api.paginationGoToFirstPage();
-    this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    if (this.curentPage > 1) {
+      this.pagin(1);
+      this.curentPage = 1;
+    }
   }
 
   prevPage() {
-    this.gridOptions.api.paginationGoToPreviousPage();
-    this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    if (this.curentPage > 1) {
+      this.pagin(this.curentPage - 1);
+      this.curentPage -= 1;
+    }
   }
 
   nextPage() {
-    this.gridOptions.api.paginationGoToNextPage();
-    this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    if (this.curentPage < this.totalPage) {
+      this.pagin(this.curentPage + 1);
+      this.curentPage += 1;
+    }
   }
 
   jumpToLast() {
-    this.gridOptions.api.paginationGoToLastPage();
-    this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    if (this.curentPage < this.totalPage) {
+      this.pagin(this.totalPage);
+      this.curentPage = this.totalPage;
+    }
   }
 
   jumpToPage(pageIndex: number) {
-    this.gridOptions.api.paginationGoToPage(pageIndex - 1);
-    this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+    if (pageIndex > 0 && pageIndex < this.totalPage) {
+      this.pagin(pageIndex);
+      this.curentPage = pageIndex;
+    }
   }
 
   export() {
@@ -91,8 +119,17 @@ export class ActivityComponent {
     this.gridOptions.api.exportDataAsCsv(params);
   }
 
-  // pagin(page: number) {
-  //   this.counterAPI.pagin(page);
-  // }
+  pagin(page: number = 1) {
+    const skip = paging.SkipForPage(page);
+    const limit = paging.Limit;
+    this.counterAPI.GetActivity(skip, limit)
+      .subscribe(v => {
+        paging.SetPage(page);
+        paging.Reset(v.data, v.total);
+        this.setRowData(v.data, v.total, skip);
+        this.gridOptions.api.setInfiniteRowCount(v.total);
+        this.totalPage = Math.ceil(v.total / 18);
+      });
+  }
 
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
 import { MdTabGroup } from '@angular/material';
 import { CustomerView } from './shared/';
 import { Customer } from '../shared';
+import { HistoryComponent } from './history/history.component'
 
 @Component({
     selector: 'customer',
@@ -17,6 +18,8 @@ export class CustomerComponent {
         private route: ActivatedRoute
     ) { }
 
+
+    @ViewChild(HistoryComponent) cusHistory: HistoryComponent;
     customer_id: string;
     data$ = this.customerApi.RxSummaryView;
     paddingStore = this.data$.map(data => {
@@ -66,10 +69,10 @@ export class CustomerComponent {
     ngOnInit() {
         RxInfoCustomer.next(null);
         let id = this.route.snapshot.params['id'];
-        if (id && id!="") {
+        if (id && id != "") {
             this.customer_id = id;
             this.customerApi.GetInfo('', this.customer_id);
-             this.customerApi.pagin(1, '', this.customer_id);
+            this.customerApi.pagin(1, '', this.customer_id);
             this.customerApi.GetInfoCustomerById(this.customer_id).subscribe(v => {
                 RxInfoCustomer.next(new Customer(v));
             });
@@ -78,5 +81,9 @@ export class CustomerComponent {
 
     onTabChange(e) {
         this.selectedTab = e.index;
+    }
+
+    refresh(e) {
+        this.cusHistory.pagin(1);
     }
 }

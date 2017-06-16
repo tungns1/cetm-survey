@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { ITransaction, CacheService, CacheBranch } from '../../shared';
-import { CustomerAPI, paging } from '../service/customer.service';
+import { CustomerAPI, paging, RxInfoCustomer } from '../service/customer.service';
 import { TransactionComponent } from './transaction.component';
 import { GridOptions } from "ag-grid";
 
@@ -17,21 +17,28 @@ export class HistoryComponent {
         private mdDialog: MdDialog,
         private customerAPI: CustomerAPI
     ) { }
-    @Input() id: string;
-    paging = paging;
+    @Input() id: string; //cus id passed from report - history
+    // paging = paging;
     curentPage: number = 1;
     totalPage: number;
     cellClass: string[] = ['center', 'padding-10'];
     private gridOptions: GridOptions = {
         rowHeight: 35,
+        rowSelection: 'multiple',
         pagination: true,
         paginationPageSize: 18,
         suppressPaginationPanel: true,
+        enableServerSideSorting: true,
+        rowModelType: 'infinite',
+        maxBlocksInCache: 18,
+        getRowNodeId: function (item) {
+            return item.id;
+        },
+
         onCellClicked: (e) => {
             if (e.event.target.localName === 'img')
-                this.openDialog(e.data);
+                this.showDetails(e.data);
         },
-        rowSelection: 'multiple',
         onRowDataChanged: () => {
             this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
             this.totalPage = this.gridOptions.api.paginationGetTotalPages()
@@ -40,72 +47,104 @@ export class HistoryComponent {
 
 
     ngOnInit() {
-        if (this.id != undefined && this.id != "") {
+        // if data passed from report - history
+        if (this.id) {
             this.customerAPI.pagin(1, '', this.id);
-        }
+        } else
+            this.pagin(1);
     }
 
-    detailCellRenderer() {
-        return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+    detailCellRenderer(d) {
+        if (d.data)
+            return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+        else return '';
     }
 
-    noCellRenderer(d) {
-        return d.rowIndex + 1;
+    setRowData(rowData, totalRow: number = -1, skip: number) {
+        rowData.forEach((row, index) => row['order'] = index + skip + 1);
+        var dataSource = {
+            rowCount: 18,
+            getRows: function (params) {
+                params.successCallback(rowData, totalRow);
+            }
+        };
+        this.gridOptions.api.setDatasource(dataSource);
     }
+
 
     serviceCellRenderer(d) {
-        if (d.data.service)
+        if (d.data)
             return CacheService.ServiceName(d.data.service);
-        else return 'Other';
+        else return '';
     }
 
     storeCellRenderer(d) {
-        if (d.data.branch_id) {
+        if (d.data) {
             return CacheBranch.GetNameForID(d.data.branch_id);
         }
-        else return 'Other';
+        else return '';
     }
 
     branchCellRenderer(d) {
-        if (d.data.branch_id) {
+        if (d.data) {
             return CacheBranch.GetNameForID(CacheBranch.GetForID(d.data.branch_id).parent);
         }
-        else return 'Other';
+        else return '';
     }
 
     jumpToFirst() {
-        this.gridOptions.api.paginationGoToFirstPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if (this.curentPage > 1) {
+            this.pagin(1);
+            this.curentPage = 1;
+        }
     }
 
     prevPage() {
-        this.gridOptions.api.paginationGoToPreviousPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if (this.curentPage > 1) {
+            this.pagin(this.curentPage - 1);
+            this.curentPage -= 1;
+        }
     }
 
     nextPage() {
-        this.gridOptions.api.paginationGoToNextPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if (this.curentPage < this.totalPage) {
+            this.pagin(this.curentPage + 1);
+            this.curentPage += 1;
+        }
     }
 
     jumpToLast() {
-        this.gridOptions.api.paginationGoToLastPage();
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if (this.curentPage < this.totalPage) {
+            this.pagin(this.totalPage);
+            this.curentPage = this.totalPage;
+        }
     }
 
     jumpToPage(pageIndex: number) {
-        this.gridOptions.api.paginationGoToPage(pageIndex - 1);
-        this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1
+        if (pageIndex > 0 && pageIndex < this.totalPage) {
+            this.pagin(pageIndex);
+            this.curentPage = pageIndex;
+        }
     }
 
-    pagin(page: number) {
-        this.customerAPI.RxSummaryView.subscribe(v => {
-            this.customerAPI.pagin(page, '', v.customer_id);
+    pagin(page: number = 1) {
+        const skip = paging.SkipForPage(page);
+        const limit = paging.Limit;
+        RxInfoCustomer.subscribe(cus => {
+            if (cus) {
+                this.customerAPI.GetHistory(skip, limit, cus.code, '')
+                    .subscribe(v => {
+                        paging.SetPage(page);
+                        paging.Reset(v.data, v.total);
+                        this.setRowData(v.data, v.total, skip);
+                        this.gridOptions.api.setInfiniteRowCount(v.total);
+                        this.totalPage = Math.ceil(v.total / 18);
+                    });
+            }
         });
-
     }
 
-    openDialog(ticket: ITransaction) {
+    showDetails(ticket: ITransaction) {
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = ticket;

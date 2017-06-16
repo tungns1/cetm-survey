@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation, ViewChild } from '@angular/core';
 import { CounterAPI } from './service/counter.service';
 import { MdTabGroup } from '@angular/material';
+import { ActivityComponent } from './counter-activity/activity.component'
 
 @Component({
     selector: 'counter',
@@ -12,13 +13,15 @@ export class CounterComponent {
     constructor(
         private counterAPI: CounterAPI
     ) { }
-    
+
     data$ = this.counterAPI.RxPerformanceView;
     selectedTab = 0;
+    @ViewChild(ActivityComponent) countActivity: ActivityComponent;
 
     refresh() {
         this.counterAPI.Search();
         this.counterAPI.pagin(1);
+        this.countActivity.pagin(1);
     }
 
     onTabChange(e) {
