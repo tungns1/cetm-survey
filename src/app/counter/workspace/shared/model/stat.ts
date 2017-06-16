@@ -82,7 +82,6 @@ export class CounterStatistics {
     OnTicketAction(a: TicketAction) {
         if (!a) return;
         const t = a.ticket;
-        console.log(t)
         t.addHelperFields();
         if (!t.isDone()) return;
         var len = t.tracks.length;

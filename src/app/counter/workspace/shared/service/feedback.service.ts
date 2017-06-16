@@ -16,7 +16,7 @@ export class FeedbackService {
         private feedbackDevice: FeedbackDevice,
         private env: RuntimeEnvironment
     ) {
-        
+
     }
 
     enable() {
@@ -46,24 +46,19 @@ export class FeedbackService {
     // CheckFeedback:
     // return [] if can next
     // return null if not
-    CheckFeedback(t: Ticket[]) {
-        if (!t || t.length < 1) {
-            return of(<Ticket[]>[]);
+    CheckFeedback(t: Ticket) {
+        if (t) {
+            var feedback = t.tracks[t.tracks.length - 1].feedback || null;
+            if (feedback) {
+                return false
+            }
+        } else {
+            return false
         }
         if (!this.required || !this.feedbackDevice.Available) {
-            return of(t);
+            return true
         }
-        const id = t.map(a => a.id);
+        return false;
 
-        // check if done
-        return this.feedbackDone$.filter(d => id.indexOf(d) !== -1).do(_ => {
-            this.promptForSkip$.next([])
-        }).map(_ => t)
-            .merge(timer(100).first().switchMap(_ => {
-                // ask to skip
-                this.promptForSkip$.next(t);
-                // skip feedback
-                return this.skipFeedback$.map(s => s ? t : null);
-            })).first();
     }
 }
