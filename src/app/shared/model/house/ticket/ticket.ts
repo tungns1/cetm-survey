@@ -123,7 +123,7 @@ export class Ticket {
     }
 
     isDone() {
-        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled;
+        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled || this.state==TicketStates.Waiting;
     }
 
     __stime = 0; // serving time
