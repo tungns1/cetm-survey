@@ -91,7 +91,7 @@ export class ServingTicketComponent {
     }
 
     userCellRenderer(d) {
-        if (d.data.user_id)
+        if (d.data.user_id && CacheUsers.GetByID(d.data.user_id))
             return CacheUsers.GetByID(d.data.user_id).fullname;
         else return 'Other';
     }

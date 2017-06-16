@@ -59,8 +59,10 @@ export class HistoryComponent {
         this.gridOptions.api.setDatasource(dataSource);
     }
 
-    detailCellRenderer() {
-        return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+    detailCellRenderer(d) {
+        if (d.data)
+            return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+        else return '';
     }
 
     jumpToFirst() {
