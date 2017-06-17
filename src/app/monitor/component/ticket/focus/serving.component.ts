@@ -28,6 +28,7 @@ export class ServingTicketComponent {
     maxServingMinute = ProjectConfig.service.max_serving_minute;
     private gridOptions: GridOptions = {
         rowHeight: 35,
+        rowSelection: 'multiple',
         getRowStyle: (e) => {
             if (e.data.state === 'serving') {
                 return {

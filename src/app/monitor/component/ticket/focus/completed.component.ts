@@ -28,6 +28,7 @@ export class CompletedTicketComponent {
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
+        rowSelection: 'multiple',
         paginationPageSize: 12,
         pagination: true,
         getRowStyle: (e) => {

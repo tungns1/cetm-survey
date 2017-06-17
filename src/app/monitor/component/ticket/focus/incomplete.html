@@ -39,17 +39,17 @@
 
         <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Service Name" [cellRenderer]="serviceCellRenderer" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Service Name" [cellRenderer]="serviceCellRenderer" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Ticket Number" [cellRendererFramework]="ticketIconNumber" [cellRendererParams]="{width: '15px'}"
-            [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+            [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Customer" field="customer.full_name" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="95" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Waiting Time" [cellRendererFramework]="waitingTime" [cellRendererParams]="{timeWarning: maxWaitingMinute}"
-            [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+            [width]="95" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Detail" [cellClass]="cellclass" [cellRenderer]="detailCellRenderer" [width]="70" i18n-headerName></ag-grid-column>
 
