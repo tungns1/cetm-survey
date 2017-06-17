@@ -51,23 +51,23 @@
     <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="records$ | async" class="ag-fresh tableCtrl"
         enableColResize enableSorting>
 
-        <ag-grid-column headerName="Store" [cellRenderer]="storeCellRenderer" [width]="300" cellClass="padding-10" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Store" [cellRenderer]="storeCellRenderer" [width]="200" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Print Ticket" field="printed" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Waiting Ticket" field="waiting" [width]="200" cellClass="padding-10" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Waiting Ticket" field="waiting" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Serving Ticket" field="serving" [width]="200" cellClass="padding-10" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Serving Ticket" field="serving" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Served Ticket" field="finished" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Cancelled Ticket" field="cancelled" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Exceeded Waiting Time Transaction" [cellRenderer]="exceededWaitingCellRenderer" 
-            [width]="250" cellClass="padding-10" [cellStyle]="warningExceededWaiting" i18n-headerName></ag-grid-column>
+            [width]="215" cellClass="padding-10" [cellStyle]="warningExceededWaiting" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Exceeded Serving Time Transaction" [cellRenderer]="exceededServingCellRenderer"
-            [width]="250" cellClass="padding-10" [cellStyle]="warningExceededServing" i18n-headerName></ag-grid-column>
+            [width]="215" cellClass="padding-10" [cellStyle]="warningExceededServing" i18n-headerName></ag-grid-column>
 
     </ag-grid-angular>
     <div class="divider margin-20-0"></div>

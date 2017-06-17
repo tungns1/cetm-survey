@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { TicketDetailDialog } from '../ticket';
+import { TicketDetailDialog, FeedbackSkipDialog } from '../ticket';
 import { ModalComponent, Ticket } from '../shared';
 
 import {
     WorkspaceService, QueueService,
     LedService, TicketActionName,
-    TicketService
+    TicketService, FeedbackService
 } from '../shared';
 
 @Component({
@@ -19,6 +19,7 @@ export class ActionComponent {
         private workspaceService: WorkspaceService,
         private queueService: QueueService,
         private ticketService: TicketService,
+        private feedbackService: FeedbackService,
         private mdDialog: MdDialog
     ) { }
 
@@ -34,9 +35,16 @@ export class ActionComponent {
     }
 
     Next() {
-        this.triggerAction("finish").subscribe(() => {
-            this.workspaceService.SetAutoNext(true);
-        });
+        if (this.feedbackService.CheckFeedback(this.ticket)) {
+            const config = new MdDialogConfig();
+            config.width = '350px';
+            config.data = this.ticket;
+            const dialog = this.mdDialog.open(FeedbackSkipDialog, config);
+        } else {
+            this.triggerAction("finish").subscribe(() => {
+                this.workspaceService.SetAutoNext(true);
+            });
+        }
     }
 
     NoNext() {
@@ -48,7 +56,15 @@ export class ActionComponent {
     }
 
     Finish() {
-        this.triggerAction('finish');
+        if (this.feedbackService.CheckFeedback(this.ticket)) {
+            const config = new MdDialogConfig();
+            config.width = '350px';
+            config.data = this.ticket;
+            const dialog = this.mdDialog.open(FeedbackSkipDialog, config);
+        } else {
+            this.triggerAction('finish');
+        }
+
     }
 
     Delete() {
@@ -56,6 +72,7 @@ export class ActionComponent {
     }
 
     Miss() {
+
         this.triggerAction('miss');
     }
 

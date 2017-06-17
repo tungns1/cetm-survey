@@ -1,8 +1,10 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { Ticket, TicketStates, TicketActionName } from '../shared';
-import { TicketService, QueueService, WorkspaceService } from '../shared';
+import { FeedbackSkipDialog } from './feedback-skip.component';
+import { TicketService, QueueService, WorkspaceService, FeedbackService } from '../shared';
 import { NoticeComponent } from '../shared';
 
 @Component({
@@ -17,8 +19,10 @@ export class TicketDetailDialog {
     @Optional() @Inject(MD_DIALOG_DATA) public ticket: Ticket,
     private dialogRef: MdDialogRef<TicketDetailDialog>,
     private ticketService: TicketService,
+    private feedbackService: FeedbackService,
     private queueService: QueueService,
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+     private mdDialog: MdDialog
   ) { }
 
   isServing = this.ticket.IsState("serving");
@@ -65,11 +69,17 @@ export class TicketDetailDialog {
         return;
       }
     }
-
-    this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
-      .subscribe(v => {
-        this.dialogRef.close();
-      });
+    if (this.feedbackService.CheckFeedback(this.ticket)) {
+      const config = new MdDialogConfig();
+      config.width = '350px';
+      config.data = this.ticket;
+      const dialog = this.mdDialog.open(FeedbackSkipDialog, config);
+    } else {
+      this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+        .subscribe(v => {
+          this.dialogRef.close();
+        });
+    }
   }
 
   Delete() {

@@ -7,7 +7,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="level$ | async | branchLevelName" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="level$ | async | branchLevelName"
+    [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>{{getName()}} Name</span>
@@ -20,9 +21,7 @@
                     <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
                 </div>
             </div>
-        </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>{{getName()}} Code</span>
+            <span fxFlex="10%" i18n>{{getName()}} Code</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
                 <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
@@ -41,6 +40,8 @@
                     <option *ngFor="let br of parents$ | async" [value]="br.id">{{br.name}}</option>
                 </select>
             </div>
+            <div fxFlex="10%"></div>
+            <div fxFlex></div>
         </div>
     </form>
 </app-editor-view>

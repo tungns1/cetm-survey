@@ -7,7 +7,7 @@
 </div>
 
 <app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
-    <form [formGroup]="form" fxLayout="column">
+    <form [formGroup]="form" id="editKioskForm" fxLayout="column">
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Kiosk Code</span>
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('code').hasError('required')">*&nbsp;</span>
@@ -16,17 +16,15 @@
                 <input fxFlex="100%" class="ctrlInput" type="text" formControlName="code" i18n-placeholder="Code">
                 <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters; Include number, character and _</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
-                <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
             </div>
+            <div fxFlex="2%"></div>
 
-            <span fxFlex="20%" i18n>Kiosk Name</span>
+            <span fxFlex="10%" i18n>Kiosk Name</span>
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('name').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
                 <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder="Name">
                 <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">Atleast 4 characters</div>
-                <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">&nbsp;</div>
-                <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
                 <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div>
             </div>
         </div>
@@ -34,7 +32,8 @@
             <span fxFlex="20%" i18n="Default Kiosk Vip Codes">Fixed Vip Codes</span>
             <span fxFlex="2%">&nbsp;</span>
             <input fxFlex class="ctrlInput" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
-            <span fxFlex="20%" i18n="Inherit kiosk attributes">Inherit From</span>
+            <div fxFlex="2%"></div>
+            <span fxFlex="10%" i18n="Inherit kiosk attributes">Inherit From</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="parent_id">           
                 <option value="">--None--</option>
@@ -42,27 +41,28 @@
             </select>
         </div>
         <div fxLayout="row" class="rowCtrl">
-            <span fxFlex="20%">
-                Layout
-                <a [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">Edit</a>
-            </span>
+            <span fxFlex="20%">Layout</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="layout_id">
-                    <option value="">--None--</option>
-                    <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
-                </select>
-            <span fxFlex="20%" i18n>Ticket Layout</span>
+                <option value="">--None--</option>
+                <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
+            </select>
+            <a fxFlex="2%" class="right" [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">
+                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+            </a>
+            <span fxFlex="10%" i18n>Ticket Layout</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="tlayout_id">
-                    <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
-                </select>
+                <option *ngFor="let tl of ticketlayouts | async" [value]="tl.id"> {{tl.name}}</option> 
+            </select>
         </div>
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Location</span>
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
             <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
-            <span fxFlex="20%" i18n>Services</span>
+            <div fxFlex="2%"></div>
+            <span fxFlex="10%" i18n>Services</span>
             <span fxFlex="2%">&nbsp;</span>
             <service-list fxFlex class="border" formControlName="services" [services]="services$ | async"></service-list>
         </div>

@@ -30,6 +30,7 @@ export class IncompleteTicketComponent {
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
+        rowSelection: 'multiple',
         paginationPageSize: 12,
         pagination: true,
         // suppressPaginationPanel: true,
@@ -37,7 +38,6 @@ export class IncompleteTicketComponent {
             if (e.event.target.localName === 'img')
                 this.showDetails(e.data);
         },
-        rowSelection: 'multiple',
         // onRowDataChanged: () => {
         //     this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
         //     this.totalPage = this.gridOptions.api.paginationGetTotalPages();

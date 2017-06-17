@@ -48,9 +48,9 @@
 
         <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Service" [cellRenderer]="serviceCellRenderer" [width]="150" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
-        <ag-grid-column headerName="Counter" [cellRenderer]="counterCellRenderer" [width]="150" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
-        <ag-grid-column headerName="User" [cellRenderer]="userCellRenderer" [width]="150" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Service" [cellRenderer]="serviceCellRenderer" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Counter" [cellRenderer]="counterCellRenderer" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="User" [cellRenderer]="userCellRenderer" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Ticket Number" [cellRendererFramework]="ticketIconNumber" 
             [cellRendererParams]="{width: '15px'}"
@@ -58,14 +58,14 @@
 
         <ag-grid-column headerName="Customer" field="customer.full_name" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="95" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Waiting Time" [cellRenderer]="waitingTimeCellRendered" 
-            [width]="100" 
+            [width]="95" 
             [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Serving Time" [cellRendererFramework]="servingTime" 
-            [cellRendererParams]="{timeWarning: maxServingMinute}" [width]="100" 
+            [cellRendererParams]="{timeWarning: maxServingMinute}" [width]="95" 
             [cellClass]="cellclass" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Detail" [cellClass]="cellclass" [cellRenderer]="detailCellRenderer" 

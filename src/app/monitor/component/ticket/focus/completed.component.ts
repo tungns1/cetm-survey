@@ -28,6 +28,7 @@ export class CompletedTicketComponent {
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
+        rowSelection: 'multiple',
         paginationPageSize: 12,
         pagination: true,
         getRowStyle: (e) => {
@@ -76,8 +77,10 @@ export class CompletedTicketComponent {
         }
     }
 
-    detailCellRenderer() {
-        return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+    detailCellRenderer(d) {
+        if (d.data)
+            return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
+        else return '';
     }
 
     noCellRenderer(d) {
@@ -87,19 +90,19 @@ export class CompletedTicketComponent {
     serviceCellRenderer(d) {
         if (d.data.service_id)
             return CacheService.ServiceName(d.data.service_id);
-        else return 'Other';
+        else return '';
     }
 
     counterCellRenderer(d) {
         if (d.data.counter_id)
             return CacheCounter.GetByID(d.data.counter_id).name;
-        else return 'Other';
+        else return '';
     }
 
     userCellRenderer(d) {
-        if (d.data.user_id)
+        if (d.data.user_id && CacheUsers.GetByID(d.data.user_id))
             return CacheUsers.GetByID(d.data.user_id).fullname;
-        else return 'Other';
+        else return '';
     }
 
     printTimeCellRendered(d) {

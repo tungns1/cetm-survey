@@ -57,7 +57,6 @@ export class TicketAction {
     }
 
     Done(result: ITicket) {
-        console.log("done", result, this);
         this.done$.next(result);
     }
 

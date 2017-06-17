@@ -31,6 +31,13 @@ export class AccordionTitleComponent {
 	]
 })
 export class AccordionComponent {
+
+	@Input() name: string;
+	private expanded = false;
+	open$ = new Subject<AccordionComponent>();
+	
+	@Input() expand = false;
+
 	Expand() {
 		if (this.expanded) {
 			return;
@@ -45,10 +52,8 @@ export class AccordionComponent {
 		this.expanded = false;
 	}
 
-	open$ = new Subject<AccordionComponent>();
-
 	ngOnInit() {
-
+		this.expanded = this.expand;
 	}
 
 	Toggle() {
@@ -58,7 +63,4 @@ export class AccordionComponent {
 			this.Expand();
 		}
 	}
-
-	@Input() name: string;
-	private expanded = false;
 }

@@ -28,6 +28,7 @@ export class ServingTicketComponent {
     maxServingMinute = ProjectConfig.service.max_serving_minute;
     private gridOptions: GridOptions = {
         rowHeight: 35,
+        rowSelection: 'multiple',
         getRowStyle: (e) => {
             if (e.data.state === 'serving') {
                 return {
@@ -91,7 +92,7 @@ export class ServingTicketComponent {
     }
 
     userCellRenderer(d) {
-        if (d.data.user_id)
+        if (d.data.user_id && CacheUsers.GetByID(d.data.user_id))
             return CacheUsers.GetByID(d.data.user_id).fullname;
         else return 'Other';
     }

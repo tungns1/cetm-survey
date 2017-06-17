@@ -40,8 +40,9 @@ export class TransactionHistoryApi {
     }
 
 
-    ExportHistory() {
-        const url = this.api.MakeURL("export", this.filterService.ToBackendQuery());
+    ExportHistory(filterHistory: IHistoryFilter) {
+        const query = Object.assign({}, this.filterService.ToBackendQuery(), filterHistory);
+        const url = this.api.MakeURL("export", query);
         window.open(url, "_blank");
     }
     apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");

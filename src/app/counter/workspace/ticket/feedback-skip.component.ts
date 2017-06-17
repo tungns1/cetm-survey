@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { FeedbackService, TicketService } from '../shared';
-import { ITicket } from '../shared';
+import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { ITicket,Ticket } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -10,6 +11,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FeedbackSkipDialog {
 
     constructor(
+         @Optional() @Inject(MD_DIALOG_DATA) public ticket: Ticket,
         private feedbackService: FeedbackService,
         private ticketService: TicketService,
     ) { }
