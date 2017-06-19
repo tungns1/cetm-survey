@@ -69,7 +69,7 @@ export class TicketDetailDialog {
         return;
       }
     }
-    if (this.feedbackService.CheckFeedback(this.ticket)) {
+    if (this.feedbackService.CheckFeedback(this.ticket) && this.isServing) {
       const config = new MdDialogConfig();
       config.width = '350px';
       config.data = this.ticket;
