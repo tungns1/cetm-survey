@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE translationbundle [
+<!ELEMENT translationbundle (translation)*>
+<!ATTLIST translationbundle lang CDATA #REQUIRED>
+
+<!ELEMENT translation (#PCDATA|ph)*>
+<!ATTLIST translation id CDATA #REQUIRED>
+<!ATTLIST translation desc CDATA #IMPLIED>
+<!ATTLIST translation meaning CDATA #IMPLIED>
+<!ATTLIST translation xml:space (default|preserve) "default">
+
+<!ELEMENT ph (#PCDATA|ex)*>
+<!ATTLIST ph name CDATA #REQUIRED>
+
+<!ELEMENT ex (#PCDATA)>
+]>
+<translationbundle lang="es">
+  <translation id="8716359834484489616">Seleccionar todo</translation>
+  <translation id="8632185732539539517">Quitar toda la selección</translation>
+  <translation id="2807800733729323332" desc="Confirm Yes">SI</translation>
+  <translation id="3542042671420335679" desc="Confirm No">No</translation>
+  <translation id="7819314041543176992">Cerrar</translation>
+  <translation id="7787014569189147478">Exportar a excel</translation>
+  <translation id="798331821565192816">Cambiar contraseña</translation>
+  <translation id="8710384677351768024">Configuración de usuario</translation>
+  <translation id="2826581353496868063">Idioma</translation>
+  <translation id="3902961887793684628">Hola</translation>
+  <translation id="1102717806459547726">Actualizar</translation>
+  <translation id="6785659997897155974">Configuración</translation>
+  <translation id="6309828574111583895">Cambiar contraseña</translation>
+  <translation id="3797778920049399855">Cerrar sesión</translation>
+  <translation id="5041354590769758251">Administrador</translation>
+  <translation id="2612153957528769606">Area</translation>
+  <translation id="8387651464002742246">Sucursal</translation>
+  <translation id="1003499966051544275">Tienda</translation>
+  <translation id="1433795406962535368">Formato de número de ticket</translation>
+  <translation id="2218082343053095278">Servicio</translation>
+  <translation id="5544870440672117467">Configuración de sucursal</translation>
+  <translation id="1352399620632500995">Flujo de servicio</translation>
+  <translation id="3958504940664351773">Ventanilla</translation>
+  <translation id="2392488717875840729">Usuario</translation>
+  <translation id="6439365426343089851">General</translation>
+  <translation id="186236568870281953">Histórico</translation>
+  <translation id="1642972066115158058">Cliente</translation>
+  <translation id="5951072958345908726">Efectividad de quiosco</translation>
+  <translation id="8058994642732449354">Monitor</translation>
+  <translation id="1182196549991807032">Quiosco</translation>
+  <translation id="8472583334056249635">Diseño de ticket</translation>
+  <translation id="2536343087263737096">Pantalla</translation>
+  <translation id="8429316238784832901">Retroalimentación</translation>
+  <translation id="2022859627383122515">Acceso al sistema</translation>
+  <translation id="2454050363478003966">Iniciar sesión</translation>
+  <translation id="6858029301474596828">Lista de <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
+  <translation id="6973747544653250639" desc="Add New Model">Añadir nuevo <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
+  <translation id="4511235385998512563" desc="Numerical Order">N°</translation>
+  <translation id="9216117865911519658">Accción</translation>
+  <translation id="2184226512508531506" desc="Add New Model">Añadir nuevo <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
+  <translation id="8552929419265057684">Editar <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
+  <translation id="7022070615528435141">Eliminar</translation>
+  <translation id="3249513483374643425">Agregar</translation>
+  <translation id="3768927257183755959">Guardar</translation>
+  <translation id="7184500686794259198">Editar nombre de servicio en este quiosco</translation>
+  <translation id="105011547488715530">Seleccionar servicio</translation>
+  <translation id="8186013988289067040">Código</translation>
+  <translation id="2159130950882492111">Cancelar</translation>
+  <translation id="8953033926734869941">Nombre</translation>
+  <translation id="45739481977493163">Tamaño</translation>
+  <translation id="3419681791450150574">Progreso</translation>
+  <translation id="5612709566632732179">Detalle</translation>
+  <translation id="7585826646011739428">Editar</translation>
+  <translation id="7808756054397155068">Restaurar</translation>
+  <translation id="2509141182388535183">Ver</translation>
+  <translation id="5446654805864102078">Ubicación principal</translation>
+  <translation id="6350491423682933549">Nombre de <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph> </translation>
+  <translation id="6864947865085354349">Código de <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
+  <translation id="5248717555542428023">Nombre de usuario</translation>
+  <translation id="6959497441009812685">Nombre completo</translation>
+  <translation id="471816275243265264">Ubicación</translation>
+  <translation id="1431416938026210429">Contraseña</translation>
+  <translation id="4145496584631696119">Rol</translation>
+  <translation id="2256241875750901254">Prioridad de servicio</translation>
+  <translation id="2734022681675842051">Prioridad</translation>
+  <translation id="1803703305778757313">Formato de ticket restringido</translation>
+  <translation id="1239039204502478836">Formato de número</translation>
+  <translation id="6770679633670931081">Valor mínimo</translation>
+  <translation id="7823539411343889280">Valor máximo</translation>
+  <translation id="5474901734608805094">Diseño</translation>
+  <translation id="1747074827275577196">Tipo de diseño</translation>
+  <translation id="1664620352147673062">Recurso</translation>
+  <translation id="6370642728789544052">Número</translation>
+  <translation id="6824282810844559642">(Please, fill in the blank)</translation>
+  <translation id="644405659796088448">Servicios normales</translation>
+  <translation id="8847946509139171097">Servicios VIP</translation>
+  <translation id="8959446199990718904" desc="Default Kiosk Vip Codes">Códigos VIP predeterminados </translation>
+  <translation id="651758548885499321" desc="Inherit kiosk attributes">Heredar de </translation>
+  <translation id="7143579180750436311">Servicios</translation>
+  <translation id="2446117790692479672">Recursos</translation>
+  <translation id="6649268813862575213">Ventanillas</translation>
+  <translation id="7169279957700355812">Formato de ticket</translation>
+  <translation id="2582043348955052568">Formato de ticket VIP</translation>
+  <translation id="9063793946634119147">Retroalimentación requerida</translation>
+  <translation id="3761195704239602908">Ticket en espera</translation>
+  <translation id="8604852007710946848">Nombre del servicio</translation>
+  <translation id="494134059610115997">Tiempo de espera</translation>
+  <translation id="3717925337824501119">Lista de llamadas perdidas</translation>
+  <translation id="5826073933999704478">Última llamada</translation>
+  <translation id="7430541496133842817">Tickets cancelados</translation>
+  <translation id="7186187311199183622">Cancelado en</translation>
+  <translation id="6419547141094470203">Detalle de ticket</translation>
+  <translation id="2097731515016603806">Ticket</translation>
+  <translation id="1858124317936300193">Hora de impresión</translation>
+  <translation id="2462859331269936536">Inicio de atención</translation>
+  <translation id="396437383970333627">Transferir servicio</translation>
+  <translation id="2982772154339558253">Tiempo cancelado</translation>
+  <translation id="6770769801335635194">Reestablecer</translation>
+  <translation id="3207064347534824962">Transferir ventanilla</translation>
+  <translation id="6398433642385327932">Llamada</translation>
+  <translation id="2354817630223808522">Mover</translation>
+  <translation id="2542129062022625819">Reusmen de transacciones</translation>
+  <translation id="8419446998600034387">Transacción finalizada</translation>
+  <translation id="6561323736107862969">Transacción cancelada</translation>
+  <translation id="5513915799730766818">Hora de llamada de ticket</translation>
+  <translation id="8690399783005706050">Estado de ticket</translation>
+  <translation id="8497528947328199741">Hora</translation>
+  <translation id="5611592591303869712">Estado</translation>
+  <translation id="1012204039504921605">Promedio de tiempo de atención</translation>
+  <translation id="3551527308930738998">Ticket de atención</translation>
+  <translation id="463274504308269476">Tiempo de atención</translation>
+  <translation id="3885497195825665706" desc="Counter Button: Next">Siguiente</translation>
+  <translation id="946257859848279507" desc="Counter Button: Auto Next">Llamado automático</translation>
+  <translation id="2091653811087495478" desc="Counter Button: Recall Ticket">Rellamar</translation>
+  <translation id="9150055758879543882" desc="Counter Button: Miss Ticket">Perdido</translation>
+  <translation id="65984904390749158" desc="Counter Button: Finish Ticket">Finalizar</translation>
+  <translation id="7265149706470630508">Nombre del cliente</translation>
+  <translation id="991579100870874315">Documento de identidad del cliente</translation>
+  <translation id="8194554728555410336">Número de teléfono</translation>
+  <translation id="4495620181723937744">Segmento</translation>
+  <translation id="2614607010577950577">Resumen</translation>
+  <translation id="313854265968026491">Transacción</translation>
+  <translation id="7292902857194439444">Equipo</translation>
+  <translation id="8635509005489172632">Imprimir ticket</translation>
+  <translation id="1536292087775826695">Ticket en espera</translation>
+  <translation id="5618698022690815225">Ticket atendido</translation>
+  <translation id="5389247169923805905">Ticket cancelado</translation>
+  <translation id="8037772369513058871">Tiempo de espera excedido para la transacción</translation>
+  <translation id="3611836200319394244">Tiempo de atención excedido para la transacción</translation>
+  <translation id="2149300564474427551">Administrador</translation>
+  <translation id="1540281436321485610">Administrador</translation>
+  <translation id="4413331439865417610">Total de ventanillas</translation>
+  <translation id="8870711330013548872">En línea</translation>
+  <translation id="313850810538580916">Desconectado</translation>
+  <translation id="5962035447374272492">Ticket impreso</translation>
+  <translation id="3414261400090992507">Total de tickets en espera</translation>
+  <translation id="4947404705717821360">Total de tickets siendo atendidos</translation>
+  <translation id="9059825686353594571">Total de tickets atendidos</translation>
+  <translation id="5392655439712661390">Total de tickets cancelados</translation>
+  <translation id="4009899742306295677">Número de ticket</translation>
+  <translation id="5911214550882917183">Estado</translation>
+  <translation id="315368540880463108">Hora de ticket impreso</translation>
+  <translation id="9024994565315608242">Código de ventanilla</translation>
+  <translation id="5807692522194997033">Transacción en espera</translation>
+  <translation id="3793298075546994500">Transacción en atención</translation>
+  <translation id="3172329231315078666">Nivel de tiempo de espera para la transacción</translation>
+  <translation id="1344949466335824580">Nivel de tiempo de atención para la transacción</translation>
+  <translation id="2219720335129600485">Agent</translation>
+  <translation id="5404277690466024032">Ventanilla apagada</translation>
+  <translation id="2466208048071392236">Quiosco encendido</translation>
+  <translation id="4052696886848078556">En línea en</translation>
+  <translation id="5865185208184579017">Desconectado en</translation>
+  <translation id="1247859366054768414">Tiempo de activación</translation>
+  <translation id="6414986856104313209">Seleccionar agente</translation>
+  <translation id="8570889309236939868">Seleccionar ventanilla</translation>
+  <translation id="7213391653135056284">Periodo de tiempo</translation>
+  <translation id="3973931101896534797">Fecha</translation>
+  <translation id="5141352019990967744">Semana</translation>
+  <translation id="5403684285319082289">Mes</translation>
+  <translation id="1464072562214937907">Año</translation>
+  <translation id="7943322712137185173">Desde</translation>
+  <translation id="7088298382890008546">hasta</translation>
+  <translation id="7008439939460403347">Reporte</translation>
+  <translation id="4839677728087600714">Número de ventanilla</translation>
+  <translation id="8721638142731145522">Duración de espera</translation>
+  <translation id="2313690731902676657">Duración de atención</translation>
+  <translation id="3847014078371936451">Segmento de clientes</translation>
+  <translation id="5808845826213311166">Historial de transacciones</translation>
+  <translation id="318504146475587488">General</translation>
+  <translation id="4517268251185975055">minuto</translation>
+  <translation id="3641484938285502754">Retroalimentación del cliente</translation>
+  <translation id="1046385465968816929">Filtro de retroalimentación</translation>
+  <translation id="5783772095367323326">Muy bueno</translation>
+  <translation id="29167121133682512">Bueno</translation>
+  <translation id="6685892931357659955">Promedio</translation>
+  <translation id="6355984385466493800">Pobre</translation>
+  <translation id="6570363013146073520">Panel de gráficos</translation>
+  <translation id="858798937722527117">Reporte general</translation>
+  <translation id="4064856965213710604">Total de transacciones</translation>
+  <translation id="5528859585647912796">Nivel de tiempo de espera para la transacción</translation>
+  <translation id="8394758311873341506">Tiempo total de transacciones</translation>
+  <translation id="4225044552120504875">Tiempo total de atención</translation>
+  <translation id="2582465182045886923">Total tiempo de espera</translation>
+  <translation id="4217169501105747172">Promedio de tiempo de atención</translation>
+  <translation id="4153819872045219891">Tiempo de servicio más corto</translation>
+  <translation id="6950737824774858178">Tiempo de servicio más largo</translation>
+  <translation id="4232876283473455306">Promedio de tiempo de espera</translation>
+  <translation id="7759733934988803504">Tiempo de espera más corto</translation>
+  <translation id="4877536696213725918">Tiempo de espera más largo</translation>
+  <translation id="7043397228156089225">Retroalimentación de la transacción</translation>
+  <translation id="2376090341922797711">Transacción sin retroalimentación</translation>
+  <translation id="5892198756551125615">Retroalimentación muy buena</translation>
+  <translation id="7427832041886666347">Retroalimentación Buena</translation>
+  <translation id="3511198061318378251">Promedio de retroalimentación</translation>
+  <translation id="7962776679088078286">Retroalimentación mal</translation>
+  <translation id="5283732769743706220">Promedio tiempo de atención</translation>
+  <translation id="1378673195638758341">Tiempo mínimo de atención</translation>
+  <translation id="5246508241828035084">Tiempo máximo de atención</translation>
+  <translation id="611694434174751141">Promedio de tiempo de atención</translation>
+  <translation id="5065045172733758866">Tiempo mínimo de atención</translation>
+  <translation id="2586638703977816095">Tiempo máximo de atención</translation>
+  <translation id="3993606380182930544">Retroalimentación de la transacción</translation>
+  <translation id="5325783773507436533">Total de transacciones</translation>
+  <translation id="3598970554527370714">Transacción finalizada</translation>
+  <translation id="414044047491635680">Porcentaje de transacciones finalizadas</translation>
+  <translation id="5731026824754708074">Transacciones canceladas</translation>
+  <translation id="9171942537726027056">Porcentaje de transacciones canceladas</translation>
+  <translation id="7013028859713531596">Tiempo de espera excedido para la transacción</translation>
+  <translation id="1103596821714088936">Nivel de tiempo de atención para la transacción</translation>
+  <translation id="106077727076119257">Tiempo de atención excedido para la transacción</translation>
+  <translation id="8925579204406372947">Porcentaje de tiempo de atención excedido</translation>
+  <translation id="729222562306275244">Seleccione la tabla</translation>
+  <translation id="4634160800010105718">Gráfica lineal</translation>
+  <translation id="8919491741196797002">Gráfico de columnas</translation>
+  <translation id="4608185417955615965">Gráfico apilado</translation>
+  <translation id="251524190638622155">Gráfico circular</translation>
+  <translation id="6122030973291308530">Frecuencia</translation>
+  <translation id="5014875529029097748">Número de transacciones</translation>
+  <translation id="5175860281644788511">Nombre de tienda</translation>
+  <translation id="7919295236424936202">Mayoría de servicios usados</translation>
+  <translation id="6548160197420961154">Tienda más frecuente</translation>
+  <translation id="3566352024469451419">Tiempo activo</translation>
+  <translation id="3708374077928660011">Cantidad de tickets</translation>
+  <translation id="7042965335013821100">Total de tickets impresos</translation>
+  <translation id="6338750494429535920">Ticket impreso más largo</translation>
+  <translation id="7959306904007235804">Ticket impreso más corto</translation>
+  <translation id="4147138638599131171">Promedio de tickets impresos</translation>
+  <translation id="6021327109574507682">Tiempo total de actividad (hora)</translation>
+  <translation id="4309933217010445172">Quiosco total</translation>
+  <translation id="5025062788646623336">Actividad de quiosco más largo</translation>
+  <translation id="3095401974093327188">Actividad de quiosco más corta</translation>
+  <translation id="1920876936276692630">Promedio de efectividad del quiosco</translation>
+  <translation id="1316403076280758412">Ticke</translation>
+  <translation id="6795158323031276147">Cantidad más alta de tickets impresos</translation>
+  <translation id="8554245745498573168">Cantidad más baja de tickets impresos</translation>
+  <translation id="1255388649183074058">Nombre de sucursal</translation>
+  <translation id="5272182062533105897">Código de tienda</translation>
+  <translation id="4921123372402734973">Nombre de tienda</translation>
+  <translation id="6673514746889308091">Código de usuario</translation>
+  <translation id="5312727456282218392">Nombre de usuario</translation>
+  <translation id="7174439775999594308">Fecha de inicio de sesión</translation>
+  <translation id="8979138805075422856">Fecha de cierre de sesión</translation>
+  <translation id="1936926062642798511">Fecha de cierre de sesión</translation>
+  <translation id="1494927747837150613">Tiempo total de conexión</translation>
+  <translation id="3821052680478335961">Tiempo de inactividad</translation>
+  <translation id="7128097476561025477">Código de tienda</translation>
+  <translation id="7410432243549869948">Duración</translation>
+  <translation id="3010404667810755113">Ticket impreso</translation>
+  <translation id="1669277742108379782">Atendido</translation>
+  <translation id="4556357666541285601">sub estándar</translation>
+  <translation id="4043049091728011235">Cancelado</translation>
+  <translation id="2628294255250873454">Descartado</translation>
+  <translation id="3069168209152241107">TEAP</translation>
+  <translation id="5297301850911097062">DAP</translation>
+  <translation id="5940600863372862382">Ticket emitido</translation>
+  <translation id="8562778474158270448">Abandonado</translation>
+  <translation id="6849133517720601930">Ocupación</translation>
+  <translation id="1608105963217791253">Configuración de aplicación CETM</translation>
+  <translation id="2821179408673282599">Inicio</translation>
+  <translation id="2052833920187184086">Tiempo de atención</translation>
+</translationbundle>

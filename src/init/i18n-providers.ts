@@ -20,13 +20,13 @@ export function getTranslationProviders(): Promise<Object[]> {
     return Promise.resolve(noProviders);
   }
   // Ex: 'locale/messages.fr.xlf`
-  const translationFile = `./locale/${locale}/messages.${locale}.xliff`;
+  const translationFile = `./locale/${locale}/messages.${locale}.xtb`;
   return getTranslations(translationFile)
     .then((translations) => {
       if (translations) {
         return [
           { provide: TRANSLATIONS, useValue: translations },
-          { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' },
+          { provide: TRANSLATIONS_FORMAT, useValue: 'xtb' },
           { provide: LOCALE_ID, useValue: locale }
         ]
       }
