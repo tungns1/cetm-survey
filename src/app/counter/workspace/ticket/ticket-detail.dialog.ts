@@ -68,7 +68,7 @@ export class TicketDetailDialog {
         return;
       }
     }
-    if (this.feedbackService.CheckFeedback(this.ticket)) {
+    if (this.feedbackService.CheckFeedback(this.ticket) && this.isServing) {
         this.notice.ShowMessage("feedback_skip");
     } else {
       this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
