@@ -13,7 +13,7 @@
         </div>
         <div fxLayout="row" [class.hidden]="!serving">
             <span class="margin-10-0 label" fxFlex i18n>Time of ticket called</span>
-            <span class="margin-10-0 detail" fxFlex>{{ticket.mtime | localDayTime}}</span>
+            <span [class.hidden]="checkState(ticket)" class="margin-10-0 detail" fxFlex>{{ticket.mtime | localDayTime}}</span>
         </div>
         <div fxLayout="row">
             <span class="margin-10-0 label" fxFlex i18n>Ticket Status</span >

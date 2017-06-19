@@ -40,5 +40,12 @@ export class SearchComponent {
         if(this.message.length > 5) return this.message;
         else return "Ticket number";
     }
+    checkState(t:ITicket){
+        if(t.state==="waiting"){
+            return true;
+        }
+        return false;
+    }
+
     
 }
