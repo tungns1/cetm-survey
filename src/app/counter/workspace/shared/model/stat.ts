@@ -83,7 +83,7 @@ export class CounterStatistics {
         if (!a) return;
         const t = a.ticket;
         t.addHelperFields();
-        if (!t.isDone()) return;
+        if (!t.isDone() || this.user_id!=t.user_id) return;
         var len = t.tracks.length;
         if (len <= 1) return;
         if (t.state === TicketStates.Waiting) {
