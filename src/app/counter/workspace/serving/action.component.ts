@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { TicketDetailDialog, FeedbackSkipDialog } from '../ticket';
+import { TicketDetailDialog } from '../ticket';
 import { ModalComponent, Ticket } from '../shared';
+import { NoticeComponent } from '../shared';
 
 import {
     WorkspaceService, QueueService,
@@ -23,6 +24,9 @@ export class ActionComponent {
         private mdDialog: MdDialog
     ) { }
 
+
+    @ViewChild(NoticeComponent) notice: NoticeComponent;
+
     @Input() ticket: Ticket;
 
     auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
@@ -36,10 +40,7 @@ export class ActionComponent {
 
     Next() {
         if (this.feedbackService.CheckFeedback(this.ticket)) {
-            const config = new MdDialogConfig();
-            config.width = '350px';
-            config.data = this.ticket;
-            const dialog = this.mdDialog.open(FeedbackSkipDialog, config);
+            this.notice.ShowMessage("feedback_skip");
         } else {
             this.triggerAction("finish").subscribe(() => {
                 this.workspaceService.SetAutoNext(true);
@@ -57,10 +58,7 @@ export class ActionComponent {
 
     Finish() {
         if (this.feedbackService.CheckFeedback(this.ticket)) {
-            const config = new MdDialogConfig();
-            config.width = '350px';
-            config.data = this.ticket;
-            const dialog = this.mdDialog.open(FeedbackSkipDialog, config);
+            this.notice.ShowMessage("feedback_skip");
         } else {
             this.triggerAction('finish');
         }

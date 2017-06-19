@@ -62,6 +62,20 @@ export class SummaryComponent {
     }
 
     exceededWaitingCellRenderer(d) {
+        // set warning color for floating row
+        setTimeout(_ => {
+            var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
+            if (agRow) {
+                var sumExceededWaiting = agRow.getElementsByClassName('ag-cell');
+                if (d.data.w_l_percent > ProjectConfig.service.wait_long_alert_percent) {
+                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].backgroundColor = '#ff5858';
+                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].color = '#fff';
+                } else {
+                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].backgroundColor = '#f0f0f0';
+                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].color = '#222';
+                }
+            }
+        });
         return '<span>' + d.data.wait_long + ' (' + d.data.w_l_percent + '%)</span>';
     }
 
@@ -77,6 +91,19 @@ export class SummaryComponent {
     }
     /////////////////////////////////////
     exceededServingCellRenderer(d) {
+        setTimeout(_ => {
+            var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
+            if (agRow) {
+                var sumExceededServing = agRow.getElementsByClassName('ag-cell');
+                if (d.data.s_l_percent > ProjectConfig.service.serve_long_alert_percent) {
+                    sumExceededServing[sumExceededServing.length - 1]['style'].backgroundColor = '#ff5858';
+                    sumExceededServing[sumExceededServing.length - 1]['style'].color = '#fff';
+                } else {
+                    sumExceededServing[sumExceededServing.length - 1]['style'].backgroundColor = '#f0f0f0';
+                    sumExceededServing[sumExceededServing.length - 1]['style'].color = '#222';
+                }
+            }
+        });
         return '<span>' + d.data.serve_long + ' (' + d.data.s_l_percent + '%)</span>';
     }
 

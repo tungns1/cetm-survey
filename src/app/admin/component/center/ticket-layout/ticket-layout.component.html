@@ -8,7 +8,7 @@
 <app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" [title]="title">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Name:</span>
+            <span fxFlex="20%" i18n>Name</span>
 
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="0.5%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
