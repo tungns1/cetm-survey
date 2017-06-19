@@ -19,7 +19,7 @@ import { CacheService } from '../../shared';
     template: `
         <div fxLayout="row">
             <div fxFlex="30%">
-                <span i18n>Service Basket</span>:
+                <span i18n>Services</span>:
                 <div class="border">
                 <select-check [(ngModel)]="value.basket" (ngModelChange)="OnChange()" [data]="services$ | async" textField="name">
                 </select-check>

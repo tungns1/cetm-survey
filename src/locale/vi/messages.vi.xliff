@@ -34,8 +34,8 @@
         <target>Phản hồi</target>
       </trans-unit>
       <trans-unit id="50d12307ecc2becd19a02a0cecac3d5835d357fe">
-        <source>List Of <x id="INTERPOLATION"/></source>
-        <target>Danh sách <x id="INTERPOLATION"/></target>
+        <source>List Of</source>
+        <target>Danh sách</target>
       </trans-unit>
       <trans-unit id="8675a724bb3952337aef7625c81b11e39a82d31b">
         <source>No.</source>
@@ -603,7 +603,7 @@
         <target>Phòng giao dịch</target>
       </trans-unit>
       <trans-unit id="8ed11c80d1e7f8135c3075d57a240858e272cea3">
-        <source>Ticket Number Format</source>
+        <source>Ticker Number Format</source>
         <target>Định dạng số vé</target>
       </trans-unit>
       <trans-unit id="d473e0f684a60db45d6f31e993f693f74290e056">
@@ -635,18 +635,18 @@
         <target>Tổng quan</target>
       </trans-unit>
       <trans-unit id="095b4fb2f4f822f065b851319acd5f3fb799bbc8">
-        <source>Add New <x id="INTERPOLATION"/></source>
-        <target>Thêm mới <x id="INTERPOLATION"/></target>
+        <source>Add New</source>
+        <target>Thêm mới</target>
         <note>Add New Model</note>
       </trans-unit>
       <trans-unit id="62eea9be4a1cd10c7c45b357d63179102681dca8">
-        <source>Add New <x id="INTERPOLATION"/></source>
-        <target>Thêm mới <x id="INTERPOLATION"/></target>
+        <source>Add New</source>
+        <target>Thêm mới</target>
         <note>Add New Model</note>
       </trans-unit>
       <trans-unit id="3b49356e893b4bc6064a75d85999c29460061b9e">
-        <source>Edit <x id="INTERPOLATION"/></source>
-        <target>Sửa <x id="INTERPOLATION"/></target>
+        <source>Edit</source>
+        <target>Sửa</target>
       </trans-unit>
       <trans-unit id="f73befbdb701b5787267f5f294e4ed51745c84b5">
         <source>Edit service name on this kiosk</source>
@@ -951,6 +951,10 @@
         <source>Old Password</source>
         <target>Mật khẩu cũ</target>
       </trans-unit>
+      <trans-unit id="8c690cf303d91c65315c534f4f9afe4c8256a0b2">
+        <source>Pass Word</source>
+        <target>Mật khẩu</target>
+      </trans-unit>
       <trans-unit id="c7014c6360e94b236286b869c3fe0ea9911c0387">
         <source>New Password</source>
         <target>Mật khẩu mới</target>
@@ -1095,6 +1099,82 @@
         <source>Frequency</source>
         <target>Tần suất</target>
       </trans-unit>
+      <trans-unit id="8ccbbf713df5a6603478c7d902bb14abb2545754">
+        <source>Active Time</source>
+        <target>Thời gian hoạt động</target>
+      </trans-unit>
+      <trans-unit id="e382fe163b07e271bef2d07d29e87e4eb1b710d8">
+        <source>Ticket Quantity</source>
+        <target>Số lượng vé</target>
+      </trans-unit>
+      <trans-unit id="08ebf821b3411642605b59aadb7b99f4d2b324d3">
+        <source>Branch Code</source>
+        <target>Mã chi nhánh</target>
+      </trans-unit>
+      <trans-unit id="4ee8636e16c362c40e81c21aa870c8440e754ca7">
+        <source>Branch Name</source>
+        <target>Tên chi nhánh</target>
+      </trans-unit>
+      <trans-unit id="0e314babc56673b3a7e1f9d01d75c7892137d3cc">
+        <source>Store Code</source>
+        <target>Mã phòng giao dịch</target>
+      </trans-unit>
+      <trans-unit id="ab4440975b6bf3e3b7297d570e6597c56f4b110f">
+        <source>Store Name</source>
+        <target>Tên phòng giao dịch</target>
+      </trans-unit>
+      <trans-unit id="c83041a1a876b6effd8c22e816ba441eedf18b82">
+        <source>User Code</source>
+        <target>Mã người dùng</target>
+      </trans-unit>
+      <trans-unit id="4fcb6dbd1b656de4f606e061af0ed606d3fdc547">
+        <source>User Name</source>
+        <target>Tên người dùng</target>
+      </trans-unit>
+      <trans-unit id="709a92dfd609726c7273862601208568457bc09b">
+        <source>Date Login</source>
+        <target>Ngày đăng nhập</target>
+      </trans-unit>
+      <trans-unit id="7a9b64fced391852c15c394451db05b1c44d34fa">
+        <source>Login Time</source>
+        <target>Thời gian đăng nhập</target>
+      </trans-unit>
+      <trans-unit id="605b4383d96646f1aa6c351b1c2b7cf27c68a79c">
+        <source>Date Logout</source>
+        <target>Ngày đăng xuất</target>
+      </trans-unit>
+      <trans-unit id="dd4159d982f20e78165e2b8d85186fc2b51dc160">
+        <source>Logout Time</source>
+        <target>Thời gian đăng xuất</target>
+      </trans-unit>
+      <trans-unit id="3f31fdf0a1cbb78122b8ce8e839fd6a8680db5af">
+        <source>Total Connection Time</source>
+        <target>Tổng TG kết nối</target>
+      </trans-unit>
+      <trans-unit id="9ae6c688ef07ddba653efe0f30d569882248b43a">
+        <source>User code</source>
+        <target>Mã người dùng</target>
+      </trans-unit>
+      <trans-unit id="024886ca34a6f309e3e51c2ed849320592c3faaa">
+        <source>User name</source>
+        <target>Tên người dùng</target>
+      </trans-unit>
+      <trans-unit id="d2c32b1d830519263945169688985a4ccd820742">
+        <source>Time connection</source>
+        <target>Thời gian kết nối</target>
+      </trans-unit>
+      <trans-unit id="8009edfb88a2a59d0f109c5d4e9057070427277b">
+        <source>Time productivity</source>
+        <target>TG hoạt động hiệu quả</target>
+      </trans-unit>
+      <trans-unit id="c18922b6a79790020489c8400efbaf229c748c3b">
+        <source>Time idle</source>
+        <target>TG rảnh</target>
+      </trans-unit>
+      <trans-unit id="4793d5e582ce27caefc58f677f0d7ed6fda8688b">
+        <source>Ticket attended</source>
+        <target>Phục vụ &gt; 2 phút</target>
+      </trans-unit>
       <trans-unit id="99302f62f542f95a716b0f75db2d84c11dc25f9a">
         <source>Ticket cancelled</source>
         <target>Vé đã hủy</target>
@@ -1131,9 +1211,41 @@
         <source>Discarded</source>
         <target>Không thực hiện</target>
       </trans-unit>
+      <trans-unit id="4c6ed6432d9966baff5d3451c6226974c5f6d069">
+        <source>Teap</source>
+        <target>% vé đợi chuẩn</target>
+      </trans-unit>
+      <trans-unit id="52ebc6e08ba314deaf561fdfdad6fa4291029ec0">
+        <source>Dap</source>
+        <target>% vé phục vụ dưới 2 phút</target>
+      </trans-unit>
+      <trans-unit id="ad20377559b1cd37ba53189f55ed7d0d18faf3c5">
+        <source>Attended on time</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="dc599e07374695638aab6aeb6e639c20d248a597">
+        <source>Attended over time</source>
+        <target></target>
+      </trans-unit>
       <trans-unit id="d0050cd9ce8209314b683651c93a67c39fe786e0">
         <source>Average Serving Time</source>
         <target>Thời gian phục vụ trung bình</target>
+      </trans-unit>
+      <trans-unit id="7b8c063faf9ff1570f5e44d4434cb3cba74cd808">
+        <source>Ticket issued</source>
+        <target>Vé đã phục vụ</target>
+      </trans-unit>
+      <trans-unit id="31e7a3aeeccb0180bde1279c510adfa49e7d333c">
+        <source>Abandoned</source>
+        <target>Phục vụ &lt; 2 phút</target>
+      </trans-unit>
+      <trans-unit id="ad79ee19fea3b344542a227945c72f446051e284">
+        <source>Occupied</source>
+        <target>Hiệu suất phục vụ</target>
+      </trans-unit>
+      <trans-unit id="5646cd29797a2ebcbde46bbabaffeb1e89ba7765">
+        <source>Time Serving</source>
+        <target>Thời gian phục vụ</target>
       </trans-unit>
     </body>
   </file>

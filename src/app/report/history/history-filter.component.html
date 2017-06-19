@@ -3,13 +3,13 @@
         <div fxFlex="28%">
             <strong class="uppercase inline" i18n>Waiting Time</strong><label class="note margin-l-5" i18n>(minute)</label>
             <input class="inputFilter inline border" type="number" i18n-placeholder="min" [(ngModel)]="filter.wtimemin" name="wtimemin" #wtimemin="ngModel" min="0">
-            <span>to</span>
+            <span i18n>to</span>
             <input class="inputFilterafter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.wtimemax" name="wtimemax" #wtimemax="ngModel" min="0">
         </div>
         <div fxFlex="28%">
             <strong class="uppercase inline" i18n>Serving Time</strong><label class="note margin-l-5" i18n>(minute)</label>
             <input class="inputFilter inline border" type="number" i18n-placeholder="min" [(ngModel)]="filter.stimemin" name="stimemin" #stimemin="ngModel" min="0">
-            <span>to</span>
+            <span i18n>to</span>
             <input class="inputFilterafter inline border" type="number" i18n-placeholder="max" [(ngModel)]="filter.stimemax" name="stimemax" #stimemax="ngModel" min="0">
         </div>
         <div fxFlex="32%" class="feedback">
@@ -23,7 +23,7 @@
             </select>
         </div>
 
-        <button fxFlex class="btnFill btnCtrl" (click)="query()">Filter</button>
+        <button fxFlex class="btnFill btnCtrl" (click)="query()" i18n>Filter</button>
 
     </form>
 </div>

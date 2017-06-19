@@ -38,7 +38,7 @@
             </div>
             <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
                 <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
-                <button fxFlex class="btnFill" appConfirm="Do you want to restore this ticket?" (confirm)="Restore()" i18n>Restore</button>
+                <button fxFlex class="btnFill" appConfirm="Do you want to restore this ticket?" (confirm)="Restore()" i18n i18n-appConfirm>Restore</button>
             </div>
         </div>
 
@@ -58,9 +58,9 @@
 </div>
 
 <app-notice>
-    <app-notice-message name="missing_counter_or_service" message="Please, select counter or service"></app-notice-message>
-    <app-notice-message name="missing_counter" message="Please select counter"></app-notice-message>
-    <app-notice-message name="server_error" message="Server Error"></app-notice-message>
-    <app-notice-message name="serving" message="Unsuccess, finish serving ticket before calling"></app-notice-message>
-    <app-notice-message name="feedback_skip" message="Please remind customer feedback to finish transaction"></app-notice-message>
+    <app-notice-message name="missing_counter_or_service" message="Please, select counter or service" i18n-message></app-notice-message>
+    <app-notice-message name="missing_counter" message="Please select counter" i18n-message></app-notice-message>
+    <app-notice-message name="server_error" message="Server Error" i18n-message></app-notice-message>
+    <app-notice-message name="serving" message="Unsuccess, finish serving ticket before calling" i18n-message></app-notice-message>
+    <app-notice-message name="feedback_skip" message="Please remind customer feedback to finish transaction" i18n-message></app-notice-message>
 </app-notice>
