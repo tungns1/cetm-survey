@@ -95,8 +95,7 @@ export class SummaryComponent {
             var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
             if (agRow) {
                 var sumExceededServing = agRow.getElementsByClassName('ag-cell');
-                console.log(sumExceededServing[sumExceededServing.length - 1]);
-                if (d.data.w_l_percent > ProjectConfig.service.wait_long_alert_percent) {
+                if (d.data.s_l_percent > ProjectConfig.service.serve_long_alert_percent) {
                     sumExceededServing[sumExceededServing.length - 1]['style'].backgroundColor = '#ff5858';
                     sumExceededServing[sumExceededServing.length - 1]['style'].color = '#fff';
                 } else {
