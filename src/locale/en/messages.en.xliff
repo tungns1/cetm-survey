@@ -1003,6 +1003,66 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="68572de01b84c678be4bf8a27b990ecac2f41ce9" datatype="html">
+        <source>Code</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/shared/form/service-list/service-customer.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/branch/branch.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/branch/branch.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/service/service.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/service/service.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/service/service.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/tform/tform.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/tform/tform.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/tform/tform.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/kiosk/kiosk.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/screen/screen.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/screen/screen.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
         <source>Cancel</source>
         <target/>
@@ -1081,6 +1141,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
           <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
+          <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
@@ -1231,54 +1295,6 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="68572de01b84c678be4bf8a27b990ecac2f41ce9" datatype="html">
-        <source>Code</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/branch/branch.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/branch/branch.component.ts</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/service/service.component.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/service/service.component.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/tform/tform.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/tform/tform.component.ts</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/tform/tform.component.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/kiosk/kiosk.component.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/screen/screen.component.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/screen/screen.component.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="567ae7c008e8c6298cd7f2baaabbea6ef4127393" datatype="html">
         <source>Parent Location</source>
         <target/>
@@ -1288,7 +1304,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="ed2eb2ef4768997075f1a2059b51e06a1e4cf331" datatype="html">
-        <source><x id="INTERPOLATION"/>Name</source>
+        <source><x id="INTERPOLATION"/> Name</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/branch/branch.component.ts</context>
@@ -1296,7 +1312,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="2e383a0ce19de98a655fba7074c6cf112210b95c" datatype="html">
-        <source><x id="INTERPOLATION"/>Code</source>
+        <source><x id="INTERPOLATION"/> Code</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/branch/branch.component.ts</context>
@@ -1397,14 +1413,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/org/user/user.component.ts</context>
           <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="59d964c893e125274ead1f8323800df2fc9190e2" datatype="html">
-        <source>Service Code</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/service/service.component.ts</context>
-          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ade0a4962a6170e72d68d47012b688dd69684509" datatype="html">
@@ -1511,8 +1519,8 @@
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="bc405d826f7e23711d0b189d00131e9999b3e70d" datatype="html">
-        <source>Sleep Second:</source>
+      <trans-unit id="898a70cd3a66f61e04bae008d5acd4314f8f79b4" datatype="html">
+        <source>Sleep Second</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/voice/voice.component.ts</context>
@@ -1528,35 +1536,11 @@
         </context-group>
       </trans-unit>
       <trans-unit id="fdf489e7608f070cfee1470830aa3c478304ce37" datatype="html">
-        <source>Playlist </source>
+        <source> Playlist </source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/center/voice/voice.component.ts</context>
           <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="cae1c59a158f821d221a1d11cda40132d44fb5ec" datatype="html">
-        <source>Counter Code</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="69927ae9f65571f0983a1791a9ba045dee29bdae" datatype="html">
-        <source>Counter Number</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/history/transaction.component.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/customer/history/transaction.component.ts</context>
-          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fbcb0d75afbe6aec04269381598a737f4bd19db7" datatype="html">
@@ -1564,15 +1548,11 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">23</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="2e9bf18a387525d6da9c194c0e78e52814a22308" datatype="html">
-        <source>Counter Name</source>
-        <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/counter/counter.component.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5b49b2048ba380f6e8e9d15e3cfee50389f7a7fd" datatype="html">
@@ -1679,22 +1659,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/house/sflow/sflow.component.ts</context>
           <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="eff46e15d30eee98b8bb31d835447d6fd4890837" datatype="html">
-        <source> </source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/meta/branch_config/branch_config.component.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/meta/branch_config/branch_config.component.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/admin/component/meta/branch_config/branch_config.component.ts</context>
-          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5e417d8f699f0496ee639fc3ac8f810193ba0e4f" datatype="html">
@@ -2334,6 +2298,38 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="08ebf821b3411642605b59aadb7b99f4d2b324d3" datatype="html">
+        <source>Branch Code</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/counter/setting/setting.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cae1c59a158f821d221a1d11cda40132d44fb5ec" datatype="html">
+        <source>Counter Code</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/counter/setting/setting.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fee06326c6c28127a8ccaa268f25500381467359" datatype="html">
+        <source>Addr Led</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/counter/setting/setting.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="de35d5dcadd71b6b58558d50c3aeb3a3a1f5f94a" datatype="html">
+        <source>Led COM port</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/counter/setting/setting.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e95ae009d0bdb45fcc656e8b65248cf7396080d5" datatype="html">
         <source>Overview</source>
         <target/>
@@ -2930,6 +2926,18 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="69927ae9f65571f0983a1791a9ba045dee29bdae" datatype="html">
+        <source>Counter Number</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/history/transaction.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/customer/history/transaction.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="599c3badd3c5576cf228a935f0443911e8080227" datatype="html">
         <source>Waiting Duration</source>
         <target/>
@@ -3248,14 +3256,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/report/dashboard/transaction-time/transaction-time.component.ts</context>
           <context context-type="linenumber">64</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="0db664fcc342e82a608eb659843838a91261067a" datatype="html">
-        <source>(hh:mm:ss)</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/dashboard/sum/sum.component.ts</context>
-          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f08e75d4cf67f754c9ab18cc48b337b6ee6ef0fa" datatype="html">
@@ -4256,22 +4256,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">D:/Projects/qapp/src/app/report/store/store-performance/performance.component.ts</context>
           <context context-type="linenumber">55</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ad20377559b1cd37ba53189f55ed7d0d18faf3c5" datatype="html">
-        <source>Attended on time</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="dc599e07374695638aab6aeb6e639c20d248a597" datatype="html">
-        <source>Attended over time</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts</context>
-          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7b8c063faf9ff1570f5e44d4434cb3cba74cd808" datatype="html">

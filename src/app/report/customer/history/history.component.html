@@ -61,14 +61,14 @@
     <ag-grid-column headerName="Detail" [cellClass]="cellClass" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 <div class="paginationAndExport margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
-    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToFirst()" i18n>First</button>
+    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToFirst()" i18n>First</button>
     <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
     <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
-    <button fxFlex="60px" class="btnClear pointer" (click)="jumpToLast()" i18n>Last</button>
+    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToLast()" i18n>Last</button>
     <div fxFlex="10px"></div>
     <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
     <span class="totalPages">/ ({{totalPage}} <span i18n>Pages</span>)</span>
-    <button fxFlex="50px" class="btnClear pointer" (click)="jumpToPage(curentPage)" i18n>Move to</button>
+    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToPage(curentPage)" i18n>Move to</button>
     <div fxFlex></div>
     <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">
         <i class="fa fa-file-excel-o fa-lg"></i>

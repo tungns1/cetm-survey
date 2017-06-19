@@ -26,7 +26,7 @@
         </div>
         <form formGroupName="behavior">
             <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-                <span fxFlex="20%" i18n>Sleep Second:</span>
+                <span fxFlex="20%" i18n>Sleep Second</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="5px">
                     <span fxFlex="1%" class="valid-color" *ngIf="form.get('behavior').get('sleep_second').hasError('required')">*</span>
                     <span fxFlex="1%" class="valid-color" *ngIf="!form.get('behavior').get('sleep_second').hasError('required')">&nbsp;</span>

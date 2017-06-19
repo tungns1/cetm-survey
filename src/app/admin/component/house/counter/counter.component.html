@@ -10,7 +10,7 @@
 <app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Counter Code</span>
+            <span fxFlex="15%" i18n>Code</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
@@ -20,7 +20,7 @@
                     <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
                 </div>
             </div>
-            <span fxFlex="15%" i18n>Counter Number</span>
+            <span fxFlex="15%" i18n>Number</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('cnum').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('cnum').hasError('required')">&nbsp;</span>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="15%" i18n>Counter Name</span>
+            <span fxFlex="15%" i18n>Name</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>

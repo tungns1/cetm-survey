@@ -8,10 +8,10 @@
 <form [formGroup]="form">
     <h2> General Configuration</h2>
     <md-input-container>
-        <input mdInput formControlName="branch_code" placeholder="Branch Code">
+        <input mdInput formControlName="branch_code" placeholder="Branch Code" i18n-placeholder>
     </md-input-container>
     <md-input-container>
-        <input mdInput formControlName="counter_code" placeholder="Counter Code">
+        <input mdInput formControlName="counter_code" placeholder="Counter Code" i18n-placeholder>
     </md-input-container>
 
     <h2> Mini Mode View</h2>
@@ -22,10 +22,10 @@
     <md-tab-group>
         <md-tab label="Led">
             <md-input-container>
-                <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Addr Led">
+                <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Addr Led" i18n-placeholder>
             </md-input-container>
             <md-input-container>
-                <input mdInput type="text" formControlName="led_com_port" placeholder="Led COM port">
+                <input mdInput type="text" formControlName="led_com_port" placeholder="Led COM port" i18n-placeholder>
             </md-input-container>
 
         </md-tab>
