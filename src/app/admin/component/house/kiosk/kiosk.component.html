@@ -9,7 +9,7 @@
 <app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" id="editKioskForm" fxLayout="column">
         <div fxLayout="row" class="rowCtrl">
-            <span fxFlex="20%" i18n>Kiosk Code</span>
+            <span fxFlex="20%" i18n>Code</span>
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('code').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">
@@ -19,7 +19,7 @@
             </div>
             <div fxFlex="2%"></div>
 
-            <span fxFlex="10%" i18n>Kiosk Name</span>
+            <span fxFlex="10%" i18n>Name</span>
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('name').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('name').hasError('required')">&nbsp;</span>
             <div fxFlex fxLayout="column" fxLayoutGap="2px">

@@ -1587,22 +1587,6 @@
           <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="00092c4c1aae6745e65d0a82b30f628dbdfb0504" datatype="html">
-        <source>Kiosk Code</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">E:/Coding/Repo/src/cetm/client/app/src/app/admin/component/house/kiosk/kiosk.component.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f4438b2c19832017c4c151a95d27e6342208af74" datatype="html">
-        <source>Kiosk Name</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">E:/Coding/Repo/src/cetm/client/app/src/app/admin/component/house/kiosk/kiosk.component.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="d2d6e3cea54309786a27d7f5c566a5a108fba0db" datatype="html">
         <source>Fixed Vip Codes</source>
         <target/>
@@ -1647,22 +1631,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">E:/Coding/Repo/src/cetm/client/app/src/app/admin/component/house/screen/screen.component.ts</context>
           <context context-type="linenumber">93</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="bda6231488c2e14e81e882de5c0397e71cff6461" datatype="html">
-        <source>Screen Code</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">E:/Coding/Repo/src/cetm/client/app/src/app/admin/component/house/screen/screen.component.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="532ff12b6663f205d47e7486f21e108817cb7f66" datatype="html">
-        <source>Screen Name</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">E:/Coding/Repo/src/cetm/client/app/src/app/admin/component/house/screen/screen.component.ts</context>
-          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b0eebe1eb44dbb1ecb8164bdbc06d4c74c38bc51" datatype="html">
@@ -3051,7 +3019,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="08838a7c0dd5288395b0f0371f321b9a0f6016b9" datatype="html">
-        <source>pages</source>
+        <source>Pages</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">E:/Coding/Repo/src/cetm/client/app/src/app/report/history/history.component.ts</context>
