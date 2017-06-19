@@ -56,9 +56,9 @@ export class FeedbackService {
             return false
         }
         if (!this.required || !this.feedbackDevice.Available) {
-            return true
+            return false;
         }
-        return false;
+        return true;
 
     }
 }
