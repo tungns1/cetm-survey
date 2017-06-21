@@ -3,7 +3,7 @@ import { OrgService, IUser, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
 
 @Component({
   selector: 'admin-user',
@@ -16,10 +16,15 @@ export class UserComponent extends BaseAdminComponent<IUser> {
     private org: OrgService
   ) { 
     super(injector, org.UserService);
+        if (AppStorage.Culture === 'vi')
+            this.title = 'Người dùng';
+        else
+            this.title = 'User';
   }
 
-  title = 'user';
+  title = 'User';
   pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
+
   makeForm(u?: IUser) {
     u = u || <any>{};
     return (new FormBuilder).group({

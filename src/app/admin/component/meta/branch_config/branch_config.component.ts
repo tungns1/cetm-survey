@@ -1,9 +1,8 @@
 import { Component, Injector } from '@angular/core';
 import { MetaService, OrgService, IBranchConfig } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent } from '../../shared';
+import { BaseAdminComponent, AppStorage } from '../../shared';
 
 @Component({
   selector: 'admin-config',
@@ -16,9 +15,14 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     private meta: MetaService
   ) {
     super(injector, meta.BranchConfigService);
+    if (AppStorage.Culture === 'vi')
+      this.title = 'Cấu hình chi nhánh';
+    else
+      this.title = 'Branch config';
   }
 
   title = 'branch config';
+  private branches = this.org.BranchService.RxListView;
 
   makeForm(u?: IBranchConfig) {
     u = u || <any>{};
@@ -38,6 +42,5 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     });
   }
 
-  private branches = this.org.BranchService.RxListView;
 }
 
