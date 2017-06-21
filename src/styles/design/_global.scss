@@ -199,14 +199,6 @@ table tbody tr:nth-child(odd) {
                 font-weight: $font-weight-default + 200;
             }
         }
-        .ag-floating-bottom {
-            .ag-row {
-                // background-color: $key-color;
-                border-top: $border;
-                font-weight: $font-weight-default + 200;
-                font-size: $font-size-default + 1;
-            }
-        }
         .ag-row-odd,
         .ag-row-even {
             cursor: pointer;
@@ -214,24 +206,35 @@ table tbody tr:nth-child(odd) {
                 background-color: $background-color - 50;
             }
         }
+        .ag-floating-bottom {
+            .ag-row {
+                // background-color: $key-color;
+                border-top: $border;
+                font-weight: $font-weight-default + 200;
+                font-size: $font-size-default + 1;
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+            }
+        }
     }
 }
 
-
 .paginationAndExport {
-    .curentPage{
+    .curentPage {
         text-align: center;
         font-size: $font-size-default + 2;
         height: 27px;
         border-radius: 3px;
         border: $border;
     }
-    .totalPages{
+    .totalPages {
         font-size: $font-size-default + 2
     }
     .curentPage::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
 }
+
 
 /******************** End of global ***********************/
