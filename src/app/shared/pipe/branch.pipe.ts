@@ -1,13 +1,17 @@
-
 import { Pipe, PipeTransform } from '@angular/core';
 import { BranchLevels, CacheBranch } from '../model';
+import { AppStorage } from '../../../store'
 
 @Pipe({
     name: 'branchLevelName'
 })
 export class BranchLevelNamePipe implements PipeTransform {
     transform(id: number) {
-        return BranchLevels[id].name;
+        if (AppStorage.Culture === 'vi')
+            return BranchLevels[id].vi;
+        else
+            return BranchLevels[id].name;
+
     }
 }
 
@@ -25,7 +29,7 @@ export class BranchNamePipe implements PipeTransform {
 })
 export class ParentNamePipe implements PipeTransform {
     transform(id: string) {
-        let b= CacheBranch.GetForID(id);
+        let b = CacheBranch.GetForID(id);
         return CacheBranch.GetNameForID(b.parent);
     }
 }
@@ -34,7 +38,7 @@ export class ParentNamePipe implements PipeTransform {
 })
 export class ParentCodePipe implements PipeTransform {
     transform(id: string) {
-        let b= CacheBranch.GetForID(id);
+        let b = CacheBranch.GetForID(id);
         return CacheBranch.GetCodeForID(b.parent);
     }
 }

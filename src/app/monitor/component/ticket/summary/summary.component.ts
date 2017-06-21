@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
-    ISummary, Summary,
+    ISummary, Summary, AppStorage,
     MonitorNavService, MonitorFilterService, CacheBranch
 } from '../../shared';
 import { MonitorSummaryService, ProjectConfig } from '../shared';
@@ -58,7 +58,12 @@ export class SummaryComponent {
     storeCellRenderer(d) {
         if (d.data.branch_id)
             return CacheBranch.GetNameForID(d.data.branch_id);
-        else return 'Summary';
+        else {
+            if (AppStorage.Culture === 'vi')
+                return 'Tổng cộng';
+            else
+                return 'Summary';
+        }
     }
 
     exceededWaitingCellRenderer(d) {
