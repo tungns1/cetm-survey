@@ -73,6 +73,7 @@ export class TicketDetailDialog {
     } else {
       this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
         .subscribe(v => {
+          this.notice.Close();
           this.dialogRef.close();
         });
     }
