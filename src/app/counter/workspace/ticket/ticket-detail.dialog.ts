@@ -21,14 +21,14 @@ export class TicketDetailDialog {
     private feedbackService: FeedbackService,
     private queueService: QueueService,
     private workspaceService: WorkspaceService,
-     private mdDialog: MdDialog
+    private mdDialog: MdDialog
   ) { }
 
   isServing = this.ticket.IsState("serving");
   isCancelled = this.ticket.IsState("cancelled");
   isMissed = this.ticket.IsState("missed");
   isWaiting = this.ticket.IsState("waiting");
-
+  t:Ticket;
   checkedCounters = [];
   checkedServices = [];
   counters = this.workspaceService.counters$.combineLatest(
@@ -54,6 +54,9 @@ export class TicketDetailDialog {
     this.queueService.busy$.subscribe(d => {
       this.isBusy = d;
     })
+    this.queueService.serving$.subscribe(v=>{
+      this.t=v[0]
+    })
   }
 
   Move() {
@@ -68,15 +71,23 @@ export class TicketDetailDialog {
         return;
       }
     }
-    if (this.feedbackService.CheckFeedback(this.ticket) && this.isServing) {
+    if (this.isServing) {
+
+      if (this.feedbackService.CheckFeedback(this.t)) {
         this.notice.ShowMessage("feedback_skip");
-    } else {
-      this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
-        .subscribe(v => {
-          this.notice.Close();
-          this.dialogRef.close();
-        });
+      } else {
+        this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+          .subscribe(v => {
+            this.dialogRef.close();
+          });
+      }
+    }else{
+        this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+          .subscribe(v => {
+            this.dialogRef.close();
+          });
     }
+
   }
 
   Delete() {
