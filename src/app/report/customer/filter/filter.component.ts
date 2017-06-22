@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportFilterService, Customer } from '../../shared';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
-
+import { Toast } from '../../../x/ui/noti/toastr';
 @Component({
     selector: 'customer-filter',
     templateUrl: 'filter.component.html',
@@ -11,7 +11,7 @@ export class ReportFilterComponent {
     constructor(
         private customerApi: CustomerAPI,
     ) { }
-
+toast = new Toast;
     ngOnInit() {
         RxInfoCustomer.subscribe(v => {
             if (v != null) {
@@ -31,7 +31,7 @@ export class ReportFilterComponent {
                 RxInfoCustomer.next(c);
             },
             error=>{
-                alert("Code does not exist")
+                 this.toast.Title('Info').Info("Code does not exist").Show();
             });
             RxInfoCustomer.next(null);
         

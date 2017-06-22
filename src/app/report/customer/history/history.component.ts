@@ -152,7 +152,7 @@ export class HistoryComponent {
     }
 
     excel(data) {
-        this.customerAPI.ExportHistory();
+        this.customerAPI.ExportHistory(this.id);
     }
 
 }
