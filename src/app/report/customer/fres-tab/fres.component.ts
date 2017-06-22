@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CustomerView } from '../shared';
-import { Customer } from '../../shared';
+import { Customer, AppStorage } from '../../shared';
 import { CustomerAPI } from '../service/customer.service';
 
 @Component({
@@ -31,7 +31,10 @@ export class FresComponent {
 
   ngOnInit() {
     this.data.fres.map(d => {
-      d.name += ' (month)'
+        if (AppStorage.Culture === 'vi')
+            d.name += ' (tháng)';
+        else
+            d.name += ' (month)';
     })
   }
   

@@ -85,9 +85,6 @@
   <translation id="7808756054397155068">Đặt lại</translation>
   <translation id="2509141182388535183">Xem</translation>
   <translation id="5446654805864102078">Địa chỉ cha</translation>
-  <translation id="6350491423682933549">
-Tên <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph> </translation>
-  <translation id="6864947865085354349">Mã <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="5248717555542428023">Tên đăng nhập</translation>
   <translation id="6959497441009812685">Họ và tên</translation>
   <translation id="471816275243265264">Địa điểm</translation>
@@ -347,4 +344,25 @@ Tên <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph> </translation>
   <translation id="1608105963217791253">Cài đặt</translation>
   <translation id="2821179408673282599">Trang chủ</translation>
   <translation id="2052833920187184086">Thời gian phục vụ</translation>
+  <translation id="354489695285791127">Hoạt động quầy</translation>
+  <translation id="4272154726021918291">Hiệu năng PGD</translation>
+  <translation id="5193754698237909499">Bạn có muốn xóa không?</translation>
+  <translation id="1360315882745299956">Số vé</translation>
+  <translation id="3435252625535731151">Không tìm thấy vé</translation>
+  <translation id="4990158061898203335">Tìm kiếm vé</translation>
+  <translation id="5707071798214383481">Cài đặt quầy</translation>
+  <translation id="7297944290589265560">Đi</translation>
+  <translation id="198471031488977990">Cấu hình chung</translation>
+  <translation id="3180395643608813221">Chế độ thu nhỏ</translation>
+  <translation id="2516583967431582001">Cấu hình nâng cao</translation>
+  <translation id="3708675742680248205">Led</translation>
+  <translation id="6543643564103016190">Ghi âm</translation>
+  <translation id="5276952738294233478">Bật ghi âm giao dịch</translation>
+  <translation id="5212357720846763566">Bật chế độ thu nhỏ</translation>
+  <translation id="3033623772164647792">Chiều cao</translation>
+  <translation id="2018922024247045709">Chiều rộng</translation>
+  <translation id="7779249123661446825">Cấu hình khác</translation>
+  <translation id="4191190862219975057">Không thể chọn</translation>
+  <translation id="2747815278860682041">Luôn hiện trên cùng</translation>
+  <translation id="840816844468850680">Không thể thay đồi kích thước</translation>
 </translationbundle>

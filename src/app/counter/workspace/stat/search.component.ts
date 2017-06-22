@@ -13,33 +13,29 @@ export class SearchComponent {
         private ticketService: TicketService
     ) { }
 
-    message: string = "";
+    message: number = 1;
     cnum$ = new Subject<string>();
     tickets$ = this.cnum$.switchMap(cnum => {
         return this.ticketService.Search(cnum);
     }).do(tickets => {
         if (!tickets || tickets.length < 1) {
-            this.message = 'Not Found Ticket';
+            this.message = 2;
         } else {
-            this.message = '';
+            this.message = 1;
         }
     }, e => {
-        this.message = 'Not Found Ticket';
+        this.message = 2;
     })
 
     searchTicket(cnum: string) {
-        this.message = 'Search Ticket';
+        this.message = 3;
         this.cnum$.next(cnum);
     }
 
     stateKey(state: string) {
         return `State ${state}`;
     }
-
-    getMessage() {
-        if(this.message.length > 5) return this.message;
-        else return "Ticket number";
-    }
+    
     checkState(t:ITicket){
         if(t.state==="waiting"){
             return true;
