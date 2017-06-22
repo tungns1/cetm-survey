@@ -4,7 +4,7 @@ import { CenterService, ITicketLayout, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
 
 @Component({
   selector: 'ticket-layout',
@@ -16,6 +16,10 @@ export class TicketLayoutComponent extends BaseAdminComponent<ITicketLayout> {
     private org: CenterService
   ) {
     super(injector, org.TicketLayoutService);
+    if (AppStorage.Culture === 'vi')
+      this.title = 'Cấu hình vé';
+    else
+      this.title = 'Ticket Layout';
   }
   
   title = 'Ticket Layout';

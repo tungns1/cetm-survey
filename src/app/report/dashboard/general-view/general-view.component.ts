@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionAggregate } from '../shared';
-import { PeriodFilterService } from '../../shared';
+import { PeriodFilterService, AppStorage } from '../../shared';
 import { timeFormat, timeParse } from 'd3-time-format';
 import { GridOptions } from "ag-grid";
 import { GroupByTitlePipe } from '../shared/groupBy.pipe'
@@ -75,16 +75,28 @@ export class GeneralViewComponent implements OnInit {
     let field_by = '';
     switch (this.field) {
       case 'service_id':
-        field_by = 'Service';
+        if (AppStorage.Culture === 'vi')
+            field_by = 'Dịch vụ';
+        else
+            field_by = 'Service';
         break;
       case 'user_id':
-        field_by = 'Teller';
+        if (AppStorage.Culture === 'vi')
+            field_by = 'Giao dịch viên';
+        else
+            field_by = 'Teller';
         break;
       case 'counter_id':
-        field_by = 'Counter';
+        if (AppStorage.Culture === 'vi')
+            field_by = 'Quầy';
+        else
+            field_by = 'Counter';
         break;
       case 'branch_id':
-        field_by = 'Store';
+        if (AppStorage.Culture === 'vi')
+            field_by = 'Phòng giao dịch';
+        else
+            field_by = 'Store';
         break;
     }
     return field_by;

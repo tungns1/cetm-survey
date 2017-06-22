@@ -85,9 +85,6 @@
   <translation id="7808756054397155068">Đặt lại</translation>
   <translation id="2509141182388535183">Xem</translation>
   <translation id="5446654805864102078">Địa chỉ cha</translation>
-  <translation id="6350491423682933549">
-Tên <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph> </translation>
-  <translation id="6864947865085354349">Mã <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="5248717555542428023">Tên đăng nhập</translation>
   <translation id="6959497441009812685">Họ và tên</translation>
   <translation id="471816275243265264">Địa điểm</translation>
@@ -347,4 +344,7 @@ Tên <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph> </translation>
   <translation id="1608105963217791253">Cài đặt</translation>
   <translation id="2821179408673282599">Trang chủ</translation>
   <translation id="2052833920187184086">Thời gian phục vụ</translation>
+  <translation id="354489695285791127">Hoạt động quầy</translation>
+  <translation id="4272154726021918291">Hiệu năng PGD</translation>
+  <translation id="5193754698237909499">Bạn có muốn xóa không?</translation>
 </translationbundle>
