@@ -21,6 +21,7 @@ export class HistoryComponent {
     // paging = paging;
     curentPage: number = 1;
     totalPage: number;
+    code = '';
     cellClass: string[] = ['center', 'padding-10'];
     private gridOptions: GridOptions = {
         rowHeight: 35,
@@ -50,8 +51,16 @@ export class HistoryComponent {
         // if data passed from report - history
         if (this.id) {
             this.customerAPI.pagin(1, '', this.id);
-        } else
+        } else {
             this.pagin(1);
+        }
+
+        RxInfoCustomer.subscribe(v => {
+            if (v != null) {
+                this.code = v.code;
+            }
+
+        })
     }
 
     detailCellRenderer(d) {
@@ -152,7 +161,8 @@ export class HistoryComponent {
     }
 
     excel(data) {
-        this.customerAPI.ExportHistory(this.id);
+        this.customerAPI.ExportHistory(this.id, this.code);
+
     }
 
 }
