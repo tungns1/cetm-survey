@@ -73,10 +73,12 @@ export class CustomerAPI {
         return this.RxCustomer.map(CustomerView.Make);
     };
 
-    ExportHistory() {
-        const url = this.apiCustomer.MakeURL("export", this.filterService.ToBackendQuery());
+    ExportHistory(id: string) {
+        const query = Object.assign({ id: id }, this.filterService.ToBackendQuery());
+        const url = this.api.MakeURL("export_customer", query);
         window.open(url, "_blank");
     }
     apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
+    api = this.httpServiceGenerator.make<any>("/api/report/transaction");
 
 }
