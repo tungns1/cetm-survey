@@ -47,7 +47,6 @@ export class FeedbackService {
     // return [] if can next
     // return null if not
     CheckFeedback(t: Ticket) {
-        console.log(t)
         if (t) {
             var feedback = t.tracks[t.tracks.length - 1].feedback || null;
             if (feedback) {
