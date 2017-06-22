@@ -8,7 +8,18 @@ const vn = {
         longhand: ['Tháng một', 'Tháng hai', 'Tháng ba', 'Tháng tư', 'Tháng năm', 'Tháng sáu', 'Tháng bảy', 'Tháng tám', 'Tháng chín', 'Tháng mười', 'Tháng 11', 'Tháng 12']
     }
 }
+const en = {
+    weekdays: {
+        shorthand: ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'ST'],
+        longhand: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    },
+    months: {
+        shorthand: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        longhand: ['january', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    }
+}
 
 export const Locales = {
-    vn: vn
+    vn: vn,
+    en: en
 }
