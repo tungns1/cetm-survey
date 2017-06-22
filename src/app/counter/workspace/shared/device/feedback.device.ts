@@ -17,7 +17,8 @@ export class FeedbackDevice {
         this.qmsService.listen("/feedback/ready", (event: string, arg: any) => {
             this.UpdateConfig();
         });
-        this.qmsService.listen("/feedback/screen-status", (event: string, status: 'on' | 'off') => {
+        this.qmsService.listen("/feedback/screen-status", (status: 'on' | 'off') => {
+            
             this.status = status;
             console.log("feedback-status", status);
         });
