@@ -1,17 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BranchLevels, CacheBranch } from '../model';
+import { BranchLevelName, CacheBranch } from '../model';
 import { AppStorage } from '../../../store'
 
 @Pipe({
     name: 'branchLevelName'
 })
 export class BranchLevelNamePipe implements PipeTransform {
-    transform(id: number) {
-        if (AppStorage.Culture === 'vi')
-            return BranchLevels[id].vi;
-        else
-            return BranchLevels[id].name;
-
+    transform(level: number) {
+        return BranchLevelName(level);
     }
 }
 

@@ -1,4 +1,5 @@
-import { ID, MemCache } from '../../shared/';
+import { ID, MemCache } from '../../shared';
+import { Localize, L10nText } from '../../util';
 
 export interface IBranch extends ID {
     code?: string;
@@ -12,28 +13,45 @@ export interface IBranch extends ID {
     parent_name?: string;
 }
 
-export const BranchLevels = [
-    { 
-        name: 'STORE', 
-        value: 0,
-        vi: 'Phòng Giao Dịch'
+interface IBranchLevel {
+    i18n: L10nText;
+}
+
+export const BranchLevels: IBranchLevel[] = [
+    {
+        i18n: {
+            en: 'Store',
+            sp: 'Tienda',
+            vi: 'Phòng Giao Dịch',
+        }
     },
-    { 
-        name: 'BRANCH', 
-        value: 1,
-        vi: 'Chi Nhánh'
+    {
+        i18n: {
+            en: 'BRANCH',
+            sp: 'Branch',
+            vi: 'Chi Nhánh'
+        }
     },
-    { 
-        name: 'AREA', 
-        value: 2,
-        vi: 'Tỉnh/Thành'
+    {
+        i18n: {
+            en: 'AREA',
+            sp: 'Area',
+            vi: 'Tỉnh/Thành'
+        }
     },
-    { 
-        name: 'COUNTRY', 
-        value: 3,
-        vi: 'Quốc Gia'
-     }
+    {
+        i18n: {
+            en: 'COUNTRY',
+            sp: 'Country',
+            vi: 'Quốc Gia'
+        }
+    }
 ]
+
+export function BranchLevelName(level: number = 0) {
+    const b = BranchLevels[level] || { i18n: {} };
+    return Localize(b.i18n);
+}
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 class BranchCache extends MemCache<IBranch> {
@@ -43,11 +61,11 @@ class BranchCache extends MemCache<IBranch> {
         );
     }
     MaxLevel() {
-        var max=0;
-        var branches=this.RxListView.getValue();
-        for(var i=0;i<branches.length;i++){
-            if(max<branches[i].level){
-                max=branches[i].level;
+        var max = 0;
+        var branches = this.RxListView.getValue();
+        for (var i = 0; i < branches.length; i++) {
+            if (max < branches[i].level) {
+                max = branches[i].level;
             }
         }
         return max;

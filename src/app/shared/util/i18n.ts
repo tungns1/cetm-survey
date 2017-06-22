@@ -6,5 +6,5 @@ export interface L10nText {
 
 const culture = AppStorage.Culture;
 export function Localize(l: L10nText) {
-    return l[culture] || l[ProjectConfig.general.default_culture];
+    return l[culture] || l[ProjectConfig.general.default_culture] || 'n/a';
 }

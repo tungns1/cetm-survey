@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BranchLevels, CacheBranch, MultipleIDList } from '../../model';
+import { CacheBranch, MultipleIDList } from '../../model';
 
 
 interface IBranchFilter {
