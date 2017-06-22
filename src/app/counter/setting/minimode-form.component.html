@@ -1,22 +1,14 @@
 <div (change)="onChange()">
-    <md-checkbox [(ngModel)]="value.enable" (ngModelChange)="onChange()">
-        Enable Mini Mode
-    </md-checkbox>
-    <h3> Size</h3>
+    <md-checkbox [(ngModel)]="value.enable" (ngModelChange)="onChange()" i18n>Enable Mini Mode</md-checkbox>
+    <h3 i18n>Size</h3>
     <md-input-container>
-        <input type="number" mdInput [(ngModel)]="value.rect.height" placeholder="Height">
+        <input type="number" mdInput [(ngModel)]="value.rect.height" i18n-placeholder placeholder="Height" >
     </md-input-container>
     <md-input-container>
-        <input type="number" mdInput [(ngModel)]="value.rect.width" placeholder="Width">
+        <input type="number" mdInput [(ngModel)]="value.rect.width" i18n-placeholder placeholder="Width">
     </md-input-container>
-    <h3> Behavior </h3>
-    <md-checkbox [(ngModel)]="value.options.no_focusable" (ngModelChange)="onChange()">
-        Non Focusable
-    </md-checkbox>
-    <md-checkbox [(ngModel)]="value.options.always_on_top" (ngModelChange)="onChange()">
-        Always On Top
-    </md-checkbox>
-    <md-checkbox [(ngModel)]="value.options.no_resizable" (ngModelChange)="onChange()">
-        Non Resizable
-    </md-checkbox>
+    <h3 i18n>Behavior</h3>
+    <md-checkbox [(ngModel)]="value.options.no_focusable" (ngModelChange)="onChange()" i18n>Non Focusable</md-checkbox>
+    <md-checkbox [(ngModel)]="value.options.always_on_top" (ngModelChange)="onChange()" i18n>Always On Top</md-checkbox>
+    <md-checkbox [(ngModel)]="value.options.no_resizable" (ngModelChange)="onChange()" i18n>Non Resizable</md-checkbox>
 </div>

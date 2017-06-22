@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { BranchLevelName, CacheBranch } from '../model';
-import { AppStorage } from '../../../store'
+import { AppStorage } from '../../../store';
 
 @Pipe({
     name: 'branchLevelName'

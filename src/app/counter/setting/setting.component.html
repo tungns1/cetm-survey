@@ -1,12 +1,15 @@
 <md-toolbar>
-    Counter Setting
+    <span i18n>Counter Setting</span>
     <a (click)="Go()" style="cursor: pointer">
-        <i class="fa fa-arrow-right"></i> Go
+        <i class="fa fa-arrow-right"></i>
+        <span i18n>Go</span>
     </a>
 </md-toolbar>
 
 <form [formGroup]="form">
-    <h2> General Configuration</h2>
+
+    <h2 i18n>General Configuration</h2>
+
     <md-input-container>
         <input mdInput formControlName="branch_code" placeholder="Branch Code" i18n-placeholder>
     </md-input-container>
@@ -14,26 +17,25 @@
         <input mdInput formControlName="counter_code" placeholder="Counter Code" i18n-placeholder>
     </md-input-container>
 
-    <h2> Mini Mode View</h2>
+    <h2 i18n>Mini Mode View</h2>
+
     <mini-mode-form formControlName="mini_mode"></mini-mode-form>
 
-    <h2> Advanced Configuration </h2>
+    <h2 i18n>Advanced Configuration</h2>
 
     <md-tab-group>
-        <md-tab label="Led">
+        <md-tab>
+            <ng-template md-tab-label><span class="uppercase" i18n>Led</span></ng-template>
             <md-input-container>
                 <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Addr Led" i18n-placeholder>
             </md-input-container>
             <md-input-container>
                 <input mdInput type="text" formControlName="led_com_port" placeholder="Led COM port" i18n-placeholder>
             </md-input-container>
-
         </md-tab>
-        <md-tab label="Recording">
-            <md-checkbox formControlName="enable_recording">
-                Enable Transaction Recording
-            </md-checkbox>
+        <md-tab>
+            <ng-template md-tab-label><span class="uppercase" i18n>Recording</span></ng-template>
+            <md-checkbox formControlName="enable_recording" i18n>Enable Transaction Recording</md-checkbox>
         </md-tab>
     </md-tab-group>
-
 </form>
