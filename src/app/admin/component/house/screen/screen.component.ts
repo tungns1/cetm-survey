@@ -26,6 +26,8 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         this.voiceEditLink$.subscribe();
         if (AppStorage.Culture === 'vi')
             this.title = 'Màn hình trung tâm';
+        if (AppStorage.Culture === 'sp')
+            this.title = 'Pantalla';
         else
             this.title = 'Screen';
     }

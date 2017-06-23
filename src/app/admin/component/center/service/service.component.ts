@@ -16,6 +16,8 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
         super(injector, org.ServiceService);
         if (AppStorage.Culture === 'vi')
             this.title = 'Dịch vụ';
+        if (AppStorage.Culture === 'sp')
+            this.title = 'Servicio';
         else
             this.title = 'Service';
     }

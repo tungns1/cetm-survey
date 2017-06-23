@@ -18,6 +18,8 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
     super(injector, org.TFormService);
     if (AppStorage.Culture === 'vi')
       this.title = 'Định dạng số vé';
+    if (AppStorage.Culture === 'sp')
+      this.title = 'FORMATO DE NÚMERO DE TICKET';
     else
       this.title = 'Ticket number format';
   }

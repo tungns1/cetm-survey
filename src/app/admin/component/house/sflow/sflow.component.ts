@@ -17,6 +17,8 @@ export class SFlowComponent extends BaseAdminComponent<ISFlow> {
         super(injector, house.SFlowService);
         if (AppStorage.Culture === 'vi')
             this.title = 'Luồng dich vụ cục bộ';
+        if (AppStorage.Culture === 'sp')
+            this.title = 'FLUJO DE SERVICIO';
         else
             this.title = 'Service flow';
     }

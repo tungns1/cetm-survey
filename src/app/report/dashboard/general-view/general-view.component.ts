@@ -77,24 +77,32 @@ export class GeneralViewComponent implements OnInit {
       case 'service_id':
         if (AppStorage.Culture === 'vi')
             field_by = 'Dịch vụ';
+        else if (AppStorage.Culture === 'sp')
+            field_by = 'Servicio';
         else
             field_by = 'Service';
         break;
       case 'user_id':
         if (AppStorage.Culture === 'vi')
             field_by = 'Giao dịch viên';
+        else if (AppStorage.Culture === 'sp')
+            field_by = 'Cajero';
         else
             field_by = 'Teller';
         break;
       case 'counter_id':
         if (AppStorage.Culture === 'vi')
             field_by = 'Quầy';
+        else if (AppStorage.Culture === 'sp')
+            field_by = 'Ventanilla';
         else
             field_by = 'Counter';
         break;
       case 'branch_id':
         if (AppStorage.Culture === 'vi')
             field_by = 'Phòng giao dịch';
+        else if (AppStorage.Culture === 'sp')
+            field_by = 'Tienda';
         else
             field_by = 'Store';
         break;

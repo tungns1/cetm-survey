@@ -6,7 +6,7 @@ import {
 } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
 import { extend } from 'lodash';
 import { of } from 'rxjs/observable/of';
 
@@ -25,9 +25,13 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
     ) {
         super(injector, house.KioskService);
         this.layoutEditLink$.subscribe();
+        if (AppStorage.Culture === 'sp')
+            this.title = 'Quiosco';
+        else
+            this.title = 'Kiosk';
     }
 
-    title = 'kiosk';
+    title = 'Kiosk';
 
     kiosks = this.house.KioskService.RxUpperList;
     services = this.center.ServiceService.RxListView;

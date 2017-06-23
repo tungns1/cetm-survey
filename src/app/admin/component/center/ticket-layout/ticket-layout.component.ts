@@ -18,6 +18,8 @@ export class TicketLayoutComponent extends BaseAdminComponent<ITicketLayout> {
     super(injector, org.TicketLayoutService);
     if (AppStorage.Culture === 'vi')
       this.title = 'Cấu hình vé';
+    if (AppStorage.Culture === 'sp')
+      this.title = 'DISEÑO DE TICKET';
     else
       this.title = 'Ticket Layout';
   }
