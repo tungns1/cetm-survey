@@ -85,27 +85,32 @@ export class CounterStatistics {
         const t = a.ticket;
         var len = t.tracks.length;
         t.addHelperFields();
-        if (!t.isDone() || this.user_id!=t.tracks[len-2].user_id) return;
-      
+        if (!t.isDone()) return;
         if (len <= 1) return;
         if (t.state === TicketStates.Waiting) {
-            const s: IStat = {
-                service_id: t.service_id,
-                count: 1,
-                stime: t.tracks[len - 2].mtime - t.tracks[len - 3].mtime,
-                state: t.tracks[len - 2].state
+            if (this.user_id === t.tracks[len - 2].user_id) {
+                const s: IStat = {
+                    service_id: t.service_id,
+                    count: 1,
+                    stime: t.tracks[len - 2].mtime - t.tracks[len - 3].mtime,
+                    state: t.tracks[len - 2].state
+                }
+                this.finished.Add(s);
+                this.cancelled.Add(s);
             }
-            this.finished.Add(s);
-            this.cancelled.Add(s);
+
         } else {
-            const s: IStat = {
-                service_id: t.service_id,
-                count: 1,
-                stime: t.__stime,
-                state: t.state
+            if (this.user_id === t.user_id) {
+                const s: IStat = {
+                    service_id: t.service_id,
+                    count: 1,
+                    stime: t.__stime,
+                    state: t.state
+                }
+                this.finished.Add(s);
+                this.cancelled.Add(s);
             }
-            this.finished.Add(s);
-            this.cancelled.Add(s);
+
         }
 
         this.update();
