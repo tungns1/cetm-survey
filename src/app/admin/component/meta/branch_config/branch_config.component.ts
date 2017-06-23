@@ -17,6 +17,8 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     super(injector, meta.BranchConfigService);
     if (AppStorage.Culture === 'vi')
       this.title = 'Cấu hình chi nhánh';
+    if (AppStorage.Culture === 'sp')
+      this.title = 'CONFIGURACIÓN DE SUCURSAL';
     else
       this.title = 'Branch config';
   }

@@ -1,6 +1,6 @@
 <app-env-sub-module i18n-title title="Kiosk"></app-env-sub-module>
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
-    <app-datatable name="Kiosk" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Kiosk" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
     </app-datatable>

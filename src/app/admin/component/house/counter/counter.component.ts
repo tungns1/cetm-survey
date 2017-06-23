@@ -24,6 +24,8 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
         this.services$.subscribe();
         if (AppStorage.Culture === 'vi')
             this.title = 'Quầy';
+        if (AppStorage.Culture === 'sp')
+            this.title = 'Mostrador';
         else
             this.title = 'Counter';
     }

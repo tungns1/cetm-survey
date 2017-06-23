@@ -61,6 +61,8 @@ export class SummaryComponent {
         else {
             if (AppStorage.Culture === 'vi')
                 return 'Tổng cộng';
+            if (AppStorage.Culture === 'sp')
+                return 'Sesumen';
             else
                 return 'Summary';
         }

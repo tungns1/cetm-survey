@@ -1,4 +1,4 @@
-const vn = {
+const vi = {
     weekdays: {
         shorthand: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
         longhand: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy']
@@ -15,11 +15,22 @@ const en = {
     },
     months: {
         shorthand: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-        longhand: ['january', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        longhand: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    }
+}
+const sp = {
+    weekdays: {
+        shorthand: ['DO', 'LU', 'MA', 'MI', 'JU', 'VI', 'SA'],
+        longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+    },
+    months: {
+        shorthand: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     }
 }
 
 export const Locales = {
-    vn: vn,
-    en: en
+    vi: vi,
+    en: en,
+    sp: sp
 }

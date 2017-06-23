@@ -53,6 +53,8 @@ export class ChangePassComponent {
                 this.pass_false = true;
                 if (AppStorage.Culture === 'vi')
                     this.toast.Title('Mật khẩu').Info("Mật khẩu gõ lại sai!").Show();
+                if (AppStorage.Culture === 'sp')
+                    this.toast.Title('Contraseña').Info("Translating!").Show();
                 else
                     this.toast.Title('Password').Info("Wrong retype password!").Show();
                 
