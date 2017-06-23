@@ -80,11 +80,13 @@ export class CounterStatistics {
     average_stime = 0;
 
     OnTicketAction(a: TicketAction) {
+        console.log(a);
         if (!a) return;
         const t = a.ticket;
-        t.addHelperFields();
-        if (!t.isDone() || this.user_id!=t.user_id) return;
         var len = t.tracks.length;
+        t.addHelperFields();
+        if (!t.isDone() || this.user_id!=t.tracks[len-2].user_id) return;
+      
         if (len <= 1) return;
         if (t.state === TicketStates.Waiting) {
             const s: IStat = {
