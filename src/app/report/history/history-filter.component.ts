@@ -2,6 +2,8 @@ import {
     Component, OnInit,
     Output, EventEmitter
 } from '@angular/core';
+import { Toast } from '../../x/ui/noti/toastr';
+import { AppStorage } from '../../shared'
 
 @Component({
     selector: 'history-filter',
@@ -24,6 +26,8 @@ export class HistoryFilterComponent implements OnInit {
         rating: '',
     };
 
+    toast = new Toast;
+
     // onChange() {
     //     if (this.filter.wtimemin > this.filter.wtimemax)
     //         this.filter.wtimemax = this.filter.wtimemin;
@@ -33,7 +37,16 @@ export class HistoryFilterComponent implements OnInit {
 
     query() {
         console.log(this.filter);
-        this.filterChange.emit(this.filter);
+        console.log("................",this.filter.wtimemax);
+        if(this.filter.wtimemin > this.filter.wtimemax || this.filter.stimemin > this.filter.stimemax) {
+            if (AppStorage.Culture === 'vi')
+                    this.toast.Title('Bộ lọc').Info("Không thể lọc!").Show();
+                else
+                    this.toast.Title('Filter').Info("Can't filter!").Show();
+        } else {
+            this.filterChange.emit(this.filter);
+        }
+        
     }
 
     @Output() filterChange = new EventEmitter();
