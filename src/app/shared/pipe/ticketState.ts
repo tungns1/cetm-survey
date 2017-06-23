@@ -7,23 +7,28 @@ import { L10nText, Localize } from '../util';
 const TicketStateNames: { [index: string]: L10nText } = {
     waiting: {
         en: "wating",
-        vi: "đang đợi"
+        vi: "đang đợi",
+        sp: 'esperando'
     },
     serving: {
         en: "serving",
-        vi: "đang phục vụ"
+        vi: "đang phục vụ",
+        sp: 'atención'
     },
     finished: {
         en: "served",
-        vi: "đã phục vụ"
+        vi: "đã phục vụ",
+        sp: 'atendido'
     },
     cancelled: {
         en: "cancelled",
-        vi: "bị hủy"
+        vi: "bị hủy",
+        sp: 'cancelado'
     },
     missed: {
         en: "missed",
-        vi: "bị nhỡ"
+        vi: "bị nhỡ",
+        sp: 'perdida'
     },
 };
 function TicketStateName(state: TicketState) {
