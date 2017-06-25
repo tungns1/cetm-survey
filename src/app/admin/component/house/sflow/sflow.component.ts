@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { HouseService, ISFlow, CenterService, CacheBranch } from '../../shared/';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent, AppStorage } from '../../shared';
 
@@ -34,7 +34,7 @@ export class SFlowComponent extends BaseAdminComponent<ISFlow> {
         b = b || <any>{};
         return (new FormBuilder).group({
             id: [b.id],
-            branch_id: [b.branch_id, Validators.required],
+            branch_id: new FormControl({ value: b.branch_id, disabled: !!b.id }, Validators.required),
             service_id: [b.service_id, Validators.required],
             tform_normal: [b.tform_normal, Validators.required],
             tform_vip: [b.tform_vip]

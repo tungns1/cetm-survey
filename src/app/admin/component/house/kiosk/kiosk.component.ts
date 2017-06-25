@@ -73,7 +73,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 code: [b.code, CommonValidator.Code],
                 name: [b.name, CommonValidator.Name],
                 services: [b.services],
-                branch_id: [b.branch_id, Validators.required],
+                branch_id: [{ value: b.branch_id, disabled: !!b.id }, Validators.required],
                 vcodes: [b.vcodes],
                 layout_id: [b.layout_id],
                 tlayout_id: [b.tlayout_id],

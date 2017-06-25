@@ -4,7 +4,7 @@ export interface IPriorityConfig {
     privileged_customer?: number; // privileged 
     moved_ticket?: number;
     booked_ticket?: number; // booked
-    min_priority_restrited?: number;
+    min_priority_restricted?: number;
     min_priority_unordered_call?: number;
     priority_step?: number;
     restore_ticket?: number;
@@ -41,7 +41,7 @@ export class PriorityConfig {
     }
 
     get min_priority_restricted() {
-        return +this._c.min_priority_restrited || (1 << 16); // disable
+        return +this._c.min_priority_restricted || (1 << 16); // disable
     }
 
     get restore_ticket() {
