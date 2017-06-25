@@ -1,26 +1,29 @@
-<div *ngIf="active">
-    <h2 class="modal-header" i18n>Edit service name on this kiosk</h2>
-    <div class="modal-content">
-        <div fxLayout="row" fxLayoutGap="20px" class="margin-t-15">
-            <span fxFlex="20%" i18n>Select Service</span>
-            <select fxFlex class="ctrlInput" [(ngModel)]="active.id" (ngModelChange)="setActive()">
-                <option *ngFor="let d of services" [value]="d.id">{{d.name}}</option>
+<h2 class="modal-header" i18n>Edit service name on this kiosk</h2>
+<div class="modal-content">
+    <div fxLayout="row" fxLayoutGap="20px" class="margin-t-15">
+        <span fxFlex="20%" i18n>Select Service</span>
+        <select *ngIf="selectable_services.length > 1" fxFlex class="ctrlInput" [(ngModel)]="active.id" (ngModelChange)="setActive()">
+                <option *ngFor="let d of selectable_services" [value]="d.id">{{d.name}}</option>
             </select>
-        </div>
+    </div>
 
-        <l10n-form [(ngModel)]="active.l10n"></l10n-form>
+    <l10n-form [(ngModel)]="active.l10n"></l10n-form>
 
-        <div class="divider margin-b-15"></div>
+    <div class="divider margin-b-15"></div>
 
-        <div fxLayout="row" fxLayoutGap="20px">
-            <span fxFlex="20%" i18n>Code</span>
-            <input fxFlex class="ctrlInput" [(ngModel)]="active.code" i18n-placeholder="Display code">
-        </div>
+    <div fxLayout="row" fxLayoutGap="20px">
+        <span fxFlex="20%" i18n>Code</span>
+        <input fxFlex class="ctrlInput" [(ngModel)]="active.code" i18n-placeholder="Display code">
+    </div>
 
-        <div fxLayout="row" fxLayoutGap="20px" class="margin-b-15">
-            <button fxFlex (click)="close()" class="btnClear">  <span i18n>Cancel</span> </button>
-            <button fxFlex (click)="Save()" class="btnFill">  <span i18n>Save</span> </button>
-            <button fxFlex (click)="Remove()" class="btnRed"> <span i18n>Delete</span>  </button>
-        </div>
+    <div fxLayout="row" fxLayoutGap="20px">
+        <span fxFlex="20%" i18n>Service Priority</span>
+        <input fxFlex class="ctrlInput" [(ngModel)]="active.priority" i18n-placeholder="Service Priority">
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px" class="margin-b-15">
+        <button fxFlex (click)="close()" class="btnClear">  <span i18n>Cancel</span> </button>
+        <button fxFlex (click)="Save()" class="btnFill">  <span i18n>Save</span> </button>
+        <button fxFlex (click)="Remove()" class="btnRed"> <span i18n>Delete</span>  </button>
     </div>
 </div>

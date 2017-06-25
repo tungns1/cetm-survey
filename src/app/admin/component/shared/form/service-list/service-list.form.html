@@ -1,5 +1,13 @@
 <div id="serviceListID" class="padding-10">
-    <i class="fa fa-plus pointer margin-t-5" (click)="Add()"><span i18n>Add</span></i>
+    <div *ngIf="services">
+        <i *ngIf="!(services.length > value.length)"> 
+            All service was used 
+            Please check service and branch config 
+        </i>
+        <i *ngIf="services.length > value.length" class="fa fa-plus pointer margin-t-5" (click)="Add()">
+            <span i18n>Add</span>
+        </i>
+    </div>
     <div *ngFor="let v of value; let i = index" class="hl-row-sv margin-t-10">
         {{v.name}}
         <i class="fa fa-edit pointer margin-l-5" i18n-title="Edit" (click)="Edit(i, v)"></i>

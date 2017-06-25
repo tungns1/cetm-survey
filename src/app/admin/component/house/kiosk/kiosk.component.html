@@ -6,7 +6,7 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" i18n-title title="Kiosk" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" id="editKioskForm" fxLayout="column">
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>

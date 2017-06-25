@@ -25,13 +25,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
     ) {
         super(injector, house.KioskService);
         this.layoutEditLink$.subscribe();
-        if (AppStorage.Culture === 'sp')
-            this.title = 'Quiosco';
-        else
-            this.title = 'Kiosk';
     }
-
-    title = 'Kiosk';
 
     kiosks = this.house.KioskService.RxUpperList;
     services = this.center.ServiceService.RxListView;
@@ -55,7 +49,6 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 // ensure selected services in the config list
                 const selected = (form.services || []).map(s => s.id);
                 const services = CacheService.RxListView.value;
-                console.log(services);
                 const c = configs[0];
                 if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
                 const ids = [].concat(selected).concat(c.service.basket);
