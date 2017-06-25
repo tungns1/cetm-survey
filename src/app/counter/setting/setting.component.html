@@ -35,7 +35,11 @@
         </md-tab>
         <md-tab>
             <ng-template md-tab-label><span class="uppercase" i18n>Recording</span></ng-template>
-            <md-checkbox formControlName="enable_recording" i18n>Enable Transaction Recording</md-checkbox>
+            <md-select formControlName="record_transaction" placeholder="Record Transaction">
+                <md-option value="alway_on">Alway On </md-option>
+                <md-option value="alway_off">Alway Off </md-option>
+                <md-option value="inherit">Inherit </md-option>
+            </md-select>
         </md-tab>
     </md-tab-group>
 </form>

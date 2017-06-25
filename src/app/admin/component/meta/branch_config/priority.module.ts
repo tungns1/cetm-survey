@@ -24,17 +24,17 @@ const PRIORITY_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 export class PriorityConfigComponent implements ControlValueAccessor {
     private text: string;
     private defaultConfig: IPriorityConfig = {
-        priority_step: 0,
-        moved_ticket: 1,
-        restore_ticket: 1,
+        priority_step: -1,
+        moved_ticket: -1,
+        restore_ticket: -1,
         // segment: 6 cat
-        internal_vip_card: 1,
-        customer_vip_card: 1,
-        privileged_customer: 1,
-        booked_ticket: 1,
+        internal_vip_card: -1,
+        customer_vip_card: -1,
+        privileged_customer: -1,
+        booked_ticket: -1,
         // restricted
-        min_priority_restricted: 1 << 16,
-        min_priority_unordered_call: 1 << 16
+        min_priority_restricted: -1,
+        min_priority_unordered_call: -1
     }
 
     protected value: IPriorityConfig = this.defaultConfig;

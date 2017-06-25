@@ -1,3 +1,3 @@
 export { GlobalConfig } from './global';
-export { ICounterConfig } from './counter';
+export { ICounterConfig, OverrideMode } from './counter';
 export { IPriorityConfig } from './priority';
