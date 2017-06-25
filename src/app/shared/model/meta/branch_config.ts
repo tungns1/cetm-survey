@@ -1,4 +1,4 @@
-import { IPriorityConfig } from '../../../../const/project/priority';
+import { IPriorityConfig, ICounterConfig } from '../../../../const/project';
 
 interface IServiceConfig {
     basket: string[];
@@ -18,4 +18,5 @@ export interface IBranchConfig {
     service: IServiceConfig;
     feedback: IFeedbackConfig;
     priority: IPriorityConfig;
+    counter: ICounterConfig;
 }

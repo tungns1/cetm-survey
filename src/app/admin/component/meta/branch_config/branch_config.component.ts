@@ -26,7 +26,8 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
       branch_id: [{ value: u.branch_id, disabled: !!u.id }, Validators.required],
       priority: [u.priority || {}],
       service: [u.service || {}],
-      feedback: [u.feedback || {}]
+      feedback: [u.feedback || {}],
+      counter: [u.counter || {}]
     });
   }
 }

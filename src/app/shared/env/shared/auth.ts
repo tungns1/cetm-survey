@@ -51,6 +51,7 @@ export class AuthEnvStorage {
         data.branch = branch ? branch.name : "";
         // update priority
         ProjectConfig.priority.__update(data.config.priority);
+        ProjectConfig.counter.__update(data.config.counter);
         this.emitChange();
     }
 
