@@ -16,7 +16,11 @@ const COUNTER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     template: `
         <br>
         <span i18n>Record Transaction</span> 
-        <input [(ngModel)]="value.record_transaction" (change)="OnChange()"/>
+        <select [(ngModel)]="value.record_transaction" (change)="OnChange()">
+            <option value="alway_on">Alway On</option>
+            <option value="alway_off">Alway Off</option>
+            <option value="inherit">Inherit</option>
+        </select>
     `,
     providers: [COUNTER_CONTROL_VALUE_ACCESSOR]
 })
