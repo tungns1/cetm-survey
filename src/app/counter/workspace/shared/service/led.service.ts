@@ -26,29 +26,15 @@ interface LedStatus {
 export class LedService{
     constructor(
         private queueService: QueueService,
-        private ticketService: TicketService,
         private ledDevice: LedDevice,
         private workspaceService: WorkspaceService,
-        private socket: WorkspaceSocket,
-        private counterSetting: CounterSettingService
+        private socket: WorkspaceSocket
     ) {
-        this.OnInit();
+        
     }
 
-    private OnInit() {
-        const setting = this.counterSetting.Data;
-        // setTimeout(_ => {
-        //     this.ledDevice.LedSetup(setting.led_addr);
-        // },2000);
-        this.ledDevice.LedStart(setting.led_com_port);
-    }
-    
     enable(led_com_port: string, led_address: number) {
-        this.ledDevice.SetCOMPort(led_com_port);
-        setTimeout(_ => {
-            this.ledDevice.LedSetup(led_address);
-        },1500);
-        this.ledDevice.LedSetup(led_address);
+        this.ledDevice.Initialize(led_com_port);
         this.workspaceService.Workspace$.debounceTime(250)
             .map(w => {
                 const s: LedStatus = {
@@ -67,9 +53,6 @@ export class LedService{
             });
         interval(60 * 1000).subscribe(_ => {
             this.ledDevice.Ping(led_address);
-        });
-        interval(60 * 1000).subscribe(_ => {
-            this.ledDevice.LedSetup(led_address);
         });
     }
 
