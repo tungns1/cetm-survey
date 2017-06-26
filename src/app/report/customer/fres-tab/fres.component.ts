@@ -33,6 +33,8 @@ export class FresComponent {
     this.data.fres.map(d => {
         if (AppStorage.Culture === 'vi')
             d.name += ' (tháng)';
+        if (AppStorage.Culture === 'sp')
+            d.name += ' (Mes)';
         else
             d.name += ' (month)';
     })

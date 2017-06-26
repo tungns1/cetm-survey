@@ -5,6 +5,8 @@ import { EditorModule, AdminFormModule } from '../../shared';
 import { BranchConfigComponent } from './branch_config.component';
 import { FeedbackConfigModule } from './feedback.module';
 import { ServiceConfigModule } from './service.module';
+import { PriorityConfigModule } from './priority.module';
+import { CounterConfigModule } from './counter.module';
 
 export const routing = RouterModule.forChild([
     {
@@ -22,8 +24,8 @@ export const routing = RouterModule.forChild([
     imports: [
         routing, BranchModule, SharedModule,
         EditorModule, AdminFormModule,
-        FeedbackConfigModule,
-        ServiceConfigModule
+        FeedbackConfigModule, ServiceConfigModule, 
+        PriorityConfigModule, CounterConfigModule
     ],
     declarations: [BranchConfigComponent]
 })

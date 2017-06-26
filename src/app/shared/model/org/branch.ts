@@ -28,7 +28,7 @@ export const BranchLevels: IBranchLevel[] = [
     {
         i18n: {
             en: 'BRANCH',
-            sp: 'Branch',
+            sp: 'Sucursal',
             vi: 'Chi Nhánh'
         }
     },
@@ -42,7 +42,7 @@ export const BranchLevels: IBranchLevel[] = [
     {
         i18n: {
             en: 'COUNTRY',
-            sp: 'Country',
+            sp: 'País',
             vi: 'Quốc Gia'
         }
     }

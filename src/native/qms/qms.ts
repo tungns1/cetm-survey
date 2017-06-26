@@ -22,6 +22,7 @@ export class QmsService {
     }
 
     readonly isBrowser = true;
+    readonly platform = "browser";
 }
 
 export interface XWinRectangle {

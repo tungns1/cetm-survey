@@ -17,8 +17,8 @@ const noop = function () {
 @Component({
     selector: 'branch-picker',
     template: `
-        <select [(ngModel)]="selected" (ngModelChange)="onChangeCallback($event)" > // value is a string or number
-            <option *ngFor="let opt of branches | async" [value]="opt.id">{{opt.name}}</option>
+        <select [(ngModel)]="selected" [disabled]="disabled" (ngModelChange)="onChangeCallback($event)" > // value is a string or number
+            <option *ngFor="let opt of branches$ | async" [value]="opt.id">{{opt.name}}</option>
         </select>
     ` ,
     styles: [`
@@ -36,15 +36,21 @@ export class BranchPickerComponent implements ControlValueAccessor {
         private branchFilterService: BranchFilterService
     ) { }
 
-    private branches = this.branchFilterService.Data$.switchMap(filter => {
+    protected branches$ = this.branchFilterService.Data$.switchMap(filter => {
         const ids = this.branchFilterService.getAllID();
         return CacheBranch.RxListView.map(branches => {
             return branches.filter(b => ids.indexOf(b.id) !== -1);
         });
     });
 
-    private selected = '';
+    protected selected = '';
     private onChangeCallback = (v: string) => { };
+
+    protected disabled = false;
+
+    setDisabledState?(isDisabled: boolean) {
+        this.disabled = isDisabled;
+    }
 
     /**
    * Implemented as part of ControlValueAccessor.

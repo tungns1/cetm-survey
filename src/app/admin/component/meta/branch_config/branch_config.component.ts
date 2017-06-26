@@ -15,32 +15,20 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     private meta: MetaService
   ) {
     super(injector, meta.BranchConfigService);
-    if (AppStorage.Culture === 'vi')
-      this.title = 'Cấu hình chi nhánh';
-    else
-      this.title = 'Branch config';
   }
 
-  title = 'branch config';
   private branches = this.org.BranchService.RxListView;
 
   makeForm(u?: IBranchConfig) {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],
-      branch_id: [u.branch_id, Validators.required],
+      branch_id: [{ value: u.branch_id, disabled: !!u.id }, Validators.required],
+      priority: [u.priority || {}],
       service: [u.service || {}],
-      feedback: [u.feedback || {}]
+      feedback: [u.feedback || {}],
+      counter: [u.counter || {}]
     });
   }
-
-  protected NavigateTo(view = 'list') {
-    console.log('navigate to', view);
-    this.router.navigate(['../', view], {
-      queryParamsHandling: 'preserve',
-      relativeTo: this.route
-    });
-  }
-
 }
 

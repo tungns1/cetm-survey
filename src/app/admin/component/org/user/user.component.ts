@@ -18,6 +18,8 @@ export class UserComponent extends BaseAdminComponent<IUser> {
     super(injector, org.UserService);
         if (AppStorage.Culture === 'vi')
             this.title = 'Người dùng';
+        if (AppStorage.Culture === 'sp')
+            this.title = 'Usuario';
         else
             this.title = 'User';
   }

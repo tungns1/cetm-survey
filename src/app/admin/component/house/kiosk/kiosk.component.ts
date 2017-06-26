@@ -6,7 +6,7 @@ import {
 } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
 import { extend } from 'lodash';
 import { of } from 'rxjs/observable/of';
 
@@ -26,8 +26,6 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         super(injector, house.KioskService);
         this.layoutEditLink$.subscribe();
     }
-
-    title = 'kiosk';
 
     kiosks = this.house.KioskService.RxUpperList;
     services = this.center.ServiceService.RxListView;
@@ -51,7 +49,6 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 // ensure selected services in the config list
                 const selected = (form.services || []).map(s => s.id);
                 const services = CacheService.RxListView.value;
-                console.log(services);
                 const c = configs[0];
                 if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
                 const ids = [].concat(selected).concat(c.service.basket);
@@ -76,7 +73,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 code: [b.code, CommonValidator.Code],
                 name: [b.name, CommonValidator.Name],
                 services: [b.services],
-                branch_id: [b.branch_id, Validators.required],
+                branch_id: [{ value: b.branch_id, disabled: !!b.id }, Validators.required],
                 vcodes: [b.vcodes],
                 layout_id: [b.layout_id],
                 tlayout_id: [b.tlayout_id],

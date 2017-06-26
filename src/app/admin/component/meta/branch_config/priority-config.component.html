@@ -1,0 +1,67 @@
+<br>
+<span style="color: red">
+    CAUTION: DO NOT TOUCH THIS CONFIG
+    <b>The priority config affect</b> 
+    <br>
+    (1) The order of ticket in the waiting list
+    <br>
+    (2) Determine whether a ticket should be put in restricted quality
+    <br>
+</span>
+
+<hr>
+<button md-button (click)="Reset()">Reset To Default Setting</button>
+
+<div>
+    <!-- sorting -->
+    <div>
+        <label> Priority Step</label>
+        <input [(ngModel)]="value.priority_step" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+    <!-- flow -->
+    <h2> Flow </h2>
+    <div>
+        <label> Moved ticket </label>
+        <input [(ngModel)]="value.moved_ticket" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+    <div>
+        <label> Restore Ticket </label>
+        <input [(ngModel)]="value.restore_ticket" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+    <!-- segment: 4 cat -->
+    <h2> Segment </h2>
+    <div>
+        <label> Internal Vip Card</label>
+        <input [(ngModel)]="value.internal_vip_card" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+    <div>
+        <label> Privileged Customer </label>
+        <input [(ngModel)]="value.privileged_customer" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+    <div>
+        <label> Customer Vip Card </label>
+        <input [(ngModel)]="value.customer_vip_card" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+    <div>
+        <label> Booked Ticket </label>
+        <input [(ngModel)]="value.booked_ticket" type="number" (ngModelChange)="OnChange()" />
+    </div>
+
+
+    <hr>
+    <h2> Restricted </h2>
+    <div>
+        <label> Min Priority Restricted </label>
+        <input [(ngModel)]="value.min_priority_restricted" type="number" (ngModelChange)="OnChange()" />
+    </div>
+    <div>
+        <label> Min Priority Unordered Call </label>
+        <input [(ngModel)]="value.min_priority_unordered_call" type="number" (ngModelChange)="OnChange()" />
+    </div>
+</div>

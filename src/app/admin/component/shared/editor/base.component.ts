@@ -1,4 +1,4 @@
-import { FormBuilder, AbstractControl } from '@angular/forms';
+import { FormBuilder, AbstractControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +16,7 @@ export abstract class BaseAdminComponent<T> {
         protected injector: Injector,
         protected service: CrudApiService<T>
     ) { }
-    
+
     toast = new Toast;
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
@@ -33,7 +33,7 @@ export abstract class BaseAdminComponent<T> {
         return this.GetByID(id);
     });
 
-    form$: Observable<AbstractControl> = this.id$.switchMap(id => {
+    form$: Observable<FormGroup> = this.id$.switchMap(id => {
         if (this.isList(id)) {
             return of(null);
         }
@@ -43,13 +43,14 @@ export abstract class BaseAdminComponent<T> {
         return this.GetByID(id).switchMap(v => {
             return convertToObservable(this.makeForm(v));
         });
-    }).share();
+    }).share().publishReplay(1).refCount();
 
     formValue$: Observable<T> = this.form$
         .filter(form => form != null)
         .switchMap(form => {
-            return form.valueChanges.startWith(form.value);
-        }).publishReplay(1).refCount();
+            // getRawValue will get all value regardless of disabled state
+            return form.valueChanges.startWith(form.getRawValue());
+        }).share().publishReplay(1).refCount();
 
 
     private onActionRequest(e: ITableAction) {
@@ -67,14 +68,21 @@ export abstract class BaseAdminComponent<T> {
         }
     }
 
-    protected onActionConfirm(action: string, value: T) {
-        if (action === 'add') {
-            this.HandleNew(value);
-        } else if (action === 'remove') {
-            this.HandleMarkDelete(value);
-        } else if (action === 'edit') {
-            this.HandleUpdate(value);
-        }
+    protected onActionConfirm(action: string, v?: T) {
+        this.form$.first().subscribe(form => {
+            if (!form) {
+                console.log("request action for null form");
+                return;
+            }
+            const value = form.getRawValue();
+            if (action === 'add') {
+                this.HandleNew(value);
+            } else if (action === 'remove') {
+                this.HandleMarkDelete(value);
+            } else if (action === 'edit') {
+                this.HandleUpdate(value);
+            }
+        });
     }
 
     protected HandleNew(value: T) {
@@ -141,8 +149,8 @@ export abstract class BaseAdminComponent<T> {
         return this.service.UpdateByID(id, value);
     }
 
-    protected abstract makeForm(value?: T): Observable<AbstractControl> | AbstractControl;
-    protected form: AbstractControl;
+    protected abstract makeForm(value?: T): Observable<FormGroup> | FormGroup;
+    protected form: FormGroup;
 
 
 

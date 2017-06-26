@@ -1,12 +1,12 @@
 <app-env-sub-module i18n-title title="Kiosk"></app-env-sub-module>
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
-    <app-datatable name="Kiosk" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Kiosk" [data]="data$ | async" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="branch" i18n-title title="Location"></app-table-field>
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" [title]="title" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async" i18n-title title="Kiosk" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" id="editKioskForm" fxLayout="column">
         <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
