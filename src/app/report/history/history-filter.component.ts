@@ -2,7 +2,7 @@ import {
     Component, OnInit,
     Output, EventEmitter
 } from '@angular/core';
-import { Toast } from '../../x/ui/noti/toastr';
+import { MdSnackBar } from '@angular/material';
 import { AppStorage } from '../../shared'
 
 @Component({
@@ -12,11 +12,12 @@ import { AppStorage } from '../../shared'
 })
 export class HistoryFilterComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        private mdSnackBar: MdSnackBar
+    ) { }
 
-    ngOnInit() {
 
-    }
+    @Output() filterChange = new EventEmitter();
 
     filter = {
         wtimemin: '',
@@ -26,7 +27,9 @@ export class HistoryFilterComponent implements OnInit {
         rating: '',
     };
 
-    toast = new Toast;
+    ngOnInit() {
+
+    }
 
     // onChange() {
     //     if (this.filter.wtimemin > this.filter.wtimemax)
@@ -36,20 +39,20 @@ export class HistoryFilterComponent implements OnInit {
     // }
 
     query() {
-        console.log(this.filter);
-        console.log("................",this.filter.wtimemax);
         if(this.filter.wtimemin > this.filter.wtimemax || this.filter.stimemin > this.filter.stimemax) {
             if (AppStorage.Culture === 'vi')
-                    this.toast.Title('Bộ lọc').Info("Không thể lọc!").Show();
-                else
-                    this.toast.Title('Filter').Info("Can't filter!").Show();
+                this.mdSnackBar.open("Không thể lọc!", "CLOSE", {
+                    duration: 6000
+                }); 
+            else
+                this.mdSnackBar.open("Can't filter!", "CLOSE", {
+                    duration: 6000
+                }); 
         } else {
             this.filterChange.emit(this.filter);
         }
         
     }
-
-    @Output() filterChange = new EventEmitter();
 
 
 }

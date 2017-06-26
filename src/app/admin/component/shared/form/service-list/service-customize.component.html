@@ -1,10 +1,10 @@
 <h2 class="modal-header" i18n>Edit service name on this kiosk</h2>
-<div class="modal-content">
-    <div fxLayout="row" fxLayoutGap="20px" class="margin-t-15">
+<div class="modal-content padding-t-15">
+    <div fxLayout="row" *ngIf="selectable_services.length > 1" fxLayoutGap="20px">
         <span fxFlex="20%" i18n>Select Service</span>
-        <select *ngIf="selectable_services.length > 1" fxFlex class="ctrlInput" [(ngModel)]="active.id" (ngModelChange)="setActive()">
-                <option *ngFor="let d of selectable_services" [value]="d.id">{{d.name}}</option>
-            </select>
+        <select fxFlex class="ctrlInput" [(ngModel)]="active.id" (ngModelChange)="setActive()">
+            <option *ngFor="let d of selectable_services" [value]="d.id">{{d.name}}</option>
+        </select>
     </div>
 
     <l10n-form [(ngModel)]="active.l10n"></l10n-form>

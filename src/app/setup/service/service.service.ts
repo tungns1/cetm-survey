@@ -1,8 +1,7 @@
-
 import { HttpServiceGenerator } from '../../shared/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Toast } from '../../x/ui/noti/toastr';
+import { MdSnackBar } from '@angular/material';
 
 export interface IConfigTime {
     max_serving: string;
@@ -21,15 +20,20 @@ export interface IConfig {
 @Injectable()
 export class SetupAPI {
     constructor(
-        private httpServiceGenerator: HttpServiceGenerator
+        private httpServiceGenerator: HttpServiceGenerator,
+        private mdSnackBar: MdSnackBar
     ) { }
-    toast = new Toast;
+    // toast = new Toast;
     Update(v: IConfigTime) {
         this.api.Post<string>("update", { key: "TimeService" }, v).subscribe(v => {
             if (v === "ok") {
-                this.toast.Title('Success').Info("Update Success").Show();
+                this.mdSnackBar.open("Update successfully", "CLOSE", {
+                    duration: 6000
+                }); 
             } else {
-                this.toast.Title('Error').Info("Update Error").Show();
+                this.mdSnackBar.open("Update Error", "CLOSE", {
+                    duration: 6000
+                }); 
             }
         });
     }

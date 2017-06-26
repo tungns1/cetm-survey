@@ -2,7 +2,6 @@ import { MdDialog, MdDialogConfig, MD_DIALOG_DATA, MdDialogRef } from '@angular/
 import { Component, Optional, Inject, OnInit } from '@angular/core';
 import { IService, ServiceName } from '../../../../../shared/model';
 import { ServiceListComponent } from './service-list-form.component';
-import { Toast } from '../../../../../x/ui/noti/toastr';
 
 export interface IServiceCustomizeData {
     index: number;
@@ -38,7 +37,6 @@ export class ServiceCustomizeModal {
     protected active: IService;
     private index = this.dialogData.index;
     protected selectable_services: IService[];
-    private toast = new Toast;
 
     setActive() {
         let service = this.selectable_services.find(s => s.id === this.active.id);

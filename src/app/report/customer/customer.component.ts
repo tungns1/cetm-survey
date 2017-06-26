@@ -5,6 +5,7 @@ import { MdTabGroup } from '@angular/material';
 import { CustomerView } from './shared/';
 import { Customer } from '../shared';
 import { HistoryComponent } from './history/history.component'
+import { ReportFilterComponent } from './filter/filter.component'
 
 @Component({
     selector: 'customer',
@@ -20,6 +21,7 @@ export class CustomerComponent {
 
 
     @ViewChild(HistoryComponent) cusHistory: HistoryComponent;
+    @ViewChild(ReportFilterComponent) cusFilter: ReportFilterComponent;
     customer_id: string;
     data$ = this.customerApi.RxSummaryView;
     paddingStore = this.data$.map(data => {
@@ -85,5 +87,6 @@ export class CustomerComponent {
 
     refresh(e) {
         this.cusHistory.pagin(1);
+        this.cusFilter.Filter();
     }
 }

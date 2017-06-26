@@ -1,7 +1,7 @@
 import { ITransaction } from '../../shared';
 import {
     ICustomer, Customer, HttpServiceGenerator, Paging,
-    ReportFilterService, Toast
+    ReportFilterService
 } from '../../shared';
 import { CustomerView, ICustomerView } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -22,7 +22,6 @@ export class CustomerAPI {
         private httpServiceGenerator: HttpServiceGenerator
     ) { }
 
-    toast = new Toast;
     GetHistory(skip: number, limit: number, code: string, id: string) {
         const query = Object.assign({
             skip: skip,

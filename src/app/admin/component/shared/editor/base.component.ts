@@ -7,9 +7,8 @@ import { CrudApiService, HttpError } from '../../shared';
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
 import { Injector } from '@angular/core';
-import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 import 'rxjs/add/operator/publishReplay';
-import { Toast } from '../../../../x/ui/noti/toastr';
 
 export abstract class BaseAdminComponent<T> {
     constructor(
@@ -17,7 +16,6 @@ export abstract class BaseAdminComponent<T> {
         protected service: CrudApiService<T>
     ) { }
 
-    toast = new Toast;
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
     private mdSnackBar = this.injector.get(MdSnackBar);
@@ -88,12 +86,12 @@ export abstract class BaseAdminComponent<T> {
     protected HandleNew(value: T) {
         this.service.Create(value).subscribe(_ => {
             const ref = this.mdSnackBar.open("The data was created successfully", "CLOSE", {
-                duration: 2000,
+                duration: 6000,
                 extraClasses: ["success"]
             });
             this.NavigateTo();
         }, (e: HttpError) => {
-            this.toast.Title('Info').Info(e.Message()).Show();
+            const ref = this.mdSnackBar.open(e.Message(), '', {duration: 6000});
         });
     }
 
@@ -109,7 +107,7 @@ export abstract class BaseAdminComponent<T> {
         const id = value['id'];
         this.UpdateByID(id, value).first().subscribe(_ => {
             const ref = this.mdSnackBar.open("The data was saved successfully", "UNDO", {
-                duration: 2000,
+                duration: 6000,
                 extraClasses: ["success"]
             });
             ref.onAction().subscribe(_ => {
@@ -117,7 +115,7 @@ export abstract class BaseAdminComponent<T> {
             });
             this.NavigateTo();
         }, (e: HttpError) => {
-            this.toast.Title('Info').Info(e.Message()).Show();
+            const ref = this.mdSnackBar.open(e.Message(), '', {duration: 6000});
         });
     }
 
@@ -133,7 +131,7 @@ export abstract class BaseAdminComponent<T> {
             });
             this.NavigateTo();
         }, (e: HttpError) => {
-            this.toast.Title('Info').Info(e.Message()).Show();
+            const ref = this.mdSnackBar.open(e.Message(), '', {duration: 6000});
         });
     }
 
