@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { HouseService, ISFlow, CenterService, CacheBranch } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, AppStorage } from '../../shared';
+import { BaseAdminComponent } from '../../shared';
 
 @Component({
     selector: 'admin-sflow',
@@ -15,15 +15,8 @@ export class SFlowComponent extends BaseAdminComponent<ISFlow> {
         private org: CenterService
     ) {
         super(injector, house.SFlowService);
-        if (AppStorage.Culture === 'vi')
-            this.title = 'Luồng dich vụ cục bộ';
-        if (AppStorage.Culture === 'sp')
-            this.title = 'FLUJO DE SERVICIO';
-        else
-            this.title = 'Service flow';
     }
 
-    title = 'Service flow';
     storeLevel0$ = CacheBranch.RxByLevel(0);
 
     services = this.org.ServiceService.RxListView;

@@ -5,7 +5,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" [title]="title">
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
+    (action)="onActionConfirm($event, form.value)" title="Ticket Layout" i18n-title>
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Name</span>

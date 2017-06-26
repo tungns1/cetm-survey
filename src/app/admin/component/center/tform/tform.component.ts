@@ -3,7 +3,7 @@ import { CenterService, ITForm, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 
 @Component({
   selector: 'center-tform',
@@ -16,15 +16,8 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
     private org: CenterService
   ) {
     super(injector, org.TFormService);
-    if (AppStorage.Culture === 'vi')
-      this.title = 'Định dạng số vé';
-    if (AppStorage.Culture === 'sp')
-      this.title = 'FORMATO DE NÚMERO DE TICKET';
-    else
-      this.title = 'Ticket number format';
   }
 
-  title: string = 'Ticket number format';
   pattern_format: any = "^[A-Z]?[%]0?([1-9])[d][A-Z]?$";
 
   makeForm(b?: ITForm) {

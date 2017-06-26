@@ -5,7 +5,7 @@ import { extend } from 'lodash';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CenterService, HouseService, IScreen } from '../../../service/';
-import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 import { of } from 'rxjs/observable/of';
 
 @Component({
@@ -24,15 +24,7 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
         this.counters$.subscribe();
         this.layoutEditLink$.subscribe();
         this.voiceEditLink$.subscribe();
-        if (AppStorage.Culture === 'vi')
-            this.title = 'Màn hình trung tâm';
-        if (AppStorage.Culture === 'sp')
-            this.title = 'Pantalla';
-        else
-            this.title = 'Screen';
     }
-
-    title = 'Screen';
 
     screens = this.house.ScreenService.RxUpperList;
     layouts = this.center.LayoutService.GetByType('screen');

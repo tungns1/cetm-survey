@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { CenterService, IService, AllRoles, BaseAdminComponent, CommonValidator, AppStorage } from '../../shared/';
+import { CenterService, IService, AllRoles, BaseAdminComponent, CommonValidator } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,18 +14,11 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
         private org: CenterService
     ) {
         super(injector, org.ServiceService);
-        if (AppStorage.Culture === 'vi')
-            this.title = 'Dịch vụ';
-        if (AppStorage.Culture === 'sp')
-            this.title = 'Servicio';
-        else
-            this.title = 'Service';
     }
 
     tforms = this.org.TFormService.RxListView;
     tformVips = this.org.TFormService.RxListView;
     private roles = AllRoles;
-    title = 'service';
 
     makeForm(b?: IService) {
         b = b || <any>{};

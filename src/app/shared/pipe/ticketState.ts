@@ -16,8 +16,8 @@ const TicketStateNames: { [index: string]: L10nText } = {
         sp: 'atención'
     },
     finished: {
-        en: "served",
-        vi: "đã phục vụ",
+        en: "finished",
+        vi: "đã hoàn thành",
         sp: 'atendido'
     },
     cancelled: {

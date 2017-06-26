@@ -8,7 +8,9 @@
     </app-datatable>
 </div>
 
-<app-editor-view id="serviceEditor" class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="title" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" [canEdit]="false">
+<app-editor-view id="serviceEditor" class="animated fadeInLeft" *ngIf="form$ | async; let form" 
+    [isValid]="form.valid" title="Service" i18n-title [isNew]="isNew$ | async" 
+    (action)="onActionConfirm($event, form.value)" [canEdit]="false">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>

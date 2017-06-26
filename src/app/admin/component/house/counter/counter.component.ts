@@ -6,7 +6,7 @@ import {
 } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator, AppStorage } from '../../shared';
+import { BaseAdminComponent, CommonValidator } from '../../shared';
 
 @Component({
     selector: 'house-counter',
@@ -22,15 +22,8 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
     ) {
         super(injector, house.CounterService);
         this.services$.subscribe();
-        if (AppStorage.Culture === 'vi')
-            this.title = 'Quầy';
-        if (AppStorage.Culture === 'sp')
-            this.title = 'Mostrador';
-        else
-            this.title = 'Counter';
     }
 
-    title = 'Counter';
     storeLevel0$ = CacheBranch.RxByLevel(0);
 
     services$ = this.formValue$.map(form => form.branch_id)
