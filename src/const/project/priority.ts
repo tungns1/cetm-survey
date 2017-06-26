@@ -41,7 +41,7 @@ export class PriorityConfig {
     }
 
     get min_priority_restricted() {
-        return +this._c.min_priority_restricted || (1 << 16); // disable
+        return +this._c.min_priority_restricted || 1; // disable
     }
 
     get restore_ticket() {
