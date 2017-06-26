@@ -3,23 +3,23 @@ import { Workspace } from '../model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
-import { FeedbackService } from './feedback.service';
-import { RecorderService } from './recorder.service';
-
+import { CounterSettingService } from './shared';
 import { ActionManager, TicketAction, TicketActionName } from './shared';
+import { QmsService } from '../shared';
 
 @Injectable()
 export class TicketService {
     constructor(
+        private qms: QmsService,
         private workspaceService: WorkspaceService,
-        private recorderService: RecorderService,
-        private feedbackService: FeedbackService,
+        private settingService: CounterSettingService,
         private queueService: QueueService
     ) {
         this.onInit();
     }
 
     private socket = this.workspaceService.Socket;
+    private platform = this.qms.platform || "other";
 
     private sendAction(body: TicketAction) {
         return this.socket.Send<ITicket>("/ticket", body).share();
@@ -53,6 +53,9 @@ export class TicketService {
     }
 
     TriggerAction(action: TicketActionName, ticket: Ticket) {
-        return this.manager.Work(action, ticket);
+        return this.manager.Work(action, ticket, {
+            record_transaction: this.settingService.EnableRecordTransaction,
+            platform: this.platform,
+        });
     }
 }

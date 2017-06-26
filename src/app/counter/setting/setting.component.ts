@@ -31,8 +31,6 @@ export class SettingComponent implements OnInit {
     branch_code: new FormControl(this.value.branch_code),
     counter_code: new FormControl(this.value.counter_code),
     mini_mode: new FormControl(this.value.mini_mode),
-
-    record_transaction: new FormControl(this.value.record_transaction),
     led_addr: new FormControl(this.value.led_addr),
     led_com_port: new FormControl(this.value.led_com_port)
   });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SmallStorage, XWinStorageStrategy, XWinMiniMode } from './shared';
 import { RuntimeEnvironment, ICounterConfig, ProjectConfig } from './shared';
 
-export interface ICounterSetting extends ICounterConfig {
+export interface ICounterSetting {
   branch_code: string;
   counter_code: string;
   record_upload_url: string;
@@ -26,7 +26,6 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
     this.data.branch_code = data.branch_code;
     this.data.counter_code = data.counter_code;
     // record
-    this.data.record_transaction = data.record_transaction;
     this.data.record_upload_url = data.record_upload_url;
     // led
     this.data.led_addr = data.led_addr;
@@ -51,7 +50,7 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
 
   get EnableRecordTransaction() {
     var c = ProjectConfig.counter;
-    return c.IsOn([this.data.record_transaction, c.record_transaction]);
+    return c.record_transaction === 'alway_on';
   }
 
   get EnableLed() {
