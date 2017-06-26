@@ -60,6 +60,7 @@ export class TicketPriority {
     }
     
     canMakeUnorderedCall() {
+        console.log(this.value)
         return this.value >= PriorityConfig.min_priority_unordered_call;
     }
 

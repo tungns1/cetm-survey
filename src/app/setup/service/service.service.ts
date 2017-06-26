@@ -37,6 +37,6 @@ export class SetupAPI {
         return this.api.Get<IConfig>("get_by_key", { key: "TimeService" })
     }
 
-    api = this.httpServiceGenerator.make<any>("/api/admin/config");
+    api = this.httpServiceGenerator.make<any>("/api/admin/setting/global_config");
 
 }
