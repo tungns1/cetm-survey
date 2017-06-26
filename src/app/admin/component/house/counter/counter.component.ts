@@ -54,7 +54,7 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
             dev_addr: [b.dev_addr],
             services: [b.services, Validators.required],
             vservices: [b.vservices],
-            branch_id: [b.branch_id, Validators.required]
+            branch_id: [{ value: b.branch_id, disabled: !!b.id }, Validators.required]
         });
     }
 }

@@ -8,7 +8,7 @@ export interface IServiceCustomizeData {
     index: number;
     active?: IService;
     services: IService[];
-    value: IService[];
+    used: IService[];
 }
 
 export interface IServiceCustomizeResult {
@@ -26,20 +26,22 @@ export class ServiceCustomizeModal {
         @Optional() @Inject(MD_DIALOG_DATA) private dialogData: IServiceCustomizeData,
         private dialog: MdDialogRef<ServiceCustomizeModal>,
         // private serviceListComponent: ServiceListComponent
-    ) { }
+    ) {
+        this.active = this.dialogData.active || <any>{};
+        const used_services: IService[] = this.dialogData.used || <any>[];
+        this.selectable_services = this.dialogData.services.filter(s => {
+            return s.id == this.active.id || !used_services.find(v => s.id === v.id);
+        });
+    }
 
-    private active: IService = this.dialogData.active || <any>{};
-    private services = this.dialogData.services;
+
+    protected active: IService;
     private index = this.dialogData.index;
-    private value = this.dialogData.value || <any>[];
+    protected selectable_services: IService[];
     private toast = new Toast;
-    // private value: IService[] = this.serviceListComponent.getValue();
-    // ngOnInit(){
-    //     console.log(ServiceName);
-    // }
 
     setActive() {
-        let service = this.services.find(s => s.id === this.active.id);
+        let service = this.selectable_services.find(s => s.id === this.active.id);
         if (service) {
             this.active.l10n = service.l10n;
             this.active.code = service.code;
@@ -47,21 +49,7 @@ export class ServiceCustomizeModal {
     }
 
     Save() {
-        let check = 0;
-        for(let i = 0 ; i < this.value.length; i++) {
-            if(this.value[i].id == this.active.id) {
-                check = 1;
-                break;
-            }
-        }
-        if(check == 0) {
-            this.sendResult("save");
-        }
-        else {
-            this.toast.Title('error').Info("Service is exist").Show();
-        }
-      
-        
+        this.sendResult("save");
     }
 
     Remove() {
@@ -72,7 +60,7 @@ export class ServiceCustomizeModal {
         this.sendResult("cancel");
     }
 
-    private sendResult(action: string) {
+    private sendResult(action: "cancel" | "delete" | "save") {
         this.dialog.close(<IServiceCustomizeResult>{
             action: action,
             active: this.active,

@@ -39,7 +39,7 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
     layoutEditLink$ = this.formValue$.map(s => {
         return `/admin/center/layout/${s.layout_id}`;
     });
-    
+
     parentEdit$ = this.formValue$.map(s => {
         return `/admin/house/screen/${s.parent_id}`;
     });
@@ -67,7 +67,7 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
                 code: [b.code, CommonValidator.Code],
                 name: [b.name, CommonValidator.Name],
                 counters: [b.counters],
-                branch_id: [b.branch_id, Validators.required],
+                branch_id: [{ value: b.branch_id, disabled: !!b.id }, Validators.required],
                 layout_id: [b.layout_id],
                 parent_id: [b.parent_id],
                 layout_resources: [b.layout_resources],

@@ -20,9 +20,11 @@ export class ComposeService {
 
   enable() {
     const setting = this.counterSetting.Data;
-    this.ledService.enable(setting.led_com_port, setting.led_addr);
+    if (this.counterSetting.EnableLed) {
+      this.ledService.enable(setting.led_com_port, setting.led_addr);
+    }
     this.feedbackService.enable();
-    if (setting.enable_recording) {
+    if (this.counterSetting.EnableRecordTransaction) {
       this.recorderService.enable();
     }
     this.workspaceService.enable();

@@ -23,19 +23,12 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     u = u || <any>{};
     return (new FormBuilder).group({
       id: [u.id],
-      branch_id: [u.branch_id, Validators.required],
+      branch_id: [{ value: u.branch_id, disabled: !!u.id }, Validators.required],
+      priority: [u.priority || {}],
       service: [u.service || {}],
-      feedback: [u.feedback || {}]
+      feedback: [u.feedback || {}],
+      counter: [u.counter || {}]
     });
   }
-
-  protected NavigateTo(view = 'list') {
-    console.log('navigate to', view);
-    this.router.navigate(['../', view], {
-      queryParamsHandling: 'preserve',
-      relativeTo: this.route
-    });
-  }
-
 }
 

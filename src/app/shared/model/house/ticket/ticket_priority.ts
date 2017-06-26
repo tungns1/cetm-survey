@@ -14,8 +14,8 @@ function getPriority(data: ITicketPriority) {
     if (data.privileged_customer) {
         priority += PriorityConfig.privileged_customer;
     }
-    if (data.service_priority) {
-        priority += +data.service_priority || 0;
+    if (data.service_quality) {
+        priority += +data.service_quality || 0;
     }
     if (data.booked_ticket) {
         priority += PriorityConfig.booked_ticket;
@@ -30,7 +30,7 @@ function getPriority(data: ITicketPriority) {
 }
 
 export interface ITicketPriority {
-    service_priority: string;
+    service_quality: string;
     privileged_customer: string;
     internal_vip_card: string;
     customer_vip_card: string;
@@ -60,6 +60,7 @@ export class TicketPriority {
     }
     
     canMakeUnorderedCall() {
+        console.log(this.value)
         return this.value >= PriorityConfig.min_priority_unordered_call;
     }
 

@@ -1,5 +1,5 @@
 import {
-    AppStorage,
+    AppStorage, ProjectConfig,
     AbstractSerializable, AbstractStorageStrategy, SmallStorage
 } from '../../shared';
 import { Injectable } from '@angular/core';
@@ -49,6 +49,9 @@ export class AuthEnvStorage {
         data.store = store ? store.name : "";
         const branch = CacheBranch.GetByID(store ? store.parent : "");
         data.branch = branch ? branch.name : "";
+        // update priority
+        ProjectConfig.priority.__update(data.config.priority);
+        ProjectConfig.counter.__update(data.config.counter);
         this.emitChange();
     }
 
