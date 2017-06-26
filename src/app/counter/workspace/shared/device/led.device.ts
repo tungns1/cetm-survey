@@ -7,29 +7,17 @@ export class LedDevice {
         private qmsService: QmsService
     ) { }
 
-    LedStart(port_com:string) {
+    Initialize(port_com:string) {
         this.qmsService.__x.Broadcast("/led/start", port_com);
     }
 
-    LedSetup(addr: number) {
-        this.qmsService.__x.Broadcast("/led/addr", addr);
-    }
-
-    private Command(name: string, addr: number) {
-        console.log("led ", name, addr);
+    private Command(cmd: string, addr: number) {
+        console.log("led ", cmd, addr);
         this.qmsService.__x.Broadcast(
             "/led/command",
-            `${name} ${addr}`
+            `${cmd} ${addr}`
         );
     }
-
-    SetCOMPort(com: string) {
-        this.qmsService.__x.Broadcast(
-            "/led/com",
-            `${com}`
-        );
-    }
-
 
     On(addr: number) {
         this.Command("on", addr);
