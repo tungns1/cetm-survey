@@ -66,7 +66,7 @@ export class LedService{
                 this.ledDevice.On(status.addr);
                 break;
             case STATUS.STOP:
-                this.ledDevice.Off(status.addr);
+                this.ledDevice.Stop(status.addr);
                 break;
             case STATUS.SHOW:
                 this.ledDevice.Show(status.addr, status.data);
