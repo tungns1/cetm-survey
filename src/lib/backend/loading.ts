@@ -1,3 +1,7 @@
+import { FactoryProvider } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+
 const loaderID = `loading-${Math.random().toString(36).substr(3, 6)}`;
 
 const loaderDiv = `
@@ -62,6 +66,23 @@ const loaderDiv = `
 
 var loaderEl: HTMLElement;
 var showCount = 0;
+var subscription: Subscription;
+
+export function ListenToRouter(router: Router) {
+    Stop();
+    subscription = router.events.subscribe(e => {
+        if (e instanceof NavigationStart) {
+            Show();
+        } else {
+            // setTimeout(_ => {
+            //     Hide();
+            // }, 2000)
+        }
+    })
+    Start();
+}
+
+Start();
 
 export function Show() {
     showCount++;
@@ -74,8 +95,7 @@ export function Show() {
 export function Hide() {
     if (showCount == 0) {
         return;
-    } 
-    
+    }
     showCount--;
     if (showCount < 1) {
         loaderEl.removeAttribute("active");
@@ -87,7 +107,6 @@ function Start() {
     if (loaderEl) {
         return;
     }
-
     loaderEl = document.createElement("div");
     loaderEl.id = loaderID;
     loaderEl.innerHTML = loaderDiv;
@@ -98,30 +117,9 @@ function Start() {
     }
 }
 
-
-import { FactoryProvider } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-
-var subscription: Subscription;
-
 function Stop() {
     if (subscription) {
         subscription.unsubscribe();
         subscription = null;
     }
 }
-
-export function ListenToRouter(router: Router) {
-    Stop();
-    subscription = router.events.subscribe(e => {
-        if (e instanceof NavigationStart) {
-            Show();
-        } else {
-            Hide();
-        }
-    })
-    Start();
-}
-
-Start();

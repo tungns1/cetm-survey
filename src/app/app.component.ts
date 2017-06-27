@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ListenToRouter } from '../lib/backend/loading';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: "app-root",
@@ -6,7 +8,12 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   title = "app works!";
+  ngOnInit(){
+    ListenToRouter(this.router);
+  }
 }
