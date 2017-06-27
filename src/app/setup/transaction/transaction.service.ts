@@ -1,8 +1,8 @@
-
 import { HttpServiceGenerator } from '../../shared/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Toast } from '../../x/ui/noti/toastr';
 import { Injectable } from '@angular/core';
+import { MdSnackBar } from '@angular/material';
+import { TranslateService } from '../../shared/util';
 
 export interface IConfigTransaction {
     serving_time:string;
@@ -18,16 +18,25 @@ export interface IConfig {
 @Injectable()
 export class SetupAPI {
     constructor(
-        private httpServiceGenerator: HttpServiceGenerator
+        private httpServiceGenerator: HttpServiceGenerator,
+        private mdSnackBar: MdSnackBar,
+        private translateService: TranslateService
     ) { }
-    toast = new Toast;
 
     Update(v: IConfigTransaction) {
         this.api.Post<string>("update", { key: "Translation" }, v).subscribe(v => {
             if (v === "ok") {
-                this.toast.Title('Success').Info("Update Success").Show();
+                this.mdSnackBar
+                    .open(this.translateService.translate('Update Successfully'), 
+                            this.translateService.translate('Close'), {
+                    duration: 6000
+                });
             } else {
-                this.toast.Title('Error').Info("Update Error").Show();
+                this.mdSnackBar
+                    .open(this.translateService.translate('Update Error'), 
+                            this.translateService.translate('Close'), {
+                    duration: 6000
+                });
             }
         });
     }
