@@ -7,48 +7,39 @@ export class TranslateService {
     translateData: { [index: string]: L10nText } = {
         'Code does not exist': {
             vi: 'Mã khách hàng không tồn tại',
-            en: 'Code does not exist',
-            sp: 'translating'
+            en: 'Code does not exist'
         },
         'The data was created successfully': {
             vi: 'Dữ liệu đã được tạo thành công',
-            en: 'The data was created successfully',
-            sp: 'translating'
+            en: 'The data was created successfully'
         },
         'The data was saved successfully': {
             vi: 'Dữ liệu đã được lưu thành công',
-            en: 'The data was saved successfully',
-            sp: 'traslating'
+            en: 'The data was saved successfully'
         },
         'The data was deleted': {
             vi: 'Dữ liệu đã được xóa',
-            en: 'The data was deleted',
-            sp: 'traslating'
+            en: 'The data was deleted'
         },
         'Cant filter': {
             vi: 'Không thể lọc!',
-            en: 'Cant filter!',
-            sp: 'traslating'
+            en: 'Cant filter!'
         },
         'Update Successfully': {
             vi: 'Cập nhật thành công',
-            en: 'Update Successfully',
-            sp: 'traslating'
+            en: 'Update Successfully'
         },
         'Update Error': {
             vi: 'Cập nhật lỗi',
-            en: 'Update Error',
-            sp: 'traslating'
+            en: 'Update Error'
         },
         'Wrong Password': {
             vi: 'Sai mật khẩu',
-            en: 'Wrong Password',
-            sp: 'traslating'
+            en: 'Wrong Password'
         },
         'Wrong retype password!': {
             vi: 'Mật khẩu gõ lại sai!',
-            en: 'Wrong retype password!',
-            sp: 'traslating'
+            en: 'Wrong retype password!'
         },
         'Close': {
             vi: 'Đóng',
@@ -57,18 +48,15 @@ export class TranslateService {
         },
         'This branch has been assigned to some store': {
             vi: 'Chi nhánh này có liên kết với một số phòng giao dịch',
-            en: 'This branch has been assigned to some store',
-            sp: 'traslating'
+            en: 'This branch has been assigned to some store'
         },
         'This area has been assigned to some branch': {
             vi: 'Tỉnh/thành này có liên kết với một số chi nhánh',
-            en: 'This area has been assigned to some branch',
-            sp: 'traslating'
+            en: 'This area has been assigned to some branch'
         },
         'This store has been assigned to some kiosk': {
             vi: 'Cửa hàng này có liên kết với một số kiosk',
-            en: 'This store has been assigned to some kiosk',
-            sp: 'traslating'
+            en: 'This store has been assigned to some kiosk'
         }
     }
 

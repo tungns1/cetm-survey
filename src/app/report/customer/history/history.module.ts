@@ -17,6 +17,7 @@ import { AgGridModule } from "ag-grid-angular/main";
     ],
     declarations: [HistoryComponent, TransactionComponent],
     exports: [HistoryComponent, AccordionModule, FlexLayoutModule],
+    providers: [HistoryComponent],
     entryComponents: [TransactionComponent]
 })
 export class ReportHistoryModule {

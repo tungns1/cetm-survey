@@ -56,7 +56,8 @@ export class HistoryComponent {
                 params.successCallback(rowData, totalRow);
             }
         };
-        this.gridOptions.api.setDatasource(dataSource);
+        if (this.gridOptions.api)
+            this.gridOptions.api.setDatasource(dataSource);
     }
 
     detailCellRenderer(d) {

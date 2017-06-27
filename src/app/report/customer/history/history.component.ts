@@ -23,7 +23,7 @@ export class HistoryComponent {
     totalPage: number;
     code = '';
     cellClass: string[] = ['center', 'padding-10'];
-    private gridOptions: GridOptions = {
+    public gridOptions: GridOptions = {
         rowHeight: 35,
         rowSelection: 'multiple',
         pagination: true,
@@ -77,9 +77,9 @@ export class HistoryComponent {
                 params.successCallback(rowData, totalRow);
             }
         };
-        this.gridOptions.api.setDatasource(dataSource);
+        if (this.gridOptions.api)
+            this.gridOptions.api.setDatasource(dataSource);
     }
-
 
     serviceCellRenderer(d) {
         if (d.data)
@@ -146,7 +146,8 @@ export class HistoryComponent {
                         paging.SetPage(page);
                         paging.Reset(v.data, v.total);
                         this.setRowData(v.data, v.total, skip);
-                        this.gridOptions.api.setInfiniteRowCount(v.total);
+                        if (this.gridOptions.api)
+                            this.gridOptions.api.setInfiniteRowCount(v.total);
                         this.totalPage = Math.ceil(v.total / 18);
                     });
             }
@@ -162,7 +163,6 @@ export class HistoryComponent {
 
     excel(data) {
         this.customerAPI.ExportHistory(this.id, this.code);
-
     }
 
 }
