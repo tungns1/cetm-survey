@@ -15,10 +15,10 @@ export interface ICounterTrack {
 }
 
 export interface ICounterTrackData {
-    counternumber: string;
-    userfullname: string;
-    usercode:string;
-    userid: string;
+    cname: string;
+    uname: string;
+    ucode:string;
+    uid: string;
 }
 
 
