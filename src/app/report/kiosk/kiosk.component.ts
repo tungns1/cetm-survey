@@ -43,14 +43,7 @@ export class KioskComponent {
         }
     });
 
-    selectedTab=0;
-
     refresh() {
         this.kioskAPI.Search();
     }
-
-    onTabChange(e){
-        this.selectedTab = e.index;
-    }
-    
 }
