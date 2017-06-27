@@ -1,8 +1,8 @@
-
 import { HttpServiceGenerator, HttpApi } from '../../../shared/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Toast } from '../../../x/ui/noti/toastr';
+import { MdSnackBar } from '@angular/material';
+import { TranslateService } from '../../../shared/util';
 
 export interface IChangePass {
     username: string;
@@ -14,15 +14,24 @@ export interface IChangePass {
 @Injectable()
 export class AuthUserAPI {
     constructor(
-        private httpServiceGenerator: HttpServiceGenerator
+        private httpServiceGenerator: HttpServiceGenerator,
+        private mdSnackBar: MdSnackBar,
+        private translateService: TranslateService
     ) { }
 
-    toast = new Toast;
     ChangePass(v: IChangePass) {
         this.api.Post<string>("change_pass", {}, v).subscribe(v => {
-            this.toast.Title('Success').Info("Update Success").Show();
+            this.mdSnackBar
+                .open(this.translateService.translate('Update Successfully'),
+                this.translateService.translate('Close'), {
+                    duration: 6000
+                });
         }, e => {
-            this.toast.Title('Error').Info("Wrong Password").Show();
+            this.mdSnackBar
+                .open(this.translateService.translate('Wrong Password'),
+                this.translateService.translate('Close'), {
+                    duration: 6000
+                });
         });
     }
 

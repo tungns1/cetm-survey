@@ -9,6 +9,7 @@ import { convertToObservable } from './util';
 import { Injector } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import 'rxjs/add/operator/publishReplay';
+import { TranslateService } from '../../../../shared/util'
 
 export abstract class BaseAdminComponent<T> {
     constructor(
@@ -19,6 +20,7 @@ export abstract class BaseAdminComponent<T> {
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
     private mdSnackBar = this.injector.get(MdSnackBar);
+    private translateService = new TranslateService;
 
     id$ = this.route.params.map(p => p['id']);
     showList$ = this.id$.map(id => this.isList(id));
@@ -85,13 +87,15 @@ export abstract class BaseAdminComponent<T> {
 
     protected HandleNew(value: T) {
         this.service.Create(value).subscribe(_ => {
-            const ref = this.mdSnackBar.open("The data was created successfully", "CLOSE", {
-                duration: 6000,
-                extraClasses: ["success"]
-            });
+            const ref = this.mdSnackBar
+                .open(this.translateService.translate('The data was created successfully'),
+                this.translateService.translate('Close'), {
+                    duration: 6000,
+                    extraClasses: ["success"]
+                });
             this.NavigateTo();
         }, (e: HttpError) => {
-            const ref = this.mdSnackBar.open(e.Message(), '', {duration: 6000});
+            const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
 
@@ -106,32 +110,36 @@ export abstract class BaseAdminComponent<T> {
     protected HandleUpdate(value: T) {
         const id = value['id'];
         this.UpdateByID(id, value).first().subscribe(_ => {
-            const ref = this.mdSnackBar.open("The data was saved successfully", "UNDO", {
-                duration: 6000,
-                extraClasses: ["success"]
-            });
+            const ref = this.mdSnackBar
+                .open(this.translateService.translate('The data was saved successfully'),
+                this.translateService.translate('Close'), {
+                    duration: 6000,
+                    extraClasses: ["success"]
+                });
             ref.onAction().subscribe(_ => {
                 console.log("UNDO");
             });
             this.NavigateTo();
         }, (e: HttpError) => {
-            const ref = this.mdSnackBar.open(e.Message(), '', {duration: 6000});
+            const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
 
     protected HandleMarkDelete(value: T) {
         const id = value['id'];
         this.MarkDeleteByID(id).first().subscribe(_ => {
-            const ref = this.mdSnackBar.open("The data was deleted", "UNDO", {
-                duration: 6000,
-                extraClasses: ["success"]
-            });
+            const ref = this.mdSnackBar
+                .open(this.translateService.translate('The data was deleted'),
+                this.translateService.translate('Close'), {
+                    duration: 6000,
+                    extraClasses: ["success"]
+                });
             ref.onAction().subscribe(_ => {
                 console.log("UNDO");
             });
             this.NavigateTo();
         }, (e: HttpError) => {
-            const ref = this.mdSnackBar.open(e.Message(), '', {duration: 6000});
+            const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
 

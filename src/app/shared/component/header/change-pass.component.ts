@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthUserAPI, IChangePass } from "./chang-pass.service";
 import { RuntimeEnvironment } from '../../env';
-import { Toast } from '../../../x/ui/noti/toastr';
-import { AppStorage } from '../../shared'
+import { AppStorage } from '../../shared';
+import { TranslateService } from '../../../shared/util';
 
 @Component({
     selector: 'change-pass',
@@ -19,13 +19,14 @@ export class ChangePassComponent {
         private setupApi: AuthUserAPI,
         private fb: FormBuilder,
         private env: RuntimeEnvironment,
+        private mdSnackBar: MdSnackBar,
+        private translateService: TranslateService
     ) { }
 
     form: FormGroup;
     username = '';
     ichangePass: IChangePass;
     pass_false = false;
-    toast = new Toast;
     pattern_pass: any = "^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
 
     ngOnInit() {
@@ -51,13 +52,11 @@ export class ChangePassComponent {
             }
             else {
                 this.pass_false = true;
-                if (AppStorage.Culture === 'vi')
-                    this.toast.Title('Mật khẩu').Info("Mật khẩu gõ lại sai!").Show();
-                if (AppStorage.Culture === 'sp')
-                    this.toast.Title('Contraseña').Info("Translating!").Show();
-                else
-                    this.toast.Title('Password').Info("Wrong retype password!").Show();
-                
+                this.mdSnackBar
+                    .open(this.translateService.translate('Wrong retype password!'), 
+                            this.translateService.translate('Close'), {
+                    duration: 6000
+                });
             }
         }
         catch (Ex) {

@@ -17,18 +17,18 @@
                 <report-sum class="summaryReport" [data]="summary$ | async"></report-sum>
                 <div class="divider margin-30-0"></div>
                 <div id="overView" class="border">
-                    <md-tab-group dynamicHeight (selectChange)="onTabChange($event)">
+                    <md-tab-group>
                         <md-tab>
                             <ng-template md-tab-label><span class="uppercase tabstyle" i18n>Overview</span></ng-template>
-                            <app-general-view *ngIf="selectedTab === 0" [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>
+                            <app-general-view [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>
                         </md-tab>
                         <md-tab>
                             <ng-template md-tab-label><span class="uppercase tabstyle" i18n>Transaction Time</span></ng-template>
-                            <app-transaction-time *ngIf="selectedTab === 1" [field]="groupBy$ | async" [data]="data$ | async"></app-transaction-time>
+                            <app-transaction-time [field]="groupBy$ | async" [data]="data$ | async"></app-transaction-time>
                         </md-tab>
                         <md-tab>
                             <ng-template md-tab-label><span class="uppercase tabstyle" i18n>Customer Feedback</span></ng-template>
-                            <app-customer-feedback *ngIf="selectedTab === 2" [field]="groupBy$ | async" [data]="data$ | async"></app-customer-feedback>
+                            <app-customer-feedback [field]="groupBy$ | async" [data]="data$ | async"></app-customer-feedback>
                         </md-tab>
                     </md-tab-group>
                 </div>
