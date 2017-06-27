@@ -3,7 +3,8 @@ import {
     Output, EventEmitter
 } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
-import { AppStorage } from '../../shared'
+import { AppStorage } from '../../shared';
+import { TranslateService } from '../../shared/util';
 
 @Component({
     selector: 'history-filter',
@@ -13,7 +14,8 @@ import { AppStorage } from '../../shared'
 export class HistoryFilterComponent implements OnInit {
 
     constructor(
-        private mdSnackBar: MdSnackBar
+        private mdSnackBar: MdSnackBar,
+        private translateService: TranslateService
     ) { }
 
 
@@ -39,19 +41,16 @@ export class HistoryFilterComponent implements OnInit {
     // }
 
     query() {
-        if(this.filter.wtimemin > this.filter.wtimemax || this.filter.stimemin > this.filter.stimemax) {
-            if (AppStorage.Culture === 'vi')
-                this.mdSnackBar.open("Không thể lọc!", "CLOSE", {
+        if (this.filter.wtimemin > this.filter.wtimemax || this.filter.stimemin > this.filter.stimemax) {
+            this.mdSnackBar
+                .open(this.translateService.translate('Cant filter'),
+                this.translateService.translate('Close'), {
                     duration: 6000
-                }); 
-            else
-                this.mdSnackBar.open("Can't filter!", "CLOSE", {
-                    duration: 6000
-                }); 
+                });
         } else {
             this.filterChange.emit(this.filter);
         }
-        
+
     }
 
 

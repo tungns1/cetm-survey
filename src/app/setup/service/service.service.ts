@@ -2,6 +2,7 @@ import { HttpServiceGenerator } from '../../shared/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
+import { TranslateService } from '../../shared/util';
 
 export interface IConfigTime {
     max_serving: string;
@@ -21,19 +22,23 @@ export interface IConfig {
 export class SetupAPI {
     constructor(
         private httpServiceGenerator: HttpServiceGenerator,
-        private mdSnackBar: MdSnackBar
+        private mdSnackBar: MdSnackBar,
+        private translateService: TranslateService
     ) { }
-    // toast = new Toast;
     Update(v: IConfigTime) {
         this.api.Post<string>("update", { key: "TimeService" }, v).subscribe(v => {
             if (v === "ok") {
-                this.mdSnackBar.open("Update successfully", "CLOSE", {
+                this.mdSnackBar
+                    .open(this.translateService.translate('Update successfully'), 
+                            this.translateService.translate('Close'), {
                     duration: 6000
-                }); 
+                });
             } else {
-                this.mdSnackBar.open("Update Error", "CLOSE", {
+                this.mdSnackBar
+                    .open(this.translateService.translate('Update Error'), 
+                            this.translateService.translate('Close'), {
                     duration: 6000
-                }); 
+                });
             }
         });
     }

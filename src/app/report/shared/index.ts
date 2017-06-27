@@ -5,7 +5,7 @@ export * from '../../shared/model';
 
 export { ExclusiveEventEmitter } from '../../../lib/rx';
 export { ModalModule, ModalComponent, TimeModule } from '../../x/ng';
-export { AccordionModule, Toast } from '../../x/ui';
+export { AccordionModule } from '../../x/ui';
 
 export * from './filter';
 export * from './service';

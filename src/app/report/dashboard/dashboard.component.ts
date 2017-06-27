@@ -25,9 +25,5 @@ export class DashboardComponent {
     data$ = this.aggregateService.ActiveAggregate$;
     groupBy$ = this.aggregateService.groupBy$;
     summary$ = this.aggregateService.RxSummaryView;
-    selectedTab: number = 0;
-
-    onTabChange(e) {
-        this.selectedTab = e.index;
-    }
+    
 }

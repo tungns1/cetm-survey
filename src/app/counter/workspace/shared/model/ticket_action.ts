@@ -18,6 +18,7 @@ const ActionRecall = "recall";
 const ActionFinish = "finish";
 const ActionMove = "move";
 const ActionCreate = "create";
+const ActionRestore = "restore";
 
 export class TicketAction {
     constructor(
@@ -40,8 +41,12 @@ export class TicketAction {
     IsMissed() {
         return this.action == ActionMiss;
     }
+    IsRestore() {
+        return this.action == ActionRestore;
+    }
 
     IsServing() {
         return this.action == ActionCall || this.state == ActionRecall;
-    }    
+    }
+
 }
