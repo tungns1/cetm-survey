@@ -131,9 +131,7 @@ export class ActivityComponent {
         this.setRowData(v.data, v.total, skip);
         this.gridOptions.api.setInfiniteRowCount(v.total);
         this.totalPage = Math.ceil(v.total / 18);
-        setTimeout(_ => {
-          HideLoading();
-        }, 1000);
+        HideLoading();
       });
   }
 

@@ -22,9 +22,7 @@ export class AggregateService {
         ShowLoading();
         this.backend.Get<ITransactionCount[]>("aggregate", this.filterService.ToBackendQuery()).subscribe(data => {
             this.RxAggregate.next(data);
-            setTimeout(_ => {
-                HideLoading();
-            }, 1000);
+            HideLoading();
         });
         this.period$.next(this.periodService.Data.period);
         this.groupBy$.next(this.insideService.GetGroupBy());

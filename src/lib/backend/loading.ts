@@ -54,7 +54,7 @@ export function ListenToRouter(router: Router) {
         } else {
             setTimeout(_ => {
                 HideLoading();
-            })
+            }, 1000);
         }
     })
     Start();
@@ -76,8 +76,10 @@ export function HideLoading() {
     }
     showCount--;
     if (showCount < 1) {
-        loaderEl.removeAttribute("active");
-        return;
+        setTimeout(_ => {
+            loaderEl.removeAttribute("active");
+            return;
+        }, 1000);
     }
 }
 

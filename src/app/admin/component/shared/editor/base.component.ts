@@ -90,15 +90,13 @@ export abstract class BaseAdminComponent<T> {
         ShowLoading();
         this.service.Create(value).subscribe(_ => {
             this.NavigateTo();
-            setTimeout(_ => {
-                HideLoading();
-                const ref = this.mdSnackBar
-                    .open(this.translateService.translate('The data was created successfully'),
-                    this.translateService.translate('Close'), {
-                        duration: 6000,
-                        extraClasses: ["success"]
-                    });
-            }, 1000);
+            const ref = this.mdSnackBar
+                .open(this.translateService.translate('The data was created successfully'),
+                this.translateService.translate('Close'), {
+                    duration: 6000,
+                    extraClasses: ["success"]
+                });
+            HideLoading();
         }, (e: HttpError) => {
             const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
@@ -117,18 +115,16 @@ export abstract class BaseAdminComponent<T> {
         const id = value['id'];
         this.UpdateByID(id, value).first().subscribe(_ => {
             this.NavigateTo();
-            setTimeout(_ => {
-                HideLoading();
-                const ref = this.mdSnackBar
-                    .open(this.translateService.translate('The data was saved successfully'),
-                    this.translateService.translate('Close'), {
-                        duration: 6000,
-                        extraClasses: ["success"]
-                    });
-                ref.onAction().subscribe(_ => {
-                    console.log("UNDO");
+            const ref = this.mdSnackBar
+                .open(this.translateService.translate('The data was saved successfully'),
+                this.translateService.translate('Close'), {
+                    duration: 6000,
+                    extraClasses: ["success"]
                 });
-            }, 1000);
+            ref.onAction().subscribe(_ => {
+                console.log("UNDO");
+            });
+            HideLoading();
         }, (e: HttpError) => {
             const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
@@ -139,18 +135,16 @@ export abstract class BaseAdminComponent<T> {
         const id = value['id'];
         this.MarkDeleteByID(id).first().subscribe(_ => {
             this.NavigateTo();
-            setTimeout(_ => {
-                HideLoading();
-                const ref = this.mdSnackBar
-                    .open(this.translateService.translate('The data was deleted'),
-                    this.translateService.translate('Close'), {
-                        duration: 6000,
-                        extraClasses: ["success"]
-                    });
-                ref.onAction().subscribe(_ => {
-                    console.log("UNDO");
+            const ref = this.mdSnackBar
+                .open(this.translateService.translate('The data was deleted'),
+                this.translateService.translate('Close'), {
+                    duration: 6000,
+                    extraClasses: ["success"]
                 });
-            }, 1000);
+            ref.onAction().subscribe(_ => {
+                console.log("UNDO");
+            });
+            HideLoading();
         }, (e: HttpError) => {
             const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });

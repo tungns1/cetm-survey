@@ -32,9 +32,7 @@ export class CounterAPI {
             .subscribe(v => {
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
-                setTimeout(_ => {
-                    HideLoading();
-                }, 1000);
+                HideLoading();
             });
     }
     Search() {
@@ -42,9 +40,7 @@ export class CounterAPI {
         this.api.Get<IPerformance>("performance", this.filterService.ToBackendQuery()).subscribe(v => {
             if (v != null) {
                 this.RxCounterFerformance.next(v);
-                setTimeout(_ => {
-                    HideLoading();
-                }, 1000);
+                HideLoading();
             }
 
         });
