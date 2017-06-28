@@ -18,7 +18,7 @@ const routing = RouterModule.forChild([
 
 @NgModule({
     imports: [
-        routing, SharedModule, 
+        routing, SharedModule,
         QueueModule, ServingModule, StatModule
     ],
     declarations: [

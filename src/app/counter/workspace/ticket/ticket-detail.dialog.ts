@@ -28,7 +28,7 @@ export class TicketDetailDialog {
   isCancelled = this.ticket.IsState("cancelled");
   isMissed = this.ticket.IsState("missed");
   isWaiting = this.ticket.IsState("waiting");
-  t:Ticket;
+  t: Ticket;
   checkedCounters = [];
   checkedServices = [];
   counters = this.workspaceService.counters$.combineLatest(
@@ -54,8 +54,8 @@ export class TicketDetailDialog {
     this.queueService.busy$.subscribe(d => {
       this.isBusy = d;
     })
-    this.queueService.serving$.subscribe(v=>{
-      this.t=v[0]
+    this.queueService.serving$.subscribe(v => {
+      this.t = v[0]
     })
   }
 
@@ -81,11 +81,11 @@ export class TicketDetailDialog {
             this.dialogRef.close();
           });
       }
-    }else{
-        this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
-          .subscribe(v => {
-            this.dialogRef.close();
-          });
+    } else {
+      this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+        .subscribe(v => {
+          this.dialogRef.close();
+        });
     }
 
   }

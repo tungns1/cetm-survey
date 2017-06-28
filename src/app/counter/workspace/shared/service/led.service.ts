@@ -7,19 +7,9 @@ import { LedDevice } from '../device';
 import { WorkspaceSocket } from './workspace.socket';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/publishReplay';
 import { interval } from 'rxjs/observable/interval';
-
-const STATUS = {
-    WELCOME: "welcome",
-    STOP: "stop",
-    SHOW: "show"
-}
-
-interface LedStatus {
-    addr: number;
-    cmd: string;
-    text?: string;
-}
+import { ILedStatus, LED_STATUS } from '../model';
 
 
 @Injectable()
@@ -64,34 +54,25 @@ export class LedService {
 
     private status$ = this.workspaceService.Workspace$.debounceTime(250)
         .map(w => {
-            const s: LedStatus = {
+            const s: ILedStatus = {
                 addr: this.led_address,
-                cmd: STATUS.WELCOME,
+                cmd: LED_STATUS.WELCOME,
             };
             if (w.Serving.is_empty) {
-                s.cmd = w.AutoNext ? STATUS.WELCOME : STATUS.STOP;
+                s.cmd = w.AutoNext ? LED_STATUS.WELCOME : LED_STATUS.STOP;
             } else {
-                s.cmd = STATUS.SHOW;
+                s.cmd = LED_STATUS.SHOW;
                 s.text = w.Serving.GetFirstTicket().cnum;
             }
             return s;
         }).distinctUntilChanged((a, b) => a.cmd === b.cmd && a.text == b.text)
+        .share().publishReplay(1).refCount();
 
-    private sendToDevice(status: LedStatus) {
-        switch (status.cmd) {
-            case STATUS.WELCOME:
-                this.ledDevice.On(status.addr);
-                break;
-            case STATUS.STOP:
-                this.ledDevice.Stop(status.addr);
-                break;
-            case STATUS.SHOW:
-                this.ledDevice.Show(status.addr, status.text);
-                break;
-        }
+    private sendToDevice(status: ILedStatus) {
+        this.ledDevice.SendStatus(status);
     }
 
-    private sendToServer(status: LedStatus) {
+    private sendToServer(status: ILedStatus) {
         console.log("send to server led..........", status);
         return this.workspaceService.Socket.Send("/led_status", status);
     }

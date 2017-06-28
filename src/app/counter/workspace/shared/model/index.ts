@@ -7,3 +7,5 @@ export { ITicketAction } from './ticket_action';
 export {
     Workspace, IWorkspaceInitialState
 } from './workspace';
+
+export { ILedStatus, LED_STATUS } from './led';
