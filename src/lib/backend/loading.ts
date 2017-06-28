@@ -35,7 +35,7 @@ const loaderDiv = `
         }
         
         #${loaderID}[active] {
-            z-index: 3;
+            z-index: 4;
             display: block;
             color: white;
         }
@@ -52,9 +52,9 @@ export function ListenToRouter(router: Router) {
         if (e instanceof NavigationStart) {
             ShowLoading();
         } else {
-            setTimeout(_ => {
+            // setTimeout(_ => {
                 HideLoading();
-            }, 1000);
+            // }, 0);
         }
     })
     Start();

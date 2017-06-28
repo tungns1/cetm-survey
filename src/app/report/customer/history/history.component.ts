@@ -151,6 +151,8 @@ export class HistoryComponent {
                         if (this.gridOptions.api)
                             this.gridOptions.api.setInfiniteRowCount(v.total);
                         this.totalPage = Math.ceil(v.total / 18);
+                        if (this.curentPage > this.totalPage)
+                            this.curentPage = this.totalPage;
                         HideLoading();
                     });
             }
