@@ -21,7 +21,7 @@ export class ComposeService {
   enable() {
     const setting = this.counterSetting.Data;
     if (this.counterSetting.EnableLed) {
-      this.ledService.enable(setting.led_com_port, setting.led_addr);
+      this.ledService.enable(setting.led_addr, setting.led_remote, setting.led_com_port);
     }
     this.feedbackService.enable();
     if (this.counterSetting.EnableRecordTransaction) {

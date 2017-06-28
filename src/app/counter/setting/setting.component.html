@@ -27,11 +27,16 @@
         <md-tab>
             <ng-template md-tab-label><span class="uppercase" i18n>Led</span></ng-template>
             <md-input-container>
-                <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Addr Led" i18n-placeholder>
+                <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Led Address">
             </md-input-container>
+            <br>
             <md-input-container>
-                <input mdInput type="text" formControlName="led_com_port" placeholder="Led COM port" i18n-placeholder>
+                <input mdInput type="text" formControlName="led_com_port" placeholder="Local Led COM port">
             </md-input-container>
+            <br>
+            <md-checkbox formControlName="led_remote">
+                Remote Led Controller
+            </md-checkbox>
         </md-tab>
     </md-tab-group>
 </form>

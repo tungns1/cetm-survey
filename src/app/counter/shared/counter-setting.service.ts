@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { SmallStorage, XWinStorageStrategy, XWinMiniMode } from './shared';
 import { RuntimeEnvironment, ICounterConfig, ProjectConfig } from './shared';
 
-export interface ICounterSetting {
+
+export interface ILedSetting {
+  led_addr: number;
+  led_com_port: string;
+  led_remote: boolean;
+}
+
+export interface ICounterSetting extends ILedSetting {
   branch_code: string;
   counter_code: string;
   record_upload_url: string;
-  led_addr: number;
-  led_com_port: string;
   mini_mode: XWinMiniMode;
 }
 
@@ -31,6 +36,7 @@ export class CounterSettingService extends SmallStorage<ICounterSetting> {
     this.data.led_addr = data.led_addr;
     this.data.led_com_port = data.led_com_port;
     this.data.mini_mode = data.mini_mode;
+    this.data.led_remote = data.led_remote;
     this.SaveData();
     return auth_update;
   }

@@ -17,42 +17,44 @@ const STATUS = {
 
 interface LedStatus {
     addr: number;
-    type: string;
-    data?: any;
+    cmd: string;
+    text?: string;
 }
 
 
 @Injectable()
-export class LedService{
+export class LedService {
     constructor(
         private queueService: QueueService,
         private ledDevice: LedDevice,
-        private workspaceService: WorkspaceService,
-        private socket: WorkspaceSocket
+        private workspaceService: WorkspaceService
     ) {
-        
+
     }
 
-    enable(led_com_port: string, led_address: number) {
+    enable(led_address: number, remote?: boolean, com_port?: string) {
+        this.led_address = led_address;
+        if (remote) {
+            this.enable_remote();
+        }
+        if (com_port) {
+            this.enable_local(com_port);
+        }
+    }
+
+    private enable_local(led_com_port: string) {
         this.ledDevice.Initialize(led_com_port);
-        this.workspaceService.Workspace$.debounceTime(250)
-            .map(w => {
-                const s: LedStatus = {
-                    addr: led_address,
-                    type: STATUS.WELCOME,
-                };
-                if (w.Serving.is_empty) {
-                    s.type = w.AutoNext ? STATUS.WELCOME : STATUS.STOP;
-                } else {
-                    s.type = STATUS.SHOW;
-                    s.data = w.Serving.GetFirstTicket().cnum;
-                }
-                return s;
-            }).distinctUntilChanged((a, b) => a.type === b.type && a.data == b.data).subscribe(status => {
-                this.SendStatus(status);
-            });
+        this.status$.subscribe(status => {
+            this.sendToDevice(status);
+        });
         interval(60 * 1000).subscribe(_ => {
-            this.ledDevice.Ping(led_address);
+            this.ledDevice.Ping(this.led_address);
+        });
+    }
+
+    private enable_remote() {
+        this.status$.subscribe(status => {
+            this.sendToServer(status);
         });
     }
 
@@ -60,8 +62,23 @@ export class LedService{
 
     }
 
-    private SendStatus(status: LedStatus) {
-        switch (status.type) {
+    private status$ = this.workspaceService.Workspace$.debounceTime(250)
+        .map(w => {
+            const s: LedStatus = {
+                addr: this.led_address,
+                cmd: STATUS.WELCOME,
+            };
+            if (w.Serving.is_empty) {
+                s.cmd = w.AutoNext ? STATUS.WELCOME : STATUS.STOP;
+            } else {
+                s.cmd = STATUS.SHOW;
+                s.text = w.Serving.GetFirstTicket().cnum;
+            }
+            return s;
+        }).distinctUntilChanged((a, b) => a.cmd === b.cmd && a.text == b.text)
+
+    private sendToDevice(status: LedStatus) {
+        switch (status.cmd) {
             case STATUS.WELCOME:
                 this.ledDevice.On(status.addr);
                 break;
@@ -69,16 +86,15 @@ export class LedService{
                 this.ledDevice.Stop(status.addr);
                 break;
             case STATUS.SHOW:
-                this.ledDevice.Show(status.addr, status.data);
+                this.ledDevice.Show(status.addr, status.text);
                 break;
         }
     }
 
-    private sendToServerVersion1(status: LedStatus) {
-        console.log("send to server led..........");
-        const type = status.type === STATUS.SHOW ? status.data : status.type;
-        return this.socket.Send("/status", {
-            status: type
-        })
+    private sendToServer(status: LedStatus) {
+        console.log("send to server led..........", status);
+        return this.workspaceService.Socket.Send("/led_status", status);
     }
+
+    private led_address = 0;
 }
