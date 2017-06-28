@@ -22,14 +22,14 @@
 
                 <div class="divider margin-20-0"></div>
                 <div class="border tabCtrl">
-                    <md-tab-group>
+                    <md-tab-group (selectChange)="onTabChange($event)">
                         <md-tab>
                             <ng-template md-tab-label><span class="uppercase" i18n>Active Time</span></ng-template>
                             <time-tab [data]="data$ | async" [padding]="paddingTime | async" i18n-title title="Active Time"></time-tab>
                         </md-tab>
                         <md-tab>
                             <ng-template md-tab-label><span class="uppercase" i18n>Ticket Quantity</span></ng-template>
-                            <ticket-tab [data]="data$ | async" [padding]="paddingTicket | async" i18n-title title="Ticket Quantity"></ticket-tab>
+                            <ticket-tab *ngIf="selectedTab === 1" [data]="data$ | async" [padding]="paddingTicket | async" i18n-title title="Ticket Quantity"></ticket-tab>
                         </md-tab>
                     </md-tab-group>
                 </div>

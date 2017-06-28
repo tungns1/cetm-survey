@@ -42,6 +42,11 @@ export class KioskComponent {
             return 10;
         }
     });
+    selectedTab: number;
+    
+    onTabChange(e) {
+        this.selectedTab = e.index;
+    }
 
     refresh() {
         this.kioskAPI.Search();
