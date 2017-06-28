@@ -74,10 +74,10 @@ export class AppSocket extends BaseWebsocket {
     }
 
     Send<T>(uri: string, data: any): Observable<T> {
-        ShowLoading();
+        this.showLoading();
         uri += `?once=${this.makeOnce()}`;
         super.send(uri, data);
-        return this.first<T>(uri).do(HideLoading, HideLoading);
+        return this.first<T>(uri).do(this.hideLoading, this.hideLoading);
     }
 
     Terminate() {
@@ -155,6 +155,14 @@ export class AppSocket extends BaseWebsocket {
 
     private filterError(uri: string) {
         return this.error$.filter(e => e.uri === uri).map(e => e.err);
+    }
+
+    private showLoading = ShowLoading;
+    private hideLoading = HideLoading;
+
+    protected NoLoading() {
+        this.showLoading = () => { };
+        this.hideLoading = () => { };
     }
 
 }

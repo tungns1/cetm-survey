@@ -27,7 +27,7 @@ export class WelcomeComponent implements OnInit {
     }
   }
 
-  waitingTime = 6000;
+  waitingTime = 3000;
 
   Workspace() {
     this.router.navigate(["../workspace"], {
