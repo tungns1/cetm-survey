@@ -4,6 +4,7 @@ import { Paging } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
 import { GridOptions } from "ag-grid";
+import { ShowLoading, HideLoading } from '../../../lib/backend/loading';
 
 @Component({
     selector: 'history',
@@ -95,7 +96,7 @@ export class HistoryComponent {
     }
 
     jumpToPage(pageIndex: number) {
-        if (pageIndex > 0 && pageIndex < this.totalPage) {
+        if (pageIndex > 0 && pageIndex <= this.totalPage) {
             this.pagin(pageIndex);
             this.curentPage = pageIndex;
         }
@@ -111,6 +112,7 @@ export class HistoryComponent {
     }
 
     pagin(page: number = 1) {
+        ShowLoading();
         const skip = this.paging.SkipForPage(page);
         const limit = this.paging.Limit;
         this.transactionHistoryApi.GetHistory(skip, limit, this.filter)
@@ -120,6 +122,7 @@ export class HistoryComponent {
                 this.setRowData(v.data, v.total, skip);
                 this.gridOptions.api.setInfiniteRowCount(v.total);
                 this.totalPage = Math.ceil(v.total / 18);
+                HideLoading();
             });
     }
 

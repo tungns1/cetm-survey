@@ -7,6 +7,7 @@ import {
     HttpServiceGenerator, ServiceName, CacheBranch, CacheCounter, CacheUsers
 } from '../../shared';
 import { Injectable } from '@angular/core';
+import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 
 @Injectable()
 export class AggregateService {
@@ -18,7 +19,9 @@ export class AggregateService {
     ) { }
 
     Refresh() {
+        ShowLoading();
         this.backend.Get<ITransactionCount[]>("aggregate", this.filterService.ToBackendQuery()).subscribe(data => {
+            HideLoading();
             this.RxAggregate.next(data);
         });
         this.period$.next(this.periodService.Data.period);

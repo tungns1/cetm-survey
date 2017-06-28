@@ -3,6 +3,7 @@ import { HttpServiceGenerator, Paging } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
+import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 
 export const paging = new Paging<ICounterTrack>();
 export interface IActivity {
@@ -24,17 +25,21 @@ export class CounterAPI {
         return this.api.Get<IActivity>("activity", query);
     }
     pagin(page: number) {
+        ShowLoading();
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
         this.GetActivity(skip, limit)
             .subscribe(v => {
+                HideLoading();
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
             });
     }
     Search() {
+        ShowLoading();
         this.api.Get<IPerformance>("performance", this.filterService.ToBackendQuery()).subscribe(v => {
             if (v != null) {
+                HideLoading();
                 this.RxCounterFerformance.next(v);
             }
 

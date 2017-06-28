@@ -5,61 +5,39 @@ import { Subscription } from 'rxjs/Subscription';
 const loaderID = `loading-${Math.random().toString(36).substr(3, 6)}`;
 
 const loaderDiv = `
-    <div id="loading-indicator">
-        <i class="fa fa-spin fa-spinner"></i>
+        <i id="loading-icon" class="fa fa-spin fa-spinner"></i>
         <br>
-        <button id="${loaderID}-cancel">Cancel</button>
-    </div>
+        <button id="${loaderID}-cancel" class="btnFill">Cancel</button>
     <style>
         #${loaderID} {
-            position: absolute;
+            position: fixed;
             top: 0px;
             left: 0px;
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            width: 100%;
             z-index: 0;
             display: none;
             font-size: 100px !important;
-            background-color: rgba(0, 0, 0, 0.38);
-        }
+            background-color: rgba(0, 0, 0, 0.6);
+        } 
         
-        #loading-indicator {
+        #loading-icon{
             position: absolute;
-            top: 45vh;
-            right: 0;
-            bottom: 0;
-            left: 45vw;
+            top: 40%;
+            left: 48%;
         }
 
-        #loading-indicator button{
-            width:100px;
-            height:auto;
-
-            position: relative;
-            vertical-align: top;
-            padding: 0;
-            font-size: 22px;
-            color: black;
-            text-align: center;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-            background: #f39c12;
-            border: 0;
-            border-bottom: 2px solid #e8930c;
-            cursor: pointer;
-            -webkit-box-shadow: inset 0 -2px #e8930c;
-            box-shadow: inset 0 -2px #e8930c;
+        #${loaderID}-cancel{
+            position: absolute;
+            top: 55%;
+            left: 46%;
+            width: 8%;
         }
         
         #${loaderID}[active] {
-            z-index: 1;
+            z-index: 3;
             display: block;
             color: white;
-            
-        }
-
-        #${loaderID}-cancel {
-            color: black;
-            font-size: 2vw;
         }
     </style>
 `;
@@ -72,11 +50,11 @@ export function ListenToRouter(router: Router) {
     Stop();
     subscription = router.events.subscribe(e => {
         if (e instanceof NavigationStart) {
-            Show();
+            ShowLoading();
         } else {
             setTimeout(_ => {
-                Hide();
-            }, 2000)
+                HideLoading();
+            })
         }
     })
     Start();
@@ -84,7 +62,7 @@ export function ListenToRouter(router: Router) {
 
 Start();
 
-export function Show() {
+export function ShowLoading() {
     showCount++;
     if (showCount > 1) {
         return;
@@ -92,7 +70,7 @@ export function Show() {
     loaderEl.setAttribute("active", "");
 }
 
-export function Hide() {
+export function HideLoading() {
     if (showCount == 0) {
         return;
     }
@@ -113,7 +91,7 @@ function Start() {
     document.body.appendChild(loaderEl);
     document.getElementById(`${loaderID}-cancel`).onclick = () => {
         showCount = 1;
-        Hide();
+        HideLoading();
     }
 }
 

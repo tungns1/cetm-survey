@@ -4,6 +4,7 @@ import { ICounterTrack, CacheBranch, Paging } from '../../shared';
 import { GridOptions } from "ag-grid";
 import { TimeDurationPipe } from '../../../x/ng/time/timeDuration';
 import { LocalDayTimePipe } from '../../../x/ng/time/localDayTime';
+import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 
 @Component({
   selector: 'activity-tab',
@@ -102,7 +103,7 @@ export class ActivityComponent {
   }
 
   jumpToPage(pageIndex: number) {
-    if (pageIndex > 0 && pageIndex < this.totalPage) {
+    if (pageIndex > 0 && pageIndex <= this.totalPage) {
       this.pagin(pageIndex);
       this.curentPage = pageIndex;
     }
@@ -120,6 +121,7 @@ export class ActivityComponent {
   }
 
   pagin(page: number = 1) {
+    ShowLoading();
     const skip = paging.SkipForPage(page);
     const limit = paging.Limit;
     this.counterAPI.GetActivity(skip, limit)
@@ -129,6 +131,7 @@ export class ActivityComponent {
         this.setRowData(v.data, v.total, skip);
         this.gridOptions.api.setInfiniteRowCount(v.total);
         this.totalPage = Math.ceil(v.total / 18);
+        HideLoading();
       });
   }
 

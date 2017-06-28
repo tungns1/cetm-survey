@@ -9,7 +9,8 @@ import { convertToObservable } from './util';
 import { Injector } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import 'rxjs/add/operator/publishReplay';
-import { TranslateService } from '../../../../shared/util'
+import { TranslateService } from '../../../../shared/util';
+import { ShowLoading, HideLoading } from '../../../../../lib/backend/loading';
 
 export abstract class BaseAdminComponent<T> {
     constructor(
@@ -86,7 +87,9 @@ export abstract class BaseAdminComponent<T> {
     }
 
     protected HandleNew(value: T) {
+        ShowLoading();
         this.service.Create(value).subscribe(_ => {
+            HideLoading();
             const ref = this.mdSnackBar
                 .open(this.translateService.translate('The data was created successfully'),
                 this.translateService.translate('Close'), {
@@ -108,8 +111,10 @@ export abstract class BaseAdminComponent<T> {
     }
 
     protected HandleUpdate(value: T) {
+        ShowLoading();
         const id = value['id'];
         this.UpdateByID(id, value).first().subscribe(_ => {
+            HideLoading();
             const ref = this.mdSnackBar
                 .open(this.translateService.translate('The data was saved successfully'),
                 this.translateService.translate('Close'), {
@@ -126,8 +131,10 @@ export abstract class BaseAdminComponent<T> {
     }
 
     protected HandleMarkDelete(value: T) {
+        ShowLoading();
         const id = value['id'];
         this.MarkDeleteByID(id).first().subscribe(_ => {
+            HideLoading();
             const ref = this.mdSnackBar
                 .open(this.translateService.translate('The data was deleted'),
                 this.translateService.translate('Close'), {

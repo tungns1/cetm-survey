@@ -4,6 +4,7 @@ import { ITransaction, CacheService, CacheBranch } from '../../shared';
 import { CustomerAPI, paging, RxInfoCustomer } from '../service/customer.service';
 import { TransactionComponent } from './transaction.component';
 import { GridOptions } from "ag-grid";
+import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 
 
 @Component({
@@ -130,13 +131,14 @@ export class HistoryComponent {
     }
 
     jumpToPage(pageIndex: number) {
-        if (pageIndex > 0 && pageIndex < this.totalPage) {
+        if (pageIndex > 0 && pageIndex <= this.totalPage) {
             this.pagin(pageIndex);
             this.curentPage = pageIndex;
         }
     }
 
     pagin(page: number = 1) {
+        ShowLoading();
         const skip = paging.SkipForPage(page);
         const limit = paging.Limit;
         RxInfoCustomer.subscribe(cus => {
@@ -149,8 +151,10 @@ export class HistoryComponent {
                         if (this.gridOptions.api)
                             this.gridOptions.api.setInfiniteRowCount(v.total);
                         this.totalPage = Math.ceil(v.total / 18);
+                        HideLoading();
                     });
             }
+            else HideLoading();
         });
     }
 

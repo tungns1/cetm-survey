@@ -1,4 +1,7 @@
 @import '../shared/style.scss';
 #counterReport {
     width: 100%;
+    md-tab-header, .mat-tab-body-wrapper{
+        z-index: 0;
+    }
 }
