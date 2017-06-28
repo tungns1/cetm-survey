@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/publishReplay';
 import { ISubscription } from 'rxjs/Subscription';
+import { ShowLoading, HideLoading } from './loading';
 
 interface IBaseError {
     err: any;
@@ -73,9 +74,10 @@ export class AppSocket extends BaseWebsocket {
     }
 
     Send<T>(uri: string, data: any): Observable<T> {
+        ShowLoading();
         uri += `?once=${this.makeOnce()}`;
         super.send(uri, data);
-        return this.first<T>(uri);
+        return this.first<T>(uri).do(HideLoading, HideLoading);
     }
 
     Terminate() {

@@ -22,7 +22,15 @@ export class TicketService {
     private platform = this.qms.platform || "other";
 
     private sendAction(body: TicketAction) {
-        return this.socket.Send<ITicket>("/ticket", body).share();
+        const data = <TicketAction>{
+            action: body.action,
+            ticket_id: body.ticket_id,
+            state: body.state,
+            service_id: body.service_id,
+            extra: body.extra
+        }
+
+        return this.socket.Send<ITicket>("/ticket", data).share();
     }
 
     private manager = new ActionManager((ta: TicketAction) => {
