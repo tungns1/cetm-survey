@@ -74,9 +74,9 @@ export function ListenToRouter(router: Router) {
         if (e instanceof NavigationStart) {
             Show();
         } else {
-            // setTimeout(_ => {
-            //     Hide();
-            // }, 2000)
+            setTimeout(_ => {
+                Hide();
+            }, 2000)
         }
     })
     Start();
