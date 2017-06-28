@@ -69,6 +69,7 @@ export class TicketAction {
         return this.done$.first();
     }
 
+
     private done$ = new ReplaySubject<ITicket>(1);
 }
 

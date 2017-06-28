@@ -62,6 +62,8 @@ export function ListenToRouter(router: Router) {
 
 Start();
 
+const loadingDelay = 10;
+
 export function ShowLoading() {
     showCount++;
     if (showCount > 1) {
@@ -79,7 +81,7 @@ export function HideLoading() {
         setTimeout(_ => {
             loaderEl.removeAttribute("active");
             return;
-        }, 1000);
+        }, loadingDelay);
     }
 }
 
