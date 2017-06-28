@@ -30,17 +30,21 @@ export class CounterAPI {
         const limit = paging.Limit;
         this.GetActivity(skip, limit)
             .subscribe(v => {
-                HideLoading();
                 paging.SetPage(page);
                 paging.Reset(v.data, v.total);
+                setTimeout(_ => {
+                    HideLoading();
+                }, 1000);
             });
     }
     Search() {
         ShowLoading();
         this.api.Get<IPerformance>("performance", this.filterService.ToBackendQuery()).subscribe(v => {
             if (v != null) {
-                HideLoading();
                 this.RxCounterFerformance.next(v);
+                setTimeout(_ => {
+                    HideLoading();
+                }, 1000);
             }
 
         });

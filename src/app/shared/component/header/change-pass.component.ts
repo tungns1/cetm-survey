@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA, MdDialog, MdSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthUserAPI, IChangePass } from "./chang-pass.service";
 import { RuntimeEnvironment } from '../../env';
@@ -16,6 +16,7 @@ export class ChangePassComponent {
 
     constructor(
         @Inject(MD_DIALOG_DATA) private dialogData: any,
+        private dialog: MdDialog,
         private setupApi: AuthUserAPI,
         private fb: FormBuilder,
         private env: RuntimeEnvironment,
@@ -49,6 +50,7 @@ export class ChangePassComponent {
         try {
             if (this.ichangePass.new_pass === this.ichangePass.re_new_pass) {
                 this.setupApi.ChangePass(this.form.value);
+                this.dialog.closeAll();
             }
             else {
                 this.pass_false = true;

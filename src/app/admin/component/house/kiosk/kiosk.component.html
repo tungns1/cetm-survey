@@ -62,7 +62,7 @@
             <span fxFlex="20%" i18n>Location</span>
             <span fxFlex="2%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*&nbsp;</span>
             <span fxFlex="2%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-            <branch-picker fxFlex level="0" formControlName="branch_id"></branch-picker>
+            <branch-picker scope="store" fxFlex level="0" formControlName="branch_id"></branch-picker>
             <div fxFlex="2%"></div>
             <span fxFlex="10%" i18n>Services</span>
             <span fxFlex="2%">&nbsp;</span>

@@ -151,10 +151,15 @@ export class HistoryComponent {
                         if (this.gridOptions.api)
                             this.gridOptions.api.setInfiniteRowCount(v.total);
                         this.totalPage = Math.ceil(v.total / 18);
-                        HideLoading();
+                        setTimeout(_ => {
+                            HideLoading();
+                        }, 1000);
                     });
             }
-            else HideLoading();
+            else
+                setTimeout(_ => {
+                    HideLoading();
+                }, 1000);
         });
     }
 
