@@ -1,6 +1,7 @@
 @import '../shared/style.scss';
 .border {
     height: 100%;
+    position: relative;
     .totalCount {
         color: $key-color;
     }
@@ -26,15 +27,21 @@
         }
     }
     .inputSearch {
-        float: right;
-        height: 25px;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        height: 17px;
+        width: 30%;
         border: $border;
         border-radius: 3px;
     }
     .iconSearch {
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        z-index: 2;
         cursor: pointer;
         width: 20px;
-        float: right;
         margin: 7px;
     }
 }

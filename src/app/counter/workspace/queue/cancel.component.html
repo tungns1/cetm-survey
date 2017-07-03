@@ -1,10 +1,10 @@
 <div class="border">
     <div class="componentHeader">
         <span i18n>Cancelled Tickets</span>
-        <span>(</span>
-        <span class="total">{{count$ | async}}</span>
-        <span>)</span>
-        <input #ticket [class.hidden]="!show" style="padding:5px;" (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number" class="inputSearch">
+        <span class="totalCount">({{count$ | async}})</span>
+        <input #ticket [class.hidden]="!show" style="padding:5px;" 
+            (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number" 
+            class="inputSearch" autofocus>
         <img src="./assets/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" class="iconSearch">
     </div>
     <div class="queue">

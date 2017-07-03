@@ -18,7 +18,7 @@ export class MissedComponent {
     missed$ = this.queueService.missed$;
     search = new BehaviorSubject<string>('');
 
-    count = this.missed$.map(data => data.length);
+    count$ = this.missed$.map(data => data.length);
     tickets = combineLatest<ITicket[], string>(this.missed$, this.search).map(([tickets, text]) => {
         return tickets.filter(v => v.cnum.indexOf(text) !== -1);
     });
