@@ -18,11 +18,11 @@
         <td class="center" *ngFor="let fi of fields">{{da[fi.name]}}</td>
         <td class="center">
             <img src="./assets/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onAction('edit',da)">
-            <img src="./assets/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" i18n-appConfirm appConfirm="Do you want to delete the selected item?" (confirm)="onAction('remove-confirm', da)">
+            <img *ngIf="canDelete" src="./assets/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" i18n-appConfirm appConfirm="Do you want to delete the selected item?" (confirm)="onAction('remove-confirm', da)">
         </td>
     </tr>
 </table>
 
 <app-notice>
-    <app-notice-message name="dont_have_authorize" message="You don't have authorize to add new service" i18n-message></app-notice-message>
+    <app-notice-message name="dont_have_authorize" message="You don't have authorize to add new" i18n-message></app-notice-message>
 </app-notice>

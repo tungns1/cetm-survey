@@ -19,8 +19,6 @@ export class TopNavComponent {
         u.role.indexOf(USER_ROLES.ADMIN) !== -1
     );
 
-    adminRoot: boolean = CacheBranch.MaxLevel() == 3;
-
     private isActive(route: string) {
         if (this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('kiosk') > -1) return true;
         if (this.router.url.indexOf(route) > -1) {

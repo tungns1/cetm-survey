@@ -1,7 +1,7 @@
 <app-env-sub-module i18n-title title="Ticket Number Format">
 </app-env-sub-module>
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
-    <app-datatable i18n-name name="Ticket Number Format" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Ticket Number Format" [data]="data$ | async" [canEdit]="false" (action)="onActionRequest($event)">
         <app-table-field name="code" i18n-title title="Code"></app-table-field>
         <app-table-field name="format" i18n-title title="Number Format"></app-table-field>
         <app-table-field name="minnum" i18n-title title="Minimum Value"></app-table-field>
@@ -9,7 +9,7 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" 
+<app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" [canEdit]="false"
     title="Ticket Number Format" i18n-title [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">

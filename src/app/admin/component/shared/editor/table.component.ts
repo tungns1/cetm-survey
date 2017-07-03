@@ -34,8 +34,12 @@ export class AppDataTableComponent implements OnInit {
     @Output() action = new EventEmitter<ITableAction>();
     @ViewChild(NoticeComponent) notice: NoticeComponent;
     adminRoot: boolean = CacheBranch.MaxLevel() == 3;
+    canDelete: boolean = true;
 
     ngOnInit() {
+        if (!this.canEdit && !this.adminRoot) {
+            this.canDelete = false;
+        }
     }
 
     ngAfterContentInit() {

@@ -1,11 +1,12 @@
 <app-env-sub-module i18n-title title="Ticket Layout"></app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable i18n-name name="Ticket Layout" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Ticket Layout" [data]="data$ | async"
+         (action)="onActionRequest($event)" [canEdit]="false">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
     </app-datatable>
 </div>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [canEdit]="false"
     (action)="onActionConfirm($event, form.value)" title="Ticket Layout" i18n-title>
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">

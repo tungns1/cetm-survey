@@ -2,13 +2,14 @@
 
 </app-env-sub-module>
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
-    <app-datatable i18n-name name="Voice Configuration" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable i18n-name name="Voice Configuration" [data]="data$ | async" 
+        (action)="onActionRequest($event)" [canEdit]="false">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
     </app-datatable>
 </div>
 
 <app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" 
-    [isValid]="form.valid" title="Voice Configuration" i18n-title
+    [isValid]="form.valid" title="Voice Configuration" i18n-title [canEdit]="false"
     [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">

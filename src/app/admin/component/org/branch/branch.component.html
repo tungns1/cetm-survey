@@ -1,13 +1,15 @@
 <app-env-sub-module i18n-title [title]="level$ | async | branchLevelName"></app-env-sub-module>
 <div class="animated fadeInLeft" *ngIf="showList$ | async">
-    <app-datatable [name]="level$ | async | branchLevelName" [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable [name]="level$ | async | branchLevelName" [data]="data$ | async" [canEdit]="false" (action)="onActionRequest($event)">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
         <app-table-field name="code" i18n-title title="Code"></app-table-field>
         <app-table-field name="parent_name" i18n-title title="Parent Location"></app-table-field>
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [title]="level$ | async | branchLevelName" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" 
+    [title]="level$ | async | branchLevelName" [isNew]="isNew$ | async" 
+    (action)="onActionConfirm($event, form.value)" [canEdit]="false">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Name</span>
