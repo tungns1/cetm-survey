@@ -50,7 +50,8 @@ export abstract class BaseAdminComponent<T> {
         .filter(form => form != null)
         .switchMap(form => {
             // getRawValue will get all value regardless of disabled state
-            return form.valueChanges.startWith(form.getRawValue());
+            return form.valueChanges.startWith(null)
+                .map(_ => form.getRawValue());
         }).share().publishReplay(1).refCount();
 
 
