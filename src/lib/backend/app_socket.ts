@@ -9,7 +9,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/publishReplay';
 import { ISubscription } from 'rxjs/Subscription';
-import { ShowLoading, HideLoading } from './loading';
+// import { ShowLoading, HideLoading } from './loading';
 
 interface IBaseError {
     err: any;
@@ -74,10 +74,11 @@ export class AppSocket extends BaseWebsocket {
     }
 
     Send<T>(uri: string, data: any): Observable<T> {
-        this.showLoading();
+        // this.showLoading();
         uri += `?once=${this.makeOnce()}`;
         super.send(uri, data);
-        return this.first<T>(uri).do(this.hideLoading, this.hideLoading);
+        return this.first<T>(uri);
+        //.do(this.hideLoading, this.hideLoading);
     }
 
     Terminate() {
@@ -157,12 +158,12 @@ export class AppSocket extends BaseWebsocket {
         return this.error$.filter(e => e.uri === uri).map(e => e.err);
     }
 
-    private showLoading = ShowLoading;
-    private hideLoading = HideLoading;
+    // private showLoading = ShowLoading;
+    // private hideLoading = HideLoading;
 
-    protected NoLoading() {
-        this.showLoading = () => { };
-        this.hideLoading = () => { };
-    }
+    // protected NoLoading() {
+    //     this.showLoading = () => { };
+    //     this.hideLoading = () => { };
+    // }
 
 }

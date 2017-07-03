@@ -14,6 +14,6 @@ export class AppComponent {
 
   title = "app works!";
   ngOnInit(){
-    ListenToRouter(this.router);
+    // ListenToRouter(this.router);
   }
 }

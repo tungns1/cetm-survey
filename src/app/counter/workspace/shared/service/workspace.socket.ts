@@ -14,7 +14,7 @@ export class WorkspaceSocket extends AppSocket {
     onInit() {
         var setting = this.counterSetting.Data;
         var user = this.env.Auth.Me();
-        super.NoLoading();
+        // super.NoLoading();
         super.Connect({
             branch_code: setting.branch_code,
             actor_type: "counter",
