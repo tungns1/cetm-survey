@@ -18,7 +18,7 @@ export class UserComponent extends BaseAdminComponent<IUser> {
     super(injector, org.UserService);
   }
 
-  pattern_pass: any ="^[a-zA-Z0-9-_\?\!\@\#\$\*]{6,20}$";
+  pattern_pass: any ="^[a-zA-Z0-9_\?\!\@\#\$\*]{6,20}$";
 
   makeForm(u?: IUser) {
     u = u || <any>{};
