@@ -91,7 +91,7 @@
 
 
 <ag-grid-angular #agGrid id="overViewTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
-    enableColResize enableSorting export-table i18n-title title="General">
+    enableColResize enableSorting export-table i18n-title>
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column [headerName]="info.fieldBy" field="name" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Total transaction" field="c_t" [width]="115" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
