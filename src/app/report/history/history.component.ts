@@ -129,7 +129,10 @@ export class HistoryComponent {
     }
 
     excel() {
-        this.transactionHistoryApi.ExportHistory(this.filter);
+        this.transactionHistoryApi.ExportExcelHistory(this.filter);
+    }
+    csv() {
+        this.transactionHistoryApi.ExportCsvHistory(this.filter);
     }
 
     showDetails(tr: ITransactionView) {

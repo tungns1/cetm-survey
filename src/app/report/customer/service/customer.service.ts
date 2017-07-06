@@ -72,9 +72,14 @@ export class CustomerAPI {
         return this.RxCustomer.map(CustomerView.Make);
     };
 
-    ExportHistory(id: string,code:string) {
+    ExportHistoryCsv(id: string,code:string) {
         const query = Object.assign({ id: id,code:code }, this.filterService.ToBackendQuery());
-        const url = this.api.MakeURL("export_customer", query);
+        const url = this.api.MakeURL("export_csv_customer", query);
+        window.open(url, "_blank");
+    }
+     ExportHistoryExcel(id: string,code:string) {
+        const query = Object.assign({ id: id,code:code }, this.filterService.ToBackendQuery());
+        const url = this.api.MakeURL("export_excel_customer", query);
         window.open(url, "_blank");
     }
     apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
