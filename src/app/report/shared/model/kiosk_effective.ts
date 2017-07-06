@@ -92,7 +92,6 @@ export class InfoKioskTrack {
                     this.total_ticket+=i.count;
                 })
                 this.total_kiosk = size(groupBy(s.time, 'eid'));
-                this.total_ticket = s.ticket.length;
                 var data_by_branh = toArray(groupBy(s.time, 'bid'));
 
 
