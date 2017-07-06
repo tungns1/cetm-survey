@@ -13,12 +13,12 @@ const TicketStateNames: { [index: string]: L10nText } = {
     serving: {
         en: "serving",
         vi: "đang phục vụ",
-        sp: 'atención'
+        sp: 'Atendiendo'
     },
     finished: {
         en: "finished",
         vi: "đã hoàn thành",
-        sp: 'atendido'
+        sp: 'Terminado'
     },
     cancelled: {
         en: "cancelled",

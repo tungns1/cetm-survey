@@ -1,6 +1,7 @@
 import {
     Component, OnInit, Output, EventEmitter, Input
 } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CacheBranch } from '../';
 // import { BaseAdminComponent } from './base.component'
@@ -13,10 +14,11 @@ export class EditorViewComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private location: Location
     ) { }
 
-    @Input() isNew   = true;
+    @Input() isNew = true;
     @Input() isValid = true;
     @Input() title = 'title';
     @Input() canEdit = true;
@@ -36,17 +38,14 @@ export class EditorViewComponent implements OnInit {
     }
 
     private GoBack() {
-        this.router.navigate(['..', 'list'], {
-            relativeTo: this.route,
-            queryParamsHandling: 'preserve'
-        });
+        this.location.back();
     }
 
     private getStyle() {
-        if(!this.isValid) return 0.3;
+        if (!this.isValid) return 0.3;
     }
     private getValid() {
-        if(!this.isValid) return true;
+        if (!this.isValid) return true;
         else return false;
     }
 }
