@@ -35,13 +35,15 @@ export class SearchComponent {
     stateKey(state: string) {
         return `State ${state}`;
     }
-    
-    checkState(t:ITicket){
-        if(t.state==="waiting"){
-            return true;
-        }
-        return false;
-    }
 
-    
+    getLastCallingTime(ticket: ITicket) {
+        let lastCallingTime: number;
+        for (let i = ticket.tracks.length - 1; i >= 0; i--) {
+            if(ticket.tracks[i].state === 'serving'){
+                lastCallingTime = ticket.tracks[i].mtime;
+                break;
+            }
+        }
+        return lastCallingTime;
+    }
 }
