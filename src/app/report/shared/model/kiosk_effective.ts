@@ -9,14 +9,14 @@ export interface IKioskEffective {
 export interface ITimeKiosk {
     date: string;
     bid: string;
-    eid:string;
-    a_d:number;
+    eid: string;
+    a_d: number;
 }
 
 export interface ITicketKiosk {
     date: string;
     branch_id: string;
-    count:number;
+    count: number;
 }
 
 export interface IValue {
@@ -88,8 +88,8 @@ export class InfoKioskTrack {
         if (s != null) {
             if (s.time.length > 0 && s.ticket.length > 0) {
                 this.total_activity_time = this.SecondToHour(sumBy(s.time, 'a_d'))
-                s.ticket.forEach(i=>{
-                    this.total_ticket+=i.count;
+                s.ticket.forEach(i => {
+                    this.total_ticket += i.count;
                 })
                 this.total_kiosk = size(groupBy(s.time, 'eid'));
                 var data_by_branh = toArray(groupBy(s.time, 'bid'));
@@ -108,20 +108,20 @@ export class InfoKioskTrack {
 
 
                 for (var i = 0; i < len_by_branch_t; i++) {
-                 
-                    var min = 0, max = 0,total=0;
 
-                    data_by_branh_t[i].forEach(i=>{
-                      total+=i.count;
+                    var min = 0, max = 0, total = 0;
+
+                    data_by_branh_t[i].forEach(i => {
+                        total += i.count;
                     })
                     var by_date = toArray(groupBy(data_by_branh_t[i], 'date'));
-                 
+
                     var len = size(data_by_branh_t[i]);
                     for (var i2 = 0; i2 < len; i2++) {
                         if (min > data_by_branh_t[i][i2].count) {
                             min = data_by_branh_t[i][i2].count;
                         }
-                        if (max <data_by_branh_t[i][i2].count) {
+                        if (max < data_by_branh_t[i][i2].count) {
                             max = data_by_branh_t[i][i2].count;
                         }
                     }
@@ -132,10 +132,10 @@ export class InfoKioskTrack {
                     })
                     this.ticket_sum.push({
                         name: CacheBranch.GetNameForID(data_by_branh_t[i][0].branch_id),
-                        total:total,
+                        total: total,
                         highest: max,
                         lowest: min,
-                        average: +(total/ len_by_date_t).toFixed(2),
+                        average: +(total / len_by_date_t).toFixed(2),
                     })
                 }
                 for (var i = 0; i < len_by_branch; i++) {
@@ -153,9 +153,9 @@ export class InfoKioskTrack {
                     })
                 }
                 for (var i = 0; i < len_by_date_t; i++) {
-                    var t=0;
-                    data_by_date_t[i].forEach(i=>{
-                        t+=i.count;
+                    var t = 0;
+                    data_by_date_t[i].forEach(i => {
+                        t += i.count;
                     })
                     this.ticket_day.push({
                         name: data_by_date_t[i][0].date,
@@ -192,13 +192,15 @@ export class InfoKioskTrack {
                 this.shortest_activity_time = minBy(this.time, 'value').value;
                 this.shortest_activity_kiosk = minBy(this.time, 'value').name;
                 this.average_activity_time = +meanBy(this.time, <any>'value').toFixed(2);
-                this.average_kiosk_eff=+(this.total_activity_time/this.total_kiosk).toFixed(2);
+                this.average_kiosk_eff = +(this.total_activity_time / this.total_kiosk).toFixed(2);
                 this.highest_ticket_quantity = maxBy(this.ticket, 'value').value;
                 this.highest_ticket_from = maxBy(this.ticket, 'value').name;
                 this.lowest_ticket_quantity = minBy(this.ticket, 'value').value;
                 this.lowest_ticket_from = minBy(this.ticket, 'value').name;
                 this.average_printed_ticket = +meanBy(this.ticket, <any>'value').toFixed(2);
                 this.ticket = this.ticket.sort((a, b) => b.value - a.value).slice(0, 5);
+                this.ticket_day.sort(function (a, b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); });
+                this.time_day.sort(function (a, b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); });
                 this.time = this.time.sort((a, b) => b.value - a.value).slice(0, 5);
             }
         }
