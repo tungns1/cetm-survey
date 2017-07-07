@@ -99,6 +99,7 @@ export abstract class BaseAdminComponent<T> {
                 });
             HideLoading();
         }, (e: HttpError) => {
+            HideLoading();
             const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
@@ -127,6 +128,7 @@ export abstract class BaseAdminComponent<T> {
             });
             HideLoading();
         }, (e: HttpError) => {
+            HideLoading();
             const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
@@ -147,6 +149,7 @@ export abstract class BaseAdminComponent<T> {
             });
             HideLoading();
         }, (e: HttpError) => {
+            HideLoading();
             const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
