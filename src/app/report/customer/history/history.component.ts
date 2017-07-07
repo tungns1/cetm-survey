@@ -168,7 +168,10 @@ export class HistoryComponent {
     }
 
     excel(data) {
-        this.customerAPI.ExportHistory(this.id, this.code);
+        this.customerAPI.ExportHistoryExcel(this.id, this.code);
+    }
+      csv() {
+         this.customerAPI.ExportHistoryCsv(this.id, this.code);
     }
 
 }

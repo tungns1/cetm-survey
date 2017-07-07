@@ -70,7 +70,11 @@
     <span class="totalPages">/ ({{totalPage}} <span i18n>Pages</span>)</span>
     <button fxFlex="120px" class="btnClear pointer" (click)="jumpToPage(curentPage)" i18n>Move to</button>
     <div fxFlex></div>
-    <button fxFlex="250px" class="btnClear export uppercase" (click)="excel()">
+    <button fxFlex="200px" class="btnClear export uppercase" (click)="csv()">
+        <i class="fa fa-file-excel-o fa-lg"></i>
+        <span i18n>Export to csv</span>
+    </button>
+    <button fxFlex="200px" class="btnClear export uppercase" (click)="excel()">
         <i class="fa fa-file-excel-o fa-lg"></i>
         <span i18n>Export to excel</span>
     </button>

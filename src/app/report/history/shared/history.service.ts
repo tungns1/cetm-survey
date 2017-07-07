@@ -40,9 +40,14 @@ export class TransactionHistoryApi {
     }
 
 
-    ExportHistory(filterHistory: IHistoryFilter) {
+    ExportExcelHistory(filterHistory: IHistoryFilter) {
         const query = Object.assign({}, this.filterService.ToBackendQuery(), filterHistory);
-        const url = this.api.MakeURL("export", query);
+        const url = this.api.MakeURL("export_excel", query);
+        window.open(url, "_blank");
+    }
+    ExportCsvHistory(filterHistory: IHistoryFilter) {
+        const query = Object.assign({}, this.filterService.ToBackendQuery(), filterHistory);
+        const url = this.api.MakeURL("export_csv", query);
         window.open(url, "_blank");
     }
     apiCustomer = this.httpServiceGenerator.make<any>("/api/report/customer");
