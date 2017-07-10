@@ -4,6 +4,7 @@ import {
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CacheBranch } from '../';
+import { RuntimeEnvironment } from '../../shared';
 // import { BaseAdminComponent } from './base.component'
 
 @Component({
@@ -13,22 +14,29 @@ import { CacheBranch } from '../';
 export class EditorViewComponent implements OnInit {
 
     constructor(
+        private env: RuntimeEnvironment,
         private router: Router,
         private route: ActivatedRoute,
         private location: Location
-    ) { }
+    ) { 
+       this.env.Auth.User$.subscribe(u => {
+           this.adminRoot= CacheBranch.GetLevelForID(u.branch_id);
+       });
+    }
 
     @Input() isNew = true;
     @Input() isValid = true;
     @Input() title = 'title';
     @Input() canEdit = true;
-
+ 
     @Output() action = new EventEmitter<string>();
-    adminRoot: boolean = CacheBranch.MaxLevel() == 3;
+    branch_id ='';
+    adminRoot=0;
     hideActionBtn: boolean = false;
 
     ngOnInit() {
-        if (!this.canEdit && !this.adminRoot) {
+        console.log("dasd");
+        if (!this.canEdit && this.adminRoot!=3) {
             this.hideActionBtn = true;
         }
     }

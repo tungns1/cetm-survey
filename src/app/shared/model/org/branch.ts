@@ -85,6 +85,10 @@ class BranchCache extends MemCache<IBranch> {
         const b = this.GetByID(id);
         return b ? b.name : this.NotApplicable;
     }
+    GetLevelForID(id: string) {
+        const b = this.GetByID(id);
+        return b ? b.level : 0;
+    }
     GetForID(id: string) {
         return this.GetByID(id);
     }
