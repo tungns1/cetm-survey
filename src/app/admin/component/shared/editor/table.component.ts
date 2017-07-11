@@ -25,10 +25,10 @@ export class AppTableFieldComponent implements ITableField {
 export class AppDataTableComponent implements OnInit {
 
     constructor(private env: RuntimeEnvironment,
-    ) { 
-         this.env.Auth.User$.subscribe(u => {
-           this.adminRoot= CacheBranch.GetLevelForID(u.branch_id);
-       });
+    ) {
+        this.env.Auth.User$.subscribe(u => {
+            this.adminRoot = CacheBranch.GetLevelForID(u.branch_id);
+        });
     }
 
     @ContentChildren(AppTableFieldComponent) children: QueryList<AppTableFieldComponent>;
@@ -38,12 +38,11 @@ export class AppDataTableComponent implements OnInit {
     @Input() canEdit: boolean = true;
     @Output() action = new EventEmitter<ITableAction>();
     @ViewChild(NoticeComponent) notice: NoticeComponent;
-    adminRoot=0;
+    adminRoot = 0;
     canDelete: boolean = true;
 
     ngOnInit() {
-        console.log("dasda")
-        if (!this.canEdit && this.adminRoot!=3) {
+        if (!this.canEdit && this.adminRoot != 3) {
             this.canDelete = false;
         }
     }
@@ -55,7 +54,7 @@ export class AppDataTableComponent implements OnInit {
     }
 
     onAction(action: string, value: any) {
-        if (!this.canEdit && this.adminRoot!=3) {
+        if (!this.canEdit && this.adminRoot != 3) {
             if (action === 'add') {
                 this.notice.ShowMessage("dont_have_authorize");
             }

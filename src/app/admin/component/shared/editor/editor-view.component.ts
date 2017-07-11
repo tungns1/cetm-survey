@@ -18,25 +18,24 @@ export class EditorViewComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private location: Location
-    ) { 
-       this.env.Auth.User$.subscribe(u => {
-           this.adminRoot= CacheBranch.GetLevelForID(u.branch_id);
-       });
+    ) {
+        this.env.Auth.User$.subscribe(u => {
+            this.adminRoot = CacheBranch.GetLevelForID(u.branch_id);
+        });
     }
 
     @Input() isNew = true;
     @Input() isValid = true;
     @Input() title = 'title';
     @Input() canEdit = true;
- 
+
     @Output() action = new EventEmitter<string>();
-    branch_id ='';
-    adminRoot=0;
+    branch_id = '';
+    adminRoot = 0;
     hideActionBtn: boolean = false;
 
     ngOnInit() {
-        console.log("dasd");
-        if (!this.canEdit && this.adminRoot!=3) {
+        if (!this.canEdit && this.adminRoot != 3) {
             this.hideActionBtn = true;
         }
     }

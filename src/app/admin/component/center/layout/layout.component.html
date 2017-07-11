@@ -1,6 +1,6 @@
 <app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Layout" i18n-name [data]="data$ | async" (action)="onActionRequest($event)">
+    <app-datatable name="Layout" i18n-name [data]="data$ | async" (action)="onActionRequest($event)" [canEdit]="false">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
     </app-datatable>
 </div>
@@ -8,7 +8,7 @@
 
 <app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
     [isValid]="form.valid" (action)="onActionConfirm($event, form.value)"
-    title="Layout" i18n-title>
+    title="Layout" i18n-title [canEdit]="false">
     <form class="margin-b-20 margin-l-10" [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Name</span>
