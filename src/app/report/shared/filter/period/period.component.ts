@@ -20,7 +20,11 @@ export class PeriodFilterComponent implements OnInit {
         period: []
     });
 
-    ngOnInit() {
+    ngOnInit(){
+
+    }
+
+    ngAfterViewInit() {
         setTimeout(() => {
             const value = this.periodFilterService;
             this.form.setValue({
@@ -29,12 +33,12 @@ export class PeriodFilterComponent implements OnInit {
                 period: value.period
             });
             
-            this.form.valueChanges.subscribe(v => {
+            this.form.valueChanges.debounceTime(50).subscribe(v => {
                 this.periodFilterService.Update(
                     v.start, v.end, v.period
                 );
             })
-        });
+        }, 100);
     }
 
 }
