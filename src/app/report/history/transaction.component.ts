@@ -6,6 +6,7 @@ import { ITransactionView, TransactionHistoryApi } from './shared';
 import { Router } from '@angular/router';
 import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
 import { ReportCustomerService } from '../shared';
+import { LocalDayTimePipe } from '../../x/ng/time/localDayTime';
 
 @Component({
     selector: 'transaction',
@@ -28,12 +29,14 @@ export class TransactionComponent implements OnInit {
     customer: ICustomer;
     admin: IUser;
     manager: IUser;
+    ctime = '';
 
     ngOnInit() {
         this.data = this.dialogData;
         this.audio_url = this.getAudioLink(this.dialogData.audio);
         this.getBranchUsers(this.dialogData.branch_id);
         this.getCustomer(this.dialogData.customer_id);
+        this.printTimeCellRendered();
     }
 
     private getAudioLink(uri: string) {
@@ -66,5 +69,12 @@ export class TransactionComponent implements OnInit {
 
     close() {
         this.dialog.closeAll();
+    }
+    printTimeCellRendered() {
+        let localDayTime = new LocalDayTimePipe();
+        if (this.data) {
+            this.ctime = localDayTime.transform(this.data.ctime);
+        }
+
     }
 }
