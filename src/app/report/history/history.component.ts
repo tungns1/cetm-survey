@@ -5,6 +5,7 @@ import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './share
 import { TransactionComponent } from './transaction.component';
 import { GridOptions } from "ag-grid";
 import { ShowLoading, HideLoading } from '../../../lib/backend/loading';
+import { LocalDayTimePipe } from '../../x/ng/time/localDayTime';
 
 @Component({
     selector: 'history',
@@ -65,6 +66,17 @@ export class HistoryComponent {
         if (d.data)
             return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
         else return '';
+    }
+
+    printTimeCellRendered(d) {
+        if (d.data) {
+            let localDayTime = new LocalDayTimePipe();
+            return localDayTime.transform(d.data.ctime);
+        }else{
+            return "";
+        }
+
+
     }
 
     jumpToFirst() {
