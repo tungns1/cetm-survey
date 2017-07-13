@@ -10,9 +10,10 @@ import { GridOptions } from "ag-grid";
 export class TicketComponent {
   protected _data: InfoKioskTrack;
   @Input() padding: number;
-  @Input() title: string;
+  @Input() legend: string;
   @Input() set data(v: InfoKioskTrack) {
     this._data = v;
+    this._data.ticketchart[0].name = this.legend;
     this._data.ticket_sum.forEach((d, index) => {
       d['no'] = index + 1;
     });
@@ -36,11 +37,6 @@ export class TicketComponent {
   };
   cellClass: string[] = ['center', 'padding-10'];
 
-  ngOnChanges(changes) {
-    if (changes.title) {
-      this._data.ticketchart[0].name = this.title;
-    }
-  }
   onSelect(event) {
     console.log(event);
   }

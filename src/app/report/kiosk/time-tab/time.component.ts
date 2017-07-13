@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InfoKioskTrack } from '../../shared';
 import { GridOptions } from "ag-grid";
 
@@ -11,9 +11,10 @@ export class TimeComponent {
 
   protected _data: InfoKioskTrack;
   @Input() padding: number;
-  @Input() title: string;
+  @Input() legend: string;
   @Input() set data(v: InfoKioskTrack) {
     this._data = v;
+    this._data.timechart[0].name = this.legend;
     this._data.time_sum.forEach((d, index) => {
       d['no'] = index + 1;
     });
@@ -35,12 +36,6 @@ export class TimeComponent {
     domain: ['#ff9a00', '#3266cc', '#990099', '#dc3812', '#109619', '#03718d']
   };
   cellClass: string[] = ['center', 'padding-10'];
-
-  ngOnChanges(changes) {
-    if (changes.title) {
-      this._data.timechart[0].name = this.title;
-    }
-  }
 
   onSelect(event) {
     console.log(event);
