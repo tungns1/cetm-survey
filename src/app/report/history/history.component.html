@@ -28,7 +28,7 @@
                     <ag-grid-column headerName="Counter" field="counter" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Teller" field="user" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Ticket" field="cnum" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-                    <ag-grid-column headerName="Print Time" field="ctime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Print Time" [cellRenderer]="printTimeCellRendered" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Waiting Time" field="wtime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Serving Time" field="stime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Feedback" field="rating" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
