@@ -54,8 +54,8 @@ export class ActivityComponent {
       this.curentPage = this.gridOptions.api.paginationGetCurrentPage() + 1;
       this.totalPage = this.gridOptions.api.paginationGetTotalPages()
     },
-    enableServerSideSorting: true,
-    rowModelType: 'infinite',
+    // enableServerSideSorting: true,
+    // rowModelType: 'infinite',
     maxBlocksInCache: 18,
     getRowNodeId: function (item) {
       return item.id;
