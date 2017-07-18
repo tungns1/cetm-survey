@@ -10,8 +10,9 @@ export interface IStoreReport {
 export interface IStorePerformance {
     id?: string;
     branch_id: string;
-    date: string;
-    stime: number;
+    t_ticket: number;
+    t_stime: number;
+    avg_stime: number;
     attended: number;
     abandoned: number;
     teap: number;
@@ -39,51 +40,41 @@ export class InfoStore {
     Add(s: IStoreReport) {
         var t_s = s.transaction;
         var a_v = s.activity
-        var data_by_branh = toArray(groupBy(t_s, 'branch_id'));
-        var len_by_branch = size(data_by_branh);
 
-        for (var i = 0; i < len_by_branch; i++) {
+        var len_t = size(t_s);
+        var len_a = size(a_v);
+
+        for (var i = 0; i < len_t; i++) {
+            var a_d = 0
             var store: ISPT = {
-                branch_id: '',
-                total_ticket: 0,
-                avg_time: '',
-                attended: 0,
-                abandoned: 0,
-                teap: 0,
-                dap: 0,
+                branch_id: t_s[i].branch_id,
+                total_ticket: t_s[i].t_ticket,
+                avg_time: this.SecondToHour((t_s[i].avg_stime)),
+                attended: t_s[i].attended,
+                abandoned: t_s[i].abandoned,
+                teap: t_s[i].teap * 100,
+                dap: t_s[i].dap * 100,
                 occupied: 0
             };
-            var index = findIndex(a_v, { bid: t_s[i].branch_id })
-            if (index != -1) {
-                var data_by_date = toArray(groupBy(data_by_branh[i], 'date'));
-                var len_by_date = size(data_by_date);
-                var total_ticket = data_by_branh[i].length;
-                var stime = 0, teap = 0, dap = 0;
-
-                data_by_branh[i].forEach(v => {
-                    store.attended += v.attended;
-                    store.abandoned += v.abandoned;
-                    store.branch_id = v.branch_id;
-                    store.total_ticket = data_by_branh[i].length;
-                    teap += v.teap * 100;
-                    dap += v.dap * 100;
-                    stime += v.stime * 100;
-                })
-                store.occupied = +(stime / a_v[index].a_d).toFixed(2);
-                store.teap = +(teap / total_ticket).toFixed(2);
-                store.dap = +(dap / total_ticket).toFixed(2);
-                store.avg_time = this.SecondToHour(stime / len_by_date);
-                this.data.push(store);
+            for (var i1 = 0; i1 < len_a; i1++) {
+                if (a_v[i1].bid === t_s[i].branch_id) {
+                    a_d = a_v[i1].a_d
+                }
             }
+            store.occupied = +(t_s[i].t_stime / a_d).toFixed(2) * 100;
+            store.teap = +(store.teap / store.total_ticket).toFixed(2);
+            store.dap = +(store.dap / store.total_ticket).toFixed(2);
+            this.data.push(store);
+
         }
 
         // this.data.sort(function (a, b) { return (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0); });
     }
 
     SecondToHour(s: number) {
+        console.log(s)
         if (s > 0) {
-            var d = new Date(s * 1000);
-            return [d.getHours(), d.getMinutes(), d.getSeconds()].map(this.TwoDigit).join(":");
+            return [s / 3600, (s % 3600) / 60, (s % 60)].map(this.TwoDigit).join(":");
         } else {
             return "00:00:00";
         }
@@ -95,7 +86,6 @@ export class InfoStore {
 
 
     static Make(records: IStoreReport) {
-        console.log(records)
         let res = new InfoStore();
         if (records != null) {
             res.Add(records);
