@@ -1,5 +1,6 @@
 import { CacheBranch } from '../shared';
 
+
 import { groupBy, sumBy, minBy, maxBy, meanBy, sortBy, size, toArray, sum, filter, findIndex } from "lodash";
 import { ICounterTrack } from './counter';
 export interface IStoreReport {
@@ -19,8 +20,8 @@ export interface IStorePerformance {
 export interface ISPT {
     id?: string;
     branch_id: string;
-    avg_time: number;
-    total_ticket:number;
+    avg_time: string;
+    total_ticket: number;
     attended: number;
     abandoned: number;
     teap: number;
@@ -44,8 +45,8 @@ export class InfoStore {
         for (var i = 0; i < len_by_branch; i++) {
             var store: ISPT = {
                 branch_id: '',
-                total_ticket:0,
-                avg_time: 0,
+                total_ticket: 0,
+                avg_time: '',
                 attended: 0,
                 abandoned: 0,
                 teap: 0,
@@ -63,10 +64,10 @@ export class InfoStore {
                     store.attended += v.attended;
                     store.abandoned += v.abandoned;
                     store.branch_id = v.branch_id;
-                    store.total_ticket=data_by_branh[i].length;
-                    teap += v.teap;
-                    dap += v.dap;
-                    stime += v.stime;
+                    store.total_ticket = data_by_branh[i].length;
+                    teap += v.teap * 100;
+                    dap += v.dap * 100;
+                    stime += v.stime * 100;
                 })
                 store.occupied = +(stime / a_v[index].a_d).toFixed(2);
                 store.teap = +(teap / total_ticket).toFixed(2);
@@ -80,9 +81,17 @@ export class InfoStore {
     }
 
     SecondToHour(s: number) {
-        return +(s / 3600).toFixed(2);
+        if (s > 0) {
+            var d = new Date(s * 1000);
+            return [d.getHours(), d.getMinutes(), d.getSeconds()].map(this.TwoDigit).join(":");
+        } else {
+            return "00:00:00";
+        }
     }
-
+    TwoDigit(n: number): string {
+        n = Math.floor(n);
+        return (n > 9 ? '' : '0') + n;
+    }
 
 
     static Make(records: IStoreReport) {
@@ -95,5 +104,4 @@ export class InfoStore {
     }
 
 }
-
 
