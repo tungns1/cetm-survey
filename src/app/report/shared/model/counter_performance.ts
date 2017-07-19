@@ -48,7 +48,8 @@ export class InfoPerformanceTrack {
         var a_v = s.activity
         for (var i = 0; i < t_s.length; i++) {
             var index = findIndex(a_v, { bid: t_s[i].branch_id, eid: t_s[i].counter_id, date: t_s[i].date })
-            if (index != -1) {
+            if (index != -1 && a_v[index].a_d) {
+                var a=+( t_s[i].stime*100/a_v[index].a_d).toFixed(2)
                 var cp: ICPT = {
                     branch_id: t_s[i].branch_id,
                     user_code: t_s[i].user_code,
@@ -60,6 +61,7 @@ export class InfoPerformanceTrack {
                     total_idle_time: t_s[i].wtime,
                     ticket_attended: t_s[i].c_ft,
                     ticket_transferred: t_s[i].c_t - t_s[i].c_ft,
+                    occupied:a
                 }
                 this.data.push(cp)
             }
