@@ -16,7 +16,7 @@
 ]>
 <translationbundle lang="es">
   <translation id="8716359834484489616">Seleccionar todo</translation>
-  <translation id="8632185732539539517">Quitar toda la selección</translation>
+  <translation id="8632185732539539517">Anular selección</translation>
   <translation id="2807800733729323332" desc="Confirm Yes">SI</translation>
   <translation id="3542042671420335679" desc="Confirm No">No</translation>
   <translation id="7819314041543176992">Cerrar</translation>
@@ -98,6 +98,7 @@
   <translation id="5474901734608805094">Diseño</translation>
   <translation id="1747074827275577196">Tipo de diseño</translation>
   <translation id="1664620352147673062">Recurso</translation>
+  <translation id="1847958039041298381" desc="Confirm the context">Tiempo en reposo</translation>
   <translation id="8939716680243148602">Longitud máxima de cola</translation>
   <translation id="9006509548534744691">Lista de reproducción</translation>
   <translation id="6370642728789544052">Número</translation>
@@ -158,6 +159,7 @@
   <translation id="4495620181723937744">Segmento</translation>
   <translation id="8143712396135337139">Código de sucursal</translation>
   <translation id="1230377751047475838">Código de ventanilla</translation>
+  <translation id="7183911729524650410" desc="Please, confirm if this is in setting"/>
   <translation id="2785467620253954908" desc="Please, confirm if this is in setting">Puerto COM Led</translation>
   <translation id="2614607010577950577">Resumen</translation>
   <translation id="313854265968026491">Transacción</translation>
@@ -298,6 +300,7 @@
   <translation id="3095401974093327188">Actividad de quiosco más corta</translation>
   <translation id="1920876936276692630">Promedio de efectividad del quiosco</translation>
   <translation id="1316403076280758412">Ticke</translation>
+  <translation id="1063249549748489725" desc="Please confirm the case to use  this phrase">Ticket más bajo impreso desde</translation>
   <translation id="4051854810814110056">Tiempo total de actividad (horas)</translation>
   <translation id="3373181895360368816">Tiempo más largo de actividad (horas)</translation>
   <translation id="5073788929513194117">Tiempo más corto de actividad (horas)</translation>
@@ -358,5 +361,15 @@
   <translation id="3033623772164647792">Altura</translation>
   <translation id="2018922024247045709">Ancho</translation>
   <translation id="7779249123661446825">Comportamiento</translation>
+  <translation id="4191190862219975057" desc="Please confirm the case to use this phrase">No enfocable</translation>
   <translation id="2747815278860682041">Siempre en la cima</translation>
+  <translation id="840816844468850680" desc="Please confirm the action for this sentence">No redimensionable</translation>
+  <translation id="7740966891853416785"/>
+  <translation id="4967508879345274026"/>
+  <translation id="6403844866858431063"/>
+  <translation id="7704060182999666337"/>
+  <translation id="2525119202031537140">Exportar a csv</translation>
+  <translation id="3443036669836863676"/>
+  <translation id="9073593512002672944"/>
+  <translation id="5663998787015242541"/>
 </translationbundle>
