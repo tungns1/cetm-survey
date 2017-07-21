@@ -33,7 +33,7 @@ export function loadReportStoreModule() {
 }
 
 export const children: Routes = [
-    { path: "", pathMatch: "full", redirectTo: "dashboard" },
+    { path: "", pathMatch: "full", redirectTo: "history" },
     { path: "history", loadChildren: loadReportHistoryModule },
     { path: "dashboard", loadChildren: loadReportDashboardModule },
     { path: "customer/:id", loadChildren: loadReportCustomerModule },
