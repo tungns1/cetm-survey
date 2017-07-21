@@ -45,21 +45,21 @@
             </div>
             <!-- Voice -->
             <span fxFlex="10%">
-                <!-- <ng-container i18n>Voice List</ng-container> -->
+                <ng-container i18n>Voice List</ng-container>
             </span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <!-- <span fxFlex="1%">&nbsp;</span>
+                <span fxFlex="1%">&nbsp;</span>
                 <select fxFlex class="hl-select" formControlName="voice_list_id">
                     <option value="">--None--</option>
                     <option *ngFor="let voice of voice_lists$ | async" [value]="voice.id"> {{voice.name}} </option>
                 </select>
                 <a fxFlex="7%" [routerLink]="voiceEditLink$ | async" queryParamsHandling="merge">
                     <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
-                </a> -->
+                </a>
             </div>
         </div>
         <!-- Select Parent -->
-        <!-- <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%">
                 <ng-container i18n>Inherit From</ng-container>
             </span>
@@ -87,10 +87,10 @@
                 </a>
             </div>
 
-        </div> -->
+        </div>
 
         <!-- Resource -->
-        <!-- <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Resources</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%">&nbsp;</span>
@@ -105,6 +105,6 @@
                 <select-check fxFlex formControlName="counters" class="border" style="background-color: #fff; height: 92px;" [data]="counters$ | async" textField="name"></select-check>
                 <div fxFlex="7%"></div>
             </div>
-        </div> -->
+        </div>
     </form>
 </app-editor-view>

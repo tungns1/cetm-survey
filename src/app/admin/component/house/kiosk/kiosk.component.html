@@ -35,18 +35,14 @@
             <span fxFlex="2%">&nbsp;</span>
             <input fxFlex class="ctrlInput" type="text" formControlName="vcodes" i18n-placeholder="Vip Codes">
             <div fxFlex="2%"></div>
-            <span fxFlex="10%" i18n>Location</span>
-            <span fxFlex="2%" class="valid-color" *ngIf="form.get('branch_id').hasError('required')">*&nbsp;</span>
-            <span fxFlex="2%" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
-            <branch-picker scope="store" fxFlex level="0" formControlName="branch_id"></branch-picker>
-            <!-- <span fxFlex="10%" i18n="Inherit kiosk attributes">Inherit From</span>
+            <span fxFlex="10%" i18n="Inherit kiosk attributes">Inherit From</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="parent_id">           
                 <option value="">--None--</option>
                 <option *ngFor="let ki of kiosks | async" [value]="ki.id"> {{ki.name}}</option> 
-            </select> -->
+            </select>
         </div>
-        <!-- <div fxLayout="row" class="rowCtrl">
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%">Layout</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="layout_id">
@@ -76,6 +72,6 @@
             <span fxFlex="20%" i18n>Resources</span>
             <span fxFlex="2%">&nbsp;</span>
             <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
-        </div> -->
+        </div>
     </form>
 </app-editor-view>

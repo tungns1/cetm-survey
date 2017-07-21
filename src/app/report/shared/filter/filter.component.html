@@ -1,7 +1,7 @@
 <div class="filter" fxLayout="column">
     <div fxFlex class="content">
         <period-filter [inside]="inside"></period-filter>
-        <branch-filter *ngIf="inside!='customer'" class="hide"></branch-filter>
+        <branch-filter *ngIf="inside!='customer'"></branch-filter>
         <inside-filter *ngIf="inside==='yes'"></inside-filter>
     </div>
     <div fxFlex="7vh" class="action">
