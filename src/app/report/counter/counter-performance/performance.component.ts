@@ -33,7 +33,7 @@ export class PerformanceComponent {
   };
   
   cellClass: string[] = ['center', 'padding-10'];
-  curentPage: number = 1;
+  curentPage: number;
   totalPage: number;
 
   private gridOptions: GridOptions = {

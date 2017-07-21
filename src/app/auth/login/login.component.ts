@@ -35,26 +35,24 @@ export class LoginComponent implements OnInit {
 
   query = this.route.snapshot.queryParamMap;
 
-  auto_login = this.query.get("auto_login") === "true" ? true : false;
-
   ngOnInit() {
-    const autoLogin = this.auto_login;
+    const autoLogin = this.query.get("auto_login") === "true" ? true : false;
     if (autoLogin) {
       let user = CurrentUser();
       if (user) {
         this.loginForm.controls['username'].setValue(user);
-        this.login();
+        this.login(true);
       }
     }
   }
 
-  login() {
+  login(auto?: boolean) {
     const userInput = this.loginForm.value;
     const data = {
       username: userInput.username,
       password: userInput.password,
       scope: this.query.get("scope"),
-      auto_login: this.auto_login,
+      auto_login: auto,
       branch_code: this.query.get("branch_code"),
     }
 

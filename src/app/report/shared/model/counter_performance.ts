@@ -77,7 +77,6 @@ export class InfoPerformanceTrack {
 
 
     static Make(records: IPerformance) {
-        console.log(records)
         let res = new InfoPerformanceTrack();
         if (records != null) {
             res.Add(records);
