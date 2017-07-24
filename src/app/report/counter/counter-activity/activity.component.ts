@@ -110,14 +110,15 @@ export class ActivityComponent {
   }
 
   export() {
-    var params = {
-      skipHeader: false,
-      allColumns: true,
-      suppressQuotes: false,
-      fileName: 'counterActivity.csv',
-    };
-    console.log(this.gridOptions.api.getDataAsCsv(params));
-    this.gridOptions.api.exportDataAsCsv(params);
+    // var params = {
+    //   skipHeader: false,
+    //   allColumns: true,
+    //   suppressQuotes: false,
+    //   fileName: 'counterActivity.csv',
+    // };
+    // console.log(this.gridOptions.api.getDataAsCsv(params));
+    // this.gridOptions.api.exportDataAsCsv(params);
+    console.log('request to API');
   }
 
   pagin(page: number = 1) {

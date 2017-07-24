@@ -16,6 +16,21 @@ export class CounterAPI {
         private filterService: ReportFilterService,
         private httpServiceGenerator: HttpServiceGenerator
     ) { }
+    private makeQuery(code: string, id: string) {
+        return Object.assign({
+            code: code,
+            id: id,
+        }, this.filterService.ToBackendQuery());
+    }
+    RxCounterFerformance = new BehaviorSubject<IPerformance>(null);
+
+    get RxPerformanceView() {
+        return this.RxCounterFerformance.map(InfoPerformanceTrack.Make);
+    };
+
+
+    api = this.httpServiceGenerator.make<any>("/api/report/counter");
+
     GetActivity(skip: number, limit: number) {
         const query = Object.assign({
             skip: skip,
@@ -45,19 +60,11 @@ export class CounterAPI {
 
         });
     }
-    private makeQuery(code: string, id: string) {
-        return Object.assign({
-            code: code,
-            id: id,
-        }, this.filterService.ToBackendQuery());
+
+    exportCSV() {
+        /* counter activity - export csv */
+        const query = Object.assign({}, this.filterService.ToBackendQuery());
+        const url = this.api.MakeURL("export_csv", query);
+        window.open(url, "_blank");
     }
-    RxCounterFerformance = new BehaviorSubject<IPerformance>(null);
-
-    get RxPerformanceView() {
-        return this.RxCounterFerformance.map(InfoPerformanceTrack.Make);
-    };
-
-
-    api = this.httpServiceGenerator.make<any>("/api/report/counter");
-
 }
