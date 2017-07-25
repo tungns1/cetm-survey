@@ -44,16 +44,13 @@ export class MonitorFocusService {
     const box = new BoxTicket(initial);
     CacheCounter.Refresh(initial.counters);
     CacheUsers.Refresh(initial.users);
-    const activityUpdate = this.activitySummaryUpdate$.map(a => {
-      box.UpdateActivitySummary(a);
-    });
     const summaryUpdate = this.ticketSummaryUpdate$.map(s => {
       box.UpdateTicketSummary(s);
     });
     const ticketUpdate = this.ticketChange$.map(t => {
       box.UpdateTicket(t);
     });
-    return of(null).merge(activityUpdate, summaryUpdate, ticketUpdate)
+    return of(null).merge(summaryUpdate, ticketUpdate)
       .map(_ => box);
   }).share().auditTime(1000).publishReplay(1).refCount();
 
