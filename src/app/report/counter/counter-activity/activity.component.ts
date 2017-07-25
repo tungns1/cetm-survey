@@ -118,6 +118,7 @@ export class ActivityComponent {
     // };
     // console.log(this.gridOptions.api.getDataAsCsv(params));
     // this.gridOptions.api.exportDataAsCsv(params);
+    this.counterAPI.exportCSV();
     console.log('request to API');
   }
 
