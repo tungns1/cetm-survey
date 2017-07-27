@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { QueueService } from '../shared';
 
 @Component({
-
     selector: 'serving',
     template: `
     <ticket *ngFor="let t of serving$ | async" [ticket]="t"></ticket>

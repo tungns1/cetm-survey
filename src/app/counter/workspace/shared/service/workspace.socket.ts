@@ -21,6 +21,7 @@ export class WorkspaceSocket extends AppSocket {
             counter_code: setting.counter_code,
             user_id: user.id
         });
+        super.KeepAlive();
     }
 
     onDestroy() {
