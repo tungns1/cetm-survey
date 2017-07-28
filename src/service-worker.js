@@ -1,6 +1,8 @@
 importScripts('workbox-sw.prod.js');
-
+const version = "201707281";
 const fileManifest = [];
+const cacheUpdatable = 'static-updatable-' + version;
+const cacheNonUpdatable = 'static-non-updatable-' + version;
 
 const workboxSW = new self.WorkboxSW({ clientsClaim: true, skipWaiting: true });
 // workboxSW.precache(fileManifest);
@@ -9,7 +11,7 @@ function StaleWhileRevalidate(pattern) {
     workboxSW.router.registerRoute(
         pattern,
         workboxSW.strategies.staleWhileRevalidate({
-            cacheName: 'static-updatable',
+            cacheName: cacheUpdatable,
             maxEntries: 128,
             cacheExpiration: {
                 maxAgeSeconds: 7 * 24 * 60 * 60, // one week
@@ -26,7 +28,7 @@ function CacheFirst(pattern) {
     workboxSW.router.registerRoute(
         pattern,
         workboxSW.strategies.cacheFirst({
-            cacheName: 'static-non-updatable',
+            cacheName: cacheNonUpdatable,
             maxEntries: 128,
             cacheExpiration: {
                 maxAgeSeconds: 30 * 24 * 60 * 60, // one month
@@ -42,14 +44,6 @@ function NetworkFirst(pattern) {
         workboxSW.strategies.networkFirst()
     )
 }
-
-// const pathname = location.pathname;
-// const pathWithSlash = pathname.substr(0, pathname.indexOf("/") + 1);
-
-// function MakePattern(pattern) {
-//     const res = pathWithSlash + pattern;
-//     return new RegExp(res);
-// }
 
 // index.html
 NetworkFirst(/\/(device|app)\/$/);
