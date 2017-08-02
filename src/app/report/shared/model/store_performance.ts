@@ -48,10 +48,10 @@ export class InfoStore {
             var a_d = 0
             var store: ISPT = {
                 branch_id: t_s[i].branch_id,
-                total_ticket: t_s[i].t_ticket,
                 avg_time: this.SecondToHour((t_s[i].avg_stime)),
                 attended: t_s[i].attended,
                 abandoned: t_s[i].abandoned,
+                total_ticket: t_s[i].attended + t_s[i].abandoned,
                 teap: t_s[i].teap * 100,
                 dap: t_s[i].dap * 100,
                 occupied: 0
