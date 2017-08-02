@@ -13,11 +13,10 @@ export interface ICounterPerformance {
     user_name: string;
     counter_id: string;
     counter_name: string;
-    date: string;
+    ctime: string;
     stime: number;
-    wtime: number;
-    c_t: number;
-    c_ft: number;
+    attended: number;
+    cancelled: number;
 
 }
 export interface ICPT {
@@ -27,7 +26,7 @@ export interface ICPT {
     user_code: string;
     user_name: string;
     counter_name: string;
-    date: string;
+    ctime: string;
     total_connection_time: number;
     total_productivity_time: number;
     total_idle_time: number;
@@ -47,27 +46,31 @@ export class InfoPerformanceTrack {
         var t_s = s.performance;
         var a_v = s.activity
         for (var i = 0; i < t_s.length; i++) {
-            var index = findIndex(a_v, { bid: t_s[i].branch_id, eid: t_s[i].counter_id, date: t_s[i].date })
+            var index = findIndex(a_v, { bid: t_s[i].branch_id, eid: t_s[i].counter_id, date: t_s[i].ctime })
             if (index != -1 && a_v[index].a_d) {
                 var a=+( t_s[i].stime*100/a_v[index].a_d).toFixed(2)
-                var cp: ICPT = {
-                    branch_id: t_s[i].branch_id,
-                    user_code: t_s[i].user_code,
-                    user_name: t_s[i].user_name,
-                    counter_name: t_s[i].counter_name,
-                    date: t_s[i].date,
-                    total_connection_time: a_v[index].a_d,
-                    total_productivity_time: t_s[i].stime,
-                    total_idle_time: t_s[i].wtime,
-                    ticket_attended: t_s[i].c_ft,
-                    ticket_transferred: t_s[i].c_t - t_s[i].c_ft,
-                    occupied:a
+                if(a_v[index].a_d>t_s[i].stime){
+                     var cp: ICPT = {
+                        branch_id: t_s[i].branch_id,
+                        user_code: t_s[i].user_code,
+                        user_name: t_s[i].user_name,
+                        counter_name: t_s[i].counter_name,
+                        ctime: t_s[i].ctime,
+                        total_connection_time: a_v[index].a_d,
+                        total_productivity_time: t_s[i].stime,
+                        total_idle_time: a_v[index].a_d- t_s[i].stime,
+                        ticket_attended: t_s[i].attended,
+                        ticket_transferred: t_s[i].cancelled,
+                        occupied:a
+                    }
+                    this.data.push(cp)
+
                 }
-                this.data.push(cp)
+               
             }
 
         }
-        this.data.sort(function (a, b) { return (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0); });
+        this.data.sort(function (a, b) { return (a.ctime > b.ctime) ? 1 : ((b.ctime > a.ctime) ? -1 : 0); });
     }
 
     SecondToHour(s: number) {
