@@ -57,8 +57,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.Login(data).subscribe((v) => {
-      const redirect = this.query.get("redirect") || "/";
-      this.router.navigateByUrl(redirect);
+      if (v.user.role === 'media') {
+        const redirect = '/admin/house/screen';
+        this.router.navigateByUrl(redirect);
+      }
+      else {
+        const redirect = this.query.get("redirect") || "/";
+        this.router.navigateByUrl(redirect);
+      }
     }, (e: HttpError) => {
       this.message = e.Message();
     });

@@ -24,7 +24,8 @@ export class AppTableFieldComponent implements ITableField {
 })
 export class AppDataTableComponent implements OnInit {
 
-    constructor(private env: RuntimeEnvironment,
+    constructor(
+        private env: RuntimeEnvironment,
     ) {
         this.env.Auth.User$.subscribe(u => {
             this.adminRoot = CacheBranch.GetLevelForID(u.branch_id);

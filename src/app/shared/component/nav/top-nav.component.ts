@@ -19,6 +19,10 @@ export class TopNavComponent {
         u.role.indexOf(USER_ROLES.ADMIN) !== -1
     );
 
+    isMedia$ = this.env.Auth.User$.map(u =>
+        u.role.indexOf(USER_ROLES.MEDIA) !== -1
+    );
+
     private isActive(route: string) {
         if (this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('kiosk') > -1) return true;
         if (this.router.url.indexOf(route) > -1) {

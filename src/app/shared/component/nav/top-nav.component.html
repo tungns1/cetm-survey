@@ -35,7 +35,7 @@
                 </li>
             </ul>
         </li>
-        <li class="li_firstLv">
+        <li class="li_firstLv" *ngIf="!(isMedia$ | async)">
             <div class="paddingFirst" routerLink="/report" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/report')">
                 <i class="fa fa-line-chart"> </i>
                 <span i18n>Report & Analysis</span>
@@ -61,7 +61,7 @@
                 </li>
             </ul>
         </li>
-        <li class="li_firstLv">
+        <li class="li_firstLv" *ngIf="!(isMedia$ | async)">
             <div class="paddingFirst" routerLink="/monitor" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/monitor')">
                 <i class="fa fa-bell"> </i>
                 <span i18n>Monitor</span>

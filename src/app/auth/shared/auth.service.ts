@@ -19,6 +19,7 @@ interface ISession {
 
 interface ILoginReply {
   session: ISession;
+  user: IUser;
 }
 
 import { IUser, IBranch, IService, IBranchConfig } from './shared';
