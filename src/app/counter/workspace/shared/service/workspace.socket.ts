@@ -20,6 +20,13 @@ export class WorkspaceSocket extends AppSocket {
             counter_code: setting.counter_code,
             user_id: user.id
         });
+        this.error$.subscribe(e => {
+            if (e.uri.startsWith("/system")) {
+                new Notification("Application Error", {
+                    body: e.err || e.error
+                });
+            }
+        });
         super.KeepAlive();
     }
 
