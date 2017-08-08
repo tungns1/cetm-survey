@@ -40,7 +40,7 @@ export class PerformanceComponent {
       skipHeader: false,
       allColumns: true,
       suppressQuotes: false,
-      fileName: 'storePerformence.csv',
+      fileName: 'storePerformance.csv',
     };
     console.log(this.gridOptions.api.getDataAsCsv(params));
     this.gridOptions.api.exportDataAsCsv(params);
