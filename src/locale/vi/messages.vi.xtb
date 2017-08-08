@@ -61,7 +61,6 @@
   <translation id="6973747544653250639" desc="Add New Model">Thêm mới <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="4511235385998512563" desc="Numerical Order">STT</translation>
   <translation id="9216117865911519658">Sửa/Xóa</translation>
-  <translation id="3233282947913364358">Tài khoản không có đủ quyền để tạo với dịch vụ</translation>
   <translation id="2184226512508531506" desc="Add New Model">Thêm mới <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="8552929419265057684">Sửa <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="2960246622843217026">Quay lại</translation>
@@ -115,10 +114,8 @@
   <translation id="7169279957700355812">Định dạng vé</translation>
   <translation id="2582043348955052568">Định dạng vé vip</translation>
   <translation id="9063793946634119147">Bắt buộc phản hồi</translation>
-  <translation id="3761195704239602908">Danh sách vé đợi</translation>
   <translation id="8604852007710946848">Tên dịch vụ</translation>
   <translation id="494134059610115997">Thời gian đợi</translation>
-  <translation id="3717925337824501119">Danh sách đặt nhỡ</translation>
   <translation id="5826073933999704478">Lượt gọi cuối</translation>
   <translation id="7430541496133842817">Vé đã hủy</translation>
   <translation id="7186187311199183622">Hủy lúc</translation>
@@ -158,10 +155,7 @@
   <translation id="991579100870874315">Mã khách hàng</translation>
   <translation id="8194554728555410336">Số điện thoại</translation>
   <translation id="4495620181723937744">Phân khúc</translation>
-  <translation id="8143712396135337139">Mã chi nhánh</translation>
   <translation id="1230377751047475838">Mã quầy</translation>
-  <translation id="7183911729524650410">Địa chỉ led</translation>
-  <translation id="2785467620253954908">Cổng COM cho LED</translation>
   <translation id="2614607010577950577">Tổng quan</translation>
   <translation id="313854265968026491">Giao dịch</translation>
   <translation id="7292902857194439444">Thiết bị</translation>
@@ -199,7 +193,6 @@
   <translation id="4167799644776467116">Kiosk tắt</translation>
   <translation id="4052696886848078556">Online lúc</translation>
   <translation id="5865185208184579017">Offline At</translation>
-  <translation id="1247859366054768414">Thời gian kết nối (giờ)</translation>
   <translation id="6414986856104313209">Chọn giao dịch viên</translation>
   <translation id="8570889309236939868">Chọn quầy</translation>
   <translation id="7213391653135056284">Khoảng thời gian</translation>
@@ -289,12 +282,8 @@
   <translation id="3566352024469451419">Thời gian hoạt động gần nhất</translation>
   <translation id="3708374077928660011">Số lượng vé</translation>
   <translation id="7042965335013821100">Tổng số vé in</translation>
-  <translation id="6338750494429535920">SL vé in nhiều nhất</translation>
-  <translation id="7959306904007235804">SL vé in ít nhất</translation>
   <translation id="4147138638599131171">SL vé in trung bình</translation>
   <translation id="6021327109574507682">Tổng TG hoạt động (giờ)</translation>
-  <translation id="2636890792116928758">TG hoạt động dài nhất trong chu kỳ (giờ/ngày)</translation>
-  <translation id="3138958729811787295">TG hoạt động ngắn nhất (giờ trên ngày)</translation>
   <translation id="4048474815384547888">Thời gian hoạt động trung bình (giờ / ngày)</translation>
   <translation id="4309933217010445172">Tổng số kiosk</translation>
   <translation id="5025062788646623336">Kiosk hoạt động lâu nhất</translation>
@@ -321,11 +310,6 @@
   <translation id="1494927747837150613">Tổng TG kết nối</translation>
   <translation id="1358828868857685558">Hiệu năng quầy</translation>
   <translation id="7856251281724531755">Hoạt động quầy</translation>
-  <translation id="8699269313110062127">Thời gian kết nối</translation>
-  <translation id="4410274096244571678">Thời gian hoạt động</translation>
-  <translation id="3821052680478335961">TG rảnh</translation>
-  <translation id="2689193723199620403">Thời điểm gọi vé</translation>
-  <translation id="1310875596995619722">Thời điểm hủy vé</translation>
   <translation id="7128097476561025477">Mã phòng giao dịch</translation>
   <translation id="8180809989545150245">Tên phòng giao dịch</translation>
   <translation id="7410432243549869948">Thời gian</translation>
@@ -340,7 +324,6 @@
   <translation id="5297301850911097062">% vé phục vụ dưới 2 phút</translation>
   <translation id="5940600863372862382">Vé đã in</translation>
   <translation id="8562778474158270448"/>
-  <translation id="6849133517720601930">Hiệu suất phục vụ</translation>
   <translation id="1608105963217791253">Cài đặt</translation>
   <translation id="2821179408673282599">Trang chủ</translation>
   <translation id="2052833920187184086">Thời gian phục vụ</translation>
@@ -356,8 +339,6 @@
   <translation id="3180395643608813221">Chế độ thu nhỏ</translation>
   <translation id="2516583967431582001">Cấu hình nâng cao</translation>
   <translation id="3708675742680248205">Led</translation>
-  <translation id="6543643564103016190">Ghi âm</translation>
-  <translation id="5276952738294233478">Bật ghi âm giao dịch</translation>
   <translation id="5212357720846763566">Bật chế độ thu nhỏ</translation>
   <translation id="3033623772164647792">Chiều cao</translation>
   <translation id="2018922024247045709">Chiều rộng</translation>
@@ -367,10 +348,14 @@
   <translation id="840816844468850680">Không thể thay đồi kích thước</translation>
   <translation id="7740966891853416785">Giao Diện Kiosk</translation>
   <translation id="4967508879345274026">Bạn không có quyền để thêm mới</translation>
-  <translation id="6403844866858431063"/>
-  <translation id="7704060182999666337"/>
   <translation id="2525119202031537140">Xuất ra file csv</translation>
-  <translation id="3443036669836863676"/>
-  <translation id="9073593512002672944"/>
-  <translation id="5663998787015242541"/>
+  <translation id="9173932259018417844">Vé in cao nhất</translation>
+  <translation id="288909438174420955">Vé in thấp nhất</translation>
+  <translation id="3324009174430940028">Thời gian kết nối cao nhất (giờ trên ngày)</translation>
+  <translation id="4725170981845278858">Thời gian kết nối thấp nhất (giờ trên ngày)</translation>
+  <translation id="5939619873221855392">Tổng TG kết nối</translation>
+  <translation id="4067414789596043215">Tổng thời gian phục vụ</translation>
+  <translation id="2017125555193295911">Tổng thời gian nghỉ</translation>
+  <translation id="2340871387079584510">Vé phục vụ vượt chuẩn</translation>
+  <translation id="1334015515562802012">Vé hủy</translation>
 </translationbundle>
