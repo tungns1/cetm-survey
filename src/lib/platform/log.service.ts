@@ -6,7 +6,7 @@ export class LogService {
   constructor() { }
 
   Error(...args) {
-    console.error(args);
+    console.error("[ERROR]", ...args);
   }
 
   Debug(...args) {

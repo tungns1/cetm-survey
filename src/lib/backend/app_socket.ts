@@ -152,7 +152,7 @@ export class AppSocket extends BaseWebsocket {
     private minEchoInterval = this.waitForEcho + 2000;
     private echoInterval = this.minEchoInterval;
 
-    private error$ = this.filterMessage<IBaseError>("/error");
+    protected error$ = this.filterMessage<IBaseError>("/error");
 
     private filterError(uri: string) {
         return this.error$.filter(e => e.uri === uri).map(e => e.err);

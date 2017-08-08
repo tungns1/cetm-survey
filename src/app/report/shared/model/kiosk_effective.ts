@@ -4,6 +4,7 @@ import { CacheBranch, IActivity } from '../shared';
 export interface IKioskEffective {
     time: ITimeKiosk[];
     ticket: ITicketKiosk[];
+    dates:number;
 }
 
 export interface ITimeKiosk {
@@ -199,7 +200,7 @@ export class InfoKioskTrack {
                 this.shortest_activity_time = minBy(this.time, 'value').value;
                 this.shortest_activity_kiosk = minBy(this.time, 'value').name;
                 this.average_activity_time = +meanBy(this.time, <any>'value').toFixed(2);
-                this.average_kiosk_eff = +(this.total_activity_time / this.total_kiosk).toFixed(2);
+                this.average_kiosk_eff = +((this.total_activity_time*100) / (this.total_kiosk*24*s.dates)).toFixed(2);
                   this.time_day.sort(function (a, b) { return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); });
                 this.time = this.time.sort((a, b) => b.value - a.value).slice(0, 5);
             }

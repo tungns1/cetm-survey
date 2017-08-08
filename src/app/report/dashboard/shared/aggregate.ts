@@ -120,7 +120,7 @@ export class TransactionAggregate {
 
         if (this.c_ft > 0) {
             this.a_wt = Round2Decimal(this.s_wt / this.c_t);
-            this.a_st = Round2Decimal(this.s_st / this.c_ft);
+            this.a_st = Round2Decimal(this.s_st / this.c_t);
             this.c_r_p = Round2DecimalPercent(this.c_r , this.c_ft);
             this.c_r_o_p = Round2DecimalPercent(this.c_r_o , this.c_ft);
         }
