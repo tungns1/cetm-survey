@@ -23,7 +23,8 @@ export class WorkspaceSocket extends AppSocket {
         this.error$.subscribe(e => {
             if (e.uri.startsWith("/system")) {
                 new Notification("Application Error", {
-                    body: e.err || e.error
+                    body: e.err || e.err
+                    // body: e.err || e.error
                 });
             }
         });
