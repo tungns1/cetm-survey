@@ -78,7 +78,7 @@ export class PerformanceComponent {
       skipHeader: false,
       allColumns: true,
       suppressQuotes: false,
-      fileName: 'counterPerformence.csv',
+      fileName: 'counterPerformance.csv',
     };
     console.log(this.gridOptions.api.getDataAsCsv(params));
     this.gridOptions.api.exportDataAsCsv(params);
