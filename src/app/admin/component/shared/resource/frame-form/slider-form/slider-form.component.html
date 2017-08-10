@@ -1,0 +1,11 @@
+<div *ngIf="value" class="margin-b-15">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="23%" class="margin-t-5" i18n>Timing (second)</span>
+        <input fxFlex type="number" min="1" class="ctrlInput" [(ngModel)]="value.timing" (change)="onChange($event)">
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="23%" class="margin-t-5" i18n>Animation name</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.animation">
+    </div>
+    <multi-file-picker [(ngModel)]="value.srcs"></multi-file-picker>
+</div>
