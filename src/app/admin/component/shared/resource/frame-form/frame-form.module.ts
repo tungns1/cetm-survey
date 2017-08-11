@@ -6,6 +6,7 @@ import { TextFormModule } from './text-form/text-form.module';
 import { ImageFormModule } from './image-form/image-form.module';
 import { VideoFormModule } from './video-form/video-form.module';
 import { RepeaterFormModule } from './repeater-form/repeater-form.module';
+import { SliderFormModule } from './slider-form/slider-form.module';
 import { ModalModule, AdminFormModule, FlexLayoutModule, AccordionModule } from '../shared';
 import { provideUploadURLToken } from './shared';
 
@@ -15,7 +16,8 @@ import { provideUploadURLToken } from './shared';
     ModalModule,
     AdminFormModule,
     TextFormModule, ImageFormModule, VideoFormModule,
-    FlexLayoutModule, RepeaterFormModule, AccordionModule
+    FlexLayoutModule, RepeaterFormModule, AccordionModule,
+    SliderFormModule
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],
