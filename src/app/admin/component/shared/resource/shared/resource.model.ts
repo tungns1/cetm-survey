@@ -4,6 +4,7 @@ export interface IResource<T> {
   data: T;
   show?: boolean;
   enabled?: boolean;
+  style?: any;
 }
 
 export interface ILayoutResources {

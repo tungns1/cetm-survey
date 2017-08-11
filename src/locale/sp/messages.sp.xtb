@@ -60,7 +60,6 @@
   <translation id="6973747544653250639" desc="Add New Model">Añadir nuevo <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="4511235385998512563" desc="Numerical Order">N°</translation>
   <translation id="9216117865911519658">Accción</translation>
-  <translation id="3233282947913364358">No está autorizado para agregar servicio</translation>
   <translation id="2184226512508531506" desc="Add New Model">Añadir nuevo <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="8552929419265057684">Editar <ph name="INTERPOLATION"><ex>INTERPOLATION</ex></ph></translation>
   <translation id="2960246622843217026">Regresar</translation>
@@ -114,10 +113,8 @@
   <translation id="7169279957700355812">Formato de ticket</translation>
   <translation id="2582043348955052568">Formato de ticket VIP</translation>
   <translation id="9063793946634119147">Retroalimentación requerida</translation>
-  <translation id="3761195704239602908">Ticket en espera</translation>
   <translation id="8604852007710946848">Nombre del servicio</translation>
   <translation id="494134059610115997">Tiempo de espera</translation>
-  <translation id="3717925337824501119">Lista de llamadas perdidas</translation>
   <translation id="5826073933999704478">Última llamada</translation>
   <translation id="7430541496133842817">Tickets cancelados</translation>
   <translation id="7186187311199183622">Cancelado en</translation>
@@ -157,10 +154,7 @@
   <translation id="991579100870874315">Documento de identidad del cliente</translation>
   <translation id="8194554728555410336">Número de teléfono</translation>
   <translation id="4495620181723937744">Segmento</translation>
-  <translation id="8143712396135337139">Código de sucursal</translation>
   <translation id="1230377751047475838">Código de ventanilla</translation>
-  <translation id="7183911729524650410" desc="Please, confirm if this is in setting"/>
-  <translation id="2785467620253954908" desc="Please, confirm if this is in setting">Puerto COM Led</translation>
   <translation id="2614607010577950577">Resumen</translation>
   <translation id="313854265968026491">Transacción</translation>
   <translation id="7292902857194439444">Equipo</translation>
@@ -198,7 +192,6 @@
   <translation id="4167799644776467116">Apagar quiosco</translation>
   <translation id="4052696886848078556">En línea en</translation>
   <translation id="5865185208184579017">Desconectado en</translation>
-  <translation id="1247859366054768414">Tiempo de activación</translation>
   <translation id="6414986856104313209">Seleccionar agente</translation>
   <translation id="8570889309236939868">Seleccionar ventanilla</translation>
   <translation id="7213391653135056284">Periodo de tiempo</translation>
@@ -288,12 +281,8 @@
   <translation id="3566352024469451419">Tiempo activo</translation>
   <translation id="3708374077928660011">Cantidad de tickets</translation>
   <translation id="7042965335013821100">Total de tickets impresos</translation>
-  <translation id="6338750494429535920">Ticket impreso más largo</translation>
-  <translation id="7959306904007235804">Ticket impreso más corto</translation>
   <translation id="4147138638599131171">Promedio de tickets impresos</translation>
   <translation id="6021327109574507682">Tiempo total de actividad (hora)</translation>
-  <translation id="2636890792116928758">Período más largo (hora por día)</translation>
-  <translation id="3138958729811787295">Período más corto (hora por día)</translation>
   <translation id="4048474815384547888">Período promedio (hora por día)</translation>
   <translation id="4309933217010445172">Quiosco total</translation>
   <translation id="5025062788646623336">Actividad de quiosco más largo</translation>
@@ -320,11 +309,6 @@
   <translation id="1494927747837150613">Tiempo total de conexión</translation>
   <translation id="1358828868857685558">Dsempeño de la ventanilla</translation>
   <translation id="7856251281724531755">Actividad de la ventanilla</translation>
-  <translation id="8699269313110062127">Tiempo de conexión</translation>
-  <translation id="4410274096244571678">Tiempo de productividad</translation>
-  <translation id="3821052680478335961">Tiempo de inactividad</translation>
-  <translation id="2689193723199620403">Tiempo atendido</translation>
-  <translation id="1310875596995619722">Tiempo cancelado</translation>
   <translation id="7128097476561025477">Código de tienda</translation>
   <translation id="8180809989545150245">Nombre de tienda</translation>
   <translation id="7410432243549869948">Duración</translation>
@@ -339,7 +323,6 @@
   <translation id="5297301850911097062">DAP</translation>
   <translation id="5940600863372862382">Ticket emitido</translation>
   <translation id="8562778474158270448">Abandonado</translation>
-  <translation id="6849133517720601930">Ocupación</translation>
   <translation id="1608105963217791253">Configuración de aplicación CETM</translation>
   <translation id="2821179408673282599">Inicio</translation>
   <translation id="2052833920187184086">Tiempo de atención</translation>
@@ -355,8 +338,6 @@
   <translation id="3180395643608813221">Vista modo miniatura</translation>
   <translation id="2516583967431582001">Configuración avanzada</translation>
   <translation id="3708675742680248205">LED</translation>
-  <translation id="6543643564103016190">Grabación</translation>
-  <translation id="5276952738294233478">Habilitar la grabación de transacciones</translation>
   <translation id="5212357720846763566">Habilitar modo miniatura</translation>
   <translation id="3033623772164647792">Altura</translation>
   <translation id="2018922024247045709">Ancho</translation>
@@ -372,4 +353,16 @@
   <translation id="3443036669836863676"/>
   <translation id="9073593512002672944"/>
   <translation id="5663998787015242541"/>
+  <translation id="9173932259018417844"/>
+  <translation id="288909438174420955"/>
+  <translation id="3324009174430940028"/>
+  <translation id="4725170981845278858"/>
+  <translation id="5939619873221855392">Tiempo total de conexión</translation>
+  <translation id="4067414789596043215"/>
+  <translation id="2017125555193295911"/>
+  <translation id="2340871387079584510"/>
+  <translation id="1334015515562802012"/>
+  <translation id="4266334113807837110"/>
+  <translation id="566388421556009650"/>
+  <translation id="5977155410091964782">Módulo</translation>
 </translationbundle>

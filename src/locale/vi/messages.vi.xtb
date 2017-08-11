@@ -348,7 +348,12 @@
   <translation id="840816844468850680">Không thể thay đồi kích thước</translation>
   <translation id="7740966891853416785">Giao Diện Kiosk</translation>
   <translation id="4967508879345274026">Bạn không có quyền để thêm mới</translation>
+  <translation id="6403844866858431063"/>
+  <translation id="7704060182999666337"/>
   <translation id="2525119202031537140">Xuất ra file csv</translation>
+  <translation id="3443036669836863676"/>
+  <translation id="9073593512002672944"/>
+  <translation id="5663998787015242541"/>
   <translation id="9173932259018417844">Vé in cao nhất</translation>
   <translation id="288909438174420955">Vé in thấp nhất</translation>
   <translation id="3324009174430940028">Thời gian kết nối cao nhất (giờ trên ngày)</translation>
@@ -358,4 +363,7 @@
   <translation id="2017125555193295911">Tổng thời gian nghỉ</translation>
   <translation id="2340871387079584510">Vé phục vụ vượt chuẩn</translation>
   <translation id="1334015515562802012">Vé hủy</translation>
+  <translation id="4266334113807837110"/>
+  <translation id="566388421556009650"/>
+  <translation id="5977155410091964782">Quầy</translation>
 </translationbundle>

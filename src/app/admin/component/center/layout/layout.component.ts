@@ -22,6 +22,29 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
 
   private branches = this.org.LayoutService.RxListView;
 
+  // makeForm(b?: ILayout) {
+  //   b = b || <any>{};
+  //   b.ui = b.ui || <any>{};
+  //   b.ui.resources = b.ui.resources || {};
+  //   // const resources = Object.assign(cloneDeep(b.ui.resources), b.resources);
+  //   Object.keys(b.ui.resources).forEach(name => {
+  //     const show = !!b.ui.resources[name];
+  //     b.ui.resources[name].show = show;
+  //   });
+
+  //   // console.log(b.ui.resources)
+  //   // console.log(resources)
+
+  //   return (new FormBuilder).group({
+  //     id: [b.id],
+  //     name: [b.name, CommonValidator.Name],
+  //     type: [b.type, Validators.required],
+  //     ui: [b.ui || {}],
+  //     style: [b.style],
+  //     resources: [b.ui.resources]
+  //   });
+  // }
+
   makeForm(b?: ILayout) {
     b = b || <any>{};
     b.ui = b.ui || <any>{};
@@ -31,6 +54,9 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
       const show = !!resources[name];
       resources[name].show = show;
     });
+
+    // console.log(b.ui.resources)
+    // console.log(resources)
 
     return (new FormBuilder).group({
       id: [b.id],

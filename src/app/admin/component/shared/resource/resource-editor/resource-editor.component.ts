@@ -59,6 +59,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
         name: k,
         type: r.type,
         data: r.data,
+        style: r.style,
         show: true,
         enabled: r.enabled
       };
