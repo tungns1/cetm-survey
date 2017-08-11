@@ -53,7 +53,7 @@ export class TranslateService {
         'Close': {
             vi: 'Đóng',
             en: 'Close',
-            sp: 'Cerca'
+            sp: 'Cerrar'
         },
         'This branch has been assigned to some store': {
             vi: 'Chi nhánh này có liên kết với một số phòng giao dịch',

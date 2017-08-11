@@ -6,7 +6,7 @@ import { L10nText, Localize } from '../util';
 
 const TicketStateNames: { [index: string]: L10nText } = {
     waiting: {
-        en: "wating",
+        en: "waiting",
         vi: "đang đợi",
         sp: 'esperando'
     },
