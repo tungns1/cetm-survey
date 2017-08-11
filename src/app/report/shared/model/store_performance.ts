@@ -72,7 +72,6 @@ export class InfoStore {
     }
 
     SecondToHour(s: number) {
-        console.log(s)
         if (s > 0) {
             return [s / 3600, (s % 3600) / 60, (s % 60)].map(this.TwoDigit).join(":");
         } else {

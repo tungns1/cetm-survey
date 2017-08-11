@@ -1,44 +1,49 @@
-<table class="tableCtrl">
-    <thead>
-        <th i18n="Numerical Order">No.</th>
-        <th i18n>Store Code</th>
-        <th i18n>Store Name </th>
-        <th i18n>Date</th>
-        <th i18n>Duration</th>
-        <th i18n>Printed ticket</th>
-        <th i18n>Completed</th>
-        <th i18n>Attended</th>
-        <th i18n>Exceeded</th>
-        <th i18n>Substandard</th>
-        <th i18n>Cancelled</th>
-        <th i18n>Discarded</th>
-        <th i18n>Total waiting time</th>
-        <th i18n>Total serving time</th>
-        <th i18n>Average waiting time</th>
-        <th i18n>Average serving time</th>
-        <th>%<span i18n>Discarded</span></th>
-        <th>%<span i18n>Exceeded</span></th>
-        <th>%<span i18n>Teap</span></th>
-        <th>%<span i18n>Dap</span></th>
-        <th>Attended on time</th>
-        <th>Attended over time</th>
+  <ag-grid-angular #agGrid id="storeTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl margin-0"
+    enableColResize enableSorting>
 
-    </thead>
-    <tbody>
-        <!--<tr *ngFor="let d of paging.data$ | async; let i = index">
-      <td>{{(i+1)+(paging.Skip)}}</td>
-      <td> {{d.bid | parentCode}} </td>
-      <td> {{d.bid | parentName}} </td>
-      <td> {{d.bid | branchCode}} </td>
-      <td> {{d.bid | branchName}} </td>
-      <td> {{d.data.usercode }} </td>
-      <td> {{d.data.userfullname }} </td>
-      <td> {{d.data.counternumber}} </td>
-      <td> {{d.date}} </td>
-      <td> {{d.s_at | localDayTime}}</td>
-      <td> {{d.date}} </td>
-      <td> {{d.e_at | localDayTime}} </td>
-      <td> {{d.a_d | timeDuration}} </td>
-    </tr>-->
-    </tbody>
-</table>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Store code" field="storeCode" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store name" field="storeName" [width]="155" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Date" field="date" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Period" field="hour" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total printed ticket" field="t_ticket" [width]="75" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total managed ticket" field="m_ticket" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Standard waiting time transaction" field="st_waiting" [width]="100" [cellClass]="cellClass"
+      i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Exceeded waiting time transaction" field="ex_waiting" [width]="90" [cellClass]="cellClass"
+      i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Attended" field="attended" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Discarded" field="discarded" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="2min>=T>=20second" field="l120m20" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="20second>=T>0second" field="l20m0" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Serving Cancelled" field="ser_called" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Waiting Cancelled" field="wai_called" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total waiting time" field="sumWaiting" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Total serving time" field="sumServing" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Average waiting time" field="avgWaiting" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Average serving time" field="avgServing" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="%Teap" field="teap" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="%Dap" field="dap" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+  </ag-grid-angular>
+
+  <div class="paginationAndExport margin-b-30 margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
+    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToFirst()" i18n>First</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+    <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToLast()" i18n>Last</button>
+    <div fxFlex="10px"></div>
+    <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
+    <span class="totalPages">/ ({{totalPage}} <span i18n>Pages</span>)</span>
+    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToPage(curentPage)" i18n>Move to</button>
+    <div fxFlex></div>
+    <button fxFlex="250px" class="btnClear export uppercase" (click)="export()">
+        <i class="fa fa-file-excel-o fa-lg"></i>
+        <span i18n>Export to csv</span>
+    </button>
+  </div>

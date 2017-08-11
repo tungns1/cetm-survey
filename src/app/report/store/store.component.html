@@ -1,23 +1,32 @@
 <div fxLayout="row">
-    <div [fxFlex]="'250px'" class="leftFilter">
-        <report-filter (refresh)="refresh($event)" [inside]="'counter'" style="padding-top: 50px; height: 100%"></report-filter>
-    </div>
+  <div [fxFlex]="'250px'" class="leftFilter">
+    <report-filter (refresh)="refresh($event)" [inside]="'counter'" style="padding-top: 50px; height: 100%"></report-filter>
+  </div>
 
-    <div fxFlex style="overflow: auto;" class="mainContent">
-        <div class="main_miraway">
-            <app-env-sub-module i18n-title title="Store"></app-env-sub-module>
-            <div id="Store">
-                <div class="headerAndNav">
-                    <h2 class="header uppercase" i18n>Store Performance</h2>
-                    <div class="nav">
-                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
-                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
-                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
-                    </div>
-                </div>
-                <performance-tab [data]="data$ | async"></performance-tab>
-                <!--<activity-tab></activity-tab>-->
-            </div>
+  <div fxFlex style="overflow: auto;" class="mainContent">
+    <div class="main_miraway">
+      <app-env-sub-module i18n-title title="Store"></app-env-sub-module>
+      <div id="Store">
+        <div class="headerAndNav">
+          <h2 class="header uppercase" i18n>Store Performance</h2>
+          <div class="nav">
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+            <button class="btnClear btnMargin uppercase" appSafeNav="/report/customer" i18n>Customer</button>
+          </div>
         </div>
-        <footer></footer>
+        <!-- <performance-tab [data]="data$ | async"></performance-tab> -->
+        <md-tab-group dynamicHeight id="counterReport" class="border" style="width: 100%">
+          <md-tab>
+            <ng-template md-tab-label><span class="uppercase" i18n>Store performance</span></ng-template>
+            <performance-tab [data]="data$ | async"></performance-tab>
+          </md-tab>
+          <md-tab>
+            <ng-template md-tab-label><span class="uppercase" i18n>Store hour</span></ng-template>
+            <hour-tab></hour-tab>
+          </md-tab>
+        </md-tab-group>
+      </div>
     </div>
+    <footer></footer>
+  </div>
