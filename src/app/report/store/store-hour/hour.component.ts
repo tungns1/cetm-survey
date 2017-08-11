@@ -27,11 +27,6 @@ export class HourComponent {
       d['no'] = index + 1;
       d['storeCode'] = CacheBranch.GetCodeForID(d.branch_id);
       d['storeName'] = CacheBranch.GetNameForID(d.branch_id);
-
-      d['avgWaiting'] = localDayTime.transform(d.avg_waiting.toString());
-      d['sumWaiting'] = localDayTime.transform(d.sum_waiting.toString());
-      d['avgServing'] = localDayTime.transform(d.avg_serving.toString());
-      d['sumServing'] = localDayTime.transform(d.sum_serving.toString());
     });
     })
     var localDayTime = new LocalDayTimePipe;
