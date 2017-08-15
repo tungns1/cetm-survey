@@ -77,8 +77,8 @@ export class InfoStoreByHour {
                 dap: s[i].dap * 100,
             };
             
-            store.teap = +(store.teap / store.t_ticket).toFixed(2);
-            store.dap = +(store.dap / store.t_ticket).toFixed(2);
+            store.teap = +(store.teap / store.m_ticket).toFixed(2);
+            store.dap = +(store.dap / store.m_ticket).toFixed(2);
             this.data.push(store);
 
         }
