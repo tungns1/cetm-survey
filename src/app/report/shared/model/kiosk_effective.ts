@@ -122,21 +122,12 @@ export class InfoKioskTrack {
                 s.ticket.forEach(i => {
                     this.total_ticket += i.count;
                 })
-               
-               
-
                 var data_by_branh_t = toArray(groupBy(s.ticket, 'branch_id'));
-
-
                 var data_by_date_t = toArray(groupBy(s.ticket, 'date'));
                 var len_by_date_t = size(data_by_date_t);
                 var len_by_branch_t = size(data_by_branh_t);
-
-
                 for (var i = 0; i < len_by_branch_t; i++) {
-
                     var min = 0, max = 0, total = 0;
-
                     data_by_branh_t[i].forEach(i => {
                         total += i.count;
                     })
@@ -159,8 +150,8 @@ export class InfoKioskTrack {
                     this.ticket_sum.push({
                         name: CacheBranch.GetNameForID(data_by_branh_t[i][0].branch_id),
                         total: total,
-                        highest: max,
-                        lowest: min,
+                        highest: maxBy(data_by_branh_t[i], 'count').count || 0,
+                        lowest:  minBy(data_by_branh_t[i], 'count').count || 0,
                         average: +(total / len_by_date_t).toFixed(2),
                     })
                 }
