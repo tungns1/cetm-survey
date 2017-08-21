@@ -311,17 +311,8 @@
   <translation id="1358828868857685558">Hiệu năng quầy</translation>
   <translation id="7856251281724531755">Hoạt động quầy</translation>
   <translation id="7128097476561025477">Mã phòng giao dịch</translation>
-  <translation id="8180809989545150245">Tên phòng giao dịch</translation>
-  <translation id="7410432243549869948">Thời gian</translation>
-  <translation id="3010404667810755113">Vé đã in</translation>
-  <translation id="1161299114153631702">Hoàn thành</translation>
   <translation id="1669277742108379782">Thực hiện</translation>
-  <translation id="788601261750045439">Quá lâu</translation>
-  <translation id="4556357666541285601">Không đạt chuẩn</translation>
-  <translation id="4043049091728011235">Hủy</translation>
   <translation id="2628294255250873454">Bị xóa</translation>
-  <translation id="3069168209152241107">% vé đợi chuẩn</translation>
-  <translation id="5297301850911097062">% vé phục vụ dưới 2 phút</translation>
   <translation id="5940600863372862382">Vé đã in</translation>
   <translation id="8562778474158270448"/>
   <translation id="1608105963217791253">Cài đặt</translation>
@@ -362,8 +353,18 @@
   <translation id="4067414789596043215">Tổng thời gian phục vụ</translation>
   <translation id="2017125555193295911">Tổng thời gian nghỉ</translation>
   <translation id="2340871387079584510">Vé phục vụ vượt chuẩn</translation>
-  <translation id="1334015515562802012">Vé hủy</translation>
   <translation id="4266334113807837110"/>
   <translation id="566388421556009650"/>
   <translation id="5977155410091964782">Quầy</translation>
+  <translation id="3505738079461308389"/>
+  <translation id="1507949699959470925"/>
+  <translation id="5530226616382823887"/>
+  <translation id="359440848191855259"/>
+  <translation id="3935586915752636426"/>
+  <translation id="7031751052634026610"/>
+  <translation id="1400441928065364651"/>
+  <translation id="5190996669807037062"/>
+  <translation id="8191865367147466949"/>
+  <translation id="304360530488577899">Hiệu năng PGD</translation>
+  <translation id="3818747433780780152"/>
 </translationbundle>
