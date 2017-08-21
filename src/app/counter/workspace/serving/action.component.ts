@@ -33,7 +33,7 @@ export class ActionComponent {
 
     Move() {
         const config = new MdDialogConfig();
-        config.width = '350px';
+        config.width = '450px';
         config.data = this.ticket;
         const dialog = this.mdDialog.open(TicketDetailDialog, config);
     }
