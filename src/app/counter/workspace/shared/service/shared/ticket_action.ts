@@ -109,9 +109,22 @@ export class ActionManager {
             this.next();
         }, e => {
             ta.Error(e);
+            this.addError(e);
             this.next();
         });
     }
 
+    private addError(e) {
+        var now = Date.now();
+        var lastHour = now - 3600 * 1000;
+        this.error_list.push(now);
+        this.error_list = this.error_list.filter(timestamp => timestamp > lastHour);
+        if (this.error_list.length > 6) {
+            this.LongErrorList$.next(null);
+        }
+    }
+
     private queue: TicketAction[] = [];
+    private error_list = [];
+    LongErrorList$ = new Subject();
 }

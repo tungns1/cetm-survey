@@ -48,6 +48,7 @@ export class TicketService {
     }
 
     private onInit() {
+        let failed_count = 0;
         this.workspaceService.Workspace$.subscribe(w => {
             if (!w.AutoNext) return;
             if (w.is_busy) {
@@ -56,7 +57,21 @@ export class TicketService {
             }
             const t = w.Waiting.GetFirstTicket();
             if (!t) return;
-            this.TriggerAction("call", t);
+
+            const lastQueueUpdate = w.LastUpdate;
+            this.TriggerAction("call", t).subscribe(_ => {
+                failed_count = 0;
+            }, e => {
+                // call failed
+                const ten_second = 10 * 1000;
+                failed_count++;
+                setTimeout(_ => {
+                    // the workspace was not updated
+                    if (w.LastUpdate <= lastQueueUpdate) {
+                        this.workspaceService.Socket.reset();
+                    }
+                }, ten_second);
+            });
         });
     }
 

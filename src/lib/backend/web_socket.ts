@@ -93,6 +93,13 @@ export class BaseWebsocket {
         }
     }
 
+    protected closeAndReconnect() {
+        this.reconnectable = true;
+        if (this.socket$) {
+            this.socket$.complete();
+        }
+    }
+
     get isOpen() {
         return this.status$.value === SocketStatus.Open;
     }

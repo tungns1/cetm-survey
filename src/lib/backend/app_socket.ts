@@ -103,7 +103,7 @@ export class AppSocket extends BaseWebsocket {
             return this.Send("/echo", null)
                 .timeout(this.waitForEcho).catch(e => {
                     console.log("[app_socket] echo timeout");
-                    this.close(true);
+                    this.closeAndReconnect();
                     return of(null);
                 })
         }).subscribe();

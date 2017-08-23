@@ -52,11 +52,13 @@ export class Workspace {
     ]
 
     private Refresh(tickets: IMapTicket) {
+        this.last_ticket_update = Date.now();
         this.queues.forEach(q => q.Refresh(tickets));
     }
 
     Update(a: ITicketAction) {
         if (!a) return;
+        this.last_ticket_update = Date.now();
         const action = new TicketAction(a);
         const t = action.ticket;
         this.queues.forEach(q => q.Replace(t));
@@ -74,6 +76,12 @@ export class Workspace {
     }
 
     AutoNext = false;
+    private last_ticket_update = 0;
+
+    get LastUpdate() {
+        return this.last_ticket_update
+    }
+
     get is_busy() {
         return !this.Serving.is_empty;
     }
