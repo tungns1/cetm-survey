@@ -5,7 +5,7 @@ import { extend } from 'lodash';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CenterService, HouseService, IScreen } from '../../../service/';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { BaseAdminComponent, CommonValidator, USER_ROLES, RuntimeEnvironment } from '../../shared';
 import { of } from 'rxjs/observable/of';
 
 @Component({
@@ -18,7 +18,8 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
     constructor(
         injector: Injector,
         private center: CenterService,
-        private house: HouseService
+        private house: HouseService,
+        private env: RuntimeEnvironment
     ) {
         super(injector, house.ScreenService);
         this.counters$.subscribe();
@@ -47,6 +48,10 @@ export class ScreenComponent extends BaseAdminComponent<IScreen> {
     voiceEditLink$ = this.formValue$.map(s => {
         return `/admin/center/voice/${s.voice_list_id}`;
     });
+
+    isAdminStandard$ = this.env.Auth.User$.map(u =>
+        u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1
+    );
 
     getLayout(layout_id?: string) {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);

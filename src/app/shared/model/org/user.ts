@@ -27,7 +27,8 @@ export const USER_ROLES = {
     ADMIN: 'admin',
     STAFF: 'staff',
     MANAGER: 'manager',
-    MEDIA: 'media'
+    MEDIA: 'media',
+    ADMIN_STANDARD: 'admin standard'
 }
 
 export const AllRoles: IRole[] = Object.keys(USER_ROLES).map(role => {

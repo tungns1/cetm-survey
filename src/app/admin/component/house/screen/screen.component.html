@@ -53,9 +53,10 @@
                     <option value="">--None--</option>
                     <option *ngFor="let voice of voice_lists$ | async" [value]="voice.id"> {{voice.name}} </option>
                 </select>
-                <a fxFlex="7%" [routerLink]="voiceEditLink$ | async" queryParamsHandling="merge">
+                <a *ngIf="!(isAdminStandard$ | async)" fxFlex="7%" [routerLink]="voiceEditLink$ | async" queryParamsHandling="merge">
                     <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
                 </a>
+                <div *ngIf="isAdminStandard$ | async" fxFlex="7%"></div>
             </div>
         </div>
         <!-- Select Parent -->
@@ -69,9 +70,10 @@
                     <option value="">--None--</option>
                     <option *ngFor="let sr of screens | async" [value]="sr.id"> {{sr.name}} </option> 
                 </select>
-                <a fxFlex="7%" [routerLink]="parentEdit$ | async" queryParamsHandling="merge">
+                <a *ngIf="!(isAdminStandard$ | async)" fxFlex="7%" [routerLink]="parentEdit$ | async" queryParamsHandling="merge">
                     <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
                 </a>
+                <div *ngIf="isAdminStandard$ | async" fxFlex="7%"></div>
             </div>
             <span fxFlex="10%">
                 <ng-container i18n>Layout</ng-container>
@@ -82,9 +84,10 @@
                     <option value="">--None--</option>
                     <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}} </option>
                 </select>
-                <a fxFlex="7%" [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">
+                <a *ngIf="!(isAdminStandard$ | async)" fxFlex="7%" [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">
                     <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
                 </a>
+                <div *ngIf="isAdminStandard$ | async" fxFlex="7%"></div>
             </div>
 
         </div>

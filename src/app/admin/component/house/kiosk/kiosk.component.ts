@@ -6,7 +6,7 @@ import {
 } from '../../../service/';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { BaseAdminComponent, CommonValidator, USER_ROLES, RuntimeEnvironment } from '../../shared';
 import { extend } from 'lodash';
 import { of } from 'rxjs/observable/of';
 
@@ -21,7 +21,8 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         injector: Injector,
         private center: CenterService,
         private house: HouseService,
-        private meta: MetaService
+        private meta: MetaService,
+        private env: RuntimeEnvironment
     ) {
         super(injector, house.KioskService);
         this.layoutEditLink$.subscribe();
@@ -36,9 +37,9 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
         return `/admin/center/layout/${kiosk.layout_id}`;
     });
 
-    getLayout(layout_id?: string) {
-        return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
-    }
+    isAdminStandard$ = this.env.Auth.User$.map(u =>
+        u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1
+    );
 
     services$ = this.formValue$.map(form => form.branch_id)
         .distinctUntilChanged()
@@ -57,6 +58,10 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 });
             });
         }).share().publishReplay(1).refCount();
+
+    getLayout(layout_id?: string) {
+        return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
+    }
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
