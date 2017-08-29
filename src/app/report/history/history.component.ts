@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { Paging } from '../shared';
+import { Paging, RuntimeEnvironment, USER_ROLES } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
 import { GridOptions } from "ag-grid";
@@ -15,7 +15,8 @@ import { LocalDayTimePipe } from '../../x/ng/time/localDayTime';
 export class HistoryComponent {
     constructor(
         private mdDialog: MdDialog,
-        private transactionHistoryApi: TransactionHistoryApi
+        private transactionHistoryApi: TransactionHistoryApi,
+        private env: RuntimeEnvironment
     ) { }
 
     paging = new Paging<ITransactionView>();
@@ -72,7 +73,7 @@ export class HistoryComponent {
         if (d.data) {
             let localDayTime = new LocalDayTimePipe();
             return localDayTime.transform(d.data.ctime);
-        }else{
+        } else {
             return "";
         }
 
@@ -148,6 +149,10 @@ export class HistoryComponent {
     }
 
     showDetails(tr: ITransactionView) {
+        this.env.Auth.User$.subscribe(u => {
+            if (u.role === USER_ROLES.ADMIN_STANDARD)
+                tr.audio = '';
+        });
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = tr;

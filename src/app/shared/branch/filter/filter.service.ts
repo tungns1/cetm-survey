@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CacheBranch, MultipleIDList } from '../../model';
-
+import { CacheBranch, MultipleIDList, USER_ROLES } from '../../model';
+import { RuntimeEnvironment } from '../../env'
 
 interface IBranchFilter {
     branches: string[][];
@@ -14,11 +14,12 @@ import {
 @Injectable()
 export class BranchFilterService extends SmallStorage<IBranchFilter> {
     constructor(
-        private storageStrategy: RouterQueryStorageStrategy
+        private storageStrategy: RouterQueryStorageStrategy,
+        private env: RuntimeEnvironment
     ) {
         super("branches", storageStrategy);
         this.levels = [];
-        this.max =CacheBranch.MaxLevel();
+        this.max = CacheBranch.MaxLevel();
         let branches = this.data.branches || [];
         for (let i = 0; i <= this.max; i++) {
             this.levels.push(i);
@@ -26,7 +27,27 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         }
         this.data.branches = branches;
         this.checkTheRoot();
+
+        this.env.Auth.User$
+            .map(u => u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1)
+            .subscribe(d => {
+                if (d)
+                    CacheBranch.RxListView.subscribe(branches => {
+                        branches.forEach((b, i) => {
+                            this.data.branches[i][0] = b.id
+                        })
+                    })
+            });
+
     }
+
+    levels: number[] = [];
+
+    level0$ = this.Data$.map(d => d.branches[0]);
+
+    private max: number;
+
+    // isAdminStandard: boolean = false;
 
     get branches() {
         return this.data.branches || [];
@@ -63,12 +84,6 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     getAllID() {
         return this.branches.reduce((res, ids) => res.concat(ids), []);
     }
-
-    levels: number[] = [];
-
-    level0$ = this.Data$.map(d => d.branches[0]);
-
-    private max: number;
 
     private checkTheRoot() {
         const maxLevel = this.max;

@@ -2,7 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angu
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { IBranch, CacheBranch } from '../../model';
+import { IBranch, CacheBranch, USER_ROLES } from '../../model';
+import { RuntimeEnvironment } from '../../env'
 import { BranchFilterService } from './filter.service';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
@@ -16,15 +17,20 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
 
     constructor(
         private route: ActivatedRoute,
-        private filterService: BranchFilterService
+        private filterService: BranchFilterService,
+        private env: RuntimeEnvironment
     ) { }
 
     form: FormArray;
     levels: number[];
     viewLevels: number[];
     data: Observable<IBranch[]>[] = [];
+    isAdminStandard: boolean;
 
     ngOnInit() {
+        this.env.Auth.User$
+        .map(u => u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1)
+        .subscribe(d => this.isAdminStandard = d);
         this.levels = this.filterService.levels;
         this.form = new FormArray(
             this.levels.map(i => new FormControl([]))

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialog, MdDialogConfig } from '@angular/material';
-import { ITransaction, CacheService, CacheBranch } from '../../shared';
+import { ITransaction, CacheService, CacheBranch, RuntimeEnvironment, USER_ROLES } from '../../shared';
 import { CustomerAPI, paging, RxInfoCustomer } from '../service/customer.service';
 import { TransactionComponent } from './transaction.component';
 import { GridOptions } from "ag-grid";
@@ -16,7 +16,8 @@ import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 export class HistoryComponent {
     constructor(
         private mdDialog: MdDialog,
-        private customerAPI: CustomerAPI
+        private customerAPI: CustomerAPI,
+        private env: RuntimeEnvironment
     ) { }
     @Input() id: string; //cus id passed from report - history
     // paging = paging;
@@ -161,6 +162,10 @@ export class HistoryComponent {
     }
 
     showDetails(ticket: ITransaction) {
+        this.env.Auth.User$.subscribe(u => {
+            if (u.role === USER_ROLES.ADMIN_STANDARD)
+                ticket.audio = '';
+        });
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = ticket;

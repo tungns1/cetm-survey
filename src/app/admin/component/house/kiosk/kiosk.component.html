@@ -49,9 +49,10 @@
                 <option value="">--None--</option>
                 <option *ngFor="let ly of layouts | async" [value]="ly.id"> {{ly.name}}</option> 
             </select>
-            <a fxFlex="2%" class="right" [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">
+            <a *ngIf="!(isAdminStandard$ | async)" fxFlex="2%" class="right" [routerLink]="layoutEditLink$ | async" queryParamsHandling="merge">
                 <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
             </a>
+            <div *ngIf="isAdminStandard$ | async" fxFlex="2%"></div>
             <span fxFlex="10%" i18n>Ticket Layout</span>
             <span fxFlex="2%">&nbsp;</span>
             <select fxFlex class="hl-select" formControlName="tlayout_id">

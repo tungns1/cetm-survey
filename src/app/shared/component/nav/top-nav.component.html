@@ -1,33 +1,34 @@
 <div id="topNav">
     <ul class="firstLv">
         <li class="li_firstLv" *ngIf="isAdmin$ | async">
-            <div class="paddingFirst" routerLink="/admin" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin')">
+            <div class="paddingFirst" [routerLink]="isAdminStandard ? '/admin/org/user' : '/admin'" queryParamsHandling="preserve" 
+                [class.current-menu-item]="isActive(isAdminStandard ? '/admin/org/user' : '/admin')">
                 <i class="fa fa-home"> </i>
                 <span i18n>Admin</span>
             </div>
             <ul class="secondLv">
-                <li routerLink="/admin/org/branch/2/list" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/org/branch/2/list" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Area</span>
                 </li>
-                <li routerLink="/admin/org/branch/1/list" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/org/branch/1/list" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Branch</span>
                 </li>
-                <li routerLink="/admin/org/branch/0/list" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/org/branch/0/list" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store</span>
                 </li>
                 <li routerLink="/admin/center/tform" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Ticket Number Format</span>
                 </li>
-                <li routerLink="/admin/center/service" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/center/service" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Service</span>
                 </li>
-                <li routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Branch Config</span>
                 </li>
-                <li routerLink="/admin/house/sflow" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/house/sflow" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Service Flow</span>
                 </li>
-                <li routerLink="/admin/house/counter" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/house/counter" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Counter</span>
                 </li>
                 <li routerLink="/admin/org/user">
@@ -50,18 +51,18 @@
                 <li routerLink="/report/customer" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Customer</span>
                 </li>
-                <li routerLink="/report/kiosk" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/report/kiosk" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Kiosk Effectiveness</span>
                 </li>
-                <li routerLink="/report/counter" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/report/counter" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Counter Activity</span>
                 </li>
-                <li routerLink="/report/store" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
             </ul>
         </li>
-        <li class="li_firstLv" *ngIf="!(isMedia$ | async)">
+        <li class="li_firstLv" *ngIf="!(isMedia$ | async) && !isAdminStandard">
             <div class="paddingFirst" routerLink="/monitor" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/monitor')">
                 <i class="fa fa-bell"> </i>
                 <span i18n>Monitor</span>
@@ -73,10 +74,10 @@
                 <span i18n>Kiosk</span>
             </div>
             <ul class="secondLv">
-                <li routerLink="/admin/center/ticketlayout" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/center/ticketlayout" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Ticket Layout</span>
                 </li>
-                <li routerLink="/admin/center/layout" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/center/layout" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Kiosk Layout</span>
                 </li>
             </ul>
@@ -87,12 +88,12 @@
                 <span i18n>Screen</span>
             </div>
             <ul class="secondLv">
-                <li routerLink="/admin/center/voice" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/center/voice" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Voice Configuration</span>
                 </li>
             </ul>
         </li>
-        <li class="li_firstLv" *ngIf="isAdmin$ | async">
+        <li class="li_firstLv" *ngIf="(isAdmin$ | async) && !isAdminStandard">
             <div class="paddingFirst" routerLink="/admin/house/test" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/test')">
                 <i class="fa fa-commenting"> </i>
                 <span i18n>Feedback</span>
