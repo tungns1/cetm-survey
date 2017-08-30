@@ -5,7 +5,7 @@
     </div>
     <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <span fxFlex="23%" class="margin-t-5" i18n>Animation name</span>
-        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.animation">
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.animation" (change)="onChange($event)">
     </div>
-    <multi-file-picker [(ngModel)]="value.srcs"></multi-file-picker>
+    <multi-file-picker [(ngModel)]="value.srcs" (ngModelChange)="onChange()"></multi-file-picker>
 </div>

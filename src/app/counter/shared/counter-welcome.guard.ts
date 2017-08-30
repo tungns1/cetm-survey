@@ -15,11 +15,11 @@ export class CounterSessionValidationGuard extends SessionValidationGuard {
   constructor(
     router: Router,
     authService: AuthService,
+    env: RuntimeEnvironment,
     private route: ActivatedRoute,
     private counterService: CounterSettingService,
-    private env: RuntimeEnvironment
   ) { 
-    super(router, authService);
+    super(router, authService, env);
   }
 
   protected GetAuthExtra() {

@@ -13,7 +13,6 @@ export class FolderViewComponent {
 
     open(node: FileNode) {
         this.node = node;
-        console.log(this.node);
         this.selected = null;
         node.Refresh().subscribe(_ => {
 
@@ -33,6 +32,10 @@ export class FolderViewComponent {
 
     view(file: FileNode) {
         window.open(file.URL, "_blank");
+    }
+
+    refresh(){
+        this.node.Refresh().subscribe(_ => {})
     }
 
     private selected: FileNode;
