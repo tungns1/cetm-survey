@@ -42,10 +42,10 @@ export class SessionValidationGuard implements CanActivate {
         if (!success) {
           this.ShowLogin(state.url);
         }
-        // this.env.Auth.User$.subscribe(u => {
-        //   if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
-        //       window.location.href = '/#/admin/house/screen/list'
-        // })
+        this.env.Auth.User$.subscribe(u => {
+          if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
+              window.location.href = '/#/admin/house/screen/list'
+        })
       })
   }
 
