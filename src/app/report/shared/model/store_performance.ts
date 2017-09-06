@@ -48,7 +48,7 @@ export class InfoStore {
             var a_d = 0
             var store: ISPT = {
                 branch_id: t_s[i].branch_id,
-                avg_time: this.SecondToHour((t_s[i].avg_stime)),
+                avg_time: "",
                 attended: t_s[i].attended,
                 abandoned: t_s[i].abandoned,
                 total_ticket: t_s[i].attended + t_s[i].abandoned,
@@ -64,6 +64,7 @@ export class InfoStore {
             store.occupied = +(t_s[i].t_stime / a_d).toFixed(2) * 100;
             store.teap = +(store.teap / store.total_ticket).toFixed(2);
             store.dap = +(store.dap / store.total_ticket).toFixed(2);
+            store.avg_time=this.SecondToHour((t_s[i].avg_stime)/store.total_ticket)
             this.data.push(store);
 
         }
