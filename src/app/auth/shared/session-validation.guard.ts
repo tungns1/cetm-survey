@@ -5,7 +5,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
-import { HttpError, AppStorage } from './shared';
+import { HttpError, AppStorage, RuntimeEnvironment } from './shared';
+import { USER_ROLES } from '../../shared/model'
 
 interface IAuthExtra {
   branch_code?: string;
@@ -16,8 +17,10 @@ interface IAuthExtra {
 export class SessionValidationGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private env: RuntimeEnvironment
   ) { }
+
 
   protected GetAuthExtra() {
     return {};
@@ -39,6 +42,10 @@ export class SessionValidationGuard implements CanActivate {
         if (!success) {
           this.ShowLogin(state.url);
         }
+        // this.env.Auth.User$.subscribe(u => {
+        //   if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
+        //       window.location.href = '/#/admin/house/screen/list'
+        // })
       })
   }
 

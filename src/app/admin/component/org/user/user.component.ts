@@ -16,9 +16,13 @@ export class UserComponent extends BaseAdminComponent<IUser> {
     private org: OrgService
   ) { 
     super(injector, org.UserService);
+    // line below is remove admin standard to block bitel add new admin standard
+    this.roles.splice(this.roles.findIndex(r => r.name === 'ADMIN STANDARD'), 1);
   }
 
   pattern_pass: any ="^[a-zA-Z0-9_\?\!\@\#\$\*]{6,20}$";
+  private roles = AllRoles;
+  private branches = this.org.BranchService.RxListView;
 
   makeForm(u?: IUser) {
     u = u || <any>{};
@@ -32,9 +36,5 @@ export class UserComponent extends BaseAdminComponent<IUser> {
       branch_id: [u.branch_id, Validators.required],
     });
   }
-
-
-  private roles = AllRoles;
-  private branches = this.org.BranchService.RxListView;
 }
 

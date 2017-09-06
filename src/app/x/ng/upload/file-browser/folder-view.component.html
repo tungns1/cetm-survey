@@ -1,5 +1,10 @@
 <div *ngIf="node" id="folderUpload">
-    <h1>Folder: {{node.name}} </h1>
+    <div fxLayout="row">
+        <h1 fxFlex>Folder: {{node.name}} </h1>
+        <h1 fxFlex="10" (click)="refresh()">
+            <i class="fa fa-refresh pointer" color="primary"></i>
+        </h1>
+    </div>
     <h2 class="center" i18n>Files list</h2>
     <div fxLayout="row" class="margin-10-0">
         <h3 fxFlex i18n>File name</h3>
