@@ -1,3 +1,18 @@
 <div *ngIf="value" (change)="onChange($event)" class="margin-b-15">
-    <multi-file-picker [(ngModel)]="value.srcs" (ngModelChange)="onChange()"></multi-file-picker>
+    <file-picker fxFlex [(ngModel)]="value.data.src" (ngModelChange)="onChange(i, $event)"></file-picker>
+    <div class="divider margin-20-0"></div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="10" class="margin-t-5" i18n>Width</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.width">
+        <span fxFlex="10" class="margin-t-5" i18n>Height</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.height">
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="10" class="margin-t-5" i18n>Border</span>
+        <select fxFlex class="hl-select" [(ngModel)]="value.data.border">
+            <option value="square">Square</option>
+            <option value="round">Round</option>
+        </select>
+    </div>
+    <!-- <button (click)="test()">test</button> -->
 </div>

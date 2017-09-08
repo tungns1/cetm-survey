@@ -1,6 +1,5 @@
 import {
-  Component, OnInit, ViewChild,
-  Output, EventEmitter, Optional,
+  Component, EventEmitter, Optional,
   Inject, forwardRef, ExistingProvider
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';

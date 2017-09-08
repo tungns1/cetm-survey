@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, ExistingProvider } from '@angular/core';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFormComponent } from '../shared';
 
@@ -31,6 +31,10 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
       }
     }
     return super.clone(obj);
+  }
+
+  test(){
+    console.log(this.value)
   }
 
 }
