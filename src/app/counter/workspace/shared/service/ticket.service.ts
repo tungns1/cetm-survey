@@ -68,7 +68,8 @@ export class TicketService {
                 setTimeout(_ => {
                     // the workspace was not updated
                     if (w.LastUpdate <= lastQueueUpdate) {
-                        this.workspaceService.Socket.reset();
+                        console.log("the workspace was not updated");
+                        // this.workspaceService.Socket.reset();
                     }
                 }, ten_second);
             });
