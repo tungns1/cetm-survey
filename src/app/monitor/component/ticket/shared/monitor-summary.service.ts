@@ -15,17 +15,29 @@ import 'rxjs/add/operator/audit';
 class AuditAdjust {
   private last = Date.now();
   private max_wait = 8000;
-  
+
   private auditInterval() {
     const now = Date.now();
     const latency = (now - this.last) / 1000;
     this.last = now;
-    return Math.min(Math.round(3000 / latency), this.max_wait);
+    return Math.min(Math.round(32000 / latency), this.max_wait);
+  }
+
+  private getInterval() {
+    const v = this.pending * 2000;
+    this.pending = 0;
+    return Math.min(v, this.max_wait);
   }
 
   adjust() {
-    return interval(this.auditInterval());
+    return interval(this.getInterval());
   }
+
+  inc() {
+    this.pending++;
+  }
+
+  private pending = 0;
 }
 
 @Injectable()
@@ -52,6 +64,7 @@ export class MonitorSummaryService {
     const summaries = new GlobalTicketSummary();
     summaries.Refresh(initial);
     const summaryUpdate = this.summaryUpdate$.map(s => {
+      this.audit.inc();
       summaries.Replace(s);
     });
     return merge(of(null), summaryUpdate).map(_ => summaries);
