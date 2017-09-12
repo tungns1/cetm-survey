@@ -47,8 +47,12 @@ export class HistoryComponent {
             this.totalPage = this.gridOptions.api.paginationGetTotalPages()
         }
     };
+    private isAdminStandard: boolean;
 
     ngOnInit() {
+        this.env.Auth.User$.subscribe(u => {
+            this.isAdminStandard = u.role === USER_ROLES.ADMIN_STANDARD
+        });
     }
 
     setRowData(rowData, totalRow: number = -1, skip: number) {
@@ -149,10 +153,8 @@ export class HistoryComponent {
     }
 
     showDetails(tr: ITransactionView) {
-        this.env.Auth.User$.subscribe(u => {
-            if (u.role === USER_ROLES.ADMIN_STANDARD)
-                tr.audio = '';
-        });
+        if (this.isAdminStandard)
+            tr.audio = '';
         const config = new MdDialogConfig();
         config.width = '350px';
         config.data = tr;

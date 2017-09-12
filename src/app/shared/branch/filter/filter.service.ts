@@ -28,16 +28,16 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         this.data.branches = branches;
         this.checkTheRoot();
 
-        this.env.Auth.User$
-            .map(u => u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1)
-            .subscribe(d => {
-                if (d)
-                    CacheBranch.RxListView.subscribe(branches => {
-                        branches.forEach((b, i) => {
-                            this.data.branches[i][0] = b.id
-                        })
-                    })
-            });
+        // this.env.Auth.User$
+        //     .map(u => u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1)
+        //     .subscribe(d => {
+        //         if (d)
+        //             CacheBranch.RxListView.subscribe(branches => {
+        //                 branches.forEach((b, i) => {
+        //                     this.data.branches[i][0] = b.id
+        //                 })
+        //             })
+        //     });
 
     }
 

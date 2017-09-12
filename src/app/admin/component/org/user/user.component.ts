@@ -17,7 +17,7 @@ export class UserComponent extends BaseAdminComponent<IUser> {
   ) { 
     super(injector, org.UserService);
     // line below is remove admin standard to block bitel add new admin standard
-    this.roles.splice(this.roles.findIndex(r => r.name === 'ADMIN STANDARD'), 1);
+    // this.roles.splice(this.roles.findIndex(r => r.name === 'ADMIN STANDARD'), 1);
   }
 
   pattern_pass: any ="^[a-zA-Z0-9_\?\!\@\#\$\*]{6,20}$";
