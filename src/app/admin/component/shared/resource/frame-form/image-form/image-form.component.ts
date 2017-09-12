@@ -9,7 +9,10 @@ const IMAGE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 interface ImageForm {
-  srcs: string[];
+  data: {
+    src: string,
+    style: {}
+  }
 }
 
 @Component({
@@ -27,14 +30,12 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
   protected clone(obj: any): ImageForm {
     if (typeof obj === 'string') {
       return {
-        srcs: [obj]
+        data: {
+          src: obj,
+          style: {}
+        }
       }
     }
     return super.clone(obj);
   }
-
-  test(){
-    console.log(this.value)
-  }
-
 }

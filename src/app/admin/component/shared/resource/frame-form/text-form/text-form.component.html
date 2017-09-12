@@ -1,21 +1,23 @@
 <div *ngIf="value" (change)="onChange($event)" fxLayout="column">
-    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-        <span fxFlex="5%" class="margin-t-5">Align</span>
-        <select fxFlex class="hl-select" [(ngModel)]="value.align">
+    <l10n-form [(ngModel)]="value.data.i18n"></l10n-form>
+
+    <div class="divider"></div>
+    <h4 class="center">Style</h4>
+
+    <div *ngIf="value.style" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="10" class="margin-t-5">Align</span>
+        <select fxFlex class="hl-select" [(ngModel)]="value.style.textAlign">
             <option value="left">Left</option>
             <option value="center">Center</option>
             <option value="right">Right</option>
         </select>
-
-        <span fxFlex="5%" class="margin-t-5">Scroll</span>
-        <select fxFlex class="hl-select" [(ngModel)]="value.scroll">
-            <option value="none">--None--</option>
-            <option value="rtl">Right To Left</option>
-            <option value="ltr">Left To Right</option>
-        </select>
+        <span fxFlex="10" class="margin-t-5" i18n>Color</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.color">
     </div>
-
-    <h3 class="rowCtrl center">Content</h3>
-
-    <l10n-form [(ngModel)]="value.i18n"></l10n-form>
+    <div *ngIf="value.style" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="10" class="margin-t-5" i18n>Font size</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.fontSize">
+        <span fxFlex="10" class="margin-t-5" i18n>Font weight</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.fontWeight">
+    </div>
 </div>

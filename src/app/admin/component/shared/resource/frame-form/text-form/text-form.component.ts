@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, ExistingProvider } from '@angular/core';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFormComponent } from '../shared';
 
@@ -13,9 +13,11 @@ interface I18n {
 }
 
 interface ITextForm {
-  align: 'left' | 'center' | 'right';
-  i18n: I18n;
-  scroll?: 'rtl' | 'ltr';
+  data: {
+    align: 'left' | 'center' | 'right';
+    i18n: I18n;
+  },
+  style: any;
 }
 
 @Component({
@@ -33,13 +35,17 @@ export class TextFormComponent extends BaseFormComponent<ITextForm> {
   protected clone(obj: any): ITextForm {
     if (typeof obj === 'string') {
       return {
-        align: "center",
-        i18n: {
-          en: obj
-        }
+        data: {
+          align: "center",
+          i18n: {
+            en: obj
+          }
+        },
+        style: {}
       }
     }
+    if (obj && !obj.style) obj.style = {}
     return super.clone(obj);
   }
-  
+
 }
