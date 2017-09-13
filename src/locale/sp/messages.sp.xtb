@@ -151,7 +151,6 @@
   <translation id="9150055758879543882" desc="Counter Button: Miss Ticket">Perdido</translation>
   <translation id="65984904390749158" desc="Counter Button: Finish Ticket">Finalizar</translation>
   <translation id="7265149706470630508">Nombre del cliente</translation>
-  <translation id="991579100870874315">Documento de identidad del cliente</translation>
   <translation id="8194554728555410336">Número de teléfono</translation>
   <translation id="4495620181723937744">Segmento</translation>
   <translation id="1230377751047475838">Código de ventanilla</translation>
@@ -191,7 +190,6 @@
   <translation id="2466208048071392236">Quiosco encendido</translation>
   <translation id="4167799644776467116">Apagar quiosco</translation>
   <translation id="4052696886848078556">En línea en</translation>
-  <translation id="5865185208184579017">Desconectado en</translation>
   <translation id="6414986856104313209">Seleccionar agente</translation>
   <translation id="8570889309236939868">Seleccionar ventanilla</translation>
   <translation id="7213391653135056284">Periodo de tiempo</translation>
@@ -337,33 +335,12 @@
   <translation id="2747815278860682041">Siempre en la cima</translation>
   <translation id="840816844468850680" desc="Please confirm the action for this sentence">No redimensionable</translation>
   <translation id="7740966891853416785">Quiosco Diseño</translation>
-  <translation id="4967508879345274026"/>
-  <translation id="6403844866858431063"/>
-  <translation id="7704060182999666337"/>
   <translation id="2525119202031537140">Exportar a csv</translation>
-  <translation id="3443036669836863676"/>
-  <translation id="9073593512002672944"/>
-  <translation id="5663998787015242541"/>
-  <translation id="9173932259018417844"/>
-  <translation id="288909438174420955"/>
-  <translation id="3324009174430940028"/>
-  <translation id="4725170981845278858"/>
+  <translation id="3324009174430940028">Período promedio (hora por día)</translation>
+  <translation id="4725170981845278858">Período promedio (hora por día)</translation>
   <translation id="5939619873221855392">Tiempo total de conexión</translation>
-  <translation id="4067414789596043215"/>
-  <translation id="2017125555193295911"/>
   <translation id="2340871387079584510">Atendido tickets</translation>
-  <translation id="4266334113807837110"/>
-  <translation id="566388421556009650"/>
   <translation id="5977155410091964782">Módulo</translation>
   <translation id="3505738079461308389">Cancelados tickets</translation>
-  <translation id="1507949699959470925"/>
-  <translation id="5530226616382823887"/>
-  <translation id="359440848191855259"/>
-  <translation id="3935586915752636426"/>
-  <translation id="7031751052634026610"/>
-  <translation id="1400441928065364651"/>
-  <translation id="5190996669807037062"/>
-  <translation id="8191865367147466949"/>
-  <translation id="304360530488577899"/>
-  <translation id="3818747433780780152"/>
+  <translation id="304360530488577899">Desempeño de la tienda</translation>
 </translationbundle>
