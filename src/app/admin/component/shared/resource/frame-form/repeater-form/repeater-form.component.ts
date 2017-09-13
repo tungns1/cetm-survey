@@ -9,11 +9,13 @@ const REPEATER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 interface IRepeaterForm {
-  row: number;
-  column: number;
-  limit: number;
-  template_name: string;
-  repeat?: any[]
+  data: {
+    row: number;
+    column: number;
+    limit: number;
+    template_name: string;
+    repeat?: any[]
+  }
 }
 
 @Component({
@@ -27,19 +29,19 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
    * Safely clone the obj
    * @param obj the given object
    */
-  
-    keyRepeatArr: string[] = [];
-  
+
+  keyRepeatArr: string[] = [];
+
 
   ngOnInit() {
-      
+
   }
 
   writeValue(v: IRepeaterForm) {
     super.writeValue(v);
     if (this.value) {
-      for (var key in this.value.repeat[0]) {
-        if (this.value.repeat[0].hasOwnProperty(key)) {
+      for (var key in this.value.data.repeat[0]) {
+        if (this.value.data.repeat[0].hasOwnProperty(key)) {
           this.keyRepeatArr.push(key);
         }
       }
@@ -50,17 +52,17 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
     return super.clone(obj);
   }
 
-  add(){
+  add() {
     var newobj: object = {}
     this.keyRepeatArr.forEach(key => {
       newobj[key] = '';
     });
-    this.value.repeat.push(newobj)
+    this.value.data.repeat.push(newobj)
     this.onChangeCallback(this.value);
   }
 
-  deleteItem(index: number){
-    this.value.repeat.splice(index, 1);
+  deleteItem(index: number) {
+    this.value.data.repeat.splice(index, 1);
     this.onChangeCallback(this.value);
   }
 
