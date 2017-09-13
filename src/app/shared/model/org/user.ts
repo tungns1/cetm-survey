@@ -12,7 +12,6 @@ export interface IUser extends ID {
     password: string;
     external_id?: string;
     settings?: Object;
-
     _checked?: boolean;
     branch?: string;
 }
@@ -28,7 +27,7 @@ export const USER_ROLES = {
     STAFF: 'staff',
     MANAGER: 'manager',
     MEDIA: 'media',
-    ADMIN_STANDARD: 'admin standard'
+    ADMIN_STANDARD: 'admin_standard'
 }
 
 export const AllRoles: IRole[] = Object.keys(USER_ROLES).map(role => {

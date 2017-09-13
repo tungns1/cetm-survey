@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
 import { MdTabGroup } from '@angular/material';
 import { CustomerView } from './shared/';
-import { Customer } from '../shared';
+import { Customer, RuntimeEnvironment, USER_ROLES } from '../shared';
 import { HistoryComponent } from './history/history.component'
 import { ReportFilterComponent } from './filter/filter.component'
 
@@ -16,7 +16,8 @@ import { ReportFilterComponent } from './filter/filter.component'
 export class CustomerComponent {
     constructor(
         private customerApi: CustomerAPI,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private env: RuntimeEnvironment
     ) { }
 
 
@@ -66,9 +67,13 @@ export class CustomerComponent {
                 return 10;
         }
     });
-    selectedTab: number;
+    private selectedTab: number;
+    private isAdminStandard: boolean;
 
     ngOnInit() {
+        this.env.Auth.User$.subscribe(u => {
+            this.isAdminStandard = u.role === USER_ROLES.ADMIN_STANDARD
+        });
         RxInfoCustomer.next(null);
         let id = this.route.snapshot.params['id'];
         if (id && id != "") {

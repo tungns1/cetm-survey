@@ -14,5 +14,20 @@
             <option value="round">Round</option>
         </select>
     </div>
+    <div class="divider"></div>
+    <h4 class="center">Margin</h4>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="10" class="margin-t-5" i18n>Top</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.marginTop">
+        <span fxFlex="10" class="margin-t-5" i18n>Right</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.marginRight">
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <span fxFlex="10" class="margin-t-5" i18n>Bottom</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.marginBottom">
+        <span fxFlex="10" class="margin-t-5" i18n>Left</span>
+        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.marginLeft">
+    </div>
+
     <!-- <button (click)="test()">test</button> -->
 </div>
