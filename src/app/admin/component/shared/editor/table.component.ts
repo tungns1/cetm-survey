@@ -1,6 +1,6 @@
 import {
     Component, OnInit, Input, Output, EventEmitter,
-    ContentChildren, QueryList, ChangeDetectorRef, ViewChild
+    ContentChildren, QueryList, ViewChild
 } from '@angular/core';
 import { ITableField, ITableAction } from './model';
 import { CacheBranch } from '../';

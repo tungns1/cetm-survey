@@ -1,5 +1,5 @@
 <div id="cusInfo" fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayoutAlign="space-between center">
-    <!-- <div fxLayout="row" fxFlex="60" style="width: 100%">
+    <div *ngIf="customer?.code" fxLayout="row" fxFlex="60" style="width: 100%">
         <div fxFlex="50%">
             <label i18n>Customer Name</label>
             <span class="cusName uppercase">{{customer?.full_name}}</span>
@@ -9,7 +9,7 @@
             <span class="uppercase">{{customer?.code}}</span>
         </div>
     </div>
-    <div fxLayout="row" fxFlex="40" style="width: 100%">
+    <div *ngIf="customer?.code" fxLayout="row" fxFlex="40" style="width: 100%">
         <div fxFlex>
             <label i18n>Phone Number</label>
             <span class="uppercase">{{customer?.phone_number}}</span>
@@ -18,5 +18,5 @@
             <label i18n>Segment</label>
             <span class="uppercase">{{customer?.segment}}</span>
         </div>
-    </div> -->
+    </div>
 </div>

@@ -48,7 +48,7 @@
                 <li routerLink="/report/history" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">History</span>
                 </li>
-                <li routerLink="/report/customer" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/report/customer" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Customer</span>
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/kiosk" queryParamsHandling="preserve">

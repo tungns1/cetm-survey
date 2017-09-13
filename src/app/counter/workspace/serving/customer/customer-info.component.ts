@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     styleUrls: ['customer-info.component.scss']
 })
 export class CustomerInfoComponent {
-    constructor(private queueService: QueueService) { }
+    constructor(
+        private queueService: QueueService
+    ) { }
     @Input() customer: Customer;
 }  
