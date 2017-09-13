@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {
-  IActivity
+  Activity
 } from '../shared';
 
 @Component({
@@ -16,6 +16,6 @@ export class CategoryComponent implements OnInit {
   }
 
   @Input() name : string;
-  @Input() data: IActivity[];
+  @Input() data: Activity[];
 
 }
