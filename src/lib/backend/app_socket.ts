@@ -148,8 +148,8 @@ export class AppSocket extends BaseWebsocket {
 
 
     private subscription: ISubscription;
-    private waitForEcho = 8 * 1000;
-    private minEchoInterval = this.waitForEcho + 2000;
+    private waitForEcho = 32 * 1000;
+    private minEchoInterval = this.waitForEcho + 8000;
     private echoInterval = this.minEchoInterval;
 
     protected error$ = this.filterMessage<IBaseError>("/error");
