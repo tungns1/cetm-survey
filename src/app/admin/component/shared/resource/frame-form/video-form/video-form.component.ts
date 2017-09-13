@@ -9,7 +9,9 @@ const VIDEO_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 interface IVideoForm {
-  srcs: string[];
+  data: {
+    srcs: string[];
+  }
 }
 
 @Component({
@@ -28,7 +30,9 @@ export class VideoFormComponent extends BaseFormComponent<IVideoForm> {
   protected clone(obj: any): IVideoForm {
     if (typeof (obj) === 'string') {
       return {
-        srcs: [obj]
+        data: {
+          srcs: [obj]
+        }
       }
     }
     return super.clone(obj);

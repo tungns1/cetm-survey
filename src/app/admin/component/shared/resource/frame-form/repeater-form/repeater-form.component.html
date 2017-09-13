@@ -3,19 +3,19 @@
   <div fxLayout="row" fxLayoutGap="5px">
     <div fxFlex fxLayout="row" fxLayoutGap="5px">
       <span fxFlex="22%" class="padding-t-5 right">Column</span>
-      <input fxFlex="68%" class="ctrlInput" type="number" [value]="value.column" min="1" [(ngModel)]="value.column">
+      <input fxFlex="68%" class="ctrlInput" type="number" [value]="value.data.column" min="1" [(ngModel)]="value.data.column">
     </div>
 
     <div fxFlex fxLayout="row" fxLayoutGap="5px">
       <span fxFlex="22%" class="padding-t-5 right">Row</span>
-      <input fxFlex="68%" class="ctrlInput" type="number" [value]="value.row" min="1" [(ngModel)]="value.row">
+      <input fxFlex="68%" class="ctrlInput" type="number" [value]="value.data.row" min="1" [(ngModel)]="value.data.row">
     </div>
     <div fxFlex="5%"></div>
   </div>
 
   <div class="divider margin-b-15"></div>
 
-  <div *ngFor="let el of value.repeat; let i = index" fxLayout="column">
+  <div *ngFor="let el of value.data.repeat; let i = index" fxLayout="column">
     <div fxLayout="row" fxLayoutGap="5px">
       <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>

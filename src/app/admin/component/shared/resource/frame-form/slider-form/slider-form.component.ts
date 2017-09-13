@@ -9,9 +9,11 @@ const SLIDER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 }
 
 interface SliderForm {
-  srcs: string[];
-  timing: number;
-  animation: string;
+  data: {
+    srcs: string[];
+    timing: number;
+    animation: string;
+  }
 }
 
 @Component({
@@ -29,9 +31,11 @@ export class SliderFormComponent extends BaseFormComponent<SliderForm> {
   protected clone(obj: any): SliderForm {
     if (typeof obj === 'string') {
       return {
-        srcs: [obj],
-        timing: 3,
-        animation: 'hinge'
+        data: {
+          srcs: [obj],
+          timing: 3,
+          animation: 'hinge'
+        }
       }
     }
     return super.clone(obj);
