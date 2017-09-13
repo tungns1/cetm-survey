@@ -13,7 +13,7 @@ export class MonitorDeviceSocket extends AppSocket {
 
   onInit() {
     super.Connect({monit_type:'device'});
-    this.disableCheckAlive();
+    this.KeepAlive();
   }
 
   onDestroy() {

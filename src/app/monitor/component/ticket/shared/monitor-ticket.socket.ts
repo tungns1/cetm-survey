@@ -13,6 +13,7 @@ export class MonitorTicketSocket extends AppSocket {
 
   onInit() {
     super.Connect({});
+    this.KeepAlive();
   }
 
   onDestroy() {
