@@ -1,9 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
+import { Router } from "@angular/router";
 import { RuntimeEnvironment, AppSocket, LogService, CounterSettingService } from './shared';
+import { MdSnackBar } from '@angular/material';
 
 @Injectable()
 export class WorkspaceSocket extends AppSocket {
     constructor(
+        private router: Router,
+        private mdSnackBard: MdSnackBar,
         private env: RuntimeEnvironment,
         private counterSetting: CounterSettingService,
         logService: LogService,
@@ -22,9 +26,13 @@ export class WorkspaceSocket extends AppSocket {
         });
         this.error$.subscribe(e => {
             if (e.uri.startsWith("/system")) {
+                const message = `Application Error ${e.err || JSON.stringify(e)}`;
                 new Notification("Application Error", {
-                    body: e.err || e.err
-                    // body: e.err || e.error
+                    body: message
+                });
+                const md = this.mdSnackBard.open(message, "Click here to Check Configuration");
+                md.onAction().first().subscribe(_ => {
+                    this.router.navigate(["/counter/setting"]);
                 });
             }
         });
