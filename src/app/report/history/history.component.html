@@ -17,10 +17,8 @@
                 </div>
 
                 <history-filter (filterChange)="onFilterChange($event)"></history-filter>
-                <ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions"  class="ag-fresh tableCtrl"
-                    enableColResize enableSorting>
-                    <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass"
-                        i18n-headerName></ag-grid-column>
+                <ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+                    <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Date" field="cdate" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Branch" field="parent" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Store" field="branch" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
@@ -34,7 +32,7 @@
                     <ag-grid-column headerName="Feedback" field="rating" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Detail" [cellClass]="cellClass" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>
                 </ag-grid-angular>
-                <div class="paginationAndExport margin-t-20" fxLayout="row" fxLayoutGap="10px"  fxLayoutAlign="none center">
+                <div class="paginationAndExport margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
                     <button fxFlex="120px" class="btnClear pointer" (click)="jumpToFirst()" i18n>First</button>
                     <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
                     <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
@@ -48,10 +46,11 @@
                         <i class="fa fa-file-excel-o fa-lg"></i>
                         <span i18n>Export to csv</span>
                     </button>
-                    <button fxFlex="200px" class="btnClear export uppercase" (click)="excel()">
+                    <!-- no excel export -->
+                    <!-- <button fxFlex="200px" class="btnClear export uppercase" (click)="excel()">
                         <i class="fa fa-file-excel-o fa-lg"></i>
                         <span i18n>Export to excel</span>
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>

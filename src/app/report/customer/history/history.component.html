@@ -1,6 +1,5 @@
 <ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
-    <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass"
-        i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Date" field="cdate" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Branch" [cellRenderer]="branchCellRenderer" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Store" [cellRenderer]="storeCellRenderer" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
@@ -28,8 +27,9 @@
         <i class="fa fa-file-excel-o fa-lg"></i>
         <span i18n>Export to csv</span>
     </button>
-    <button fxFlex="200px" class="btnClear export uppercase" (click)="excel()">
+    <!-- no excel export -->
+    <!-- <button fxFlex="200px" class="btnClear export uppercase" (click)="excel()">
         <i class="fa fa-file-excel-o fa-lg"></i>
         <span i18n>Export to excel</span>
-    </button>
+    </button> -->
 </div>
