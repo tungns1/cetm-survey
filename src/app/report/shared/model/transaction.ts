@@ -1,4 +1,10 @@
 
+interface ISurvey {
+    rating: number;
+    score_text: string;
+    reason_text: string;
+}
+
 export interface ITransaction {
     id: string;
     ticket_id: string;
@@ -30,4 +36,5 @@ export interface ITransaction {
     stime: string; // serving
     wtimes: number; // waiting
     stimes: number; // serving
+    survey?: ISurvey;
 }

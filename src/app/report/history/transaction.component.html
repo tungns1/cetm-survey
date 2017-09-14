@@ -80,12 +80,24 @@
         </div>
         <div class="cusDetail" fxLayout="row">
             <b fxFlex="42%" i18n>Customer Code</b>
-            <span fxFlex (click)="goToCustomer(data.customer_id); close()" style="text-decoration: underline; color: blue; cursor: pointer"
-                i18n-title="Go to customer detail">{{customer.code}}</span>
+            <span fxFlex (click)="goToCustomer(data.customer_id); close()" style="text-decoration: underline; color: blue; cursor: pointer" i18n-title="Go to customer detail">{{customer.code}}</span>
         </div>
         <div *ngIf="customer.segment" class="cusDetail" fxLayout="row">
             <b fxFlex="42%" i18n>Customer Segment</b>
             <span fxFlex>{{customer.segment}}</span>
+        </div>
+    </div>
+
+    <!-- survey data -->
+    <div *ngIf="data.survey">
+        <div class="survey"> Survey result</div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex="42%" i18n>Score Text</b>
+            <span fxFlex>{{data.survey.score_text}}</span>
+        </div>
+        <div class="cusDetail" fxLayout="row">
+            <b fxFlex="42%" i18n>Reason Text</b>
+            <span fxFlex>{{data.survey.reason_text}}</span>
         </div>
     </div>
 </div>
