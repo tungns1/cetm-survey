@@ -1,4 +1,5 @@
 import { Socket } from './socket';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { LogService } from '../platform';
@@ -7,6 +8,7 @@ import { BaseWebsocket, IBaseMessage, AbstractMessageHandler } from './web_socke
 import { interval } from 'rxjs/observable/interval';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/timeout';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/publishReplay';
 import { ISubscription } from 'rxjs/Subscription';
 // import { ShowLoading, HideLoading } from './loading';
@@ -61,7 +63,8 @@ export class AppSocket extends BaseWebsocket {
     Connect<P>(params: P) {
         const q = Object.keys(params).map(key => `${key}=${params[key]}`).join("&");
         const link = `${this.uri}?${q}`;
-        super.connect(link);
+        super.Connect(link);
+        this.KeepAlive();
     }
 
     Connected$ = this.Status$.filter(_ => this.isOpen);
@@ -69,21 +72,16 @@ export class AppSocket extends BaseWebsocket {
 
     private reload$ = this.filterMessage("/reload");
 
-    disableCheckAlive() {
-
-    }
-
     Send<T>(uri: string, data: any): Observable<T> {
-        // this.showLoading();
         uri += `?once=${this.makeOnce()}`;
         super.send(uri, data);
-        return this.first<T>(uri);
-        //.do(this.hideLoading, this.hideLoading);
+        this.incPending();
+        return this.first<T>(uri).do(_ => this.decrPending());
     }
 
     Terminate() {
         this.DisableKeepAlive();
-        super.close(false);
+        super.Terminate();
     }
 
     RxEvent<T>(uri: string, replay = 1) {
@@ -103,7 +101,7 @@ export class AppSocket extends BaseWebsocket {
             return this.Send("/echo", null)
                 .timeout(this.waitForEcho).catch(e => {
                     console.log("[app_socket] echo timeout");
-                    this.closeAndReconnect();
+                    this.Reconnect();
                     return of(null);
                 })
         }).subscribe();
@@ -120,7 +118,7 @@ export class AppSocket extends BaseWebsocket {
             return "";
         }
         return i === 0 ? "CONNECTING" : "CONNECTION ERROR";
-    }).share();
+    }).share().publishReplay().refCount();
 
     public filter<T>(uri: string): Observable<T> {
         return new Observable<T>(observer => {
@@ -149,7 +147,7 @@ export class AppSocket extends BaseWebsocket {
 
     private subscription: ISubscription;
     private waitForEcho = 32 * 1000;
-    private minEchoInterval = this.waitForEcho + 8000;
+    private minEchoInterval = 32 * 1000;
     private echoInterval = this.minEchoInterval;
 
     protected error$ = this.filterMessage<IBaseError>("/error");
@@ -158,12 +156,22 @@ export class AppSocket extends BaseWebsocket {
         return this.error$.filter(e => e.uri === uri).map(e => e.err);
     }
 
-    // private showLoading = ShowLoading;
-    // private hideLoading = HideLoading;
+    private incPending() {
+        this.pending++;
+        if (this.pending > 0) {
+            this.Busy$.next(true);
+        }
+    }
 
-    // protected NoLoading() {
-    //     this.showLoading = () => { };
-    //     this.hideLoading = () => { };
-    // }
+    private decrPending() {
+        if (this.pending >= 1) {
+            this.pending--;
+        }
+        if (this.pending == 0) {
+            this.Busy$.next(false);
+        }
+    }
 
+    private pending = 0;
+    Busy$ = new BehaviorSubject<boolean>(false);
 }

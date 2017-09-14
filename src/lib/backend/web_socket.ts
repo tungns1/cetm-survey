@@ -1,4 +1,3 @@
-import { WebSocketSubjectConfig, WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -22,95 +21,112 @@ export abstract class AbstractMessageHandler<T> {
     abstract serialize(data: T): string;
 }
 
+interface IWebsocketConfig {
+    url: string;
+}
+
 export class BaseWebsocket {
     constructor(private messageHandler: AbstractMessageHandler<IBaseMessage>) {
 
     }
 
-    private config: WebSocketSubjectConfig;
-    private socket$: WebSocketSubject<string>;
-    private message$ = new Subject<IBaseMessage>();
-    private queue: IBaseMessage[] = [];
-    Message$ = this.message$.asObservable();
-
-    protected filterMessage<T>(uri: string) : Observable<T> {
+    protected filterMessage<T>(uri: string): Observable<T> {
         return this.Message$.filter(m => m && m.uri === uri).map(m => m.data);
     }
 
-
-    private status$ = new BehaviorSubject<string>(SocketStatus.Init);
-    Status$ = this.status$.asObservable();
-
-    protected connect(url: string) {
-        this.config = {
-            url: url,
-            resultSelector: e => e.data,
-            openObserver: {
-                next: (data) => {
-                    this.status$.next(SocketStatus.Open);
-                    this.pushQueue();
-                }
-            },
-            closeObserver: {
-                next: (data) => {
-                    this.status$.next(SocketStatus.Closed);
-                    this.reconnect();
-                }
-            }
-        }
-        this.reconnectable = true;
-        this.reconnect();
+    get isOpen() {
+        return this.instance && this.instance.readyState == WebSocket.OPEN;
     }
 
-    private reconnect(delay: number = SOCKET_RECONNECT_DELAY) {
-        setTimeout(() => {
-            if (this.reconnectable) {
-                if (!this.isOpen) {
-                    this.socket$ = new WebSocketSubject(this.config);
-                    this.socket$.subscribe(raw => {
-                        const data = this.messageHandler.deserialize(raw);
-                        this.message$.next(data);
-                    });
-                } else {
-                    // try again
-                    console.log("socket already open");
-                    this.reconnect();
-                }
-            }
+    private status$ = new BehaviorSubject<number>(-1);
+    Status$ = this.status$.asObservable();
 
-        }, delay);
+    protected Connect(url: string) {
+        this.config = {
+            url: url
+        }
+        this.reconnectable = true;
+        this.Reconnect();
     }
 
     protected send(uri: string, data: any) {
         this.queue.push({ uri, data });
-        this.pushQueue();
+        this.fireQueue();
     }
 
-    protected close(reconnectable = false) {
-        this.reconnectable = reconnectable;
-        if (this.socket$) {
-            this.socket$.complete();
+    protected Terminate() {
+        this.reconnectable = false;
+        if (this.instance) {
+            this.instance.close();
         }
     }
 
-    protected closeAndReconnect() {
+    protected Reconnect() {
         this.reconnectable = true;
-        if (this.socket$) {
-            this.socket$.complete();
+        if (this.instance) {
+            this.instance.close();
+        } else {
+            this.reconnect();
         }
     }
 
-    get isOpen() {
-        return this.status$.value === SocketStatus.Open;
+    private doConnect() {
+        try {
+            this.instance = new WebSocket(this.config.url);
+            this.instance.onopen = _ => this.onopen();
+            this.instance.onmessage = e => this.onmessage(e);
+            this.instance.onclose = _ => this.onclose();
+            this.instance.onerror = _ => this.onclose();
+            this.status$.next(WebSocket.CONNECTING);
+        } catch (e) {
+            console.error("create websocket failed", e);
+        }
     }
 
-    private pushQueue() {
+    private reconnect(delay: number = SOCKET_RECONNECT_DELAY) {
+        if (this.reconnecting) return;
+        this.reconnecting = true;
+        setTimeout(() => {
+            this.doConnect();
+            this.reconnecting = false;
+        }, delay);
+    }
+
+    private onmessage(e: MessageEvent) {
+        try {
+            const data = this.messageHandler.deserialize(e.data);
+            this.message$.next(data);
+        } catch (e) {
+            console.log("deserialize message error", e);
+        }
+    }
+
+    private fireQueue() {
         while (this.queue.length && this.isOpen) {
             const m = this.queue.shift();
             const raw = this.messageHandler.serialize(m);
-            this.socket$.next(raw);
+            this.instance.send(raw);
         }
     }
 
+    private onopen() {
+        this.status$.next(WebSocket.OPEN);
+        this.fireQueue();
+    }
+
+    private onclose() {
+        this.status$.next(WebSocket.CLOSED);
+        if (this.reconnectable) {
+            this.reconnect();
+        }
+    }
+
+    private number = 0;
+    private config: IWebsocketConfig;
+    private instance: WebSocket;
+    private message$ = new Subject<IBaseMessage>();
+    private queue: IBaseMessage[] = [];
+    Message$ = this.message$.asObservable();
     private reconnectable = true;
+    private reconnecting = false;
 }

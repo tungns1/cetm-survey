@@ -39,10 +39,6 @@ export class WorkspaceSocket extends AppSocket {
         super.KeepAlive();
     }
 
-    reset() {
-        this.closeAndReconnect();
-    }
-
     onDestroy() {
         this.Terminate();
     }
