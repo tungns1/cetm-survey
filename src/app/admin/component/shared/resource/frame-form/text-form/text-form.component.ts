@@ -44,7 +44,18 @@ export class TextFormComponent extends BaseFormComponent<ITextForm> {
         style: {}
       }
     }
-    if (obj && !obj.style) obj.style = {}
+    if (obj) {
+      if (typeof obj.data === 'string')
+        obj.data = {
+          align: "center",
+          i18n: {
+            en: obj.data
+          }
+        }
+
+      if (!obj.style)
+        obj.style = {}
+    }
     return super.clone(obj);
   }
 
