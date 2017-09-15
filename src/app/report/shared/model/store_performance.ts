@@ -30,6 +30,7 @@ export interface ISPT {
     teap: number;
     dap: number;
     occupied?: number;
+    transfer: number;
     survay_score?: number;
 }
 
@@ -56,7 +57,8 @@ export class InfoStore {
                 total_ticket: t_s[i].attended + t_s[i].abandoned,
                 teap: t_s[i].teap * 100,
                 dap: t_s[i].dap * 100,
-                occupied: 0
+                occupied: 0,
+                transfer: t_s[i].transfer
             };
             for (var i1 = 0; i1 < len_a; i1++) {
                 if (a_v[i1].bid === t_s[i].branch_id) {
