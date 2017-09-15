@@ -29,10 +29,10 @@ export class SliderFormComponent extends BaseFormComponent<SliderForm> {
    */
 
   protected clone(obj: any): SliderForm {
-    if (typeof obj === 'string') {
-      return {
-        data: {
-          srcs: [obj],
+    if (obj) {
+      if (typeof obj.data === 'string') {
+        obj.data = {
+          srcs: [obj.data],
           timing: 3,
           animation: 'hinge'
         }

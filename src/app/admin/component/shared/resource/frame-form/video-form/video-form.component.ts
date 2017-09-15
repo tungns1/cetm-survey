@@ -28,10 +28,10 @@ export class VideoFormComponent extends BaseFormComponent<IVideoForm> {
    */
 
   protected clone(obj: any): IVideoForm {
-    if (typeof (obj) === 'string') {
-      return {
-        data: {
-          srcs: [obj]
+    if (obj) {
+      if (typeof (obj.data) === 'string') {
+        obj.data = {
+          srcs: [obj.data]
         }
       }
     }
