@@ -30,7 +30,7 @@ export class PerformanceComponent {
     });
   };
 
-  private gridOptions: GridOptions = {
+  protected gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

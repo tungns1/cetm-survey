@@ -17,7 +17,9 @@ export interface IStorePerformance {
     abandoned: number;
     teap: number;
     dap: number;
+    transfer: number;
 }
+
 export interface ISPT {
     id?: string;
     branch_id: string;
@@ -66,7 +68,6 @@ export class InfoStore {
             store.dap = +(store.dap / store.total_ticket).toFixed(2);
             store.avg_time=this.SecondToHour((t_s[i].avg_stime)/store.total_ticket)
             this.data.push(store);
-
         }
 
         // this.data.sort(function (a, b) { return (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0); });
