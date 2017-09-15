@@ -28,10 +28,10 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
    */
 
   protected clone(obj: any): ImageForm {
-    if (typeof obj === 'string') {
-      return {
-        data: {
-          src: obj,
+    if (obj) {
+      if (typeof obj.data === 'string') {
+        obj.data = {
+          src: obj.data,
           style: {}
         }
       }
