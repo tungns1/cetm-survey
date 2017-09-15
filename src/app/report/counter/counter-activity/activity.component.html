@@ -44,8 +44,7 @@
 
 
 
-<ag-grid-angular #agGrid id="counterActivityTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl margin-0"
-    enableColResize enableSorting>
+<ag-grid-angular #agGrid id="counterActivityTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl margin-0" enableColResize enableSorting>
     <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Branch code" field="branchCode" [width]="115" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Branch name" field="branchName" [width]="125" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
@@ -58,9 +57,9 @@
 
     <ag-grid-column headerName="Counter" field="data.cname" [width]="75" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
-    <ag-grid-column headerName="Date Login" field="date" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Date Login" field="loginDate" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Login Time" field="loginTime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Date Logout" field="date" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Date Logout" field="logoutDate" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Logout Time" field="logoutTime" [width]="90" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
     <ag-grid-column headerName="Total Connection Time" field="totalConnectionTime" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>

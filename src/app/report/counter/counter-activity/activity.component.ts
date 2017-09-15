@@ -34,8 +34,10 @@ export class ActivityComponent {
         d['storeCode'] = CacheBranch.GetCodeForID(d.bid);
         d['storeName'] = CacheBranch.GetNameForID(d.bid);
 
-        d['loginTime'] = localDayTime.transform(d.s_at.toString());
-        d['logoutTime'] = localDayTime.transform(d.e_at.toString());
+        d["loginDate"] = localDayTime.getDate(d.s_at);
+        d['loginTime'] = localDayTime.getHMS(d.s_at);
+        d["logoutDate"] = localDayTime.getDate(d.e_at);
+        d['logoutTime'] = localDayTime.getHMS(d.e_at);
         d['totalConnectionTime'] = timeDuration.transform(d.a_d);
       });
     })
