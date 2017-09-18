@@ -27,7 +27,9 @@ interface IWebsocketConfig {
 
 export class BaseWebsocket {
     constructor(private messageHandler: AbstractMessageHandler<IBaseMessage>) {
-
+        this.config = {
+            url: ''
+        };
     }
 
     protected filterMessage<T>(uri: string): Observable<T> {
@@ -42,11 +44,7 @@ export class BaseWebsocket {
     Status$ = this.status$.asObservable();
 
     protected Connect(url: string) {
-        this.config = {
-            url: url
-        }
-        this.reconnectable = true;
-        this.Reconnect();
+        this.Reconnect(url);
     }
 
     protected send(uri: string, data: any) {
@@ -61,7 +59,10 @@ export class BaseWebsocket {
         }
     }
 
-    protected Reconnect() {
+    protected Reconnect(url?: string) {
+        if (url) {
+            this.config.url = url;
+        }
         this.reconnectable = true;
         if (this.instance) {
             this.instance.close();

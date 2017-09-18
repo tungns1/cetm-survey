@@ -61,14 +61,24 @@ export class AppSocket extends BaseWebsocket {
     }
 
     Connect<P>(params: P) {
-        const q = Object.keys(params).map(key => `${key}=${params[key]}`).join("&");
-        const link = `${this.uri}?${q}`;
-        super.Connect(link);
+        this.params = params || {};
+        super.Connect(this.getLink());
         this.KeepAlive();
     }
 
+    private getLink() {
+        const params = this.params;
+        const q = Object.keys(params).map(key => `${key}=${params[key]}`).join("&");
+        const link = `${this.uri}?${q}&reconnect_count=${this.reconnect_count}`;
+        return link;
+    }
+
+    private params: any;
+    private reconnect_count = 0;
+
     Connected$ = this.Status$.filter(_ => this.isOpen);
     Disconnected = this.Status$.filter(_ => !this.isOpen);
+
 
     private reload$ = this.filterMessage("/reload");
 
@@ -101,7 +111,8 @@ export class AppSocket extends BaseWebsocket {
             return this.Send("/echo", null)
                 .timeout(this.waitForEcho).catch(e => {
                     console.log("[app_socket] echo timeout");
-                    this.Reconnect();
+                    this.reconnect_count++;
+                    this.Reconnect(this.getLink());
                     return of(null);
                 })
         }).subscribe();
