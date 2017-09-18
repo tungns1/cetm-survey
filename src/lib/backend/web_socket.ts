@@ -65,9 +65,8 @@ export class BaseWebsocket {
         this.reconnectable = true;
         if (this.instance) {
             this.instance.close();
-        } else {
-            this.reconnect();
         }
+        this.reconnect();
     }
 
     private doConnect() {
