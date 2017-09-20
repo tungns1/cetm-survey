@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/publishReplay';
+import 'rxjs/add/operator/filter';
 
 const SOCKET_RECONNECT_DELAY = 3000;
 
