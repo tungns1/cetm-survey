@@ -26,7 +26,10 @@ export class WorkspaceComponent {
         this.composeService.disable();
     }
 
-    message$ = this.socket.StatusMessage$;
+    message$ = this.socket.StatusMessage$.map(m => {
+        if (m.startsWith("OPEN")) return "";
+        return "NETWORK " + m;
+    });
 
     counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
 } 

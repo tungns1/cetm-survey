@@ -3,13 +3,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
-const SOCKET_RECONNECT_DELAY = 3000;
+import 'rxjs/add/operator/publishReplay';
 
-const SocketStatus = {
-    Open: "open",
-    Closed: "closed",
-    Init: "init"
-}
+const SOCKET_RECONNECT_DELAY = 3000;
 
 export interface IBaseMessage {
     uri: string;
@@ -41,7 +37,28 @@ export class BaseWebsocket {
     }
 
     private status$ = new BehaviorSubject<number>(-1);
-    Status$ = this.status$.asObservable();
+    
+    Connected$ = this.status$.filter(_ => this.isOpen);
+    Disconnected = this.status$.filter(_ => !this.isOpen);
+    StatusMessage$ = this.status$.map((v, i) => {
+        return this.GetStatus(v);
+    }).share().publishReplay().refCount();
+
+    protected GetStatus(status: number) {
+        switch (status) {
+            case WebSocket.OPEN:
+                return "OPEN";
+            case WebSocket.CONNECTING:
+                return "CONNECTING";
+            case WebSocket.CLOSED:
+                return "CLOSED";
+            case WebSocket.CLOSING:
+                return "CLOSING";
+            case -1:
+                return "INITIALIZING";
+        }
+        return "UNKNOWN";
+    }
 
     protected Connect(url: string) {
         this.Reconnect(url);

@@ -9,7 +9,6 @@ import { interval } from 'rxjs/observable/interval';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/publishReplay';
 import { ISubscription } from 'rxjs/Subscription';
 // import { ShowLoading, HideLoading } from './loading';
 
@@ -76,9 +75,6 @@ export class AppSocket extends BaseWebsocket {
     private params: any;
     private reconnect_count = 0;
 
-    Connected$ = this.Status$.filter(_ => this.isOpen);
-    Disconnected = this.Status$.filter(_ => !this.isOpen);
-
 
     private reload$ = this.filterMessage("/reload");
 
@@ -124,12 +120,7 @@ export class AppSocket extends BaseWebsocket {
         }
     }
 
-    StatusMessage$ = this.Status$.map((v, i) => {
-        if (this.isOpen) {
-            return "";
-        }
-        return i === 0 ? "CONNECTING" : "CONNECTION ERROR";
-    }).share().publishReplay().refCount();
+    
 
     public filter<T>(uri: string): Observable<T> {
         return new Observable<T>(observer => {
