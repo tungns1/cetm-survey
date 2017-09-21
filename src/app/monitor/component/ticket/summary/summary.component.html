@@ -8,7 +8,7 @@
     <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="records$ | async" class="ag-fresh tableCtrl"
         enableColResize enableSorting>
 
-        <ag-grid-column headerName="Store" [cellRenderer]="storeCellRenderer" [width]="200" cellClass="padding-10" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Store" field="store" [width]="200" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
         <ag-grid-column headerName="Print Ticket" field="printed" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
@@ -20,13 +20,19 @@
 
         <ag-grid-column headerName="Cancelled Ticket" field="cancelled" [width]="100" cellClass="padding-10" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Exceeded Waiting Time Transaction" [cellRenderer]="exceededWaitingCellRenderer" 
+        <ag-grid-column headerName="Exceeded Waiting Time Transaction" field="exceededWaitingCell" 
             [width]="215" cellClass="padding-10" [cellStyle]="warningExceededWaiting" i18n-headerName></ag-grid-column>
 
-        <ag-grid-column headerName="Exceeded Serving Time Transaction" [cellRenderer]="exceededServingCellRenderer"
+        <ag-grid-column headerName="Exceeded Serving Time Transaction" field="exceededServingCell"
             [width]="215" cellClass="padding-10" [cellStyle]="warningExceededServing" i18n-headerName></ag-grid-column>
 
     </ag-grid-angular>
+
+    <div fxLayout="row">
+        <div fxFlex="80%"></div>
+        <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to csv</button>
+    </div>
+
     <div class="divider margin-20-0"></div>
     <div *ngIf="total$ | async; else loading; let total" class="border">
         <monitor-chart [data]="total"></monitor-chart>

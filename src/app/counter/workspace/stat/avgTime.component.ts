@@ -15,7 +15,7 @@ export class AvgTimeComponent {
 
     @Input() set stime(t: number) {
         this.duration = t;
-        this.warning = t > this.maxServingMinute * 60 + 1;
+        this.warning = t > (this.maxServingMinute * 60 + 1);
     }
 
     maxServingMinute = ProjectConfig.service.max_serving_minute;

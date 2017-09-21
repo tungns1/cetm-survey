@@ -65,7 +65,7 @@ export class TimerComopnent {
     private view(duration: number, timeWarning: number) {
         let view = [duration / 3600, (duration % 3600) / 60, (duration % 60)].map(this.TwoDigit).join(":");
         this.native.innerHTML = view;
-        if ((duration % 3600) / 60 > timeWarning + 1 || (duration / 3600) > 1) {
+        if (((duration % 3600) - 1) / 60 > timeWarning || (duration / 3600) > 1) {
             this.native.style.backgroundColor = '#ff4d4d';
             this.native.style.color = '#ffffff';
             this.native.style.fontWeight = '600';

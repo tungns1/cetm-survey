@@ -48,42 +48,49 @@ export class SummaryComponent {
                 this.filterService.GetStores()
             );
         });
+        this.records$.subscribe(records => {
+            records.forEach(r => {
+                if (r.branch_id) {
+                    r['store'] = CacheBranch.GetNameForID(r.branch_id);
+                    r['exceededWaitingCell'] = r.wait_long + ' (' + r.w_l_percent + '%)';
+                    r['exceededServingCell'] = r.serve_long + ' (' + r.s_l_percent + '%)';
+                }
+            })
+        })
         this.total$.subscribe(t => {
             if (!t || !this.gridOptions.api) { return; }
+            if (AppStorage.Culture === 'vi')
+                t['store'] = 'Tổng cộng';
+            if (AppStorage.Culture === 'sp')
+                t['store'] = 'Sesumen';
+            else
+                t['store'] = 'Summary';
+            t['exceededWaitingCell'] = t.wait_long + ' (' + t.w_l_percent + '%)';
+            t['exceededServingCell'] = t.serve_long + ' (' + t.s_l_percent + '%)';
+            setTimeout(_ => {
+                var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
+                if (agRow) {
+                    var sumExceededWaiting = agRow.getElementsByClassName('ag-cell');
+                    if (t.w_l_percent > ProjectConfig.service.wait_long_alert_percent) {
+                        sumExceededWaiting[6]['style'].backgroundColor = '#ff5858';
+                        sumExceededWaiting[6]['style'].color = '#fff';
+                    } else {
+                        sumExceededWaiting[6]['style'].backgroundColor = '#f0f0f0';
+                        sumExceededWaiting[6]['style'].color = '#222';
+                    }
+                    var sumExceededServing = agRow.getElementsByClassName('ag-cell');
+                    if (t.s_l_percent > ProjectConfig.service.serve_long_alert_percent) {
+                        sumExceededServing[7]['style'].backgroundColor = '#ff5858';
+                        sumExceededServing[7]['style'].color = '#fff';
+                    } else {
+                        sumExceededServing[7]['style'].backgroundColor = '#f0f0f0';
+                        sumExceededServing[7]['style'].color = '#222';
+                    }
+                }
+            });
             this.gridOptions.api.setFloatingBottomRowData([t]);
             this.gridOptions.api.getFloatingBottomRow(0).canFlower = true;
         });
-    }
-
-    storeCellRenderer(d) {
-        if (d.data.branch_id)
-            return CacheBranch.GetNameForID(d.data.branch_id);
-        else {
-            if (AppStorage.Culture === 'vi')
-                return 'Tổng cộng';
-            if (AppStorage.Culture === 'sp')
-                return 'Sesumen';
-            else
-                return 'Summary';
-        }
-    }
-
-    exceededWaitingCellRenderer(d) {
-        // set warning color for floating row
-        setTimeout(_ => {
-            var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
-            if (agRow) {
-                var sumExceededWaiting = agRow.getElementsByClassName('ag-cell');
-                if (d.data.w_l_percent > ProjectConfig.service.wait_long_alert_percent) {
-                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].backgroundColor = '#ff5858';
-                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].color = '#fff';
-                } else {
-                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].backgroundColor = '#f0f0f0';
-                    sumExceededWaiting[sumExceededWaiting.length - 2]['style'].color = '#222';
-                }
-            }
-        });
-        return '<span>' + d.data.wait_long + ' (' + d.data.w_l_percent + '%)</span>';
     }
 
     warningExceededWaiting(d) {
@@ -95,23 +102,6 @@ export class SummaryComponent {
                 }
             }
         }
-    }
-    /////////////////////////////////////
-    exceededServingCellRenderer(d) {
-        setTimeout(_ => {
-            var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
-            if (agRow) {
-                var sumExceededServing = agRow.getElementsByClassName('ag-cell');
-                if (d.data.s_l_percent > ProjectConfig.service.serve_long_alert_percent) {
-                    sumExceededServing[sumExceededServing.length - 1]['style'].backgroundColor = '#ff5858';
-                    sumExceededServing[sumExceededServing.length - 1]['style'].color = '#fff';
-                } else {
-                    sumExceededServing[sumExceededServing.length - 1]['style'].backgroundColor = '#f0f0f0';
-                    sumExceededServing[sumExceededServing.length - 1]['style'].color = '#222';
-                }
-            }
-        });
-        return '<span>' + d.data.serve_long + ' (' + d.data.s_l_percent + '%)</span>';
     }
 
     warningExceededServing(d) {
@@ -130,5 +120,16 @@ export class SummaryComponent {
             relativeTo: this.route,
             queryParamsHandling: "merge"
         });
+    }
+
+    export() {
+        var params = {
+            skipHeader: false,
+            allColumns: true,
+            suppressQuotes: false,
+            fileName: 'overviewTransaction.csv',
+        };
+        console.log(this.gridOptions.api.getDataAsCsv(params));
+        this.gridOptions.api.exportDataAsCsv(params);
     }
 }
