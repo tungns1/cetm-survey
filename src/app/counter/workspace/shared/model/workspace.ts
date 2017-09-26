@@ -45,7 +45,7 @@ export class Workspace {
     Waiting = new WaitingQueue(this.current_counter.id, this.services, this.vip_services);
     Serving = new ServingQueue(this.current_counter.id);
     Missed = new MissedQueue(this.current_counter.id, this.services, this.vip_services);
-    Cancel = new CancelQueue();
+    Cancel = new CancelQueue(this.current_counter.id, this.services, this.vip_services);
 
     private queues: TicketQueue[] = [
         this.Waiting, this.Serving, this.Missed, this.Cancel

@@ -102,8 +102,12 @@ export class ServingQueue extends TicketQueue {
     }
 }
 
-export class CancelQueue extends TicketQueue {
-    constructor() {
-        super(TicketStates.Cancelled);
+export class CancelQueue extends RestrictedQueue {
+    constructor(
+        counter_id: string,
+        services: Set<string>,
+        restricted_services: Set<string>
+    ) {
+        super(TicketStates.Cancelled, counter_id, services, restricted_services);
     }
 }
