@@ -15,14 +15,14 @@
             <div *ngSwitchCase="'image'">
                 <app-image-form [(ngModel)]="record"></app-image-form>
             </div>
-            <div *ngSwitchCase="'videos'">
-                <app-video-form [(ngModel)]="record"></app-video-form>
-            </div>
             <div *ngSwitchCase="'repeater'">
                 <app-repeater-form [(ngModel)]="record"></app-repeater-form>
             </div>
+            <div *ngSwitchCase="'videos'">
+                <app-multimedia-form [(ngModel)]="record"></app-multimedia-form>
+            </div>
             <div *ngSwitchCase="'slider'">
-                <app-slider-form [(ngModel)]="record"></app-slider-form>
+                <app-multimedia-form [(ngModel)]="record"></app-multimedia-form>
             </div>
         </div>
         <div class="border margin-b-20">

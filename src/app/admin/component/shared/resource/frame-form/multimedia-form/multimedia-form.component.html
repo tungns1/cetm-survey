@@ -1,0 +1,23 @@
+<div *ngIf="value">
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="23%" class="margin-t-5" i18n>Type</span>
+    <select fxFlex class="hl-select" [(ngModel)]="value.type">
+        <option value="videos">Videos</option>
+        <option value="slider">Slider</option>
+    </select>
+  </div>
+  <div *ngIf="value.type === 'videos'" (change)="onChange($event)" class="margin-b-15">
+    <multi-file-picker (ngModelChange)="onChange()" [(ngModel)]="value.data.srcs"></multi-file-picker>
+  </div>
+  <div *ngIf="value.type === 'slider'" class="margin-b-15">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="23%" class="margin-t-5" i18n>Timing (second)</span>
+      <input fxFlex type="number" min="1" class="ctrlInput" [(ngModel)]="value.data.timing" (change)="onChange($event)">
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="23%" class="margin-t-5" i18n>Animation name</span>
+      <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.data.animation" (change)="onChange($event)">
+    </div>
+    <multi-file-picker [(ngModel)]="value.data.srcs" (ngModelChange)="onChange()"></multi-file-picker>
+  </div>
+</div>

@@ -2,6 +2,7 @@
     <div fxLayout="row" class="resourcesHeader">
         <h3 fxFlex="20%" class="center" i18n>Enable</h3>
         <h3 fxFlex class="center" i18n>Name</h3>
+        <h3 fxFlex="15%" class="center" i18n>Type</h3>
     </div>
     <div class="divider margin-b-10" *ngIf="records[0]"></div>
     <div fxLayout="row" *ngFor="let r of records">
@@ -13,5 +14,6 @@
                 <a (click)="Reset(r)" i18n>Reset</a>
             </p>
         </div>
+        <p fxFlex="15%" class="center" i18n>{{r.type}}</p>
     </div>
 </div>

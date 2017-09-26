@@ -7,6 +7,7 @@ import { ImageFormModule } from './image-form/image-form.module';
 import { VideoFormModule } from './video-form/video-form.module';
 import { RepeaterFormModule } from './repeater-form/repeater-form.module';
 import { SliderFormModule } from './slider-form/slider-form.module';
+import { MultimediaFormModule } from './multimedia-form/multimedia-form.module';
 import { ModalModule, AdminFormModule, FlexLayoutModule, AccordionModule } from '../shared';
 import { provideUploadURLToken } from './shared';
 
@@ -15,7 +16,7 @@ import { provideUploadURLToken } from './shared';
     CommonModule, FormsModule,
     ModalModule,
     AdminFormModule,
-    TextFormModule, ImageFormModule, VideoFormModule,
+    TextFormModule, ImageFormModule, VideoFormModule, MultimediaFormModule,
     FlexLayoutModule, RepeaterFormModule, AccordionModule,
     SliderFormModule
   ],
