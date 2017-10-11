@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
-import { MdMenuTrigger, MdDialog, MdDialogConfig } from '@angular/material';
+import { MatMenuTrigger, MatDialog, MatDialogConfig } from '@angular/material';
 import { RuntimeEnvironment } from '../../env';
 import { Observable } from 'rxjs/Observable';
 import { AppStorage } from '../../shared';
@@ -14,11 +14,11 @@ import { UserSettingComponent } from './user-setting'
 export class UserComponent {
     constructor(
         private env: RuntimeEnvironment,
-        private mdDialog: MdDialog
+        private mdDialog: MatDialog
     ) { }
     hidden = true;
 
-    @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
+    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
     username = this.env.Auth.User$.map(u => u.fullname);
 
     Logout() {
@@ -33,13 +33,13 @@ export class UserComponent {
     }
 
     openChangePassModal(){
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '350px';
         const dialog = this.mdDialog.open(ChangePassComponent, config);
     }
 
     openSettingModal(){
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '350px';
         const dialog = this.mdDialog.open(UserSettingComponent, config);
     }

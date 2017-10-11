@@ -2,7 +2,7 @@ import {
     Component, OnInit,
     Output, EventEmitter
 } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { AppStorage } from '../../shared';
 import { TranslateService } from '../../shared/util';
 
@@ -14,7 +14,7 @@ import { TranslateService } from '../../shared/util';
 export class HistoryFilterComponent implements OnInit {
 
     constructor(
-        private mdSnackBar: MdSnackBar,
+        private matSnackBar: MatSnackBar,
         private translateService: TranslateService
     ) { }
 
@@ -42,7 +42,7 @@ export class HistoryFilterComponent implements OnInit {
 
     query() {
         if (this.filter.wtimemin > this.filter.wtimemax || this.filter.stimemin > this.filter.stimemax) {
-            this.mdSnackBar
+            this.matSnackBar
                 .open(this.translateService.translate('Cant filter'),
                 this.translateService.translate('Close'), {
                     duration: 6000

@@ -23,9 +23,9 @@
 
     <h2 i18n>Advanced Configuration</h2>
 
-    <md-tab-group>
-        <md-tab>
-            <ng-template md-tab-label><span class="uppercase" i18n>Led</span></ng-template>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label><span class="uppercase" i18n>Led</span></ng-template>
             <md-input-container>
                 <input mdInput type="number" min="0" formControlName="led_addr" placeholder="Led Address">
             </md-input-container>
@@ -37,6 +37,6 @@
             <md-checkbox formControlName="led_remote">
                 Remote Led Controller
             </md-checkbox>
-        </md-tab>
-    </md-tab-group>
+        </mat-tab>
+    </mat-tab-group>
 </form>

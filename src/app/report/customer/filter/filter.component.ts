@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { ReportFilterService, Customer } from '../../shared';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
 import { TranslateService } from '../../../shared/util';
@@ -13,7 +13,7 @@ import { HistoryComponent } from '../history/history.component';
 export class ReportFilterComponent {
     constructor(
         private customerApi: CustomerAPI,
-        private snackBar: MdSnackBar,
+        private snackBar: MatSnackBar,
         private translateService: TranslateService,
         private test: HistoryComponent
     ) { }

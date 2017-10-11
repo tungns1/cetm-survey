@@ -7,7 +7,7 @@ import {
     NG_VALUE_ACCESSOR, AbstractControl,
     FormArray, FormControl
 } from '@angular/forms';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FilePickerModalComponent } from './file-picker-modal.component';
 
 const FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -30,7 +30,7 @@ const FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 })
 export class FilePickerComponent implements ControlValueAccessor {
     constructor(
-        private mdDialog: MdDialog
+        private mdDialog: MatDialog
     ) { }
 
     @HostListener("change") onChange() {
@@ -53,7 +53,7 @@ export class FilePickerComponent implements ControlValueAccessor {
     }
 
     openModal() {
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '500px';
         config.data = {
             value: this.value

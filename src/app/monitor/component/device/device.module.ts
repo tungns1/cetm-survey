@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MonitorDeviceComponent } from './device.component';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
+import { MonitorDeviceComponent } from './device.component';
 import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
 import { SummaryComponent } from './summary/summary.component';
@@ -24,7 +25,7 @@ import { CategoryComponent } from './category/category.component';
 
 @NgModule({
     imports: [
-        routing, SharedModule
+        routing, SharedModule, MatProgressSpinnerModule
     ],
     providers: [
         monitorServiceProviders

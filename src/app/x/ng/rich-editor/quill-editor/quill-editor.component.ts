@@ -1,6 +1,9 @@
 import { Component, OnInit, ElementRef, forwardRef } from '@angular/core';
-import * as Quill from 'quill';
+import { Quill, QuillOptionsStatic } from 'quill';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import * as QuillConstructor from 'quill';
+
+var quill: any = QuillConstructor;
 
 import 'style-loader!quill/dist/quill.snow.css';
 
@@ -20,7 +23,7 @@ export class QuillEditorComponent implements OnInit {
     private el: ElementRef
   ) { }
 
-  private toolbarOptions: Quill.QuillOptionsStatic = [
+  private toolbarOptions = [
     [{ 'font': [] }],
     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
     ['bold', 'italic', 'underline'], // toggled buttons
@@ -35,7 +38,7 @@ export class QuillEditorComponent implements OnInit {
     ['clean'] // remove formatting button
   ];
 
-  private editor: Quill.Quill;
+  private editor: Quill;
   private content: string;
   private onChangeCallBack: Function = () => { };
   private onTouchCallback: Function = () => { };
@@ -49,7 +52,7 @@ export class QuillEditorComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.editor = new Quill(this.el.nativeElement.firstChild, {
+    this.editor = new quill(this.el.nativeElement.firstChild, {
       modules: {
         toolbar: this.toolbarOptions
       },
@@ -65,9 +68,9 @@ export class QuillEditorComponent implements OnInit {
       }
       // console.log(delta);
       let quillArr = document.getElementsByTagName('app-quill-editor');
-      for(let i = 0; i < quillArr.length; i++){
+      for (let i = 0; i < quillArr.length; i++) {
         let imgArr = quillArr[i].getElementsByTagName('img');
-        for(let j = 0; j < imgArr.length; j++){
+        for (let j = 0; j < imgArr.length; j++) {
           const i = imgArr[j];
           i.onload = (d) => {
             console.log(imgArr[j].width);

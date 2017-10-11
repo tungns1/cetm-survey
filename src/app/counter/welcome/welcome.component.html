@@ -1,3 +1,20 @@
+<!-- <div id="welcome" fxLayout="column">
+    <div fxFlex="40"></div>
+    <div fxFlex="15" fxLayout="column" class="center">
+        <h1 class="textWelcome">WELCOME!</h1>
+        <p *ngIf="showMessage$ | async" class="message">Please config your app first</p>
+        <p *ngIf="!(showMessage$ | async)">____________________</p>
+    </div>
+    <div fxFlex="7" class="center">
+        <img src="./assets/img/mirawayFlower.png" class="imgMiraFlower" width="50px">
+    </div>
+    <div fxFlex></div>
+    <p fxFlex="20px" class="center">Redirect in {{second$ | async}} seconds</p>
+    <p fxFlex="20px" class="center">
+        <a [routerLink]="setting$ | async"> Setting </a>
+    </p>
+</div> -->
+
 <p>Welcome</p>
 Please wait, we are preparing your workspace
 <md-progress-bar mode="indeterminate"></md-progress-bar>

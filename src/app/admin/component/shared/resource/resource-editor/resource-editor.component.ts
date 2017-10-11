@@ -1,8 +1,10 @@
 import { Component, OnInit, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GenericFormComponent } from '../frame-form/generic-form/generic-form.component';
+import { UIEditorComponent } from '../ui-editor/ui-editor.component'
 import { ILayoutResources, IResourceForm } from '../shared';
+import { UI } from '../../../shared'
 
 const RESORCE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   provide: NG_VALUE_ACCESSOR,
@@ -19,51 +21,71 @@ const RESORCE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   constructor(
-    private mdDialog: MdDialog
+    private mdDialog: MatDialog
   ) { }
 
-  private onChangeCallback = (data: ILayoutResources) => { }
+  private onChangeCallback = (data: UI) => { }
 
-  value: ILayoutResources = {};
+  value: UI = {
+    style: {},
+    layout: {},
+    resources: {},
+    navigations: {},
+    language: '',
+  };
   records: IResourceForm[];
+  header: any;
 
-  private editables = ["text", "image", "videos", "repeater", 'slider'];
+  private editables = ["text", "image", "repeater", "videos", 'slider'];
+  private mainComponent = ['Header', 'Body', 'Footer'];
 
   ngOnInit() {
     this.refresh();
+    // this.test();
   }
 
-  Save(r: IResourceForm) {
-    this.value[r.name] = r;
+  Save(ui: UI) {
+    this.value = ui;
     this.refresh();
     this.onChangeCallback(this.value);
   }
 
-  enable(r: IResourceForm) {
-    this.value[r.name] = r;
+  enable(ui: UI) {
+    this.value = ui;
     this.onChangeCallback(this.value);
   }
 
-  Reset(r: IResourceForm) {
-    delete this.value[r.name];
+  Reset(ui: UI) {
+    delete this.value;
     this.refresh();
     this.onChangeCallback(this.value);
   }
 
   refresh() {
-    this.records = Object.keys(this.value).filter(k => {
-      return this.value[k].show && this.editables.indexOf(this.value[k].type) !== -1;
-    }).map(k => {
-      const r = this.value[k];
-      return {
-        name: k,
-        type: r.type,
-        data: r.data,
-        style: r.style,
-        show: true,
-        enabled: r.enabled
-      };
-    }).sort((a, b) => a.name < b.name ? -1 : 1);
+    if (this.value.resources && this.value.layout)
+      this.records = Object.keys(this.value.resources)
+        .filter(k => {
+          return this.editables.indexOf(this.value.resources[k].type) !== -1
+        })
+        .map(k => {
+          const r = this.value.resources[k];
+          return {
+            name: k,
+            type: r.type,
+            data: r.data,
+            style: r.style,
+            enabled: r.enabled
+          };
+        }).sort((a, b) => a.name < b.name ? -1 : 1);
+    if (this.value.layout.children) {
+      this.value.layout.children.map(element => {
+        if(!element.style)
+          element.style = {}
+      });
+      this.header = this.value.layout.children.find(comp => {
+        return comp.name = 'Header';
+      })
+    }
   }
 
   /**
@@ -87,10 +109,24 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   edit(record: IResourceForm) {
-    const config = new MdDialogConfig();
+    console.log(record)
+    const config = new MatDialogConfig();
     config.width = '450px';
     config.data = record;
     const dialog = this.mdDialog.open(GenericFormComponent, config);
+    dialog.afterClosed().subscribe(d => {
+      if (d) {
+        this.Save(d);
+      }
+    })
+  }
+
+  editLayout(UI: UI) {
+    const config = new MatDialogConfig();
+    config.width = '80%';
+    config.height = '90%';
+    config.data = UI;
+    const dialog = this.mdDialog.open(UIEditorComponent, config);
     dialog.afterClosed().subscribe(d => {
       if (d) {
         this.Save(d);

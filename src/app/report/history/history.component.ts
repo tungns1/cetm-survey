@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Paging, RuntimeEnvironment, USER_ROLES } from '../shared';
 import { ITransactionView, TransactionHistoryApi, IHistoryFilter } from './shared';
 import { TransactionComponent } from './transaction.component';
@@ -14,7 +14,7 @@ import { LocalDayTimePipe } from '../../x/ng/time/localDayTime';
 })
 export class HistoryComponent {
     constructor(
-        private mdDialog: MdDialog,
+        private mdDialog: MatDialog,
         private transactionHistoryApi: TransactionHistoryApi,
         private env: RuntimeEnvironment
     ) { }
@@ -39,7 +39,7 @@ export class HistoryComponent {
         },
 
         onCellClicked: (e) => {
-            if (e.event.target.localName === 'img')
+            if (e.event.target['localName'] === 'img')
                 this.showDetails(e.data);
         },
         onRowDataChanged: () => {
@@ -155,7 +155,7 @@ export class HistoryComponent {
     showDetails(tr: ITransactionView) {
         if (this.isAdminStandard)
             tr.audio = '';
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '350px';
         config.data = tr;
         const dialog = this.mdDialog.open(TransactionComponent, config);

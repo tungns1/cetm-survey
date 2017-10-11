@@ -3,7 +3,7 @@ import {
   Output, EventEmitter
 } from '@angular/core';
 
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 
 @Directive({
   selector: '[appConfirm]'
@@ -11,7 +11,7 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 export class ConfirmDirective {
 
   constructor(
-    private mdDialog: MdDialog
+    private mdDialog: MatDialog
   ) { }
 
   @Input() appConfirm: string;
@@ -19,7 +19,7 @@ export class ConfirmDirective {
   @HostListener("click", ["$event"])
   onClick(e: Event) {
     e.preventDefault();
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.width = '450px';
     const dialog = this.mdDialog.open(AppConfirmDialog, config)
     dialog.componentInstance.message = this.appConfirm || "Are you sure?";
@@ -43,7 +43,7 @@ export class ConfirmDirective {
 })
 export class AppConfirmDialog {
   constructor(
-    protected dialogRef: MdDialogRef<AppConfirmDialog>
+    protected dialogRef: MatDialogRef<AppConfirmDialog>
   ) { }
 
   @Input() message: string;

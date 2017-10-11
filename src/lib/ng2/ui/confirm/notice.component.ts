@@ -1,6 +1,6 @@
 import { Component, Input, Optional, Inject, ElementRef } from '@angular/core';
 import { ContentChildren, QueryList } from '@angular/core';
-import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: "app-notice-message",
@@ -29,8 +29,8 @@ export class NoticeMessageComonent {
 })
 export class NoticeDialogComponent {
     constructor(
-        @Optional() @Inject(MD_DIALOG_DATA) public message: string,
-        protected dialogRef: MdDialogRef<NoticeDialogComponent>
+        @Optional() @Inject(MAT_DIALOG_DATA) public message: string,
+        protected dialogRef: MatDialogRef<NoticeDialogComponent>
     ) { }
 }
 
@@ -40,7 +40,7 @@ export class NoticeDialogComponent {
 })
 export class NoticeComponent {
     constructor(
-        private mdDialog: MdDialog
+        private mdDialog: MatDialog
     ) { }
 
     @ContentChildren(NoticeMessageComonent) private children: QueryList<NoticeMessageComonent>;
@@ -68,7 +68,7 @@ export class NoticeComponent {
 
         const message = this.getMessage(this.name);
         if (message) {
-            const config = new MdDialogConfig();
+            const config = new MatDialogConfig();
             config.width = '400px';
             config.data = message;
             this.dialogRef = this.mdDialog.open(NoticeDialogComponent, config);
@@ -85,6 +85,6 @@ export class NoticeComponent {
         return v ? v.GetMessage() : "";
     }
 
-    private dialogRef: MdDialogRef<NoticeDialogComponent>;
+    private dialogRef: MatDialogRef<NoticeDialogComponent>;
 }
 

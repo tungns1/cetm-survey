@@ -1,11 +1,11 @@
 <div class="hl-droplabel-user">
-    <span [mdMenuTriggerFor]="menu" class="pointer">
+    <span [matMenuTriggerFor]="menu" class="pointer">
         <span i18n>Hello</span> {{ username | async}}
         <i class="fa fa-caret-down fa-lg"></i>
     </span>
 </div>
 
-<md-menu #menu="mdMenu" id="menuSetting" overlapTrigger="true" x-position="before">
+<mat-menu #menu="matMenu" id="menuSetting" overlapTrigger="true" x-position="before">
     <div class="hl-dropdown-item-user" (click)="Refresh()">
         <i class="fa fa-refresh"></i> <span i18n>Refresh</span>
     </div>
@@ -18,4 +18,4 @@
     <div class="hl-dropdown-item-user" (click)="Logout()">
         <i class="fa fa-power-off"></i> <span i18n>Logout</span>
     </div>
-</md-menu>
+</mat-menu>

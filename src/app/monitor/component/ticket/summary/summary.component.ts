@@ -28,7 +28,7 @@ export class SummaryComponent {
 
     private gridOptions: GridOptions = {
         rowHeight: 35,
-        floatingBottomRowData: [],
+        // floatingBottomRowData: [],
         getRowStyle: (e) => {
 
         },

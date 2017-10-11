@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+import { MatTabsModule } from '@angular/material';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule, ReportFilterModule } from "../shared";
-import { Routes, RouterModule } from '@angular/router'
 import { AgGridModule } from "ag-grid-angular/main";
 
 const routing = RouterModule.forChild([
@@ -25,6 +26,7 @@ import { DashboardChartModule } from './chart/chart.module';
     imports: [
         CommonModule, SharedModule, routing, DashboardSharedModule,
         ReportSumModule, DashboardChartModule, ReportFilterModule,
+        MatTabsModule,
         AgGridModule.withComponents([])
     ],
     declarations: [

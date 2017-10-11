@@ -1,7 +1,7 @@
 import { HttpServiceGenerator } from '../../shared/';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '../../shared/util';
 
 export interface IConfigPriority {
@@ -23,20 +23,20 @@ export interface IConfig {
 export class SetupAPI {
     constructor(
         private httpServiceGenerator: HttpServiceGenerator,
-        private mdSnackBar: MdSnackBar,
+        private matSnackBar: MatSnackBar,
         private translateService: TranslateService
     ) { }
 
     Update(v: IConfigPriority) {
         this.api.Post<string>("update", { key: "TicketPriority" }, v).subscribe(v => {
             if (v === "ok") {
-                this.mdSnackBar
+                this.matSnackBar
                     .open(this.translateService.translate('Update Successfully'), 
                             this.translateService.translate('Close'), {
                     duration: 6000
                 });
             } else {
-                this.mdSnackBar
+                this.matSnackBar
                     .open(this.translateService.translate('Update Error'), 
                             this.translateService.translate('Close'), {
                     duration: 6000

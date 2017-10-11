@@ -17,20 +17,20 @@
                 <report-sum class="summaryReport" [data]="summary$ | async"></report-sum>
                 <div class="divider margin-30-0"></div>
                 <div id="overView" class="border">
-                    <md-tab-group>
-                        <md-tab>
-                            <ng-template md-tab-label><span class="uppercase tabstyle" i18n>Overview</span></ng-template>
+                    <mat-tab-group>
+                        <mat-tab>
+                            <ng-template mat-tab-label><span class="uppercase tabstyle" i18n>Overview</span></ng-template>
                             <app-general-view [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>
-                        </md-tab>
-                        <md-tab>
-                            <ng-template md-tab-label><span class="uppercase tabstyle" i18n>Transaction Time</span></ng-template>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label><span class="uppercase tabstyle" i18n>Transaction Time</span></ng-template>
                             <app-transaction-time [field]="groupBy$ | async" [data]="data$ | async"></app-transaction-time>
-                        </md-tab>
-                        <md-tab>
-                            <ng-template md-tab-label><span class="uppercase tabstyle" i18n>Customer Feedback</span></ng-template>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label><span class="uppercase tabstyle" i18n>Customer Feedback</span></ng-template>
                             <app-customer-feedback [field]="groupBy$ | async" [data]="data$ | async"></app-customer-feedback>
-                        </md-tab>
-                    </md-tab-group>
+                        </mat-tab>
+                    </mat-tab-group>
                 </div>
             </div>
         </div>

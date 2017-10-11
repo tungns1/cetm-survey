@@ -23,24 +23,24 @@
             <span fxFlex="20%">&nbsp;</span>
             <div fxFlex fxLayout="row" fxLayoutGap="2.5px">
                 <span fxFlex="0.5%">&nbsp;</span>
-                <md-tab-group fxFlex dynamicHeight>
-                    <md-tab>
-                        <ng-template md-tab-label><span class="uppercase" i18n>Service</span></ng-template>
+                <mat-tab-group fxFlex dynamicHeight>
+                    <mat-tab>
+                        <ng-template mat-tab-label><span class="uppercase" i18n>Service</span></ng-template>
                         <service-config fxFlex formControlName="service"></service-config>
-                    </md-tab>
-                    <md-tab>
-                        <ng-template md-tab-label><span class="uppercase" i18n>Feedback</span></ng-template>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label><span class="uppercase" i18n>Feedback</span></ng-template>
                         <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
-                    </md-tab>
-                    <md-tab>
-                        <ng-template md-tab-label><span class="uppercase" i18n>Counter</span></ng-template>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label><span class="uppercase" i18n>Counter</span></ng-template>
                         <counter-config fxFlex formControlName="counter" style="display: inherit"></counter-config>
-                    </md-tab>
-                    <md-tab>
-                        <ng-template md-tab-label><span class="uppercase" i18n>Priority</span></ng-template>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label><span class="uppercase" i18n>Priority</span></ng-template>
                         <priority-config fxFlex formControlName="priority"></priority-config>
-                    </md-tab>
-                </md-tab-group>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
         </div>
 

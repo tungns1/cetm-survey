@@ -4,7 +4,7 @@ import {
 } from '../shared';
 import { ITransactionView, TransactionHistoryApi } from './shared';
 import { Router } from '@angular/router';
-import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ReportCustomerService } from '../shared';
 import { LocalDayTimePipe } from '../../x/ng/time/localDayTime';
 
@@ -17,8 +17,8 @@ export class TransactionComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private dialog: MdDialog,
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
+        private dialog: MatDialog,
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
         private transactionHistoryApi: TransactionHistoryApi,
         private env: RuntimeEnvironment,
         private reportCustomerService: ReportCustomerService,

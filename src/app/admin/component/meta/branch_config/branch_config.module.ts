@@ -1,5 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { MatTabsModule } from '@angular/material'
 import { BranchModule, SharedModule } from '../../shared/';
 import { EditorModule, AdminFormModule } from '../../shared';
 import { BranchConfigComponent } from './branch_config.component';

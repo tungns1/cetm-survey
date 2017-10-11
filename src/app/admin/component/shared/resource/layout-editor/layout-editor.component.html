@@ -1,0 +1,21 @@
+<div id="layout-editor">
+  <h1 class="modal-header">Edit UI</h1>
+  <div class="padding-20">
+    <div fxLayout="row" fxLayoutGap="20px">
+      <span fxFlex="15" class="right margin-t-5">Background color</span>
+      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundColor">
+      <span fxFlex="15" class="right margin-t-5">Text color</span>
+      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.color">
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <span fxFlex="15" class="right margin-t-5">Background position</span>
+      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundPosition">
+      <span fxFlex="15" class="right margin-t-5">Background image</span>
+      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundImage">
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button fxFlex class="btnClear" (click)="cancel()">Cancel</button>
+      <button fxFlex class="btnFill" (click)="save()">Ok</button>
+    </div>
+  </div>
+</div>

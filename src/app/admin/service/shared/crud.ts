@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BranchFilterService } from '../../shared';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { HttpApi, HttpServiceGenerator } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
 import { AdminNavService } from './nav';
@@ -15,7 +16,7 @@ export class CrudApiService<T> {
     }
 
     protected filter() {
-        return Observable.of<T[]>();
+        return of<T[]>();
     }
 
     Create(v: T) {

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { KioskAPI } from './service/kiosk.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTabsModule } from '@angular/material';
 import { ReportFilterModule } from "../shared";
 import { AgGridModule } from "ag-grid-angular/main";
 

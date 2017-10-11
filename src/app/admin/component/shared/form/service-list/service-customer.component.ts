@@ -1,4 +1,4 @@
-import { MdDialog, MdDialogConfig, MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Optional, Inject, OnInit } from '@angular/core';
 import { IService, ServiceName } from '../../../../../shared/model';
 import { ServiceListComponent } from './service-list-form.component';
@@ -22,8 +22,8 @@ export interface IServiceCustomizeResult {
 })
 export class ServiceCustomizeModal {
     constructor(
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: IServiceCustomizeData,
-        private dialog: MdDialogRef<ServiceCustomizeModal>,
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: IServiceCustomizeData,
+        private dialog: MatDialogRef<ServiceCustomizeModal>,
         // private serviceListComponent: ServiceListComponent
     ) {
         this.active = this.dialogData.active || <any>{};

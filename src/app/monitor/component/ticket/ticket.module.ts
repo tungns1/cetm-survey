@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MonitorTicketComponent } from './ticket.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { SharedModule } from '../../shared';
 import { FocusComponent } from './focus/focus.component';
 import { TicketDetailComponent } from './focus/ticketDetail.component';
@@ -30,7 +31,7 @@ import { monitorServiceProviders } from './shared';
 
 @NgModule({
     imports: [
-        routing, SharedModule, D3Module,
+        routing, SharedModule, D3Module, MatProgressSpinnerModule,
         AgGridModule.withComponents([
             TimerComopnent,
             TicketIconComponent])

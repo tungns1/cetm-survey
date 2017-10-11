@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { ModalComponent, Ticket } from '../shared';
 import { NoticeComponent } from '../shared';
@@ -21,7 +21,7 @@ export class ActionComponent {
         private queueService: QueueService,
         private ticketService: TicketService,
         private feedbackService: FeedbackService,
-        private mdDialog: MdDialog
+        private mdDialog: MatDialog
     ) { }
 
 
@@ -32,7 +32,7 @@ export class ActionComponent {
     auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
 
     Move() {
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '450px';
         config.data = this.ticket;
         const dialog = this.mdDialog.open(TicketDetailDialog, config);

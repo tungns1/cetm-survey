@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomerAPI } from './service/customer.service';
-// import { TransactionHistoryApi } from '../history/history.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTabsModule } from '@angular/material'
+import { CustomerAPI } from './service/customer.service';
 import {
     CustomerComponent
 } from './customer.component';

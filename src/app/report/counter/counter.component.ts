@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation, ViewChild } from '@angular/core';
 import { CounterAPI } from './service/counter.service';
-import { MdTabGroup } from '@angular/material';
+import { MatTabGroup } from '@angular/material';
 import { ActivityComponent } from './counter-activity/activity.component'
 
 @Component({

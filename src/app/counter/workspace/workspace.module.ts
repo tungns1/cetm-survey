@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { SharedModule } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
@@ -19,7 +20,7 @@ const routing = RouterModule.forChild([
 @NgModule({
     imports: [
         routing, SharedModule,
-        QueueModule, ServingModule, StatModule
+        QueueModule, ServingModule, StatModule, MatProgressSpinnerModule
     ],
     declarations: [
         WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent

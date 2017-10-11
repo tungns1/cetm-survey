@@ -6,7 +6,7 @@ import { Ng2BasicModule } from './shared';
 import { BranchModule } from './branch';
 import { SharedModule } from './shared.module';
 import { HttpModule } from "@angular/http";
-import { OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
+// import { OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
 import { TranslateService } from './util/translate.service'
 
 @NgModule({
@@ -19,7 +19,7 @@ import { TranslateService } from './util/translate.service'
         Ng2BasicModule
     ],
     providers: [
-        { provide: OverlayContainer, useValue: FullscreenOverlayContainer },
+        // { provide: OverlayContainer, useValue: FullscreenOverlayContainer },
         TranslateService
     ]
 })

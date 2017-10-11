@@ -1,13 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import { Router } from "@angular/router";
 import { RuntimeEnvironment, AppSocket, LogService, CounterSettingService } from './shared';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class WorkspaceSocket extends AppSocket {
     constructor(
         private router: Router,
-        private mdSnackBard: MdSnackBar,
+        private mdSnackBard: MatSnackBar,
         private env: RuntimeEnvironment,
         private counterSetting: CounterSettingService,
         logService: LogService,

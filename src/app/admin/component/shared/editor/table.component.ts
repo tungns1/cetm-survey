@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ITableField, ITableAction } from './model';
 import { CacheBranch } from '../';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { NoticeComponent } from '../../../../../lib/ng2';
 import { RuntimeEnvironment } from '../../shared';
 

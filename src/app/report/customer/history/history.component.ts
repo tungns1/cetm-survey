@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ITransaction, CacheService, CacheBranch, RuntimeEnvironment, USER_ROLES } from '../../shared';
 import { CustomerAPI, paging, RxInfoCustomer } from '../service/customer.service';
 import { TransactionComponent } from './transaction.component';
@@ -15,7 +15,7 @@ import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 
 export class HistoryComponent {
     constructor(
-        private mdDialog: MdDialog,
+        private mdDialog: MatDialog,
         private customerAPI: CustomerAPI,
         private env: RuntimeEnvironment
     ) { }
@@ -39,7 +39,7 @@ export class HistoryComponent {
         },
 
         onCellClicked: (e) => {
-            if (e.event.target.localName === 'img')
+            if (e.event.target['localName'] === 'img')
                 this.showDetails(e.data);
         },
         onRowDataChanged: () => {
@@ -166,7 +166,7 @@ export class HistoryComponent {
             if (u.role === USER_ROLES.ADMIN_STANDARD)
                 ticket.audio = '';
         });
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '350px';
         config.data = ticket;
         const dialog = this.mdDialog.open(TransactionComponent, config);

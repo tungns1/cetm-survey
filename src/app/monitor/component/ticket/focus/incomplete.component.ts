@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { Ticket, ProjectConfig, CacheService } from '../../shared';
 import { TicketIconComponent } from '../../../../shared/businessQapp/ticket-icon.component';
@@ -14,7 +14,7 @@ import { TimerComopnent } from '../../../../x/ng/time/timer.component'
 })
 export class IncompleteTicketComponent {
     constructor(
-        private mdDialog: MdDialog
+        private mdDialog: MatDialog
     ) { }
 
     @Input("data") set _data(v: Ticket[]) {
@@ -22,7 +22,7 @@ export class IncompleteTicketComponent {
         this.data.forEach(t => this.addHelperField(t));
     };
 
-    private dialog: MdDialogRef<TicketDetailComponent>;
+    private dialog: MatDialogRef<TicketDetailComponent>;
     data: Ticket[] = [];
     curentPage: number = 1;
     totalPage: number;
@@ -35,7 +35,7 @@ export class IncompleteTicketComponent {
         pagination: true,
         // suppressPaginationPanel: true,
         onCellClicked: (e) => {
-            if (e.event.target.localName === 'img')
+            if (e.event.target['localName'] === 'img')
                 this.showDetails(e.data);
         },
         // onRowDataChanged: () => {
@@ -93,7 +93,7 @@ export class IncompleteTicketComponent {
     // }
 
     showDetails(t: Ticket) {
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '350px';
         config.data = t;
         const dialog = this.mdDialog.open(TicketDetailComponent, config);

@@ -6,7 +6,8 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
 import { HttpError, AppStorage, RuntimeEnvironment } from './shared';
-import { USER_ROLES } from '../../shared/model'
+import { USER_ROLES } from '../../shared/model';
+import { of } from 'rxjs/observable/of'
 
 interface IAuthExtra {
   branch_code?: string;
@@ -35,7 +36,7 @@ export class SessionValidationGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> {
     if (!AppStorage.HasToken()) {
       this.ShowLogin(state.url);
-      return Observable.of(false);
+      return of(false);
     }
     return this.authService.ValidateSession(this.GetScope())
       .do(success => {

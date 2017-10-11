@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdMenuModule, MdDialogModule } from '@angular/material';
+import { MatMenuModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './header.component';
 import { LogoComponent } from './logo.component';
@@ -15,9 +15,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
-        CommonModule, RouterModule, MdDialogModule,
-        ModalModule, FormsModule, FlexLayoutModule,
-        Ng2BasicModule, ReactiveFormsModule, MdMenuModule
+        CommonModule, RouterModule, MatDialogModule,
+        ModalModule, FormsModule, FlexLayoutModule, MatSnackBarModule,
+        Ng2BasicModule, ReactiveFormsModule, MatMenuModule
     ],
     declarations: [HeaderComponent, LogoComponent, UserComponent, UserSettingComponent, ChangePassComponent],
     exports: [HeaderComponent],

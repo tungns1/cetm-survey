@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA, MdDialog, MdSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthUserAPI, IChangePass } from "./chang-pass.service";
 import { RuntimeEnvironment } from '../../env';
@@ -15,12 +15,12 @@ import { TranslateService } from '../../../shared/util';
 export class ChangePassComponent {
 
     constructor(
-        @Inject(MD_DIALOG_DATA) private dialogData: any,
-        private dialog: MdDialog,
+        @Inject(MAT_DIALOG_DATA) private dialogData: any,
+        private dialog: MatDialog,
         private setupApi: AuthUserAPI,
         private fb: FormBuilder,
         private env: RuntimeEnvironment,
-        private mdSnackBar: MdSnackBar,
+        private matSnackBar: MatSnackBar,
         private translateService: TranslateService
     ) { }
 
@@ -54,7 +54,7 @@ export class ChangePassComponent {
             }
             else {
                 this.pass_false = true;
-                this.mdSnackBar
+                this.matSnackBar
                     .open(this.translateService.translate('Wrong retype password!'), 
                             this.translateService.translate('Close'), {
                     duration: 6000

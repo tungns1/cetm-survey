@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, Optional, Inject } from '@angular/core';
 import { ICustomer, Ticket, TicketStates } from '../../shared';
 import { MonitorCustomerService } from '../shared';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MonitorFocusService } from '../shared';
 import {ProjectConfig} from '../shared';
 
@@ -13,7 +13,7 @@ import {ProjectConfig} from '../shared';
 export class TicketDetailComponent {
 
     constructor(
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
         private customerService: MonitorCustomerService,
         private monitorFocus: MonitorFocusService
     ) { }

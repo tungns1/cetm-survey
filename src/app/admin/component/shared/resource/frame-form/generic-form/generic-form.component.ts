@@ -3,7 +3,7 @@ import {
   Inject, forwardRef, ExistingProvider
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { IResourceForm } from '../../shared';
 import { cloneDeep } from 'lodash';
 import { BaseFormComponent } from '../shared';
@@ -26,8 +26,8 @@ export class GenericFormComponent {
    * @param obj the given object
    */
   constructor(
-    @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-    private dialog: MdDialogRef<GenericFormComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+    private dialog: MatDialogRef<GenericFormComponent>,
   ) {
     this.record = cloneDeep(this.dialogData);
   }

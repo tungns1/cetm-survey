@@ -1,7 +1,7 @@
 import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { Ticket, TicketStates, TicketActionName } from '../shared';
 import { TicketService, QueueService, WorkspaceService, FeedbackService } from '../shared';
 import { NoticeComponent } from '../shared';
@@ -15,13 +15,13 @@ import { NoticeComponent } from '../shared';
 export class TicketDetailDialog {
 
   constructor(
-    @Optional() @Inject(MD_DIALOG_DATA) public ticket: Ticket,
-    private dialogRef: MdDialogRef<TicketDetailDialog>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public ticket: Ticket,
+    private dialogRef: MatDialogRef<TicketDetailDialog>,
     private ticketService: TicketService,
     private feedbackService: FeedbackService,
     private queueService: QueueService,
     private workspaceService: WorkspaceService,
-    private mdDialog: MdDialog
+    private mdDialog: MatDialog
   ) { }
 
   isServing = this.ticket.IsState("serving");

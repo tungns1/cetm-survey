@@ -15,16 +15,16 @@
                 </div>
             </div>
             <!--<div class="divider margin-30-0"></div>-->
-            <md-tab-group dynamicHeight id="counterReport" class="border">
-                <md-tab>
-                    <ng-template md-tab-label><span class="uppercase" i18n>Counter performance</span></ng-template>
+            <mat-tab-group dynamicHeight id="counterReport" class="border">
+                <mat-tab>
+                    <ng-template mat-tab-label><span class="uppercase" i18n>Counter performance</span></ng-template>
                     <performance-tab [data]="data$ | async"></performance-tab>
-                </md-tab>
-                <md-tab>
-                    <ng-template md-tab-label><span class="uppercase" i18n>Counter activity</span></ng-template>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label><span class="uppercase" i18n>Counter activity</span></ng-template>
                     <activity-tab></activity-tab>
-                </md-tab>
-            </md-tab-group>
+                </mat-tab>
+            </mat-tab-group>
             <footer></footer>
         </div>
     </div>

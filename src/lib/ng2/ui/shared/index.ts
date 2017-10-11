@@ -1,1 +1,1 @@
-export { MaterialModule } from '@angular/material';
+export { MatTabsModule, MatButtonModule, MatDialogModule } from '@angular/material';

@@ -3,14 +3,15 @@ import { TimeModule } from '../../x/ng/time/';
 import { ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe } from './serviceName';
 import { TicketStatePipe, TicketStateFinishPipe } from './ticketState';
 import { CounterNamePipe } from './counterName';
-import { UserFullNamePipe,UserCodePipe } from './userName';
-import { BranchLevelNamePipe, BranchNamePipe, BranchNameKioskPipe,ParentNamePipe,ParentCodePipe,BranchCodePipe } from './branch.pipe';
+import { UserFullNamePipe, UserCodePipe } from './userName';
+import { BranchLevelNamePipe, BranchNamePipe, BranchNameKioskPipe, ParentNamePipe, ParentCodePipe, BranchCodePipe } from './branch.pipe';
 import { StatusDevicePipe } from "./statusDevice";
+import { KeyPipe } from './keyObj'
 
 const exportComponents = [
     ServiceNamePipe, MultipleServiceNamePipe, TicketServiceNamePipe, TicketStateFinishPipe,
-    TicketStatePipe, CounterNamePipe, UserFullNamePipe, BranchNameKioskPipe,ParentNamePipe,ParentCodePipe,BranchCodePipe,
-    BranchLevelNamePipe, BranchNamePipe,StatusDevicePipe,UserCodePipe
+    TicketStatePipe, CounterNamePipe, UserFullNamePipe, BranchNameKioskPipe, ParentNamePipe, ParentCodePipe, BranchCodePipe,
+    BranchLevelNamePipe, BranchNamePipe, StatusDevicePipe, UserCodePipe, KeyPipe
 ]
 
 @NgModule({

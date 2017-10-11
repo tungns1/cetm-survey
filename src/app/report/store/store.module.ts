@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatTabsModule } from '@angular/material';
 import { StoreAPI } from './service/store.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HourComponent } from './store-hour/hour.component';

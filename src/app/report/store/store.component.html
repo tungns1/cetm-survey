@@ -16,16 +16,16 @@
           </div>
         </div>
         <!-- <performance-tab [data]="data$ | async"></performance-tab> -->
-        <md-tab-group dynamicHeight id="counterReport" class="border" style="width: 100%">
-          <md-tab>
-            <ng-template md-tab-label><span class="uppercase" i18n>Store performance</span></ng-template>
+        <mat-tab-group dynamicHeight id="counterReport" class="border" style="width: 100%">
+          <mat-tab>
+            <ng-template mat-tab-label><span class="uppercase" i18n>Store performance</span></ng-template>
             <performance-tab [data]="data$ | async"></performance-tab>
-          </md-tab>
-          <md-tab>
-            <ng-template md-tab-label><span class="uppercase" i18n>Details report per hour</span></ng-template>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label><span class="uppercase" i18n>Details report per hour</span></ng-template>
             <hour-tab></hour-tab>
-          </md-tab>
-        </md-tab-group>
+          </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
     <footer></footer>

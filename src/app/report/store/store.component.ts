@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
 import { StoreAPI } from './service/store.service';
-import { MdTabGroup } from '@angular/material';
+import { MatTabGroup } from '@angular/material';
 
 @Component({
     selector: 'store',

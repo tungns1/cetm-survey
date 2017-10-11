@@ -2,7 +2,7 @@ import {
   Input, ComponentFactoryResolver, ComponentFactory,
   ComponentRef, Directive, ViewContainerRef
 } from '@angular/core';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from './ticket-detail.dialog';
 
 @Directive({
@@ -17,7 +17,7 @@ export class TicketDetailDirective {
   constructor(
     private viewContainer: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private mdDialog: MdDialog
+    private mdDialog: MatDialog
   ) { }
 
   open() {
@@ -26,7 +26,7 @@ export class TicketDetailDirective {
       return;
     }
     
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.width = '450px';
     config.data = this.ticket;
     const dialog = this.mdDialog.open(TicketDetailDialog, config);

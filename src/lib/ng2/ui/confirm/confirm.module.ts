@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppConfirmDialog, ConfirmDirective } from './confirm.directive';
-import { MaterialModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { OverlayContainer, FullscreenOverlayContainer } from '@angular/material';
 
 import { 
     NoticeComponent, NoticeMessageComonent, NoticeDialogComponent
@@ -13,7 +12,7 @@ import {
     imports: [
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule,
+        MatDialogModule, MatButtonModule,
         FlexLayoutModule
     ],
     declarations: [
@@ -27,8 +26,8 @@ import {
         ConfirmDirective,
         NoticeComponent, NoticeMessageComonent
     ],
-    providers: [
-        { provide: OverlayContainer, useClass: FullscreenOverlayContainer }
-    ]
+    // providers: [
+    //     { provide: OverlayContainer, useClass: FullscreenOverlayContainer }
+    // ]
 })
 export class ConfirmModule { }

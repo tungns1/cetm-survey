@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAPI, RxInfoCustomer } from './service/customer.service';
-import { MdTabGroup } from '@angular/material';
+import { MatTabGroup } from '@angular/material';
 import { CustomerView } from './shared/';
 import { Customer, RuntimeEnvironment, USER_ROLES } from '../shared';
 import { HistoryComponent } from './history/history.component'

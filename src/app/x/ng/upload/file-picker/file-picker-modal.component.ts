@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional, Inject, HostListener } from '@angular/core';
-import { MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FileNode } from '../backend/';
 
 @Component({
@@ -10,8 +10,8 @@ import { FileNode } from '../backend/';
 export class FilePickerModalComponent implements OnInit {
 
     constructor(
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-        private dialog: MdDialogRef<FilePickerModalComponent>,
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+        private dialog: MatDialogRef<FilePickerModalComponent>,
     ) { }
 
     value: string;

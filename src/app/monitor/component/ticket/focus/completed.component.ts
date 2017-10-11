@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Ticket, TicketStates, CacheService, CacheCounter, CacheUsers } from '../../shared';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { ProjectConfig } from '../shared';
 import { GridOptions } from 'ag-grid';
@@ -16,7 +16,7 @@ import { TicketIconComponent } from '../../../../shared/businessQapp/ticket-icon
 })
 export class CompletedTicketComponent {
     constructor(
-        private mdDialog: MdDialog
+        private mdDialog: MatDialog
     ) { }
 
     @Input("data") set _data(v: Ticket[]) {
@@ -44,7 +44,7 @@ export class CompletedTicketComponent {
             }
         },
         onCellClicked: (e) => {
-            if (e.event.target.localName === 'img')
+            if (e.event.target['localName'] === 'img')
                 this.showDetails(e.data);
         }
     };
@@ -126,7 +126,7 @@ export class CompletedTicketComponent {
     }
 
     showDetails(t: Ticket) {
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '350px';
         config.data = t;
         const dialog = this.mdDialog.open(TicketDetailComponent, config);

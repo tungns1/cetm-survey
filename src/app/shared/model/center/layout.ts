@@ -1,6 +1,6 @@
 
 export interface UI {
-    style: string;
+    style: any;
     layout: any;
     resources: any;
     navigations: any;
@@ -15,5 +15,5 @@ export interface ILayout {
     name: string;
     ui: UI;
     resources: any;
-    style: string;
+    style: any;
 }

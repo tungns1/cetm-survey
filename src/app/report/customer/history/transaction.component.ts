@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Optional, Inject } from '@angular/core';
-import { MdDialog, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ModalComponent, ICustomer, RuntimeEnvironment, Customer } from '../../shared';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RxInfoCustomer } from '../service/customer.service';
@@ -14,8 +14,8 @@ export class TransactionComponent implements OnInit {
     constructor(
         private router: Router,
         private env: RuntimeEnvironment,
-        private dialog: MdDialog,
-        @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
+        private dialog: MatDialog,
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
     ) { }
     customer: ICustomer;
     data = {};

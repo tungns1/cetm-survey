@@ -1,7 +1,7 @@
 <div *ngIf="message$ | async; let message" class="connecting-message">
     {{message}}
-    <md-spinner>
-    </md-spinner>
+    <mat-spinner>
+    </mat-spinner>
 </div>
 <app-normal-workspace fxShow.xs="false"></app-normal-workspace>
 <app-mini-workspace fxShow.gt-xs="false"></app-mini-workspace>

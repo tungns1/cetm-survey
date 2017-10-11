@@ -8,7 +8,7 @@ import {
     NG_VALUE_ACCESSOR, AbstractControl,
     FormArray, FormControl
 } from '@angular/forms';
-import { MdDialog, MdDialogConfig, MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IService, AddServiceName } from '../../../../../shared/model';
 
 const SERVICE_LIST_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -32,7 +32,7 @@ import {
 export class ServiceListComponent implements ControlValueAccessor {
 
     constructor(
-        private dialog: MdDialog
+        private dialog: MatDialog
     ) { }
 
     @Input() services: IService[] = [];
@@ -46,7 +46,7 @@ export class ServiceListComponent implements ControlValueAccessor {
     }
 
     Edit(index: number, d?: IService) {
-        const config = new MdDialogConfig();
+        const config = new MatDialogConfig();
         config.width = '450px';
         config.data = <IServiceCustomizeData>{
             index: index,

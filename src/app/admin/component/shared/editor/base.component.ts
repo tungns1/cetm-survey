@@ -7,7 +7,7 @@ import { CrudApiService, HttpError } from '../../shared';
 import { ITableAction } from './model';
 import { convertToObservable } from './util';
 import { Injector } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import 'rxjs/add/operator/publishReplay';
 import { TranslateService } from '../../../../shared/util';
 import { ShowLoading, HideLoading } from '../../../../../lib/backend/loading';
@@ -20,7 +20,7 @@ export abstract class BaseAdminComponent<T> {
 
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
-    private mdSnackBar = this.injector.get(MdSnackBar);
+    private matSnackBar = this.injector.get(MatSnackBar);
     private translateService = new TranslateService;
 
     id$ = this.route.params.map(p => p['id']);
@@ -91,7 +91,7 @@ export abstract class BaseAdminComponent<T> {
         ShowLoading();
         this.service.Create(value).subscribe(_ => {
             this.NavigateTo();
-            const ref = this.mdSnackBar
+            const ref = this.matSnackBar
                 .open(this.translateService.translate('The data was created successfully'),
                 this.translateService.translate('Close'), {
                     duration: 6000,
@@ -100,7 +100,7 @@ export abstract class BaseAdminComponent<T> {
             HideLoading();
         }, (e: HttpError) => {
             HideLoading();
-            const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
+            const ref = this.matSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
 
@@ -117,7 +117,7 @@ export abstract class BaseAdminComponent<T> {
         const id = value['id'];
         this.UpdateByID(id, value).first().subscribe(_ => {
             this.NavigateTo();
-            const ref = this.mdSnackBar
+            const ref = this.matSnackBar
                 .open(this.translateService.translate('The data was saved successfully'),
                 this.translateService.translate('Close'), {
                     duration: 6000,
@@ -129,7 +129,7 @@ export abstract class BaseAdminComponent<T> {
             HideLoading();
         }, (e: HttpError) => {
             HideLoading();
-            const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
+            const ref = this.matSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
 
@@ -138,7 +138,7 @@ export abstract class BaseAdminComponent<T> {
         const id = value['id'];
         this.MarkDeleteByID(id).first().subscribe(_ => {
             this.NavigateTo();
-            const ref = this.mdSnackBar
+            const ref = this.matSnackBar
                 .open(this.translateService.translate('The data was deleted'),
                 this.translateService.translate('Close'), {
                     duration: 6000,
@@ -150,7 +150,7 @@ export abstract class BaseAdminComponent<T> {
             HideLoading();
         }, (e: HttpError) => {
             HideLoading();
-            const ref = this.mdSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
+            const ref = this.matSnackBar.open(this.translateService.translate(e.Message()), '', { duration: 6000 });
         });
     }
 
