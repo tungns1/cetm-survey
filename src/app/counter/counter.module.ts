@@ -6,11 +6,12 @@ import { SettingComponent } from './setting/setting.component';
 import { CounterSettingService, CounterSessionValidationGuard } from './shared';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MiniModeFormModule } from './setting/minimode-form.module';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
     imports: [
         SharedModule, routing,
-        MiniModeFormModule
+        MiniModeFormModule, MatCheckboxModule
     ],
     declarations: [CounterComponent, SettingComponent, WelcomeComponent],
     providers: [
