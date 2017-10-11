@@ -25,7 +25,7 @@
 
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">
             <button fxFlex class="btnFill" [disabled]="!form.valid" [style.opacity]="!form.valid?0.3:1" (click)="Submit()" i18n>Save</button>
-            <button fxFlex md-dialog-close class="btnFill" i18n>Close</button>
+            <button fxFlex (click)="close()" class="btnFill" i18n>Close</button>
         </div>
     </form>
 </div>

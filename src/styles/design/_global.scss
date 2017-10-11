@@ -197,6 +197,7 @@ table tbody tr:nth-child(odd) {
             background: $background-color-title;
             .ag-header-cell-label {
                 font-weight: $font-weight-default + 200;
+                text-align: center !important;
             }
         }
         .ag-row-odd,

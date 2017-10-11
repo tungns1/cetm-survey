@@ -21,7 +21,6 @@ export class HourComponent {
 
   ngOnInit() {
     this.storeAPI.RxStoreViewByHour.subscribe(v=>{
-      console.log(v.data)
       this._data=v.data;
       this._data.forEach((d, index) => {
       d['no'] = index + 1;

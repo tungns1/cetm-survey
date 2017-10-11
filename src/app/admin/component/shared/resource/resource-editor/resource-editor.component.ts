@@ -64,7 +64,6 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
         enabled: r.enabled
       };
     }).sort((a, b) => a.name < b.name ? -1 : 1);
-    console.log(this.records)
   }
 
   /**

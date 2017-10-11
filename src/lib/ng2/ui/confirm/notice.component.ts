@@ -7,10 +7,10 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angu
     template: ` `
 })
 export class NoticeMessageComonent {
-    
+
     @Input() name: string;
     @Input() message: string;
-    
+
     GetMessage() {
         return this.message || this.name;
     }
@@ -24,7 +24,7 @@ export class NoticeMessageComonent {
         </p>
         <div fxLayout="row" fxLayoutGap="20px" class="margin-20-35">
             <div fxFlex></div>
-            <button fxFlex="30%" class="btnFill uppercase" md-dialog-close i18n>Close</button>
+            <button fxFlex="30%" class="btnFill uppercase" (click)="close()" i18n>Close</button>
         </div>`
 })
 export class NoticeDialogComponent {
@@ -32,6 +32,10 @@ export class NoticeDialogComponent {
         @Optional() @Inject(MAT_DIALOG_DATA) public message: string,
         protected dialogRef: MatDialogRef<NoticeDialogComponent>
     ) { }
+
+    close() {
+        this.dialogRef.close();
+    }
 }
 
 @Component({

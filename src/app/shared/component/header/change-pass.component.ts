@@ -21,7 +21,8 @@ export class ChangePassComponent {
         private fb: FormBuilder,
         private env: RuntimeEnvironment,
         private matSnackBar: MatSnackBar,
-        private translateService: TranslateService
+        private translateService: TranslateService,
+        protected dialogRef: MatDialogRef<any>
     ) { }
 
     form: FormGroup;
@@ -55,13 +56,17 @@ export class ChangePassComponent {
             else {
                 this.pass_false = true;
                 this.matSnackBar
-                    .open(this.translateService.translate('Wrong retype password!'), 
-                            this.translateService.translate('Close'), {
-                    duration: 6000
-                });
+                    .open(this.translateService.translate('Wrong retype password!'),
+                    this.translateService.translate('Close'), {
+                        duration: 6000
+                    });
             }
         }
         catch (Ex) {
         }
+    }
+
+    close() {
+        this.dialogRef.close();
     }
 }

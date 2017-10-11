@@ -15,7 +15,8 @@ export class TicketDetailComponent {
     constructor(
         @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
         private customerService: MonitorCustomerService,
-        private monitorFocus: MonitorFocusService
+        private monitorFocus: MonitorFocusService,
+        public dialogRef: MatDialogRef<any>
     ) { }
 
     private ticket: Ticket;
@@ -30,6 +31,10 @@ export class TicketDetailComponent {
 
     ngOnInit() {
         this.ticket = this.dialogData;
+    }
+
+    close(){
+        this.dialogRef.close();
     }
 
     private getCusInfo(id: string) {

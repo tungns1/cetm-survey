@@ -34,7 +34,7 @@ import { SharedModule, D3Module } from '../shared';
     imports: [
         routing, D3Module,
         SharedModule, NgxChartsModule,
-        ReportSumModule,
+        ReportSumModule, MatTabsModule,
         ReportInfoModule, CustomerFilterModule, ReportHistoryModule,
         ReportFilterModule
     ],

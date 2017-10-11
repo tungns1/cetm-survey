@@ -54,13 +54,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatButtonModule, MatDialogModule, MatTabsModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatTabsModule, MatCheckboxModule, MatInputModule, MatFormFieldModule } from '@angular/material';
 
 @NgModule({
     imports: [
         FormsModule, CommonModule, FlexLayoutModule,
         MatButtonModule, MatDialogModule, MatTabsModule,
-        MatCheckboxModule
+        MatCheckboxModule, MatInputModule, MatFormFieldModule
     ],
     declarations: [MiniModeFormComponent],
     exports: [MiniModeFormComponent]

@@ -25,7 +25,7 @@ const routing = RouterModule.forChild([
 
 @NgModule({
     imports: [
-        routing, NgxChartsModule,
+        routing, NgxChartsModule, MatTabsModule,
         SharedModule, ReportFilterModule,
         AgGridModule.withComponents([])
     ],

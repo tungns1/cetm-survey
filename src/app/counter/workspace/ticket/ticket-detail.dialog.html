@@ -37,7 +37,7 @@
                 <span fxFlex>{{ticket.mtime | localDayTime}}</span>
             </div>
             <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
-                <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
+                <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
                 <button fxFlex class="btnFill" appConfirm="Do you want to restore this ticket?" (confirm)="Restore()" i18n i18n-appConfirm>Restore</button>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
             </div>
             <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
-                <button fxFlex class="btnClear" md-dialog-close i18n>Close</button>
+                <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
                 <button *ngIf="canCall" fxFlex class="btnFill" (click)="Call()" i18n>Call</button>
                 <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
                 <button *ngIf="!isServing" fxFlex class="btnRed" appConfirm="Do you want to cancel this ticket?" i18n-appConfirm (confirm)="Delete()" i18n>Cancel</button>

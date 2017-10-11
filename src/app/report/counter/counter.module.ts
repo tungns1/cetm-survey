@@ -25,7 +25,7 @@ import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
-        routing, NgxChartsModule,
+        routing, NgxChartsModule, MatTabsModule,
         SharedModule, ReportFilterModule,
         AgGridModule.withComponents([])
     ],

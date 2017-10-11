@@ -183,7 +183,6 @@ export class InfoStoreByHour {
 
 
     static Make(records: IStoreHour[]) {
-        console.log(records)
         let res = new InfoStoreByHour();
         if (records != null) {
             res.Add(records);

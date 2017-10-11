@@ -112,4 +112,8 @@ export class TicketDetailDialog {
         this.notice.ShowMessage("server_error");
       });
   }
+
+  close() {
+    this.dialogRef.close();
+  }
 }

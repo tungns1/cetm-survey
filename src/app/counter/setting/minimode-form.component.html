@@ -1,12 +1,12 @@
 <div (change)="onChange()">
     <mat-checkbox [(ngModel)]="value.enable" (ngModelChange)="onChange()" i18n>Enable Mini Mode</mat-checkbox>
     <h3 i18n>Size</h3>
-    <md-input-container>
-        <input type="number" mdInput [(ngModel)]="value.rect.height" i18n-placeholder placeholder="Height" >
-    </md-input-container>
-    <md-input-container>
-        <input type="number" mdInput [(ngModel)]="value.rect.width" i18n-placeholder placeholder="Width">
-    </md-input-container>
+    <mat-form-field>
+        <input type="number" matInput [(ngModel)]="value.rect.height" i18n-placeholder placeholder="Height" >
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" matInput [(ngModel)]="value.rect.width" i18n-placeholder placeholder="Width">
+    </mat-form-field>
     <h3 i18n>Behavior</h3>
     <mat-checkbox [(ngModel)]="value.options.no_focusable" (ngModelChange)="onChange()" i18n>Non Focusable</mat-checkbox>
     <mat-checkbox [(ngModel)]="value.options.always_on_top" (ngModelChange)="onChange()" i18n>Always On Top</mat-checkbox>
