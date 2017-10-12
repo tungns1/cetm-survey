@@ -31,7 +31,7 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
     if (obj) {
       if (typeof obj.data === 'string') {
         obj.data = {
-          src: obj.data,
+          srcs: [obj.data],
           style: {}
         }
       }

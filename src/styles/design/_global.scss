@@ -198,6 +198,9 @@ table tbody tr:nth-child(odd) {
             .ag-header-cell-label {
                 font-weight: $font-weight-default + 200;
                 text-align: center !important;
+                .ag-header-cell-text{
+                    width: 100%;
+                }
             }
         }
         .ag-row-odd,
