@@ -26,7 +26,8 @@ export const routing = RouterModule.forChild([
         routing, BranchModule, SharedModule,
         EditorModule, AdminFormModule,
         FeedbackConfigModule, ServiceConfigModule, 
-        PriorityConfigModule, CounterConfigModule
+        PriorityConfigModule, CounterConfigModule,
+        MatTabsModule
     ],
     declarations: [BranchConfigComponent]
 })
