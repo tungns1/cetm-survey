@@ -1,0 +1,36 @@
+@import 'variables';
+
+.ag-fresh {
+    .ag-root {
+        border: none !important;
+        font-size: $font-size-default;
+        .ag-header {
+            background: $background-color-title;
+            .ag-header-cell-label {
+                font-weight: $font-weight-default + 200;
+                text-align: center !important;
+                .ag-header-cell-text{
+                    width: 100%;
+                }
+            }
+        }
+        .ag-row-odd,
+        .ag-row-even {
+            cursor: pointer;
+            &:hover {
+                background-color: $background-color - 50;
+            }
+        }
+        .ag-floating-bottom {
+            .ag-row {
+                // background-color: $key-color;
+                border-top: $border;
+                font-weight: $font-weight-default + 200;
+                font-size: $font-size-default + 1;
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+            }
+        }
+    }
+}
