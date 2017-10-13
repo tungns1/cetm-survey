@@ -368,8 +368,8 @@
   <msg id="5530226616382823887"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:14</source>Total managed ticket</msg>
   <msg id="1669277742108379782"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:19</source><source>D:/Projects/qapp/src/app/setup/transaction/time/time.component.ts:10</source>Attended</msg>
   <msg id="2628294255250873454"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:20</source>Discarded</msg>
-  <msg id="7438928455212450975"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:21</source>2min&gt;=T&gt;20second</msg>
-  <msg id="3935586915752636426"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:22</source>20second&gt;=T&gt;0second</msg>
+  <msg id="7438928455212450975"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:21</source>2 min &ge; T > 20 second</msg>
+  <msg id="3935586915752636426"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:22</source>20 second &ge; T > 0 second</msg>
   <msg id="7031751052634026610"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:23</source>Serving Cancelled</msg>
   <msg id="1400441928065364651"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:24</source>Waiting Cancelled</msg>
   <msg id="3443036669836863676"><source>D:/Projects/qapp/src/app/report/store/store-hour/hour.component.ts:30</source><source>D:/Projects/qapp/src/app/report/store/store-performance/performance.component.ts:54</source>Teap %</msg>
