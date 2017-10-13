@@ -10,7 +10,7 @@ const IMAGE_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
 
 interface ImageForm {
   data: {
-    src: string,
+    srcs: string[],
     style: {}
   }
 }
@@ -37,5 +37,11 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
       }
     }
     return super.clone(obj);
+  }
+
+  protected onChange(event: Event) {
+    if (typeof this.value.data.srcs === 'string')
+      this.value.data.srcs = [this.value.data.srcs];
+    super.onChange(event)
   }
 }

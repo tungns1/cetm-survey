@@ -4,7 +4,7 @@
     </div>
     <h3 *ngIf="invalid" style="color:red; text-align: center">Text input is not a valid json string</h3>
     <div class="fab-container">
-        <button md-mini-fab color="primary" class="fab-editCode" (click)="disableEditTextArea = !disableEditTextArea">
+        <button mat-mini-fab color="primary" class="fab-editCode" (click)="disableEditTextArea = !disableEditTextArea">
         <span *ngIf="disableEditTextArea">Edit</span>
         <span *ngIf="!disableEditTextArea">Done</span>
     </button>
