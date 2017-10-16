@@ -135,12 +135,6 @@ export class UIEditorComponent {
 
   test() {
     console.log(this.UI)
-
-    // this.UI.layout.children.forEach(element => {
-    //   let elementID = document.getElementById(element.name);
-    //   elementID.style.backgroundColor = element.style.backgroundColor.toString();
-
-    // });
   }
 
 }

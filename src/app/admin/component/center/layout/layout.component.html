@@ -6,8 +6,7 @@
 </div>
 
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" 
-    [isValid]="form.valid" (action)="onActionConfirm($event, form.value)"
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [isValid]="form.valid" (action)="onActionConfirm($event, form.value)"
     title="Layout" i18n-title [canEdit]="false">
     <form class="margin-b-20 margin-l-10" [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
@@ -26,13 +25,21 @@
                 <option value="kiosk"> Kiosk </option>
                 <option value="screen"> Screen </option>
             </select>
-        </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="21%" i18n>Resource</span>
-            <app-resource-editor fxFlex formControlName="resources"></app-resource-editor>
+            <div fxFlex="2%"></div>
         </div>
 
+        <input id="layoutImportBtn" class="hide" name="myFile" type="file" (change)="getUIData($event)" accept=".json">
+        <textarea class="hide" formControlName="ui"></textarea>
+
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="21%" i18n>Resource</span>
+            <app-resource-editor fxFlex formControlName="ui"></app-resource-editor>
+            <a fxFlex="2%" class="right" (click)="editUI()">
+                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <!-- <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <div fxFlex="21%"></div>
             <div fxFlex class="border">
                 <accordion id="accordion_code">
@@ -44,7 +51,7 @@
                     </div>
                 </accordion>
             </div>
-        </div>
+        </div> -->
 
     </form>
 </app-editor-view>

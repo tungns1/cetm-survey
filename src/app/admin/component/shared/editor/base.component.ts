@@ -20,8 +20,8 @@ export abstract class BaseAdminComponent<T> {
 
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
-    private matSnackBar = this.injector.get(MatSnackBar);
-    private translateService = new TranslateService;
+    protected matSnackBar = this.injector.get(MatSnackBar);
+    protected translateService = new TranslateService;
 
     id$ = this.route.params.map(p => p['id']);
     showList$ = this.id$.map(id => this.isList(id));

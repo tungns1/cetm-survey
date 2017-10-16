@@ -2,10 +2,6 @@
     <h1 class="modal-header">Edit UI</h1>
     <div class="padding-20">
         <div class="border margin-b-20">
-            <!-- <accordion [expand]="true">
-                <accordion-title class="accordionTitle margin-t-15">
-                    <span i18n>{{UI.layout.name}}</span>
-                </accordion-title> -->
             <div [id]="'ui-editor-' + UI.layout.name" class="padding-20">
                 <!-- <iframe src="http://localhost:4201/#/kiosk/main" width="320" height="256"></iframe> -->
                 <h1 class="center" i18n (click)="editLayout(UI.layout)">{{UI.layout.name}}</h1>
@@ -14,16 +10,6 @@
                         (click)="editLayout(UI.layout, layoutIndex, layoutGroup[layoutIndex])">
                         <div [id]="'ui-editor-' + comp.name" class="padding-20">
                             <h1 class="center margin-0" i18n>{{comp.name}}</h1>
-                            <!-- <div class="border margin-b-20">
-                                <accordion>
-                                    <accordion-title class="accordionTitle margin-t-15">
-                                        <span i18n>Child element</span>
-                                    </accordion-title>
-                                    <div *ngFor="let src of layoutGroup[layoutIndex]; let rscIndex = index" fxLayout="row" class="center">
-                                        <h3 (click)="editResource(src)">{{src | key}}</h3>
-                                    </div>
-                                </accordion>
-                            </div> -->
                         </div>
                     </div>
                 </div>
