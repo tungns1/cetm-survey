@@ -2,10 +2,26 @@
   <h1 class="modal-header">Edit UI</h1>
   <div class="padding-20">
     <div fxLayout="row" fxLayoutGap="20px">
+      
       <span fxFlex="15" class="right margin-t-5">Background color</span>
-      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundColor">
+      <div fxFlex="30" fxLayout="row" class="margin-b-20">
+        <div fxFlex="25" class="colorPicker" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
+          [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+          (colorPickerChange)="changeBackgroundColor(backgroundColor)"></div>
+        <span fxFlex="60" class="margin-5-10">{{backgroundColor}}</span>
+        <div fxFlex></div>
+      </div>
+
       <span fxFlex="15" class="right margin-t-5">Text color</span>
-      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.color">
+
+      <div fxFlex="30" fxLayout="row" class="margin-b-20">
+        <div fxFlex="25" class="colorPicker" [(colorPicker)]="textColor" [style.background]="textColor" [cpPosition]="'left'"
+          [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+          (colorPickerChange)="changeTextColor(textColor)"></div>
+        <span fxFlex="60" class="margin-5-10">{{textColor}}</span>
+        <div fxFlex></div>
+      </div>
+
     </div>
     <div fxLayout="row" fxLayoutGap="20px">
       <span fxFlex="15" class="right margin-t-5">Background position</span>

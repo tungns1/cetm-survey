@@ -100,7 +100,7 @@ export class UIEditorComponent {
 
   editLayout(layout: any, index?: number) {
     const config = new MatDialogConfig();
-    config.width = '450px';
+    config.width = '750px';
     index >= 0 ? config.data = layout.children[index] : config.data = layout;
     const dialog = this.mdDialog.open(LayoutEditorComponent, config);
     dialog.afterClosed().subscribe(d => {
