@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StoreAPI } from '../service/store.service';
-import { ISH,CacheBranch} from '../../shared';
+import { ISH, CacheBranch } from '../../shared';
 import { GridOptions } from "ag-grid";
 import { TimeDurationPipe } from '../../../x/ng/time/timeDuration';
 import { LocalDayTimePipe } from '../../../x/ng/time/localDayTime';
@@ -20,19 +20,19 @@ export class HourComponent {
 
 
   ngOnInit() {
-    this.storeAPI.RxStoreViewByHour.subscribe(v=>{
-      this._data=v.data;
+    this.storeAPI.RxStoreViewByHour.subscribe(v => {
+      this._data = v.data;
       this._data.forEach((d, index) => {
-      d['no'] = index + 1;
-      d['storeCode'] = CacheBranch.GetCodeForID(d.branch_id);
-      d['storeName'] = CacheBranch.GetNameForID(d.branch_id);
-    });
+        d['no'] = index + 1;
+        d['storeCode'] = CacheBranch.GetCodeForID(d.branch_id);
+        d['storeName'] = CacheBranch.GetNameForID(d.branch_id);
+      });
     })
     var localDayTime = new LocalDayTimePipe;
     var timeDuration = new TimeDurationPipe;
   }
 
- cellClass: string[] = ['center', 'padding-10'];
+  cellClass: string[] = ['center', 'padding-10'];
   curentPage: number;
   totalPage: number;
 
