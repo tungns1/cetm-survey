@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InfoPerformanceTrack, ICPT, CacheBranch } from '../../shared';
-// import { CounterAPI } from '../service/counter.service';
+import { CounterAPI } from '../service/counter.service';
 import { GridOptions } from "ag-grid";
 import { TimeDurationPipe } from '../../../x/ng/time/timeDuration'
 
@@ -11,7 +11,7 @@ import { TimeDurationPipe } from '../../../x/ng/time/timeDuration'
 })
 export class PerformanceComponent {
   constructor(
-    // private counterAPI: CounterAPI
+    private counterAPI: CounterAPI
   ) { }
 
   protected _data: ICPT[];
