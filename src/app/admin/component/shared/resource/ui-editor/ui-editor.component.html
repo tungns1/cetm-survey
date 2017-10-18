@@ -2,23 +2,27 @@
     <h1 class="modal-header">Edit UI</h1>
     <div class="padding-20">
         <div class="border margin-b-20">
-            <div [id]="'ui-editor-' + UI.layout.name" class="padding-20">
                 <!-- <iframe src="http://localhost:4201/#/kiosk/main" width="320" height="256"></iframe> -->
+            <div [id]="'ui-editor-' + UI.layout.name" class="padding-20" style="height: 500px;">
                 <h1 class="center" i18n (click)="editLayout(UI.layout)">{{UI.layout.name}}</h1>
+
                 <div [fxLayout]="UI.layout.layout">
                     <div class="border UIElement margin-b-20" *ngFor="let comp of UI.layout.children; let layoutIndex = index" fxFlex 
                         (click)="editLayout(UI.layout, layoutIndex, layoutGroup[layoutIndex])">
+                        <!-- {{test(layoutIndex)}} -->
                         <div [id]="'ui-editor-' + comp.name" class="padding-20">
                             <h1 class="center margin-0" i18n>{{comp.name}}</h1>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
         <div fxLayout="row" fxLayoutGap="10px">
-            <button fxFlex class="btnClear" (click)="test()">test</button>
-            <button fxFlex class="btnFill" (click)="Save()">Ok</button>
+            <div fxFlex></div>
+            <button fxFlex="15" class="btnClear" (click)="test()">test</button>
+            <button fxFlex="15" class="btnFill" (click)="Save()">Ok</button>
         </div>
     </div>
 </div>

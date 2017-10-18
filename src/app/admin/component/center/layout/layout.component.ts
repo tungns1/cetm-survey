@@ -103,8 +103,7 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
 
   editLayout() {
     const config = new MatDialogConfig();
-    config.width = '80%';
-    config.height = '90%';
+    config.width = '50%';
     config.data = this.ui;
     const dialog = this.dialog.open(UIEditorComponent, config);
     dialog.afterClosed().subscribe(d => {
