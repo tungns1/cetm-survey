@@ -1,52 +1,3 @@
-<!--<ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data.timechart" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [autoScale]="autoScale"
-    (select)="onSelect($event)">
-</ngx-charts-line-chart>
-
-<ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="data.time" [barPadding]="padding" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" (select)="onSelect($event)">
-</ngx-charts-bar-vertical>-->
-<!-- Time View -->
-<!--<exportable>
-    <table class="tableCtrl" export-table>
-        <thead export-row>
-            <th export="string" i18n="Numerical Order">No.</th>
-            <th export="string" i18n>Branch Code</th>
-            <th export="string" i18n>Branch Name</th>
-            <th export="string" i18n>Store Code</th>
-            <th export="string" i18n>Store Name </th>
-            <th export="string" i18n>User code</th>
-            <th export="string" i18n>User name</th>
-            <th export="string" i18n>Counter</th>
-            <th export="string" i18n>Date</th>
-            <th export="string" i18n>Time connection</th>
-            <th export="string" i18n>Time productivity</th>
-            <th export="string" i18n>Time idle</th>
-            <th export="string" i18n>Ticket attended</th>
-            <th export="string" i18n>Ticket cancelled</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let d of data.data; let i = index" export-row>
-                <td export="number">{{(i+1)}}</td>
-                <td export="string"> {{d.branch_id | parentCode}} </td>
-                <td export="string"> {{d.branch_id | parentName}} </td>
-                <td export="string"> {{d.branch_id | branchCode}} </td>
-                <td export="string"> {{d.branch_id | branchName}} </td>
-                <td export="string">{{d.user_code}}</td>
-                <td export="string"> {{d.user_name}} </td>
-                <td export="string"> {{d.counter_name }} </td>
-                <td export="string"> {{d.date}} </td>
-                <td export="string">{{d.total_connection_time | timeDuration}}</td>
-                <td export="string"> {{d.total_productivity_time | timeDuration}} </td>
-                <td export="string"> {{d.total_idle_time | timeDuration}} </td>
-                <td export="number"> {{d.ticket_attended}} </td>
-                <td export="number"> {{d.ticket_transferred}} </td>
-            </tr>
-        </tbody>
-    </table>
-    <export-attribute name="filename" i18n-title title="Performance"></export-attribute>
-</exportable>-->
-
-
-
 <ag-grid-angular #agGrid id="counterPerformTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl margin-0"
     enableColResize enableSorting>
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
@@ -68,6 +19,7 @@
     <ag-grid-column headerName="Tickets attended" field="ticket_attended" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Tickets cancelled" field="ticket_transferred" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Occupied %" field="occupied" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Good survey %" field="gd_percent" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div class="paginationAndExport margin-b-30 margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">

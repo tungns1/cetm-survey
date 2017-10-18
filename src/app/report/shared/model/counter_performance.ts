@@ -17,6 +17,7 @@ export interface ICounterPerformance {
     stime: number;
     attended: number;
     cancelled: number;
+    gd_percent: number;
 
 }
 export interface ICPT {
@@ -34,6 +35,7 @@ export interface ICPT {
     ticket_transferred: number;
     occupied?: number;
     survay_score?: number;
+    gd_percent: number
 }
 
 
@@ -61,7 +63,8 @@ export class InfoPerformanceTrack {
                         total_idle_time: a_v[index].a_d- t_s[i].stime,
                         ticket_attended: t_s[i].attended,
                         ticket_transferred: t_s[i].cancelled,
-                        occupied:a
+                        occupied:a,
+                        gd_percent: t_s[i].gd_percent
                     }
                     this.data.push(cp)
 

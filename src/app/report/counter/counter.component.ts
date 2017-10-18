@@ -21,7 +21,7 @@ export class CounterComponent {
     refresh() {
         this.counterAPI.Search();
         this.counterAPI.pagin(1);
-        this.countActivity.pagin(1);
+        // this.countActivity.pagin(1);
     }
 
     onTabChange(e) {
