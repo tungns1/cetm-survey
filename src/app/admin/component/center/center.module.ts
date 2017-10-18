@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
 import { SharedModule } from '../../shared/';
 import { EditorModule, AdminFormModule, ResourceModule } from '../shared/';
 import { routing } from './center.routing';
@@ -19,7 +20,8 @@ import { AccordionModule } from "../../../x/ui/accordion/accordion";
         AdminFormModule,
         ResourceModule,
         RichEditorModule,
-        routing,AdminFilterModule, AccordionModule
+        routing, AdminFilterModule, AccordionModule,
+        MatDialogModule
     ],
     declarations: [
         CenterComponent, TicketLayoutComponent,

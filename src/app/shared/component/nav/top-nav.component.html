@@ -77,7 +77,7 @@
                 <li *ngIf="!isAdminStandard" routerLink="/admin/center/ticketlayout" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Ticket Layout</span>
                 </li>
-                <li *ngIf="!isAdminStandard" routerLink="/admin/center/layout" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/layout/list', {tag: 'kiosk'}]" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Kiosk Layout</span>
                 </li>
             </ul>
@@ -90,6 +90,9 @@
             <ul class="secondLv">
                 <li *ngIf="!isAdminStandard" routerLink="/admin/center/voice" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Voice Configuration</span>
+                </li>
+                <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/layout/list', {tag: 'screen'}]" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Screen Layout</span>
                 </li>
             </ul>
         </li>

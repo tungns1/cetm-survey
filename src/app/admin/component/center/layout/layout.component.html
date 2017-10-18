@@ -1,6 +1,6 @@
 <app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
 <div *ngIf="showList$ | async">
-    <app-datatable name="Layout" i18n-name [data]="data$ | async" (action)="onActionRequest($event)" [canEdit]="false">
+    <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false">
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
     </app-datatable>
 </div>
@@ -25,18 +25,22 @@
                 <option value="kiosk"> Kiosk </option>
                 <option value="screen"> Screen </option>
             </select>
-            <div fxFlex="2%"></div>
         </div>
 
-        <input id="layoutImportBtn" class="hide" name="myFile" type="file" (change)="getUIData($event)" accept=".json">
+        <input id="layoutImportBtn" class="hide" name="myFile" type="file" (change)="readUIDataFormFile($event)" accept=".json">
         <textarea class="hide" formControlName="ui"></textarea>
 
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="21%" i18n>Resource</span>
-            <app-resource-editor fxFlex formControlName="ui"></app-resource-editor>
-            <a fxFlex="2%" class="right" (click)="editUI()">
-                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
-            </a>
+            <app-resource-editor fxFlex formControlName="resources"></app-resource-editor>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <div fxFlex="21%"></div>
+            <button fxFlex class="uppercase btnFill" (click)="editLayout()">
+                <span>Edit layout</span>
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
         </div>
 
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
@@ -47,7 +51,7 @@
                         <span i18n>Show Code</span>
                     </accordion-title>
                     <div fxLayout="row">
-                        <json-text-form fxFlex formControlName="ui"></json-text-form>
+                        <json-text-form fxFlex formControlName="resources"></json-text-form>
                     </div>
                 </accordion>
             </div>

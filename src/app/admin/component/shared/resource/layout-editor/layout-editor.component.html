@@ -7,6 +7,7 @@
       <div fxFlex="30" fxLayout="row" class="margin-b-20">
         <div fxFlex="25" class="colorPicker" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
           [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+          [cpOutputFormat]="'rgba'"
           (colorPickerChange)="changeBackgroundColor(backgroundColor)"></div>
         <span fxFlex="60" class="margin-5-10">{{backgroundColor}}</span>
         <div fxFlex></div>

@@ -1,10 +1,13 @@
 import { Component, Injector, AfterViewChecked } from '@angular/core';
-import { CenterService, ILayout, AllRoles } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-
 import { Router, ActivatedRoute } from '@angular/router';
-import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import {
+  BaseAdminComponent, CommonValidator,
+  CenterService, ILayout, AllRoles, UI
+} from '../../shared';
 import { cloneDeep } from 'lodash';
+import { UIEditorComponent } from '../../shared/resource/ui-editor/ui-editor.component'
 
 @Component({
   selector: 'center-layout',
@@ -14,7 +17,9 @@ import { cloneDeep } from 'lodash';
 export class LayoutComponent extends BaseAdminComponent<ILayout> {
   constructor(
     injector: Injector,
-    private org: CenterService
+    private org: CenterService,
+    private activateRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {
     super(injector, org.LayoutService);
   }
@@ -23,6 +28,16 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
 
   private layoutImportBtn;
   private fileName: string = '';
+  private ui: UI;
+  private tag$ = this.activateRoute.params.map(q => q.tag);
+  protected layouts$ = this.org.LayoutService.RxListView.switchMap(layouts => {
+    return this.tag$.map(tag => {
+      return layouts.filter(layout => {
+        return layout.type == tag;
+      })
+    })
+  })
+
 
   ngAfterViewInit() {
     this.layoutImportBtn = document.getElementById('layoutImportBtn');
@@ -32,6 +47,10 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
           this.fileName = this.layoutImportBtn.files[0].name
       }));
 
+    this.form$.subscribe(form => {
+      if (form)
+        this.ui = form.value.ui;
+    });
   }
 
   makeForm(b?: ILayout) {
@@ -54,7 +73,7 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     });
   }
 
-  getUIData(event) {
+  readUIDataFormFile(event) {
     let input = event.target;
     let reader = new FileReader();
     reader.onload = _ => {
@@ -82,8 +101,25 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
       reader.readAsText(input['files'][0]);
   }
 
-  editUI() {
+  editLayout() {
+    const config = new MatDialogConfig();
+    config.width = '80%';
+    config.height = '90%';
+    config.data = this.ui;
+    const dialog = this.dialog.open(UIEditorComponent, config);
+    dialog.afterClosed().subscribe(d => {
+      if (d) {
+        this.saveUI(d);
+      }
+    })
+  }
 
+  saveUI(ui: UI) {
+    this.form$.first().subscribe(form => {
+      let value = form.value;
+      value.ui = ui;
+      form.setValue(value);
+    })
   }
 
 
