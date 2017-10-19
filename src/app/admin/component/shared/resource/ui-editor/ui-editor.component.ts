@@ -135,8 +135,7 @@ export class UIEditorComponent {
     }
   }
 
-  test(index) {
-    console.log(this.UI.layout.children[index].flex)
+  getFlex(index) {
     return this.UI.layout.children[index].flex;
   }
 

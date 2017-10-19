@@ -7,9 +7,8 @@
                 <h1 class="center" i18n (click)="editLayout(UI.layout)">{{UI.layout.name}}</h1>
 
                 <div [fxLayout]="UI.layout.layout">
-                    <div class="border UIElement margin-b-20" *ngFor="let comp of UI.layout.children; let layoutIndex = index" fxFlex 
+                    <div class="border UIElement margin-b-20" *ngFor="let comp of UI.layout.children; let layoutIndex = index" [fxFlex]="getFlex(layoutIndex)" 
                         (click)="editLayout(UI.layout, layoutIndex, layoutGroup[layoutIndex])">
-                        <!-- {{test(layoutIndex)}} -->
                         <div [id]="'ui-editor-' + comp.name" class="padding-20">
                             <h1 class="center margin-0" i18n>{{comp.name}}</h1>
                         </div>
