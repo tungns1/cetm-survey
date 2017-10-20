@@ -51,13 +51,29 @@ export class UIEditorComponent {
 
   ngAfterViewInit() {
     this.applyUI();
+    // let mainEl = document.getElementById(' ui-editor-' + this.UI.layout.name);
+    // mainEl.ho
   }
 
-  Save() {
+  lastBackgroundColor: string;
+  mouseEnter(e) {
+    // e.target.style.backgroundColor = e.target.style.backgroundColor - 
+    this.lastBackgroundColor = e.target.style.backgroundColor;
+    e.target.style.backgroundColor = '#9c9c9c';
+  }
+
+  mouseLeave(e) {
+    console.log(e.target.id)
+    // let trueBackgroundColor = 
+
+    e.target.style.backgroundColor = this.lastBackgroundColor;
+  }
+
+  save() {
     this.dialog.close(this.UI);
   }
 
-  Cancel() {
+  cancel() {
     this.dialog.close(null)
   }
 
@@ -83,6 +99,10 @@ export class UIEditorComponent {
       this.UI.layout.style.backgroundSize = 'cover'
       delete this.UI.layout.background_url;
     }
+    this.UI.layout.children.forEach(layout => {
+      if (!layout.style)
+        layout.style = {};
+    });
   }
 
   editResource(rsc: any) {
@@ -110,7 +130,7 @@ export class UIEditorComponent {
       }
     })
   }
-  
+
   applyUI() {
     if (this.UI.layout) {
       setTimeout(_ => {
@@ -128,7 +148,7 @@ export class UIEditorComponent {
           UIElement.style.backgroundColor = element.style.backgroundColor;
           UIElement.style.backgroundImage = element.style.backgroundImage;
           UIElement.style.backgroundPosition = element.style.backgroundPosition;
-          
+
           UIElement.style.color = element.style.color;
         });
       })

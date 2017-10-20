@@ -1,7 +1,14 @@
 @import '../../../../../shared/style.scss';
-#ui-editor{
-    .UIElement {
-        border: 2px dashed #737373;
-        background: transparent;
+#ui-editor {
+    .UIElementContainer {
+        height: 450px;
+        .UIElement {
+            border: 2px dashed #737373;
+            background: transparent;
+            .elementHeader{
+                position: relative;
+                top: 45%;
+            }
+        }
     }
 }

@@ -9,9 +9,9 @@
 
 .pointer {
     cursor: pointer;
-    &:hover {
-        color: green;
-    }
+    // &:hover {
+    //     color: green;
+    // }
 }
 
 .center {
@@ -36,4 +36,8 @@
 
 [height100] {
     height: 100%;
+}
+
+[width100] {
+    width: 100%;
 }

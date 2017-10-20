@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckbox, MatCheckboxModule } from '@angular/material';
+import { MatCheckbox, MatCheckboxModule, MatInputModule } from '@angular/material';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ResourceEditorComponent } from './resource-editor/resource-editor.component';
 import { FrameFormModule } from './frame-form';
@@ -15,7 +15,7 @@ import { LayoutEditorComponent } from './layout-editor/layout-editor.component';
   imports: [
     CommonModule, FrameFormModule, FormsModule,
     FlexLayoutModule, MatCheckboxModule, AccordionModule,
-    UtilPipeModule, ColorPickerModule
+    UtilPipeModule, ColorPickerModule, MatInputModule
   ],
   declarations: [ResourceEditorComponent, RawResourcePipe, UIEditorComponent, LayoutEditorComponent],
   exports: [ResourceEditorComponent],

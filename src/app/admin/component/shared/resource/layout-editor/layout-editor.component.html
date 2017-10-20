@@ -2,24 +2,31 @@
   <h1 class="modal-header">Edit UI</h1>
   <div class="padding-20">
     <div fxLayout="row" fxLayoutGap="20px">
-      
+
       <span fxFlex="15" class="right margin-t-5">Background color</span>
-      <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="30" fxLayout="row" fxLayoutGap="10px" class="margin-b-20">
         <div fxFlex="25" class="colorPicker" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
           [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-          [cpOutputFormat]="'rgba'"
-          (colorPickerChange)="changeBackgroundColor(backgroundColor)"></div>
-        <span fxFlex="60" class="margin-5-10">{{backgroundColor}}</span>
+          [cpOutputFormat]="'rbga'" (colorPickerChange)="changeBackgroundColor(backgroundColor)"></div>
+        <!-- <span fxFlex="60" class="margin-5-10">{{backgroundColor}}</span> -->
+        <mat-form-field>
+          <input fxFlex="60" type="text" matInput [value]="backgroundColor" placeholder="Background color">
+        </mat-form-field>
         <div fxFlex></div>
       </div>
 
       <span fxFlex="15" class="right margin-t-5">Text color</span>
 
-      <div fxFlex="30" fxLayout="row" class="margin-b-20">
-        <div fxFlex="25" class="colorPicker" [(colorPicker)]="textColor" [style.background]="textColor" [cpPosition]="'left'"
-          [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+      <div fxFlex="30" fxLayout="row" fxLayoutGap="10px" class="margin-b-20">
+        <div fxFlex="25" class="colorPicker" [(colorPicker)]="textColor" [style.background]="textColor" [cpPosition]="'left'" [cpOKButton]="true"
+          [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
           (colorPickerChange)="changeTextColor(textColor)"></div>
-        <span fxFlex="60" class="margin-5-10">{{textColor}}</span>
+        <!-- <span fxFlex="60" class="margin-5-10">{{textColor}}</span> -->
+
+        <mat-form-field>
+          <input fxFlex="60" type="text" matInput [value]="textColor" placeholder="Text color">
+        </mat-form-field>
+
         <div fxFlex></div>
       </div>
 
@@ -31,8 +38,9 @@
       <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundImage">
     </div>
     <div fxLayout="row" fxLayoutGap="10px">
-      <button fxFlex class="btnClear" (click)="cancel()">Cancel</button>
-      <button fxFlex class="btnFill" (click)="save()">Ok</button>
+      <div fxFlex></div>
+      <button fxFlex="20" class="btnClear" (click)="cancel()">Cancel</button>
+      <button fxFlex="20" class="btnFill" (click)="save()">Ok</button>
     </div>
   </div>
 </div>
