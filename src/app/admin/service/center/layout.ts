@@ -9,6 +9,6 @@ export class LayoutService extends CrudApiService<ILayout> {
     }
 
     protected filter() {
-        return this.GetByType('kiosk,screen');
+        return this.GetByType('kiosk,screen,feedback');
     }
 }
