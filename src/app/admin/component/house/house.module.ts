@@ -14,6 +14,7 @@ import { AdminFilterModule } from "../filter/filter.module";
 import { routing } from './house.routing';
 
 import { ResourceModule } from '../shared';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { ResourceModule } from '../shared';
     ],
     declarations: [
         HouseComponent, CounterComponent, KioskComponent,
-        ScreenComponent, SFlowComponent
+        ScreenComponent, SFlowComponent, FeedbackComponent
     ],
     providers: [provideUploadURLToken]
 })

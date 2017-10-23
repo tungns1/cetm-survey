@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CounterComponent } from './counter/counter.component';
 import { KioskComponent } from './kiosk/kiosk.component';
 import { ScreenComponent } from './screen/screen.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 import { SFlowComponent } from './sflow/sflow.component';
 
 const children: Routes = [
@@ -36,6 +37,15 @@ const children: Routes = [
   {
     path: 'screen/:id',
     component: ScreenComponent
+  },
+  {
+    path: 'feedback',
+    pathMatch: 'full',
+    redirectTo: 'feedback/list'
+  },
+  {
+    path: 'feedback/:id',
+    component: FeedbackComponent
   },
   {
     path: 'sflow',
