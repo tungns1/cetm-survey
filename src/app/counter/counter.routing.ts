@@ -12,7 +12,7 @@ export function loadWorkspace() {
 const children: Routes = [
   {
     path: "workspace",
-    loadChildren: loadWorkspace,
+    loadChildren: loadWorkspace, 
     canActivate: [
       CounterSessionValidationGuard
     ]
