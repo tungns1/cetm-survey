@@ -10,7 +10,7 @@ export interface UI {
 export interface ILayout {
     id?: string;
     mtime?: number;
-    type: 'kiosk' | 'screen';
+    type: 'kiosk' | 'screen' | 'feedback';
     tag: string;
     name: string;
     ui: UI;
