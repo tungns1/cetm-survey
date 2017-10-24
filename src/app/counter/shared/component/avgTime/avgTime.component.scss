@@ -1,0 +1,26 @@
+@import '../../style.scss';
+#avgTime {
+    margin-top: 3%;
+    height: 8%;
+    .title {
+        font-size: $font-size-default;
+    }
+    .time {
+        font-size: $font-size-default * 3;
+        font-weight: $font-weight-default + 200;
+        color: $key-color;
+    }
+    .warning {
+        color: #f53e30;
+    }
+    @media only screen and (max-width: 1300px) {
+        .time {
+            font-size: $font-size-default * 3;
+        }
+    }
+    @media only screen and (max-width: 1024px) {
+        .time {
+            font-size: $font-size-default * 2;
+        }
+    }
+}

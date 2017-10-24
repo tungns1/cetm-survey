@@ -4,12 +4,13 @@ import { TicketModule } from '../ticket/ticket.module';
 import { StaComponent } from './sta.component';
 import { BarComponent } from './bar.component';
 import { SearchComponent } from './search.component';
-import { AvgTimeComponent } from './avgTime.component';
+// import { AvgTimeComponent } from './avgTime.component';
 import { SharedModule } from '../../shared';
+import { ComponentSharedModule } from '../../shared/component/componentShared.module'
 
 @NgModule({
-    imports: [CommonModule, TicketModule, SharedModule],
-    declarations: [StaComponent, BarComponent, SearchComponent, AvgTimeComponent],
+    imports: [CommonModule, TicketModule, SharedModule, ComponentSharedModule],
+    declarations: [StaComponent, BarComponent, SearchComponent],
     exports: [StaComponent]
 })
 export class StatModule { }
