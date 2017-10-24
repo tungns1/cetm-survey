@@ -2,9 +2,11 @@ import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@a
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { Ticket, TicketStates, TicketActionName } from '../shared';
-import { TicketService, QueueService, WorkspaceService, FeedbackService } from '../shared';
-import { NoticeComponent } from '../shared';
+import { 
+  Ticket, TicketStates, TicketActionName, 
+  TicketService, QueueService, WorkspaceService, 
+  FeedbackService, NoticeComponent 
+} from '../shared';
 
 @Component({
   selector: 'ticket-detail-dialog',

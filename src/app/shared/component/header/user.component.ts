@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, Input } from '@angular/core';
 import { MatMenuTrigger, MatDialog, MatDialogConfig } from '@angular/material';
 import { RuntimeEnvironment } from '../../env';
 import { Observable } from 'rxjs/Observable';
@@ -20,6 +20,7 @@ export class UserComponent {
 
     @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
     username = this.env.Auth.User$.map(u => u.fullname);
+    @Input() supperCounter: boolean = false;
 
     Logout() {
         AppStorage.ClearToken();

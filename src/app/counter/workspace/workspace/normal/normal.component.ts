@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WorkspaceService } from '../../shared';
 
 @Component({
   selector: 'app-normal-workspace',
@@ -7,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NormalWorkspaceComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private workspaceService: WorkspaceService
+  ) { }
+
+  hasMiss = false;
+  counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
 
   ngOnInit() {
   }
-
-  hasMiss = false;
 
 }

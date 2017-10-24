@@ -3,6 +3,7 @@ import { WorkspaceModule } from './workspace';
 import { CounterComponent } from './counter/counter.component';
 import { SettingComponent } from './setting/setting.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { SupperCounterComponent } from './supper-counter/supper-counter.component'
 import { CounterSessionValidationGuard } from './shared';
 
 export function loadWorkspace() {
@@ -29,6 +30,10 @@ const children: Routes = [
   {
     path: "welcome",
     component: WelcomeComponent
+  },
+  {
+    path: "supperCounter",
+    component: SupperCounterComponent
   }
 ];
 

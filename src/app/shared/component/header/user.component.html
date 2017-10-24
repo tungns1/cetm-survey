@@ -12,10 +12,10 @@
     <div class="hl-dropdown-item-user" (click)="openSettingModal()">
         <i class="fa fa-cog"></i> <span i18n>Setting</span>
     </div>
-    <div class="hl-dropdown-item-user" (click)="openChangePassModal()">
+    <div *ngIf="!supperCounter" class="hl-dropdown-item-user" (click)="openChangePassModal()">
         <i class="fa fa-key"></i> <span i18n>Change password</span>
     </div>
-    <div class="hl-dropdown-item-user" (click)="Logout()">
+    <div *ngIf="!supperCounter" class="hl-dropdown-item-user" (click)="Logout()">
         <i class="fa fa-power-off"></i> <span i18n>Logout</span>
     </div>
 </mat-menu>
