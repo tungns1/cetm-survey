@@ -1,5 +1,5 @@
 import { ITicket, Ticket, IService, TicketState, TicketStates } from '../shared';
-import { Workspace } from '../model';
+import { Workspace } from '../../../shared/model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';

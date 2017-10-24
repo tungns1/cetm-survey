@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QmsService } from './shared';
-import { ILedStatus, LED_STATUS } from '../model';
+import { ILedStatus, LED_STATUS } from '../../../shared/model';
 
 @Injectable()
 export class LedDevice {

@@ -9,7 +9,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/publishReplay';
 import { interval } from 'rxjs/observable/interval';
-import { ILedStatus, LED_STATUS } from '../model';
+import { ILedStatus, LED_STATUS } from '../../../shared/model';
 
 
 @Injectable()

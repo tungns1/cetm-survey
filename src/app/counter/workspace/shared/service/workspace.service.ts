@@ -14,7 +14,7 @@ import {
 import {
     ITicketAction,
     Workspace, IWorkspaceInitialState
-} from '../model';
+} from '../../../shared/model';
 
 import { of } from 'rxjs/observable/of';
 import { merge } from 'rxjs/observable/merge';

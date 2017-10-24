@@ -1,6 +1,6 @@
 import {
     ITicket
-} from '../shared';
+} from './shared';
 
 export * from './stat';
 export { ITicketAction } from './ticket_action';

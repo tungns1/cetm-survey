@@ -5,7 +5,7 @@ export { AuthService } from '../../shared';
 export * from '../../../shared/model';
 
 export * from './service';
-export * from './model';
+export * from '../../shared/model';
 
 export {
     ModalComponent, ModalModule,
