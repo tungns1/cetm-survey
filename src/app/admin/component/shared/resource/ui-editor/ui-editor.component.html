@@ -1,26 +1,49 @@
 <div #main id="ui-editor" *ngIf="UI">
     <h1 class="modal-header">Edit UI</h1>
     <div class="padding-20">
-        <div class="border margin-b-20">
-                <!-- <iframe src="http://localhost:4201/#/kiosk/main" width="320" height="256"></iframe> -->
-            <div [id]="'ui-editor-' + UI.layout.name" class="padding-20">
-                <h1 class="center margin-t-0 pointer" i18n (click)="editLayout(UI.layout)">{{UI.layout.name}}</h1>
+        <h1 class="margin-t-0 pointer" i18n>{{UI.layout.name}}</h1>
 
-                <div [fxLayout]="UI.layout.layout" class="UIElementContainer">
-                    <div class="border UIElement margin-b-20 pointer" *ngFor="let comp of UI.layout.children; let layoutIndex = index" [fxFlex]="getFlex(layoutIndex)" 
-                        (click)="editLayout(UI.layout, layoutIndex, layoutGroup[layoutIndex])">
-                        <div [id]="'ui-editor-' + comp.name" class="" (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" height100>
-                            <h2 class="center margin-0 elementHeader" i18n>{{comp.name}}</h2>
+        <mat-tab-group (selectChange)="applyUI()">
+            <mat-tab label="Resources">
+                <div class="border margin-b-20 padding-20">
+
+                    <div [fxLayout]="UI.layout.layout" fxLayoutGap="10px" class="UIElementContainer">
+                        <div fxLayout="coulumn" height100 class="border UIElement pointer" *ngFor="let comp of UI.layout.children; let layoutIndex = index" [fxFlex]="getFlex(layoutIndex)">
+                            <!-- <h2 class="center margin-0 elementHeader" i18n>{{comp.name}}</h2> -->
+                            <!-- <span>{{layoutGroup[layoutIndex] | json}}</span> -->
+                            <div fxFlex *ngFor="let resource of layoutGroup[layoutIndex]; let resourceIndex = index">
+                                <span>{{resource | key}}</span>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                
-            </div>
-        </div>
+            </mat-tab>
+            <mat-tab label="Layout">
+                <div class="border margin-b-20">
+                    <!-- <iframe src="http://localhost:4201/#/kiosk/main" width="320" height="256"></iframe> -->
+                    <div [id]="'ui-editor-' + UI.layout.name" class="padding-20" (click)="editLayout(UI.layout)">
+
+                        <div [fxLayout]="UI.layout.layout" fxLayoutGap="10px" class="UIElementContainer">
+                            <div class="border UIElement pointer" *ngFor="let comp of UI.layout.children; let layoutIndex = index" [fxFlex]="getFlex(layoutIndex)"
+                                (click)="editLayout(UI.layout, layoutIndex, layoutGroup[layoutIndex])">
+                                <div [id]="'ui-editor-' + comp.name" class="" (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" height100>
+                                    <h2 class="center margin-0 elementHeader" i18n>{{comp.name}}</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+
+
 
         <div fxLayout="row" fxLayoutGap="10px">
             <div fxFlex></div>
-            <button fxFlex="20" class="btnClear" (click)="cancel()">test</button>
+            <button fxFlex="20" class="btnClear" (click)="test()">Cancel</button>
             <button fxFlex="20" class="btnFill" (click)="save()">Ok</button>
         </div>
     </div>

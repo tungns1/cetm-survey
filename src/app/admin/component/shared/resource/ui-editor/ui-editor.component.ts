@@ -51,8 +51,6 @@ export class UIEditorComponent {
 
   ngAfterViewInit() {
     this.applyUI();
-    // let mainEl = document.getElementById(' ui-editor-' + this.UI.layout.name);
-    // mainEl.ho
   }
 
   lastBackgroundColor: string;
@@ -132,21 +130,25 @@ export class UIEditorComponent {
     if (this.UI.layout) {
       setTimeout(_ => {
         let UIBackground = document.getElementById('ui-editor-' + this.UI.layout.name);
-        UIBackground.style.backgroundColor = this.UI.layout.style.backgroundColor;
-        // UIBackground.style.backgroundImage = this.UI.layout.style.backgroundImage;
-        UIBackground.style.backgroundImage = `url('http://localhost:3000/upload/backGround.png')`;
-        UIBackground.style.backgroundPosition = this.UI.layout.style.backgroundPosition;
-        UIBackground.style.backgroundSize = 'cover';
-        UIBackground.style.backgroundRepeat = 'no-repeat';
+        if (UIBackground) {
+          UIBackground.style.backgroundColor = this.UI.layout.style.backgroundColor;
+          // UIBackground.style.backgroundImage = this.UI.layout.style.backgroundImage;
+          UIBackground.style.backgroundImage = `url('http://localhost:3000/upload/backGround.png')`;
+          UIBackground.style.backgroundPosition = this.UI.layout.style.backgroundPosition;
+          UIBackground.style.backgroundSize = 'cover';
+          UIBackground.style.backgroundRepeat = 'no-repeat';
 
-        UIBackground.style.color = this.UI.layout.style.color;
+          UIBackground.style.color = this.UI.layout.style.color;
+        }
         this.UI.layout.children.forEach(element => {
           let UIElement = document.getElementById('ui-editor-' + element.name);
-          UIElement.style.backgroundColor = element.style.backgroundColor;
-          UIElement.style.backgroundImage = element.style.backgroundImage;
-          UIElement.style.backgroundPosition = element.style.backgroundPosition;
+          if (UIElement) {
+            UIElement.style.backgroundColor = element.style.backgroundColor;
+            UIElement.style.backgroundImage = element.style.backgroundImage;
+            UIElement.style.backgroundPosition = element.style.backgroundPosition;
 
-          UIElement.style.color = element.style.color;
+            UIElement.style.color = element.style.color;
+          }
         });
       })
     }
@@ -156,4 +158,7 @@ export class UIEditorComponent {
     return this.UI.layout.children[index].flex;
   }
 
+  test() {
+    console.log(this.UI)
+  }
 }

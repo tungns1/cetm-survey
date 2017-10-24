@@ -36,14 +36,24 @@ export class LayoutEditorComponent {
   private backgroundColor: string = '';
   private textColor: string = '';
   layout: UI;
-  layoutGroup = []
-  records
+
+  backgroundPosX: string = '';
+  backgroundPosY: string = '';
+  // layoutGroup = []
+  // records
 
   ngOnInit() {
     this.backgroundColor = this.layout.style.backgroundColor || '';
     this.textColor = this.layout.style.color || '';
-    if (this.layout.style.backgroundImage)
+
+    if (this.layout.style.backgroundImage) {
       this.layout.style.backgroundImage = this.layout.style.backgroundImage.replace('url(', '').replace(')', '')
+      if (this.layout.style.backgroundPosition){
+        let pos = this.layout.style.backgroundPosition.split(' ');
+        this.backgroundPosX = pos[0];
+        this.backgroundPosY = pos[1];
+      }
+    }
   }
 
 
@@ -70,6 +80,10 @@ export class LayoutEditorComponent {
 
   cancel() {
     this.dialog.close(null)
+  }
+
+  getBackgroundPos() {
+    this.layout.style.backgroundPosition = this.backgroundPosX + ' ' + this.backgroundPosY;
   }
 
 }
