@@ -42,13 +42,18 @@ export class LayoutEditorComponent {
   ngOnInit() {
     this.backgroundColor = this.layout.style.backgroundColor || '';
     this.textColor = this.layout.style.color || '';
+    if (this.layout.style.backgroundImage)
+      this.layout.style.backgroundImage = this.layout.style.backgroundImage.replace('url(', '').replace(')', '')
   }
-  
+
 
   save() {
     if (this.layout.style.backgroundImage) {
-      this.layout.style.backgroundSize = 'cover'
-      this.layout.style.backgroundRepeat = 'no-repeat'
+      this.layout.style.backgroundSize = 'cover';
+      this.layout.style.backgroundRepeat = 'no-repeat';
+      if (this.layout.style.backgroundImage.indexOf('url(') === -1) {
+        this.layout.style.backgroundImage = 'url(' + this.layout.style.backgroundImage + ')'
+      }
     }
 
     this.dialog.close(this.layout);
@@ -61,7 +66,7 @@ export class LayoutEditorComponent {
   changeTextColor(color: string) {
     this.layout.style.color = color;
   }
-  
+
 
   cancel() {
     this.dialog.close(null)

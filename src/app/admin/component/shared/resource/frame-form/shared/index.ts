@@ -1,6 +1,6 @@
 export {
     provideUploadURLToken,
     MultiFilePickerModule
-} from './upload';
+} from '../../shared/upload';
 
 export { BaseFormComponent } from './base-form';

@@ -5,7 +5,7 @@
 
       <span fxFlex="15" class="right margin-t-5">Background color</span>
       <div fxFlex="30" fxLayout="row" fxLayoutGap="10px" class="margin-b-20">
-        <div fxFlex="25" class="colorPicker" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
+        <div fxFlex="25" class="colorPicker pointer" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
           [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
           [cpOutputFormat]="'rbga'" (colorPickerChange)="changeBackgroundColor(backgroundColor)"></div>
         <!-- <span fxFlex="60" class="margin-5-10">{{backgroundColor}}</span> -->
@@ -18,7 +18,7 @@
       <span fxFlex="15" class="right margin-t-5">Text color</span>
 
       <div fxFlex="30" fxLayout="row" fxLayoutGap="10px" class="margin-b-20">
-        <div fxFlex="25" class="colorPicker" [(colorPicker)]="textColor" [style.background]="textColor" [cpPosition]="'left'" [cpOKButton]="true"
+        <div fxFlex="25" class="colorPicker pointer" [(colorPicker)]="textColor" [style.background]="textColor" [cpPosition]="'left'" [cpOKButton]="true"
           [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
           (colorPickerChange)="changeTextColor(textColor)"></div>
         <!-- <span fxFlex="60" class="margin-5-10">{{textColor}}</span> -->
@@ -32,10 +32,11 @@
 
     </div>
     <div fxLayout="row" fxLayoutGap="20px">
-      <span fxFlex="15" class="right margin-t-5">Background position</span>
-      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundPosition">
       <span fxFlex="15" class="right margin-t-5">Background image</span>
-      <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundImage">
+      <!-- <input fxFlex="30" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundImage"> -->
+      <file-picker fxFlex="30" [(ngModel)]="layout.style.backgroundImage"></file-picker>
+      <span fxFlex="15" *ngIf="layout.style.backgroundImage" class="right margin-t-5">Background position</span>
+      <input fxFlex="30" *ngIf="layout.style.backgroundImage" class="ctrlInput" type="text" [(ngModel)]="layout.style.backgroundPosition">
     </div>
     <div fxLayout="row" fxLayoutGap="10px">
       <div fxFlex></div>

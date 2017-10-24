@@ -63,9 +63,6 @@ export class UIEditorComponent {
   }
 
   mouseLeave(e) {
-    console.log(e.target.id)
-    // let trueBackgroundColor = 
-
     e.target.style.backgroundColor = this.lastBackgroundColor;
   }
 

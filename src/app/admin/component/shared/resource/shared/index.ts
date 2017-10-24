@@ -1,5 +1,6 @@
 export * from './resource.model';
 export { ModalComponent, ModalModule } from '../../../../../x/ng';
+export { MultiFilePickerModule, FilePickerModule, provideUploadURLToken } from './upload'
 export { AccordionModule } from '../../../../../x/ui';
 export * from './resource.form';
 export { AdminFormModule } from '../../form';
