@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared';
 import { SupperCounterComponent } from './supper-counter.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule, SharedModule
   ],
   declarations: [SupperCounterComponent]
 })
