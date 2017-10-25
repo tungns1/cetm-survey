@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TicketModule } from '../ticket/ticket.module';
+// import { TicketModule } from '../ticket/ticket.module';
 import { StaComponent } from './sta.component';
 import { BarComponent } from './bar.component';
 import { SearchComponent } from './search.component';
@@ -9,7 +9,7 @@ import { SharedModule } from '../../shared';
 import { ComponentSharedModule } from '../../shared/component/componentShared.module'
 
 @NgModule({
-    imports: [CommonModule, TicketModule, SharedModule, ComponentSharedModule],
+    imports: [CommonModule, SharedModule, ComponentSharedModule],
     declarations: [StaComponent, BarComponent, SearchComponent],
     exports: [StaComponent]
 })

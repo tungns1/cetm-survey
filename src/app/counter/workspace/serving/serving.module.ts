@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { TicketModule } from '../ticket';
+import { ComponentSharedModule } from '../../shared/component/componentShared.module';
+import { SharedModule} from '../shared'
 import { ServingComponent } from './serving.component';
 import { EmptyComponent } from './empty.component';
 import { ActionComponent } from './action.component';
@@ -8,7 +9,7 @@ import { ModalModule } from '../shared';
 import { CustomerInfoComponent } from './customer/customer-info.component';
 
 @NgModule({
-    imports: [TicketModule],
+    imports: [ComponentSharedModule, SharedModule],
     declarations: [
         ServingComponent, EmptyComponent, ActionComponent,
         TicketComponent, CustomerInfoComponent
