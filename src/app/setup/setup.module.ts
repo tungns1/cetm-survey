@@ -10,8 +10,7 @@ import { TicketModule } from "./ticket/ticket.module";
 
 
 @NgModule({
-  imports: [routing,ReactiveFormsModule ,FormsModule,
-    SetupGlobalModule,ServiceModule,TicketModule,
+  imports: [routing,ReactiveFormsModule ,FormsModule,SetupGlobalModule,ServiceModule,TicketModule,
     CommonModule
   ],
   declarations: [SetupComponent]

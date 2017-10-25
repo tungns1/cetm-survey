@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { QueueService } from '../../../workspace/shared/'
-import { TimerComopnent, ProjectConfig } from '../../../workspace/shared/';
+import { QueueService } from '../shared';
+import { TimerComopnent } from '../shared';
+import { ProjectConfig } from '../shared';
 
 @Component({
     selector: 'waiting-queue',

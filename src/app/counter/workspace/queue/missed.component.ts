@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ITicket } from '../../model/shared';
-import { QueueService } from '../../../workspace/shared/'
+import { QueueService, ITicket } from '../shared';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { combineLatest } from 'rxjs/observable/combineLatest';
