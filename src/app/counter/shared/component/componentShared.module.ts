@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../'
+import { TicketModule } from './ticket/ticket.module'
 import { AvgTimeComponent } from './avgTime/avgTime.component'
 
 @NgModule({
   imports: [
-    CommonModule, SharedModule
+    CommonModule, TicketModule
   ],
   declarations: [AvgTimeComponent],
   exports: [AvgTimeComponent]
