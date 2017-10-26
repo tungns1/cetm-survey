@@ -7,21 +7,22 @@ import { SharedModule } from "./shared/";
 import { CounterComponent } from "./counter/counter.component";
 import { routing } from "./counter.routing";
 import { SettingComponent } from './setting/setting.component';
-import { CounterSettingService, CounterSessionValidationGuard } from './shared';
+import { CounterSettingService, CounterSessionValidationGuard, SuperCounterSettingService } from './shared';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MiniModeFormModule } from './setting/minimode-form.module';
-import { SupperCounterModule } from './supper-counter/supper-counter.module'
+import { SuperCounterModule } from './super-counter/super-counter.module';
+import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component'
 
 @NgModule({
     imports: [
         SharedModule, routing, MatTabsModule,
         MiniModeFormModule, MatCheckboxModule, MatProgressBarModule,
         MatInputModule, MatFormFieldModule, MatToolbarModule,
-        SupperCounterModule
+        SuperCounterModule
     ],
-    declarations: [CounterComponent, SettingComponent, WelcomeComponent],
+    declarations: [CounterComponent, SettingComponent, WelcomeComponent, SuperCounterSettingComponent],
     providers: [
-        CounterSettingService, CounterSessionValidationGuard
+        CounterSettingService, CounterSessionValidationGuard, SuperCounterSettingService
     ]
 })
 export class CounterModule {

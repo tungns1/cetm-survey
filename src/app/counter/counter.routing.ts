@@ -2,8 +2,9 @@ import { Routes, RouterModule } from "@angular/router";
 import { WorkspaceModule } from './workspace';
 import { CounterComponent } from './counter/counter.component';
 import { SettingComponent } from './setting/setting.component';
+import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { SupperCounterComponent } from './supper-counter/supper-counter.component'
+import { SuperCounterComponent } from './super-counter/super-counter.component'
 import { CounterSessionValidationGuard } from './shared';
 
 export function loadWorkspace() {
@@ -23,17 +24,26 @@ const children: Routes = [
     component: SettingComponent
   },
   {
+    path: "superCounterSetting",
+    component: SuperCounterSettingComponent
+  },
+  {
     path: "",
     pathMatch: "full",
-    redirectTo: "welcome"
+    redirectTo: "/counter/welcome?setting=/setting&redirect=/workspace"
   },
   {
     path: "welcome",
     component: WelcomeComponent
   },
   {
-    path: "supperCounter",
-    component: SupperCounterComponent
+    path: 'super',
+    pathMatch: "full",
+    redirectTo: "/counter/welcome?setting=/superCounterSetting&redirect=/superCounter"
+  },
+  {
+    path: "superCounter",
+    component: SuperCounterComponent
   }
 ];
 

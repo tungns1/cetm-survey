@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SupperCounterComponent } from './supper-counter.component';
+import { SuperCounterComponent } from './super-counter.component';
 
-describe('SupperCounterComponent', () => {
-  let component: SupperCounterComponent;
-  let fixture: ComponentFixture<SupperCounterComponent>;
+describe('SuperCounterComponent', () => {
+  let component: SuperCounterComponent;
+  let fixture: ComponentFixture<SuperCounterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SupperCounterComponent ]
+      declarations: [ SuperCounterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SupperCounterComponent);
+    fixture = TestBed.createComponent(SuperCounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
