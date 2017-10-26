@@ -4,11 +4,15 @@ import { CounterComponent } from './counter/counter.component';
 import { SettingComponent } from './setting/setting.component';
 import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { SuperCounterComponent } from './super-counter/super-counter.component'
+import { SuperCounterModule } from './super-counter/super-counter.module'
 import { CounterSessionValidationGuard } from './shared';
 
 export function loadWorkspace() {
   return WorkspaceModule;
+}
+
+export function loadSuperCounter() {
+  return SuperCounterModule;
 }
 
 const children: Routes = [
@@ -43,7 +47,10 @@ const children: Routes = [
   },
   {
     path: "superCounter",
-    component: SuperCounterComponent
+    loadChildren: loadSuperCounter, 
+    canActivate: [
+      CounterSessionValidationGuard
+    ]
   }
 ];
 

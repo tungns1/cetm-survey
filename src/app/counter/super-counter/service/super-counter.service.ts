@@ -8,7 +8,7 @@ import {
 
 import {
     ITicketAction,
-    Workspace, IWorkspaceInitialState
+    SuperCounter, ISuperCounterInitialState
 } from '../../shared/model';
 
 import { of } from 'rxjs/observable/of';
@@ -24,6 +24,10 @@ export class SuperCounterService {
         private env: RuntimeEnvironment
     ) { }
 
+
+    private initialState$ = this.socket.RxEvent<ISuperCounterInitialState>("/initial");
+    private autoNext$ = new ReplaySubject<boolean>(1);
+
     get Socket() {
         return this.socket;
     }
@@ -36,16 +40,12 @@ export class SuperCounterService {
         this.socket.onDestroy();
     }
 
-
-    private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
-    private autoNext$ = new ReplaySubject<boolean>(1);
-
     SetAutoNext(auto = false) {
         this.autoNext$.next(auto);
     }
 
     Workspace$ = this.initialState$.switchMap(s => {
-        const w = new Workspace(s);
+        const w = new SuperCounter(s);
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
             .map(action => {
                 w.Update(action);
@@ -56,15 +56,15 @@ export class SuperCounterService {
         return merge(of(null), ticketUpdate, autoNext).map(_ => w);
     }).debounceTime(20).share().publishReplay(1).refCount();
 
-    currentCounter$ = this.Workspace$.map(w => w.current_counter);
-    counters$ = this.Workspace$.map(w => w.counters);
-    stat$ = this.Workspace$.map(w => w.stat)
-        .share().publishReplay(1).refCount();
+    // currentCounter$ = this.Workspace$.map(w => w.current_counter);
+    // counters$ = this.Workspace$.map(w => w.counters);
+    // stat$ = this.Workspace$.map(w => w.stat)
+    //     .share().publishReplay(1).refCount();
 
-    services$ = this.Workspace$.map(w => w.storeServicable)
-        .distinctUntilChanged()
-        .map(serviable => {
-            return CacheService.RxListView.value
-                .filter(s => serviable.has(s.id));
-        });
+    // services$ = this.Workspace$.map(w => w.storeServicable)
+    //     .distinctUntilChanged()
+    //     .map(serviable => {
+    //         return CacheService.RxListView.value
+    //             .filter(s => serviable.has(s.id));
+    //     });
 }

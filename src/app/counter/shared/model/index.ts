@@ -8,4 +8,6 @@ export {
     Workspace, IWorkspaceInitialState
 } from './workspace';
 
+export { ISuperCounterInitialState, SuperCounter } from './superCounter';
+
 export { ILedStatus, LED_STATUS } from './led';
