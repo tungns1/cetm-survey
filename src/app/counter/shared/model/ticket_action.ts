@@ -11,14 +11,14 @@ export interface ITicketAction {
     extra?: any;
 }
 
-const ActionMiss = "miss";
-const ActionCancel = "cancel";
-const ActionCall = "call";
-const ActionRecall = "recall";
-const ActionFinish = "finish";
-const ActionMove = "move";
-const ActionCreate = "create";
-const ActionRestore = "restore";
+export const ActionMiss = "miss";
+export const ActionCancel = "cancel";
+export const ActionCall = "call";
+export const ActionRecall = "recall";
+export const ActionFinish = "finish";
+export const ActionMove = "move";
+export const ActionCreate = "create";
+export const ActionRestore = "restore";
 
 export class TicketAction {
     constructor(
