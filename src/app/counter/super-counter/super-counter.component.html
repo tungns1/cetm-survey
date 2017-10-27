@@ -1,22 +1,14 @@
 <div id="superCounter" fxLayout="column">
     <app-env-module i18n-title title="Super Counter "></app-env-module>
     <app-header fxFlex="38px" fxShow.xs="false"></app-header>
-    <!-- <div fxFlex fxLayout="row"> -->
-    <!-- <div fxFlex="75%" id="leftContent" class="padding-20" fxLayout="column"> -->
-    <!-- <serving></serving>
-          <div fxLayout="row" fxLayoutGap="10px" style="height: 47%">
-              <waiting-queue fxFlex></waiting-queue>
-              <missed-queue *ngIf="hasMiss" fxFlex></missed-queue>
-              <cancel-queue fxFlex></cancel-queue>
-          </div> -->
-    <!-- <app-counter-detail fxFlex="30"></app-counter-detail>
-          <app-super-counter-action fxFlex="10"></app-super-counter-action> -->
-    <app-counters-map fxFlex></app-counters-map>
-    <!-- </div> -->
-    <!-- <div fxFlex="25%" class="padding-20">
-        <average-time stime="6574687165"></average-time>
-      </div> -->
-    <!-- </div> -->
+    <swiper fxFlex [config]="config" [(index)]="index">
+        <app-counters-map></app-counters-map>
+        <div fxLayout="column" fxLayoutGap="50px" class="padding-50">
+            <average-time fxFlex stime="455416546"></average-time>
+            <app-queue fxFlex="75"></app-queue>
+        </div>
+    </swiper>
+
 
     <span fxFlex="5" class="center">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</span>
 </div>

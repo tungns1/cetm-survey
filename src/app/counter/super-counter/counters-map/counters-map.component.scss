@@ -1,0 +1,8 @@
+@import '../../shared/style.scss';
+#countersMap{
+    height: 90vh;
+    .serving{
+        background-color: $key-color;
+        color: #fff;
+    }
+}

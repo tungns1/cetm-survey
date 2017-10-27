@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 // import {I } from '../../shared/model'
 import { CounterListService } from '../service/counter-list.service'
 
@@ -13,17 +13,23 @@ export class CountersMapComponent implements OnInit {
     private counterListService: CounterListService
   ) { }
 
-  countersMap: any[][];
   columnConfig: number = 10;
+  countersMap$ = this.counterListService.counterList$.map(counterList => {
+    // counterList.s
+    let countersMap = [];
+    while (counterList.length) countersMap.push(counterList.splice(0, this.columnConfig));
+    while (countersMap[countersMap.length - 1].length < countersMap[0].length) {
+      countersMap[countersMap.length - 1].push([]);
+    }
+    // console.log(countersMap)
+    return countersMap;
+  })
 
   ngOnInit() {
-    this.counterListService.counterList$.subscribe(counterList => {
-      console.log(counterList)
-      counterList.forEach((counter, i) => {
-        // if(i % 10)
-        this.countersMap[i / this.columnConfig][i % this.columnConfig] = counter;
-      });
-    })
+  }
+
+  ngAfterViewInit() {
+
   }
 
 }

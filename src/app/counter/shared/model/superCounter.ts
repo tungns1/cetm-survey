@@ -19,7 +19,7 @@ export class SuperCounter {
     ) {
         // this.onInit(this.current_counter);
         // this.Refresh(this._instate.tickets);
-        this.onInit(this._instate)
+        this.onInit(this._instate);
     }
 
     counterList: counterList;
@@ -54,12 +54,15 @@ export class counterList {
         this.counters = counters.map(c => new counterDetail(c));
     }
 
-    counters: counterDetail[];
+    private counters: counterDetail[];
+
+    ToArray() {
+        return Array.from(this.counters);
+    }
 
     Update(action: ITicketAction) {
         this.counters.forEach(c => {
-            if (c.counter.id === action.ticket.counter_id)
-                c.Update(action)
+            c.Update(action)
         });
     }
 
@@ -67,15 +70,18 @@ export class counterList {
 
 export class counterDetail {
     constructor(
-        counter: ICounter
+        private counter: ICounter
     ) {
-        this.counter = counter;
+        // this.counter = counter;
     }
-    counter: ICounter;
+    // counter: ICounter;
     serving: ITicket;
 
     Update(act: ITicketAction) {
-        if (act.action === 'call' || act.state === 'recall') {
+        if (this.counter.id !== act.ticket.counter_id) {
+            return;
+        }
+        if (act.action === 'call' || act.action === 'recall') {
             this.serving = act.ticket;
         }
         else this.serving = null;

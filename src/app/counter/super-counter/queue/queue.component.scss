@@ -1,0 +1,54 @@
+@import '../../shared/style.scss';
+#queueContainer {
+    .border {
+        height: 100%;
+        position: relative;
+        .totalCount {
+            color: $key-color;
+        }
+        .headerTable {
+            background-color: $background-color;
+            border-bottom: $border;
+            font-weight: $font-weight-default;
+        }
+        .row {
+            border-bottom: $border;
+            cursor: pointer;
+        }
+        .cell {
+            text-align: center;
+            margin: 7px;
+            .icon {
+                width: 15px;
+                float: left;
+                margin: 0 10px;
+            }
+            .ticketNum {
+                float: left;
+            }
+        }
+        .inputSearch {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            height: 17px;
+            width: 30%;
+            border: $border;
+            border-radius: 3px;
+        }
+        .iconSearch {
+            position: absolute;
+            top: 0px;
+            right: 2px;
+            z-index: 2;
+            cursor: pointer;
+            width: 20px;
+            margin: 7px;
+        }
+    }
+    .queue {
+        overflow: auto;
+        width: 100%;
+        height: 88%;
+    }
+}

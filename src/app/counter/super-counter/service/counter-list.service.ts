@@ -10,6 +10,8 @@ export class CounterListService {
 
   }
 
-  counterList$ = this.superCounterService.Workspace$.map(w => w.counterList.counters)
+  counterList$ = this.superCounterService.Workspace$.map(w => {
+    return w.counterList.ToArray();
+  })
     
 }

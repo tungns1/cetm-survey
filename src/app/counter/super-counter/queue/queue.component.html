@@ -1,0 +1,49 @@
+<div id="queueContainer" class="" fxLayout="row" fxLayoutGap="50px">
+  <div class="border" fxFlex>
+    <div class="componentHeader">
+      <span i18n>Waiting Ticket</span>
+      <!-- <span class="totalCount">({{count$ | async}})</span> -->
+    </div>
+    <div class="queue">
+      <div fxLayout="row" class="headerTable">
+        <span fxFlex class="cell" i18n>No.</span>
+        <span fxFlex="50%" class="cell" i18n>Service Name</span>
+        <span fxFlex class="cell" i18n>Waiting Time</span>
+      </div>
+      <!-- <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
+        <div fxFlex class="cell">
+          <ticket-icon [ticket]="t"></ticket-icon>
+          <span>{{t.cnum}}</span>
+        </div>
+        <span fxFlex="50%" class="cell">{{t.service_name}}</span>
+        <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="maxWaitingMinute"></timer>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- ---------------------&&----------------------- -->
+  <div class="border" fxFlex>
+    <div class="componentHeader">
+      <span i18n>Cancelled Tickets</span>
+      <!-- <span class="totalCount">({{count$ | async}})</span> -->
+      <input #ticket [class.hidden]="!show" style="padding:5px;" (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number"
+        class="inputSearch" autofocus>
+      <img src="./assets/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" class="iconSearch">
+    </div>
+    <div class="queue">
+      <div fxLayout="row" class="headerTable">
+        <span fxFlex class="cell" i18n="Numerical Order">No.</span>
+        <span fxFlex="50%" class="cell" i18n>Service Name</span>
+        <span fxFlex class="cell" i18n>Cancelled At</span>
+      </div>
+      <!-- <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
+        <div fxFlex class="cell">
+          <ticket-icon [ticket]="t"></ticket-icon>
+          <span>{{t.cnum}}</span>
+        </div>
+        <span fxFlex="50%" class="cell">{{t.service_name}}</span>
+        <span fxFlex class="cell">{{t.mtime | localDayTime}}</span>
+      </div> -->
+    </div>
+  </div>
+</div>
