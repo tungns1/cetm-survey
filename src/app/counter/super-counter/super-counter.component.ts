@@ -24,9 +24,9 @@ export class SuperCounterComponent implements OnInit {
   ngOnInit() {
     // this.composeService.enable();
     this.superCounterService.enable();
-    this.superCounterService.Workspace$.subscribe(d => {
-      console.log(d)
-    })
+    // this.superCounterService.Workspace$.subscribe(d => {
+    //   console.log(d)
+    // })
   }
 
   ngOnDestroy() {

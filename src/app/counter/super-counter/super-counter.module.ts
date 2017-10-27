@@ -4,7 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared';
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
-import { SuperCounterSocket, QueueService, SuperCounterService } from './service'
+import { 
+  SuperCounterSocket, QueueService, SuperCounterService, 
+  CounterDetailService, CounterListService 
+} from './service'
 // import { QueueModule } from '../workspace/queue/queue.module';
 // import { StatModule } from '../workspace/stat/stat.module';
 import { SuperCounterComponent } from './super-counter.component';
@@ -26,6 +29,9 @@ const routing = RouterModule.forChild([
     // StatModule
   ],
   declarations: [SuperCounterComponent, CounterDetailComponent, SuperCounterActionComponent],
-  providers: [SuperCounterSocket, QueueService, SuperCounterService]
+  providers: [
+    SuperCounterSocket, QueueService, SuperCounterService, 
+    CounterDetailService, CounterListService
+  ]
 })
 export class SuperCounterModule { }

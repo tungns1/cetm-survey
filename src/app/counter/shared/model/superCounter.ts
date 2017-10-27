@@ -28,12 +28,15 @@ export class SuperCounter {
     onInit(data: ISuperCounterInitialState) {
         this.counterList = new counterList(data.counters);
         Object.keys(data.tickets).map(key => {
-            if(data.tickets[key].state === 'serving')
-                this.Update(Object.assign({}, data.tickets[key], {
-                    action: 'call', 
-                    ticket_id: key, 
-                    branch_id: data.tickets[key].branch_id
+            if (data.tickets[key].state === 'serving') {
+                // console.log(data.tickets[key])
+                this.Update(Object.assign({}, {
+                    action: 'call',
+                    ticket_id: key,
+                    branch_id: data.tickets[key].branch_id,
+                    ticket: data.tickets[key]
                 }))
+            }
         })
     }
 
@@ -54,23 +57,27 @@ export class counterList {
     counters: counterDetail[];
 
     Update(action: ITicketAction) {
-        this.counters.forEach(c => c.Update(action));
+        this.counters.forEach(c => {
+            if (c.counter.id === action.ticket.counter_id)
+                c.Update(action)
+        });
     }
 
 }
 
 export class counterDetail {
     constructor(
-        private counter: ICounter
+        counter: ICounter
     ) {
+        this.counter = counter;
     }
-
+    counter: ICounter;
     serving: ITicket;
 
-
     Update(act: ITicketAction) {
-        if(act.action === 'call' || act.state === 'recall')
+        if (act.action === 'call' || act.state === 'recall') {
             this.serving = act.ticket;
+        }
         else this.serving = null;
     }
 }
