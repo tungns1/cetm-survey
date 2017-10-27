@@ -23,9 +23,14 @@ export class SuperCounter {
     }
 
     counterList: counterList;
+    private ticketList: ITicket[];
     AutoNext = false;
 
-    onInit(data: ISuperCounterInitialState) {
+    private onInit(data: ISuperCounterInitialState) {
+        // this.ticketList = data.tickets.map(t);
+        Object.keys(data.tickets).forEach(key => {
+            this.ticketList.push(data.tickets[key])
+        })
         this.counterList = new counterList(data.counters);
         Object.keys(data.tickets).map(key => {
             if (data.tickets[key].state === 'serving') {
@@ -38,6 +43,10 @@ export class SuperCounter {
                 }))
             }
         })
+    }
+
+    get ticketsToArray(){
+        return Array.from(this.ticketList);
     }
 
     Update(action: ITicketAction) {
