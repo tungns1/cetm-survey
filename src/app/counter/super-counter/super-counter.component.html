@@ -2,13 +2,16 @@
     <app-env-module i18n-title title="Super Counter "></app-env-module>
     <app-header fxFlex="38px" fxShow.xs="false"></app-header>
     <swiper fxFlex [config]="config" [(index)]="index">
-        <app-counters-map></app-counters-map>
-        <div fxLayout="column" fxLayoutGap="50px" class="padding-50">
+        <div fxLayout="column" fxLayoutGap="50px">
+            <app-counter-detail fxFlex="30%"></app-counter-detail>
+            <app-counters-map fxFlex></app-counters-map>
+        </div>
+        <!-- <div fxLayout="column" fxLayoutGap="50px" class="padding-50">
             <average-time fxFlex stime="455416546"></average-time>
             <app-queue fxFlex="75"></app-queue>
-        </div>
+        </div> -->
+        <app-queue></app-queue>
     </swiper>
-
 
     <span fxFlex="5" class="center">Copyright by Miraway &copy; 2007-2016 | www.miraway.vn</span>
 </div>

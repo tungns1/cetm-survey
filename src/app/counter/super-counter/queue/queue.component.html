@@ -1,8 +1,13 @@
 <div id="queueContainer" class="" fxLayout="row" fxLayoutGap="50px">
   <div class="border" fxFlex>
-    <div class="componentHeader">
+    <div class="componentHeader tableName">
       <span i18n>Waiting Ticket</span>
       <span class="totalCount">({{ticketsWaitingCount$ | async}})</span>
+    </div>
+    <div class="searchBar">
+      <h4>
+        type something here
+      </h4>
     </div>
     <div class="queue">
       <div fxLayout="row" class="headerTable">
@@ -12,7 +17,7 @@
       </div>
       <div fxLayout="row" class="row" *ngFor="let ticket of ticketsWaiting$ | async" [ticket-detail]="ticket" [ticket-highlight]="ticket">
         <div fxFlex class="cell">
-          <ticket-icon [ticket]="ticket"></ticket-icon>
+          <ticket-icon [ticket]="ticket" width="30px"></ticket-icon>
           <span>{{ticket.ticketNum}}</span>
         </div>
         <span fxFlex="50%" class="cell">{{ticket.cusPhoneNum}}</span>
@@ -23,12 +28,17 @@
 
   <!-- ---------------------&&----------------------- -->
   <div class="border" fxFlex>
-    <div class="componentHeader">
+    <div class="componentHeader tableName">
       <span i18n>Cancelled Tickets</span>
       <span class="totalCount">({{ticketsCanceledCount$ | async}})</span>
       <input #ticket [class.hidden]="!show" style="padding:5px;" (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number"
         class="inputSearch" autofocus>
       <img src="./assets/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" class="iconSearch">
+    </div>
+    <div class="searchBar">
+      <h4>
+        type something here
+      </h4>
     </div>
     <div class="queue">
       <div fxLayout="row" class="headerTable">
@@ -38,7 +48,7 @@
       </div>
       <div fxLayout="row" class="row" *ngFor="let ticket of ticketsCanceled$ | async" [ticket-detail]="ticket" [ticket-highlight]="ticket">
         <div fxFlex class="cell">
-          <ticket-icon [ticket]="ticket"></ticket-icon>
+          <ticket-icon [ticket]="ticket" width="30px"></ticket-icon>
           <span>{{ticket.ticketNum}}</span>
         </div>
         <span fxFlex="50%" class="cell">{{ticket.cusPhoneNum}}</span>

@@ -1,0 +1,12 @@
+@import '../../shared/style.scss';
+#actions {
+    height: 100%;
+    padding: 1.5% 50px;
+    .textBtn{
+        font-size: 200%;
+    }
+}
+
+button[disabled] {
+    cursor: not-allowed;
+}

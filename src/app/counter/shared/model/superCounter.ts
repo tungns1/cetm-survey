@@ -17,13 +17,11 @@ export class SuperCounter {
     constructor(
         private _instate: ISuperCounterInitialState
     ) {
-        // this.onInit(this.current_counter);
-        // this.Refresh(this._instate.tickets);
         this.onInit(this._instate);
     }
 
     counterList: counterList;
-    private ticketList: ITicket[];
+    private ticketList: ITicket[] = [];
     AutoNext = false;
 
     private onInit(data: ISuperCounterInitialState) {
@@ -45,7 +43,7 @@ export class SuperCounter {
         })
     }
 
-    get ticketsToArray(){
+    get ticketsToArray() {
         return Array.from(this.ticketList);
     }
 
@@ -95,4 +93,22 @@ export class counterDetail {
         }
         else this.serving = null;
     }
+
+    get counterName() {
+        return this.counter.name;
+    }
+
+    get ticketNum() {
+        return this.serving == null ? '' : this.serving.cnum;
+    }
+
+    get createTime() {
+        return this.serving == null ? '' : this.serving.ctime;
+    }
+
+    get phoneNum() {
+        return this.serving == null ? '' : this.serving.customer.phone_number;
+    }
+
+
 }

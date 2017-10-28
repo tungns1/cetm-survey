@@ -7,12 +7,13 @@ import {
 } from '../../shared';
 
 import {
-    ITicketAction,
+    ITicketAction, counterDetail,
     SuperCounter, ISuperCounterInitialState
 } from '../../shared/model';
 
 import { of } from 'rxjs/observable/of';
 import { merge } from 'rxjs/observable/merge';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { SuperCounterSocket } from './super-counter.socket';
 
@@ -55,6 +56,9 @@ export class SuperCounterService {
         });
         return merge(of(null), ticketUpdate, autoNext).map(_ => w);
     }).debounceTime(20).share().publishReplay(1).refCount();
+
+    SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
+
 
     // currentCounter$ = this.Workspace$.map(w => w.current_counter);
     // counters$ = this.Workspace$.map(w => w.counters);

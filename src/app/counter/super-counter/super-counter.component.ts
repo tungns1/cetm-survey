@@ -1,7 +1,8 @@
-import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
-import { QueueService, SuperCounterService, SuperCounterSocket } from './service';
+import { SuperCounterService, SuperCounterSocket } from './service';
+
+import { CountersMapComponent } from './counters-map/counters-map.component';
 
 @Component({
   selector: 'app-super-counter',
@@ -11,7 +12,6 @@ import { QueueService, SuperCounterService, SuperCounterSocket } from './service
 export class SuperCounterComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
     private superCounterService: SuperCounterService,
     private socket: SuperCounterSocket
   ) { }

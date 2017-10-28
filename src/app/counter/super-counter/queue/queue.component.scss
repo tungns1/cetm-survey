@@ -1,8 +1,15 @@
 @import '../../shared/style.scss';
 #queueContainer {
+    padding: 50px;
+    height: 100%;
+    // font-size: $font-size-default * 2;
     .border {
         height: 100%;
         position: relative;
+        .tableName{
+            height: 50px;
+            max-height: none;
+        }
         .totalCount {
             color: $key-color;
         }
@@ -17,7 +24,7 @@
         }
         .cell {
             text-align: center;
-            margin: 7px;
+            margin: 15px;
             .icon {
                 width: 15px;
                 float: left;

@@ -1,8 +1,22 @@
 @import '../../shared/style.scss';
 #countersMap{
-    height: 90vh;
+    height: 100%;
+    .counterCell{
+        border-radius: 3px;
+        font-weight: $font-weight-default;
+        cursor: pointer;
+        outline: none;
+        // &:hover, &:active {
+        //     background-color: $key-color - 100;
+        //     color: #fff;
+        // }
+    }
     .serving{
         background-color: $key-color;
+        color: #fff;
+    }
+    .active{
+        background-color: $key-color - 100;
         color: #fff;
     }
 }

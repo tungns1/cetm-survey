@@ -6,9 +6,10 @@ import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-w
 import { SharedModule } from '../shared';
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
-import { 
-  SuperCounterSocket, QueueService, SuperCounterService, 
-  CounterDetailService, CounterListService 
+import { TicketModule } from '../workspace/ticket/ticket.module';
+import {
+  SuperCounterSocket, QueueService, SuperCounterService,
+  CounterDetailService, CounterListService
 } from './service'
 // import { QueueModule } from '../workspace/queue/queue.module';
 // import { StatModule } from '../workspace/stat/stat.module';
@@ -19,8 +20,8 @@ import { QueueComponent } from './queue/queue.component';
 
 const routing = RouterModule.forChild([
   {
-      path: '',
-      component: SuperCounterComponent
+    path: '',
+    component: SuperCounterComponent
   }
 ]);
 
@@ -32,14 +33,15 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 @NgModule({
   imports: [
     routing, CommonModule, SharedModule,
-    ComponentSharedModule, CountersMapModule, SwiperModule
+    ComponentSharedModule, CountersMapModule, SwiperModule,
+    TicketModule,
     // QueueModule,
     // StatModule
   ],
   declarations: [SuperCounterComponent, CounterDetailComponent, SuperCounterActionComponent, QueueComponent],
   providers: [
-    SuperCounterSocket, QueueService, SuperCounterService, 
-    CounterDetailService, CounterListService,
+    SuperCounterSocket, QueueService, SuperCounterService,
+    CounterDetailService, CounterListService, 
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
