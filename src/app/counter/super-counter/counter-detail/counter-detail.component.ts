@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Ticket } from '../../../shared/model/house'
 import { SuperCounterService } from '../service/super-counter.service';
 
@@ -13,13 +14,14 @@ export class CounterDetailComponent implements OnInit {
     private superCounterService: SuperCounterService,
   ) { }
 
-  ticket: Ticket;
+  // ticket$: BehaviorSubject<Ticket> ;
+  ticket$ = new BehaviorSubject<Ticket>(null)
   counterDetail$ = this.superCounterService.SelectedCounter$
 
   ngOnInit() {
     this.counterDetail$.subscribe(d => {
       if (d) {
-        this.ticket = d.serving ? new Ticket(d.serving) : null;
+        this.ticket$.next(d.serving ? new Ticket(d.serving) : null);
       }
     })
   }

@@ -6,7 +6,7 @@
             <div [id]="cell.counterName" *ngIf="cell.counter" class="counterCell border" fxLayout="column" (click)="selectCounter(cell)">
                 <h2 fxFlex="60" i18n class="center">{{cell.counter.name}}</h2>
                 <div fxFlex>
-                    <h3 class="center">{{cell.serving?.cnum}}&nbsp;</h3>
+                    <h3 class="center margin-t-0">{{cell.serving?.cnum}}&nbsp;</h3>
                 </div>
             </div>
         </div>

@@ -13,8 +13,18 @@
         .totalCount {
             color: $key-color;
         }
+        .searchBar{
+            height: 50px;
+            padding: 30px;
+            .ctrlInput{
+                margin: 0px;
+                height: 100%;
+                text-indent: 20px;
+            }
+        }
         .headerTable {
             background-color: $background-color;
+            border-top: $border;
             border-bottom: $border;
             font-weight: $font-weight-default;
         }

@@ -9,7 +9,7 @@ import { CountersMapModule } from './counters-map/counters-map.module';
 import { TicketModule } from '../workspace/ticket/ticket.module';
 import {
   SuperCounterSocket, QueueService, SuperCounterService,
-  CounterDetailService, CounterListService
+  CounterDetailService, CounterListService, SupperCounterTicketService
 } from './service'
 // import { QueueModule } from '../workspace/queue/queue.module';
 // import { StatModule } from '../workspace/stat/stat.module';
@@ -41,7 +41,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   declarations: [SuperCounterComponent, CounterDetailComponent, SuperCounterActionComponent, QueueComponent],
   providers: [
     SuperCounterSocket, QueueService, SuperCounterService,
-    CounterDetailService, CounterListService, 
+    CounterDetailService, CounterListService, SupperCounterTicketService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

@@ -36,12 +36,14 @@ NextStates.set("miss", TicketStates.Missed);
 export class TicketAction {
     constructor(
         public action: TicketActionName,
-        public ticket: Ticket
+        public ticket: Ticket,
+        public counter: string
     ) { }
 
     state = this.ticket.state;
     ticket_id = this.ticket.id;
     service_id = this.ticket.service_id || this.ticket.services[0];
+    counter_id = this.counter;
     extra: any;
 
     static checkTransition(current: TicketState, next: TicketState) {
@@ -80,9 +82,10 @@ export class ActionManager {
         private handler: (ta: TicketAction) => Observable<ITicket>
     ) { }
 
-    Work(action: TicketActionName, ticket: Ticket, extra?: any) {
+    Work(action: TicketActionName, ticket: Ticket, extra?: any, counter?: string) {
+        console.log('aaaaaaaaaaaaaa')
         if (!ticket) return of(null);
-        const ta = new TicketAction(action, ticket);
+        const ta = new TicketAction(action, ticket, counter);
         if (!ta.IsValid()) {
             console.log("invalid action", ta);
             return of(null);

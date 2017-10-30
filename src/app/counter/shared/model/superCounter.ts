@@ -25,14 +25,12 @@ export class SuperCounter {
     AutoNext = false;
 
     private onInit(data: ISuperCounterInitialState) {
-        // this.ticketList = data.tickets.map(t);
         Object.keys(data.tickets).forEach(key => {
             this.ticketList.push(data.tickets[key])
         })
         this.counterList = new counterList(data.counters);
         Object.keys(data.tickets).map(key => {
             if (data.tickets[key].state === 'serving') {
-                // console.log(data.tickets[key])
                 this.Update(Object.assign({}, {
                     action: 'call',
                     ticket_id: key,
@@ -49,8 +47,18 @@ export class SuperCounter {
 
     Update(action: ITicketAction) {
         if (!action) return;
-        // const act = new TicketAction(action)
-        this.counterList.Update(action)
+        this.counterList.Update(action);
+        this.updateTicketList(action);
+    }
+
+    private updateTicketList(action: ITicketAction) {
+        let ticketIndex: number = -1
+        this.ticketList.forEach((t, i) => {
+            if (t.id === action.ticket_id) ticketIndex = i;
+        });
+        if (ticketIndex > -1) {
+            this.ticketList[ticketIndex] = action.ticket;
+        }
     }
 }
 
@@ -79,9 +87,7 @@ export class counterDetail {
     constructor(
         private counter: ICounter
     ) {
-        // this.counter = counter;
     }
-    // counter: ICounter;
     serving: ITicket;
 
     Update(act: ITicketAction) {
@@ -94,6 +100,10 @@ export class counterDetail {
         else this.serving = null;
     }
 
+    get counterID() {
+        return this.counter.id;
+    }
+
     get counterName() {
         return this.counter.name;
     }
@@ -103,7 +113,7 @@ export class counterDetail {
     }
 
     get createTime() {
-        return this.serving == null ? '' : this.serving.ctime;
+        return this.serving == null ? '' : this.serving.mtime;
     }
 
     get phoneNum() {

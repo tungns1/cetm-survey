@@ -11,7 +11,7 @@
     <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>
         <ng-container i18n="Counter Button: Finish Ticket"><span class="textBtn">Finish</span></ng-container>
     </button>
-    <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="Move()" fxShow.xs="false">
+    <button class="uppercase btnFill" fxFlex (click)="createTicket()" fxShow.xs="false">
         <ng-container i18n="Counter Button: Move Ticket"><span class="textBtn">Create ticket</span></ng-container>
     </button>
 </div>

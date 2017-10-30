@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import {I } from '../../shared/model'
 import { Observable } from 'rxjs/Observable';
 import { CounterListService } from '../service/counter-list.service';
 import { SuperCounterService } from '../service/super-counter.service';
@@ -17,30 +16,37 @@ export class CountersMapComponent implements OnInit {
     private superCounterService: SuperCounterService,
   ) { }
 
-  columnConfig: number = 10;
+  columnConfig: number = 8;
   countersMap$ = this.counterListService.counterList$.map(counterList => {
-    this.selectCounter(counterList[0]);
+    if (counterList[0])
+      this.selectCounter(counterList[0])
     let countersMap = [];
     while (counterList.length) countersMap.push(counterList.splice(0, this.columnConfig));
     while (countersMap[countersMap.length - 1].length < countersMap[0].length) {
       countersMap[countersMap.length - 1].push([]);
     }
-    // console.log(countersMap)
     return countersMap;
   })
 
   ngOnInit() {
-    // this.selectCounter()
   }
 
   selectCounter(counter) {
     this.superCounterService.SelectedCounter$.next(counter);
-    // let cells = document.getElementsByClassName('counterCell');
-    // cells.forEach(element => {
-      
-    // });
-    // let cell = document.getElementById(counter.counterName);
-    // cell.classList.add('active')
+    setTimeout(_ => {
+      this.setActiveClass(counter);
+    })
+  }
+
+  setActiveClass(counter) {
+    let cells = document.getElementsByClassName('counterCell');
+    if (cells)
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove('active');
+      }
+    let cell = document.getElementById(counter.counterName);
+    if (cell)
+      cell.classList.add('active')
   }
 
 }

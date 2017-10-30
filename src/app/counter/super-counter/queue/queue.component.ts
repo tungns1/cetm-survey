@@ -38,4 +38,8 @@ export class QueueComponent implements OnInit {
   ngOnInit() {
   }
 
+  search(state: 'waiting' | 'canceled', value: string){
+    console.log(state, value);
+  }
+
 }

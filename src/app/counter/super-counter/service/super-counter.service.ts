@@ -58,17 +58,4 @@ export class SuperCounterService {
     }).debounceTime(20).share().publishReplay(1).refCount();
 
     SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
-
-
-    // currentCounter$ = this.Workspace$.map(w => w.current_counter);
-    // counters$ = this.Workspace$.map(w => w.counters);
-    // stat$ = this.Workspace$.map(w => w.stat)
-    //     .share().publishReplay(1).refCount();
-
-    // services$ = this.Workspace$.map(w => w.storeServicable)
-    //     .distinctUntilChanged()
-    //     .map(serviable => {
-    //         return CacheService.RxListView.value
-    //             .filter(s => serviable.has(s.id));
-    //     });
 }

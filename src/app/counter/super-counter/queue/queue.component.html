@@ -5,9 +5,8 @@
       <span class="totalCount">({{ticketsWaitingCount$ | async}})</span>
     </div>
     <div class="searchBar">
-      <h4>
-        type something here
-      </h4>
+      <input #waitingTicket type="text" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('waiting', $event.target.value)" class="ctrlInput">
+      <!-- <img src="./assets/img/icon/search.png" (click)="search(waitingTicket.value)" alt="Search" class="iconSearch"> -->
     </div>
     <div class="queue">
       <div fxLayout="row" class="headerTable">
@@ -31,14 +30,10 @@
     <div class="componentHeader tableName">
       <span i18n>Cancelled Tickets</span>
       <span class="totalCount">({{ticketsCanceledCount$ | async}})</span>
-      <input #ticket [class.hidden]="!show" style="padding:5px;" (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number"
-        class="inputSearch" autofocus>
-      <img src="./assets/img/icon/search.png" (click)="show = !show; ticket.value='';onSearch(ticket.value)" alt="Search" class="iconSearch">
     </div>
     <div class="searchBar">
-      <h4>
-        type something here
-      </h4>
+      <input #canceledTicket type="text" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('canceled', $event.target.value)" class="ctrlInput">
+      <!-- <img src="./assets/img/icon/search.png" (click)="search(ticket.value)" alt="Search" class="iconSearch"> -->
     </div>
     <div class="queue">
       <div fxLayout="row" class="headerTable">

@@ -8,7 +8,7 @@
             <div fxFlex *ngIf="counterDetail.ticketNum" class="ticketNum title center" fxLayout="column">
                 <span fxFlex="30" i18n>Serving</span>
                 <div fxFlex>
-                    <ticket-icon [ticket]="ticket" width="70px"></ticket-icon>
+                    <ticket-icon [ticket]="ticket$ | async" width="70px"></ticket-icon>
                     <span class="content">{{counterDetail.ticketNum}}</span>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <app-super-counter-action fxFlex></app-super-counter-action>
+        <app-super-counter-action fxFlex [ticket]="ticket$ | async" [counterID]="counterDetail.counterID"></app-super-counter-action>
 
     </div>
 </div>
