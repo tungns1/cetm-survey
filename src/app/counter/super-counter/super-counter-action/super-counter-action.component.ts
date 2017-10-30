@@ -33,6 +33,7 @@ export class SuperCounterActionComponent {
   auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
 
   Next() {
+    this.ticketService.setCounterID(this.counterID);
     this.triggerAction("finish").subscribe(() => {
       this.superCounterService.SetAutoNext(true);
     });

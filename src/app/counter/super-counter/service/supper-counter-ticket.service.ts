@@ -10,14 +10,13 @@ export class SupperCounterTicketService {
   constructor(
     private superCounterService: SuperCounterService,
     private settingService: CounterSettingService,
-    private qms: QmsService,
-    // private queueService: QueueService
+    private qms: QmsService
   ) {
-    // this.onInit();
+    this.onInit();
   }
-  
-      private socket = this.superCounterService.Socket;
-      private platform = this.qms.platform || "other";
+
+  private socket = this.superCounterService.Socket;
+  private platform = this.qms.platform || "other";
 
 
   private sendAction(body: TicketAction) {
@@ -37,40 +36,50 @@ export class SupperCounterTicketService {
     return this.sendAction(ta);
   });
 
+  counterID: string = '';
+
+  setCounterID(counterID: string) {
+    this.counterID = counterID;
+  }
+
   Search(cnum: string) {
     return this.socket.Send<ITicket[]>('/search', {
       cnum: cnum
     });
   }
 
-  // private onInit() {
-  //   let failed_count = 0;
-  //   this.superCounterService.Workspace$.subscribe(w => {
-  //     if (!w.AutoNext) return;
-  //     if (w.is_busy) {
-  //       this.superCounterService.SetAutoNext(false);
-  //       return;
-  //     }
-  //     const t = w.Waiting.GetFirstTicket();
-  //     if (!t) return;
+  private onInit() {
+    let failed_count = 0;
+    this.superCounterService.Workspace$.subscribe(w => {
+      console.log(w)
+      if (!w.AutoNext) return;
+      // if (w.is_busy) {
+      //     this.superCounterService.SetAutoNext(false);
+      //     return;
+      // }
+      const t = w.ticketsToArray[0];
+      if (!t) return;
 
-  //     const lastQueueUpdate = w.LastUpdate;
-  //     this.TriggerAction("call", t).subscribe(_ => {
-  //       failed_count = 0;
-  //     }, e => {
-  //       // call failed
-  //       const ten_second = 10 * 1000;
-  //       failed_count++;
-  //       setTimeout(_ => {
-  //         // the workspace was not updated
-  //         if (w.LastUpdate <= lastQueueUpdate) {
-  //           console.log("the workspace was not updated");
-  //           this.superCounterService.Socket.reset();
-  //         }
-  //       }, ten_second);
-  //     });
-  //   });
-  // }
+      const ticket = new Ticket(t);
+
+      // const lastQueueUpdate = w.LastUpdate;
+      this.TriggerAction("call", ticket, this.counterID).subscribe(_ => {
+        failed_count = 0;
+      }, e => {
+        // call failed
+        const ten_second = 10 * 1000;
+        failed_count++;
+        setTimeout(_ => {
+          console.log('bbbbbbbbbbbb')
+          // the workspace was not updated
+          // if (w.LastUpdate <= lastQueueUpdate) {
+          //   console.log("the workspace was not updated");
+          //   // this.superCounterService.Socket.reset();
+          // }
+        }, ten_second);
+      });
+    });
+  }
 
   TriggerAction(action: TicketActionName, ticket: Ticket, counterID: string) {
     return this.manager.Work(action, ticket, {
