@@ -10,7 +10,7 @@ import { TicketModule } from '../workspace/ticket/ticket.module';
 import {
   SuperCounterSocket, QueueService, SuperCounterService,
   CounterDetailService, CounterListService, SupperCounterTicketService
-} from './service'
+} from './shared/service'
 // import { QueueModule } from '../workspace/queue/queue.module';
 // import { StatModule } from '../workspace/stat/stat.module';
 import { SuperCounterComponent } from './super-counter.component';

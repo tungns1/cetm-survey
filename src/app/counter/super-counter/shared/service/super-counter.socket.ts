@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Router } from "@angular/router";
-import { RuntimeEnvironment, AppSocket, LogService, SuperCounterSettingService } from '../../shared';
+import { RuntimeEnvironment, AppSocket, LogService, SuperCounterSettingService } from '../../../shared';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable()

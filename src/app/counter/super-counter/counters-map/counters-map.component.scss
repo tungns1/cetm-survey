@@ -15,6 +15,11 @@
         background-color: $key-color;
         color: #fff;
     }
+    .warning{
+        background-color: #f53e30;
+        color: #fff;
+    }
+    
     .active{
         background-color: $key-color - 50;
         color: #fff;

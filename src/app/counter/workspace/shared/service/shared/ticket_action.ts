@@ -83,7 +83,6 @@ export class ActionManager {
     ) { }
 
     Work(action: TicketActionName, ticket: Ticket, extra?: any, counter?: string) {
-        console.log('aaaaaaaaaaaaaa')
         if (!ticket) return of(null);
         const ta = new TicketAction(action, ticket, counter);
         if (!ta.IsValid()) {

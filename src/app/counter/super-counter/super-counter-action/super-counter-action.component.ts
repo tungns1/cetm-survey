@@ -11,7 +11,7 @@ import { TicketActionName } from '../../workspace/shared'
 //   TicketService, FeedbackService
 // } from '../shared';
 
-import { SuperCounterService, SupperCounterTicketService } from '../service';
+import { SuperCounterService, SupperCounterTicketService } from '../shared/service';
 
 @Component({
   selector: 'app-super-counter-action',
@@ -35,7 +35,8 @@ export class SuperCounterActionComponent {
   Next() {
     this.ticketService.setCounterID(this.counterID);
     this.triggerAction("finish").subscribe(() => {
-      this.superCounterService.SetAutoNext(true);
+      // this.superCounterService.SetAutoNext(true);
+      this.triggerAction("call")
     });
   }
 

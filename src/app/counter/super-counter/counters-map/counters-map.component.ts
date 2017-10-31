@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { CounterListService } from '../service/counter-list.service';
-import { SuperCounterService } from '../service/super-counter.service';
-import { counterDetail } from '../../shared/model';
+import { CounterListService, SuperCounterService } from '../shared/service';
+import { counterDetail } from '../shared/model';
 
 @Component({
   selector: 'app-counters-map',
@@ -17,21 +16,34 @@ export class CountersMapComponent implements OnInit {
   ) { }
 
   columnConfig: number = 8;
+  selectedCounter: counterDetail;
+  serveLongConfig: number = 3456345663565;
   countersMap$ = this.counterListService.counterList$.map(counterList => {
-    if (counterList[0])
-      this.selectCounter(counterList[0])
+    counterList.sort((a, b) => {
+      if (Number(a.counterNum) || Number(b.counterNum))
+        return Number(a.counterNum) > Number(b.counterNum) ? 1 : -1;
+    }).map(c => {
+      if (c)
+        c['serveLong'] = c.serveTime > this.serveLongConfig;
+      return c;
+    })
     let countersMap = [];
     while (counterList.length) countersMap.push(counterList.splice(0, this.columnConfig));
     while (countersMap[countersMap.length - 1].length < countersMap[0].length) {
       countersMap[countersMap.length - 1].push([]);
     }
+    if (this.selectedCounter) this.selectCounter(this.selectedCounter);
     return countersMap;
   })
 
   ngOnInit() {
+    this.countersMap$.first().subscribe(c => {
+      this.selectCounter(c[0][0]);
+    })
   }
 
-  selectCounter(counter) {
+  selectCounter(counter: counterDetail) {
+    this.selectedCounter = counter
     this.superCounterService.SelectedCounter$.next(counter);
     setTimeout(_ => {
       this.setActiveClass(counter);

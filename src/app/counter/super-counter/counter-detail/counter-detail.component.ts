@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Ticket } from '../../../shared/model/house'
-import { SuperCounterService } from '../service/super-counter.service';
+import { SuperCounterService } from '../shared/service';
 
 @Component({
   selector: 'app-counter-detail',

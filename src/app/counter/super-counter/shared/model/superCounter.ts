@@ -2,10 +2,10 @@ import {
     ICounter, IUser,
     ITicket, IMapTicket, Ticket,
     TicketState, TicketStates
-} from './shared';
-import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue, CancelQueue } from './queue';
-import { ITicketAction, TicketAction } from './ticket_action';
-import { IStat, CounterStatistics } from './stat';
+} from '../../../shared/model/shared';
+import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue, CancelQueue } from '../../../shared/model/queue';
+import { ITicketAction, TicketAction } from '../../../shared/model/ticket_action';
+import { IStat, CounterStatistics } from '../../../shared/model/stat';
 
 export interface ISuperCounterInitialState {
     user: IUser;
@@ -108,12 +108,20 @@ export class counterDetail {
         return this.counter.name;
     }
 
+    get counterNum() {
+        return this.counter.cnum;
+    }
+
     get ticketNum() {
         return this.serving == null ? '' : this.serving.cnum;
     }
 
     get createTime() {
-        return this.serving == null ? '' : this.serving.mtime;
+        return this.serving == null ? '' : this.serving.ctime;
+    }
+
+    get serveTime() {
+        return this.serving == null ? '' : this.serving.mtime
     }
 
     get phoneNum() {

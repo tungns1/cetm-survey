@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QueueService } from '../service/queue.service';
+import { QueueService } from '../shared/service/queue.service';
 import { Ticket } from '../../../shared/model/house'
 
 @Component({
@@ -21,15 +21,20 @@ export class QueueComponent implements OnInit {
       createTime: ticket.ctime,
       priority: ticket.priority
     }
+  }).sort((a, b) => {
+    return a.createTime > b.createTime ? 1 : -1;
   }));
   ticketsCanceled$ = this.queueService.cancel$.map(tksCancel => tksCancel.map(tk => {
     let ticket = new Ticket(tk)
     return {
       ticketNum: ticket.cnum,
       cusPhoneNum: ticket.customer.phone_number,
-      waitingTime: ticket.mtime,
-      priority: ticket.priority
+      calceledAt: ticket.mtime,
+      priority: ticket.priority,
+      afgL: ticket.mtime
     }
+  }).sort((a, b) => {
+    return a.calceledAt > b.calceledAt ? 1 : -1;
   }));
 
   ticketsWaitingCount$ = this.ticketsWaiting$.map(tksArr => tksArr.length);

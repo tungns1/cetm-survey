@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
-import { SuperCounterService, SuperCounterSocket } from './service';
+import { SuperCounterService, SuperCounterSocket } from './shared/service';
 
 import { CountersMapComponent } from './counters-map/counters-map.component';
 

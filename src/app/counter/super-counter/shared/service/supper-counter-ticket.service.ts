@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ITicket, Ticket, IService, TicketState, TicketStates } from '../../workspace/shared';
+import { ITicket, Ticket, IService, TicketState, TicketStates } from '../../../workspace/shared';
 import { QueueService, SuperCounterService } from '../service'
-import { TicketActionName, CounterSettingService } from '../../workspace/shared';
-import { QmsService } from '../../workspace/shared/shared';
-import { ActionManager, TicketAction } from '../../workspace/shared/service/shared';
+import { TicketActionName, CounterSettingService } from '../../../workspace/shared';
+import { QmsService } from '../../../workspace/shared/shared';
+import { ActionManager, TicketAction } from '../../../workspace/shared/service/shared';
 
 @Injectable()
 export class SupperCounterTicketService {
@@ -51,7 +51,7 @@ export class SupperCounterTicketService {
   private onInit() {
     let failed_count = 0;
     this.superCounterService.Workspace$.subscribe(w => {
-      console.log(w)
+      // console.log(w)
       if (!w.AutoNext) return;
       // if (w.is_busy) {
       //     this.superCounterService.SetAutoNext(false);
@@ -70,7 +70,7 @@ export class SupperCounterTicketService {
         const ten_second = 10 * 1000;
         failed_count++;
         setTimeout(_ => {
-          console.log('bbbbbbbbbbbb')
+          console.log('error')
           // the workspace was not updated
           // if (w.LastUpdate <= lastQueueUpdate) {
           //   console.log("the workspace was not updated");

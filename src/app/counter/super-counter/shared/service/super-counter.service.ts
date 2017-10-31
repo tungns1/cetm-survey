@@ -4,10 +4,14 @@ import {
     AuthService,
     RuntimeEnvironment,
     CacheService
-} from '../../shared';
+} from '../../../shared';
 
 import {
-    ITicketAction, counterDetail,
+    ITicketAction
+} from '../../../shared/model';
+
+import {
+    counterDetail,
     SuperCounter, ISuperCounterInitialState
 } from '../../shared/model';
 
