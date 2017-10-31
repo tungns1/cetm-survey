@@ -12,8 +12,16 @@ import { workspaceServiceProvider } from './shared/workspace.provider';
 
 const routing = RouterModule.forChild([
     {
-        path: '',
+        path: '', 
+        redirectTo: '/counter/welcome'
+    },
+    {
+        path: 'main', // /counter/workspace/main
         component: WorkspaceComponent
+    },
+    {
+        path: 'setting', // /counter/workspace/setting
+        component: SettingComponent
     }
 ]);
 

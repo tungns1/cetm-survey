@@ -34,7 +34,7 @@ const children: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "/counter/welcome?setting=/setting&redirect=/workspace"
+    redirectTo: "/counter/welcome?setting=/counter/setting&redirect=/workspace"
   },
   {
     path: "welcome",

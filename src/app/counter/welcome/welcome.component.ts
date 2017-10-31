@@ -22,11 +22,12 @@ export class WelcomeComponent implements OnInit {
   settingURL: string = '';
   workingURL: string = '';
   waitingTime = 3000;
+  // settingURL: string;
 
   ngOnInit() {
     this.route.queryParams.subscribe(p => {
-      this.settingURL = p.setting;
-      this.workingURL = p.redirect;
+      this.settingURL = '..' + p.setting;
+      this.workingURL = '..' + p.redirect;
       let ok;
 
       if (p.redirect === '/superCounter') ok = this.superCounterSettingService.Check();
@@ -35,7 +36,7 @@ export class WelcomeComponent implements OnInit {
       if (ok) {
         setTimeout(_ => this.Workspace(), this.waitingTime);
       } else {
-        this.router.navigate(['..' + this.settingURL], {
+        this.router.navigate([this.settingURL], {
           relativeTo: this.route
         });
       }
@@ -43,7 +44,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   Workspace() {
-    this.router.navigate(['..' + this.workingURL], {
+    this.router.navigate([this.workingURL], {
       relativeTo: this.route,
       queryParams: this.settingService.Data
     });
