@@ -71,18 +71,35 @@ export class counterList {
 
     Update(action: ITicketAction) {
         this.counters.forEach(c => {
-            c.Update(action)
+            c.Update(action);
+            if (action.ticket.counter_id === c.counterID) {
+                switch (action.action) {
+                    case 'call':
+                        c.setCounterState('serving');
+                        break;
+                    case 'cancel':
+                        c.setCounterState('empty');
+                        break;
+                    case 'finish':
+                        c.setCounterState('empty');
+                        break;
+                }
+            }
         });
     }
 
 }
 
+export type counterState = 'init' | 'serving' | 'empty';
+
 export class counterDetail {
     constructor(
         private counter: ICounter
     ) {
+        if (this.serving) this.state = 'serving';
     }
     serving: ITicket;
+    private state: counterState = 'init';
 
     Update(act: ITicketAction) {
         if (this.counter.id !== act.ticket.counter_id) {
@@ -92,6 +109,10 @@ export class counterDetail {
             this.serving = act.ticket;
         }
         else this.serving = null;
+    }
+
+    setCounterState(state: counterState) {
+        this.state = state;
     }
 
     get counterID() {
@@ -104,6 +125,10 @@ export class counterDetail {
 
     get counterNum() {
         return this.counter.cnum;
+    }
+
+    get counterState() {
+        return this.state;
     }
 
     get ticketNum() {

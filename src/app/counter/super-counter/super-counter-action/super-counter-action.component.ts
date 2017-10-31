@@ -54,13 +54,13 @@ export class SuperCounterActionComponent {
   }
 
   Finish() {
-    this.triggerAction('finish');
+    this.triggerAction('finish', this.ticket);
 
   }
 
   Cancel() {
 
-    this.triggerAction('cancel');
+    this.triggerAction('cancel', this.ticket);
   }
 
   createTicket() {

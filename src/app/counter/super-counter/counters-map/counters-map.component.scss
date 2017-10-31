@@ -12,12 +12,20 @@
         background-color: $key-color;
         color: #fff;
     }
+    .empty{
+        background-color: #fff;
+        color: $text-color;
+    }
+    .init{
+        background-color: $background-color-title;
+        color: $text-color;
+    }
+
     .warning{
         background-color: #f53e30;
     }
     
     .activated{
-        border: 3px dashed $key-color;
-        // color: $text-color;
+        border: 5px dashed $key-color - 50;
     }
 }
