@@ -18,16 +18,18 @@ export class SuperCounter {
         private _instate: ISuperCounterInitialState
     ) {
         this.onInit(this._instate);
+        this.Refresh(this._instate.tickets);
     }
 
     counterList: counterList;
-    private ticketList: ITicket[] = [];
     AutoNext = false;
 
+    waiting = new TicketQueue('waiting');
+    serving = new TicketQueue('serving');
+    cancelled = new TicketQueue('cancelled');
+    queue = [this.waiting, this.serving, this.cancelled]
+
     private onInit(data: ISuperCounterInitialState) {
-        Object.keys(data.tickets).forEach(key => {
-            this.ticketList.push(data.tickets[key])
-        })
         this.counterList = new counterList(data.counters);
         Object.keys(data.tickets).map(key => {
             if (data.tickets[key].state === 'serving') {
@@ -41,24 +43,16 @@ export class SuperCounter {
         })
     }
 
-    get ticketsToArray() {
-        return Array.from(this.ticketList);
+    private Refresh(tickets: IMapTicket) {
+        // this.last_ticket_update = Date.now();
+        this.queue.forEach(q => q.Refresh(tickets));
     }
 
     Update(action: ITicketAction) {
         if (!action) return;
         this.counterList.Update(action);
-        this.updateTicketList(action);
-    }
-
-    private updateTicketList(action: ITicketAction) {
-        let ticketIndex: number = -1
-        this.ticketList.forEach((t, i) => {
-            if (t.id === action.ticket_id) ticketIndex = i;
-        });
-        if (ticketIndex > -1) {
-            this.ticketList[ticketIndex] = action.ticket;
-        }
+        // this.updateTicketList(action);
+        this.queue.forEach(q => q.Replace(new TicketAction(action).ticket));
     }
 }
 

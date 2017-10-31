@@ -6,10 +6,7 @@
         font-weight: $font-weight-default;
         cursor: pointer;
         outline: none;
-        // &:hover, &:active {
-        //     background-color: $key-color - 100;
-        //     color: #fff;
-        // }
+        background-color: $background-color-title;
     }
     .serving{
         background-color: $key-color;
@@ -17,11 +14,10 @@
     }
     .warning{
         background-color: #f53e30;
-        color: #fff;
     }
     
-    .active{
-        background-color: $key-color - 50;
-        color: #fff;
+    .activated{
+        border: 3px dashed $key-color;
+        // color: $text-color;
     }
 }

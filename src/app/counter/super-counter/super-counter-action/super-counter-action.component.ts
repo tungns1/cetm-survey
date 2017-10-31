@@ -1,5 +1,7 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { ITicket } from '../../shared/model/shared';
 import { TicketDetailDialog } from '../../workspace/ticket';
 import { Ticket } from '../../../shared/model/house';
 import { TicketActionName } from '../../workspace/shared'
@@ -11,7 +13,7 @@ import { TicketActionName } from '../../workspace/shared'
 //   TicketService, FeedbackService
 // } from '../shared';
 
-import { SuperCounterService, SupperCounterTicketService } from '../shared/service';
+import { SuperCounterService, SupperCounterTicketService, QueueService } from '../shared/service';
 
 @Component({
   selector: 'app-super-counter-action',
@@ -22,6 +24,7 @@ export class SuperCounterActionComponent {
   constructor(
     private superCounterService: SuperCounterService,
     private ticketService: SupperCounterTicketService,
+    private queueService: QueueService,
     private mdDialog: MatDialog
   ) { }
 
@@ -32,11 +35,17 @@ export class SuperCounterActionComponent {
 
   auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
 
+  ngOnInit() {
+  }
+
   Next() {
     this.ticketService.setCounterID(this.counterID);
-    this.triggerAction("finish").subscribe(() => {
-      // this.superCounterService.SetAutoNext(true);
-      this.triggerAction("call")
+    this.triggerAction("finish", this.ticket).subscribe(() => {
+      let nextTicket: Ticket;
+      this.queueService.waiting$.first().subscribe(ticket => {
+        nextTicket = ticket.GetFirstTicket();
+      });
+      this.triggerAction("call", nextTicket);
     });
   }
 
@@ -49,17 +58,17 @@ export class SuperCounterActionComponent {
 
   }
 
-  Miss() {
+  Cancel() {
 
-    this.triggerAction('miss');
+    this.triggerAction('cancel');
   }
 
   createTicket() {
     console.log(this.counterID)
   }
 
-  private triggerAction(action: TicketActionName) {
-    return this.ticketService.TriggerAction(action, this.ticket, this.counterID);
+  private triggerAction(action: TicketActionName, ticket?: Ticket) {
+    return this.ticketService.TriggerAction(action, ticket, this.counterID);
   }
 
   hasMiss = false;

@@ -10,8 +10,9 @@ export class QueueService {
         
     }
 
-    ticketList$ = this.superCounterService.Workspace$.map(w => w.ticketsToArray)
+    ticketList$ = this.superCounterService.Workspace$.map(w => w.queue);
 
-    waiting$ = this.ticketList$.map(ticketList => ticketList.filter(ticket => ticket.state === 'waiting'))
-    cancel$ = this.ticketList$.map(ticketList => ticketList.filter(ticket => ticket.state === 'cancelled'))
+    waiting$ = this.superCounterService.Workspace$.map(w => w.waiting);
+    cancel$ = this.superCounterService.Workspace$.map(w => w.cancelled);
+    serving$ = this.superCounterService.Workspace$.map(w => w.serving);
 }

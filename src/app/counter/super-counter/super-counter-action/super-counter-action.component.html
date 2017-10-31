@@ -2,11 +2,11 @@
     <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (click)="Next()" [class.hidden]="auto_next$ | async">
         <ng-container i18n="Counter Button: Next"><span class="textBtn">Next</span></ng-container>
     </button>
-    <button class="uppercase btnRed" fxFlex (click)="NoNext()" [class.hidden]="!(auto_next$ | async)">
+    <!-- <button class="uppercase btnRed" fxFlex (click)="NoNext()" [class.hidden]="!(auto_next$ | async)">
         <ng-container i18n="Counter Button: Auto Next"><span class="textBtn">Auto Next</span></ng-container>
-    </button>
-    <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Miss()" fxShow.xs="false">
-        <ng-container i18n="Counter Button: Miss Ticket"><span class="textBtn">Miss</span></ng-container>
+    </button> -->
+    <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Cancel()" fxShow.xs="false">
+        <ng-container i18n="Counter Button: Cancel Ticket"><span class="textBtn">Cancel</span></ng-container>
     </button>
     <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>
         <ng-container i18n="Counter Button: Finish Ticket"><span class="textBtn">Finish</span></ng-container>

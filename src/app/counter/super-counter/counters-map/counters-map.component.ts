@@ -17,16 +17,18 @@ export class CountersMapComponent implements OnInit {
 
   columnConfig: number = 8;
   selectedCounter: counterDetail;
-  serveLongConfig: number = 3456345663565;
+  serveLongConfig: number = 99856345665;
   countersMap$ = this.counterListService.counterList$.map(counterList => {
     counterList.sort((a, b) => {
       if (Number(a.counterNum) || Number(b.counterNum))
         return Number(a.counterNum) > Number(b.counterNum) ? 1 : -1;
-    }).map(c => {
-      if (c)
-        c['serveLong'] = c.serveTime > this.serveLongConfig;
-      return c;
     })
+    // has error
+    // .map(c => {
+    //   if (c)
+    //     c['serveLong'] = c.serveTime > this.serveLongConfig;
+    //   return c;
+    // })
     let countersMap = [];
     while (counterList.length) countersMap.push(counterList.splice(0, this.columnConfig));
     while (countersMap[countersMap.length - 1].length < countersMap[0].length) {
@@ -54,11 +56,11 @@ export class CountersMapComponent implements OnInit {
     let cells = document.getElementsByClassName('counterCell');
     if (cells)
       for (let i = 0; i < cells.length; i++) {
-        cells[i].classList.remove('active');
+        cells[i].classList.remove('activated');
       }
     let cell = document.getElementById(counter.counterName);
     if (cell)
-      cell.classList.add('active')
+      cell.classList.add('activated')
   }
 
 }

@@ -57,10 +57,8 @@ export class SupperCounterTicketService {
       //     this.superCounterService.SetAutoNext(false);
       //     return;
       // }
-      const t = w.ticketsToArray[0];
-      if (!t) return;
-
-      const ticket = new Ticket(t);
+      const ticket = w.waiting.GetFirstTicket();
+      if (!ticket) return;
 
       // const lastQueueUpdate = w.LastUpdate;
       this.TriggerAction("call", ticket, this.counterID).subscribe(_ => {
