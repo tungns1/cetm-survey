@@ -1,9 +1,10 @@
 import {
   Component, Directive, Input, HostListener,
-  Output, EventEmitter
+  Output, EventEmitter, Optional, Inject,
+  OnInit
 } from '@angular/core';
 
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 
 @Directive({
   selector: '[appConfirm]'
@@ -15,12 +16,18 @@ export class ConfirmDirective {
   ) { }
 
   @Input() appConfirm: string;
+  @Input() width: string = '450px';
+  @Input() platform: 'mobile' | 'web' = 'web';
   @Output() confirm = new EventEmitter();
   @HostListener("click", ["$event"])
   onClick(e: Event) {
     e.preventDefault();
+    let data = {
+      platform: this.platform
+    }
     const config = new MatDialogConfig();
-    config.width = '450px';
+    config.width = this.width;
+    config.data = data;
     const dialog = this.mdDialog.open(AppConfirmDialog, config)
     dialog.componentInstance.message = this.appConfirm || "Are you sure?";
     dialog.afterClosed().subscribe(result => {
@@ -34,17 +41,32 @@ export class ConfirmDirective {
 @Component({
   selector: 'app-confirm-dialog',
   template: `
-  <div class="center margin-20-0" style="font-size: 13px">{{message}}</div>
-  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-20-0">
-    <button fxFlex="20%" class="uppercase btnClear" (click)="dialogRef.close(true)" i18n="Confirm Yes">Yes</button>
-    <button fxFlex="20%" class="uppercase btnFill" (click)="dialogRef.close(false)" i18n="Confirm No">No</button>
+  <div *ngIf="dialogData.platform == 'web'">
+    <div class="center margin-20-0" style="font-size: 13px">{{message}}</div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" class="margin-20-0">
+      <button fxFlex="20%" class="uppercase btnClear" (click)="dialogRef.close(true)" i18n="Confirm Yes">Yes</button>
+      <button fxFlex="20%" class="uppercase btnFill" (click)="dialogRef.close(false)" i18n="Confirm No">No</button>
+    </div>
+  </div>
+  <div *ngIf="dialogData.platform == 'mobile'" class="padding-20">
+    <div class="center margin-20-0" style="font-size: 33px">{{message}}</div>
+    <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center center" class="margin-40-0">
+      <button fxFlex="35%" class="uppercase btnClear" (click)="dialogRef.close(true)" i18n="Confirm Yes" style="height: 70px; font-size: 33px">Yes</button>
+      <button fxFlex="35%" class="uppercase btnFill" (click)="dialogRef.close(false)" i18n="Confirm No" style="height: 70px; font-size: 33px">No</button>
+    </div>
   </div>
   `
 })
 export class AppConfirmDialog {
   constructor(
+    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
     protected dialogRef: MatDialogRef<AppConfirmDialog>
   ) { }
 
   @Input() message: string;
+  platform: 'mobile' | 'web' = this.dialogData['platform']
+
+  ngOnInit() {
+    console.log(this.platform)
+  }
 }

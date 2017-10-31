@@ -5,8 +5,7 @@
       <span class="totalCount">({{ticketsWaitingCount$ | async}})</span>
     </div>
     <div class="searchBar">
-      <input #waitingTicket type="text" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('waiting', $event.target.value)" class="ctrlInput">
-      <!-- <img src="./assets/img/icon/search.png" (click)="search(waitingTicket.value)" alt="Search" class="iconSearch"> -->
+      <input #waitingTicket type="number" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('waiting', $event.target.value)" class="ctrlInput">
     </div>
     <div class="queue">
       <div fxLayout="row" class="headerTable">
@@ -14,13 +13,13 @@
         <span fxFlex="50%" class="cell" i18n>Phone Number</span>
         <span fxFlex class="cell" i18n>Waiting Time</span>
       </div>
-      <div fxLayout="row" class="row" *ngFor="let ticket of ticketsWaiting$ | async" [ticket-detail]="ticket" [ticket-highlight]="ticket">
+      <div fxLayout="row" class="row" *ngFor="let ticket of ticketsWaiting$ | async">
         <div fxFlex class="cell">
           <ticket-icon [ticket]="ticket" width="30px"></ticket-icon>
-          <span>{{ticket.ticketNum}}</span>
+          <span>{{ticket.cnum}}</span>
         </div>
-        <span fxFlex="50%" class="cell">{{ticket.cusPhoneNum}}</span>
-        <timer fxFlex class="cell" [start]="ticket.createTime" [timeWarning]="maxWaitingMinute"></timer>
+        <span fxFlex="50%" class="cell">{{ticket.customer.phone_number}}</span>
+        <timer fxFlex class="cell" [start]="ticket.ctime" [timeWarning]="maxWaitingMinute"></timer>
       </div>
     </div>
   </div>
@@ -32,8 +31,7 @@
       <span class="totalCount">({{ticketsCanceledCount$ | async}})</span>
     </div>
     <div class="searchBar">
-      <input #canceledTicket type="text" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('canceled', $event.target.value)" class="ctrlInput">
-      <!-- <img src="./assets/img/icon/search.png" (click)="search(ticket.value)" alt="Search" class="iconSearch"> -->
+      <input #canceledTicket type="number" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('canceled', $event.target.value)" class="ctrlInput">
     </div>
     <div class="queue">
       <div fxLayout="row" class="headerTable">
@@ -41,13 +39,14 @@
         <span fxFlex="50%" class="cell" i18n>Phone Number</span>
         <span fxFlex class="cell" i18n>Cancelled At</span>
       </div>
-      <div fxLayout="row" class="row" *ngFor="let ticket of ticketsCanceled$ | async" [ticket-detail]="ticket" [ticket-highlight]="ticket">
+      <div fxLayout="row" class="row" *ngFor="let ticket of ticketsCanceled$ | async" 
+        appConfirm="Do you want to restore this ticket?" width="850px" platform="mobile" (confirm)="restore(ticket)" i18n-appConfirm>
         <div fxFlex class="cell">
           <ticket-icon [ticket]="ticket" width="30px"></ticket-icon>
-          <span>{{ticket.ticketNum}}</span>
+          <span>{{ticket.cnum}}</span>
         </div>
-        <span fxFlex="50%" class="cell">{{ticket.cusPhoneNum}}</span>
-        <span fxFlex class="cell">{{ticket.calceledAt | localDayTime}}</span>
+        <span fxFlex="50%" class="cell">{{ticket.customer.phone_number}}</span>
+        <span fxFlex class="cell">{{ticket.mtime | localDayTime}}</span>
       </div>
     </div>
   </div>

@@ -79,7 +79,7 @@ export class SupperCounterTicketService {
     });
   }
 
-  TriggerAction(action: TicketActionName, ticket: Ticket, counterID: string) {
+  TriggerAction(action: TicketActionName, ticket: Ticket, counterID?: string) {
     return this.manager.Work(action, ticket, {
       record_transaction: this.settingService.EnableRecordTransaction,
       platform: this.platform,
