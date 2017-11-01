@@ -8,7 +8,8 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-import { SharedModule, SuperCounterSettingService, CounterSettingService, CounterSessionValidationGuard } from '../shared';
+import { SharedModule, SuperCounterSettingService } from '../shared';
+import { SessionValidationGuard, AuthService, RuntimeEnvironment } from '../shared/shared'
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
 import { TicketModule } from '../workspace/ticket/ticket.module';
@@ -30,28 +31,40 @@ import { SuperCounterSettingComponent } from './super-counter-setting/super-coun
  * Check setting before redirect
  */
 @Injectable()
-export class SuperCounterSettingGuard implements CanActivate {
+export class SuperCounterGuard extends SessionValidationGuard implements CanActivate {
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private settingService: SuperCounterSettingService
+    router: Router,
+    authService: AuthService,
+    private settingService: SuperCounterSettingService,
+    env: RuntimeEnvironment
   ) {
-
+    super(router, authService, env);
   }
-
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-      if (this.settingService.Check()) {
-        return true;
+    state: RouterStateSnapshot) {
+    if (this.settingService.Check()) {
+      
+      return super.canActivate(next, state);
+    }
+    this.router.navigate(['/counter/welcome'], {
+      queryParams: {
+        redirect: this.settingService.Check() ? '/counter/super/main' : '/counter/super/setting',
+        setting: '/counter/super/setting'
       }
-      this.router.navigate(['/counter/welcome'], {
-        queryParams: {
-          redirect: '/counter/super/main',
-          setting: '/counter/super/setting'
-        }
-      });
-      return false;
+    });
+    return false;
+  }
+
+  GetAuthExtra() {
+    return {
+      branch_code: this.settingService.Data.branch_code,
+      auto_login: true
+    }
+  }
+
+  GetScope() {
+    return "staff";
   }
 
 }
@@ -67,8 +80,7 @@ const routing = RouterModule.forChild([
     path: 'main',
     component: SuperCounterComponent,
     canActivate: [
-      SuperCounterSettingGuard,
-      CounterSessionValidationGuard
+      SuperCounterGuard
     ]
   },
   {
@@ -89,8 +101,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatCheckboxModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatProgressBarModule, MatTabsModule,
     TicketModule, WelcomeModule
-    // QueueModule,
-    // StatModule
   ],
   declarations: [
     SuperCounterComponent, CounterDetailComponent, SuperCounterActionComponent,
@@ -103,8 +113,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
     },
-    SuperCounterSettingGuard
-
+    SuperCounterGuard
   ]
 })
 export class SuperCounterModule { }

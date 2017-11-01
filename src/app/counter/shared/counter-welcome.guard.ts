@@ -35,8 +35,14 @@ export class CounterSessionValidationGuard extends SessionValidationGuard {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
-    return super.canActivate(next, state);
+    state: RouterStateSnapshot) {
+      // if (this.counterService.Check()) {
+
+        return super.canActivate(next, state);
+      // }
+      // redirect
+
+
   }
 
 }

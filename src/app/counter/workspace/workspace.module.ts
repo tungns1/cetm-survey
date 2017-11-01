@@ -5,6 +5,7 @@ import {
     MatToolbarModule, MatProgressBarModule, MatTabsModule,
     MatProgressSpinnerModule
 } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 import { SharedModule, CounterSessionValidationGuard } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
@@ -12,7 +13,8 @@ import { ServingModule } from './serving/serving.module';
 import { MiniModeFormModule } from './setting/minimode-form.module';
 import { WelcomeModule } from '../welcome/welcome.module';
 
-import { CounterSettingService } from '../shared/counter-setting.service'
+import { CounterSettingService } from '../shared';
+import { SessionValidationGuard, RuntimeEnvironment, AuthService } from '../shared/shared'
 
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
@@ -24,29 +26,41 @@ import { workspaceServiceProvider } from './shared/workspace.provider';
  * Check setting before redirect
  */
 @Injectable()
-export class CounterSettingGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private settingService: CounterSettingService
-  ) {
+export class CounterWorkspaceGuard extends SessionValidationGuard implements CanActivate {
+    constructor(
+        router: Router,
+        authService: AuthService,
+        private settingService: CounterSettingService,
+        env: RuntimeEnvironment
+    ) {
+        super(router, authService, env);
+    }
 
-  }
-
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-      if (this.settingService.Check()) {
-        return true;
-      }
-      this.router.navigate(['/counter/welcome'], {
-        queryParams: {
-          redirect: '/counter/workspace/main',
-          setting: '/counter/workspace/setting'
+    canActivate(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot) {
+        if (this.settingService.Check()) {
+            return super.canActivate(next, state);
         }
-      });
-      return false;
-  }
+        this.router.navigate(['/counter/welcome'], {
+            queryParams: {
+                redirect: this.settingService.Check() ? '/counter/workspace/main' : '/counter/workspace/setting',
+                setting: '/counter/workspace/setting'
+            }
+        });
+        return false;
+    }
+
+    GetAuthExtra() {
+        return {
+            branch_code: this.settingService.Data.branch_code,
+            auto_login: true
+        }
+    }
+
+    GetScope() {
+        return "staff";
+    }
 
 }
 
@@ -56,16 +70,16 @@ export class CounterSettingGuard implements CanActivate {
 
 const routing = RouterModule.forChild([
     {
-      path: '',
-      pathMatch: 'full',
-      redirectTo: 'main'
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'main'
     },
     {
         path: 'main', // /counter/workspace/main
         component: WorkspaceComponent,
         canActivate: [
-            CounterSettingGuard,
-            CounterSessionValidationGuard
+            CounterWorkspaceGuard,
+            // CounterSessionValidationGuard
         ]
     },
     {
@@ -86,6 +100,6 @@ const routing = RouterModule.forChild([
         WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent,
         SettingComponent
     ],
-    providers: [workspaceServiceProvider, CounterSettingGuard]
+    providers: [workspaceServiceProvider, CounterWorkspaceGuard]
 })
 export class WorkspaceModule { }

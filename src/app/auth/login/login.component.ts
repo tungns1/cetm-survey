@@ -33,10 +33,10 @@ export class LoginComponent implements OnInit {
   message = '';
 
 
-  query = this.route.snapshot.queryParamMap;
-
+  
   ngOnInit() {
-    const autoLogin = this.query.get("auto_login") === "true" ? true : false;
+    const query = this.route.snapshot.queryParamMap;    
+    const autoLogin = query.get("auto_login") === "true" ? true : false;
     if (autoLogin) {
       let user = CurrentUser();
       if (user) {
@@ -47,13 +47,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(auto?: boolean) {
+    const query = this.route.snapshot.queryParamMap;    
     const userInput = this.loginForm.value;
     const data = {
       username: userInput.username,
       password: userInput.password,
-      scope: this.query.get("scope"),
+      scope: query.get("scope"),
       auto_login: auto,
-      branch_code: this.query.get("branch_code"),
+      branch_code: query.get("branch_code"),
     }
 
     this.authService.Login(data).subscribe((v) => {
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl(redirect);
       }
       else {
-        const redirect = this.query.get("redirect") || "/";
+        const redirect = query.get("redirect") || "/";
         this.router.navigateByUrl(redirect);
       }
     }, (e: HttpError) => {

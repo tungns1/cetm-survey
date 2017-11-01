@@ -19,11 +19,11 @@ export class WelcomeComponent implements OnInit {
 
   settingURL$ = this.route.queryParams.map(q => q['setting']);
   workingURL: string = '';
-  ok: boolean = false;
+  // ok: boolean = false;
   waitingTime = 3000;
 
   ngOnInit() {
-    
+
     // this.route.queryParams.subscribe(p => {
     //   this.settingURL = p.setting;
     //   this.workingURL = p.redirect;
@@ -33,7 +33,7 @@ export class WelcomeComponent implements OnInit {
     //   // else ok = this.settingService.Check();
 
     //   if (this.ok) {
-    //     setTimeout(_ => this.Workspace(), this.waitingTime);
+    setTimeout(_ => this.Workspace(), this.waitingTime);
     //   } else {
     //     this.router.navigate([this.settingURL], {
     //       relativeTo: this.route
@@ -42,10 +42,11 @@ export class WelcomeComponent implements OnInit {
     // });
   }
 
-  // Workspace() {
-  //   this.router.navigate([this.workingURL], {
-  //     relativeTo: this.route
-  //   });
-  // }
+  Workspace() {
+    this.workingURL = this.route.snapshot.queryParams['redirect'];
+    this.router.navigate([this.workingURL], {
+      relativeTo: this.route
+    });
+  }
 
 }
