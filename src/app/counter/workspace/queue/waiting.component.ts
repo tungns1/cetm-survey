@@ -19,8 +19,8 @@ export class WaitingComponent {
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
 
     ngOnInit() {
-        this.waiting$.subscribe(w => {
-            console.log(w)
-        })
+        // this.waiting$.subscribe(w => {
+        //     console.log(w)
+        // })
     }
 }

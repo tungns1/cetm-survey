@@ -17,17 +17,13 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-  settingURL: string = '';
+  settingURL$ = this.route.queryParams.map(q => q['setting']);
   workingURL: string = '';
   ok: boolean = false;
   waitingTime = 3000;
 
   ngOnInit() {
-
-    this.route.queryParams.subscribe(p => {
-      console.log(p);
-
-    })
+    
     // this.route.queryParams.subscribe(p => {
     //   this.settingURL = p.setting;
     //   this.workingURL = p.redirect;

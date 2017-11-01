@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-import { SharedModule, SuperCounterSettingService, CounterSettingService } from '../shared';
+import { SharedModule, SuperCounterSettingService, CounterSettingService, CounterSessionValidationGuard } from '../shared';
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
 import { TicketModule } from '../workspace/ticket/ticket.module';
@@ -26,7 +26,6 @@ import { SuperCounterActionComponent } from './super-counter-action/super-counte
 import { QueueComponent } from './queue/queue.component';
 import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
 
-
 /**
  * Check setting before redirect
  */
@@ -43,11 +42,13 @@ export class SuperCounterSettingGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
+      if (this.settingService.Check()) {
+        return true;
+      }
       this.router.navigate(['/counter/welcome'], {
         queryParams: {
-          redirect: this.settingService.Check() ? '../main' : '../setting',
-          setting: '../setting',
-          ok: this.settingService.Check()
+          redirect: '/counter/super/main',
+          setting: '/counter/super/setting'
         }
       });
       return false;
@@ -65,7 +66,10 @@ const routing = RouterModule.forChild([
   {
     path: 'main',
     component: SuperCounterComponent,
-    canActivate: [SuperCounterSettingGuard]
+    canActivate: [
+      SuperCounterSettingGuard,
+      CounterSessionValidationGuard
+    ]
   },
   {
     path: 'setting',

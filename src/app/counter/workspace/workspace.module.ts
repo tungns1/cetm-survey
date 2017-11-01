@@ -1,11 +1,11 @@
 import { NgModule, Injectable } from '@angular/core';
-import { Routes, RouterModule, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import {
     MatCheckboxModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatProgressBarModule, MatTabsModule,
     MatProgressSpinnerModule
 } from '@angular/material';
-import { SharedModule } from '../shared';
+import { SharedModule, CounterSessionValidationGuard } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
@@ -20,36 +20,53 @@ import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
 import { SettingComponent } from './setting/setting.component';
 import { workspaceServiceProvider } from './shared/workspace.provider';
 
+/**
+ * Check setting before redirect
+ */
 @Injectable()
-class workspaceConfig implements Resolve<any> {
-    constructor(private settingService: CounterSettingService) { }
+export class CounterSettingGuard implements CanActivate {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private settingService: CounterSettingService
+  ) {
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-        let result = {
-            ok: this.settingService.Check(),
-            setting: '../setting',
-            redirect: this.settingService.Check() ? '../main' : '../setting'
+  }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+      if (this.settingService.Check()) {
+        return true;
+      }
+      this.router.navigate(['/counter/welcome'], {
+        queryParams: {
+          redirect: '/counter/workspace/main',
+          setting: '/counter/workspace/setting'
         }
-        return result;
-    }
+      });
+      return false;
+  }
+
 }
 
-export function loadWelcome() {
-  return WelcomeModule;
-}
+// export function loadWelcome() {
+//   return WelcomeModule;
+// }
 
 const routing = RouterModule.forChild([
     {
-        path: '',
-        resolve: {
-            super: workspaceConfig
-        },
-        runGuardsAndResolvers: 'always',
-        loadChildren: loadWelcome,
+      path: '',
+      pathMatch: 'full',
+      redirectTo: 'main'
     },
     {
         path: 'main', // /counter/workspace/main
-        component: WorkspaceComponent
+        component: WorkspaceComponent,
+        canActivate: [
+            CounterSettingGuard,
+            CounterSessionValidationGuard
+        ]
     },
     {
         path: 'setting', // /counter/workspace/setting
@@ -69,6 +86,6 @@ const routing = RouterModule.forChild([
         WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent,
         SettingComponent
     ],
-    providers: [workspaceServiceProvider, workspaceConfig]
+    providers: [workspaceServiceProvider, CounterSettingGuard]
 })
 export class WorkspaceModule { }

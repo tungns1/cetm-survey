@@ -24,16 +24,16 @@ const children: Routes = [
   {
     path: "workspace",
     loadChildren: loadWorkspace,
-    canActivate: [
-      CounterSessionValidationGuard
-    ]
+    // canActivate: [
+    //   CounterSessionValidationGuard
+    // ]
   },
   {
     path: "super",
     loadChildren: loadSuperCounter,
-    canActivate: [
-      CounterSessionValidationGuard
-    ]
+    // canActivate: [
+    //   CounterSessionValidationGuard
+    // ]
   },
   {
     path: "",
