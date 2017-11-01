@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, CounterSettingService, SuperCounterSettingService } from '../shared';
+import { AuthService } from '../shared';
 
 @Component({
   selector: 'app-welcome',
@@ -12,8 +12,6 @@ export class WelcomeComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private settingService: CounterSettingService,
-    private superCounterSettingService: SuperCounterSettingService,
     private authService: AuthService
   ) {
 
@@ -21,33 +19,37 @@ export class WelcomeComponent implements OnInit {
 
   settingURL: string = '';
   workingURL: string = '';
+  ok: boolean = false;
   waitingTime = 3000;
-  // settingURL: string;
 
   ngOnInit() {
+
     this.route.queryParams.subscribe(p => {
-      this.settingURL = '..' + p.setting;
-      this.workingURL = '..' + p.redirect;
-      let ok;
+      console.log(p);
 
-      if (p.redirect === '/superCounter') ok = this.superCounterSettingService.Check();
-      else ok = this.settingService.Check();
-      
-      if (ok) {
-        setTimeout(_ => this.Workspace(), this.waitingTime);
-      } else {
-        this.router.navigate([this.settingURL], {
-          relativeTo: this.route
-        });
-      }
-    });
+    })
+    // this.route.queryParams.subscribe(p => {
+    //   this.settingURL = p.setting;
+    //   this.workingURL = p.redirect;
+    //   this.ok = p.ok;
+
+    //   // if (p.redirect === '/superCounter') ok = this.superCounterSettingService.Check();
+    //   // else ok = this.settingService.Check();
+
+    //   if (this.ok) {
+    //     setTimeout(_ => this.Workspace(), this.waitingTime);
+    //   } else {
+    //     this.router.navigate([this.settingURL], {
+    //       relativeTo: this.route
+    //     });
+    //   }
+    // });
   }
 
-  Workspace() {
-    this.router.navigate([this.workingURL], {
-      relativeTo: this.route,
-      queryParams: this.settingService.Data
-    });
-  }
+  // Workspace() {
+  //   this.router.navigate([this.workingURL], {
+  //     relativeTo: this.route
+  //   });
+  // }
 
 }

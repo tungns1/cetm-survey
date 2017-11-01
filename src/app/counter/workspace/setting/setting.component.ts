@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CounterSettingService } from '../shared';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { AppStorage } from '../../shared';
 
 @Component({
@@ -14,6 +14,7 @@ export class SettingComponent implements OnInit {
   constructor(
     private counterSetting: CounterSettingService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -41,7 +42,9 @@ export class SettingComponent implements OnInit {
     if (newValue.branch_code !== this.value.branch_code || newValue.counter_code !== this.value.counter_code) {
       AppStorage.ClearToken();
     }
-    this.router.navigate(['../counter/workspace'])
+    this.router.navigate(['../main'], {
+      relativeTo: this.route
+    });
   }
 
 }

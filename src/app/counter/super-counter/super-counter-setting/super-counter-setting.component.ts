@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { SuperCounterSettingService } from '../shared';
-import { Router } from '@angular/router'
+import { SuperCounterSettingService } from '../../shared';
+import { Router, ActivatedRoute } from '@angular/router'
 import { AppStorage } from '../../shared';
 
 @Component({
@@ -14,6 +14,7 @@ export class SuperCounterSettingComponent implements OnInit {
   constructor(
     private superCounterSetting: SuperCounterSettingService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -36,7 +37,9 @@ export class SuperCounterSettingComponent implements OnInit {
     if (newValue.branch_code !== this.value.branch_code) {
       AppStorage.ClearToken();
     }
-    this.router.navigate(['../counter/superCounter'])
+    this.router.navigate(['../main'], {
+      relativeTo: this.route
+    });
   }
 
 }
