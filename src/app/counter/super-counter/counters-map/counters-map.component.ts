@@ -15,10 +15,14 @@ export class CountersMapComponent implements OnInit {
     private superCounterService: SuperCounterService,
   ) { }
 
-  columnConfig: number = 8;
+  // columnConfig: number = 8;
+  columnConfig: number = 3;
   selectedCounter: counterDetail;
   serveLongConfig: number = 99856345665;
   countersMap$ = this.counterListService.counterList$.map(counterList => {
+    while (this.columnConfig < counterList.length && Math.ceil(counterList.length / parseFloat(this.columnConfig.toString())) > this.columnConfig - 1) {
+      this.columnConfig++;
+    }
     counterList.sort((a, b) => {
       if (Number(a.counterNum) || Number(b.counterNum))
         return Number(a.counterNum) > Number(b.counterNum) ? 1 : -1;

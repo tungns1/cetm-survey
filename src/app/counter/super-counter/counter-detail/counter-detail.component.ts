@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Ticket } from '../../../shared/model/house'
+import { Ticket } from '../../../shared/model/house';
 import { SuperCounterService } from '../shared/service';
+import { ProjectConfig } from '../../shared'
 
 @Component({
   selector: 'app-counter-detail',
@@ -17,6 +18,7 @@ export class CounterDetailComponent implements OnInit {
   // ticket$: BehaviorSubject<Ticket> ;
   ticket$ = new BehaviorSubject<Ticket>(null)
   counterDetail$ = this.superCounterService.SelectedCounter$
+  maxServingMinute = ProjectConfig.service.max_serving_minute;
 
   ngOnInit() {
     this.counterDetail$.subscribe(d => {

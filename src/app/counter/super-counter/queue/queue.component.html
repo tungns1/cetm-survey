@@ -19,7 +19,7 @@
           <span>{{ticket.cnum}}</span>
         </div>
         <span fxFlex="50%" class="cell">{{ticket.customer.phone_number}}</span>
-        <timer fxFlex class="cell" [start]="ticket.ctime" [timeWarning]="maxWaitingMinute"></timer>
+        <timer fxFlex class="cell" [start]="ticket.mtime" [timeWarning]="maxWaitingMinute"></timer>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
         <span fxFlex class="cell" i18n>Cancelled At</span>
       </div>
       <div fxLayout="row" class="row" *ngFor="let ticket of ticketsCanceled$ | async" 
-        appConfirm="Do you want to restore this ticket?" width="850px" platform="mobile" (confirm)="restore(ticket)" i18n-appConfirm>
+        appConfirm="Do you want to restore this ticket?" width="550px" (confirm)="restore(ticket)" i18n-appConfirm>
         <div fxFlex class="cell">
           <ticket-icon [ticket]="ticket" width="30px"></ticket-icon>
           <span>{{ticket.cnum}}</span>

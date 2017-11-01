@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RuntimeEnvironment } from '../../env/';
 
 @Component({
@@ -14,9 +14,5 @@ export class HeaderComponent {
 
     moduleName$ = this.env.Auth.Data$.map(a => a.module);
     subModuleName$ = this.env.Auth.Data$.map(a => a.sub_module);
-    @Input() height: number = 38;
 
-    ngOnInit() {
-        document.getElementById('header').style.height = this.height.toString() + 'px';
-    }
 }

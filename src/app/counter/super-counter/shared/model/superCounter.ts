@@ -136,7 +136,7 @@ export class counterDetail {
     }
 
     get createTime() {
-        return this.serving == null ? '' : this.serving.ctime;
+        return this.serving == null ? '' : this.serving.mtime;
     }
 
     get serveTime() {

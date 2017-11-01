@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { QueueService, SupperCounterTicketService } from '../shared/service';
-import { Ticket } from '../../../shared/model/house'
+import { Ticket } from '../../../shared/model/house';
+import { ProjectConfig } from '../../shared';
 
 @Component({
   selector: 'app-queue',
@@ -15,6 +16,7 @@ export class QueueComponent implements OnInit {
     private ticketService: SupperCounterTicketService,
   ) { }
 
+  maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
   searchWaiting$ = new BehaviorSubject<string>('');
   searchCanceled$ = new BehaviorSubject<string>('');
 
