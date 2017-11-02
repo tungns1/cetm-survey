@@ -1,8 +1,8 @@
 @import '../../shared/style.scss';
 #queueContainer {
-    padding: 50px;
+    padding: 3vw;
     height: 100%;
-    // font-size: $font-size-default * 2;
+    font-size: $font-size-default * 1.5;
     .border {
         height: 100%;
         position: relative;
@@ -15,12 +15,12 @@
         }
         .searchBar{
             height: 40px;
-            padding: 20px;
+            padding: 1.5vw;
             .ctrlInput{
                 margin: 0px;
                 height: 100%;
                 text-indent: 7px;
-                // font-size: $font-size-default * 2;
+                font-size: $font-size-default * 1.5;
             }
         }
         .headerTable {
@@ -35,15 +35,15 @@
         }
         .cell {
             text-align: center;
-            margin: 15px;
-            .icon {
-                width: 15px;
-                float: left;
-                margin: 0 10px;
-            }
-            .ticketNum {
-                float: left;
-            }
+            margin: 17px 0;
+            // .icon {
+            //     width: 15px;
+            //     float: left;
+            //     margin: 0 10px;
+            // }
+            // .ticketNum {
+            //     float: left;
+            // }
         }
         .inputSearch {
             position: absolute;
@@ -67,6 +67,6 @@
     .queue {
         overflow: auto;
         width: 100%;
-        height: 88%;
+        height: 66vh;
     }
 }
