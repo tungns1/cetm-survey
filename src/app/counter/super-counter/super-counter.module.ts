@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import {
   MatCheckboxModule, MatInputModule, MatFormFieldModule,
-  MatToolbarModule, MatProgressBarModule, MatTabsModule
+  MatToolbarModule, MatProgressBarModule, MatTabsModule,
+  // MatListModule
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';

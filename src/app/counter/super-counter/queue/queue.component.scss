@@ -69,5 +69,11 @@
         overflow: auto;
         width: 100%;
         height: 65vh;
+        .item{
+            &:active {
+                background-color: $background-color;
+                color: #fff;
+            }
+        }
     }
 }
