@@ -1,6 +1,6 @@
 @import '../../shared/style.scss';
 #queueContainer {
-    padding: 2vw;
+    padding: 3vw;
     height: 100%;
     font-size: $font-size-default * 1.5;
     .border {
@@ -18,7 +18,8 @@
             padding: 3%;
             .ctrlInput{
                 margin: 0px;
-                height: 94%;
+                width: -webkit-fill-available;
+                height: inherit;
                 text-indent: 7px;
                 font-size: $font-size-default * 1.5;
             }
