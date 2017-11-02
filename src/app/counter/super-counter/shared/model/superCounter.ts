@@ -136,11 +136,11 @@ export class counterDetail {
     }
 
     get createTime() {
-        return this.serving == null ? '' : this.serving.mtime;
+        return this.serving == null ? '' : this.serving.ctime;
     }
 
     get serveTime() {
-        return this.serving == null ? '' : this.serving.mtime
+        return this.serving == null ? '' : this.serving.state === 'serving' ? this.serving.mtime : '';
     }
 
     get phoneNum() {

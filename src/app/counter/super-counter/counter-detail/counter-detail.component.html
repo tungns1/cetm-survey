@@ -4,19 +4,19 @@
             <span>{{counterDetail.counterName}}</span>
             <span *ngIf="counterDetail.ticketNum">: {{counterDetail.phoneNum}}</span>
         </div>
-        <div fxFlex="45" fxLayout="row" class="padding-20">
+        <div fxFlex="45" fxLayout="row" class="container">
             <div fxFlex *ngIf="counterDetail.ticketNum" class="ticketNum center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Ticket</span>
-                <div fxFlex>
-                    <ticket-icon [ticket]="ticket$ | async" width="50px"></ticket-icon>
-                    <span class="content">{{counterDetail.ticketNum}}</span>
+                <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content">
+                    <ticket-icon fxFlex="50px" [ticket]="ticket$ | async" width="50px"></ticket-icon>
+                    <span fxFlex>{{counterDetail.ticketNum}}</span>
                 </div>
             </div>
             <div fxFlex *ngIf="counterDetail.ticketNum" class="timing center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Time</span>
-                <div fxFlex class="content">
-                    <img class="icon" src="./assets/img/icon/time.png" alt="Time">
-                    <timer class="number" [start]="counterDetail.createTime" [timeWarning]="maxServingMinute"></timer>
+                <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content">
+                    <img  fxFlex="50px"class="icon" src="./assets/img/icon/time.png" alt="Time">
+                    <timer fxFlex [start]="counterDetail.createTime" [timeWarning]="maxServingMinute"></timer>
                 </div>
             </div>
         </div>

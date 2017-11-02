@@ -22,6 +22,8 @@ export class TimerComopnent {
     @Input() timeWarning: number = 1;
     @Input() start: number;
 
+    ///////mark//////////
+
     ngAfterViewInit() {
         this.clear();
         let ctime = 0;
