@@ -4,7 +4,7 @@
     height: 100%;
     font-size: $font-size-default * 1.5;
     .border {
-        height: 100%;
+        height: 99%;
         position: relative;
         .tableName{
             height: 40px;
@@ -68,7 +68,7 @@
     .queue {
         overflow: scroll;
         width: 100%;
-        height: 65vh;
+        height: 60vh;
         .item{
             &:active {
                 background-color: $key-color;

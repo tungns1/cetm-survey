@@ -20,7 +20,7 @@ export class CountersMapComponent implements OnInit {
   selectedCounter: counterDetail;
   serveLongConfig: number = 99856345665;
   countersMap$ = this.counterListService.counterList$.map(counterList => {
-    while (this.columnConfig < counterList.length && Math.ceil(counterList.length / parseFloat(this.columnConfig.toString())) > this.columnConfig - 1) {
+    while (this.columnConfig < counterList.length && Math.ceil(counterList.length / parseFloat(this.columnConfig.toString())) >= this.columnConfig - 1) {
       this.columnConfig++;
     }
     counterList.sort((a, b) => {
