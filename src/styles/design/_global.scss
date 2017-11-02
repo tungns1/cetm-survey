@@ -15,30 +15,60 @@
     cursor: pointer;
     outline: none;
     text-transform: uppercase;
+    &:hover { 
+        background-color: rgba(148, 148, 148, 0.1);
+    }
+    &:active{
+        background-color: rgba(148, 148, 148, 0.4);
+    }
 }
 
 .btnFill {
     @extend .btnClear;
     background-color: $key-color;
     color: #fff;
+    &:hover { 
+        background-color: $key-color - 10;
+    }
+    &:active{
+        background-color: $key-color - 40;
+    }
 }
 
 .btnRed {
     @extend .btnFill;
     background-color: #f53e30;
     border: 1px solid #f53e30;
+    &:hover { 
+        background-color: #f53e30 - 10;
+    }
+    &:active{
+        background-color: #f53e30 - 40;
+    }
 }
 
 .btnGreen {
     @extend .btnFill;
     background-color: #01947a;
     border: 1px solid #01947a;
+    &:hover { 
+        background-color: #01947a - 10;
+    }
+    &:active{
+        background-color: #01947a - 40;
+    }
 }
 
 .btnGrey {
     @extend .btnClear;
     background-color: #dee0df;
     border: 1px solid #dee0df;
+    &:hover { 
+        background-color: #dee0df - 10;
+    }
+    &:active{
+        background-color: #dee0df - 40;
+    }
 }
 
 // End of buttons
