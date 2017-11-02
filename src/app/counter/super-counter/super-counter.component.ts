@@ -21,6 +21,10 @@ export class SuperCounterComponent implements OnInit {
     return "NETWORK " + m;
   });
 
+  config = {
+    threshold: 25,
+  }
+
   ngOnInit() {
     // this.composeService.enable();
     this.superCounterService.enable();

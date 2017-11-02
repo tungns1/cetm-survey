@@ -20,15 +20,18 @@ export class TimerComopnent {
     private native: HTMLElement = this.ref.nativeElement;
 
     @Input() timeWarning: number = 1;
-    @Input() start: number;
+    @Input() set start(t: number) {
+        this._start = t;
+        this.ngAfterViewInit();
+    }
 
-    ///////mark//////////
+    _start: number;
 
     ngAfterViewInit() {
         this.clear();
         let ctime = 0;
-        if (this.start) {
-            ctime = this.getCTime(this.start, this.timeWarning);
+        if (this._start) {
+            ctime = this.getCTime(this._start, this.timeWarning);
             this.subscription = this.oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.timeWarning));
         } else if (this.params) {
             ctime = this.getCTime(this.params.data.mtime, this.params.timeWarning);
