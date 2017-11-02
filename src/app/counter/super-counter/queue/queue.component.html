@@ -14,7 +14,7 @@
       <span fxFlex fxFlex="30" class="cell" i18n>Waiting Time</span>
     </div>
     <div class="queue">
-      <div fxLayout="row" class="row" *ngFor="let ticket of ticketsWaiting$ | async">
+      <div fxLayout="row" class="row item" *ngFor="let ticket of ticketsWaiting$ | async">
         <ticket-icon fxFlex="10" class="margin-10-0 right" [ticket]="ticket" width="30px"></ticket-icon>
 
         <div fxLayout="row" fxFlex>

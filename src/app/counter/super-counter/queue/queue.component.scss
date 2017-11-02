@@ -19,7 +19,7 @@
             .ctrlInput{
                 margin: 0px;
                 width: -webkit-fill-available;
-                height: inherit;
+                height: -webkit-fill-available;
                 text-indent: 7px;
                 font-size: $font-size-default * 1.5;
             }
@@ -66,12 +66,12 @@
         }
     }
     .queue {
-        overflow: auto;
+        overflow: scroll;
         width: 100%;
         height: 65vh;
         .item{
             &:active {
-                background-color: $background-color;
+                background-color: $key-color;
                 color: #fff;
             }
         }
