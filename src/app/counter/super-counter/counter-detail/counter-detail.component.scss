@@ -15,12 +15,13 @@
         }
         .ticketNum,
         .timing {
-            // .title {
-            //     font-size: 150%;
-            // }
+            .title {
+                font-size: 130%;
+                margin-bottom: 10px;
+            }
             .content {
                 color: $key-color;
-                font-size: 500%;
+                font-size: 400%;
                 font-weight: $font-weight-default + 300;
                 .icon {
                     width: 50px;
