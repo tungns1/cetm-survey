@@ -12,27 +12,15 @@ import { ProjectConfig } from '../../shared'
   selector: 'app-counter-detail',
   templateUrl: './counter-detail.component.html',
   styleUrls: ['./counter-detail.component.scss'],
-  animations: [
-    trigger('loadCounter', [
-      state('in', style({ transform: 'translateX(0)' })),
-      transition('* => *', [
-        style({ transform: 'translateX(-10%)', opacity: 0 }),
-        animate(200)
-      ]),
-      // transition('* => *', [
-      //   animate(5000, style({ transform: 'translateX(10%)', opacity: 0 }))
-      // ]),
-
-      // state('out', style({ transform: 'translateX(10%)', opacity: 0 })),
-      // transition('* => *', [
-      //   style({ transform: 'translateX(0)' }),
-      //   animate(5000)
-      // ]),
-      // transition('* => *', [
-      //   animate(5000, style({ transform: 'translateX(0)' }))
-      // ])
-    ])
-  ]
+  // animations: [
+  //   trigger('loadCounter', [
+  //     state('in', style({ transform: 'translateX(0)' })),
+  //     transition('* => *', [
+  //       style({ transform: 'translateX(-10%)', opacity: 0 }),
+  //       animate(200)
+  //     ])
+  //   ])
+  // ]
 })
 export class CounterDetailComponent implements OnInit {
 
@@ -49,6 +37,14 @@ export class CounterDetailComponent implements OnInit {
     this.counterDetail$.subscribe(d => {
       if (d) {
         this.ticket$.next(d.serving ? new Ticket(d.serving) : null);
+        let counterDetail = document.getElementById('counterDetailContainer');
+        if (counterDetail) {
+          console.log(d)
+          counterDetail.classList.remove('fadeIn');
+          setTimeout(_ => {
+            counterDetail.classList.add('fadeIn');
+          })
+        }
       }
     })
   }

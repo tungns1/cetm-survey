@@ -4,6 +4,7 @@
     left: 0px;
     z-index: 20;
     outline-color: transparent;
+    background-color: black;
     .activate-button {
         position: absolute;
         top: 0px;
@@ -12,6 +13,8 @@
         width: 10vw;
         height: 10vh;
         outline-color: transparent;
+        background-color: orange;
+        opacity: 0.6;
         .enter-password {
             background: white;
             button {
