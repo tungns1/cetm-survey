@@ -6,3 +6,35 @@
         height: 92vh;
     }
 }
+.setting{
+    position: absolute;
+    bottom: 15px;
+    left: 45px;
+    z-index: 20;
+}
+.superCounterNav{
+    position: absolute;
+    bottom: 5px;
+    right: 45px;
+    z-index: 20;
+    color: $key-color;
+    // animation-name: example;
+    // animation-duration: 1s;
+    // animation-iteration-count: 1;
+}
+
+// @keyframes example {
+//     100% {motion-rotation: }
+// }
+
+@media screen and (max-width: 1030px) {
+    .superCounterNav {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1030px) {
+    .setting {
+        display: none;
+    }
+}

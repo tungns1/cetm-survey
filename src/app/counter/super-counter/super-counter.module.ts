@@ -93,7 +93,10 @@ const routing = RouterModule.forChild([
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
-  slidesPerView: 'auto'
+  slidesPerView: 'auto',
+  threshold: 25,
+  nextButton: true,
+  prevButton: true
 };
 
 @NgModule({

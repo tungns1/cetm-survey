@@ -43,15 +43,10 @@ export class SecurityPassComponent implements OnInit {
 
   onActivate() {
     if (this.checkPassword()) {
-      try {
-        this.router.navigate([this.nav], {
-          queryParamsHandling: 'preserve',
-          relativeTo: this.route
-        });
-      }
-      catch(e) {
-        alert(e);
-      }
+      this.router.navigate([this.nav], {
+        queryParamsHandling: 'preserve',
+        relativeTo: this.route
+      });
     }
   }
 
@@ -75,7 +70,7 @@ export class SecurityPassComponent implements OnInit {
       this.pass = '';
     }
   }
-
+  
   clear() {
     this.pass = '';
   }

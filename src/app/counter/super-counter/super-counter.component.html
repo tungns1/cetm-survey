@@ -8,7 +8,15 @@
         </div>
         <app-queue></app-queue>
     </swiper>
-
     <span fxFlex="5" class="center">Copyright &copy; 2017 Miraway LTD</span>
 </div>
+<div class="superCounterNav">
+    <p *ngIf="index == 0">
+        <i class="fa fa-arrow-right fa-3x" (click)="toggle()" aria-hidden="true"></i>
+    </p>
+    <p *ngIf="index == 1">
+        <i class="fa fa-arrow-left fa-3x" (click)="toggle()" aria-hidden="true"></i>
+    </p>
+</div>
+<p class="setting" (click)="backToSetting()">Setting</p>
 <app-security-pass minClick="6" minSecond="8" nav="../setting"></app-security-pass>

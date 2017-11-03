@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
+import { Router, ActivatedRoute } from '@angular/router';
+
+// import {  } from 'ngx-swiper-wrapper'
 import { SuperCounterService, SuperCounterSocket } from './shared/service';
 
 import { CountersMapComponent } from './counters-map/counters-map.component';
@@ -13,7 +16,9 @@ export class SuperCounterComponent implements OnInit {
 
   constructor(
     private superCounterService: SuperCounterService,
-    private socket: SuperCounterSocket
+    private socket: SuperCounterSocket,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   message$ = this.socket.StatusMessage$.map(m => {
@@ -21,20 +26,25 @@ export class SuperCounterComponent implements OnInit {
     return "NETWORK " + m;
   });
 
-  config = {
-    threshold: 25,
-  }
+  index: number = 0;
 
   ngOnInit() {
-    // this.composeService.enable();
     this.superCounterService.enable();
-    // this.superCounterService.Workspace$.subscribe(d => {
-    //   console.log(d)
-    // })
+  }
+
+  toggle(){
+    console.log(this.index)
+    this.index == 1 ? this.index = 0 : this.index = 1;
+  }
+
+  backToSetting(){
+    this.router.navigate(['/counter/super/setting'], {
+      queryParamsHandling: 'preserve',
+      relativeTo: this.route
+    });
   }
 
   ngOnDestroy() {
-    // this.composeService.disable();
     this.superCounterService.disable();
   }
 
