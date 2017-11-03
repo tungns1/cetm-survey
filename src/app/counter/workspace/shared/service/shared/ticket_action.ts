@@ -1,4 +1,4 @@
-export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss';
+export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create';
 
 interface ITicketAction<T> {
     action: string;

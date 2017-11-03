@@ -1,7 +1,7 @@
 @import '../../shared/style.scss';
 #actions {
-    height: 10vh;
-    padding: 1.5% 50px;
+    height: 8vh;
+    padding: 1% 50px;
     // .textBtn{
     //     font-size: 200%;
     // }
@@ -9,4 +9,7 @@
 
 button[disabled] {
     cursor: not-allowed;
+    background-color: $background-color-title;
+    border-color: $background-color-title;
+    color: $text-color;
 }

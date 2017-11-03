@@ -31,7 +31,7 @@ export class SuperCounterSocket extends AppSocket {
                 });
                 const md = this.snackBard.open(message, "Click here to Check Configuration");
                 md.onAction().first().subscribe(_ => {
-                    this.router.navigate(["/counter/superCounterSetting"]);
+                    this.router.navigate(["/counter/super/setting"]);
                 });
             }
         });

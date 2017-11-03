@@ -49,6 +49,10 @@ export class SuperCounterService {
         this.autoNext$.next(auto);
     }
 
+    serviceList$ = this.initialState$.map(initData => {
+        return initData.services;
+    })
+
     Workspace$ = this.initialState$.switchMap(s => {
         const w = new SuperCounter(s);
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")

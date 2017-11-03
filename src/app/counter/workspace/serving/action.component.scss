@@ -7,6 +7,8 @@
 
 button[disabled] {
     cursor: not-allowed;
+    // background-color: $background-color-title;
+    // color: $text-color;
 }
 
 @media only screen and (max-width: 600px) {

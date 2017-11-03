@@ -1,32 +1,36 @@
 @import '../../shared/style.scss';
-#countersMap{
+#countersMap {
     height: 60vh;
     padding: 3vw;
-    .counterCell{
+    .counterCell {
         border-radius: 3px;
         font-weight: $font-weight-default;
         cursor: pointer;
         outline: none;
         background-color: $background-color-title;
     }
-    .serving{
+    .serving {
         background-color: $key-color;
         color: #fff;
     }
-    .empty{
+    .empty {
         background-color: #fff;
         color: $text-color;
     }
-    .init{
+    .init {
         background-color: $background-color-title;
         color: $text-color;
     }
-
-    .warning{
+    .warning {
         background-color: #f53e30;
     }
-    
-    .activated{
+    .activated {
         border: 2px dashed $key-color - 50;
+    }
+}
+
+@media screen and (min-width: 1030px) {
+    #countersMap {
+        height: 58vh;
     }
 }

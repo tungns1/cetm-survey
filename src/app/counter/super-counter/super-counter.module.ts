@@ -27,6 +27,7 @@ import { CounterDetailComponent } from './counter-detail/counter-detail.componen
 import { SuperCounterActionComponent } from './super-counter-action/super-counter-action.component';
 import { QueueComponent } from './queue/queue.component';
 import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
+import { SecurityPassComponent } from './security-pass/security-pass.component';
 
 /**
  * Check setting before redirect
@@ -45,7 +46,7 @@ export class SuperCounterGuard extends SessionValidationGuard implements CanActi
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
     if (this.settingService.Check()) {
-      
+
       return super.canActivate(next, state);
     }
     this.router.navigate(['/counter/welcome'], {
@@ -105,7 +106,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   declarations: [
     SuperCounterComponent, CounterDetailComponent, SuperCounterActionComponent,
-    QueueComponent, SuperCounterSettingComponent
+    QueueComponent, SuperCounterSettingComponent, SecurityPassComponent
   ],
   providers: [
     SuperCounterSocket, QueueService, SuperCounterService,

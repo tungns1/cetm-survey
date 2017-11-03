@@ -1,7 +1,7 @@
 import {
     ICounter, IUser,
     ITicket, IMapTicket, Ticket,
-    TicketState, TicketStates
+    TicketState, TicketStates, IService
 } from '../../../shared/model/shared';
 import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue, CancelQueue } from '../../../shared/model/queue';
 import { ITicketAction, TicketAction } from '../../../shared/model/ticket_action';
@@ -11,6 +11,7 @@ export interface ISuperCounterInitialState {
     user: IUser;
     counters: ICounter[];
     tickets: IMapTicket;
+    services: IService
 }
 
 export class SuperCounter {

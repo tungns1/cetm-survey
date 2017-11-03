@@ -1,19 +1,12 @@
 import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-// import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import { ITicket } from '../../shared/model/shared';
 import { TicketDetailDialog } from '../../workspace/ticket';
 import { Ticket } from '../../../shared/model/house';
-import { TicketActionName } from '../../workspace/shared'
-// import { ModalComponent, Ticket, NoticeComponent } from '../shared';
+import { TicketActionName } from '../../workspace/shared';
+import { AppStorage } from '../../shared'
 
-// import {
-//   WorkspaceService, QueueService,
-//   LedService, TicketActionName,
-//   TicketService, FeedbackService
-// } from '../shared';
-
-import { SuperCounterService, SupperCounterTicketService, QueueService } from '../shared/service';
+import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateTicket } from '../shared/service';
 
 @Component({
   selector: 'app-super-counter-action',
@@ -59,18 +52,25 @@ export class SuperCounterActionComponent {
   }
 
   Cancel() {
-
     this.triggerAction('cancel', this.ticket);
   }
 
   createTicket() {
-    console.log(this.counterID)
+    let serviceID: string;
+    this.superCounterService.serviceList$.first().subscribe(d => {
+      serviceID = d[0]['id']
+    })
+    const info: ICreateTicket = {
+      lang: AppStorage.Culture,
+      service_id: serviceID
+    }
+    this.ticketService.createTicket('create', info)
   }
 
   private triggerAction(action: TicketActionName, ticket?: Ticket) {
     return this.ticketService.TriggerAction(action, ticket, this.counterID);
   }
 
-  hasMiss = false;
+  // hasMiss = false;
 
 }
