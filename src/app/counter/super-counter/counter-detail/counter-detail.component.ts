@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  trigger, state, style,
+  animate, transition
+} from '@angular/animations';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Ticket } from '../../../shared/model/house';
 import { SuperCounterService } from '../shared/service';
@@ -7,7 +11,28 @@ import { ProjectConfig } from '../../shared'
 @Component({
   selector: 'app-counter-detail',
   templateUrl: './counter-detail.component.html',
-  styleUrls: ['./counter-detail.component.scss']
+  styleUrls: ['./counter-detail.component.scss'],
+  animations: [
+    trigger('loadCounter', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('* => *', [
+        style({ transform: 'translateX(-10%)', opacity: 0 }),
+        animate(200)
+      ]),
+      // transition('* => *', [
+      //   animate(5000, style({ transform: 'translateX(10%)', opacity: 0 }))
+      // ]),
+
+      // state('out', style({ transform: 'translateX(10%)', opacity: 0 })),
+      // transition('* => *', [
+      //   style({ transform: 'translateX(0)' }),
+      //   animate(5000)
+      // ]),
+      // transition('* => *', [
+      //   animate(5000, style({ transform: 'translateX(0)' }))
+      // ])
+    ])
+  ]
 })
 export class CounterDetailComponent implements OnInit {
 

@@ -1,14 +1,22 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
     <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (click)="Next()" [class.hidden]="auto_next$ | async">
-        <ng-container i18n="Counter Button: Next">Next</ng-container>
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Next">Next</span>
+        </ng-container>
     </button>
     <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Cancel()" fxShow.xs="false">
-        <ng-container i18n="Counter Button: Cancel Ticket">Cancel</ng-container>
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Cancel Ticket">Cancel</span>
+        </ng-container>
     </button>
     <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>
-        <ng-container i18n="Counter Button: Finish Ticket">Finish</ng-container>
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Finish Ticket">Finish</span>
+        </ng-container>
     </button>
     <button class="uppercase btnFill" fxFlex (click)="createTicket()" fxShow.xs="false">
-        <ng-container i18n="Counter Button: Create Ticket">Create ticket</ng-container>
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Create Ticket">Create ticket</span>
+        </ng-container>
     </button>
 </div>

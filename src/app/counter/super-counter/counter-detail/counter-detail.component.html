@@ -1,5 +1,5 @@
 <div id="superCounterDetail" *ngIf="counterDetail$ | async; let counterDetail">
-    <div fxLayout="column" class="border">
+    <div fxLayout="column" class="border" [@loadCounter]="counterDetail.counterID">
         <div fxFlex="20" class="counterDetailHeader center">
             <span>{{counterDetail.counterName}}</span>
             <span *ngIf="counterDetail.ticketNum">: {{counterDetail.phoneNum}}</span>

@@ -2,6 +2,7 @@
 #superCounterDetail {
     height: 27vh;
     padding: 3vw 3vw 0 3vw;
+    overflow-x: hidden;
     .border {
         height: 100%;
         .counterDetailHeader {
