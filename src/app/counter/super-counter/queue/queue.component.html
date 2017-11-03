@@ -29,7 +29,7 @@
   <!-- ---------------------&&----------------------- -->
   <div class="border" fxFlex>
     <div class="componentHeader tableName">
-      <span i18n>Cancelled Tickets</span>
+      <span i18n>Missed Tickets</span>
       <span class="totalCount">({{ticketsCanceledCount$ | async}})</span>
     </div>
     <div class="searchBar">
@@ -39,7 +39,7 @@
     <div fxLayout="row" class="headerTable">
       <span fxFlex="20" class="cell" i18n="Numerical Order">No.</span>
       <span fxFlex="50" class="cell" i18n>Phone Number</span>
-      <span fxFlex="30" class="cell" i18n>Cancelled At</span>
+      <span fxFlex="30" class="cell" i18n>Missed At</span>
     </div>
     <div class="queue">
       <div fxLayout="row" class="row item" *ngFor="let ticket of ticketsCanceled$ | async" appConfirm="Do you want to restore this ticket?"

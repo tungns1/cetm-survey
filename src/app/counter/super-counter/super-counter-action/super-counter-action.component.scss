@@ -5,6 +5,11 @@
     .textBtn{
         font-size: 150%;
     }
+    @media screen and (min-width: 1030px) {
+        .textBtn {
+            font-size: 100%;
+        }
+    }
 }
 
 button[disabled] {

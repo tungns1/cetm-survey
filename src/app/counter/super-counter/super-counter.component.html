@@ -1,5 +1,5 @@
 <div id="superCounter" fxLayout="column" class="unselectable">
-    <app-env-module i18n-title title="- Counter "></app-env-module>
+    <app-env-module i18n-title [title]="'- ' + storeName + ' '"></app-env-module>
     <app-header fxFlex="30px" fxShow.xs="false"></app-header>
     <swiper fxFlex [config]="config" [(index)]="index">
         <div fxLayout="column" fxLayoutGap="2vw" class="counterMapNDetail">

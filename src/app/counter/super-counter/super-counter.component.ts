@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RuntimeEnvironment } from '../../shared';
 
-// import {  } from 'ngx-swiper-wrapper'
 import { SuperCounterService, SuperCounterSocket } from './shared/service';
 
 import { CountersMapComponent } from './counters-map/counters-map.component';
@@ -18,7 +18,8 @@ export class SuperCounterComponent implements OnInit {
     private superCounterService: SuperCounterService,
     private socket: SuperCounterSocket,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private env: RuntimeEnvironment
   ) { }
 
   message$ = this.socket.StatusMessage$.map(m => {
@@ -27,17 +28,20 @@ export class SuperCounterComponent implements OnInit {
   });
 
   index: number = 0;
+  storeName: string;
 
   ngOnInit() {
     this.superCounterService.enable();
+    this.env.Auth.Data$.subscribe(d => {
+      this.storeName = d.store;
+    })
   }
 
-  toggle(){
-    console.log(this.index)
+  toggle() {
     this.index == 1 ? this.index = 0 : this.index = 1;
   }
 
-  backToSetting(){
+  backToSetting() {
     this.router.navigate(['/counter/super/setting'], {
       queryParamsHandling: 'preserve',
       relativeTo: this.route

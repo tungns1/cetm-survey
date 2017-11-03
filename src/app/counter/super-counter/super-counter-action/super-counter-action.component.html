@@ -7,7 +7,7 @@
     </button>
     <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Cancel()" fxShow.xs="false">
         <ng-container>
-            <span class="textBtn" i18n="Counter Button: Cancel Ticket">Cancel</span>
+            <span class="textBtn" i18n="Counter Button: Miss Ticket">Miss</span>
         </ng-container>
     </button>
     <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>

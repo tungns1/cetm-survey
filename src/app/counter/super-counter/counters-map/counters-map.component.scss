@@ -36,5 +36,8 @@
 @media screen and (min-width: 1030px) {
     #countersMap {
         height: 58vh;
+        .counterCell{
+            font-size: 100%;
+        }
     }
 }
