@@ -91,7 +91,7 @@ export class SupperCounterTicketService {
       lang: info.lang,
       service_id: info.service_id
     }
-    return this.socket.Send<ICreateTicket>("/ticketsuper", data).share();
+    return this.socket.Send<ICreateTicket>("/create_ticket", data).share();
   }
 
 }
