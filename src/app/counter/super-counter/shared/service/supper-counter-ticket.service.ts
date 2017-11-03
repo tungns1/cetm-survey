@@ -89,7 +89,7 @@ export class SupperCounterTicketService {
     const data = {
       action: action,
       lang: info.lang,
-      servicer_id: info.service_id
+      service_id: info.service_id
     }
     return this.socket.Send<ICreateTicket>("/ticketsuper", data).share();
   }

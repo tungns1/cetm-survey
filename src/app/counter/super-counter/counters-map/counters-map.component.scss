@@ -5,9 +5,13 @@
     .counterCell {
         border-radius: 3px;
         font-weight: $font-weight-default;
+        font-size: 115%;
         cursor: pointer;
         outline: none;
         background-color: $background-color-title;
+        .ticketNum{
+            font-weight: $font-weight-default;
+        }
     }
     .serving {
         background-color: $key-color;
