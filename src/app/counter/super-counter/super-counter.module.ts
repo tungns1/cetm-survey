@@ -7,7 +7,7 @@ import {
   // MatListModule
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SharedModule } from '../shared';
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
@@ -42,14 +42,6 @@ const routing = RouterModule.forChild([
   }
 ]);
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-  direction: 'horizontal',
-  slidesPerView: 'auto',
-  threshold: 25,
-  nextButton: true,
-  prevButton: true
-};
-
 @NgModule({
   imports: [
     routing, CommonModule, SharedModule,
@@ -64,10 +56,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   providers: [
     SuperCounterProvider,
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    },
     SuperCounterGuard
   ]
 })

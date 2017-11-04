@@ -7,6 +7,17 @@ import { SuperCounterService, SuperCounterSocket } from './shared/service';
 
 import { CountersMapComponent } from './counters-map/counters-map.component';
 
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  threshold: 25,
+  nextButton: true,
+  prevButton: true
+};
+
+
 @Component({
   selector: 'app-super-counter',
   templateUrl: './super-counter.component.html',
@@ -51,5 +62,7 @@ export class SuperCounterComponent implements OnInit {
   ngOnDestroy() {
     this.superCounterService.disable();
   }
+
+  swiperConfig = DEFAULT_SWIPER_CONFIG;
 
 }

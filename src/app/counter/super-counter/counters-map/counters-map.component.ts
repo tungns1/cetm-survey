@@ -48,19 +48,6 @@ export class CountersMapComponent implements OnInit {
   selectCounter(counter: counterDetail) {
     this.selected = counter;
     this.superCounterService.SelectedCounter$.next(counter);
-    setTimeout(_ => {
-      this.setActiveClass(counter);
-    })
   }
 
-  setActiveClass(counter) {
-    let cells = document.getElementsByClassName('counterCell');
-    if (cells)
-      for (let i = 0; i < cells.length; i++) {
-        cells[i].classList.remove('activated');
-      }
-    let cell = document.getElementById(counter.counterName);
-    if (cell)
-      cell.firstElementChild.classList.add('activated')
-  }
 }
