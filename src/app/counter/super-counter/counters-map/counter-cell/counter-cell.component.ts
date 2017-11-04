@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { interval } from 'rxjs/observable/interval';
 
-import { counterDetail } from '../shared/model';
-import { ProjectConfig } from '../../shared';
+import { counterDetail } from '../../shared/model';
+import { ProjectConfig } from '../../../shared';
 
 @Component({
   selector: 'app-counter-cell',

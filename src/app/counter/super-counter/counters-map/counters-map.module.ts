@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared'
 
 import { CountersMapComponent } from './counters-map.component';
-import { CounterCellComponent } from '../counter-cell/counter-cell.component';
+import { CounterCellComponent } from './counter-cell/counter-cell.component';
 
 @NgModule({
   imports: [

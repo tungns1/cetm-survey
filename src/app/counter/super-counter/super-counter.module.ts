@@ -8,9 +8,7 @@ import {
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
-
 import { SharedModule } from '../shared';
-import { SessionValidationGuard, AuthService, RuntimeEnvironment } from '../shared/shared'
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
 import { TicketModule } from '../workspace/ticket/ticket.module';
@@ -23,49 +21,7 @@ import { SuperCounterSettingComponent } from './super-counter-setting/super-coun
 import { SecurityPassComponent } from './security-pass/security-pass.component';
 import { SuperCounterProvider } from './shared/super-counter-provider';
 import { SuperCounterSettingService } from './shared';
-
-/**
- * Check setting before redirect
- */
-@Injectable()
-export class SuperCounterGuard extends SessionValidationGuard implements CanActivate {
-  constructor(
-    router: Router,
-    authService: AuthService,
-    private settingService: SuperCounterSettingService,
-    env: RuntimeEnvironment
-  ) {
-    super(router, authService, env);
-  }
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {
-    if (this.settingService.Check()) {
-
-      return super.canActivate(next, state);
-    }
-    this.router.navigate(['/counter/welcome'], {
-      queryParams: {
-        redirect: this.settingService.Check() ? '/counter/super/main' : '/counter/super/setting',
-        setting: '/counter/super/setting'
-      }
-    });
-    return false;
-  }
-
-  GetAuthExtra() {
-    return {
-      branch_code: this.settingService.Data.branch_code,
-      auto_login: true
-    }
-  }
-
-  GetScope() {
-    return "staff";
-  }
-
-}
-
+import { SuperCounterGuard } from './shared/super-counter.guard';
 
 const routing = RouterModule.forChild([
   {
