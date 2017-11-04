@@ -10,6 +10,7 @@
             font-size: 150%;
             font-weight: $font-weight-default + 200;
             padding-top: 1%;
+            text-transform: uppercase;
         }
         .container {
             padding: 10px 20px 0 20px;
@@ -22,7 +23,7 @@
                     font-size: 130%;
                 }
                 .content {
-                    width: 33%;
+                    width: 20%;
                     margin: auto;
                     color: $key-color;
                     font-size: 300%;
@@ -31,6 +32,9 @@
                         width: 40px;
                         height: 40px;
                     }
+                }
+                .contentRight{
+                    width: 33%;
                 }
             }
         }

@@ -11,24 +11,19 @@
     }
 }
 
+.warning {
+    background-color: #f53e30;
+    color: #fff;
+}
+
 .serving {
     background-color: $key-color;
     color: #fff;
 }
 
-.empty {
-    background-color: #fff;
-    color: $text-color;
-}
-
 .init {
     background-color: $background-color-title;
     color: $text-color;
-}
-
-.warning {
-    background-color: #f53e30;
-    color: #fff;
 }
 
 .calling{
@@ -38,6 +33,11 @@
 
 .selected {
     border: 2px dashed $text-color;
+}
+
+.empty {
+    background-color: #fff;
+    color: $text-color;
 }
 
 #countersMap {

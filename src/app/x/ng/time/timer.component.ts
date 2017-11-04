@@ -19,7 +19,7 @@ export class TimerComopnent {
     private oneSecond = interval(1000).share();
     private native: HTMLElement = this.ref.nativeElement;
 
-    @Input() timeWarning: number = 1;
+    @Input() timeWarning: number = 1500;
     @Input() set start(t: number) {
         this._start = t;
         this.ngAfterViewInit();
@@ -46,11 +46,11 @@ export class TimerComopnent {
     getCTime(time: number, timeWarning: number) {
         let ctime = 0;
         if ((Date.now() / 1000 - time) < 0) {
-            this.view(0, timeWarning);
             ctime = Date.now() / 1000;
-        } else {
             this.view(0, timeWarning);
+        } else {
             ctime = time;
+            this.view(0, timeWarning);
         }
         return ctime;
     }
