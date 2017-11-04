@@ -1,5 +1,5 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
-    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex [class.hidden]="auto_next$ | async"
+    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex  [disabled]="isEmpty"
         fxFlex (throttle)="Next()" threshold="1000" throttle>
         <ng-container>
             <span class="textBtn" i18n="Counter Button: Next">Next</span>
@@ -15,13 +15,13 @@
             <span class="textBtn" i18n="Counter Button: Finish Ticket">Finish</span>
         </ng-container>
     </button>
-    <button class="uppercase btnFill" fxFlex (click)="createTicket()" fxShow.xs="false">
+    <button class="uppercase btnFill" fxFlex fxShow.xs="false" i18n-appConfirm appConfirm="Do you want to create a ticket?" (confirm)="createTicket()">
         <ng-container>
             <span class="textBtn" i18n="Counter Button: Create Ticket">Create ticket</span>
         </ng-container>
     </button>
 </div>
 
-<app-notice>
+<!-- <app-notice>
     <app-notice-message name="out_of_ticket" message="Out of ticket" i18n-message></app-notice-message>
-</app-notice>
+</app-notice> -->
