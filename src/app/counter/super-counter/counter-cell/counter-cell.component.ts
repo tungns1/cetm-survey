@@ -15,24 +15,20 @@ export class CounterCellComponent implements OnInit {
   constructor() { }
 
   _counter: counterDetail;
-  // private subscription: Subscription;
-  // private oneSecond = interval(1000).share();
-  // private maxServingMinute = ProjectConfig.service.max_serving_minute;
+  private subscription: Subscription;
+  private oneSecond = interval(1000).share();
+  private maxServingMinute = ProjectConfig.service.max_serving_minute;
 
   @Input() set counter(v: counterDetail) {
-    // console.log('aaaaaaaaa')
     this._counter = v;
+    // console.log(this._counter.serveTime)
+    // console.log(Date.now())
     // if (this._counter.ticketNum) {
-    //   console.log('bbbbbbbbbbb')
-    //   this.subscription = this.oneSecond.subscribe(_ => {
-    //     this.setServeLong(Number(this._counter.serveTime), this.maxServingMinute)
-    //   });
-    // } else {
-    //   if (this.subscription) {
-    //     console.log('ddddddddddd')
-    //     this.subscription.unsubscribe();
-    //     this.subscription = null;
-    //   }
+
+    // }
+    this.subscription = this.oneSecond.subscribe(_ => {
+      this.setServeLong(Number(this._counter.serveTime), this.maxServingMinute)
+    });
     // }
   };
 
@@ -40,10 +36,21 @@ export class CounterCellComponent implements OnInit {
     // console.log(this.counter)
   }
 
-  // setServeLong(start: number, maxServing: number) {
-  //   console.log(Date.now() - start);
-  //   // Date.now() / 1000 - ((start % 3600) / 60) > maxServing ? this._counter['serveLong'] = true : this._counter['serveLong'] = false;
-  //   ((Date.now() - start) % 3600) / 60 > maxServing ? this._counter['serveLong'] = true : this._counter['serveLong'] = false;
-  // }
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+  }
+
+  setServeLong(start: number, maxServing: number) {
+    if (!start) { 
+      this._counter['serveLong'] = false; 
+      return; 
+    }
+    (Date.now() / 1000 - start) % 3600 / 60 > maxServing ? this._counter['serveLong'] = true : this._counter['serveLong'] = false;
+  }
 
 }
