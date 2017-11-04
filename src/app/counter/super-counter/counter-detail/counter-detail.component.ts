@@ -12,15 +12,6 @@ import { ProjectConfig } from '../../shared'
   selector: 'app-counter-detail',
   templateUrl: './counter-detail.component.html',
   styleUrls: ['./counter-detail.component.scss'],
-  // animations: [
-  //   trigger('loadCounter', [
-  //     state('in', style({ transform: 'translateX(0)' })),
-  //     transition('* => *', [
-  //       style({ transform: 'translateX(-10%)', opacity: 0 }),
-  //       animate(200)
-  //     ])
-  //   ])
-  // ]
 })
 export class CounterDetailComponent implements OnInit {
 
@@ -28,7 +19,6 @@ export class CounterDetailComponent implements OnInit {
     private superCounterService: SuperCounterService,
   ) { }
 
-  // ticket$: BehaviorSubject<Ticket> ;
   ticket$ = new BehaviorSubject<Ticket>(null)
   counterDetail$ = this.superCounterService.SelectedCounter$
   maxServingMinute = ProjectConfig.service.max_serving_minute;
