@@ -24,7 +24,8 @@ export class QueueComponent implements OnInit {
     .switchMap(tickets => {
       return this.searchWaiting$.map(searchString => {
         return tickets.filter(tk => {
-          return tk.cnum.indexOf(searchString) !== -1 || tk.customer.phone_number.toString().indexOf(searchString) !== -1;
+          return tk.cnum.indexOf(searchString) !== -1 || 
+          (tk.customer.phone_number && tk.customer.phone_number.indexOf(searchString) !== -1);
         })
       })
     })
@@ -45,7 +46,11 @@ export class QueueComponent implements OnInit {
   }
 
   search(state: 'waiting' | 'canceled', value: string) {
-    state === 'waiting' ? this.searchWaiting$.next(value) : this.searchCanceled$.next(value)
+    if (state === 'waiting') {
+      this.searchWaiting$.next(value);
+    } else {
+      this.searchCanceled$.next(value);
+    }
   }
 
   restore(ticket: Ticket) {
