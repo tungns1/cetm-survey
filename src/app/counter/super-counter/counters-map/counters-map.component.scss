@@ -7,8 +7,12 @@
 @media screen and (min-width: 1030px) {
     #countersMap {
         height: 58vh;
-        .counterCell{
+        .counterCell {
             font-size: 100%;
         }
     }
+}
+
+.activated {
+    border: 2px dashed $text-color;
 }

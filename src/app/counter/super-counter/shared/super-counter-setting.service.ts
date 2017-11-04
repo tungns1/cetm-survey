@@ -25,4 +25,8 @@ export class SuperCounterSettingService extends SmallStorage<ISuperCounterSettin
   Check() {
     return this.data.branch_code;
   }
+
+  get BranchCode() {
+    return this.data.branch_code;
+  }
 }

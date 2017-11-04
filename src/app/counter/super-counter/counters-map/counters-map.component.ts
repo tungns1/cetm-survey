@@ -14,47 +14,28 @@ import { counterDetail } from '../shared/model';
 export class CountersMapComponent implements OnInit {
 
   constructor(
-    private counterListService: CounterListService,
     private superCounterService: SuperCounterService,
   ) { }
 
   // columnConfig: number = 8;
   columnConfig: number = 3;
-  selectedCounter: counterDetail;
+  selected: counterDetail;
   // serveLongConfig: number = 99856345665;
   // private oneSecond = interval(1000).share();
   // maxServingMinute = ProjectConfig.service.max_serving_minute;
 
-  countersMap$ = this.counterListService.counterList$.map(counterList => {
+  countersMap$ = this.superCounterService.Workspace$.map(w => {
+    const counterList = w.counterList.ToArray();
     // Calculate column n row
     while (this.columnConfig < counterList.length && Math.ceil(counterList.length / parseFloat(this.columnConfig.toString())) >= this.columnConfig - 1) {
       this.columnConfig++;
     }
-    // Sorting
-    counterList.sort((a, b) => {
-      if (Number(a.counterNum) || Number(b.counterNum))
-        return Number(a.counterNum) > Number(b.counterNum) ? 1 : -1;
-    })
-      // .map(counter => {
-      //   let subscription;
-      //   if (counter.ticketNum) {
-
-      //     // counter = this.getServingMinute(counter, subscription).counter;
-      //     // subscription = this.getServingMinute(counter, subscription).subscription;
-      //   } else {
-      //     if (subscription) {
-      //       subscription.unsubscribe();
-      //       subscription = null;
-      //     }
-      //   }
-      // })
-    let countersMap = [];
+    let countersMap: counterDetail[][] = [];
     while (counterList.length) countersMap.push(counterList.splice(0, this.columnConfig));
     while (countersMap[countersMap.length - 1].length < countersMap[0].length) {
-      countersMap[countersMap.length - 1].push([]);
+      countersMap[countersMap.length - 1].push(null);
     }
-    if (this.selectedCounter) this.selectCounter(this.selectedCounter);
-    // console.log(countersMap)
+    if (this.selected) this.selectCounter(this.selected);
     return countersMap;
   })
 
@@ -65,7 +46,7 @@ export class CountersMapComponent implements OnInit {
   }
 
   selectCounter(counter: counterDetail) {
-    this.selectedCounter = counter
+    this.selected = counter;
     this.superCounterService.SelectedCounter$.next(counter);
     setTimeout(_ => {
       this.setActiveClass(counter);
@@ -82,17 +63,4 @@ export class CountersMapComponent implements OnInit {
     if (cell)
       cell.firstElementChild.classList.add('activated')
   }
-
-  // getServingMinute(counter: counterDetail, subscription: Subscription) {
-  //   subscription = this.oneSecond.subscribe(_ => counter['servingTime'] = this.updateServingTime(counter.serveTime))
-  //   return {
-  //     counter: counter,
-  //     subscription: subscription
-  //   }
-  // }
-
-  // updateServingTime(start){
-  //   return ((Date.now() - Number(start) || 0) % 3600) / 60;
-  // }
-
 }

@@ -9,25 +9,20 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-import { SharedModule, SuperCounterSettingService } from '../shared';
+import { SharedModule } from '../shared';
 import { SessionValidationGuard, AuthService, RuntimeEnvironment } from '../shared/shared'
 import { ComponentSharedModule } from '../shared/component/componentShared.module';
 import { CountersMapModule } from './counters-map/counters-map.module';
 import { TicketModule } from '../workspace/ticket/ticket.module';
 import { WelcomeModule } from '../welcome/welcome.module';
-
-import {
-  SuperCounterSocket, QueueService, SuperCounterService,
-  CounterDetailService, CounterListService, SupperCounterTicketService
-} from './shared/service';
-// import { QueueModule } from '../workspace/queue/queue.module';
-// import { StatModule } from '../workspace/stat/stat.module';
 import { SuperCounterComponent } from './super-counter.component';
 import { CounterDetailComponent } from './counter-detail/counter-detail.component';
 import { SuperCounterActionComponent } from './super-counter-action/super-counter-action.component';
 import { QueueComponent } from './queue/queue.component';
 import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
 import { SecurityPassComponent } from './security-pass/security-pass.component';
+import { SuperCounterProvider } from './shared/super-counter-provider';
+import { SuperCounterSettingService } from './shared';
 
 /**
  * Check setting before redirect
@@ -112,8 +107,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     QueueComponent, SuperCounterSettingComponent, SecurityPassComponent
   ],
   providers: [
-    SuperCounterSocket, QueueService, SuperCounterService,
-    CounterDetailService, CounterListService, SupperCounterTicketService,
+    SuperCounterProvider,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

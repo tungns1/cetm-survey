@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { SuperCounterSettingService } from '../../shared';
+import { SuperCounterSettingService } from '../shared';
 import { Router, ActivatedRoute } from '@angular/router'
 import { AppStorage } from '../../shared';
 

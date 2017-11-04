@@ -5,7 +5,6 @@ import {
 } from '@angular/material';
 import { SharedModule } from "./shared/";
 import { routing } from "./counter.routing";
-import { SuperCounterSettingService } from './shared';
 import { MiniModeFormModule } from './workspace/setting/minimode-form.module';
 
 @NgModule({
@@ -13,9 +12,6 @@ import { MiniModeFormModule } from './workspace/setting/minimode-form.module';
         SharedModule, routing, MatTabsModule,
         MiniModeFormModule, MatCheckboxModule, MatProgressBarModule,
         MatInputModule, MatFormFieldModule, MatToolbarModule
-    ],
-    providers: [
-        SuperCounterSettingService
     ]
 })
 export class CounterModule {

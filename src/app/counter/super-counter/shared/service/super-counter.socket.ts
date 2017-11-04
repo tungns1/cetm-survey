@@ -1,7 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { Router } from "@angular/router";
-import { RuntimeEnvironment, AppSocket, LogService, SuperCounterSettingService } from '../../../shared';
+import { RuntimeEnvironment, AppSocket, LogService } from '../../../shared';
 import { MatSnackBar } from '@angular/material';
+import { SuperCounterSettingService } from '../super-counter-setting.service';
 
 @Injectable()
 export class SuperCounterSocket extends AppSocket {
@@ -16,10 +17,10 @@ export class SuperCounterSocket extends AppSocket {
     }
 
     onInit() {
-        var setting = this.counterSetting.Data;
+        var branch_code = this.counterSetting.BranchCode;
         var user = this.env.Auth.Me();
         super.Connect({
-            branch_code: setting.branch_code,
+            branch_code: branch_code,
             actor_type: "superbox",
             user_id: user.id
         });

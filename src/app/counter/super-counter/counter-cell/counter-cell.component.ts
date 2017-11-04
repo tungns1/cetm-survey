@@ -15,6 +15,7 @@ export class CounterCellComponent implements OnInit {
   constructor() { }
 
   _counter: counterDetail;
+  @Input() selected;
   // private subscription: Subscription;
   // private oneSecond = interval(1000).share();
   // private maxServingMinute = ProjectConfig.service.max_serving_minute;

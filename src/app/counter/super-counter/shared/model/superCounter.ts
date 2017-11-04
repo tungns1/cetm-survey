@@ -59,8 +59,9 @@ export class SuperCounter {
 
 export class counterList {
     constructor(
-        counters: ICounter[]
+        counters: ICounter[] = []
     ) {
+        counters.sort((a, b) => a.cnum < b.cnum ? -1 : 1);
         this.counters = counters.map(c => new counterDetail(c));
     }
 
@@ -114,6 +115,10 @@ export class counterDetail {
 
     setCounterState(state: counterState) {
         this.state = state;
+    }
+
+    get id() {
+        return this.counter.id;
     }
 
     get counterID() {
