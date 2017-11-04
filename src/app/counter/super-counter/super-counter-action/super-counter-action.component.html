@@ -1,6 +1,6 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
     <button class="uppercase btnFill" id="__workspace_button_next" fxFlex [class.hidden]="auto_next$ | async"
-        fxFlex (throttle)="Next()" threshold="3000" throttle>
+        fxFlex (throttle)="Next()" threshold="1000" throttle>
         <ng-container>
             <span class="textBtn" i18n="Counter Button: Next">Next</span>
         </ng-container>
@@ -21,3 +21,7 @@
         </ng-container>
     </button>
 </div>
+
+<app-notice>
+    <app-notice-message name="out_of_ticket" message="Out of ticket" i18n-message></app-notice-message>
+</app-notice>

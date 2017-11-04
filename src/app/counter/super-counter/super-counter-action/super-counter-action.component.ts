@@ -4,7 +4,8 @@ import { ITicket } from '../../shared/model/shared';
 import { TicketDetailDialog } from '../../workspace/ticket';
 import { Ticket } from '../../../shared/model/house';
 import { TicketActionName } from '../../workspace/shared';
-import { AppStorage } from '../../shared'
+import { AppStorage } from '../../shared';
+import { NoticeComponent } from '../../../../lib/ng2';
 
 import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateTicket } from '../shared/service';
 
@@ -21,10 +22,9 @@ export class SuperCounterActionComponent {
     private mdDialog: MatDialog
   ) { }
 
-  // @ViewChild(NoticeComponent) notice: NoticeComponent;
-
   @Input() ticket: Ticket;
   @Input() counterID: string;
+  @ViewChild(NoticeComponent) notice: NoticeComponent;
 
   auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
 
@@ -38,7 +38,11 @@ export class SuperCounterActionComponent {
       this.queueService.waiting$.first().subscribe(ticket => {
         nextTicket = ticket.GetFirstTicket();
       });
-      this.triggerAction("call", nextTicket);
+      if (nextTicket)
+        this.triggerAction("call", nextTicket);
+      else {
+        this.notice.ShowMessage("out_of_ticket");
+      }
     });
   }
 

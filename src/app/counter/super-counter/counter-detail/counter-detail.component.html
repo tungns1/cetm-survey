@@ -1,6 +1,6 @@
 <div id="superCounterDetail" *ngIf="counterDetail$ | async; let counterDetail">
-    <div id="counterDetailContainer" fxLayout="column" class="border animated">
-        <div fxFlex="20" class="counterDetailHeader center">
+    <div fxLayout="column" class="border">
+        <div fxFlex="20" id="counterDetailHeader" class="counterDetailHeader center animated">
             <span>{{counterDetail.counterName}}</span>
             <span *ngIf="counterDetail.ticketNum">: {{counterDetail.phoneNum}}</span>
         </div>

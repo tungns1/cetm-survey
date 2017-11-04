@@ -24,6 +24,15 @@
                 font-size: $font-size-default * 1.5;
             }
         }
+        @media screen and (min-width: 1030px) {
+            .searchBar {
+                height: 30px;
+                padding: 1%;
+                .ctrlInput {
+                    font-size: $font-size-default;
+                }
+            }
+        }
         .headerTable {
             background-color: $background-color;
             border-top: $border;
@@ -45,23 +54,10 @@
             //     float: left;
             // }
         }
-        .inputSearch {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            height: 17px;
-            width: 30%;
-            border: $border;
-            border-radius: 3px;
-        }
-        .iconSearch {
-            position: absolute;
-            top: 0px;
-            right: 2px;
-            z-index: 2;
-            cursor: pointer;
-            width: 20px;
-            margin: 7px;
+        @media screen and (min-width: 1030px) {
+            .cell {
+                margin: 10px 0;
+            }
         }
     }
     .queue {
@@ -74,19 +70,26 @@
                 color: #fff;
             }
         }
+        @media screen and (max-width: 1030px) {
+            .web {
+                display: none;
+            }
+        }
+    }
+    @media screen and (min-width: 1030px) {
+        .queue {
+            overflow: scroll;
+            width: 100%;
+            height: 63vh;
+            .mobile {
+                display: none;
+            }
+        }
     }
 }
 
 @media screen and (min-width: 1030px) {
     #queueContainer {
         font-size: $font-size-default;
-        .ctrlInput {
-            font-size: $font-size-default;
-        }
-    }
-    .queue {
-        overflow: scroll;
-        width: 100%;
-        height: 57vh;
     }
 }

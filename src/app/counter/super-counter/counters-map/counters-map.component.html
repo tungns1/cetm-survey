@@ -3,13 +3,7 @@
     <div class="countersRow" *ngFor="let counterRow of countersMap$ | async" fxFlex fxLayout="row" fxLayoutGap="30px">
 
         <div *ngFor="let cell of counterRow" fxFlex>
-            <div [id]="cell.counterName" *ngIf="cell.counter" class="counterCell border" 
-                [ngClass]="{'serving': cell.counterState == 'serving', 'empty': cell.counterState == 'empty', 'init': cell.counterState == 'init', 'warning': cell.serveLong}" fxLayout="column" (click)="selectCounter(cell)">
-                <h2 fxFlex="60" i18n class="center margin-5">{{cell.counter.name}}</h2>
-                <div fxFlex>
-                    <h3 class="center margin-5 ticketNum">{{cell.serving?.cnum}}&nbsp;</h3>
-                </div>
-            </div>
+            <app-counter-cell [id]="cell.counterName" *ngIf="cell.counterNum" [counter]="cell" (click)="selectCounter(cell)"></app-counter-cell>
         </div>
 
     </div>

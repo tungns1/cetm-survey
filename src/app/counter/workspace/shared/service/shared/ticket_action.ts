@@ -86,7 +86,7 @@ export class ActionManager {
         if (!ticket) return of(null);
         const ta = new TicketAction(action, ticket, counter);
         if (!ta.IsValid()) {
-            console.log("invalid action", ta);
+            // console.log("invalid action", ta);
             return of(null);
         }
         ta.extra = extra;
@@ -96,7 +96,7 @@ export class ActionManager {
     }
 
     private Handle(ta: TicketAction) {
-        console.log("handle action", ta);
+        // console.log("handle action", ta);
         return this.handler(ta);
     }
 

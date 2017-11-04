@@ -37,7 +37,7 @@ export class CounterDetailComponent implements OnInit {
     this.counterDetail$.subscribe(d => {
       if (d) {
         this.ticket$.next(d.serving ? new Ticket(d.serving) : null);
-        let counterDetail = document.getElementById('counterDetailContainer');
+        let counterDetail = document.getElementById('counterDetailHeader');
         if (counterDetail) {
           counterDetail.classList.remove('fadeIn');
           setTimeout(_ => {

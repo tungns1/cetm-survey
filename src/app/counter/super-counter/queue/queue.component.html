@@ -15,7 +15,8 @@
     </div>
     <div class="queue">
       <div fxLayout="row" class="row item" *ngFor="let ticket of ticketsWaiting$ | async">
-        <ticket-icon fxFlex="10" class="margin-10-0 right" [ticket]="ticket" width="30px"></ticket-icon>
+        <ticket-icon fxFlex="10" class="margin-10-0 right mobile" [ticket]="ticket" width="30px"></ticket-icon>
+        <ticket-icon fxFlex="10" class="margin-10-0 right web" [ticket]="ticket" width="15px"></ticket-icon>
 
         <div fxLayout="row" fxFlex>
           <span fxFlex="10" class="cell">{{ticket.cnum}}</span>
@@ -44,7 +45,8 @@
     <div class="queue">
       <div fxLayout="row" class="row item" *ngFor="let ticket of ticketsCanceled$ | async" appConfirm="Do you want to restore this ticket?"
         width="550px" (confirm)="restore(ticket)" i18n-appConfirm>
-        <ticket-icon fxFlex="10" class="margin-10-0 right" [ticket]="ticket" width="30px"></ticket-icon>
+        <ticket-icon fxFlex="10" class="margin-10-0 right mobile" [ticket]="ticket" width="30px"></ticket-icon>
+        <ticket-icon fxFlex="10" class="margin-10-0 right web" [ticket]="ticket" width="15px"></ticket-icon>
 
         <div fxLayout="row" fxFlex>
           <span fxFlex="10" class="cell">{{ticket.cnum}}</span>
