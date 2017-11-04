@@ -1,12 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
 import { WorkspaceModule } from './workspace';
-import { CounterComponent } from './counter/counter.component';
-// import { SettingComponent } from './setting/setting.component';
-// import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
-// import { WelcomeComponent } from './welcome/welcome.component';
 import { WelcomeModule } from './welcome/welcome.module'
 import { SuperCounterModule } from './super-counter/super-counter.module'
-import { CounterSessionValidationGuard } from './shared';
 
 export function loadWorkspace() {
   return WorkspaceModule;
@@ -23,17 +18,11 @@ export function loadSuperCounter() {
 const children: Routes = [
   {
     path: "workspace",
-    loadChildren: loadWorkspace,
-    // canActivate: [
-    //   CounterSessionValidationGuard
-    // ]
+    loadChildren: loadWorkspace
   },
   {
     path: "super",
-    loadChildren: loadSuperCounter,
-    // canActivate: [
-    //   CounterSessionValidationGuard
-    // ]
+    loadChildren: loadSuperCounter
   },
   {
     path: "",
@@ -48,6 +37,5 @@ const children: Routes = [
 
 export const routing = RouterModule.forChild([{
   path: '',
-  component: CounterComponent,
   children: children
 }]);

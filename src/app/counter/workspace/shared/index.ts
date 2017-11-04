@@ -14,3 +14,4 @@ export {
 
 export { NoticeComponent } from '../../../../lib/ng2';
 export { ComposeService } from './compose.service';
+export { WorkspaceSettingService } from './counter-setting.service';

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   ITicket, Ticket, IService,
   TicketState, TicketStates, TicketActionName,
-  CounterSettingService
 } from '../../../workspace/shared';
 import { QueueService } from './queue.service';
 import { SuperCounterService } from './super-counter.service';
@@ -18,7 +17,6 @@ export interface ICreateTicket {
 export class SupperCounterTicketService {
   constructor(
     private superCounterService: SuperCounterService,
-    private settingService: CounterSettingService,
     private qms: QmsService
   ) {
     this.onInit();
@@ -80,7 +78,6 @@ export class SupperCounterTicketService {
 
   TriggerAction(action: TicketActionName, ticket: Ticket, counterID?: string) {
     return this.manager.Work(action, ticket, {
-      record_transaction: this.settingService.EnableRecordTransaction,
       platform: this.platform,
     }, counterID);
   }

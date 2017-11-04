@@ -6,14 +6,14 @@ import {
     MatProgressSpinnerModule
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { SharedModule, CounterSessionValidationGuard } from '../shared';
+import { SharedModule } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { MiniModeFormModule } from './setting/minimode-form.module';
 import { WelcomeModule } from '../welcome/welcome.module';
 
-import { CounterSettingService } from '../shared';
+import { WorkspaceSettingService } from './shared';
 import { SessionValidationGuard, RuntimeEnvironment, AuthService } from '../shared/shared'
 
 import { WorkspaceComponent } from './workspace/workspace.component';
@@ -30,7 +30,7 @@ export class CounterWorkspaceGuard extends SessionValidationGuard implements Can
     constructor(
         router: Router,
         authService: AuthService,
-        private settingService: CounterSettingService,
+        private settingService: WorkspaceSettingService,
         env: RuntimeEnvironment
     ) {
         super(router, authService, env);

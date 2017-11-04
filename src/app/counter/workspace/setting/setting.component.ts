@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { CounterSettingService } from '../shared';
+import { WorkspaceSettingService } from '../shared';
 import { Router, ActivatedRoute } from '@angular/router'
 import { AppStorage } from '../../shared';
 
@@ -12,7 +12,7 @@ import { AppStorage } from '../../shared';
 export class SettingComponent implements OnInit {
 
   constructor(
-    private counterSetting: CounterSettingService,
+    private counterSetting: WorkspaceSettingService,
     private router: Router,
     private route: ActivatedRoute
   ) { }

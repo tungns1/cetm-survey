@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CounterSettingService } from './shared';
+import { WorkspaceSettingService } from './counter-setting.service';
 import {
   LedService, FeedbackService, RecorderService,
   WorkspaceService
@@ -14,7 +14,7 @@ export class ComposeService {
     private feedbackService: FeedbackService,
     private recorderService: RecorderService,
     private workspaceService: WorkspaceService,
-    private counterSetting: CounterSettingService,
+    private counterSetting: WorkspaceSettingService,
     private launcherService: LauncherService
   ) { }
 

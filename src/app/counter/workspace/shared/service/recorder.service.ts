@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ISubscription } from 'rxjs/Subscription';
-import { CounterSettingService } from './shared';
+import { WorkspaceSettingService } from '../counter-setting.service';
 import { RecorderDevice } from '../device';
 import { QueueService } from './queue.service';
 import { interval } from "rxjs/observable/interval";
@@ -13,7 +13,7 @@ export class RecorderService {
     constructor(
         private queueService: QueueService,
         private recorderDevice: RecorderDevice,
-        private counterSetting: CounterSettingService
+        private counterSetting: WorkspaceSettingService
     ) { }
 
     enable() {

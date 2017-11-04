@@ -1,7 +1,9 @@
-export { CounterSettingService } from '../../../shared';
 
-export { AuthService, RuntimeEnvironment,HttpServiceGenerator } from '../../../shared';
+export { AuthService, RuntimeEnvironment, HttpServiceGenerator, QmsService } from '../../../shared';
 
 export * from '../../../../shared/model';
 
-export { QmsService, XWinMiniMode } from '../../../../../native/qms';
+export { SmallStorage, ProjectConfig } from '../../../shared';
+export { SessionValidationGuard } from '../../../../auth';
+export { XWinStorageStrategy, XWinMiniMode } from '../../../../../native/qms';
+export { ICounterConfig } from '../../../../../const/project';
