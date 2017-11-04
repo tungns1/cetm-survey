@@ -27,27 +27,31 @@ export class SuperCounterActionComponent {
   @ViewChild(NoticeComponent) notice: NoticeComponent;
 
   auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
-  isEmpty: boolean;
+  disabled$ = this.superCounterService.Workspace$.map(c => {
+    return c.waiting.is_empty || c.counterList.selectedCounter.state === 'calling';
+  });
 
   ngOnInit() {
-    this.queueService.waiting$.subscribe(w => {
-      this.isEmpty = w.is_empty;
-    })
+    // this.queueService.waiting$.subscribe(w => {
+    //   this.isEmpty = w.is_empty;
+    // })
   }
 
   Next() {
-    this.ticketService.setCounterID(this.counterID);
-    this.triggerAction("finish", this.ticket).subscribe(() => {
-      let nextTicket: Ticket;
-      this.queueService.waiting$.first().subscribe(ticket => {
-        nextTicket = ticket.GetFirstTicket();
-      });
-      // if (nextTicket)
+    if (this.superCounterService.SelectedCounter$.value.state !== 'calling') {
+      this.ticketService.setCounterID(this.counterID);
+      this.triggerAction("finish", this.ticket).subscribe(() => {
+        let nextTicket: Ticket;
+        this.queueService.waiting$.first().subscribe(ticket => {
+          nextTicket = ticket.GetFirstTicket();
+        });
+        // if (nextTicket)
         this.triggerAction("call", nextTicket);
-      // else {
-      //   this.notice.ShowMessage("out_of_ticket");
-      // }
-    });
+        // else {
+        //   this.notice.ShowMessage("out_of_ticket");
+        // }
+      });
+    }
   }
 
   NoNext() {

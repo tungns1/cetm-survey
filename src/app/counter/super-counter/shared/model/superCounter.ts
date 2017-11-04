@@ -24,7 +24,6 @@ export class SuperCounter {
 
     counterList: counterList;
     AutoNext = false;
-
     waiting = new TicketQueue('waiting');
     serving = new TicketQueue('serving');
     cancelled = new TicketQueue('cancelled');
@@ -59,12 +58,14 @@ export class SuperCounter {
 
 export class counterList {
     constructor(
-        counters: ICounter[] = []
+        counters: ICounter[] = [],
     ) {
         counters.sort((a, b) => a.cnum < b.cnum ? -1 : 1);
         this.counters = counters.map(c => new counterDetail(c));
+        this.selectedCounter = this.counters[0];
     }
 
+    selectedCounter: counterDetail = null;
     private counters: counterDetail[];
 
     ToArray() {
@@ -88,6 +89,10 @@ export class counterList {
                 }
             }
         });
+    }
+
+    select(counter: counterDetail) {
+        this.selectedCounter = counter;
     }
 
 }

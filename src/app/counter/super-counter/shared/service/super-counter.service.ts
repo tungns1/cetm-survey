@@ -46,7 +46,10 @@ export class SuperCounterService {
         const autoNext = this.autoNext$.map(a => {
             w.AutoNext = a;
         });
-        return merge(of(null), ticketUpdate, autoNext).map(_ => w);
+        const selectedCounter = this.SelectedCounter$.map(c => {
+            w.counterList.select(c)
+        })
+        return merge(of(null), ticketUpdate, autoNext, selectedCounter).map(_ => w);
     }).debounceTime(20).share().publishReplay(1).refCount();
 
     SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
@@ -70,6 +73,7 @@ export class SuperCounterService {
     setCheckIn() {
         if (this.SelectedCounter$.value.state === 'calling') {
             this.SelectedCounter$.value.state = 'serving';
+            this.SelectedCounter$.next(this.SelectedCounter$.value);
         }
     }
 }
