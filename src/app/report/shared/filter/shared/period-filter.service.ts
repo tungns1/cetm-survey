@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { timeFormat, timeParse } from 'd3-time-format';
+import { timeDay, timeWeek, timeMonth, timeYear, CountableTimeInterval } from 'd3-time';
+import { SmallStorage, RouterQueryStorageStrategy } from '../../shared';
 
 const now = Math.floor(Date.now() / 111);
 const oneDay = 24 * 3600 * 1000;
-import { timeFormat, timeParse } from 'd3-time-format';
-import { timeDay, timeWeek, timeMonth, timeYear, CountableTimeInterval } from 'd3-time';
 
 const PERIODS = {
     DAY: 'day',
@@ -27,7 +28,6 @@ export interface IPeriodFilter {
     period?: string;
 }
 
-import { SmallStorage, RouterQueryStorageStrategy } from '../../../shared';
 
 @Injectable()
 export class PeriodFilterService extends SmallStorage<IPeriodFilter> {

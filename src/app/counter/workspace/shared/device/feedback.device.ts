@@ -1,13 +1,13 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { QmsService } from '../shared';
 import { Injectable } from '@angular/core';
-import { CounterSettingService } from '../../../shared';
+import { WorkspaceSettingService } from '../counter-setting.service';
 
 @Injectable()
 export class FeedbackDevice {
     constructor(
         private qmsService: QmsService,
-        private counterSetting: CounterSettingService
+        private counterSetting: WorkspaceSettingService
     ) {
 
     }

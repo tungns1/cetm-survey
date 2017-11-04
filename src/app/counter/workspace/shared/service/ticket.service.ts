@@ -3,7 +3,7 @@ import { Workspace } from '../../../shared/model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
 import { Injectable } from '@angular/core';
-import { CounterSettingService } from './shared';
+import { WorkspaceSettingService } from '../counter-setting.service';
 import { ActionManager, TicketAction, TicketActionName } from './shared';
 import { QmsService } from '../shared';
 
@@ -12,7 +12,7 @@ export class TicketService {
     constructor(
         private qms: QmsService,
         private workspaceService: WorkspaceService,
-        private settingService: CounterSettingService,
+        private settingService: WorkspaceSettingService,
         private queueService: QueueService
     ) {
         this.onInit();

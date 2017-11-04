@@ -17,7 +17,7 @@ export interface ICounterSetting extends ILedSetting {
 }
 
 @Injectable()
-export class CounterSettingService extends SmallStorage<ICounterSetting> {
+export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
   constructor(
     private xwinStorage: XWinStorageStrategy,
     private env: RuntimeEnvironment
