@@ -5,7 +5,7 @@
       <span class="totalCount">({{ticketsWaitingCount$ | async}})</span>
     </div>
     <div class="searchBar">
-      <input #waitingTicket type="number" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('waiting', $event.target.value)"
+      <input #waitingTicket type="number" i18n-placeholder placeholder="(Search by ticket number/phone number)" (keyup)="search('waiting', $event.target.value)"
         class="ctrlInput">
     </div>
     <div fxLayout="row" class="headerTable">
@@ -34,7 +34,7 @@
       <span class="totalCount">({{ticketsCanceledCount$ | async}})</span>
     </div>
     <div class="searchBar">
-      <input #canceledTicket type="number" i18n-placeholder placeholder="(Search by ticket number/ phone number)" (keyup)="search('canceled', $event.target.value)"
+      <input #canceledTicket type="number" i18n-placeholder placeholder="(Search by ticket number/phone number)" (keyup)="search('canceled', $event.target.value)"
         class="ctrlInput">
     </div>
     <div fxLayout="row" class="headerTable">

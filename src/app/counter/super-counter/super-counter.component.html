@@ -20,3 +20,6 @@
 </div>
 <p class="setting" (click)="backToSetting()" i18n>Setting</p>
 <app-security-pass minClick="6" minSecond="8" nav="../setting"></app-security-pass>
+<div *ngIf="message$ | async; let message" class="connecting-message spinner">
+    {{message}}
+</div>

@@ -146,7 +146,7 @@ export class counterDetail {
     }
 
     get serveTime() {
-        return this.serving == null ? '' : this.serving.state === 'serving' ? this.serving.mtime : '';
+        return this.serving == null ? '' : this.serving.state === 'serving' ? this.serving.mtime : 0;
     }
 
     get phoneNum() {

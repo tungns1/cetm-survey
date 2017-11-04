@@ -205,7 +205,7 @@
   <msg id="518297907399160251"><source>app\counter\super-counter\counter-cell\counter-cell.component.ts:5</source>Room</msg>
   <msg id="2358741410867487350" desc="Counter Button: Create Ticket"><source>app\counter\super-counter\super-counter-action\super-counter-action.component.ts:20</source>Create ticket</msg>
   <msg id="3521448966338187256"><source>app\counter\super-counter\super-counter-action\super-counter-action.component.ts:18</source>Do you want to create a ticket?</msg>
-  <msg id="658521432081097681"><source>app\counter\super-counter\queue\queue.component.ts:8</source><source>app\counter\super-counter\queue\queue.component.ts:37</source>(Search by ticket number/ phone number)</msg>
+  <msg id="658521432081097681"><source>app\counter\super-counter\queue\queue.component.ts:8</source><source>app\counter\super-counter\queue\queue.component.ts:37</source>(Search by ticket number/phone number)</msg>
   <msg id="5986564301755796501"><source>app\counter\super-counter\queue\queue.component.ts:33</source>Missed Tickets</msg>
   <msg id="3010468985949977119"><source>app\counter\super-counter\queue\queue.component.ts:43</source>Missed At</msg>
   <msg id="2614607010577950577"><source>app\monitor\component\ticket\summary\summary.component.ts:2</source><source>app\monitor\component\device\summary\summary.component.ts:2</source><source>app\report\dashboard\dashboard.component.ts:22</source>Overview</msg>
