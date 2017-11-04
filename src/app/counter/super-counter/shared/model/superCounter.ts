@@ -103,10 +103,10 @@ export class counterDetail {
     constructor(
         private counter: ICounter
     ) {
-        if (this.serving) this.state = 'serving';
+        if (this.serving) this._state = 'serving';
     }
     serving: ITicket;
-    state: counterState = 'init';
+    private _state: counterState = 'init';
 
     Update(act: ITicketAction) {
         if (this.counter.id !== act.ticket.counter_id) {
@@ -118,8 +118,12 @@ export class counterDetail {
         else this.serving = null;
     }
 
-    setCounterState(state: counterState) {
-        this.state = state;
+    set state(s: counterState) {
+        this._state = s;
+    }
+
+    get state() {
+        return this._state;
     }
 
     get id() {
@@ -151,7 +155,7 @@ export class counterDetail {
     }
 
     get serveTime() {
-        return this.serving == null ? '' : this.serving.state === 'serving' ? this.serving.mtime : 0;
+        return this.serving == null ? 0 : (this.serving.state === 'serving' ? this.serving.mtime : 0);
     }
 
     get phoneNum() {

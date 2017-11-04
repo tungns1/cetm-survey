@@ -28,7 +28,7 @@ export class SuperCounterActionComponent {
 
   auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
   disabled$ = this.superCounterService.Workspace$.map(c => {
-    return c.waiting.is_empty || c.counterList.selectedCounter.state === 'calling';
+    return c.counterList.selectedCounter.state === 'calling' || c.waiting.is_empty; 
   });
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 <div fxLayout="column" class="counterCell border" [ngClass]="{'selected': selected, 'serving': _counter.counterState == 'serving',
-              'init': _counter.counterState == 'init', 'calling': _counter.counterState == 'calling' && !_counter.serveLong,
-              'warning': _counter.counterState !== 'serving' && _counter.serveLong, 'empty': _counter.counterState == 'empty'}">
+              'init': _counter.counterState == 'init', 'calling': _counter.counterState == 'calling' && !serve_long,
+              'warning': _counter.counterState == 'calling' && serve_long, 'empty': _counter.counterState == 'empty'}">
     <h2 fxFlex="60" class="center margin-5">
         <span i18n>Room</span>
         <span> {{_counter.counterNum}}</span>
@@ -8,4 +8,5 @@
     <div fxFlex>
         <h3 class="center margin-5 ticketNum">&nbsp;{{_counter.ticketNum}}&nbsp;</h3>
     </div>
+    <div style="display: none">{{oneSecond$ | async}}</div>
 </div>

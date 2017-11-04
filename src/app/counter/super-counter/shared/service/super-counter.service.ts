@@ -48,7 +48,7 @@ export class SuperCounterService {
         });
         const selectedCounter = this.SelectedCounter$.map(c => {
             w.counterList.select(c)
-        })
+        });
         return merge(of(null), ticketUpdate, autoNext, selectedCounter).map(_ => w);
     }).debounceTime(20).share().publishReplay(1).refCount();
 
