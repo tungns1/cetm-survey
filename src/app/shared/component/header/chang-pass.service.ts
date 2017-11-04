@@ -1,4 +1,4 @@
-import { HttpServiceGenerator, HttpApi } from '../../../shared/';
+import { HttpServiceGenerator, HttpApi } from '../../../shared/service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';

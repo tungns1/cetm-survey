@@ -4,7 +4,8 @@ import {
   TicketState, TicketStates, TicketActionName,
   CounterSettingService
 } from '../../../workspace/shared';
-import { QueueService, SuperCounterService } from '../service'
+import { QueueService } from './queue.service';
+import { SuperCounterService } from './super-counter.service';
 import { QmsService } from '../../../workspace/shared/shared';
 import { ActionManager, TicketAction } from '../../../workspace/shared/service/shared';
 

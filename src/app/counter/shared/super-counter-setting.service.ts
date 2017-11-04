@@ -23,28 +23,6 @@ export class SuperCounterSettingService extends SmallStorage<ISuperCounterSettin
   }
 
   Check() {
-    this.checked = true;
     return this.data.branch_code;
   }
-
-  get UploadUrl() {
-    return this.baseUploadURL;
-  }
-
-  get IsChecked() {
-    return this.checked;
-  }
-
-  get EnableRecordTransaction() {
-    var c = ProjectConfig.counter;
-    return c.record_transaction === 'alway_on';
-  }
-
-  get EnableLed() {
-    return true;
-  }
-
-  private baseUploadURL = `${this.env.Platform.Http}/api/report/record/`;
-
-  private checked = false;
 }

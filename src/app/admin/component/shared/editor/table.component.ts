@@ -3,10 +3,10 @@ import {
     ContentChildren, QueryList, ViewChild
 } from '@angular/core';
 import { ITableField, ITableAction } from './model';
-import { CacheBranch } from '../';
+import { CacheBranch } from '../../../service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { NoticeComponent } from '../../../../../lib/ng2';
-import { RuntimeEnvironment } from '../../shared';
+import { RuntimeEnvironment } from '../../../../shared';
 
 @Component({
     selector: "app-table-field",
