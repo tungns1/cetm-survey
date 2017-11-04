@@ -77,13 +77,13 @@ export class counterList {
             if (action.ticket.counter_id === c.counterID) {
                 switch (action.action) {
                     case 'call':
-                        c.setCounterState('calling');
+                        c.state = 'calling';
                         break;
                     case 'cancel':
-                        c.setCounterState('empty');
+                        c.state = 'empty';
                         break;
                     case 'finish':
-                        c.setCounterState('empty');
+                        c.state = 'empty';
                         break;
                 }
             }
@@ -101,7 +101,7 @@ export class counterDetail {
         if (this.serving) this.state = 'serving';
     }
     serving: ITicket;
-    private state: counterState = 'init';
+    state: counterState = 'init';
 
     Update(act: ITicketAction) {
         if (this.counter.id !== act.ticket.counter_id) {

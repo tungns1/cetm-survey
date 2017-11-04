@@ -33,22 +33,6 @@ export class SuperCounterService {
     private initialState$ = this.socket.RxEvent<ISuperCounterInitialState>("/initial");
     private autoNext$ = new ReplaySubject<boolean>(1);
 
-    get Socket() {
-        return this.socket;
-    }
-
-    enable() {
-        this.socket.onInit();
-    }
-
-    disable() {
-        this.socket.onDestroy();
-    }
-
-    SetAutoNext(auto = false) {
-        this.autoNext$.next(auto);
-    }
-
     serviceList$ = this.initialState$.map(initData => {
         return initData.services;
     })
@@ -66,4 +50,26 @@ export class SuperCounterService {
     }).debounceTime(20).share().publishReplay(1).refCount();
 
     SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
+
+    get Socket() {
+        return this.socket;
+    }
+
+    enable() {
+        this.socket.onInit();
+    }
+
+    disable() {
+        this.socket.onDestroy();
+    }
+
+    SetAutoNext(auto = false) {
+        this.autoNext$.next(auto);
+    }
+
+    setCheckIn() {
+        if (this.SelectedCounter$.value.state === 'calling') {
+            this.SelectedCounter$.value.state = 'serving';
+        }
+    }
 }

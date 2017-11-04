@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule, Router, ActivatedRouteSnapshot, RouterSta
 import {
   MatCheckboxModule, MatInputModule, MatFormFieldModule,
   MatToolbarModule, MatProgressBarModule, MatTabsModule,
-  // MatListModule
+  MatTooltipModule
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
@@ -56,6 +56,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ComponentSharedModule, CountersMapModule, SwiperModule,
     MatCheckboxModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatProgressBarModule, MatTabsModule,
+    MatTooltipModule,
     TicketModule, WelcomeModule
   ],
   declarations: [

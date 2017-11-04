@@ -22,6 +22,7 @@ export class CounterDetailComponent implements OnInit {
   ticket$ = new BehaviorSubject<Ticket>(null)
   counterDetail$ = this.superCounterService.SelectedCounter$
   maxServingMinute = ProjectConfig.service.max_serving_minute;
+  checked: boolean = false;
 
   ngOnInit() {
     this.counterDetail$.subscribe(d => {
@@ -34,8 +35,13 @@ export class CounterDetailComponent implements OnInit {
             counterDetail.classList.add('fadeIn');
           })
         }
+        this.checked = d.state === 'serving';
       }
     })
+  }
+
+  checkIn() {
+    this.superCounterService.setCheckIn();
   }
 
 }

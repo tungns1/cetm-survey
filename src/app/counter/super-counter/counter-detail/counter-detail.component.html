@@ -4,6 +4,15 @@
             <span i18n>Room</span>
             <span>{{counterDetail.counterNum}}</span>
             <span *ngIf="counterDetail.phoneNum">: {{counterDetail.phoneNum}}</span>
+
+            <div *ngIf="counterDetail.ticketNum" id="roomServing" (click)="checkIn()" matTooltip="Mark as checked" matTooltipPosition="left">
+                <span *ngIf="counterDetail.state !== 'serving'">
+                    <i class="icon fa fa-square-o fa-2x" aria-hidden="true"></i>
+                </span>
+                <span *ngIf="counterDetail.state === 'serving'">
+                    <i class="icon fa fa-check-square-o fa-2x" aria-hidden="true"></i>
+                </span>
+            </div>
         </div>
         <div fxFlex="50" fxLayout="row" class="container">
             <div fxFlex *ngIf="counterDetail.ticketNum" class="ticketNum center" fxLayout="column">
@@ -16,7 +25,7 @@
             <div fxFlex *ngIf="counterDetail.ticketNum" class="timing center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Time</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content">
-                    <img  fxFlex="40px" class="icon" src="./assets/img/icon/time.png" alt="Time">
+                    <img fxFlex="40px" class="icon" src="./assets/img/icon/time.png" alt="Time">
                     <timer fxFlex [start]="counterDetail.serveTime" [timeWarning]="maxServingMinute"></timer>
                 </div>
             </div>
