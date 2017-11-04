@@ -27,8 +27,12 @@ export class SuperCounterActionComponent {
   @ViewChild(NoticeComponent) notice: NoticeComponent;
 
   auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
+  isEmpty: boolean;
 
   ngOnInit() {
+    this.queueService.waiting$.subscribe(w => {
+      this.isEmpty = w.is_empty;
+    })
   }
 
   Next() {
@@ -38,11 +42,11 @@ export class SuperCounterActionComponent {
       this.queueService.waiting$.first().subscribe(ticket => {
         nextTicket = ticket.GetFirstTicket();
       });
-      if (nextTicket)
+      // if (nextTicket)
         this.triggerAction("call", nextTicket);
-      else {
-        this.notice.ShowMessage("out_of_ticket");
-      }
+      // else {
+      //   this.notice.ShowMessage("out_of_ticket");
+      // }
     });
   }
 
