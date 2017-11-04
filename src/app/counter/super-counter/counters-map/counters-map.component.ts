@@ -17,12 +17,8 @@ export class CountersMapComponent implements OnInit {
     private superCounterService: SuperCounterService,
   ) { }
 
-  // columnConfig: number = 8;
   columnConfig: number = 3;
   selected: counterDetail;
-  // serveLongConfig: number = 99856345665;
-  // private oneSecond = interval(1000).share();
-  // maxServingMinute = ProjectConfig.service.max_serving_minute;
 
   countersMap$ = this.superCounterService.Workspace$.map(w => {
     const counterList = w.counterList.ToArray();

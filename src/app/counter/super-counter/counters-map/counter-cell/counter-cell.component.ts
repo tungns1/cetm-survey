@@ -22,19 +22,12 @@ export class CounterCellComponent implements OnInit {
 
   @Input() set counter(v: counterDetail) {
     this._counter = v;
-    // console.log(this._counter.serveTime)
-    // console.log(Date.now())
-    // if (this._counter.ticketNum) {
-
-    // }
     this.subscription = this.oneSecond.subscribe(_ => {
       this.setServeLong(Number(this._counter.serveTime), this.maxServingMinute)
     });
-    // }
   };
 
   ngOnInit() {
-    // console.log(this.counter)
   }
 
   ngOnDestroy() {

@@ -77,7 +77,7 @@ export class counterList {
             if (action.ticket.counter_id === c.counterID) {
                 switch (action.action) {
                     case 'call':
-                        c.setCounterState('serving');
+                        c.setCounterState('calling');
                         break;
                     case 'cancel':
                         c.setCounterState('empty');
@@ -92,7 +92,7 @@ export class counterList {
 
 }
 
-export type counterState = 'init' | 'serving' | 'empty';
+export type counterState = 'init' | 'calling' | 'serving' | 'empty';
 
 export class counterDetail {
     constructor(
