@@ -16,14 +16,17 @@ export class TicketIconComponent {
         vip: "./assets/img/icon/star.png"
     }
     src = "";
+    _ticket: Ticket;
     @Input() width = "15px";
-    @Input() ticket: Ticket;
+    @Input() set ticket(t: Ticket){
+        this._ticket = t
+    };
     private params: any;
     private ticketNum: string;
     
     ngOnInit(){
-        if(this.ticket){
-            this.setSrc(this.ticket);
+        if(this._ticket){
+            this.setSrc(this._ticket);
         } else if(this.params){
             this.setSrc(this.params.data);
             this.width = this.params.width;

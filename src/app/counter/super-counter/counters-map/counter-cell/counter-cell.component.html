@@ -1,5 +1,6 @@
 <div fxLayout="column" class="counterCell border" [ngClass]="{'selected': selected, 'serving': _counter.counterState == 'serving', 'empty': _counter.counterState == 'empty', 
-              'init': _counter.counterState == 'init', 'warning': _counter.serveLong, 'calling': _counter.counterState == 'calling'}">
+              'init': _counter.counterState == 'init', 'calling': _counter.counterState == 'calling' && !_counter.serveLong,
+              'warning': _counter.serveLong && _counter.counterState !== 'serving'}">
     <h2 fxFlex="60" class="center margin-5">
         <span i18n>Room</span>
         <span> {{_counter.counterNum}}</span>
