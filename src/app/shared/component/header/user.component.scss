@@ -1,4 +1,4 @@
-.hl-dropdown-item-user {
+.settingMenuItem {
     color: black;
     padding: 6px 6px;
     text-decoration: none;
@@ -10,16 +10,8 @@
     }
 }
 
-#menuSetting {
-    .hl-droplabel-user {
-        background-color: transparent;
-        color: #0b8fdb;
-        font-size: 12px;
-        border: none;
-        cursor: pointer;
-        margin-right: 15px;
-        span {
-            color: #414042;
-        }
+@media screen and (max-width: 1030px) {
+    .settingMenuItem {
+        font-size: 140%;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { RuntimeEnvironment } from '../../env/';
 
 @Component({
@@ -11,6 +11,8 @@ export class HeaderComponent {
     constructor(
         private env: RuntimeEnvironment
     ) { }
+
+    @Input() app: 'qapp' | 'counter' = 'qapp';
 
     moduleName$ = this.env.Auth.Data$.map(a => a.module);
     subModuleName$ = this.env.Auth.Data$.map(a => a.sub_module);

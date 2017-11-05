@@ -1,5 +1,5 @@
 <div id="header" fxLayout="row" fxLayoutAlign="space-around center">
     <logo fxFlex></logo>
     <span fxFlex="60%" class="center uppercase">{{moduleName$ | async}} - {{subModuleName$ | async}}</span>
-    <user fxFlex class="right"></user>
+    <user *ngIf="app" fxFlex class="right" [app]="app"></user>
 </div>
