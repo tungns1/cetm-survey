@@ -1,6 +1,6 @@
 <div id="superCounterDetail">
     <div fxLayout="column" class="border">
-        <div fxFlex="20" id="counterDetailHeader" class="counterDetailHeader center animated">
+        <div fxFlex="20" id="counterDetailHeader" *ngIf="counter" class="counterDetailHeader center animated">
             <span i18n>Room</span>
             <span>{{counter.counterNum}}</span>
             <span *ngIf="counter.phoneNum">- {{counter.phoneNum}}</span>
