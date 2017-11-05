@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   trigger, state, style,
   animate, transition
@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Ticket } from '../../../shared/model/house';
 import { SuperCounterService } from '../shared/service';
 import { ProjectConfig } from '../../shared'
+import { counterDetail } from '../shared/model';
 
 @Component({
   selector: 'app-counter-detail',
@@ -19,25 +20,18 @@ export class CounterDetailComponent implements OnInit {
     private superCounterService: SuperCounterService,
   ) { }
 
-  ticket$ = new BehaviorSubject<Ticket>(null)
-  counterDetail$ = this.superCounterService.SelectedCounter$
+  @Input() counter: counterDetail;
   maxServingMinute = ProjectConfig.service.max_serving_minute;
-  checked: boolean = false;
+  checked =  this.counter && this.counter.state === 'serving';
 
   ngOnInit() {
-    this.counterDetail$.subscribe(d => {
-      if (d) {
-        this.ticket$.next(d.serving ? new Ticket(d.serving) : null);
-        let counterDetail = document.getElementById('counterDetailHeader');
-        if (counterDetail) {
-          counterDetail.classList.remove('fadeIn');
-          setTimeout(_ => {
-            counterDetail.classList.add('fadeIn');
-          })
-        }
-        this.checked = d.state === 'serving';
-      }
-    })
+    // let counterDetail = document.getElementById('counterDetailHeader');
+    // if (counterDetail) {
+    //   counterDetail.classList.remove('fadeIn');
+    //   setTimeout(_ => {
+    //     counterDetail.classList.add('fadeIn');
+    //   })
+    // }
   }
 
   checkIn() {

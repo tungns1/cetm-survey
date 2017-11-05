@@ -1,13 +1,15 @@
 <div id="superCounter" fxLayout="column" class="unselectable">
     <app-env-module [title]="storeName$ | async"></app-env-module>
     <app-header fxFlex="30px" fxShow.xs="false"></app-header>
-    <swiper fxFlex [config]="swiperConfig" [(index)]="index">
-        <div fxLayout="column" fxLayoutGap="2vw" class="counterMapNDetail">
-            <app-counter-detail fxFlex="30"></app-counter-detail>
-            <app-counters-map fxFlex></app-counters-map>
-        </div>
-        <app-queue></app-queue>
-    </swiper>
+    <div fxFlex>
+        <swiper *ngIf="workspace$ | async; let workspace" [config]="swiperConfig" [(index)]="index">
+            <div fxLayout="column" fxLayoutGap="2vw" class="counterMapNDetail">
+                <app-counter-detail fxFlex="30" [counter]="workspace.counterList.selectedCounter"></app-counter-detail>
+                <app-counters-map fxFlex></app-counters-map>
+            </div>
+            <app-queue></app-queue>
+        </swiper>
+    </div>
     <span fxFlex="5" class="center"><footer></footer></span>
 </div>
 <div class="superCounterNav">

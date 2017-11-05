@@ -22,13 +22,15 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { SuperCounterSocket } from './super-counter.socket';
 
 @Injectable()
-export class SuperCounterService {
+export class SuperCounterService extends BehaviorSubject<SuperCounter> {
     constructor(
         private authService: AuthService,
         private socket: SuperCounterSocket,
         private env: RuntimeEnvironment
-    ) { }
-
+    ) {
+        super(null);
+        this.Workspace$.subscribe(w => this.AppState$.next(w));
+    }
 
     private initialState$ = this.socket.RxEvent<ISuperCounterInitialState>("/initial");
     private autoNext$ = new ReplaySubject<boolean>(1);
@@ -36,6 +38,8 @@ export class SuperCounterService {
     serviceList$ = this.initialState$.map(initData => {
         return initData.services;
     })
+
+    AppState$ = new BehaviorSubject<SuperCounter>(null);
 
     Workspace$ = this.initialState$.switchMap(s => {
         const w = new SuperCounter(s);

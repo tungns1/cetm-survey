@@ -6,7 +6,7 @@ import { Ticket } from '../../../shared/model/house';
 import { TicketActionName } from '../../workspace/shared';
 import { AppStorage } from '../../shared';
 import { NoticeComponent } from '../../../../lib/ng2';
-
+import { counterDetail } from '../shared/model';
 import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateTicket } from '../shared/service';
 
 @Component({
@@ -17,16 +17,14 @@ import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateT
 export class SuperCounterActionComponent {
   constructor(
     private superCounterService: SuperCounterService,
-    private ticketService: SupperCounterTicketService,
-    private queueService: QueueService,
-    private mdDialog: MatDialog
+    private ticketService: SupperCounterTicketService
   ) { }
 
   @Input() ticket: Ticket;
-  @Input() counterID: string;
+  @Input() counter: counterDetail;
 
   disabled$ = this.superCounterService.Workspace$.map(c => {
-    return c.counterList.selectedCounter.state === 'calling' || c.waiting.is_empty;
+    return (this.counter && this.counter.state === 'calling') || c.waiting.is_empty;
   });
 
   ngOnInit() {
@@ -34,20 +32,17 @@ export class SuperCounterActionComponent {
   }
 
   Next() {
-    if (this.superCounterService.SelectedCounter$.value.state !== 'calling') {
+    if (this.counter.state !== 'calling') {
       this.triggerAction("finish", this.ticket).subscribe(() => {
-        this.queueService.waiting$.first().subscribe(ticket => {
-          let nextTicket: Ticket;
-          nextTicket = ticket.GetFirstTicket();
-          this.triggerAction("call", nextTicket);
-        });
+        const app = this.superCounterService.AppState$.value;
+        const firstWaiting = app.waiting.GetFirstTicket();
+        this.triggerAction("call", firstWaiting);
       });
     }
   }
 
   Finish() {
     this.triggerAction('finish', this.ticket);
-
   }
 
   Cancel() {
@@ -55,14 +50,12 @@ export class SuperCounterActionComponent {
   }
 
   createTicket() {
-    this.superCounterService.serviceList$.first().subscribe(d => {
-      const serviceID = d[0]['id'];
-      this.ticketService.CreateTicket(AppStorage.Culture, serviceID);
-    });
+    const service = this.superCounterService.AppState$.value.services[0];
+    this.ticketService.CreateTicket(AppStorage.Culture, service.id);
   }
 
   private triggerAction(action: TicketActionName, ticket?: Ticket) {
-    return this.ticketService.TriggerAction(action, ticket, this.counterID);
+    return this.ticketService.TriggerAction(action, ticket, this.counter.id);
   }
 
 }

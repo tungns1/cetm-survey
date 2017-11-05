@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RuntimeEnvironment } from '../../shared';
@@ -21,7 +21,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 @Component({
   selector: 'app-super-counter',
   templateUrl: './super-counter.component.html',
-  styleUrls: ['./super-counter.component.scss']
+  styleUrls: ['./super-counter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SuperCounterComponent implements OnInit {
 
@@ -40,6 +41,7 @@ export class SuperCounterComponent implements OnInit {
 
   index: number = 0;
   storeName$ = this.env.Auth.Data$.map(d => `- ${d.store} `);
+  workspace$ = this.superCounterService.Workspace$;
 
   ngOnInit() {
     this.superCounterService.enable();

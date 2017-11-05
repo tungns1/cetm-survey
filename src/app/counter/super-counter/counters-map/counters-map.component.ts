@@ -31,7 +31,6 @@ export class CountersMapComponent implements OnInit {
     while (countersMap[countersMap.length - 1].length < countersMap[0].length) {
       countersMap[countersMap.length - 1].push(null);
     }
-    if (this.selected) this.selectCounter(this.selected);
     return countersMap;
   })
 
