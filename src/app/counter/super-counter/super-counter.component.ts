@@ -47,13 +47,6 @@ export class SuperCounterComponent implements OnInit {
     this.superCounterService.enable();
   }
 
-  backToSetting() {
-    this.router.navigate(['/counter/super/setting'], {
-      queryParamsHandling: 'preserve',
-      relativeTo: this.route
-    });
-  }
-
   ngOnDestroy() {
     this.superCounterService.disable();
   }

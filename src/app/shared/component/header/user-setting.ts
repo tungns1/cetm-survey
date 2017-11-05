@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material';
+import { Component, EventEmitter, Output, Input, Optional, Inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProjectConfig, AppStorage } from '../../shared';
 
 @Component({
@@ -10,9 +10,13 @@ import { ProjectConfig, AppStorage } from '../../shared';
 })
 export class UserSettingComponent {
     constructor(
-        protected dialogRef: MatDialogRef<any>
+        @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+        protected dialogRef: MatDialogRef<any>,
+        private router: Router,
+        private route: ActivatedRoute,
     ) { }
 
+    app = this.dialogData;
     languages = ProjectConfig.general.supported_languages;
     items = this.languages.map(l => {
         return {
@@ -29,5 +33,14 @@ export class UserSettingComponent {
 
     close() {
         this.dialogRef.close();
+    }
+
+    goToConfig() {
+        let url = this.router.routerState.snapshot.url.replace('/main', '/setting');
+        this.router.navigate([url], {
+            queryParamsHandling: 'preserve',
+            relativeTo: this.route
+        });
+        this.close();
     }
 }

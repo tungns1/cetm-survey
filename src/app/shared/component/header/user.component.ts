@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, Input } from '@angular/core';
 import { MatMenuTrigger, MatDialog, MatDialogConfig } from '@angular/material';
 import { RuntimeEnvironment } from '../../env';
 import { Observable } from 'rxjs/Observable';
@@ -17,6 +17,8 @@ export class UserComponent {
         private mdDialog: MatDialog
     ) { }
     hidden = true;
+
+    @Input() app: 'qapp' | 'counter' = 'qapp';
 
     @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
     username = this.env.Auth.User$.map(u => u.fullname);
@@ -41,6 +43,7 @@ export class UserComponent {
     openSettingModal(){
         const config = new MatDialogConfig();
         config.width = '350px';
+        config.data = this.app;
         const dialog = this.mdDialog.open(UserSettingComponent, config);
     }
 } 

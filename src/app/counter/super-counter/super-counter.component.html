@@ -15,8 +15,6 @@
 <div class="superCounterNav">
     <i [class.fa-arrow-right]="index===0" [class.fa-arrow-left]="index===1" class="fa fa-3x" (click)="index = 1 - index" aria-hidden="true"></i>
 </div>
-<p class="setting" (click)="backToSetting()" i18n>Setting</p>
+<!-- <p class="setting" (click)="backToSetting()" i18n>Setting</p> -->
 <app-security-pass minClick="6" minSecond="8" nav="../setting"></app-security-pass>
-<div *ngIf="message$ | async; let message" class="connecting-message spinner">
-    {{message}}
-</div>
+<div *ngIf="message$ | async; let message" class="connecting-message">{{message}}</div>
