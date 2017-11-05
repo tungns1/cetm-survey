@@ -25,7 +25,6 @@ export class SupperCounterTicketService {
   private socket = this.superCounterService.Socket;
   private platform = this.qms.platform || "other";
 
-
   private sendAction(body: TicketAction) {
     const data = <TicketAction>{
       action: body.action,
@@ -43,12 +42,6 @@ export class SupperCounterTicketService {
     return this.sendAction(ta);
   });
 
-  counterID: string = '';
-
-  setCounterID(counterID: string) {
-    this.counterID = counterID;
-  }
-
   Search(cnum: string) {
     return this.socket.Send<ITicket[]>('/search', {
       cnum: cnum
@@ -57,23 +50,6 @@ export class SupperCounterTicketService {
 
   private onInit() {
     let failed_count = 0;
-    this.superCounterService.Workspace$.subscribe(w => {
-      if (!w.AutoNext) return;
-
-      const ticket = w.waiting.GetFirstTicket();
-      if (!ticket) return;
-
-      this.TriggerAction("call", ticket, this.counterID).subscribe(_ => {
-        failed_count = 0;
-      }, e => {
-        // call failed
-        const ten_second = 10 * 1000;
-        failed_count++;
-        setTimeout(_ => {
-          console.log('error')
-        }, ten_second);
-      });
-    });
   }
 
   TriggerAction(action: TicketActionName, ticket: Ticket, counterID?: string) {
@@ -82,12 +58,12 @@ export class SupperCounterTicketService {
     }, counterID);
   }
 
-  createTicket(action: TicketActionName, info: ICreateTicket) {
+  CreateTicket(lang: string, service_id: string) {
     // return this.manager.create(action, info);
     const data = {
-      action: action,
-      lang: info.lang,
-      service_id: info.service_id
+      action: 'create',
+      lang,
+      service_id
     }
     return this.socket.Send<ICreateTicket>("/create_ticket", data).share();
   }

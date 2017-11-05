@@ -11,7 +11,7 @@ export interface ISuperCounterInitialState {
     user: IUser;
     counters: ICounter[];
     tickets: IMapTicket;
-    services: IService
+    services: IService[];
 }
 
 export class SuperCounter {
@@ -23,11 +23,12 @@ export class SuperCounter {
     }
 
     counterList: counterList;
+    services = this._instate.services;
     AutoNext = false;
     waiting = new TicketQueue('waiting');
     serving = new TicketQueue('serving');
     cancelled = new TicketQueue('cancelled');
-    queue = [this.waiting, this.serving, this.cancelled]
+    private queue = [this.waiting, this.serving, this.cancelled]
 
     private onInit(data: ISuperCounterInitialState) {
         this.counterList = new counterList(data.counters);

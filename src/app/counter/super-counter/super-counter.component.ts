@@ -39,17 +39,10 @@ export class SuperCounterComponent implements OnInit {
   });
 
   index: number = 0;
-  storeName: string;
+  storeName$ = this.env.Auth.Data$.map(d => `- ${d.store} `);
 
   ngOnInit() {
     this.superCounterService.enable();
-    this.env.Auth.Data$.subscribe(d => {
-      this.storeName = d.store;
-    })
-  }
-
-  toggle() {
-    this.index == 1 ? this.index = 0 : this.index = 1;
   }
 
   backToSetting() {

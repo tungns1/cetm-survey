@@ -24,38 +24,25 @@ export class SuperCounterActionComponent {
 
   @Input() ticket: Ticket;
   @Input() counterID: string;
-  @ViewChild(NoticeComponent) notice: NoticeComponent;
 
-  auto_next$ = this.superCounterService.Workspace$.map(w => w.AutoNext);
   disabled$ = this.superCounterService.Workspace$.map(c => {
-    return c.counterList.selectedCounter.state === 'calling' || c.waiting.is_empty; 
+    return c.counterList.selectedCounter.state === 'calling' || c.waiting.is_empty;
   });
 
   ngOnInit() {
-    // this.queueService.waiting$.subscribe(w => {
-    //   this.isEmpty = w.is_empty;
-    // })
+
   }
 
   Next() {
     if (this.superCounterService.SelectedCounter$.value.state !== 'calling') {
-      this.ticketService.setCounterID(this.counterID);
       this.triggerAction("finish", this.ticket).subscribe(() => {
-        let nextTicket: Ticket;
         this.queueService.waiting$.first().subscribe(ticket => {
+          let nextTicket: Ticket;
           nextTicket = ticket.GetFirstTicket();
+          this.triggerAction("call", nextTicket);
         });
-        // if (nextTicket)
-        this.triggerAction("call", nextTicket);
-        // else {
-        //   this.notice.ShowMessage("out_of_ticket");
-        // }
       });
     }
-  }
-
-  NoNext() {
-    this.superCounterService.SetAutoNext(false);
   }
 
   Finish() {
@@ -68,21 +55,14 @@ export class SuperCounterActionComponent {
   }
 
   createTicket() {
-    let serviceID: string;
     this.superCounterService.serviceList$.first().subscribe(d => {
-      serviceID = d[0]['id']
-    })
-    const info: ICreateTicket = {
-      lang: AppStorage.Culture,
-      service_id: serviceID
-    }
-    this.ticketService.createTicket('create', info)
+      const serviceID = d[0]['id'];
+      this.ticketService.CreateTicket(AppStorage.Culture, serviceID);
+    });
   }
 
   private triggerAction(action: TicketActionName, ticket?: Ticket) {
     return this.ticketService.TriggerAction(action, ticket, this.counterID);
   }
-
-  // hasMiss = false;
 
 }

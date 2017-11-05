@@ -2,8 +2,8 @@
     <div fxLayout="column" class="border">
         <div fxFlex="20" id="counterDetailHeader" class="counterDetailHeader center animated">
             <span i18n>Room</span>
-                <span>{{counterDetail.counterNum}}</span>
-                <span *ngIf="counterDetail.phoneNum">- {{counterDetail.phoneNum}}</span>
+            <span>{{counterDetail.counterNum}}</span>
+            <span *ngIf="counterDetail.phoneNum">- {{counterDetail.phoneNum}}</span>
 
 
             <div *ngIf="counterDetail.ticketNum" id="roomServing" (click)="checkIn()" matTooltip="Mark as checked" matTooltipPosition="left">

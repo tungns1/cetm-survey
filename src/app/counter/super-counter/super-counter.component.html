@@ -1,5 +1,5 @@
 <div id="superCounter" fxLayout="column" class="unselectable">
-    <app-env-module [title]="'- ' + storeName + ' '"></app-env-module>
+    <app-env-module [title]="storeName$ | async"></app-env-module>
     <app-header fxFlex="30px" fxShow.xs="false"></app-header>
     <swiper fxFlex [config]="swiperConfig" [(index)]="index">
         <div fxLayout="column" fxLayoutGap="2vw" class="counterMapNDetail">
@@ -11,7 +11,7 @@
     <span fxFlex="5" class="center"><footer></footer></span>
 </div>
 <div class="superCounterNav">
-    <i [class.fa-arrow-right]="index===0" [class.fa-arrow-left]="index===1" class="fa fa-arrow-right fa-3x" (click)="toggle()" aria-hidden="true"></i>
+    <i [class.fa-arrow-right]="index===0" [class.fa-arrow-left]="index===1" class="fa fa-3x" (click)="index = 1 - index" aria-hidden="true"></i>
 </div>
 <p class="setting" (click)="backToSetting()" i18n>Setting</p>
 <app-security-pass minClick="6" minSecond="8" nav="../setting"></app-security-pass>
