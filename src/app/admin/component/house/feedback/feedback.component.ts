@@ -41,7 +41,7 @@ export class FeedbackComponent extends BaseAdminComponent<IFeedback> {
     });
 
     parentEdit$ = this.formValue$.map(s => {
-        return `/admin/house/screen/${s.parent_id}`;
+        return `/admin/house/feedback/${s.parent_id}`;
     });
 
     // voiceEditLink$ = this.formValue$.map(s => {

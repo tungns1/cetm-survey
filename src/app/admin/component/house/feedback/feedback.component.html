@@ -6,9 +6,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" 
-    [isValid]="form.valid" [isNew]="isNew$ | async" title="Feedback" i18n-title
-    (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" [isNew]="isNew$ | async"
+    title="Feedback" i18n-title (action)="onActionConfirm($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Code</span>
@@ -51,7 +50,7 @@
                 <span fxFlex="1%">&nbsp;</span>
                 <select fxFlex class="hl-select" formControlName="parent_id">
                     <option value="">--None--</option>
-                    <option *ngFor="let sr of feedbacks | async" [value]="sr.id"> {{sr.name}} </option> 
+                    <option *ngFor="let sr of feedbacks | async" [value]="sr.id"> {{sr.name}} </option>
                 </select>
                 <a *ngIf="!(isAdminStandard$ | async)" fxFlex="7%" [routerLink]="parentEdit$ | async" queryParamsHandling="merge">
                     <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
@@ -61,7 +60,7 @@
         </div>
         <!-- Select Parent -->
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            
+
             <span fxFlex="20%">
                 <ng-container i18n>Layout</ng-container>
             </span>
@@ -81,19 +80,22 @@
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%" class="valid-color" *ngIf="form.get('counter_id').hasError('required')">*</span>
                 <span fxFlex="1%" *ngIf="!form.get('counter_id').hasError('required')">&nbsp;</span>
-                <select-check fxFlex formControlName="counter_id" class="border" style="background-color: #fff; height: 92px;" [data]="counters$ | async" textField="name"></select-check>
+                <select fxFlex formControlName="counter_id" class="hl-select">
+                    <option value="">--None--</option>
+                    <option *ngFor="let counter of counters$ | async" [value]="counter.id" [selected]="counter_id">{{counter.name}}</option>
+                </select>
                 <div fxFlex="7%"></div>
             </div>
 
         </div>
 
         <!-- Resource -->
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" fxLayoutGap="15px" class="rowCtrl">
             <span fxFlex="20%" i18n>Resources</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <span fxFlex="1%">&nbsp;</span>
                 <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>
-                <div fxFlex="7%"></div>
+                <div fxFlex="3%"></div>
             </div>
         </div>
     </form>
