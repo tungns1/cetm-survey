@@ -1,24 +1,25 @@
 <div id="superCounterDetail">
     <div fxLayout="column" class="border">
-        <div fxFlex="20" id="counterDetailHeader" *ngIf="_counter" class="counterDetailHeader center animated">
-            <span i18n>Room</span>
-            <span>{{_counter.counterNum}}</span>
-            <span *ngIf="_counter.phoneNum">- {{_counter.phoneNum}}</span>
+        <div fxFlex="20" id="counterDetailHeader" class="counterDetailHeader center animated">
+            <div *ngIf="_counter">
+                <span i18n>Room</span>
+                <span>{{_counter.counterNum}}</span>
+                <span *ngIf="_counter.phoneNum">- {{_counter.phoneNum}}</span>
 
-            <div *ngIf="_counter.ticketNum" id="roomServing" (click)="checkIn()" matTooltip="Mark as checked" matTooltipPosition="left">
-                <span *ngIf="_counter.state !== 'serving'">
-                    <i class="icon fa fa-square-o fa-2x" aria-hidden="true"></i>
-                </span>
-                <span *ngIf="_counter.state === 'serving'">
-                    <i class="icon fa fa-check-square-o fa-2x" aria-hidden="true"></i>
-                </span>
+                <div *ngIf="_counter.ticketNum" id="roomServing" (click)="checkIn()" matTooltip="Mark as checked" matTooltipPosition="left">
+                    <span *ngIf="_counter.state !== 'serving'">
+                        <i class="icon fa fa-square-o fa-2x" aria-hidden="true"></i>
+                    </span>
+                    <span *ngIf="_counter.state === 'serving'">
+                        <i class="icon fa fa-check-square-o fa-2x" aria-hidden="true"></i>
+                    </span>
+                </div>
             </div>
         </div>
         <div fxFlex="50" fxLayout="row" class="container">
             <div fxFlex *ngIf="_counter?.ticketNum" class="ticketNum center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Ticket</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content">
-                    <!-- <ticket-icon fxFlex="40px" [ticket]="ticket$ | async" width="40px"></ticket-icon> -->
                     <img fxFlex="40px" class="icon" src="./assets/img/icon/person.png" alt="Time">
                     <span fxFlex>{{_counter.ticketNum}}</span>
                 </div>
