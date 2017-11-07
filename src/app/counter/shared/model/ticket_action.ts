@@ -9,6 +9,7 @@ export interface ITicketAction {
     service_id?: string;
     state?: string;
     extra?: any;
+    // history?: any;
 }
 
 export const ActionMiss = "miss";

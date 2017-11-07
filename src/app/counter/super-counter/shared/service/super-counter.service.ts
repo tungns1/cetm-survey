@@ -11,9 +11,10 @@ import {
 } from '../../../shared/model';
 
 import {
-    counterDetail,
+    counterDetail, IMessage,
     SuperCounter, ISuperCounterInitialState
 } from '../../shared/model';
+import { ITicket } from '../shared';
 
 import { of } from 'rxjs/observable/of';
 import { merge } from 'rxjs/observable/merge';
@@ -74,10 +75,14 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
         this.autoNext$.next(auto);
     }
 
-    setCheckIn() {
+    markAsCheck(counterID: string, ticket: ITicket) {
         if (this.SelectedCounter$.value.state === 'calling') {
-            this.SelectedCounter$.value.state = 'serving';
-            this.SelectedCounter$.next(this.SelectedCounter$.value);
+            console.log('aaaaaaaaaaaa')
+            let data = {
+                counterID: counterID,
+                ticket: ticket
+            }
+            this.socket.Send<IMessage>('/mark_as_check', data)
         }
     }
 }

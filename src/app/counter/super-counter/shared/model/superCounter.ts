@@ -7,6 +7,11 @@ import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue, CancelQueue } fro
 import { ITicketAction, TicketAction } from '../../../shared/model/ticket_action';
 import { IStat, CounterStatistics } from '../../../shared/model/stat';
 
+export interface IMessage {
+    type: 'mark_as_check' | 'text',
+    data?: any;
+}
+
 export interface ISuperCounterInitialState {
     user: IUser;
     counters: ICounter[];

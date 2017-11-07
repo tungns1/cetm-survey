@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone, AfterViewInit } from '@angular/core';
 import {
   trigger, state, style,
   animate, transition
@@ -17,25 +17,24 @@ import { counterDetail } from '../shared/model';
 export class CounterDetailComponent implements OnInit {
 
   constructor(
+    private _zone: NgZone,
     private superCounterService: SuperCounterService,
   ) { }
 
   @Input() counter: counterDetail;
   maxServingMinute = ProjectConfig.service.max_serving_minute;
-  checked =  this.counter && this.counter.state === 'serving';
+  checked = this.counter && this.counter.state === 'serving';
 
   ngOnInit() {
-    // let counterDetail = document.getElementById('counterDetailHeader');
-    // if (counterDetail) {
-    //   counterDetail.classList.remove('fadeIn');
-    //   setTimeout(_ => {
-    //     counterDetail.classList.add('fadeIn');
-    //   })
-    // }
+  }
+
+  ngAfterViewInit(){
+    this._zone.run(() => console.log('done'))
   }
 
   checkIn() {
-    this.superCounterService.setCheckIn();
+    if (this.counter.ticketNum)
+      this.superCounterService.markAsCheck(this.counter.counterID, this.counter.serving);
   }
 
 }
