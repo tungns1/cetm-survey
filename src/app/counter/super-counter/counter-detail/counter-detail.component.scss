@@ -33,17 +33,23 @@
                         height: 40px;
                     }
                 }
-                .contentRight{
+                .contentRight {
                     width: 33%;
+                }
+            }
+            @media screen and (max-width: 1030px) {
+                .ticketNum,
+                .timing {
+                    height: 10vh;
                 }
             }
         }
     }
-    #roomServing{
+    #roomServing {
         color: $key-color;
         float: right;
         position: relative;
-        .icon{
+        .icon {
             position: absolute;
             top: -8px;
             left: -45px;

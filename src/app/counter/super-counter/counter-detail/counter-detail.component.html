@@ -1,38 +1,38 @@
 <div id="superCounterDetail">
     <div fxLayout="column" class="border">
-        <div fxFlex="20" id="counterDetailHeader" *ngIf="counter" class="counterDetailHeader center animated">
+        <div fxFlex="20" id="counterDetailHeader" *ngIf="_counter" class="counterDetailHeader center animated">
             <span i18n>Room</span>
-            <span>{{counter.counterNum}}</span>
-            <span *ngIf="counter.phoneNum">- {{counter.phoneNum}}</span>
+            <span>{{_counter.counterNum}}</span>
+            <span *ngIf="_counter.phoneNum">- {{_counter.phoneNum}}</span>
 
-            <div *ngIf="counter.ticketNum" id="roomServing" (click)="checkIn()" matTooltip="Mark as checked" matTooltipPosition="left">
-                <span *ngIf="counter.state !== 'serving'">
+            <div *ngIf="_counter.ticketNum" id="roomServing" (click)="checkIn()" matTooltip="Mark as checked" matTooltipPosition="left">
+                <span *ngIf="_counter.state !== 'serving'">
                     <i class="icon fa fa-square-o fa-2x" aria-hidden="true"></i>
                 </span>
-                <span *ngIf="counter.state === 'serving'">
+                <span *ngIf="_counter.state === 'serving'">
                     <i class="icon fa fa-check-square-o fa-2x" aria-hidden="true"></i>
                 </span>
             </div>
         </div>
         <div fxFlex="50" fxLayout="row" class="container">
-            <div fxFlex *ngIf="counter?.ticketNum" class="ticketNum center" fxLayout="column">
+            <div fxFlex *ngIf="_counter?.ticketNum" class="ticketNum center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Ticket</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content">
                     <!-- <ticket-icon fxFlex="40px" [ticket]="ticket$ | async" width="40px"></ticket-icon> -->
                     <img fxFlex="40px" class="icon" src="./assets/img/icon/person.png" alt="Time">
-                    <span fxFlex>{{counter.ticketNum}}</span>
+                    <span fxFlex>{{_counter.ticketNum}}</span>
                 </div>
             </div>
-            <div fxFlex *ngIf="counter?.ticketNum" class="timing center" fxLayout="column">
+            <div fxFlex *ngIf="_counter?.ticketNum" class="timing center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Time</span>
                 <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content contentRight">
                     <img fxFlex="40px" class="icon" src="./assets/img/icon/time.png" alt="Time">
-                    <timer fxFlex [start]="counter.serveTime" warning="false"></timer>
+                    <timer fxFlex [start]="_counter.serveTime" warning="false"></timer>
                 </div>
             </div>
         </div>
 
-        <app-super-counter-action fxFlex [ticket]="counter?.serving" [counter]="counter"></app-super-counter-action>
+        <app-super-counter-action fxFlex [ticket]="_counter?.serving" [counter]="_counter"></app-super-counter-action>
 
     </div>
 </div>
