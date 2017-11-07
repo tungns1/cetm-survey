@@ -11,7 +11,7 @@ import {
 } from '../../../shared/model';
 
 import {
-    counterDetail, IMessage,
+    counterDetail, IMarkAsCheck,
     SuperCounter, ISuperCounterInitialState
 } from '../../shared/model';
 import { ITicket } from '../shared';
@@ -33,8 +33,10 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
         this.Workspace$.subscribe(w => this.AppState$.next(w));
     }
 
-    private initialState$ = this.socket.RxEvent<ISuperCounterInitialState>("/initial");
+    private initialState$ = this.socket.RxEvent<ISuperCounterInitialState>('/initial');
     private autoNext$ = new ReplaySubject<boolean>(1);
+    SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
+    markAsCheck$ = new BehaviorSubject<IMarkAsCheck>(null)
 
     serviceList$ = this.initialState$.map(initData => {
         return initData.services;
@@ -44,10 +46,15 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
 
     Workspace$ = this.initialState$.switchMap(s => {
         const w = new SuperCounter(s);
-        const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
+        const ticketUpdate = this.socket.RxEvent<ITicketAction>('/ticket_action')
             .map(action => {
                 w.Update(action);
             });
+        const markAsCheck = this.socket.RxEvent<IMarkAsCheck>('/mark_as_check')
+            .map(mark => {
+                console.log(mark)
+                w.counterList.Mark(mark)
+            })
         const autoNext = this.autoNext$.map(a => {
             w.AutoNext = a;
         });
@@ -56,8 +63,6 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
         });
         return merge(of(null), ticketUpdate, autoNext, selectedCounter).map(_ => w);
     }).debounceTime(20).share().publishReplay(1).refCount();
-
-    SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
 
     get Socket() {
         return this.socket;
@@ -75,21 +80,20 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
         this.autoNext$.next(auto);
     }
 
-    // markAsCheck(counterID: string, ticket: ITicket) {
-    //     if (this.SelectedCounter$.value.state === 'calling') {
-    //         console.log('aaaaaaaaaaaa')
-    //         let data = {
-    //             counterID: counterID,
-    //             ticket: ticket
-    //         }
-    //         this.socket.Send<IMessage>('/mark_as_check', data)
-    //     }
-    // }
-
-    setCheckIn(){
+    markAsCheck(counterID: string, ticket: ITicket) {
         if (this.SelectedCounter$.value.state === 'calling') {
-            this.SelectedCounter$.value.state = 'serving';
-            this.SelectedCounter$.next(this.SelectedCounter$.value);
+            let data: IMarkAsCheck = {
+                counterID: counterID,
+                ticketID: ticket.id
+            }
+            this.socket.Send<IMarkAsCheck>('/mark_as_check', data)
         }
     }
+
+    // setCheckIn(){
+    //     if (this.SelectedCounter$.value.state === 'calling') {
+    //         this.SelectedCounter$.value.state = 'serving';
+    //         this.SelectedCounter$.next(this.SelectedCounter$.value);
+    //     }
+    // }
 }

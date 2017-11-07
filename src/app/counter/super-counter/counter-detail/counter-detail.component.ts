@@ -39,9 +39,9 @@ export class CounterDetailComponent implements OnInit {
   }
 
   checkIn() {
-    // if (this._counter.ticketNum)
-    //   this.superCounterService.markAsCheck(this._counter.counterID, this._counter.serving);
-    this.superCounterService.setCheckIn();
+    if (this._counter.ticketNum)
+      this.superCounterService.markAsCheck(this._counter.counterID, this._counter.serving);
+    // this.superCounterService.setCheckIn();
   }
 
 }

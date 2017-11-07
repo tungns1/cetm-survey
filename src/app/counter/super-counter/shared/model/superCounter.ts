@@ -7,9 +7,13 @@ import { TicketQueue, WaitingQueue, ServingQueue, MissedQueue, CancelQueue } fro
 import { ITicketAction, TicketAction } from '../../../shared/model/ticket_action';
 import { IStat, CounterStatistics } from '../../../shared/model/stat';
 
-export interface IMessage {
-    type: 'mark_as_check' | 'text',
-    data?: any;
+export interface IMarkAsCheck {
+    counterID: string;
+    ticketID: string;
+}
+
+export interface IHistory {
+    '/mark_as_check': IMarkAsCheck[];
 }
 
 export interface ISuperCounterInitialState {
@@ -17,14 +21,15 @@ export interface ISuperCounterInitialState {
     counters: ICounter[];
     tickets: IMapTicket;
     services: IService[];
+    history: IHistory;
 }
 
 export class SuperCounter {
     constructor(
         private _instate: ISuperCounterInitialState
     ) {
-        this.onInit(this._instate);
-        this.Refresh(this._instate.tickets);
+        // this.onInit(this._instate);
+        this.Refresh(this._instate);
     }
 
     counterList: counterList;
@@ -35,44 +40,62 @@ export class SuperCounter {
     cancelled = new TicketQueue('cancelled');
     private queue = [this.waiting, this.serving, this.cancelled]
 
-    private onInit(data: ISuperCounterInitialState) {
-        this.counterList = new counterList(data.counters);
-        Object.keys(data.tickets).map(key => {
-            if (data.tickets[key].state === 'serving') {
-                this.Update(Object.assign({}, {
-                    action: 'call',
-                    ticket_id: key,
-                    branch_id: data.tickets[key].branch_id,
-                    ticket: data.tickets[key]
-                }))
-            }
-        })
+    private Refresh(data: ISuperCounterInitialState) {
+        this.counterList = new counterList(data.counters, data.tickets, data.history['/mark_as_check']);
+        this.queue.forEach(q => q.Refresh(data.tickets));
     }
 
-    private Refresh(tickets: IMapTicket) {
-        // this.last_ticket_update = Date.now();
-        this.queue.forEach(q => q.Refresh(tickets));
-    }
+    // private Refresh(tickets: IMapTicket) {
+    //     this.counterList = new counterList(data.counters, data.tickets, data.history['/mark_as_check']);
+    //     this.queue.forEach(q => q.Refresh(tickets));
+    // }
 
     Update(action: ITicketAction) {
         if (!action) return;
         this.counterList.Update(action);
-        // this.updateTicketList(action);
         this.queue.forEach(q => q.Replace(new TicketAction(action).ticket));
     }
+
+
 }
 
 export class counterList {
     constructor(
         counters: ICounter[] = [],
+        tickets: IMapTicket,
+        markAsCheck: IMarkAsCheck[]
     ) {
         counters.sort((a, b) => a.cnum < b.cnum ? -1 : 1);
         this.counters = counters.map(c => new counterDetail(c));
         this.selectedCounter = this.counters[0];
+        this.setAllTicket(tickets);
+        this.setAllMark(markAsCheck);
     }
 
     selectedCounter: counterDetail = null;
     private counters: counterDetail[];
+
+    setAllTicket(tickets) {
+        Object.keys(tickets).map(key => {
+            if (tickets[key].state === 'serving') {
+                this.Update({
+                    action: 'call',
+                    ticket_id: key,
+                    branch_id: tickets[key].branch_id,
+                    ticket: tickets[key]
+                })
+            }
+        })
+    }
+
+    setAllMark(markAsCheck: IMarkAsCheck[]) {
+        console.log(markAsCheck)
+        if (markAsCheck) {
+            markAsCheck.forEach(element => {
+                this.Mark(element)
+            });
+        }
+    }
 
     ToArray() {
         return Array.from(this.counters);
@@ -95,6 +118,14 @@ export class counterList {
                 }
             }
         });
+    }
+
+    Mark(mark: IMarkAsCheck) {
+        this.counters.forEach(c => {
+            if (c.serving && c.counterID === mark.counterID && c.serving.id === mark.ticketID) {
+                c.state = 'serving'
+            }
+        })
     }
 
     select(counter: counterDetail) {
