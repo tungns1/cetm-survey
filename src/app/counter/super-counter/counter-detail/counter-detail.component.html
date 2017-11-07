@@ -26,7 +26,7 @@
             </div>
             <div fxFlex *ngIf="_counter?.ticketNum" class="timing center" fxLayout="column">
                 <span fxFlex="30" class="title" i18n>Serving Time</span>
-                <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content contentRight">
+                <div fxFlex fxLayout="row" fxLayoutGap="20px" class="content">
                     <img fxFlex="40px" class="icon" src="./assets/img/icon/time.png" alt="Time">
                     <timer fxFlex [start]="_counter.serveTime" warning="false"></timer>
                 </div>

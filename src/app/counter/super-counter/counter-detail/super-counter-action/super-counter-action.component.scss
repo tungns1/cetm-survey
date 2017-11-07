@@ -24,3 +24,9 @@ button[disabled] {
         color: $text-color;
     }
 }
+
+@media screen and (max-width: 800px) {
+    #actions {
+        height: 8vh
+    }
+}

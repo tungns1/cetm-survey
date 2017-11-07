@@ -1,7 +1,7 @@
 @import '../../shared/style.scss';
 #superCounterDetail {
     height: 27vh;
-    padding: 3vw 3vw 0 3vw;
+    padding: 3vh 3vw 0 3vw;
     overflow-x: hidden;
     .border {
         height: 27vh;
@@ -9,7 +9,7 @@
             background-color: $background-color-title;
             font-size: 150%;
             font-weight: $font-weight-default + 200;
-            padding-top: 1%;
+            padding-top: 2%;
             text-transform: uppercase;
         }
         .container {
@@ -23,7 +23,7 @@
                     font-size: 130%;
                 }
                 .content {
-                    width: 20%;
+                    width: fit-content;
                     margin: auto;
                     color: $key-color;
                     font-size: 300%;
@@ -33,14 +33,17 @@
                         height: 40px;
                     }
                 }
-                .contentRight {
-                    width: 33%;
-                }
             }
             @media screen and (max-width: 1030px) {
                 .ticketNum,
                 .timing {
                     height: 10vh;
+                }
+            }
+            @media screen and (max-width: 800px) {
+                .ticketNum,
+                .timing {
+                    height: 15vh;
                 }
             }
         }
@@ -53,6 +56,11 @@
             position: absolute;
             top: -8px;
             left: -45px;
+        }
+        @media screen and (max-width: 800px) {
+            .icon {
+                top: -3px;
+            }
         }
     }
 }
