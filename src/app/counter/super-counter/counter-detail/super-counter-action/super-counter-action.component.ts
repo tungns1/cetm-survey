@@ -1,13 +1,13 @@
 import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ITicket } from '../../shared/model/shared';
-import { TicketDetailDialog } from '../../workspace/ticket';
-import { Ticket } from '../../../shared/model/house';
-import { TicketActionName } from '../../workspace/shared';
-import { AppStorage } from '../../shared';
-import { NoticeComponent } from '../../../../lib/ng2';
-import { counterDetail } from '../shared/model';
-import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateTicket } from '../shared/service';
+import { ITicket } from '../../../shared/model/shared';
+import { TicketDetailDialog } from '../../../workspace/ticket';
+import { Ticket } from '../../../../shared/model/house';
+import { TicketActionName } from '../../../workspace/shared';
+import { AppStorage } from '../../../shared';
+import { NoticeComponent } from '../../../../../lib/ng2';
+import { counterDetail } from '../../shared/model';
+import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateTicket } from '../../shared/service';
 
 @Component({
   selector: 'app-super-counter-action',

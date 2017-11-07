@@ -14,8 +14,7 @@ import { CountersMapModule } from './counters-map/counters-map.module';
 import { TicketModule } from '../workspace/ticket/ticket.module';
 import { WelcomeModule } from '../welcome/welcome.module';
 import { SuperCounterComponent } from './super-counter.component';
-import { CounterDetailComponent } from './counter-detail/counter-detail.component';
-import { SuperCounterActionComponent } from './super-counter-action/super-counter-action.component';
+import { CountersDetailModule } from './counter-detail/counter-detail.module';
 import { QueueComponent } from './queue/queue.component';
 import { SuperCounterSettingComponent } from './super-counter-setting/super-counter-setting.component';
 import { SecurityPassComponent } from './security-pass/security-pass.component';
@@ -49,10 +48,10 @@ const routing = RouterModule.forChild([
     MatCheckboxModule, MatInputModule, MatFormFieldModule,
     MatToolbarModule, MatProgressBarModule, MatTabsModule,
     MatTooltipModule,
-    TicketModule, WelcomeModule
+    TicketModule, WelcomeModule, CountersDetailModule
   ],
   declarations: [
-    SuperCounterComponent, CounterDetailComponent, SuperCounterActionComponent,
+    SuperCounterComponent,
     QueueComponent, SuperCounterSettingComponent, SecurityPassComponent
   ],
   providers: [
