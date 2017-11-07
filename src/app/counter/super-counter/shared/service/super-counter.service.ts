@@ -75,14 +75,21 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
         this.autoNext$.next(auto);
     }
 
-    markAsCheck(counterID: string, ticket: ITicket) {
+    // markAsCheck(counterID: string, ticket: ITicket) {
+    //     if (this.SelectedCounter$.value.state === 'calling') {
+    //         console.log('aaaaaaaaaaaa')
+    //         let data = {
+    //             counterID: counterID,
+    //             ticket: ticket
+    //         }
+    //         this.socket.Send<IMessage>('/mark_as_check', data)
+    //     }
+    // }
+
+    setCheckIn(){
         if (this.SelectedCounter$.value.state === 'calling') {
-            console.log('aaaaaaaaaaaa')
-            let data = {
-                counterID: counterID,
-                ticket: ticket
-            }
-            this.socket.Send<IMessage>('/mark_as_check', data)
+            this.SelectedCounter$.value.state = 'serving';
+            this.SelectedCounter$.next(this.SelectedCounter$.value);
         }
     }
 }
