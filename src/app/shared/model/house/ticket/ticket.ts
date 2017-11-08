@@ -8,7 +8,6 @@ import { IFeedback } from './ticket_feedback';
 export interface ITicketTrack {
     state: TicketState;
     mtime: number;
-    // stime: number;
     services?: string[];
     user_id?: string;
     counter_id?: string;
@@ -131,7 +130,10 @@ export class Ticket {
     static sort(a: Ticket, b: Ticket) {
         // -1, 0, 1
         var step = a.priority.compare(b.priority);
-        return step == 0 ? (a.ctime < b.ctime ? -1 : 1) : step;
+        if (step === 0) {
+            return a.mtime < b.mtime ? -1 : 1;
+        }
+        return step;
     }
 
     IsState(state: TicketState) {
