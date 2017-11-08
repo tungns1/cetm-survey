@@ -46,7 +46,7 @@ function NetworkFirst(pattern) {
 }
 
 // index.html
-NetworkFirst(/\/(device|app)\/$/);
+// NetworkFirst(/\/(device|app)\/$/);
 // All assets are checked 
 StaleWhileRevalidate(/\/(device|app)\/.+/);
 // In production, these resources should be cache first
