@@ -45,11 +45,6 @@ export class SuperCounter {
         this.queue.forEach(q => q.Refresh(data.tickets));
     }
 
-    // private Refresh(tickets: IMapTicket) {
-    //     this.counterList = new counterList(data.counters, data.tickets, data.history['/mark_as_check']);
-    //     this.queue.forEach(q => q.Refresh(tickets));
-    // }
-
     Update(action: ITicketAction) {
         if (!action) return;
         this.counterList.Update(action);
@@ -89,7 +84,6 @@ export class counterList {
     }
 
     setAllMark(markAsCheck: IMarkAsCheck[]) {
-        console.log(markAsCheck)
         if (markAsCheck) {
             markAsCheck.forEach(element => {
                 this.Mark(element)

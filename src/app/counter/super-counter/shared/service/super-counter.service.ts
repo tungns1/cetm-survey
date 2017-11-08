@@ -52,7 +52,6 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
             });
         const markAsCheck = this.socket.RxEvent<IMarkAsCheck>('/mark_as_check')
             .map(mark => {
-                console.log(mark)
                 w.counterList.Mark(mark)
             })
         const autoNext = this.autoNext$.map(a => {
@@ -61,7 +60,7 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
         const selectedCounter = this.SelectedCounter$.map(c => {
             w.counterList.select(c)
         });
-        return merge(of(null), ticketUpdate, autoNext, selectedCounter).map(_ => w);
+        return merge(of(null), ticketUpdate, autoNext, selectedCounter, markAsCheck).map(_ => w);
     }).debounceTime(20).share().publishReplay(1).refCount();
 
     get Socket() {
@@ -86,14 +85,7 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
                 counterID: counterID,
                 ticketID: ticket.id
             }
-            this.socket.Send<IMarkAsCheck>('/mark_as_check', data)
+            this.socket.Send<IMarkAsCheck>('/mark_as_check', data).subscribe(d => {})
         }
     }
-
-    // setCheckIn(){
-    //     if (this.SelectedCounter$.value.state === 'calling') {
-    //         this.SelectedCounter$.value.state = 'serving';
-    //         this.SelectedCounter$.next(this.SelectedCounter$.value);
-    //     }
-    // }
 }
