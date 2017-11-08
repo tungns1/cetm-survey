@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { WorkspaceService } from '../../shared';
+import { WorkspaceService, QueueService } from '../../shared';
 
 @Component({
   selector: 'app-normal-workspace',
@@ -10,11 +10,13 @@ import { WorkspaceService } from '../../shared';
 export class NormalWorkspaceComponent implements OnInit {
 
   constructor(
-    private workspaceService: WorkspaceService
+    private workspaceService: WorkspaceService,
+    private queueService: QueueService
   ) { }
 
   hasMiss = false;
   counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
+  isServing$ = this.queueService._serving$.map(s => s.ToArray().length ? true : false)
 
   ngOnInit() {
   }

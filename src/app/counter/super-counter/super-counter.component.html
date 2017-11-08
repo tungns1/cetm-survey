@@ -1,6 +1,6 @@
 <div id="superCounter" fxLayout="column" class="unselectable">
     <app-env-module [title]="storeName$ | async"></app-env-module>
-    <app-header fxFlex="30px" fxShow.xs="false" app="counter"></app-header>
+    <app-header fxFlex="30px" fxShow.xs="false" app="superCounter"></app-header>
     <div fxFlex>
         <swiper *ngIf="workspace$ | async; let workspace" [config]="swiperConfig" [(index)]="index">
             <div fxLayout="column" fxLayoutGap="2vw" class="counterMapNDetail">

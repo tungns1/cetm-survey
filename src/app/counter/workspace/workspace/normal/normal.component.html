@@ -1,7 +1,7 @@
 <div id="workSpace" fxLayout="column">
     <app-env-module i18n-title title="Counter "></app-env-module>
     <app-env-sub-module [title]="counterName$ | async"></app-env-sub-module>
-    <app-header fxShow.xs="false"></app-header>
+    <app-header fxShow.xs="false" app="counter" [isServing]="isServing$ | async"></app-header>
     <div fxFlex fxLayout="row">
         <div fxFlex="75%" id="leftWorkSpace" class="padding-20">
             <serving></serving>

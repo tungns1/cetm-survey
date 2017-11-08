@@ -12,7 +12,11 @@ export class HeaderComponent {
         private env: RuntimeEnvironment
     ) { }
 
-    @Input() app: 'qapp' | 'counter' = 'qapp';
+    _isServing
+    @Input() app: 'qapp' | 'counter' | 'superCounter' = 'qapp';
+    @Input() set isServing(d: boolean) {
+        this._isServing = d;
+    };
 
     moduleName$ = this.env.Auth.Data$.map(a => a.module);
     subModuleName$ = this.env.Auth.Data$.map(a => a.sub_module);
