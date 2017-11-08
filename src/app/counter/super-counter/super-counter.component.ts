@@ -12,9 +12,8 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto',
+  keyboardControl: true,
   threshold: 25,
-  nextButton: true,
-  prevButton: true
 };
 
 
