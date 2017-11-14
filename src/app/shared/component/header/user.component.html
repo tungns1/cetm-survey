@@ -16,12 +16,12 @@
         <i class="fa fa-key"></i>
         <span i18n>Change password</span>
     </div>
-    <div class="settingMenuItem" i18n-appConfirm appConfirm="Do you want to logout?" (confirm)="Logout()">
+    <div class="settingMenuItem" i18n-appConfirm appConfirm="Are you sure you want to log out?" (confirm)="Logout()">
         <i class="fa fa-power-off"></i>
         <span i18n>Logout</span>
     </div>
 </mat-menu>
 
 <app-notice>
-    <app-notice-message name="must_finish_first" message="You have to finish this transaction first" i18n-message></app-notice-message>
+    <app-notice-message name="must_finish_first" message="Please complete the current transaction before logout" i18n-message></app-notice-message>
 </app-notice>
