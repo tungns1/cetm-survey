@@ -1,11 +1,19 @@
 @import '../../../../../shared/style.scss';
 #ui-editor {
+    color: #000;
+    .layoutName{
+        margin: 5px;
+    }
     .UIElementContainer {
         height: 450px;
         .UIElement {
             border: 2px dashed #737373;
             background: transparent;
-            .elementHeader{
+            .resourceItem {
+                margin: 0px;
+                margin-top: 5px;
+            }
+            .elementHeader {
                 position: relative;
                 top: 45%;
             }

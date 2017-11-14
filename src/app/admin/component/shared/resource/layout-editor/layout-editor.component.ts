@@ -54,6 +54,7 @@ export class LayoutEditorComponent {
         this.backgroundPosY = pos[1];
       }
     }
+    // console.log(this.layout)
   }
 
 
@@ -65,7 +66,7 @@ export class LayoutEditorComponent {
         this.layout.style.backgroundImage = 'url(' + this.layout.style.backgroundImage + ')'
       }
     }
-
+    // console.log(this.layout)
     this.dialog.close(this.layout);
   }
 

@@ -36,7 +36,8 @@ export class UIEditorComponent {
 
   UI: UI;
   layoutGroup = []
-  records
+  isResources: boolean = true;
+  lastBackgroundColor: string;
 
   ngOnInit() {
     this.standardizedData();
@@ -51,38 +52,6 @@ export class UIEditorComponent {
 
   ngAfterViewInit() {
     this.applyUI();
-  }
-
-  lastBackgroundColor: string;
-  mouseEnter(e) {
-    // e.target.style.backgroundColor = e.target.style.backgroundColor - 
-    this.lastBackgroundColor = e.target.style.backgroundColor;
-    e.target.style.backgroundColor = '#9c9c9c';
-  }
-
-  mouseLeave(e) {
-    e.target.style.backgroundColor = this.lastBackgroundColor;
-  }
-
-  save() {
-    this.dialog.close(this.UI);
-  }
-
-  cancel() {
-    this.dialog.close(null)
-  }
-
-  getlayoutEl(container: any, mainContainerIndex: number) {
-    if (container.children) {
-      container.children.forEach(child => {
-        this.getlayoutEl(child, mainContainerIndex)
-      });
-    }
-    else {
-      if (!this.layoutGroup[mainContainerIndex])
-        this.layoutGroup[mainContainerIndex] = [];
-      this.layoutGroup[mainContainerIndex].push({ [container.name]: this.UI.resources[container.name] })
-    }
   }
 
   standardizedData() {
@@ -100,6 +69,37 @@ export class UIEditorComponent {
     });
   }
 
+  toggle() {
+    this.isResources = !this.isResources;
+    this.applyUI();
+  }
+
+  mouseEnterLayout(e) {
+    this.lastBackgroundColor = e.target.style.backgroundColor;
+    e.target.style.backgroundColor = '#9c9c9c';
+  }
+
+  mouseLeaveLayout(e) {
+    e.target.style.backgroundColor = this.lastBackgroundColor;
+  }
+
+  getFlex(index) {
+    return this.UI.layout.children[index].flex;
+  }
+
+  getlayoutEl(container: any, mainContainerIndex: number) {
+    if (container.children) {
+      container.children.forEach(child => {
+        this.getlayoutEl(child, mainContainerIndex)
+      });
+    }
+    else {
+      if (!this.layoutGroup[mainContainerIndex])
+        this.layoutGroup[mainContainerIndex] = [];
+      this.layoutGroup[mainContainerIndex].push({ [container.name]: this.UI.resources[container.name] })
+    }
+  }
+
   editResource(rsc: any) {
     const key = Object.keys(rsc)[0]
     const config = new MatDialogConfig();
@@ -113,7 +113,8 @@ export class UIEditorComponent {
     })
   }
 
-  editLayout(layout: any, index?: number) {
+  editLayout(layout: any, index: number, event) {
+    event.stopPropagation();
     const config = new MatDialogConfig();
     config.width = '750px';
     index >= 0 ? config.data = layout.children[index] : config.data = layout;
@@ -154,11 +155,11 @@ export class UIEditorComponent {
     }
   }
 
-  getFlex(index) {
-    return this.UI.layout.children[index].flex;
+  save() {
+    this.dialog.close(this.UI);
   }
 
-  test() {
-    console.log(this.UI)
+  cancel() {
+    this.dialog.close(null)
   }
 }
