@@ -370,7 +370,7 @@
   <translation id="2340871387079584510">Atendido tickets</translation>
   <translation id="3505738079461308389">Cancelados tickets</translation>
   <translation id="5663998787015242541">OCUPACION%</translation>
-  <translation id="5820480221633300197"/>
+  <translation id="5820480221633300197">% encuestas buenas</translation>
   <translation id="1507949699959470925">Periodo</translation>
   <translation id="5530226616382823887">Total de tickets gestionados</translation>
   <translation id="1669277742108379782">Atendido</translation>
@@ -392,5 +392,5 @@
   <translation id="2052833920187184086">Tiempo de atención</translation>
   <translation id="5952846954179615290">¿Seguro de que quiere salir?</translation>
   <translation id="804701321584831704">Por favor, finalice la atención actual antes de cerrar sesión</translation>
-  <translation id="1779915663346331251"/>
+  <translation id="1779915663346331251">Autoriza encuesta</translation>
 </translationbundle>
