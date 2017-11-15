@@ -52,15 +52,6 @@ export class GlobalActivitySummary {
         this.boxes.set(b.branch_id, b);
     }
 
-    UpdateActivity(s: IActivitySummary) {
-        if (!s) return;
-        const _s = new ActivitySummary(s);
-        const b = this.boxes.get(_s.branch_id);
-        if (b) {
-            b.UpdateActivity(_s);
-        }
-    }
-
     ToArray() {
         return Array.from(this.boxes.values());
     }
