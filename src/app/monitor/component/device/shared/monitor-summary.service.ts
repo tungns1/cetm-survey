@@ -11,6 +11,7 @@ import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/publishReplay';
 import 'rxjs/add/operator/throttleTime';
+import { IBoxActivity } from './index';
 
 @Injectable()
 export class MonitorSummaryService {
@@ -27,13 +28,13 @@ export class MonitorSummaryService {
     });
   }).share();
 
-  private activitySummaryUpdate$ = this.socket.RxEvent<IActivitySummary>("/activity/summary/update");
+  private activitySummaryUpdate$ = this.socket.RxEvent<IBoxActivitySummary>("/activity/summary/update");
 
   Box$ = this.initialSummary$.switchMap(initial => {
     var gb = new GlobalActivitySummary();
     gb.Refresh(initial);
     const summaryUpdate = this.activitySummaryUpdate$.map(v => {
-      gb.UpdateActivity(v);
+      gb.Replace(v);
     });
     return merge(of(null), summaryUpdate).map(_ => gb);
   }).share();
