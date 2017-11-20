@@ -2,7 +2,7 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
-import 'rxjs/add/observable/combinelatest';
+import 'rxjs/add/operator/combinelatest';
 import 'rxjs/add/operator/switchMap';
 
 export class RepeatedObservable<T> extends Observable<T> {

@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IBranch, CacheBranch, OrgService, AdminNavService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { BaseAdminComponent, BranchFilterService, CommonValidator } from '../../shared';
 
 @Component({
