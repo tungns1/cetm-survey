@@ -58,8 +58,8 @@ function getServiceName(t: ITicket) {
         case TicketStates.Waiting:
         // fallthrough
         case TicketStates.Missed:
-        if(t.services)
-            return t.services.map(ServiceName).join(",");
+            if (t.services)
+                return t.services.map(ServiceName).join(",");
         case TicketStates.Serving:
             return ServiceName(t.service_id);
         default:
@@ -122,7 +122,7 @@ export class Ticket {
     }
 
     isDone() {
-        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled || this.state==TicketStates.Waiting;
+        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled || this.state == TicketStates.Waiting;
     }
 
     __stime = 0; // serving time
