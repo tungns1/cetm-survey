@@ -15,6 +15,17 @@ export class ArrayFormModule {
 
 }
 
+import { AttributeListFormComponent } from './attr-list-form.component';
+
+@NgModule({
+    imports: [FormsModule, CommonModule, FlexLayoutModule],
+    declarations: [AttributeListFormComponent],
+    exports: [AttributeListFormComponent]
+})
+export class AttributeListFormModule {
+
+}
+
 import { L10nFormComponent } from './i18n-form.component';
 import { L10nTicketComponent } from './i18n-ticket.component';
 import { RichEditorModule } from '../../../../x/ng/rich-editor/rich-editor.module';
@@ -43,7 +54,7 @@ export class JSONFormModule {
 @NgModule({
     exports: [
         ArrayFormModule, JSONFormModule,
-        CultureModule
+        CultureModule, AttributeListFormModule
     ]
 })
 export class AdminFormModule {
