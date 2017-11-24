@@ -133,8 +133,8 @@ export class UIEditorComponent {
         let UIBackground = document.getElementById('ui-editor-' + this.UI.layout.name);
         if (UIBackground) {
           UIBackground.style.backgroundColor = this.UI.layout.style.backgroundColor;
-          // UIBackground.style.backgroundImage = this.UI.layout.style.backgroundImage;
-          UIBackground.style.backgroundImage = `url('http://localhost:3000/upload/backGround.png')`;
+          UIBackground.style.backgroundImage = this.UI.layout.style.backgroundImage;
+          // UIBackground.style.backgroundImage = `url('http://localhost:3000/upload/backGround.png')`;
           UIBackground.style.backgroundPosition = this.UI.layout.style.backgroundPosition;
           UIBackground.style.backgroundSize = 'cover';
           UIBackground.style.backgroundRepeat = 'no-repeat';
