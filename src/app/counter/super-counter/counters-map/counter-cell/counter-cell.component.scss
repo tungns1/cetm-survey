@@ -1,0 +1,53 @@
+@import '../../../shared/style.scss';
+.counterCell {
+    border-radius: 3px;
+    font-weight: $font-weight-default;
+    font-size: 115%;
+    height: fit-content;
+    cursor: pointer;
+    outline: none;
+    background-color: $background-color-title;
+    .ticketNum {
+        font-weight: $font-weight-default;
+    }
+}
+
+.warning {
+    background-color: #f53e30;
+    color: #fff;
+}
+
+.serving {
+    background-color: $key-color;
+    color: #fff;
+}
+
+.init {
+    background-color: $background-color-title;
+    color: $text-color;
+}
+
+.calling{
+    background-color: #f5b030;
+    color: $text-color;
+}
+
+.selected {
+    border: 2px dashed $text-color;
+}
+
+.empty {
+    background-color: #fff;
+    color: $text-color;
+}
+
+#countersMap {
+    height: 60vh;
+    padding: 3vw;
+}
+
+@media screen and (min-width: 1030px) {
+    .counterCell {
+        font-size: 100%;
+    }
+}

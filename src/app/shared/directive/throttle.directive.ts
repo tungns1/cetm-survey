@@ -9,16 +9,17 @@ export class ThrottleDirective {
 
   constructor() { }
 
-  ngOnInit() {
-    this.click$.throttleTime(1000).subscribe(_ => {
-      this.throttle.next(null);
-    });
-  }
-
+  private click$ = new Subject();
   @HostListener("click") onClick() {
     this.click$.next(null);
   }
-  private click$ = new Subject();
   @Output() throttle = new EventEmitter();
+  @Input() threshold: number = 1000;
+
+  ngOnInit() {
+    this.click$.throttleTime(this.threshold).subscribe(_ => {
+      this.throttle.next(null);
+    });
+  }
   
 }

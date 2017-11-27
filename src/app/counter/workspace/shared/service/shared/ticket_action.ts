@@ -1,4 +1,4 @@
-export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss';
+export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create';
 
 interface ITicketAction<T> {
     action: string;
@@ -36,12 +36,14 @@ NextStates.set("miss", TicketStates.Missed);
 export class TicketAction {
     constructor(
         public action: TicketActionName,
-        public ticket: Ticket
+        public ticket: Ticket,
+        public counter: string
     ) { }
 
     state = this.ticket.state;
     ticket_id = this.ticket.id;
     service_id = this.ticket.service_id || this.ticket.services[0];
+    counter_id = this.counter;
     extra: any;
 
     static checkTransition(current: TicketState, next: TicketState) {
@@ -80,11 +82,11 @@ export class ActionManager {
         private handler: (ta: TicketAction) => Observable<ITicket>
     ) { }
 
-    Work(action: TicketActionName, ticket: Ticket, extra?: any) {
+    Work(action: TicketActionName, ticket: Ticket, extra?: any, counter?: string) {
         if (!ticket) return of(null);
-        const ta = new TicketAction(action, ticket);
+        const ta = new TicketAction(action, ticket, counter);
         if (!ta.IsValid()) {
-            console.log("invalid action", ta);
+            // console.log("invalid action", ta);
             return of(null);
         }
         ta.extra = extra;
@@ -94,7 +96,7 @@ export class ActionManager {
     }
 
     private Handle(ta: TicketAction) {
-        console.log("handle action", ta);
+        // console.log("handle action", ta);
         return this.handler(ta);
     }
 

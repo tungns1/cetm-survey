@@ -73,6 +73,17 @@ export class HistoryComponent {
         else return '';
     }
 
+    authorizeSurveyCellRenderer(d) {
+        if (d.data) {
+            if (d.data.authorize_survey) {
+                return '<i class = "fa fa-check-square-o"></i>'
+            } else {
+                return '<i class = "fa fa-window-close-o"></i>';
+            }
+        }
+        else return '';
+    }
+
     printTimeCellRendered(d) {
         if (d.data) {
             let localDayTime = new LocalDayTimePipe();

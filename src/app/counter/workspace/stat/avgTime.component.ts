@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ITicket, TicketService, ProjectConfig } from '../shared';
+import { ITicket, ProjectConfig } from '../shared';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
 
@@ -9,9 +9,7 @@ import { of } from 'rxjs/observable/of';
     styleUrls: ['sta.component.scss']
 })
 export class AvgTimeComponent {
-    constructor(
-        private ticketService: TicketService
-    ) { }
+    constructor() { }
 
     @Input() set stime(t: number) {
         this.duration = t;

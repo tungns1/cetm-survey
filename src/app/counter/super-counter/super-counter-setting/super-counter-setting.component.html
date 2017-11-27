@@ -1,0 +1,18 @@
+<div id="superCounterSetting">
+  <mat-toolbar>
+    <span i18n>Counter Setting</span>
+    <a (click)="Go()" style="cursor: pointer">
+      <i class="fa fa-arrow-right"></i>
+      <span i18n>Go</span>
+    </a>
+  </mat-toolbar>
+
+  <form [formGroup]="form">
+
+    <h2 i18n>General Configuration</h2>
+
+    <mat-form-field>
+      <input matInput formControlName="branch_code" placeholder="Store Code" i18n-placeholder>
+    </mat-form-field>
+  </form>
+</div>

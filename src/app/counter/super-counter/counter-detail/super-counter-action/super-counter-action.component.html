@@ -1,0 +1,27 @@
+<div id="actions" fxLayout="row" fxLayoutGap="2vw">
+    <button class="uppercase btnFill" id="__workspace_button_next" [disabled]="disabled$ | async"
+        fxFlex (throttle)="Next()" threshold="1000" throttle>
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Next">Next</span>
+        </ng-container>
+    </button>
+    <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Cancel()" fxShow.xs="false">
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Miss Ticket">Miss</span>
+        </ng-container>
+    </button>
+    <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Finish Ticket">Finish</span>
+        </ng-container>
+    </button>
+    <button class="uppercase btnFill" fxFlex fxShow.xs="false" i18n-appConfirm appConfirm="Do you want to create a ticket?" (confirm)="createTicket()">
+        <ng-container>
+            <span class="textBtn" i18n="Counter Button: Create Ticket">Create ticket</span>
+        </ng-container>
+    </button>
+</div>
+
+<!-- <app-notice>
+    <app-notice-message name="out_of_ticket" message="Out of ticket" i18n-message></app-notice-message>
+</app-notice> -->

@@ -1,0 +1,32 @@
+@import '../../../shared/style.scss';
+#actions {
+    height: 10vh;
+    padding: 1% 50px;
+    .textBtn{
+        font-size: 150%;
+    }
+    @media screen and (min-width: 1030px) {
+        .textBtn {
+            font-size: 100%;
+        }
+    }
+}
+
+button[disabled] {
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 1030px) {
+    button[disabled] {
+        cursor: not-allowed;
+        background-color: $background-color-title;
+        border-color: $background-color-title;
+        color: $text-color;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #actions {
+        height: 8vh
+    }
+}

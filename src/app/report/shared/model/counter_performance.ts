@@ -17,10 +17,10 @@ export interface ICounterPerformance {
     stime: number;
     attended: number;
     cancelled: number;
-
+    gd_percent: number;
 }
-export interface ICPT {
 
+export interface ICPT {
     id?: string;
     branch_id: string;
     user_code: string;
@@ -34,9 +34,8 @@ export interface ICPT {
     ticket_transferred: number;
     occupied?: number;
     survay_score?: number;
+    gd_percent: number
 }
-
-
 
 export class InfoPerformanceTrack {
 
@@ -46,11 +45,16 @@ export class InfoPerformanceTrack {
         var t_s = s.performance;
         var a_v = s.activity
         for (var i = 0; i < t_s.length; i++) {
+            let totalConnectionTimeOfCounter = 0;
             var index = findIndex(a_v, { bid: t_s[i].branch_id, eid: t_s[i].counter_id, date: t_s[i].ctime })
             if (index != -1 && a_v[index].a_d) {
-                var a=+( t_s[i].stime*100/a_v[index].a_d).toFixed(2)
-                if(a_v[index].a_d>t_s[i].stime){
-                     var cp: ICPT = {
+                var a = +(t_s[i].stime * 100 / a_v[index].a_d).toFixed(2)
+                a_v.forEach(activity => {
+                    if(activity.bid === t_s[i].branch_id && activity.eid === t_s[i].counter_id)
+                        totalConnectionTimeOfCounter += activity.a_d
+                })
+                if (totalConnectionTimeOfCounter > t_s[i].stime) {
+                    var cp: ICPT = {
                         branch_id: t_s[i].branch_id,
                         user_code: t_s[i].user_code,
                         user_name: t_s[i].user_name,
@@ -58,17 +62,15 @@ export class InfoPerformanceTrack {
                         ctime: t_s[i].ctime,
                         total_connection_time: a_v[index].a_d,
                         total_productivity_time: t_s[i].stime,
-                        total_idle_time: a_v[index].a_d- t_s[i].stime,
+                        total_idle_time: a_v[index].a_d - t_s[i].stime,
                         ticket_attended: t_s[i].attended,
                         ticket_transferred: t_s[i].cancelled,
-                        occupied:a
+                        occupied: a,
+                        gd_percent: t_s[i].gd_percent
                     }
                     this.data.push(cp)
-
                 }
-               
             }
-
         }
         this.data.sort(function (a, b) { return (a.ctime > b.ctime) ? 1 : ((b.ctime > a.ctime) ? -1 : 0); });
     }
@@ -77,16 +79,15 @@ export class InfoPerformanceTrack {
         return +(s / 3600).toFixed(2);
     }
 
-
-
     static Make(records: IPerformance) {
         let res = new InfoPerformanceTrack();
         if (records != null) {
+            // console.log(records);
             res.Add(records);
         }
+        // console.log(res);
         return res;
     }
-
 }
 
 

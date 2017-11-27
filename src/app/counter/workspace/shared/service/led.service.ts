@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { ITicket, TicketState, TicketStates, CounterSettingService } from '../shared';
+import { ITicket, TicketState, TicketStates } from '../shared';
 import { WorkspaceService } from './workspace.service';
 import { QueueService } from './queue.service';
 import { TicketService } from './ticket.service';
@@ -9,8 +9,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/publishReplay';
 import { interval } from 'rxjs/observable/interval';
-import { ILedStatus, LED_STATUS } from '../model';
-
+import { ILedStatus, LED_STATUS } from '../../../shared/model';
 
 @Injectable()
 export class LedService {

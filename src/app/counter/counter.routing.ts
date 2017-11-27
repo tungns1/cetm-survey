@@ -1,39 +1,41 @@
 import { Routes, RouterModule } from "@angular/router";
 import { WorkspaceModule } from './workspace';
-import { CounterComponent } from './counter/counter.component';
-import { SettingComponent } from './setting/setting.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { CounterSessionValidationGuard } from './shared';
+import { WelcomeModule } from './welcome/welcome.module'
+import { SuperCounterModule } from './super-counter/super-counter.module'
 
 export function loadWorkspace() {
   return WorkspaceModule;
 }
 
+export function loadWelcome() {
+  return WelcomeModule;
+}
+
+export function loadSuperCounter() {
+  return SuperCounterModule;
+}
+
 const children: Routes = [
   {
     path: "workspace",
-    loadChildren: loadWorkspace,
-    canActivate: [
-      CounterSessionValidationGuard
-    ]
+    loadChildren: loadWorkspace
   },
   {
-    path: "setting",
-    component: SettingComponent
+    path: "super",
+    loadChildren: loadSuperCounter
   },
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "welcome"
+    redirectTo: "workspace"
   },
   {
     path: "welcome",
-    component: WelcomeComponent
+    loadChildren: loadWelcome,
   }
 ];
 
 export const routing = RouterModule.forChild([{
   path: '',
-  component: CounterComponent,
   children: children
 }]);

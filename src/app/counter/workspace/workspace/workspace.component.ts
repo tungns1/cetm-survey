@@ -11,12 +11,14 @@ import { ComposeService, WorkspaceService, WorkspaceSocket } from '../shared';
 export class WorkspaceComponent {
     constructor(
         private route: ActivatedRoute,
-        private workspaceService: WorkspaceService,
         private composeService: ComposeService,
         private socket: WorkspaceSocket
-    ) {
+    ) { }
 
-    }
+    message$ = this.socket.StatusMessage$.map(m => {
+        if (m.startsWith("OPEN")) return "";
+        return "NETWORK " + m;
+    });
 
     ngOnInit() {
         this.composeService.enable();
@@ -25,11 +27,4 @@ export class WorkspaceComponent {
     ngOnDestroy() {
         this.composeService.disable();
     }
-
-    message$ = this.socket.StatusMessage$.map(m => {
-        if (m.startsWith("OPEN")) return "";
-        return "NETWORK " + m;
-    });
-
-    counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
 } 

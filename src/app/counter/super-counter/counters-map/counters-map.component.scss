@@ -1,0 +1,18 @@
+@import '../../shared/style.scss';
+#countersMap {
+    height: 60vh;
+    padding: 3vh 3vw;
+}
+
+@media screen and (min-width: 1030px) {
+    #countersMap {
+        height: 58vh;
+        .counterCell {
+            font-size: 100%;
+        }
+    }
+}
+
+.activated {
+    border: 2px dashed $text-color;
+}

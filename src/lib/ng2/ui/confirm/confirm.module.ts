@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppConfirmDialog, ConfirmDirective } from './confirm.directive';
 import { MatDialogModule, MatButtonModule } from '@angular/material';
@@ -13,7 +14,7 @@ import {
         FormsModule,
         ReactiveFormsModule,
         MatDialogModule, MatButtonModule,
-        FlexLayoutModule
+        FlexLayoutModule, CommonModule
     ],
     declarations: [
         AppConfirmDialog, ConfirmDirective,

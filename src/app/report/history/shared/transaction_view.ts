@@ -13,4 +13,5 @@ export interface ITransactionView extends ITransaction {
     v_fi_at: string;
     v_state: string;
     audio: string;
+    customer: any;
 }

@@ -30,7 +30,7 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
             code: [b.code, CommonValidator.Code],
             l10n: [b.l10n],
             priority: [b.priority, Validators.required],
-            // call_for_vip: [b.call_for_vip]
+            attrs: [b.attrs]
         });
     }
 }

@@ -9,7 +9,8 @@
         </div>
 
         <div fxLayout="row" class="margin-20-10" fxLayoutGap="20px">
-            <div fxFlex></div>
+            <button *ngIf="app === 'superCounter'" (click)="goToConfig()" class="btnFill" i18n fxFlex>Config</button>
+            <div *ngIf="app !== 'counter'" fxFlex></div>
             <button fxFlex (click)="close()" class="btnFill" i18n>Close</button>
         </div>
     </div>

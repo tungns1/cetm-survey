@@ -1,13 +1,12 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
-import { ModalComponent, Ticket } from '../shared';
-import { NoticeComponent } from '../shared';
-
 import {
     WorkspaceService, QueueService,
     LedService, TicketActionName,
-    TicketService, FeedbackService
+    TicketService, FeedbackService,
+    ModalComponent, Ticket,
+    NoticeComponent
 } from '../shared';
 
 @Component({

@@ -52,7 +52,6 @@ export class InfoStoreByHour {
     data: ISH[] = [];
 
     Add(s: IStoreHour[]) {
-        console.log("dsad")
       for (var i = 0; i < s.length; i++) {
             var a_d = 0
             var store: ISH = {

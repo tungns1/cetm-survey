@@ -1,6 +1,11 @@
 import { L10nText, Localize } from '../../util/i18n';
 import { MemCache, ID } from '../../shared/';
 
+interface IAttribute {
+    key: string;
+    value: string;
+}
+
 export interface IService extends ID {
     code: string;
     tform_normal: string;
@@ -8,8 +13,8 @@ export interface IService extends ID {
     image: string;
     priority?: number;
     l10n: L10nText;
+    attrs?: IAttribute[];
     _checked?: boolean;
-    // call_for_vip?:boolean;
     name?: string; // on client side
 }
 

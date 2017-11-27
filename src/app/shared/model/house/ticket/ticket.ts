@@ -8,7 +8,6 @@ import { IFeedback } from './ticket_feedback';
 export interface ITicketTrack {
     state: TicketState;
     mtime: number;
-    // stime: number;
     services?: string[];
     user_id?: string;
     counter_id?: string;
@@ -59,8 +58,8 @@ function getServiceName(t: ITicket) {
         case TicketStates.Waiting:
         // fallthrough
         case TicketStates.Missed:
-        if(t.services)
-            return t.services.map(ServiceName).join(",");
+            if (t.services)
+                return t.services.map(ServiceName).join(",");
         case TicketStates.Serving:
             return ServiceName(t.service_id);
         default:
@@ -123,7 +122,7 @@ export class Ticket {
     }
 
     isDone() {
-        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled || this.state==TicketStates.Waiting;
+        return this.state == TicketStates.Finished || this.state == TicketStates.Cancelled || this.state == TicketStates.Waiting;
     }
 
     __stime = 0; // serving time
@@ -131,7 +130,10 @@ export class Ticket {
     static sort(a: Ticket, b: Ticket) {
         // -1, 0, 1
         var step = a.priority.compare(b.priority);
-        return step == 0 ? (a.ctime < b.ctime ? -1 : 1) : step;
+        if (step === 0) {
+            return a.mtime < b.mtime ? -1 : 1;
+        }
+        return step;
     }
 
     IsState(state: TicketState) {

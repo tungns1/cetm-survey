@@ -1,21 +1,27 @@
-<div class="hl-droplabel-user">
-    <span [matMenuTriggerFor]="menu" class="pointer">
-        <span i18n>Hello</span> {{ username | async}}
-        <i class="fa fa-caret-down fa-lg"></i>
-    </span>
-</div>
+<span [matMenuTriggerFor]="menu" class="pointer">
+    <span i18n>Hello</span> {{ username | async}}
+    <i class="fa fa-caret-down fa-lg"></i>
+</span>
 
 <mat-menu #menu="matMenu" id="menuSetting" overlapTrigger="true" x-position="before">
-    <div class="hl-dropdown-item-user" (click)="Refresh()">
-        <i class="fa fa-refresh"></i> <span i18n>Refresh</span>
+    <div class="settingMenuItem" (click)="Refresh()">
+        <i class="fa fa-refresh"></i>
+        <span i18n>Refresh</span>
     </div>
-    <div class="hl-dropdown-item-user" (click)="openSettingModal()">
-        <i class="fa fa-cog"></i> <span i18n>Setting</span>
+    <div class="settingMenuItem" (click)="openSettingModal()">
+        <i class="fa fa-cog"></i>
+        <span i18n>Setting</span>
     </div>
-    <div class="hl-dropdown-item-user" (click)="openChangePassModal()">
-        <i class="fa fa-key"></i> <span i18n>Change password</span>
+    <div class="settingMenuItem" (click)="openChangePassModal()">
+        <i class="fa fa-key"></i>
+        <span i18n>Change password</span>
     </div>
-    <div class="hl-dropdown-item-user" (click)="Logout()">
-        <i class="fa fa-power-off"></i> <span i18n>Logout</span>
+    <div class="settingMenuItem" i18n-appConfirm appConfirm="Are you sure you want to log out?" (confirm)="Logout()">
+        <i class="fa fa-power-off"></i>
+        <span i18n>Logout</span>
     </div>
 </mat-menu>
+
+<app-notice>
+    <app-notice-message name="must_finish_first" message="Please complete the current transaction before logout" i18n-message></app-notice-message>
+</app-notice>

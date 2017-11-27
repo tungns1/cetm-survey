@@ -1,3 +1,5 @@
+import { WorkspaceSettingService } from './counter-setting.service';
+
 import {
     WorkspaceService, TicketService,
     QueueService,
@@ -15,6 +17,8 @@ import {
 import { ComposeService } from './compose.service';
 
 export const workspaceServiceProvider = [
+    WorkspaceSettingService,
+
     LedDevice, FeedbackDevice, RecorderDevice,
     LauncherService,
 

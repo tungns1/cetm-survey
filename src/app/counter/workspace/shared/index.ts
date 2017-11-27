@@ -5,7 +5,7 @@ export { AuthService } from '../../shared';
 export * from '../../../shared/model';
 
 export * from './service';
-export * from './model';
+export * from '../../shared/model';
 
 export {
     ModalComponent, ModalModule,
@@ -14,3 +14,4 @@ export {
 
 export { NoticeComponent } from '../../../../lib/ng2';
 export { ComposeService } from './compose.service';
+export { WorkspaceSettingService } from './counter-setting.service';

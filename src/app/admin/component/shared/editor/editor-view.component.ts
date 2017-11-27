@@ -3,8 +3,8 @@ import {
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CacheBranch } from '../';
-import { RuntimeEnvironment } from '../../shared';
+import { CacheBranch } from '../../../service';
+import { RuntimeEnvironment } from '../../../../shared';
 // import { BaseAdminComponent } from './base.component'
 
 @Component({

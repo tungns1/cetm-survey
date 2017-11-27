@@ -78,7 +78,7 @@
             <b fxFlex="42%" i18n>Phone Number</b>
             <span fxFlex>{{customer.phone_number}}</span>
         </div>
-        <div class="cusDetail" fxLayout="row">
+        <div  *ngIf="customer.code" class="cusDetail" fxLayout="row">
             <b fxFlex="42%" i18n>Customer Code</b>
             <span fxFlex (click)="goToCustomer(data.customer_id); close()" style="text-decoration: underline; color: blue; cursor: pointer" i18n-title="Go to customer detail">{{customer.code}}</span>
         </div>

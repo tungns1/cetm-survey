@@ -1,0 +1,66 @@
+@import '../../shared/style.scss';
+#superCounterDetail {
+    height: 27vh;
+    padding: 3vh 3vw 0 3vw;
+    overflow-x: hidden;
+    .border {
+        height: 27vh;
+        .counterDetailHeader {
+            background-color: $background-color-title;
+            font-size: 150%;
+            font-weight: $font-weight-default + 200;
+            padding-top: 2%;
+            text-transform: uppercase;
+        }
+        .container {
+            padding: 10px 20px 0 20px;
+            .timing {
+                border-left: $border;
+            }
+            .ticketNum,
+            .timing {
+                .title {
+                    font-size: 130%;
+                }
+                .content {
+                    width: fit-content;
+                    margin: auto;
+                    color: $key-color;
+                    font-size: 300%;
+                    font-weight: $font-weight-default + 300;
+                    .icon {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+            @media screen and (max-width: 1030px) {
+                .ticketNum,
+                .timing {
+                    height: 10vh;
+                }
+            }
+            @media screen and (max-width: 800px) {
+                .ticketNum,
+                .timing {
+                    height: 15vh;
+                }
+            }
+        }
+    }
+    #roomServing {
+        color: $key-color;
+        float: right;
+        position: relative;
+        .icon {
+            position: absolute;
+            top: -8px;
+            left: -45px;
+        }
+        @media screen and (max-width: 800px) {
+            .icon {
+                top: -3px;
+            }
+        }
+    }
+}

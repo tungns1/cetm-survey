@@ -17,7 +17,7 @@ interface IAuthExtra {
 @Injectable()
 export class SessionValidationGuard implements CanActivate {
   constructor(
-    private router: Router,
+    protected router: Router,
     private authService: AuthService,
     private env: RuntimeEnvironment
   ) { }
@@ -33,10 +33,10 @@ export class SessionValidationGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
     if (!AppStorage.HasToken()) {
       this.ShowLogin(state.url);
-      return of(false);
+      return false;
     }
     return this.authService.ValidateSession(this.GetScope())
       .do(success => {

@@ -1,0 +1,99 @@
+@import '../../shared/style.scss';
+#queueContainer {
+    padding: 3vw;
+    height: 100%;
+    font-size: $font-size-default * 1.5;
+    .border {
+        height: 99%;
+        position: relative;
+        .tableName {
+            height: 30px;
+            max-height: none;
+            background-color: $background-color-title;
+            text-align: center;
+            padding-top: 15px;
+            text-transform: uppercase;
+            font-weight: $font-weight-default + 200
+        }
+        .totalCount {
+            color: $key-color;
+        }
+        .searchBar {
+            height: 40px;
+            padding: 3%;
+            .ctrlInput {
+                margin: 0px;
+                width: stretch;
+                height: stretch;
+                text-indent: 7px;
+                font-size: $font-size-default * 1.5;
+            }
+        }
+        @media screen and (min-width: 1030px) {
+            .searchBar {
+                height: 30px;
+                padding: 1%;
+                .ctrlInput {
+                    font-size: $font-size-default;
+                }
+            }
+        }
+        .headerTable {
+            background-color: $background-color;
+            border-top: $border;
+            border-bottom: $border;
+            font-weight: $font-weight-default;
+        }
+        .row {
+            border-bottom: $border;
+            cursor: pointer;
+        }
+        .cell {
+            text-align: center;
+            margin: 17px 0; // .icon {
+            //     width: 15px;
+            //     float: left;
+            //     margin: 0 10px;
+            // }
+            // .ticketNum {
+            //     float: left;
+            // }
+        }
+        @media screen and (min-width: 1030px) {
+            .cell {
+                margin: 10px 0;
+            }
+        }
+    }
+    .queue {
+        overflow: scroll;
+        width: 100%;
+        height: 60vh;
+        overflow-x: hidden;
+        .item {
+            &:active {
+                background-color: $key-color;
+                color: #fff;
+            }
+        }
+        @media screen and (max-width: 1030px) {
+            .web {
+                display: none;
+            }
+        }
+    }
+    @media screen and (min-width: 1030px) {
+        .queue {
+            height: 62vh;
+            .mobile {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1030px) {
+    #queueContainer {
+        font-size: $font-size-default;
+    }
+}

@@ -18,6 +18,7 @@ export interface IStorePerformance {
     teap: number;
     dap: number;
     transfer: number;
+    gd_percent: number;
 }
 
 export interface ISPT {
@@ -32,6 +33,7 @@ export interface ISPT {
     occupied?: number;
     transfer: number;
     survay_score?: number;
+    gd_percent: number;
 }
 
 
@@ -58,7 +60,8 @@ export class InfoStore {
                 teap: t_s[i].teap * 100,
                 dap: t_s[i].dap * 100,
                 occupied: 0,
-                transfer: t_s[i].transfer
+                transfer: t_s[i].transfer,
+                gd_percent: t_s[i].gd_percent
             };
             for (var i1 = 0; i1 < len_a; i1++) {
                 if (a_v[i1].bid === t_s[i].branch_id) {

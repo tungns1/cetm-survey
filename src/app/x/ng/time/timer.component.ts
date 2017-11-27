@@ -19,14 +19,19 @@ export class TimerComopnent {
     private oneSecond = interval(1000).share();
     private native: HTMLElement = this.ref.nativeElement;
 
-    @Input() timeWarning: number = 1;
-    @Input() start: number;
+    @Input() timeWarning: number = 1500;
+    @Input() set start(t: number) {
+        this._start = t;
+        this.ngAfterViewInit();
+    }
+
+    _start: number;
 
     ngAfterViewInit() {
         this.clear();
         let ctime = 0;
-        if (this.start) {
-            ctime = this.getCTime(this.start, this.timeWarning);
+        if (this._start) {
+            ctime = this.getCTime(this._start, this.timeWarning);
             this.subscription = this.oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.timeWarning));
         } else if (this.params) {
             ctime = this.getCTime(this.params.data.mtime, this.params.timeWarning);
@@ -41,11 +46,11 @@ export class TimerComopnent {
     getCTime(time: number, timeWarning: number) {
         let ctime = 0;
         if ((Date.now() / 1000 - time) < 0) {
-            this.view(0, timeWarning);
             ctime = Date.now() / 1000;
-        } else {
             this.view(0, timeWarning);
+        } else {
             ctime = time;
+            this.view(0, timeWarning);
         }
         return ctime;
     }

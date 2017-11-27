@@ -6,9 +6,10 @@ import { BarComponent } from './bar.component';
 import { SearchComponent } from './search.component';
 import { AvgTimeComponent } from './avgTime.component';
 import { SharedModule } from '../../shared';
+import { ComponentSharedModule } from '../../shared/component/componentShared.module'
 
 @NgModule({
-    imports: [CommonModule, TicketModule, SharedModule],
+    imports: [CommonModule, TicketModule, SharedModule, ComponentSharedModule],
     declarations: [StaComponent, BarComponent, SearchComponent, AvgTimeComponent],
     exports: [StaComponent]
 })

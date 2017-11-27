@@ -1,0 +1,11 @@
+<div id="countersMap" fxLayout="column" fxLayoutGap="30px">
+
+    <div class="countersRow" *ngFor="let counterRow of countersMap$ | async" fxFlex fxLayout="row" fxLayoutGap="30px">
+
+        <div *ngFor="let cell of counterRow" fxFlex>
+            <app-counter-cell *ngIf="cell" [counter]="cell" [selected]="selected && selected.id == cell.id" (click)="selectCounter(cell)"></app-counter-cell>
+        </div>
+
+    </div>
+
+</div>

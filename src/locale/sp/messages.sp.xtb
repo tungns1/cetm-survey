@@ -375,8 +375,13 @@
   <translation id="5530226616382823887">Total de tickets gestionados</translation>
   <translation id="1669277742108379782">Atendido</translation>
   <translation id="2628294255250873454">Descartado</translation>
+<<<<<<< HEAD
   <translation id="5773943643303405905"/>
   <translation id="8155820916233318185"/>
+=======
+  <translation id="5773943643303405905">2 min &ge; T > 20 seg</translation>
+  <translation id="8155820916233318185">20 seg &ge; T > 0 seg</translation>
+>>>>>>> master
   <translation id="7031751052634026610">Atenciones canceladas</translation>
   <translation id="1400441928065364651">Espera cancelada</translation>
   <translation id="3443036669836863676">TEAP%</translation>
