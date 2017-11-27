@@ -1,9 +1,10 @@
 <div *ngIf="value">
   <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
     <span fxFlex="23%" class="margin-t-5" i18n>Type</span>
-    <select fxFlex class="hl-select" [(ngModel)]="value.type">
+    <select fxFlex class="hl-select" [(ngModel)]="value.type" (ngModelChange)="onChange()">
         <option value="videos">Videos</option>
         <option value="slider">Slider</option>
+        <option value="i-frame">Link</option>
     </select>
   </div>
   <div *ngIf="value.type === 'videos'" (change)="onChange($event)" class="margin-b-15">
@@ -19,5 +20,10 @@
       <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.data.animation" (change)="onChange($event)">
     </div>
     <multi-file-picker [(ngModel)]="value.data.srcs" (ngModelChange)="onChange()"></multi-file-picker>
+  </div>
+  <div *ngIf="value.type === 'i-frame'" class="margin-b-15">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <app-i-frame-form [(ngModel)]="value.data.src" (ngModelChange)="onChange()"></app-i-frame-form>
+    </div>
   </div>
 </div>

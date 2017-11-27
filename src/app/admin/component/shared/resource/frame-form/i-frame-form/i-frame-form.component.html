@@ -1,0 +1,4 @@
+<div id="iFrameFormID" *ngIf="value" fxLayout="row">
+  <span fxFlex="23%" class="margin-t-5" i18n>Link</span>
+  <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value" (change)="onChange($event)">
+</div>
