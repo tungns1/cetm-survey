@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { AdminFormModule, FlexLayoutModule } from '../../shared';
 import { MultiFilePickerModule } from '../shared';
 import { MultimediaFormComponent } from './multimedia-form.component';
+import { IFrameFormModule } from '../i-frame-form/i-frame-form.module';
 
 @NgModule({
     imports: [
         FormsModule, CommonModule, AdminFormModule,
-        MultiFilePickerModule, FlexLayoutModule
+        MultiFilePickerModule, FlexLayoutModule, IFrameFormModule
     ],
     declarations: [MultimediaFormComponent],
     exports: [MultimediaFormComponent]

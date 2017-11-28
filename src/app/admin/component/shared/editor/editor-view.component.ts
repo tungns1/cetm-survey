@@ -44,6 +44,10 @@ export class EditorViewComponent implements OnInit {
         this.action.next(action);
     }
 
+    importLayout() {
+        document.getElementById('layoutImportBtn').click();
+    }
+
     private GoBack() {
         this.location.back();
     }

@@ -36,7 +36,8 @@ export class UIEditorComponent {
 
   UI: UI;
   layoutGroup = []
-  records
+  isResources: boolean = true;
+  lastBackgroundColor: string;
 
   ngOnInit() {
     this.standardizedData();
@@ -53,12 +54,37 @@ export class UIEditorComponent {
     this.applyUI();
   }
 
-  Save() {
-    this.dialog.close(this.UI);
+  standardizedData() {
+    if (!this.UI.layout.style)
+      this.UI.layout.style = {};
+    if (this.UI.layout.background_url) {
+      this.UI.layout.style.backgroundImage = 'url(' + this.UI.layout.background_url + ')';
+      this.UI.layout.style.backgroundPosition = 'center center'
+      this.UI.layout.style.backgroundSize = 'cover'
+      delete this.UI.layout.background_url;
+    }
+    this.UI.layout.children.forEach(layout => {
+      if (!layout.style)
+        layout.style = {};
+    });
   }
 
-  Cancel() {
-    this.dialog.close(null)
+  toggle() {
+    this.isResources = !this.isResources;
+    this.applyUI();
+  }
+
+  mouseEnterLayout(e) {
+    this.lastBackgroundColor = e.target.style.backgroundColor;
+    e.target.style.backgroundColor = '#9c9c9c';
+  }
+
+  mouseLeaveLayout(e) {
+    e.target.style.backgroundColor = this.lastBackgroundColor;
+  }
+
+  getFlex(index) {
+    return this.UI.layout.children[index].flex;
   }
 
   getlayoutEl(container: any, mainContainerIndex: number) {
@@ -71,17 +97,6 @@ export class UIEditorComponent {
       if (!this.layoutGroup[mainContainerIndex])
         this.layoutGroup[mainContainerIndex] = [];
       this.layoutGroup[mainContainerIndex].push({ [container.name]: this.UI.resources[container.name] })
-    }
-  }
-
-  standardizedData() {
-    if (!this.UI.layout.style)
-      this.UI.layout.style = {};
-    if (this.UI.layout.background_url) {
-      this.UI.layout.style.backgroundImage = 'url(' + this.UI.layout.background_url + ')';
-      this.UI.layout.style.backgroundPosition = 'center center'
-      this.UI.layout.style.backgroundSize = 'cover'
-      delete this.UI.layout.background_url;
     }
   }
 
@@ -98,9 +113,10 @@ export class UIEditorComponent {
     })
   }
 
-  editLayout(layout: any, index?: number) {
+  editLayout(layout: any, index: number, event) {
+    event.stopPropagation();
     const config = new MatDialogConfig();
-    config.width = '450px';
+    config.width = '750px';
     index >= 0 ? config.data = layout.children[index] : config.data = layout;
     const dialog = this.mdDialog.open(LayoutEditorComponent, config);
     dialog.afterClosed().subscribe(d => {
@@ -110,37 +126,40 @@ export class UIEditorComponent {
       }
     })
   }
-  
+
   applyUI() {
     if (this.UI.layout) {
       setTimeout(_ => {
         let UIBackground = document.getElementById('ui-editor-' + this.UI.layout.name);
-        UIBackground.style.backgroundColor = this.UI.layout.style.backgroundColor;
-        // UIBackground.style.backgroundImage = this.UI.layout.style.backgroundImage;
-        UIBackground.style.backgroundImage = `url('http://localhost:3000/upload/backGround.png')`;
-        UIBackground.style.backgroundPosition = this.UI.layout.style.backgroundPosition;
-        UIBackground.style.backgroundSize = 'cover';
-        UIBackground.style.backgroundRepeat = 'no-repeat';
-        UIBackground.style.color = this.UI.layout.style.color;
+        if (UIBackground) {
+          UIBackground.style.backgroundColor = this.UI.layout.style.backgroundColor;
+          UIBackground.style.backgroundImage = this.UI.layout.style.backgroundImage;
+          // UIBackground.style.backgroundImage = `url('http://localhost:3000/upload/backGround.png')`;
+          UIBackground.style.backgroundPosition = this.UI.layout.style.backgroundPosition;
+          UIBackground.style.backgroundSize = 'cover';
+          UIBackground.style.backgroundRepeat = 'no-repeat';
+
+          UIBackground.style.color = this.UI.layout.style.color;
+        }
         this.UI.layout.children.forEach(element => {
           let UIElement = document.getElementById('ui-editor-' + element.name);
-          UIElement.style.backgroundColor = element.style.backgroundColor;
-          UIElement.style.backgroundImage = element.style.backgroundImage;
-          UIElement.style.backgroundPosition = element.style.backgroundPosition;
-          UIElement.style.color = element.style.color;
+          if (UIElement) {
+            UIElement.style.backgroundColor = element.style.backgroundColor;
+            UIElement.style.backgroundImage = element.style.backgroundImage;
+            UIElement.style.backgroundPosition = element.style.backgroundPosition;
+
+            UIElement.style.color = element.style.color;
+          }
         });
       })
     }
   }
 
-  test() {
-    console.log(this.UI)
-
-    // this.UI.layout.children.forEach(element => {
-    //   let elementID = document.getElementById(element.name);
-    //   elementID.style.backgroundColor = element.style.backgroundColor.toString();
-
-    // });
+  save() {
+    this.dialog.close(this.UI);
   }
 
+  cancel() {
+    this.dialog.close(null)
+  }
 }

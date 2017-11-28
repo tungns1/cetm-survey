@@ -1,6 +1,6 @@
 import { FactoryProvider } from '@angular/core';
 import { RuntimeEnvironment } from '../../../../../shared';
-import { UploadURLToken } from '../../../../../../x/ng/upload/';
+import { UploadURLToken } from '../../../../../x/ng/upload/';
 
 export function __uploadUrlTokenFactory(env: RuntimeEnvironment) {
     return env.Platform.Http;
@@ -12,4 +12,4 @@ export const provideUploadURLToken: FactoryProvider = {
     useFactory: __uploadUrlTokenFactory
 }
 
-export { MultiFilePickerModule } from '../../../../../../x/ng/upload';
+export { MultiFilePickerModule, FilePickerModule } from '../../../../../x/ng/upload';

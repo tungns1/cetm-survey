@@ -7,7 +7,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angu
 import { IResourceForm } from '../shared';
 import { UI } from '../../../shared'
 import { cloneDeep } from 'lodash';
-import { GenericFormComponent } from '../frame-form/generic-form/generic-form.component'
+import { GenericFormComponent } from '../frame-form/generic-form/generic-form.component';
 
 const GENERIC_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,87 +28,63 @@ export class LayoutEditorComponent {
   constructor(
     @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
     private dialog: MatDialogRef<LayoutEditorComponent>,
-    private mdDialog: MatDialog
+    private mdDialog: MatDialog,
   ) {
     this.layout = cloneDeep(this.dialogData);
   }
 
+  private backgroundColor: string = '';
+  private textColor: string = '';
   layout: UI;
-  layoutGroup = []
-  records
+
+  backgroundPosX: string = '';
+  backgroundPosY: string = '';
+  // layoutGroup = []
+  // records
 
   ngOnInit() {
+    this.backgroundColor = this.layout.style.backgroundColor || '';
+    this.textColor = this.layout.style.color || '';
+
+    if (this.layout.style.backgroundImage) {
+      this.layout.style.backgroundImage = this.layout.style.backgroundImage.replace('url(', '').replace(')', '')
+      if (this.layout.style.backgroundPosition){
+        let pos = this.layout.style.backgroundPosition.split(' ');
+        this.backgroundPosX = pos[0];
+        this.backgroundPosY = pos[1];
+      }
+    }
     // console.log(this.layout)
-    // this.standardizedData();
-    // this.layout.layout.children.forEach((child, i) => {
-    //   if (child.children)
-    //     this.getlayoutEl(child, i);
-    //   else
-    //     this.layoutGroup.push([{ [child.name]: this.layout.resources[child.name] }])
-    // });
-    // console.log(this.layoutGroup)
   }
 
-  // ngAfterViewInit() {
-  //   if (this.layout.layout) {
-  //     let abc = document.getElementById(this.layout.layout.name);
-  //     abc.style.backgroundColor = this.layout.layout.style.backgroundColor
-  //   }
-
-  // }
 
   save() {
     if (this.layout.style.backgroundImage) {
-      this.layout.style.backgroundSize = 'cover'
-      this.layout.style.backgroundRepeat = 'no-repeat'
+      this.layout.style.backgroundSize = 'cover';
+      this.layout.style.backgroundRepeat = 'no-repeat';
+      if (this.layout.style.backgroundImage.indexOf('url(') === -1) {
+        this.layout.style.backgroundImage = 'url(' + this.layout.style.backgroundImage + ')'
+      }
     }
-
+    // console.log(this.layout)
     this.dialog.close(this.layout);
   }
 
-  // getlayoutEl(container: any, mainContainerIndex: number) {
-  //   if (container.children) {
-  //     container.children.forEach(child => {
-  //       this.getlayoutEl(child, mainContainerIndex)
-  //     });
-  //   }
-  //   else {
-  //     if (!this.layoutGroup[mainContainerIndex])
-  //       this.layoutGroup[mainContainerIndex] = [];
-  //     this.layoutGroup[mainContainerIndex].push({ [container.name]: this.layout.resources[container.name] })
-  //   }
-  // }
+  changeBackgroundColor(color: string) {
+    this.layout.style.backgroundColor = color
+  }
 
-  // standardizedData() {
-  //   if (!this.layout.layout.style)
-  //     this.layout.layout.style = {};
-  //   if (this.layout.layout.background_url) {
-  //     this.layout.layout.style.backgroundImage = 'url(' + this.layout.layout.background_url + ')';
-  //     this.layout.layout.style.backgroundPosition = 'center center'
-  //     this.layout.layout.style.backgroundSize = 'cover'
-  //     delete this.layout.layout.background_url;
-  //   }
-  // }
+  changeTextColor(color: string) {
+    this.layout.style.color = color;
+  }
 
-  // editResource(rsc: any) {
-  //   // console.log(rsc)
-  //   const key = Object.keys(rsc)[0]
-  //   const config = new MatDialogConfig();
-  //   config.width = '450px';
-  //   config.data = rsc[key];
-  //   const dialog = this.mdDialog.open(GenericFormComponent, config);
-  //   dialog.afterClosed().subscribe(d => {
-  //     if (d) {
-  //       this.layout.resources[key] = d;
-  //     }
-  //   })
-  // }
 
-  // test() {
-  //   console.log(this.layout)
-  // }
   cancel() {
     this.dialog.close(null)
+  }
+
+  getBackgroundPos() {
+    this.layout.style.backgroundPosition = this.backgroundPosX + ' ' + this.backgroundPosY;
   }
 
 }

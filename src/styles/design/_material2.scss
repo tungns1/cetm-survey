@@ -3,6 +3,7 @@
     background-color: $background-color-title;
     color: $text-color;
     border-bottom: $border;
+    z-index: 0;
     .mat-tab-label-active {
         color: $key-color;
         font-weight: $font-weight-default + 400;
@@ -10,6 +11,10 @@
     .mat-ink-bar {
         background-color: $key-color;
     }
+}
+
+.mat-tab-body {
+    z-index: 0 !important;
 }
 
 .mat-dialog-container {

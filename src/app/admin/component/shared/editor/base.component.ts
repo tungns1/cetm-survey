@@ -20,8 +20,10 @@ export abstract class BaseAdminComponent<T> {
 
     protected router = this.injector.get(Router);
     protected route = this.injector.get(ActivatedRoute);
-    private matSnackBar = this.injector.get(MatSnackBar);
-    private translateService = new TranslateService;
+    protected matSnackBar = this.injector.get(MatSnackBar);
+    protected translateService = new TranslateService;
+
+    private layoutTag: string;
 
     id$ = this.route.params.map(p => p['id']);
     showList$ = this.id$.map(id => this.isList(id));
@@ -106,7 +108,10 @@ export abstract class BaseAdminComponent<T> {
 
     protected NavigateTo(view = 'list') {
         console.log('navigate to', view);
-        this.router.navigate(['..', view], {
+        this.route.params.first().subscribe(p => {
+            if (p.tag) this.layoutTag = p.tag;
+        })
+        this.router.navigate(['..', view, { tag: this.layoutTag }], {
             queryParamsHandling: 'preserve',
             relativeTo: this.route
         });

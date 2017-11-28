@@ -1,38 +1,50 @@
 <div #main id="ui-editor" *ngIf="UI">
     <h1 class="modal-header">Edit UI</h1>
     <div class="padding-20">
-        <div class="border margin-b-20">
-            <!-- <accordion [expand]="true">
-                <accordion-title class="accordionTitle margin-t-15">
-                    <span i18n>{{UI.layout.name}}</span>
-                </accordion-title> -->
-            <div [id]="'ui-editor-' + UI.layout.name" class="padding-20">
-                <!-- <iframe src="http://localhost:4201/#/kiosk/main" width="320" height="256"></iframe> -->
-                <h1 class="center" i18n (click)="editLayout(UI.layout)">{{UI.layout.name}}</h1>
-                <div [fxLayout]="UI.layout.layout">
-                    <div class="border UIElement margin-b-20" *ngFor="let comp of UI.layout.children; let layoutIndex = index" fxFlex 
-                        (click)="editLayout(UI.layout, layoutIndex, layoutGroup[layoutIndex])">
-                        <div [id]="'ui-editor-' + comp.name" class="padding-20">
-                            <h1 class="center margin-0" i18n>{{comp.name}}</h1>
-                            <!-- <div class="border margin-b-20">
-                                <accordion>
-                                    <accordion-title class="accordionTitle margin-t-15">
-                                        <span i18n>Child element</span>
-                                    </accordion-title>
-                                    <div *ngFor="let src of layoutGroup[layoutIndex]; let rscIndex = index" fxLayout="row" class="center">
-                                        <h3 (click)="editResource(src)">{{src | key}}</h3>
-                                    </div>
-                                </accordion>
-                            </div> -->
+        <div fxLayout="row" fxLayoutAlign="center none">
+            <h1 fxFlex class="layoutName">{{UI.layout.name}}</h1>
+            <span fxFlex (click)="toggle()" class="right">
+                <i *ngIf="isResources" class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+                <i *ngIf="!isResources" class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
+            </span>
+        </div>
+
+        <div *ngIf="isResources" class="border margin-b-20 padding-20 animated fadeIn">
+
+            <div [fxLayout]="UI.layout.layout" fxLayoutGap="10px" class="UIElementContainer">
+                <div fxLayout="row" height100 fxLayoutWrap fxLayoutAlign="center none" class="border UIElement" *ngFor="let comp of UI.layout.children; let layoutIndex = index"
+                    [fxFlex]="getFlex(layoutIndex)">
+                    <div fxFlex="25%" fxFlexAlign="stretch" class="center" *ngFor="let resource of layoutGroup[layoutIndex]; let resourceIndex = index">
+                        <div class="resourceItem pointer" (click)="editResource(resource)">
+                            <h3>{{resource | key}}</h3>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
+        <div *ngIf="!isResources" class="border margin-b-20 animated fadeIn">
+            <div [id]="'ui-editor-' + UI.layout.name" class="padding-20" (click)="editLayout(UI.layout, -1, $event)">
+
+                <div [fxLayout]="UI.layout.layout" fxLayoutGap="10px" class="UIElementContainer">
+                    <div class="border UIElement pointer" *ngFor="let comp of UI.layout.children; let layoutIndex = index" [fxFlex]="getFlex(layoutIndex)"
+                        (click)="editLayout(UI.layout, layoutIndex, $event)">
+                        <div [id]="'ui-editor-' + comp.name" class="" (mouseenter)="mouseEnterLayout($event)" (mouseleave)="mouseLeaveLayout($event)"
+                            height100>
+                            <h2 class="center margin-0 elementHeader" i18n>{{comp.name}}</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         <div fxLayout="row" fxLayoutGap="10px">
-            <button fxFlex class="btnClear" (click)="test()">test</button>
-            <button fxFlex class="btnFill" (click)="Save()">Ok</button>
+            <div fxFlex></div>
+            <button fxFlex="20" class="btnClear" (click)="cancel()">Cancel</button>
+            <button fxFlex="20" class="btnFill" (click)="save()">Ok</button>
         </div>
     </div>
 </div>

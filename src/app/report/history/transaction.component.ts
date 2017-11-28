@@ -45,12 +45,16 @@ export class TransactionComponent implements OnInit {
     }
 
     private getCustomer(customer_id: string) {
-        if (!customer_id) return;
-        this.customer = null;
-        this.transactionHistoryApi.GetInfoCustomer(customer_id)
-            .subscribe(v => {
-                this.customer = new Customer(v)
-            });
+        if (customer_id != null) {
+            this.customer = null;
+            this.transactionHistoryApi.GetInfoCustomer(customer_id)
+                .subscribe(v => {
+                    this.customer = new Customer(v)
+                });
+        }
+        else {
+            this.customer = this.data.customer;
+        }
     }
 
     private getBranchUsers(branch_id: string) {

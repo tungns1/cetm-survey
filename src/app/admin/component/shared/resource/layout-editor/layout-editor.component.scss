@@ -1,0 +1,9 @@
+@import '../../../../../shared/style.scss';
+#layout-editor{
+    .colorPicker{
+        width: 25px;
+        height: 25px;
+        border-radius: 3px;
+        border: $border;
+    }
+}
