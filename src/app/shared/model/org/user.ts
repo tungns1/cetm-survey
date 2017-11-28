@@ -14,6 +14,7 @@ export interface IUser extends ID {
     settings?: Object;
     _checked?: boolean;
     branch?: string;
+    public_avatar?: string;
 }
 
 
