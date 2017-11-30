@@ -98,9 +98,14 @@
         </li>
         <li class="li_firstLv" *ngIf="(isAdmin$ | async) && !isAdminStandard">
             <div class="paddingFirst" routerLink="/admin/house/feedback" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/feedback')">
-                <i class="fa fa-commenting"> </i>
+                <i class="fa fa-desktop"> </i>
                 <span i18n>Feedback</span>
             </div>
+            <ul class="secondLv">
+                <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/layout/list', {tag: 'feedback'}]" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Feedback Layout</span>
+                </li>
+            </ul>
         </li>
     </ul>
 </div>
