@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { VideoFormComponent } from './video-form.component';
-import { AdminFormModule } from '../../shared';
-import { MultiFilePickerModule } from '../shared';
+import { AdminFormModule, MultiFilePickerModule } from '../../shared';
 
 @NgModule({
     imports: [

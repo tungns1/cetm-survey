@@ -59,8 +59,11 @@
                 <span fxFlex="1%" class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
                 <branch-picker fxFlex formControlName="branch_id"></branch-picker>
             </div>
-            <div fxFlex="10%"></div>
-            <div fxFlex></div>
+            <span fxFlex="10%" i18n>Avatar</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <div fxFlex="1"></div>
+                <file-picker fxFlex formControlName="public_avatar" (change)="onChange()"></file-picker>
+            </div>
         </div>
     </form>
 </app-editor-view>

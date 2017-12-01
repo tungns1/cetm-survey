@@ -48,7 +48,12 @@ export class UserComponent extends BaseAdminComponent<IUser> {
       email: [u.email],
       role: [u.role, Validators.required],
       branch_id: [u.branch_id, Validators.required],
+      public_avatar: [u.public_avatar]
     });
+  }
+
+  onChange(){
+    console.log(this.form.value)
   }
 }
 

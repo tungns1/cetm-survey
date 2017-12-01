@@ -8,7 +8,6 @@
         <div fxFlex="25" class="colorPicker pointer" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
           [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
           [cpOutputFormat]="'rbga'" (colorPickerChange)="changeBackgroundColor(backgroundColor)"></div>
-        <!-- <span fxFlex="60" class="margin-5-10">{{backgroundColor}}</span> -->
         <mat-form-field>
           <input fxFlex="60" type="text" matInput [value]="backgroundColor" placeholder="Background color">
         </mat-form-field>
@@ -21,7 +20,6 @@
         <div fxFlex="25" class="colorPicker pointer" [(colorPicker)]="textColor" [style.background]="textColor" [cpPosition]="'left'"
           [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
           (colorPickerChange)="changeTextColor(textColor)"></div>
-        <!-- <span fxFlex="60" class="margin-5-10">{{textColor}}</span> -->
 
         <mat-form-field>
           <input fxFlex="60" type="text" matInput [value]="textColor" placeholder="Text color">
