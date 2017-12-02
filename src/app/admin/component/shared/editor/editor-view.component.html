@@ -16,10 +16,6 @@
             <span>Import UI</span>
             <i class="fa fa-download" aria-hidden="true"></i>
         </button>
-        <button fxFlex="15%" *ngIf="title === 'Layout' && !isNew" class="uppercase btnFill">
-            <span>Export UI</span>
-            <i class="fa fa-upload" aria-hidden="true"></i>
-        </button>
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" [disabled]="getValid()" [style.opacity]="getStyle()"
             (click)="onAction('add')" i18n>Add</button>
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" [disabled]="getValid()" [style.opacity]="getStyle()"
