@@ -29,7 +29,6 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
             image: [b.image],
             code: [b.code, CommonValidator.Code],
             l10n: [b.l10n],
-            priority: [b.priority, Validators.required],
             attrs: [b.attrs]
         });
     }
