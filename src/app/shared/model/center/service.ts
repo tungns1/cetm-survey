@@ -11,10 +11,8 @@ export interface IService extends ID {
     tform_normal: string;
     tform_vip: string;
     image: string;
-    priority?: number;
     l10n: L10nText;
     attrs?: IAttribute[];
-    _checked?: boolean;
     name?: string; // on client side
 }
 
