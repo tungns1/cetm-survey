@@ -15,6 +15,7 @@ import {
 } from './store.component';
 
 import { Routes, RouterModule } from '@angular/router'
+import { WeekComponent } from './store-week/week.component';
 
 const routing = RouterModule.forChild([
     {
@@ -30,7 +31,7 @@ const routing = RouterModule.forChild([
         AgGridModule.withComponents([])
     ],
     declarations: [
-        StoreComponent, HourComponent, PerformanceComponent
+        StoreComponent, HourComponent, PerformanceComponent, WeekComponent
     ],
     providers: [StoreAPI]
 })

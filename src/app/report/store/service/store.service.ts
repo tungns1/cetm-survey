@@ -1,4 +1,4 @@
-import { IStoreReport, InfoStore,IStoreHour,InfoStoreByHour } from '../../shared';
+import { IStoreReport, InfoStore,IStoreHour,InfoStoreByHour, InfoServingByWeek, IServingWeek } from '../../shared';
 import { HttpServiceGenerator, Paging } from '../../shared/';
 import { ReportFilterService } from '../../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -25,15 +25,29 @@ export class StoreAPI {
             }
         });
     }
+    SearchByWeek() {
+        this.api.Get<IServingWeek[]>("read_by_week", this.filterService.ToBackendQuery()).subscribe(v =>{
+            if (v != null) {
+                console.log(v)
+                this.RxServingReportByWeek.next(v);
+            }
+        });
+    }
     RxStoreReport = new BehaviorSubject<IStoreReport>(null);
 
     get RxStoreView() {
         return this.RxStoreReport.map(InfoStore.Make);
     };
+
     RxStoreReportByHour = new BehaviorSubject<IStoreHour[]>(null);
+    RxServingReportByWeek = new BehaviorSubject<IServingWeek[]>(null);
 
     get RxStoreViewByHour() {
         return this.RxStoreReportByHour.map(InfoStoreByHour.Make);
+    };
+
+    get RxServingViewReport() {
+        return this.RxServingReportByWeek.map(InfoServingByWeek.Make);
     };
 
     api = this.httpServiceGenerator.make<any>("/api/report/store");

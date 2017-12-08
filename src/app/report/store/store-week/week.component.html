@@ -1,0 +1,24 @@
+<ag-grid-angular #agGrid id="servingPerformenceTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl margin-0"
+    enableColResize enableSorting>
+    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch code" field="branchCode" [width]="115" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Branch name" field="branchName" [width]="125" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Store code" field="storeCode" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    <ag-grid-column headerName="Store name" field="storeName" [width]="155" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Week" field="ctime" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Average Serving Time" field="avg_time" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+    <ag-grid-column headerName="Total ticket" field="total_ticket" [width]="160" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+</ag-grid-angular>
+
+<div class="paginationAndExport margin-b-30 margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
+    <div fxFlex></div>
+    <button fxFlex="250px" class="btnClear export uppercase" (click)="export()">
+        <i class="fa fa-file-excel-o fa-lg"></i>
+        <span i18n>Export to csv</span>
+    </button>
+</div>
