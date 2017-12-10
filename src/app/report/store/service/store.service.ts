@@ -28,7 +28,6 @@ export class StoreAPI {
     SearchByWeek() {
         this.api.Get<IServingWeek[]>("read_by_week", this.filterService.ToBackendQuery()).subscribe(v =>{
             if (v != null) {
-                console.log(v)
                 this.RxServingReportByWeek.next(v);
             }
         });
