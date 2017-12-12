@@ -116,7 +116,7 @@ export class GlobalTicketSummary {
             serve_standard: serve_standard,
             wai_bw_5_10: wai_bw_5_10,
             wai_bw_10_15: wai_bw_10_15,
-            wai_bw_15_20: wai_bw_10_15,
+            wai_bw_15_20: wai_bw_15_20,
             wai_bw_20_25: wai_bw_20_25,
             wai_bw_25_30: wai_bw_25_30,
             wai_over_30: wai_over_30,
