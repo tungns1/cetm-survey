@@ -27,6 +27,17 @@
       <hr>
     </div>
     
+    <div *ngIf="inside == 'counter'">
+      <div fxFlex class="radioCtrl">
+        <input type="radio" formControlName="period" value="day">
+        <span i18n>Date</span>
+      </div>
+      <div fxFlex class="radioCtrl">
+        <input type="radio" formControlName="period" value="week" checked>
+        <span i18n>Week</span>
+      </div>
+    </div>
+
     <div fxLayout="row" fxLayoutAlign="space-around center">
       <label fxFlex i18n>From Day</label>
       <label fxFlex i18n>To Day</label>

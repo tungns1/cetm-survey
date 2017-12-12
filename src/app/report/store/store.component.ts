@@ -19,6 +19,7 @@ export class StoreComponent {
     refresh() {
         this.storeAPI.Search();
         this.storeAPI.SearchByHour();
+        this.storeAPI.SearchByWeek();
     }
 
     onTabChange(e) {

@@ -9,6 +9,13 @@ export interface IBoxTicketSummary {
     wait_standard: number;
     ser_l: number;
     serve_standard: number;
+    wai_bw_5_10: number;
+    wai_bw_10_15: number;
+    wai_bw_15_20: number;
+    wai_bw_20_25: number;
+    wai_bw_25_30: number;
+    wai_over_30: number;
+    wai_under_5: number;
 }
 
 function ToPercent(a: number, b: number) {
@@ -31,6 +38,13 @@ export class BoxTicketSummary {
     s_l_percent = ToPercent(this.serve_long, this.serving);
     w_l_percent = ToPercent(this.wait_long, this.waiting);
     printed = this.waiting + this.serving + this.finished + this.missed + this.cancelled;
+    wai_bw_5_10 = this._s.wai_bw_5_10;
+    wai_bw_10_15 = this._s.wai_bw_10_15;
+    wai_bw_15_20 = this._s.wai_bw_15_20;
+    wai_bw_20_25 = this._s.wai_bw_20_25;
+    wai_bw_25_30 = this._s.wai_bw_25_30;
+    wai_over_30 = this._s.wai_over_30;
+    wai_under_5 = this._s.wai_under_5;
 }
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -64,6 +78,13 @@ export class GlobalTicketSummary {
         let wait_standard = 0;
         let serve_long = 0;
         let serve_standard = 0;
+        let wai_bw_5_10 = 0;
+        let wai_bw_10_15 = 0;
+        let wai_bw_15_20 = 0;
+        let wai_bw_20_25 = 0;
+        let wai_bw_25_30 = 0;
+        let wai_over_30 = 0;
+        let wai_under_5 = 0;
         this.boxes.forEach(b => {
             waiting += b.waiting;
             serving += b.serving;
@@ -74,6 +95,13 @@ export class GlobalTicketSummary {
             wait_standard += b.wait_standard;
             serve_long += b.serve_long;
             serve_standard += b.serve_standard;
+            wai_bw_5_10 += b.wai_bw_5_10;
+            wai_bw_10_15 += b.wai_bw_10_15;
+            wai_bw_15_20 += b.wai_bw_15_20;
+            wai_bw_20_25 += b.wai_bw_20_25;
+            wai_bw_25_30 += b.wai_bw_25_30;
+            wai_over_30 += b.wai_over_30;
+            wai_under_5 += b.wai_under_5;
         });
         return new BoxTicketSummary({
             bid: "",
@@ -85,7 +113,14 @@ export class GlobalTicketSummary {
             wai_l: wait_long,
             wait_standard: wait_standard,
             ser_l: serve_long,
-            serve_standard: serve_standard
+            serve_standard: serve_standard,
+            wai_bw_5_10: wai_bw_5_10,
+            wai_bw_10_15: wai_bw_10_15,
+            wai_bw_15_20: wai_bw_15_20,
+            wai_bw_20_25: wai_bw_20_25,
+            wai_bw_25_30: wai_bw_25_30,
+            wai_over_30: wai_over_30,
+            wai_under_5: wai_under_5
         })
     }
 

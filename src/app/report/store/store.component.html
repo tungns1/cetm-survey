@@ -18,12 +18,22 @@
         <!-- <performance-tab [data]="data$ | async"></performance-tab> -->
         <mat-tab-group dynamicHeight id="counterReport" class="border" style="width: 100%">
           <mat-tab>
-            <ng-template mat-tab-label><span class="uppercase" i18n>Store performance</span></ng-template>
+            <ng-template mat-tab-label>
+              <span class="uppercase" i18n>Store performance</span>
+            </ng-template>
             <performance-tab [data]="data$ | async"></performance-tab>
           </mat-tab>
           <mat-tab>
-            <ng-template mat-tab-label><span class="uppercase" i18n>Details report per hour</span></ng-template>
+            <ng-template mat-tab-label>
+              <span class="uppercase" i18n>Details report per hour</span>
+            </ng-template>
             <hour-tab></hour-tab>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <span class="uppercase" i18n>Weekly serving time</span>
+            </ng-template>
+            <serving-tab></serving-tab>
           </mat-tab>
         </mat-tab-group>
       </div>
