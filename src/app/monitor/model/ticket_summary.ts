@@ -95,6 +95,7 @@ export class GlobalTicketSummary {
             wait_standard += b.wait_standard;
             serve_long += b.serve_long;
             serve_standard += b.serve_standard;
+            wai_bw_5_10 += b.wai_bw_5_10;
             wai_bw_10_15 += b.wai_bw_10_15;
             wai_bw_15_20 += b.wai_bw_15_20;
             wai_bw_20_25 += b.wai_bw_20_25;
