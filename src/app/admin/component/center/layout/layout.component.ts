@@ -1,13 +1,17 @@
-import { Component, Injector, AfterViewChecked } from '@angular/core';
+import {
+  Component, Injector, AfterViewChecked,
+  Optional, Inject
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {
   BaseAdminComponent, CommonValidator,
   CenterService, ILayout, AllRoles, UI
 } from '../../shared';
 import { cloneDeep } from 'lodash';
-import { UIEditorComponent } from '../../shared/resource/ui-editor/ui-editor.component'
+import { UIEditorComponent } from '../../shared/resource/ui-editor/ui-editor.component';
+import { GenericFormComponent } from '../../shared/resource/frame-form/generic-form/generic-form.component';
 
 @Component({
   selector: 'center-layout',
@@ -113,6 +117,18 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     })
   }
 
+  editTemplate() {
+    const config = new MatDialogConfig();
+    config.width = '450px';
+    config.data = this.ui;
+    const dialog = this.dialog.open(XListComponent, config);
+    dialog.afterClosed().subscribe(d => {
+      if (d) {
+        this.saveUI(d);
+      }
+    })
+  }
+
   saveUI(ui: UI) {
     this.form$.first().subscribe(form => {
       let value = form.value;
@@ -125,3 +141,66 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
 }
 
 
+@Component({
+  selector: 'app-template-list',
+  template: `
+  <div id="templateListModal">
+    <h1 class="modal-header">Template List</h1>
+    <div class="padding-20">
+
+      <div *ngFor="let template of data.layout.templates; let index = index" fxLayout="row" class="margin-b-20">
+        <span fxFlex class="padding-t-5">{{template.name}}</span>
+        <div fxFlex="10"></div>
+        <button fxFlex="40" class="btnFill" (click)="editTemp(template, index)">Edit</button>
+      </div>
+    
+      <div fxLayout="row" fxLayoutGap="10px">
+        <button fxFlex class="btnClear" (click)="Cancel()">Cancel</button>
+        <button fxFlex class="btnFill" (click)="Save()">Ok</button>
+      </div>
+    </div>
+  </div>
+  `,
+})
+export class XListComponent {
+  /**
+   * Safely clone the obj
+   * @param obj the given object
+   */
+  constructor(
+    @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: UI,
+    private dialog: MatDialogRef<UI>,
+    private dialogEditTemp: MatDialog
+  ) { }
+
+  data: UI;
+
+  ngOnInit() {
+    this.data = this.dialogData;
+  }
+
+  Save() {
+    this.dialog.close(this.data);
+  }
+
+  Cancel() {
+    this.dialog.close(null)
+  }
+
+  editTemp(template: any, index: number) {
+    const config = new MatDialogConfig();
+    config.width = '550px';
+    config.data = {
+      name: template.name,
+      data: template,
+      type: 'template'
+    };
+    const dialog = this.dialogEditTemp.open(GenericFormComponent, config);
+    dialog.afterClosed().subscribe(d => {
+      if (d) {
+        this.data.layout.templates[index] = d.data;
+      }
+    })
+  }
+
+}

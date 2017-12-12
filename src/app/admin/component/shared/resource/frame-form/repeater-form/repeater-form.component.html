@@ -1,4 +1,4 @@
-<div *ngIf="value" (change)="onChange($event)">
+<div id="repeaterForm" *ngIf="value" (change)="onChange($event)">
 
   <div fxLayout="row" fxLayoutGap="5px">
     <div fxFlex fxLayout="row" fxLayoutGap="5px">
@@ -19,7 +19,8 @@
     <div fxLayout="row" fxLayoutGap="5px">
       <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>
-        <input fxFlex="68%" class="ctrlInput" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+        <input *ngIf="key !== 'i18n'" fxFlex="68%" class="ctrlInput" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+        <span *ngIf="key === 'i18n'" fxFlex="30%" class="btnEditI18n" (click)="editI18n(i, el[key])">Edit</span>
       </div>
       <i fxFlex="5%" class="fa fa-trash pointer margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
     </div>
@@ -27,6 +28,9 @@
 
   <div class="divider margin-b-15"></div>
 
-  <i class="fa fa-plus pointer margin-b-15" (click)="add()"><span i18n>Add</span></i>
+  <i class="fa fa-plus pointer margin-b-15" (click)="add()">
+    <span i18n>Add</span>
+  </i>
 
 </div>
+<!-- ---------------------------------- -->

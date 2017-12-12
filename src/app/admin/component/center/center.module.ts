@@ -6,7 +6,7 @@ import { routing } from './center.routing';
 import { RichEditorModule } from '../../../x/ng/rich-editor/rich-editor.module';
 import { ServiceComponent } from './service/service.component';
 import { TFormComponent } from './tform/tform.component';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent, XListComponent } from './layout/layout.component';
 import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { CenterComponent } from './center.component'
 import { VoiceComponent } from './voice/voice.component';
@@ -26,8 +26,10 @@ import { AccordionModule } from "../../../x/ui/accordion/accordion";
     declarations: [
         CenterComponent, TicketLayoutComponent,
         LayoutComponent, ServiceComponent,
-        TFormComponent, VoiceComponent
-    ]
+        TFormComponent, VoiceComponent,
+        XListComponent
+    ],
+    entryComponents: [XListComponent]
 })
 export class CenterModule {
 

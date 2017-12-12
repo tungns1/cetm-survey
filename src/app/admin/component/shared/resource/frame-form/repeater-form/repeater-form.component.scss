@@ -1,1 +1,12 @@
-// @import '../../../../../../shared/style.scss';
+@import '../../../../../../shared/style.scss';
+#repeaterForm{
+    .btnEditI18n{
+        cursor: pointer;
+        text-align: center;
+        padding: 5px;
+        height: 25px;
+        color: #fff;
+        background-color: $key-color;
+        border-radius: 3px;
+    }
+}
