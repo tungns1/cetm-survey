@@ -1,3 +1,96 @@
-<p>
-  i18n-form works!
-</p>
+<div id="i18nForm" *ngIf="value" (change)="onChange($event)" class="margin-b-15">
+
+  <h4 class="center">
+    <span i18n>Language</span>
+  </h4>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl" *ngFor="let item of value.data.lang; let index = index">
+    <span fxFlex="10" class="margin-t-5" i18n>Code</span>
+    <input fxFlex="7" type="text" class="ctrlInput" [(ngModel)]="value.data.lang[index].code">
+    <span fxFlex="7" class="margin-t-5" i18n>Link</span>
+    <file-picker fxFlex [(ngModel)]="value.data.lang[index].img" (ngModelChange)="onChange()"></file-picker>
+    <i fxFlex="5%" class="fa fa-trash pointer margin-t-5" i18n-title="Delete" (click)="deleteLang(index)"></i>
+  </div>
+
+  <i class="fa fa-plus pointer margin-b-15" (click)="addLang()">
+    <span i18n>Add</span>
+  </i>
+
+  <div class="divider margin-20"></div>
+
+
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Type</span>
+    <select fxFlex="40" class="hl-select" [(ngModel)]="value.data.type">
+      <option value="compact">Compact</option>
+      <option value="full">Full</option>
+    </select>
+    <div fxFlex class="center">
+      <img *ngIf="value.data.type === 'compact'" src="./assets/img/icon/i18n compact.png" class="typeImg">
+      <img *ngIf="value.data.type === 'full'" src="./assets/img/icon/i18n full.png" class="typeImg">
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Shape</span>
+    <select fxFlex="40" class="hl-select" [(ngModel)]="value.data.shape">
+      <option value="rectangle">Rectangle</option>
+      <option value="cycle">Cycle</option>
+    </select>
+    <div fxFlex class="center">
+      <img *ngIf="value.data.shape === 'rectangle'" src="./assets/img/icon/i18n rectangle.png" class="typeImg">
+      <img *ngIf="value.data.shape === 'cycle'" src="./assets/img/icon/i18n compact.png" class="typeImg">
+    </div>
+  </div>
+
+  <div class="divider margin-20"></div>
+
+  <h4 class="center">
+    <span i18n>Border</span>
+  </h4>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Width</span>
+    <input fxFlex type="text" class="ctrlInput" [(ngModel)]="borderWidth" (ngModelChange)="setBorderWidth()">
+  </div>
+
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl margin-b-20">
+    <div fxFlex="10"></div>
+    <span fxFlex class="margin-t-5" i18n>Color</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Active</span>
+    <div fxFlex class="colorPicker pointer" [(colorPicker)]="borderActiveColor" [style.background]="borderActiveColor" [cpPosition]="'left'"
+      [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+      (colorPickerChange)="setActiveColor()"></div>
+    <div fxFlex="20px"></div>
+    <span fxFlex="10" class="margin-t-5" i18n>Inactive</span>
+    <div fxFlex class="colorPicker pointer" [(colorPicker)]="borderInactiveColor" [style.background]="borderInactiveColor" [cpPosition]="'left'"
+      [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+      (colorPickerChange)="setInactiveColor()"></div>
+  </div>
+
+  <div class="divider margin-20"></div>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Position</span>
+    <select fxFlex class="hl-select" [(ngModel)]="value.data.style.position" (ngModelChange)="resetPos()">
+      <option value="unset">Not set</option>
+      <option value="absolute">Absolute</option>
+    </select>
+  </div>
+  <div *ngIf="value.data.style.position === 'absolute'" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Top</span>
+    <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.data.style.top">
+    <span fxFlex="10" class="margin-t-5" i18n>Down</span>
+    <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.data.style.bottom">
+  </div>
+  <div *ngIf="value.data.style.position === 'absolute'" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="margin-t-5" i18n>Left</span>
+    <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.data.style.left">
+    <span fxFlex="10" class="margin-t-5" i18n>Right</span>
+    <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.data.style.right">
+  </div>
+</div>

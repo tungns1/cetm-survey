@@ -27,6 +27,12 @@
             <div *ngSwitchCase="'i-frame'">
                 <app-multimedia-form [(ngModel)]="record"></app-multimedia-form>
             </div>
+            <div *ngSwitchCase="'i18n'">
+                <app-i18n-form [(ngModel)]="record"></app-i18n-form>
+            </div>
+            <div *ngSwitchCase="'numeric-keyboard'">
+                <app-keyboard-form [(ngModel)]="record"></app-keyboard-form>
+            </div>
         </div>
         <div class="border margin-b-20">
             <accordion>
@@ -34,7 +40,7 @@
                     <span i18n>Show Code</span>
                 </accordion-title>
                 <div fxLayout="row">
-                    <json-text-form [(ngModel)]="record.data" style="width: 100%;" [disabled]="disableEditTextArea"></json-text-form>
+                    <json-text-form [(ngModel)]="record" style="width: 100%;" [disabled]="disableEditTextArea"></json-text-form>
                 </div>
             </accordion>
         </div>

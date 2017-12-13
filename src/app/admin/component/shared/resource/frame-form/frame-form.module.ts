@@ -8,8 +8,10 @@ import { VideoFormModule } from './video-form/video-form.module';
 import { RepeaterFormModule } from './repeater-form/repeater-form.module';
 import { SliderFormModule } from './slider-form/slider-form.module';
 import { MultimediaFormModule } from './multimedia-form/multimedia-form.module';
-import { 
-  ModalModule, AdminFormModule, FlexLayoutModule, 
+import { I18nFormModule } from './i18n-form/i18n-form.module';
+import { KeyboardFormModule } from './keyboard-form/keyboard-form.module';
+import {
+  ModalModule, AdminFormModule, FlexLayoutModule,
   AccordionModule, provideUploadURLToken
 } from '../shared';
 
@@ -20,7 +22,7 @@ import {
     AdminFormModule,
     TextFormModule, ImageFormModule, VideoFormModule, MultimediaFormModule,
     FlexLayoutModule, RepeaterFormModule, AccordionModule,
-    SliderFormModule
+    SliderFormModule, I18nFormModule, KeyboardFormModule
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],

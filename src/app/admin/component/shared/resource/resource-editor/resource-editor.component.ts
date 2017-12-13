@@ -27,7 +27,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   value: ILayoutResources = {};
   records: IResourceForm[];
 
-  private editables = ["text", "image", "videos", "repeater", 'slider', 'i-frame'];
+  private editables = ["text", "image", "videos", "repeater", 'slider', 'i-frame', 'i18n', 'numeric-keyboard'];
 
   ngOnInit() {
     this.refresh();
@@ -88,7 +88,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
 
   edit(record: IResourceForm) {
     const config = new MatDialogConfig();
-    config.width = '450px';
+    config.width = '550px';
     config.data = record;
     const dialog = this.mdDialog.open(GenericFormComponent, config);
     dialog.afterClosed().subscribe(d => {

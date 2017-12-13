@@ -6,6 +6,7 @@ import { KeyboardFormComponent } from './keyboard-form.component';
   imports: [
     CommonModule
   ],
-  declarations: [KeyboardFormComponent]
+  declarations: [KeyboardFormComponent],
+  exports: [KeyboardFormComponent]
 })
 export class KeyboardFormModule { }

@@ -1,0 +1,13 @@
+@import '../../../../../../shared/style.scss';
+#i18nForm {
+    .typeImg {
+        height: 25px;
+    }
+    .colorPicker {
+        width: 25px;
+        height: 25px;
+        border-radius: 3px;
+        border: $border;
+        margin-right: 0px !important;
+    }
+}
