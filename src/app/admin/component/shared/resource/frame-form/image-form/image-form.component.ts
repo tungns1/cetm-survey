@@ -1,4 +1,4 @@
-import { Component, forwardRef, ExistingProvider, style } from '@angular/core';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFormComponent } from '../shared';
 
@@ -27,8 +27,7 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
    * Safely clone the obj
    * @param obj the given object
    */
-  
-  private backgroundColor: string = '';
+
 
   protected clone(obj: any): ImageForm {
     if (obj) {
@@ -45,14 +44,10 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
   protected onChange(event: Event) {
     if (typeof this.value.data.srcs === 'string')
       this.value.data.srcs = [this.value.data.srcs];
-    super.onChange(event)
-    console.log(this.value);
+    super.onChange(event);
   }
 
-  changeTextColor(color: string) {
-    // this.layout.style.color = color;
-    console.log(this.value)
-    this.value.style['backgroundColor'] = color;
+  changeBackgroundColor(color: string) {
+    this.onChangeCallback(this.value)
   }
-
 }

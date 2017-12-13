@@ -1,4 +1,4 @@
-<div *ngIf="value" (change)="onChange($event)" fxLayout="column">
+<div id="textForm" *ngIf="value" (change)="onChange($event)" fxLayout="column">
     <l10n-form [(ngModel)]="value.data.i18n"></l10n-form>
 
     <div class="divider"></div>
@@ -12,7 +12,9 @@
             <option value="right">Right</option>
         </select>
         <span fxFlex="10" class="margin-t-5" i18n>Color</span>
-        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.color">
+        <div fxFlex class="colorPicker pointer" [(colorPicker)]="value.style.color" [style.background]="value.style.color" [cpPosition]="'left'"
+            [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+            (colorPickerChange)="changeColor()"></div>
     </div>
     <div *ngIf="value.style" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <span fxFlex="10" class="margin-t-5" i18n>Font size</span>

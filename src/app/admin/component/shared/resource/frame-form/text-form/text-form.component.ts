@@ -33,17 +33,6 @@ export class TextFormComponent extends BaseFormComponent<ITextForm> {
    */
 
   protected clone(obj: any): ITextForm {
-    // if (typeof obj === 'string') {
-    //   return {
-    //     data: {
-    //       align: "center",
-    //       i18n: {
-    //         en: obj
-    //       }
-    //     },
-    //     style: {}
-    //   }
-    // }
     if (obj) {
       if (typeof obj.data === 'string')
         obj.data = {
@@ -57,6 +46,10 @@ export class TextFormComponent extends BaseFormComponent<ITextForm> {
         obj.style = {}
     }
     return super.clone(obj);
+  }
+
+  changeColor() {
+    this.onChangeCallback(this.value)
   }
 
 }

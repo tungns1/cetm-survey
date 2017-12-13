@@ -14,10 +14,9 @@
             <option value="round">Round</option>
         </select>
         <span fxFlex="10" class="margin-t-5" i18n>Background color</span>
-        <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.backgroundColor">
-        <!-- <div fxFlex class="colorPicker pointer" [(colorPicker)]="backgroundColor" [style.background]="backgroundColor" [cpPosition]="'left'"
-        [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-        (colorPickerChange)="changeTextColor(backgroundColor)"></div> -->
+        <div fxFlex class="colorPicker pointer" [(colorPicker)]="value.style.backgroundColor" [style.background]="value.style.backgroundColor"
+            [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+            [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeBackgroundColor()"></div>
     </div>
     <div class="divider"></div>
     <h4 class="center">Margin</h4>
@@ -33,6 +32,4 @@
         <span fxFlex="10" class="margin-t-5" i18n>Left</span>
         <input fxFlex type="text" class="ctrlInput" [(ngModel)]="value.style.marginLeft">
     </div>
-
-    <!-- <button (click)="test()">test</button> -->
 </div>
