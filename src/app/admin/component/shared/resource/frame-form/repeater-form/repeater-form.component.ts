@@ -81,9 +81,16 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
   }
 
   editI18n(index: number, i18n: II18n) {
+    if (!i18n) {
+      i18n = {};
+      let keys = Object.keys(this.value.data.repeat[0].i18n);
+      keys.forEach(element => {
+        i18n[element] = ''
+      });
+    }
     const config = new MatDialogConfig();
     config.width = '500px';
-    config.data = i18n;
+    config.data = i18n || this.value.data.repeat[0].i18n;
     const dialog = this.mdDialog.open(I18nModalComponent, config);
     dialog.afterClosed().subscribe(d => {
       if (d) {
@@ -133,7 +140,7 @@ export class I18nModalComponent {
         key: key,
         value: this.dialogData[key]
       }
-    })
+    });
   }
 
   Save() {
