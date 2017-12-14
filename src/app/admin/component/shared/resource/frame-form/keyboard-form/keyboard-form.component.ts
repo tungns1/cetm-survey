@@ -8,26 +8,17 @@ const KEYBOARD_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   multi: true
 }
 
-interface I18nForm {
+interface KeyboardForm {
   data: {
-    type: 'compact' | 'full';
-    shape: 'rectangle' | 'cycle';
-    style: {
-      border: {
-        active: string;
-        inActive?: string;
-      };
-      position?: string;
-      top?: string;
-      right?: string;
-      bottom?: string;
-      left?: string;
-      width?: string;
+    backgroundColor: {    //backgroundColor of each btn
+      color: string;
+      active: string;
     }
-    lang: {
-      img: string;
-      code: string;
-    }[];
+    color: string;
+    fontSize: string;
+    style: {
+      boxSizing: string;
+    }
   }
 }
 
@@ -37,7 +28,7 @@ interface I18nForm {
   styleUrls: ['./keyboard-form.component.scss'],
   providers: [KEYBOARD_CONTROL_VALUE_ACCESSOR]
 })
-export class KeyboardFormComponent extends BaseFormComponent<I18nForm> {
+export class KeyboardFormComponent extends BaseFormComponent<KeyboardForm> {
   /**
    * Safely clone the obj
    * @param obj the given object
@@ -47,10 +38,22 @@ export class KeyboardFormComponent extends BaseFormComponent<I18nForm> {
   borderActiveColor: string = '';
   borderInactiveColor: string = '';
 
-  protected clone(obj: any): I18nForm {
-    if (obj) {
-      
-      console.log(obj)
+  protected clone(obj: any): KeyboardForm {
+    if (obj && obj.style) {
+      obj.style.boxSizing = 'border-box';
+      console.log(obj);
+      if (obj.style.backgroundColor === 'transparent') {
+        obj.style.backgroundColor = '#00000000'
+      }
+      if (obj.data.backgroundColor.color === 'transparent') {
+        obj.data.backgroundColor.color = '#00000000'
+      }
+      if (obj.data.backgroundColor.active === 'transparent') {
+        obj.data.backgroundColor.active = '#00000000'
+      }
+      if (obj.data.color === 'transparent') {
+        obj.data.backgroundColor.active = '#00000000'
+      }
     }
     return super.clone(obj);
   }
@@ -59,7 +62,7 @@ export class KeyboardFormComponent extends BaseFormComponent<I18nForm> {
     super.onChange(event);
   }
 
-  changeBackgroundColor(color: string) {
+  changeValue() {
     this.onChangeCallback(this.value)
   }
 }

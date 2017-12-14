@@ -49,13 +49,11 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
 
   protected clone(obj: any): I18nForm {
     if (obj) {
-      // if (typeof obj.data === 'string') {
-      //   obj.data = {
-      //     srcs: [obj.data],
-      //     style: {}
-      //   }
+      this.getBorderAttr(obj.data.style.border);
+      console.log(obj)
+      // if(obj.data.style.border){
+      //   if(obj.data.style.border.active === 'tra')
       // }
-      this.getBorderAttr(obj.data.style.border)
     }
     return super.clone(obj);
   }
@@ -80,9 +78,10 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
   getBorderAttr(border: { active: string; inActive?: string }) {
     let active = border.active.split(' ');
     this.borderWidth = active[0];
-    this.borderActiveColor = active[2];
+    this.borderActiveColor = active[2] === 'transparent' ? '#00000000' : active[2];
+
     let inActive = border.inActive.split(' ');
-    this.borderInactiveColor = inActive[2];
+    this.borderInactiveColor = inActive[2] === 'transparent' ? '#00000000' : inActive[2];
   }
 
   setBorderWidth() {
@@ -111,7 +110,7 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
   }
 
   addLang() {
-    let newLang = {code: '', img: ''}
+    let newLang = { code: '', img: '' }
     this.value.data.lang.push(newLang)
     this.onChangeCallback(this.value);
   }

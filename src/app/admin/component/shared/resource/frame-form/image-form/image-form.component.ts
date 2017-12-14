@@ -37,6 +37,9 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
           style: {}
         }
       }
+      if(obj.style && obj.style.backgroundColor === 'transparent') {
+        obj.style.backgroundColor = '#00000000'
+      }
     }
     return super.clone(obj);
   }

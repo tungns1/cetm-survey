@@ -12,9 +12,15 @@
             <option value="right">Right</option>
         </select>
         <span fxFlex="10" class="margin-t-5" i18n>Color</span>
-        <div fxFlex class="colorPicker pointer" [(colorPicker)]="value.style.color" [style.background]="value.style.color" [cpPosition]="'left'"
-            [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-            (colorPickerChange)="changeColor()"></div>
+        <div fxFlex="30" fxLayout="row" class="margin-b-20">
+            <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.style.color" [style.background]="value.style.color" [cpPosition]="'left'"
+                [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+                (colorPickerChange)="changeColor()" [cpAlphaChannel]="'always'"></div>
+            <div fxFlex></div>
+            <mat-form-field fxFlex="80">
+                <input type="text" matInput [(ngModel)]="value.style.color" (ngModelChange)="changeColor()" placeholder="Color">
+            </mat-form-field>
+        </div>
     </div>
     <div *ngIf="value.style" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <span fxFlex="10" class="margin-t-5" i18n>Font size</span>

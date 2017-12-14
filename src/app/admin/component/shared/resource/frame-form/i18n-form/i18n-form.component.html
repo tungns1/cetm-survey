@@ -62,14 +62,26 @@
 
   <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
     <span fxFlex="10" class="margin-t-5" i18n>Active</span>
-    <div fxFlex class="colorPicker pointer" [(colorPicker)]="borderActiveColor" [style.background]="borderActiveColor" [cpPosition]="'left'"
-      [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-      (colorPickerChange)="setActiveColor()"></div>
-    <div fxFlex="20px"></div>
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="borderActiveColor" [style.background]="borderActiveColor" [cpPosition]="'left'"
+        [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+        (colorPickerChange)="setActiveColor()" [cpAlphaChannel]="'always'"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="borderActiveColor" (ngModelChange)="setActiveColor()" placeholder="Background color">
+      </mat-form-field>
+    </div>
+
     <span fxFlex="10" class="margin-t-5" i18n>Inactive</span>
-    <div fxFlex class="colorPicker pointer" [(colorPicker)]="borderInactiveColor" [style.background]="borderInactiveColor" [cpPosition]="'left'"
-      [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-      (colorPickerChange)="setInactiveColor()"></div>
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="borderInactiveColor" [style.background]="borderInactiveColor"
+        [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+        [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="setInactiveColor()" [cpAlphaChannel]="'always'"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="borderInactiveColor" (ngModelChange)="setInactiveColor()" placeholder="Background color">
+      </mat-form-field>
+    </div>
   </div>
 
   <div class="divider margin-20"></div>

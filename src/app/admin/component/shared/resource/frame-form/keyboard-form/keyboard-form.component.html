@@ -1,3 +1,73 @@
-<p>
-  keyboard-form works!
-</p>
+<div id="keyboardForm" *ngIf="value" (change)="onChange($event)" class="margin-b-15">
+
+  <h4 class="center">
+    <span i18n>Background</span>
+  </h4>
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="right margin-t-5" i18n>Color</span>
+
+    <div fxFlex fxLayout="row" class="margin-b-20">
+      <div fxFlex="6" class="colorPicker pointer" [(colorPicker)]="value.style.backgroundColor" [style.background]="value.style.backgroundColor"
+        [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+        [cpAlphaChannel]="'always'" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeValue()"></div>
+      <div fxFlex="2"></div>
+      <mat-form-field fxFlex="82">
+        <input type="text" matInput [(ngModel)]="value.style.backgroundColor" (ngModelChange)="changeValue()" placeholder="Background color">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="divider margin-b-20"></div>
+
+  <h4 class="center">
+    <span i18n>Buttons color</span>
+  </h4>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="right margin-t-5" i18n>Normal</span>
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.data.backgroundColor.color" [style.background]="value.data.backgroundColor.color"
+        [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+        [cpAlphaChannel]="'always'" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeValue()"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="value.data.backgroundColor.color" (ngModelChange)="changeValue()" placeholder="Normal color">
+      </mat-form-field>
+    </div>
+
+    <span fxFlex="10" class="right margin-t-5" i18n>Active</span>
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.data.backgroundColor.active" [style.background]="value.data.backgroundColor.active"
+        [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+        [cpAlphaChannel]="'always'" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeValue()"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="value.data.backgroundColor.active" (ngModelChange)="changeValue()" placeholder="Active color">
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <div class="divider margin-b-20"></div>
+
+  <h4 class="center">
+    <span i18n>Text</span>
+  </h4>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="10" class="right margin-t-5" i18n>Color</span>
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.data.color" [style.background]="value.data.color" [cpPosition]="'left'"
+        [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
+        (colorPickerChange)="changeValue()" [cpAlphaChannel]="'always'"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="value.data.color" (ngModelChange)="changeValue()" placeholder="Text color">
+      </mat-form-field>
+    </div>
+    <span fxFlex="10" class="right margin-t-5" i18n>Size</span>
+    <mat-form-field fxFlex="30">
+      <input type="text" matInput [(ngModel)]="value.data.fontSize" (ngModelChange)="changeValue()" placeholder="Font size">
+    </mat-form-field>
+  </div>
+</div>

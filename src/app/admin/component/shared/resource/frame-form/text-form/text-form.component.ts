@@ -42,8 +42,12 @@ export class TextFormComponent extends BaseFormComponent<ITextForm> {
           }
         }
 
-      if (!obj.style)
+      if (!obj.style) {
         obj.style = {}
+      }
+      if (obj.style.color === 'transparent') {
+        obj.style.color = '#00000000';
+      }
     }
     return super.clone(obj);
   }
