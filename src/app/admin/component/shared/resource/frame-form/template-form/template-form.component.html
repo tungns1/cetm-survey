@@ -1,3 +1,52 @@
-<p>
-  template-form works!
-</p>
+<div id="templateForm" *ngIf="value" (change)="onChange($event)">
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+
+    <span fxFlex="15" class="margin-t-5">Background color</span>
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.data.style.backgroundColor" [style.background]="value.data.style.backgroundColor"
+        [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+        [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" [cpAlphaChannel]="'always'" (colorPickerChange)="changeStyle()"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="value.data.style.backgroundColor" placeholder="Background color">
+      </mat-form-field>
+    </div>
+
+    <span fxFlex="15" class="margin-t-5">Text color</span>
+
+    <div fxFlex="30" fxLayout="row" class="margin-b-20">
+      <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.data.style.color" [style.background]="value.data.style.color"
+        [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
+        [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeStyle()" [cpAlphaChannel]="'always'"></div>
+      <div fxFlex></div>
+      <mat-form-field fxFlex="80">
+        <input type="text" matInput [(ngModel)]="value.data.style.color" placeholder="Text color">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <span fxFlex="15" class="right margin-t-5">Background image</span>
+    <file-picker fxFlex [(ngModel)]="value.data.style.backgroundImage" (ngModelChange)="getBackground()"></file-picker>
+  </div>
+
+  <div class="divider margin-20-0"></div>
+
+  <h4 *ngIf="value.data.style.backgroundImage">
+    <span>Background position</span>
+  </h4>
+
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl" *ngIf="value.data.style.backgroundImage">
+    <div fxFlex fxLayout="row" fxLayoutGap="7px">
+      <span fxFlex class="margin-t-5">X axis</span>
+      <input fxFlex class="ctrlInput" type="text" [(ngModel)]="backgroundPosX" (ngModelChange)="setBackgroundPos()">
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutGap="7px">
+      <span fxFlex class="margin-t-5">Y axis</span>
+      <input fxFlex class="ctrlInput" type="text" [(ngModel)]="backgroundPosY" (ngModelChange)="setBackgroundPos()">
+    </div>
+  </div>
+
+</div>

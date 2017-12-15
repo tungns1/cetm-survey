@@ -10,6 +10,8 @@ import { SliderFormModule } from './slider-form/slider-form.module';
 import { MultimediaFormModule } from './multimedia-form/multimedia-form.module';
 import { I18nFormModule } from './i18n-form/i18n-form.module';
 import { KeyboardFormModule } from './keyboard-form/keyboard-form.module';
+import { ClockFormModule } from './clock-form/clock-form.module';
+import { TemplateFormModule } from './template-form/template-form.module';
 import {
   ModalModule, AdminFormModule, FlexLayoutModule,
   AccordionModule, provideUploadURLToken
@@ -20,7 +22,8 @@ import {
     CommonModule, FormsModule,
     ModalModule,
     AdminFormModule,
-    TextFormModule, ImageFormModule, VideoFormModule, MultimediaFormModule,
+    TextFormModule, ImageFormModule, VideoFormModule, 
+    MultimediaFormModule, ClockFormModule, TemplateFormModule,
     FlexLayoutModule, RepeaterFormModule, AccordionModule,
     SliderFormModule, I18nFormModule, KeyboardFormModule
   ],

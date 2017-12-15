@@ -27,7 +27,17 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   value: ILayoutResources = {};
   records: IResourceForm[];
 
-  private editables = ["text", "image", "videos", "repeater", 'slider', 'i-frame', 'i18n', 'numeric-keyboard'];
+  private editables = [
+    'text',
+    'image',
+    'videos',
+    'repeater',
+    'slider',
+    'i-frame',
+    'i18n',
+    'numeric-keyboard',
+    'clock-time'
+  ];
 
   ngOnInit() {
     this.refresh();

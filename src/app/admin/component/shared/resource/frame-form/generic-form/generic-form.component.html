@@ -33,6 +33,12 @@
             <div *ngSwitchCase="'numeric-keyboard'">
                 <app-keyboard-form [(ngModel)]="record"></app-keyboard-form>
             </div>
+            <div *ngSwitchCase="'clock-time'">
+                <app-clock-form [(ngModel)]="record"></app-clock-form>
+            </div>
+            <div *ngSwitchCase="'template'">
+                <app-template-form [(ngModel)]="record"></app-template-form>
+            </div>
         </div>
         <div class="border margin-b-20">
             <accordion>

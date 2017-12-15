@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 import { ColorPickerModule } from 'ngx-color-picker';
-import { TemplateFormComponent } from './template-form.component';
+import { ClockFormComponent } from './clock-form.component';
 import { AdminFormModule, FlexLayoutModule, MultiFilePickerModule } from '../../shared';
 
 @NgModule({
@@ -13,9 +13,9 @@ import { AdminFormModule, FlexLayoutModule, MultiFilePickerModule } from '../../
         MultiFilePickerModule, FlexLayoutModule, ColorPickerModule,
         MatFormFieldModule, MatInputModule
     ],
-    declarations: [TemplateFormComponent],
-    exports: [TemplateFormComponent]
+    declarations: [ClockFormComponent],
+    exports: [ClockFormComponent]
 })
-export class TemplateFormModule {
+export class ClockFormModule {
 
 }
