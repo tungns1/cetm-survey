@@ -4,7 +4,7 @@ import { QueueService } from '../shared';
 @Component({
     selector: 'serving',
     template: `
-    <ticket *ngFor="let t of serving$ | async" [ticket]="t"></ticket>
+    <ticket *ngFor="let t of serving$ | async; trackBy: trackFn" [ticket]="t"></ticket>
     <empty *ngIf="!(busy$ | async)"></empty>
     `
 })
@@ -15,4 +15,8 @@ export class ServingComponent {
 
     serving$ = this.queueService.serving$;
     busy$ = this.queueService.busy$;
+
+    trackFn(index, item){
+        return item.id;
+    }
 }

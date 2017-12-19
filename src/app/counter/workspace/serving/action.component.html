@@ -1,11 +1,11 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
-    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (click)="Next()" [class.hidden]="auto_next$ | async">
+    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (throttle)="Next()" [class.hidden]="auto_next$ | async" throttle>
         <ng-container i18n="Counter Button: Next">Next</ng-container>
     </button>
     <button class="uppercase btnRed" fxFlex (click)="NoNext()" [class.hidden]="!(auto_next$ | async)">
         <ng-container i18n="Counter Button: Auto Next">Auto Next</ng-container>
     </button>
-    <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="Recall()"> 
+    <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (throttle)="Recall()" throttle threshold="5000"> 
         <ng-container i18n="Counter Button: Recall Ticket">Recall</ng-container>
     </button>
     <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="Move()" fxShow.xs="false"> 
