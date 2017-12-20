@@ -1,42 +1,44 @@
-<mat-toolbar>
-    <span i18n>Counter Setting</span>
-    <a (click)="Go()" style="cursor: pointer">
-        <i class="fa fa-arrow-right"></i>
-        <span i18n>Go</span>
-    </a>
-</mat-toolbar>
+<div id="counterSetting">
+    <mat-toolbar>
+        <span class="header" i18n>Counter Setting</span>
+        <a (click)="Go()" style="cursor: pointer">
+            <i class="fa fa-arrow-right"></i>
+            <span i18n>Go</span>
+        </a>
+    </mat-toolbar>
 
-<form [formGroup]="form">
+    <form [formGroup]="form">
 
-    <h2 i18n>General Configuration</h2>
+        <h2 i18n>General Configuration</h2>
 
-    <mat-form-field>
-        <input matInput formControlName="branch_code" placeholder="Store Code" i18n-placeholder>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput formControlName="counter_code" placeholder="Counter Code" i18n-placeholder>
-    </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="branch_code" placeholder="Store Code" i18n-placeholder>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="counter_code" placeholder="Counter Code" i18n-placeholder>
+        </mat-form-field>
 
-    <h2 i18n>Mini Mode View</h2>
+        <h2 i18n>Mini Mode View</h2>
 
-    <mini-mode-form formControlName="mini_mode"></mini-mode-form>
+        <mini-mode-form formControlName="mini_mode"></mini-mode-form>
 
-    <h2 i18n>Advanced Configuration</h2>
+        <div class="divider margin-20-0"></div>
 
-    <mat-tab-group>
-        <mat-tab>
-            <ng-template mat-tab-label><span class="uppercase" i18n>Led</span></ng-template>
-            <mat-form-field>
-                <input matInput type="number" min="0" formControlName="led_addr" placeholder="Led Address">
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <input matInput type="text" formControlName="led_com_port" placeholder="Local Led COM port">
-            </mat-form-field>
-            <br>
-            <mat-checkbox formControlName="led_remote">
-                Remote Led Controller
-            </mat-checkbox>
-        </mat-tab>
-    </mat-tab-group>
-</form>
+        <h2 i18n>Advanced Configuration</h2>
+
+
+        <h3 class="uppercase" i18n>Led</h3>
+        <mat-form-field>
+            <input matInput type="number" min="0" formControlName="led_addr" placeholder="Led Address">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="text" formControlName="led_com_port" placeholder="Local Led COM port">
+        </mat-form-field>
+        <br>
+        <mat-checkbox formControlName="led_remote">
+            Remote Led Controller
+        </mat-checkbox>
+
+    </form>
+</div>

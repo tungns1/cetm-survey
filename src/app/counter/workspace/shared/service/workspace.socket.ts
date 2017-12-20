@@ -31,10 +31,12 @@ export class WorkspaceSocket extends AppSocket {
                 new Notification("Application Error", {
                     body: message
                 });
-                const md = this.mdSnackBard.open(message, "Click here to Check Configuration");
-                md.onAction().first().subscribe(_ => {
-                    this.router.navigate(["/counter/setting"]);
-                });
+                const md = this.mdSnackBard.open(message
+                    // , "Click here to Check Configuration"
+                );
+                // md.onAction().first().subscribe(_ => {
+                //     this.router.navigate(["/counter/setting"]);
+                // });
             }
         });
         super.KeepAlive();
