@@ -92,5 +92,9 @@ export class SelectCheckComponent implements ControlValueAccessor {
         return !this.views.some(v => this.selected[v.id]);
     }
 
+    private toggleItem(item) {
+        this.selected[item] = !this.selected[item]
+    }
+
 
 }

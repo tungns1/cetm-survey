@@ -3,16 +3,16 @@
         height: 90px;
         overflow: auto;
     }
-    
+
     .hlft-div-checkbox {
         padding: 3px 10px;
         color: #555;
     }
-    
+
     .hlft-div-checkbox:hover {
         color: #6CA6CD;
     }
-    
+
     .select-active {
         background-color: #0b8fdb;
         color: #fff;
@@ -31,7 +31,9 @@
         </label>
     </div>
     <div *ngFor="let v of views" class="hlft-div-checkbox pointer">
-        <input type="checkbox" [(ngModel)]="selected[v.id]">
-        <span>{{v.text}}</span>
+        <div (click)="toggleItem(v.id)">
+            <input type="checkbox" [(ngModel)]="selected[v.id]">
+            <span>{{v.text}}</span>
+        </div>
     </div>
 </div>
