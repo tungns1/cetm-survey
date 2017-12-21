@@ -10,7 +10,8 @@
         <div fxFlex fxLayout="row">
             <p fxFlex class="right">{{r.name}}</p>
             <p fxFlex class="margin-l-10">
-                <a [hidden]="r.type === 'repeater' && !r.data.repeat" (click)="edit(r)" i18n>Edit</a>
+                <!-- <a [hidden]="r.type === 'repeater' && !r.data.repeat" (click)="edit(r)" i18n>Edit</a> -->
+                <a (click)="edit(r)" i18n>Edit</a>
                 <a (click)="Reset(r)" i18n>Reset</a>
             </p>
         </div>

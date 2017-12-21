@@ -23,7 +23,8 @@ interface IRepeaterForm {
     limit: number;
     template_name: string;
     repeat?: any[]
-  }
+  };
+  style: any;
 }
 
 @Component({
@@ -52,8 +53,12 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
   }
 
   writeValue(v: IRepeaterForm) {
+    if(v && !v.style){
+      v.style = {}
+    }
     super.writeValue(v);
-    if (this.value) {
+
+    if (this.value && this.value.data.repeat) {
       for (var key in this.value.data.repeat[0]) {
         if (this.value.data.repeat[0].hasOwnProperty(key)) {
           this.keyRepeatArr.push(key);
@@ -63,6 +68,9 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
   }
 
   protected clone(obj: any): IRepeaterForm {
+    if(obj && !obj.style){
+      obj.style = {}
+    }
     return super.clone(obj);
   }
 
