@@ -27,19 +27,22 @@ const L10N_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     template: `
     <div *ngFor="let code of codes" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <span fxFlex="20%" class="margin-t-5">{{code | languageName}}</span>
-        <input fxFlex class="ctrlInput" [(ngModel)]="values[code]" (change)="OnChange()" />
+        <textarea rows="1" fxFlex class="ctrlInput" [(ngModel)]="_values[code]" (change)="OnChange()"></textarea>
     </div>
     `,
-
     providers: [L10N_CONTROL_VALUE_ACCESSOR]
 })
 export class L10nFormComponent implements ControlValueAccessor {
     codes = ProjectConfig.general.supported_cultures;
     private values: L10nText = {};
+    private _values: L10nText = {};
     private onChangeCallback = (v) => { };
 
     writeValue(v: L10nText) {
         this.values = v || {};
+        Object.keys(this.values).map(el => {
+            this._values[el] = this.values[el].replace(/<br>/g, '\n').replace(/  +/g, ' ')
+        });
     }
 
     registerOnChange(fn: any) {
@@ -51,6 +54,9 @@ export class L10nFormComponent implements ControlValueAccessor {
     }
 
     OnChange() {
+        Object.keys(this._values).map(el => {
+            this.values[el] = this._values[el].replace(/\n/g, '<br>').replace(/  +/g, ' ')
+        });
         this.onChangeCallback(this.values);
     }
 

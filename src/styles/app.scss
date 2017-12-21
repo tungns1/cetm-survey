@@ -16,5 +16,8 @@ html{
         color: $text-color;
         font-size: $font-size-default;
         background-color: $background-color;
+        textarea{
+            font-family: Arial, Helvetica, sans-serif
+        }
     }
 }

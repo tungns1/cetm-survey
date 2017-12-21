@@ -1,0 +1,26 @@
+@import '../../../../styles/design/variables';
+#selectCheckID{
+    
+    height: 90px;
+    overflow: auto;
+
+    .hlft-div-checkbox {
+        padding: 3px 10px;
+        color: #555;
+    }
+
+    .hlft-div-checkbox:hover {
+        color: #6CA6CD;
+    }
+
+    .select-active {
+        background-color: #0b8fdb;
+        color: #fff;
+        font-weight: 600;
+    }
+    .itemCtrl{
+        :hover {
+            background-color: $background-color-title;
+        }
+    }
+}

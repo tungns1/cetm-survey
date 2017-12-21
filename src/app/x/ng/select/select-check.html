@@ -1,27 +1,4 @@
-<style>
-    .scroll-filter {
-        height: 90px;
-        overflow: auto;
-    }
-
-    .hlft-div-checkbox {
-        padding: 3px 10px;
-        color: #555;
-    }
-
-    .hlft-div-checkbox:hover {
-        color: #6CA6CD;
-    }
-
-    .select-active {
-        background-color: #0b8fdb;
-        color: #fff;
-        font-weight: 600;
-    }
-</style>
-
-
-<div class="scroll-filter" (change)="onChange()">
+<div id="selectCheckID" (change)="onChange()">
     <div [class.hide]="views.length < 2">
         <label [class.select-active]="all" class="hlft-div-checkbox pointer" (click)="SetAll(true)">
             <ng-container i18n>Select All</ng-container>
@@ -30,7 +7,7 @@
             <ng-container i18n>Unselect All</ng-container>
         </label>
     </div>
-    <div *ngFor="let v of views" class="hlft-div-checkbox pointer">
+    <div *ngFor="let v of views" class="hlft-div-checkbox pointer itemCtrl">
         <div (click)="toggleItem(v.id)">
             <input type="checkbox" [(ngModel)]="selected[v.id]">
             <span>{{v.text}}</span>

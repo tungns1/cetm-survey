@@ -23,6 +23,7 @@ interface IView {
 @Component({
     selector: 'select-check',
     templateUrl: 'select-check.html',
+    styleUrls: ['select-check.scss'],
     providers: [SELECT_CHECK_CONTROL_VALUE_ACCESSOR]
 })
 export class SelectCheckComponent implements ControlValueAccessor {
