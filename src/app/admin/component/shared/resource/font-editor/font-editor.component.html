@@ -1,0 +1,26 @@
+<div id="templateListModal">
+  <h1 class="modal-header">Font List</h1>
+  <div class="padding-20">
+
+    <div *ngFor="let font of data.layout.fonts; let index = index" class="margin-b-20">
+      <h3 class="center">Font {{index + 1}}</h3>
+
+      <div fxLayout="row" class="margin-b-20">
+        <span fxFlex="20" class="margin-t-5">Font format</span>
+        <select fxFlex class="hl-select" [(ngModel)]="data.layout.fonts[index].format">
+            <option value="ttf">TTF</option>
+            <option value="otf">OTF</option>
+        </select>
+      </div>
+
+      <file-picker [(ngModel)]="data.layout.fonts[index].url"></file-picker>
+
+      <div class="divider"></div>
+    </div>
+  
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button fxFlex class="btnClear" (click)="Cancel()">Cancel</button>
+      <button fxFlex class="btnFill" (click)="Save()">Ok</button>
+    </div>
+  </div>
+</div>

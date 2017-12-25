@@ -10,6 +10,7 @@ import { FlexLayoutModule, AccordionModule, FilePickerModule } from './shared';
 import { UIEditorComponent } from './ui-editor/ui-editor.component';
 import { UtilPipeModule } from '../../../../shared/pipe';
 import { LayoutEditorComponent } from './layout-editor/layout-editor.component';
+import { FontEditorComponent } from './font-editor/font-editor.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,8 @@ import { LayoutEditorComponent } from './layout-editor/layout-editor.component';
     UtilPipeModule, ColorPickerModule, MatInputModule,
     FilePickerModule
   ],
-  declarations: [ResourceEditorComponent, RawResourcePipe, UIEditorComponent, LayoutEditorComponent],
+  declarations: [ResourceEditorComponent, RawResourcePipe, UIEditorComponent, LayoutEditorComponent, FontEditorComponent],
   exports: [ResourceEditorComponent],
-  entryComponents: [UIEditorComponent, LayoutEditorComponent]
+  entryComponents: [UIEditorComponent, LayoutEditorComponent, FontEditorComponent]
 })
 export class ResourceModule { }

@@ -11,6 +11,7 @@ import {
 } from '../../shared';
 import { cloneDeep } from 'lodash';
 import { UIEditorComponent } from '../../shared/resource/ui-editor/ui-editor.component';
+import { FontEditorComponent } from '../../shared/resource/font-editor/font-editor.component';
 import { GenericFormComponent } from '../../shared/resource/frame-form/generic-form/generic-form.component';
 
 @Component({
@@ -137,6 +138,18 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     })
   }
 
+  openFontList() {
+    const config = new MatDialogConfig();
+    config.width = '450px';
+    config.data = this.ui;
+    const dialog = this.dialog.open(FontEditorComponent, config);
+    dialog.afterClosed().subscribe(d => {
+      if (d) {
+        this.ui = d;
+      }
+    })
+  }
+
 
 }
 
@@ -204,3 +217,5 @@ export class XListComponent {
   }
 
 }
+
+
