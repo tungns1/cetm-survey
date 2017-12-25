@@ -26,6 +26,18 @@
 
   </div>
 
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+
+    <span fxFlex="15" class="margin-t-5">Font size</span>
+    <mat-form-field fxFlex="30">
+      <input type="text" matInput [(ngModel)]="value.data.style.fontSize" placeholder="Font size">
+    </mat-form-field>
+
+    <div fxFlex="15"></div>
+    <div fxFlex="30"></div>
+  </div>
+
   <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
     <span fxFlex="14" class="margin-t-5">Background image</span>
     <file-picker fxFlex [(ngModel)]="value.data.style.backgroundImage" (ngModelChange)="getBackground()"></file-picker>

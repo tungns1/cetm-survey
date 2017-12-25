@@ -21,25 +21,27 @@
 
 
   <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-    <span fxFlex="10" class="margin-t-5" i18n>Type</span>
-    <select fxFlex="40" class="hl-select" [(ngModel)]="value.data.type">
-      <option value="compact">Compact</option>
-      <option value="full">Full</option>
-    </select>
-    <div fxFlex class="center">
-      <img *ngIf="value.data.type === 'compact'" src="./assets/img/icon/i18n compact.png" class="typeImg">
-      <img *ngIf="value.data.type === 'full'" src="./assets/img/icon/i18n full.png" class="typeImg">
+    <div fxFlex="10" fxLayout="column">
+      <span fxFlex class="margin-t-5" i18n>Type</span>
+      <span fxFlex class="margin-t-5" i18n>Shape</span>
+      <span fxFlex class="margin-t-5" i18n>Width</span>
     </div>
-  </div>
-  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-    <span fxFlex="10" class="margin-t-5" i18n>Shape</span>
-    <select fxFlex="40" class="hl-select" [(ngModel)]="value.data.shape">
-      <option value="rectangle">Rectangle</option>
-      <option value="cycle">Cycle</option>
-    </select>
+    <div fxFlex="40">
+      <select class="hl-select" [(ngModel)]="value.data.type">
+        <option value="compact">Compact</option>
+        <option value="full">Full</option>
+      </select>
+      <select class="hl-select" [(ngModel)]="value.data.shape">
+        <option value="rectangle">Rectangle</option>
+        <option value="cycle">Cycle</option>
+      </select>
+      <input type="text" class="ctrlInput" [(ngModel)]="value.style.width">
+    </div>
     <div fxFlex class="center">
-      <img *ngIf="value.data.shape === 'rectangle'" src="./assets/img/icon/i18n rectangle.png" class="typeImg">
-      <img *ngIf="value.data.shape === 'cycle'" src="./assets/img/icon/i18n compact.png" class="typeImg">
+      <img *ngIf="value.data.type === 'compact' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_compact_rectangle.png" class="typeImg">
+      <img *ngIf="value.data.type === 'full' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_full_rectangle.png" class="typeImg">
+      <img *ngIf="value.data.type === 'compact' && value.data.shape === 'cycle'" src="./assets/img/icon/i18n_compact_round.png" class="typeImg">
+      <img *ngIf="value.data.type === 'full' && value.data.shape === 'cycle'" src="./assets/img/icon/i18n_full_round.png" class="typeImg">
     </div>
   </div>
 
@@ -82,6 +84,11 @@
         <input type="text" matInput [(ngModel)]="borderInactiveColor" (ngModelChange)="setInactiveColor()" placeholder="Background color">
       </mat-form-field>
     </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="10" class="margin-t-5" i18n>Dim mode</span>
+      <mat-checkbox fxFlex color="primary" [(ngModel)]="value.data.style.dim" (ngModelChange)="changeValue()"></mat-checkbox>
   </div>
 
   <div class="divider margin-20-0"></div>

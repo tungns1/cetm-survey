@@ -50,10 +50,6 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
   protected clone(obj: any): I18nForm {
     if (obj) {
       this.getBorderAttr(obj.data.style.border);
-      console.log(obj)
-      // if(obj.data.style.border){
-      //   if(obj.data.style.border.active === 'tra')
-      // }
     }
     return super.clone(obj);
   }
@@ -62,7 +58,7 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
     super.onChange(event);
   }
 
-  changeBackgroundColor(color: string) {
+  changeValue() {
     this.onChangeCallback(this.value)
   }
 
@@ -119,4 +115,8 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
     this.value.data.lang.splice(index, 1);
     this.onChangeCallback(this.value);
   }
+
+  // toggleDimMode(){
+  //   thi
+  // }
 }
