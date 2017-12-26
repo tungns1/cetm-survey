@@ -12,6 +12,7 @@ import { I18nFormModule } from './i18n-form/i18n-form.module';
 import { KeyboardFormModule } from './keyboard-form/keyboard-form.module';
 import { ClockFormModule } from './clock-form/clock-form.module';
 import { TemplateFormModule } from './template-form/template-form.module';
+import { XTextFormModule } from './x-text-form/x-text-form.module';
 import {
   ModalModule, AdminFormModule, FlexLayoutModule,
   AccordionModule, provideUploadURLToken
@@ -25,7 +26,8 @@ import {
     TextFormModule, ImageFormModule, VideoFormModule, 
     MultimediaFormModule, ClockFormModule, TemplateFormModule,
     FlexLayoutModule, RepeaterFormModule, AccordionModule,
-    SliderFormModule, I18nFormModule, KeyboardFormModule
+    SliderFormModule, I18nFormModule, KeyboardFormModule,
+    XTextFormModule
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],

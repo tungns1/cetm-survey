@@ -249,4 +249,12 @@ table tbody tr:nth-child(odd) {
     width: 35%;
 }
 
+.colorPicker {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    border: $border;
+    margin-right: 0px !important;
+}
+
 /******************** End of global ***********************/

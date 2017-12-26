@@ -39,6 +39,9 @@
             <div *ngSwitchCase="'template'">
                 <app-template-form [(ngModel)]="record"></app-template-form>
             </div>
+            <div *ngSwitchCase="'x-text'">
+                <app-x-text-form [(ngModel)]="record"></app-x-text-form>
+            </div>
         </div>
         <div class="border margin-b-20">
             <accordion>

@@ -36,7 +36,8 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
     'i-frame',
     'i18n',
     'numeric-keyboard',
-    'clock-time'
+    'clock-time',
+    'x-text'
   ];
 
   ngOnInit() {
