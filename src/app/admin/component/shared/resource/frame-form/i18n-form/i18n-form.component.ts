@@ -49,6 +49,9 @@ export class I18nFormComponent extends BaseFormComponent<I18nForm> {
 
   protected clone(obj: any): I18nForm {
     if (obj) {
+      if (!obj.style) {
+        obj.style = {};
+      }
       this.getBorderAttr(obj.data.style.border);
     }
     return super.clone(obj);

@@ -35,7 +35,7 @@
         <option value="rectangle">Rectangle</option>
         <option value="cycle">Cycle</option>
       </select>
-      <input type="text" class="ctrlInput" [(ngModel)]="value.style.width">
+      <input *ngIf="value.style" type="text" class="ctrlInput" [(ngModel)]="value.style.width">
     </div>
     <div fxFlex class="center">
       <img *ngIf="value.data.type === 'compact' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_compact_rectangle.png" class="typeImg">
