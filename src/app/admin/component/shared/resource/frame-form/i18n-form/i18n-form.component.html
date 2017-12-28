@@ -38,9 +38,12 @@
       <input *ngIf="value.style" type="text" class="ctrlInput" [(ngModel)]="value.style.width">
     </div>
     <div fxFlex class="center">
-      <img *ngIf="value.data.type === 'compact' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_compact_rectangle.png" class="typeImg">
-      <img *ngIf="value.data.type === 'full' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_full_rectangle.png" class="typeImg">
-      <img *ngIf="value.data.type === 'compact' && value.data.shape === 'cycle'" src="./assets/img/icon/i18n_compact_round.png" class="typeImg">
+      <img *ngIf="value.data.type === 'compact' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_compact_rectangle.png"
+        class="typeImg">
+      <img *ngIf="value.data.type === 'full' && value.data.shape === 'rectangle'" src="./assets/img/icon/i18n_full_rectangle.png"
+        class="typeImg">
+      <img *ngIf="value.data.type === 'compact' && value.data.shape === 'cycle'" src="./assets/img/icon/i18n_compact_round.png"
+        class="typeImg">
       <img *ngIf="value.data.type === 'full' && value.data.shape === 'cycle'" src="./assets/img/icon/i18n_full_round.png" class="typeImg">
     </div>
   </div>
@@ -67,7 +70,7 @@
     <div fxFlex="30" fxLayout="row" class="margin-b-20">
       <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="borderActiveColor" [style.background]="borderActiveColor" [cpPosition]="'left'"
         [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-        (colorPickerChange)="setActiveColor()" [cpAlphaChannel]="'always'"></div>
+        (colorPickerChange)="setActiveColor()" [cpAlphaChannel]="'always'" [cpOutputFormat]="'rgba'"></div>
       <div fxFlex></div>
       <mat-form-field fxFlex="80">
         <input type="text" matInput [(ngModel)]="borderActiveColor" (ngModelChange)="setActiveColor()" placeholder="Background color">
@@ -78,7 +81,8 @@
     <div fxFlex="30" fxLayout="row" class="margin-b-20">
       <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="borderInactiveColor" [style.background]="borderInactiveColor"
         [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
-        [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="setInactiveColor()" [cpAlphaChannel]="'always'"></div>
+        [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="setInactiveColor()" [cpAlphaChannel]="'always'"
+        [cpOutputFormat]="'rgba'"></div>
       <div fxFlex></div>
       <mat-form-field fxFlex="80">
         <input type="text" matInput [(ngModel)]="borderInactiveColor" (ngModelChange)="setInactiveColor()" placeholder="Background color">
@@ -87,8 +91,8 @@
   </div>
 
   <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-      <span fxFlex="10" class="margin-t-5" i18n>Dim mode</span>
-      <mat-checkbox fxFlex color="primary" [(ngModel)]="value.data.style.dim" (ngModelChange)="changeValue()"></mat-checkbox>
+    <span fxFlex="10" class="margin-t-5" i18n>Dim mode</span>
+    <mat-checkbox fxFlex color="primary" [(ngModel)]="value.data.style.dim" (ngModelChange)="changeValue()"></mat-checkbox>
   </div>
 
   <div class="divider margin-20-0"></div>

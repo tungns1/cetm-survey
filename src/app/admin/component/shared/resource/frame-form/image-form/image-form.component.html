@@ -17,7 +17,8 @@
         <div fxFlex="30" fxLayout="row" class="margin-b-20">
             <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.style.backgroundColor" [style.background]="value.style.backgroundColor"
                 [cpPosition]="'left'" [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true"
-                [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeBackgroundColor()" [cpAlphaChannel]="'always'"></div>
+                [cpCancelButtonClass]="'btnClear colorPickerActionBtn'" (colorPickerChange)="changeBackgroundColor()" [cpAlphaChannel]="'always'"
+                [cpOutputFormat]="'rgba'"></div>
             <div fxFlex></div>
             <mat-form-field fxFlex="80">
                 <input type="text" matInput [(ngModel)]="value.style.backgroundColor" (ngModelChange)="changeBackgroundColor()" placeholder="Background color">

@@ -11,7 +11,7 @@
       <div fxFlex="30" fxLayout="row" class="margin-b-20">
           <div fxFlex="15" class="colorPicker pointer" [(colorPicker)]="value.style.color" [style.background]="value.style.color" [cpPosition]="'left'"
               [cpOKButton]="true" [cpOKButtonClass]="'btnFill colorPickerActionBtn'" [cpCancelButton]="true" [cpCancelButtonClass]="'btnClear colorPickerActionBtn'"
-              (colorPickerChange)="changeColor()" [cpAlphaChannel]="'always'"></div>
+              (colorPickerChange)="changeColor()" [cpAlphaChannel]="'always'" [cpOutputFormat]="'rgba'"></div>
           <div fxFlex></div>
           <mat-form-field fxFlex="80">
               <input type="text" matInput [(ngModel)]="value.style.color" (ngModelChange)="changeColor()" placeholder="Color">
