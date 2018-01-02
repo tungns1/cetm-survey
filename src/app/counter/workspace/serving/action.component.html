@@ -1,5 +1,5 @@
 <div id="actions" fxLayout="row" fxLayoutGap="2vw">
-    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (throttle)="Next()" [class.hidden]="auto_next$ | async" throttle>
+    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (throttle)="Next()" [class.hidden]="auto_next$ | async" throttle threshold="3000">
         <ng-container i18n="Counter Button: Next">Next</ng-container>
     </button>
     <button class="uppercase btnRed" fxFlex (click)="NoNext()" [class.hidden]="!(auto_next$ | async)">

@@ -94,7 +94,8 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
 
     private toggleItem(item) {
-        this.selected[item] = !this.selected[item]
+        this.selected[item] = !this.selected[item];
+        this.onChange();
     }
 
 
