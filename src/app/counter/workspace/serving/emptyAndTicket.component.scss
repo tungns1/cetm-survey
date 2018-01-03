@@ -1,11 +1,11 @@
 @import '../shared/style.scss';
 .emptyAndServing {
-    height: 35%;
+    height: 28.5vh;
     .wrap {
         height: 85%;
         .leftBox,
         .rightBox {
-            height: 100%;
+            height: 25vh;
             padding: 20px;
             text-align: center;
             font-size: $font-size-default + 3;
