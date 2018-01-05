@@ -47,7 +47,15 @@ export class UIEditorComponent {
       else
         this.layoutGroup.push([{ [child.name]: this.UI.resources[child.name] }])
     });
-    // console.log(this.layoutGroup)
+    
+    // hide holder in view
+    for (var i = this.layoutGroup.length - 1; i >= 0; i--) {
+      for (let j = this.layoutGroup[i].length - 1; j >= 0; j--) {
+        if (Object.keys(this.layoutGroup[i][j]).indexOf('holder') > -1) {
+          this.layoutGroup[i].splice(j, 1);
+        }
+      }
+    }
   }
 
   ngAfterViewInit() {
