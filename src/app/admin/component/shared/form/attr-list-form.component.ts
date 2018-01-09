@@ -20,16 +20,21 @@ interface IAttribute {
 
 @Component({
     selector: 'attr-list-form',
-    template: `
-        <i class="fa fa-plus" (click)="add()">  </i>        
-        <div *ngFor="let c of values; let i = index;" >
-            Key: 
-            <input class="ctrlInput" style="width: 95%;" [(ngModel)]="values[i].key" (change)="onChange($event, i)" /> 
-            Value:
-            <input class="ctrlInput" style="width: 95%;" [(ngModel)]="values[i].value" (change)="onChange($event, i)" /> 
-            <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
+    template: `    
+        <i class="fa fa-plus" (click)="add()">  </i>  
+        <div  id="border1" fxLayout="column" fxLayoutGap="8px">
+            <div *ngFor="let c of values; let i = index" >
+                <div fxLayout="row" fxLayoutGap="8px">
+                Key: 
+                <input class="ctrlInput" style="width: 95%;" [(ngModel)]="values[i].key" (change)="onChange($event, i)" /> 
+                Value:
+                <input class="ctrlInput" style="width: 95%;" [(ngModel)]="values[i].value" (change)="onChange($event, i)" /> 
+                <i class="fa fa-trash pointer" (click)="remove(i)"> </i>
+                </div>
+            </div>    
         </div>
     `,
+    styleUrls:["./attr-list-form.component.scss"],
     providers: [ATTRIBUTE_LIST_FORM_CONTROL_VALUE_ACCESSOR]
 })
 export class AttributeListFormComponent implements ControlValueAccessor {
