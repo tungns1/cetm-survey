@@ -96,7 +96,6 @@ export class ActionManager {
     }
 
     private Handle(ta: TicketAction) {
-        // console.log("handle action", ta);
         return this.handler(ta);
     }
 

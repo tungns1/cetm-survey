@@ -55,7 +55,7 @@ export class WorkspaceService {
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
             .map(action => {
                 w.Update(action);
-            });
+            }).delay(2000);
         const autoNext = this.autoNext$.map(a => {
             w.AutoNext = a;
         });
