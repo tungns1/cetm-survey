@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 export class BarComponent {
     @Input("data") set setData(v: StatMap) {
         if (!v) return;
-        console.log("set data", v);
+        // console.log("set data", v);
         this.data$ = v.ToArray().map(data => {
             return data.sort((a, b) => a.count > b.count ? -1 : 1);
         });

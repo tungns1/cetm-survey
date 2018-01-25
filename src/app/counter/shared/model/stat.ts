@@ -80,7 +80,7 @@ export class CounterStatistics {
     average_stime = 0;
 
     OnTicketAction(a: TicketAction) {
-        console.log(a);
+        // console.log(a);
         if (!a || a.IsRestore()) return;
         const t = a.ticket;
         var len = t.tracks.length;

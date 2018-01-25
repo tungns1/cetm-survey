@@ -36,7 +36,7 @@ export class RecorderService {
         });
         this.queueService.missed$.debounceTime(250).subscribe(s => {
             const ids = s.map(t => t.transaction_id);
-            console.log(ids);
+            // console.log(ids);
             this.recorderDevice.RemoveFiles(ids);
         });
         interval(UPLOAD_INTERVAL).subscribe(_ => {

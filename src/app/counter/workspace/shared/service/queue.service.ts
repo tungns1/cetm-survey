@@ -14,7 +14,7 @@ export class QueueService {
         
     }
 
-    _waiting$ = this.workspaceService.Workspace$.map(w => w.Waiting)
+    _waiting$ = this.workspaceService.Workspace$.map(w => w.Waiting);
     _serving$ = this.workspaceService.Workspace$.map(w => w.Serving);
     _missed$ = this.workspaceService.Workspace$.map(w => w.Missed);
     _cancel$ = this.workspaceService.Workspace$.map(w => w.Cancel);
