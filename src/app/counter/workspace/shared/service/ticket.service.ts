@@ -57,43 +57,21 @@ export class TicketService {
             }
             const t = w.Waiting.GetFirstTicket();
             if (!t) return;
-            let delayTime = 10 - (Number.parseInt(((new Date()).getTime() / 1000).toString()) - t.ctime);
-            console.log(delayTime)
-            if (delayTime < 0) {
-                const lastQueueUpdate = w.LastUpdate;
-                this.TriggerAction("call", t).subscribe(_ => {
-                    failed_count = 0;
-                }, e => {
-                    // call failed
-                    const ten_second = 10 * 1000;
-                    failed_count++;
-                    setTimeout(_ => {
-                        // the workspace was not updated
-                        if (w.LastUpdate <= lastQueueUpdate) {
-                            console.log("the workspace was not updated");
-                            // this.workspaceService.Socket.reset();
-                        }
-                    }, ten_second);
-                });
-            } else {
-                setTimeout(() => {
-                    const lastQueueUpdate = w.LastUpdate;
-                    this.TriggerAction("call", t).subscribe(_ => {
-                        failed_count = 0;
-                    }, e => {
-                        // call failed
-                        const ten_second = 10 * 1000;
-                        failed_count++;
-                        setTimeout(_ => {
-                            // the workspace was not updated
-                            if (w.LastUpdate <= lastQueueUpdate) {
-                                console.log("the workspace was not updated");
-                                // this.workspaceService.Socket.reset();
-                            }
-                        }, ten_second);
-                    });
-                }, delayTime * 1000);
-            }
+            const lastQueueUpdate = w.LastUpdate;
+            this.TriggerAction("call", t).subscribe(_ => {
+                failed_count = 0;
+            }, e => {
+                // call failed
+                const ten_second = 10 * 1000;
+                failed_count++;
+                setTimeout(_ => {
+                    // the workspace was not updated
+                    if (w.LastUpdate <= lastQueueUpdate) {
+                        console.log("the workspace was not updated");
+                        // this.workspaceService.Socket.reset();
+                    }
+                }, ten_second);
+            });
         });
     }
 
