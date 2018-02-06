@@ -21,9 +21,9 @@ const KIOSK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
         <h3>Working time</h3>
         <div *ngFor="let el of value.time_work_in_day">
             <span>Start</span>
-            <input type="text" [(ngModel)]="el.time_start">
+            <input type="text" [(ngModel)]="el.time_start" (change)="OnChange()">
             <span>End</span>
-            <input type="text" [(ngModel)]="el.time_end">
+            <input type="text" [(ngModel)]="el.time_end" (change)="OnChange()">
         </div>
     `,
     providers: [KIOSK_CONTROL_VALUE_ACCESSOR]
@@ -49,6 +49,11 @@ export class KioskConfigComponent implements ControlValueAccessor {
     }
 
     OnChange() {
+        this.value.time_work_in_day.forEach(workingPeriod => {
+            workingPeriod.time_start = Number.parseInt(workingPeriod.time_start.toString());
+            workingPeriod.time_end = Number.parseInt(workingPeriod.time_end.toString());
+        })
+        // console.log(this.value)
         this.onChangeCallback(this.value);
     }
 

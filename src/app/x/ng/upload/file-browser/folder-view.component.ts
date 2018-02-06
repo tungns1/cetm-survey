@@ -9,7 +9,10 @@ import { FileNode } from '../backend/';
     styleUrls: ["folder-view.component.scss"]
 })
 export class FolderViewComponent {
+
     node: FileNode;
+    private selected: FileNode;
+    @Output() select = new EventEmitter<FileNode>();
 
     open(node: FileNode) {
         this.node = node;
@@ -34,10 +37,14 @@ export class FolderViewComponent {
         window.open(file.URL, "_blank");
     }
 
-    refresh(){
-        this.node.Refresh().subscribe(_ => {})
+    refresh() {
+        this.node.Refresh().subscribe(_ => { })
     }
 
-    private selected: FileNode;
-    @Output() select = new EventEmitter<FileNode>();
+    removeFile(file: FileNode) {
+        this.node.Remove(file['name']);
+        setTimeout(() => {
+            this.refresh();
+        }, 200);
+    }
 }

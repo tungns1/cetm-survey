@@ -12,7 +12,8 @@ export class FileNode {
   constructor(
     private base: string,
     private path: string,
-    private name: string) {
+    private name: string
+  ) {
     this.path = path;
     this.name = name;
     this.is_dir = path.endsWith("/");
@@ -71,6 +72,20 @@ export class FileNode {
       form.append("file", file);
       xhr.send(form);
     })
+  }
+
+  Remove(fileName: string) {
+    var form = new FormData();
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", this.GetUploadURL());
+    form.append("name", fileName);
+    xhr.onerror = err => {
+      console.log(err)
+    }
+    xhr.onload = data => {
+      console.log(data)
+    }
+    xhr.send(form);
   }
 
   Expand() {
