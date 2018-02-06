@@ -27,7 +27,8 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
       priority: [u.priority || {}],
       service: [u.service || {}],
       feedback: [u.feedback || {}],
-      counter: [u.counter || {}]
+      counter: [u.counter || {}],
+      kiosk: [u.kiosk || {}]
     });
   }
 }

@@ -12,6 +12,14 @@ interface IFeedbackConfig {
     remind_timeout: number;
 }
 
+export interface IKioskConfig {
+    max_ticket: number;
+    time_work_in_day: {
+        time_start: number;
+        time_end: number;
+    }[];
+}
+
 export interface IBranchConfig {
     id: string;
     branch_id: string;
@@ -19,4 +27,5 @@ export interface IBranchConfig {
     feedback: IFeedbackConfig;
     priority: IPriorityConfig;
     counter: ICounterConfig;
+    kiosk: IKioskConfig;
 }
