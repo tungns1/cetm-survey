@@ -14,11 +14,11 @@
         <div class="divider"></div>
         <div fxLayout="row" class="margin-10-0">
             <a fxFlex class="pointer" (click)="focus($event, d)">{{ d.name }}</a>
-            <div fxFlex="10%">
+            <div fxFlex="5%">
                 <img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer" (click)="view(d)">
             </div>
-            <div fxFlex="10%">
-                <i class="fas fa-times pointer center" (click)="removeFile(d)"></i>
+            <div fxFlex="5%">
+                <i class="fa fa-times fa-lg pointer center" (click)="removeFile(d)"></i>
             </div>
         </div>
     </div>
