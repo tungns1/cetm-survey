@@ -45,13 +45,15 @@ export class KioskConfigComponent implements ControlValueAccessor {
 
     writeValue(v: any) {
         this.value = v || {};
-        this.workingTime = this.value.time_work_in_day.map(el => {
-            let start = new Date(el.time_start).getHours() + ':' + new Date(el.time_start).getMinutes();
-            let end = new Date(el.time_end).getHours() + ':' + new Date(el.time_end).getMinutes();
-            // console.log(el.time_start)
-            // console.log(el.time_end)
-            return { start: start, end: end };
-        })
+        if (this.value.time_work_in_day) {
+            this.workingTime = this.value.time_work_in_day.map(el => {
+                let start = new Date(el.time_start).getHours() + ':' + new Date(el.time_start).getMinutes();
+                let end = new Date(el.time_end).getHours() + ':' + new Date(el.time_end).getMinutes();
+                // console.log(el.time_start)
+                // console.log(el.time_end)
+                return { start: start, end: end };
+            })
+        } else this.value.time_work_in_day = [];
     }
 
     registerOnChange(fn: any) {
