@@ -6,8 +6,8 @@
     </app-datatable>
 </div>
 
-<app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" 
-    title="Branch Config" i18n-title [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)">
+<app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" title="Branch Config"
+    i18n-title [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value); saveStaffPosition($event, form.value)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Location</span>
@@ -16,37 +16,48 @@
                 <span fxFlex="1%" class="error" *ngIf="!form.get('branch_id').hasError('required')">&nbsp;</span>
                 <branch-picker fxFlex formControlName="branch_id"></branch-picker>
             </div>
-            <span fxFlex="20%">&nbsp;</span>
-            <span fxFlex>&nbsp;</span>
+            <div fxFlex></div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%">&nbsp;</span>
-            <div fxFlex fxLayout="row" fxLayoutGap="2.5px">
-                <span fxFlex="0.5%">&nbsp;</span>
-                <mat-tab-group fxFlex dynamicHeight>
-                    <mat-tab>
-                        <ng-template mat-tab-label><span class="uppercase" i18n>Service</span></ng-template>
-                        <service-config fxFlex formControlName="service"></service-config>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label><span class="uppercase" i18n>Feedback</span></ng-template>
-                        <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label><span class="uppercase" i18n>Counter</span></ng-template>
-                        <counter-config fxFlex formControlName="counter" style="display: inherit"></counter-config>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label><span class="uppercase" i18n>Kiosk</span></ng-template>
-                        <kiosk-config fxFlex formControlName="kiosk"></kiosk-config>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label><span class="uppercase" i18n>Priority</span></ng-template>
-                        <priority-config fxFlex formControlName="priority"></priority-config>
-                    </mat-tab>
-                </mat-tab-group>
-            </div>
+            <mat-tab-group fxFlex dynamicHeight>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="uppercase" i18n>Seats</span>
+                    </ng-template>
+                    <staff-pos fxFlex [(ngModel)]="staffPositionConfig" [ngModelOptions]="{standalone: true}" [config]="staffPositionConfig"
+                        [branchID]="curentBranch$ | async" [data]="staffPositionData$ | async"></staff-pos>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="uppercase" i18n>Service</span>
+                    </ng-template>
+                    <service-config fxFlex formControlName="service"></service-config>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="uppercase" i18n>Feedback</span>
+                    </ng-template>
+                    <feedback-config fxFlex formControlName="feedback" style="display: inherit"></feedback-config>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="uppercase" i18n>Counter</span>
+                    </ng-template>
+                    <counter-config fxFlex formControlName="counter" style="display: inherit"></counter-config>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="uppercase" i18n>Kiosk</span>
+                    </ng-template>
+                    <kiosk-config fxFlex formControlName="kiosk"></kiosk-config>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="uppercase" i18n>Priority</span>
+                    </ng-template>
+                    <priority-config fxFlex formControlName="priority"></priority-config>
+                </mat-tab>
+            </mat-tab-group>
         </div>
-
     </form>
 </app-editor-view>

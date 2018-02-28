@@ -1,4 +1,3 @@
-
 import { HouseService } from './house';
 import { CenterService } from './center/';
 import { OrgService } from './org';

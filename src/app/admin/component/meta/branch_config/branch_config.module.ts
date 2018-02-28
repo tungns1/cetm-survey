@@ -9,6 +9,7 @@ import { ServiceConfigModule } from './service.module';
 import { PriorityConfigModule } from './priority.module';
 import { CounterConfigModule } from './counter.module';
 import { KioskConfigModule } from './kiosk_config.module';
+import { StaffPositionModule } from './staffPos.module';
 
 export const routing = RouterModule.forChild([
     {
@@ -28,7 +29,7 @@ export const routing = RouterModule.forChild([
         EditorModule, AdminFormModule,
         FeedbackConfigModule, ServiceConfigModule, 
         PriorityConfigModule, CounterConfigModule,
-        MatTabsModule, KioskConfigModule
+        MatTabsModule, KioskConfigModule, StaffPositionModule
     ],
     declarations: [BranchConfigComponent]
 })
