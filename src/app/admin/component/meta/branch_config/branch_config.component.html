@@ -7,7 +7,7 @@
 </div>
 
 <app-editor-view class="animated fadeInLeft" [isValid]="form.valid" *ngIf="form$ | async; let form" title="Branch Config"
-    i18n-title [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value); saveStaffPosition($event, form.value)">
+    i18n-title [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value); saveStaffPosition($event)">
     <form [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Location</span>
@@ -60,4 +60,5 @@
             </mat-tab-group>
         </div>
     </form>
+    <button (click)="test()" >test</button>
 </app-editor-view>

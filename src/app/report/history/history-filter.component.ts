@@ -27,6 +27,7 @@ export class HistoryFilterComponent implements OnInit {
         stimemin: '',
         stimemax: '',
         rating: '',
+        tnum: ''
     };
 
     ngOnInit() {

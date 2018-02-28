@@ -22,12 +22,14 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
   private staffPositionData$ = new BehaviorSubject<IStaffPosition>(null);
   private curentBranch$ = new BehaviorSubject<string>('');
   private staffPositionConfig: ICounterUserConfigs[];
+  private oldConfigs: ICounterUserConfigs[];
 
   ngOnInit() {
     this.formValue$.debounceTime(500).subscribe(value => {
       if (value.branch_id !== this.curentBranch$.value) {
         this.meta.GetStaffPos(value.branch_id).subscribe(d => {
           this.staffPositionConfig = d.counter_user_configs;
+          this.oldConfigs = d.counter_user_configs;
           // this.staffPositionConfig = [
           //   {
           //     branch_id: 'bra_FpzhkRiWytbUc3HGWhV7',
@@ -59,12 +61,24 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
       kiosk: [u.kiosk || {}]
     });
   }
+  test(){
+    console.log(this.staffPositionConfig);
+    console.log(this.oldConfigs)
+  }
 
-  saveStaffPosition(ev, value) {
-    // console.log(ev)
-    // console.log(value)
-    // console.log(this.staffPositionConfig)
-    this.meta.SetStaffPos(this.staffPositionConfig).subscribe(res => console.log(res))
+  saveStaffPosition(ev: string) {
+    console.log(ev)
+    if (ev === 'add') {
+      this.meta.SetStaffPos(this.staffPositionConfig).subscribe(res => {
+        // console.log(res)
+      });
+    } else if (ev === 'edit') {
+      this.staffPositionConfig.forEach(config => config.id = '')
+      this.meta.UpdateStaffPos(this.staffPositionConfig, this.oldConfigs)
+      // .subscribe(res => {
+      //   console.log(res)
+      // });
+    }
   }
 
 }

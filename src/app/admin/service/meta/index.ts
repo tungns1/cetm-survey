@@ -54,9 +54,24 @@ export class MetaService {
     }
 
     SetStaffPos(data: ICounterUserConfigs[]): Observable<any> {
-        let params = new HttpParams().set('token', AppStorage.Token)
-            .set('branch_id', JSON.stringify(data))
-        let body = data;
-        return this.http.post(this.generateHostName() + this.Link.StaffPosition + '/create', { body: body, params: params });
+        return this.http.post(this.generateHostName() + this.Link.StaffPosition + '/create?token=' + AppStorage.Token, { data: data });
+    }
+
+    UpdateStaffPos(data: ICounterUserConfigs[], oldConfigs: ICounterUserConfigs[]) {
+        var editData: ICounterUserConfigs[] = [];
+        var addNewData: ICounterUserConfigs[] = [];
+        data.forEach(config => {
+            let old = oldConfigs.find(oldConfig => oldConfig.counter_id === config.counter_id);
+            if (old) {
+                config.id = old.id;
+                editData.push(config)
+            } else {
+                addNewData.push(config)
+            }
+        })
+        if (editData.length)
+            this.http.post(this.generateHostName() + this.Link.StaffPosition + '/update?token=' + AppStorage.Token, { data: editData }).subscribe(d => console.log(d));
+        if (addNewData.length)
+            this.http.post(this.generateHostName() + this.Link.StaffPosition + '/create?token=' + AppStorage.Token, { data: addNewData }).subscribe(d => console.log(d));
     }
 }
