@@ -86,11 +86,11 @@ export class StaffPositionComponent implements ControlValueAccessor {
     OnChange(counterID: string, userID: string) {
         if (this.counters.length > 0) {
             let configIndex = this.value.findIndex(config => config.counter_id === counterID);
-            if (configIndex !== -1) {
-                this.value.splice(configIndex, 1)
-            }
             // Select staff
             if (userID !== 'unset') {
+                if (configIndex !== -1) {
+                    this.value.splice(configIndex, 1)
+                }
                 let config: ICounterUserConfigs = {
                     branch_id: this.curentBranch,
                     counter_id: counterID,
@@ -112,6 +112,9 @@ export class StaffPositionComponent implements ControlValueAccessor {
                     }
                 });
                 this.counters[this.counters.findIndex(counter => counter.id === counterID)].selectedUser = 'unset';
+                if (configIndex !== -1) {
+                    this.value.splice(configIndex, 1)
+                }
             }
         }
         this.onChangeCallback(this.value);

@@ -1,33 +1,9 @@
-<accordion id="period">
+<accordion id="period" expand="true">
   <accordion-title class="accordionTitle">
     <span i18n>Period of Time</span>
   </accordion-title>
   <form [formGroup]="form">
-    <div *ngIf="inside!='counter'">
-      <div fxLayout="row" fxLayoutAlign="space-around center">
-        <div fxFlex class="radioCtrl">
-          <input type="radio" formControlName="period" value="day">
-          <span i18n>Date</span>
-        </div>
-        <div fxFlex class="radioCtrl">
-          <input type="radio" formControlName="period" value="week" checked>
-          <span i18n>Week</span>
-        </div>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="space-around center">
-        <div fxFlex class="radioCtrl">
-          <input type="radio" formControlName="period" value="month">
-          <span i18n>Month</span>
-        </div>
-        <div fxFlex class="radioCtrl">
-          <input type="radio" formControlName="period" value="year">
-          <span i18n>Year</span>
-        </div>
-      </div>
-      <hr>
-    </div>
-    
-    <div *ngIf="inside == 'counter'">
+    <div fxLayout="row" fxLayoutAlign="space-around center">
       <div fxFlex class="radioCtrl">
         <input type="radio" formControlName="period" value="day">
         <span i18n>Date</span>
@@ -37,14 +13,51 @@
         <span i18n>Week</span>
       </div>
     </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div fxFlex class="radioCtrl">
+        <input type="radio" formControlName="period" value="month">
+        <span i18n>Month</span>
+      </div>
+      <div fxFlex class="radioCtrl">
+        <input type="radio" formControlName="period" value="year">
+        <span i18n>Year</span>
+      </div>
+    </div>
+    <hr>
 
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <label fxFlex i18n>From Day</label>
-      <label fxFlex i18n>To Day</label>
+      <label fxFlex i18n>From</label>
+      <label fxFlex i18n>To</label>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-around center">
+    <div *ngIf="(period$ | async) === 'day'" fxLayout="row" fxLayoutAlign="space-around center">
       <date-picker fxFlex formControlName="start" timestamp="true"></date-picker>
       <date-picker fxFlex formControlName="end" timestamp="true"></date-picker>
+    </div>
+    <div *ngIf="(period$ | async) === 'week'" fxLayout="row" fxLayoutAlign="space-around center">
+      <h1>bitch</h1>
+    </div>
+    <div *ngIf="(period$ | async) === 'month'" fxLayout="row" fxLayoutAlign="space-around center">
+      <select class="hl-select" fxFlex [(ngModel)]="startMonth" [ngModelOptions]="{standalone: true}" (change)="onChange()">
+        <option *ngFor="let month of monthsArr" [value]="month">
+          <span i18n>Month</span>
+          <span> {{month + 1}}</span>
+        </option>
+      </select>
+      <select class="hl-select" fxFlex [(ngModel)]="endMonth" [ngModelOptions]="{standalone: true}" (change)="onChange()">
+        <option *ngFor="let month of monthsArr" [value]="month">
+          <span i18n>Month</span>
+          <span> {{month + 1}}</span>
+        </option>
+      </select>
+    </div>
+    <div *ngIf="(period$ | async) !== 'day'" class="center">
+      <span>Year</span>
+    </div>
+    <div *ngIf="(period$ | async) !== 'day'" fxLayout="row" fxLayoutAlign="space-around center">
+      <input fxFlex type="number" class="ctrlInput" min="1970" [max]="curentDate.getFullYear()" [(ngModel)]="startYear" [ngModelOptions]="{standalone: true}"
+        (change)="onChange()">
+      <input fxFlex type="number" class="ctrlInput" min="1970" [max]="curentDate.getFullYear()" [(ngModel)]="endYear" [ngModelOptions]="{standalone: true}"
+        (change)="onChange()">
     </div>
   </form>
 </accordion>

@@ -25,7 +25,7 @@ const GetStartOf: { [index: string]: CountableTimeInterval } = {
 export interface IPeriodFilter {
     start: string;
     end: string;
-    period?: string;
+    period: 'day' | 'week' | 'month' | 'year';
 }
 
 
@@ -59,8 +59,8 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         }
     }
 
-    Update(start: Date, end: Date, period: string) {
-        this.data.period = period || PERIODS.DAY;
+    Update(start: Date, end: Date, period: 'day' | 'week' | 'month' | 'year') {
+        this.data.period = period || 'day';
         var startOf = GetStartOf[this.data.period];
         if (!start || start.getTime() < 1000) {
             start = new Date(Date.now() - 30 * oneDay);
@@ -70,7 +70,7 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
             end = new Date();
         }
         this.data.end = this.formatDate(startOf.floor(end));
-        this.SaveData();
+        this.SaveData(true);
     }
 
 

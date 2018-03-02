@@ -27,6 +27,9 @@ export interface ISH {
     id?: string;
     branch_id: string;
     date: string;
+    week?: string;
+    month?: string;
+    year?: string;
     hour:string;
     t_ticket: number;
     m_ticket:number;
