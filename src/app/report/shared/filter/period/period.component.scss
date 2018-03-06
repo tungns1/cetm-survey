@@ -1,11 +1,12 @@
-#period{
-    .radioCtrl{
+#period {
+    .radioCtrl {
         margin: 5px 10px;
     }
-    label{
+    label {
         margin: 10px 0 0 15px;
     }
-    date-picker, select{
+    date-picker,
+    select {
         margin: 5px 0 10px 15px;
     }
     input[type='radio']:after {
@@ -21,7 +22,6 @@
         visibility: visible;
         border: 1px solid #a7a9ac;
     }
-
     input[type='radio']:checked:after {
         width: 10px;
         height: 10px;
@@ -34,5 +34,14 @@
         display: inline-block;
         visibility: visible;
         border: 1px solid #a7a9ac;
+    }
+    .ctrlInput {
+        margin: 15px;
+    }
+    .hl-select{
+        margin: 15px;
+    }
+    .bold{
+        font-weight: 700;
     }
 }

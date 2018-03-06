@@ -65,11 +65,15 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         if (!start || start.getTime() < 1000) {
             start = new Date(Date.now() - 30 * oneDay);
         }
-        this.data.start = this.formatDate(startOf.floor(start));
+        // this.data.start = this.formatDate(startOf.floor(start));
+        this.data.start = this.formatDate(start);
         if (!end || end.getTime() < 1000) {
             end = new Date();
         }
-        this.data.end = this.formatDate(startOf.floor(end));
+        // console.log(JSON.stringify(end))
+        // this.data.end = this.formatDate(startOf.floor(end));
+        this.data.end = this.formatDate(end);
+        // console.log(JSON.stringify(this.data['end']))
         this.SaveData(true);
     }
 

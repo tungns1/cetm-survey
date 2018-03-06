@@ -26,8 +26,8 @@
     <hr>
 
     <div fxLayout="row" fxLayoutAlign="space-around center">
-      <label fxFlex i18n>From</label>
-      <label fxFlex i18n>To</label>
+      <label fxFlex class="bold" i18n>From</label>
+      <label fxFlex class="bold" i18n>To</label>
     </div>
     <div *ngIf="(period$ | async) === 'day'" fxLayout="row" fxLayoutAlign="space-around center">
       <date-picker fxFlex formControlName="start" timestamp="true"></date-picker>
@@ -55,14 +55,14 @@
         </option>
       </select>
     </div>
-    <div *ngIf="(period$ | async) !== 'day'" class="center">
-      <span>Year</span>
+    <div *ngIf="(period$ | async) !== 'day' && (period$ | async) !== 'year'" class="center">
+      <span class="bold">Year</span>
     </div>
     <div *ngIf="(period$ | async) !== 'day'" fxLayout="row" fxLayoutAlign="space-around center">
-      <input fxFlex type="number" class="ctrlInput" min="1970" [max]="curentDate.getFullYear()" [(ngModel)]="startYear" [ngModelOptions]="{standalone: true}"
-        (change)="onChange()">
-      <input fxFlex type="number" class="ctrlInput" min="1970" [max]="curentDate.getFullYear()" [(ngModel)]="endYear" [ngModelOptions]="{standalone: true}"
-        (change)="onChange()">
+      <input fxFlex type="number" class="ctrlInput" [max]="curentDate.getFullYear()" [(ngModel)]="startYear" [ngModelOptions]="{standalone: true}"
+        (change)="onYearChange()">
+      <input fxFlex type="number" class="ctrlInput" [max]="curentDate.getFullYear()" [(ngModel)]="endYear" [ngModelOptions]="{standalone: true}"
+        (change)="onYearChange()">
     </div>
     <!-- <button (click)="test()" >test</button> -->
   </form>

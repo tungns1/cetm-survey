@@ -41,7 +41,10 @@ export class PeriodFilterComponent implements OnInit {
             this.startMonth = new Date(data.start).getMonth();
             this.startYear = new Date(data.start).getFullYear();
 
+            console.log(JSON.stringify(this.endMonth));
             this.endMonth = new Date(data.end).getMonth();
+            console.log(JSON.stringify(data.end));
+
             this.endYear = new Date(data.end).getFullYear();
 
             this.weekStartArr = this.getWeek(this.startYear).map((week, index) => {
@@ -51,7 +54,8 @@ export class PeriodFilterComponent implements OnInit {
             this.weekEndArr = this.getWeek(this.endYear).map((week, index) => {
                 return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')'
             })
-            // console.log(this.weekStartArr)
+            // console.log(JSON.stringify(data.end));
+            console.log('222222222')
             this.onChange();
         })
         // this.period$.sub
@@ -66,8 +70,10 @@ export class PeriodFilterComponent implements OnInit {
                 period: value.period
             });
 
-            this.form.valueChanges.debounceTime(50).subscribe(v => {
-                // console.log(v)
+            this.form.valueChanges.debounceTime(100).subscribe(v => {
+                console.log('1111111')
+                // v.end = new Date(v.end.setHours(0, 0 , 0));
+                // console.log(JSON.stringify(v.end));
                 this.periodFilterService.Update(
                     v.start, v.end, v.period
                 );
@@ -78,11 +84,17 @@ export class PeriodFilterComponent implements OnInit {
     onChange() {
         this.validateData();
         const boundaryTime = this.setBoundaryTime(this.period);
+        console.log('000000000')
+        // console.log(JSON.stringify(boundaryTime));
         this.form.setValue({
             start: boundaryTime.start,
             end: boundaryTime.end,
             period: this.periodFilterService.period
         })
+    }
+
+    onYearChange() {
+        this.onChange();
     }
 
     validateData() {
@@ -98,13 +110,10 @@ export class PeriodFilterComponent implements OnInit {
                 // console.log('day');
                 break;
             case 'week':
-                // console.log(this.getWeek(new Date(this.form.value.start).getFullYear(), new Date(this.form.value.start).getMonth(), new Date(this.form.value.start).getDate()).toString());
-                // result = this.getWeek();
-                // result.start = this.getWeek(this.startYear)
-                // console.log(this.startWeek)
+                // console.log(this.getWeek(this.startYear)[this.startWeek].from)
                 // console.log(this.endWeek)
                 result.start = this.getWeek(this.startYear)[this.startWeek].from;
-                result.end = new Date(this.getWeek(this.endYear)[this.endWeek].to.setHours(23, 59,59));
+                result.end = new Date(this.getWeek(this.endYear)[this.endWeek].to.setHours(23, 59, 59));
                 break;
             case 'month':
                 result.start = new Date(this.startYear, this.startMonth);
@@ -119,7 +128,7 @@ export class PeriodFilterComponent implements OnInit {
     }
 
     test() {
-        // this.getWeek(2018)
+        // console.log('aaaaaaaaaaaa')
     }
 
     private getWeek(year: number) {
