@@ -34,7 +34,12 @@
       <date-picker fxFlex formControlName="end" timestamp="true"></date-picker>
     </div>
     <div *ngIf="(period$ | async) === 'week'" fxLayout="row" fxLayoutAlign="space-around center">
-      <h1>bitch</h1>
+      <select class="hl-select" fxFlex [(ngModel)]="startWeek" [ngModelOptions]="{standalone: true}" (change)="onChange()">
+        <option *ngFor="let week of weekStartArr; let index = index" [value]="index">{{week}}</option>
+      </select>
+      <select class="hl-select" fxFlex [(ngModel)]="endWeek" [ngModelOptions]="{standalone: true}" (change)="onChange()">
+        <option *ngFor="let week of weekEndArr; let index = index" [value]="index">{{week}}</option>
+      </select>
     </div>
     <div *ngIf="(period$ | async) === 'month'" fxLayout="row" fxLayoutAlign="space-around center">
       <select class="hl-select" fxFlex [(ngModel)]="startMonth" [ngModelOptions]="{standalone: true}" (change)="onChange()">
@@ -59,5 +64,6 @@
       <input fxFlex type="number" class="ctrlInput" min="1970" [max]="curentDate.getFullYear()" [(ngModel)]="endYear" [ngModelOptions]="{standalone: true}"
         (change)="onChange()">
     </div>
+    <!-- <button (click)="test()" >test</button> -->
   </form>
 </accordion>

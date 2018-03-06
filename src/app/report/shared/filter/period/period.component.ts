@@ -21,22 +21,37 @@ export class PeriodFilterComponent implements OnInit {
     });
     private period$ = this.periodFilterService.Data$.map(d => d.period);
     private period: 'day' | 'week' | 'month' | 'year' = 'day';
+    private weekStartArr: string[];
+    private weekEndArr: string[];
     private monthsArr = Array.from(Array(12).keys());
     private curentDate = new Date();
 
+    private startWeek: number = 0;
     private startMonth: number = this.periodFilterService.startDate.getMonth();
     private startYear: number = this.periodFilterService.startDate.getFullYear();
 
+    private endWeek: number = 0;
     private endMonth: number = this.periodFilterService.endDate.getMonth();
     private endYear: number = this.periodFilterService.endDate.getFullYear();
 
     ngOnInit() {
         this.periodFilterService.Data$.subscribe(data => {
             this.period = data.period;
+
             this.startMonth = new Date(data.start).getMonth();
-            this.endMonth = new Date(data.end).getMonth();
             this.startYear = new Date(data.start).getFullYear();
+
+            this.endMonth = new Date(data.end).getMonth();
             this.endYear = new Date(data.end).getFullYear();
+
+            this.weekStartArr = this.getWeek(this.startYear).map((week, index) => {
+                return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')'
+            })
+            // this.startWeek = 
+            this.weekEndArr = this.getWeek(this.endYear).map((week, index) => {
+                return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')'
+            })
+            // console.log(this.weekStartArr)
             this.onChange();
         })
         // this.period$.sub
@@ -80,10 +95,16 @@ export class PeriodFilterComponent implements OnInit {
         let result: { start: Date, end: Date } = { start: this.periodFilterService.startDate, end: this.periodFilterService.endDate };
         switch (period) {
             case 'day':
-                console.log('day');
+                // console.log('day');
                 break;
             case 'week':
-                console.log('week');
+                // console.log(this.getWeek(new Date(this.form.value.start).getFullYear(), new Date(this.form.value.start).getMonth(), new Date(this.form.value.start).getDate()).toString());
+                // result = this.getWeek();
+                // result.start = this.getWeek(this.startYear)
+                // console.log(this.startWeek)
+                // console.log(this.endWeek)
+                result.start = this.getWeek(this.startYear)[this.startWeek].from;
+                result.end = new Date(this.getWeek(this.endYear)[this.endWeek].to.setHours(23, 59,59));
                 break;
             case 'month':
                 result.start = new Date(this.startYear, this.startMonth);
@@ -97,4 +118,34 @@ export class PeriodFilterComponent implements OnInit {
         return result;
     }
 
+    test() {
+        // this.getWeek(2018)
+    }
+
+    private getWeek(year: number) {
+        // let result: { start: Date, end: Date } = { start: this.periodFilterService.startDate, end: this.periodFilterService.endDate };
+        let result: { from: Date; to: Date }[] = [];
+        const startOfYear = new Date(year, 0, 1);
+        const offset = 6 - startOfYear.getDay();
+        result.push({
+            from: startOfYear,
+            to: new Date(new Date(startOfYear.getTime()).setDate(startOfYear.getDate() + offset))
+        });
+
+        for (let i = 1; i < 53; i++) {
+            let lastWeeken = new Date(result[i - 1].from.getTime());
+            result.push({
+                from: new Date(new Date(lastWeeken.getTime()).setDate(lastWeeken.getDate() + 7 - lastWeeken.getDay())),
+                to: new Date(new Date(lastWeeken.getTime()).setDate(lastWeeken.getDate() + 7 - lastWeeken.getDay() + 6))
+            });
+        }
+
+        // console.log(result)
+        return result;
+    }
+
+    private cutYearNum(dateTime: string) {
+        let arr: string[] = dateTime.split(' ');
+        return arr.splice(0, arr.length - 1).join(' ');
+    }
 }
