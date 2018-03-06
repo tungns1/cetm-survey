@@ -86,7 +86,7 @@ export class PeriodFilterComponent implements OnInit {
         this.validateData();
         const boundaryTime = this.setBoundaryTime(this.period);
         // console.log('000000000')
-        console.log(JSON.stringify(boundaryTime));
+        // console.log(JSON.stringify(boundaryTime));
         this.form.setValue({
             start: boundaryTime.start,
             end: boundaryTime.end,
@@ -133,6 +133,7 @@ export class PeriodFilterComponent implements OnInit {
                 result.end = new Date(this.endYear, 12, 0, 23, 59, 59);
                 break;
         }
+        // console.log(result.end)
         return result;
     }
 
