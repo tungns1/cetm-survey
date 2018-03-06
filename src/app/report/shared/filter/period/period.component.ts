@@ -41,9 +41,10 @@ export class PeriodFilterComponent implements OnInit {
             this.startMonth = new Date(data.start).getMonth();
             this.startYear = new Date(data.start).getFullYear();
 
-            console.log(JSON.stringify(this.endMonth));
+            // console.log(JSON.stringify(this.endMonth));
+            // console.log(JSON.stringify(data.end));
             this.endMonth = new Date(data.end).getMonth();
-            console.log(JSON.stringify(data.end));
+            // console.log(JSON.stringify(this.endMonth));
 
             this.endYear = new Date(data.end).getFullYear();
 
@@ -55,8 +56,8 @@ export class PeriodFilterComponent implements OnInit {
                 return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')'
             })
             // console.log(JSON.stringify(data.end));
-            console.log('222222222')
-            this.onChange();
+            // console.log('222222222')
+            // this.onChange();
         })
         // this.period$.sub
     }
@@ -71,7 +72,7 @@ export class PeriodFilterComponent implements OnInit {
             });
 
             this.form.valueChanges.debounceTime(100).subscribe(v => {
-                console.log('1111111')
+                // console.log('1111111')
                 // v.end = new Date(v.end.setHours(0, 0 , 0));
                 // console.log(JSON.stringify(v.end));
                 this.periodFilterService.Update(
@@ -84,8 +85,8 @@ export class PeriodFilterComponent implements OnInit {
     onChange() {
         this.validateData();
         const boundaryTime = this.setBoundaryTime(this.period);
-        console.log('000000000')
-        // console.log(JSON.stringify(boundaryTime));
+        // console.log('000000000')
+        console.log(JSON.stringify(boundaryTime));
         this.form.setValue({
             start: boundaryTime.start,
             end: boundaryTime.end,
@@ -104,7 +105,7 @@ export class PeriodFilterComponent implements OnInit {
     }
 
     setBoundaryTime(period: 'day' | 'week' | 'month' | 'year'): { start: Date, end: Date } {
-        let result: { start: Date, end: Date } = { start: this.periodFilterService.startDate, end: this.periodFilterService.endDate };
+        let result = { start: this.periodFilterService.startDate, end: this.periodFilterService.endDate };
         switch (period) {
             case 'day':
                 // console.log('day');
@@ -116,12 +117,20 @@ export class PeriodFilterComponent implements OnInit {
                 result.end = new Date(this.getWeek(this.endYear)[this.endWeek].to.setHours(23, 59, 59));
                 break;
             case 'month':
+                console.log(this.endYear);
+                console.log(this.endMonth);
                 result.start = new Date(this.startYear, this.startMonth);
-                result.end = new Date(new Date(this.endYear, this.endMonth + 1, 0).setHours(23, 59, 59));
+                // console.log(this.endYear)
+                // console.log(this.endMonth)
+                // console.log(Number.parseInt('' + this.endMonth) + Number.parseInt('1'));
+                result.end = new Date(this.endYear, Number.parseInt('' + this.endMonth) + 1, 0, 23, 59, 59);
+                // result.end = new Date(new Date().setFullYear(this.endYear, this.endMonth));
+                // console.log(new Date())
+                // console.log(result.end)
                 break;
-            case 'year':
+            default:
                 result.start = new Date(this.startYear, 0);
-                result.end = new Date(new Date(this.endYear, 12, 0).setHours(23, 59, 59));
+                result.end = new Date(this.endYear, 12, 0, 23, 59, 59);
                 break;
         }
         return result;
