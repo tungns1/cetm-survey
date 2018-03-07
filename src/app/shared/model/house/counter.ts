@@ -9,6 +9,7 @@ export interface ICounter extends ID {
     users: string[];
     services: string[];
     vservices: string[];
+    pservices: string[];
     settings?: Object;
 }
 
