@@ -60,9 +60,9 @@
     </div>
     <div *ngIf="(period$ | async) !== 'day'" fxLayout="row" fxLayoutAlign="space-around center">
       <input fxFlex type="number" class="ctrlInput" [max]="curentDate.getFullYear()" [(ngModel)]="startYear" [ngModelOptions]="{standalone: true}"
-        (change)="onYearChange()">
+        (change)="onChange()">
       <input fxFlex type="number" class="ctrlInput" [max]="curentDate.getFullYear()" [(ngModel)]="endYear" [ngModelOptions]="{standalone: true}"
-        (change)="onYearChange()">
+        (change)="onChange()">
     </div>
     <!-- <button (click)="test()" >test</button> -->
   </form>
