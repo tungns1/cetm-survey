@@ -45,10 +45,10 @@ export class PeriodFilterComponent implements OnInit {
             this.endYear = new Date(data.end).getFullYear();
 
             this.weekStartArr = this.getWeek(this.startYear).map((week, index) => {
-                return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')'
+                return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')';
             })
             this.weekEndArr = this.getWeek(this.endYear).map((week, index) => {
-                return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')'
+                return 'Week ' + (index + 1) + ' (' + this.cutYearNum(week.from.toDateString()) + ' - ' + this.cutYearNum(week.to.toDateString()) + ')';
             })
         })
     }
@@ -71,8 +71,7 @@ export class PeriodFilterComponent implements OnInit {
     }
 
     onChange() {
-        this.validateData();
-        const boundaryTime = this.setBoundaryTime(this.period);
+        const boundaryTime = this.validateData(this.setBoundaryTime(this.period));
         this.form.setValue({
             start: boundaryTime.start,
             end: boundaryTime.end,
@@ -80,10 +79,18 @@ export class PeriodFilterComponent implements OnInit {
         })
     }
 
-    validateData() {
+    validateData(period: { start: Date, end: Date }): { start: Date, end: Date } {
         const curentYear = this.curentDate.getFullYear();
-        if (this.startYear > curentYear) this.startYear = curentYear;
-        if (this.endYear > curentYear) this.endYear = curentYear;
+        // if (this.startYear > curentYear) this.startYear = curentYear;
+        // if (this.endYear > curentYear) this.endYear = curentYear;
+        // if (this.startYear > this.endYear) this.startYear = this.endYear;
+        if (period.start > period.end) {
+            period.start = period.end;
+            setTimeout(_ => {
+                this.startWeek = this.endWeek;
+            });
+        }
+        return period;
     }
 
     setBoundaryTime(period: 'day' | 'week' | 'month' | 'year'): { start: Date, end: Date } {
@@ -92,11 +99,11 @@ export class PeriodFilterComponent implements OnInit {
             case 'day':
                 break;
             case 'week':
-                result.start = this.getWeek(this.startYear)[this.startWeek].from;
-                result.end = new Date(this.getWeek(this.endYear)[this.endWeek].to.setHours(23, 59, 59));
+                result.start = this.getWeek(this.startYear)[Number.parseInt('' + this.startWeek)].from;
+                result.end = new Date(this.getWeek(this.endYear)[Number.parseInt('' + this.endWeek)].to.setHours(23, 59, 59));
                 break;
             case 'month':
-                result.start = new Date(this.startYear, this.startMonth);
+                result.start = new Date(this.startYear, Number.parseInt('' + this.startMonth));
                 result.end = new Date(this.endYear, Number.parseInt('' + this.endMonth) + 1, 0, 23, 59, 59);
                 break;
             default:
@@ -108,7 +115,7 @@ export class PeriodFilterComponent implements OnInit {
     }
 
     test() {
-        // console.log('aaaaaaaaaaaa')
+        // this.startWeek = 9;
     }
 
     private getWeek(year: number) {

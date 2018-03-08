@@ -74,7 +74,7 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         }
         // this.data.end = this.formatDate(startOf.floor(end));
         this.data.end = this.formatDate(end);
-        console.log(JSON.stringify(this.data['end']))
+        // console.log(JSON.stringify(this.data['end']))
         this.SaveData(true);
     }
 
