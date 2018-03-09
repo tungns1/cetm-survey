@@ -129,6 +129,7 @@ export class Ticket {
 
     static sort(a: Ticket, b: Ticket) {
         // -1, 0, 1
+        console.log(b)
         var step = a.priority.compare(b.priority);
         if (step === 0) {
             return a.mtime < b.mtime ? -1 : 1;

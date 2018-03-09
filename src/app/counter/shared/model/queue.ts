@@ -37,6 +37,7 @@ export class TicketQueue {
     }
 
     ToArray() {
+        // console.log(this.data.values())
         return Array.from(this.data.values())
             .sort(Ticket.sort);
     }

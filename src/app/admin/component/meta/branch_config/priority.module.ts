@@ -32,6 +32,7 @@ export class PriorityConfigComponent implements ControlValueAccessor {
         customer_vip_card: -1,
         privileged_customer: -1,
         booked_ticket: -1,
+        priority_service: -1,
         // restricted
         min_priority_restricted: -1,
         min_priority_unordered_call: -1

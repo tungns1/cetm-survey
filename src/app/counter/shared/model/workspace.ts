@@ -33,13 +33,18 @@ export class Workspace {
 
     private services = new Set<string>();
     private vip_services = new Set<string>();
+    private priority_services = new Set<string>();
     private cache = new Map<string, Ticket>();
 
     private onInit(c: ICounter) {
+        console.log(c)
         c.services = c.services || [];
         c.services.forEach(s => this.services.add(s));
         c.vservices = c.vservices || [];
         c.vservices.forEach(s => this.vip_services.add(s));
+        c.pservices = c.pservices || [];
+        c.pservices.forEach(s => this.priority_services.add(s));
+        console.log(this.priority_services)
     }
 
     Waiting = new WaitingQueue(this.current_counter.id, this.services, this.vip_services);

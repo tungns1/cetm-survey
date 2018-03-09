@@ -3,6 +3,7 @@ import { ITicket, Ticket } from './ticket';
 const PriorityConfig = ProjectConfig.priority;
 
 function getPriority(data: ITicketPriority) {
+    // console.log(data)
     if (!data) return 0;
     var priority = 0;
     if (data.internal_vip_card) {
@@ -33,6 +34,7 @@ export interface ITicketPriority {
     service_quality: string;
     privileged_customer: string;
     internal_vip_card: string;
+    priority_service: string;
     customer_vip_card: string;
     booked_ticket: string;
     moved_ticket: number;
@@ -46,6 +48,9 @@ function priorityCode(p: ITicketPriority) {
         }
         if (p.internal_vip_card) {
             return "vip";
+        }
+        if (p.priority_service) {
+            return "priorityService";
         }
     }
     return "normal";
@@ -64,6 +69,7 @@ export class TicketPriority {
     }
 
     compare(b: TicketPriority) {
+        // console.log(b)
         const step = this.value - b.value;
         if (step < -PriorityConfig.priority_step) {
             // after
