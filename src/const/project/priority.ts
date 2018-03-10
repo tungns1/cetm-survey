@@ -37,10 +37,6 @@ export class PriorityConfig {
         return +this._c.moved_ticket || 1;
     }
 
-    get priority_service() {
-        return +this._c.priority_service || 1;
-    }
-
     get min_priority_unordered_call() {
         return +this._c.min_priority_unordered_call || 1;
     }

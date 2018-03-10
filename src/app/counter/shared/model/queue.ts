@@ -37,9 +37,7 @@ export class TicketQueue {
     }
 
     ToArray() {
-        // console.log(this.data.values())
-        return Array.from(this.data.values())
-            .sort(Ticket.sort);
+        return Array.from(this.data.values()).sort(Ticket.sort);
     }
 
     GetFirstTicket() {
@@ -74,10 +72,28 @@ export class WaitingQueue extends RestrictedQueue {
     constructor(
         counter_id: string,
         services: Set<string>,
-        restricted_services: Set<string>
+        restricted_services: Set<string>,
+        private priority_service: Set<string>
     ) {
         super(TicketStates.Waiting, counter_id, services, restricted_services);
     }
+
+    ToArray() {
+        // sort priority service
+        return super.ToArray().sort((a, b) => {
+            if (Object.keys(a.ticket_priority).length || Object.keys(b.ticket_priority).length) {
+                return 0;
+            } else {
+                if (this.priority_service.has(a.services[0]) && this.priority_service.has(b.services[0]))
+                    return 0;
+                if (this.priority_service.has(a.services[0]) && !this.priority_service.has(b.services[0]))
+                    return -1;
+                if (!this.priority_service.has(a.services[0]) && this.priority_service.has(b.services[0]))
+                    return 1;
+            }
+        });
+    }
+
 }
 
 
