@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AuthService, RuntimeEnvironment, CacheService } from './shared';
-import { ICounter, ITicket, TicketState, IBranch } from '../shared';
+import { ICounter, ITicket, TicketState, IBranch, ICustomer } from '../shared';
 import { ITicketAction, Workspace, IWorkspaceInitialState } from '../../../shared/model';
 import { of } from 'rxjs/observable/of';
 import { merge } from 'rxjs/observable/merge';
@@ -14,7 +14,7 @@ export interface IBookingOnline {
     id: string;
     created_at: number;
     updated_at: number;
-    customer: string;
+    customer: ICustomer;
     time_go_bank: number;
     service_id: string;
     branch_id: string;
@@ -43,7 +43,7 @@ export class WorkspaceService {
         private authService: AuthService,
         private socket: WorkspaceSocket,
         private env: RuntimeEnvironment,
-        private httpClient: HttpClient,
+        private httpClient: HttpClient
     ) { }
 
     private currentBranch: IBranch;
@@ -104,7 +104,6 @@ export class WorkspaceService {
         let params = new HttpParams().set('branch_id', this.currentBranch.id)
         this.httpClient.get('http://123.31.12.147:8989/api/booking/ticket/branch_cetm_tickets', { params: params })
             .subscribe((respone: IBookingOnlineRespone) => {
-                // console.log(respone.data)
                 if (respone.status === 'ok')
                     this.bookingOnlineList$.next(respone.data.filter(d => {
                         return (d.type_ticket === 'book_schedule' && (this.currentCounter.services.indexOf(d.service_id) != -1));

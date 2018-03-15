@@ -19,7 +19,4 @@ export class BookingListComponent {
     list$ = this.workspaceService.bookingOnlineList$;
 
     count$ = this.list$.map(data => data.length);
-    // tickets = combineLatest<ITicket[], string>(this.cancel$, this.search).map(([tickets, text]) => {
-    //     return tickets.filter(v => v.cnum.indexOf(text) !== -1);
-    // });
 }
