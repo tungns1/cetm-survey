@@ -1,3 +1,40 @@
-<p>
-  staff-performance works!
-</p>
+<div fxLayout="row">
+  <div [fxFlex]="'250px'" class="leftFilter">
+      <report-filter (refresh)="refresh($event)" [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+  </div>
+
+  <div fxFlex style="overflow: auto;" class="mainContent">
+      <div class="main_miraway">
+
+          <app-env-sub-module i18n-title title="Staff Performance"></app-env-sub-module>
+          <div id="staffPerformance">
+              <div class="headerAndNav">
+                  <h2 class="header uppercase" i18n>Staff Performance</h2>
+                  <div class="nav">
+                      <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General Report</button>
+                      <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+                  </div>
+              </div>
+              <report-sum class="summaryReport" [data]="summary$ | async"></report-sum>
+              <div class="divider margin-30-0"></div>
+              <div id="overView" class="border">
+                  <mat-tab-group>
+                      <mat-tab>
+                          <ng-template mat-tab-label><span class="uppercase tabstyle" i18n>Overview</span></ng-template>
+                          <app-general-view [field]="groupBy$ | async" [data]="data$ | async"></app-general-view>
+                      </mat-tab>
+                      <mat-tab>
+                          <ng-template mat-tab-label><span class="uppercase tabstyle" i18n>Transaction Time</span></ng-template>
+                          <app-transaction-time [field]="groupBy$ | async" [data]="data$ | async"></app-transaction-time>
+                      </mat-tab>
+                      <mat-tab>
+                          <ng-template mat-tab-label><span class="uppercase tabstyle" i18n>Customer Feedback</span></ng-template>
+                          <app-customer-feedback [field]="groupBy$ | async" [data]="data$ | async"></app-customer-feedback>
+                      </mat-tab>
+                  </mat-tab-group>
+              </div>
+          </div>
+      </div>
+      <footer></footer>
+  </div>
+</div>
