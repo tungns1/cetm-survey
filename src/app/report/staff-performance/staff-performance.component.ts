@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StaffPerformanceService } from './shared/staff-performance.service';
 
 @Component({
   selector: 'app-staff-performance',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffPerformanceComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private staffPerformanceService: StaffPerformanceService
+  ) { }
+
+  sumData$ = this.staffPerformanceService.sumData$;
+  tableData$ = this.staffPerformanceService.tableData$;
 
   ngOnInit() {
+  }
+
+  refresh(){
+    this.staffPerformanceService.Refresh();
+  }
+
+  test(){
+    // console.log(this.staffPerformanceService.StaffPerformance.SumData)
+    // console.log(this.staffPerformanceService.StaffPerformance.TableData)
   }
 
 }

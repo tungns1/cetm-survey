@@ -7,6 +7,7 @@ import { ReportCustomerModule } from './customer';
 import { ReportKioskModule } from './kiosk';
 import { ReportCounterModule } from './counter';
 import { ReportStoreModule } from './store';
+import { StaffPerformanceModule } from './staff-performance/staff-performance.module';
 import { SessionValidationGuard } from './shared';
 
 export function loadReportHistoryModule() {
@@ -31,6 +32,9 @@ export function loadReportCounterModule() {
 export function loadReportStoreModule() {
     return ReportStoreModule;
 }
+export function loadReportStaffPerformanceModule() {
+    return StaffPerformanceModule;
+}
 
 export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "dashboard" },
@@ -40,7 +44,8 @@ export const children: Routes = [
     { path: "customer", loadChildren: loadReportCustomerModule },
     { path: "kiosk", loadChildren: loadReportKioskModule },
     { path: "counter", loadChildren: loadReportCounterModule },
-    { path: "store", loadChildren: loadReportStoreModule }
+    { path: "store", loadChildren: loadReportStoreModule },
+    { path: "staffPerformance", loadChildren: loadReportStaffPerformanceModule }
 ];
 
 export const routing = RouterModule.forChild([

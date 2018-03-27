@@ -13,49 +13,6 @@
     </chart-item-group-view>
 </report-chart>
 <!-- Time View -->
-<!--<exportable>
-    <table id="tableEl" class="tableOverView" style="width: 100%" export-table i18n-title title="Transaction">
-        <thead export-row>
-            <th export="string" i18n>No.</th>
-            <th export="string" [groupByTitle]="field"></th>
-            <th export="string" i18n>Total transaction time</th>
-            <th class="widthCtrl">
-                <span export="string" i18n>Total serving time</span>
-                <span class="hide" export="string" i18n>Total serving time Percent</span>
-            </th>
-            <th class="widthCtrl">
-                <span export="string" i18n>Total waiting time</span>
-                <span class="hide" export="string" i18n>Total waiting time Percent</span>
-            </th>
-            <th export="string" i18n>Serving time avarage</th>
-            <th export="string" i18n>Serving time min</th>
-            <th export="string" i18n>Serving time max</th>
-            <th export="string" i18n>Waiting time avarage</th>
-            <th export="string" i18n>Waiting time min</th>
-            <th export="string" i18n>Waiting time max</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let d of data; let i = index" export-row>
-                <td export="number" style="text-align: center;"> {{i + 1}} </td>
-                <td export="string" style="text-align: center;">{{field | groupByTitle:d}} </td>
-                <td export="string" style="text-align: center"> {{d.s_tt | timeDuration}} </td>
-                <td style="text-align: center">
-                    <span export="number">{{d.s_st | timeDuration}}&nbsp;</span> (<span export="number">{{d.s_st_p}}</span>%)
-                </td>
-                <td style="text-align: center">
-                    <span export="number">{{d.s_wt | timeDuration}}&nbsp;</span> (<span export="number">{{d.s_wt_p}}</span>%)
-                </td>
-                <td export="string" style="text-align: center"> {{d.a_st | timeDuration}} </td>
-                <td export="string" style="text-align: center"> {{d.min_st | timeDuration}} </td>
-                <td export="string" style="text-align: center"> {{d.max_st | timeDuration}} </td>
-                <td export="string" style="text-align: center"> {{d.a_wt | timeDuration}} </td>
-                <td export="string" style="text-align: center"> {{d.min_wt | timeDuration}} </td>
-                <td export="string" style="text-align: center"> {{d.max_wt | timeDuration}} </td>
-            </tr>
-        </tbody>
-    </table>
-    <export-attribute name="filename" i18n-title title="Transaction"></export-attribute>
-</exportable>-->
 
 <ag-grid-angular #agGrid id="transTimeTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting>
@@ -74,8 +31,6 @@
     <ag-grid-column headerName="Serving time max" field="servingTimeMax" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 
     <ag-grid-column headerName="Waiting time avarage" field="waitingTimeAverage" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Waiting time min" field="waitingTimeMin" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-    <ag-grid-column headerName="Waiting time max" field="waitingTimeMax" [width]="145" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 </ag-grid-angular>
 
 <div fxLayout="row">

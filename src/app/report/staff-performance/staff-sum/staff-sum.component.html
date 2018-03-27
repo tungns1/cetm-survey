@@ -1,0 +1,72 @@
+<div id="staffSum" class="border padding-20-40" fxLayout="row" fxLayoutGap="20%">
+    <div fxLayout="column" fxFlex class="padding_monitor">
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total Transaction</label>
+            <span>{{_data?.all_deal_served}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average Of Served Transaction</label>
+            <span>{{_data?.number_avg_served}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Largest Number Of Served Transaction</label>
+            <span>{{_data?.number_largest_served}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Least Number Of Served Transaction</label>
+            <span>{{_data?.number_least_served}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total Connection Time</label>
+            <span>{{_data?.all_sum_connection_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Longest Connection Time</label>
+            <span>{{_data?.longest_connection_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total Serving Time</label>
+            <span>{{_data?.all_sum_serving_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Longest Serving Time</label>
+            <span>{{_data?.number_least_served | timeDuration}}</span>
+        </div>
+    </div>
+
+
+    <div fxLayout="column" fxFlex class="padding_monitor">
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total Canceled Transaction</label>
+            <span>{{_data?.all_deal_failed}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average Of Canceled Transaction</label>
+            <span>{{_data?.num_avg_deal_failed}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Largest Number Of Canceled Transaction</label>
+            <span>{{_data?.num_largest_deal_failed}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Least Number Of Canceled Transaction</label>
+            <span>{{_data?.num_least_deal_failed}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average Of Connection Time</label>
+            <span>{{_data?.avg_connection_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Shortest Connection Time</label>
+            <span>{{_data?.shorsest_connection_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average Of Serving Time</label>
+            <span>{{_data?.avg_serving_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Shortest Serving Time</label>
+            <span>{{_data?.shortest_served_time | timeDuration}}</span>
+        </div>
+    </div>
+</div>

@@ -29,66 +29,6 @@
     <p style="text-align: center;font-size: 18px;font-weight: bold;">Overview Report by {{field_by}}</p>
 </div>
 
-<!--<exportable>
-    <table class="tableOverView" style="width: 100%" export-table i18n-title title="General">
-        <thead export-row>
-            <th export="string" i18n>No.</th>
-            <th export="string" [groupByTitle]="field"></th>
-            <th export="string" i18n>Total Transaction</th>
-            <th>
-                <span export="string" i18n>Finished Transaction</span>
-                <span class="hide" export="string" i18n>Finished Transaction Percent</span>
-            </th>
-            <th>
-                <span export="string" i18n>Canceled Transaction</span>
-                <span class="hide" export="string" i18n>Canceled Transaction Percent</span>
-            </th>
-            <th>
-                <span export="string" i18n>Standard Waiting Time Transaction</span>
-                <span class="hide" export="string" i18n>Standard Waiting Time Transaction Percent</span>
-            </th>
-            <th class="widthCtrl">
-                <span export="string" i18n>Exceeded Waiting Time Transaction</span>
-                <span class="hide" export="string" i18n>Exceeded Waiting Time Transaction Percent</span>
-            </th>
-            <th class="widthCtrl">
-                <span export="string" i18n>Standard Serving Time Transaction</span>
-                <span class="hide" export="string" i18n>Standard Serving Time Transaction Percent</span>
-            </th>
-            <th class="widthCtrl">
-                <span export="string" i18n>Exceeded Serving Time Transaction</span>
-                <span class="hide" export="string" i18n>Exceeded Serving Time Transaction Percent</span>
-            </th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let d of data; let i = index" export-row>
-                <td export="number" style="text-align: center;"> {{i + 1}} </td>
-                <td export="string" style="text-align: center;">{{field | groupByTitle:d}}</td>
-                <td export="number" style="text-align: center"> {{d.c_t}} </td>
-                <td>
-                    <span export="number">{{d.c_ft}}</span> (<span export="number">{{d.c_ft_p}}</span>%)
-                </td>
-                <td>
-                    <span export="number">{{d.c_ct}}</span> (<span export="number">{{d.c_ct_p}}</span>%)
-                </td>
-                <td>
-                    <span export="number">{{d.c_bwt}}</span> (<span export="number">{{d.c_bwt_p}}</span>%)
-                </td>
-                <td>
-                    <span export="number">{{d.c_awt}}</span> (<span export="number">{{d.c_awt_p}}</span>%)
-                </td>
-                <td>
-                    <span export="number">{{d.c_bst}}</span> (<span export="number">{{d.c_bst_p}}</span>%)
-                </td>
-                <td>
-                    <span export="number">{{d.c_ast}}</span> (<span export="number">{{d.c_ast_p}}</span>%)
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <export-attribute name="filename" i18n-title title="General"></export-attribute>
-</exportable>-->
-
 
 <ag-grid-angular #agGrid id="overViewTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting export-table i18n-title>

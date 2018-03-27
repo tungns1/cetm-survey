@@ -60,6 +60,9 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Staff Performance</span>
+                </li>
             </ul>
         </li>
         <li class="li_firstLv" *ngIf="!(isMedia$ | async) && !isAdminStandard">
