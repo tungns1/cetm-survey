@@ -14,17 +14,20 @@ export class StaffPerformanceComponent implements OnInit {
 
   sumData$ = this.staffPerformanceService.sumData$;
   tableData$ = this.staffPerformanceService.tableData$;
+  transChart$ = this.staffPerformanceService.transChart$;
+  performanceChart$ = this.staffPerformanceService.performanceChart$;
 
   ngOnInit() {
   }
 
-  refresh(){
+  refresh() {
     this.staffPerformanceService.Refresh();
   }
 
-  test(){
+  test() {
     // console.log(this.staffPerformanceService.StaffPerformance.SumData)
     // console.log(this.staffPerformanceService.StaffPerformance.TableData)
   }
+
 
 }

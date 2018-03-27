@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material';
 import { AgGridModule } from 'ag-grid-angular';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { SharedModule, ReportFilterModule } from '../shared';
 import { StaffPerformanceService } from './shared/staff-performance.service';
@@ -22,7 +23,7 @@ const routing = RouterModule.forChild([
 @NgModule({
   imports: [
     CommonModule, SharedModule, ReportFilterModule,
-    routing, MatProgressSpinnerModule,
+    routing, MatTabsModule, NgxChartsModule,
 
     AgGridModule.withComponents([StaffTableComponent])
   ],

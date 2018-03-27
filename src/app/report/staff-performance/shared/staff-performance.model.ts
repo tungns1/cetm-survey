@@ -45,28 +45,61 @@ export interface IStaffRes {
     status: string;
 }
 
+interface ISeriesChart {
+    name: string;
+    value: number;
+}
+
+export interface IStackChart {
+    name: string;
+    series: ISeriesChart[];
+}
+
 export class StaffPerformanceReport {
     constructor() { }
 
     private sumData: IStaffSum;
-    private tableData: IStaffDetail[];
-    private chartData
+    private tableData: IStaffDetail[] = [];
+    private transactionChartData: IStackChart[] = [];
+    private performanceChartData: IStackChart[] = [];
 
-    Update(data: IStaffReport){
+    Update(data: IStaffReport) {
+        // console.log(data)
         this.sumData = data.detail;
         this.tableData = data.performance;
-        this.chartData = this.GenerateChartData(data.performance);
+        this.transactionChartData = data.performance.map(record => {
+            return {
+                name: record.username,
+                series: [
+                    { name: 'Served Transaction Count', value: record.deal_served },
+                    { name: 'Cancelled Transaction Count', value: record.deal_failed }
+                ]
+            }
+        });
+        this.performanceChartData = data.performance.map(record => {
+            return {
+                name: record.username,
+                series: [
+                    { name: 'Free Time', value: Number.parseInt(record.free_time.toString()) },
+                    { name: 'Serving Time', value: Number.parseInt(record.sum_serving_time.toString()) }
+                ]
+            }
+        });
     }
 
-    private GenerateChartData(data: IStaffDetail[]){
-        return ''
-    }
-
-    get SumData(){
+    get SumData() {
         return this.sumData;
     }
 
-    get TableData(){
+    get TableData() {
         return this.tableData;
+    }
+
+    get TransactionChartData() {
+        return this.transactionChartData;
+    }
+
+    get PerformanceChartData() {
+        return this.performanceChartData;
     }
 }

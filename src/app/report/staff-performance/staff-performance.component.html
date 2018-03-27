@@ -1,26 +1,50 @@
 <div fxLayout="row">
-  <div [fxFlex]="'250px'" class="leftFilter">
-      <report-filter (refresh)="refresh($event)" [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
-  </div>
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
 
-  <div fxFlex style="overflow: auto;" class="mainContent">
-      <div class="main_miraway">
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
 
-          <app-env-sub-module i18n-title title="Staff Performance"></app-env-sub-module>
-          <div id="staffPerformance">
-              <div class="headerAndNav">
-                  <h2 class="header uppercase" i18n>Staff Performance</h2>
-                  <div class="nav">
-                      <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General Report</button>
-                      <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
-                  </div>
-              </div>
-              <app-staff-sum [data]="sumData$ | async"></app-staff-sum>
-              <div class="divider margin-20-0"></div>
-              <app-staff-table [data]="tableData$ | async" ></app-staff-table>
-              <button (click)="test()">test</button>
-          </div>
-      </div>
-      <footer></footer>
-  </div>
+            <app-env-sub-module i18n-title title="Staff Performance"></app-env-sub-module>
+            <div id="staffPerformance">
+                <div class="headerAndNav">
+                    <h2 class="header uppercase" i18n>Staff Performance</h2>
+                    <div class="nav">
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General Report</button>
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+                    </div>
+                </div>
+                <app-staff-sum [data]="sumData$ | async"></app-staff-sum>
+                <div class="divider margin-20-0"></div>
+
+                <div class="border tabCtrl">
+                    <mat-tab-group>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Transaction</span>
+                            </ng-template>
+                            <div *ngIf="transChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="transChart$ | async"></ngx-charts-bar-vertical-stacked>
+                            </div>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Performance</span>
+                            </ng-template>
+                            <div *ngIf="transChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="performanceChart$ | async"></ngx-charts-bar-vertical-stacked>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+
+                <div class="divider margin-20-0"></div>
+
+                <app-staff-table [data]="tableData$ | async"></app-staff-table>
+                <!-- <button (click)="test()">test</button> -->
+            </div>
+        </div>
+        <footer></footer>
+    </div>
 </div>
