@@ -16,6 +16,7 @@ export class StaffPerformanceComponent implements OnInit {
   tableData$ = this.staffPerformanceService.tableData$;
   transChart$ = this.staffPerformanceService.transChart$;
   performanceChart$ = this.staffPerformanceService.performanceChart$;
+  selectedTab: number = 0;
 
   ngOnInit() {
   }
@@ -24,9 +25,8 @@ export class StaffPerformanceComponent implements OnInit {
     this.staffPerformanceService.Refresh();
   }
 
-  test() {
-    // console.log(this.staffPerformanceService.StaffPerformance.SumData)
-    // console.log(this.staffPerformanceService.StaffPerformance.TableData)
+  onTabChange(e) {
+      this.selectedTab = e.index;
   }
 
 

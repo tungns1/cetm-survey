@@ -12,7 +12,7 @@ export class StaffSumComponent implements OnInit {
 
   _data: IStaffSum;
 
-  @Input() set data(d: IStaffSum) { this._data = d }
+  @Input() set data(d) { this._data = d }
 
   ngOnInit() {
   }

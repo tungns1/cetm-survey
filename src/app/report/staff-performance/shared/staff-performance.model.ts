@@ -66,25 +66,27 @@ export class StaffPerformanceReport {
     Update(data: IStaffReport) {
         // console.log(data)
         this.sumData = data.detail;
-        this.tableData = data.performance;
-        this.transactionChartData = data.performance.map(record => {
-            return {
-                name: record.username,
-                series: [
-                    { name: 'Served Transaction Count', value: record.deal_served },
-                    { name: 'Cancelled Transaction Count', value: record.deal_failed }
-                ]
-            }
-        });
-        this.performanceChartData = data.performance.map(record => {
-            return {
-                name: record.username,
-                series: [
-                    { name: 'Free Time', value: Number.parseInt(record.free_time.toString()) },
-                    { name: 'Serving Time', value: Number.parseInt(record.sum_serving_time.toString()) }
-                ]
-            }
-        });
+        if (data.performance) {
+            this.tableData = data.performance;
+            this.transactionChartData = data.performance.map(record => {
+                return {
+                    name: record.username,
+                    series: [
+                        { name: 'Served Transaction Count', value: record.deal_served },
+                        { name: 'Cancelled Transaction Count', value: record.deal_failed }
+                    ]
+                }
+            });
+            this.performanceChartData = data.performance.map(record => {
+                return {
+                    name: record.username,
+                    series: [
+                        { name: 'Free Time', value: Number.parseInt(record.free_time.toString()) },
+                        { name: 'Serving Time', value: Number.parseInt(record.sum_serving_time.toString()) }
+                    ]
+                }
+            });
+        }
     }
 
     get SumData() {

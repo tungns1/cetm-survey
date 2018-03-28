@@ -19,21 +19,23 @@
                 <div class="divider margin-20-0"></div>
 
                 <div class="border tabCtrl">
-                    <mat-tab-group>
+                    <mat-tab-group (selectChange)="onTabChange($event)">
                         <mat-tab>
                             <ng-template mat-tab-label>
                                 <span class="uppercase" i18n>Transaction</span>
                             </ng-template>
-                            <div *ngIf="transChart$ | async" class="chartContainer">
-                                <ngx-charts-bar-vertical-stacked [results]="transChart$ | async"></ngx-charts-bar-vertical-stacked>
+                            <div *ngIf="selectedTab === 0 && transChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="transChart$ | async" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true"
+                                    showYAxisLabel="true"></ngx-charts-bar-vertical-stacked>
                             </div>
                         </mat-tab>
                         <mat-tab>
                             <ng-template mat-tab-label>
                                 <span class="uppercase" i18n>Performance</span>
                             </ng-template>
-                            <div *ngIf="transChart$ | async" class="chartContainer">
-                                <ngx-charts-bar-vertical-stacked [results]="performanceChart$ | async"></ngx-charts-bar-vertical-stacked>
+                            <div *ngIf="selectedTab === 1 && transChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="performanceChart$ | async" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true"
+                                    showYAxisLabel="true"></ngx-charts-bar-vertical-stacked>
                             </div>
                         </mat-tab>
                     </mat-tab-group>
