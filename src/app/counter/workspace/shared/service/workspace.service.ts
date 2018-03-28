@@ -104,7 +104,7 @@ export class WorkspaceService {
         let params = new HttpParams().set('branch_id', this.currentBranch.id)
         this.httpClient.get('http://123.31.12.147:8989/api/booking/ticket/branch_cetm_tickets', { params: params })
             .subscribe((respone: IBookingOnlineRespone) => {
-                if (respone.status === 'ok')
+                if (respone.status === 'ok' && respone.data)
                     this.bookingOnlineList$.next(respone.data.filter(d => {
                         return (d.type_ticket === 'book_schedule' && (this.currentCounter.services.indexOf(d.service_id) != -1));
                     }).sort((a, b) => {
