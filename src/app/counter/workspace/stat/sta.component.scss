@@ -1,6 +1,6 @@
 @import '../shared/style.scss';
 #sta {
-    height: 28.5vh;
+    height: 36vh;
     overflow: auto;
     .tabs {
         .tabCtrl {
@@ -37,49 +37,38 @@
     }
 }
 
+
 #search {
-    margin-top: 2%;
-    height: 53px;
-    position: relative;
-    .searchContainer {
-        padding: 3%;
+    margin-top: 3%;
+    height: 35vh;
+    padding: 3%;
+    overflow: auto;
+    input {
         width: 100%;
-        box-sizing: border-box;
-        overflow-y: auto;
-        overflow-x: hidden;
-        position: absolute;
-        input {
-            width: 100%;
-            border: $border;
-            border-radius: 3px;
-            height: 25px;
-            font-size: 12px;
-            text-indent: 10px;
+        border: $border;
+        border-radius: 3px;
+        height: 25px;
+        font-size: 12px;
+        text-indent: 10px;
+    }
+    .iconSearch {
+        float: right;
+        width: 20px;
+        position: relative;
+        top: -25px;
+    }
+    .searchResult {
+        .label {
+            text-align: left;
         }
-        .iconSearch {
-            width: 20px;
-            position: absolute;
-            top: 15px;
-            right: 15px;
+        .detail {
+            text-align: right;
         }
-        .searchResult {
-            .label {
-                text-align: left;
-            }
-            .detail {
-                text-align: right;
-            }
-            h3 {
-                text-align: center;
-            }
+        h3 {
+            text-align: center;
         }
     }
 }
-
-// #searchHolder {
-//     margin-top: 3%;
-//     height: 60px;
-// }
 
 #avgTime {
     margin-top: 3%;

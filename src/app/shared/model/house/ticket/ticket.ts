@@ -35,7 +35,6 @@ export interface ITicket {
     customer: ICustomer;
     ticket_priority: ITicketPriority;
     transaction_id?: string;
-    ticket_booking?: any;
 }
 
 export interface IMapTicket {
@@ -89,7 +88,6 @@ export class Ticket {
     transaction_id?= this._t.transaction_id;
     service_name = getServiceName(this._t);
     priority = new TicketPriority(this._t.ticket_priority);
-    ticket_booking = this._t.ticket_booking || {};
 
     getPrevTrack() {
         return this.tracks[this.tracks.length - 2];

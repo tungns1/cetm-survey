@@ -13,7 +13,6 @@ export class SearchComponent {
         private ticketService: TicketService
     ) { }
 
-    isShowResult: boolean = false;
     message: number = 1;
     cnum$ = new Subject<string>();
     tickets$ = this.cnum$.switchMap(cnum => {
