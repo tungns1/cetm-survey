@@ -61,7 +61,6 @@ export class ActionComponent {
         } else {
             this.triggerAction('finish');
         }
-
     }
 
     Delete() {
@@ -69,14 +68,17 @@ export class ActionComponent {
     }
 
     Miss() {
-
         this.triggerAction('miss');
+    }
+
+    printForm() {
+        this.triggerAction('print_form');
     }
 
     private triggerAction(action: TicketActionName) {
         return this.ticketService.TriggerAction(action, this.ticket);
     }
 
-    hasMiss = false;
+
 
 }

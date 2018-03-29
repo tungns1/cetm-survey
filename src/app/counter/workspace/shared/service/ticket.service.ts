@@ -29,7 +29,6 @@ export class TicketService {
             service_id: body.service_id,
             extra: body.extra
         }
-
         return this.socket.Send<ITicket>("/ticket", data).share();
     }
 
