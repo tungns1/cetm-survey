@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AuthService, RuntimeEnvironment, CacheService } from './shared';
-import { ICounter, ITicket, TicketState, IBranch, ICustomer } from '../shared';
+import { ICounter, ITicket, TicketState, IBranch, ICustomer, IUser } from '../shared';
 import { ITicketAction, Workspace, IWorkspaceInitialState } from '../../../shared/model';
 import { of } from 'rxjs/observable/of';
 import { merge } from 'rxjs/observable/merge';
 import { WorkspaceSocket } from './workspace.socket';
+import { ITicketTrack } from '..';
 
 const SOCKET_LINK = "/room/counter/join";
 
@@ -37,6 +38,19 @@ interface IBookingOnlineRespone {
     data: IBookingOnline[];
 }
 
+interface ISyncBookingTicket {
+    teller: string;
+    avatar_teller: string;
+    teller_id: string;
+    bticket_id: string;
+    check_in_at: number;
+    id_ticket_cetm: string;
+    cnum_cetm: string;
+    status: string;
+    serving_time: number;
+    wating_time: number;
+}
+
 @Injectable()
 export class WorkspaceService {
     constructor(
@@ -48,6 +62,7 @@ export class WorkspaceService {
 
     private currentBranch: IBranch;
     private currentCounter: ICounter;
+    private currentUser: IUser;
     private interval;
 
     private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
@@ -56,9 +71,12 @@ export class WorkspaceService {
 
 
     Workspace$ = this.initialState$.switchMap(s => {
+        this.currentUser = s.user;
         const w = new Workspace(s);
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
             .map(action => {
+                // console.log(action)
+                this.syncBookingSystem(action)
                 w.Update(action);
             });
         const autoNext = this.autoNext$.map(a => {
@@ -113,5 +131,34 @@ export class WorkspaceService {
                         else return 0;
                     }));
             });
+    }
+
+    private syncBookingSystem(action: ITicketAction) {
+        if (action.action === 'finish' && action.counter_id === this.currentCounter.id) {
+            let body: ISyncBookingTicket = {
+                teller: this.currentUser.fullname,
+                avatar_teller: this.currentUser.public_avatar || '',
+                teller_id: this.currentUser.id,
+                bticket_id: action.ticket.ticket_booking.id,
+                check_in_at: action.ticket.ticket_booking.check_in_at,
+                id_ticket_cetm: action.ticket.id,
+                cnum_cetm: action.ticket.cnum,
+                status: action.ticket.state,
+                serving_time: this.getServingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
+                wating_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
+            }
+            this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body)
+                .subscribe(respone => {  });
+        }
+    }
+
+    private getServingTime(tracksReverse: ITicketTrack[]): number{
+        let lastServingTime = tracksReverse.find(checkPoint => checkPoint.state === 'serving');
+        return tracksReverse[0].mtime - lastServingTime.mtime;
+    }
+
+    private getWaitingTime(tracksReverse: ITicketTrack[]): number{
+        let lastWaitingTimeIndex = tracksReverse.findIndex(checkPoint => checkPoint.state === 'waiting');
+        return tracksReverse[lastWaitingTimeIndex - 1].mtime - tracksReverse[lastWaitingTimeIndex].mtime;
     }
 }
