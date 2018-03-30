@@ -22,8 +22,8 @@ export class StaffTableComponent implements OnInit {
     if (d)
       this._data = d.map((record, index) => {
         record['no'] = index + 1;
-        record.first_login = this.datePipe.transform(record.first_login, 'short');
-        record.last_logout = this.datePipe.transform(record.last_logout, 'short');
+        record.first_login = this.datePipe.transform((Number.parseInt(record.first_login.toString()) * 1000), 'short');
+        record.last_logout = this.datePipe.transform((Number.parseInt(record.last_logout.toString()) * 1000), 'short');
         record.sum_connection_time = this.timeDuration.transform(Number.parseInt(record.sum_connection_time.toString()));
         record.sum_serving_time = this.timeDuration.transform(Number.parseInt(record.sum_serving_time.toString()));
         record.avg_serving_time = this.timeDuration.transform(Number.parseInt(record.avg_serving_time.toString()));
