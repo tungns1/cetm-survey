@@ -79,7 +79,6 @@ export class TicketService {
     }
 
     TriggerAction(action: TicketActionName, ticket: Ticket) {
-        // this.SyncBookingSystem(action, ticket);
         return this.manager.Work(action, ticket, {
             record_transaction: this.settingService.EnableRecordTransaction,
             platform: this.platform,

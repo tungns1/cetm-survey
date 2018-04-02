@@ -134,7 +134,7 @@ export class WorkspaceService {
     }
 
     private syncBookingSystem(action: ITicketAction) {
-        if (action.action === 'finish' && action.counter_id === this.currentCounter.id) {
+        if ((action.action === 'finish' || action.action === 'move' || action.action === 'cancel') && action.counter_id === this.currentCounter.id) {
             let body: ISyncBookingTicket = {
                 teller: this.currentUser.fullname,
                 avatar_teller: this.currentUser.public_avatar || '',
@@ -147,8 +147,7 @@ export class WorkspaceService {
                 serving_time: this.getServingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
                 wating_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
             }
-            this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body)
-                .subscribe(respone => {  });
+            this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body).subscribe();
         }
     }
 
@@ -159,6 +158,6 @@ export class WorkspaceService {
 
     private getWaitingTime(tracksReverse: ITicketTrack[]): number{
         let lastWaitingTimeIndex = tracksReverse.findIndex(checkPoint => checkPoint.state === 'waiting');
-        return tracksReverse[lastWaitingTimeIndex - 1].mtime - tracksReverse[lastWaitingTimeIndex].mtime;
+        return tracksReverse[lastWaitingTimeIndex ? (lastWaitingTimeIndex - 1) : 0].mtime - tracksReverse[lastWaitingTimeIndex].mtime;
     }
 }
