@@ -1,11 +1,14 @@
-import { ITicket, Ticket, IService, TicketState, TicketStates } from '../shared';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { ITicket, Ticket, IService, TicketState, TicketStates, RuntimeEnvironment } from '../shared';
 import { Workspace } from '../../../shared/model';
 import { QueueService } from './queue.service';
 import { WorkspaceService } from './workspace.service';
-import { Injectable } from '@angular/core';
 import { WorkspaceSettingService } from '../counter-setting.service';
 import { ActionManager, TicketAction, TicketActionName } from './shared';
 import { QmsService } from '../shared';
+
+
 
 @Injectable()
 export class TicketService {
@@ -13,13 +16,17 @@ export class TicketService {
         private qms: QmsService,
         private workspaceService: WorkspaceService,
         private settingService: WorkspaceSettingService,
-        private queueService: QueueService
+        private queueService: QueueService,
+        private env: RuntimeEnvironment,
+        private httpClient: HttpClient
     ) {
         this.onInit();
     }
 
     private socket = this.workspaceService.Socket;
     private platform = this.qms.platform || "other";
+
+    private manager = new ActionManager((ta: TicketAction) => this.sendAction(ta));
 
     private sendAction(body: TicketAction) {
         const data = <TicketAction>{
@@ -31,10 +38,6 @@ export class TicketService {
         }
         return this.socket.Send<ITicket>("/ticket", data).share();
     }
-
-    private manager = new ActionManager((ta: TicketAction) => {
-        return this.sendAction(ta);
-    });
 
     Move(t: Ticket, services: string[], counters: string[]) {
         return this.manager.Work("move", t, { services, counters });
@@ -80,4 +83,5 @@ export class TicketService {
             platform: this.platform,
         });
     }
+
 }

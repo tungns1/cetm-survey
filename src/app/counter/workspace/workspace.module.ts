@@ -21,6 +21,7 @@ import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
 import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
 import { SettingComponent } from './setting/setting.component';
 import { workspaceServiceProvider } from './shared/workspace.provider';
+import { HttpClientModule } from '@angular/common/http';
 
 /**
  * Check setting before redirect
@@ -90,7 +91,7 @@ const routing = RouterModule.forChild([
 
 @NgModule({
     imports: [
-        routing, SharedModule, QueueModule,
+        routing, SharedModule, QueueModule, HttpClientModule,
         ServingModule, StatModule, MatProgressSpinnerModule,
         MatCheckboxModule, MatInputModule, MatFormFieldModule,
         MatToolbarModule, MatProgressBarModule, MatTabsModule,

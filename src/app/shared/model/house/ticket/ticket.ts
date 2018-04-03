@@ -35,6 +35,28 @@ export interface ITicket {
     customer: ICustomer;
     ticket_priority: ITicketPriority;
     transaction_id?: string;
+    ticket_booking?: ITicketBooking;
+}
+
+interface ITicketBooking {
+    id: string;
+    created_at: number;
+    updated_at: number;
+    time_go_bank: number;
+    service_id: string;
+    branch_id: string;
+    type_ticket: string;
+    lang: string;
+    customer_code: string;
+    customer_id: string;
+    check_in_at: number;
+    id_ticket_cetm: string;
+    cnum_cetm: string;
+    teller_id: string;
+    teller: string;
+    serving_time: string;
+    wating_time: string;
+    status: string;
 }
 
 export interface IMapTicket {
@@ -88,6 +110,7 @@ export class Ticket {
     transaction_id?= this._t.transaction_id;
     service_name = getServiceName(this._t);
     priority = new TicketPriority(this._t.ticket_priority);
+    ticket_booking: ITicketBooking = this._t.ticket_booking || null;
 
     getPrevTrack() {
         return this.tracks[this.tracks.length - 2];
