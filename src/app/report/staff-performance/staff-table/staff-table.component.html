@@ -1,6 +1,5 @@
 <div class="staffTable">
-  <ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [rowData]="_data" [gridOptions]="gridOptions" class="ag-fresh tableCtrl"
-    enableColResize enableSorting>
+  <ag-grid-angular #agGrid [rowData]="_data" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Teller Name" field="username" [width]="220" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
     <ag-grid-column headerName="Served Transaction Count" field="deal_served" [width]="165" [cellClass]="cellClass" i18n-headerName></ag-grid-column>

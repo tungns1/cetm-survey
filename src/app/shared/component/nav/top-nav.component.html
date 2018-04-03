@@ -63,6 +63,18 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Staff Performance</span>
                 </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Waiting Time</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/detailCusWaiting" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Detail Waiting Time</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/cusServing" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Serving Time</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/detailSusServing" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Detail Serving Time</span>
+                </li>
             </ul>
         </li>
         <li class="li_firstLv" *ngIf="!(isMedia$ | async) && !isAdminStandard">

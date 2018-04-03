@@ -1,0 +1,78 @@
+<div fxLayout="row">
+	<div [fxFlex]="'250px'" class="leftFilter">
+		<report-filter (refresh)="refresh($event)" [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+	</div>
+
+	<div fxFlex style="overflow: auto;" class="mainContent">
+		<div class="main_miraway">
+
+			<app-env-sub-module i18n-title title="Waiting Time Report"></app-env-sub-module>
+			<div id="staffPerformance" class="mainContent">
+				<div class="headerAndNav">
+					<h2 class="header uppercase" i18n>Waiting Time Report</h2>
+					<div class="nav">
+						<button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General Report</button>
+						<button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Transaction History</button>
+					</div>
+				</div>
+				<!-- <div class="border padding-20-40" fxLayout="row" fxLayoutGap="20%">
+					<div fxLayout="column" fxFlex>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Total Transaction</label>
+							<span>{{_data?.all_deal_served}}</span>
+						</div>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Average Of Served Transaction</label>
+							<span>{{_data?.number_avg_served}}</span>
+						</div>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Largest Number Of Served Transaction</label>
+							<span>{{_data?.number_largest_served}}</span>
+						</div>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Least Number Of Served Transaction</label>
+							<span>{{_data?.number_least_served}}</span>
+						</div>
+					</div>
+
+					<div fxLayout="column" fxFlex>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Total Canceled Transaction</label>
+							<span>{{_data?.all_deal_failed}}</span>
+						</div>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Average Of Canceled Transaction</label>
+							<span>{{_data?.num_avg_deal_failed}}</span>
+						</div>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Largest Number Of Canceled Transaction</label>
+							<span>{{_data?.num_largest_deal_failed}}</span>
+						</div>
+						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+							<label i18n>Least Number Of Canceled Transaction</label>
+							<span>{{_data?.num_least_deal_failed}}</span>
+						</div>
+					</div>
+				</div> -->
+				<ag-grid-angular [gridOptions]="gridOptions" [rowData]="tableData$ | async" class="ag-fresh tableCtrl" enableColResize enableSorting>
+					<ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="Standard Waiting Transaction" field="standard" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="Exceeded Waiting Transaction" field="over_standard" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="05'" field="in_05" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="10'" field="in_10" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="15'" field="in_15" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="20'" field="in_20" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="25'" field="in_25" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="30'" field="in_30" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="35'" field="in_35" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="40'" field="in_40" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="45'" field="in_45" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="> 45'" field="out_45" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="Average" field="avg" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+				</ag-grid-angular>
+			</div>
+			<!-- <button (click)="test()">test</button> -->
+		</div>
+		<footer></footer>
+	</div>
+</div>

@@ -8,6 +8,10 @@ import { ReportKioskModule } from './kiosk';
 import { ReportCounterModule } from './counter';
 import { ReportStoreModule } from './store';
 import { StaffPerformanceModule } from './staff-performance/staff-performance.module';
+import { CusWaitingModule } from './cus-waiting/cus-waiting.module';
+import { DetailCusWaitingModule } from './detail-cus-waiting/detail-cus-waiting.module';
+import { CusServingModule } from './cus-serving/cus-serving.module';
+import { DetailCusServingModule } from './detail-cus-serving/detail-cus-serving.module';
 import { SessionValidationGuard } from './shared';
 
 export function loadReportHistoryModule() {
@@ -35,6 +39,18 @@ export function loadReportStoreModule() {
 export function loadReportStaffPerformanceModule() {
     return StaffPerformanceModule;
 }
+export function loadReportCusWaitingModule() {
+    return CusWaitingModule;
+}
+export function loadReportDetailCusWaitingModule() {
+    return DetailCusWaitingModule;
+}
+export function loadReportCusServingModule() {
+    return CusServingModule;
+}
+export function loadReportDetailCusServingModule() {
+    return DetailCusServingModule;
+}
 
 export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "dashboard" },
@@ -45,7 +61,11 @@ export const children: Routes = [
     { path: "kiosk", loadChildren: loadReportKioskModule },
     { path: "counter", loadChildren: loadReportCounterModule },
     { path: "store", loadChildren: loadReportStoreModule },
-    { path: "staffPerformance", loadChildren: loadReportStaffPerformanceModule }
+    { path: "staffPerformance", loadChildren: loadReportStaffPerformanceModule },
+    { path: "cusWaiting", loadChildren: loadReportCusWaitingModule },
+    { path: "detailCusWaiting", loadChildren: loadReportDetailCusWaitingModule },
+    { path: "cusServing", loadChildren: loadReportCusServingModule },
+    { path: "detailSusServing", loadChildren: loadReportDetailCusServingModule }
 ];
 
 export const routing = RouterModule.forChild([

@@ -45,7 +45,7 @@ export class IncompleteTicketComponent {
     };
     waitingTime = TimerComopnent;
     ticketIconNumber = TicketIconComponent;
-    cellclass: string[] = ['padding-10', 'center'];
+    cellClass: string[] = ['padding-10', 'center'];
 
     detailCellRenderer() {
         return '<img class="iconDetail" src="./assets/img/icon/play.png" style="cursor: pointer">';
