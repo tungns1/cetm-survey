@@ -126,8 +126,8 @@ export class WorkspaceService {
                     this.bookingOnlineList$.next(respone.data.filter(d => {
                         return (d.type_ticket === 'book_schedule' && (this.currentCounter.services.indexOf(d.service_id) != -1));
                     }).sort((a, b) => {
-                        if(a.check_in_at > b.check_in_at) return 1;
-                        if(a.check_in_at < b.check_in_at) return -1;
+                        if (a.check_in_at > b.check_in_at) return 1;
+                        if (a.check_in_at < b.check_in_at) return -1;
                         else return 0;
                     }));
             });
@@ -145,19 +145,26 @@ export class WorkspaceService {
                 cnum_cetm: action.ticket.cnum,
                 status: action.ticket.state,
                 serving_time: this.getServingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
-                wating_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
+                wating_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks))),
             }
             this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body).subscribe();
         }
     }
 
-    private getServingTime(tracksReverse: ITicketTrack[]): number{
+    private getServingTime(tracksReverse: ITicketTrack[]): number {
         let lastServingTime = tracksReverse.find(checkPoint => checkPoint.state === 'serving');
         return tracksReverse[0].mtime - lastServingTime.mtime;
     }
 
-    private getWaitingTime(tracksReverse: ITicketTrack[]): number{
-        let lastWaitingTimeIndex = tracksReverse.findIndex(checkPoint => checkPoint.state === 'waiting');
-        return tracksReverse[lastWaitingTimeIndex ? (lastWaitingTimeIndex - 1) : 0].mtime - tracksReverse[lastWaitingTimeIndex].mtime;
+    private getWaitingTime(tracks: ITicketTrack[]): number {
+        // let lastWaitingTimeIndex = tracksReverse.findIndex(checkPoint => checkPoint.state === 'waiting');
+        // return tracksReverse[lastWaitingTimeIndex ? (lastWaitingTimeIndex - 1) : 0].mtime - tracksReverse[lastWaitingTimeIndex].mtime;
+        let result: number = 0;
+        tracks.forEach((track, i) => {
+            if (track.state === 'waiting') {
+                result += tracks[i + 1] ? (tracks[i + 1].mtime - track.mtime) : 0;
+            }
+        })
+        return result;
     }
 }
