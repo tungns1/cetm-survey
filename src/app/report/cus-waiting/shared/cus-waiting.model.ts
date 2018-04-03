@@ -1,4 +1,4 @@
-export interface ICusWaitingData {
+export interface ICusWaitingDetail {
     branch_id: string;
     sum_trans: number;
     standard: number;
@@ -16,8 +16,24 @@ export interface ICusWaitingData {
     avg: number;
 }
 
+export interface ICusWaitingSum {
+    all_deal: number;
+    s_d: number;
+    o_s_d: number;
+    l_d_f_t: string;
+    s_d_f_t: string;
+    avg_time: number;
+    s_avg: string;
+    l_avg: string;
+}
+
+export interface ICusWaitingData {
+    data: ICusWaitingDetail[];
+    overview: ICusWaitingSum;
+}
+
 export interface ICusWaitingRes {
-    data: ICusWaitingData[];
+    data: ICusWaitingData;
     status: string;
 }
 
@@ -34,16 +50,20 @@ export interface ILineChart {
 export class CustomerWaiting {
     constructor() { }
 
-    private sumData: any = {};
+    private sumData: ICusWaitingSum = null;
     private chartData: ILineChart[] = [];
-    private tableData: ICusWaitingData[] = [];
+    private tableData: ICusWaitingDetail[] = [];
 
-    Update(data: ICusWaitingData[]) {
-        this.tableData = data;
-        // this.sumData = this.getSumData(data);
+    Update(data: ICusWaitingData) {
+        this.tableData = data.data;
+        this.sumData = data.overview;
     }
 
-    get TableData(){
+    get TableData() {
         return Array.from(this.tableData);
+    }
+
+    get SumData(){
+        return this.sumData;
     }
 }

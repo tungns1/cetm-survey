@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs';
 import { ReportFilterService, HttpServiceGenerator } from '../../shared';
 import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
-import { ICusWaitingRes, CustomerWaiting, ICusWaitingData } from './cus-waiting.model';
+import { ICusWaitingRes, CustomerWaiting, ICusWaitingDetail, ICusWaitingData } from './cus-waiting.model';
 
 
 @Injectable()
@@ -15,17 +15,14 @@ export class CusWaitingService {
 
     private backend = this.httpServiceGenerator.make<any>("/api/report/transaction");
     private CustomerWaiting = new CustomerWaiting;
-    // sumData$ = new Subject<IStaffSum>();
-    tableData$ = new BehaviorSubject<ICusWaitingData[]>([]);
-    // transChart$ = new BehaviorSubject<IStackChart[]>([]);
-    // performanceChart$ = new BehaviorSubject<IStackChart[]>([]);
+    CustomerWaiting$ = new BehaviorSubject<CustomerWaiting>(null);
 
     Refresh() {
         ShowLoading();
-        this.backend.Get<ICusWaitingRes>('agg_time', Object.assign(this.filterService.ToBackendQuery(), {mode: 'wtime'})).subscribe(res => {
+        this.backend.Get<ICusWaitingData>('agg_time', Object.assign(this.filterService.ToBackendQuery(), {mode: 'wtime'})).subscribe(res => {
             if (res && res.data) {
-                this.CustomerWaiting.Update(res.data);
-                this.tableData$.next(this.CustomerWaiting.TableData);
+                this.CustomerWaiting.Update(res);
+                this.CustomerWaiting$.next(this.CustomerWaiting);
             }
             HideLoading();
         });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid';
 import { CusWaitingService } from './shared/cus-waiting.service';
+import { ICusWaitingSum } from './shared/cus-waiting.model';
 
 @Component({
   selector: 'app-cus-waiting',
@@ -13,7 +14,8 @@ export class CusWaitingComponent implements OnInit {
     private cusWatingService: CusWaitingService
   ) { }
 
-  tableData$ = this.cusWatingService.tableData$;
+  tableData$ = this.cusWatingService.CustomerWaiting$.map(data => { if (data) return data.TableData });
+  sumData: ICusWaitingSum = null;
 
 
   cellClass: string[] = ['center', 'padding-10'];
@@ -24,6 +26,10 @@ export class CusWaitingComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.cusWatingService.CustomerWaiting$.subscribe(data => {
+      if (data) this.sumData = data.SumData;
+      console.log(this.sumData)
+    })
   }
 
   refresh() {
