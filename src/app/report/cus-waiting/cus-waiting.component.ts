@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid';
 import { CusWaitingService } from './shared/cus-waiting.service';
 import { ICusWaitingSum } from './shared/cus-waiting.model';
+import { BranchNamePipe } from '../../shared/pipe/branch.pipe';
 
 @Component({
   selector: 'app-cus-waiting',
@@ -14,8 +15,18 @@ export class CusWaitingComponent implements OnInit {
     private cusWatingService: CusWaitingService
   ) { }
 
-  tableData$ = this.cusWatingService.CustomerWaiting$.map(data => { if (data) return data.TableData });
+  tableData$ = this.cusWatingService.CustomerWaiting$.map(data => {
+    if (data) {
+      let result = data.TableData;
+      result.forEach(record => {
+        const branchNamePipe = new BranchNamePipe();
+        record['store'] = branchNamePipe.transform(record.branch_id);
+      })
+      return result;
+    }
+  });
   sumData: ICusWaitingSum = null;
+  chartData = [];
 
 
   cellClass: string[] = ['center', 'padding-10'];
@@ -27,9 +38,11 @@ export class CusWaitingComponent implements OnInit {
 
   ngOnInit() {
     this.cusWatingService.CustomerWaiting$.subscribe(data => {
-      if (data) this.sumData = data.SumData;
-      console.log(this.sumData)
-    })
+      if (data) {
+        this.sumData = data.SumData;
+        this.chartData = data.ChartData;
+      }
+    });
   }
 
   refresh() {

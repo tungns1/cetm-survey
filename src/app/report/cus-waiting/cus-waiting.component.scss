@@ -5,7 +5,8 @@
         .rowCtrl{
             margin-top: 25px;
             label{
-                font-size: $font-weight-default + 200;
+                font-weight: $font-weight-default + 200;
+                // font-size: 20px;
             }
         }
     }

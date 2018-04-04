@@ -20,7 +20,8 @@ const routing = RouterModule.forChild([
 @NgModule({
   imports: [
     CommonModule, routing, SharedModule,
-    ReportFilterModule, AgGridModule.withComponents([CusWaitingComponent])
+    ReportFilterModule, AgGridModule.withComponents([CusWaitingComponent]),
+    NgxChartsModule
   ],
   declarations: [CusWaitingComponent],
   providers: [CusWaitingService]

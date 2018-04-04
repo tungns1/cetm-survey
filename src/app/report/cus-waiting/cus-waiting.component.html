@@ -31,7 +31,7 @@
 						</div>
 						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
 							<label i18n>PGD thời jan đợi tb ngắn nhất</label>
-							<span>{{sumData?.s_avg | timeDuration}}</span>
+							<span>{{sumData?.s_avg.branch_id | branchName}} ({{sumData?.s_avg.value | timeDuration}})</span>
 						</div>
 					</div>
 
@@ -50,30 +50,38 @@
 						</div>
 						<div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
 							<label i18n>PGD thời jan đợi tb lâu nhất</label>
-							<span>{{sumData?.l_avg | timeDuration}}</span>
+							<span>{{sumData?.l_avg.branch_id | branchName}} ({{sumData?.l_avg.value | timeDuration}})</span>
 						</div>
 					</div>
 				</div>
+
+				<div class="divider margin-20-0"></div>
+
 				<div class="border padding-20-40" width100>
 					<div class="chartContainer">
-						<ngx-charts-line-chart [results]="multi" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true" showYAxisLabel="true">
+						<ngx-charts-line-chart [results]="chartData" xAxis="true" yAxis="true" showXAxisLabel="true" showYAxisLabel="true">
 						</ngx-charts-line-chart>
 					</div>
 				</div>
+
+				<div class="divider margin-t-20"></div>
+
 				<ag-grid-angular [gridOptions]="gridOptions" [rowData]="tableData$ | async" class="ag-fresh tableCtrl" enableColResize enableSorting>
 					<ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="Store" field="store" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="Total Transaction" field="sum_trans" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 					<ag-grid-column headerName="Standard Waiting Transaction" field="standard" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 					<ag-grid-column headerName="Exceeded Waiting Transaction" field="over_standard" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="05'" field="in_05" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="10'" field="in_10" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="15'" field="in_15" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="20'" field="in_20" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="25'" field="in_25" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="30'" field="in_30" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="35'" field="in_35" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="40'" field="in_40" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="45'" field="in_45" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-					<ag-grid-column headerName="> 45'" field="out_45" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="05'" field="period.in_05" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="10'" field="period.in_10" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="15'" field="period.in_15" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="20'" field="period.in_20" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="25'" field="period.in_25" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="30'" field="period.in_30" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="35'" field="period.in_35" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="40'" field="period.in_40" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="45'" field="period.in_45" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+					<ag-grid-column headerName="> 45'" field="period.out_45" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 					<ag-grid-column headerName="Average" field="avg" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
 				</ag-grid-angular>
 			</div>

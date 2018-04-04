@@ -1,8 +1,4 @@
-export interface ICusWaitingDetail {
-    branch_id: string;
-    sum_trans: number;
-    standard: number;
-    over_standard: number;
+export interface IPeriodCusWaiting {
     in_05: number;
     in_10: number;
     in_15: number;
@@ -13,7 +9,15 @@ export interface ICusWaitingDetail {
     in_40: number;
     in_45: number;
     out_45: number;
+}
+
+export interface ICusWaitingDetail {
+    branch_id: string;
+    sum_trans: number;
+    standard: number;
+    over_standard: number;
     avg: number;
+    period: IPeriodCusWaiting
 }
 
 export interface ICusWaitingSum {
@@ -23,8 +27,14 @@ export interface ICusWaitingSum {
     l_d_f_t: string;
     s_d_f_t: string;
     avg_time: number;
-    s_avg: string;
-    l_avg: string;
+    s_avg: {
+        branch_id: string;
+        value: number;
+    };
+    l_avg: {
+        branch_id: string;
+        value: number;
+    };
 }
 
 export interface ICusWaitingData {
@@ -57,13 +67,37 @@ export class CustomerWaiting {
     Update(data: ICusWaitingData) {
         this.tableData = data.data;
         this.sumData = data.overview;
+        this.chartData[0] = this.GetChartData(JSON.parse(JSON.stringify(data)).data);
+        // this.GetChartData(JSON.parse(JSON.stringify(data)).data);
+    }
+
+    private GetChartData(data: ICusWaitingDetail[] = []): ILineChart {
+        const sumPeriod: IPeriodCusWaiting = data.reduce<ICusWaitingDetail>((a, b) => {
+            Object.keys(a.period).forEach(key => a.period[key] += b.period[key]);
+            return a;
+        }, data[0]).period;
+        let result: ILineChart = {
+            name: '',
+            series: []
+        }
+        Object.keys(data[0].period).forEach(key => {
+            result.series.push({
+                name: key,
+                value: sumPeriod[key]
+            })
+        })
+        return result;
     }
 
     get TableData() {
         return Array.from(this.tableData);
     }
 
-    get SumData(){
+    get SumData() {
         return this.sumData;
+    }
+
+    get ChartData() {
+        return Array.from(this.chartData)
     }
 }
