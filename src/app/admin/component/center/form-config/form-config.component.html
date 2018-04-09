@@ -1,0 +1,71 @@
+<app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
+<div *ngIf="showList$ | async">
+    <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false">
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+    </app-datatable>
+</div>
+
+
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [isValid]="form.valid" (action)="onActionConfirm($event, form.value)"
+    title="Layout" i18n-title [canEdit]="false">
+    <form class="margin-b-20 margin-l-10" [formGroup]="form" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="20%" i18n>Name</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
+                <div fxFlex="1%" *ngIf="!form.get('name').hasError('required')">&nbsp;</div>
+                <div fxFlex fxLayout="column">
+                    <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
+                    <p fxFlex class="valid-color margin-0" *ngIf="form.get('name').hasError('pattern')">At least 4 characters</p>
+                    <p fxFlex class="margin-0" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</p>
+                </div>
+            </div>
+            <span fxFlex="20%" i18n>Layout Type</span>
+            <select fxFlex class="hl-select" formControlName="type">
+                <option value="kiosk">Kiosk</option>
+                <option value="screen">Screen</option>
+                <option value="feedback">Feedback</option>
+            </select>
+        </div>
+
+        <input id="layoutImportBtn" class="hide" name="myFile" type="file" (change)="readUIDataFormFile($event)" accept=".json">
+        <textarea class="hide" formControlName="ui"></textarea>
+
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="21%" i18n>Resource</span>
+            <app-resource-editor fxFlex formControlName="resources"></app-resource-editor>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <div fxFlex="21%"></div>
+            <button fxFlex class="uppercase btnFill" (click)="editLayout()">
+                <span>Edit layout</span>
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+            <button fxFlex class="uppercase btnFill" (click)="openFontList()">
+                <span>Edit font</span>
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+            <button fxFlex class="uppercase btnFill" (click)="editTemplate()">
+                <span>Edit template</span>
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <div fxFlex="21%"></div>
+            <div fxFlex class="border">
+                <accordion id="accordion_code">
+                    <accordion-title class="accordionTitle margin-t-15">
+                        <span i18n>Show Code</span>
+                    </accordion-title>
+                    <div fxLayout="row">
+                        <json-text-form fxFlex formControlName="ui"></json-text-form>
+                    </div>
+                </accordion>
+            </div>
+        </div>
+
+    </form>
+</app-editor-view>
+

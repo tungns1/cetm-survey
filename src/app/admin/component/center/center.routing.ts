@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { CenterComponent } from './center.component';
 import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { VoiceComponent } from './voice/voice.component';
+import { FormConfigComponent } from './form-config/form-config.component';
 
 const children: Routes = [
   {
@@ -56,6 +57,15 @@ const children: Routes = [
   {
     path: 'voice/:id',
     component: VoiceComponent
+  },
+  {
+    path: 'formconfig',
+    pathMatch: 'full',
+    redirectTo: 'formconfig/list'
+  },
+  {
+    path: 'formconfig/:id',
+    component: FormConfigComponent
   }
 ]
 
