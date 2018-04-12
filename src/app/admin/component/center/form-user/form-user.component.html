@@ -1,0 +1,23 @@
+<app-env-sub-module i18n-title title="Service Form"></app-env-sub-module>
+<!-- <div *ngIf="showList$ | async"> -->
+<div *ngIf="isList">
+    <!-- <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false"> -->
+    <app-datatable name="Service Form" i18n-name [data]="listService$" (action)="onAction($event)" [canEdit]="false">
+
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+
+    </app-datatable>
+</div>
+<div *ngIf="!isList">
+    <div class="headerAndNav">
+        <div class="nav">
+            <button class="btnClear btnMargin uppercase" (click)="GoBack()">
+              <span i18n class="uppercase">Go Back</span>
+            </button>
+        </div>
+    </div>
+    <h2>{{formName}}</h2>
+    <div id="form_view">
+        <!--form here-->
+    </div>
+</div>

@@ -30,6 +30,21 @@ export class CustomFormService {
 
     return this.httpClient.get(this.env.generateHostName(8888) + "/api/admin/house/form/get_col?token="+this.session)
   }
+  getAllForm(): Observable<any> {
+    this.session = AppStorage.Token
+
+    return this.httpClient.get(this.env.generateHostName(8888) + "/api/admin/house/form/get_all_form?token="+this.session)
+  }
+  getFormBySerId(ser_id): Observable<any> {
+    this.session = AppStorage.Token
+
+    return this.httpClient.get(this.env.generateHostName(8888) + "/api/admin/house/form/get_form?token="+this.session+"&service_id="+ser_id)
+  }
+  getSerForm(): Observable<any> {
+    this.session = AppStorage.Token
+
+    return this.httpClient.get(this.env.generateHostName(8888) + "/api/admin/house/form/get_sers_form?token="+this.session)
+  }
   createForm(data): Observable<any> {
     this.session = AppStorage.Token
 

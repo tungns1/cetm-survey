@@ -60,6 +60,7 @@ export class FormConfigComponent { // Remember to change interface
   formArray: formArr[] = []
   ngOnInit() {
     this.getCol();
+    this.getAllForm();
   }
   ngAfterViewInit() {
     this.layoutImportBtn = document.getElementById('layoutImportBtn');
@@ -100,10 +101,22 @@ export class FormConfigComponent { // Remember to change interface
 
     });
   }
-  onAction() {
+  onAction(e) {
+    console.log(e);
+    if (e.action == "edit") {
+      this.isNew = false
+      this.formservice.getFormBySerId(e.value.service_id).subscribe(val => {
+        this.formData = val.data
+      })
+    } else {
+      this.isNew = true
+    }
     this.isList = false;
-    this.isNew = true
+    // this.formservice.getSerForm().subscribe(val=>{
+    //   this.listService$ = val.data
+    // })
   }
+  
   addToView(fName, fDescription) {
     let item: formArr = { col_name: '', description: '', type: 'txt' }
     item.col_name = fName;
@@ -143,6 +156,15 @@ export class FormConfigComponent { // Remember to change interface
     console.log(this.formData)
     this.formservice.createForm(this.formData).subscribe(val => {
       this.isList = true;
+
+      this.formData = null
+      this.getAllForm()
+    })
+
+  }
+  getAllForm() {
+    this.formservice.getAllForm().subscribe(val => {
+      this.listform$ = val.data
     })
   }
   getCol() {

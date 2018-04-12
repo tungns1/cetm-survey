@@ -2,7 +2,8 @@
 <div *ngIf="isList">
     <app-datatable name="CForm" i18n-name [data]="listform$" (action)="onAction($event)" [canEdit]="false">
 
-        <app-table-field name="db_name" i18n-title title="Name"></app-table-field>
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+
     </app-datatable>
 </div>
 <div *ngIf="!isList">
@@ -65,8 +66,8 @@
         </div>
     </section>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
-        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" type="submit" (click)="addNew()" i18n>Add</button>
-        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" type="submit" (click)="addNew()" i18n>Save</button>
+        <button fxFlex="15%" class="uppercase btnFill" *ngIf="isNew" type="submit" (click)="addNew()" i18n>Add</button>
+        <button fxFlex="15%" class="uppercase btnFill" *ngIf="!isNew" type="submit" (click)="addNew()" i18n>Save</button>
     </div>
 </div>
 <div id="addOption" class="modal fade" role="dialog">
