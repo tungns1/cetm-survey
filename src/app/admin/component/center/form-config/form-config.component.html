@@ -18,7 +18,7 @@
         </div>
     </div>
     <form (ngSubmit)="addNew()" #deviceForm="ngForm">
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl" style="width: 100%">
             <span class="text-label" i18n>Name</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
                 <!-- <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
@@ -44,10 +44,7 @@
             <div fxFlex></div> -->
         </div>
     </form>
-    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
-        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" type="submit" (click)="addNew()" i18n>Add</button>
-        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" type="submit" (click)="addNew()" i18n>Save</button>
-    </div>
+
     <div class="col-md-6">
         <div *ngFor="let col of allCol, let i= index">
             <button class="btnFill btn-col" fxLayoutGap="20px" (click)="addToView(col.id)">{{col.description}}</button>
@@ -60,7 +57,10 @@
             <li>fdsfds</li>
         </ul>
     </section>
-
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" type="submit" (click)="addNew()" i18n>Add</button>
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" type="submit" (click)="addNew()" i18n>Save</button>
+    </div>
 </div>
 <!-- 
 <app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" title="CForm" i18n-title [canEdit]="false">
