@@ -1,13 +1,80 @@
-<app-env-sub-module i18n-title title="Layout"></app-env-sub-module>
-<div *ngIf="showList$ | async">
-    <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false">
-        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+<app-env-sub-module i18n-title title="CForm"></app-env-sub-module>
+<!-- <div *ngIf="showList$ | async"> -->
+<div *ngIf="isList">
+    <!-- <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false"> -->
+    <app-datatable name="CForm" i18n-name [data]="listform$" (action)="onAction($event)" [canEdit]="false">
+
+        <app-table-field name="db_name" i18n-title title="Name"></app-table-field>
     </app-datatable>
 </div>
+<div *ngIf="!isList">
+    <div class="headerAndNav">
+        <h2 *ngIf="isNew" class="header uppercase" i18n="Add New Model">Add New {{title}}</h2>
+        <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit {{title}}</h2>
+        <div class="nav">
+            <button class="btnClear btnMargin uppercase" (click)="GoBack()">
+                            <span i18n class="uppercase">Go Back</span>
+                        </button>
+        </div>
+    </div>
+    <form (ngSubmit)="addNew()" #deviceForm="ngForm">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl" style="width: 100%">
+            <span class="text-label" i18n>Name</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <!-- <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span> -->
+                <!-- <div fxFlex fxLayout="column" fxLayoutGap="2px"> -->
+                <!-- <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;"> -->
+                <input fxFlex="100%" class="ctrlInput" type="text" [(ngModel)]="formData.name" placeholder="Form name" name="name">
+                <!-- 
+                    <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">At least 4 characters</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div> -->
+                <!-- </div> -->
+            </div>
 
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span class="text-label">Service</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <select #t class="hl-select" id="service" [(ngModel)]="formData.service_id" name="service">      
+                    <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.name}}</option>
+                </select>
+            </div>
+            <!-- <div fxFlex="10%"></div>
+            <div fxFlex></div> -->
+        </div>
+    </form>
 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" [isValid]="form.valid" (action)="onActionConfirm($event, form.value)"
-    title="Layout" i18n-title [canEdit]="false">
+    <div class="col-md-6">
+        <div *ngFor="let col of allCol, let i= index">
+            <button class="btnFill btn-col" fxLayoutGap="20px" (click)="addToView(col.id)">{{col.description}}</button>
+
+        </div>
+    </div>
+
+    <section class="view col-md-6" id="view_form">
+        <ul class="fadeInRight animated">
+            <li>fdsfds</li>
+        </ul>
+    </section>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" type="submit" (click)="addNew()" i18n>Add</button>
+        <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" type="submit" (click)="addNew()" i18n>Save</button>
+    </div>
+</div>
+<!-- 
+<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" title="CForm" i18n-title [canEdit]="false">
+    <form [formGroup]="form" #deviceForm="ngForm">
+        <input type="text" placeholder="form name" formControlName="name">
+        <select #t class="form-control" id="service" formControlName="service_id">      
+            <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.name}}</option>
+          </select>
+        <div *ngFor="let col of allCol, let i= index">
+            <button (click)="addToView(col.id)">{{col.description}}</button>
+
+        </div>
+    </form> -->
+<!-- 
     <form class="margin-b-20 margin-l-10" [formGroup]="form" fxLayout="column">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span fxFlex="20%" i18n>Name</span>
@@ -66,6 +133,5 @@
             </div>
         </div>
 
-    </form>
-</app-editor-view>
-
+    </form> -->
+<!-- </app-editor-view> -->
