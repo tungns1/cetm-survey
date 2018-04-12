@@ -17,7 +17,7 @@ import { CustomFormService } from '../../../service/center/cform';
 import { CacheService } from '../../../../shared/model/center/service';
 import { IColForm, IForm } from '../../../../shared/model/center/cform';
 import { Location } from '@angular/common';
-declare var $:any
+declare var $: any
 @Component({
   selector: 'app-form-config',
   templateUrl: './form-config.component.html',
@@ -50,10 +50,11 @@ export class FormConfigComponent { // Remember to change interface
     })
   })
   protected listService$ = CacheService.RxListView.value
-  protected listform$ = this.formservice.getDataForm()
+  protected listform$: any
 
   ngOnInit() {
     this.getCol();
+    this.getAllForm();
   }
   ngAfterViewInit() {
     this.layoutImportBtn = document.getElementById('layoutImportBtn');
@@ -76,12 +77,12 @@ export class FormConfigComponent { // Remember to change interface
     mtime: 0,
     dtime: 0,
     name: '',
-    service_id:'',
+    service_id: '',
     form_html: '',
-    item_forms: null 
+    item_forms: null
   }
   private GoBack() {
-    
+
     this.isList = true
   }
   makeForm(b?: IForm) {
@@ -94,9 +95,20 @@ export class FormConfigComponent { // Remember to change interface
 
     });
   }
-  onAction() {
+  onAction(e) {
+    console.log(e);
+    if (e.action == "edit") {
+      this.isNew = false
+      this.formservice.getFormBySerId(e.value.service_id).subscribe(val => {
+        this.formData = val.data
+      })
+    } else {
+      this.isNew = true
+    }
     this.isList = false;
-    this.isNew = true
+    // this.formservice.getSerForm().subscribe(val=>{
+    //   this.listService$ = val.data
+    // })
   }
   addToView(id) {
     console.log('xxx')
@@ -104,13 +116,20 @@ export class FormConfigComponent { // Remember to change interface
     // $('#view_form ul').append(html);
     let test = document.getElementById("view_form")
     test.innerText += html
-      
-  }
-  addNew(){
-    console.log(this.formData)
-    this.formservice.createForm(this.formData).subscribe(val=>{
-      this.isList = true;
 
+  }
+  addNew() {
+    console.log(this.formData)
+    this.formservice.createForm(this.formData).subscribe(val => {
+      this.isList = true;
+      this.formData = null
+      this.getAllForm()
+    })
+
+  }
+  getAllForm() {
+    this.formservice.getAllForm().subscribe(val => {
+      this.listform$ = val.data
     })
   }
   getCol() {
