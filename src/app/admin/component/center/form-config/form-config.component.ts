@@ -101,22 +101,32 @@ export class FormConfigComponent { // Remember to change interface
 
     });
   }
+  service_created: any[] = []
   onAction(e) {
     console.log(e);
     if (e.action == "edit") {
+      this.isList = false;
       this.isNew = false
       this.formservice.getFormBySerId(e.value.service_id).subscribe(val => {
         this.formData = val.data
       })
+    } else if (e.action == "remove-confirm") {
+      this.formservice.deleteForm(e.value.id).subscribe(val => {
+        this.getAllForm()
+
+
+      })
     } else {
       this.isNew = true
+      this.isList = false;
     }
-    this.isList = false;
-    // this.formservice.getSerForm().subscribe(val=>{
-    //   this.listService$ = val.data
-    // })
+    
+    this.formservice.getSerForm().subscribe(val => {
+      this.service_created = val
+      // this.listService$ =this.listService$.filter(service => !this.service_created.find(ser_id=> ser_id === service.id))
+    })
   }
-  
+
   addToView(fName, fDescription) {
     let item: formArr = { col_name: '', description: '', type: 'txt' }
     item.col_name = fName;
@@ -157,7 +167,15 @@ export class FormConfigComponent { // Remember to change interface
     this.formservice.createForm(this.formData).subscribe(val => {
       this.isList = true;
 
-      this.formData = null
+      this.formData = {
+        id: '',
+        mtime: 0,
+        dtime: 0,
+        name: '',
+        service_id: '',
+        form_html: '',
+        item_forms: null
+      }
       this.getAllForm()
     })
 
@@ -187,7 +205,10 @@ export class FormConfigComponent { // Remember to change interface
       }
     })
   }
+  deleteForm(i) {
 
+    $('.form-row.active').splice(i, 1)
+  }
 
 }
 
