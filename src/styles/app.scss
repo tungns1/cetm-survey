@@ -46,6 +46,9 @@ html {
                         border-bottom: 1px solid #0b8fdb;
                     }
                 }
+                span {
+                    display: none;
+                }
             }
             .form-input {
                 height: 25px;
@@ -54,6 +57,31 @@ html {
                 border-radius: 3px;
                 width: 100%;
             }
+        }
+    }
+}
+
+.view-form {
+    .form-row {
+        cursor: default;
+    }
+    .txt-label {
+        input {
+            display: none;
+        }
+        span {
+            font-size: 16px;
+            text-transform: capitalize;
+            border: none;
+            background-color: transparent;
+        }
+    }
+    .form-control {
+        select:not(.form-input) {
+            display: none;
+        }
+        a {
+            display: none;
         }
     }
 }
