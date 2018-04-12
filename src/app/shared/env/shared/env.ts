@@ -17,4 +17,13 @@ export class RuntimeEnvironment {
 
     Debug = new DebugEnvStorage();
     Platform = new PlatformEnvStorage();
+    generateHostName(port?: number) {
+        if (port) {
+            let hostName = this.Platform.Data.host ? this.Platform.Data.host.split(':')[0] : window.location.hostname;
+            return 'http://' + hostName + ':' + port;
+        } else {
+            let host = this.Platform.Data.host ? this.Platform.Data.host : window.location.host;
+            return 'http://' + host;
+        }
+    }
 }
