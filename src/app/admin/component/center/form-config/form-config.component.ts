@@ -130,6 +130,10 @@ export class FormConfigComponent { // Remember to change interface
   changeFormType(value, index) {
     this.formArray[index].type = value
   }
+  onChangeDes(value,index){
+    this.formArray[index].description = value
+    console.log(value)
+  }
   addOption(index) {
     index = index + 1
     $('.form-row').removeClass('active')
