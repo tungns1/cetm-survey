@@ -17,13 +17,19 @@ import { CustomFormService } from '../../../service/center/cform';
 import { CacheService } from '../../../../shared/model/center/service';
 import { IColForm, IForm } from '../../../../shared/model/center/cform';
 import { Location } from '@angular/common';
-declare var $:any
+declare var $: any
+export interface formArr {
+  col_name: string
+  description: string
+  type: string
+}
 @Component({
   selector: 'app-form-config',
   templateUrl: './form-config.component.html',
   styleUrls: ['./form-config.component.scss'],
   providers: [CustomFormService]
 })
+
 export class FormConfigComponent { // Remember to change interface
   constructor(
     injector: Injector,
@@ -51,7 +57,7 @@ export class FormConfigComponent { // Remember to change interface
   })
   protected listService$ = CacheService.RxListView.value
   protected listform$ = this.formservice.getDataForm()
-
+  formArray: formArr[] = []
   ngOnInit() {
     this.getCol();
   }
@@ -76,12 +82,12 @@ export class FormConfigComponent { // Remember to change interface
     mtime: 0,
     dtime: 0,
     name: '',
-    service_id:'',
+    service_id: '',
     form_html: '',
-    item_forms: null 
+    item_forms: null
   }
   private GoBack() {
-    
+
     this.isList = true
   }
   makeForm(b?: IForm) {
@@ -98,19 +104,45 @@ export class FormConfigComponent { // Remember to change interface
     this.isList = false;
     this.isNew = true
   }
-  addToView(id) {
-    console.log('xxx')
-    var html = '<li>cdsdsfdsfds</li>';
-    // $('#view_form ul').append(html);
-    let test = document.getElementById("view_form")
-    test.innerText += html
-      
+  addToView(fName, fDescription) {
+    let item: formArr = { col_name: '', description: '', type: 'txt' }
+    item.col_name = fName;
+    item.description = fDescription
+    this.formArray.push(item)
+    $("#view_form").sortable({
+      placeholder: "ui-state-highlight"
+    });
+    $("#view_form").disableSelection();
   }
-  addNew(){
+  changeFormType(value, index) {
+    this.formArray[index].type = value
+  }
+  addOption(index) {
+    index = index + 1
+    $('.form-row').removeClass('active')
+    var $form = $('#view_form').find('.form-row:nth-child(' + index + ')').addClass('active')
+    $("#addOption").modal("show");
+    $("#addOption").on('hide.bs.modal', function () {
+      $('.value-option').html('')
+      $('#drop_value').val('')
+    });
+  }
+  addMoreValue() {
+    var value = $('#drop_value').val()
+    $('.value-option').append('<li>' + value + '</li>')
+    $('#btn_save_drop').off('click').on('click', function () {
+      $('.value-option li').each(function () {
+        $('.form-row.active').find('select.form-input').append(' <option value="' + $(this).text() + '">' + $(this).text() + '</option>')
+      })
+      $("#addOption").modal("hide");
+    })
+  }
+  addNew() {
+    //get html value
+    this.formData.form_html = $('#view_form').html()
     console.log(this.formData)
-    this.formservice.createForm(this.formData).subscribe(val=>{
+    this.formservice.createForm(this.formData).subscribe(val => {
       this.isList = true;
-
     })
   }
   getCol() {
@@ -122,66 +154,6 @@ export class FormConfigComponent { // Remember to change interface
   sent() {
     console.log('dgfdgfd99')
   }
-  // readUIDataFormFile(event) {
-  //   let input = event.target;
-  //   let reader = new FileReader();
-  //   reader.onload = _ => {
-  //     this.form$.first().subscribe(form => {
-  //       form.setValue({
-  //         id: form.value.id,
-  //         name: form.value.name,
-  //         type: form.value.type,
-  //         style: form.value.style,
-  //         resources: form.value.resources,
-  //         ui: JSON.parse(reader.result),
-  //       })
-  //     })
-  //     const ref = this.matSnackBar
-  //       .open(this.translateService.translate('The file was import successfully'),
-  //       this.translateService.translate('Close'), {
-  //         duration: 6000,
-  //         extraClasses: ["success"]
-  //       });
-  //   };
-  //   reader.onerror = (error) => {
-  //     console.log(error)
-  //   }
-  //   if (input['files'][0])
-  //     reader.readAsText(input['files'][0]);
-  // }
-
-  // editLayout() {
-  //   const config = new MatDialogConfig();
-  //   config.width = '50%';
-  //   config.data = this.ui;
-  //   const dialog = this.dialog.open(UIEditorComponent, config);
-  //   dialog.afterClosed().subscribe(d => {
-  //     if (d) {
-  //       this.saveUI(d);
-  //     }
-  //   })
-  // }
-
-  // editTemplate() {
-  //   const config = new MatDialogConfig();
-  //   config.width = '450px';
-  //   config.data = this.ui;
-  //   const dialog = this.dialog.open(XListComponent, config);
-  //   dialog.afterClosed().subscribe(d => {
-  //     if (d) {
-  //       this.saveUI(d);
-  //     }
-  //   })
-  // }
-
-  // saveUI(ui: UI) {
-  //   this.form$.first().subscribe(form => {
-  //     let value = form.value;
-  //     value.ui = ui;
-  //     form.setValue(value);
-  //   })
-  // }
-
   openFontList() {
     const config = new MatDialogConfig();
     config.width = '450px';

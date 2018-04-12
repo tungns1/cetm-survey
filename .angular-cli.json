@@ -24,12 +24,17 @@
             "styles.scss",
             "assets/vendor/font-awesome/css/font-awesome.css",
             "assets/vendor/animate.css/animate.css",
+            "assets/vendor/jquery-ui/css/jquery-ui.css",
             "../node_modules/ag-grid/dist/styles/ag-grid.css",
             "../node_modules/ag-grid/dist/styles/theme-fresh.css"
         ],
-        "scripts": [{
-            "input": "assets/vendor/flatpickr/flatpickr.min.js"
-        }],
+        "scripts": [
+            "assets/vendor/flatpickr/flatpickr.min.js",
+            "assets/vendor/bootstrap/js/jquery-3.2.1.min.js",
+            "assets/vendor/bootstrap/js/jquery-ui.js",
+            "assets/vendor/bootstrap/js/jquery.ui.rotatable.min.js",
+            "assets/vendor/bootstrap/js/bootstrap.min.js"
+        ],
         "environmentSource": "environments/environment.ts",
         "environments": {
             "dev": "environments/environment.ts",

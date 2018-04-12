@@ -1,7 +1,5 @@
 <app-env-sub-module i18n-title title="CForm"></app-env-sub-module>
-<!-- <div *ngIf="showList$ | async"> -->
 <div *ngIf="isList">
-    <!-- <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false"> -->
     <app-datatable name="CForm" i18n-name [data]="listform$" (action)="onAction($event)" [canEdit]="false">
 
         <app-table-field name="db_name" i18n-title title="Name"></app-table-field>
@@ -12,26 +10,15 @@
         <h2 *ngIf="isNew" class="header uppercase" i18n="Add New Model">Add New {{title}}</h2>
         <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit {{title}}</h2>
         <div class="nav">
-            <button class="btnClear btnMargin uppercase" (click)="GoBack()">
-                            <span i18n class="uppercase">Go Back</span>
-                        </button>
+            <button class="btnClear btnMargin uppercase" (click)="GoBack()"><span i18n class="uppercase">Go Back</span></button>
         </div>
     </div>
     <form (ngSubmit)="addNew()" #deviceForm="ngForm">
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl" style="width: 100%">
             <span class="text-label" i18n>Name</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <!-- <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
-                <span fxFlex="1%" class="error" *ngIf="!form.get('name').hasError('required')">&nbsp;</span> -->
-                <!-- <div fxFlex fxLayout="column" fxLayoutGap="2px"> -->
-                <!-- <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;"> -->
                 <input fxFlex="100%" class="ctrlInput" type="text" [(ngModel)]="formData.name" placeholder="Form name" name="name">
-                <!-- 
-                    <div fxFlex class="valid-color" *ngIf="form.get('name').hasError('pattern')">At least 4 characters</div>
-                    <div fxFlex class="valid-color" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</div> -->
-                <!-- </div> -->
             </div>
-
         </div>
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span class="text-label">Service</span>
@@ -40,98 +27,67 @@
                     <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.name}}</option>
                 </select>
             </div>
-            <!-- <div fxFlex="10%"></div>
-            <div fxFlex></div> -->
         </div>
     </form>
 
     <div class="col-md-6">
         <div *ngFor="let col of allCol, let i= index">
-            <button class="btnFill btn-col" fxLayoutGap="20px" (click)="addToView(col.id)">{{col.description}}</button>
-
+            <button class="btnFill btn-col" fxLayoutGap="20px" (click)="addToView(col.col_name,col.description)">{{col.description}}</button>
         </div>
     </div>
 
-    <section class="view col-md-6" id="view_form">
-        <ul class="fadeInRight animated">
-            <li>fdsfds</li>
-        </ul>
+    <section class="view col-md-6 fadeInRight animated">
+        <div id="view_form">
+            <div class="form-row" *ngFor="let f of formArray, let i= index">
+                <div class="txt-label">
+                    <input type="text" value="{{f.description}}">
+                </div>
+                <div class="form-control" [ngSwitch]="f.type">
+                    <div *ngSwitchCase="'txt'">
+                        <input class="form-input" type="text" name="{{f.col_name}}">
+                    </div>
+                    <div *ngSwitchCase="'txt_area'">
+                        <textarea class="form-input" name="{{f.col_name}}"></textarea>
+                    </div>
+                    <div *ngSwitchCase="'select'">
+                        <select class="form-input" name="{{f.col_name}}"></select>
+                        <a (click)="addOption(i)">Add value</a>
+                    </div>
+                    <select (change)="changeFormType($event.target.value,i)">
+                        <option value="txt">TextBox</option>
+                        <option value="txt_area">TextArea</option>
+                        <option value="select">Dropdown</option>
+                    </select>
+                    <a (click)="deleteForm(i)">Xóa</a>
+                </div>
+
+            </div>
+        </div>
     </section>
     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="!isNew" type="submit" (click)="addNew()" i18n>Add</button>
         <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" type="submit" (click)="addNew()" i18n>Save</button>
     </div>
 </div>
-<!-- 
-<app-editor-view *ngIf="form$ | async; let form" [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" title="CForm" i18n-title [canEdit]="false">
-    <form [formGroup]="form" #deviceForm="ngForm">
-        <input type="text" placeholder="form name" formControlName="name">
-        <select #t class="form-control" id="service" formControlName="service_id">      
-            <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.name}}</option>
-          </select>
-        <div *ngFor="let col of allCol, let i= index">
-            <button (click)="addToView(col.id)">{{col.description}}</button>
-
-        </div>
-    </form> -->
-<!-- 
-    <form class="margin-b-20 margin-l-10" [formGroup]="form" fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="20%" i18n>Name</span>
-            <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <span fxFlex="1%" class="valid-color" *ngIf="form.get('name').hasError('required')">*</span>
-                <div fxFlex="1%" *ngIf="!form.get('name').hasError('required')">&nbsp;</div>
-                <div fxFlex fxLayout="column">
-                    <input fxFlex="100%" class="ctrlInput" type="text" formControlName="name" i18n-placeholder placeholder="Name" style="width: 100%;">
-                    <p fxFlex class="valid-color margin-0" *ngIf="form.get('name').hasError('pattern')">At least 4 characters</p>
-                    <p fxFlex class="margin-0" *ngIf="!form.get('name').hasError('pattern')">&nbsp;</p>
-                </div>
+<div id="addOption" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Option</h4>
             </div>
-            <span fxFlex="20%" i18n>Layout Type</span>
-            <select fxFlex class="hl-select" formControlName="type">
-                <option value="kiosk">Kiosk</option>
-                <option value="screen">Screen</option>
-                <option value="feedback">Feedback</option>
-            </select>
-        </div>
+            <div class="modal-body">
+                <input type="text" value="Enter value" id="drop_value" />
+                <ul class="value-option">
 
-        <input id="layoutImportBtn" class="hide" name="myFile" type="file" (change)="readUIDataFormFile($event)" accept=".json">
-        <textarea class="hide" formControlName="ui"></textarea>
-
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <span fxFlex="21%" i18n>Resource</span>
-            <app-resource-editor fxFlex formControlName="resources"></app-resource-editor>
-        </div>
-
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <div fxFlex="21%"></div>
-            <button fxFlex class="uppercase btnFill" (click)="editLayout()">
-                <span>Edit layout</span>
-                <i class="fa fa-edit" aria-hidden="true"></i>
-            </button>
-            <button fxFlex class="uppercase btnFill" (click)="openFontList()">
-                <span>Edit font</span>
-                <i class="fa fa-edit" aria-hidden="true"></i>
-            </button>
-            <button fxFlex class="uppercase btnFill" (click)="editTemplate()">
-                <span>Edit template</span>
-                <i class="fa fa-edit" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
-            <div fxFlex="21%"></div>
-            <div fxFlex class="border">
-                <accordion id="accordion_code">
-                    <accordion-title class="accordionTitle margin-t-15">
-                        <span i18n>Show Code</span>
-                    </accordion-title>
-                    <div fxLayout="row">
-                        <json-text-form fxFlex formControlName="ui"></json-text-form>
-                    </div>
-                </accordion>
+                </ul>
+                <a (click)="addMoreValue()">Add</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" id="btn_save_drop">Save</button>
             </div>
         </div>
-
-    </form> -->
-<!-- </app-editor-view> -->
+    </div>
+</div>
