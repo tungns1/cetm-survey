@@ -24,10 +24,14 @@
         <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
             <span class="text-label">Service</span>
             <div fxFlex fxLayout="row" fxLayoutGap="5px">
-                <select #t class="hl-select" id="service" [(ngModel)]="formData.service_id" name="service">      
-                    <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.name}}</option>
-                </select>
+                <!-- <select #t class="hl-select" [(ngModel)]="formData.service_id" name="service">      
+                    <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.code}}</option>
+                </select> -->
+                <select #k id="ser" class="hl-select" [(ngModel)]="formData.service_id" name="ser" required>      
+                    <option *ngFor="let d of listService$" [value]="d.id">{{d.code}}</option>
+                  </select>
             </div>
+
         </div>
     </form>
 
@@ -60,7 +64,7 @@
                         <option value="txt_area">TextArea</option>
                         <option value="select">Dropdown</option>
                     </select>
-                    <a (click)="deleteForm(i)">Xóa</a>
+                    <!-- <a (click)="deleteForm(i)">Xóa</a> -->
                 </div>
 
             </div>

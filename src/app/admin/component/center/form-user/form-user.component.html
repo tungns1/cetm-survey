@@ -2,7 +2,7 @@
 <!-- <div *ngIf="showList$ | async"> -->
 <div *ngIf="isList">
     <!-- <app-datatable name="Layout" i18n-name [data]="layouts$ | async" (action)="onActionRequest($event)" [canEdit]="false"> -->
-    <app-datatable name="Service Form" i18n-name [data]="listService$" (action)="onAction($event)" [canEdit]="false">
+    <app-datatable name="Service Form" i18n-name [data]="listService$" (action)="onAction($event)" [canEdit]="false" [noDelete]="true">
 
         <app-table-field name="name" i18n-title title="Name"></app-table-field>
 
@@ -17,7 +17,11 @@
         </div>
     </div>
     <h2>{{formName}}</h2>
-    <div id="view_form" class="view-form">
-        <!--form here-->
-    </div>
+    <form action="http://123.31.12.147:8888/api/admin/house/form/add_data?token=ses_KZry9pjxiVXhFE4VqndR" method="post" id="form1">
+        <div id="view_form" class="view-form">
+            <!--form here-->
+        </div>
+    </form>
+    <button style="float: right;" class="btnFill" type="submit" form="form1" value="Submit" (click)="Save()">Submit</button>
+
 </div>

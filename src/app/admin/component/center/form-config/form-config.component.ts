@@ -88,8 +88,17 @@ export class FormConfigComponent { // Remember to change interface
     item_forms: null
   }
   private GoBack() {
-
+    this.formArray = []
     this.isList = true
+    this.formData = {
+      id: '',
+      mtime: 0,
+      dtime: 0,
+      name: '',
+      service_id: '',
+      form_html: '',
+      item_forms: null
+    }
   }
   makeForm(b?: IForm) {
     b = b || <any>{};
@@ -120,9 +129,10 @@ export class FormConfigComponent { // Remember to change interface
       this.isNew = true
       this.isList = false;
     }
-    
+
     this.formservice.getSerForm().subscribe(val => {
-      this.service_created = val
+      // this.service_created = val
+      this.listService$ = val.data
       // this.listService$ =this.listService$.filter(service => !this.service_created.find(ser_id=> ser_id === service.id))
     })
   }
@@ -140,7 +150,7 @@ export class FormConfigComponent { // Remember to change interface
   changeFormType(value, index) {
     this.formArray[index].type = value
   }
-  onChangeDes(value,index){
+  onChangeDes(value, index) {
     this.formArray[index].description = value
     console.log(value)
   }
@@ -180,6 +190,7 @@ export class FormConfigComponent { // Remember to change interface
         form_html: '',
         item_forms: null
       }
+      this.formArray = []
       this.getAllForm()
     })
 

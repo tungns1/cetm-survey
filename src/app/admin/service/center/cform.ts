@@ -55,4 +55,9 @@ export class CustomFormService {
 
     return this.httpClient.post(this.env.generateHostName(8888) + "/api/admin/house/form/add_form?token=" + this.session, data)
   }
+  FillForm(data): Observable<any> {
+    this.session = AppStorage.Token
+
+    return this.httpClient.post(this.env.generateHostName(8888) + "/api/admin/house/form/add_data?token=" + this.session, data)
+  }
 }

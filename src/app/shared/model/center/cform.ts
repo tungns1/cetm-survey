@@ -8,6 +8,11 @@ export interface IForm {
     form_html: string,
     item_forms: any 
 }
+export interface IDForm {
+  form_id: string,
+  data: any
+}
+
 export interface IItemForm {
     id_col: string,
     name: string,
