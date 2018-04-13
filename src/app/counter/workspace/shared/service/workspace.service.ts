@@ -48,7 +48,7 @@ interface ISyncBookingTicket {
     cnum_cetm: string;
     status: string;
     serving_time: number;
-    wating_time: number;
+    waiting_time: number;
 }
 
 @Injectable()
@@ -145,7 +145,7 @@ export class WorkspaceService {
                 cnum_cetm: action.ticket.cnum,
                 status: action.ticket.state,
                 serving_time: this.getServingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
-                wating_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks))),
+                waiting_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks))),
             }
             this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body).subscribe();
         }
