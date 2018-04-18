@@ -75,7 +75,6 @@ i: number = 0
         } else {
             this.triggerAction('finish');
         }
-
     }
 
     Delete() {
@@ -83,14 +82,17 @@ i: number = 0
     }
 
     Miss() {
-
         this.triggerAction('miss');
+    }
+
+    printForm() {
+        this.triggerAction('print_form');
     }
 
     private triggerAction(action: TicketActionName) {
         return this.ticketService.TriggerAction(action, this.ticket);
     }
 
-    hasMiss = false;
+
 
 }

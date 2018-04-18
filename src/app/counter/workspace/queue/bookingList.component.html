@@ -1,0 +1,21 @@
+<div id="bookingOnlineList" class="border">
+    <div class="componentHeader">
+        <span i18n>Booking Online</span>
+        <span class="totalCount">({{count$ | async}})</span>
+    </div>
+    <div class="queue">
+        <div fxLayout="row" class="headerTable">
+            <span fxFlex class="cell" i18n="Numerical Order">Customer Name</span>
+            <span fxFlex="40%" class="cell" i18n>Service Name</span>
+            <span fxFlex="20%" class="cell" i18n>Booking At</span>
+        </div>
+        <div fxLayout="row" class="row" *ngFor="let booking of list$ | async">
+            <div fxFlex class="cell">
+                <!-- <ticket-icon [ticket]="t"></ticket-icon> -->
+                <span>{{booking.customer.full_name}}</span>
+            </div>
+            <span fxFlex="40%" class="cell">{{booking.service_id | serviceName}}</span>
+            <span fxFlex="20%" class="cell">{{booking.time_go_bank | localDayTime}}</span>
+        </div>
+    </div>
+</div>

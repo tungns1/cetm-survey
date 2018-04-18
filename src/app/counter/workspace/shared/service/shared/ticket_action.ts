@@ -1,4 +1,4 @@
-export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create';
+export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create' | 'print_form';
 
 interface ITicketAction<T> {
     action: string;
@@ -82,9 +82,19 @@ export class ActionManager {
         private handler: (ta: TicketAction) => Observable<ITicket>
     ) { }
 
+    private queue: TicketAction[] = [];
+    private error_list = [];
+    LongErrorList$ = new Subject();
+
     Work(action: TicketActionName, ticket: Ticket, extra?: any, counter?: string) {
         if (!ticket) return of(null);
         const ta = new TicketAction(action, ticket, counter);
+        if (action === 'print_form') {
+            ta.extra = extra;
+            this.queue.push(ta);
+            this.next();
+            return ta.afterDone(); 
+        }
         if (!ta.IsValid()) {
             console.log("invalid action", ta);
             debugger
@@ -125,8 +135,4 @@ export class ActionManager {
             this.LongErrorList$.next(null);
         }
     }
-
-    private queue: TicketAction[] = [];
-    private error_list = [];
-    LongErrorList$ = new Subject();
 }

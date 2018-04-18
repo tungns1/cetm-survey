@@ -11,12 +11,15 @@
     <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="Move()" fxShow.xs="false"> 
         <ng-container i18n="Counter Button: Move Ticket">Move</ng-container>
     </button>
+    <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="printForm()" fxShow.xs="false" throttle threshold="10000"> 
+        <ng-container i18n="Counter Button: Print Form">Print Form</ng-container>
+    </button>
     <button class="uppercase btnRed" [disabled]="!ticket" fxFlex i18n-appConfirm appConfirm="Do you want to cancel this ticket?" (confirm)="Delete()" fxShow.xs="false">
         <ng-container i18n="Counter Button: Delete Ticket">Cancel</ng-container>
     </button>
-    <button class="uppercase btnRed" *ngIf="hasMiss" [disabled]="!ticket" fxFlex (click)="Miss()" fxShow.xs="false">
+    <!-- <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Miss()" fxShow.xs="false">
         <ng-container i18n="Counter Button: Miss Ticket">Miss</ng-container>
-    </button>
+    </button> -->
     <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>
         <ng-container i18n="Counter Button: Finish Ticket">Finish</ng-container>
     </button>
