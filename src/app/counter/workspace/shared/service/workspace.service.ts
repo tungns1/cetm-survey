@@ -76,7 +76,9 @@ export class WorkspaceService {
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
             .map(action => {
                 // console.log(action)
-                this.syncBookingSystem(action)
+                if (action.ticket.ticket_booking.id) {
+                    this.syncBookingSystem(action);
+                }
                 w.Update(action);
             });
         const autoNext = this.autoNext$.map(a => {
