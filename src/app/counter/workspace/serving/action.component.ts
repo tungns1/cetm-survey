@@ -37,22 +37,33 @@ export class ActionComponent {
         config.data = this.ticket;
         const dialog = this.mdDialog.open(TicketDetailDialog, config);
     }
-i: number = 0
+
     Next() {
-     
-            if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
-                // this.notice.ShowMessage("feedback_skip");
-                const config = new MatDialogConfig();
-                config.width = '750px';
-                config.data = this.ticket;
-                const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
-            } else {
-                this.triggerAction("finish").subscribe(() => {
-                    this.workspaceService.SetAutoNext(true);
-                });
-            }
-        
-       
+
+        if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
+            // console.log('bbbbbbbbbbb')
+            // this.notice.ShowMessage("feedback_skip");
+            const config = new MatDialogConfig();
+            config.width = '750px';
+            config.data = this.ticket;
+            const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
+            dialog.afterClosed().subscribe(d => {
+                if (d) {
+                    this.ticket = d;
+                    this.triggerAction("finish").subscribe(() => {
+                        this.workspaceService.SetAutoNext(true);
+                    });
+
+                }
+            })
+        } else {
+            this.triggerAction("finish").subscribe(() => {
+                // console.log('aaaaaaaaaaaaaaaa')
+                this.workspaceService.SetAutoNext(true);
+            });
+        }
+
+
     }
 
     NoNext() {
@@ -64,14 +75,17 @@ i: number = 0
     }
 
     Finish() {
-        if ( this.feedbackService.CheckFeedback(this.ticket)) {
-            // this.notice.ShowMessage("feedback_skip");
-            console.log(this.ticket)
-            debugger
+        if (this.feedbackService.CheckFeedback(this.ticket)) {
             const config = new MatDialogConfig();
             config.width = '750px';
             config.data = this.ticket;
             const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
+            dialog.afterClosed().subscribe(d => {
+                if (d) {
+                    this.ticket = d;
+                    this.triggerAction('finish');
+                }
+            })
         } else {
             this.triggerAction('finish');
         }

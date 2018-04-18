@@ -78,9 +78,12 @@ export class TicketService {
     }
 
     TriggerAction(action: TicketActionName, ticket: Ticket) {
+        // console.log(ticket)
         return this.manager.Work(action, ticket, {
             record_transaction: this.settingService.EnableRecordTransaction,
             platform: this.platform,
+            reason_text: ticket ? (ticket.tracks[ticket.tracks.length - 1].feedback ? (ticket.tracks[ticket.tracks.length - 1].feedback.reason_text || null) : null) : null,
+            rating: ticket ? (ticket.tracks[ticket.tracks.length - 1].feedback ? (ticket.tracks[ticket.tracks.length - 1].feedback.rating || null) : null) : null,
         });
     }
 

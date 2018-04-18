@@ -93,11 +93,10 @@ export class ActionManager {
             ta.extra = extra;
             this.queue.push(ta);
             this.next();
-            return ta.afterDone(); 
+            return ta.afterDone();
         }
         if (!ta.IsValid()) {
             console.log("invalid action", ta);
-            debugger
             return of(null);
         }
         ta.extra = extra;

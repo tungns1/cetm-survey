@@ -71,7 +71,6 @@ export class FormUserComponent implements OnInit {
     this.formData.data = b
 
     console.log(this.formData, b)
-    debugger
     this.formservice.FillForm(this.formData).subscribe(val => { 
       this.formData = {
         form_id:"",

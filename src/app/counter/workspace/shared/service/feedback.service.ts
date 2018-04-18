@@ -48,16 +48,14 @@ export class FeedbackService {
     // return null if not
     CheckFeedback(t: Ticket) {
         if (t) {
+            console.log('bbbbbbbbbbb')
             var feedback = t.tracks[t.tracks.length - 1].feedback || null;
             if (feedback) {
-                debugger
                 return false
             }else{
-                debugger
                 return true
             }
         } else {
-            debugger
             return true
         }
         // if (!this.required || !this.feedbackDevice.Available) {

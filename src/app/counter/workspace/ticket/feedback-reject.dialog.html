@@ -2,81 +2,17 @@
     <!-- <div class="modal-header" i18n></div> -->
     <div class="modal-body padding-10-20">
         <div *ngIf="!isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
-            <h2>KHÁCH HÀNG CHƯA PHẢN HỒI</h2>
+            <h2 i18n>KHÁCH HÀNG CHƯA PHẢN HỒI</h2>
             <p>Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch</p>
             <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
-            <button style="width: 300px;" fxFlex class="btnFill" (click)="openReason()" i18n>Khách hàng không phản hồi</button>
+            <button style="width: 300px;" fxFlex class="btnFill" (click)="isSentReason = true" i18n>Khách hàng không phản hồi</button>
         </div>
         <div *ngIf="isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
             <h2>KHÁCH HÀNG CHƯA PHẢN HỒI</h2>
-            <!-- <input fxFlex="100%" class="ctrlInput" type="textarea" i18n-placeholder placeholder="Write the reason"> -->
             <textarea fxFlex rows="10" [(ngModel)]="textReason" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;"></textarea>
 
             <button fxFlex class="btnClear" (click)="close()" i18n>cancel</button>
             <button fxFlex class="btnFill" (click)="sentReason()" i18n>submit</button>
         </div>
-
-
-        <!-- <div fxLayout="row" class="margin-t-10">
-            <label fxFlex i18n>Ticket</label>
-            <span fxFlex>{{ticket.cnum}}</span>
-        </div>
-        <div fxLayout="row" class="margin-t-10">
-            <label fxFlex i18n>Priority</label>
-            <span fxFlex>
-                {{ticket.priority.value}} 
-                ({{ticket.priority.detail()}})
-            </span>
-        </div>
-        <div fxLayout="row" class="margin-t-10">
-            <label fxFlex i18n>Print Time</label>
-            <span fxFlex>{{ticket.ctime | localDayTime}}</span>
-        </div>
-        <div class="divider margin-t-10"></div> -->
-
-        <!-- Ticket Details -->
-        <!-- <div *ngIf="isServing">
-            <div fxLayout="row" class="margin-10-0">
-                <label fxFlex i18n>Start Serving</label>
-                <span fxFlex>{{ticket.mtime | localDayTime}}</span>
-            </div>
-            <label class="margin-t-10" i18n>Transfer Service</label>
-            <div class="margin-t-10">
-                <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name"></select-check>
-            </div>
-        </div> -->
-
-        <!-- Action -->
-        <!-- <div *ngIf="isCancelled" class="margin-20-0">
-            <div fxLayout="row" fxLayoutGap="20px">
-                <label fxFlex i18n>Cancelled Time</label>
-                <span fxFlex>{{ticket.mtime | localDayTime}}</span>
-            </div>
-            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
-                <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
-                <button fxFlex class="btnFill" appConfirm="Do you want to restore this ticket?" (confirm)="Restore()" i18n i18n-appConfirm>Restore</button>
-            </div>
-        </div>
-
-        <div *ngIf="!isCancelled" class="margin-20-0">
-            <label class="margin-t-10" i18n>Transfer Counter</label>
-            <div class="margin-t-10">
-                <select-check [(ngModel)]="checkedCounters" [data]="counters | async" textField="name"></select-check>
-            </div>
-            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
-                <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
-                <button *ngIf="canCall" fxFlex class="btnFill" (click)="Call()" i18n>Call</button>
-                <button fxFlex class="btnFill" (click)="Move()" i18n>Move</button>
-                <button *ngIf="!isServing" fxFlex class="btnRed" appConfirm="Do you want to cancel this ticket?" i18n-appConfirm (confirm)="Delete()" i18n>Cancel</button>
-            </div>
-        </div> -->
     </div>
 </div>
-
-<!-- <app-notice>
-    <app-notice-message name="missing_counter_or_service" message="Please, select counter or service" i18n-message></app-notice-message>
-    <app-notice-message name="missing_counter" message="Please select counter" i18n-message></app-notice-message>
-    <app-notice-message name="server_error" message="Server Error" i18n-message></app-notice-message>
-    <app-notice-message name="serving" message="Unsuccess, finish serving ticket before calling" i18n-message></app-notice-message>
-    <app-notice-message name="feedback_skip" message="Please remind customer feedback to finish transaction" i18n-message></app-notice-message>
-</app-notice> -->
