@@ -12,6 +12,8 @@ import { CenterComponent } from './center.component'
 import { VoiceComponent } from './voice/voice.component';
 import { AdminFilterModule } from "../filter/filter.module";
 import { AccordionModule } from "../../../x/ui/accordion/accordion";
+import { FormConfigComponent } from './form-config/form-config.component';
+import { FormUserComponent } from './form-user/form-user.component';
 
 @NgModule({
     imports: [
@@ -27,7 +29,9 @@ import { AccordionModule } from "../../../x/ui/accordion/accordion";
         CenterComponent, TicketLayoutComponent,
         LayoutComponent, ServiceComponent,
         TFormComponent, VoiceComponent,
-        XListComponent
+        XListComponent,
+        FormConfigComponent,
+        FormUserComponent
     ],
     entryComponents: [XListComponent]
 })

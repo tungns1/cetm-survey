@@ -83,6 +83,8 @@ export class StaffPerformanceReport {
                     series: [
                         { name: 'Free Time', value: Number.parseInt(record.free_time.toString()) },
                         { name: 'Serving Time', value: Number.parseInt(record.sum_serving_time.toString()) }
+                        // { name: 'Free Time', value: 'Number.parseInt(record.free_time.toString())' },
+                        // { name: 'Serving Time', value: 'hehe' }
                     ]
                 }
             });

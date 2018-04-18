@@ -1,8 +1,7 @@
 <div id="topNav">
     <ul class="firstLv">
         <li class="li_firstLv" *ngIf="isAdmin$ | async">
-            <div class="paddingFirst" [routerLink]="isAdminStandard ? '/admin/org/user' : '/admin'" queryParamsHandling="preserve" 
-                [class.current-menu-item]="isActive(isAdminStandard ? '/admin/org/user' : '/admin')">
+            <div class="paddingFirst" [routerLink]="isAdminStandard ? '/admin/org/user' : '/admin'" queryParamsHandling="preserve" [class.current-menu-item]="isActive(isAdminStandard ? '/admin/org/user' : '/admin')">
                 <i class="fa fa-home"> </i>
                 <span i18n>Admin</span>
             </div>
@@ -34,6 +33,12 @@
                 <li routerLink="/admin/org/user">
                     <span i18n class="paddingSecond">User</span>
                 </li>
+                <li routerLink="/admin/center/formconfig">
+                    <span i18n class="paddingSecond">Form Configuration</span>
+                </li>
+                <li routerLink="/admin/center/formuser">
+                    <span i18n class="paddingSecond">Form User</span>
+                </li>
             </ul>
         </li>
         <li class="li_firstLv" *ngIf="!(isMedia$ | async)">
@@ -62,6 +67,18 @@
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Staff Performance</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Waiting Time</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/detailCusWaiting" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Detail Waiting Time</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/cusServing" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Serving Time</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/detailSusServing" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Detail Serving Time</span>
                 </li>
             </ul>
         </li>

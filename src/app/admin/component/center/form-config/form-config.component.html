@@ -1,0 +1,99 @@
+<app-env-sub-module i18n-title title="CForm"></app-env-sub-module>
+<div *ngIf="isList">
+    <app-datatable name="CForm" i18n-name [data]="listform$" (action)="onAction($event)" [canEdit]="false">
+
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+
+    </app-datatable>
+</div>
+<div *ngIf="!isList">
+    <div class="headerAndNav">
+        <h2 *ngIf="isNew" class="header uppercase" i18n="Add New Model">Add New {{title}}</h2>
+        <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit {{title}}</h2>
+        <div class="nav">
+            <button class="btnClear btnMargin uppercase" (click)="GoBack()"><span i18n class="uppercase">Go Back</span></button>
+        </div>
+    </div>
+    <form (ngSubmit)="addNew()" #deviceForm="ngForm">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl" style="width: 100%">
+            <span class="text-label" i18n>Name</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <input fxFlex="100%" class="ctrlInput" type="text" [(ngModel)]="formData.name" placeholder="Form name" name="name">
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span class="text-label">Service</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <!-- <select #t class="hl-select" [(ngModel)]="formData.service_id" name="service">      
+                    <option *ngFor="let dataService of listService$" [value]="dataService.id">{{dataService.code}}</option>
+                </select> -->
+                <select #k id="ser" class="hl-select" [(ngModel)]="formData.service_id" name="ser" required>      
+                    <option *ngFor="let d of listService$" [value]="d.id">{{d.code}}</option>
+                  </select>
+            </div>
+
+        </div>
+    </form>
+
+    <div class="col-md-6">
+        <div *ngFor="let col of allCol, let i= index">
+            <button class="btnFill btn-col" fxLayoutGap="20px" (click)="addToView(col.col_name,col.description)">{{col.description}}</button>
+        </div>
+    </div>
+
+    <section class="view col-md-6 fadeInRight animated">
+        <div id="view_form">
+            <div class="form-row" *ngFor="let f of formArray, let i= index">
+                <div class="txt-label">
+                    <input type="text" value="{{f.description}}" (change)="onChangeDes($event.target.value,i)">
+                    <span>{{f.description}}</span>
+                </div>
+                <div class="form-control" [ngSwitch]="f.type">
+                    <div *ngSwitchCase="'txt'">
+                        <input class="form-input" type="text" name="{{f.col_name}}">
+                    </div>
+                    <div *ngSwitchCase="'txt_area'">
+                        <textarea class="form-input" name="{{f.col_name}}"></textarea>
+                    </div>
+                    <div *ngSwitchCase="'select'">
+                        <select class="form-input" name="{{f.col_name}}"></select>
+                        <a (click)="addOption(i)">Add value</a>
+                    </div>
+                    <select (change)="changeFormType($event.target.value,i)">
+                        <option value="txt">TextBox</option>
+                        <option value="txt_area">TextArea</option>
+                        <option value="select">Dropdown</option>
+                    </select>
+                    <!-- <a (click)="deleteForm(i)">Xóa</a> -->
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+        <button fxFlex="15%" class="uppercase btnFill" *ngIf="isNew" type="submit" (click)="addNew()" i18n>Add</button>
+        <button fxFlex="15%" class="uppercase btnFill" *ngIf="!isNew" type="submit" (click)="addNew()" i18n>Save</button>
+    </div>
+</div>
+<div id="addOption" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Option</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" placeholder="Enter value" id="drop_value" />
+                <ul class="value-option">
+
+                </ul>
+                <a (click)="addMoreValue()">Add</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" id="btn_save_drop">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

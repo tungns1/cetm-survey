@@ -96,7 +96,8 @@ export class ActionManager {
             return ta.afterDone(); 
         }
         if (!ta.IsValid()) {
-            // console.log("invalid action", ta);
+            console.log("invalid action", ta);
+            debugger
             return of(null);
         }
         ta.extra = extra;

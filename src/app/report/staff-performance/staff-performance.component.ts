@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimeDurationPipe } from '../../x/ng/time/timeDuration';
 import { StaffPerformanceService } from './shared/staff-performance.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { StaffPerformanceService } from './shared/staff-performance.service';
 export class StaffPerformanceComponent implements OnInit {
 
   constructor(
-    private staffPerformanceService: StaffPerformanceService
+    private staffPerformanceService: StaffPerformanceService,
   ) { }
 
   sumData$ = this.staffPerformanceService.sumData$;
@@ -27,6 +28,11 @@ export class StaffPerformanceComponent implements OnInit {
 
   onTabChange(e) {
       this.selectedTab = e.index;
+  }
+
+  getYLabel(data) {
+    const datepipe: TimeDurationPipe = new TimeDurationPipe();
+    return datepipe.transform(data);
   }
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxChartsModule } from '@swimlane/ngx-charts';

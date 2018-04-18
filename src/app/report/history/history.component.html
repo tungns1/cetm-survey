@@ -17,7 +17,7 @@
                 </div>
 
                 <history-filter (filterChange)="onFilterChange($event)"></history-filter>
-                <ag-grid-angular #agGrid style="height: 480px; background-color: #fff" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+                <ag-grid-angular #agGrid [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
                     <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Date" field="cdate" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Branch" field="parent" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>

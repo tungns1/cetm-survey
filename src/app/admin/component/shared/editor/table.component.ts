@@ -37,6 +37,8 @@ export class AppDataTableComponent implements OnInit {
     @Input() data: any[] = [];
     @Input() name: string;
     @Input() canEdit: boolean = true;
+    @Input() noDelete: boolean = false;
+    
     @Output() action = new EventEmitter<ITableAction>();
     @ViewChild(NoticeComponent) notice: NoticeComponent;
     adminRoot = 0;
@@ -44,6 +46,9 @@ export class AppDataTableComponent implements OnInit {
 
     ngOnInit() {
         if (!this.canEdit && this.adminRoot != 3) {
+            this.canDelete = false;
+        }
+        if(this.noDelete == true){
             this.canDelete = false;
         }
     }

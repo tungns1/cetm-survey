@@ -43,7 +43,7 @@ export class ServingTicketComponent {
     };
     servingTime = TimerComopnent;
     ticketIconNumber = TicketIconComponent;
-    cellclass: string[] = ['padding-10', 'center'];
+    cellClass: string[] = ['padding-10', 'center'];
 
     // add user_id, service_id and counter_id 
     // for finished and cancelled ticket

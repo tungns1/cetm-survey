@@ -5,7 +5,7 @@
         <button class="btnClear btnMargin uppercase" appSafeNav="/monitor/device" i18n>Device</button>
     </div>
 
-    <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="records$ | async"
+    <ag-grid-angular #agGrid [gridOptions]="gridOptions" [rowData]="records$ | async"
         class="ag-fresh tableCtrl" enableColResize enableSorting>
 
         <ag-grid-column headerName="Store" field="store" [width]="200" cellClass="padding-10" i18n-headerName></ag-grid-column>
