@@ -2,17 +2,17 @@
     <!-- <div class="modal-header" i18n></div> -->
     <div class="modal-body padding-10-20">
         <div *ngIf="!isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
-            <h2 i18n>KHÁCH HÀNG CHƯA PHẢN HỒI</h2>
-            <p>Vui lòng nhắc khách hàng phản hồi để kết thúc giao dịch</p>
+            <h2 i18n>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
+            <p i18n>Remind the customer to complete feedback to end transaction</p>
             <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
-            <button style="width: 300px;" fxFlex class="btnFill" (click)="isSentReason = true" i18n>Khách hàng không phản hồi</button>
+            <button style="width: 300px;" fxFlex class="btnFill" (click)="isSentReason = true" i18n>The customer does not allow</button>
         </div>
         <div *ngIf="isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
-            <h2>KHÁCH HÀNG CHƯA PHẢN HỒI</h2>
-            <textarea fxFlex rows="10" [(ngModel)]="textReason" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;"></textarea>
+            <h2>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
+            <textarea fxFlex rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" placeholder="write the reason"></textarea>
 
             <button fxFlex class="btnClear" (click)="close()" i18n>cancel</button>
-            <button fxFlex class="btnFill" (click)="sentReason()" i18n>submit</button>
+            <button [disabled]="!isText" [class.btnsubmit]="!isText" fxFlex class="btnFill" (click)="sentReason()" i18n>submit</button>
         </div>
     </div>
 </div>
