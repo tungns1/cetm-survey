@@ -39,20 +39,19 @@ export class ActionComponent {
     }
 i: number = 0
     Next() {
-        if(this.i !=0){
-            debugger
-            if (this.feedbackService.CheckFeedback(this.ticket)) {
-                this.notice.ShowMessage("feedback_skip");
+     
+            if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
+                // this.notice.ShowMessage("feedback_skip");
+                const config = new MatDialogConfig();
+                config.width = '750px';
+                config.data = this.ticket;
+                const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
             } else {
                 this.triggerAction("finish").subscribe(() => {
                     this.workspaceService.SetAutoNext(true);
                 });
             }
-        }else{
-            debugger
-            this.workspaceService.SetAutoNext(true);
-            this.i =1
-        }
+        
        
     }
 
@@ -65,8 +64,10 @@ i: number = 0
     }
 
     Finish() {
-        if (this.feedbackService.CheckFeedback(this.ticket)) {
-            this.notice.ShowMessage("feedback_skip");
+        if ( this.feedbackService.CheckFeedback(this.ticket)) {
+            // this.notice.ShowMessage("feedback_skip");
+            console.log(this.ticket)
+            debugger
             const config = new MatDialogConfig();
             config.width = '750px';
             config.data = this.ticket;

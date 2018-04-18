@@ -2,10 +2,10 @@ import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@a
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { 
-  Ticket, TicketStates, TicketActionName, 
-  TicketService, QueueService, WorkspaceService, 
-  FeedbackService, NoticeComponent 
+import {
+  Ticket, TicketStates, TicketActionName,
+  TicketService, QueueService, WorkspaceService,
+  FeedbackService, NoticeComponent
 } from '../shared';
 
 @Component({
@@ -19,7 +19,7 @@ export class FeedbackRejectlDialog {
   constructor(
     @Optional() @Inject(MAT_DIALOG_DATA) public ticket: Ticket,
     private dialogRef: MatDialogRef<FeedbackRejectlDialog>,
-    
+
     private ticketService: TicketService,
     private feedbackService: FeedbackService,
     private queueService: QueueService,
@@ -62,9 +62,22 @@ export class FeedbackRejectlDialog {
     })
   }
   isSentReason: boolean = false
-  openReason(){
-this.isSentReason = true
+  openReason() {
+    this.isSentReason = true
   }
+  textReason: string = ''
+  sentReason() {
+    console.log(this.textReason)
+    this.textReason = ''
+    this.triggerAction('finish').subscribe(val => {
+      this.dialogRef.close();
+    });
+
+  }
+  private triggerAction(action: TicketActionName) {
+    return this.ticketService.TriggerAction(action, this.ticket);
+  }
+
   // Move() {
   //   if (this.isServing) {
   //     if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {

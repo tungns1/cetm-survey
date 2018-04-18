@@ -10,7 +10,7 @@
         <div *ngIf="isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
             <h2>KHÁCH HÀNG CHƯA PHẢN HỒI</h2>
             <!-- <input fxFlex="100%" class="ctrlInput" type="textarea" i18n-placeholder placeholder="Write the reason"> -->
-            <textarea fxFlex rows="10" [ngModel]="text" (ngModelChange)="onChange($event)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;"></textarea>
+            <textarea fxFlex rows="10" [(ngModel)]="textReason" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;"></textarea>
 
             <button fxFlex class="btnClear" (click)="close()" i18n>cancel</button>
             <button fxFlex class="btnFill" (click)="sentReason()" i18n>submit</button>
