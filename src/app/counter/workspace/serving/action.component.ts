@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
+import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
 import {
     WorkspaceService, QueueService,
     LedService, TicketActionName,
@@ -36,15 +37,23 @@ export class ActionComponent {
         config.data = this.ticket;
         const dialog = this.mdDialog.open(TicketDetailDialog, config);
     }
-
+i: number = 0
     Next() {
-        if (this.feedbackService.CheckFeedback(this.ticket)) {
-            this.notice.ShowMessage("feedback_skip");
-        } else {
-            this.triggerAction("finish").subscribe(() => {
-                this.workspaceService.SetAutoNext(true);
-            });
+        if(this.i !=0){
+            debugger
+            if (this.feedbackService.CheckFeedback(this.ticket)) {
+                this.notice.ShowMessage("feedback_skip");
+            } else {
+                this.triggerAction("finish").subscribe(() => {
+                    this.workspaceService.SetAutoNext(true);
+                });
+            }
+        }else{
+            debugger
+            this.workspaceService.SetAutoNext(true);
+            this.i =1
         }
+       
     }
 
     NoNext() {
@@ -58,6 +67,10 @@ export class ActionComponent {
     Finish() {
         if (this.feedbackService.CheckFeedback(this.ticket)) {
             this.notice.ShowMessage("feedback_skip");
+            const config = new MatDialogConfig();
+            config.width = '750px';
+            config.data = this.ticket;
+            const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
         } else {
             this.triggerAction('finish');
         }

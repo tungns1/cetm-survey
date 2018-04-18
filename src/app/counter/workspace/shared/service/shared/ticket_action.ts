@@ -86,7 +86,8 @@ export class ActionManager {
         if (!ticket) return of(null);
         const ta = new TicketAction(action, ticket, counter);
         if (!ta.IsValid()) {
-            // console.log("invalid action", ta);
+            console.log("invalid action", ta);
+            debugger
             return of(null);
         }
         ta.extra = extra;

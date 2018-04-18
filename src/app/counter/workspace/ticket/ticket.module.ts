@@ -6,6 +6,7 @@ import {
 import { TicketDetailDialog } from './ticket-detail.dialog';
 import { TicketDetailDirective } from './ticket-detail.directive';
 import { TicketHighlightDirective } from './ticket-highlight.directive';
+import { FeedbackRejectlDialog } from './feedback-reject.dialog';
 
 @NgModule({
     imports: [
@@ -13,14 +14,14 @@ import { TicketHighlightDirective } from './ticket-highlight.directive';
     ],
     declarations: [
         TicketDetailDialog, TicketDetailDirective,
-        TicketHighlightDirective,
+        TicketHighlightDirective,FeedbackRejectlDialog
     ],
     exports: [
         SharedModule,
         TicketDetailDialog, TicketDetailDirective,
         TimeModule,
-        TicketHighlightDirective
+        TicketHighlightDirective, FeedbackRejectlDialog
     ],
-    entryComponents: [TicketDetailDialog]
+    entryComponents: [TicketDetailDialog, FeedbackRejectlDialog]
 })
 export class TicketModule { }

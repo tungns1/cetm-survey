@@ -50,15 +50,20 @@ export class FeedbackService {
         if (t) {
             var feedback = t.tracks[t.tracks.length - 1].feedback || null;
             if (feedback) {
+                debugger
                 return false
+            }else{
+                debugger
+                return true
             }
         } else {
-            return false
+            debugger
+            return true
         }
-        if (!this.required || !this.feedbackDevice.Available) {
-            return false;
-        }
-        return true;
+        // if (!this.required || !this.feedbackDevice.Available) {
+        //     return false;
+        // }
+        // return true;
 
     }
 }
