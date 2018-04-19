@@ -3,16 +3,16 @@
     <div class="modal-body padding-10-20">
         <div *ngIf="!isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
             <h2 i18n>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
-            <p i18n>Remind the customer to complete feedback to end transaction</p>
+            <p i18n>Please remind the customer to complete feedback to finish transaction</p>
             <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
             <button style="width: 300px;" fxFlex class="btnFill" (click)="isSentReason = true" i18n>The customer does not allow</button>
         </div>
         <div *ngIf="isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
-            <h2>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
-            <textarea fxFlex rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" placeholder="write the reason"></textarea>
+            <h2 i18n>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
+            <textarea fxFlex rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" i18n-placeholder="write the reason"></textarea>
 
-            <button fxFlex class="btnClear" (click)="close()" i18n>cancel</button>
-            <button [disabled]="!isText" [class.btnsubmit]="!isText" fxFlex class="btnFill" (click)="sentReason()" i18n>submit</button>
+            <button fxFlex class="btnClear" (click)="close()" i18n>Cancel</button>
+            <button [disabled]="!isText" [class.btnsubmit]="!isText" fxFlex class="btnFill" (click)="sentReason()" i18n>Submit</button>
         </div>
     </div>
 </div>

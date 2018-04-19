@@ -52,11 +52,12 @@ export class FeedbackService {
             var feedback = t.tracks[t.tracks.length - 1].feedback || null;
             if (feedback) {
                 return false
-            }else{
-                return true
+            } else {
+                if (!this.required) {
+                    return false;
+                }
+                return true;
             }
-        } else {
-            return true
         }
         // if (!this.required || !this.feedbackDevice.Available) {
         //     return false;
