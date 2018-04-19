@@ -2,11 +2,15 @@ import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@a
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { 
-  Ticket, TicketStates, TicketActionName, 
-  TicketService, QueueService, WorkspaceService, 
-  FeedbackService, NoticeComponent 
+import {
+  Ticket, TicketStates, TicketActionName,
+  TicketService, QueueService, WorkspaceService,
+  FeedbackService, NoticeComponent
 } from '../shared';
+import { FeedbackRejectlDialog } from './feedback-reject.dialog';
+export interface Feedback {
+  reason_text: string
+}
 
 @Component({
   selector: 'ticket-detail-dialog',
@@ -60,7 +64,7 @@ export class TicketDetailDialog {
       this.t = v[0]
     })
   }
-
+  feedback: Feedback
   Move() {
     if (this.isServing) {
       if (this.checkedCounters.length < 1 && this.checkedServices.length < 1) {
@@ -76,8 +80,23 @@ export class TicketDetailDialog {
     if (this.isServing) {
 
       if (this.feedbackService.CheckFeedback(this.t)) {
-        this.notice.ShowMessage("feedback_skip");
+        const config = new MatDialogConfig();
+        config.width = '750px';
+        config.data = this.ticket;
+        const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
+        dialog.afterClosed().subscribe(d => {
+          if (d) {
+            this.ticket = d;
+            console.log(this.ticket)
+            this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+              .subscribe(v => {
+                this.dialogRef.close();
+              });
+
+          }
+        })
       } else {
+        console.log(this.ticket)
         this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
           .subscribe(v => {
             this.dialogRef.close();

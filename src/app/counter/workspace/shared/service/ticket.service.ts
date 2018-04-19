@@ -7,6 +7,9 @@ import { WorkspaceService } from './workspace.service';
 import { WorkspaceSettingService } from '../counter-setting.service';
 import { ActionManager, TicketAction, TicketActionName } from './shared';
 import { QmsService } from '../shared';
+import { FeedbackComponent } from '../../../../admin/component/house/feedback/feedback.component';
+import { IFeedback } from '../../../../report/dashboard/shared/index';
+import { Feedback } from '../../ticket/ticket-detail.dialog';
 
 
 
@@ -38,9 +41,19 @@ export class TicketService {
         }
         return this.socket.Send<ITicket>("/ticket", data).share();
     }
-
+    feedback: any
     Move(t: Ticket, services: string[], counters: string[]) {
-        return this.manager.Work("move", t, { services, counters });
+        console.log(t)
+        this.feedback = {
+            reason_text: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.reason_text || null) : null) : null,
+            rating: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.rating || null) : null) : null,
+        }
+
+        return this.manager.Work("move", t, {
+            services,
+            counters,
+            feedback: this.feedback
+        });
     }
 
     Search(cnum: string) {

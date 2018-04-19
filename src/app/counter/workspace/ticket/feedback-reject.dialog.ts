@@ -28,7 +28,16 @@ export class FeedbackRejectlDialog {
     // }
     this.dialogRef.close(this.ticket);
   }
-
+  isText: boolean = false
+  changeText(e) {
+    console.log(e)
+    if (e !== '' || e !== null) {
+      this.isText = true
+      this.textReason = e
+    } else {
+      this.isText = false
+    }
+  }
   close() {
     this.dialogRef.close(null);
   }

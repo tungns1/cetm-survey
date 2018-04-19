@@ -1,19 +1,24 @@
 @import '../../shared/style.scss';
-#ticketDetail{
-    span{
+#ticketDetail {
+    span {
         text-align: right;
     }
-    label{
+    label {
         font-weight: $font-weight-default + 200;
     }
 }
-#alert{
-    p{
+
+#alert {
+    p {
         font-size: 13px;
     }
-    h4{
+    h4 {
         color: red;
         margin: 0px;
         font-size: 18px;
     }
+}
+
+.btnsubmit {
+    opacity: 0.3;
 }
