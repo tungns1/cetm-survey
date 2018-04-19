@@ -33,6 +33,7 @@ export class FeedbackRejectlDialog {
     console.log(e)
     if (e !== '' || e !== null) {
       this.isText = true
+      this.textReason = e
     } else {
       this.isText = false
     }
