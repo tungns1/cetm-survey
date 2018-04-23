@@ -62,8 +62,16 @@
                 <td>{{data.cdate}}</td>
             </tr>
             <tr>
+                <td><b i18n>Rating</b></td>
+                <td>{{data.rating}}</td>
+            </tr>
+            <tr *ngIf="data.reason_text">
                 <td><b i18n>Reason Text</b></td>
                 <td>{{data.reason_text}}</td>
+            </tr>
+            <tr *ngIf="!data.reason_text">
+                <td><b i18n>Reason Text</b></td>
+                <td>_</td>
             </tr>
         </table>
     </accordion>
