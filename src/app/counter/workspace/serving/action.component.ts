@@ -44,7 +44,7 @@ export class ActionComponent {
             // console.log('bbbbbbbbbbb')
             // this.notice.ShowMessage("feedback_skip");
             const config = new MatDialogConfig();
-            config.width = '750px';
+            config.width = '520px';
             config.data = this.ticket;
             const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
             dialog.afterClosed().subscribe(d => {
@@ -77,7 +77,7 @@ export class ActionComponent {
     Finish() {
         if (this.feedbackService.CheckFeedback(this.ticket)) {
             const config = new MatDialogConfig();
-            config.width = '750px';
+            config.width = '520px';
             config.data = this.ticket;
             const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
             dialog.afterClosed().subscribe(d => {
