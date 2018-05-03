@@ -84,11 +84,11 @@ export class WaitingQueue extends RestrictedQueue {
             if (Object.keys(a.ticket_priority).length || Object.keys(b.ticket_priority).length) {
                 return 0;
             } else {
-                if (this.priority_service.has(a.services[0]) && this.priority_service.has(b.services[0]))
+                if (this.priority_service.has(a.services[a.services.length - 1]) && this.priority_service.has(b.services[b.services.length - 1]))
                     return 0;
-                if (this.priority_service.has(a.services[0]) && !this.priority_service.has(b.services[0]))
+                if (this.priority_service.has(a.services[a.services.length - 1]) && !this.priority_service.has(b.services[b.services.length - 1]))
                     return -1;
-                if (!this.priority_service.has(a.services[0]) && this.priority_service.has(b.services[0]))
+                if (!this.priority_service.has(a.services[a.services.length - 1]) && this.priority_service.has(b.services[b.services.length - 1]))
                     return 1;
             }
         });
