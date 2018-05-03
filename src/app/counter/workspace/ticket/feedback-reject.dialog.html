@@ -1,18 +1,19 @@
 <div id="ticketDetail" class="modal-dialog">
     <!-- <div class="modal-header" i18n></div> -->
+    <button type="button" class="close-popup" (click)="close()"><span aria-hidden="true">×</span></button>
     <div class="modal-body padding-10-20">
         <div *ngIf="!isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
-            <h2 i18n>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
+            <h2 i18n>THE CUSTOMER HAS NOT LEFT FEEDBACK YET</h2>
             <p style="font-size: 13px" i18n>Please remind the customer to complete feedback to finish transaction</p>
             <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
             <button fxFlex style="margin-left: 20px; margin-bottom: 20px" class="btnFill" (click)="isSentReason = true" i18n>Finish</button>
         </div>
         <div *ngIf="isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
-            <h2 i18n>THE CUSTOMER HASN'T HAD FEEDBACK YET</h2>
-            <textarea fxFlex rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" i18n-placeholder placeholder="Write the reason ..."></textarea>
+            <h2 i18n>THE CUSTOMER HAS NOT LEFT FEEDBACK YET</h2>
+            <textarea fxFlex rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" i18n-placeholder placeholder="Please provide the reason"></textarea>
 
             <button fxFlex class="btnClear" (click)="close()" i18n>Cancel</button>
-            <button style=" margin-bottom: 20px" [disabled]="!isText" [class.btnsubmit]="!isText" fxFlex class="btnFill" (click)="sentReason()" i18n>Submit</button>
+            <button style=" margin-bottom: 20px" [disabled]="!isText" [class.btnsubmit]="!isText" fxFlex class="btnFill" (click)="sentReason()" i18n>Send</button>
         </div>
     </div>
 </div>
