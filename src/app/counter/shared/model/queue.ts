@@ -80,14 +80,13 @@ export class WaitingQueue extends RestrictedQueue {
 
     ToArray() {
         // sort priority service
-        return super.ToArray().sort((a, b) => {
-            if (this.priority_service.has(a.services[a.services.length - 1]) && this.priority_service.has(b.services[b.services.length - 1]))
-                return 0;
-            if (this.priority_service.has(a.services[a.services.length - 1]) && !this.priority_service.has(b.services[b.services.length - 1]))
-                return -1;
-            if (!this.priority_service.has(a.services[a.services.length - 1]) && this.priority_service.has(b.services[b.services.length - 1]))
-                return 1;
-        });
+        let priorityServiceTicket = Array.from(this.data.values()).filter(ticket => {
+            return !!this.priority_service.has(ticket.services[ticket.services.length - 1])
+        }).sort(Ticket.sort);
+        let normalServiceTicket = Array.from(this.data.values()).filter(ticket => {
+            return !this.priority_service.has(ticket.services[ticket.services.length - 1])
+        }).sort(Ticket.sort);
+        return [].concat(priorityServiceTicket, normalServiceTicket);
     }
 
 }
