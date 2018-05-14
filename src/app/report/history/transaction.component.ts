@@ -33,6 +33,7 @@ export class TransactionComponent implements OnInit {
 
     ngOnInit() {
         this.data = this.dialogData;
+        console.log(this.data)
         this.audio_url = this.getAudioLink(this.dialogData.audio);
         this.getBranchUsers(this.dialogData.branch_id);
         this.getCustomer(this.dialogData.customer_id);
