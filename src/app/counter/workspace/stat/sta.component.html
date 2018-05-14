@@ -4,8 +4,7 @@
     </div>
     <div fxLayout="row" class="tabs">
         <div fxFlex class="tabCtrl center padding-5" [class.active]="tab$.IsActive('finished')" (click)="tab$.SetActive('finished')">
-            &nbsp;
-            <span i18n>Finished Transaction</span>
+            &nbsp;<span i18n>Finished Transaction</span>
             <span>&nbsp; ({{fcount$ | async}}) &nbsp; </span>
         </div>
         <div fxFlex class="tabCtrl center padding-5" [class.active]="tab$.IsActive('cancelled')" (click)="tab$.SetActive('cancelled')">
@@ -17,4 +16,3 @@
 </div>
 <average-time [stime]="average_stime$ | async"></average-time>
 <search></search>
-<booking-queue></booking-queue>

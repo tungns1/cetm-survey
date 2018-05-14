@@ -65,7 +65,7 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
-                <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
+                <!-- <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Staff Performance</span>
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
@@ -79,7 +79,7 @@
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/detailSusServing" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Detail Serving Time</span>
-                </li>
+                </li> -->
             </ul>
         </li>
         <li class="li_firstLv" *ngIf="!(isMedia$ | async) && !isAdminStandard">

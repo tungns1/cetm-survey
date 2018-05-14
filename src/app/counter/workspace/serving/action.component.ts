@@ -41,8 +41,6 @@ export class ActionComponent {
     Next() {
 
         if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
-            // console.log('bbbbbbbbbbb')
-            // this.notice.ShowMessage("feedback_skip");
             const config = new MatDialogConfig();
             config.width = '750px';
             config.data = this.ticket;
@@ -58,7 +56,6 @@ export class ActionComponent {
             })
         } else {
             this.triggerAction("finish").subscribe(() => {
-                // console.log('aaaaaaaaaaaaaaaa')
                 this.workspaceService.SetAutoNext(true);
             });
         }
