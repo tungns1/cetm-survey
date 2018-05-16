@@ -63,7 +63,6 @@ export class WorkspaceService {
     private currentBranch: IBranch;
     private currentCounter: ICounter;
     private currentUser: IUser;
-    private interval;
 
     private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
     private autoNext$ = new ReplaySubject<boolean>(1);
@@ -76,9 +75,9 @@ export class WorkspaceService {
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
             .map(action => {
                 // console.log(action)
-                if (action.ticket.ticket_booking.id) {
-                    this.syncBookingSystem(action);
-                }
+                // if (action.ticket.ticket_booking.id) {
+                //     this.syncBookingSystem(action);
+                // }
                 w.Update(action);
             });
         const autoNext = this.autoNext$.map(a => {
@@ -107,66 +106,61 @@ export class WorkspaceService {
         this.socket.onInit();
         this.env.Auth.Data$.subscribe(data => this.currentBranch = data.branches.find(branch => branch.name === data.store));
         this.currentCounter$.subscribe(counter => this.currentCounter = counter);
-        this.interval = setInterval(_ => {
-            this.getBookingOnlineList();
-        }, 5000)
+        // this.getBookingOnlineList();
     }
 
     disable() {
         this.socket.onDestroy();
-        clearInterval(this.interval);
     }
     SetAutoNext(auto = false) {
         this.autoNext$.next(auto);
     }
 
-    getBookingOnlineList() {
-        let params = new HttpParams().set('branch_id', this.currentBranch.id)
-        this.httpClient.get('http://123.31.12.147:8989/api/booking/ticket/branch_cetm_tickets', { params: params })
-            .subscribe((respone: IBookingOnlineRespone) => {
-                if (respone.status === 'ok' && respone.data)
-                    this.bookingOnlineList$.next(respone.data.filter(d => {
-                        return (d.type_ticket === 'book_schedule' && (this.currentCounter.services.indexOf(d.service_id) != -1));
-                    }).sort((a, b) => {
-                        if (a.check_in_at > b.check_in_at) return 1;
-                        if (a.check_in_at < b.check_in_at) return -1;
-                        else return 0;
-                    }));
-            });
-    }
+    // getBookingOnlineList() {
+    //     let params = new HttpParams().set('branch_id', this.currentBranch.id)
+    //     this.httpClient.get('http://123.31.12.147:8989/api/booking/ticket/branch_cetm_tickets', { params: params })
+    //         .subscribe((respone: IBookingOnlineRespone) => {
+    //             if (respone.status === 'ok' && respone.data)
+    //                 this.bookingOnlineList$.next(respone.data.filter(d => {
+    //                     return (d.type_ticket === 'book_schedule' && (this.currentCounter.services.indexOf(d.service_id) != -1));
+    //                 }).sort((a, b) => {
+    //                     if (a.check_in_at > b.check_in_at) return 1;
+    //                     if (a.check_in_at < b.check_in_at) return -1;
+    //                     else return 0;
+    //                 }));
+    //         });
+    // }
 
-    private syncBookingSystem(action: ITicketAction) {
-        if ((action.action === 'finish' || action.action === 'move' || action.action === 'cancel') && action.counter_id === this.currentCounter.id) {
-            let body: ISyncBookingTicket = {
-                teller: this.currentUser.fullname,
-                avatar_teller: this.currentUser.public_avatar || '',
-                teller_id: this.currentUser.id,
-                bticket_id: action.ticket.ticket_booking.id,
-                check_in_at: action.ticket.ticket_booking.check_in_at,
-                id_ticket_cetm: action.ticket.id,
-                cnum_cetm: action.ticket.cnum,
-                status: action.ticket.state,
-                serving_time: this.getServingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
-                waiting_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks))),
-            }
-            this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body).subscribe();
-        }
-    }
+    // private syncBookingSystem(action: ITicketAction) {
+    //     if ((action.action === 'finish' || action.action === 'move' || action.action === 'cancel') && action.counter_id === this.currentCounter.id) {
+    //         let body: ISyncBookingTicket = {
+    //             teller: this.currentUser.fullname,
+    //             avatar_teller: this.currentUser.public_avatar || '',
+    //             teller_id: this.currentUser.id,
+    //             bticket_id: action.ticket.ticket_booking.id,
+    //             check_in_at: action.ticket.ticket_booking.check_in_at,
+    //             id_ticket_cetm: action.ticket.id,
+    //             cnum_cetm: action.ticket.cnum,
+    //             status: action.ticket.state,
+    //             serving_time: this.getServingTime(JSON.parse(JSON.stringify(action.ticket.tracks)).reverse()),
+    //             waiting_time: this.getWaitingTime(JSON.parse(JSON.stringify(action.ticket.tracks))),
+    //         }
+    //         this.httpClient.post('http://123.31.12.147:8989/api/booking/ticket/cetm_update', body).subscribe();
+    //     }
+    // }
 
-    private getServingTime(tracksReverse: ITicketTrack[]): number {
-        let lastServingTime = tracksReverse.find(checkPoint => checkPoint.state === 'serving');
-        return tracksReverse[0].mtime - lastServingTime.mtime;
-    }
+    // private getServingTime(tracksReverse: ITicketTrack[]): number {
+    //     let lastServingTime = tracksReverse.find(checkPoint => checkPoint.state === 'serving');
+    //     return tracksReverse[0].mtime - lastServingTime.mtime;
+    // }
 
-    private getWaitingTime(tracks: ITicketTrack[]): number {
-        // let lastWaitingTimeIndex = tracksReverse.findIndex(checkPoint => checkPoint.state === 'waiting');
-        // return tracksReverse[lastWaitingTimeIndex ? (lastWaitingTimeIndex - 1) : 0].mtime - tracksReverse[lastWaitingTimeIndex].mtime;
-        let result: number = 0;
-        tracks.forEach((track, i) => {
-            if (track.state === 'waiting') {
-                result += tracks[i + 1] ? (tracks[i + 1].mtime - track.mtime) : 0;
-            }
-        })
-        return result;
-    }
+    // private getWaitingTime(tracks: ITicketTrack[]): number {
+    //     let result: number = 0;
+    //     tracks.forEach((track, i) => {
+    //         if (track.state === 'waiting') {
+    //             result += tracks[i + 1] ? (tracks[i + 1].mtime - track.mtime) : 0;
+    //         }
+    //     })
+    //     return result;
+    // }
 }
