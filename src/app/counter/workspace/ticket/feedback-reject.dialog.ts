@@ -21,16 +21,11 @@ export class FeedbackRejectlDialog {
   textReason: string = ''
 
   sentReason() {
-    // if (this.ticket.tracks[this.ticket.tracks.length - 1].feedback) {
-    //   this.ticket.tracks[this.ticket.tracks.length - 1].feedback.reason_text = this.textReason;
-    // } else {
     this.ticket.tracks[this.ticket.tracks.length - 1].feedback = { reason_text: this.textReason }
-    // }
     this.dialogRef.close(this.ticket);
   }
   isText: boolean = false
   changeText(e) {
-    console.log(e)
     if (e !== '' || e !== null) {
       this.isText = true
       this.textReason = e
