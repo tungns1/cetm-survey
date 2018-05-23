@@ -8,6 +8,7 @@ import { ReportFilterComponent } from './filter.component';
 import { InsideFilterComponent } from './inside/inside.component';
 import { PeriodFilterComponent } from './period/period.component';
 import { filterServiceProvider, AccordionModule } from './shared';
+import { PeriodTimestampComponent } from './period-timestamp/period-timestamp.component';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { filterServiceProvider, AccordionModule } from './shared';
     declarations: [
         InsideFilterComponent,
         PeriodFilterComponent,
-        ReportFilterComponent
+        ReportFilterComponent,
+        PeriodTimestampComponent
     ],
     exports: [
         ReportFilterComponent,

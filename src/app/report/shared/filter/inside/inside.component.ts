@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { InsideBranchFilterService } from '../shared';
 
@@ -8,6 +8,7 @@ import { InsideBranchFilterService } from '../shared';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InsideFilterComponent implements OnInit {
+    @Input() onlyService:string = 'no';
 
     constructor(
         private insideFilterService: InsideBranchFilterService

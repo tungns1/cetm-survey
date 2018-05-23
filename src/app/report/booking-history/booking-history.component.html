@@ -1,0 +1,34 @@
+<div fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'yes'" [onlyService]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Booking Histoty"></app-env-sub-module>
+           
+            <div class="appointmentTable">
+                <ag-grid-angular #agGrid [rowData]="dataTable" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+                    <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Store" field="branch_name" [width]="220" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Customer" field="customer.name" [width]="165" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Time" field="avg_reserved_by_day" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Date" field="avg_reserved_by_day" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+                    <ag-grid-column headerName="Service" field="service_name" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Type" field="num_arrived_late" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+                    <ag-grid-column headerName="Appointment Time" field="num_status_finished" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Arrived" field="num_cancel" [width]="120" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+                    <ag-grid-column headerName="Check in time" field="avg_watting_time" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Ticket" field="cnum_cetm" [width]="135" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Waiting time" field="avg_served_time" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Serving time" field="num_excess_served" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Transaction status" field="num_excess_served" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Detail" field="num_excess_served" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                </ag-grid-angular>
+            </div>
+        </div>
+    </div>
+</div>

@@ -65,10 +65,33 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
-                <!-- <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
-                    <span i18n class="paddingSecond">Staff Performance</span>
+                <li *ngIf="!isAdminStandard" routerLink="/report/appointmentPerformance" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Appointment Performance</span>
+                    <ul class="threeLv">
+                        <li *ngIf="!isAdminStandard" routerLink="/report/appointmentPerformance" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Appointment Performance</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingHistory" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Booking History</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingStatus" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Booking Status</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingDetail" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Booking Detail</span>
+                        </li>
+                    </ul>
                 </li>
-                <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/report/bookingHistory" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Booking History</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/bookingDetail" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Booking Detail</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/report/bookingStatus" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Booking Status</span>
+                </li>
+                <!-- <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Waiting Time</span>
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/detailCusWaiting" queryParamsHandling="preserve">
@@ -126,6 +149,12 @@
                     <span i18n class="paddingSecond">Feedback Layout</span>
                 </li>
             </ul>
+        </li>
+        <li class="li_firstLv">
+            <div class="paddingFirst" routerLink="/admin/house/feedback" queryParamsHandling="preserve" [class.current-menu-item]="">
+                <i class="fa fa-cog"> </i>
+                <span i18n>Custom menu</span>
+            </div>
         </li>
     </ul>
 </div>

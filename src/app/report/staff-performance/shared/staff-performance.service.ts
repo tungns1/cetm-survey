@@ -21,9 +21,10 @@ export class StaffPerformanceService {
     performanceChart$ = new BehaviorSubject<IStackChart[]>([]);
 
     Refresh() {
+        this.backend.Get2<IStaffReport>('staff_performance', this.filterService.ToBackendQuery()).subscribe(data => {
         ShowLoading();
-        this.backend.Get<IStaffReport>('staff_performance', this.filterService.ToBackendQuery()).subscribe(data => {
             if (data) {
+                console.log(data)
                 this.StaffPerformance.Update(data);
                 this.sumData$.next(this.StaffPerformance.SumData);
                 this.tableData$.next(this.StaffPerformance.TableData);

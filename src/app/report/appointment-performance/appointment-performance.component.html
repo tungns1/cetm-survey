@@ -1,0 +1,86 @@
+<div fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'yes'" [onlyService]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Appointment Performance"></app-env-sub-module>
+            <div id="appointmentPerformance">
+                <div class="headerAndNav">
+                    <h2 class="header uppercase" i18n>Appointment Performance</h2>
+                    <div class="nav">
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>Booking History</button>
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>Booking Status</button>
+                    </div>
+                </div>
+                <appointment-sum [data]="sumData$ | async"></appointment-sum>
+                <div class="divider margin-20-0"></div>
+
+                <div class="border tabCtrl">
+                    <mat-tab-group (selectChange)="onTabChange($event)">
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>General</span>
+                            </ng-template>
+                            <div *ngIf="selectedTab === 0 && genChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="genChart$ | async" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true"
+                                    showYAxisLabel="true">
+                                </ngx-charts-bar-vertical-stacked>
+                            </div>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Arrive status</span>
+                            </ng-template>
+                            <div *ngIf="selectedTab === 1 && arrivedChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="arrivedChart$ | async" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true"
+                                    showYAxisLabel="true">
+                                </ngx-charts-bar-vertical-stacked>
+                            </div>
+                        </mat-tab>
+                       
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Transaction status</span>
+                            </ng-template>
+                            <div *ngIf="selectedTab === 2 && transactionStatusChart$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="transactionStatusChart$ | async" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true"
+                                    showYAxisLabel="true">
+                                </ngx-charts-bar-vertical-stacked>
+                            </div>
+                        </mat-tab>
+                       
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Average reserved by day</span>
+                            </ng-template>
+                            <div *ngIf="selectedTab === 3 && averageReservationByDayChart$ | async" class="chartContainer">
+                               
+                                <ngx-charts-line-chart
+                                    [results]="averageReservationByDayChart$ | async"
+                                    [gradient]="false"
+                                    [xAxis]="true"
+                                    [yAxis]="true"
+                                    [legend]="true"
+                                    [showXAxisLabel]="true"
+                                    [showYAxisLabel]="showYAxisLabel"
+                                    [autoScale]="autoScale"
+                                    [timeline]="timeline" >
+                                </ngx-charts-line-chart>
+                            </div>
+                        </mat-tab>
+                        
+                    </mat-tab-group>
+                </div>
+
+                <div class="divider margin-20-0"></div>
+
+                <appointment-table [data]="tableData$ | async"></appointment-table>
+                <!-- <button (click)="test()">test</button> -->
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

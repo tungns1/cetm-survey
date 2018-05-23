@@ -8,7 +8,7 @@ import { QmsNativeModule } from '../native/qms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     CoreModule,

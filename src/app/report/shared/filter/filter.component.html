@@ -2,7 +2,7 @@
     <div fxFlex class="content">
         <period-filter></period-filter>
         <branch-filter *ngIf="inside!='customer'"></branch-filter>
-        <inside-filter *ngIf="inside==='yes'"></inside-filter>
+        <inside-filter *ngIf="inside==='yes'" [onlyService]="onlyService"></inside-filter>
     </div>
     <div fxFlex="7vh" class="action">
         <button class="btnFill uppercase" (click)="Refresh()" i18n>View</button>

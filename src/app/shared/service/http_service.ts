@@ -39,8 +39,9 @@ export class HttpApi<T> {
     protected makeRequest(method: RequestMethod, subUri: string, query?: any, body?: any) {
         let params = new URLSearchParams();
         params.set("token", this.token);
+        // this.baseUrl = this.baseUrl.replace('3000','8989')
         const url = `${this.baseUrl}/${subUri}`
-
+        // console.log(`base url ${this.baseUrl}`)
         if (query) {
             Object.keys(query).forEach(k => {
                 params.set(k, query[k]);
@@ -65,6 +66,13 @@ export class HttpApi<T> {
 
     Get<T2>(sub: string, q?: any): Observable<T2> {
         const request = this.makeRequest(RequestMethod.Get, sub, q);
+        return this.send(request);
+    }
+
+    Get2<T2>(sub: string, q?: any): Observable<T2> {
+        const request = this.makeRequest(RequestMethod.Get, sub, q);
+        // console.log(`function get2 ${JSON.stringify(request.url.replace(':3000',':8989'))}`)
+        request.url = request.url.replace(':3000',':8989');
         return this.send(request);
     }
 

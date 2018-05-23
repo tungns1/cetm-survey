@@ -38,7 +38,7 @@ export class CrudApiService<T> {
     MarkDelete(id: string) {
         return this.api.Post("mark_delete", {id: id}).do(this.onChange);
     }
-    
+ 
     Search(o) {
         return this.api.Get<T[]>('search', o);
     }

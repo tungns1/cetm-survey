@@ -34,7 +34,7 @@
                 list-style: none;
                 position: absolute;
                 top: 32px;
-                left: 0px;
+                left: -1px;
                 background: #fff;
                 padding: 0;
                 li {
@@ -43,11 +43,37 @@
                     border-top: none;
                     cursor: pointer;
                     outline: none;
+                    position: relative;
                     &:hover {
                         background: $border-color + 50;
+                        .threeLv{
+                            display: block;
+                        }
                     }
                     .paddingSecond {
                         padding-left: 20px;
+                    }
+                    .threeLv{
+                        display: none;
+                        list-style: none;
+                        position: absolute;
+                        top: 0;
+                        left: 100%;
+                        background-color: #fff;
+                        padding: 0;
+                        li{
+                            width: 220px;
+                            border: $border;
+                            cursor: pointer;
+                            outline: none;
+                            position: relative;
+                            &+li{
+                                border-top: none;
+                            }
+                            &:hover {
+                                background: $border-color + 50;
+                            }
+                        }
                     }
                 }
             }
