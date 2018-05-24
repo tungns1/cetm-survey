@@ -5,14 +5,13 @@ import { SharedModule } from "./shared/";
 import { routing } from "./report.routing";
 import { ReportComponent } from './report/report.component';
 import { ReportFilterModule, reportServiceProvider } from "./shared";
-import { CustomComponent } from './custom/custom.component';
 
 @NgModule({
     imports: [
         SharedModule, routing,
         ReportFilterModule
     ],
-    declarations: [ReportComponent, CustomComponent, ],
+    declarations: [ReportComponent],
     providers: [reportServiceProvider],
 })
 export class ReportModule {
