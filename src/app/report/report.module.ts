@@ -7,12 +7,12 @@ import { ReportComponent } from './report/report.component';
 import { ReportFilterModule, reportServiceProvider } from "./shared";
 
 @NgModule({
-    imports: [
-        SharedModule, routing,
-        ReportFilterModule
-    ],
-    declarations: [ReportComponent],
-    providers: [reportServiceProvider],
+  imports: [
+    SharedModule, routing,
+    ReportFilterModule
+  ],
+  declarations: [ReportComponent],
+  providers: [reportServiceProvider],
 })
 export class ReportModule {
 

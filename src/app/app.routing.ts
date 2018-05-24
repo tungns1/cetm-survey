@@ -9,7 +9,7 @@ export const routes: Routes = [
     { path: "setting", loadChildren: "./setting/index" },
     { path: "auth", loadChildren: "./auth/index#AuthModule" },
     { path: "setup", loadChildren: "./setup/index" },
-    { path: "", pathMatch: "full", redirectTo: "report" },
+    { path: "", pathMatch: "full", redirectTo: "report" }
 ];
 
 export const appRouting = RouterModule.forRoot(routes, { useHash: true });

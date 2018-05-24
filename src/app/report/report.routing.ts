@@ -13,10 +13,6 @@ import { DetailCusWaitingModule } from './detail-cus-waiting/detail-cus-waiting.
 import { CusServingModule } from './cus-serving/cus-serving.module';
 import { DetailCusServingModule } from './detail-cus-serving/detail-cus-serving.module';
 import { SessionValidationGuard } from './shared';
-import { AppointmentPerformanceModule } from "./appointment-performance/appointment-performance.module";
-import { BookingHistoryModule } from "./booking-history/booking-history.module";
-import { BookingStatusModule } from "./booking-status/booking-status.module";
-import { BookingDetailModule } from "./booking-detail/booking-detail.module";
 
 export function loadReportHistoryModule() {
     return ReportHistoryModule;
@@ -56,22 +52,6 @@ export function loadReportDetailCusServingModule() {
     return DetailCusServingModule;
 }
 
-export function loadReportAppointmentPerformanceModule(){
-    return AppointmentPerformanceModule;
-}
-
-export function loadReportBookingHistoryModule(){
-    return BookingHistoryModule;
-}
-
-export function loadReportBookingStatusModule(){
-    return BookingStatusModule;
-}
-
-export function loadReportBookingDetailModule(){
-    return BookingDetailModule;
-}
-
 export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "dashboard" },
     { path: "history", loadChildren: loadReportHistoryModule },
@@ -85,13 +65,7 @@ export const children: Routes = [
     { path: "cusWaiting", loadChildren: loadReportCusWaitingModule },
     { path: "detailCusWaiting", loadChildren: loadReportDetailCusWaitingModule },
     { path: "cusServing", loadChildren: loadReportCusServingModule },
-    { path: "detailSusServing", loadChildren: loadReportDetailCusServingModule },
-    { path: 'appointmentPerformance', loadChildren: loadReportAppointmentPerformanceModule},
-    { path: 'bookingHistory', loadChildren: loadReportBookingHistoryModule},
-    { path: 'bookingStatus', loadChildren: loadReportBookingStatusModule},
-    { path: 'bookingDetail', loadChildren: loadReportBookingDetailModule},
-    // { path: 'appointmentPerformance/bookingStatus', loadChildren: loadReportAppointmentPerformanceModule},
-    // { path: 'appointmentPerformance/bookingDetail', loadChildren: loadReportAppointmentPerformanceModule}
+    { path: "detailSusServing", loadChildren: loadReportDetailCusServingModule }
 ];
 
 export const routing = RouterModule.forChild([

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { timeFormat, timeParse } from 'd3-time-format';
 import { timeDay, timeWeek, timeMonth, timeYear, CountableTimeInterval } from 'd3-time';
 import { SmallStorage, RouterQueryStorageStrategy } from '../../shared';
-import { NumberCardComponent } from '@swimlane/ngx-charts';
 
 const now = Math.floor(Date.now() / 111);
 const oneDay = 24 * 3600 * 1000;
@@ -53,9 +52,10 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         let end = this.parseDate(this.data.end);
         end = new Date(end.setDate(end.getDate() + 1));
         // end = startOf.offset(end, 1);
+
         return {
-            start: start.getTime()/1000,
-            end: end.getTime()/1000,
+            start: this.formatDate(start),
+            end: this.formatDate(end),
             period: this.data.period
         }
     }

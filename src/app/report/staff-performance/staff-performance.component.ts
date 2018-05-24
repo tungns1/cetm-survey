@@ -9,31 +9,31 @@ import { StaffPerformanceService } from './shared/staff-performance.service';
 })
 export class StaffPerformanceComponent implements OnInit {
 
-    constructor(
-        private staffPerformanceService: StaffPerformanceService,
-    ) { }
+  constructor(
+    private staffPerformanceService: StaffPerformanceService,
+  ) { }
 
-    sumData$ = this.staffPerformanceService.sumData$;
-    tableData$ = this.staffPerformanceService.tableData$;
-    transChart$ = this.staffPerformanceService.transChart$;
-    performanceChart$ = this.staffPerformanceService.performanceChart$;
-    selectedTab: number = 0;
+  sumData$ = this.staffPerformanceService.sumData$;
+  tableData$ = this.staffPerformanceService.tableData$;
+  transChart$ = this.staffPerformanceService.transChart$;
+  performanceChart$ = this.staffPerformanceService.performanceChart$;
+  selectedTab: number = 0;
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    refresh() {
-        this.staffPerformanceService.Refresh();
-    }
+  refresh() {
+    this.staffPerformanceService.Refresh();
+  }
 
-    onTabChange(e) {
-        this.selectedTab = e.index;
-    }
+  onTabChange(e) {
+      this.selectedTab = e.index;
+  }
 
-    getYLabel(data) {
-        const datepipe: TimeDurationPipe = new TimeDurationPipe();
-        return datepipe.transform(data);
-    }
+  getYLabel(data) {
+    const datepipe: TimeDurationPipe = new TimeDurationPipe();
+    return datepipe.transform(data);
+  }
 
 
 }

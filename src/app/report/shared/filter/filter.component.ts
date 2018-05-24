@@ -9,7 +9,6 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 })
 export class ReportFilterComponent {
     @Input() inside:string;
-    @Input() onlyService: string;
    
     ngOnInit() {
         this.Refresh();
