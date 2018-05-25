@@ -42,7 +42,7 @@ export class TransactionComponent implements OnInit {
 
     private getAudioLink(uri: string) {
         if (!uri) return '';
-        return `${this.env.Platform.Http}/api/report/record/${uri}`;
+        return `${this.env.Platform.HttpCETM}/api/report/record/${uri}`;
     }
 
     private getCustomer(customer_id: string) {

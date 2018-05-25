@@ -11,7 +11,7 @@ export class AppSocketGenerator {
     }
 
     private get host() {
-        return this.env.Platform.WebSocket;
+        return this.env.Platform.WebSocketCETM;
     }
 
     private get debug() {

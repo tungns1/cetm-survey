@@ -8,7 +8,7 @@ export class MonitorTicketSocket extends AppSocket {
     private env: RuntimeEnvironment,
     logService: LogService,
   ) {
-    super(`${env.Platform.WebSocket}/room/monitor/join`, env.Debug.socket, logService);
+    super(`${env.Platform.WebSocketCETM}/room/monitor/join`, env.Debug.socket, logService);
   }
 
   onInit() {

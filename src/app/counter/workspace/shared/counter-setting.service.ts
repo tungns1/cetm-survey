@@ -63,7 +63,7 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
     return this.data.led_addr > 0;
   }
 
-  private baseUploadURL = `${this.env.Platform.Http}/api/report/record/`;
+  private baseUploadURL = `${this.env.Platform.HttpCETM}/api/report/record/`;
 
   private checked = false;
 }
