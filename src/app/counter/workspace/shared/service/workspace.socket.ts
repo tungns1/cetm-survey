@@ -13,7 +13,7 @@ export class WorkspaceSocket extends AppSocket {
         private counterSetting: WorkspaceSettingService,
         logService: LogService,
     ) {
-        super(`${env.Platform.WebSocketCETM}/room/actor/join`, env.Debug.socket, logService);
+        super(`${env.Platform.WebSocket}/room/actor/join`, env.Debug.socket, logService);
     }
 
     onInit() {

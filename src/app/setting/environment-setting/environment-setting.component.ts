@@ -15,7 +15,7 @@ export class EnvironmentSettingComponent implements OnInit {
 
   ngOnInit() {
     this.PlatformForm.valueChanges.subscribe(data => {
-      this.env.Platform.Update(data.host_cetm, data.host_booking, data.host_survey);
+      this.env.Platform.Update(data.host);
     });
     this.DebugForm.valueChanges.subscribe(data => {
       this.env.Debug.Update(data.layout, data.socket);
@@ -30,9 +30,7 @@ export class EnvironmentSettingComponent implements OnInit {
   });
 
   PlatformForm = new FormGroup({
-    host_cetm: new FormControl(this.platform.host_cetm),
-    host_booking: new FormControl(this.platform.host_booking),
-    host_survey: new FormControl(this.platform.host_survey),
+    host: new FormControl(this.platform.host)
   });
 
 }

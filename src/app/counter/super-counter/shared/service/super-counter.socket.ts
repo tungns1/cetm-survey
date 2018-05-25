@@ -13,7 +13,7 @@ export class SuperCounterSocket extends AppSocket {
         private counterSetting: SuperCounterSettingService,
         logService: LogService,
     ) {
-        super(`${env.Platform.WebSocketCETM}/room/actor/join`, env.Debug.socket, logService);
+        super(`${env.Platform.WebSocket}/room/actor/join`, env.Debug.socket, logService);
     }
 
     onInit() {

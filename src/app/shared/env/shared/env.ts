@@ -19,10 +19,10 @@ export class RuntimeEnvironment {
     Platform = new PlatformEnvStorage();
     generateHostName(port?: number) {
         if (port) {
-            let hostName = this.Platform.Data.host_cetm ? this.Platform.Data.host_cetm.split(':')[0] : window.location.hostname;
+            let hostName = this.Platform.Data.host ? this.Platform.Data.host.split(':')[0] : window.location.hostname;
             return 'http://' + hostName + ':' + port;
         } else {
-            let host = this.Platform.Data.host_cetm ? this.Platform.Data.host_cetm : window.location.host;
+            let host = this.Platform.Data.host ? this.Platform.Data.host : window.location.host;
             return 'http://' + host;
         }
     }

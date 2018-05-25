@@ -3,9 +3,7 @@ import {
 } from '../../shared';
 
 interface IPlatformSerialize {
-    host_cetm?: string;
-    host_booking?: string;
-    host_survey?: string;
+    host?: string;
 }
 
 export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
@@ -13,26 +11,22 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         super("platform");
     }
 
-    private get actualHostCETM() {
+    private get actualHost() {
         // should not initialize with object
-        return this.data.host_cetm || location.host;
+        return this.data.host || location.host;
     }
 
-    Update(host_cetm: string, host_booking: string, host_survey: string) {
-        this.data.host_cetm = host_cetm;
-        this.data.host_booking = host_booking;
-        this.data.host_survey = host_survey;
-        // console.log(this.data)
+    Update(host: string) {
+        this.data.host = host;
         this.SaveData();
     }
 
-    get HttpCETM() {
-        // console.log(`${this.protocol}//${this.actualHostCETM}`)
-        return `${this.protocol}//${this.actualHostCETM}`;
+    get Http() {
+        return `${this.protocol}//${this.actualHost}`;
     }
 
-    get WebSocketCETM() {
-        return `${this.wsProtocol}//${this.actualHostCETM}`;
+    get WebSocket() {
+        return `${this.wsProtocol}//${this.actualHost}`;
     }
 
     private protocol = location.protocol;

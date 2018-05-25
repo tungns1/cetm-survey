@@ -43,7 +43,7 @@ export class MetaService {
     }
 
     private generateHostName() {
-        let host = this.env.Platform.Data.host_cetm || window.location.host;
+        let host = this.env.Platform.Data.host ? this.env.Platform.Data.host : window.location.host;
         return 'http://' + host;
     }
 

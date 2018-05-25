@@ -29,7 +29,7 @@ export class TransactionComponent implements OnInit {
         this.data = this.dialogData;
         this.GetInfoCustomer(this.dialogData);
         if (this.dialogData.audio) {
-            this.link = this.env.Platform.HttpCETM + '/api/report/record/' + this.dialogData.audio;
+            this.link = this.env.Platform.Http + '/api/report/record/' + this.dialogData.audio;
         }
     }
 
