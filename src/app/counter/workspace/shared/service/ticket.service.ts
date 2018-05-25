@@ -43,7 +43,6 @@ export class TicketService {
     }
     feedback: any
     Move(t: Ticket, services: string[], counters: string[]) {
-        console.log(t)
         this.feedback = {
             reason_text: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.reason_text || null) : null) : null,
             rating: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.rating || null) : null) : null,
@@ -91,7 +90,6 @@ export class TicketService {
     }
 
     TriggerAction(action: TicketActionName, ticket: Ticket) {
-        // console.log(ticket)
         return this.manager.Work(action, ticket, {
             record_transaction: this.settingService.EnableRecordTransaction,
             platform: this.platform,

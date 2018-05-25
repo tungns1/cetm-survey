@@ -2,11 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { WorkspaceService } from '../shared';
 
-const TABS = {
-    FINISHED: 'FINISHED',
-    CANCELLED: 'CANCELLED'
-}
-
 class TabGroup extends BehaviorSubject<string> {
     constructor(
         private tabs: string[] = []
@@ -46,8 +41,6 @@ export class StaComponent {
     tab$ = new TabGroup(["finished", "cancelled"]);
 
     data$ = this.tab$.switchMap(tab => {
-        return tab === 'finished' ?
-            this.stat$.map(s => s.finished) :
-            this.stat$.map(s => s.cancelled)
+        return tab === 'finished' ? this.stat$.map(s => s.finished) : this.stat$.map(s => s.cancelled);
     })
 }

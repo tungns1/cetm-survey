@@ -87,7 +87,6 @@ export class TicketDetailDialog {
         dialog.afterClosed().subscribe(d => {
           if (d) {
             this.ticket = d;
-            console.log(this.ticket)
             this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
               .subscribe(v => {
                 this.dialogRef.close();
@@ -96,7 +95,6 @@ export class TicketDetailDialog {
           }
         })
       } else {
-        console.log(this.ticket)
         this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
           .subscribe(v => {
             this.dialogRef.close();

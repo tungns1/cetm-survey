@@ -1,15 +1,5 @@
 export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create' | 'print_form';
 
-interface ITicketAction<T> {
-    action: string;
-    ticket_id: string;
-    service_id?: string;
-    state?: string;
-    services?: string[];
-    counters?: string[];
-    extra?: T;
-}
-
 import { ITicket, Ticket, IService, TicketState, TicketStates } from '../../shared';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
@@ -76,6 +66,7 @@ export class TicketAction {
 }
 
 import { Observable } from 'rxjs/Observable';
+import { ActionMove } from '../../../../shared/model/ticket_action';
 
 export class ActionManager {
     constructor(
@@ -94,6 +85,10 @@ export class ActionManager {
             this.queue.push(ta);
             this.next();
             return ta.afterDone();
+        }
+        if(action === ActionMove){
+            ta.service_id = extra.services[0];
+            ta.ticket.service_id = extra.services[0];
         }
         if (!ta.IsValid()) {
             console.log("invalid action", ta);

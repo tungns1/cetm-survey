@@ -94,7 +94,7 @@ export class Ticket {
     id = this._t.id
     cnum = this._t.cnum
     branch_id = this._t.branch_id;
-    service_id = this._t.service_id;
+    service_id = this._t.services ? this._t.services[0] : this._t.service_id;
     counter_id = this._t.counter_id;
     services: string[] = this._t.services || [];
     counters: string[] = this._t.counters || [];
@@ -116,10 +116,6 @@ export class Ticket {
         return this.tracks[this.tracks.length - 2];
     }
 
-    getLastTrack() {
-        return this.tracks[this.tracks.length - 1];
-    }
-
     addHelperFields() {
         if (this.state == TicketStates.Serving) return;
         const prevTrack = this.getPrevTrack();
@@ -133,15 +129,15 @@ export class Ticket {
             return;
         }
 
-        for (let i = this.tracks.length - 1; i >= 0; i--) {
-            const track = this.tracks[i];
-            this.counter_id = this.counter_id || track.counter_id;
-            this.user_id = this.user_id || track.counter_id;
-            this.service_id = track.service_id;
-            if (this.service_id) {
-                break;
-            }
-        }
+        // for (let i = this.tracks.length - 1; i >= 0; i--) {
+        //     const track = this.tracks[i];
+        //     this.counter_id = this.counter_id || track.counter_id;
+        //     this.user_id = this.user_id || track.counter_id;
+        //     this.service_id = track.service_id;
+        //     if (this.service_id) {
+        //         break;
+        //     }
+        // }
     }
 
     isDone() {
