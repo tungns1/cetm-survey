@@ -30,6 +30,20 @@
             </div>
         </div>
 
+        
+        <div *ngIf="isWaiting">
+            <div fxLayout="row" class="margin-10-0">
+                <label fxFlex i18n>Start Serving</label>
+                <span fxFlex>{{ticket.mtime | localDayTime}}</span>
+            </div>
+            <label class="margin-t-10" i18n>Transfer Service</label>
+            <div class="margin-t-10">
+                <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name" [multiple]="false"></select-check>
+            </div>
+        </div>
+
+
+
         <!-- Action -->
         <div *ngIf="isCancelled" class="margin-20-0">
             <div fxLayout="row" fxLayoutGap="20px">
@@ -60,6 +74,7 @@
 <app-notice>
     <app-notice-message name="missing_counter_or_service" message="Please, select counter or service" i18n-message></app-notice-message>
     <app-notice-message name="missing_counter" message="Please select counter" i18n-message></app-notice-message>
+    <app-notice-message name="missing_service" message="Please select service" i18n-message></app-notice-message>
     <app-notice-message name="server_error" message="Server Error" i18n-message></app-notice-message>
     <app-notice-message name="serving" message="Unsuccess, finish serving ticket before calling" i18n-message></app-notice-message>
     <app-notice-message name="feedback_skip" message="Please remind customer feedback to finish transaction" i18n-message></app-notice-message>

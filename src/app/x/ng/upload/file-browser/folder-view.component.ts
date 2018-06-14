@@ -22,8 +22,8 @@ export class FolderViewComponent {
     }
 
     focus(event: Event, node: FileNode) {
-        event.preventDefault();
-        event.stopPropagation();
+        // event.preventDefault();
+        // event.stopPropagation();
         if (node.is_dir) {
             this.open(node);
             return;

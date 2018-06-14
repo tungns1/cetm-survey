@@ -24,10 +24,11 @@ export class ActionComponent {
         private mdDialog: MatDialog
     ) { }
 
-
     @ViewChild(NoticeComponent) notice: NoticeComponent;
 
     @Input() ticket: Ticket;
+
+    @Input() selectedService;
 
     auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
 
@@ -39,7 +40,6 @@ export class ActionComponent {
     }
 
     Next() {
-
         if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
             const config = new MatDialogConfig();
             config.width = '520px';

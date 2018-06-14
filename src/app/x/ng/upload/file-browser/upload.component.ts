@@ -15,6 +15,7 @@ export class FileUploadComponent {
 
     open(node: FileNode) {
         this.node = node;
+
         this.fileInputElement.nativeElement.click();
     }
 
@@ -35,7 +36,11 @@ export class FileUploadComponent {
     uploadDone(e) {
         if (e) {
             let a = this.node.addOneFile(e)
-            this.refreshAfterUpload.emit(e)
+            this.refreshAfterUpload.emit(a)
+            if (a.is_dir) {
+                this.open(a);
+                return;
+            }
             this.select.next(a);
         }
     }

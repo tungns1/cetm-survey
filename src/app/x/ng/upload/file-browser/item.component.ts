@@ -31,7 +31,7 @@ export class ItemComponent {
         this.upload(value.node);
         // this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(this.item.MakeObjectUrl());
     };
-    @Output() test: EventEmitter<any> = new EventEmitter<any>();
+    @Output() uploadProgress: EventEmitter<any> = new EventEmitter<any>();
     // safeUrl: SafeUrl;
     private progress: Observable<number>;
 
@@ -47,7 +47,7 @@ export class ItemComponent {
         this.progress = node.Create(this.item.File, this.item.Name).map(v => Math.round(v * 100));
         let ctf = this.progress.subscribe(v => {
             if (v === 100) {
-                this.test.emit(this.item)
+                this.uploadProgress.emit(this.item)
                 ctf.unsubscribe()
             }
         })

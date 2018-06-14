@@ -28,8 +28,22 @@ export class FileNode {
     is_dir?: boolean;
     rxChildren = new BehaviorSubject<FileNode[]>([]);
 
+    ConvertFileName(name: string){
+        
+        // let extend =  (/[.]/.exec(name)) ? /[^.]+$/.exec(name).toString() : '';
+        // if(extend){
+            // name = name.slice(0, -(extend.length +1))
+            name = name.replace(/ /g, "-")
+            name = name.toLowerCase().replace(/[^a-zA-Z0-9-.]+/ig, "")
+            return name
+        // }else{}
+            
+        
+    }
+
     addOneFile(file){
-        let a = new FileNode(this.base, this.path+ file.name, file.name)
+        let file_name = this.ConvertFileName(file.name)
+        let a = new FileNode(this.base, this.path+ file_name, file_name)
         return a
     }
 

@@ -39,7 +39,6 @@ export class FilePickerModalComponent implements OnInit {
     }
 
     test1(node: FileNode){
-        // console.log(this.selectedNode)
         this.selectedNode = node
     }
 

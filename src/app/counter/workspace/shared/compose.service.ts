@@ -20,7 +20,7 @@ export class ComposeService {
   ) { }
 
   enable() {
-    LoadConfig();
+    LoadConfig()
     const setting = this.counterSetting.Data;
     if (this.counterSetting.EnableLed) {
       this.ledService.enable(setting.led_addr, setting.led_remote, setting.led_com_port);
