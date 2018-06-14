@@ -20,7 +20,7 @@ import { FileBrowserComponent } from './file-browser.component';
         FileBrowserComponent,
         FolderViewComponent
     ],
-    exports: [FileBrowserComponent],
+    exports: [FileBrowserComponent, FileUploadComponent, FileTreeComponent],
     entryComponents: [FileBrowserComponent]
 })
 export class FileBrowserModule {

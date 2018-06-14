@@ -4,15 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import { FileNode, FileItem } from '../backend/';
 
 @Component({
-  selector: 'div[upload-item]',
-  template: `
+    selector: 'div[upload-item]',
+    template: `
     <div fxLayout="row">
       <span fxFlex>{{item.Name}}</span> 
       <span fxFlex>{{item.Size}}</span>
       <span fxFlex>{{progress | async}} %</span>
     </div>
   `,
-  styles: [`
+    styles: [`
       span{
         padding: 5px 0;
       }
@@ -21,29 +21,35 @@ import { FileNode, FileItem } from '../backend/';
         height:50px;
       }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent {
-  private item: FileItem;
+    private item: FileItem;
 
-  @Input() set data(value: { node: FileNode, file: File }) {
-    this.item = new FileItem(value.file);
-    this.upload(value.node);
-    // this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(this.item.MakeObjectUrl());
-  };
+    @Input() set data(value: { node: FileNode, file: File }) {
+        this.item = new FileItem(value.file);
+        this.upload(value.node);
+        // this.safeUrl = this.sanitizer.bypassSecurityTrustUrl(this.item.MakeObjectUrl());
+    };
+    @Output() test: EventEmitter<any> = new EventEmitter<any>();
+    // safeUrl: SafeUrl;
+    private progress: Observable<number>;
 
-  // safeUrl: SafeUrl;
-  private progress: Observable<number>;
+    constructor(private sanitizer: DomSanitizer) {
 
-  constructor(private sanitizer: DomSanitizer) {
+    }
 
-  }
+    ngOnInit() {
 
-  ngOnInit() {
+    }
 
-  }
-
-  public upload(node: FileNode) {
-    this.progress = node.Create(this.item.File, this.item.Name).map(v => Math.round(v * 100));
-  }
+    public upload(node: FileNode) {
+        this.progress = node.Create(this.item.File, this.item.Name).map(v => Math.round(v * 100));
+        let ctf = this.progress.subscribe(v => {
+            if (v === 100) {
+                this.test.emit(this.item)
+                ctf.unsubscribe()
+            }
+        })
+    }
 }

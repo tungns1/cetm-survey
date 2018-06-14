@@ -4,6 +4,29 @@
         <i fxFlex="5%" class="fa fa-times fa-2x pointer center" (click)="close()"> </i>
     </div>
     <div class="padding-20">
-        <file-browser (select)="choose($event)"></file-browser>
+        <mat-tab-group (selectChange)="onTabChange($event)">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span class="uppercase" i18n>Upload</span>
+                </ng-template>
+                <div class="margin-t-20">
+                    <file-tree [node]="node" (select)="test1($event)"></file-tree>
+                    <div class="divider"></div>
+                    <h1>Folder: {{selectedNode.name}}</h1>
+                    <div fxLayout="row" class="margin-t-20">
+                        <file-upload fxFlex #upload (select)="choose($event)"></file-upload>
+                        <button fxFlex="20%" class="btnFill" (click)="upload.open(selectedNode)" style="height: 27px">Upload</button>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span class="uppercase" i18n>Library</span>
+                </ng-template>
+                <div class="margin-t-20">
+                    <file-browser (select)="choose($event)"></file-browser>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>
