@@ -9,8 +9,6 @@ import { MonitorDeviceSocket } from './monitor-device.socket';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { merge } from 'rxjs/observable/merge';
 import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/publishReplay';
-import 'rxjs/add/operator/throttleTime';
 import { IBoxActivity } from './index';
 
 @Injectable()

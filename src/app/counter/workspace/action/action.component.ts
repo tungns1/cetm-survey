@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
@@ -13,7 +13,7 @@ import {
 @Component({
     selector: 'ticket-action',
     templateUrl: 'action.component.html',
-    styleUrls: ['action.component.scss'],
+    styleUrls: ['action.component.scss']
 })
 export class ActionComponent {
     constructor(
@@ -103,7 +103,5 @@ export class ActionComponent {
     private triggerAction(action: TicketActionName) {
         return this.ticketService.TriggerAction(action, this.ticket);
     }
-
-
 
 }

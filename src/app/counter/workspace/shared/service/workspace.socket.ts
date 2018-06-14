@@ -31,9 +31,7 @@ export class WorkspaceSocket extends AppSocket {
                 new Notification("Application Error", {
                     body: message
                 });
-                const md = this.mdSnackBard.open(message
-                    // , "Click here to Check Configuration"
-                );
+                const md = this.mdSnackBard.open(message, '', { duration: 500 });
                 // md.onAction().first().subscribe(_ => {
                 //     this.router.navigate(["/counter/setting"]);
                 // });

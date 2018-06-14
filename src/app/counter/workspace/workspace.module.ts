@@ -12,6 +12,8 @@ import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { MiniModeFormModule } from './setting/minimode-form.module';
 import { WelcomeModule } from '../welcome/welcome.module';
+import { ActionModule } from './action/action.module';
+import { CustomerModule } from './customer/customer.module';
 
 import { WorkspaceSettingService } from './shared';
 import { SessionValidationGuard, RuntimeEnvironment, AuthService } from '../shared/shared'
@@ -95,7 +97,7 @@ const routing = RouterModule.forChild([
         ServingModule, StatModule, MatProgressSpinnerModule,
         MatCheckboxModule, MatInputModule, MatFormFieldModule,
         MatToolbarModule, MatProgressBarModule, MatTabsModule,
-        MiniModeFormModule
+        MiniModeFormModule, ActionModule, CustomerModule
     ],
     declarations: [
         WorkspaceComponent, NormalWorkspaceComponent, MiniWorkspaceComponent,
