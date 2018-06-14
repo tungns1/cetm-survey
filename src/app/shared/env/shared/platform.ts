@@ -6,6 +6,7 @@ interface IPlatformSerialize {
     host_cetm?: string;
     host_booking?: string;
     host_survey?: string;
+    auto_login?: boolean;
 }
 
 export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
@@ -18,10 +19,16 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         return this.data.host_cetm || location.host;
     }
 
-    Update(host_cetm: string, host_booking: string, host_survey: string) {
+    private get actualHostBooking() {
+        // should not initialize with object
+        return this.data.host_booking || location.host;
+    }
+
+    Update(host_cetm: string, host_booking: string, host_survey: string, auto_login = false) {
         this.data.host_cetm = host_cetm;
         this.data.host_booking = host_booking;
         this.data.host_survey = host_survey;
+        this.data.auto_login = auto_login
         // console.log(this.data)
         this.SaveData();
     }
@@ -29,6 +36,11 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
     get HttpCETM() {
         // console.log(`${this.protocol}//${this.actualHostCETM}`)
         return `${this.protocol}//${this.actualHostCETM}`;
+    }
+
+    get HttpBooking() {
+        // console.log(`${this.protocol}//${this.actualHostCETM}`)
+        return `${this.protocol}//${this.actualHostBooking}`;
     }
 
     get WebSocketCETM() {

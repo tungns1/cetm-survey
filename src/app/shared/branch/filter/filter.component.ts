@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit, Input } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute,
         private filterService: BranchFilterService,
     ) { }
-
+    @Input() showStore;
     form: FormArray;
     levels: number[];
     viewLevels: number[];
@@ -29,12 +29,19 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
         this.form = new FormArray(
             this.levels.map(i => new FormControl([]))
         );
-
         this.levels.forEach(i => {
             this.data[i] = this.makeData(i);
         });
-
         this.viewLevels = [].concat(this.levels).reverse();
+        // không hiện store trên filter
+        if (this.showStore === 'no') {
+            this.viewLevels.splice(this.viewLevels.length -1, 1)
+        }
+        // List store
+        this.data[0].subscribe(data => {
+            this.filterService.getTestValue(data);
+        })
+       
     }
 
     ngAfterViewInit() {

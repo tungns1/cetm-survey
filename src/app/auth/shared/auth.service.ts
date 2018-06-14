@@ -45,10 +45,12 @@ export class AuthService {
     return this.authApi.Post<ILoginReply>("login", {}, option)
       .do(data => {
         AppStorage.Token = data.session.id;
+        sessionStorage.setItem('login_session',data.session.id) // tao session login
       });
   }
 
   Logout() {
+    sessionStorage.removeItem('login_session')
     return this.authApi.Post("logout");
   }
 

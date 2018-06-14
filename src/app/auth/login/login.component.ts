@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CurrentUser } from '../../x/platform';
 import { AuthService, HttpError } from '../shared';
 
+
 interface ILoginModel {
   username: string;
   password: string;
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(auto?: boolean) {
+      
     const query = this.route.snapshot.queryParamMap;    
     const userInput = this.loginForm.value;
     const data = {

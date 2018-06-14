@@ -68,6 +68,12 @@ export class HttpApi<T> {
         return this.send(request);
     }
 
+    Get2<T2>(sub: string, q?: any): Observable<T2> {
+        const request = this.makeRequest(RequestMethod.Get, sub, q);
+        request.url = request.url.replace(':3000',':8989');
+        return this.send(request);
+    }
+
     Post<T2>(sub: string, q?: any, o?: any): Observable<T2> {
         const request = this.makeRequest(RequestMethod.Post, sub, q, o);
         return this.send(request);

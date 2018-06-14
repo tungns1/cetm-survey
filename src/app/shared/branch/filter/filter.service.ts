@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CacheBranch, MultipleIDList, USER_ROLES } from '../../model';
+import { CacheBranch, MultipleIDList, USER_ROLES, IBranch } from '../../model';
 import { RuntimeEnvironment } from '../../env'
 
 interface IBranchFilter {
@@ -10,6 +10,8 @@ import {
     SmallStorage,
     RouterQueryStorageStrategy
 } from '../../shared';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { TransactionHistoryApi } from '../../../report/history/shared';
 
 @Injectable()
 export class BranchFilterService extends SmallStorage<IBranchFilter> {
@@ -40,7 +42,8 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
         //     });
 
     }
-
+    private test = new BehaviorSubject<IBranch[]>([]);
+    test1 = this.test.asObservable();
     levels: number[] = [];
 
     level0$ = this.Data$.map(d => d.branches[0]);
@@ -48,7 +51,9 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     private max: number;
 
     // isAdminStandard: boolean = false;
-
+    getTestValue(data:IBranch[]){
+        this.test.next(data)
+    }
     get branches() {
         return this.data.branches || [];
     }
