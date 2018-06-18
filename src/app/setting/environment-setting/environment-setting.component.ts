@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RuntimeEnvironment } from '../../shared/env';
+import { AppStorage } from '../../shared';
 
 @Component({
   selector: 'app-environment-setting',
@@ -15,7 +16,8 @@ export class EnvironmentSettingComponent implements OnInit {
 
   ngOnInit() {
     this.PlatformForm.valueChanges.subscribe(data => {
-      this.env.Platform.Update(data.host_cetm, data.host_booking, data.host_survey, data.auto_login);
+      this.env.Platform.Update(data.host_cetm, data.host_booking, data.host_survey);
+      AppStorage.AutoLogin = data.auto_login
     });
     this.DebugForm.valueChanges.subscribe(data => {
       this.env.Debug.Update(data.layout, data.socket);
@@ -33,7 +35,7 @@ export class EnvironmentSettingComponent implements OnInit {
     host_cetm: new FormControl(this.platform.host_cetm),
     host_booking: new FormControl(this.platform.host_booking),
     host_survey: new FormControl(this.platform.host_survey),
-    auto_login: new FormControl(this.platform.auto_login)
+    auto_login: new FormControl(this.platform.auto_login || AppStorage.AutoLogin)
   });
 
 }

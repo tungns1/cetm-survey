@@ -6,7 +6,7 @@ interface IPlatformSerialize {
     host_cetm?: string;
     host_booking?: string;
     host_survey?: string;
-    auto_login?: boolean;
+    auto_login?: boolean
 }
 
 export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
@@ -24,11 +24,10 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         return this.data.host_booking || location.host;
     }
 
-    Update(host_cetm: string, host_booking: string, host_survey: string, auto_login = false) {
+    Update(host_cetm: string, host_booking: string, host_survey: string) {
         this.data.host_cetm = host_cetm;
         this.data.host_booking = host_booking;
         this.data.host_survey = host_survey;
-        this.data.auto_login = auto_login
         // console.log(this.data)
         this.SaveData();
     }

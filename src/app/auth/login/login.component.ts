@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   
   ngOnInit() {
+      console.log('111111111111111111')
     const query = this.route.snapshot.queryParamMap;    
     const autoLogin = query.get("auto_login") === "true" ? true : false;
     if (autoLogin) {

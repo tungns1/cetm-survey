@@ -36,10 +36,14 @@ export class SessionValidationGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean {
         // console.log(this.Platform.Data)
-        if (!this.Platform.Data.auto_login) {
-            if (!sessionStorage.getItem('login_session')) {
-                AppStorage.ClearToken()
-            }
+        
+        // if (!this.Platform.Data.auto_login) {
+        //     if (!sessionStorage.getItem('login_session')) {
+        //         AppStorage.ClearToken()
+        //     }
+        // }
+        if(!AppStorage.AutoLogin){
+            AppStorage.ClearToken()
         }
         if (!AppStorage.HasToken()) {
             this.ShowLogin(state.url);
@@ -48,6 +52,7 @@ export class SessionValidationGuard implements CanActivate {
         return this.authService.ValidateSession(this.GetScope())
             .do(success => {
                 if (!success) {
+                    
                     this.ShowLogin(state.url);
                 }
                 // this.env.Auth.User$.subscribe(u => {

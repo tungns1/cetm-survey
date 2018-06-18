@@ -34,8 +34,8 @@ export class UserComponent {
             this.notice.ShowMessage("must_finish_first");
             return;
         }
-            AppStorage.ClearToken();
-            window.location.reload();
+        AppStorage.ClearToken();
+        window.location.reload();
     }
 
     Refresh() {

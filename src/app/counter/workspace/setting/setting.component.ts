@@ -32,7 +32,9 @@ export class SettingComponent implements OnInit {
             // let configPlatForm = JSON.parse(localStorage.getItem('cem_platform'))
             // configPlatForm.auto_login = v.auto_login_counter
             // localStorage.setItem('cem_platform', JSON.stringify(configPlatForm))
+            AppStorage.AutoLogin = v.auto_login_counter
             if (this.counterSetting.Update(v)) {    
+                AppStorage.AutoLogin = v.auto_login_counter
                 // this.SyncAutoLogin()
                 AppStorage.ClearToken();
             }
@@ -49,7 +51,7 @@ export class SettingComponent implements OnInit {
         led_addr: new FormControl(this.value.led_addr),
         led_remote: new FormControl(this.value.led_remote),
         led_com_port: new FormControl(this.value.led_com_port),
-        auto_login_counter: new FormControl(this.value.auto_login_counter || false)
+        auto_login_counter: new FormControl(this.value.auto_login_counter || AppStorage.AutoLogin)
     });
 
     Go() {
