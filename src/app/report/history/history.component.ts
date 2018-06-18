@@ -145,8 +145,6 @@ export class HistoryComponent {
         const limit = this.paging.Limit;
         this.transactionHistoryApi.GetHistory(skip, limit, this.filter)
             .subscribe(v => {
-                // console.log('aaaaaaaaaaaaaaaaa')
-                // console.log(v)
                 this.paging.SetPage(page);
                 this.paging.Reset(v.data, v.total);
                 this.setRowData(v.data, v.total, skip);

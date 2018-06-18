@@ -30,7 +30,7 @@ export class SuperCounterSocket extends AppSocket {
                 new Notification("Application Error", {
                     body: message
                 });
-                const md = this.snackBard.open(message, "Click here to Check Configuration");
+                const md = this.snackBard.open(message, '', { duration: 500 });
                 md.onAction().first().subscribe(_ => {
                     this.router.navigate(["/counter/super/setting"]);
                 });

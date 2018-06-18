@@ -58,9 +58,6 @@ export class TicketDetailDialog {
     @ViewChild(NoticeComponent) notice: NoticeComponent;
 
     ngOnInit() {
-        this.counters.subscribe(v => {
-            console.log(v)
-        })
         this.workspaceService.currentCounter$.subscribe(v => {
             this.curentCounter = v
         })

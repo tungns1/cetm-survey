@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { QueueService, ICustomer, Customer } from '../../shared';
+import { QueueService, ICustomer, Customer } from '../shared';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
