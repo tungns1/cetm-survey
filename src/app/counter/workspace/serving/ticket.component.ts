@@ -1,6 +1,8 @@
 import { Component, ChangeDetectorRef, Input } from '@angular/core';
 import { TimerComopnent, ProjectConfig, Ticket, WorkspaceService, CacheService, ServiceName, TicketService } from '../shared';
 import { ShowLoading, HideLoading } from '../../../../lib/backend';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { AddServiceDialogComponent } from './add-service-dialog/add-service-dialog.component';
 
 @Component({
     selector: 'ticket',
@@ -13,37 +15,19 @@ export class TicketComponent {
     listService = [];
     showList = false;
 
-    constructor(private workspaceService: WorkspaceService, private ticketService: TicketService){}
+    constructor(
+        private workspaceService: WorkspaceService, 
+        private ticketService: TicketService,
+        private mdDialog: MatDialog,
+    ){}
 
-    ngOnInit(){
-        this.workspaceService.services$.subscribe(v => {
-            v.forEach(item => {
-                if(this.listService.indexOf(item) == -1){
-                    this.listService.push(Object.assign({
-                        id: item.id,
-                        name: item.name
-                    }))
-                }
-            })
-        })
-    }
 
     toggleList(){
-        this.showList = !this.showList;
-    }
-
-    addService(id){
-        this.showList = false
-        
-        if(id){
-            this.ticketService.Move(this.ticket, [id],[]).subscribe(v => {
-                ShowLoading();
-            })
-            this.ticketService.TriggerAction('call',this.ticket).subscribe(v => {
-                HideLoading();
-            })
-        }
-        
+        const config = new MatDialogConfig();
+        config.width = '450px';
+        config.data = this.ticket;
+        const dialog = this.mdDialog.open(AddServiceDialogComponent, config);
+        // this.showList = !this.showList;
     }
 }
 

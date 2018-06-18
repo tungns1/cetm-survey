@@ -6,13 +6,15 @@ import { ActionComponent } from './action.component';
 import { TicketComponent } from './ticket.component';
 import { ModalModule } from '../shared';
 import { CustomerInfoComponent } from './customer/customer-info.component';
+import { AddServiceDialogComponent } from './add-service-dialog/add-service-dialog.component';
 
 @NgModule({
     imports: [TicketModule],
     declarations: [
         ServingComponent, EmptyComponent, ActionComponent,
-        TicketComponent, CustomerInfoComponent
+        TicketComponent, CustomerInfoComponent, AddServiceDialogComponent
     ],
-    exports: [ServingComponent]
+    exports: [ServingComponent],
+    entryComponents: [AddServiceDialogComponent]
 })
 export class ServingModule { }

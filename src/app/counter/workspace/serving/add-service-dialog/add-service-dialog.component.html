@@ -1,0 +1,45 @@
+<div id="ticketDetail" class="modal-dialog">
+    <div class="modal-header" i18n>Add Service</div>
+    <div class="modal-body padding-10-20">
+        <div fxLayout="row" class="margin-t-10">
+            <label fxFlex i18n>Ticket</label>
+            <span fxFlex>{{ticket.cnum}}</span>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <label fxFlex i18n>Priority</label>
+            <span fxFlex>
+                {{ticket.priority.value}} 
+                ({{ticket.priority.detail()}})
+            </span>
+        </div>
+        <div fxLayout="row" class="margin-t-10">
+            <label fxFlex i18n>Print Time</label>
+            <span fxFlex>{{ticket.ctime | localDayTime}}</span>
+        </div>
+        <div class="divider margin-t-10"></div>
+
+        <!-- Ticket Details -->
+        <div >
+            <div fxLayout="row" class="margin-10-0">
+                <!-- <label fxFlex i18n>Start Serving</label>
+                <span fxFlex>{{ticket.mtime | localDayTime}}</span> -->
+            </div>
+            <label class="margin-t-10" i18n>Transfer Service</label>
+            <div class="margin-t-10">
+                <select-check [(ngModel)]="checkedServices" [data]="services | async" textField="name" [multiple]="false"></select-check>
+            </div>
+        </div>
+
+        <!-- Action -->
+        <div class="margin-20-0">
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
+                <button fxFlex class="btnClear" (click)="close()" i18n>Close</button>
+                <button fxFlex class="btnFill" (click)="AddService()" i18n>Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-notice>
+    <app-notice-message name="missing_service" message="Please select service" i18n-message></app-notice-message>
+</app-notice>

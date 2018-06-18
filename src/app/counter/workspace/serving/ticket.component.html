@@ -2,10 +2,6 @@
     <div class="componentHeader" >
         <div class="cover-top">
             <span (click)="toggleList()" style="cursor: pointer">{{ticket.service_name}} &nbsp; &nbsp; <i class="fa fa-plus"></i></span>
-            <ul [class.active]="showList">
-                <li *ngFor="let t of listService" data-id="{{t.id}}" i18n-appConfirm appConfirm="Do you want to cancel this ticket and add a new one?"
-                (confirm)="addService(t.id)">{{t.name}}</li>
-            </ul>
         </div>
     </div>
 

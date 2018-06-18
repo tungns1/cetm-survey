@@ -14,6 +14,7 @@ export interface ICounterSetting extends ILedSetting {
   counter_code: string;
   record_upload_url: string;
   mini_mode: XWinMiniMode;
+  auto_login_counter?: boolean;
 }
 
 @Injectable()
@@ -30,6 +31,7 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
     const auth_update = this.data.branch_code !== data.branch_code || this.data.counter_code !== data.counter_code;
     this.data.branch_code = data.branch_code;
     this.data.counter_code = data.counter_code;
+    this.data.auto_login_counter = data.auto_login_counter
     // record
     this.data.record_upload_url = data.record_upload_url;
     // led
