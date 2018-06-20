@@ -41,7 +41,10 @@ export class ApplicationStore extends SmallStorage<IApplication> {
     }
 
     get AutoLogin(){
-        return this.data.auto_login || true;
+        if(this.data.auto_login === null || this.data.auto_login === undefined){
+            this.data.auto_login = true
+        }
+        return this.data.auto_login;
     }
 
     HasToken() {

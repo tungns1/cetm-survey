@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CurrentUser } from '../../x/platform';
 import { AuthService, HttpError } from '../shared';
+import { AppStorage } from '../../shared';
 
 
 interface ILoginModel {
@@ -36,8 +37,8 @@ export class LoginComponent implements OnInit {
 
   
   ngOnInit() {
-      console.log('111111111111111111')
     const query = this.route.snapshot.queryParamMap;    
+
     const autoLogin = query.get("auto_login") === "true" ? true : false;
     if (autoLogin) {
       let user = CurrentUser();

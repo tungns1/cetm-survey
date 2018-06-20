@@ -17,25 +17,13 @@ export class SettingComponent implements OnInit {
         private route: ActivatedRoute,
     ) { }
 
-    SyncAutoLogin(){
-        let configPlatForm = JSON.parse(localStorage.getItem('cem_platform'))
-        let configCounter = JSON.parse(localStorage.getItem('cem_counter'))
-        if(configPlatForm){
-            configPlatForm.auto_login = configCounter.auto_login_counter
-            localStorage.setItem('cem_platform', JSON.stringify(configPlatForm))
-        }
-    }
-
     ngOnInit() {
-
+        console.log('new version')
+        // console.log(AppStorage.AutoLogin)
         this.form.valueChanges.subscribe(v => {
-            // let configPlatForm = JSON.parse(localStorage.getItem('cem_platform'))
-            // configPlatForm.auto_login = v.auto_login_counter
-            // localStorage.setItem('cem_platform', JSON.stringify(configPlatForm))
             AppStorage.AutoLogin = v.auto_login_counter
             if (this.counterSetting.Update(v)) {    
                 AppStorage.AutoLogin = v.auto_login_counter
-                // this.SyncAutoLogin()
                 AppStorage.ClearToken();
             }
         });

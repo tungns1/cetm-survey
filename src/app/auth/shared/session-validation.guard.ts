@@ -9,7 +9,7 @@ import { HttpError, AppStorage, RuntimeEnvironment } from './shared';
 import { USER_ROLES } from '../../shared/model';
 import { of } from 'rxjs/observable/of'
 import { PlatformEnvStorage } from '../../shared/env/shared/platform';
-
+import { HostListener } from '@angular/core'
 interface IAuthExtra {
     branch_code?: string;
     auto_login?: boolean;
@@ -37,13 +37,10 @@ export class SessionValidationGuard implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | boolean {
         // console.log(this.Platform.Data)
         
-        // if (!this.Platform.Data.auto_login) {
-        //     if (!sessionStorage.getItem('login_session')) {
-        //         AppStorage.ClearToken()
-        //     }
-        // }
         if(!AppStorage.AutoLogin){
-            AppStorage.ClearToken()
+            if (!sessionStorage.getItem('login_session')) {
+                AppStorage.ClearToken()
+            }
         }
         if (!AppStorage.HasToken()) {
             this.ShowLogin(state.url);

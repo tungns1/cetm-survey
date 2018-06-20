@@ -6,7 +6,7 @@ import {
     MatProgressSpinnerModule
 } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { SharedModule } from '../shared';
+import { SharedModule, AppStorage } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
@@ -57,7 +57,7 @@ export class CounterWorkspaceGuard extends SessionValidationGuard implements Can
     GetAuthExtra() {
         return {
             branch_code: this.settingService.Data.branch_code,
-            auto_login: true
+            auto_login: AppStorage.AutoLogin
         }
     }
 

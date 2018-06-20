@@ -15,6 +15,7 @@ export class EnvironmentSettingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+      console.log(AppStorage.AutoLogin)
     this.PlatformForm.valueChanges.subscribe(data => {
       this.env.Platform.Update(data.host_cetm, data.host_booking, data.host_survey);
       AppStorage.AutoLogin = data.auto_login
