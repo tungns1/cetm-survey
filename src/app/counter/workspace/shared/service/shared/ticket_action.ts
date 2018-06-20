@@ -95,11 +95,7 @@ export class ActionManager {
             return of(null);
         }
         ta.extra = extra;
-        if(action !== ActionCancel && ta.state !== TicketStates.Waiting){
-        }
         this.queue.push(ta);
-        console.log('1')
-        console.log(this.queue)
         this.next();
         return ta.afterDone();
     }
@@ -109,19 +105,14 @@ export class ActionManager {
     }
 
     private next() {
-        console.log('2')
-        console.log(this.queue)
+        
         if (this.queue.length < 1) return;
-        console.log('3')
-        console.log(this.queue)
+      
         const ta = this.queue.shift();
-        console.log(ta)
-        console.log(this.handler)
         if (!this.handler) {
             this.next();
         }
         this.Handle(ta).subscribe(result => {
-            console.log(result)
             ta.Done(result);
             this.next();
         }, e => {

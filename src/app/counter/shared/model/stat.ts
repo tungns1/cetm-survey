@@ -100,14 +100,16 @@ export class CounterStatistics {
 
         } else {
             if (this.user_id === ticket.user_id) {
-                const s: IStat = {
-                    service_id: ticket.service_id,
-                    count: 1,
-                    stime: ticket.__stime,
-                    state: ticket.state
+                if(ticket.tracks[len-2].state === TicketStates.Serving){
+                    const s: IStat = {
+                        service_id: ticket.service_id,
+                        count: 1,
+                        stime: ticket.__stime,
+                        state: ticket.state
+                    }
+                    this.finished.Add(s);
+                    this.cancelled.Add(s);
                 }
-                this.finished.Add(s);
-                this.cancelled.Add(s);
             }
 
         }

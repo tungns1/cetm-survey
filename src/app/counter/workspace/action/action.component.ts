@@ -40,7 +40,6 @@ export class ActionComponent {
     }
 
     Next() {
-        console.log('next')
         if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
             const config = new MatDialogConfig();
             config.width = '520px';
