@@ -16,7 +16,7 @@ export class NormalWorkspaceComponent implements OnInit {
 
   hasMiss = false;
   counterName$ = this.workspaceService.currentCounter$.map(c => c.name);
-  isServing$ = this.queueService._serving$.map(s => s.ToArray().length ? true : false)
+  isServing$ = this.queueService._serving$.map(s => s.ToArray().length ? true : false);
   serving$ = this.queueService.serving$;
   nowServing: Ticket = null;
 

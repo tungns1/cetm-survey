@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QueueService, Ticket } from '../../shared';
 
 @Component({
   selector: 'app-mini-workspace',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiniWorkspaceComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private queueService: QueueService
+  ) { }
+
+  serving$ = this.queueService.serving$;
+  nowServing: Ticket = null;
 
   ngOnInit() {
+    this.serving$.subscribe(ticket => { this.nowServing = ticket[0] || null})
   }
 
 }
