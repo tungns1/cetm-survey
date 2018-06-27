@@ -65,7 +65,7 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
-                <li *ngIf="!isAdminStandard"  queryParamsHandling="preserve">
+                <!-- <li *ngIf="!isAdminStandard"  queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Booking Report</span>
                     <ul class="thirdLv">
                         <li *ngIf="!isAdminStandard" routerLink="/report/appointmentPerformance" queryParamsHandling="preserve">
@@ -82,7 +82,7 @@
                         </li>
                     </ul>
                 </li>
-                <!-- <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
+                <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Waiting Time</span>
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/detailCusWaiting" queryParamsHandling="preserve">
