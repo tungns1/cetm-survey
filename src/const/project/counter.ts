@@ -3,6 +3,7 @@ export type OverrideMode = 'alway_on' | 'alway_off' | 'inherit';
 
 export interface ICounterConfig {
     record_transaction?: OverrideMode;
+    auto_login_counters?: any[];
 }
 
 export class CounterConfig {

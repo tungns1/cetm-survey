@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SmallStorage, XWinStorageStrategy, XWinMiniMode } from './shared';
+import { SmallStorage, XWinStorageStrategy, XWinMiniMode, HttpServiceGenerator } from './shared';
 import { RuntimeEnvironment, ICounterConfig, ProjectConfig } from './shared';
+import { BehaviorSubject } from 'rxjs';
+import { AppStorage } from '.';
 
 
 export interface ILedSetting {
@@ -21,7 +23,8 @@ export interface ICounterSetting extends ILedSetting {
 export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
   constructor(
     private xwinStorage: XWinStorageStrategy,
-    private env: RuntimeEnvironment
+    private env: RuntimeEnvironment,
+    private http: HttpServiceGenerator
   ) {
     super("counter", xwinStorage);
     this.data.mini_mode = this.data.mini_mode || <any>{};
@@ -42,6 +45,30 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
     this.SaveData();
     return auth_update;
   }
+
+  force_auto_login$ = new BehaviorSubject<boolean>(null)
+  login_value$ = new BehaviorSubject<boolean>(null)
+
+  checkLogin(){
+    this.api.Get<any>('setting_login',{'branch_code': this.data.branch_code}).subscribe(data => {
+        if(data){
+            let current_counter = data.counters.filter(item => item.code === this.data.counter_code);
+            if(data.branch_config[0].counter.auto_login_counters !== null){
+                for (let index = 0; index < data.branch_config[0].counter.auto_login_counters.length; index++) {
+                    const element = JSON.parse(data.branch_config[0].counter.auto_login_counters[index]);
+                    if(element.counter === current_counter[0].id){
+                        var a = element
+                    }
+                }
+                if(a){
+                    this.force_auto_login$.next(a.force)
+                    this.login_value$.next(a.login)
+                }
+            }
+        }
+       
+    })
+}
 
   Check() {
     this.checked = true;
@@ -66,6 +93,6 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
   }
 
   private baseUploadURL = `${this.env.Platform.HttpCETM}/api/report/record/`;
-
+  private  api = this.http.make('api/public/center')
   private checked = false;
 }
