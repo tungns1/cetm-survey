@@ -2,6 +2,8 @@ import { SessionValidationGuard, AuthService, RuntimeEnvironment, AppStorage } f
 import { NgModule, Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { SuperCounterSettingService } from './super-counter-setting.service';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of'
 /**
  * Check setting before redirect
  */
@@ -32,10 +34,10 @@ export class SuperCounterGuard extends SessionValidationGuard implements CanActi
     }
 
     GetAuthExtra() {
-        return {
+        return of({
             branch_code: this.settingService.Data.branch_code,
             auto_login: AppStorage.AutoLogin
-        }
+        })
     }
 
     GetScope() {
