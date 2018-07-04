@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CurrentUser } from '../../x/platform';
 import { AuthService, HttpError } from '../shared';
 import { AppStorage } from '../../shared';
+import { WorkspaceSettingService } from '../../counter/workspace/shared';
 
 
 interface ILoginModel {
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
 
@@ -38,7 +39,6 @@ export class LoginComponent implements OnInit {
   
   ngOnInit() {
     const query = this.route.snapshot.queryParamMap;    
-
     const autoLogin = query.get("auto_login") === "true" ? true : false;
     if (autoLogin) {
       let user = CurrentUser();

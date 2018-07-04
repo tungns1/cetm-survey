@@ -35,7 +35,7 @@ export class MetaService {
 
     Link = {
         BranchConfig: '/api/admin/setting/branch_config',
-        StaffPosition: '/api/admin/setting/user_counter_config'
+        StaffPosition: '/api/admin/setting/user_counter_config',
     }
 
     private onInit() {

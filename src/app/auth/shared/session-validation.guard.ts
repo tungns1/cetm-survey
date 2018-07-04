@@ -24,8 +24,8 @@ export class SessionValidationGuard implements CanActivate {
     ) { }
 
     Platform = new PlatformEnvStorage();
-    protected GetAuthExtra() {
-        return {};
+    protected GetAuthExtra():Observable<any> {
+        return of({})
     }
 
     protected GetScope() {
@@ -55,17 +55,22 @@ export class SessionValidationGuard implements CanActivate {
                 // this.env.Auth.User$.subscribe(u => {
                 //   if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
                 //       window.location.href = '/#/admin/house/screen/list'
-                // })
+                // })   
             })
     }
 
     private ShowLogin(redirect: string) {
+        
         const query = this.GetAuthExtra();
-        query["scope"] = this.GetScope();
-        query["redirect"] = redirect;
-        this.router.navigate(["/auth/login"], {
-            queryParams: query,
-            queryParamsHandling: "merge"
-        });
+        query.subscribe(v => {
+            if(v){
+                v["scope"] = this.GetScope();
+                v["redirect"] = redirect;
+                this.router.navigate(["/auth/login"], {
+                    queryParams: v,
+                    queryParamsHandling: "merge"
+                });
+            }
+        })
     }
 }
