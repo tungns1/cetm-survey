@@ -1,0 +1,19 @@
+.counter-block{
+    margin-top: 20px;
+    .counter-item{
+        padding-left: 10px;
+        &+.counter-item{
+            margin-top: 10px;
+        }
+        .counter-name{
+            font-size: 13px;
+            display: inline-block;
+        }
+        .checkbox{
+            margin-top: 2px;
+            margin-left: 20px;
+            display: inline-block;
+            font-size: 12px;
+        }
+    }
+}
