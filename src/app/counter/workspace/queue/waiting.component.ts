@@ -19,6 +19,10 @@ export class WaitingComponent {
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
 
     ngOnInit() {
-        
+
+    }
+
+    trackFn(index, item) {
+        return item.id;
     }
 }

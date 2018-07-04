@@ -26,4 +26,8 @@ export class MissedComponent {
     onSearch(ticket: string) {
         this.search.next(ticket);
     }
+
+    trackFn(index, item) {
+        return item.id;
+    }
 }
