@@ -9,7 +9,7 @@
             <span fxFlex="40%" class="cell" i18n>Service Name</span>
             <span fxFlex="20%" class="cell" i18n>Booking At</span>
         </div>
-        <div fxLayout="row" class="row" *ngFor="let booking of list$ | async">
+        <div fxLayout="row" class="row" *ngFor="let booking of list$ | async; trackBy: trackFn">
             <div fxFlex class="cell">
                 <!-- <ticket-icon [ticket]="t"></ticket-icon> -->
                 <span>{{booking.customer.full_name}}</span>

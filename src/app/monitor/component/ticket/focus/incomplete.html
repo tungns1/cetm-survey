@@ -1,39 +1,6 @@
 <div id="incomplete">
     <h3 i18n>Waiting Tickets</h3>
-
-    <!--<table class="tableCtrl">
-        <thead>
-            <th i18n>No.</th>
-            <th i18n>Service Name</th>
-            <th i18n>Ticket Number</th>
-            <th i18n>Customer</th>
-            <th i18n>Print Time</th>
-            <th i18n>Waiting Time</th>
-            <th i18n>Detail</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of data ; let i = index">
-                <td> {{i + 1}} </td>
-                <td> {{t.service_id | serviceName}}</td>
-                <td>
-                    <ticket-icon [ticket]="t"></ticket-icon>
-                    <span>{{t.cnum}}</span>
-                </td>
-                <td> {{t.customer?.full_name }} </td>
-                <td> {{t.ctime | localDayTime}}</td>
-                <td>
-                    <timer *ngIf="t.state === 'waiting'" [start]="t.mtime" [timeWarning]="maxWaitingMinute"></timer>
-                </td>
-                <td>
-                    <span (click)="showDetails(t)">
-                    <img class="iconDetail" src="./assets/img/icon/play.png" alt="Search" style="cursor: pointer">
-                </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>-->
-
-
+    
     <ag-grid-angular #agGrid [gridOptions]="gridOptions" [rowData]="data" class="ag-fresh tableCtrl"
         enableColResize enableSorting>
 

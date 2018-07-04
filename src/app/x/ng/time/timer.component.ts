@@ -39,7 +39,7 @@ export class TimerComopnent {
         }
     }
 
-    agInit(params: any): void {
+    agInit(params: any): void {// get data from ag-grid
         this.params = params;
     }
 

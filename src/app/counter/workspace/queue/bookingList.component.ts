@@ -19,4 +19,8 @@ export class BookingListComponent {
     list$ = this.workspaceService.bookingOnlineList$;
 
     count$ = this.list$.map(data => data.length);
+
+    trackFn(index, item) {
+        return item.id;
+    }
 }
