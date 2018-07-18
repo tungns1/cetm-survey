@@ -53,12 +53,13 @@ export function BranchLevelName(level: number = 0) {
     return Localize(b.i18n);
 }
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 class BranchCache extends MemCache<IBranch> {
     RxByLevel(level: number) {
-        return this.RxListView.map(branches =>
+        return this.RxListView.pipe(map(branches =>
             branches.filter(b => b.level === level)
-        );
+        ));
     }
     MaxLevel() {
         var max = 0;

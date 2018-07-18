@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { QmsService } from '../shared';
 import { Injectable } from '@angular/core';
 import { WorkspaceSettingService } from '../counter-setting.service';

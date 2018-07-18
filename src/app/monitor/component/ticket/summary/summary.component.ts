@@ -6,6 +6,7 @@ import {
 } from '../../shared';
 import { MonitorSummaryService, ProjectConfig } from '../shared';
 import { GridOptions } from "ag-grid";
+import { share, map } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-summary',
@@ -23,8 +24,8 @@ export class SummaryComponent {
 
     ) { }
 
-    records$ = this.summaryService.summaries$.map(s => s.ToArray()).share();
-    total$ = this.summaryService.summaries$.map(s => s.GetTotal());
+    records$ = this.summaryService.summaries$.pipe(map(s => s.ToArray()),share());
+    total$ = this.summaryService.summaries$.pipe(map(s => s.GetTotal()));
 
     private gridOptions: GridOptions = {
         rowHeight: 35,

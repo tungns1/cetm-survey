@@ -1,6 +1,7 @@
 import { Directive, HostListener, Input, Output, EventEmitter } from '@angular/core';
 // import 'rxjs/add/operator/throttleTime';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
+import { throttleTime } from 'rxjs/operators';
 
 @Directive({
   selector: '[throttle]'
@@ -17,7 +18,7 @@ export class ThrottleDirective {
   @Input() threshold: number = 1000;
 
   ngOnInit() {
-    this.click$.throttleTime(this.threshold).subscribe(_ => { this.throttle.next(null) });
+    this.click$.pipe(throttleTime(this.threshold)).subscribe(_ => { this.throttle.next(null) });
   }
 
 }

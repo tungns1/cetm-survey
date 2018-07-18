@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RuntimeEnvironment } from '../../env';
 import { USER_ROLES, CacheBranch } from '../../model';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'top-nav',
@@ -17,17 +18,17 @@ export class TopNavComponent {
      }
 
 
-    isAdmin$ = this.env.Auth.User$.map(u =>
+    isAdmin$ = this.env.Auth.User$.pipe(map(u =>
         u.role.indexOf(USER_ROLES.ADMIN) !== -1
-    );
+    ));
 
-    isMedia$ = this.env.Auth.User$.map(u =>
+    isMedia$ = this.env.Auth.User$.pipe(map(u =>
         u.role.indexOf(USER_ROLES.MEDIA) !== -1
-    );
+    ));
 
-    isAdminStandard$ = this.env.Auth.User$.map(u =>
+    isAdminStandard$ = this.env.Auth.User$.pipe(map(u =>
         u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1
-    );
+    ));
     
     isAdminStandard: boolean;
 

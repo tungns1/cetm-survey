@@ -1,8 +1,9 @@
 import { InfoKioskTrack, IKioskEffective } from '../../shared';
 import { HttpServiceGenerator } from '../../shared/';
 import { ReportFilterService } from '../../shared';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -22,7 +23,7 @@ export class KioskAPI {
     }
     RxKioskEff = new BehaviorSubject<IKioskEffective>(null);
     get RxSummaryView() {
-        return this.RxKioskEff.map(InfoKioskTrack.Make);
+        return this.RxKioskEff.pipe(map(InfoKioskTrack.Make));
     };
 
 

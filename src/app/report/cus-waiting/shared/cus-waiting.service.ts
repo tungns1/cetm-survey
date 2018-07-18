@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs';
+import { BehaviorSubject ,  Subject } from 'rxjs';
 import { ReportFilterService, HttpServiceGenerator } from '../../shared';
 import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 import { ICusWaitingRes, CustomerWaiting, ICusWaitingDetail, ICusWaitingData } from './cus-waiting.model';

@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent, RuntimeEnvironment, IStaffPosition, ICounterUserConfigs } from '../../shared';
 import { BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'admin-config',
@@ -27,7 +28,7 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     private oldConfigs: ICounterUserConfigs[];
 
     ngOnInit() {
-        this.formValue$.debounceTime(500).subscribe(value => {
+        this.formValue$.pipe(debounceTime(500)).subscribe(value => {
             if (value.branch_id !== this.curentBranch$.value) {
                 this.meta.GetStaffPos(value.branch_id).subscribe(d => {
                     this.staffPositionConfig = d.counter_user_configs;

@@ -134,8 +134,7 @@ export abstract class AbstractState {
     }
 }
 
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { ISubscription } from 'rxjs/Subscription';
+import { ReplaySubject ,  SubscriptionLike as ISubscription } from 'rxjs';
 
 export abstract class AbstractStateService<T extends AbstractState> {
     constructor(

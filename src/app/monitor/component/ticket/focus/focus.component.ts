@@ -11,7 +11,8 @@ import {
     MonitorFocusService, MonitorCustomerService
 } from '../shared';
 
-import { combineLatest } from 'rxjs/observable/combineLatest';
+import { combineLatest } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'focus-on-branch',
@@ -49,11 +50,11 @@ export class FocusComponent {
     // chartData: Summary
     box$ = this.focusService.Box$;
 
-    tickets$ = this.focusService.Box$.map(b => b.tickets).filter(t => !!t);
-    serving$ = this.tickets$.switchMap(tickets => tickets.Serving$);
-    incomplete$ = this.tickets$.switchMap(tickets => {
+    tickets$ = this.focusService.Box$.pipe(map(b => b.tickets),filter(t => !!t));
+    serving$ = this.tickets$.pipe(switchMap(tickets => tickets.Serving$));
+    incomplete$ = this.tickets$.pipe(switchMap(tickets => {
         return combineLatest(tickets.Waiting$, tickets.Missed$)
-            .map(([waiting, missed]) => {
+            .pipe(map(([waiting, missed]) => {
                 missed.forEach(t => {
 
                     for(let i = 0; i < t.tracks.length; i++){
@@ -64,15 +65,15 @@ export class FocusComponent {
                     }
                 });
                 return [].concat(waiting).concat(missed);
-            });
-    });
+            }));
+    }));
 
-    completed$ = this.tickets$.switchMap(tickets => {
+    completed$ = this.tickets$.pipe(switchMap(tickets => {
         return combineLatest(tickets.Finished$, tickets.Cancelled$)
-            .map(([finished, cancelled]) => {
+            .pipe(map(([finished, cancelled]) => {
                 return [].concat(finished).concat(cancelled);
-            });
-    })
+            }));
+    }))
 
     private goBackBranchList() {
         this.router.navigate(["../../summary"], {

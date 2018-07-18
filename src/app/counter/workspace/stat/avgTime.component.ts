@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ITicket, ProjectConfig } from '../shared';
-import { Subject } from 'rxjs/Subject';
-import { of } from 'rxjs/observable/of';
+import { Subject ,  of } from 'rxjs';
 
 @Component({
     selector: 'average-time',

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { interval } from 'rxjs/observable/interval';
+import { Subscription ,  interval } from 'rxjs';
 
 import { counterDetail } from '../../shared/model';
 import { ProjectConfig } from '../../../shared';
+import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-counter-cell',
@@ -20,7 +20,7 @@ export class CounterCellComponent implements OnInit {
   serve_long = false;
 
   private subscription: Subscription;
-  private oneSecond$ = interval(1000).share();
+  private oneSecond$ = interval(1000).pipe(share());
   private maxServingMinute = ProjectConfig.service.max_serving_minute;
 
   @Input() set counter(v: counterDetail) {

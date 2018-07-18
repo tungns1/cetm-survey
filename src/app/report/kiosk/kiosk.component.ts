@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input, ViewEncapsulation } from '@angular/core';
 import { KioskAPI } from './service/kiosk.service';
 import { MatTabGroup } from '@angular/material';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'kiosk',
@@ -14,7 +15,7 @@ export class KioskComponent {
     ) { }
 
     data$=this.kioskAPI.RxSummaryView;
-    paddingTime = this.data$.map(data => {
+    paddingTime = this.data$.pipe(map(data => {
         switch (data.time.length){
         case 1:
             return 2000;
@@ -27,8 +28,8 @@ export class KioskComponent {
         default:
             return 10;
         }
-    });
-    paddingTicket = this.data$.map(data => {
+    }));
+    paddingTicket = this.data$.pipe(map(data => {
         switch (data.ticket.length){
         case 1:
             return 2000;
@@ -41,7 +42,7 @@ export class KioskComponent {
         default:
             return 10;
         }
-    });
+    }));
     selectedTab: number;
     
     onTabChange(e) {

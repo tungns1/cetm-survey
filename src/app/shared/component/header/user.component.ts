@@ -1,11 +1,12 @@
 import { Component, OnInit, HostListener, ViewChild, Input } from '@angular/core';
 import { MatMenuTrigger, MatDialog, MatDialogConfig } from '@angular/material';
 import { RuntimeEnvironment } from '../../env';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AppStorage } from '../../shared';
 import { NoticeComponent } from '../../../../lib/ng2';
 import { ChangePassComponent } from './change-pass.component'
 import { UserSettingComponent } from './user-setting'
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'user',
@@ -27,7 +28,7 @@ export class UserComponent {
     }
 
     @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
-    username = this.env.Auth.User$.map(u => u.fullname);
+    username = this.env.Auth.User$.pipe(map(u => u.fullname));
 
     Logout() {
         if (this.app === 'counter' && this._isServing) {

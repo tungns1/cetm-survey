@@ -3,7 +3,8 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: "chart-item",
@@ -67,11 +68,11 @@ export class ChartItemGroupView {
 
     groups$ = new ReplaySubject<ChartItemGroup[]>(1);
 
-    items$ = this.groups$.map(groups => {
+    items$ = this.groups$.pipe(map(groups => {
         return groups.reduce<ChartItemComponent[]>((res, g) => res.concat(g.items), []);
-    });
+    }));
 
-    activeItems$ = this.items$.map(items => items.filter(t => t.active));
+    activeItems$ = this.items$.pipe(map(items => items.filter(t => t.active)));
 
     private refresh() {
         if (!this.groups) {

@@ -3,13 +3,13 @@ import {
     Router,
     CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot
 } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { HttpError, AppStorage, RuntimeEnvironment } from './shared';
 import { USER_ROLES } from '../../shared/model';
-import { of } from 'rxjs/observable/of'
 import { PlatformEnvStorage } from '../../shared/env/shared/platform';
 import { HostListener } from '@angular/core'
+import { tap } from 'rxjs/operators';
 interface IAuthExtra {
     branch_code?: string;
     auto_login?: boolean;
@@ -47,7 +47,7 @@ export class SessionValidationGuard implements CanActivate {
             return false;
         }
         return this.authService.ValidateSession(this.GetScope())
-            .do(success => {
+            .pipe(tap(success => {
                 if (!success) {
                     
                     this.ShowLogin(state.url);
@@ -56,7 +56,7 @@ export class SessionValidationGuard implements CanActivate {
                 //   if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
                 //       window.location.href = '/#/admin/house/screen/list'
                 // })   
-            })
+            }))
     }
 
     private ShowLogin(redirect: string) {

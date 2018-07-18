@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {AuthService} from './auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AccessRightGuard implements CanActivate {
@@ -14,6 +15,6 @@ export class AccessRightGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.ValidateSession(this.scope).map(_ => true);
+    return this.authService.ValidateSession(this.scope).pipe(map(_ => true));
   }
 }

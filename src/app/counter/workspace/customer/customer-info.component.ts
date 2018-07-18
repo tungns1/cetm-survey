@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { QueueService, ICustomer, Customer } from '../shared';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'customer-info',

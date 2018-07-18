@@ -12,6 +12,7 @@ import {
 } from '../../shared';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { TransactionHistoryApi } from '../../../report/history/shared';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class BranchFilterService extends SmallStorage<IBranchFilter> {
@@ -46,7 +47,7 @@ export class BranchFilterService extends SmallStorage<IBranchFilter> {
     test1 = this.test.asObservable();
     levels: number[] = [];
 
-    level0$ = this.Data$.map(d => d.branches[0]);
+    level0$ = this.Data$.pipe(map(d => d.branches[0]));
 
     private max: number;
 

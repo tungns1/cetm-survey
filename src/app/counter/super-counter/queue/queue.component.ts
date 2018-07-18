@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { QueueService, SupperCounterTicketService } from '../shared/service';
 import { Ticket } from '../../../shared/model/house';
 import { ProjectConfig } from '../../shared';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-queue',
@@ -20,26 +21,26 @@ export class QueueComponent implements OnInit {
   searchWaiting$ = new BehaviorSubject<string>('');
   searchCanceled$ = new BehaviorSubject<string>('');
 
-  ticketsWaiting$ = this.queueService.waiting$.map(tksWaiting => tksWaiting.ToArray())
-    .switchMap(tickets => {
-      return this.searchWaiting$.map(searchString => {
+  ticketsWaiting$ = this.queueService.waiting$.pipe(map(tksWaiting => tksWaiting.ToArray())
+    ,switchMap(tickets => {
+      return this.searchWaiting$.pipe(map(searchString => {
         return tickets.filter(tk => {
           return tk.cnum.indexOf(searchString) !== -1 || (tk.customer.phone_number && tk.customer.phone_number.indexOf(searchString) !== -1);
         })
-      })
-    })
+      }))
+    }))
 
-  ticketsCanceled$ = this.queueService.cancel$.map(tksCancel => tksCancel.ToArray())
-    .switchMap(tickets => {
-      return this.searchCanceled$.map(searchString => {
+  ticketsCanceled$ = this.queueService.cancel$.pipe(map(tksCancel => tksCancel.ToArray())
+    ,switchMap(tickets => {
+      return this.searchCanceled$.pipe(map(searchString => {
         return tickets.filter(tk => {
           return tk.cnum.indexOf(searchString) !== -1 || (tk.customer.phone_number && tk.customer.phone_number.indexOf(searchString) !== -1);
         })
-      })
-    })
+      }))
+    }))
 
-  ticketsWaitingCount$ = this.ticketsWaiting$.map(tksArr => tksArr.length);
-  ticketsCanceledCount$ = this.ticketsCanceled$.map(tksArr => tksArr.length);
+  ticketsWaitingCount$ = this.ticketsWaiting$.pipe(map(tksArr => tksArr.length));
+  ticketsCanceledCount$ = this.ticketsCanceled$.pipe(map(tksArr => tksArr.length));
 
   ngOnInit() {
   }

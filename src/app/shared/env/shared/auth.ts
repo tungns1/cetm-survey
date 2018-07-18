@@ -4,9 +4,9 @@ import {
 } from '../../shared';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { BehaviorSubject ,  ReplaySubject } from 'rxjs';
 import { IUser, IBranch, IService, IBranchConfig, CacheBranch, CacheService } from '../../model';
+import { filter, share, publishReplay, refCount, map } from 'rxjs/operators';
 
 interface IAuthEnv {
     branch: string;
@@ -22,8 +22,12 @@ interface IAuthEnv {
 @Injectable()
 export class AuthEnvStorage {
     Data$ = new ReplaySubject<IAuthEnv>(1);
-    User$ = this.Data$.map(d => d.me).filter(u => !!u)
-        .share().publishReplay(1).refCount();
+    User$ = this.Data$.pipe(
+        map(d => d.me)
+        ,filter(u => !!u)
+        ,share()
+        ,publishReplay(1)
+        ,refCount());
     private data: IAuthEnv = <any>{};
 
     emitChange() {

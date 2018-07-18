@@ -1,0 +1,156 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ng-cli": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "assets": [
+              "src/assets",
+              "src/locale",
+              "src/favicon.ico",
+              "src/service-worker.js",
+              "src/workbox-sw.prod.js"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "src/assets/vendor/font-awesome/css/font-awesome.css",
+              "src/assets/vendor/animate.css/animate.css",
+              "src/assets/vendor/jquery-ui/css/jquery-ui.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/theme-fresh.css"
+            ],
+            "scripts": [
+              "src/assets/vendor/flatpickr/flatpickr.min.js",
+              "src/assets/vendor/bootstrap/js/jquery-3.2.1.min.js",
+              "src/assets/vendor/bootstrap/js/jquery-ui.js",
+              "src/assets/vendor/bootstrap/js/jquery.ui.rotatable.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-cli:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-cli:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-cli:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "src/assets/vendor/flatpickr/flatpickr.min.js",
+              "src/assets/vendor/bootstrap/js/jquery-3.2.1.min.js",
+              "src/assets/vendor/bootstrap/js/jquery-ui.js",
+              "src/assets/vendor/bootstrap/js/jquery.ui.rotatable.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.min.js"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "src/assets/vendor/font-awesome/css/font-awesome.css",
+              "src/assets/vendor/animate.css/animate.css",
+              "src/assets/vendor/jquery-ui/css/jquery-ui.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/theme-fresh.css"
+            ],
+            "assets": [
+              "src/assets",
+              "src/locale",
+              "src/favicon.ico",
+              "src/service-worker.js",
+              "src/workbox-sw.prod.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
+    },
+    "ng-cli-e2e": {
+      "root": "",
+      "sourceRoot": "e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "ng-cli:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ng-cli",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  }
+}

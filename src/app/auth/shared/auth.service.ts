@@ -3,7 +3,7 @@ import {
   HttpServiceGenerator, AppStorage, RuntimeEnvironment,
   HttpError
 } from './shared';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 
 interface IAuthOption {
   scope: string;
@@ -23,7 +23,7 @@ interface ILoginReply {
 }
 
 import { IUser, IBranch, IService, IBranchConfig } from './shared';
-import { of } from "rxjs/observable/of";
+import { map, catchError, tap } from 'rxjs/operators';
 
 interface IMySettings {
   me: IUser;
@@ -43,10 +43,10 @@ export class AuthService {
   Login(option: IAuthOption) {
     option.scope = option.scope || 'admin';
     return this.authApi.Post<ILoginReply>("login", {}, option)
-      .do(data => {
+      .pipe(tap(data => {
         AppStorage.Token = data.session.id;
         sessionStorage.setItem('login_session',data.session.id) // tao session login
-      });
+      }));
   }
 
   Logout() {
@@ -58,12 +58,12 @@ export class AuthService {
     return this.authApi.Get<IMySettings>(
       "my_settings",
       { scope: scope || 'admin', token: token || AppStorage.Token }
-    ).map(data => {
+    ).pipe(map(data => {
       this.env.Auth.Update(
         data.me, data.branches, data.services, data.config
       );
       return true;
-    }).catch((e: HttpError) => {
+    }),catchError((e: HttpError) => {
       try {
         if (e.IsUnauthorized()) {
           AppStorage.ClearToken();
@@ -72,7 +72,7 @@ export class AuthService {
         console.log(e);
       }
       return of(false);
-    })
+    }))
   }
 
   private authApi = this.hsg.make("/api/auth");

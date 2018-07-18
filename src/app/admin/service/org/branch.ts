@@ -5,8 +5,8 @@ import {
     CrudApiService, IBranch, CacheBranch, AdminNavService,
     BranchFilterService
 } from '../shared';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { combineLatest } from 'rxjs/observable/combineLatest';
+import { ReplaySubject ,  combineLatest } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class BranchService extends CrudApiService<IBranch> {
@@ -20,8 +20,8 @@ export class BranchService extends CrudApiService<IBranch> {
     }
 
     protected filter() {
-        return this.authService.ValidateSession().switchMap(_ => {
+        return this.authService.ValidateSession().pipe(switchMap(_ => {
             return CacheBranch.RxListView;
-        });
+        }));
     }
 }

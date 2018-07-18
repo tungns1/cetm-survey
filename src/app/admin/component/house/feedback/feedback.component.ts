@@ -1,12 +1,12 @@
 import { Component, ViewChild, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject ,  of } from 'rxjs';
 import { extend } from 'lodash';
-import 'rxjs/add/operator/distinctUntilChanged';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { CenterService, HouseService, IFeedback } from '../../../service/';
 import { BaseAdminComponent, CommonValidator, USER_ROLES, RuntimeEnvironment } from '../../shared';
-import { of } from 'rxjs/observable/of';
+import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-feedback',
@@ -30,27 +30,28 @@ export class FeedbackComponent extends BaseAdminComponent<IFeedback> {
     feedbacks = this.house.FeedbackService.RxUpperList;
     layouts = this.center.LayoutService.GetByType('feedback');
 
-    counters$ = this.formValue$.map(form => form.branch_id)
-        .distinctUntilChanged()
-        .switchMap(branch_id => {
+    counters$ = this.formValue$.pipe(
+        map(form => form.branch_id),
+        distinctUntilChanged(),
+        switchMap(branch_id => {
             return this.house.CounterService.GetByBranch([branch_id]);
-        });
+        }));
 
-    layoutEditLink$ = this.formValue$.map(s => {
+    layoutEditLink$ = this.formValue$.pipe(map(s => {
         return `/admin/center/layout/${s.layout_id}`;
-    });
+    }));
 
-    parentEdit$ = this.formValue$.map(s => {
+    parentEdit$ = this.formValue$.pipe(map(s => {
         return `/admin/house/feedback/${s.parent_id}`;
-    });
+    }));
 
     // voiceEditLink$ = this.formValue$.map(s => {
     //     return `/admin/center/voice/${s.voice_list_id}`;
     // });
 
-    isAdminStandard$ = this.env.Auth.User$.map(u =>
+    isAdminStandard$ = this.env.Auth.User$.pipe(map(u =>
         u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1
-    );
+    ));
 
     getLayout(layout_id?: string) {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
@@ -58,7 +59,7 @@ export class FeedbackComponent extends BaseAdminComponent<IFeedback> {
 
     makeForm(b?: IFeedback) {
         b = b || <any>{};
-        return this.getLayout(b.layout_id).map(layout => {
+        return this.getLayout(b.layout_id).pipe(map(layout => {
             if (layout) {
                 b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
                 Object.keys(b.layout_resources).forEach(name => {
@@ -76,7 +77,7 @@ export class FeedbackComponent extends BaseAdminComponent<IFeedback> {
                 parent_id: [b.parent_id],
                 layout_resources: [b.layout_resources]
             });
-        });
+        }));
     }
 
 }

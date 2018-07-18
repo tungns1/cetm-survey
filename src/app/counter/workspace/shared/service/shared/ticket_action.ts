@@ -2,11 +2,7 @@ export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' 
 
 import { ITicket, Ticket, IService, TicketState, TicketStates } from '../../shared';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { of } from 'rxjs/observable/of';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import { AsyncSubject } from 'rxjs/AsyncSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Subject ,  of ,  combineLatest ,  AsyncSubject ,  ReplaySubject ,  Observable } from 'rxjs';
 
 const TicketStateTransitions = new Map<TicketState, TicketState[]>();
 TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Cancelled]);
@@ -58,15 +54,14 @@ export class TicketAction {
     }
 
     afterDone() {
-        return this.done$.first();
+        return this.done$.pipe(first());
     }
 
 
     private done$ = new ReplaySubject<ITicket>(1);
 }
-
-import { Observable } from 'rxjs/Observable';
 import { ActionMove, ActionCancel } from '../../../../shared/model/ticket_action';
+import { first } from 'rxjs/operators';
 
 export class ActionManager {
     constructor(

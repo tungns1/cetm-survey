@@ -9,6 +9,7 @@ import {
     ModalComponent, Ticket,
     NoticeComponent
 } from '../shared';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-action',
@@ -30,7 +31,7 @@ export class ActionComponent {
 
     @Input() selectedService;
 
-    auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
+    auto_next$ = this.workspaceService.Workspace$.pipe(map(w => w.AutoNext));
 
     Move() {
         const config = new MatDialogConfig();

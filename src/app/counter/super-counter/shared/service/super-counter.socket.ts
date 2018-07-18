@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { RuntimeEnvironment, AppSocket, LogService } from '../../../shared';
 import { MatSnackBar } from '@angular/material';
 import { SuperCounterSettingService } from '../super-counter-setting.service';
+import { first } from 'rxjs/operators';
 
 @Injectable()
 export class SuperCounterSocket extends AppSocket {
@@ -31,7 +32,7 @@ export class SuperCounterSocket extends AppSocket {
                     body: message
                 });
                 const md = this.snackBard.open(message, '', { duration: 500 });
-                md.onAction().first().subscribe(_ => {
+                md.onAction().pipe(first()).subscribe(_ => {
                     this.router.navigate(["/counter/super/setting"]);
                 });
             }

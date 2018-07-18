@@ -1,5 +1,5 @@
 import { IUser, USER_ROLES } from '../../shared';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
 
 export class UserGroup {
     constructor(

@@ -7,6 +7,7 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent, CommonValidator } from '../../shared';
+import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'house-counter',
@@ -26,23 +27,24 @@ export class CounterComponent extends BaseAdminComponent<ICounter> {
 
     storeLevel0$ = CacheBranch.RxByLevel(0);
 
-    services$ = this.formValue$.map(form => form.branch_id)
-        .distinctUntilChanged()
-        .switchMap(branch_id => {
-            return this.meta.BranchConfigService.GetByBranch([branch_id]);
-        }).switchMap(configs => {
-            return this.formValue$.map(form => {
-                // ensure selected service is in the list
-                const selected = form.services;
-                const services = CacheService.RxListView.value;
-                const c = configs[0];
-                if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
-                const ids = [].concat(selected).concat(c.service.basket);
-                return services.filter(s => {
-                    return ids.indexOf(s.id) !== -1;
-                });
-            });
-        });
+    services$ = this.formValue$.pipe(
+            map(form => form.branch_id),
+            distinctUntilChanged()
+            ,switchMap(branch_id => {
+                return this.meta.BranchConfigService.GetByBranch([branch_id]);
+            }),switchMap(configs => {
+                return this.formValue$.pipe(map(form => {
+                    // ensure selected service is in the list
+                    const selected = form.services;
+                    const services = CacheService.RxListView.value;
+                    const c = configs[0];
+                    if (!c || !c.service || !c.service.basket || c.service.basket.length < 1) return services;
+                    const ids = [].concat(selected).concat(c.service.basket);
+                    return services.filter(s => {
+                        return ids.indexOf(s.id) !== -1;
+                    });
+                }));
+            }));
 
     makeForm(b?: ICounter) {
         b = b || <any>{};

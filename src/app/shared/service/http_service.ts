@@ -1,7 +1,7 @@
 import { AppStorage } from '../shared';
 import { Http, Request, Response, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { _throw } from 'rxjs/observable/throw';
+import { Observable ,  throwError as _throw } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 const NETWORK_ERROR_TYPE = 3;
 
@@ -54,8 +54,7 @@ export class HttpApi<T> {
 
     private send(request: Request) {
         return this.http.request(request)
-            .map(response => this.extractData(response))
-            .catch(e => this.handleError(e));
+            .pipe(map(response => this.extractData(response)),catchError(e => this.handleError(e)));
     }
 
     MakeURL(sub: string, q?: any) {

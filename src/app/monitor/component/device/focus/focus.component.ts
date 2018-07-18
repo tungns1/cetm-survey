@@ -6,6 +6,7 @@ import {
 } from '../../shared';
 import { MonitorFocusService } from '../shared';
 import { MonitorNavService } from '../../../service/shared/nav';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'focus-on-branch',
@@ -38,8 +39,8 @@ export class FocusComponent {
     }
 
     box$ = this.deviceService.Box$;
-    counters$ = this.deviceService.Box$.map(b => b.counters.ToArray());
-    kiosks$ = this.deviceService.Box$.map(b => b.kiosks.ToArray());
+    counters$ = this.deviceService.Box$.pipe(map(b => b.counters.ToArray()));
+    kiosks$ = this.deviceService.Box$.pipe(map(b => b.kiosks.ToArray()));
 
     private goBackBranchList() {
         this.router.navigate(["../../summary_device"], {

@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
 import { InsideBranchFilterService } from './inside-filter.service';
 import { PeriodFilterService } from './period-filter.service';
 import { AppStorage, BranchFilterService } from '../../shared';

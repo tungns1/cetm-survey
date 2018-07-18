@@ -8,5 +8,5 @@ LoadConfig()
   .then(_ => getTranslationProviders())
   .then(providers => {
     const options = { providers };
-    platformBrowserDynamic().bootstrapModule(AppModule, options);
+    platformBrowserDynamic().bootstrapModule(AppModule);
   });

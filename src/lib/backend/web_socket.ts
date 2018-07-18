@@ -1,10 +1,8 @@
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { Subject ,  BehaviorSubject ,  ReplaySubject ,  Observable } from 'rxjs';
+import { filter, map, share, publishReplay, refCount } from 'rxjs/operators';
 
-import 'rxjs/add/operator/publishReplay';
-import 'rxjs/add/operator/filter';
+
+
 
 const SOCKET_RECONNECT_DELAY = 3000;
 
@@ -30,7 +28,7 @@ export class BaseWebsocket {
     }
 
     protected filterMessage<T>(uri: string): Observable<T> {
-        return this.Message$.filter(m => m && m.uri === uri).map(m => m.data);
+        return this.Message$.pipe(filter(m => m && m.uri === uri),map(m => m.data));
     }
 
     get isOpen() {
@@ -39,11 +37,11 @@ export class BaseWebsocket {
 
     private status$ = new BehaviorSubject<number>(-1);
     
-    Connected$ = this.status$.filter(_ => this.isOpen);
-    Disconnected = this.status$.filter(_ => !this.isOpen);
-    StatusMessage$ = this.status$.map((v, i) => {
+    Connected$ = this.status$.pipe(filter(_ => this.isOpen));
+    Disconnected = this.status$.pipe(filter(_ => !this.isOpen));
+    StatusMessage$ = this.status$.pipe(map((v, i) => {
         return this.GetStatus(v);
-    }).share().publishReplay().refCount();
+    }),share(),publishReplay(),refCount());
 
     protected GetStatus(status: number) {
         switch (status) {

@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { IActivity, Activity, IMapActivity } from './activity';
 
 export class ActivityCategory<T extends Activity> {

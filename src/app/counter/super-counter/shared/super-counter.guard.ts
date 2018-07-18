@@ -2,8 +2,7 @@ import { SessionValidationGuard, AuthService, RuntimeEnvironment, AppStorage } f
 import { NgModule, Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { SuperCounterSettingService } from './super-counter-setting.service';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of'
+import { Observable ,  of } from 'rxjs';
 /**
  * Check setting before redirect
  */

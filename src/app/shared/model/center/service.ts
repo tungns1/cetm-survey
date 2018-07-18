@@ -16,7 +16,7 @@ export interface IService extends ID {
     name?: string; // on client side
 }
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 class cacheService extends MemCache<IService> {
     ServiceName(id: string) {

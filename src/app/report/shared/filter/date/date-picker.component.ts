@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@angular/core';
 import { EventEmitter, Output, ViewChild, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 const DATE_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,

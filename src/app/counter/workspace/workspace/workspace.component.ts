@@ -2,6 +2,7 @@ import { Component, OnInit, ApplicationRef, ViewEncapsulation, Input } from '@an
 import { ActivatedRoute } from '@angular/router';
 import { ObservableMedia } from '@angular/flex-layout';
 import { ComposeService, WorkspaceService, WorkspaceSocket } from '../shared';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'workspace',
@@ -15,10 +16,10 @@ export class WorkspaceComponent {
         private socket: WorkspaceSocket
     ) { }
 
-    message$ = this.socket.StatusMessage$.map(m => {
+    message$ = this.socket.StatusMessage$.pipe(map(m => {
         if (m.startsWith("OPEN")) return "";
         return "NETWORK " + m;
-    });
+    }));
 
     ngOnInit() {
         this.composeService.enable();

@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit, Input } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  combineLatest } from 'rxjs';
 import { IBranch, CacheBranch } from '../../model';
 import { BranchFilterService } from './filter.service';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import 'rxjs/add/operator/debounceTime';
+import { map, debounceTime } from 'rxjs/operators';
+
 
 @Component({
     selector: 'branch-filter',
@@ -49,7 +49,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
             const branch_id = this.filterService.branches;
             // delay the value change until the ui is ready
             this.form.setValue(branch_id, { emitEvent: true });
-            this.form.valueChanges.debounceTime(50).subscribe(v => {
+            this.form.valueChanges.pipe(debounceTime(50)).subscribe(v => {
                 this.filterService.Setbranches(v);
             });
         }, 100);
@@ -65,7 +65,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
             return byLevel;
         }
 
-        return combineLatest(byLevel, parentForm.valueChanges).map(
+        return combineLatest(byLevel, parentForm.valueChanges).pipe(map(
             ([branches, parents]) => {
                 const parent_id: string[] = parents;
                 const value: string[] = activeForm.value;
@@ -81,7 +81,7 @@ export class BranchFilterComponent implements OnInit, AfterViewInit {
                     parent_id.indexOf(b.parent) !== -1
                 );
             }
-        )
+        ))
     }
 
 }

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject ,  of ,  merge ,  BehaviorSubject } from 'rxjs';
 import { AuthService, RuntimeEnvironment, CacheService } from './shared';
 import { ICounter, ITicket, TicketState, IBranch, ICustomer, IUser } from '../shared';
 import { ITicketAction, Workspace, IWorkspaceInitialState } from '../../../shared/model';
-import { of } from 'rxjs/observable/of';
-import { merge } from 'rxjs/observable/merge';
 import { WorkspaceSocket } from './workspace.socket';
 import { ITicketTrack } from '..';
 import { ITicketBooking } from '../../../../shared/model/house/ticket/ticket';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { debounceTime, share, refCount, publishReplay, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 
 const SOCKET_LINK = "/room/counter/join";
 
@@ -31,11 +29,11 @@ export class WorkspaceService {
     bookingOnlineList$ = new BehaviorSubject<ITicketBooking[]>([]);
 
 
-    Workspace$ = this.initialState$.switchMap(s => {
+    Workspace$ = this.initialState$.pipe(switchMap(s => {
         this.currentUser = s.user;
         const w = new Workspace(s);
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
-            .map(action => {
+            .pipe(map(action => {
                 if (action.action === 'update_bticket') {
                     let currentList = this.bookingOnlineList$.value;
                     currentList.push(action.ticket.ticket_booking)
@@ -46,24 +44,24 @@ export class WorkspaceService {
                 } else {
                     w.Update(action);
                 }
-            });
-        const autoNext = this.autoNext$.map(a => {
+            }));
+        const autoNext = this.autoNext$.pipe(map(a => {
             w.AutoNext = a;
-        });
-        return merge(of(null), ticketUpdate, autoNext).map(_ => w);
-    }).debounceTime(20).share().publishReplay(1).refCount();
+        }));
+        return merge(of(null), ticketUpdate, autoNext).pipe(map(_ => w));
+    }),debounceTime(20),share(),publishReplay(1),refCount());
 
-    currentCounter$ = this.Workspace$.map(w => w.current_counter);
-    counters$ = this.Workspace$.map(w => w.counters);
-    stat$ = this.Workspace$.map(w => w.stat)
-        .share().publishReplay(1).refCount();
+    currentCounter$ = this.Workspace$.pipe(map(w => w.current_counter));
+    counters$ = this.Workspace$.pipe(map(w => w.counters));
+    stat$ = this.Workspace$.pipe(map(w => w.stat),share(),publishReplay(1),refCount());
 
-    services$ = this.Workspace$.map(w => w.storeServicable)
-        .distinctUntilChanged()
-        .map(serviable => {
+    services$ = this.Workspace$.pipe(
+        map(w => w.storeServicable),
+        distinctUntilChanged(),
+        map(serviable => {
             return CacheService.RxListView.value
                 .filter(s => serviable.has(s.id));
-        });
+        }));
 
     get Socket() {
         return this.socket;

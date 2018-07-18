@@ -5,7 +5,7 @@ import {
     MatToolbarModule, MatProgressBarModule, MatTabsModule,
     MatProgressSpinnerModule
 } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 import { SharedModule, AppStorage, HttpServiceGenerator, HttpApi } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
@@ -26,7 +26,7 @@ import { workspaceServiceProvider } from './shared/workspace.provider';
 import { HttpClientModule, HttpParams } from '@angular/common/http';
 import { CrudApiServiceGenerator } from '../../admin/service';
 import { createRendererV1 } from '@angular/core/src/view/refs';
-import { of } from 'rxjs/observable/of'
+import { map, switchMap } from 'rxjs/operators';
 /**
  * Check setting before redirect
  */
@@ -60,8 +60,8 @@ export class CounterWorkspaceGuard extends SessionValidationGuard implements Can
     }
 
     GetAuthExtra() {
-        return this.settingService.force_auto_login$.switchMap(v1 => {
-            return this.settingService.login_value$.map(v => {
+        return this.settingService.force_auto_login$.pipe(switchMap(v1 => {
+            return this.settingService.login_value$.pipe(map(v => {
                 if(v1 === true){
                     return {
                         branch_code: this.settingService.Data.branch_code,
@@ -73,8 +73,8 @@ export class CounterWorkspaceGuard extends SessionValidationGuard implements Can
                         auto_login: AppStorage.AutoLogin
                     }
                 }
-            })
-        })
+            }))
+        }))
         // return of({
         //     branch_code: this.settingService.Data.branch_code,
         //     auto_login:  AppStorage.AutoLogin

@@ -5,7 +5,7 @@ export interface IStat {
     count: number;
 }
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Ticket, TicketState, TicketStates } from './shared';
 
 export class StatMap extends BehaviorSubject<Map<string, IStat>> {
@@ -61,12 +61,13 @@ export class StatMap extends BehaviorSubject<Map<string, IStat>> {
     }
 
     ToArray() {
-        return this.map(_ => Array.from(this.value.values()));
+        return this.pipe(map(_ => Array.from(this.value.values())));
     }
 }
 
 
 import { ITicketAction, TicketAction } from './ticket_action';
+import { map } from 'rxjs/operators';
 
 export class CounterStatistics {
     constructor(private user_id: string, private _s: IStat[]) {

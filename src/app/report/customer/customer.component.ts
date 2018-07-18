@@ -6,6 +6,7 @@ import { CustomerView } from './shared/';
 import { Customer, RuntimeEnvironment, USER_ROLES } from '../shared';
 import { HistoryComponent } from './history/history.component'
 import { ReportFilterComponent } from './filter/filter.component'
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'customer',
@@ -25,7 +26,7 @@ export class CustomerComponent {
     @ViewChild(ReportFilterComponent) cusFilter: ReportFilterComponent;
     customer_id: string;
     data$ = this.customerApi.RxSummaryView;
-    paddingStore = this.data$.map(data => {
+    paddingStore = this.data$.pipe(map(data => {
         switch (data.stores.length) {
             case 1:
                 return 2000;
@@ -38,8 +39,8 @@ export class CustomerComponent {
             default:
                 return 10;
         }
-    });
-    paddingFres = this.data$.map(data => {
+    }));
+    paddingFres = this.data$.pipe(map(data => {
         switch (data.fres.length) {
             case 1:
                 return 2000;
@@ -52,8 +53,8 @@ export class CustomerComponent {
             default:
                 return 10;
         }
-    });
-    paddingService = this.data$.map(data => {
+    }));
+    paddingService = this.data$.pipe(map(data => {
         switch (data.services.length) {
             case 1:
                 return 2000;
@@ -66,7 +67,7 @@ export class CustomerComponent {
             default:
                 return 10;
         }
-    });
+    }));
     private selectedTab: number;
     private isAdminStandard: boolean;
 

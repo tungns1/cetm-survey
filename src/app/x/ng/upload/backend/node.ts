@@ -1,6 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  Observer ,  BehaviorSubject } from 'rxjs';
 
 interface IFileNode {
     path: string;

@@ -10,6 +10,7 @@ import { QmsService } from '../shared';
 import { FeedbackComponent } from '../../../../admin/component/house/feedback/feedback.component';
 import { IFeedback } from '../../../../report/dashboard/shared/index';
 import { Feedback } from '../../ticket/ticket-detail.dialog';
+import { share } from 'rxjs/operators';
 
 
 
@@ -39,7 +40,7 @@ export class TicketService {
             service_id: body.service_id,
             extra: body.extra
         }
-        return this.socket.Send<ITicket>("/ticket", data).share();
+        return this.socket.Send<ITicket>("/ticket", data).pipe(share());
     }
     feedback: any
     Move(t: Ticket, services: string[], counters: string[]) {

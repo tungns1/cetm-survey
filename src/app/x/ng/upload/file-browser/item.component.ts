@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { FileNode, FileItem } from '../backend/';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'div[upload-item]',
@@ -44,7 +45,7 @@ export class ItemComponent {
     }
 
     public upload(node: FileNode) {
-        this.progress = node.Create(this.item.File, this.item.Name).map(v => Math.round(v * 100));
+        this.progress = node.Create(this.item.File, this.item.Name).pipe(map(v => Math.round(v * 100)));
         let ctf = this.progress.subscribe(v => {
             if (v === 100) {
                 this.uploadProgress.emit(this.item)

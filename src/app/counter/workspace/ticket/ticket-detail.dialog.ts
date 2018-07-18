@@ -8,6 +8,7 @@ import {
     FeedbackService, NoticeComponent
 } from '../shared';
 import { FeedbackRejectlDialog } from './feedback-reject.dialog';
+import { combineLatest, first } from 'rxjs/operators';
 export interface Feedback {
     reason_text: string
 }
@@ -37,7 +38,7 @@ export class TicketDetailDialog {
     t: Ticket;
     checkedCounters = [];
     checkedServices = [];
-    counters = this.workspaceService.counters$.combineLatest(
+    counters = this.workspaceService.counters$.pipe(combineLatest(
         this.workspaceService.currentCounter$,
         (counters, currentCounter) => {
             return counters.filter(c => c.id !== currentCounter.id)
@@ -48,7 +49,7 @@ export class TicketDetailDialog {
                     return a.name.length < b.name.length ? -1 : 1;
                 });
         }
-    );
+    ));
     curentCounter;
 
     services = this.workspaceService.services$;
@@ -133,7 +134,7 @@ export class TicketDetailDialog {
     }
 
     Call() {
-        this.queueService.busy$.first().subscribe(d => {
+        this.queueService.busy$.pipe(first()).subscribe(d => {
             if (d) {
                 this.notice.ShowMessage('serving');
             } else this.triggerAction("call");
