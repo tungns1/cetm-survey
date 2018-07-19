@@ -79,6 +79,7 @@ export class ActionComponent {
             dialog.afterClosed().subscribe(d => {
                 if (d) {
                     this.ticket = d;
+                    console.log(this.ticket)
                     this.triggerAction('finish');
                 }
             })
