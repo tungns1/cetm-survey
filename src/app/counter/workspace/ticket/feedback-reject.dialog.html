@@ -10,10 +10,13 @@
         </div>
         <div *ngIf="isSentReason" style="display: block;box-sizing: border-box;flex-direction: row;text-align: center;">
             <h2 i18n>THE CUSTOMER HAS NOT LEFT FEEDBACK YET</h2>
-            <textarea fxFlex rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" i18n-placeholder placeholder="Please provide the reason"></textarea>
+            <div class="margin-t-10">
+                <select-check [(ngModel)]="checkedReason" [data]="reasons" textField="name" [multiple]="false" (click)="validateSubmit()"></select-check>
+            </div>
+            <textarea fxFlex *ngIf="checkedReason == 2" rows="10" [ngModel]="textReason" (input)="changeText($event.target.value)" style="width: 100%;margin-bottom: 15px;flex: 1 1 1e-09px;box-sizing: border-box;" i18n-placeholder placeholder="Please provide the reason"></textarea>
 
             <button fxFlex class="btnClear" (click)="close()" i18n>Cancel</button>
-            <button style=" margin-bottom: 20px" [disabled]="!isText" [class.btnsubmit]="!isText" fxFlex class="btnFill" (click)="sentReason()" i18n>Send</button>
+            <button style=" margin-bottom: 20px; margin-left: 20px;" [disabled]="!allowSubmit" [class.btnsubmit]="!allowSubmit" fxFlex class="btnFill" (click)="sentReason()" i18n>Send</button>
         </div>
     </div>
 </div>

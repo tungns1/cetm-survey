@@ -1,18 +1,11 @@
-import { Component, Input, forwardRef, ExistingProvider, Attribute, OnChanges } from '@angular/core';
-import { ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AbstractControl } from '@angular/forms';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import { ISubscription } from 'rxjs/Subscription';
+import { Component, Input, forwardRef, ExistingProvider, Attribute } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const SELECT_CHECK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SelectCheckComponent),
     multi: true
 }
-
-import { FormArray, FormControl } from '@angular/forms';
 
 interface IView {
     id: string;
@@ -29,11 +22,11 @@ interface IView {
 export class SelectCheckComponent implements ControlValueAccessor {
     constructor(
         @Attribute('idField') private idField,
-        @Attribute('textField') private textField) {
+        @Attribute('textField') private textField
+    ) {
         this.idField = this.idField || 'id';
         this.textField = this.textField || 'text';
     }
-
 
     @Input() set data(arr: any[]) {
         this.views = (arr || []).map(a => {
@@ -45,6 +38,7 @@ export class SelectCheckComponent implements ControlValueAccessor {
         this.all = this.isAll();
         this.none = this.isNone();
     }
+    @Input() multiple: boolean = true;
 
     private views: IView[] = [];
     private selected: { [index: string]: boolean } = {};
@@ -93,10 +87,13 @@ export class SelectCheckComponent implements ControlValueAccessor {
         return !this.views.some(v => this.selected[v.id]);
     }
 
-    private toggleItem(item) {
-        this.selected[item] = !this.selected[item];
+    toggleItem(item: string) {
+        if (this.multiple) {
+            this.selected[item] = !this.selected[item];
+        } else {
+            this.selected = {};
+            this.selected[item] = true;
+        }
         this.onChange();
     }
-
-
 }

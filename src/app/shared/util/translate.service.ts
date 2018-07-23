@@ -5,6 +5,21 @@ export class TranslateService {
     }
 
     translateData: { [index: string]: L10nText } = {
+        'Customer left': {
+            vi: 'Khách hàng về trước',
+            en: 'Customer left',
+            sp: 'Customer left'
+        },
+        'Customer denied giving feedback': {
+            vi: 'Khách hàng không đồng ý phản hồi',
+            en: 'Customer denied giving feedback',
+            sp: 'Customer denied giving feedback'
+        },
+        'Other reason': {
+            vi: 'Lý do khác',
+            en: 'Other reason',
+            sp: 'Other reason'
+        },
         'Code does not exist': {
             vi: 'Mã khách hàng không tồn tại',
             en: 'Code does not exist',
