@@ -3,7 +3,9 @@ import {
 } from './storage';
 
 interface IPlatformSerialize {
-    host?: string;
+    host_cetm?: string;
+    host_booking?: string;
+    host_survey?: string;
 }
 
 export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
@@ -12,11 +14,11 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
     }
 
     private get actualHost() {
-        return this.data.host || location.host;
+        return this.data.host_cetm || location.host;
     }
 
     Update(host: string) {
-        this.data.host = host;
+        this.data.host_cetm = host;
         this.SaveData();
     }
 
