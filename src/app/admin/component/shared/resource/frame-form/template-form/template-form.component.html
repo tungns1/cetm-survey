@@ -35,8 +35,10 @@
       <input type="text" matInput [(ngModel)]="value.data.style.fontSize" placeholder="Font size">
     </mat-form-field>
 
-    <div fxFlex="15"></div>
-    <div fxFlex="30"></div>
+    <div fxFlex="15">Width</div>
+    <mat-form-field fxFlex="30">
+        <input type="text" matInput [(ngModel)]="value.data.style.width" placeholder="Width">
+    </mat-form-field>
   </div>
 
   <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">

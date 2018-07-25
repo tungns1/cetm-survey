@@ -62,8 +62,9 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   refresh() {
-    this.records = Object.keys(this.value).filter(k => {
-      return this.value[k].show && this.editables.indexOf(this.value[k].type) !== -1;
+      this.records = Object.keys(this.value).filter(k => {
+        // return this.value[k].show && this.editables.indexOf(this.value[k].type) !== -1;
+        return this.editables.indexOf(this.value[k].type) !== -1; // show all resource 
     }).map(k => {
       const r = this.value[k];
       return {
@@ -71,7 +72,7 @@ export class ResourceEditorComponent implements OnInit, ControlValueAccessor {
         type: r.type,
         data: r.data,
         style: r.style,
-        show: true,
+        // show: true,
         enabled: r.enabled
       };
     }).sort((a, b) => a.name < b.name ? -1 : 1);
