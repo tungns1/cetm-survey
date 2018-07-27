@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Ticket, TicketStates, CacheService, CacheCounter, CacheUsers } from '../../shared';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { ProjectConfig } from '../shared';
 import { GridOptions } from 'ag-grid';
@@ -26,7 +26,7 @@ export class ServingTicketComponent {
 
     data: Ticket[] = [];
     maxServingMinute = ProjectConfig.service.max_serving_minute;
-    private gridOptions: GridOptions = {
+    gridOptions: GridOptions = {
         rowHeight: 35,
         rowSelection: 'multiple',
         getRowStyle: (e) => {

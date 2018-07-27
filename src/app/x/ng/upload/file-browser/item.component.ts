@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { FileNode, FileItem } from '../backend/';
 import { map } from 'rxjs/operators';
@@ -25,7 +24,7 @@ import { map } from 'rxjs/operators';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent {
-    private item: FileItem;
+    item: FileItem;
 
     @Input() set data(value: { node: FileNode, file: File }) {
         this.item = new FileItem(value.file);
@@ -34,12 +33,7 @@ export class ItemComponent {
     };
     @Output() uploadProgress: EventEmitter<any> = new EventEmitter<any>();
     // safeUrl: SafeUrl;
-    private progress: Observable<number>;
-
-    constructor(private sanitizer: DomSanitizer) {
-
-    }
-
+    progress: Observable<number>;
     ngOnInit() {
 
     }

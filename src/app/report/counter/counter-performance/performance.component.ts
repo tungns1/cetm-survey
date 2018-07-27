@@ -14,7 +14,7 @@ export class PerformanceComponent {
     private counterAPI: CounterAPI
   ) { }
 
-  protected _data: ICPT[];
+  _data: ICPT[];
   @Input() set data(v: InfoPerformanceTrack) {
     this._data = v.data;
     var timeDurationPipe = new TimeDurationPipe();
@@ -36,7 +36,7 @@ export class PerformanceComponent {
   curentPage: number;
   totalPage: number;
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     pagination: true,
     paginationPageSize: 18,

@@ -17,6 +17,7 @@ export class CancelComponent {
 
     cancel$ = this.queueService.cancel$;
     search = new BehaviorSubject<string>('');
+    show: boolean = false;
 
     count$ = this.cancel$.pipe(map(data => data.length));
     tickets = combineLatest<ITicket[], string>(this.cancel$, this.search).pipe(map(([tickets, text]) => {

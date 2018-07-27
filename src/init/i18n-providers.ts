@@ -10,7 +10,7 @@ function getLocale() {
   return locale || AppStorage.Locale || default_language;
 }
 
-export function getTranslationProviders(): Promise<Object[]> {
+export function getTranslationProviders(): Promise<any[]> {
   const locale = getLocale();
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];

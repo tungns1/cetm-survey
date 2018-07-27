@@ -17,6 +17,7 @@ export class MissedComponent {
 
     missed$ = this.queueService.missed$;
     search = new BehaviorSubject<string>('');
+    show: boolean = false;
 
     count$ = this.missed$.pipe(map(data => data.length));
     tickets = combineLatest<ITicket[], string>(this.missed$, this.search).pipe(map(([tickets, text]) => {

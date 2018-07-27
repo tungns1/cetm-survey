@@ -31,8 +31,8 @@ import { CacheService } from '../../shared';
 })
 export class ServiceConfigComponent implements ControlValueAccessor {
 
-    protected value: IServiceConfig = {};
-    private services$ = CacheService.RxListView;
+    value: IServiceConfig = {};
+    services$ = CacheService.RxListView;
 
     private onChangeCallback = (v) => { };
 

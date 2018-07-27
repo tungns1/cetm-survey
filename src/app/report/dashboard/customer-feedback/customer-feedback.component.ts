@@ -13,7 +13,7 @@ export class CustomerFeedbackComponent implements OnInit {
 
   cellClass: string[] = ['center', 'padding-10'];
   headerName: string;
-  protected _data: TransactionAggregate[] = [];
+  _data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
   @Input() set data(v: TransactionAggregate[]) {
     this._data = v;
@@ -34,7 +34,7 @@ export class CustomerFeedbackComponent implements OnInit {
     });
   };
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

@@ -48,14 +48,15 @@ export class EditorViewComponent implements OnInit {
         document.getElementById('layoutImportBtn').click();
     }
 
-    private GoBack() {
+    GoBack() {
         this.location.back();
     }
 
-    private getStyle() {
+    getStyle() {
         if (!this.isValid) return 0.3;
     }
-    private getValid() {
+    
+    getValid() {
         if (!this.isValid) return true;
         else return false;
     }

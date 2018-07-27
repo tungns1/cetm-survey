@@ -1,10 +1,7 @@
 import {
-  Component, Input, OnInit, ElementRef,
-  ContentChild, ContentChildren,
-  QueryList
+  Component, OnInit, ElementRef,
+  ContentChildren, QueryList
 } from '@angular/core';
-
-import { TableExport } from './html2csv';
 import { ExcelWorkBook } from './excel';
 import { ExportAttribute, ExportTable } from './export.attribute';
 
@@ -14,7 +11,7 @@ import { ExportAttribute, ExportTable } from './export.attribute';
     <ng-content></ng-content>
     <div fxLayout="row">
       <div fxFlex="80%"></div>
-      <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel($event)" i18n>Export to excel</button>
+      <button fxFlex class="btnClear uppercase margin-20-10" (click)="excel()" i18n>Export to excel</button>
     </div>
   `
 })

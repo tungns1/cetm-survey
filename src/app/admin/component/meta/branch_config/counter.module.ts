@@ -21,7 +21,7 @@ export class CounterConfigComponent implements ControlValueAccessor {
 
     constructor(private house: HouseService){}
     private curentBranch: string = '';
-    private list_counters_login = []
+    list_counters_login = []
 
     @Input() set branchId(id: string){
         this.curentBranch = id
@@ -76,7 +76,7 @@ export class CounterConfigComponent implements ControlValueAccessor {
         return check.length
     }
 
-    protected value: ICounterConfig = {
+    value: ICounterConfig = {
         record_transaction: 'alway_off',
         auto_login_counters: []
     }
@@ -132,7 +132,7 @@ export class CounterConfigComponent implements ControlValueAccessor {
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ICounter, SharedModule, CacheCounter, HouseService } from '../../shared';
+import { SharedModule, HouseService } from '../../shared';
 
 
 @NgModule({

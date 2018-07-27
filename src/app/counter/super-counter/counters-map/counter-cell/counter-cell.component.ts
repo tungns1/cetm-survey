@@ -20,8 +20,8 @@ export class CounterCellComponent implements OnInit {
   serve_long = false;
 
   private subscription: Subscription;
-  private oneSecond$ = interval(1000).pipe(share());
   private maxServingMinute = ProjectConfig.service.max_serving_minute;
+  oneSecond$ = interval(1000).pipe(share());
 
   @Input() set counter(v: counterDetail) {
     this._counter = v;

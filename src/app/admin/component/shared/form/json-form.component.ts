@@ -1,9 +1,5 @@
-import {
-    Component, Input, forwardRef, ExistingProvider,
-    ChangeDetectionStrategy, NgModule
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup, FormControl } from '@angular/forms';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -18,7 +14,7 @@ const JSON_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     providers: [JSON_CONTROL_VALUE_ACCESSOR]
 })
 export class JSONFormComponent implements ControlValueAccessor {
-    private text: string;
+    text: string;
     private onChangeCallback = (v) => { };
     invalid = false;
 

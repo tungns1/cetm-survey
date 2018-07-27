@@ -32,7 +32,7 @@ export class CusWaitingComponent implements OnInit {
 
   cellClass: string[] = ['center', 'padding-10'];
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

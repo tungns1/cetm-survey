@@ -1,7 +1,6 @@
-import { Component, OnInit, forwardRef, ExistingProvider } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFormComponent } from '../shared';
-import { Event } from '@angular/router/src/events';
 
 const SLIDER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   provide: NG_VALUE_ACCESSOR,
@@ -29,6 +28,10 @@ export class IFrameFormComponent extends BaseFormComponent<IFrameForm> {
 
   protected clone(obj: any): IFrameForm {
     return super.clone(obj);
+  }
+
+  onChange(e: Event) {
+    super.onChange(e)
   }
 
 }

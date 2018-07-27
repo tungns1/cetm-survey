@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "i18n_xliff": "ng xi18n -p src/tsconfig.app.json --locale=en --i18nFormat=xlf --outFile=locale/en/messages.en.xliff",
-    "i18n": "ng xi18n -p src/tsconfig.app.json --locale=en --i18nFormat=xmb --outFile=locale/en/messages.en.xmb",
+    "i18n_xliff": "ng xi18n --i18n-locale en --i18n-format=xlf --out-file locale/en/messages.en.xliff",
+    "i18n": "ng xi18n --i18n-locale en --i18n-format=xmb --out-file locale/en/messages.en.xmb",
     "start": "ng serve",
     "build": "ng build --prod --build-optimizer=false --aot=false",
     "build:watch": "ng build --prod --build-optimizer=false --aot=false --watch",

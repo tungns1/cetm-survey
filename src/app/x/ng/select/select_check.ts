@@ -1,9 +1,5 @@
 import { Component, Input, forwardRef, ExistingProvider, Attribute } from '@angular/core';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR, FormArray, FormControl } from '@angular/forms';
-// import { AbstractControl } from '@angular/forms';
-// import { BehaviorSubject } from "rxjs/BehaviorSubject";
-// import { combineLatest } from 'rxjs/observable/combineLatest';
-// import { ISubscription } from 'rxjs/Subscription';
 
 const SELECT_CHECK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     provide: NG_VALUE_ACCESSOR,
@@ -44,10 +40,10 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
     @Input() multiple: boolean = true;
 
-    private views: IView[] = [];
-    private selected: { [index: string]: boolean } = {};
-    private all = false;
-    private none = true;
+    views: IView[] = [];
+    selected: { [index: string]: boolean } = {};
+    all = false;
+    none = true;
 
     protected onChangeCallback = (v: string[]) => { };
 

@@ -24,8 +24,8 @@ export class TransactionComponent implements OnInit {
         private reportCustomerService: ReportCustomerService,
     ) { }
 
-    protected data: ITransactionView;
-    protected audio_url: string; // link to audio 
+    data: ITransactionView;
+    audio_url: string; // link to audio 
     customer: ICustomer;
     admin: IUser;
     manager: IUser;

@@ -33,7 +33,7 @@ export class AccordionTitleComponent {
 export class AccordionComponent {
 
 	@Input() name: string;
-	private expanded = false;
+	expanded = false;
 	open$ = new Subject<AccordionComponent>();
 	
 	@Input() expand = false;

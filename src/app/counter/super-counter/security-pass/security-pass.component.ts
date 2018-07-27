@@ -23,7 +23,7 @@ export class SecurityPassComponent implements OnInit {
   @Input() minSecond = 8;
   @Input() password = "";
 
-  private askPassword = false;
+  askPassword = false;
   private pass = '';
 
   clicks: number[] = []; // record the time of the event
