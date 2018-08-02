@@ -1,0 +1,199 @@
+<app-env-sub-module i18n-title title="System Config">
+</app-env-sub-module>
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
+    <app-datatable i18n-name name="System Config" [data]="data$ | async" (action)="onActionRequest($event)">
+        <app-table-field name="system" i18n-title title="Location"></app-table-field>
+    </app-datatable>
+</div>
+<form [formGroup]="form" fxLayout="column" (ngSubmit)="onSubmit()" class="m-top20">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+        <mat-tab-group fxFlex dynamicHeight>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span class="uppercase" i18n>Station</span>
+                </ng-template>
+                <div formGroupName="station">
+                    <div formGroupName="stationSync">
+                        <h2>Station Sync</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Mode</span>
+                            <input type="text" formControlName="mode" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Stores</span>
+                            <input type="text" formControlName="stores" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Token</span>
+                            <input type="text" formControlName="token" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="stationServer">
+                        <h2>Station Server</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Port</span>
+                            <input type="text" formControlName="port" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="stationLog">
+                        <h2>Station Log</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Log Dir</span>
+                            <input type="text" formControlName="logDir" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Log To Std Err</span>
+                            <input type="text" formControlName="logToStdErr" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Verbosity</span>
+                            <input type="text" formControlName="verbosity" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="storage">
+                        <h2>Storage</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Upload</span>
+                            <input type="text" formControlName="upload" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Record</span>
+                            <input type="text" formControlName="record" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Update</span>
+                            <input type="text" formControlName="update" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="proxy">
+                        <h2>Proxy</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Upload</span>
+                            <input type="text" formControlName="upload" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Record</span>
+                            <input type="text" formControlName="record" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Update</span>
+                            <input type="text" formControlName="update" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="static">
+                        <h2>Proxy</h2>
+                        <div class="m-top10">
+                            <span class="title-w">App Folder</span>
+                            <input type="text" formControlName="appFolder" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Device Folder</span>
+                            <input type="text" formControlName="deviceFolder" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span class="uppercase" i18n>Database</span>
+                </ng-template>
+                <div formGroupName="database">
+                    <h2>Database</h2>
+                    <div class="m-top10">
+                        <span class="title-w">Db Host</span>
+                        <input type="text" formControlName="dbHost" class="form-control">
+                    </div>
+                    <div class="m-top10">
+                        <span class="title-w">Db Name</span>
+                        <input type="text" formControlName="dbName" class="form-control">
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span class="uppercase" i18n>Business</span>
+                </ng-template>
+                <div formGroupName="business">
+                    <div formGroupName="general">
+                        <h2>General</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Default Language</span>
+                            <input type="text" formControlName="defaultLanguage" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Supported Languages</span>
+                            <input type="text" formControlName="supportedLanguages" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="service">
+                        <h2>Service</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Max Waiting Minute</span>
+                            <input type="text" formControlName="maxWaitingMinute" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Max Serving Minute</span>
+                            <input type="text" formControlName="maxServingMinute" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Auto Finish Minute</span>
+                            <input type="text" formControlName="autoFinishMinute" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Wait Long Alert Percent</span>
+                            <input type="text" formControlName="waitLongAlertPercent" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Serve Long Alert Percent</span>
+                            <input type="text" formControlName="serveLongAlertPercent" class="form-control">
+                        </div>
+                    </div>
+                    <div formGroupName="priority">
+                        <h2>Priority</h2>
+                        <div class="m-top10">
+                            <span class="title-w">Priority Step</span>
+                            <input type="text" formControlName="priorityStep" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Moved Ticket</span>
+                            <input type="text" formControlName="movedTicket" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Restore Ticket</span>
+                            <input type="text" formControlName="restoreTicket" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Internal Vip Card</span>
+                            <input type="text" formControlName="internalVipCard" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Customer Vip Card</span>
+                            <input type="text" formControlName="customerVipCard" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Privileged Customer</span>
+                            <input type="text" formControlName="privilegedCustomer" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Booked Ticket</span>
+                            <input type="text" formControlName="bookedTicket" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Min Priority Restricted</span>
+                            <input type="text" formControlName="minPriorityRestricted" class="form-control">
+                        </div>
+                        <div class="m-top10">
+                            <span class="title-w">Min Priority Unorder Call</span>
+                            <input type="text" formControlName="minPriorityUnorderCall" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action m-top20">
+        <button fxFlex="15%" class="uppercase btnFill" type="submit" i18n>Save</button>
+    </div>
+</form>
+<!-- <button (click)="test()" >test</button> -->

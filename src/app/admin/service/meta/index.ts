@@ -7,6 +7,7 @@ import {
 } from '../shared';
 import { RuntimeEnvironment, AppStorage } from '../../shared';
 import { map } from 'rxjs/operators';
+import { SconfigService } from './sconfig.service';
 
 export interface IStaffPosition {
     counter_user_configs: ICounterUserConfigs[];
@@ -33,6 +34,7 @@ export class MetaService {
     }
 
     BranchConfigService: BranchCrudApiService<IBranchConfig>;
+    SystemConfigService: SconfigService;
 
     Link = {
         BranchConfig: '/api/admin/setting/branch_config',
