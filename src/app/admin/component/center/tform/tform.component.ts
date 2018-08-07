@@ -18,7 +18,7 @@ export class TFormComponent extends BaseAdminComponent<ITForm> {
     super(injector, org.TFormService);
   }
 
-  ticket_format_pattern = "^[A-Z0-9].*?[%]0?([1-9])[d][A-Z]?$";
+  ticket_format_pattern = "^[A-Z0-9]*?[%]0?([1-9])[d][A-Z]?$";
 
   makeForm(b?: ITForm) {
     b = b || <any>{};
