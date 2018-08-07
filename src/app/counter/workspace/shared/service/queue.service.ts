@@ -1,10 +1,11 @@
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
     ITicket, Ticket,
     TicketState, TicketStates, IMapTicket
 } from '../shared';
 import { WorkspaceService } from './workspace.service';
+import { map, combineLatest } from 'rxjs/operators';
 
 @Injectable()
 export class QueueService {
@@ -14,17 +15,16 @@ export class QueueService {
         
     }
 
-    _waiting$ = this.workspaceService.Workspace$.map(w => w.Waiting);
-    _serving$ = this.workspaceService.Workspace$.map(w => w.Serving);
-    _missed$ = this.workspaceService.Workspace$.map(w => w.Missed);
-    _cancel$ = this.workspaceService.Workspace$.map(w => w.Cancel);
+    _waiting$ = this.workspaceService.Workspace$.pipe(map(w => w.Waiting));
+    _serving$ = this.workspaceService.Workspace$.pipe(map(w => w.Serving));
+    _missed$ = this.workspaceService.Workspace$.pipe(map(w => w.Missed));
+    _cancel$ = this.workspaceService.Workspace$.pipe(map(w => w.Cancel));
 
-    waiting$ = this._waiting$.map(q => q.ToArray());
-    serving$ = this._serving$.map(q => q.ToArray());
-    missed$ = this._missed$.map(q => q.ToArray());
-    cancel$ = this._cancel$.map(q => q.ToArray());
+    waiting$ = this._waiting$.pipe(map(q => q.ToArray()));
+    serving$ = this._serving$.pipe(map(q => q.ToArray()));
+    missed$ = this._missed$.pipe(map(q => q.ToArray()));
+    cancel$ = this._cancel$.pipe(map(q => q.ToArray()));
 
-    busy$ = this._serving$.map(q => q.size > 0);
-    canNext$ = this._waiting$.map(q => q.size > 0)
-        .combineLatest(this.busy$, (a, b) => a && !b);
+    busy$ = this._serving$.pipe(map(q => q.size > 0));
+    canNext$ = this._waiting$.pipe(map(q => q.size > 0),combineLatest(this.busy$, (a, b) => a && !b));
 }

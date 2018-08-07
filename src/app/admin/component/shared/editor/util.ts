@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 
 /**
  * Determine if the argument is shaped like a Promise
@@ -24,8 +24,6 @@ export function isObservable(obj: any | Observable<any>): obj is Observable<any>
     // TODO use Symbol.observable when https://github.com/ReactiveX/rxjs/issues/2415 will be resolved
     return !!obj && typeof obj.subscribe === 'function';
 }
-
-import { of } from 'rxjs/observable/of';
 
 export function convertToObservable<T>(obj: any | Observable<T>): Observable<T> {
     if (isObservable(obj)) {

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { interval } from 'rxjs/observable/interval';
+import { Observable ,  Subscription ,  interval } from 'rxjs';
 import { CounterListService, SuperCounterService } from '../shared/service';
 import { counterDetail } from '../shared/model';
+import { map, first } from 'rxjs/operators';
 // import { ProjectConfig } from '../../shared'
 
 @Component({
@@ -20,7 +19,7 @@ export class CountersMapComponent implements OnInit {
   columnConfig: number = 3;
   selected: counterDetail;
 
-  countersMap$ = this.superCounterService.Workspace$.map(w => {
+  countersMap$ = this.superCounterService.Workspace$.pipe(map(w => {
     const counterList = w.counterList.ToArray();
     // Calculate column n row
     while (this.columnConfig < counterList.length && Math.ceil(counterList.length / parseFloat(this.columnConfig.toString())) >= this.columnConfig - 1) {
@@ -32,10 +31,10 @@ export class CountersMapComponent implements OnInit {
       countersMap[countersMap.length - 1].push(null);
     }
     return countersMap;
-  })
+  }))
 
   ngOnInit() {
-    this.countersMap$.first().subscribe(c => {
+    this.countersMap$.pipe(first()).subscribe(c => {
       this.selectCounter(c[0][0]);
     })
   }

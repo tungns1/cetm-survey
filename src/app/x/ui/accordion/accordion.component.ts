@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'accordion-title',
@@ -33,7 +33,7 @@ export class AccordionTitleComponent {
 export class AccordionComponent {
 
 	@Input() name: string;
-	private expanded = false;
+	expanded = false;
 	open$ = new Subject<AccordionComponent>();
 	
 	@Input() expand = false;

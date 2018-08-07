@@ -3,7 +3,10 @@ import {
 } from '../../shared';
 
 interface IPlatformSerialize {
-    host?: string;
+    host_cetm?: string;
+    host_booking?: string;
+    host_survey?: string;
+    auto_login?: boolean
 }
 
 export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
@@ -11,22 +14,36 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         super("platform");
     }
 
-    private get actualHost() {
+    private get actualHostCETM() {
         // should not initialize with object
-        return this.data.host || location.host;
+        return this.data.host_cetm || location.host;
     }
 
-    Update(host: string) {
-        this.data.host = host;
+    private get actualHostBooking() {
+        // should not initialize with object
+        return this.data.host_booking || location.host;
+    }
+
+    Update(host_cetm: string, host_booking: string, host_survey: string) {
+        this.data.host_cetm = host_cetm;
+        this.data.host_booking = host_booking;
+        this.data.host_survey = host_survey;
+        // console.log(this.data)
         this.SaveData();
     }
 
-    get Http() {
-        return `${this.protocol}//${this.actualHost}`;
+    get HttpCETM() {
+        // console.log(`${this.protocol}//${this.actualHostCETM}`)
+        return `${this.protocol}//${this.actualHostCETM}`;
     }
 
-    get WebSocket() {
-        return `${this.wsProtocol}//${this.actualHost}`;
+    get HttpBooking() {
+        // console.log(`${this.protocol}//${this.actualHostCETM}`)
+        return `${this.protocol}//${this.actualHostBooking}`;
+    }
+
+    get WebSocketCETM() {
+        return `${this.wsProtocol}//${this.actualHostCETM}`;
     }
 
     private protocol = location.protocol;

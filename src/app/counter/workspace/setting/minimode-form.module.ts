@@ -39,7 +39,7 @@ export class MiniModeFormComponent implements ControlValueAccessor {
 
     }
 
-    protected value: XWinMiniMode = {
+    value: XWinMiniMode = {
         enable: true,
         rect: {},
         options: {}

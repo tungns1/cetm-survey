@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { RuntimeEnvironment } from '../../env/';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: "app-header",
@@ -18,7 +19,7 @@ export class HeaderComponent {
         this._isServing = d;
     };
 
-    moduleName$ = this.env.Auth.Data$.map(a => a.module);
-    subModuleName$ = this.env.Auth.Data$.map(a => a.sub_module);
+    moduleName$ = this.env.Auth.Data$.pipe(map(a => a.module));
+    subModuleName$ = this.env.Auth.Data$.pipe(map(a => a.sub_module));
 
 }

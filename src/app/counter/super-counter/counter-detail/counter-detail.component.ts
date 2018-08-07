@@ -3,7 +3,7 @@ import {
   trigger, state, style,
   animate, transition
 } from '@angular/animations';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Ticket } from '../../../shared/model/house';
 import { SuperCounterService } from '../shared/service';
 import { ProjectConfig } from '../../shared'

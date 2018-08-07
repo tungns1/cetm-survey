@@ -4,6 +4,7 @@ import { CacheService, AddServiceName, IService } from '../shared';
 import {
     CrudApiService, IBranch, CacheBranch, AdminNavService
 } from '../shared';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ServiceService extends CrudApiService<IService> {
@@ -15,8 +16,8 @@ export class ServiceService extends CrudApiService<IService> {
         super(nav, api);
     }
     protected filter() {
-        return this.authService.ValidateSession().switchMap(_ => {
+        return this.authService.ValidateSession().pipe(switchMap(_ => {
             return CacheService.RxListView;
-        });
+        }));
     }
 }

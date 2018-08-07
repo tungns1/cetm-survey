@@ -40,10 +40,10 @@ export class SelectCheckComponent implements ControlValueAccessor {
     }
     @Input() multiple: boolean = true;
 
-    private views: IView[] = [];
-    private selected: { [index: string]: boolean } = {};
-    private all = false;
-    private none = true;
+    views: IView[] = [];
+    selected: { [index: string]: boolean } = {};
+    all = false;
+    none = true;
 
     protected onChangeCallback = (v: string[]) => { };
 

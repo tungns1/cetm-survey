@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { ITransactionCount, TransactionAggregate, MakeIndexBy } from './aggregate';
 
 import { ReportFilterService, PeriodFilterService, InsideBranchFilterService } from '../../shared';
@@ -8,6 +8,7 @@ import {
 } from '../../shared';
 import { Injectable } from '@angular/core';
 import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AggregateService {
@@ -31,11 +32,11 @@ export class AggregateService {
     RxAggregate = new BehaviorSubject<ITransactionCount[]>([]);
 
     get RxSummaryView() {
-        return this.RxAggregate.map(TransactionAggregate.Make);
+        return this.RxAggregate.pipe(map(TransactionAggregate.Make));
     };
 
     get ActiveAggregate$() {
-        return this.RxAggregate.map(v => {
+        return this.RxAggregate.pipe(map(v => {
             const group_by = this.insideService.GetGroupBy();
             const views = MakeIndexBy(v, group_by);
 
@@ -58,7 +59,7 @@ export class AggregateService {
             });
 
             return views;
-        });
+        }));
     }
 
     groupBy$ = new BehaviorSubject<string>('branch_id');

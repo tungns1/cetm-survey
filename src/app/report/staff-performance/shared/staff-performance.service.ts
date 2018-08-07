@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs';
+import { BehaviorSubject ,  Subject } from 'rxjs';
 import { ReportFilterService, HttpServiceGenerator } from '../../shared';
 import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
 import { IStaffReport, StaffPerformanceReport, IStaffSum, IStaffDetail, IStackChart } from './staff-performance.model';

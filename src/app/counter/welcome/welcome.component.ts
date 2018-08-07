@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../shared';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-welcome',
@@ -17,7 +18,7 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-  settingURL$ = this.route.queryParams.map(q => q['setting']);
+  settingURL$ = this.route.queryParams.pipe(map(q => q['setting']));
   workingURL: string = '';
   // ok: boolean = false;
   waitingTime = 3000;

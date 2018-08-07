@@ -3,7 +3,7 @@ import {
     ContentChildren, QueryList
 } from '@angular/core';
 import { AccordionComponent } from './accordion.component';
-import { merge } from 'rxjs/observable/merge';
+import { merge } from 'rxjs';
 
 @Component({
     selector: 'accordion-group',

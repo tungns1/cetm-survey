@@ -1,4 +1,5 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
+import { map, combineLatest } from 'rxjs/operators';
 
 export interface IPage {
     page: number;
@@ -36,7 +37,7 @@ export class Paging<T> {
         return this.currentPage$.value === p.page;
     }
 
-    pages$ = this.count$.combineLatest(this.currentPage$, (count, current) => {
+    pages$ = this.count$.pipe(combineLatest(this.currentPage$, (count, current) => {
         const totalPage = this.TotalPage;
         let pages: IPage[] = [];
         if (totalPage < 1) {
@@ -47,9 +48,9 @@ export class Paging<T> {
         pages = pages.concat(this.makePageRange(current + 1, totalPage, current + 1));
         pages.push({ page: totalPage, title: 'Last' });
         return pages;
-    });
+    }));
 
-    info$ = this.currentPage$.map(c => `Show ${this.pageSize$.value} transactions from ${(c - 1) * this.pageSize$.value + 1} to ${c * this.pageSize$.value}`);
+    info$ = this.currentPage$.pipe(map(c => `Show ${this.pageSize$.value} transactions from ${(c - 1) * this.pageSize$.value + 1} to ${c * this.pageSize$.value}`));
 
     SetPage(page: number) {
         if (page <= this.TotalPage && page >= 0) {

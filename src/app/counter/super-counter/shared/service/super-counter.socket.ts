@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { RuntimeEnvironment, AppSocket, LogService } from '../../../shared';
 import { MatSnackBar } from '@angular/material';
 import { SuperCounterSettingService } from '../super-counter-setting.service';
+import { first } from 'rxjs/operators';
 
 @Injectable()
 export class SuperCounterSocket extends AppSocket {
@@ -13,7 +14,7 @@ export class SuperCounterSocket extends AppSocket {
         private counterSetting: SuperCounterSettingService,
         logService: LogService,
     ) {
-        super(`${env.Platform.WebSocket}/room/actor/join`, env.Debug.socket, logService);
+        super(`${env.Platform.WebSocketCETM}/room/actor/join`, env.Debug.socket, logService);
     }
 
     onInit() {
@@ -30,8 +31,8 @@ export class SuperCounterSocket extends AppSocket {
                 new Notification("Application Error", {
                     body: message
                 });
-                const md = this.snackBard.open(message, "Click here to Check Configuration");
-                md.onAction().first().subscribe(_ => {
+                const md = this.snackBard.open(message, '', { duration: 500 });
+                md.onAction().pipe(first()).subscribe(_ => {
                     this.router.navigate(["/counter/super/setting"]);
                 });
             }

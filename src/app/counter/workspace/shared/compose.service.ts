@@ -5,6 +5,7 @@ import {
   WorkspaceService
 } from './service';
 import { LauncherService } from './device';
+import { LoadConfig } from '../../../../init';
 
 @Injectable()
 export class ComposeService {
@@ -19,6 +20,7 @@ export class ComposeService {
   ) { }
 
   enable() {
+    LoadConfig()
     const setting = this.counterSetting.Data;
     if (this.counterSetting.EnableLed) {
       this.ledService.enable(setting.led_addr, setting.led_remote, setting.led_com_port);

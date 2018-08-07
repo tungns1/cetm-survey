@@ -36,10 +36,10 @@ export class ServiceListComponent implements ControlValueAccessor {
     ) { }
 
     @Input() services: IService[] = [];
-    protected value: IService[] = [];
+    value: IService[] = [];
 
     protected onChangeCallback = (v) => { };
-    private active: IService = null;
+    active: IService = null;
 
     Add() {
         this.Edit(this.value.length);

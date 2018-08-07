@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject ,  of ,  merge ,  BehaviorSubject } from 'rxjs';
 import {
     AuthService,
     RuntimeEnvironment,
@@ -16,11 +16,8 @@ import {
 } from '../../shared/model';
 import { ITicket } from '../shared';
 
-import { of } from 'rxjs/observable/of';
-import { merge } from 'rxjs/observable/merge';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
 import { SuperCounterSocket } from './super-counter.socket';
+import { debounceTime, share, publishReplay, refCount, map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class SuperCounterService extends BehaviorSubject<SuperCounter> {
@@ -38,30 +35,30 @@ export class SuperCounterService extends BehaviorSubject<SuperCounter> {
     SelectedCounter$ = new BehaviorSubject<counterDetail>(null);
     markAsCheck$ = new BehaviorSubject<IMarkAsCheck>(null)
 
-    serviceList$ = this.initialState$.map(initData => {
+    serviceList$ = this.initialState$.pipe(map(initData => {
         return initData.services;
-    })
+    }))
 
     AppState$ = new BehaviorSubject<SuperCounter>(null);
 
-    Workspace$ = this.initialState$.switchMap(s => {
+    Workspace$ = this.initialState$.pipe(switchMap(s => {
         const w = new SuperCounter(s);
         const ticketUpdate = this.socket.RxEvent<ITicketAction>('/ticket_action')
-            .map(action => {
+            .pipe(map(action => {
                 w.Update(action);
-            });
+            }));
         const markAsCheck = this.socket.RxEvent<IMarkAsCheck>('/mark_as_check')
-            .map(mark => {
+            .pipe(map(mark => {
                 w.counterList.Mark(mark)
-            })
-        const autoNext = this.autoNext$.map(a => {
+            }))
+        const autoNext = this.autoNext$.pipe(map(a => {
             w.AutoNext = a;
-        });
-        const selectedCounter = this.SelectedCounter$.map(c => {
+        }));
+        const selectedCounter = this.SelectedCounter$.pipe(map(c => {
             w.counterList.select(c)
-        });
-        return merge(of(null), ticketUpdate, autoNext, selectedCounter, markAsCheck).map(_ => w);
-    }).debounceTime(20).share().publishReplay(1).refCount();
+        }));
+        return merge(of(null), ticketUpdate, autoNext, selectedCounter, markAsCheck).pipe(map(_ => w));
+    }),debounceTime(20),share(),publishReplay(1),refCount());
 
     get Socket() {
         return this.socket;

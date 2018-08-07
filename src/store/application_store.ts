@@ -5,6 +5,7 @@ interface IApplication {
     locale: string;
     culture: string;
     token: string;
+    auto_login: boolean;
 }
 
 export class ApplicationStore extends SmallStorage<IApplication> {
@@ -32,6 +33,18 @@ export class ApplicationStore extends SmallStorage<IApplication> {
     set Token(token: string) {
         this.data.token = token;
         this.SaveData(true);
+    }
+
+    set AutoLogin(flag: boolean){
+        this.data.auto_login = flag;
+        this.SaveData(true);
+    }
+
+    get AutoLogin(){
+        if(this.data.auto_login === null || this.data.auto_login === undefined){
+            this.data.auto_login = false;
+        }
+        return this.data.auto_login;
     }
 
     HasToken() {

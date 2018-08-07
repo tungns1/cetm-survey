@@ -1,7 +1,7 @@
 import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { interval } from 'rxjs/observable/interval';
-import 'rxjs/add/operator/share';
+import { Subscription ,  interval } from 'rxjs';
+import { share } from 'rxjs/operators';
+
 @Component({
     selector: 'timer',
     template: ``
@@ -16,7 +16,7 @@ export class TimerComopnent {
 
     private subscription: Subscription;
     private params: any;
-    private oneSecond = interval(1000).share();
+    private oneSecond = interval(1000).pipe(share());
     private native: HTMLElement = this.ref.nativeElement;
 
     @Input() timeWarning: number = 1500;
@@ -39,7 +39,7 @@ export class TimerComopnent {
         }
     }
 
-    agInit(params: any): void {
+    agInit(params: any): void {// get data from ag-grid
         this.params = params;
     }
 

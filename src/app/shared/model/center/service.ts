@@ -13,10 +13,11 @@ export interface IService extends ID {
     image: string;
     l10n: L10nText;
     attrs?: IAttribute[];
+    priority?: any;
     name?: string; // on client side
 }
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 class cacheService extends MemCache<IService> {
     ServiceName(id: string) {

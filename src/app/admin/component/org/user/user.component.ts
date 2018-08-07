@@ -3,7 +3,8 @@ import { OrgService, IUser, AllRoles, RuntimeEnvironment, USER_ROLES } from '../
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent, CommonValidator } from '../../shared';
-import { combineLatest } from 'rxjs/observable/combineLatest';
+import { combineLatest } from 'rxjs';
+import { map, first } from 'rxjs/operators';
 
 @Component({
   selector: 'admin-user',
@@ -17,7 +18,7 @@ export class UserComponent extends BaseAdminComponent<IUser> {
     private env: RuntimeEnvironment
   ) {
     super(injector, org.UserService);
-    this.env.Auth.User$.first().subscribe(u => {
+    this.env.Auth.User$.pipe(first()).subscribe(u => {
       if (u.role === USER_ROLES.ADMIN_STANDARD)
         this.isAdminStandard = true;
     })
@@ -33,9 +34,9 @@ export class UserComponent extends BaseAdminComponent<IUser> {
   ngOnInit() {
     if (this.isAdminStandard) {
       this.roles.splice(this.roles.findIndex(r => r.code === USER_ROLES.ADMIN), 1);
-      this.users$ = this.data$.map(users => users.filter(u => u.role !== USER_ROLES.ADMIN))
+      this.users$ = this.data$.pipe(map(users => users.filter(u => u.role !== USER_ROLES.ADMIN)))
     }
-    else this.users$ = this.data$.map(users => users.filter(u => u.role !== 'admin_root'))
+    else this.users$ = this.data$.pipe(map(users => users.filter(u => u.role !== 'admin_root')))
   }
 
   makeForm(u?: IUser) {

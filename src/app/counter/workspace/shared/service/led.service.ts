@@ -5,11 +5,9 @@ import { QueueService } from './queue.service';
 import { TicketService } from './ticket.service';
 import { LedDevice } from '../device';
 import { WorkspaceSocket } from './workspace.socket';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/publishReplay';
-import { interval } from 'rxjs/observable/interval';
+import { combineLatest ,  interval } from 'rxjs';
 import { ILedStatus, LED_STATUS } from '../../../shared/model';
+import { distinctUntilChanged, share, publishReplay, refCount, debounceTime, map } from 'rxjs/operators';
 
 @Injectable()
 export class LedService {
@@ -51,8 +49,8 @@ export class LedService {
 
     }
 
-    private status$ = this.workspaceService.Workspace$.debounceTime(250)
-        .map(w => {
+    private status$ = this.workspaceService.Workspace$.pipe(debounceTime(250)
+        ,map(w => {
             const s: ILedStatus = {
                 addr: this.led_address,
                 cmd: LED_STATUS.WELCOME,
@@ -64,8 +62,11 @@ export class LedService {
                 s.text = w.Serving.GetFirstTicket().cnum;
             }
             return s;
-        }).distinctUntilChanged((a, b) => a.cmd === b.cmd && a.text == b.text)
-        .share().publishReplay(1).refCount();
+        }),
+        distinctUntilChanged((a, b) => a.cmd === b.cmd && a.text == b.text),
+        share(),
+        publishReplay(1),
+        refCount());
 
     private sendToDevice(status: ILedStatus) {
         this.ledDevice.SendStatus(status);

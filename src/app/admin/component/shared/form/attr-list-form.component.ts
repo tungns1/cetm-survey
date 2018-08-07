@@ -1,8 +1,6 @@
-import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
 
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { AbstractControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 const ATTRIBUTE_LIST_FORM_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -10,8 +8,6 @@ const ATTRIBUTE_LIST_FORM_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     useExisting: forwardRef(() => AttributeListFormComponent),
     multi: true
 }
-
-import { FormArray, FormControl } from '@angular/forms';
 
 interface IAttribute {
     key: string;
@@ -38,7 +34,7 @@ interface IAttribute {
     providers: [ATTRIBUTE_LIST_FORM_CONTROL_VALUE_ACCESSOR]
 })
 export class AttributeListFormComponent implements ControlValueAccessor {
-    protected values: IAttribute[] = [];
+    values: IAttribute[] = [];
     protected onChangeCallback = (v) => { };
 
     writeValue(data: any[]) {

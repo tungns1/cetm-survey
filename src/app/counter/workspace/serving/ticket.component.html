@@ -1,6 +1,8 @@
 <div fxShow.xs="false" class="border emptyAndServing">
-    <div class="componentHeader">
-        <span>{{ticket.service_name}}</span>
+    <div class="componentHeader" >
+        <div class="cover-top">
+            <span (click)="toggleList()" style="cursor: pointer">{{ticket.service_name}} &nbsp; &nbsp; <i class="fa fa-plus"></i></span>
+        </div>
     </div>
 
     <div fxLayout="row" class="wrap">
@@ -39,6 +41,6 @@
     </div>
 </div>
 
-<ticket-action [ticket]="ticket" class="actionMini"></ticket-action>
+<!-- <ticket-action [ticket]="ticket" class="actionMini"></ticket-action>
 <div class="divider"></div>
-<customer-info fxShow.xs="false" [customer]="ticket.customer"></customer-info>
+<customer-info fxShow.xs="false" [customer]="ticket.customer"></customer-info> -->

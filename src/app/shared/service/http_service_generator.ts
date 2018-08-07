@@ -12,7 +12,11 @@ export class HttpServiceGenerator {
     }
 
     private get host() {
-        return this.env.Platform.Http;
+        return this.env.Platform.HttpCETM;
+    }
+
+    private get hostBooking() {
+        return this.env.Platform.HttpBooking;
     }
 
     make<T>(uri = '') {
@@ -20,5 +24,12 @@ export class HttpServiceGenerator {
             uri = "/" + uri;
         }
         return new HttpApi<T>(`${this.host}${uri}`, this.http);
+    }
+
+    makeBooking<T>(uri = '') {
+        if (!uri.startsWith("/")) {
+            uri = "/" + uri;
+        }
+        return new HttpApi<T>(`${this.hostBooking}${uri}`, this.http);
     }
 }

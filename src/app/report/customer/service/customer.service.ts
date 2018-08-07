@@ -4,8 +4,9 @@ import {
     ReportFilterService
 } from '../../shared';
 import { CustomerView, ICustomerView } from '../shared';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 export interface IHistory {
     data: ITransaction[];
@@ -69,7 +70,7 @@ export class CustomerAPI {
     RxCustomer = new BehaviorSubject<ICustomerView>(null);
 
     get RxSummaryView() {
-        return this.RxCustomer.map(CustomerView.Make);
+        return this.RxCustomer.pipe(map(CustomerView.Make));
     };
 
     ExportHistoryCsv(id: string,code:string) {

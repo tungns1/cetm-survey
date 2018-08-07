@@ -3,6 +3,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CurrentUser } from '../../x/platform';
 import { AuthService, HttpError } from '../shared';
+import { AppStorage } from '../../shared';
+import { WorkspaceSettingService } from '../../counter/workspace/shared';
+
 
 interface ILoginModel {
   username: string;
@@ -21,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
 
@@ -47,6 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(auto?: boolean) {
+      
     const query = this.route.snapshot.queryParamMap;    
     const userInput = this.loginForm.value;
     const data = {

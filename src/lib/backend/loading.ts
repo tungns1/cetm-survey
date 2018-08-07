@@ -1,6 +1,6 @@
 import { FactoryProvider } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 const loaderID = `loading-${Math.random().toString(36).substr(3, 6)}`;
 

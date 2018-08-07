@@ -1,11 +1,6 @@
-import {
-    Component, Input, forwardRef, ExistingProvider,
-    Output, EventEmitter
-} from '@angular/core';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
 
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { AbstractControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 const MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -13,8 +8,6 @@ const MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     useExisting: forwardRef(() => MultiFilePickerComponent),
     multi: true
 }
-
-import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'multi-file-picker',
@@ -32,7 +25,7 @@ import { FormArray, FormControl } from '@angular/forms';
     providers: [MULTI_FILE_PICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class MultiFilePickerComponent implements ControlValueAccessor {
-    protected srcs = [];
+    srcs = [];
     protected onChangeCallback = (v) => { };
 
     writeValue(data: any[]) {

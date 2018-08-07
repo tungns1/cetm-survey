@@ -8,8 +8,16 @@ import { TicketModule } from '../ticket/ticket.module';
 import { SharedModule } from '../shared';
 
 @NgModule({
-    imports: [SharedModule, TicketModule],
-    declarations: [WaitingComponent, MissedComponent, CancelComponent, BookingListComponent],
-    exports: [WaitingComponent, MissedComponent, CancelComponent, BookingListComponent]
+    imports: [
+        SharedModule, TicketModule
+    ],
+    declarations: [
+        WaitingComponent, MissedComponent, CancelComponent,
+        BookingListComponent
+    ],
+    exports: [
+        WaitingComponent, MissedComponent, CancelComponent,
+        BookingListComponent
+    ]
 })
 export class QueueModule { }

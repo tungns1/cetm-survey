@@ -10,6 +10,7 @@ import { QmsService } from '../shared';
 import { FeedbackComponent } from '../../../../admin/component/house/feedback/feedback.component';
 import { IFeedback } from '../../../../report/dashboard/shared/index';
 import { Feedback } from '../../ticket/ticket-detail.dialog';
+import { share } from 'rxjs/operators';
 
 
 
@@ -39,11 +40,10 @@ export class TicketService {
             service_id: body.service_id,
             extra: body.extra
         }
-        return this.socket.Send<ITicket>("/ticket", data).share();
+        return this.socket.Send<ITicket>("/ticket", data).pipe(share());
     }
     feedback: any
     Move(t: Ticket, services: string[], counters: string[]) {
-        console.log(t)
         this.feedback = {
             reason_text: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.reason_text || null) : null) : null,
             rating: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.rating || null) : null) : null,
@@ -91,7 +91,6 @@ export class TicketService {
     }
 
     TriggerAction(action: TicketActionName, ticket: Ticket) {
-        // console.log(ticket)
         return this.manager.Work(action, ticket, {
             record_transaction: this.settingService.EnableRecordTransaction,
             platform: this.platform,

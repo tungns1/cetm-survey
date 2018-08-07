@@ -8,7 +8,7 @@ import { GridOptions } from "ag-grid";
   styleUrls: ['./ticket.component.scss']
 })
 export class TicketComponent {
-  protected _data: InfoKioskTrack;
+  _data: InfoKioskTrack;
   @Input() padding: number;
   @Input() legend: string;
   @Input() set data(v: InfoKioskTrack) {
@@ -19,7 +19,7 @@ export class TicketComponent {
     });
   };
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

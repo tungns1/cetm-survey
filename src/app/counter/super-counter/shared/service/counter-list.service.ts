@@ -1,6 +1,7 @@
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SuperCounterService } from './super-counter.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CounterListService {
@@ -10,8 +11,8 @@ export class CounterListService {
 
   }
 
-  counterList$ = this.superCounterService.Workspace$.map(w => {
+  counterList$ = this.superCounterService.Workspace$.pipe(map(w => {
     return w.counterList.ToArray();
-  })
+  }))
     
 }

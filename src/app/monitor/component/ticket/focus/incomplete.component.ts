@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailComponent } from './ticketDetail.component';
 import { Ticket, ProjectConfig, CacheService } from '../../shared';
 import { TicketIconComponent } from '../../../../shared/businessQapp/ticket-icon.component';
@@ -22,13 +22,12 @@ export class IncompleteTicketComponent {
         this.data.forEach(t => this.addHelperField(t));
     };
 
-    private dialog: MatDialogRef<TicketDetailComponent>;
     data: Ticket[] = [];
     curentPage: number = 1;
     totalPage: number;
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
 
-    private gridOptions: GridOptions = {
+    gridOptions: GridOptions = {
         rowHeight: 35,
         rowSelection: 'multiple',
         paginationPageSize: 12,

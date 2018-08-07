@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
@@ -9,11 +9,12 @@ import {
     ModalComponent, Ticket,
     NoticeComponent
 } from '../shared';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-action',
     templateUrl: 'action.component.html',
-    styleUrls: ['action.component.scss'],
+    styleUrls: ['action.component.scss']
 })
 export class ActionComponent {
     constructor(
@@ -24,12 +25,13 @@ export class ActionComponent {
         private mdDialog: MatDialog
     ) { }
 
-
     @ViewChild(NoticeComponent) notice: NoticeComponent;
 
     @Input() ticket: Ticket;
 
-    auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
+    @Input() selectedService;
+
+    auto_next$ = this.workspaceService.Workspace$.pipe(map(w => w.AutoNext));
 
     Move() {
         const config = new MatDialogConfig();
@@ -39,7 +41,6 @@ export class ActionComponent {
     }
 
     Next() {
-
         if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
             const config = new MatDialogConfig();
             config.width = '520px';
@@ -59,8 +60,6 @@ export class ActionComponent {
                 this.workspaceService.SetAutoNext(true);
             });
         }
-
-
     }
 
     NoNext() {
@@ -80,6 +79,7 @@ export class ActionComponent {
             dialog.afterClosed().subscribe(d => {
                 if (d) {
                     this.ticket = d;
+                    console.log(this.ticket)
                     this.triggerAction('finish');
                 }
             })
@@ -103,7 +103,5 @@ export class ActionComponent {
     private triggerAction(action: TicketActionName) {
         return this.ticketService.TriggerAction(action, this.ticket);
     }
-
-
 
 }

@@ -13,7 +13,7 @@
             <span fxFlex="50%" class="cell" i18n>Service Name</span>
             <span fxFlex class="cell" i18n>Cancelled At</span>
         </div>
-        <div fxLayout="row" class="row" *ngFor="let t of tickets | async" [ticket-detail]="t" [ticket-highlight]="t">
+        <div fxLayout="row" class="row" *ngFor="let t of tickets | async; trackBy: trackFn" [ticket-detail]="t" [ticket-highlight]="t">
             <div fxFlex class="cell">
                 <ticket-icon [ticket]="t"></ticket-icon>
                 <span>{{t.cnum}}</span>

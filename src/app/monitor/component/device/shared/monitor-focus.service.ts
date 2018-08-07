@@ -7,11 +7,10 @@ import {
   IActivity, IBoxActivity, BoxActivity
 } from '../../../model';
 
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { merge } from 'rxjs/observable/merge';
-import { of } from 'rxjs/observable/of';
+import { ReplaySubject ,  merge ,  of } from 'rxjs';
+import { share, auditTime, map, startWith, switchMap } from 'rxjs/operators';
 
-import 'rxjs/add/operator/auditTime';
+
 
 @Injectable()
 export class MonitorFocusService {
@@ -21,23 +20,23 @@ export class MonitorFocusService {
     private navService: MonitorNavService
   ) { }
 
-  private initialFocus$ = this.socket.Connected$.switchMap(_ => {
-    return this.Branch$.switchMap(branch_id => {
+  private initialFocus$ = this.socket.Connected$.pipe(switchMap(_ => {
+    return this.Branch$.pipe(switchMap(branch_id => {
       return this.socket.Send<IBoxActivity>("/focus", {
         branch_id
       })
-    });
-  }).share();
+    }));
+  }),share());
 
   private activityUpdate$ = this.socket.RxEvent<IActivity>("/activity/update");
 
-  Box$ = this.initialFocus$.switchMap(initial => {
+  Box$ = this.initialFocus$.pipe(switchMap(initial => {
     const box = new BoxActivity(initial);
-    const activityUpdate = this.activityUpdate$.startWith(null).map(a => {
+    const activityUpdate = this.activityUpdate$.pipe(startWith(null),map(a => {
       box.UpdateActivity(a);
-    });
-    return merge(of(null), activityUpdate).map(_ => box);
-  }).auditTime(1000).share();
+    }));
+    return merge(of(null), activityUpdate).pipe(map(_ => box));
+  }),auditTime(1000),share());
 
   Unfocus() {
     this.socket.Send("/focus", {}).subscribe();

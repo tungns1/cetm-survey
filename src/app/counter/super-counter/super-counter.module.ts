@@ -6,7 +6,7 @@ import {
   MatToolbarModule, MatProgressBarModule, MatTabsModule,
   MatTooltipModule
 } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SharedModule } from '../shared';
 import { ComponentSharedModule } from '../shared/component/componentShared.module';

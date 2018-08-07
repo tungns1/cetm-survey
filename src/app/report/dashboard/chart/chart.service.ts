@@ -18,6 +18,7 @@ const TimeParse = {
 import { AggregateService, MakeIndexBy } from '../shared';
 
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ChartService {
@@ -27,7 +28,7 @@ export class ChartService {
 
     private RxAggregate = this.aggregateService.RxAggregate;
 
-    RxAggregateByTime = this.RxAggregate.map(records => {
+    RxAggregateByTime = this.RxAggregate.pipe(map(records => {
         const views = MakeIndexBy(records, 'ctime');
         const parseTime = TimeParse[this.RxPeriod.value];
         // views.sort((a, b) => a.time > b.time ? 1 : -1);
@@ -36,10 +37,10 @@ export class ChartService {
         })
         views.sort((a, b) => a.date < b.date ? -1 : 1);
         return views;
-    });
+    }));
  
     get RxSummaryView() {
-        return this.RxAggregate.map(TransactionAggregate.Make);
+        return this.RxAggregate.pipe(map(TransactionAggregate.Make));
     };
 
     RxPeriod = this.aggregateService.period$;

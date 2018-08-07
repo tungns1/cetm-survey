@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BranchFilterService } from '../../shared';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of ,  ReplaySubject } from 'rxjs';
 import { HttpApi, HttpServiceGenerator } from '../../shared';
 import { CacheBranch } from '../../../shared/model';
 import { AdminNavService } from './nav';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 export class CrudApiService<T> {
     constructor(
@@ -20,15 +19,15 @@ export class CrudApiService<T> {
     }
 
     Create(v: T) {
-        return this.api.Post("create", {}, v).do(this.onChange);
+        return this.api.Post("create", {}, v).pipe(tap(this.onChange));
     }
 
     Update(v: T) {
-        return this.api.Post("update", {id: v['id']}, v).do(this.onChange);
+        return this.api.Post("update", {id: v['id']}, v).pipe(tap(this.onChange));
     }
 
     UpdateByID(id: string, v: T) {
-        return this.api.Post("update", {id: id}, v).do(this.onChange);
+        return this.api.Post("update", {id: id}, v).pipe(tap(this.onChange));
     }
 
     GetByID(id: string) {
@@ -36,7 +35,7 @@ export class CrudApiService<T> {
     }
 
     MarkDelete(id: string) {
-        return this.api.Post("mark_delete", {id: id}).do(this.onChange);
+        return this.api.Post("mark_delete", {id: id}).pipe(tap(this.onChange));
     }
     
     Search(o) {
@@ -48,7 +47,7 @@ export class CrudApiService<T> {
     }
 
     get RxListView() {
-        return this.nav.Refresh$.switchMap(v => this.filter());
+        return this.nav.Refresh$.pipe(switchMap(v => this.filter()));
     }
 }
 
@@ -68,13 +67,13 @@ export class BranchCrudApiService<T extends IBranchModel> extends CrudApiService
 
     protected filter() {
         let branches = this.branchFilter.getAllID();
-        return this.GetByBranch(branches).map(data => {
+        return this.GetByBranch(branches).pipe(map(data => {
             CacheBranch.Join(data);
             const ids = this.branchFilter.getLowestBranches();
             const upper = data.filter(d => ids.indexOf(d['branch_id']) === -1);
             this.RxUpperList.next(upper);
             return data.filter(d => ids.indexOf(d['branch_id']) !== -1);
-        });
+        }));
     }
 
     GetByBranch(branch_id: string[]) {

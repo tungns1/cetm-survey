@@ -9,7 +9,7 @@
             <span fxFlex="50%" class="cell" i18n>Service Name</span>
             <span fxFlex class="cell" i18n>Waiting Time</span>
         </div>
-        <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async" [ticket-detail]="t" [ticket-highlight]="t">
+        <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async; trackBy: trackFn" [ticket-detail]="t" [ticket-highlight]="t">
             <div fxFlex class="cell">
                 <ticket-icon [ticket]="t"></ticket-icon>
                 <span>{{t.cnum}}</span>

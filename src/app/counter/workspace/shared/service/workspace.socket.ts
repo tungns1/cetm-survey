@@ -13,7 +13,7 @@ export class WorkspaceSocket extends AppSocket {
         private counterSetting: WorkspaceSettingService,
         logService: LogService,
     ) {
-        super(`${env.Platform.WebSocket}/room/actor/join`, env.Debug.socket, logService);
+        super(`${env.Platform.WebSocketCETM}/room/actor/join`, env.Debug.socket, logService);
     }
 
     onInit() {
@@ -31,9 +31,7 @@ export class WorkspaceSocket extends AppSocket {
                 new Notification("Application Error", {
                     body: message
                 });
-                const md = this.mdSnackBard.open(message
-                    // , "Click here to Check Configuration"
-                );
+                const md = this.mdSnackBard.open(message, '', { duration: 500 });
                 // md.onAction().first().subscribe(_ => {
                 //     this.router.navigate(["/counter/setting"]);
                 // });

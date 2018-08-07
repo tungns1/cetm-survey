@@ -5,7 +5,7 @@ export interface IStat {
     count: number;
 }
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Ticket, TicketState, TicketStates } from './shared';
 
 export class StatMap extends BehaviorSubject<Map<string, IStat>> {
@@ -61,12 +61,13 @@ export class StatMap extends BehaviorSubject<Map<string, IStat>> {
     }
 
     ToArray() {
-        return this.map(_ => Array.from(this.value.values()));
+        return this.pipe(map(_ => Array.from(this.value.values())));
     }
 }
 
 
 import { ITicketAction, TicketAction } from './ticket_action';
+import { map } from 'rxjs/operators';
 
 export class CounterStatistics {
     constructor(private user_id: string, private _s: IStat[]) {
@@ -79,36 +80,37 @@ export class CounterStatistics {
     cancelled = new StatMap(TicketStates.Cancelled);
     average_stime = 0;
 
-    OnTicketAction(a: TicketAction) {
-        // console.log(a);
-        if (!a || a.IsRestore()) return;
-        const t = a.ticket;
-        var len = t.tracks.length;
-        t.addHelperFields();
-        if (!t.isDone()) return;
+    OnTicketAction(tAction: TicketAction) {
+        if (!tAction || tAction.IsRestore()) return;
+        const ticket = tAction.ticket;
+        var len = ticket.tracks.length;
+        ticket.addHelperFields();
+        if (!ticket.isDone()) return;
         if (len <= 1) return;
-        if (t.state === TicketStates.Waiting) {
-            if (this.user_id === t.tracks[len - 2].user_id) {
+        if (ticket.state === TicketStates.Waiting) {
+            if (this.user_id === ticket.tracks[len - 2].user_id) {
                 const s: IStat = {
-                    service_id: t.service_id,
+                    service_id: ticket.tracks[len - 2].service_id,
                     count: 1,
-                    stime: t.tracks[len - 2].mtime - t.tracks[len - 3].mtime,
-                    state: t.tracks[len - 2].state
+                    stime: ticket.tracks[len - 2].mtime - ticket.tracks[len - 3].mtime,
+                    state: ticket.tracks[len - 2].state
                 }
                 this.finished.Add(s);
                 this.cancelled.Add(s);
             }
 
         } else {
-            if (this.user_id === t.user_id) {
-                const s: IStat = {
-                    service_id: t.service_id,
-                    count: 1,
-                    stime: t.__stime,
-                    state: t.state
+            if (this.user_id === ticket.user_id) {
+                if(ticket.tracks[len-2].state === TicketStates.Serving){
+                    const s: IStat = {
+                        service_id: ticket.service_id,
+                        count: 1,
+                        stime: ticket.__stime,
+                        state: ticket.state
+                    }
+                    this.finished.Add(s);
+                    this.cancelled.Add(s);
                 }
-                this.finished.Add(s);
-                this.cancelled.Add(s);
             }
 
         }

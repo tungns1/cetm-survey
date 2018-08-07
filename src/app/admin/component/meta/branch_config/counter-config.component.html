@@ -1,0 +1,29 @@
+<br>
+<span i18n>Record Transaction</span> 
+<select [(ngModel)]="value.record_transaction" (change)="OnChange()">
+    <option value="alway_on">Alway On</option>
+    <option value="alway_off">Alway Off</option>
+    <option value="inherit">Inherit</option>
+</select>
+<div class="counter-block"> 
+
+    <div *ngFor="let item of list_counters_login" class="counter-item">
+        <div class="counter-name">{{item.counter.name}} - {{item.counter.code}}</div>
+        
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" [(ngModel)]="item.login" (change)="onChangeLogin($event, item.counter.id)">
+                Login
+            </label>
+        </div>
+    
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" [(ngModel)]="item.force" (change)="onChangeForce($event, item.counter.id)">
+                Force        
+            </label>
+        </div>
+        
+        
+    </div>
+</div>

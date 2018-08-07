@@ -2,9 +2,20 @@
     <h1 class="margin-l-20"> Environment Setting </h1>
     <h2 class="margin-l-20"> Platform </h2>
     <form [formGroup]="PlatformForm" class="form-setup">
-        <span>Host:</span>
+        <span>Host CETM:</span>
         <div>
-            <input class="ctrlInput-seting" type="text" formControlName="host">
+            <input class="ctrlInput-seting" type="text" formControlName="host_cetm">
+        </div>
+        <span>Host Booking:</span>
+        <div>
+            <input class="ctrlInput-seting" type="text" formControlName="host_booking">
+        </div>
+        <span>Host Survey:</span>
+        <div>
+            <input class="ctrlInput-seting" type="text" formControlName="host_survey">
+        </div>
+        <div>
+            <input type="checkbox" formControlName="auto_login"> Remember login
         </div>
     </form>
     <hr>
