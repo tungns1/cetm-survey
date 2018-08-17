@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { Router } from "@angular/router";
 import { RuntimeEnvironment, AppSocket, LogService } from './shared';
 import { MatSnackBar } from '@angular/material';
 import { WorkspaceSettingService } from '../counter-setting.service';
@@ -7,7 +6,6 @@ import { WorkspaceSettingService } from '../counter-setting.service';
 @Injectable()
 export class WorkspaceSocket extends AppSocket {
     constructor(
-        private router: Router,
         private mdSnackBard: MatSnackBar,
         private env: RuntimeEnvironment,
         private counterSetting: WorkspaceSettingService,

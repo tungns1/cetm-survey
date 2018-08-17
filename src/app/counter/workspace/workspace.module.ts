@@ -1,21 +1,21 @@
 import { NgModule, Injectable } from '@angular/core';
-import { ActivatedRoute, RouterModule, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
+import { RouterModule, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import {
     MatCheckboxModule, MatInputModule, MatFormFieldModule,
-    MatToolbarModule, MatProgressBarModule, MatTabsModule,
+    MatToolbarModule, MatProgressBarModule,
     MatProgressSpinnerModule
 } from '@angular/material';
-import { Observable ,  of } from 'rxjs';
-import { SharedModule, AppStorage, HttpServiceGenerator, HttpApi } from '../shared';
+import { HttpClientModule } from '@angular/common/http';
+import { map, switchMap } from 'rxjs/operators';
+import { SharedModule, AppStorage } from '../shared';
 import { QueueModule } from './queue/queue.module';
 import { StatModule } from './stat/stat.module';
 import { ServingModule } from './serving/serving.module';
 import { MiniModeFormModule } from './setting/minimode-form.module';
-import { WelcomeModule } from '../welcome/welcome.module';
 import { ActionModule } from './action/action.module';
 import { CustomerModule } from './customer/customer.module';
 
-import { WorkspaceSettingService, IBranchConfig } from './shared';
+import { WorkspaceSettingService } from './shared';
 import { SessionValidationGuard, RuntimeEnvironment, AuthService } from '../shared/shared'
 
 import { WorkspaceComponent } from './workspace/workspace.component';
@@ -23,10 +23,7 @@ import { NormalWorkspaceComponent } from './workspace/normal/normal.component';
 import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
 import { SettingComponent } from './setting/setting.component';
 import { workspaceServiceProvider } from './shared/workspace.provider';
-import { HttpClientModule, HttpParams } from '@angular/common/http';
 import { CrudApiServiceGenerator } from '../../admin/service';
-import { createRendererV1 } from '@angular/core/src/view/refs';
-import { map, switchMap } from 'rxjs/operators';
 /**
  * Check setting before redirect
  */
@@ -117,7 +114,7 @@ const routing = RouterModule.forChild([
         routing, SharedModule, QueueModule, HttpClientModule,
         ServingModule, StatModule, MatProgressSpinnerModule,
         MatCheckboxModule, MatInputModule, MatFormFieldModule,
-        MatToolbarModule, MatProgressBarModule, MatTabsModule,
+        MatToolbarModule, MatProgressBarModule,
         MiniModeFormModule, ActionModule, CustomerModule
     ],
     declarations: [

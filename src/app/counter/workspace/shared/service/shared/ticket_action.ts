@@ -107,7 +107,7 @@ export class ActionManager {
         if (!this.handler) {
             this.next();
         }
-        this.Handle(ta).subscribe(result => {
+        this.Handle(ta).pipe(first()).subscribe(result => {
             ta.Done(result);
             this.next();
         }, e => {

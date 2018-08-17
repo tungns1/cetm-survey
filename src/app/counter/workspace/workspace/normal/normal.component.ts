@@ -20,9 +20,13 @@ export class NormalWorkspaceComponent implements OnInit {
   isServing$ = this.queueService._serving$.pipe(map(s => s.ToArray().length ? true : false));
   serving$ = this.queueService.serving$;
   nowServing: Ticket = null;
+  private subscription = this.serving$.subscribe(ticket => { this.nowServing = ticket[0] || null})
 
   ngOnInit() {
-    this.serving$.subscribe(ticket => { this.nowServing = ticket[0] || null})
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }

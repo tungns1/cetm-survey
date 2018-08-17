@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SmallStorage, XWinStorageStrategy, XWinMiniMode, HttpServiceGenerator } from './shared';
-import { RuntimeEnvironment, ICounterConfig, ProjectConfig } from './shared';
+import { RuntimeEnvironment, ProjectConfig } from './shared';
 import { BehaviorSubject } from 'rxjs';
-import { AppStorage } from '.';
 
 
 export interface ILedSetting {
@@ -55,7 +54,7 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
         this.api.Get<any>('setting_login', { 'branch_code': this.data.branch_code }).subscribe(data => {
             if (data) {
                 let current_counter = data.counters.filter(item => item.code === this.data.counter_code);
-                if (data.branch_config[0].counter.auto_login_counters !== null) {
+                if (data.branch_config[0].counter.auto_login_counters) {
                     for (let index = 0; index < data.branch_config[0].counter.auto_login_counters.length; index++) {
                         const element = JSON.parse(data.branch_config[0].counter.auto_login_counters[index]);
                         if (element.counter === current_counter[0].id) {

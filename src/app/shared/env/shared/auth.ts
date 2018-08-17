@@ -1,10 +1,6 @@
-import {
-    AppStorage, ProjectConfig,
-    AbstractSerializable, AbstractStorageStrategy, SmallStorage
-} from '../../shared';
+import { ProjectConfig } from '../../shared';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject ,  ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { IUser, IBranch, IService, IBranchConfig, CacheBranch, CacheService } from '../../model';
 import { filter, share, publishReplay, refCount, map } from 'rxjs/operators';
 
@@ -23,11 +19,12 @@ interface IAuthEnv {
 export class AuthEnvStorage {
     Data$ = new ReplaySubject<IAuthEnv>(1);
     User$ = this.Data$.pipe(
-        map(d => d.me)
-        ,filter(u => !!u)
-        ,share()
-        ,publishReplay(1)
-        ,refCount());
+        map(d => d.me), 
+        filter(u => !!u), 
+        share(), 
+        publishReplay(1), 
+        refCount()
+    );
     private data: IAuthEnv = <any>{};
 
     emitChange() {

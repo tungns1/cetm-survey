@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
 import { QueueService, ITicket } from '../shared';
 
 import { BehaviorSubject ,  combineLatest } from 'rxjs';
