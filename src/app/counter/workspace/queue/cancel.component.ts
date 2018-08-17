@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { QueueService, ITicket } from '../shared';
 import { combineLatest ,  BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';

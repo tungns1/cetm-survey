@@ -1,7 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { WorkspaceService, ITicket } from '../shared';
-import { combineLatest ,  BehaviorSubject } from 'rxjs';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { WorkspaceService } from '../shared';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -16,7 +14,6 @@ export class BookingListComponent {
     ) { }
 
     list$ = this.workspaceService.bookingOnlineList$;
-
     count$ = this.list$.pipe(map(data => data.length));
 
     trackFn(index, item) {

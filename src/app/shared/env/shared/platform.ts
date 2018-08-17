@@ -1,6 +1,4 @@
-import {
-    AbstractSerializable, SmallStorage, AbstractStorageStrategy
-} from '../../shared';
+import { SmallStorage } from '../../shared';
 
 interface IPlatformSerialize {
     host_cetm?: string;
@@ -14,13 +12,16 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         super("platform");
     }
 
+    private protocol = location.protocol;
+    private ssl = this.protocol.startsWith("https");
+    private wsProtocol = this.ssl ? "wss:" : "ws:";
+
     private get actualHostCETM() {
         // should not initialize with object
         return this.data.host_cetm || location.host;
     }
 
     private get actualHostBooking() {
-        // should not initialize with object
         return this.data.host_booking || location.host;
     }
 
@@ -28,25 +29,18 @@ export class PlatformEnvStorage extends SmallStorage<IPlatformSerialize> {
         this.data.host_cetm = host_cetm;
         this.data.host_booking = host_booking;
         this.data.host_survey = host_survey;
-        // console.log(this.data)
         this.SaveData();
     }
 
-    get HttpCETM() {
-        // console.log(`${this.protocol}//${this.actualHostCETM}`)
+    get Http() {
         return `${this.protocol}//${this.actualHostCETM}`;
     }
 
     get HttpBooking() {
-        // console.log(`${this.protocol}//${this.actualHostCETM}`)
         return `${this.protocol}//${this.actualHostBooking}`;
     }
 
     get WebSocketCETM() {
         return `${this.wsProtocol}//${this.actualHostCETM}`;
     }
-
-    private protocol = location.protocol;
-    private ssl = this.protocol.startsWith("https");
-    private wsProtocol = this.ssl ? "wss:" : "ws:";
 }

@@ -24,6 +24,9 @@
                 <li *ngIf="!isAdminStandard" routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Branch Config</span>
                 </li>
+                <li *ngIf="!isAdminStandard" routerLink="/admin/meta/sconfig" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">System Config</span>
+                </li>
                 <li *ngIf="!isAdminStandard" routerLink="/admin/house/sflow" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Service Flow</span>
                 </li>
@@ -33,6 +36,7 @@
                 <li routerLink="/admin/org/user">
                     <span i18n class="paddingSecond">User</span>
                 </li>
+                
                 <!-- <li routerLink="/admin/center/formconfig">
                     <span i18n class="paddingSecond">Form Configuration</span>
                 </li>

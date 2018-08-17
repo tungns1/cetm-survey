@@ -13,17 +13,6 @@ export class EnvironmentSettingComponent implements OnInit {
   constructor(
     private env: RuntimeEnvironment
   ) { }
-
-  ngOnInit() {
-      console.log(AppStorage.AutoLogin)
-    this.PlatformForm.valueChanges.subscribe(data => {
-      this.env.Platform.Update(data.host_cetm, data.host_booking, data.host_survey);
-      AppStorage.AutoLogin = data.auto_login
-    });
-    this.DebugForm.valueChanges.subscribe(data => {
-      this.env.Debug.Update(data.layout, data.socket);
-    });
-  }
   
   debug = this.env.Debug.Data;
   platform = this.env.Platform.Data;
@@ -39,4 +28,13 @@ export class EnvironmentSettingComponent implements OnInit {
     auto_login: new FormControl(this.platform.auto_login || AppStorage.AutoLogin)
   });
 
+  ngOnInit() {
+    this.PlatformForm.valueChanges.subscribe(data => {
+      this.env.Platform.Update(data.host_cetm, data.host_booking, data.host_survey);
+      AppStorage.AutoLogin = data.auto_login
+    });
+    this.DebugForm.valueChanges.subscribe(data => {
+      this.env.Debug.Update(data.layout, data.socket);
+    });
+  }
 }

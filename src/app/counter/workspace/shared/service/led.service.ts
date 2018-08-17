@@ -1,18 +1,13 @@
-import { Injectable, OnInit } from '@angular/core';
-import { ITicket, TicketState, TicketStates } from '../shared';
+import { Injectable } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
-import { QueueService } from './queue.service';
-import { TicketService } from './ticket.service';
 import { LedDevice } from '../device';
-import { WorkspaceSocket } from './workspace.socket';
-import { combineLatest ,  interval } from 'rxjs';
+import { interval } from 'rxjs';
 import { ILedStatus, LED_STATUS } from '../../../shared/model';
 import { distinctUntilChanged, share, publishReplay, refCount, debounceTime, map } from 'rxjs/operators';
 
 @Injectable()
 export class LedService {
     constructor(
-        private queueService: QueueService,
         private ledDevice: LedDevice,
         private workspaceService: WorkspaceService
     ) {

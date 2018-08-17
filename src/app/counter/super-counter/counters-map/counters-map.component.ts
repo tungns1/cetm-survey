@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable ,  Subscription ,  interval } from 'rxjs';
-import { CounterListService, SuperCounterService } from '../shared/service';
+import { SuperCounterService } from '../shared/service';
 import { counterDetail } from '../shared/model';
 import { map, first } from 'rxjs/operators';
 // import { ProjectConfig } from '../../shared'

@@ -1,9 +1,9 @@
-import { Component, ViewChild, EventEmitter, OnInit, Optional, Inject } from '@angular/core';
+import { Component, ViewChild, Optional, Inject } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import {
-    Ticket, TicketStates, TicketActionName,
+    Ticket, TicketActionName,
     TicketService, QueueService, WorkspaceService,
     FeedbackService, NoticeComponent
 } from '../shared';
@@ -35,7 +35,7 @@ export class TicketDetailDialog {
     isCancelled = this.ticket.IsState("cancelled");
     isMissed = this.ticket.IsState("missed");
     isWaiting = this.ticket.IsState("waiting");
-    t: Ticket;
+    // t: Ticket;
     checkedCounters = [];
     checkedServices = [];
     counters = this.workspaceService.counters$.pipe(combineLatest(
@@ -50,34 +50,24 @@ export class TicketDetailDialog {
                 });
         }
     ));
-    curentCounter;
 
     services = this.workspaceService.services$;
     canCall = (this.ticket.priority.canMakeUnorderedCall() && this.isWaiting) || this.isMissed;
-    isBusy: boolean;
 
     @ViewChild(NoticeComponent) notice: NoticeComponent;
 
     ngOnInit() {
-        this.workspaceService.currentCounter$.subscribe(v => {
-            this.curentCounter = v
-        })
-        this.queueService.busy$.subscribe(d => {
-            this.isBusy = d;
-        })
-        this.queueService.serving$.subscribe(v => {
-            this.t = v[0]
-        })
+        // this.queueService.serving$.subscribe(v => {
+        //     this.t = v[0]
+        // })
     }
-    feedback: Feedback
     Move() {
         if (this.isWaiting) {
             if (this.checkedServices.length < 1) {
                 this.notice.ShowMessage("missing_service");
                 return;
             }
-            let counter = this.checkedCounters.length > 0 ? this.checkedCounters : [this.curentCounter.id]
-            this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+            this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).pipe(first())
                 .subscribe(v => {
                     this.dialogRef.close();
                     return;
@@ -97,28 +87,28 @@ export class TicketDetailDialog {
             }
             if (this.isServing) {
 
-                if (this.feedbackService.CheckFeedback(this.t)) {
+                if (this.feedbackService.CheckFeedback(this.ticket)) {
                     const config = new MatDialogConfig();
                     config.width = '750px';
                     config.data = this.ticket;
                     const dialog = this.mdDialog.open(FeedbackRejectlDialog, config);
-                    dialog.afterClosed().subscribe(d => {
+                    dialog.afterClosed().pipe(first()).subscribe(d => {
                         if (d) {
                             this.ticket = d;
-                            this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+                            this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).pipe(first())
                                 .subscribe(v => {
                                     this.dialogRef.close();
                                 });
                         }
                     })
                 } else {
-                    this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+                    this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).pipe(first())
                         .subscribe(v => {
                             this.dialogRef.close();
                         });
                 }
             } else {
-                this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters)
+                this.ticketService.Move(this.ticket, this.checkedServices, this.checkedCounters).pipe(first())
                     .subscribe(v => {
                         this.dialogRef.close();
                     });
@@ -146,7 +136,7 @@ export class TicketDetailDialog {
     }
 
     private triggerAction(action: TicketActionName) {
-        this.ticketService.TriggerAction(action, this.ticket)
+        this.ticketService.TriggerAction(action, this.ticket).pipe(first())
             .subscribe(_ => this.dialogRef.close(), e => {
                 this.notice.ShowMessage("server_error");
             });

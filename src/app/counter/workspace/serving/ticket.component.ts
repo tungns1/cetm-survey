@@ -1,6 +1,5 @@
-import { Component, ChangeDetectorRef, Input } from '@angular/core';
-import { TimerComopnent, ProjectConfig, Ticket, WorkspaceService, CacheService, ServiceName, TicketService } from '../shared';
-import { ShowLoading, HideLoading } from '../../../../lib/backend';
+import { Component, Input } from '@angular/core';
+import { ProjectConfig, Ticket } from '../shared';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { AddServiceDialogComponent } from './add-service-dialog/add-service-dialog.component';
 
@@ -16,8 +15,6 @@ export class TicketComponent {
     showList = false;
 
     constructor(
-        private workspaceService: WorkspaceService, 
-        private ticketService: TicketService,
         private mdDialog: MatDialog,
     ){}
 
@@ -27,7 +24,6 @@ export class TicketComponent {
         config.width = '450px';
         config.data = this.ticket;
         const dialog = this.mdDialog.open(AddServiceDialogComponent, config);
-        // this.showList = !this.showList;
     }
 }
 

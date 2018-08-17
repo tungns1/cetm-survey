@@ -7,6 +7,7 @@ import {
 } from '../shared';
 import { RuntimeEnvironment, AppStorage } from '../../shared';
 import { map } from 'rxjs/operators';
+import { SconfigService } from './sconfig.service';
 
 export interface IStaffPosition {
     counter_user_configs: ICounterUserConfigs[];
@@ -33,6 +34,7 @@ export class MetaService {
     }
 
     BranchConfigService: BranchCrudApiService<IBranchConfig>;
+    SystemConfigService: SconfigService;
 
     Link = {
         BranchConfig: '/api/admin/setting/branch_config',
@@ -44,7 +46,7 @@ export class MetaService {
     }
 
     private generateHostName() {
-        let host = this.env.Platform.Data.host_cetm || window.location.host;
+        let host = this.env.Platform.Data.host ? this.env.Platform.Data.host : window.location.host;
         return 'http://' + host;
     }
 

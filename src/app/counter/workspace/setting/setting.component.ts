@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { WorkspaceSettingService } from '../shared';
 import { Router, ActivatedRoute } from '@angular/router'
-import { AppStorage, RuntimeEnvironment, HttpServiceGenerator } from '../../shared';
-import { HttpParams } from '@angular/common/http';
+import { AppStorage } from '../../shared';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -17,41 +16,12 @@ export class SettingComponent implements OnInit {
         private counterSetting: WorkspaceSettingService,
         private router: Router,
         private route: ActivatedRoute,
-        
+
     ) { }
-
-    ngOnInit() {
-        console.log('new version')
-        this.counterSetting.checkLogin();
-        // console.log(AppStorage.AutoLogin)
-        this.form.valueChanges.subscribe(v => {
-            AppStorage.AutoLogin = v.auto_login_counter
-            if (this.counterSetting.Update(v)) {    
-                AppStorage.AutoLogin = v.auto_login_counter
-                AppStorage.ClearToken();
-            }
-        });
-        this.counterSetting.force_auto_login$.subscribe(v => {
-            this.counterSetting.login_value$.subscribe(v1 => {
-                if(v !== null && v1 !== null){
-                    if(v === true){
-                        this.test = v1
-                        this.force$.next(true)
-                    }else{
-                        this.test = this.value.auto_login_counter || AppStorage.AutoLogin
-                    }
-                    this.form.patchValue({auto_login_counter: (this.test)})
-                }
-            })
-        })
-        
-    }
-
 
     test = false;
     value = this.counterSetting.Data;
     force$ = new BehaviorSubject<boolean>(false);
-
     form = new FormGroup({
         branch_code: new FormControl(this.value.branch_code),
         counter_code: new FormControl(this.value.counter_code),
@@ -61,6 +31,39 @@ export class SettingComponent implements OnInit {
         led_com_port: new FormControl(this.value.led_com_port),
         auto_login_counter: new FormControl(this.value.auto_login_counter)
     });
+    formSubscription = this.form.valueChanges.subscribe(v => {
+        AppStorage.AutoLogin = v.auto_login_counter
+        if (this.counterSetting.Update(v)) {
+            AppStorage.AutoLogin = v.auto_login_counter
+            AppStorage.ClearToken();
+        }
+    });
+
+    settingSubscription = this.counterSetting.force_auto_login$.subscribe(v => {
+        this.counterSetting.login_value$.subscribe(v1 => {
+            if (v !== null && v1 !== null) {
+                if (v === true) {
+                    this.test = v1
+                    this.force$.next(true)
+                } else {
+                    this.test = this.value.auto_login_counter || AppStorage.AutoLogin
+                }
+                this.form.patchValue({ auto_login_counter: (this.test) })
+            }
+        })
+    })
+
+    ngOnInit() {
+        console.log('new version')
+        this.counterSetting.checkLogin();
+    }
+
+    ngOnDestroy() {
+        this.formSubscription.unsubscribe();
+        this.formSubscription = null;
+        this.settingSubscription.unsubscribe();
+        this.settingSubscription = null;
+    }
 
     Go() {
         const newValue = this.form.value;
@@ -70,7 +73,7 @@ export class SettingComponent implements OnInit {
         this.router.navigate(['../main'], {
             relativeTo: this.route
         });
-        
+
     }
 
 }

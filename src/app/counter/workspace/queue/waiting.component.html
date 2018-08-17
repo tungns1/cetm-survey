@@ -1,7 +1,7 @@
 <div class="border">
     <div class="componentHeader">
         <span i18n>Waiting Ticket</span>
-        <span class="totalCount">({{count$ | async}})</span>
+        <span class="totalCount">({{dataLength}})</span>
     </div>
     <div class="queue">
         <div fxLayout="row" class="headerTable">
@@ -9,13 +9,15 @@
             <span fxFlex="50%" class="cell" i18n>Service Name</span>
             <span fxFlex class="cell" i18n>Waiting Time</span>
         </div>
-        <div fxLayout="row" class="row" *ngFor="let t of waiting$ | async; trackBy: trackFn" [ticket-detail]="t" [ticket-highlight]="t">
-            <div fxFlex class="cell">
-                <ticket-icon [ticket]="t"></ticket-icon>
-                <span>{{t.cnum}}</span>
+        <div id="ticket">
+            <div fxLayout="row" class="row" *ngFor="let ticket of waiting$ | async; trackBy: trackFn" [ticket-detail]="ticket" [ticket-highlight]="ticket">
+                <div fxFlex class="cell">
+                    <ticket-icon [ticket]="ticket"></ticket-icon>
+                    <span>{{ticket.cnum}}</span>
+                </div>
+                <span fxFlex="50%" class="cell">{{ticket.service_name}}</span>
+                <timer fxFlex class="cell" [start]="ticket.mtime" [timeWarning]="maxWaitingMinute" [refreshTime]="5000"></timer>
             </div>
-            <span fxFlex="50%" class="cell">{{t.service_name}}</span>
-            <timer fxFlex class="cell" [start]="t.mtime" [timeWarning]="maxWaitingMinute"></timer>
         </div>
     </div>
 </div>

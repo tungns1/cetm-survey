@@ -3,13 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
 import {
-    WorkspaceService, QueueService,
-    LedService, TicketActionName,
-    TicketService, FeedbackService,
-    ModalComponent, Ticket,
-    NoticeComponent
+    WorkspaceService, TicketActionName, TicketService, 
+    FeedbackService, Ticket, NoticeComponent
 } from '../shared';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-action',
@@ -19,7 +16,6 @@ import { map } from 'rxjs/operators';
 export class ActionComponent {
     constructor(
         private workspaceService: WorkspaceService,
-        private queueService: QueueService,
         private ticketService: TicketService,
         private feedbackService: FeedbackService,
         private mdDialog: MatDialog
@@ -49,14 +45,14 @@ export class ActionComponent {
             dialog.afterClosed().subscribe(d => {
                 if (d) {
                     this.ticket = d;
-                    this.triggerAction("finish").subscribe(() => {
+                    this.triggerAction("finish").pipe(first()).subscribe(() => {
                         this.workspaceService.SetAutoNext(true);
                     });
 
                 }
             })
         } else {
-            this.triggerAction("finish").subscribe(() => {
+            this.triggerAction("finish").pipe(first()).subscribe(() => {
                 this.workspaceService.SetAutoNext(true);
             });
         }
