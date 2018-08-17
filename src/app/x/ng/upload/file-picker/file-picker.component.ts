@@ -1,11 +1,9 @@
 import {
-    Component, Input, forwardRef, ExistingProvider,
-    Output, EventEmitter, HostListener
+    Component, forwardRef, ExistingProvider,
+    HostListener
 } from '@angular/core';
 import {
-    FormsModule, ControlValueAccessor,
-    NG_VALUE_ACCESSOR, AbstractControl,
-    FormArray, FormControl
+    ControlValueAccessor, NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FilePickerModalComponent } from './file-picker-modal.component';
@@ -37,7 +35,7 @@ export class FilePickerComponent implements ControlValueAccessor {
         this.onChangeCallback(this.value);
     }
 
-    protected value = '';
+    value = '';
     protected onChangeCallback = (v) => { };
 
     writeValue(data: string) {

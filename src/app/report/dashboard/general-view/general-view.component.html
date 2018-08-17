@@ -22,14 +22,6 @@
     </chart-item-group-view>
 </report-chart>
 
-<div hidden>
-    <div>
-        <span>Start time: {{info.period.start}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End time: {{info.period.end}}</span>
-    </div>
-    <p style="text-align: center;font-size: 18px;font-weight: bold;">Overview Report by {{field_by}}</p>
-</div>
-
-
 <ag-grid-angular #agGrid id="overViewTable" [gridOptions]="gridOptions" [rowData]="_data" class="ag-fresh tableCtrl"
     enableColResize enableSorting export-table i18n-title>
     <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>

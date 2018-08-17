@@ -15,10 +15,21 @@ export class HttpServiceGenerator {
         return this.env.Platform.Http;
     }
 
+    private get hostBooking() {
+        return this.env.Platform.HttpBooking;
+    }
+
     make<T>(uri = '') {
         if (!uri.startsWith("/")) {
             uri = "/" + uri;
         }
         return new HttpApi<T>(`${this.host}${uri}`, this.http);
+    }
+
+    makeBooking<T>(uri = '') {
+        if (!uri.startsWith("/")) {
+            uri = "/" + uri;
+        }
+        return new HttpApi<T>(`${this.hostBooking}${uri}`, this.http);
     }
 }

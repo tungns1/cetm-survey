@@ -1,8 +1,7 @@
 import { ITicket, IMapTicket } from './ticket';
 import { TicketStates } from './ticket_state';
 import { Ticket } from './ticket';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject ,  BehaviorSubject } from 'rxjs';
 
 export class TicketGroup {
     constructor(

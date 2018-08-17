@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { Router } from "@angular/router";
 import { RuntimeEnvironment, AppSocket, LogService } from './shared';
 import { MatSnackBar } from '@angular/material';
 import { WorkspaceSettingService } from '../counter-setting.service';
@@ -7,7 +6,6 @@ import { WorkspaceSettingService } from '../counter-setting.service';
 @Injectable()
 export class WorkspaceSocket extends AppSocket {
     constructor(
-        private router: Router,
         private mdSnackBard: MatSnackBar,
         private env: RuntimeEnvironment,
         private counterSetting: WorkspaceSettingService,
@@ -31,9 +29,7 @@ export class WorkspaceSocket extends AppSocket {
                 new Notification("Application Error", {
                     body: message
                 });
-                const md = this.mdSnackBard.open(message
-                    // , "Click here to Check Configuration"
-                );
+                const md = this.mdSnackBard.open(message, '', { duration: 500 });
                 // md.onAction().first().subscribe(_ => {
                 //     this.router.navigate(["/counter/setting"]);
                 // });

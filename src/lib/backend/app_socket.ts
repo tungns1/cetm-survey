@@ -1,15 +1,8 @@
 import { Socket } from './socket';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject ,  ReplaySubject ,  Observable ,  Observer ,  interval ,  of ,  SubscriptionLike as ISubscription } from 'rxjs';
 import { LogService } from '../platform';
-import { Observer } from 'rxjs/Observer';
 import { BaseWebsocket, IBaseMessage, AbstractMessageHandler } from './web_socket';
-import { interval } from 'rxjs/observable/interval';
-import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/timeout';
-import 'rxjs/add/operator/delay';
-import { ISubscription } from 'rxjs/Subscription';
+import { publishReplay, refCount, filter, map, first, switchMap, timeout, catchError, tap } from 'rxjs/operators';
 // import { ShowLoading, HideLoading } from './loading';
 
 interface IBaseError {
@@ -82,7 +75,7 @@ export class AppSocket extends BaseWebsocket {
         uri += `?once=${this.makeOnce()}`;
         super.send(uri, data);
         this.incPending();
-        return this.first<T>(uri).do(_ => this.decrPending());
+        return this.first<T>(uri).pipe(tap(_ => this.decrPending()));
     }
 
     Terminate() {
@@ -91,7 +84,7 @@ export class AppSocket extends BaseWebsocket {
     }
 
     RxEvent<T>(uri: string, replay = 1) {
-        return this.filter<T>(uri).publishReplay(replay).refCount();
+        return this.filter<T>(uri).pipe(publishReplay(replay),refCount());
     }
 
     KeepAlive(time = this.minEchoInterval) {
@@ -103,15 +96,15 @@ export class AppSocket extends BaseWebsocket {
             time = this.minEchoInterval;
         }
         this.echoInterval = time;
-        this.subscription = interval(this.echoInterval).switchMap(() => {
+        this.subscription = interval(this.echoInterval).pipe(switchMap(() => {
             return this.Send("/echo", null)
-                .timeout(this.waitForEcho).catch(e => {
+                .pipe(timeout(this.waitForEcho),catchError(e => {
                     console.log("[app_socket] echo timeout");
                     this.reconnect_count++;
                     this.Reconnect(this.getLink());
                     return of(null);
-                })
-        }).subscribe();
+                }))
+        })).subscribe();
     }
 
     DisableKeepAlive() {
@@ -125,17 +118,17 @@ export class AppSocket extends BaseWebsocket {
     public filter<T>(uri: string): Observable<T> {
         return new Observable<T>(observer => {
             this.filterMessage<T>(uri).subscribe(v => observer.next(v));
-            this.filterError(uri).first().subscribe(e => observer.error(e));
+            this.filterError(uri).pipe(first()).subscribe(e => observer.error(e));
         });
     }
 
     public first<T>(uri: string): Observable<T> {
         return new Observable<T>(observer => {
-            this.filterMessage<T>(uri).first().subscribe(v => {
+            this.filterMessage<T>(uri).pipe(first()).subscribe(v => {
                 observer.next(v);
                 observer.complete();
             });
-            this.filterError(uri).first().subscribe(e => {
+            this.filterError(uri).pipe(first()).subscribe(e => {
                 observer.error(e);
                 observer.complete();
             });
@@ -155,7 +148,7 @@ export class AppSocket extends BaseWebsocket {
     protected error$ = this.filterMessage<IBaseError>("/error");
 
     private filterError(uri: string) {
-        return this.error$.filter(e => e.uri === uri).map(e => e.err);
+        return this.error$.pipe(filter(e => e.uri === uri),map(e => e.err));
     }
 
     private incPending() {

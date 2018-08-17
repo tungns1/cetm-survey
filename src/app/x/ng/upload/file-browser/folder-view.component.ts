@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { FileNode } from '../backend/';
 
 
@@ -9,11 +9,10 @@ import { FileNode } from '../backend/';
     styleUrls: ["folder-view.component.scss"]
 })
 export class FolderViewComponent {
-
     node: FileNode;
     private selected: FileNode;
     @Output() select = new EventEmitter<FileNode>();
-
+    
     open(node: FileNode) {
         this.node = node;
         this.selected = null;
@@ -23,8 +22,8 @@ export class FolderViewComponent {
     }
 
     focus(event: Event, node: FileNode) {
-        event.preventDefault();
-        event.stopPropagation();
+        // event.preventDefault();
+        // event.stopPropagation();
         if (node.is_dir) {
             this.open(node);
             return;
@@ -42,9 +41,21 @@ export class FolderViewComponent {
     }
 
     removeFile(file: FileNode) {
+        
         this.node.Remove(file['name']);
         setTimeout(() => {
             this.refresh();
         }, 200);
+    }
+    
+    refreshAfterUpload(e){
+        let a = this.node.addOneFile(e)
+        if (a.is_dir) {
+            this.open(a);
+            return;
+        }
+        this.selected = a;
+        this.select.next(this.selected);
+        
     }
 }

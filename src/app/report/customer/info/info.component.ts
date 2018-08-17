@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, Input } from '@angular/core';
 import { CustomerView ,IValue} from '../shared';
 import { CustomerAPI, RxInfoCustomer } from '../service/customer.service';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'report-info',
@@ -22,11 +23,11 @@ export class ReportInfoComponent {
             this.service = v.services.sort((a, b) => b.value - a.value)[0]
         })
     }
-    customer = RxInfoCustomer.map(v => {
+    customer = RxInfoCustomer.pipe(map(v => {
         if (v != null) {
             return v;
         }
         return null;
-    })
+    }))
 
 }

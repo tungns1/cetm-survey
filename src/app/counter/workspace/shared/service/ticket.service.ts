@@ -1,17 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { ITicket, Ticket, IService, TicketState, TicketStates, RuntimeEnvironment } from '../shared';
-import { Workspace } from '../../../shared/model';
-import { QueueService } from './queue.service';
+import { ITicket, Ticket } from '../shared';
 import { WorkspaceService } from './workspace.service';
 import { WorkspaceSettingService } from '../counter-setting.service';
 import { ActionManager, TicketAction, TicketActionName } from './shared';
 import { QmsService } from '../shared';
-import { FeedbackComponent } from '../../../../admin/component/house/feedback/feedback.component';
-import { IFeedback } from '../../../../report/dashboard/shared/index';
-import { Feedback } from '../../ticket/ticket-detail.dialog';
-
-
+import { share, first } from 'rxjs/operators';
 
 @Injectable()
 export class TicketService {
@@ -19,9 +12,6 @@ export class TicketService {
         private qms: QmsService,
         private workspaceService: WorkspaceService,
         private settingService: WorkspaceSettingService,
-        private queueService: QueueService,
-        private env: RuntimeEnvironment,
-        private httpClient: HttpClient
     ) {
         this.onInit();
     }
@@ -39,7 +29,7 @@ export class TicketService {
             service_id: body.service_id,
             extra: body.extra
         }
-        return this.socket.Send<ITicket>("/ticket", data).share();
+        return this.socket.Send<ITicket>("/ticket", data).pipe(share());
     }
     feedback: any
     Move(t: Ticket, services: string[], counters: string[]) {
@@ -72,7 +62,7 @@ export class TicketService {
             const t = w.Waiting.GetFirstTicket();
             if (!t) return;
             const lastQueueUpdate = w.LastUpdate;
-            this.TriggerAction("call", t).subscribe(_ => {
+            this.TriggerAction("call", t).pipe(first()).subscribe(_ => {
                 failed_count = 0;
             }, e => {
                 // call failed

@@ -5,6 +5,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { FocusComponent } from './focus/focus.component';
 import { MonitorNavService } from '../../service/shared/nav';
 import { MonitorDeviceSocket, MonitorSummaryService } from './shared';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'monitor-device',
@@ -26,9 +27,9 @@ export class MonitorDeviceComponent implements OnInit {
         this.socket.onDestroy();
     }
 
-    isFocus$ = this.filterService.Data$.map(filter => {
+    isFocus$ = this.filterService.Data$.pipe(map(filter => {
         return filter.focus.length > 0;
-    });
+    }));
 
 
 }

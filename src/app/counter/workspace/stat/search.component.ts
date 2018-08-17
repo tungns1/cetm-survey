@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ITicket, TicketService } from '../shared';
-import { Subject } from 'rxjs/Subject';
-import { of } from 'rxjs/observable/of';
+import { Subject ,  of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'search',
@@ -15,9 +15,9 @@ export class SearchComponent {
 
     message: number = 1;
     cnum$ = new Subject<string>();
-    tickets$ = this.cnum$.switchMap(cnum => {
+    tickets$ = this.cnum$.pipe(switchMap(cnum => {
         return this.ticketService.Search(cnum);
-    }).do(tickets => {
+    }),tap(tickets => {
         if (!tickets || tickets.length < 1) {
             this.message = 2;
         } else {
@@ -25,7 +25,7 @@ export class SearchComponent {
         }
     }, e => {
         this.message = 2;
-    })
+    }))
 
     searchTicket(cnum: string) {
         this.message = 3;

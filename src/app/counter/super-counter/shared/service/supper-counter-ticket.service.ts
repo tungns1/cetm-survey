@@ -7,6 +7,7 @@ import { QueueService } from './queue.service';
 import { SuperCounterService } from './super-counter.service';
 import { QmsService } from '../../../workspace/shared/shared';
 import { ActionManager, TicketAction } from '../../../workspace/shared/service/shared';
+import { share } from 'rxjs/operators';
 
 export interface ICreateTicket {
   lang: string;
@@ -35,7 +36,7 @@ export class SupperCounterTicketService {
       extra: body.extra
     }
 
-    return this.socket.Send<ITicket>("/ticketsuper", data).share();
+    return this.socket.Send<ITicket>("/ticketsuper", data).pipe(share());
   }
 
   private manager = new ActionManager((ta: TicketAction) => {
@@ -65,7 +66,7 @@ export class SupperCounterTicketService {
       lang,
       service_id
     }
-    return this.socket.Send<ICreateTicket>("/create_ticket", data).share();
+    return this.socket.Send<ICreateTicket>("/create_ticket", data).pipe(share());
   }
 
 }

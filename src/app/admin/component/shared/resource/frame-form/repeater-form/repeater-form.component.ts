@@ -22,7 +22,8 @@ interface IRepeaterForm {
     column: number;
     limit: number;
     template_name: string;
-    repeat?: any[]
+    repeat?: any[];
+    gap?: string;
   };
   style: any;
 }

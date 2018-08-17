@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpServiceGenerator, IUser } from '../shared';
 import { ICustomer } from '../shared';
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ReportCustomerService {
@@ -21,9 +22,9 @@ export class ReportCustomerService {
       return of(v);
     }
     return this.apiReport.Get<IUser[]>("get_user_by_branch_id", { branch_id, role })
-      .do(v => {
+      .pipe(tap(v => {
         this.cacheUser.set(key, v);
-      });
+      }));
   }
 
   private api = this.httpSG.make("/api/monitor");

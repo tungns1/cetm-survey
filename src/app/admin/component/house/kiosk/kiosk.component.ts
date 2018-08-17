@@ -8,7 +8,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseAdminComponent, CommonValidator, USER_ROLES, RuntimeEnvironment } from '../../shared';
 import { extend } from 'lodash';
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
+import { distinctUntilChanged, share, publishReplay, refCount, map, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'house-kiosk',
@@ -33,20 +34,22 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
     layouts = this.center.LayoutService.GetByType('kiosk');
     ticketlayouts = this.center.TicketLayoutService.GetAll();
 
-    layoutEditLink$ = this.formValue$.map(kiosk => {
+    layoutEditLink$ = this.formValue$.pipe(map(kiosk => {
         return `/admin/center/layout/${kiosk.layout_id}`;
-    });
+    }));
 
-    isAdminStandard$ = this.env.Auth.User$.map(u =>
+    isAdminStandard$ = this.env.Auth.User$.pipe(map(u =>
         u.role.indexOf(USER_ROLES.ADMIN_STANDARD) !== -1
-    );
+    ));
 
-    services$ = this.formValue$.map(form => form.branch_id)
-        .distinctUntilChanged()
-        .switchMap(branch_id => {
+    services$ = this.formValue$.pipe(
+        map(form => form.branch_id),
+        distinctUntilChanged(),
+        switchMap(branch_id => {
             return this.meta.BranchConfigService.GetByBranch([branch_id]);
-        }).switchMap(configs => {
-            return this.formValue$.map(form => {
+        }),
+        switchMap(configs => {
+            return this.formValue$.pipe(map(form => {
                 // ensure selected services in the config list
                 const selected = (form.services || []).map(s => s.id);
                 const services = CacheService.RxListView.value;
@@ -56,8 +59,8 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 return services.filter(s => {
                     return ids.indexOf(s.id) !== -1;
                 });
-            });
-        }).share().publishReplay(1).refCount();
+            }));
+        }),share(),publishReplay(1),refCount());
 
     getLayout(layout_id?: string) {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
@@ -65,7 +68,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
-        return this.getLayout(b.layout_id).map(layout => {
+        return this.getLayout(b.layout_id).pipe(map(layout => {
             if (layout) {
                 b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);
                 Object.keys(b.layout_resources).forEach(name => {
@@ -86,7 +89,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 inheritable: [b.inheritable],
                 layout_resources: [b.layout_resources]
             });
-        });
+        }));
     }
 }
 

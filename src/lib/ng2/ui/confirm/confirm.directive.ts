@@ -1,7 +1,6 @@
 import {
   Component, Directive, Input, HostListener,
-  Output, EventEmitter, Optional, Inject,
-  OnInit
+  Output, EventEmitter
 } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
@@ -46,7 +45,7 @@ export class ConfirmDirective {
 })
 export class AppConfirmDialog {
   constructor(
-    protected dialogRef: MatDialogRef<AppConfirmDialog>
+    public dialogRef: MatDialogRef<AppConfirmDialog>
   ) { }
 
   @Input() message: string;

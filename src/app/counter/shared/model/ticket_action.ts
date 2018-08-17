@@ -26,7 +26,7 @@ export class TicketAction {
     constructor(
         private _a: ITicketAction
     ) {
-
+        
     }
 
     state = this._a.state;

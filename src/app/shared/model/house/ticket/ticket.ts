@@ -38,10 +38,11 @@ export interface ITicket {
     ticket_booking?: ITicketBooking;
 }
 
-interface ITicketBooking {
+export interface ITicketBooking {
     id: string;
     created_at: number;
     updated_at: number;
+    customer: ICustomer;
     time_go_bank: number;
     service_id: string;
     branch_id: string;

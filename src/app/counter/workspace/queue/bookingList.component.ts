@@ -1,9 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { WorkspaceService, ITicket } from '../shared';
-import { combineLatest } from 'rxjs/observable/combineLatest';
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { WorkspaceService } from '../shared';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'booking-queue',
@@ -17,6 +14,9 @@ export class BookingListComponent {
     ) { }
 
     list$ = this.workspaceService.bookingOnlineList$;
+    count$ = this.list$.pipe(map(data => data.length));
 
-    count$ = this.list$.map(data => data.length);
+    trackFn(index, item) {
+        return item.id;
+    }
 }

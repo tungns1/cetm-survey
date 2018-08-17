@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ISubscription } from 'rxjs/Subscription';
+import { SubscriptionLike as ISubscription ,  interval } from 'rxjs';
 import { WorkspaceSettingService } from '../counter-setting.service';
 import { RecorderDevice } from '../device';
 import { QueueService } from './queue.service';
-import { interval } from "rxjs/observable/interval";
+import { debounceTime } from 'rxjs/operators';
 
 
 const UPLOAD_INTERVAL = 1 * 60 * 1000; // 1 minutes
@@ -22,7 +22,7 @@ export class RecorderService {
             upload_url: this.counterSetting.UploadUrl
         });
         const twoDigit = (d) => (d < 10 ? '0' : '') + d;
-        this.subscription = this.queueService.serving$.debounceTime(250).subscribe(s => {
+        this.subscription = this.queueService.serving$.pipe(debounceTime(250)).subscribe(s => {
             let t = s[0];
             if (t) {
                 const date = new Date(t.mtime * 1000);
@@ -34,7 +34,7 @@ export class RecorderService {
                 this.recorderDevice.SkipSaveToFile();
             }
         });
-        this.queueService.missed$.debounceTime(250).subscribe(s => {
+        this.queueService.missed$.pipe(debounceTime(250)).subscribe(s => {
             const ids = s.map(t => t.transaction_id);
             // console.log(ids);
             this.recorderDevice.RemoveFiles(ids);

@@ -4,7 +4,7 @@ import {
 } from '../../shared';
 import { ITransaction, ITransactionView } from './transaction_view';
 import { HttpServiceGenerator } from '../../shared';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 export interface IHistory {

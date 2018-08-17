@@ -1,13 +1,11 @@
 
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/operator/filter';
+import { Observable ,  Observer ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
+
 
 import * as Loading from './loading';
 import { LogService } from '../platform';
 import { ConstPoll } from './poller';
+import { filter, map } from 'rxjs/operators';
 
 export function WsHost(secure: boolean, host: string) {
   return `${secure ? "wss" : "ws"}://${host}`;
@@ -85,19 +83,23 @@ export class Socket {
   }
 
   OnConnected(cb: () => void) {
-    return this.rxConnected.filter(v => v).subscribe(cb);
+    return this.rxConnected.pipe(filter(v => v)).subscribe(cb);
   }
 
   Subscribe<T>(uri: string, onEvent: (v: T) => void) {
-    let s = this.rxServerEvent.filter(v => v.uri == uri)
-      .map(v => v.data).subscribe(onEvent);
+    let s = this.rxServerEvent.pipe(
+            filter(v => v.uri == uri)
+            ,map(v => v.data)
+        ).subscribe(onEvent);
     return s;
   }
 
   RxEvent<T>(uri: string, replay = 1) {
     const res = new ReplaySubject<T>(replay);
-    this.rxServerEvent.filter(v => v.uri === uri)
-      .map(v => v.data).subscribe(res);
+    this.rxServerEvent.pipe(
+            filter(v => v.uri === uri)
+            ,map(v => v.data)
+        ).subscribe(res);
     return res;
   }
 

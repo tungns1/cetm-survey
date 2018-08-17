@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/throttleTime';
+// import { fromEvent } from 'rxjs/observable/fromEvent';
 
-export const rxWindowResize = Observable.fromEvent<UIEvent>(window, 'resize').throttleTime(1000);
+
+// export const rxWindowResize = fromEvent<UIEvent>(window, 'resize').throttleTime(1000);

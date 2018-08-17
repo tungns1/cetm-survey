@@ -1,35 +1,33 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TicketDetailDialog } from '../ticket';
 import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
 import {
-    WorkspaceService, QueueService,
-    LedService, TicketActionName,
-    TicketService, FeedbackService,
-    ModalComponent, Ticket,
-    NoticeComponent
+    WorkspaceService, TicketActionName, TicketService, 
+    FeedbackService, Ticket, NoticeComponent
 } from '../shared';
+import { map, first } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-action',
     templateUrl: 'action.component.html',
-    styleUrls: ['action.component.scss'],
+    styleUrls: ['action.component.scss']
 })
 export class ActionComponent {
     constructor(
         private workspaceService: WorkspaceService,
-        private queueService: QueueService,
         private ticketService: TicketService,
         private feedbackService: FeedbackService,
         private mdDialog: MatDialog
     ) { }
 
-
     @ViewChild(NoticeComponent) notice: NoticeComponent;
 
     @Input() ticket: Ticket;
 
-    auto_next$ = this.workspaceService.Workspace$.map(w => w.AutoNext);
+    @Input() selectedService;
+
+    auto_next$ = this.workspaceService.Workspace$.pipe(map(w => w.AutoNext));
 
     Move() {
         const config = new MatDialogConfig();
@@ -39,7 +37,6 @@ export class ActionComponent {
     }
 
     Next() {
-
         if (this.ticket && this.feedbackService.CheckFeedback(this.ticket)) {
             const config = new MatDialogConfig();
             config.width = '520px';
@@ -48,19 +45,17 @@ export class ActionComponent {
             dialog.afterClosed().subscribe(d => {
                 if (d) {
                     this.ticket = d;
-                    this.triggerAction("finish").subscribe(() => {
+                    this.triggerAction("finish").pipe(first()).subscribe(() => {
                         this.workspaceService.SetAutoNext(true);
                     });
 
                 }
             })
         } else {
-            this.triggerAction("finish").subscribe(() => {
+            this.triggerAction("finish").pipe(first()).subscribe(() => {
                 this.workspaceService.SetAutoNext(true);
             });
         }
-
-
     }
 
     NoNext() {
@@ -80,6 +75,7 @@ export class ActionComponent {
             dialog.afterClosed().subscribe(d => {
                 if (d) {
                     this.ticket = d;
+                    console.log(this.ticket)
                     this.triggerAction('finish');
                 }
             })
@@ -103,7 +99,5 @@ export class ActionComponent {
     private triggerAction(action: TicketActionName) {
         return this.ticketService.TriggerAction(action, this.ticket);
     }
-
-
 
 }

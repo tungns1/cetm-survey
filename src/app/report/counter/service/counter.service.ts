@@ -1,9 +1,10 @@
 import { ICounterTrack, IPerformance, InfoPerformanceTrack } from '../../shared';
 import { HttpServiceGenerator, Paging } from '../../shared/';
 import { ReportFilterService } from '../../shared';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ShowLoading, HideLoading } from '../../../../lib/backend/loading';
+import { map } from 'rxjs/operators';
 
 export const paging = new Paging<ICounterTrack>();
 export interface IActivity {
@@ -25,7 +26,7 @@ export class CounterAPI {
     RxCounterFerformance = new BehaviorSubject<IPerformance>(null);
 
     get RxPerformanceView() {
-        return this.RxCounterFerformance.map(InfoPerformanceTrack.Make);
+        return this.RxCounterFerformance.pipe(map(InfoPerformanceTrack.Make));
     };
 
 

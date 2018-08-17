@@ -1,8 +1,6 @@
-import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
+import { Component, forwardRef, ExistingProvider } from '@angular/core';
 
-import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-import { AbstractControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 const ARRAY_FORM_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
@@ -10,8 +8,6 @@ const ARRAY_FORM_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     useExisting: forwardRef(() => ArrayFormComponent),
     multi: true
 }
-
-import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'arr-form',
@@ -25,7 +21,7 @@ import { FormArray, FormControl } from '@angular/forms';
     providers: [ARRAY_FORM_CONTROL_VALUE_ACCESSOR]
 })
 export class ArrayFormComponent implements ControlValueAccessor {
-    protected values = [];
+    values = [];
     protected onChangeCallback = (v) => { };
 
     writeValue(data: any[]) {

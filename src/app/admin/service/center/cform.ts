@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RuntimeEnvironment } from '../../../shared/env/shared/env';
 // import { Http } from '@angular/http/src/http';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AppStorage } from '../../../../store/index';
 
 @Injectable()

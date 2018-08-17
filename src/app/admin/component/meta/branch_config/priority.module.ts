@@ -38,7 +38,7 @@ export class PriorityConfigComponent implements ControlValueAccessor {
         min_priority_unordered_call: -1
     }
 
-    protected value: IPriorityConfig = this.defaultConfig;
+    value: IPriorityConfig = this.defaultConfig;
 
     private onChangeCallback = (v) => { };
 

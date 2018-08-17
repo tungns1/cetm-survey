@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MonitorNavService, MonitorFilterService, IDevice ,DeviceCount} from '../../shared';
 import { MonitorSummaryService } from '../shared';
 import { Router, ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'device-summary',
@@ -34,6 +35,6 @@ export class SummaryComponent {
     }
 
     box$ = this.deviceService.Box$;
-    records$ = this.box$.map(b => b.ToArray());
+    records$ = this.box$.pipe(map(b => b.ToArray()));
 
 }

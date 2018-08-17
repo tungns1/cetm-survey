@@ -2,8 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IBranch, CacheBranch, OrgService, AdminNavService } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { BaseAdminComponent, BranchFilterService, CommonValidator } from '../../shared';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'admin-branch',
@@ -21,8 +22,8 @@ export class BranchComponent extends BaseAdminComponent<IBranch> {
     this.org.BranchService.RxListView.subscribe();
   }
 
-  level$ = this.route.params.map(p => +p['level'] || 0);
-  parentLevel$ = this.level$.map(l => l + 1);
+  level$ = this.route.params.pipe(map(p => +p['level'] || 0));
+  parentLevel$ = this.level$.pipe(map(l => l + 1));
 
   makeForm(b?: IBranch) {
     b = b || <any>{};
@@ -37,22 +38,22 @@ export class BranchComponent extends BaseAdminComponent<IBranch> {
     });
   }
 
-  parents$ = this.level$.switchMap(level => {
+  parents$ = this.level$.pipe(switchMap(level => {
     const ids = this.branchFilter.getAllID();
-    return CacheBranch.RxByLevel(level + 1).map(branches => {
+    return CacheBranch.RxByLevel(level + 1).pipe(map(branches => {
       return branches.filter(b => ids.indexOf(b.id) !== -1);
-    });
-  });
+    }));
+  }));
 
-  data$ = this.level$.switchMap(level => {
-    return CacheBranch.RxByLevel(level).map(branches => {
+  data$ = this.level$.pipe(switchMap(level => {
+    return CacheBranch.RxByLevel(level).pipe(map(branches => {
       const parents = this.branchFilter.getByLevel(level + 1);
       branches.forEach(b => {
         b.parent_name = CacheBranch.GetNameForID(b.parent)
       });
       return branches.filter(b => parents.indexOf(b.parent) !== -1);
-    });
-  });
+    }));
+  }));
 
   private isAncestorOfMax(level: number) {
     return level < CacheBranch.GetMaxLevel();

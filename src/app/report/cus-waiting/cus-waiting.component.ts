@@ -3,6 +3,7 @@ import { GridOptions } from 'ag-grid';
 import { CusWaitingService } from './shared/cus-waiting.service';
 import { ICusWaitingSum } from './shared/cus-waiting.model';
 import { BranchNamePipe } from '../../shared/pipe/branch.pipe';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cus-waiting',
@@ -15,7 +16,7 @@ export class CusWaitingComponent implements OnInit {
     private cusWatingService: CusWaitingService
   ) { }
 
-  tableData$ = this.cusWatingService.CustomerWaiting$.map(data => {
+  tableData$ = this.cusWatingService.CustomerWaiting$.pipe(map(data => {
     if (data) {
       let result = data.TableData;
       result.forEach(record => {
@@ -24,14 +25,14 @@ export class CusWaitingComponent implements OnInit {
       })
       return result;
     }
-  });
+  }));
   sumData: ICusWaitingSum = null;
   chartData = [];
 
 
   cellClass: string[] = ['center', 'padding-10'];
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

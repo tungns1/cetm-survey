@@ -1,13 +1,10 @@
-import { Component, Input, ViewChild, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ITicket } from '../../../shared/model/shared';
-import { TicketDetailDialog } from '../../../workspace/ticket';
+import { Component, Input } from '@angular/core';
 import { Ticket } from '../../../../shared/model/house';
 import { TicketActionName } from '../../../workspace/shared';
 import { AppStorage } from '../../../shared';
-import { NoticeComponent } from '../../../../../lib/ng2';
 import { counterDetail } from '../../shared/model';
-import { SuperCounterService, SupperCounterTicketService, QueueService, ICreateTicket } from '../../shared/service';
+import { SuperCounterService, SupperCounterTicketService } from '../../shared/service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-super-counter-action',
@@ -23,9 +20,9 @@ export class SuperCounterActionComponent {
   @Input() ticket: Ticket;
   @Input() counter: counterDetail;
 
-  disabled$ = this.superCounterService.Workspace$.map(c => {
+  disabled$ = this.superCounterService.Workspace$.pipe(map(c => {
     return (this.counter && this.counter.state === 'calling') || c.waiting.is_empty;
-  });
+  }));
 
   ngOnInit() {
 

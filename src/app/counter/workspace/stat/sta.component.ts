@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { WorkspaceService } from '../shared';
+import { switchMap, map } from 'rxjs/operators';
 
 class TabGroup extends BehaviorSubject<string> {
     constructor(
@@ -34,13 +35,13 @@ export class StaComponent {
     }
 
     stat$ = this.workspaceService.stat$;
-    average_stime$ = this.stat$.map(s => s.average_stime);
-    fcount$ = this.stat$.map(s => s.finished.total_count);
-    ccount$ = this.stat$.map(s => s.cancelled.total_count);
+    average_stime$ = this.stat$.pipe(map(s => s.average_stime));
+    fcount$ = this.stat$.pipe(map(s => s.finished.total_count));
+    ccount$ = this.stat$.pipe(map(s => s.cancelled.total_count));
 
     tab$ = new TabGroup(["finished", "cancelled"]);
 
-    data$ = this.tab$.switchMap(tab => {
-        return tab === 'finished' ? this.stat$.map(s => s.finished) : this.stat$.map(s => s.cancelled);
-    })
+    data$ = this.tab$.pipe(switchMap(tab => {
+        return tab === 'finished' ? this.stat$.pipe(map(s => s.finished)) : this.stat$.pipe(map(s => s.cancelled));
+    }))
 }

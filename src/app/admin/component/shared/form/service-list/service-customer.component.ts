@@ -1,7 +1,6 @@
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Component, Optional, Inject, OnInit } from '@angular/core';
-import { IService, ServiceName } from '../../../../../shared/model';
-import { ServiceListComponent } from './service-list-form.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Component, Optional, Inject } from '@angular/core';
+import { IService } from '../../../../../shared/model';
 
 export interface IServiceCustomizeData {
     index: number;
@@ -34,9 +33,9 @@ export class ServiceCustomizeModal {
     }
 
 
-    protected active: IService;
+    active: IService;
     private index = this.dialogData.index;
-    protected selectable_services: IService[];
+    selectable_services: IService[];
 
     setActive() {
         let service = this.selectable_services.find(s => s.id === this.active.id);

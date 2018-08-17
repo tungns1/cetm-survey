@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PeriodFilterService } from '../shared';
+import { map, debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'period-filter',
@@ -19,7 +20,7 @@ export class PeriodFilterComponent implements OnInit {
         end: [],
         period: []
     });
-    private period$ = this.periodFilterService.Data$.map(d => d.period);
+    period$ = this.periodFilterService.Data$.pipe(map(d => d.period));
     private period: 'day' | 'week' | 'month' | 'year' = 'day';
     private weekStartArr: string[];
     private weekEndArr: string[];
@@ -62,7 +63,7 @@ export class PeriodFilterComponent implements OnInit {
                 period: value.period
             });
 
-            this.form.valueChanges.debounceTime(100).subscribe(v => {
+            this.form.valueChanges.pipe(debounceTime(100)).subscribe(v => {
                 this.periodFilterService.Update(
                     v.start, v.end, v.period
                 );

@@ -1,7 +1,4 @@
-import { Subject } from 'rxjs/Subject';
-import { ISubscription } from 'rxjs/Subscription';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject ,  SubscriptionLike as ISubscription ,  ReplaySubject ,  BehaviorSubject } from 'rxjs';
 
 export class ExclusiveEventEmitter<T> extends BehaviorSubject<T> {
   constructor() {

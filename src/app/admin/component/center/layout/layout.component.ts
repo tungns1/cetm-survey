@@ -13,6 +13,7 @@ import { cloneDeep } from 'lodash';
 import { UIEditorComponent } from '../../shared/resource/ui-editor/ui-editor.component';
 import { FontEditorComponent } from '../../shared/resource/font-editor/font-editor.component';
 import { GenericFormComponent } from '../../shared/resource/frame-form/generic-form/generic-form.component';
+import { map, first, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'center-layout',
@@ -34,14 +35,14 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
   private layoutImportBtn;
   private fileName: string = '';
   private ui: UI;
-  private tag$ = this.activateRoute.params.map(q => q.tag);
-  protected layouts$ = this.org.LayoutService.RxListView.switchMap(layouts => {
-    return this.tag$.map(tag => {
+  private tag$ = this.activateRoute.params.pipe(map(q => q.tag));
+  protected layouts$ = this.org.LayoutService.RxListView.pipe(switchMap(layouts => {
+    return this.tag$.pipe(map(tag => {
       return layouts.filter(layout => {
         return layout.type == tag;
       })
-    })
-  })
+    }))
+  }))
 
 
   ngAfterViewInit() {
@@ -82,7 +83,7 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
     let input = event.target;
     let reader = new FileReader();
     reader.onload = _ => {
-      this.form$.first().subscribe(form => {
+      this.form$.pipe(first()).subscribe(form => {
         form.setValue({
           id: form.value.id,
           name: form.value.name,
@@ -93,11 +94,13 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
         })
       })
       const ref = this.matSnackBar
-        .open(this.translateService.translate('The file was import successfully'),
-        this.translateService.translate('Close'), {
-          duration: 6000,
-          extraClasses: ["success"]
-        });
+        .open(
+            this.translateService.translate('The file was import successfully'),
+            this.translateService.translate('Close'), {
+                duration: 6000,
+                panelClass: ["success"]
+            }
+        );
     };
     reader.onerror = (error) => {
       console.log(error)
@@ -131,7 +134,7 @@ export class LayoutComponent extends BaseAdminComponent<ILayout> {
   }
 
   saveUI(ui: UI) {
-    this.form$.first().subscribe(form => {
+    this.form$.pipe(first()).subscribe(form => {
       let value = form.value;
       value.ui = ui;
       form.setValue(value);

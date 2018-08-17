@@ -17,7 +17,7 @@ export class WeekComponent {
         private storeAPI: StoreAPI
     ) { }
 
-    protected _data: ISPTS[];
+    _data: ISPTS[];
     cellClass: string[] = ['center', 'padding-10'];
 
     ngOnInit() {
@@ -39,7 +39,7 @@ export class WeekComponent {
       curentPage: number;
       totalPage: number;
       
-    protected gridOptions: GridOptions = {
+    gridOptions: GridOptions = {
         rowHeight: 35,
         rowSelection: 'multiple'
     };

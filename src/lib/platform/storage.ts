@@ -1,8 +1,7 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/debounceTime';
+import { ReplaySubject ,  Observable } from 'rxjs';
+
+
 
 
 @Injectable()

@@ -11,8 +11,8 @@ import { FilePickerModalComponent } from './file-picker-modal.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, FileBrowserModule, ModalModule, FlexLayoutModule],
-    declarations: [FilePickerComponent, FilePickerModalComponent],
+    imports: [FormsModule, CommonModule, FileBrowserModule, ModalModule, FlexLayoutModule, MatTabsModule,],
+    declarations: [FilePickerComponent, FilePickerModalComponent, ],
     exports: [FilePickerComponent, FilePickerModalComponent],
     entryComponents: [FilePickerModalComponent]
 })
@@ -22,6 +22,8 @@ export class FilePickerModule {
 
 import { MultiFilePickerComponent } from './multi-file-picker.component';
 import { UploadURLToken } from '../backend';
+import { MatTabsModule } from '@angular/material';
+import { FileUploadComponent } from '../file-browser/upload.component';
 
 @NgModule({
     imports: [FormsModule, CommonModule, FilePickerModule, FlexLayoutModule],

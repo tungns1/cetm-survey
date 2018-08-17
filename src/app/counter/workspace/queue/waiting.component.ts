@@ -1,6 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { QueueService } from '../shared';
-import { TimerComopnent } from '../shared';
 import { ProjectConfig } from '../shared';
 
 @Component({
@@ -14,9 +13,28 @@ export class WaitingComponent {
         private queueService: QueueService
     ) { }
 
+    dataLength: number = 0;
     waiting$ = this.queueService.waiting$;
-    count$ = this.waiting$.map(data => data.length);
     maxWaitingMinute = ProjectConfig.service.max_waiting_minute;
+    page: number = 0;
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.queueService.waiting$.subscribe(data => { this.dataLength = data.length });
+        let test = document.getElementById('ticket');
+        setTimeout(() => {
+            console.log(test)
+        }, 7000);
+    }
+
+    trackFn(index, item) {
+        return item.id;
+    }
+
+    nextPage() {
+
+    }
+
+    prevPage() {
+        if (this.page > 0) this.page--;
+    }
 }

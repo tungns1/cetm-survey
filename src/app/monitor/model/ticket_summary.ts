@@ -47,7 +47,7 @@ export class BoxTicketSummary {
     wai_under_5 = this._s.wai_under_5;
 }
 
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs';
 
 export class GlobalTicketSummary {
     private boxes = new Map<string, BoxTicketSummary>();

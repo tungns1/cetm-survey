@@ -20,7 +20,7 @@ export class GeneralViewComponent implements OnInit {
 
   @Input() field = 'branch_id';
   private formatDate = timeFormat("%Y-%m-%d");
-  protected _data: TransactionAggregate[] = [];
+  _data: TransactionAggregate[] = [];
   @Input() set data(v: TransactionAggregate[]) {
     this._data = v;
     var nameRender = new GroupByTitlePipe();
@@ -47,7 +47,7 @@ export class GeneralViewComponent implements OnInit {
     }
   }
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

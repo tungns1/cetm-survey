@@ -16,7 +16,7 @@ export class ActivityComponent {
     private counterAPI: CounterAPI
   ) { }
 
-  protected _data: ICounterTrack[];
+  _data: ICounterTrack[];
   cellClass: string[] = ['center', 'padding-10'];
   paging = new Paging<ICounterTrack>();
 
@@ -46,7 +46,7 @@ export class ActivityComponent {
   curentPage: number = 1;
   totalPage: number;
 
-  private gridOptions: GridOptions = {
+  gridOptions: GridOptions = {
     rowHeight: 35,
     pagination: true,
     paginationPageSize: 18,

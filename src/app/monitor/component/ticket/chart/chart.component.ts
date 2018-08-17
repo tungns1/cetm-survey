@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { ChartItemGroupView, ChartItemGroup } from '../../../../x/ng/d3/chart-items.component';
 
 @Component({

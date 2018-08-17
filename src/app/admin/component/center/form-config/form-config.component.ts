@@ -17,6 +17,7 @@ import { CustomFormService } from '../../../service/center/cform';
 import { CacheService } from '../../../../shared/model/center/service';
 import { IColForm, IForm } from '../../../../shared/model/center/cform';
 import { Location } from '@angular/common';
+import { map, switchMap } from 'rxjs/operators';
 declare var $: any
 export interface formArr {
   col_name: string
@@ -47,14 +48,14 @@ export class FormConfigComponent { // Remember to change interface
   private layoutImportBtn;
   private fileName: string = '';
   private ui: UI;
-  private tag$ = this.activateRoute.params.map(q => q.tag);
-  protected layouts$ = this.org.LayoutService.RxListView.switchMap(layouts => {
-    return this.tag$.map(tag => {
+  private tag$ = this.activateRoute.params.pipe(map(q => q.tag));
+  protected layouts$ = this.org.LayoutService.RxListView.pipe(switchMap(layouts => {
+    return this.tag$.pipe(map(tag => {
       return layouts.filter(layout => {
         return layout.type == tag;
       })
-    })
-  })
+    }))
+  }))
   protected listService$ = CacheService.RxListView.value
   protected listform$ = this.formservice.getDataForm()
   formArray: formArr[] = []
