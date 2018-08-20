@@ -1,5 +1,5 @@
-import { Component, OnInit, forwardRef, ExistingProvider, Optional, Inject } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, ExistingProvider, Optional, Inject } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFormComponent } from '../shared';
 
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -24,6 +24,7 @@ interface IRepeaterForm {
     template_name: string;
     repeat?: any[];
     gap?: string;
+    align?: 'start' | 'center' | 'end';
   };
   style: any;
 }
@@ -54,7 +55,7 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
   }
 
   writeValue(v: IRepeaterForm) {
-    if(v && !v.style){
+    if (v && !v.style) {
       v.style = {}
     }
     super.writeValue(v);
@@ -66,10 +67,16 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
         }
       }
     }
+    if (this.value && !this.value.data.align) {
+      this.value.data.align = 'start';
+    }
+    if (this.value && this.value.data.gap) {
+      this.value.data.gap = this.value.data.gap.replace('px', '').replace('vh', '').replace('vw', '');
+    }
   }
 
   protected clone(obj: any): IRepeaterForm {
-    if(obj && !obj.style){
+    if (obj && !obj.style) {
       obj.style = {}
     }
     return super.clone(obj);

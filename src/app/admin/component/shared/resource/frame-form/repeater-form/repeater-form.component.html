@@ -3,12 +3,13 @@
     <div fxLayout="row" fxLayoutGap="5px">
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="22%" class="padding-t-5 right">Width</span>
-            <input fxFlex="68%" class="ctrlInput" type="text" [(ngModel)]="value.style.width">
+            <input fxFlex="63%" class="ctrlInput" type="text" [(ngModel)]="value.style.width">
+            <div fxFlex="5"></div>
         </div>
-
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="22%" class="padding-t-5 right">Height</span>
-            <input fxFlex="68%" class="ctrlInput" type="text" [(ngModel)]="value.style.height">
+            <input fxFlex="63%" class="ctrlInput" type="text" [(ngModel)]="value.style.height">
+            <div fxFlex="5"></div>
         </div>
         <div fxFlex="5%"></div>
     </div>
@@ -16,12 +17,13 @@
     <div fxLayout="row" fxLayoutGap="5px">
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="22%" class="padding-t-5 right">Column</span>
-            <input fxFlex="68%" class="ctrlInput" type="number" min="1" [(ngModel)]="value.data.column">
+            <input fxFlex="63%" class="ctrlInput" type="number" min="1" [(ngModel)]="value.data.column">
+            <div fxFlex="5"></div>
         </div>
-
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="22%" class="padding-t-5 right">Row</span>
-            <input fxFlex="68%" class="ctrlInput" type="number" min="1" [(ngModel)]="value.data.row">
+            <input fxFlex="63%" class="ctrlInput" type="number" min="1" [(ngModel)]="value.data.row">
+            <div fxFlex="5"></div>
         </div>
         <div fxFlex="5%"></div>
     </div>
@@ -29,14 +31,29 @@
     <div fxLayout="row" fxLayoutGap="5px">
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="22%" class="padding-t-5 right">Gap</span>
-            <input fxFlex="68%" class="ctrlInput" type="text" [(ngModel)]="value.data.gap">
+            <input fxFlex="63%" class="ctrlInput" type="text" [(ngModel)]="value.data.gap">
+            <span fxFlex="5%" class="padding-t-5 right">px</span>
         </div>
         <div fxFlex fxLayout="row" fxLayoutGap="5px">
             <span fxFlex="22%" class="padding-t-5 right">Margin</span>
-            <input fxFlex="68%" class="ctrlInput" type="text" min="1" [(ngModel)]="value.style.margin">
+            <input fxFlex="63%" class="ctrlInput" type="text" min="1" [(ngModel)]="value.style.margin">
+            <div fxFlex="5"></div>
         </div>
         <div fxFlex="5%"></div>
+    </div>
 
+    <div fxLayout="row" fxLayoutGap="5px">
+        <div fxFlex fxLayout="row" fxLayoutGap="5px">
+            <span fxFlex="22%" class="padding-t-5 right">Align</span>
+            <select fxFlex="63%" class="hl-select" [(ngModel)]="value.data.align">
+                <div fxFlex="5"></div>
+                <option value="start">Left</option>
+                <option value="center">Center</option>
+                <option value="end">Right</option>
+            </select>
+        </div>
+        <div fxFlex></div>
+        <div fxFlex="5%"></div>
     </div>
     <div *ngIf="value.data.repeat">
         <div class="divider margin-b-15"></div>
@@ -45,7 +62,8 @@
             <div fxLayout="row" fxLayoutGap="5px">
                 <div fxFlex *ngFor="let key of keyRepeatArr" fxLayout="row" fxLayoutGap="5px">
                     <span fxFlex="22%" class="padding-t-5 right">{{key}}</span>
-                    <input *ngIf="key !== 'i18n'" fxFlex="68%" class="ctrlInput" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+                    <input *ngIf="key !== 'i18n'" fxFlex="63%" class="ctrlInput" type="text" [value]="el[key]" [(ngModel)]="el[key]">
+                    <div fxFlex="5"></div>
                     <span *ngIf="key === 'i18n'" fxFlex="30%" class="btnEditI18n" (click)="editI18n(i, el[key])">Edit</span>
                 </div>
                 <i fxFlex="5%" class="fa fa-trash pointer margin-t-5" i18n-title="Delete" (click)="deleteItem(i)"></i>
