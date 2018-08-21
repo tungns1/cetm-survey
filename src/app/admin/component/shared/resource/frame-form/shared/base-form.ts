@@ -34,7 +34,7 @@ export class BaseFormComponent<T> implements ControlValueAccessor {
     return cloneDeep(obj);
   }
 
-  protected onChange(event: Event) {
+  protected onChange(event?: Event) {
     if (event) {
       event.preventDefault();
       event.stopImmediatePropagation();

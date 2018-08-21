@@ -1,18 +1,9 @@
 import {
-  Component, EventEmitter, Optional,
-  Inject, forwardRef, ExistingProvider
+  Component, Optional, Inject
 } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { IResourceForm } from '../../shared';
 import { cloneDeep } from 'lodash';
-import { BaseFormComponent } from '../shared';
-
-const GENERIC_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => GenericFormComponent),
-  multi: true
-}
 
 @Component({
   selector: 'app-generic-form',

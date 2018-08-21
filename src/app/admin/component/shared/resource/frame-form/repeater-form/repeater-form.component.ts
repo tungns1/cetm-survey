@@ -49,11 +49,6 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
 
   keyRepeatArr: string[] = [];
 
-
-  ngOnInit() {
-
-  }
-
   writeValue(v: IRepeaterForm) {
     if (v && !v.style) {
       v.style = {}
@@ -71,7 +66,8 @@ export class RepeaterFormComponent extends BaseFormComponent<IRepeaterForm> {
       this.value.data.align = 'start';
     }
     if (this.value && this.value.data.gap) {
-      this.value.data.gap = this.value.data.gap.replace('px', '').replace('vh', '').replace('vw', '');
+      this.value.data.gap = this.value.data.gap.replace('px', '').replace('vh', '').replace('vw', '').replace('%', '') + '%';
+      super.onChange();
     }
   }
 
