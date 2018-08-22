@@ -68,6 +68,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
 
     makeForm(b?: IKiosk) {
         b = b || <any>{};
+        // console.log(b)
         return this.getLayout(b.layout_id).pipe(map(layout => {
             if (layout) {
                 b.layout_resources = extend({}, layout.ui.resources, layout.resources, b.layout_resources);

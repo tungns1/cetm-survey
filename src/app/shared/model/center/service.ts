@@ -12,12 +12,11 @@ export interface IService extends ID {
     tform_vip: string;
     image: string;
     l10n: L10nText;
+    desc?: L10nText;
     attrs?: IAttribute[];
     priority?: any;
     name?: string; // on client side
 }
-
-import { BehaviorSubject } from 'rxjs';
 
 class cacheService extends MemCache<IService> {
     ServiceName(id: string) {
