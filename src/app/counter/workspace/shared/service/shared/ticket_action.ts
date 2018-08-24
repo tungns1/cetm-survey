@@ -1,14 +1,14 @@
-export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create' | 'print_form';
+export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create' | 'print_form' | 'next_ticket';
 
 import { ITicket, Ticket, IService, TicketState, TicketStates } from '../../shared';
 import { Injectable } from '@angular/core';
 import { Subject ,  of ,  combineLatest ,  AsyncSubject ,  ReplaySubject ,  Observable } from 'rxjs';
 
 const TicketStateTransitions = new Map<TicketState, TicketState[]>();
-TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Cancelled]);
-TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled, TicketStates.Missed]);
-TicketStateTransitions.set(TicketStates.Cancelled, [TicketStates.Waiting]);
-TicketStateTransitions.set(TicketStates.Missed, [TicketStates.Serving]);
+TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Cancelled, TicketStates.NextTicket]);
+TicketStateTransitions.set(TicketStates.Serving, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Finished, TicketStates.Cancelled, TicketStates.Missed, TicketStates.NextTicket]);
+TicketStateTransitions.set(TicketStates.Cancelled, [TicketStates.Waiting, TicketStates.NextTicket]);
+TicketStateTransitions.set(TicketStates.Missed, [TicketStates.Serving, TicketStates.NextTicket]);
 
 const NextStates = new Map<TicketActionName, TicketState>();
 NextStates.set("call", TicketStates.Serving);
@@ -18,6 +18,7 @@ NextStates.set("finish", TicketStates.Finished);
 NextStates.set("cancel", TicketStates.Cancelled);
 NextStates.set("restore", TicketStates.Waiting);
 NextStates.set("miss", TicketStates.Missed);
+NextStates.set("next_ticket", TicketStates.Serving);
 
 export class TicketAction {
     constructor(

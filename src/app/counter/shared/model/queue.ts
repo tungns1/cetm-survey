@@ -43,6 +43,10 @@ export class TicketQueue {
     GetFirstTicket() {
         return this.ToArray()[0];
     }
+
+    GetSecondTicket(){
+        return this.ToArray()[1]
+    }
 }
 
 class RestrictedQueue extends TicketQueue {

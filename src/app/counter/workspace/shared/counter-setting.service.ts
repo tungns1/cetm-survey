@@ -53,24 +53,24 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
 
     checkLogin() {
         // console.log('check login')
-        this.api.Get<any>('setting_login', { 'branch_code': this.data.branch_code }).subscribe(data => {
-            if (data) {
-                let current_counter = data.counters.filter(item => item.code === this.data.counter_code);
-                if (data.branch_config[0].counter.auto_login_counters) {
-                    for (let index = 0; index < data.branch_config[0].counter.auto_login_counters.length; index++) {
-                        const element = JSON.parse(data.branch_config[0].counter.auto_login_counters[index]);
-                        if (element.counter === current_counter[0].id) {
-                            var a = element
-                        }
-                    }
-                    if (a) {
-                        this.force_auto_login$.next(a.force)
-                        this.login_value$.next(a.login)
-                    }
-                }
-            }
+        // this.api.Get<any>('setting_login', { 'branch_code': this.data.branch_code }).subscribe(data => {
+        //     if (data) {
+        //         let current_counter = data.counters.filter(item => item.code === this.data.counter_code);
+        //         if (data.branch_config[0].counter.auto_login_counters) {
+        //             for (let index = 0; index < data.branch_config[0].counter.auto_login_counters.length; index++) {
+        //                 const element = JSON.parse(data.branch_config[0].counter.auto_login_counters[index]);
+        //                 if (element.counter === current_counter[0].id) {
+        //                     var a = element
+        //                 }
+        //             }
+        //             if (a) {
+        //                 this.force_auto_login$.next(a.force)
+        //                 this.login_value$.next(a.login)
+        //             }
+        //         }
+        //     }
 
-        })
+        // })
     }
 
     Check() {

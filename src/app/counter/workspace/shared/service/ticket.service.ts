@@ -37,7 +37,7 @@ export class TicketService {
             reason_text: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.reason_text || null) : null) : null,
             rating: t ? (t.tracks[t.tracks.length - 1].feedback ? (t.tracks[t.tracks.length - 1].feedback.rating || null) : null) : null,
         }
-
+        
         return this.manager.Work("move", t, {
             services,
             counters,
@@ -60,6 +60,7 @@ export class TicketService {
                 return;
             }
             const t = w.Waiting.GetFirstTicket();
+            const nextTicket = w.Waiting.GetSecondTicket() ;
             if (!t) return;
             const lastQueueUpdate = w.LastUpdate;
             this.TriggerAction("call", t).pipe(first()).subscribe(_ => {
@@ -76,6 +77,7 @@ export class TicketService {
                     }
                 }, ten_second);
             });
+            this.TriggerAction("next_ticket", nextTicket)
         });
     }
 

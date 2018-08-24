@@ -4,9 +4,9 @@ import { TicketDetailDialog } from '../ticket';
 import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
 import {
     WorkspaceService, TicketActionName, TicketService, 
-    FeedbackService, Ticket, NoticeComponent
+    FeedbackService, Ticket, NoticeComponent, ITicket
 } from '../shared';
-import { map, first } from 'rxjs/operators';
+import { map, first, share } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-action',
@@ -25,7 +25,11 @@ export class ActionComponent {
 
     @Input() ticket: Ticket;
 
+    @Input() nextTicket: Ticket;
+
     @Input() selectedService;
+
+    private socket = this.workspaceService.Socket;
 
     auto_next$ = this.workspaceService.Workspace$.pipe(map(w => w.AutoNext));
 
@@ -48,6 +52,7 @@ export class ActionComponent {
                     this.triggerAction("finish").pipe(first()).subscribe(() => {
                         this.workspaceService.SetAutoNext(true);
                     });
+                    this.triggerAction('next_ticket', this.nextTicket)
 
                 }
             })
@@ -55,6 +60,7 @@ export class ActionComponent {
             this.triggerAction("finish").pipe(first()).subscribe(() => {
                 this.workspaceService.SetAutoNext(true);
             });
+            this.triggerAction('next_ticket', this.nextTicket)
         }
     }
 
@@ -75,17 +81,19 @@ export class ActionComponent {
             dialog.afterClosed().subscribe(d => {
                 if (d) {
                     this.ticket = d;
-                    console.log(this.ticket)
                     this.triggerAction('finish');
+                    this.triggerAction('next_ticket', this.nextTicket)
                 }
             })
         } else {
             this.triggerAction('finish');
+            this.triggerAction('next_ticket', this.nextTicket)
         }
     }
 
     Delete() {
         this.triggerAction('cancel');
+        this.triggerAction('next_ticket', this.nextTicket)
     }
 
     Miss() {
@@ -96,8 +104,8 @@ export class ActionComponent {
         this.triggerAction('print_form');
     }
 
-    private triggerAction(action: TicketActionName) {
-        return this.ticketService.TriggerAction(action, this.ticket);
+    private triggerAction(action: TicketActionName, ticket = this.ticket) {
+        return this.ticketService.TriggerAction(action, ticket);
     }
 
 }

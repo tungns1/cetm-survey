@@ -35,7 +35,8 @@ export class SuperCounterGuard extends SessionValidationGuard implements CanActi
     GetAuthExtra() {
         return of({
             branch_code: this.settingService.Data.branch_code,
-            auto_login: AppStorage.AutoLogin
+            // auto_login: AppStorage.AutoLogin
+            auto_login: false
         })
     }
 

@@ -1,5 +1,5 @@
 
-export type TicketState = "waiting" | "serving" | "missed" | "cancelled" | "finished" | "unknown";
+export type TicketState = "waiting" | "serving" | "missed" | "cancelled" | "finished" | "unknown" | "nextTicket";
 
 
 const TicketStateWaiting: TicketState = "waiting";
@@ -8,6 +8,7 @@ const TicketStateMissed: TicketState = "missed";
 const TicketStateFinished: TicketState = "finished";
 const TicketStateCancelled: TicketState = "cancelled";
 const TicketStateUnknown: TicketState = "unknown";
+const TicketStateNext: TicketState = "nextTicket";
 
 export const TicketStates = {
     Waiting: TicketStateWaiting,
@@ -15,5 +16,6 @@ export const TicketStates = {
     Missed: TicketStateMissed,
     Finished: TicketStateFinished,
     Cancelled: TicketStateCancelled,
-    Unknown: TicketStateUnknown
+    Unknown: TicketStateUnknown,
+    NextTicket: TicketStateNext
 }

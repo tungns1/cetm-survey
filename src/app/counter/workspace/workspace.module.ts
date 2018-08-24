@@ -24,6 +24,7 @@ import { MiniWorkspaceComponent } from './workspace/mini/mini.component';
 import { SettingComponent } from './setting/setting.component';
 import { workspaceServiceProvider } from './shared/workspace.provider';
 import { CrudApiServiceGenerator } from '../../admin/service';
+import { of } from 'rxjs';
 /**
  * Check setting before redirect
  */
@@ -37,7 +38,7 @@ export class CounterWorkspaceGuard extends SessionValidationGuard implements Can
 
     ) {
         super(router, authService, env);
-        this.settingService.checkLogin()
+        // this.settingService.checkLogin()
     }
     login = false;
     canActivate(
@@ -57,25 +58,27 @@ export class CounterWorkspaceGuard extends SessionValidationGuard implements Can
     }
 
     GetAuthExtra() {
-        return this.settingService.force_auto_login$.pipe(switchMap(v1 => {
-            return this.settingService.login_value$.pipe(map(v => {
-                if(v1 === true){
-                    return {
-                        branch_code: this.settingService.Data.branch_code,
-                        auto_login: v
-                    }
-                }else{
-                    return {
-                        branch_code: this.settingService.Data.branch_code,
-                        auto_login: AppStorage.AutoLogin
-                    }
-                }
-            }))
-        }))
-        // return of({
-        //     branch_code: this.settingService.Data.branch_code,
-        //     auto_login:  AppStorage.AutoLogin
-        // })
+        // return this.settingService.force_auto_login$.pipe(switchMap(v1 => {
+        //     return this.settingService.login_value$.pipe(map(v => {
+        //         if(v1 === true){
+        //             return {
+        //                 branch_code: this.settingService.Data.branch_code,
+        //                 auto_login: v
+        //             }
+        //         }else{
+        //             return {
+        //                 branch_code: this.settingService.Data.branch_code,
+        //                 auto_login: AppStorage.AutoLogin
+        //             }
+        //         }
+        //     }))
+        // }))
+
+        return of({
+            branch_code: this.settingService.Data.branch_code,
+            // auto_login:  AppStorage.AutoLogin
+            auto_login:  false
+        })
     }
 
 

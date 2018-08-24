@@ -14,6 +14,7 @@ export class MiniWorkspaceComponent implements OnInit {
 
   serving$ = this.queueService.serving$;
   nowServing: Ticket = null;
+  nextTicket: Ticket = null;
   private subscription = this.serving$.subscribe(ticket => { this.nowServing = ticket[0] || null });
 
   ngOnInit() {

@@ -6,7 +6,7 @@
         <div fxFlex="75%" id="leftWorkSpace" class="padding-20">
             <serving></serving>
 
-            <ticket-action [ticket]="nowServing" width100></ticket-action>
+            <ticket-action [ticket]="nowServing" [nextTicket]="nextTicket" width100></ticket-action>
             <div class="divider"></div>
             <customer-info fxShow.xs="false" [customer]="nowServing?.customer"></customer-info>
 

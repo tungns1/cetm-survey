@@ -39,30 +39,31 @@ export class SettingComponent implements OnInit {
         }
     });
 
-    settingSubscription = this.counterSetting.force_auto_login$.subscribe(v => {
-        this.counterSetting.login_value$.subscribe(v1 => {
-            if (v !== null && v1 !== null) {
-                if (v === true) {
-                    this.test = v1
-                    this.force$.next(true)
-                } else {
-                    this.test = this.value.auto_login_counter || AppStorage.AutoLogin
-                }
-                this.form.patchValue({ auto_login_counter: (this.test) })
-            }
-        })
-    })
+    // settingSubscription = this.counterSetting.force_auto_login$.subscribe(v => {
+    //     this.counterSetting.login_value$.subscribe(v1 => {
+    //         if (v !== null && v1 !== null) {
+    //             if (v === true) {
+    //                 this.test = v1
+    //                 this.force$.next(true)
+    //             } else {
+    //                 this.test = this.value.auto_login_counter || AppStorage.AutoLogin
+    //             }
+    //             this.form.patchValue({ auto_login_counter: (this.test) })
+    //         }
+    //     })
+    // })
 
     ngOnInit() {
         console.log('new version')
-        this.counterSetting.checkLogin();
+        // this.counterSetting.checkLogin();uu
+        this.form.patchValue({auto_login_counter: AppStorage.AutoLogin})
     }
 
     ngOnDestroy() {
         this.formSubscription.unsubscribe();
         this.formSubscription = null;
-        this.settingSubscription.unsubscribe();
-        this.settingSubscription = null;
+        // this.settingSubscription.unsubscribe();
+        // this.settingSubscription = null;
     }
 
     Go() {
