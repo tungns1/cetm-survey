@@ -17,6 +17,7 @@ import {
   ModalModule, AdminFormModule, FlexLayoutModule,
   AccordionModule, provideUploadURLToken
 } from '../shared';
+import { StateImageFormModule } from './state-image-form/image-form.module';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import {
     MultimediaFormModule, ClockFormModule, TemplateFormModule,
     FlexLayoutModule, RepeaterFormModule, AccordionModule,
     SliderFormModule, I18nFormModule, KeyboardFormModule,
-    XTextFormModule
+    XTextFormModule, StateImageFormModule
   ],
   declarations: [GenericFormComponent],
   providers: [provideUploadURLToken],

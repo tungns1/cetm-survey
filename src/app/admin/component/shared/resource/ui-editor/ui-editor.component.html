@@ -12,7 +12,7 @@
         <div *ngIf="isResources" class="border margin-b-20 padding-20 animated fadeIn">
 
             <div [fxLayout]="UI.layout.layout" fxLayoutGap="10px" class="UIElementContainer">
-                <div fxLayout="row" height100 fxLayoutWrap fxLayoutAlign="center none" class="border UIElement" *ngFor="let comp of UI.layout.children; let layoutIndex = index"
+                <div fxLayout="row wrap" height100 fxLayoutAlign="center none" class="border UIElement" *ngFor="let comp of UI.layout.children; let layoutIndex = index"
                     [fxFlex]="getFlex(layoutIndex)">
                     <div fxFlex="25%" fxFlexAlign="stretch" class="center" *ngFor="let resource of layoutGroup[layoutIndex]; let resourceIndex = index">
                         <div class="resourceItem pointer" (click)="editResource(resource)">

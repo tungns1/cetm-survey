@@ -42,6 +42,9 @@
             <div *ngSwitchCase="'x-text'">
                 <app-x-text-form [(ngModel)]="record"></app-x-text-form>
             </div>
+            <div *ngSwitchCase="'state-image'">
+                <app-state-image-form [(ngModel)]="record"></app-state-image-form>
+            </div>
         </div>
         <div class="border margin-b-20">
             <accordion>

@@ -17,7 +17,7 @@ interface ImageForm {
 }
 
 @Component({
-  selector: 'app-image-form',
+  selector: 'app-state-image-form',
   templateUrl: './image-form.component.html',
   styleUrls: ['./image-form.component.scss'],
   providers: [IMAGE_CONTROL_VALUE_ACCESSOR]
@@ -28,9 +28,13 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
    * @param obj the given object
    */
 
+  tempSrc: string;
 
   protected clone(obj: any): ImageForm {
+    console.log(obj)
     if (obj) {
+    this.tempSrc = obj.data.srcs[1]
+
       if (typeof obj.data === 'string') {
         obj.data = {
           srcs: [obj.data],
@@ -56,12 +60,14 @@ export class ImageFormComponent extends BaseFormComponent<ImageForm> {
   }
 
   protected onChange(event: Event) {
-    if (typeof this.value.data.srcs === 'string')
-      this.value.data.srcs = [this.value.data.srcs];
+    
+    this.value.data.srcs = ['{user_avatar}',this.tempSrc];
+    
     super.onChange(event);
   }
 
   changeBackgroundColor(color: string) {
+    this.value.data.srcs = ['{user_avatar}',this.tempSrc.toString()];
     this.onChangeCallback(this.value)
   }
 }
