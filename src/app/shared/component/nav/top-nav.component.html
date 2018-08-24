@@ -21,14 +21,26 @@
                 <li *ngIf="!isAdminStandard" routerLink="/admin/center/service" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Service</span>
                 </li>
-                <li *ngIf="!isAdminStandard" routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
-                    <span i18n class="paddingSecond">Branch Config</span>
-                </li>
-                <li *ngIf="!isAdminStandard" routerLink="/admin/meta/sconfig" queryParamsHandling="preserve">
-                    <span i18n class="paddingSecond">System Config</span>
-                </li>
-                <li *ngIf="!isAdminStandard" routerLink="/admin/house/sflow" queryParamsHandling="preserve">
-                    <span i18n class="paddingSecond">Service Flow</span>
+
+                <li class="li_secondLv">
+                    <div class="paddingFirst" routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
+                        <span i18n>Config</span>
+                        <i class="fa fa-caret-right"> </i>
+                    </div>
+                    <ul class="thirdLv">
+                        <li *ngIf="!isAdminStandard" routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Branch Config</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/admin/meta/sconfig" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">System Config</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/admin/house/sflow" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Service Flow</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/admin/center/sgroup" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Service Group</span>
+                        </li>
+                    </ul>
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/admin/house/counter" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Counter</span>
@@ -36,7 +48,7 @@
                 <li routerLink="/admin/org/user">
                     <span i18n class="paddingSecond">User</span>
                 </li>
-                
+
                 <!-- <li routerLink="/admin/center/formconfig">
                     <span i18n class="paddingSecond">Form Configuration</span>
                 </li>

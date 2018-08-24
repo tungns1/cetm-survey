@@ -26,16 +26,22 @@ export class ServiceCustomizeModal {
         // private serviceListComponent: ServiceListComponent
     ) {
         this.active = this.dialogData.active || <any>{};
+        this.active.group_id = this.active.group_id || '';
+        this.active.display_group = this.active.display_group || '';
         const used_services: IService[] = this.dialogData.used || <any>[];
         this.selectable_services = this.dialogData.services.filter(s => {
             return s.id == this.active.id || !used_services.find(v => s.id === v.id);
         });
+        for(let i = 1; i <= 10; i++) {
+            this.service_group.push('Group' + i)
+        }
     }
 
 
     active: IService;
     private index = this.dialogData.index;
     selectable_services: IService[];
+    service_group: string[] = [];
 
     setActive() {
         let service = this.selectable_services.find(s => s.id === this.active.id);

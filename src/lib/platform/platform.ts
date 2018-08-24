@@ -1,6 +1,4 @@
-import {
-    AbstractSerializable, SmallStorage, AbstractStorageStrategy
-} from './storage';
+import { SmallStorage } from './storage';
 
 interface IPlatformSerialize {
     host_cetm?: string;

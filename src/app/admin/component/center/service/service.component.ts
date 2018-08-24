@@ -1,7 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { CenterService, IService, AllRoles, BaseAdminComponent, CommonValidator } from '../../shared/';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'admin-service',
@@ -33,4 +32,3 @@ export class ServiceComponent extends BaseAdminComponent<IService> {
         });
     }
 }
-

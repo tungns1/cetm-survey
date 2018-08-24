@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { BranchConfigModule } from './branch_config/branch_config.module';
 import { MetaComponent } from './meta.component';
-import { SystemConfigComponent } from './system-config/system-config.component';
 import { SystemConfigModule } from './system-config/system-config.module';
 
 export function loadBranchConfigModule() {

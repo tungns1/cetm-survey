@@ -1,0 +1,34 @@
+<app-env-sub-module i18n-title title="Service Group">
+
+</app-env-sub-module>
+<div class="animated fadeInLeft" *ngIf="showList$ | async">
+    <app-datatable i18n-name name="Service Group" [data]="data$ | async" [canEdit]="false" (action)="onActionRequest($event)">
+        <app-table-field name="code" i18n-title title="Code"></app-table-field>
+    </app-datatable>
+</div>
+
+<app-editor-view id="serviceEditor" class="animated fadeInLeft" *ngIf="form$ | async; let form" [isValid]="form.valid" title="Service Group"
+    i18n-title [isNew]="isNew$ | async" (action)="onActionConfirm($event, form.value)" [canEdit]="false">
+    <form [formGroup]="form" fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+            <span fxFlex="20%" i18n>Code</span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <span fxFlex="1%" class="valid-color" *ngIf="form.get('code').hasError('required')">*</span>
+                <span fxFlex="1%" class="error" *ngIf="!form.get('code').hasError('required')">&nbsp;</span>
+                <div fxFlex fxLayout="column" fxLayoutGap="2px">
+                    <input fxFlex="100%" class="ctrlInput" formControlName="code" i18n-placeholder placeholder="Code">
+                    <div fxFlex class="valid-color" *ngIf="form.get('code').hasError('pattern')">From 4 to 20 characters;
+                        Include number, character and _</div>
+                    <div fxFlex class="valid-color" *ngIf="!form.get('code').hasError('pattern')">&nbsp;</div>
+                </div>
+            </div>
+            <span fxFlex="20%" i18n></span>
+            <div fxFlex fxLayout="row" fxLayoutGap="5px">
+                <attr-list-form formControlName="attrs"></attr-list-form>
+            </div>
+        </div>
+
+        <l10n-form class="margin-l-10" formControlName="l10n"></l10n-form>
+
+    </form>
+</app-editor-view>

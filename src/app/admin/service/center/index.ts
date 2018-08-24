@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AdminNavService } from '../shared';
 import { TFormService } from './tform';
 import { ServiceService } from './service';
+import { ServiceGroupService } from './service-group';
 import { LayoutService } from './layout';
 import { TicketLayoutService } from './ticket_layout';
 import { VoiceListService } from './voice';
@@ -32,6 +33,11 @@ export class CenterService {
             this.httpSG.make(this.Link.Service),
             this.authService
         );
+        this.ServiceGroupService = new ServiceGroupService(
+            this.nav,
+            this.httpSG.make(this.Link.ServiceGroup),
+            this.authService
+        );
         this.LayoutService = new LayoutService(
             this.nav,
             this.httpSG.make(this.Link.Layout)
@@ -44,6 +50,7 @@ export class CenterService {
 
     TFormService: TFormService;
     ServiceService: ServiceService;
+    ServiceGroupService: ServiceGroupService;
     TicketLayoutService: TicketLayoutService;
     LayoutService: LayoutService;
     VoiceListService: VoiceListService;
@@ -52,6 +59,7 @@ export class CenterService {
         TForm: '/api/admin/center/tform',
         TicketLayout: '/api/admin/center/ticketlayout',
         Service: '/api/admin/center/service',
+        ServiceGroup: '/api/admin/center/service_group',
         Layout: '/api/admin/center/layout',
         Voice: '/api/admin/center/voice'
     }

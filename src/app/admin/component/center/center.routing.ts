@@ -7,6 +7,7 @@ import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { VoiceComponent } from './voice/voice.component';
 import { FormConfigComponent } from './form-config/form-config.component';
 import { FormUserComponent } from './form-user/form-user.component';
+import { ServiceGroupComponent } from './service-group/service-group.component';
 
 const children: Routes = [
   {
@@ -76,6 +77,15 @@ const children: Routes = [
   {
     path: 'formuser/:id',
     component: FormUserComponent
+  },
+  {
+    path: 'sgroup',
+    pathMatch: 'full',
+    redirectTo: 'sgroup/list'
+  },
+  {
+    path: 'sgroup/:id',
+    component: ServiceGroupComponent
   }
 ]
 

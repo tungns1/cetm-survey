@@ -21,7 +21,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
         SharedModule, BranchModule,
         EditorModule, AdminFormModule, ServiceListModule,
         MultiFilePickerModule, ResourceModule,
-        routing, AccordionModule,AdminFilterModule
+        routing, AccordionModule, AdminFilterModule
     ],
     declarations: [
         HouseComponent, CounterComponent, KioskComponent,

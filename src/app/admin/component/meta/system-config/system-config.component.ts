@@ -1,7 +1,5 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { BaseAdminComponent, OrgService, MetaService } from '../../shared';
-import { SystemConfig } from '../../../../shared/model/meta/system_config';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-system-config',
@@ -13,22 +11,19 @@ export class SystemConfigComponent implements OnInit{
     constructor() { }
 
     ngOnInit(){
-        console.log('11111111')
         this.form.valueChanges.subscribe(v => {
-            console.log(v)
         })
     }
 
     onSubmit(){
         if(this.form.valid){
-            console.log('submit này')
         }
     }
 
     form = new FormGroup({
         station: new FormGroup({
             stationSync: new FormGroup({
-                mode: new FormControl('aaaaaaaaa'),
+                mode: new FormControl(),
                 stores: new FormControl([]),
                 token: new FormControl()
             }),

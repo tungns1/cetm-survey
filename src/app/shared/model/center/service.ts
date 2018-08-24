@@ -6,16 +6,21 @@ interface IAttribute {
     value: string;
 }
 
-export interface IService extends ID {
+export interface IServiceGroup extends ID {
     code: string;
+    l10n: L10nText;
+    attrs?: IAttribute[];
+}
+
+export interface IService extends IServiceGroup {
     tform_normal: string;
     tform_vip: string;
     image: string;
-    l10n: L10nText;
     desc?: L10nText;
-    attrs?: IAttribute[];
     priority?: any;
     name?: string; // on client side
+    group_id?: string;
+    display_group?: string;
 }
 
 class cacheService extends MemCache<IService> {
@@ -28,7 +33,19 @@ class cacheService extends MemCache<IService> {
     }
 }
 
+class cacheServiceGroup extends MemCache<IServiceGroup> {
+    ServiceNameGroup(id: string) {
+        return super.GetName(id, "code");
+    }
+
+    protected ToListView(arr: IServiceGroup[]) {
+        return arr.sort((a, b) => a.code < b.code ? -1 : 1);
+    }
+}
+
 export const CacheService = new cacheService();
+
+export const CacheServiceGroup = new cacheServiceGroup();
 
 export function ServiceName(service_id: string): string {
     const s = CacheService.GetByID(service_id);
