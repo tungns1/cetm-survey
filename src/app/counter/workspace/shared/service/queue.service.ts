@@ -1,9 +1,4 @@
-import { ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import {
-    ITicket, Ticket,
-    TicketState, TicketStates, IMapTicket
-} from '../shared';
 import { WorkspaceService } from './workspace.service';
 import { map, combineLatest } from 'rxjs/operators';
 
@@ -11,9 +6,7 @@ import { map, combineLatest } from 'rxjs/operators';
 export class QueueService {
     constructor(
         private workspaceService: WorkspaceService
-    ) {
-        
-    }
+    ) { }
 
     _waiting$ = this.workspaceService.Workspace$.pipe(map(w => w.Waiting));
     _serving$ = this.workspaceService.Workspace$.pipe(map(w => w.Serving));

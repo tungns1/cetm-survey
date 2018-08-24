@@ -1,8 +1,7 @@
 export type TicketActionName = 'call' | 'recall' | 'finish' | 'cancel' | 'move' | 'restore' | 'miss' | 'create' | 'print_form' | 'next_ticket';
 
-import { ITicket, Ticket, IService, TicketState, TicketStates } from '../../shared';
-import { Injectable } from '@angular/core';
-import { Subject ,  of ,  combineLatest ,  AsyncSubject ,  ReplaySubject ,  Observable } from 'rxjs';
+import { ITicket, Ticket, TicketState, TicketStates } from '../../shared';
+import { Subject, of, ReplaySubject, Observable } from 'rxjs';
 
 const TicketStateTransitions = new Map<TicketState, TicketState[]>();
 TicketStateTransitions.set(TicketStates.Waiting, [TicketStates.Waiting, TicketStates.Serving, TicketStates.Cancelled, TicketStates.NextTicket]);
@@ -18,7 +17,7 @@ NextStates.set("finish", TicketStates.Finished);
 NextStates.set("cancel", TicketStates.Cancelled);
 NextStates.set("restore", TicketStates.Waiting);
 NextStates.set("miss", TicketStates.Missed);
-NextStates.set("next_ticket", TicketStates.Serving);
+// NextStates.set("next_ticket", TicketStates.Serving);
 
 export class TicketAction {
     constructor(
@@ -61,7 +60,7 @@ export class TicketAction {
 
     private done$ = new ReplaySubject<ITicket>(1);
 }
-import { ActionMove, ActionCancel } from '../../../../shared/model/ticket_action';
+import { ActionMove } from '../../../../shared/model/ticket_action';
 import { first } from 'rxjs/operators';
 
 export class ActionManager {
@@ -82,7 +81,7 @@ export class ActionManager {
             this.next();
             return ta.afterDone();
         }
-        if(action === ActionMove){
+        if (action === ActionMove) {
             ta.service_id = extra.services[0];
             ta.ticket.service_id = extra.services[0];
         }
@@ -101,9 +100,9 @@ export class ActionManager {
     }
 
     private next() {
-        
+
         if (this.queue.length < 1) return;
-      
+
         const ta = this.queue.shift();
         if (!this.handler) {
             this.next();

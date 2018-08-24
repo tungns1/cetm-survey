@@ -7,6 +7,8 @@ import { WorkspaceSocket } from './workspace.socket';
 import { ITicketBooking } from '../../../../shared/model/house/ticket/ticket';
 import { debounceTime, share, refCount, publishReplay, distinctUntilChanged, map, switchMap, first } from 'rxjs/operators';
 
+export const QueueStatus = 'queue_status';
+
 @Injectable()
 export class WorkspaceService {
     constructor(
@@ -15,16 +17,12 @@ export class WorkspaceService {
     ) { }
 
     private currentBranch: IBranch;
-    // private currentCounter: ICounter;
-    // private currentUser: IUser;
 
     private initialState$ = this.socket.RxEvent<IWorkspaceInitialState>("/initial");
     private autoNext$ = new ReplaySubject<boolean>(1);
     bookingOnlineList$ = new BehaviorSubject<ITicketBooking[]>([]);
 
-
     Workspace$ = this.initialState$.pipe(switchMap(s => {
-        // this.currentUser = s.user;
         const w = new Workspace(s);
         const ticketUpdate = this.socket.RxEvent<ITicketAction>("/ticket_action")
             .pipe(map(action => {
@@ -64,9 +62,13 @@ export class WorkspaceService {
     enable() {
         this.socket.onInit();
         this.env.Auth.Data$.pipe(first()).subscribe(data => this.currentBranch = data.branches.find(branch => branch.name === data.store));
-        // this.currentCounter$.subscribe(counter => {
-        //     this.currentCounter = counter;
-        // });
+        this.Workspace$.pipe(map(w => w.Waiting)).subscribe(queue => {
+            let data = {
+                next_ticket: queue.GetFirstTicket(),
+                waiting_size: queue.size
+            }
+            this.socket.Send<any>("/queue_status", data);
+        })
     }
 
     disable() {

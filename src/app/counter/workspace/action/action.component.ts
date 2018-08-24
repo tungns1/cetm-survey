@@ -4,9 +4,9 @@ import { TicketDetailDialog } from '../ticket';
 import { FeedbackRejectlDialog } from '../ticket/feedback-reject.dialog';
 import {
     WorkspaceService, TicketActionName, TicketService, 
-    FeedbackService, Ticket, NoticeComponent, ITicket
+    FeedbackService, Ticket, NoticeComponent
 } from '../shared';
-import { map, first, share } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 @Component({
     selector: 'ticket-action',
@@ -29,7 +29,7 @@ export class ActionComponent {
 
     @Input() selectedService;
 
-    private socket = this.workspaceService.Socket;
+    // private socket = this.workspaceService.Socket;
 
     auto_next$ = this.workspaceService.Workspace$.pipe(map(w => w.AutoNext));
 
@@ -52,7 +52,7 @@ export class ActionComponent {
                     this.triggerAction("finish").pipe(first()).subscribe(() => {
                         this.workspaceService.SetAutoNext(true);
                     });
-                    this.triggerAction('next_ticket', this.nextTicket)
+                    // this.triggerAction('next_ticket', this.nextTicket)
 
                 }
             })
@@ -60,7 +60,7 @@ export class ActionComponent {
             this.triggerAction("finish").pipe(first()).subscribe(() => {
                 this.workspaceService.SetAutoNext(true);
             });
-            this.triggerAction('next_ticket', this.nextTicket)
+            // this.triggerAction('next_ticket', this.nextTicket)
         }
     }
 
@@ -82,18 +82,18 @@ export class ActionComponent {
                 if (d) {
                     this.ticket = d;
                     this.triggerAction('finish');
-                    this.triggerAction('next_ticket', this.nextTicket)
+                    // this.triggerAction('next_ticket', this.nextTicket)
                 }
             })
         } else {
             this.triggerAction('finish');
-            this.triggerAction('next_ticket', this.nextTicket)
+            // this.triggerAction('next_ticket', this.nextTicket)
         }
     }
 
     Delete() {
         this.triggerAction('cancel');
-        this.triggerAction('next_ticket', this.nextTicket)
+        // this.triggerAction('next_ticket', this.nextTicket)
     }
 
     Miss() {
