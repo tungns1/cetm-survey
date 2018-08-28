@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AdminFormModule, EditorModule, ServiceListModule } from '../shared';
-import { SharedModule, BranchModule } from '../../shared/';
+import { MatCheckboxModule } from '@angular/material'
+import {
+    AdminFormModule, EditorModule, ServiceListModule,
+    SharedModule, BranchModule,
+} from '../shared';
 import { provideUploadURLToken, MultiFilePickerModule } from '../../shared/upload';
 
 import { HouseComponent } from './house.component';
@@ -21,7 +24,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
         SharedModule, BranchModule,
         EditorModule, AdminFormModule, ServiceListModule,
         MultiFilePickerModule, ResourceModule,
-        routing, AccordionModule, AdminFilterModule
+        routing, AccordionModule, AdminFilterModule,
+        MatCheckboxModule
     ],
     declarations: [
         HouseComponent, CounterComponent, KioskComponent,

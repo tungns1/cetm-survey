@@ -24,12 +24,14 @@ interface ILoginReply {
 
 import { IUser, IBranch, IService, IBranchConfig } from './shared';
 import { map, catchError, tap } from 'rxjs/operators';
+import { IServiceGroup } from '../../shared/model/center/service';
 
 interface IMySettings {
   me: IUser;
   branches: IBranch[];
   services: IService[];
   config: IBranchConfig;
+  group_services: IServiceGroup[];
 }
 
 @Injectable()
@@ -60,7 +62,7 @@ export class AuthService {
       { scope: scope || 'admin', token: token || AppStorage.Token }
     ).pipe(map(data => {
       this.env.Auth.Update(
-        data.me, data.branches, data.services, data.config
+        data.me, data.branches, data.services, data.config, data.group_services
       );
       return true;
     }),catchError((e: HttpError) => {

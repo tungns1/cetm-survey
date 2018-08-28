@@ -22,9 +22,9 @@
 
         <div fxLayout="row" *ngIf="selectable_services.length >= 1" fxLayoutGap="20px">
             <span fxFlex="20%" class="center" i18n>Service group</span>
-            <select fxFlex class="ctrlInput" [(ngModel)]="active.group">
+            <select fxFlex class="ctrlInput" [(ngModel)]="active.group_id">
                 <option value="">None</option>
-                <option *ngFor="let group of service_group; let index = index" [value]="index.toString()">{{group}}</option>
+                <option *ngFor="let group of service_group" [value]="group.code">{{group.code}}</option>
             </select>
         </div>
 

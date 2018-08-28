@@ -1,11 +1,9 @@
-import { Component, ViewChild, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import {
     CenterService, HouseService, MetaService,
-    CacheService,
-    IKiosk, CacheBranch
+    CacheService, IKiosk
 } from '../../../service/';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import { BaseAdminComponent, CommonValidator, USER_ROLES, RuntimeEnvironment } from '../../shared';
 import { extend } from 'lodash';
 import { of } from 'rxjs';
@@ -60,7 +58,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                     return ids.indexOf(s.id) !== -1;
                 });
             }));
-        }),share(),publishReplay(1),refCount());
+        }), share(), publishReplay(1), refCount());
 
     getLayout(layout_id?: string) {
         return layout_id ? this.center.LayoutService.GetByID(layout_id) : of(null);
@@ -83,6 +81,7 @@ export class KioskComponent extends BaseAdminComponent<IKiosk> {
                 name: [b.name, CommonValidator.Name],
                 services: [b.services],
                 branch_id: [{ value: b.branch_id, disabled: !!b.id }, Validators.required],
+                is_group: [b.is_group || false],
                 vcodes: [b.vcodes],
                 layout_id: [b.layout_id],
                 tlayout_id: [b.tlayout_id],

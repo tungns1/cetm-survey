@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Optional, Inject } from '@angular/core';
-import { IService } from '../../../../../shared/model';
+import { IService, IServiceGroup, CacheServiceGroup } from '../../../../../shared/model';
 
 export interface IServiceCustomizeData {
     index: number;
@@ -22,8 +22,7 @@ export interface IServiceCustomizeResult {
 export class ServiceCustomizeModal {
     constructor(
         @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: IServiceCustomizeData,
-        private dialog: MatDialogRef<ServiceCustomizeModal>,
-        // private serviceListComponent: ServiceListComponent
+        private dialog: MatDialogRef<ServiceCustomizeModal>
     ) {
         this.active = this.dialogData.active || <any>{};
         this.active.group_id = this.active.group_id || '';
@@ -32,16 +31,13 @@ export class ServiceCustomizeModal {
         this.selectable_services = this.dialogData.services.filter(s => {
             return s.id == this.active.id || !used_services.find(v => s.id === v.id);
         });
-        for(let i = 1; i <= 10; i++) {
-            this.service_group.push('Group' + i)
-        }
+        CacheServiceGroup.RxListView.subscribe(data => this.service_group = data);
     }
-
 
     active: IService;
     private index = this.dialogData.index;
     selectable_services: IService[];
-    service_group: string[] = [];
+    service_group: IServiceGroup[];
 
     setActive() {
         let service = this.selectable_services.find(s => s.id === this.active.id);

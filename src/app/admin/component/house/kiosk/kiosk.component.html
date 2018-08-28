@@ -69,6 +69,12 @@
             <service-list fxFlex class="border" formControlName="services" [services]="services$ | async"></service-list>
         </div>
         <div fxLayout="row" class="rowCtrl">
+            <span fxFlex="22%" i18n>Group by service</span>
+            <mat-checkbox fxFlex color="primary" formControlName="is_group"></mat-checkbox>
+            <div fxFlex="14%" i18n></div>
+            <div fxFlex></div>
+        </div>
+        <div fxLayout="row" class="rowCtrl">
             <span fxFlex="20%" i18n>Resources</span>
             <span fxFlex="2%">&nbsp;</span>
             <app-resource-editor fxFlex formControlName="layout_resources"></app-resource-editor>

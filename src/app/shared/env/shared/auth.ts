@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { IUser, IBranch, IService, IBranchConfig, CacheBranch, CacheService } from '../../model';
 import { filter, share, publishReplay, refCount, map } from 'rxjs/operators';
+import { IServiceGroup, CacheServiceGroup } from '../../model/center/service';
 
 interface IAuthEnv {
     branch: string;
@@ -41,11 +42,12 @@ export class AuthEnvStorage {
         this.emitChange();
     }
 
-    Update(me: IUser, branches: IBranch[], services: IService[], config: IBranchConfig) {
+    Update(me: IUser, branches: IBranch[], services: IService[], config: IBranchConfig, service_group: IServiceGroup[]) {
         const data = this.data;
-        Object.assign(data, { me, branches, services, config });
+        Object.assign(data, { me, branches, services, config, service_group });
         CacheBranch.Refresh(branches);
         CacheService.Refresh(services);
+        CacheServiceGroup.Refresh(service_group);
         const store = CacheBranch.GetByID(me.branch_id);
         data.store = store ? store.name : "";
         const branch = CacheBranch.GetByID(store ? store.parent : "");

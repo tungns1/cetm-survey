@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, ValueProvider } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 

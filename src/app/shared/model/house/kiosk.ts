@@ -12,4 +12,5 @@ export interface IKiosk {
     inheritable: boolean;
     parent_id: string;
     layout_resources: any;
+    is_group: boolean;
 }
