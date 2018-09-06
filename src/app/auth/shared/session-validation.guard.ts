@@ -9,7 +9,7 @@ import { HttpError, AppStorage, RuntimeEnvironment } from './shared';
 import { USER_ROLES } from '../../shared/model';
 import { PlatformEnvStorage } from '../../shared/env/shared/platform';
 import { HostListener } from '@angular/core'
-import { tap } from 'rxjs/operators';
+import { tap, map, switchMap } from 'rxjs/operators';
 interface IAuthExtra {
     branch_code?: string;
     auto_login?: boolean;
@@ -47,15 +47,32 @@ export class SessionValidationGuard implements CanActivate {
             return false;
         }
         return this.authService.ValidateSession(this.GetScope())
-            .pipe(tap(success => {
-                if (!success) {
+            // .pipe(tap(success => {
+            //     if (!success) {
                     
+            //         this.ShowLogin(state.url);
+            //     }
+            //     // this.env.Auth.User$.subscribe(u => {
+            //     //   if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
+            //     //       window.location.href = '/#/admin/house/screen/list'
+            //     // })   
+            // }))
+            .pipe(map(s => {
+                if (!s) {
                     this.ShowLogin(state.url);
                 }
-                // this.env.Auth.User$.subscribe(u => {
-                //   if (u.role.indexOf(USER_ROLES.MEDIA) !== -1) 
-                //       window.location.href = '/#/admin/house/screen/list'
-                // })   
+            }), switchMap(_ => {
+                return this.authService.getUser()
+            }), switchMap(u => {
+                if(u.role === 'manager'){
+                    let regex = /(\/)[\w]*/gm;
+                    let match = state.url.match(regex)
+                    let allow = ["/report", "/monitor"];
+                    if(match && allow.includes(match[0]) === false){
+                        this.router.navigate(["/report/dashboard"])
+                    }
+                }
+                return of(true)
             }))
     }
 

@@ -42,6 +42,10 @@ export class AuthService {
     private env: RuntimeEnvironment
   ) { }
 
+  getUser(){
+    return this.env.Auth.User$
+  }
+
   Login(option: IAuthOption) {
     option.scope = option.scope || 'admin';
     return this.authApi.Post<ILoginReply>("login", {}, option)

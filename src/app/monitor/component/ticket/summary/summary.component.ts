@@ -72,25 +72,29 @@ export class SummaryComponent {
                 var agRow = document.getElementsByClassName('ag-floating-bottom')[0].getElementsByClassName('ag-row')[2];
                 if (agRow) {
                     var sumExceededWaiting = agRow.getElementsByClassName('ag-cell');
-                    if (t.w_l_percent > ProjectConfig.service.wait_long_alert_percent) {
-                        sumExceededWaiting[6]['style'].backgroundColor = '#ff5858';
-                        sumExceededWaiting[6]['style'].color = '#fff';
-                    } else {
-                        sumExceededWaiting[6]['style'].backgroundColor = '#f0f0f0';
-                        sumExceededWaiting[6]['style'].color = '#222';
+                    if(sumExceededWaiting[6]){
+                        if (t.w_l_percent > ProjectConfig.service.wait_long_alert_percent) {
+                            sumExceededWaiting[6]['style'].backgroundColor = '#ff5858';
+                            sumExceededWaiting[6]['style'].color = '#fff';
+                        } else {
+                            sumExceededWaiting[6]['style'].backgroundColor = '#f0f0f0';
+                            sumExceededWaiting[6]['style'].color = '#222';
+                        }
                     }
                     var sumExceededServing = agRow.getElementsByClassName('ag-cell');
-                    if (t.s_l_percent > ProjectConfig.service.serve_long_alert_percent) {
-                        sumExceededServing[7]['style'].backgroundColor = '#ff5858';
-                        sumExceededServing[7]['style'].color = '#fff';
-                    } else {
-                        sumExceededServing[7]['style'].backgroundColor = '#f0f0f0';
-                        sumExceededServing[7]['style'].color = '#222';
+                    if(sumExceededServing[7]){
+                        if (t.s_l_percent > ProjectConfig.service.serve_long_alert_percent) {
+                            sumExceededServing[7]['style'].backgroundColor = '#ff5858';
+                            sumExceededServing[7]['style'].color = '#fff';
+                        } else {
+                            sumExceededServing[7]['style'].backgroundColor = '#f0f0f0';
+                            sumExceededServing[7]['style'].color = '#222';
+                        }
                     }
                 }
             });
-            this.gridOptions.api.setFloatingBottomRowData([t]);
-            this.gridOptions.api.getFloatingBottomRow(0).canFlower = true;
+            this.gridOptions.api.setPinnedBottomRowData([t]);
+            this.gridOptions.api.getPinnedBottomRow(0).canFlower = true;
         });
     }
 
