@@ -4,7 +4,7 @@ import { RuntimeEnvironment, CacheService } from './shared';
 import { IBranch } from '../shared';
 import { ITicketAction, Workspace, IWorkspaceInitialState } from '../../../shared/model';
 import { WorkspaceSocket } from './workspace.socket';
-import { ITicketBooking } from '../../../../shared/model/house/ticket/ticket';
+import { ITicketBooking, Ticket } from '../../../../shared/model/house/ticket/ticket';
 import { debounceTime, share, refCount, publishReplay, distinctUntilChanged, map, switchMap, first } from 'rxjs/operators';
 
 export const QueueStatus = 'queue_status';
@@ -62,9 +62,13 @@ export class WorkspaceService {
     enable() {
         this.socket.onInit();
         this.env.Auth.Data$.pipe(first()).subscribe(data => this.currentBranch = data.branches.find(branch => branch.name === data.store));
-        this.Workspace$.pipe(map(w => w.Waiting)).subscribe(queue => {
+        this.Workspace$.pipe(map(w => w.Waiting), debounceTime(100)).subscribe(queue => {
+            let ticket = queue.GetFirstTicket();
+            let a = !ticket || ticket === undefined ? {} : ticket
+            
+            a['counter_id'] = queue['counter_id'];
             let data = {
-                next_ticket: queue.GetFirstTicket(),
+                next_ticket: a,
                 waiting_size: queue.size
             }
             this.socket.Send<any>("/queue_status", data);
