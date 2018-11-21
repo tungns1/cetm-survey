@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, ViewEncapsulation, forwardRef } from '@angular/core';
-import { ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { EventEmitter, Output, ViewChild, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 const DATE_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -21,6 +22,7 @@ const datePickerOptions: FlatPickrOptions = {
     selector: 'date-picker',
     template: `
         <input style="width:80%;" #input 
+        [disabled]="disabled" [required]="required" 
         (change)="onChange($event)"
         (blur)="onBlur($event)"
         style="background: url(../../../../assets/img/icon/calendar.png) no-repeat scroll 75px 7px;

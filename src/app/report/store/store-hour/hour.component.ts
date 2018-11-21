@@ -16,7 +16,7 @@ export class HourComponent {
     private storeAPI: StoreAPI
   ) { }
 
-  _data: ISH[];
+  protected _data: ISH[];
 
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class HourComponent {
   curentPage: number;
   totalPage: number;
 
-  gridOptions: GridOptions = {
+  private gridOptions: GridOptions = {
     rowHeight: 35,
     pagination: true,
     paginationPageSize: 18,

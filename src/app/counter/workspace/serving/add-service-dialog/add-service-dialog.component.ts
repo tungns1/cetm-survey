@@ -1,15 +1,15 @@
-import { Component, Inject, ViewChild, Optional } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Optional } from 'ag-grid';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Ticket, WorkspaceService, TicketService, NoticeComponent, ServiceName } from '../../shared';
 import { ShowLoading, HideLoading } from '../../../../../lib/backend';
-import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-add-service-dialog',
     templateUrl: './add-service-dialog.component.html',
     styleUrls: ['./add-service-dialog.component.scss']
 })
-export class AddServiceDialogComponent {
+export class AddServiceDialogComponent  {
 
     constructor(
         @Optional() @Inject(MAT_DIALOG_DATA) public ticket: Ticket,
@@ -20,10 +20,9 @@ export class AddServiceDialogComponent {
     services = [];
     checkedServices = [];
     @ViewChild(NoticeComponent) notice: NoticeComponent;
-    private subscription: Subscription;
 
-    ngOnInit() {
-        this.subscription = this.workspaceService.currentCounter$.subscribe(v => {
+    ngOnInit(){
+        this.workspaceService.currentCounter$.subscribe(v => {
             this.services = v.services.map(item => {
                 return Object.assign({
                     id: item,
@@ -33,23 +32,19 @@ export class AddServiceDialogComponent {
         })
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
-
-    close() {
+    close(){
         this.dialogRef.close();
     }
 
-    AddService() {
+    AddService(){
         if (this.checkedServices.length < 1) {
             this.notice.ShowMessage("missing_service");
             return;
-        } else {
+        }else{
             this.close()
-            this.ticketService.Move(this.ticket, this.checkedServices, []).subscribe(v => {
+            this.ticketService.Move(this.ticket, this.checkedServices,[]).subscribe(v => {
                 ShowLoading();
-                this.ticketService.TriggerAction('call', this.ticket).subscribe(v => {
+                this.ticketService.TriggerAction('call',this.ticket).subscribe(v => {
                     HideLoading();
                 })
             })

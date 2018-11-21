@@ -35,7 +35,7 @@ export class StaffTableComponent implements OnInit {
 
   cellClass: string[] = ['center', 'padding-10'];
 
-  gridOptions: GridOptions = {
+  private gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

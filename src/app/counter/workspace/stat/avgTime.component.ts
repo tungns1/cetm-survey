@@ -16,6 +16,6 @@ export class AvgTimeComponent {
     }
 
     maxServingMinute = ProjectConfig.service.max_serving_minute;
-    duration = 0;
-    warning = false;
+    protected duration = 0;
+    protected warning = false;
 }

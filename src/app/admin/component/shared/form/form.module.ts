@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { ArrayFormComponent } from './array-form.component';
 import { Ng2BasicModule } from '../../../shared';
+import { QuestionFormComponent } from './question-form/question-form.component';
 
 @NgModule({
     imports: [FormsModule, CommonModule, FlexLayoutModule],
@@ -52,9 +53,15 @@ export class JSONFormModule {
 }
 
 @NgModule({
+    imports: [
+        CommonModule, FlexLayoutModule, FormsModule,
+        MatCheckboxModule, ReactiveFormsModule
+    ],
+    declarations: [QuestionFormComponent],
     exports: [
         ArrayFormModule, JSONFormModule,
-        CultureModule, AttributeListFormModule
+        CultureModule, AttributeListFormModule,
+        QuestionFormComponent
     ]
 })
 export class AdminFormModule {

@@ -19,8 +19,8 @@ export class TicketDetailComponent {
         public dialogRef: MatDialogRef<any>
     ) { }
 
-    ticket: Ticket;
-    customer: ICustomer;
+    private ticket: Ticket;
+    private customer: ICustomer;
     private showWaiting = false;
     private showServing = false;
 

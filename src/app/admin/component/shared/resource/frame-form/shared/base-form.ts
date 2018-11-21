@@ -2,7 +2,7 @@ import { ControlValueAccessor } from '@angular/forms';
 import { cloneDeep } from 'lodash';
 
 export class BaseFormComponent<T> implements ControlValueAccessor {
-  value: T;
+  protected value: T;
 
   protected onChangeCallback = (data: T) => { };
 

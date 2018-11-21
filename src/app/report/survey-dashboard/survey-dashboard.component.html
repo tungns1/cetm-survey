@@ -1,0 +1,101 @@
+<div id="surveyDashboard" fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'survey'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Dashboard Survey"></app-env-sub-module>
+            <div class="headerAndNav">
+                <h2 class="header uppercase" i18n>General Survey</h2>
+                <div class="nav">
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/surveyHistory" i18n>History Survey</button>
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/surveyAnalysis" i18n>Survey Analysis</button>
+                </div>
+            </div>
+            <app-summary-info *ngIf="channel.length == 1 && channel[0] === 'store'" [data]="data$ | async"></app-summary-info>
+            <app-summary-info *ngIf="(channel.length == 1 && channel[0] !== 'store') || channel.length > 1" [data]="dataMultiChannel$ | async"></app-summary-info>
+
+            <div class="divider margin-20-0"></div>
+
+            <div class="border">
+
+                <mat-tab-group fxFlex (selectedIndexChange)="onTabChange($event)">
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <span class="uppercase" i18n>Feedback Count</span>
+                        </ng-template>
+                        <div *ngIf="selectedTab === 0" class="chartContainer">
+                            <ngx-charts-line-chart [results]="feedbackCountChart$ | async" legend="true" xAxis="true" yAxis="true" legendTitle="Legend"
+                                i18n-legendTitle></ngx-charts-line-chart>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <span class="uppercase" i18n>Average Feedback Point</span>
+                        </ng-template>
+                        <div *ngIf="selectedTab === 1" class="chartContainer">
+                            <ngx-charts-bar-vertical *ngIf="channel.length === 1 && channel[0] === 'store'" [results]="averagePointChart$ | async" legend="true"
+                                xAxis="true" yAxis="true" legendTitle="Legend" i18n-legendTitle></ngx-charts-bar-vertical>
+                            <ngx-charts-bar-vertical *ngIf="channel.length > 1 || (channel.length === 1 && channel[0] !== 'store')" [results]="multiChannelAverageChart$ | async" legend="true" xAxis="true"
+                                yAxis="true" legendTitle="Legend" i18n-legendTitle></ngx-charts-bar-vertical>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <span class="uppercase" i18n>Highlight</span>
+                        </ng-template>
+                        <div *ngIf="selectedTab === 2">
+                            <select id="highlight" [(ngModel)]="highlight" (change)="onHighlightChange()">
+                                <option value="feedbackCount" i18n>Highest Feedback Count</option>
+                                <option value="averagePoint" i18n>Highest Average Point</option>
+                            </select>
+                            <div class="chartContainer padding-t-50">
+                                <ngx-charts-bar-vertical *ngIf="channel.length === 1 && channel[0] === 'store'" [results]="highlightChart$ | async" legend="true"
+                                    xAxis="true" yAxis="true" legendTitle="Legend" i18n-legendTitle></ngx-charts-bar-vertical>
+                                <ngx-charts-bar-vertical *ngIf="channel.length > 1 || (channel.length === 1 && channel[0] !== 'store')" [results]="multiChannelHighlightChart$ | async" legend="true" xAxis="true"
+                                    yAxis="true" legendTitle="Legend" i18n-legendTitle></ngx-charts-bar-vertical>
+                            </div>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </div>
+
+            <ag-grid-angular *ngIf="isShowTable" style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="(channel.length == 1 && channel[0] === 'store') ? (dataTable$ | async) : (dataMultiTable$ | async)"
+                class="ag-fresh tableCtrl" enableColResize enableSorting>
+
+                <ag-grid-column headerName="No." [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+                <div *ngIf="channel.length == 1 && channel[0] === 'store'">
+                    <ag-grid-column *ngIf="actorName === 'store'" headerName="Store" field="actor" [unSortIcon]="true" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column *ngIf="actorName === 'device'" headerName="Device" field="actor" [unSortIcon]="true" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column *ngIf="actorName === 'uname'" headerName="Teller" field="actor" [unSortIcon]="true" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                </div>
+                <ag-grid-column *ngIf="(channel.length == 1 && channel[0] !== 'store') || channel.length > 1" headerName="Channel" field="channel" [unSortIcon]="true" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+                <ag-grid-column headerName="Total Feedback" field="count" [unSortIcon]="true" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Average Point" field="average_point" [unSortIcon]="true" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Good Feedback" field="high" [width]="100" [unSortIcon]="true" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Good Feedback Percent" field="high_percent" [unSortIcon]="true" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Rather Feedback" field="credit" [width]="100" [unSortIcon]="true" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Rather Feedback Percent" field="credit_percent" [unSortIcon]="true" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Averge Feedback" field="medium" [width]="100" [unSortIcon]="true" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Averge Feedback Percent" field="medium_percent" [unSortIcon]="true" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Poor Feedback" field="low" [width]="100" [unSortIcon]="true" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Poor Feedback Percent" field="low_percent" [unSortIcon]="true" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+            </ag-grid-angular>
+
+            <div fxLayout="row">
+                <div fxFlex="80%"></div>
+                <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to csv</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

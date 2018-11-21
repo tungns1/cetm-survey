@@ -1,5 +1,6 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ElementRef, Input, forwardRef, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { CacheBranch } from '../../model';
 import { BranchFilterService } from '../filter';
 import { switchMap, map } from 'rxjs/operators';
@@ -9,6 +10,10 @@ const BRANCH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     useExisting: forwardRef(() => BranchPickerComponent),
     multi: true
 };
+
+const noop = function () {
+
+}
 
 @Component({
     selector: 'branch-picker',
@@ -34,15 +39,20 @@ export class BranchPickerComponent implements ControlValueAccessor {
 
     @Input() scope: string = 'global';
 
-    branches$ = this.branchFilterService.Data$.pipe(switchMap(filter => {
+    protected branches$ = this.branchFilterService.Data$.pipe(switchMap(filter => {
         const ids = this.branchFilterService.getAllID();
         return CacheBranch.RxListView.pipe(map(branches => {
             return branches.filter(b => ids.indexOf(b.id) !== -1);
         }));
     }));
-    selected = '';
-    onChangeCallback = (v: string) => { };
-    disabled = false;
+    protected selected = '';
+    private onChangeCallback = (v: string) => { };
+    protected disabled = false;
+
+    ngOnInit(){
+        // console.log('aaaaaaaaaaaaaaaaaa');
+        // console.log(this.scope);
+    }
 
     setDisabledState?(isDisabled: boolean) {
         this.disabled = isDisabled;

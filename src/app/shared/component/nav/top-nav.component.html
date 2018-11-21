@@ -21,7 +21,6 @@
                 <li *ngIf="!isAdminStandard" routerLink="/admin/center/service" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Service</span>
                 </li>
-
                 <li class="li_secondLv">
                     <div class="paddingFirst" routerLink="/admin/meta/branch_config" queryParamsHandling="preserve">
                         <span i18n>Config</span>
@@ -41,14 +40,13 @@
                             <span i18n class="paddingSecond">Service Group</span>
                         </li>
                     </ul>
-                </li>
+                </li>                
                 <li *ngIf="!isAdminStandard" routerLink="/admin/house/counter" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Counter</span>
                 </li>
                 <li routerLink="/admin/org/user">
                     <span i18n class="paddingSecond">User</span>
                 </li>
-
                 <!-- <li routerLink="/admin/center/formconfig">
                     <span i18n class="paddingSecond">Form Configuration</span>
                 </li>
@@ -81,22 +79,8 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
-                <!-- <li *ngIf="!isAdminStandard"  queryParamsHandling="preserve">
-                    <span i18n class="paddingSecond">Booking Report</span>
-                    <ul class="thirdLv">
-                        <li *ngIf="!isAdminStandard" routerLink="/report/appointmentPerformance" queryParamsHandling="preserve">
-                            <span i18n class="paddingSecond">Appointment Performance</span>
-                        </li>
-                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingHistory" queryParamsHandling="preserve">
-                            <span i18n class="paddingSecond">Booking History</span>
-                        </li>
-                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingStatus" queryParamsHandling="preserve">
-                            <span i18n class="paddingSecond">Booking Status</span>
-                        </li>
-                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingDetail" queryParamsHandling="preserve">
-                            <span i18n class="paddingSecond">Booking Detail</span>
-                        </li>
-                    </ul>
+                <!-- <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Staff Performance</span>
                 </li>
                 <li *ngIf="!isAdminStandard" routerLink="/report/cusWaiting" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Waiting Time</span>
@@ -110,6 +94,29 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/detailSusServing" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Detail Serving Time</span>
                 </li> -->
+                <li class="li_secondLv">
+                    <div class="paddingFirst" routerLink="/report/surveyDashboard" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/report/surveyDashboard')">
+                        <span i18n>Customer Feedback</span>
+                        <i class="fa fa-caret-right"> </i>
+                    </div>
+                    <ul class="thirdLv">
+                        <li *ngIf="!isAdminStandard" routerLink="/report/surveyDashboard" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Survey Results Dashboards</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/surveyHistory" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">History Survey</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/surveyAnalysis" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Survey Analysis</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/timeline" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Timeline</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/luckyUsers" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Lucky User List</span>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li class="li_firstLv" *ngIf="!(isMedia$ | async) && !isAdminStandard">
@@ -117,6 +124,17 @@
                 <i class="fa fa-bell"> </i>
                 <span i18n>Monitor</span>
             </div>
+            <ul class="secondLv">
+                <li *ngIf="!isAdminStandard" routerLink="/monitor/ticket" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Transaction</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/monitor/device" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Device</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/monitor/survey" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Survey</span>
+                </li>
+            </ul>
         </li>
         <li class="li_firstLv" *ngIf="isAdmin$ | async">
             <div class="paddingFirst" routerLink="/admin/house/kiosk" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/kiosk')">
@@ -149,11 +167,26 @@
         <li class="li_firstLv" *ngIf="(isAdmin$ | async) && !isAdminStandard">
             <div class="paddingFirst" routerLink="/admin/house/feedback" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/feedback')">
                 <i class="fa fa-desktop"> </i>
-                <span i18n>Feedback</span>
+                <span i18n>Customer Feedback & Survey</span>
             </div>
             <ul class="secondLv">
+                <li *ngIf="!isAdminStandard" routerLink="/admin/center/survey" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Survey Managerment</span>
+                </li>
+                <li *ngIf="!isAdminStandard" routerLink="/admin/house/campaign" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Campaign Managerment</span>
+                </li>
                 <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/layout/list', {tag: 'feedback'}]" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Feedback Layout</span>
+                </li>
+                <!-- <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/linkChannel']" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Get Link</span>
+                </li> -->
+                <!-- <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/surveyUI/list']" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Survey UI</span>
+                </li> -->
+                <li *ngIf="!isAdminStandard" [routerLink]="['/admin/center/surveySetting/list']" queryParamsHandling="preserve">
+                    <span i18n class="paddingSecond">Survey Setting</span>
                 </li>
             </ul>
         </li>

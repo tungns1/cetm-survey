@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+  <accordion name="channel">
+    <accordion-title class="accordionTitle">
+      <span i18n>Channel</span>
+    </accordion-title>
+    <select-check formControlName="channel" [data]="channels$ | async" textField="channel" idField="channel"></select-check>
+  </accordion>
+</form>

@@ -1,0 +1,28 @@
+@import '../../../shared/style.scss';
+#emailConfig {
+    padding: 20px 50px;
+    box-sizing: border-box;
+    #tableComponent {
+        border: $border;
+        width: 100%;
+        .hl-thr-editor {
+            background-color: #dee0df;
+            height: 50px;
+            line-height: 50px;
+        }
+        .col-header {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    form {
+        .rowCtrl {
+            width: 90%;
+            margin-bottom: 20px;
+            .labelCtrl{
+                text-align: right;
+                margin-top: 5px;
+            }
+        }
+    }
+}

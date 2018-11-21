@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AmazingTimePickerService } from 'amazing-time-picker';
@@ -34,11 +35,11 @@ export class KioskConfigComponent implements ControlValueAccessor {
     constructor(
         private atp: AmazingTimePickerService
     ) { }
-    value: IKioskConfig = {
+    protected value: IKioskConfig = {
         max_ticket: -1,
         time_work_in_day: []
     }
-    workingTime = [];
+    private workingTime = [];
 
     private onChangeCallback = (v) => { };
 

@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { RuntimeEnvironment } from '../../env';
-import { USER_ROLES, CacheBranch } from '../../model';
+import { USER_ROLES } from '../../model';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -38,6 +38,8 @@ export class TopNavComponent {
             if (this.router.url.startsWith('/admin')) {
                 if (this.router.url.indexOf('kiosk') > -1 && route.indexOf('kiosk') <= -1) return false;
                 if (this.router.url.indexOf('screen') > - 1 && route.indexOf('screen') <= -1) return false;
+                if (this.router.url.indexOf('feedback') > - 1 && route.indexOf('feedback') <= -1) return false;
+                if (this.router.url.indexOf('survey') > - 1 && route.indexOf('survey') <= -1) return false;
                 if (this.router.url.indexOf('ticketlayout') > -1 && route.indexOf('admin') > -1) return false;
                 return true;
             }

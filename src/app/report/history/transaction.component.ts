@@ -24,8 +24,8 @@ export class TransactionComponent implements OnInit {
         private reportCustomerService: ReportCustomerService,
     ) { }
 
-    data: ITransactionView;
-    audio_url: string; // link to audio 
+    protected data: ITransactionView;
+    protected audio_url: string; // link to audio 
     customer: ICustomer;
     admin: IUser;
     manager: IUser;
@@ -33,7 +33,6 @@ export class TransactionComponent implements OnInit {
 
     ngOnInit() {
         this.data = this.dialogData;
-        console.log(this.data)
         this.audio_url = this.getAudioLink(this.dialogData.audio);
         this.getBranchUsers(this.dialogData.branch_id);
         this.getCustomer(this.dialogData.customer_id);
@@ -42,7 +41,7 @@ export class TransactionComponent implements OnInit {
 
     private getAudioLink(uri: string) {
         if (!uri) return '';
-        return `${this.env.Platform.Http}/api/report/record/${uri}`;
+        return `${this.env.Platform.HttpCETM}/api/report/record/${uri}`;
     }
 
     private getCustomer(customer_id: string) {

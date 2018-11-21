@@ -1,11 +1,12 @@
-import { Component, Input, ElementRef } from '@angular/core';
-import { Subscription, interval } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Subscription ,  interval } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Component({
     selector: 'timer',
     template: ``
 })
+
 
 export class TimerComopnent {
 
@@ -13,30 +14,36 @@ export class TimerComopnent {
 
     }
 
-    @Input() timeWarning: number = 1500;
-    @Input() start: number;
-    @Input() refreshTime: number = 1000;
     private subscription: Subscription;
     private params: any;
+    private oneSecond = interval(1000).pipe(share());
     private native: HTMLElement = this.ref.nativeElement;
 
+    @Input() timeWarning: number = 1500;
+    @Input() set start(t: number) {
+        this._start = t;
+        this.ngAfterViewInit();
+    }
+
+    _start: number;
+
     ngAfterViewInit() {
-        let refreshInterval = interval(this.refreshTime).pipe(startWith(0));
+        this.clear();
         let ctime = 0;
-        if (this.start) {
-            ctime = this.getCTime(this.start, this.timeWarning);
-            this.subscription = refreshInterval.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.timeWarning));
+        if (this._start) {
+            ctime = this.getCTime(this._start, this.timeWarning);
+            this.subscription = this.oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.timeWarning));
         } else if (this.params) {
             ctime = this.getCTime(this.params.data.mtime, this.params.timeWarning);
-            this.subscription = refreshInterval.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.params.timeWarning));
+            this.subscription = this.oneSecond.subscribe(_ => this.view(Date.now() / 1000 - ctime, this.params.timeWarning));
         }
     }
 
-    agInit(params: any) {// get data from ag-grid
+    agInit(params: any): void {// get data from ag-grid
         this.params = params;
     }
 
-    private getCTime(time: number, timeWarning: number) {
+    getCTime(time: number, timeWarning: number) {
         let ctime = 0;
         if ((Date.now() / 1000 - time) < 0) {
             ctime = Date.now() / 1000;
@@ -48,9 +55,16 @@ export class TimerComopnent {
         return ctime;
     }
 
-    private TwoDigit(n: number): string {
+    TwoDigit(n: number): string {
         let v = Math.floor(n);
         return (v > 9 ? '' : '0') + v;
+    }
+
+    private clear() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+            this.subscription = null;
+        }
     }
 
     private view(duration: number, timeWarning: number) {
@@ -64,10 +78,7 @@ export class TimerComopnent {
     }
 
     ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-            this.subscription = null;
-        }
+        this.clear();
     }
 
 }

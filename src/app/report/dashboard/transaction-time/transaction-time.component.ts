@@ -14,7 +14,7 @@ export class TransactionTimeComponent implements OnInit {
 
   cellClass: string[] = ['center', 'padding-10'];
   headerName: string;
-  _data: TransactionAggregate[] = [];
+  protected _data: TransactionAggregate[] = [];
   @Input() field = 'branch_id';
 
   @Input() set data(v: TransactionAggregate[]) {
@@ -50,7 +50,7 @@ export class TransactionTimeComponent implements OnInit {
   //   }
   // }
 
-  gridOptions: GridOptions = {
+  private gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

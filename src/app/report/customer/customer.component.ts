@@ -68,8 +68,8 @@ export class CustomerComponent {
                 return 10;
         }
     }));
-    selectedTab: number;
-    isAdminStandard: boolean;
+    private selectedTab: number;
+    private isAdminStandard: boolean;
 
     ngOnInit() {
         this.env.Auth.User$.subscribe(u => {

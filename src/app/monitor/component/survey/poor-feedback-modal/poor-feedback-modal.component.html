@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <span i18n>Poor Feedback Detail</span>
+</div>
+
+<div class="padding-30">
+    <div *ngIf="data" fxLayout="row" fxLayoutGap="100px">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Date</strong>
+                <span fxLayout>{{data.date}}</span>
+            </div>
+            <div *ngIf="!isStoreChannel" fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Channel</strong>
+                <span fxLayout>{{data.channel}}</span>
+            </div>
+            <div *ngIf="data.store" fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Store</strong>
+                <span fxLayout>{{data.store}}</span>
+            </div>
+            <div *ngIf="isStoreChannel" fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Teller</strong>
+                <span fxLayout>{{data.uname}}</span>
+            </div>
+        </div>
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Time</strong>
+                <span fxLayout>{{data.time}}</span>
+            </div>
+            <div *ngIf="isStoreChannel" fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Counter</strong>
+                <span fxLayout>{{data.counter}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="rowCtrl">
+                <strong fxLayout i18n>Average Point</strong>
+                <span fxLayout>{{data.average_point}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider margin-20-0"></div>
+
+    <h3 class="center" i18n>Feedback detail at counter</h3>
+
+    <ag-grid-angular #agGrid style="height: 20vh; width: 100%; background-color: #fff" [gridOptions]="gridOptions" [rowData]="tableData"
+      class="ag-fresh tableCtrl" enableColResize enableSorting>
+      <ag-grid-column headerName="Question" field="content" [width]="390" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+      <ag-grid-column headerName="Answer" field="answer" [width]="200" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+      <ag-grid-column headerName="Point" field="point" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+    </ag-grid-angular>
+
+    <div fxLayout="row" class="margin-20-0">
+        <div fxFlex></div>
+        <button fxFlex="100px" class="btnFill ctrlBtn" (click)="close()" i18n>Close</button>
+    </div>
+</div>

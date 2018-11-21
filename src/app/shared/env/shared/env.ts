@@ -17,6 +17,7 @@ export class RuntimeEnvironment {
 
     Debug = new DebugEnvStorage();
     Platform = new PlatformEnvStorage();
+
     generateHostName(port?: number) {
         if (port) {
             let hostName = this.Platform.Data.host_cetm ? this.Platform.Data.host_cetm.split(':')[0] : window.location.hostname;
@@ -25,5 +26,10 @@ export class RuntimeEnvironment {
             let host = this.Platform.Data.host_cetm ? this.Platform.Data.host_cetm : window.location.host;
             return 'http://' + host;
         }
+    }
+
+    generateHostSurvey() {
+        let host = this.Platform.Data.host_survey ? this.Platform.Data.host_survey : window.location.host;
+        return host;
     }
 }

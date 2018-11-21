@@ -1,0 +1,48 @@
+<div id="surveyHistory" fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'surveyHistory'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Feedback History"></app-env-sub-module>
+            <div class="headerAndNav">
+                <h2 class="header uppercase" i18n>Feedback History</h2>
+                <div class="nav">
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/surveyDashboard" i18n>Dashboard Survey</button>
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/surveyAnalysis" i18n>Survey Analysis</button>
+                </div>
+            </div>
+            
+            <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data$ | async" class="ag-fresh tableCtrl"
+                enableColResize enableSorting>
+
+                <ag-grid-column headerName="No." [unSortIcon]="true" [cellRenderer]="noCellRenderer" [width]="50" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Date" [unSortIcon]="true" field="day_ctime" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Time" [unSortIcon]="true" field="hour_ctime" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+                <ag-grid-column headerName="Channel" [unSortIcon]="true" field="channel" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Store" [unSortIcon]="true" field="store" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Feedback Device" [unSortIcon]="true" field="device" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Location" [unSortIcon]="true" field="location" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+                <ag-grid-column headerName="Teller" [unSortIcon]="true" field="uname" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+                <ag-grid-column headerName="ID" [unSortIcon]="true" field="car_id" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Service name" [unSortIcon]="true" field="service_name" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Serving time" [unSortIcon]="true" field="servingTime" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+                <ag-grid-column headerName="Average Point" [unSortIcon]="true" field="average_point" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Detail" [unSortIcon]="true" [cellClass]="cellclass" [cellRenderer]="detailCellRenderer" [width]="70" i18n-headerName></ag-grid-column>
+
+
+            </ag-grid-angular>
+            <div fxLayout="row">
+                <div fxFlex="80%"></div>
+                <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to csv</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

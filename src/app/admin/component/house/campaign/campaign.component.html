@@ -1,0 +1,82 @@
+<app-env-sub-module i18n-title title="Campaign"></app-env-sub-module>
+<div class="animated fadeInLeft" *ngIf="isList">
+  <app-datatable i18n-name name="Campaign" [data]="data$ | async" (action)="onAction($event)">
+    <app-table-field name="name" i18n-title title="Name"></app-table-field>
+  </app-datatable>
+</div>
+
+<div class="animated fadeInLeft" *ngIf="!isList">
+  <div class="headerAndNav">
+    <h2 *ngIf="isNew" class="header uppercase" i18n>Add New Campaign</h2>
+    <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit campaign</h2>
+    <div class="nav">
+      <button class="btnClear btnMargin uppercase" (click)="toggleList()">
+        <span i18n class="uppercase">Go Back</span>
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" fxLayout="column">
+    <p i18n>Name</p>
+    <input class="ctrlInput" formControlName="name" i18n-placeholder placeholder="Campaign name" required>
+    <div *ngIf="form.controls.name.hasError('required')" class="valid-color" i18n>The campaign name is required</div>
+    <div *ngIf="!form.controls.name.hasError('required')" class="valid-color">&nbsp;</div>
+    <div fxLayout="row">
+      <p fxFlex=35 i18n>From Day</p>
+      <div fxFlex></div>
+      <p fxFlex=35 i18n>To Day</p>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex=35>
+        <input matInput [matDatepicker]="startDatePicker" formControlName="start">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+      <div fxFlex></div>
+      <mat-form-field fxFlex=35>
+        <input matInput [matDatepicker]="endDataPick" formControlName="end">
+        <mat-datepicker-toggle matSuffix [for]="endDataPick"></mat-datepicker-toggle>
+        <mat-datepicker #endDataPick></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+      <p fxFlex=35 i18n>Channel</p>
+      <div fxFlex></div>
+      <p fxFlex=35 i18n>Survey</p>
+    </div>
+    <div fxLayout="row">
+      <select-check fxFlex="35" class="border" formControlName="channels" [data]="channels$ | async" textField="channel" idField="channel"></select-check>
+      <div fxFlex></div>
+      <select-check fxFlex="35" class="border" formControlName="surveys" [data]="survey$ | async" textField="name" idField="id"></select-check>
+    </div>
+    <div fxLayout="row">
+      <div *ngIf="!!!form.value.channels?.length" fxFlex="35" class="valid-color" i18n>You have to choose at least one channel</div>
+      <div *ngIf="!!form.value.channels?.length" fxFlex="35" class="valid-color">&nbsp;</div>
+      <div fxFlex></div>
+      <div *ngIf="!!!form.value.surveys?.length" fxFlex="35" class="valid-color" i18n>You have to choose at least one survey</div>
+    </div>
+
+    <div *ngIf="isShowFeedbackList" fxLayout="row">
+      <p fxFlex=35 i18n>Feedback Device</p>
+      <div fxFlex></div>
+    </div>
+    <div *ngIf="isShowFeedbackList" fxLayout="row">
+      <select-check fxFlex="35" class="border" formControlName="devices" [data]="feedback$ | async" textField="name" idField="code"></select-check>
+      <div fxFlex></div>
+    </div>
+    <div *ngIf="isShowFeedbackList && !!!form.value.devices?.length" fxFlex="35" class="valid-color" i18n>You have to choose at least one device</div>
+    <div *ngIf="isShowFeedbackList && !!form.value.devices?.length" fxFlex="35" class="valid-color">&nbsp;</div>
+    <!-- <button (click)="test()">test</button> -->
+
+  </form>
+
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action margin-t-25">
+    <button *ngIf="isNew" fxFlex="15%" class="uppercase btnFill" [disabled]="!form.valid || !!!form.value.channels?.length || !!!form.value.surveys?.length || 
+    (isShowFeedbackList && !!!form.value.devices?.length)" [style.opacity]="(!form.valid || !!!form.value.channels?.length || !!!form.value.surveys?.length || 
+    (isShowFeedbackList && !!!form.value.devices?.length)) ? 0.4 : 1" (click)="addCampaign()" i18n>Add</button>
+    <button *ngIf="!isNew" fxFlex="15%" class="uppercase btnFill" [disabled]="!form.valid || !!!form.value.channels?.length || !!!form.value.surveys?.length || 
+    (isShowFeedbackList && !!!form.value.devices?.length)" [style.opacity]="(!form.valid || !!!form.value.channels?.length || !!!form.value.surveys?.length || 
+    (isShowFeedbackList && !!!form.value.devices?.length)) ? 0.4 : 1" (click)="editCampaign()" i18n>Save</button>
+  </div>
+</div>

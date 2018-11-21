@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, Input, forwardRef, ExistingProvider } from '@angular/core';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IStaffPosition, ICounter, IUser, ICounterUserConfigs } from '../../shared'
@@ -29,7 +30,7 @@ interface ICounterUser extends ICounter {
 export class StaffPositionComponent implements ControlValueAccessor {
 
     protected value: ICounterUserConfigs[];
-    counters: ICounterUser[];
+    private counters: ICounterUser[];
     private users: IUser[];
     private curentBranch: string = '';
     private onChangeCallback = (v) => { };

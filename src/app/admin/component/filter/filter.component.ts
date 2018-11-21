@@ -1,7 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AdminNavService } from '../shared';
 
 @Component({
@@ -12,7 +9,6 @@ import { AdminNavService } from '../shared';
 export class AdminFilterComponent {
 
     constructor(
-        private route: ActivatedRoute,
         private navService: AdminNavService
     ) { }
     hidden = true;

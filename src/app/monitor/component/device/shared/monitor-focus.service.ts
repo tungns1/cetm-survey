@@ -11,7 +11,6 @@ import { ReplaySubject ,  merge ,  of } from 'rxjs';
 import { share, auditTime, map, startWith, switchMap } from 'rxjs/operators';
 
 
-
 @Injectable()
 export class MonitorFocusService {
 

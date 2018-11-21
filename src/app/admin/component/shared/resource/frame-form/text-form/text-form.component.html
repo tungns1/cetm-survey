@@ -3,8 +3,8 @@
 
     <div class="divider"></div>
     <h4 class="center">Style</h4>
-
-    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    
+    <div *ngIf="value.style" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
         <span *ngIf="value.data.align" fxFlex="10" class="margin-t-5">Align</span>
         <select *ngIf="value.data.align" fxFlex="34" class="hl-select" [(ngModel)]="value.data.align">
             <option value="left">Left</option>

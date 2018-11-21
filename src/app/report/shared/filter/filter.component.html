@@ -1,8 +1,18 @@
 <div class="filter" fxLayout="column">
     <div fxFlex class="content">
         <period-filter></period-filter>
-        <branch-filter *ngIf="inside!='customer'"></branch-filter>
-        <inside-filter *ngIf="inside==='yes'"></inside-filter>
+        <div *ngIf="inside === 'survey' || inside === 'surveyHistory' || inside === 'surveyAnalysis'">
+            <app-channel-filter></app-channel-filter>
+            <div *ngIf="isStoreChannel">
+                <branch-filter *ngIf="inside != 'customer' && inside != 'surveyAnalysis'"></branch-filter>
+                <inside-filter *ngIf="inside === 'yes' && inside != 'surveyAnalysis'"></inside-filter>
+                <app-customer-survey-filter [inside]="inside"></app-customer-survey-filter>
+            </div>
+        </div>
+        <div *ngIf="inside !== 'survey' && inside !== 'surveyHistory' && inside !== 'surveyAnalysis'">
+            <branch-filter *ngIf="inside != 'customer'"></branch-filter>
+            <inside-filter *ngIf="inside === 'yes'"></inside-filter>
+        </div>
     </div>
     <div fxFlex="7vh" class="action">
         <button class="btnFill uppercase" (click)="Refresh()" i18n>View</button>

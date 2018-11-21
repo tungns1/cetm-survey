@@ -3,7 +3,7 @@ import { RuntimeEnvironment } from '../../../../../shared';
 import { UploadURLToken } from '../../../../../x/ng/upload/';
 
 export function __uploadUrlTokenFactory(env: RuntimeEnvironment) {
-    return env.Platform.Http;
+    return env.Platform.HttpCETM;
 }
 
 export const provideUploadURLToken: FactoryProvider = {

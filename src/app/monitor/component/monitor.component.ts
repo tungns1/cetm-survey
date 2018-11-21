@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChannelFilterService } from './filter/channel-filter/channel-filter.service';
 
 @Component({
     selector: 'app-monitor',
@@ -7,5 +7,26 @@ import { Observable } from 'rxjs';
     encapsulation: ViewEncapsulation.None
 })
 export class MonitorComponent {
-    hidden = true;
+    constructor(
+        private channelFilterService: ChannelFilterService,
+    ) { }
+    child
+
+    onFilter() {
+        
+        if (Object.keys(this.child)[0] === 'sumService') {
+            this.child.sumService.refreshData();
+        }
+        const channel = this.channelFilterService.Data.channel
+        if (channel) {
+            if (!channel.length || (channel.length === 1 && channel[0] === 'store')) {
+                this.child.sumService.isStoreChannel$.next(true);
+            } 
+            else this.child.sumService.isStoreChannel$.next(false);
+        }
+    }
+
+    onActivate(componentRef) {
+        this.child = componentRef;
+    }
 }

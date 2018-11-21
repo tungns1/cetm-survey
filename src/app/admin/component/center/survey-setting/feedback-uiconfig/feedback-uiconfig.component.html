@@ -1,0 +1,32 @@
+<div id="feedbackUIConfigModal">
+
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <div fxFlex></div>
+    <span fxFlex="5" class="labelCtrl" i18n>Background</span>
+    <button fxFlex="10" class="btnFill margin-b-15" (click)="fileBackground.click()" i18n>Select</button>
+    <div fxFlex></div>
+    <span fxFlex="5" class="labelCtrl" i18n>Logo</span>
+    <button fxFlex="10" class="btnFill margin-b-15" (click)="fileLogo.click()" i18n>Select</button>
+    <div fxFlex></div>
+  </div>
+  <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+    <div fxFlex></div>
+    <span fxFlex="5" class="labelCtrl" i18n>Video</span>
+    <button fxFlex="10" class="btnFill margin-b-15" (click)="fileVideo.click()" i18n>Select</button>
+    <div fxFlex></div>
+    <div fxFlex="5"></div>
+    <div fxFlex="10"></div>
+    <div fxFlex></div>
+  </div>
+
+  <input class="hide" type="file" #fileBackground (change)="onUploadFileBackground(fileBackground)" name="background">
+  <input class="hide" type="file" #fileLogo (change)="onUploadFileLogo(fileLogo)" name="logo">
+  <input class="hide" type="file" #fileVideo (change)="onUploadFileVideo(fileVideo)" name="logo">
+  
+  <!-- <ng-template #loading>
+      <div class="spinner">
+          <mat-spinner></mat-spinner>
+      </div>
+  </ng-template> -->
+
+</div>

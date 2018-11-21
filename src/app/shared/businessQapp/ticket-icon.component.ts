@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Ticket } from '../model/house/ticket/ticket';
 
 @Component({
@@ -22,7 +22,7 @@ export class TicketIconComponent {
         this._ticket = t
     };
     private params: any;
-    ticketNum: string;
+    private ticketNum: string;
     
     ngOnInit(){
         if(this._ticket){

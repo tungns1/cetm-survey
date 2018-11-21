@@ -1,5 +1,12 @@
 <div fxLayout="column" class="filter">
-    <branch-filter fxFlex class="content"></branch-filter>
+    <div fxFlex class="content" *ngIf="isSurvey">
+        <app-channel-filter></app-channel-filter>
+        <branch-filter *ngIf="isStoreChannel"></branch-filter>
+    </div>
+    <!-- <div>
+        <app-channel-filter></app-channel-filter> -->
+    <branch-filter *ngIf="!isSurvey" fxFlex class="content"></branch-filter>
+    <!-- </div> -->
     <div fxFlex="7vh" class="action">
         <button class="btnFill uppercase" (click)="refresh()" i18n>View</button>
     </div>

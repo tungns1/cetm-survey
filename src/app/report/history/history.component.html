@@ -1,6 +1,6 @@
 <div fxLayout="row">
     <div [fxFlex]="'250px'" class="leftFilter">
-        <report-filter (refresh)="refresh()" [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+        <report-filter (refresh)="refresh($event)" [inside]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
     </div>
 
     <div fxFlex style="overflow: auto;" class="mainContent">
@@ -30,8 +30,8 @@
                     <ag-grid-column headerName="Waiting Time" field="wtime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Serving Time" field="stime" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Feedback" field="rating" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-                    <!-- <ag-grid-column headerName="Score Text" field="survey.score_text" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
-                    <ag-grid-column headerName="Reason Text" field="survey.reason_text" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column> -->
+                    <ag-grid-column headerName="Score Text" field="survey.score_text" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Reason Text" field="survey.reason_text" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Reason Text" field="reason_text" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Authorize Survey" [cellRenderer]="authorizeSurveyCellRenderer" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
                     <ag-grid-column headerName="Detail" [cellClass]="cellClass" [cellRenderer]="detailCellRenderer" [width]="50" i18n-headerName></ag-grid-column>

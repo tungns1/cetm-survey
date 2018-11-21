@@ -20,7 +20,7 @@ export class PeriodFilterComponent implements OnInit {
         end: [],
         period: []
     });
-    period$ = this.periodFilterService.Data$.pipe(map(d => d.period));
+    private period$ = this.periodFilterService.Data$.pipe(map(d => d.period));
     private period: 'day' | 'week' | 'month' | 'year' = 'day';
     private weekStartArr: string[];
     private weekEndArr: string[];

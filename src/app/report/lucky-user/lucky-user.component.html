@@ -1,0 +1,28 @@
+<div id="luckyUsers" fxLayout="row">
+        <div [fxFlex]="'250px'" class="leftFilter">
+            <report-filter (refresh)="refresh($event)" [inside]="'luckyUsers'" style="padding-top: 50px; height: 100%"></report-filter>
+        </div>
+        <div fxFlex style="overflow: auto;" class="mainContent">
+            <div class="main_miraway">
+                <app-env-sub-module i18n-title title="Lucky Users"></app-env-sub-module>
+                <div class="headerAndNav">
+                    <h2 class="header uppercase" i18n>Lucky Users</h2>
+                   
+                </div>
+                
+                <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data$ | async"
+                    class="ag-fresh tableCtrl" enableColResize enableSorting enableFilter>
+                    <ag-grid-column headerName="Name" field="name" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                    <!-- <ag-grid-column headerName="Phone" field="phone" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column> -->
+                    <ag-grid-column headerName="GiftCode" field="gift_code" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Content" field="bonus_content" [width]="570" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Date" field="created_at" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                </ag-grid-angular>
+                <div fxLayout="row">
+                    <div fxFlex="80%"></div>
+                    <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to csv</button>
+                </div>
+            </div>
+            <footer></footer>
+        </div>
+    </div>

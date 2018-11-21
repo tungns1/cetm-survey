@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter,Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'
-import { BehaviorSubject } from "rxjs";
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { SurveyFilterService } from './shared/survey-filter.service';
 
 @Component({
     selector: 'report-filter',
@@ -8,9 +7,16 @@ import { BehaviorSubject } from "rxjs";
     styleUrls: ['filter.component.scss']
 })
 export class ReportFilterComponent {
-    @Input() inside:string;
-   
+    constructor(
+        private surveyFilterService: SurveyFilterService
+    ) { }
+    @Input() inside: string;
+    isStoreChannel: boolean = false;
+
     ngOnInit() {
+        this.surveyFilterService.selectedChannel$.subscribe(data => {
+            this.isStoreChannel = (data.length === 1 && data[0] === 'store');
+        })
         this.Refresh();
     }
 

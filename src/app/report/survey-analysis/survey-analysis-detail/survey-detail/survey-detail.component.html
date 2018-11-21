@@ -1,0 +1,40 @@
+<div *ngIf="data" class="surveyDetailContainer border padding-20">
+    <h3 class="center"><span i18n>Question</span> {{index + 1}}: {{data.content}}</h3>
+    <div fxLayout="row">
+        <div fxFlex="15" class="center">
+            <label class="labelCtrl" i18n>Feedback Count</label>
+            <span>: {{data.count}}</span>
+        </div>
+        <div fxFlex class="center">
+            <label class="labelCtrl" i18n>Highest Point</label>
+            <span>: {{data.max_point}}</span>
+        </div>
+        <div fxFlex="15" class="center">
+            <label class="labelCtrl" i18n>Average Point</label>
+            <span *ngIf="data.max_point == 0">: -</span>
+            <span *ngIf="data.max_point != 0">: {{(data.point * 10 / data.max_point).toFixed(2)}}</span>
+        </div>
+    </div>
+
+    <div *ngIf="data.type !== 'answer'" class="chartContainer">
+        <ngx-charts-bar-vertical [results]="answerData" legend="false" xAxis="true" yAxis="true" legendTitle="Legend" i18n-legendTitle></ngx-charts-bar-vertical>
+    </div>
+
+    <ag-grid-angular *ngIf="data.type !== 'answer'" style="height: 30vh; background-color: #fff" [gridOptions]="gridOptions"
+        [rowData]="answerData" class="ag-fresh tableCtrl" enableColResize enableSorting>
+        <ag-grid-column headerName="Choice" field="name" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Count" field="value" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Percent" field="percent" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+    </ag-grid-angular>
+
+
+
+
+    <ag-grid-angular *ngIf="data.type === 'answer'" style="height: 30vh; background-color: #fff" [gridOptions]="gridOptions"
+        [rowData]="data.answers" class="ag-fresh tableCtrl" enableColResize enableSorting>
+        <ag-grid-column headerName="Date Time" field="dateTime" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Store" field="store" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Location" field="location" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Content" field="content" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+    </ag-grid-angular>
+</div>

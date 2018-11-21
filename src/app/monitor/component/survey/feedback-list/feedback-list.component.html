@@ -1,0 +1,12 @@
+<ag-grid-angular #agGrid style="height: 30vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="data | async"
+  class="ag-fresh tableCtrl" enableColResize enableSorting>
+
+  <ag-grid-column headerName="Time" field="time" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+  <ag-grid-column headerName="Average Point" field="average_point" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+  <ag-grid-column headerName="Teller" field="uname" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+  <ag-grid-column headerName="Store" field="store" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+  <ag-grid-column headerName="Counter" field="counter" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+  <ag-grid-column headerName="Detail" [cellRenderer]="detailCellRenderer" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+
+</ag-grid-angular>

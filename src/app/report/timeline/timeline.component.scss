@@ -1,0 +1,79 @@
+.hl-max-sum {
+    width: 100%;
+    height: 10px;
+    background-color: #dee0e0;
+    border-radius: 15px;
+}
+
+#timlineReport {
+    height: 120px;
+    .hl-column-sum {
+        width: 100%;
+        float: left;
+    }
+    .col-total-left {
+        width: 45%;
+        float: left;
+    }
+    .col-total-right {
+        width: 50%;
+        float: right;
+    }
+    .finised_canceled {
+        height: 10px;
+        text-align: right;
+        float: left;
+        border-radius: 15px;
+        background: #dc3812;
+    }
+    .hl-max-sum {
+        width: 100%;
+        height: 10px;
+        background-color: #dee0e0;
+        border-radius: 15px;
+    }
+    .hl-tl-sum {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .hl-ct-sum {
+        font-size: 11px;
+        // margin-top: 10px;
+        // margin-bottom: 2px;
+    }
+    .hl-ctt-sum {
+        font-size: 11px;
+        margin-top: 5px;
+    }
+    .hl-giaodich {
+        color: #008eef;
+        float: right;
+    }
+    .sum_total {
+        background-color: #ea9999 !important;
+    }
+    .high_total {
+        background-color: #2e9dff !important;
+    }
+    .credit_total {
+        background-color: #4fbd53 !important;
+    }
+    .medium_total {
+        background-color: #fcc02c !important;
+    }
+    .low_total {
+        background-color: #ff1e1e !important;
+    }
+    .row-total {
+        width: 100%;
+        line-height: 10px;
+        margin: 10px 0;
+        height: 10px;
+    }
+}
+
+.chart-timeline {
+    display: inline-block;
+    height: 300px;
+    width: 100%
+}

@@ -38,8 +38,4 @@ export class FilePickerModalComponent implements OnInit {
         this.selectedTab = e.index;
     }
 
-    test1(node: FileNode){
-        this.selectedNode = node
-    }
-
 }

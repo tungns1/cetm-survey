@@ -1,0 +1,106 @@
+<div id="questionListID" formArray="questionListForm">
+
+    <div *ngFor="let question of questionListForm.controls; let questionIndex = index">
+        <div class="divider"></div>
+        <div class="questionContainer" [formGroup]="question">
+            <i class="fa fa-times fa-2x removeQuestionBtn" (click)="removeQuestion(questionIndex)"></i>
+            <p class="labelCtrl"><span i18n>Question</span> {{questionIndex + 1}}: </p>
+            <div fxLayout="row">
+                <span *ngIf="_i18nMode" fxFlex="20" i18n>Primary language</span>
+                <input fxFlex type="text" class="ctrlInput" formControlName="content">
+            </div>
+            <div *ngIf="_i18nMode" fxLayout="row">
+                <span fxFlex="20" i18n>Secondary language</span>
+                <input fxFlex type="text" class="ctrlInput" formControlName="i18n_content">
+            </div>
+            <div class="valid-color">
+                <span *ngIf="question.controls.content.hasError('required') || question.controls.i18n_content.hasError('required')" i18n>- Question content cannot be empty</span>
+                <span *ngIf="!question.controls.content.hasError('required') && !question.controls.i18n_content.hasError('required')">&nbsp;</span>
+            </div>
+            <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+                <span fxFlex="5" class="labelCtrl" i18n>Type</span>
+                <select fxFlex class="hl-select" formControlName="type">
+                    <option value="single" i18n>Single Choice</option>
+                    <option value="multiple" i18n>Multiple Choice</option>
+                    <option value="answer" i18n>Answer</option>
+                </select>
+                <p *ngIf="!(question.controls.type.value === 'single' && question.controls.manded.value)" fxFlex="5" class="labelCtrl" i18n>Link</p>
+                <select *ngIf="!(question.controls.type.value === 'single' && question.controls.manded.value)" fxFlex="15" class="hl-select"
+                    formControlName="link">
+                    <option value="-1" i18n>Link to question</option>
+                    <option *ngFor="let question of questionListForm.controls; let index = index" [value]="index" [disabled]="index === questionIndex"><span i18n>Question</span> {{index + 1}}</option>
+                </select>
+                <span *ngIf="question.value.type !== 'answer'" fxFlex="5" class="labelCtrl" i18n>Point</span>
+                <input *ngIf="question.value.type !== 'answer'" fxFlex="5" type="number" class="ctrlInput" formControlName="point" min="1">
+                <span fxFlex="5" class="labelCtrl" i18n>Required</span>
+                <mat-checkbox fxFlex="5" color="primary" formControlName="manded"></mat-checkbox>
+                <button *ngIf="question.value.type !== 'answer'" fxFlex="20" class="btnClear" (click)="addChoice(questionIndex)" i18n>Add Choice</button>
+                <div *ngIf="question.value.type === 'answer'" fxFlex="20"></div>
+            </div>
+
+            <div *ngIf="question.controls.point.hasError('incorrect')" class="valid-color">
+                <span *ngIf="question.value.type === 'single'" i18n>- The point of the single choice question should be greater than or equal point of each option</span>
+                <span *ngIf="question.value.type === 'multiple'" i18n>- The point of the multiple choice question should be greater than or equal total point of each option</span>
+            </div>
+            <div *ngIf="!question.controls.point.hasError('incorrect')" class="valid-color">&nbsp;</div>
+
+            <div *ngIf="question.value.type !== 'answer'" fxLayout="column" fxLayoutWrap class="rowCtrl">
+                <div *ngFor="let choice of question.controls.answers.controls; let choiceIndex = index" fxFlex="90" [formGroup]="choice">
+
+                    <div fxLayout="row" fxLayoutGap="10px" class="rowCtrl">
+                        <div fxFlex="50px" *ngIf="question.value.type === 'single'">
+                            <div *ngIf="choice.value.icon" class="iconContainer">
+                                <img [src]="choice.value.icon" class="iconBtn" (click)="addIcon(questionIndex, choiceIndex, choice.value.icon)">
+                                <i class="fa fa-times fa-lg removeIcon" (click)="removeIcon(questionIndex, choiceIndex)"></i>
+                            </div>
+                            <button *ngIf="!choice.value.icon" class="addIconBtn" (click)="addIcon(questionIndex, choiceIndex)">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <p *ngIf="question.value.type !== 'single'" fxFlex="5.6" class="labelCtrl marginAuto" i18n>Content</p>
+                        <p *ngIf="question.value.type === 'single'" fxFlex="10" class="labelCtrl marginAuto" i18n>Content</p>
+                        <input fxFlex type="text" class="ctrlInput marginAuto" formControlName="content">
+                        <p fxFlex="5" class="labelCtrl marginAuto" i18n>Point</p>
+                        <input fxFlex="5" type="number" class="ctrlInput marginAuto" formControlName="point">
+                        <p *ngIf="question.value.type === 'single'" fxFlex="5" class="labelCtrl marginAuto" i18n>Link</p>
+                        <select *ngIf="question.value.type === 'single'" fxFlex="20" class="hl-select marginAuto" formControlName="link">
+                            <option value="-1" i18n>Link to question</option>
+                            <option *ngFor="let question of questionListForm.controls; let index = index" [value]="index" [disabled]="index === questionIndex"><span i18n>Question</span> {{index + 1}}</option>
+                        </select>
+                        <button fxFlex="15" class="btnClear" (click)="removeChoice(questionIndex, choiceIndex)" i18n>Remove</button>
+                    </div>
+
+                    <div *ngIf="_i18nMode" fxLayout="row" fxLayoutGap="10px" class="rowCtrl">
+                        <div fxFlex="50px" *ngIf="question.value.type === 'single'"></div>
+                        <div *ngIf="question.value.type !== 'single'" fxFlex="5.6"></div>
+                        <div *ngIf="question.value.type === 'single'" fxFlex="10"></div>
+                        <input fxFlex type="text" class="ctrlInput marginAuto" formControlName="i18n_content">
+                        <div fxFlex="5"></div>
+                        <div fxFlex="5"></div>
+                        <div *ngIf="question.value.type === 'single'" fxFlex="5"></div>
+                        <div *ngIf="question.value.type === 'single'" fxFlex="20"></div>
+                        <div fxFlex="15"></div>
+                    </div>
+
+                    <div *ngIf="choice.controls.icon.hasError('required') || choice.controls.content.hasError('required') || choice.controls.i18n_content.hasError('required')" class="valid-color">
+                        <span *ngIf="question.value.type === 'single'" i18n>- Icon and answer content cannot be empty</span>
+                        <span *ngIf="question.value.type === 'multiple'" i18n>- Answer content cannot be empty</span>
+                    </div>
+
+                    <div *ngIf="!(choice.controls.icon.hasError('required') && choice.controls.content.hasError('required') && choice.controls.content.hasError('required'))" class="valid-color">&nbsp;</div>
+
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+    <!-- <button (click)="test()">test1</button> -->
+    <div class="divider"></div>
+    <div fxLayout="row" fxLayoutGap="20px" class="margin-15-0">
+        <div fxFlex></div>
+        <button fxFlex="200px" (click)="addQuestion()" class="btnClear">
+            <span i18n>Add question</span>
+        </button>
+    </div>
+</div>

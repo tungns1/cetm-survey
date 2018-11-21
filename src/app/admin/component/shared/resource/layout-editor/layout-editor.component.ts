@@ -1,11 +1,13 @@
 import {
-  Component, Optional,
-  Inject, forwardRef, ExistingProvider
+  Component, EventEmitter, Optional,
+  Inject, forwardRef, ExistingProvider, OnInit, AfterViewInit
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { IResourceForm } from '../shared';
 import { UI } from '../../../shared'
 import { cloneDeep } from 'lodash';
+import { GenericFormComponent } from '../frame-form/generic-form/generic-form.component';
 
 const GENERIC_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
   provide: NG_VALUE_ACCESSOR,
@@ -30,8 +32,8 @@ export class LayoutEditorComponent {
     this.layout = cloneDeep(this.dialogData);
   }
 
-  backgroundColor: string = '';
-  textColor: string = '';
+  private backgroundColor: string = '';
+  private textColor: string = '';
   layout: UI;
 
   backgroundPosX: string = '';
@@ -45,7 +47,7 @@ export class LayoutEditorComponent {
 
     if (this.layout.style.backgroundImage) {
       this.layout.style.backgroundImage = this.layout.style.backgroundImage.replace('url(', '').replace(')', '')
-      if (this.layout.style.backgroundPosition) {
+      if (this.layout.style.backgroundPosition){
         let pos = this.layout.style.backgroundPosition.split(' ');
         this.backgroundPosX = pos[0];
         this.backgroundPosY = pos[1];

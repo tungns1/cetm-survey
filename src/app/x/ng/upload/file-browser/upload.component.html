@@ -3,6 +3,6 @@
     <h4 fxFlex class="margin-0" i18n>Size</h4>
     <h4 fxFlex class="margin-0" i18n>Progress</h4>
 </div>
-<div *ngIf="files" class="divider"></div>
+<div *ngIf="file" class="divider"></div>
 <div *ngFor="let file of files" upload-item [data]="{file: file, node: node}" (uploadProgress)="uploadDone($event)"></div>
 <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none">

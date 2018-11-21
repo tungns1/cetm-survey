@@ -25,7 +25,7 @@ export class HistoryComponent {
     totalPage: number;
     cellClass: string[] = ['center', 'padding-10'];
 
-    gridOptions: GridOptions = {
+    private gridOptions: GridOptions = {
         rowHeight: 35,
         rowSelection: 'multiple',
         pagination: true,
@@ -47,7 +47,7 @@ export class HistoryComponent {
             this.totalPage = this.gridOptions.api.paginationGetTotalPages()
         }
     };
-    isAdminStandard: boolean;
+    private isAdminStandard: boolean;
 
     ngOnInit() {
         this.env.Auth.User$.subscribe(u => {

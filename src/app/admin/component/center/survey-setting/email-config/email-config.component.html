@@ -1,0 +1,77 @@
+<div id="emailConfig">
+  <div class="headerAndNav">
+    <h2 class="header uppercase" i18n>Email Config</h2>
+    <div class="nav">
+      <button *ngIf="isList" class="btnClear btnMargin uppercase" (click)="onAction('add')" i18n>Add New Email Config</button>
+      <button *ngIf="!isList" class="btnClear btnMargin uppercase" (click)="refresh()" i18n>Go Back</button>
+    </div>
+  </div>
+
+  <table *ngIf="isList" id="tableComponent">
+    <thead class="hl-thr-editor">
+      <td class="col-header">
+        <span i18n="Numerical Order">No.</span>
+      </td>
+      <td class="col-header" i18n>Store</td>
+      <td class="col-header" i18n>Channel</td>
+      <td class="col-header" i18n>Email</td>
+      <td class="col-header" i18n>Action</td>
+    </thead>
+
+    <tr *ngFor="let data of listData; let index = index" style="height: 32px">
+      <td class="center">{{index+1}}</td>
+      <td class="center">{{data.storeName}}</td>
+      <td class="center">{{data.channel}}</td>
+      <td class="center">{{data.email}}</td>
+      <td class="center">
+        <img src="./assets/img/icon/edit.png" alt="Edit" style="cursor: pointer;margin: 5px 10px;" (click)="onAction('edit', index)">
+        <img src="./assets/img/icon/delete.png" alt="Delete" style="cursor: pointer; margin: 5px 10px;" i18n-appConfirm appConfirm="Do you want to delete the selected item?"
+          (confirm)="onAction('del', index)">
+      </td>
+    </tr>
+  </table>
+
+  <form *ngIf="!isList" [formGroup]="form">
+
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="20" class="labelCtrl" i18n>Email</span>
+      <input fxFlex class="ctrlInput" type="email" formControlName="email" i18n-placeholder="email" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/">
+
+
+      <div fxFlex="15"></div>
+
+      <span *ngIf="isNew" fxFlex="10" class="labelCtrl" i18n>Channel</span>
+      <select *ngIf="isNew" fxFlex class="hl-select" formControlName="channel" required (change)="onChannelChange()">
+        <option value="" selected i18n>Choose channel</option>
+        <option *ngFor="let channel of listChannel" [value]="channel.channel">{{channel.channel}}</option>
+      </select>
+
+
+      <span *ngIf="!isNew && form.value.channel" fxFlex="10" class="labelCtrl" i18n>Channel</span>
+      <input *ngIf="!isNew && form.value.channel" type="text" fxFlex class="ctrlInput" formControlName="channel" disabled>
+      <span *ngIf="!isNew && form.value.store" fxFlex="10" class="labelCtrl" i18n>Store</span>
+      <input *ngIf="!isNew && form.value.store" type="text" fxFlex class="ctrlInput" formControlName="store" disabled>
+    </div>
+
+    <div *ngIf="isNew && form.value.channel === 'store'" fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="20" class="labelCtrl" i18n>Store</span>
+      <select fxFlex class="hl-select" formControlName="store" required>
+        <option value="" selected i18n>Choose store</option>
+        <option *ngFor="let store of listStore" [value]="store.code">{{store.name}}</option>
+      </select>
+
+      <div fxFlex="15"></div>
+      <div fxFlex="10"></div>
+      <div fxFlex></div>
+    </div>
+
+  </form>
+
+
+  <div *ngIf="!isList" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+    <button fxFlex="15" class="uppercase btnFill" (click)="update()">
+      <div [class.hide]="!isNew" i18n>Add</div>
+      <div [class.hide]="isNew" i18n>Save</div>
+    </button>
+  </div>
+</div>

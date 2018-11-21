@@ -10,7 +10,7 @@ export class FileNode {
     constructor(
         private base: string,
         private path: string,
-        public name: string
+        private name: string
     ) {
         this.path = path;
         this.name = name;

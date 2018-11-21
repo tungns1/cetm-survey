@@ -1,0 +1,42 @@
+<div id="modalSurveyDetailHistory">
+  <div class="modal-header" fxLayout="row">
+    <div fxFlex></div>
+    <h3 fxFlex="95" i18n>Feedback Detail</h3>
+    <i fxFlex class="fa fa-times fa-2x pointer" (click)="dialogRef.close()"></i>
+  </div>
+
+  <div *ngIf="surveyData" class="modal-content">
+    <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+      <strong fxFlex="15" i18n>Date</strong>
+      <span fxFlex="20">{{surveyData.day_ctime}}</span>
+      <div fxFlex></div>
+      <strong fxFlex="15" i18n>Time</strong>
+      <span fxFlex="20">{{surveyData.hour_ctime}}</span>
+    </div>
+    <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+      <strong fxFlex="15" i18n>Store</strong>
+      <span fxFlex="20">{{surveyData.store}}</span>
+      <div fxFlex></div>
+      <strong fxFlex="15" i18n>Feedback Device</strong>
+      <span fxFlex="20">{{surveyData.device}}</span>
+    </div>
+    <div fxLayout="row" class="margin-t-10" fxLayoutGap="20px">
+      <strong fxFlex="15" i18n>Teller</strong>
+      <span fxFlex="20">{{surveyData.uname}}</span>
+      <div fxFlex></div>
+      <strong fxFlex="15" i18n>Average Point</strong>
+      <span fxFlex="20">{{surveyData.average_point}}</span>
+    </div>
+
+    <div class="divider margin-20-0"></div>
+
+    <h2 class="center" i18n>Feedback Quality At Counter</h2>
+    <ag-grid-angular #agGrid style="height: 30vh; width: 100%; background-color: #fff" [gridOptions]="gridOptions" [rowData]="tableData"
+      class="ag-fresh tableCtrl" enableColResize enableSorting>
+      <ag-grid-column headerName="Question" [unSortIcon]="true" field="content" [width]="350" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+      <ag-grid-column headerName="Answer" [unSortIcon]="true" field="answer" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+      <ag-grid-column headerName="Point" [unSortIcon]="true" field="point" [width]="150" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+    </ag-grid-angular>
+
+  </div>
+</div>

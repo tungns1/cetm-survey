@@ -1,0 +1,13 @@
+@import '../../../shared/style.scss';
+.summaryInfo{
+    padding: 25px;
+    box-sizing: border-box;
+    .infoItem{
+        padding: 10px;
+        box-sizing: border-box;
+        .labelCtrl{
+            font-weight: $font-weight-default + 200;
+            font-size: $font-size-default + 2;
+        }
+    }
+}

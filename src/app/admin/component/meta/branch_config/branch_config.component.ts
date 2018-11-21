@@ -14,8 +14,7 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
     constructor(
         injector: Injector,
         private org: OrgService,
-        private meta: MetaService,
-
+        private meta: MetaService
     ) {
         super(injector, meta.BranchConfigService);
     }
@@ -47,7 +46,6 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
                     d.counter_user_configs = [];
                     this.staffPositionData$.next(d);
                 });
-
                 this.curentBranch$.next(value.branch_id);
             }
             if (value.counter.auto_login_counters === null) {
@@ -70,13 +68,8 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
             kiosk: [u.kiosk || {}]
         });
     }
-    test() {
-        console.log(this.staffPositionConfig);
-        console.log(this.oldConfigs)
-    }
 
     saveStaffPosition(ev: string) {
-        console.log(ev)
         if (ev === 'add') {
             this.meta.SetStaffPos(this.staffPositionConfig).subscribe(res => {
                 // console.log(res)
@@ -84,9 +77,6 @@ export class BranchConfigComponent extends BaseAdminComponent<IBranchConfig> {
         } else if (ev === 'edit') {
             this.staffPositionConfig.forEach(config => config.id = '')
             this.meta.UpdateStaffPos(this.staffPositionConfig, this.oldConfigs)
-            // .subscribe(res => {
-            //   console.log(res)
-            // });
         }
     }
 

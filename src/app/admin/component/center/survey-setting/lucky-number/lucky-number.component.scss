@@ -1,0 +1,18 @@
+@import '../../../shared/style.scss';
+form {
+    .rowCtrl {
+        width: 90%;
+        margin-bottom: 20px;
+        .labelCtrl{
+            text-align: right;
+            margin-top: 5px;
+        }
+        textarea{
+            width: 100%;
+            padding: 5px;
+        }
+    }
+}
+.cover-form{
+    padding: 30px 50px;
+}

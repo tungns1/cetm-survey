@@ -1,0 +1,39 @@
+<div id="surveyAnalysis" fxLayout="row">
+  <div [fxFlex]="'250px'" class="leftFilter">
+    <report-filter (refresh)="refresh($event)" [inside]="'surveyAnalysis'" style="padding-top: 50px; height: 100%"></report-filter>
+  </div>
+
+  <div fxFlex style="overflow: auto;" class="mainContent">
+    <div class="main_miraway">
+
+      <app-env-sub-module i18n-title title="Analysis Survey"></app-env-sub-module>
+      <div class="headerAndNav">
+        <h2 class="header uppercase" i18n>Campaign Analysis</h2>
+        <div class="nav">
+          <button class="btnClear btnMargin uppercase" appSafeNav="/report/surveyDashboard" i18n>Dashboard Survey</button>
+          <button class="btnClear btnMargin uppercase" appSafeNav="/report/surveyHistory" i18n>History Survey</button>
+        </div>
+      </div>
+      <div id="summaryAnalysis" *ngIf="isSummary">
+        <ag-grid-angular #agGrid style="height: 30vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="dataTable$ | async"
+          class="ag-fresh tableCtrl" enableColResize enableSorting>
+          <ag-grid-column headerName="Campaign Name" field="campaign_name" [width]="300" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+          <ag-grid-column headerName="Campain Duration" field="duration" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+          <ag-grid-column headerName="Channel" field="channel" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+          <ag-grid-column headerName="Survey Name" field="surveys.name" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+          <ag-grid-column headerName="Feedback Count" field="count" [width]="230" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+          <ag-grid-column headerName="Average Point" field="average_point" [width]="100" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+        </ag-grid-angular>
+
+        <div class="divider margin-25-0"></div>
+
+        <div class="padding-25 border">
+          <div id="analysisSumChart">
+            <ngx-charts-line-chart [results]="feedbackCountChart$ | async" legend="true" xAxis="true" yAxis="true" legendTitle="Legend" i18n-legendTitle></ngx-charts-line-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 export * from './transaction';
 export * from './inside';
-// export * from './customer';
+export * from './surveyDashboard';
 export * from './kiosk_effective';
 export * from './counter';
 export * from './counter_performance';

@@ -32,7 +32,7 @@ export class WorkspaceSettingService extends SmallStorage<ICounterSetting> {
     force_auto_login$ = new BehaviorSubject<boolean>(null)
     login_value$ = new BehaviorSubject<boolean>(null)
     private api = this.http.make('api/public/center')
-    private baseUploadURL = `${this.env.Platform.Http}/api/report/record/`;
+    private baseUploadURL = `${this.env.Platform.HttpCETM}/api/report/record/`;
     private checked = false;
 
     Update(data: ICounterSetting) {

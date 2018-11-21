@@ -11,7 +11,6 @@ import { map } from 'rxjs/operators';
 export class BarComponent {
     @Input("data") set setData(v: StatMap) {
         if (!v) return;
-        // console.log("set data", v);
         this.data$ = v.ToArray().pipe(map(data => {
             return data.sort((a, b) => a.count > b.count ? -1 : 1);
         }));

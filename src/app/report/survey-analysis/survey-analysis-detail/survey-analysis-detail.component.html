@@ -1,0 +1,25 @@
+<div id="surveyAnalysis" fxLayout="row">
+  <div [fxFlex]="'250px'" class="leftFilter"></div>
+
+  <div fxFlex style="overflow: auto;" class="mainContent">
+    <div class="main_miraway">
+
+      <app-env-sub-module i18n-title title="Analysis Survey"></app-env-sub-module>
+      <div class="headerAndNav">
+        <h2 class="header uppercase" i18n>Survey Analysis</h2>
+        <div class="nav">
+          <button class="btnClear btnMargin uppercase" (click)="goBack()" i18n>Go Back</button>
+        </div>
+      </div>
+
+      <app-sum-info [data]="sumInfo"></app-sum-info>
+
+      <div class="divider margin-t-20"></div>
+
+      <div *ngFor="let question of detailData; let index = index" class="margin-t-20">
+        <app-survey-detail [data]="question" [index]="index"></app-survey-detail>
+      </div>
+    </div>
+    <footer></footer>
+  </div>
+</div>

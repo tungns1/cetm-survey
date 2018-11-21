@@ -1,6 +1,7 @@
-import { NgModule, ModuleWithProviders } from "@angular/core";
+import { NgModule, ModuleWithProviders, ValueProvider } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { HttpModule } from '@angular/http';
 
 import { UtilPipeModule } from "./pipe";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -18,7 +19,7 @@ import { BusinessModule } from './businessQapp/business.module';
         
     ],
     exports: [
-        CommonModule,
+        CommonModule, HttpModule,
         DirectiveModule,
         EnvironmentModule,
         Ng2BasicModule,

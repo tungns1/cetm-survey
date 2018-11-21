@@ -15,7 +15,7 @@ export class PerformanceComponent {
     private storeAPI: StoreAPI
   ) { }
 
-  _data: ISPT[];
+  protected _data: ISPT[];
   cellClass: string[] = ['center', 'padding-10'];
   @Input() set data(v: InfoStore) {
     this._data = v.data;
@@ -30,7 +30,7 @@ export class PerformanceComponent {
     });
   };
 
-  gridOptions: GridOptions = {
+  protected gridOptions: GridOptions = {
     rowHeight: 35,
     rowSelection: 'multiple'
   };

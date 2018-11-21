@@ -1,15 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-    ISummary, Summary, IExtendedTicket, TicketStates,
-    ICustomer, ITicketTrack, ITicket,
-    MonitorFilterService, ModalComponent, TimerComopnent
-} from '../../shared';
+import { ICustomer, TimerComopnent } from '../../shared';
 import { MonitorNavService } from '../../../service/shared/nav';
-import {
-    MonitorSummaryService,
-    MonitorFocusService, MonitorCustomerService
-} from '../shared';
+import { MonitorFocusService } from '../shared';
 
 import { combineLatest } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
@@ -27,8 +20,6 @@ export class FocusComponent {
         private navService: MonitorNavService,
         private route: ActivatedRoute,
         private router: Router,
-        private filterService: MonitorFilterService,
-        private summaryService: MonitorSummaryService,
         private focusService: MonitorFocusService
     ) { }
 

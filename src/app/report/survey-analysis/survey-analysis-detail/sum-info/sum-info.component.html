@@ -1,0 +1,69 @@
+<div *ngIf="data" class="summaryInfo border">
+  <div fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Survey Name</label>
+      <span *ngIf="data" fxFlex>{{data.campaign_name}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Feedback Count</label>
+      <span *ngIf="data" fxFlex>{{data.count}}</span>
+    </div>
+  </div>
+
+
+
+  <div fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Time</label>
+      <span fxFlex>{{data.duration}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Average Feedback Point</label>
+      <span fxFlex>{{data.average_point}}</span>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Channel</label>
+      <span fxFlex>{{data.channel}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <!-- <label fxFlex="70" class="labelCtrl" i18n>Good Feedback Count</label>
+      <span fxFlex>----</span> -->
+    </div>
+  </div>
+
+  <!-- <div fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Location</label>
+      <span fxFlex>----</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Rather Feedback Count</label>
+      <span fxFlex>----</span>
+    </div>
+  </div>
+
+
+
+
+  <div fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Status</label>
+      <span *ngIf="data" fxFlex>----</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Average Feedback Count</label>
+      <span *ngIf="data" fxFlex>----</span>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex class="infoItem"></div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Poor Feedback</label>
+      <span *ngIf="data" fxFlex>----</span>
+    </div>
+  </div> -->
+</div>

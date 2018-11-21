@@ -32,7 +32,6 @@ class cacheService extends MemCache<IService> {
         return arr.sort((a, b) => a.name < b.name ? -1 : 1);
     }
 }
-
 class cacheServiceGroup extends MemCache<IServiceGroup> {
     ServiceNameGroup(id: string) {
         return super.GetName(id, "code");

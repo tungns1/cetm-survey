@@ -3,7 +3,9 @@ import { CounterComponent } from './counter/counter.component';
 import { KioskComponent } from './kiosk/kiosk.component';
 import { ScreenComponent } from './screen/screen.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+// import { FeedbackSurveyComponent } from './feedback-survey/feedback-survey.component';
 import { SFlowComponent } from './sflow/sflow.component';
+import { CampaignComponent } from './campaign/campaign.component';
 
 const children: Routes = [
   {
@@ -47,6 +49,15 @@ const children: Routes = [
     path: 'feedback/:id',
     component: FeedbackComponent
   },
+  // {
+  //   path: 'feedbackSurvey',
+  //   pathMatch: 'full',
+  //   redirectTo: 'feedbackSurvey/list'
+  // },
+  // {
+  //   path: 'feedbackSurvey/:id',
+  //   component: FeedbackSurveyComponent
+  // },
   {
     path: 'sflow',
     pathMatch: 'full',
@@ -55,6 +66,15 @@ const children: Routes = [
   {
     path: 'sflow/:id',
     component: SFlowComponent
+  },
+  {
+    path: 'campaign',
+    pathMatch: 'full',
+    redirectTo: 'campaign/list'
+  },
+  {
+    path: 'campaign/:id',
+    component: CampaignComponent
   }
 ]
 

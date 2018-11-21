@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  IDevice, ICountState, DeviceCount,
-  IBoxActivitySummary, GlobalActivitySummary,
-  IActivitySummary, ActivitySummary
-} from '../../shared';
+import { IBoxActivitySummary, GlobalActivitySummary } from '../../shared';
 
 import { MonitorDeviceSocket } from './monitor-device.socket';
-import { ReplaySubject ,  merge ,  of } from 'rxjs';
-import { IBoxActivity } from './index';
+import { ReplaySubject, merge, of } from 'rxjs';
 import { share, map, switchMap } from 'rxjs/operators';
 
 @Injectable()
@@ -23,7 +18,7 @@ export class MonitorSummaryService {
         branches
       });
     }));
-  }),share());
+  }), share());
 
   private activitySummaryUpdate$ = this.socket.RxEvent<IBoxActivitySummary>("/activity/summary/update");
 
@@ -34,7 +29,7 @@ export class MonitorSummaryService {
       gb.Replace(v);
     }));
     return merge(of(null), summaryUpdate).pipe(map(_ => gb));
-  }),share());
+  }), share());
 
   Branches$ = new ReplaySubject<string[]>(1);
 }

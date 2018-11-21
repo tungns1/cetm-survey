@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MonitorFocusService } from '../shared';
 import { MonitorNavService } from '../../../service/shared/nav';
@@ -37,7 +37,7 @@ export class FocusComponent {
     counters$ = this.deviceService.Box$.pipe(map(b => b.counters.ToArray()));
     kiosks$ = this.deviceService.Box$.pipe(map(b => b.kiosks.ToArray()));
 
-    goBackBranchList() {
+    private goBackBranchList() {
         this.router.navigate(["../../summary_device"], {
             relativeTo: this.route,
             queryParamsHandling: "preserve"

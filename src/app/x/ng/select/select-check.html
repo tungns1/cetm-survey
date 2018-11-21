@@ -7,7 +7,7 @@
             <ng-container i18n>Unselect All</ng-container>
         </label>
     </div>
-    <div *ngFor="let v of views" class="hlft-div-checkbox pointer itemCtrl left">
+    <div *ngFor="let v of views" class="hlft-div-checkbox pointer itemCtrl">
         <div (click)="toggleItem(v.id)">
             <input type="checkbox" [(ngModel)]="selected[v.id]">
             <span>{{v.text}}</span>

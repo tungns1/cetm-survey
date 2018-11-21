@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+  <accordion *ngIf="inside !== 'surveyAnalysis'" name="device_code">
+      <accordion-title class="accordionTitle">
+          <span i18n>Device</span>
+      </accordion-title>
+      <select-check formControlName="device_code" [data]="devices$ | async" textField="code" idField="code">
+      </select-check>
+  </accordion>
+
+  <accordion *ngIf="inside !== 'surveyAnalysis'" name="user_id">
+      <accordion-title class="accordionTitle">
+          <span i18n>Teller</span>
+      </accordion-title>
+      <select-check formControlName="user_id" [data]="users$ | async" textField="fullname" idField="fullname">
+      </select-check>
+  </accordion>
+</form>

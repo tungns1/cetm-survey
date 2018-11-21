@@ -1,0 +1,24 @@
+<div *ngIf="form" id="pointConfigModal">
+  <form [formGroup]="form">
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="20%" i18n>Good level</span>
+      <input fxFlex type="range" id="myRange" max="10" min="0" step="0.1" formControlName="high_rate">
+      <span fxFlex="5%">{{form.value.high_rate}}</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="20%" i18n>Rather level</span>
+      <input fxFlex type="range" id="myRange" [max]="form.value.high_rate" min="0" step="0.1" formControlName="credit_rate">
+      <span fxFlex="5%">{{form.value.credit_rate}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px" class="rowCtrl">
+      <span fxFlex="20%" i18n>Average level</span>
+      <input fxFlex type="range" id="myRange" [max]="form.value.credit_rate" min="0" step="0.1" formControlName="medium_rate">
+      <span fxFlex="5%">{{form.value.medium_rate}}</span>
+    </div>
+  </form>
+  <div fxLayout="row" fxLayoutGap="10px" class="rowCtrl margin-t-50">
+    <div fxFlex></div>
+    <button fxFlex="20" class="btnFill" (click)="Save()" i18n>Ok</button>
+  </div>
+</div>

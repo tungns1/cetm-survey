@@ -1,0 +1,21 @@
+@import '../../shared/style.scss';
+#modalSurveyDetailHistory {
+    .modal-header {
+        h3 {
+            margin: 0px;
+        }
+        .btnClose {
+            // position: absolute;
+            // display: inline-block;
+            // top: 0px;
+            // right: 0px;
+        }
+    }
+    .tableCtrl {
+        margin-top: 20px;
+        border: $border;
+        border-spacing: 0;
+        border-radius: 3px;
+        width: 100%;
+    }
+}

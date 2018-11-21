@@ -5,6 +5,21 @@ export class TranslateService {
     }
 
     translateData: { [index: string]: L10nText } = {
+        'Khách hàng về trước': {
+            vi: 'Khách hàng về trước',
+            en: 'Khách hàng về trước',
+            sp: 'Khách hàng về trước'
+        },
+        'Khách hàng không đồng ý phản hồi': {
+            vi: 'Khách hàng không đồng ý phản hồi',
+            en: 'Khách hàng không đồng ý phản hồi',
+            sp: 'Khách hàng không đồng ý phản hồi'
+        },
+        'Lý do khác': {
+            vi: 'Lý do khác',
+            en: 'Lý do khác',
+            sp: 'Lý do khác'
+        },
         'Customer left': {
             vi: 'Khách hàng về trước',
             en: 'Customer left',
@@ -84,6 +99,30 @@ export class TranslateService {
             vi: 'Cửa hàng này có liên kết với một số kiosk',
             en: 'This store has been assigned to some kiosk',
             sp: 'Esta tienda ha sido asignada a algún quiosco'
+        },
+        'Good':{
+            vi: 'Tốt',
+            en: 'Good',
+        },
+        'Rather':{
+            vi: 'Khá',
+            en: 'Rather',
+        },
+        'Average':{
+            vi: 'Trung Bình',
+            en: 'Average',
+        },
+        'Poor':{
+            vi: 'Kém',
+            en: 'Poor',
+        },
+        'Finished':{
+            vi: 'Hoàn thành',
+            en: 'Finished',
+        },
+        'Unfinished':{
+            vi: 'Chưa hoàn thành',
+            en: 'Unfinished',
         }
     }
 

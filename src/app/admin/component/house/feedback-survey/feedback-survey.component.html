@@ -1,0 +1,37 @@
+<!-- <app-env-sub-module i18n-title title="Feedback - Survey"></app-env-sub-module>
+<div class="animated fadeInLeft" *ngIf="isList">
+  <app-datatable i18n-name name="Feedback - Survey" [data]="data$ | async" (action)="togleList($event)">
+    <app-table-field name="feedback_code" i18n-title title="Feedback Code"></app-table-field>
+    <app-table-field name="survey_name" i18n-title title="Survey Name"></app-table-field>
+  </app-datatable>
+</div>
+
+<div class="animated fadeInLeft" *ngIf="!isList">
+  <div class="headerAndNav">
+    <h2 *ngIf="isNew" class="header uppercase" i18n="Add New Model">Add New Survey To Feedback</h2>
+    <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit Survey To Feedback</h2>
+    <div class="nav">
+      <button class="btnClear btnMargin uppercase" (click)="togleList()">
+        <span i18n class="uppercase">Go Back</span>
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" fxLayout="column">
+    <span i18n>Feedback Device</span>
+    <select class="hl-select" formControlName="device_id">
+      <option *ngFor="let feedback of feedbackList$ | async" [value]="feedback.code">{{feedback.name}}</option>
+    </select>
+
+    <span i18n>Survey</span>
+    <select class="hl-select" formControlName="survey_id">
+      <option *ngFor="let survey of surveyList$ | async" [value]="survey.id">{{survey.name}}</option>
+    </select>
+  </form>
+  <!-- <button (click)="test()">test</button> -->
+
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+    <button fxFlex="15%" class="uppercase btnFill" (click)="addFeedbackSurvey()" i18n>Add</button>
+    <!-- <button fxFlex="15%" class="uppercase btnFill" [class.hide]="isNew" (click)="onAction('edit')" i18n>Save</button> -->
+  </div>
+</div> -->

@@ -14,10 +14,7 @@ export class UserSettingComponent {
         protected dialogRef: MatDialogRef<any>,
         private router: Router,
         private route: ActivatedRoute,
-    ) {
-        console.log('1')
-        console.log(this.languages)
-    }
+    ) { }
 
     app = this.dialogData;
     languages = ProjectConfig.general.supported_languages;

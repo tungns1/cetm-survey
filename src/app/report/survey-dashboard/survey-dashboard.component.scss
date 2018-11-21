@@ -1,0 +1,14 @@
+#surveyDashboard {
+    #highlight {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+    }
+    .chartContainer {
+        width: 90%;
+        height: 45vh;
+        padding: 20px;
+        position: relative;
+    }
+}

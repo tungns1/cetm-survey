@@ -1,0 +1,135 @@
+<div id="surveyHistory" fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'surveyHistory'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+            <app-env-sub-module i18n-title title="Customer Feedback Timeline"></app-env-sub-module>
+            <div class="headerAndNav">
+                <h2 class="header uppercase" i18n>Customer Feedback Timeline</h2>
+                <div class="nav">
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/dashboard" i18n>General</button>
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/history" i18n>History</button>
+                </div>
+            </div>
+            <div class="border margin-b-15" id="timlineReport">
+                <div class="hl-column-sum">
+                    <div style="padding: 0px 10px;" *ngIf="totalData$ | async; let totalData">
+                        <div class="hl-tl-sum">
+                            <!-- <span i18n>Total</span>: {{totalData.count}} -->
+                        </div>
+                        <div class="row-total">
+                            <div class="col-total-left">
+                                <div class="hl-ct-sum">
+                                    <span i18n>Feedback Count</span>
+                                    <span *ngIf="totalData.count > 0" class="hl-giaodich">{{totalData.count}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-total-right" hidden>
+                                <div class="hl-max-sum">
+                                    <div *ngIf="totalData.count > 0">
+                                        <div class="finised_canceled sum_total" [style.width]="''+totalData.count/totalData.count*100+'%'"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row-total">
+                            <div class="col-total-left">
+                                <div class="hl-ct-sum">
+                                    <span i18n>Good Feedback</span>
+                                    <span *ngIf="totalData.high > 0" class="hl-giaodich">{{totalData.high}}&nbsp; ({{totalData.high/totalData.count*100 | number : '1.2-2'}}%)</span>
+                                </div>
+                            </div>
+
+                            <div class="col-total-right">
+                                <div class="hl-max-sum">
+                                    <div *ngIf="totalData.high > 0">
+                                        <div class="finised_canceled high_total" [style.width]="''+totalData.high/totalData.count*100+'%'"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row-total">
+                            <div class="col-total-left">
+                                <div class="hl-ct-sum">
+                                    <span i18n>Rather Feedback</span>
+                                    <span *ngIf="totalData.credit > 0" class="hl-giaodich">{{totalData.credit}}&nbsp; ({{totalData.credit/totalData.count*100 | number : '1.2-2'}}%)</span>
+                                </div>
+                            </div>
+
+                            <div class="col-total-right">
+                                <div class="hl-max-sum">
+                                    <div *ngIf="totalData.credit > 0">
+                                        <div class="finised_canceled credit_total" [style.width]="''+totalData.credit/totalData.count*100+'%'"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row-total">
+                            <div class="col-total-left">
+                                <div class="hl-ct-sum">
+                                    <span i18n>Average Feedback</span>
+                                    <span *ngIf="totalData.medium > 0" class="hl-giaodich">{{totalData.medium}}&nbsp; ({{totalData.medium/totalData.count*100 | number : '1.2-2'}}%)</span>
+                                </div>
+                            </div>
+
+                            <div class="col-total-right">
+                                <div class="hl-max-sum">
+                                    <div *ngIf="totalData.medium > 0">
+                                        <div class="finised_canceled medium_total" [style.width]="''+totalData.medium/totalData.count*100+'%'"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row-total">
+                            <div class="col-total-left">
+                                <div class="hl-ct-sum">
+                                    <span i18n>Poor Feedback</span>
+                                    <span *ngIf="totalData.low > 0" class="hl-giaodich">{{totalData.low}}&nbsp; ({{totalData.low/totalData.count*100 | number : '1.2-2'}}%)</span>
+                                </div>
+                            </div>
+
+                            <div class="col-total-right">
+                                <div class="hl-max-sum">
+                                    <div *ngIf="totalData.low > 0">
+                                        <div class="finised_canceled low_total" [style.width]="''+totalData.low/totalData.count*100+'%'"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border">
+                <h3 class="center" i18n>Customer Feedback Timeline</h3>
+                <div class="chart-timeline" *ngIf="chartData$ | async">
+                    <ngx-charts-bar-vertical-stacked [customColors]="customColors" [results]="chartData$ | async" xAxisLabel="Period" i18n-xAxisLabel
+                        legendTitle="Legend" i18n-legendTitle yAxisLabel="Count" i18n-yAxisLabel legend="true" xAxis="true" yAxis="true" showXAxisLabel="true"
+                        showYAxisLabel="true"></ngx-charts-bar-vertical-stacked>
+
+                </div>
+
+            </div>
+            <ag-grid-angular #agGrid style="height: 65vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="tableData$ | async"
+                class="ag-fresh tableCtrl" enableColResize enableSorting enableFilter>
+                <ag-grid-column headerName="Period" field="time" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Feedback Count" field="count" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Good Feedback" field="high" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Rather Feedback" field="credit" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Average Feedback" field="medium" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Poor Feedback" field="low" [width]="170" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+            </ag-grid-angular>
+            <div fxLayout="row">
+                <div fxFlex="80%"></div>
+                <button fxFlex class="btnClear uppercase margin-20-10" (click)="export()" i18n>Export to csv</button>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

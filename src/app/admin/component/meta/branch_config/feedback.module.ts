@@ -20,8 +20,8 @@ const FEEDBACK_CONTROL_VALUE_ACCESSOR: ExistingProvider = {
     providers: [FEEDBACK_CONTROL_VALUE_ACCESSOR]
 })
 export class FeedbackConfigComponent implements ControlValueAccessor {
-    text: string;
-    value = {
+    private text: string;
+    private value = {
         required: false
     }
 

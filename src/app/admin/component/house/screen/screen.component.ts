@@ -2,8 +2,6 @@ import { Component, ViewChild, Injector } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject ,  of } from 'rxjs';
 import { extend } from 'lodash';
-
-import { Router, ActivatedRoute } from '@angular/router';
 import { CenterService, HouseService, IScreen } from '../../../service/';
 import { BaseAdminComponent, CommonValidator, USER_ROLES, RuntimeEnvironment } from '../../shared';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';

@@ -1,0 +1,120 @@
+<div id="detailMonitorSurvey">
+  <h2 class="header uppercase" i18n>Survey Store Detail</h2>
+  <div class="nav">
+    <button class="btnClear btnMargin uppercase" (click)="goBackBranchList()" i18n>Go Back</button>
+  </div>
+
+  <h3 class="storeName">{{storeName}}</h3>
+
+  <div *ngIf="curentStore" class="border padding-20" fxLayout="row" fxLayoutGap="5%">
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img src="./assets/img/icon/percentage.png" width="100%">
+          </div>
+        </div>
+        <div fxFlex class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+curentStore.finished/curentStore.count*100+'%'"></div>
+        </div>
+      </div>
+
+      <div class="barChartInfo">
+        <strong i18n>Feedback / Transaction</strong>
+        <h1>{{curentStore.finished / curentStore.count}} %</h1>
+      </div>
+
+      <div class="chartContainer">
+        <ngx-charts-pie-chart [results]="feedbackRatioChart$ | async" [labels]="true" doughnut="true"></ngx-charts-pie-chart>
+      </div>
+    </div>
+
+
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img *ngIf="curentStore.average_point >= pointConfig.high_rate" src="./assets/img/icon/good.png" width="100%">
+            <img *ngIf="pointConfig.high_rate > curentStore.average_point && curentStore.average_point >= pointConfig.credit_rate" src="./assets/img/icon/rather.png"
+              width="100%">
+            <img *ngIf="pointConfig.credit_rate > curentStore.average_point && curentStore.average_point >= pointConfig.medium_rate"
+              src="./assets/img/icon/average.png" width="100%">
+            <img *ngIf="pointConfig.medium_rate > curentStore.average_point" src="./assets/img/icon/poor.png" width="100%">
+          </div>
+        </div>
+        <div id="averagePointChart" class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+curentStore.average_point.toFixed(2)/10*100+'%'"></div>
+        </div>
+      </div>
+      <div fxLayout="row" class="barChartInfo">
+        <div fxFlex="60">
+          <strong i18n>Average Feedback Point</strong>
+          <h1>{{curentStore.average_point.toFixed(2)}}</h1>
+        </div>
+        <h2 fxFlex>
+          <span *ngIf="curentStore.average_point >= pointConfig.high_rate" i18n>Good</span>
+          <span *ngIf="pointConfig.high_rate > curentStore.average_point && curentStore.average_point >= pointConfig.credit_rate" i18n>Rather</span>
+          <span *ngIf="pointConfig.credit_rate > curentStore.average_point && curentStore.average_point >= pointConfig.medium_rate"
+            i18n>Average</span>
+          <span *ngIf="pointConfig.medium_rate > curentStore.average_point" i18n>Poor</span>
+        </h2>
+      </div>
+      <div class="totalFeedbackCount">
+        <div>{{curentStore.count}}</div>
+      </div>
+      <div class="chartContainer">
+        <ngx-charts-pie-chart [results]="detailByCurrentStoreChart$ | async" [labels]="true" doughnut="true" [customColors]="customColors"
+          [labelFormatting]="setLabelFormatting"></ngx-charts-pie-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="border padding-20 margin-t-30">
+    <div fxLayout="row">
+      <div fxFlex="200px"></div>
+      <h3 fxFlex class="center" i18n>Feedback Count By Teller</h3>
+      <select fxFlex="200px" [(ngModel)]="chartCountFilter" (change)="onFilterChange('feedbackCount')">
+        <option value="0" i18n>Show all</option>
+        <option value="5" i18n>Top 5</option>
+        <option value="-5" i18n>Bottom 5</option>
+      </select>
+    </div>
+    <div class="chartContainer">
+      <ngx-charts-bar-vertical [barPadding]="paddingFeedbackCount | async" [results]="feedbackCountByStaffChart$ | async" [xAxis]="true"
+        [yAxis]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Teller" i18n-xAxisLabel yAxisLabel="Feedback Count"
+        i18n-yAxisLabel>
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+  <div class="border padding-20 margin-t-30">
+    <div fxLayout="row">
+      <div fxFlex="200px"></div>
+      <h3 fxFlex class="center" i18n>Feedback Average By Teller</h3>
+      <select fxFlex="200px" [(ngModel)]="chartAverageFilter" (change)="onFilterChange('feedbackAverage')">
+        <option value="0" i18n>Show all</option>
+        <option value="5" i18n>Top 5</option>
+        <option value="-5" i18n>Bottom 5</option>
+      </select>
+    </div>
+    <div class="chartContainer">
+      <ngx-charts-bar-vertical [barPadding]="paddingFeedbackAverage | async" [results]="feedbackAverageByStaffChart$ | async" [xAxis]="true"
+        [yAxis]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Teller" i18n-xAxisLabel yAxisLabel="Average Feedback Point"
+        i18n-yAxisLabel>
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+  <h3 class="center" i18n>Poor Feedback List</h3>
+  <app-feedback-list [data]="poorFeedback$"></app-feedback-list>
+
+  <h3 class="center" i18n>Other Feedback List</h3>
+  <app-feedback-list [data]="otherFeedback$"></app-feedback-list>
+
+
+  <ng-template #loading>
+    <div class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,103 @@
+<div id="summaryComponent">
+    <h2 class="header uppercase" i18n>Survey Overview</h2>
+    <div class="nav">
+        <button class="btnClear btnMargin uppercase" appSafeNav="/monitor/ticket" i18n>Transaction</button>
+        <button class="btnClear btnMargin uppercase" appSafeNav="/monitor/device" i18n>Device</button>
+        <button class="btnFill btnMargin uppercase" appSafeNav="/monitor/survey" i18n>Survey</button>
+    </div>
+    <div *ngIf="selectedChannel.length">
+        <div *ngIf="monitorSummaryService.isStoreChannel$ | async">
+            <ag-grid-angular id="storeSum" style="height: 30vh; background-color: #fff" [gridOptions]="gridOptions" [rowData]="stores$ | async"
+                class="ag-fresh tableCtrl" enableColResize enableSorting>
+                <ag-grid-column headerName="Store" field="actor" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Total Transaction" field="count" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Good Feedback" field="high" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Rather Feedback" field="credit" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Average Feedback" field="medium" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Poor Feedback" field="low" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Average Point" field="average_point" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+            </ag-grid-angular>
+
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
+                <div fxFlex="70" class="border">
+                    <h3 class="center" i18n>Feedback Quality</h3>
+                    <div class="chartContainer">
+                        <ngx-charts-pie-chart [results]="chartData$ | async" [legend]="true" [labels]="true" [labelFormatting]="setLabelFormatting"
+                            legendTitle="Legend" i18n-legendTitle [customColors]="customColors"></ngx-charts-pie-chart>
+                    </div>
+                </div>
+                <div fxFlex class="border">
+                    <div fxLayout="row">
+                        <div fxFlex></div>
+                        <h3 fxFlex="70px" class="center" i18n>Staff list</h3>
+                        <div fxFlex class="staffFilter">
+                            <select [(ngModel)]="staffFilter" (change)="onFilterChange()">
+                                <option value="0" i18n>Show all</option>
+                                <option value="5" i18n>Top 5</option>
+                                <option value="-5" i18n>Bottom 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="staffList">
+                        <div *ngFor="let staff of staffReportData$ | async">
+                            <div fxLayout="row">
+                                <div class="imgAvatarContainer" fxFlex="15">
+                                    <img class="imgAvatar" src="./assets/img/icon/default_avatar.png">
+                                </div>
+                                <div fxFlex>
+                                    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+                                        <div fxFlex>
+                                            <h4>{{staff.actor}}</h4>
+                                        </div>
+                                        <div fxFlex="50px" class="averagePointContainer">
+                                            <div class="averagePoint">
+                                                <h3>{{staff.average_point.toFixed(2)}}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutGap="5px">
+                                        <span fxFlex>
+                                            <span i18n>Total transaction</span>: {{staff.count}}</span>
+                                        <span fxFlex class="storeName">{{staff.store}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider margin-t-10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="center" i18n>Poor Feedback List</h3>
+            <app-feedback-list [data]="poorFeedback$"></app-feedback-list>
+        </div>
+        <div *ngIf="!(monitorSummaryService.isStoreChannel$ | async)">
+            <div fxLayout="row" fxLayoutGap="20px" class="margin-t-20">
+                <div fxFlex class="border">
+                    <h3 class="center" i18n>Feedback Quality</h3>
+                    <div class="chartContainer">
+                        <ngx-charts-pie-chart [results]="chartData$ | async" [legend]="true" [labels]="true" [labelFormatting]="setLabelFormatting"
+                            legendTitle="Legend" i18n-legendTitle [customColors]="customColors"></ngx-charts-pie-chart>
+                    </div>
+                </div>
+            </div>
+            <h3 class="center" i18n>Poor Feedback List</h3>
+            <ag-grid-angular #agGrid style="height: 30vh; background-color: #fff" [gridOptions]="gridOption1" [rowData]="poorFeedback$ | async"
+                class="ag-fresh tableCtrl" enableSorting>
+                <ag-grid-column headerName="Time" field="time" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Average Point" field="average_point" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Channel" field="channel" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Detail" [cellRenderer]="detailCellRenderer" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+            </ag-grid-angular>
+            <h3 class="center" i18n>Other Feedback List</h3>
+            <ag-grid-angular #agGrid style="height: 30vh; background-color: #fff" [gridOptions]="gridOption2" [rowData]="otherFeedback$ | async"
+                class="ag-fresh tableCtrl" enableSorting>
+                <ag-grid-column headerName="Time" field="time" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Average Point" field="average_point" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Channel" field="channel" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+                <ag-grid-column headerName="Detail" [cellRenderer]="detailCellRenderer" [cellClass]="cellclass" i18n-headerName></ag-grid-column>
+            </ag-grid-angular>
+        </div>
+    </div>
+</div>

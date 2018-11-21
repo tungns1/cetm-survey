@@ -2,5 +2,6 @@ export * from './filter.module';
 export {
     InsideBranchFilterService,
     PeriodFilterService,
-    ReportFilterService
+    ReportFilterService,
+    SurveyFilterService
 } from './shared';

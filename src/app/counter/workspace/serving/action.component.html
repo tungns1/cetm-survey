@@ -1,0 +1,34 @@
+<div id="actions" fxLayout="row" fxLayoutGap="2vw">
+    <button class="uppercase btnFill" id="__workspace_button_next" fxFlex (throttle)="Next()" [class.hidden]="auto_next$ | async"
+        throttle threshold="3000">
+        <ng-container i18n="Counter Button: Next">Next</ng-container>
+    </button>
+    <button class="uppercase btnRed" fxFlex (click)="NoNext()" [class.hidden]="!(auto_next$ | async)">
+        <ng-container i18n="Counter Button: Auto Next">Auto Next</ng-container>
+    </button>
+    <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (throttle)="Recall()" throttle threshold="5000">
+        <ng-container i18n="Counter Button: Recall Ticket">Recall</ng-container>
+    </button>
+    <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="Move()" fxShow.xs="false">
+        <ng-container i18n="Counter Button: Move Ticket">Move</ng-container>
+    </button>
+    <!-- <button class="uppercase btnFill" [disabled]="!ticket" fxFlex (click)="printForm()" fxShow.xs="false" throttle threshold="10000"> 
+        <ng-container i18n="Counter Button: Print Form">Print Form</ng-container>
+    </button> -->
+    <button class="uppercase btnRed" [disabled]="!ticket" fxFlex i18n-appConfirm appConfirm="Do you want to cancel this ticket?"
+        (confirm)="Delete()" fxShow.xs="false">
+        <ng-container i18n="Counter Button: Delete Ticket">Cancel</ng-container>
+    </button>
+    <!-- <button class="uppercase btnRed" [disabled]="!ticket" fxFlex (click)="Miss()" fxShow.xs="false">
+        <ng-container i18n="Counter Button: Miss Ticket">Miss</ng-container>
+    </button> -->
+    <button class="uppercase btnGreen" [disabled]="!ticket" fxFlex (throttle)="Finish()" throttle>
+        <ng-container i18n="Counter Button: Finish Ticket">Finish</ng-container>
+    </button>
+</div>
+
+
+<app-notice>
+    <app-notice-message name="feedback_skip" message="Please remind customer feedback to finish transaction" i18n-message>
+    </app-notice-message>
+</app-notice>

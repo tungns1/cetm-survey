@@ -1,0 +1,39 @@
+.staffFilter {
+    padding: 1em;
+}
+
+.chartContainer,
+.staffList {
+    height: 60vh;
+}
+
+.staffList {
+    overflow: auto;
+    .imgAvatarContainer {
+        box-sizing: border-box;
+        padding: 20px 5px 0 5px;
+        .imgAvatar {
+            width: 100%;
+            border-radius: 100%;
+        }
+    }
+    .averagePointContainer {
+        box-sizing: border-box;
+        padding: 5px;
+        .averagePoint {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            background-color: #f53e30;
+            h3 {
+                display: inline-block;
+                margin: 12px 7px;
+                color: #fff;
+            }
+        }
+    }
+    .storeName{
+        text-align: right;
+        padding-right: 10px;
+    }
+}

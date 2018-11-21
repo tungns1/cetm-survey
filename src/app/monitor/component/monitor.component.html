@@ -2,16 +2,16 @@
 <div id="monitor" fxLayout="column" style="overflow: hidden">
     <app-header fxFlex="5%" style="z-index: 2"></app-header>
 
-    <top-nav fxFlex="5%" style="z-index: 1"></top-nav>
+    <top-nav fxFlex="5%" style="z-index: 2"></top-nav>
 
     <div fxLayout="row" fxFlex="90%">
-        <div fxFlex="250px" class="leftFilter">
-            <monitor-filter style="padding-top: 50px; height: 100%"></monitor-filter>
+        <div [fxFlex]="hideFilter? '60px':'250px'" class="leftFilter">
+            <monitor-filter style="padding-top: 50px; height: 100%" (view)="onFilter()"></monitor-filter>
         </div>
 
         <div fxFlex style="overflow: auto;" class="mainContent">
             <div class="main_miraway">
-                <router-outlet></router-outlet>
+                <router-outlet (activate)="onActivate($event)"></router-outlet>
             </div>
             <footer></footer>
         </div>

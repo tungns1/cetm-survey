@@ -38,7 +38,6 @@
                 background: #fff;
                 padding: 0;
                 li {
-                    position: relative;
                     width: 220px;
                     border: $border;
                     border-top: none;
@@ -46,35 +45,18 @@
                     outline: none;
                     &:hover {
                         background: $border-color + 50;
-                        .thirdLv {
-                            display: block;
-                        }
                     }
                     .paddingSecond {
                         padding-left: 20px;
                     }
-                    .thirdLv {
-                        display: none;
-                        list-style: none;
-                        position: absolute;
-                        // z-index: 5;
-                        top: 0;
-                        left: 100%;
-                        background-color: #fff;
-                        padding: 0;
-                        li {
-                            width: 220px;
-                            border: $border;
-                            cursor: pointer;
-                            outline: none;
-                            position: relative;
-                            &+li {
-                                border-top: none;
-                            }
-                            &:hover {
-                                background: $border-color + 50;
-                            }
-                        }
+                }
+                .li_secondLv{
+                    @extend .li_firstLv;
+                    .thirdLv{
+                        @extend .secondLv;
+                        top: 0px;
+                        left: 220px;
+                        border-top: $border;
                     }
                 }
             }

@@ -6,6 +6,7 @@ const reportServiceProvider = [
 
 export { Paging } from './paging.service';
 export * from './report-customer.service';
+export * from './surveyReport.service';
 
 export {
     reportServiceProvider

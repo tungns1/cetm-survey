@@ -27,7 +27,7 @@ export class SummaryComponent {
     records$ = this.summaryService.summaries$.pipe(map(s => s.ToArray()),share());
     total$ = this.summaryService.summaries$.pipe(map(s => s.GetTotal()));
 
-    gridOptions: GridOptions = {
+    private gridOptions: GridOptions = {
         rowHeight: 35,
         // floatingBottomRowData: [],
         getRowStyle: (e) => {

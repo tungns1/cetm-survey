@@ -5,6 +5,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { CenterComponent } from './center.component';
 import { TicketLayoutComponent } from './ticket-layout/ticket-layout.component';
 import { VoiceComponent } from './voice/voice.component';
+import { SurveyComponent } from './survey/survey.component';
+import { SurveySettingComponent } from './survey-setting/survey-setting.component';
+import { LinkChannelComponent } from './link-channel/link-channel.component';
 import { FormConfigComponent } from './form-config/form-config.component';
 import { FormUserComponent } from './form-user/form-user.component';
 import { ServiceGroupComponent } from './service-group/service-group.component';
@@ -59,6 +62,28 @@ const children: Routes = [
   {
     path: 'voice/:id',
     component: VoiceComponent
+  },
+  {
+    path: 'survey',
+    pathMatch: 'full',
+    redirectTo: 'survey/list'
+  },
+  {
+    path: 'survey/:id',
+    component: SurveyComponent
+  },
+  {
+    path: 'surveySetting',
+    pathMatch: 'full',
+    redirectTo: 'surveySetting/list'
+  },
+  {
+    path: 'surveySetting/:id',
+    component: SurveySettingComponent
+  },
+  {
+    path: 'linkChannel/:id',
+    component: LinkChannelComponent
   },
   {
     path: 'formconfig',

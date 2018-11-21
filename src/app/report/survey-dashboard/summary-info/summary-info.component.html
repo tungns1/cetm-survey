@@ -1,0 +1,182 @@
+<div class="summaryInfo border">
+  <div fxLayout="row" fxLayoutGap="10%" *ngIf="data">
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img src="./assets/img/icon/percentage.png" width="100%">
+          </div>
+        </div>
+        <div fxFlex class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+data.count/data.count*100+'%'"></div>
+        </div>
+      </div>
+
+      <div class="barChartInfo">
+        <strong i18n>Total Transaction</strong>
+        <h1>{{data.count}}</h1>
+      </div>
+    </div>
+
+
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img *ngIf="data.average_point >= pointConfig.high_rate" src="./assets/img/icon/good.png" width="100%">
+            <img *ngIf="pointConfig.high_rate > data.average_point && data.average_point >= pointConfig.credit_rate" src="./assets/img/icon/rather.png"
+              width="100%">
+            <img *ngIf="pointConfig.credit_rate > data.average_point && data.average_point >= pointConfig.medium_rate" src="./assets/img/icon/average.png"
+              width="100%">
+            <img *ngIf="pointConfig.medium_rate > data.average_point" src="./assets/img/icon/poor.png" width="100%">
+          </div>
+        </div>
+        <div id="averagePointChart" class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+data.average_point.toFixed(2)/10*100+'%'"></div>
+        </div>
+      </div>
+      <div fxLayout="row" class="barChartInfo">
+        <div fxFlex="60">
+          <strong i18n>Average Feedback Point</strong>
+          <h1>{{data.average_point.toFixed(2)}}</h1>
+        </div>
+        <h2 fxFlex>
+          <span *ngIf="data.average_point >= pointConfig.high_rate" i18n>Good</span>
+          <span *ngIf="pointConfig.high_rate > data.average_point && data.average_point >= pointConfig.credit_rate" i18n>Rather</span>
+          <span *ngIf="pointConfig.credit_rate > data.average_point && data.average_point >= pointConfig.medium_rate" i18n>Average</span>
+          <span *ngIf="pointConfig.medium_rate > data.average_point" i18n>Poor</span>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="10%" *ngIf="data">
+
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img src="./assets/img/icon/good.png" width="100%">
+          </div>
+        </div>
+        <div fxFlex class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+data.high/data.count*100+'%'"></div>
+        </div>
+      </div>
+      <div fxLayout="row" class="barChartInfo">
+        <div fxFlex="60">
+          <strong i18n>Good Feedback Count</strong>
+          <h1>{{data.high}}</h1>
+        </div>
+        <h2 fxFlex>({{data.high_percent}})%</h2>
+      </div>
+    </div>
+
+
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img src="./assets/img/icon/rather.png" width="100%">
+          </div>
+        </div>
+        <div fxFlex class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+data.credit/data.count*100+'%'"></div>
+        </div>
+      </div>
+      <div fxLayout="row" class="barChartInfo">
+        <div fxFlex="60">
+          <strong i18n>Rather Feedback Count</strong>
+          <h1>{{data.credit}}</h1>
+        </div>
+        <h2 fxFlex>({{data.credit_percent}})%</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutGap="10%" *ngIf="data">
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img src="./assets/img/icon/average.png" width="100%">
+          </div>
+        </div>
+        <div fxFlex class="average">
+          <div class="averageValue" [style.width]="''+data.medium/data.count*100+'%'"></div>
+        </div>
+      </div>
+      <div fxLayout="row" class="barChartInfo">
+        <div fxFlex="60">
+          <strong i18n>Average Feedback Count</strong>
+          <h1>{{data.medium}}</h1>
+        </div>
+        <h2 fxFlex>({{data.medium_percent}})%</h2>
+      </div>
+    </div>
+
+
+    <div fxFlex class="rowEL">
+      <div fxLayout="row">
+        <div fxFlex="70px" class="margin-10-0 iconContainer">
+          <div class="icon">
+            <img src="./assets/img/icon/poor.png" width="100%">
+          </div>
+        </div>
+        <div fxFlex class="hl-max-sum">
+          <div class="chartValue" [style.width]="''+data.low/data.count*100+'%'"></div>
+        </div>
+      </div>
+      <div fxLayout="row" class="barChartInfo">
+        <div fxFlex="60">
+          <strong i18n>Poor Feedback Count</strong>
+          <h1>{{data.low}}</h1>
+        </div>
+        <h2 fxFlex>({{data.low_percent}})%</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="dataChannel?.sms" fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Feedback Count At Counter</label>
+      <span fxFlex>{{dataChannel.sms.count}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Average Feedback Point At Counter</label>
+      <span fxFlex>{{dataChannel.sms.average_point.toFixed(2)}}</span>
+    </div>
+  </div>
+  <div *ngIf="dataChannel?.store" fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Feedback Count At Store</label>
+      <span fxFlex>{{dataChannel.store.count}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Average Feedback Point At Store</label>
+      <span fxFlex>{{dataChannel.store.average_point.toFixed(2)}}</span>
+    </div>
+  </div>
+  <div *ngIf="dataChannel?.website" fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Feedback Count At Web</label>
+      <span fxFlex>{{dataChannel.website.count}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Average Feedback Point At Web</label>
+      <span fxFlex>{{dataChannel.website.average_point.toFixed(2)}}</span>
+    </div>
+  </div>
+  <div *ngIf="dataChannel?.booking_online" fxLayout="row" fxLayoutGap="10%">
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Feedback Count At Web</label>
+      <span fxFlex>{{dataChannel.booking_online.count}}</span>
+    </div>
+    <div fxFlex fxLayout="row" class="infoItem">
+      <label fxFlex="70" class="labelCtrl" i18n>Average Feedback Point At Web</label>
+      <span fxFlex>{{dataChannel.booking_online.average_point.toFixed(2)}}</span>
+    </div>
+  </div> -->

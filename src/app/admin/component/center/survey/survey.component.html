@@ -1,0 +1,46 @@
+<app-env-sub-module i18n-title title="Survey"></app-env-sub-module>
+<div class="animated fadeInLeft" *ngIf="isList">
+    <app-datatable i18n-name name="Survey" [data]="data$ | async" (action)="onAction($event)">
+        <app-table-field name="name" i18n-title title="Name"></app-table-field>
+        <!-- <app-table-field name="branch" i18n-title title="Location"></app-table-field> -->
+    </app-datatable>
+</div>
+
+<div class="animated fadeInLeft" *ngIf="!isList">
+    <div class="headerAndNav">
+        <h2 *ngIf="isNew" class="header uppercase" i18n="Add New Model">Add New survey</h2>
+        <h2 *ngIf="!isNew" class="header uppercase" i18n>Edit survey</h2>
+        <div class="nav">
+            <button class="btnClear btnMargin uppercase" (click)="togleSurveyList()">
+                <span i18n class="uppercase">Go Back</span>
+            </button>
+        </div>
+    </div>
+
+    <form id="surveyForm" [formGroup]="form" validate fxLayout="column">
+        <span i18n>Name</span>
+        <input class="ctrlInput" formControlName="name" i18n-placeholder placeholder="Survey Name" required>
+
+        <div *ngIf="form.controls.name.hasError('required')" class="valid-color">
+            <span i18n>- Survey name cannot be empty</span>
+        </div>
+        <div *ngIf="!form.controls.name.hasError('required')" class="valid-color">&nbsp;</div>
+        <div fxLayout="row">
+            <div fxFlex></div>
+            <h3 fxFlex="60" i18n class="center">Question(s)</h3>
+            <mat-slide-toggle fxFlex class="margin-t-10" formControlName="i18n" color="primary" i18n>Enable i18n mode</mat-slide-toggle>
+        </div>
+        <app-question-form [questionListForm]="form.controls.questions" [i18nMode]="form.value.i18n"></app-question-form>
+    </form>
+
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end center" class="action">
+        <button fxFlex="150px" class="uppercase btnFill" [disabled]="!form.valid" [style.opacity]="!form.valid ? 0.4 : 1" (click)="preview()"
+            i18n>Preview</button>
+        <!-- <button *ngIf="isNew" fxFlex="150px" class="uppercase btnFill" [disabled]="!form.valid" [style.opacity]="!form.valid ? 0.4 : 1"
+            (click)="addSurvey()" i18n>Add</button>
+        <button *ngIf="!isNew" fxFlex="150px" class="uppercase btnFill" [disabled]="!form.valid" [style.opacity]="!form.valid ? 0.4 : 1"
+            (click)="editSurvey()" i18n>Save</button> -->
+    </div>
+</div>
+
+
