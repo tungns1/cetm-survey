@@ -10,8 +10,8 @@
             </div>
         </div>
         <div *ngIf="inside !== 'survey' && inside !== 'surveyHistory' && inside !== 'surveyAnalysis'">
-            <branch-filter *ngIf="inside != 'customer'"></branch-filter>
-            <inside-filter *ngIf="inside === 'yes'"></inside-filter>
+            <branch-filter *ngIf="inside != 'customer'" [showStore]="showStore"></branch-filter>
+            <inside-filter *ngIf="inside === 'yes'" [onlyService]="onlyService"></inside-filter>
         </div>
     </div>
     <div fxFlex="7vh" class="action">

@@ -19,7 +19,7 @@ export class WaitingComponent {
     page: number = 0;
 
     ngOnInit() {
-        this.queueService.waiting$.subscribe(data => { this.dataLength = data.length });
+        this.queueService.waiting$.subscribe(data => { this.dataLength = data.length; console.log(data) });
         let test = document.getElementById('ticket');
         setTimeout(() => {
             console.log(test)

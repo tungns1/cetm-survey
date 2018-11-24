@@ -1,0 +1,60 @@
+<div fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'yes'" [onlyService]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Booking Histoty"></app-env-sub-module>
+            <div class="headerAndNav">
+                <h2 class="header uppercase" i18n>Booking History</h2>
+                <div class="nav">
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/bookingDetail" i18n>Booking Detail</button>
+                    <button class="btnClear btnMargin uppercase" appSafeNav="/report/bookingStatus" i18n>Booking Status</button>
+                </div>
+            </div>
+            <div class="appointmentTable">
+                <ag-grid-angular #agGrid [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+                    <ag-grid-column headerName="No." field="order" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Store" field="branch_name" [width]="150" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Customer" field="customer_name" [width]="165" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Time" field="created_time_hm" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Date" field="created_time_date" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+                    <ag-grid-column headerName="Service" field="service_name" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Type" field="type_ticket" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+                    <ag-grid-column headerName="Appointment Time" field="appoinment_time" [width]="120" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Arrived" field="arrived" [width]="80" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+                    <ag-grid-column headerName="Check in time" field="check_in_time" [width]="120" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Ticket" field="cnum_cetm" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Waiting time" field="wait_time" [width]="120" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Serving time" field="serve_time" [width]="120" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Transaction status" field="transaction_status" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                    <ag-grid-column headerName="Detail" [cellRenderer]="detailCellRenderer" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+                </ag-grid-angular>
+                <div class="paginationAndExport margin-t-20" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="none center">
+                    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToFirst()" i18n>First</button>
+                    <button fxFlex="30px" class="btnClear pointer" (click)="prevPage()"><</button>
+                    <button fxFlex="30px" class="btnClear pointer" (click)="nextPage()">></button>
+                    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToLast()" i18n>Last</button>
+                    <div fxFlex="10px"></div>
+                    <input fxFlex="30px" class="curentPage" type="number" min="1" [max]="totalPage" [(ngModel)]="curentPage">
+                    <span class="totalPages">/ ({{totalPage}} <span i18n>Pages</span>)</span>
+                    <button fxFlex="120px" class="btnClear pointer" (click)="jumpToPage(curentPage)" i18n>Move to</button>
+                    <div fxFlex></div>
+                    <button fxFlex="200px" class="btnClear export uppercase" (click)="csv()">
+                        <i class="fa fa-file-excel-o fa-lg"></i>
+                        <span i18n>Export to csv</span>
+                    </button>
+                    <!-- no excel export -->
+                    <button fxFlex="200px" class="btnClear export uppercase" (click)="excel()">
+                        <i class="fa fa-file-excel-o fa-lg"></i>
+                        <span i18n>Export to excel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

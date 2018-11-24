@@ -1,0 +1,56 @@
+.progres_bar {
+    height: 10px;
+    text-align: right;
+    float: left;
+    border-radius: 15px;
+    background: rgba(153, 153, 153, 0.3);
+    width: 100%;
+}
+.pg-total-booking{
+    @extend .progres_bar;
+    background-color: #003460;
+}
+.pg-total-not-arrived{
+    @extend .progres_bar;
+    background-color: #999999;
+}
+.pg-total-arrived{
+    @extend .progres_bar;
+    background-color: #2A79E3;
+}
+.pg-total-finish{
+    @extend .progres_bar;
+    background-color: #009F0C;
+}
+.pg-total-cancel{
+    @extend .progres_bar;
+    background-color: #CC0100;
+}
+.row-progress{
+    font-size: 0;
+    .col-info{
+        width: 40%;
+        font-size: 13px;
+        display: inline-block;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding-right: 5%;
+        p{
+            &:nth-child(1){
+                display: inline-block;
+            }
+            &:nth-child(2){
+                float: right;
+            }
+        }
+    }
+    .col-progress{
+        width: 60%;
+        display: inline-block;
+        padding-left: 5%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+}

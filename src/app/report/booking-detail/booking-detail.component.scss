@@ -1,0 +1,90 @@
+.list-tickets {
+    .row-tickets {
+        .more-item {
+            width: 1000000px;
+            display: block;
+        }
+        .header-list {
+            font-size: 14px;
+        }
+        .row-10 {
+           
+            overflow-x: auto;
+            padding: 10px;
+        }
+        .item-tickets {
+            width: 300px;
+            padding: 0 10px;
+            float: left;
+            .cover-item-ticket {
+                text-align: center;
+                padding: 10px;
+                cursor: pointer;
+                border: 1px solid #666
+            }
+        }
+        .ticket-not-arrived {
+            background-color: #666666;
+            color: #fff;
+        }
+        .ticket-arrived-late {
+            background-color: #fff;
+        }
+        .ticket-confirm {
+            background-color: #2B78E4;
+            color: #fff;
+        }
+        .ticket-finish {
+            background-color: #009D0E;
+            color: #fff
+        }
+        .ticket-cancel {
+            background-color: #CC0001;
+            color: #fff;
+        }
+    }
+}
+.mat-form-field-infix{
+    border: 0 !important;
+}
+.block-pro{
+    padding: 20px 50px;
+}
+
+// ngx-select-dropdown {
+//     float: left;
+//     width: 200px;
+// }
+
+// mat-form-field {
+//     float: left;
+//     margin-left: 20px;
+//     input {
+//         width: 120px;
+//         height: 29px;
+//         padding: 0 10px;
+//         border: 1px solid #ccc;
+//         border-radius: 4px;
+//         display: inline-block;
+//         outline: 0;
+//     }
+//     mat-datepicker-toggle {
+//         button{
+//             position: relative;
+//             left: -31px;
+//             width: 24px;
+//             height: 24px;
+//             line-height: 1;
+//         }
+//     }
+//     button.mat-icon-button{
+//         position: relative;
+//             left: -31px;
+//             width: 24px !important;
+//             height: 24px;
+//             line-height: 1;
+//     }
+// }
+// .mat-button, .mat-icon-button, .mat-raised-button{
+//     color: red
+// }

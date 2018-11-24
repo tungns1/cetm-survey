@@ -60,6 +60,20 @@ export class PeriodFilterService extends SmallStorage<IPeriodFilter> {
         }
     }
 
+    ToQueryTimeStamp() {
+        // let startOf = GetStartOf[this.data.period];
+        let start = this.parseDate(this.data.start);
+        let end = this.parseDate(this.data.end);
+        end = new Date(end.setDate(end.getDate() + 1));
+        // end = startOf.offset(end, 1);
+        return {
+            start: start.getTime()/1000,
+            end: end.getTime()/1000,
+            period: this.data.period
+        }
+    }
+
+
     Update(start: Date, end: Date, period: 'day' | 'week' | 'month' | 'year') {
         this.data.period = period || 'day';
         var startOf = GetStartOf[this.data.period];

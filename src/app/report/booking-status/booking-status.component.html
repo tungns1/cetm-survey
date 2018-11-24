@@ -1,0 +1,65 @@
+<div fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [inside]="'yes'" [onlyService]="'yes'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Booking Status"></app-env-sub-module>
+            <div id="bookingStatus">
+                <div class="headerAndNav">
+                    <h2 class="header uppercase" i18n>Booking Status</h2>
+                    <div class="nav">
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/bookingHistory" i18n>Booking History</button>
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/appointmentPerformance" i18n>Appointment Performance</button>
+                    </div>
+                </div>
+
+                <status-sum [data]="sumData$ | async"></status-sum>
+                <div class="divider margin-20-0"></div>
+
+                <div class="border tabCtrl">
+                    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Booking</span>
+                            </ng-template>
+                            <div *ngIf="selectedTab === 0 && reservationChartData$ | async" class="chartContainer">
+                                <ngx-charts-bar-vertical-stacked [results]="reservationChartData$ | async" xAxis="true" yAxis="true" legend="true" showXAxisLabel="true"
+                                    showYAxisLabel="true">
+                                </ngx-charts-bar-vertical-stacked>
+                            </div>
+                        </mat-tab>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span class="uppercase" i18n>Reservation Time</span>
+                            </ng-template>
+                            <div *ngIf="selectedTab === 1 && reservationCancelChartData$ | async" class="chartContainer">
+                               
+                                <ngx-charts-line-chart
+                                    [results]="reservationCancelChartData$ | async"
+                                    [gradient]="false"
+                                    [xAxis]="true"
+                                    [yAxis]="true"
+                                    [legend]="true"
+                                    [showXAxisLabel]="true"
+                                    [showYAxisLabel]="showYAxisLabel"
+                                    [autoScale]="autoScale"
+                                    [timeline]="timeline" >
+                                </ngx-charts-line-chart>
+                            </div>
+                        </mat-tab>
+                        
+                    </mat-tab-group>
+                </div>
+
+                <div class="divider margin-20-0"></div>
+
+                <status-table [data]="tableData$ | async"></status-table>
+                <!-- <button (click)="test()">test</button> -->
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

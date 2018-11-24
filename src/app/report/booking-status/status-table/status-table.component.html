@@ -1,0 +1,12 @@
+<div class="appointmentTable">
+    <ag-grid-angular #agGrid [rowData]="_data" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+        <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Name" field="branch_name" [width]="220" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Total booking" field="total_booking" [width]="165" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="New" field="new" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Cancel" field="cancel" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Change" field="update" [width]="140" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Average reserved by day" field="avg_res" [width]="240" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Average reserved from cancel time to meeting time by day" field="avg_res_cancel" [width]="320" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    </ag-grid-angular>
+</div>

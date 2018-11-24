@@ -4,7 +4,7 @@
         <i fxFlex="5%" class="fa fa-times fa-2x pointer center" (click)="close()"> </i>
     </div>
     <div class="padding-20">
-        <mat-tab-group (selectChange)="onTabChange($event)">
+        <mat-tab-group (selectedTabChange)="onTabChange($event)">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <span class="uppercase" i18n>Upload</span>

@@ -11,6 +11,9 @@ export class ReportFilterComponent {
         private surveyFilterService: SurveyFilterService
     ) { }
     @Input() inside: string;
+    @Input() onlyService: string
+    @Input() showTime: string = 'yes';
+    @Input() showStore: string = 'yes'
     isStoreChannel: boolean = false;
 
     ngOnInit() {

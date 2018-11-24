@@ -1,0 +1,112 @@
+<div  class="report_history_modal">
+    <div class="modal-header"><span i18n>Ticket Detail</span></div>
+    <div class="content-modal">
+        <div class="modal-body padding-10-20">
+            <h3 class="modal-title">Customer Information</h3>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Name</label>
+                <span fxFlex>{{data.customer.full_name !== '' ? data.customer.full_name : data.customer.name}}</span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Phone number</label>
+                <span fxFlex>
+                    {{data.customer.phone_number}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Identity</label>
+                <span fxFlex>
+                    {{data.customer.nationality}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Segment</label>
+                <span fxFlex>
+                    {{data.segment}}
+                </span>
+            </div>
+            <h3 class="modal-title">Book an appointment</h3>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Type of appointment</label>
+                <span fxFlex>
+                    {{data.type_ticket}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Book time</label>
+                <span fxFlex>
+                    {{data.created_at > 0 ? (data.created_at*1000 | date: 'HH:mm, dd/MM/yyyy') : '-'}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Service</label>
+                <span fxFlex>
+                    {{data.service_name}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Location</label>
+                <span fxFlex>
+                    {{data.branch_name}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Appointment time</label>
+                <span fxFlex>
+                    {{data.time_go_bank > 0 ? (data.time_go_bank*1000 | date: 'HH:mm, dd/MM/yyyy') : '-'}}
+                </span>
+            </div>
+            <h3 class="modal-title">Appointment Performance</h3>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Arrived</label>
+                <span fxFlex>
+                    {{data.arrived}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Ticket</label>
+                <span fxFlex>
+                    {{data.cnum_cetm}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Check in time</label>
+                <span fxFlex>
+                    {{data.check_in_time}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Waiting time</label>
+                <span fxFlex>
+                    {{data.wait_time}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Serving time</label>
+                <span fxFlex>
+                    {{data.serve_time}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Status</label>
+                <span fxFlex>
+                    {{data.transaction_status}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Teller</label>
+                <span fxFlex>
+                    {{data.teller}}
+                </span>
+            </div>
+            <div fxLayout="row" class="margin-t-10">
+                <label fxFlex i18n>Manager</label>
+                <span fxFlex>
+                    {{manager$ | async}}
+                </span>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

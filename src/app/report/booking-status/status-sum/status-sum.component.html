@@ -1,0 +1,33 @@
+<div id="bookingStatusSum" class="border padding-20-40" fxLayout="row" fxLayoutGap="20%">
+    <div fxLayout="column" fxFlex>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total Booking</label>
+            <span>{{_data?.total_booking}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total cancel</label>
+            <span>{{_data?.total_cancel}} ({{_data?.total_cancel/_data?.total_booking | percent:'1.1-1'}})</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total create new</label>
+            <span>{{_data?.total_create_new}} ({{_data?.total_create_new/_data?.total_booking | percent:'1.1-1'}})</span>
+        </div>
+    </div>
+
+
+    <div fxLayout="column" fxFlex>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average reserved by day</label>
+            <span>{{_data?.average_reservation_by_day | timeDuration: 'day'}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average reserved from cancel time to meeting time by day</label>
+            <span>{{_data?.average_reservation_from_cancel_to_appointment_by_day | timeDuration: 'day'}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total change</label>
+            <span>{{_data?.total_update}} ({{_data?.total_update/_data?.total_booking | percent:'1.1-1'}})</span>
+        </div>
+      
+    </div>
+</div>

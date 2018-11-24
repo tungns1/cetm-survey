@@ -1,6 +1,6 @@
 <div class="border">
     <div class="componentHeader">
-        <span i18n>Cancelled Tickets</span>
+        <span i18n>Cancelled Tickets</span>&nbsp;
         <span class="totalCount">({{count$ | async}})</span>
         <input #ticket [class.hidden]="!show" style="padding:5px;" 
             (keyup)="onSearch(ticket.value)" type="text" i18n-placeholder="Ticket Number" 

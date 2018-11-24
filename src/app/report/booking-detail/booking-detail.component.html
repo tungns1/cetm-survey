@@ -1,0 +1,69 @@
+<div fxLayout="row">
+    <div [fxFlex]="'250px'" class="leftFilter">
+        <report-filter (refresh)="refresh($event)" [showStore]="'no'" [showTime]="'no'" style="padding-top: 50px; height: 100%"></report-filter>
+    </div>
+
+    <div fxFlex style="overflow: auto;" class="mainContent">
+        <div class="main_miraway">
+
+            <app-env-sub-module i18n-title title="Booking Detail"></app-env-sub-module>
+            <div id="bookingDetail">
+                <div class="headerAndNav">
+                    <div style="display:inline-block">
+                        <h2 class="header uppercase" ><span i18n>Booking Detail</span>
+                            <span style="margin-left: 10px; cursor: pointer;" (click)="refresh()"><i class="fa fa-refresh"></i></span>
+                        </h2>
+                        <div class="filter-detail">
+                            <ngx-select-dropdown [config]="config" [options]="options$ | async" (change)="selectionChanged($event)"></ngx-select-dropdown>
+                            <mat-form-field>
+                                <input matInput readonly="true" [matDatepicker]="myDatepicker" [(ngModel)]="date" (dateChange)="addEvent('change', $event)">
+                                <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                                <mat-datepicker #myDatepicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="nav">
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/bookingHistory" i18n>Booking History</button>
+                        <button class="btnClear btnMargin uppercase" appSafeNav="/report/appointmentPerformance" i18n>Appointment Performance</button>
+                    </div>
+                </div>
+
+                <div class="divider margin-20-0"></div>
+
+                <div class="border block-pro">
+                    <detail-progess [data]="detailSumery$ | async"></detail-progess>
+                </div>
+
+                <div class="divider margin-20-0"></div>
+                <div class="list-tickets">
+                    
+                    <div *ngFor="let item of tickets" class="row-tickets">
+                        <h4 class="header-list">{{item.timeBlock}} ({{item.total}})</h4>
+                        <div class="border row-10">
+                            <div class="more-item">
+                                <div *ngFor="let t of item.tickets" 
+                                      class="text-center item-tickets" >
+                                    <div class="cover-item-ticket"
+                                         (click)="getDetail(t)"
+                                         [class.ticket-not-arrived]="now > (t.time_go_bank+delayTime)"
+                                         [class.ticket-confirm]="t.status === 'confirmed'"
+                                         [class.ticket-finish]="t.status === 'finished'"
+                                         [class.ticket-cancel]="t.status === 'deleted' || t.status === 'cancelled'"
+                                    >
+    
+                                        <p><span i18n>Ticket</span>: {{t.cnum_cetm}}</p>
+                                        <p><span i18n>Service</span>: {{t.service_name}}</p>
+                                        <p><span i18n>Appointment time</span>: {{t.time_go_bank > 0 ? (t.time_go_bank*1000 | date: 'HH:mm') : '-'}}</p>
+                                        <p><span i18n>Thời điểm phục vụ</span>: {{t.serving_at > 0 ? (t.serving_at*1000 | date: 'HH:mm') : '-'}}</p>
+                                        <p><span i18n>Teller</span>: {{t.teller !== '' ? t.teller : '-'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+</div>

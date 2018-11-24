@@ -4,7 +4,10 @@ import { Ticket } from '../model/house/ticket/ticket';
 @Component({
     selector: 'ticket-icon',
     template: `
+    <div style="position: relative;display:inline-block">
+        <img class="bookingTicketIcon" *ngIf="bookingTicket" src="./assets/img/icon/bookingOnlineIcon.png">
         <img [style.width]="width" class="icon" [src]="src">&nbsp;{{ticketNum}}
+    <div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -13,7 +16,7 @@ export class TicketIconComponent {
     srcs = {
         normal: "./assets/img/icon/person.png",
         privileged: "./assets/img/icon/wheelchair.png",
-        vip: "./assets/img/icon/star.png"
+        vip: "./assets/img/icon/star.png",
     }
     src = "";
     _ticket: Ticket;
@@ -22,16 +25,20 @@ export class TicketIconComponent {
         this._ticket = t
     };
     private params: any;
-    private ticketNum: string;
-    
+    ticketNum: string;
+    bookingTicket = false;
     ngOnInit(){
         if(this._ticket){
+            if(this._ticket.ticket_booking && this._ticket.ticket_booking.id !==''){
+                this.bookingTicket = true;
+            }
             this.setSrc(this._ticket);
         } else if(this.params){
             this.setSrc(this.params.data);
             this.width = this.params.width;
             this.ticketNum = this.params.data.cnum;
         }
+        
     }
 
     agInit(params: any): void {// get data from ag-grid

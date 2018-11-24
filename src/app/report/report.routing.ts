@@ -22,6 +22,11 @@ import { SessionValidationGuard } from './shared';
 import { TimelineModule } from "./timeline/timeline.module";
 import { LuckyUserModule } from "./lucky-user/lucky-user.module";
 
+import { AppointmentPerformanceModule } from "./appointment-performance/appointment-performance.module";
+import { BookingHistoryModule } from "./booking-history/booking-history.module";
+import { BookingStatusModule } from "./booking-status/booking-status.module";
+import { BookingDetailModule } from "./booking-detail/booking-detail.module";
+
 export function loadReportHistoryModule() {
     return ReportHistoryModule;
 }
@@ -77,6 +82,22 @@ export function loadLuckyUsersModule(){
     return LuckyUserModule;
 }
 
+export function loadReportAppointmentPerformanceModule(){
+    return AppointmentPerformanceModule;
+}
+
+export function loadReportBookingHistoryModule(){
+    return BookingHistoryModule;
+}
+
+export function loadReportBookingStatusModule(){
+    return BookingStatusModule;
+}
+
+export function loadReportBookingDetailModule(){
+    return BookingDetailModule;
+}
+
 export const children: Routes = [
     { path: "", pathMatch: "full", redirectTo: "dashboard" },
     { path: "history", loadChildren: loadReportHistoryModule },
@@ -97,7 +118,13 @@ export const children: Routes = [
     { path: "surveyHistory", loadChildren: loadSurveyHistoryModule },
     { path: "surveyAnalysis", loadChildren: loadSurveyAnalysisModule },
     { path: "timeline", loadChildren: loadTimelineModule },
-    { path: "luckyUsers", loadChildren: loadLuckyUsersModule }
+    { path: "luckyUsers", loadChildren: loadLuckyUsersModule },
+    
+
+    { path: 'appointmentPerformance', loadChildren: loadReportAppointmentPerformanceModule},
+    { path: 'bookingHistory', loadChildren: loadReportBookingHistoryModule},
+    { path: 'bookingStatus', loadChildren: loadReportBookingStatusModule},
+    { path: 'bookingDetail', loadChildren: loadReportBookingDetailModule}
     
 ];
 

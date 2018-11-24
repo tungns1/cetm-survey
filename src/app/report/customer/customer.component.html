@@ -28,7 +28,7 @@
         <div class="divider margin-30-0"></div>
 
         <div class="border tabCtrl">
-          <mat-tab-group dynamicHeight (selectChange)="onTabChange($event)">
+          <mat-tab-group dynamicHeight (selectedTabChange)="onTabChange($event)">
             <mat-tab>
               <ng-template mat-tab-label><span class="uppercase" i18n>Transaction Time</span></ng-template>
               <app-transaction-time [data]="data$ | async"></app-transaction-time>

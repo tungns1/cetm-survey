@@ -26,6 +26,40 @@ export class ReportFilterService {
         )
     }
 
+    ToBackendQueryBooking() {
+        const branch_id = this.branchFilterService.getLowestBranches();
+        return Object.assign({}, {
+            branch_id: branch_id.join(','),
+            lang: AppStorage.Locale
+        }, this.insideFilterService.ToQuery(),
+            this.periodFilterService.ToQueryTimeStamp()
+        )
+    }
+
+    ToBackendBookingDetail(id:string = '', start:number = 0, end: number = 0){
+        const branch_id = this.branchFilterService.getLowestBranches();
+        if (id !== '') {
+            branch_id.push(id)
+        }
+        return Object.assign({}, {
+            branch_id: branch_id.join(','),
+            lang: AppStorage.Locale
+        }, {'start':start,'end':end}
+        )
+    }
+
+    ToBackendWithLimitQuery() {
+        const branch_id = this.branchFilterService.getLowestBranches();
+        return Object.assign({}, {
+            branch_id: branch_id.join(','),
+            lang: AppStorage.Locale,
+            
+        }, this.insideFilterService.ToQuery(),
+            this.periodFilterService.ToQueryTimeStamp(),
+            {'skip':0,'limit':200}
+        )
+    }
+
     ToBackendQueryCustomer() {
         return Object.assign({},
             this.periodFilterService.ToQuery()

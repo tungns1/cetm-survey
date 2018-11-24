@@ -1,0 +1,48 @@
+<div id="appointmentSum" class="border padding-20-40" fxLayout="row" fxLayoutGap="20%">
+    <div fxLayout="column" fxFlex>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Total Appointment</label>
+            <span>{{_data?.total_appointment}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Arrived ratio</label>
+            <span>{{_data?.num_status_arrived}} {{_data?.num_status_arrived > 0 ? '('+(_data?.num_status_arrived/_data?.total_appointment | percent:'1.1-1')+')' : ''}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Finished transactions ratio</label>
+            <span>{{_data?.num_status_finished}} {{_data?.num_status_finished>0 ? '('+(_data?.num_status_finished/_data?.total_appointment | percent:'1.1-1')+')' : ''}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average wait time</label>
+            <span>{{_data?.avg_watting_time | timeDuration}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average serve time</label>
+            <span>{{_data?.avg_served_time | timeDuration}}</span>
+        </div>
+    </div>
+
+
+    <div fxLayout="column" fxFlex>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Average reserved by day</label>
+            <span>{{_data?.avg_reserved_by_day | timeDuration: 'day'}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Arrived late ratio</label>
+            <span>{{_data?.num_arrived_late}} {{_data?.num_arrived_late>0 ? '('+(_data?.num_arrived_late/_data?.num_status_arrived | percent:'1.1-1')+')' : ''}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Cancel transactions ratio</label>
+            <span>{{_data?.num_cancel}} {{_data?.num_cancel>0 ? '('+(_data?.num_cancel/_data?.num_status_arrived | percent:'1.1-1')+')' : ''}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Waiting time excess standard ratio</label>
+            <span>{{_data?.num_excess_watting}} {{_data?.num_excess_watting> 0 ? '('+(_data?.num_excess_watting/_data?.total_appointment | percent:'1.1-1')+')' : ''}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between none" class="rowCtrl">
+            <label i18n>Serving time excess standard ratio</label>
+            <span>{{_data?.num_excess_served}} {{_data?.num_excess_served>0 ? '('+(_data?.num_excess_served/_data?.num_status_finished | percent:'1.1-1')+')' : ''}}</span>
+        </div>
+    </div>
+</div>

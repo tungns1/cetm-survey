@@ -12,4 +12,6 @@ export class CustomerInfoComponent {
         private queueService: QueueService
     ) { }
     @Input() customer: Customer;
+    ngOnInit(){
+    }
 }  

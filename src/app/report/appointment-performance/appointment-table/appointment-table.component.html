@@ -1,0 +1,19 @@
+<div class="appointmentTable">
+    <ag-grid-angular #agGrid [rowData]="_data" [gridOptions]="gridOptions" class="ag-fresh tableCtrl" enableColResize enableSorting>
+        <ag-grid-column headerName="No." field="no" [width]="50" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Name" field="branch_name" [width]="150" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Total appointment" field="total_appointment" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Average reserved by day" field="avg_reserved_by_day" [width]="150" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Arrived" field="num_status_arrived" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Arrived late" field="num_arrived_late" [width]="100" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Finished transactions" field="num_status_finished" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Canceled transaction" field="num_cancel" [width]="130" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+
+        <ag-grid-column headerName="Average wait time" field="avg_watting_time" [width]="120" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Waiting time excess standard ratio" field="num_excess_watting" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Average serve time" field="avg_served_time" [width]="180" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+        <ag-grid-column headerName="Serving time excess standard ratio" field="num_excess_served" [width]="200" [cellClass]="cellClass" i18n-headerName></ag-grid-column>
+    </ag-grid-angular>
+</div>

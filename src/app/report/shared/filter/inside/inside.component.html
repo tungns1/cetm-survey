@@ -1,26 +1,38 @@
 <form [formGroup]="form">
     <!--<accordion-group [active]="expand$ | async" (open)="onOpen($event)">-->
-    <accordion name="service_id">
-        <accordion-title class="accordionTitle">
-            <span i18n>Select Service</span>
-        </accordion-title>
-        <select-check formControlName="service_id" [data]="services$ | async" textField="name">
-        </select-check>
-    </accordion>
+    <ng-container *ngIf="onlyService==='yes'";>
+        <accordion name="service_id">
+            <accordion-title class="accordionTitle">
+                <span i18n>Select Service</span>
+            </accordion-title>
+            <select-check formControlName="service_id" [data]="services$ | async" textField="name">
+            </select-check>
+        </accordion>
+    </ng-container>
 
-    <accordion name="user_id">
-        <accordion-title class="accordionTitle">
-            <span i18n>Select Teller</span>
-        </accordion-title>
-        <select-check formControlName="user_id" [data]="users$ | async" textField="fullname">
-        </select-check>
-    </accordion>
-    <accordion name="counter_id">
-        <accordion-title class="accordionTitle">
-            <span i18n>Select Counter</span>
-        </accordion-title>
-        <select-check formControlName="counter_id" [data]="counters$ | async" textField="name">
-        </select-check>
-    </accordion>
-    <!--</accordion-group>-->
+    <ng-container *ngIf="onlyService!=='yes'">
+        <accordion name="service_id">
+            <accordion-title class="accordionTitle">
+                <span i18n>Select Service</span>
+            </accordion-title>
+            <select-check formControlName="service_id" [data]="services$ | async" textField="name">
+            </select-check>
+        </accordion>
+        <accordion name="user_id">
+            <accordion-title class="accordionTitle">
+                <span i18n>Select Teller</span>
+            </accordion-title>
+            <select-check formControlName="user_id" [data]="users$ | async" textField="fullname">
+            </select-check>
+        </accordion>
+        <accordion name="counter_id">
+            <accordion-title class="accordionTitle">
+                <span i18n>Select Counter</span>
+            </accordion-title>
+            <select-check formControlName="counter_id" [data]="counters$ | async" textField="name">
+            </select-check>
+        </accordion>
+        <!--</accordion-group>-->
+    </ng-container>
+
 </form>

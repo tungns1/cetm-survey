@@ -11,7 +11,7 @@ import { ReportFilterModule, reportServiceProvider } from "./shared";
     ReportFilterModule
   ],
   declarations: [ReportComponent],
-  providers: [reportServiceProvider],
+  providers: [reportServiceProvider, ],
 })
 export class ReportModule {
 

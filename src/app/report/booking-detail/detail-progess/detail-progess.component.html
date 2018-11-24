@@ -1,0 +1,79 @@
+<div>
+    <div class="row">
+        <div class="row-progress">
+            <div class="col-info">
+                <p i18n>Total booking: </p>
+                <p>{{_data.total_booking}}</p>
+            </div>
+            <div class="col-progress">
+                <div class="progres_bar">
+                    <div *ngIf="_data.total_booking>0">
+                        <div class="pg-total-booking" style="width:100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-progress">
+            <div class="col-info">
+                <p i18n>Total not arrived: </p>
+                <p>{{_data.total_not_arrived}} {{ _data.total_not_arrived > 0 ? '('+(_data.total_not_arrived/_data.total_booking | percent:'1.1-1')+')' : '' }}</p>
+            </div>
+            <div class="col-progress">
+                <div class="progres_bar">
+                    <div *ngIf="_data.total_booking>0">
+                        <div class="pg-total-not-arrived" [style.width]="''+_data.total_not_arrived/_data.total_booking*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-progress">
+            <div class="col-info">
+                <p i18n>Total arrived: </p>
+                <p>{{_data.total_arrived}} {{ _data.total_arrived > 0 ? '('+(_data.total_arrived/_data.total_booking | percent:'1.1-1')+')' : '' }}</p>
+            </div>
+            <div class="col-progress">
+                <div class="progres_bar">
+                    <div *ngIf="_data.total_booking>0">
+                        <div class="pg-total-arrived" [style.width]="''+_data.total_arrived/_data.total_booking*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-progress">
+            <div class="col-info">
+                <p i18n>Total transactions finished: </p>
+                <p>{{_data.total_finish}} {{ _data.total_finish > 0 ? '('+(_data.total_finish/_data.total_arrived | percent:'1.1-1')+')' : '' }}</p>
+            </div>
+            <div class="col-progress">
+                <div class="progres_bar" [style.width]="''+_data.total_arrived/_data.total_booking*100+'%'">
+                    <div *ngIf="_data.total_booking>0">
+                        <div class="pg-total-finish" [style.width]="''+_data.total_finish/_data.total_arrived*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-progress">
+            <div class="col-info">
+                <p i18n>Total transactions cancel: </p>
+                <p>{{_data.total_cancel}} {{ _data.total_cancel > 0 ? '('+(_data.total_cancel/_data.total_arrived | percent:'1.1-1')+')' : '' }}</p>
+            </div>
+            <div class="col-progress">
+                <div class="progres_bar" [style.width]="''+_data.total_arrived/_data.total_booking*100+'%'">
+                    <div *ngIf="_data.total_booking>0">
+                        <div class="pg-total-cancel" [style.width]="''+_data.total_cancel/_data.total_arrived*100+'%'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <p>Số lượt đặt lịch: {{_data.total_booking}}</p>
+    <p>Số lượt không đến: {{_data.total_not_arrived}}</p>
+    <p>Số lượt đã đến: {{_data.total_arrived}}</p>
+    <p>Số giao dịch kết thúc: {{_data.total_finish}}</p>
+    <p>Số giao dịch bị hủy: {{_data.total_cancel}}</p> -->
+</div>

@@ -79,6 +79,23 @@
                 <li *ngIf="!isAdminStandard" routerLink="/report/store" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Store Performance</span>
                 </li>
+                <li *ngIf="!isAdminStandard" class="li_secondLv"  queryParamsHandling="preserve" >
+                    <span i18n class="paddingSecond">Booking Report</span>
+                    <ul class="thirdLv">
+                        <li *ngIf="!isAdminStandard" routerLink="/report/appointmentPerformance" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Appointment Performance</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingHistory" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Booking History</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingStatus" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Booking Status</span>
+                        </li>
+                        <li *ngIf="!isAdminStandard" routerLink="/report/bookingDetail" queryParamsHandling="preserve">
+                            <span i18n class="paddingSecond">Booking Detail</span>
+                        </li>
+                    </ul>
+                </li>
                 <!-- <li *ngIf="!isAdminStandard" routerLink="/report/staffPerformance" queryParamsHandling="preserve">
                     <span i18n class="paddingSecond">Staff Performance</span>
                 </li>
@@ -165,7 +182,7 @@
             </ul>
         </li>
         <li class="li_firstLv" *ngIf="(isAdmin$ | async) && !isAdminStandard">
-            <div class="paddingFirst" routerLink="/admin/house/feedback" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/feedback')">
+            <div class="paddingFirst" routerLink="/admin/house/feedback/list" queryParamsHandling="preserve" [class.current-menu-item]="isActive('/admin/house/feedback')">
                 <i class="fa fa-desktop"> </i>
                 <span i18n>Customer Feedback & Survey</span>
             </div>
